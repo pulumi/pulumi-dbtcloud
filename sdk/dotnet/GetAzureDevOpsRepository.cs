@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     public static class GetAzureDevOpsRepository
     {
@@ -23,11 +23,11 @@ namespace Pulumi.Dbtcloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoRepository = Dbtcloud.GetAzureDevOpsRepository.Invoke(new()
+        ///     var myAdoRepository = DbtCloud.GetAzureDevOpsRepository.Invoke(new()
         ///     {
         ///         Name = "my-repo-name",
         ///         AzureDevOpsProjectId = myAdoProject.Id,
@@ -51,11 +51,11 @@ namespace Pulumi.Dbtcloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoRepository = Dbtcloud.GetAzureDevOpsRepository.Invoke(new()
+        ///     var myAdoRepository = DbtCloud.GetAzureDevOpsRepository.Invoke(new()
         ///     {
         ///         Name = "my-repo-name",
         ///         AzureDevOpsProjectId = myAdoProject.Id,

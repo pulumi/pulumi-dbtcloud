@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// Assigns a set of dbt Cloud groups to a given User ID.
@@ -24,12 +24,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // we can assign groups to users
-    ///     var myUserGroups = new Dbtcloud.UserGroups("my_user_groups", new()
+    ///     var myUserGroups = new DbtCloud.UserGroups("my_user_groups", new()
     ///     {
     ///         UserId = myUser.Id,
     ///         GroupIds = new[]
@@ -41,7 +41,7 @@ namespace Pulumi.Dbtcloud
     ///     });
     /// 
     ///     // as Delete is not handled currently, by design, removing all groups from a user can be done with
-    ///     var myOtherUserGroups = new Dbtcloud.UserGroups("my_other_user_groups", new()
+    ///     var myOtherUserGroups = new DbtCloud.UserGroups("my_other_user_groups", new()
     ///     {
     ///         UserId = 123456,
     ///         GroupIds = new[] {},
@@ -64,7 +64,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/userGroups:UserGroups my_user_groups 123456
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/userGroups:UserGroups")]
+    [DbtCloudResourceType("dbtcloud:index/userGroups:UserGroups")]
     public partial class UserGroups : global::Pulumi.CustomResource
     {
         /// <summary>

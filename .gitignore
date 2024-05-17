@@ -1,30 +1,33 @@
 .idea
 .code
+.vscode
 **/vendor/
 .pulumi
 **/bin/
 **/obj/
 Pulumi.*.yaml
 **/node_modules/
-.DS_Store
-__pycache__/
-venv/
+*.DS_Store
 
 **/command-output/
-coverage_output/
-*.sln
 
 .idea/
-.vscode/
 *.iml
 
 yarn.lock
 **/pulumiManifest.go
 
 ci-scripts
+provider/**/schema.go
 provider/**/schema-embed.json
 **/version.txt
 **/nuget
 **/dist
 
-**/go.work*
+sdk/java/build
+sdk/java/.gradle
+sdk/java/gradle
+sdk/java/gradlew
+sdk/java/gradlew.bat
+
+sdk/python/venv

@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,11 +16,11 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myEnvVarJobOverride = new Dbtcloud.EnvironmentVariableJobOverride("my_env_var_job_override", new()
+    ///     var myEnvVarJobOverride = new DbtCloud.EnvironmentVariableJobOverride("my_env_var_job_override", new()
     ///     {
     ///         Name = dbtMyEnvVar.Name,
     ///         ProjectId = dbtProject.Id,
@@ -43,7 +43,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride test_environment_variable_job_override 12345:678:123456
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride")]
+    [DbtCloudResourceType("dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride")]
     public partial class EnvironmentVariableJobOverride : global::Pulumi.CustomResource
     {
         /// <summary>

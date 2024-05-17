@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,13 +16,13 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     // when using the Databricks adapter
-    ///     var myDatabricksCred = new Dbtcloud.DatabricksCredential("my_databricks_cred", new()
+    ///     var myDatabricksCred = new DbtCloud.DatabricksCredential("my_databricks_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AdapterId = myDatabricksConnection.AdapterId,
@@ -33,7 +33,7 @@ namespace Pulumi.Dbtcloud
     ///     });
     /// 
     ///     // when using the Spark adapter
-    ///     var mySparkCred = new Dbtcloud.DatabricksCredential("my_spark_cred", new()
+    ///     var mySparkCred = new DbtCloud.DatabricksCredential("my_spark_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AdapterId = myDatabricksConnection.AdapterId,
@@ -58,7 +58,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/databricksCredential:DatabricksCredential")]
+    [DbtCloudResourceType("dbtcloud:index/databricksCredential:DatabricksCredential")]
     public partial class DatabricksCredential : global::Pulumi.CustomResource
     {
         /// <summary>

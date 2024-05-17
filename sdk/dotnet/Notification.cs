@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,7 +16,7 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -28,7 +28,7 @@ namespace Pulumi.Dbtcloud
     ///     // Failure to do so, will result in the user losing access to existing notifications and dbt
     ///     // support will need to be contacted to restore access.
     ///     // cmd: terraform import dbtcloud_notification.prod_job_internal_notification &lt;user_id&gt;
-    ///     var prodJobInternalNotification = new Dbtcloud.Notification("prod_job_internal_notification", new()
+    ///     var prodJobInternalNotification = new DbtCloud.Notification("prod_job_internal_notification", new()
     ///     {
     ///         UserId = 100,
     ///         OnSuccesses = new[]
@@ -43,7 +43,7 @@ namespace Pulumi.Dbtcloud
     ///     });
     /// 
     ///     // we can also send "external" email notifications to emails to related to dbt Cloud users
-    ///     var prodJobExternalNotification = new Dbtcloud.Notification("prod_job_external_notification", new()
+    ///     var prodJobExternalNotification = new DbtCloud.Notification("prod_job_external_notification", new()
     ///     {
     ///         UserId = 100,
     ///         OnFailures = new[]
@@ -60,7 +60,7 @@ namespace Pulumi.Dbtcloud
     ///     });
     /// 
     ///     // and finally, we can set up Slack notifications
-    ///     var prodJobSlackNotifications = new Dbtcloud.Notification("prod_job_slack_notifications", new()
+    ///     var prodJobSlackNotifications = new DbtCloud.Notification("prod_job_slack_notifications", new()
     ///     {
     ///         UserId = 100,
     ///         OnFailures = new[]
@@ -92,7 +92,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/notification:Notification my_notification 12345
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/notification:Notification")]
+    [DbtCloudResourceType("dbtcloud:index/notification:Notification")]
     public partial class Notification : global::Pulumi.CustomResource
     {
         /// <summary>

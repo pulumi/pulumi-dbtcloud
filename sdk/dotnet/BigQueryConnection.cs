@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// Resource to create BigQuery connections in dbt Cloud. Can be set to use OAuth for developers.
@@ -18,12 +18,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var myConnection = new Dbtcloud.BigQueryConnection("my_connection", new()
+    ///     var myConnection = new DbtCloud.BigQueryConnection("my_connection", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Name = "Project Name",
@@ -43,7 +43,7 @@ namespace Pulumi.Dbtcloud
     ///     });
     /// 
     ///     // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`
-    ///     var myConnectionWithOauth = new Dbtcloud.BigQueryConnection("my_connection_with_oauth", new()
+    ///     var myConnectionWithOauth = new DbtCloud.BigQueryConnection("my_connection_with_oauth", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Name = "Project Name",
@@ -77,7 +77,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/bigQueryConnection:BigQueryConnection")]
+    [DbtCloudResourceType("dbtcloud:index/bigQueryConnection:BigQueryConnection")]
     public partial class BigQueryConnection : global::Pulumi.CustomResource
     {
         /// <summary>

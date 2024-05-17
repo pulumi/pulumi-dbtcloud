@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.pulumi.dbtcloud"},{"l":"com.pulumi.dbtcloud.inputs"},{"l":"com.pulumi.dbtcloud.outputs"}]

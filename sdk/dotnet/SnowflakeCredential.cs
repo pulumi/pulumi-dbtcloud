@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,12 +16,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var prodCredential = new Dbtcloud.SnowflakeCredential("prod_credential", new()
+    ///     var prodCredential = new DbtCloud.SnowflakeCredential("prod_credential", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AuthType = "password",
@@ -46,7 +46,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/snowflakeCredential:SnowflakeCredential prod_snowflake_credential 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/snowflakeCredential:SnowflakeCredential")]
+    [DbtCloudResourceType("dbtcloud:index/snowflakeCredential:SnowflakeCredential")]
     public partial class SnowflakeCredential : global::Pulumi.CustomResource
     {
         /// <summary>

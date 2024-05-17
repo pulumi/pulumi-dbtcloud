@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// &gt; As of October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
@@ -27,14 +27,14 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     // a job that has github_webhook and git_provider_webhook 
     ///     // set to false will be categorized as a "Deploy Job"
-    ///     var dailyJob = new Dbtcloud.Job("daily_job", new()
+    ///     var dailyJob = new DbtCloud.Job("daily_job", new()
     ///     {
     ///         EnvironmentId = prodEnvironment.EnvironmentId,
     ///         ExecuteSteps = new[]
@@ -74,7 +74,7 @@ namespace Pulumi.Dbtcloud
     /// 
     ///     // a job that has github_webhook and git_provider_webhook set 
     ///     // to true will be categorized as a "Continuous Integration Job"
-    ///     var ciJob = new Dbtcloud.Job("ci_job", new()
+    ///     var ciJob = new DbtCloud.Job("ci_job", new()
     ///     {
     ///         EnvironmentId = ciEnvironment.EnvironmentId,
     ///         ExecuteSteps = new[]
@@ -109,7 +109,7 @@ namespace Pulumi.Dbtcloud
     /// 
     ///     // a job that is set to be triggered after another job finishes
     ///     // this is sometimes referred as 'job chaining'
-    ///     var downstreamJob = new Dbtcloud.Job("downstream_job", new()
+    ///     var downstreamJob = new DbtCloud.Job("downstream_job", new()
     ///     {
     ///         EnvironmentId = project2ProdEnvironment.EnvironmentId,
     ///         ExecuteSteps = new[]
@@ -139,7 +139,7 @@ namespace Pulumi.Dbtcloud
     ///             6,
     ///         },
     ///         ScheduleType = "days_of_week",
-    ///         CompletionTriggerCondition = new Dbtcloud.Inputs.JobJobCompletionTriggerConditionArgs
+    ///         CompletionTriggerCondition = new DbtCloud.Inputs.JobJobCompletionTriggerConditionArgs
     ///         {
     ///             JobId = dailyJob.Id,
     ///             ProjectId = dbtProject.Id,
@@ -165,7 +165,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/job:Job test_job 12345
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/job:Job")]
+    [DbtCloudResourceType("dbtcloud:index/job:Job")]
     public partial class Job : global::Pulumi.CustomResource
     {
         /// <summary>

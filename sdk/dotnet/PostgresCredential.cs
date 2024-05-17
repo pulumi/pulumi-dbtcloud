@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,12 +16,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var postgresProdCredential = new Dbtcloud.PostgresCredential("postgres_prod_credential", new()
+    ///     var postgresProdCredential = new DbtCloud.PostgresCredential("postgres_prod_credential", new()
     ///     {
     ///         IsActive = true,
     ///         ProjectId = dbtProject.Id,
@@ -47,7 +47,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/postgresCredential:PostgresCredential")]
+    [DbtCloudResourceType("dbtcloud:index/postgresCredential:PostgresCredential")]
     public partial class PostgresCredential : global::Pulumi.CustomResource
     {
         /// <summary>

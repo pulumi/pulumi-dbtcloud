@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     public static class GetExtendedAttributes
     {
@@ -18,11 +18,11 @@ namespace Pulumi.Dbtcloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myExtendedAttributes = Dbtcloud.GetExtendedAttributes.Invoke(new()
+        ///     var myExtendedAttributes = DbtCloud.GetExtendedAttributes.Invoke(new()
         ///     {
         ///         ExtendedAttributesId = 12345,
         ///         ProjectId = 6789,
@@ -41,11 +41,11 @@ namespace Pulumi.Dbtcloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myExtendedAttributes = Dbtcloud.GetExtendedAttributes.Invoke(new()
+        ///     var myExtendedAttributes = DbtCloud.GetExtendedAttributes.Invoke(new()
         ///     {
         ///         ExtendedAttributesId = 12345,
         ///         ProjectId = 6789,

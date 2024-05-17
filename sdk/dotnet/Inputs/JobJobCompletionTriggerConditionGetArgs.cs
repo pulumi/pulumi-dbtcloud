@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud.Inputs
+namespace Pulumi.DbtCloud.Inputs
 {
 
     public sealed class JobJobCompletionTriggerConditionGetArgs : global::Pulumi.ResourceArgs

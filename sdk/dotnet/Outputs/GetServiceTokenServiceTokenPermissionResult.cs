@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud.Outputs
+namespace Pulumi.DbtCloud.Outputs
 {
 
     [OutputType]

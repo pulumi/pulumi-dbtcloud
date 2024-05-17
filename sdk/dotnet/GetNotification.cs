@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     public static class GetNotification
     {
@@ -18,11 +18,11 @@ namespace Pulumi.Dbtcloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myNotification = Dbtcloud.GetNotification.Invoke(new()
+        ///     var myNotification = DbtCloud.GetNotification.Invoke(new()
         ///     {
         ///         NotificationId = 12345,
         ///     });
@@ -40,11 +40,11 @@ namespace Pulumi.Dbtcloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myNotification = Dbtcloud.GetNotification.Invoke(new()
+        ///     var myNotification = DbtCloud.GetNotification.Invoke(new()
         ///     {
         ///         NotificationId = 12345,
         ///     });

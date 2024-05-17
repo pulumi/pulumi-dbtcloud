@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,22 +16,22 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var testServiceToken = new Dbtcloud.ServiceToken("test_service_token", new()
+    ///     var testServiceToken = new DbtCloud.ServiceToken("test_service_token", new()
     ///     {
     ///         Name = "Test Service Token",
     ///         ServiceTokenPermissions = new[]
     ///         {
-    ///             new Dbtcloud.Inputs.ServiceTokenServiceTokenPermissionArgs
+    ///             new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs
     ///             {
     ///                 PermissionSet = "git_admin",
     ///                 AllProjects = true,
     ///             },
-    ///             new Dbtcloud.Inputs.ServiceTokenServiceTokenPermissionArgs
+    ///             new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs
     ///             {
     ///                 PermissionSet = "job_admin",
     ///                 AllProjects = false,
@@ -55,7 +55,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/serviceToken:ServiceToken test_service_token 12345
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/serviceToken:ServiceToken")]
+    [DbtCloudResourceType("dbtcloud:index/serviceToken:ServiceToken")]
     public partial class ServiceToken : global::Pulumi.CustomResource
     {
         /// <summary>

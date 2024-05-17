@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     public static class GetUser
     {
@@ -18,11 +18,11 @@ namespace Pulumi.Dbtcloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUser = Dbtcloud.GetUser.Invoke(new()
+        ///     var myUser = DbtCloud.GetUser.Invoke(new()
         ///     {
         ///         Email = "my_user@email.com",
         ///     });
@@ -40,11 +40,11 @@ namespace Pulumi.Dbtcloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUser = Dbtcloud.GetUser.Invoke(new()
+        ///     var myUser = DbtCloud.GetUser.Invoke(new()
         ///     {
         ///         Email = "my_user@email.com",
         ///     });

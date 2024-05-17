@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,12 +16,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var testWebhook = new Dbtcloud.Webhook("test_webhook", new()
+    ///     var testWebhook = new DbtCloud.Webhook("test_webhook", new()
     ///     {
     ///         Name = "test-webhook",
     ///         Description = "Test webhook",
@@ -53,7 +53,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/webhook:Webhook test_webhook wsu_abcdefg
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/webhook:Webhook")]
+    [DbtCloudResourceType("dbtcloud:index/webhook:Webhook")]
     public partial class Webhook : global::Pulumi.CustomResource
     {
         /// <summary>

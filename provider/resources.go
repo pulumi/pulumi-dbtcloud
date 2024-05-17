@@ -15,22 +15,22 @@
 package dbtcloud
 
 import (
-	_ "embed" // to embed bridge metadata
 	"fmt"
 	"path/filepath"
 
+	_ "embed" // to embed bridge metadata
+
 	dbtcloud "github.com/dbt-labs/terraform-provider-dbtcloud/pkg/provider"
-	"github.com/pulumi/pulumi-dbtcloud/provider/pkg/version"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+
+	"github.com/pulumi/pulumi-dbtcloud/provider/pkg/version"
 )
 
 //go:embed cmd/pulumi-resource-dbtcloud/bridge-metadata.json
 var bridgeMetadata []byte
-
-const legacyMessage string = "Do not use! This resource is mapped from the legacy" +
-	" Terraform `dbt_cloud_`-prefixed resource/datasource"
 
 // all of the token components used below.
 const (
@@ -284,6 +284,9 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			RootNamespace: "Pulumi",
+			Namespaces: map[string]string{
+				"dbtcloud": "DbtCloud",
+			},
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},

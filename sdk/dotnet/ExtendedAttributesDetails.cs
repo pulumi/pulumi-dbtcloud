@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes-beta)).&lt;br/&gt;&lt;br/&gt;In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
@@ -19,13 +19,13 @@ namespace Pulumi.Dbtcloud
     /// using System.Linq;
     /// using System.Text.Json;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // extended_attributes can be set as a raw JSON string or encoded with Terraform's `jsonencode()` function
     ///     // we recommend using `jsonencode()` to avoid Terraform reporting changes due to whitespaces or keys ordering
-    ///     var myAttributes = new Dbtcloud.ExtendedAttributesDetails("my_attributes", new()
+    ///     var myAttributes = new DbtCloud.ExtendedAttributesDetails("my_attributes", new()
     ///     {
     ///         ExtendedAttributes = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
@@ -40,7 +40,7 @@ namespace Pulumi.Dbtcloud
     ///         ProjectId = dbtProject.Id,
     ///     });
     /// 
-    ///     var issueDepl = new Dbtcloud.Environment("issue_depl", new()
+    ///     var issueDepl = new DbtCloud.Environment("issue_depl", new()
     ///     {
     ///         DbtVersion = "1.6.0-latest",
     ///         Name = "My environment",
@@ -67,7 +67,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/extendedAttributes:ExtendedAttributes")]
+    [DbtCloudResourceType("dbtcloud:index/extendedAttributes:ExtendedAttributes")]
     public partial class ExtendedAttributesDetails : global::Pulumi.CustomResource
     {
         /// <summary>

@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,12 +16,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var myCredential = new Dbtcloud.BigQueryCredential("my_credential", new()
+    ///     var myCredential = new DbtCloud.BigQueryCredential("my_credential", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Dataset = "my_bq_dataset",
@@ -41,7 +41,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential 12345:5678
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/bigQueryCredential:BigQueryCredential")]
+    [DbtCloudResourceType("dbtcloud:index/bigQueryCredential:BigQueryCredential")]
     public partial class BigQueryCredential : global::Pulumi.CustomResource
     {
         /// <summary>

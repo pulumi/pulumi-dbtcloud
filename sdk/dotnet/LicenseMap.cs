@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,12 +16,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Developer license group mapping
-    ///     var devLicenseMap = new Dbtcloud.LicenseMap("dev_license_map", new()
+    ///     var devLicenseMap = new DbtCloud.LicenseMap("dev_license_map", new()
     ///     {
     ///         LicenseType = "developer",
     ///         SsoLicenseMappingGroups = new[]
@@ -31,7 +31,7 @@ namespace Pulumi.Dbtcloud
     ///     });
     /// 
     ///     // Read-only license mapping
-    ///     var readOnlyLicenseMap = new Dbtcloud.LicenseMap("read_only_license_map", new()
+    ///     var readOnlyLicenseMap = new DbtCloud.LicenseMap("read_only_license_map", new()
     ///     {
     ///         LicenseType = "read_only",
     ///         SsoLicenseMappingGroups = new[]
@@ -41,7 +41,7 @@ namespace Pulumi.Dbtcloud
     ///     });
     /// 
     ///     // IT license mapping
-    ///     var itLicenseMap = new Dbtcloud.LicenseMap("it_license_map", new()
+    ///     var itLicenseMap = new DbtCloud.LicenseMap("it_license_map", new()
     ///     {
     ///         LicenseType = "it",
     ///         SsoLicenseMappingGroups = new[]
@@ -65,7 +65,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/licenseMap:LicenseMap test_license_map 12345
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/licenseMap:LicenseMap")]
+    [DbtCloudResourceType("dbtcloud:index/licenseMap:LicenseMap")]
     public partial class LicenseMap : global::Pulumi.CustomResource
     {
         /// <summary>

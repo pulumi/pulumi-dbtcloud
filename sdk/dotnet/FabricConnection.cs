@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// Resource to create Microsoft Fabric connections in dbt Cloud
@@ -18,11 +18,11 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myFabricConnection = new Dbtcloud.FabricConnection("my_fabric_connection", new()
+    ///     var myFabricConnection = new DbtCloud.FabricConnection("my_fabric_connection", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Name = "Connection Name",
@@ -45,7 +45,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/fabricConnection:FabricConnection my_connection 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/fabricConnection:FabricConnection")]
+    [DbtCloudResourceType("dbtcloud:index/fabricConnection:FabricConnection")]
     public partial class FabricConnection : global::Pulumi.CustomResource
     {
         /// <summary>

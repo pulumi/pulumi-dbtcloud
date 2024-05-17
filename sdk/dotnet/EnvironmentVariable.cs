@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// *Note*: Some upstream resources can be slow to create, so if creating a project or environment at
@@ -19,12 +19,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var dbtMyEnvVar = new Dbtcloud.EnvironmentVariable("dbt_my_env_var", new()
+    ///     var dbtMyEnvVar = new DbtCloud.EnvironmentVariable("dbt_my_env_var", new()
     ///     {
     ///         Name = "DBT_MY_ENV_VAR",
     ///         ProjectId = dbtProject.Id,
@@ -61,7 +61,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable 12345:DBT_ENV_VAR
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/environmentVariable:EnvironmentVariable")]
+    [DbtCloudResourceType("dbtcloud:index/environmentVariable:EnvironmentVariable")]
     public partial class EnvironmentVariable : global::Pulumi.CustomResource
     {
         /// <summary>

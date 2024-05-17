@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// *Note*: Some upstream resources can be slow to create, so if creating a project at
@@ -33,7 +33,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/repository:Repository test_repository 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/repository:Repository")]
+    [DbtCloudResourceType("dbtcloud:index/repository:Repository")]
     public partial class Repository : global::Pulumi.CustomResource
     {
         /// <summary>

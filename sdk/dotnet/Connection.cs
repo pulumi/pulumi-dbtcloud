@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// Create a Data Warehouse connection for your project in dbt Cloud. The connection will need to be linked to the dbt Cloud project via a `dbtcloud.ProjectConnection` resource.
@@ -21,12 +21,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var databricks = new Dbtcloud.Connection("databricks", new()
+    ///     var databricks = new DbtCloud.Connection("databricks", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Type = "adapter",
@@ -37,7 +37,7 @@ namespace Pulumi.Dbtcloud
     ///         Catalog = "moo",
     ///     });
     /// 
-    ///     var redshift = new Dbtcloud.Connection("redshift", new()
+    ///     var redshift = new DbtCloud.Connection("redshift", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Type = "redshift",
@@ -47,7 +47,7 @@ namespace Pulumi.Dbtcloud
     ///         HostName = "my-redshift-hostname",
     ///     });
     /// 
-    ///     var snowflake = new Dbtcloud.Connection("snowflake", new()
+    ///     var snowflake = new DbtCloud.Connection("snowflake", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Type = "snowflake",
@@ -73,7 +73,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/connection:Connection test_connection 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/connection:Connection")]
+    [DbtCloudResourceType("dbtcloud:index/connection:Connection")]
     public partial class Connection : global::Pulumi.CustomResource
     {
         /// <summary>

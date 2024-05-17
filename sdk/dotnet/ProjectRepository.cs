@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -16,12 +16,12 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var dbtProjectRepository = new Dbtcloud.ProjectRepository("dbt_project_repository", new()
+    ///     var dbtProjectRepository = new DbtCloud.ProjectRepository("dbt_project_repository", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         RepositoryId = dbtRepository.RepositoryId,
@@ -42,7 +42,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project 12345:5678
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/projectRepository:ProjectRepository")]
+    [DbtCloudResourceType("dbtcloud:index/projectRepository:ProjectRepository")]
     public partial class ProjectRepository : global::Pulumi.CustomResource
     {
         /// <summary>

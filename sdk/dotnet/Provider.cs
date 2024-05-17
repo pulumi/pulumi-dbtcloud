@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// The provider type for the dbtcloud package. By default, resources use package-wide configuration
@@ -15,7 +15,7 @@ namespace Pulumi.Dbtcloud
     /// construction to achieve fine-grained programmatic control over provider settings. See the
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
-    [DbtcloudResourceType("pulumi:providers:dbtcloud")]
+    [DbtCloudResourceType("pulumi:providers:dbtcloud")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>

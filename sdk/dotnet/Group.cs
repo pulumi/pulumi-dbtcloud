@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// *Note*: Groups currently do not support updates, as per both the API and the UI.
@@ -18,22 +18,22 @@ namespace Pulumi.Dbtcloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var tfGroup1 = new Dbtcloud.Group("tf_group_1", new()
+    ///     var tfGroup1 = new DbtCloud.Group("tf_group_1", new()
     ///     {
     ///         Name = "TF Group 1",
     ///         GroupPermissions = new[]
     ///         {
-    ///             new Dbtcloud.Inputs.GroupGroupPermissionArgs
+    ///             new DbtCloud.Inputs.GroupGroupPermissionArgs
     ///             {
     ///                 PermissionSet = "member",
     ///                 AllProjects = true,
     ///             },
-    ///             new Dbtcloud.Inputs.GroupGroupPermissionArgs
+    ///             new DbtCloud.Inputs.GroupGroupPermissionArgs
     ///             {
     ///                 PermissionSet = "developer",
     ///                 AllProjects = false,
@@ -57,7 +57,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/group:Group test_group 12345
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/group:Group")]
+    [DbtCloudResourceType("dbtcloud:index/group:Group")]
     public partial class Group : global::Pulumi.CustomResource
     {
         /// <summary>

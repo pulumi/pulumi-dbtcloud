@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Dbtcloud
+namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
@@ -24,7 +24,7 @@ namespace Pulumi.Dbtcloud
     /// $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential 12345:6789
     /// ```
     /// </summary>
-    [DbtcloudResourceType("dbtcloud:index/fabricCredential:FabricCredential")]
+    [DbtCloudResourceType("dbtcloud:index/fabricCredential:FabricCredential")]
     public partial class FabricCredential : global::Pulumi.CustomResource
     {
         /// <summary>
