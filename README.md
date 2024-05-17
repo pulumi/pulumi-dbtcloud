@@ -11,16 +11,6 @@ This package is available for several languages/platforms:
 - Go: [`github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud`](https://pkg.go.dev/github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud)
 - .NET: [`Pulumi.Dbtcloud`](https://www.nuget.org/packages/Pulumi.DbtCloud)
 
-## Provider Binary
-
-The dbt Cloud provider binary is a third party binary. It can be installed using the pulumi plugin command.
-
-```bash
-pulumi plugin install resource dbtcloud <version> --server github://api.github.com/pulumi/pulumi-dbtcloud
-```
-
-Replace `<version>` with your desired version.
-
 ### Node.js (JavaScript/TypeScript)
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
