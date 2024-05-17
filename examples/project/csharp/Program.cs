@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pulumi;
-using Pulumi.Dbtcloud;
+using Pulumi.DbtCloud;
 
 return await Deployment.RunAsync(() =>
 {

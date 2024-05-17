@@ -23,7 +23,7 @@ func getCSharpBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseCSharp := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			"Pulumi.Dbtcloud",
+			"Pulumi.DbtCloud",
 		},
 	})
 
