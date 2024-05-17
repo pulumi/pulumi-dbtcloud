@@ -16,13 +16,13 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
+    /// using Dbtcloud = Pulumi.Dbtcloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     // when using the Databricks adapter
-    ///     var myDatabricksCred = new DbtCloud.DatabricksCredential("my_databricks_cred", new()
+    ///     var myDatabricksCred = new Dbtcloud.DatabricksCredential("my_databricks_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AdapterId = myDatabricksConnection.AdapterId,
@@ -33,7 +33,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // when using the Spark adapter
-    ///     var mySparkCred = new DbtCloud.DatabricksCredential("my_spark_cred", new()
+    ///     var mySparkCred = new Dbtcloud.DatabricksCredential("my_spark_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AdapterId = myDatabricksConnection.AdapterId,

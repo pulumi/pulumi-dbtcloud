@@ -18,11 +18,11 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using DbtCloud = Pulumi.DbtCloud;
+        /// using Dbtcloud = Pulumi.Dbtcloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myExtendedAttributes = DbtCloud.GetExtendedAttributes.Invoke(new()
+        ///     var myExtendedAttributes = Dbtcloud.GetExtendedAttributes.Invoke(new()
         ///     {
         ///         ExtendedAttributesId = 12345,
         ///         ProjectId = 6789,
@@ -41,11 +41,11 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using DbtCloud = Pulumi.DbtCloud;
+        /// using Dbtcloud = Pulumi.Dbtcloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myExtendedAttributes = DbtCloud.GetExtendedAttributes.Invoke(new()
+        ///     var myExtendedAttributes = Dbtcloud.GetExtendedAttributes.Invoke(new()
         ///     {
         ///         ExtendedAttributesId = 12345,
         ///         ProjectId = 6789,

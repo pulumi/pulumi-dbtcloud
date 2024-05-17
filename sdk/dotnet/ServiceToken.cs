@@ -16,22 +16,22 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
+    /// using Dbtcloud = Pulumi.Dbtcloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var testServiceToken = new DbtCloud.ServiceToken("test_service_token", new()
+    ///     var testServiceToken = new Dbtcloud.ServiceToken("test_service_token", new()
     ///     {
     ///         Name = "Test Service Token",
     ///         ServiceTokenPermissions = new[]
     ///         {
-    ///             new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs
+    ///             new Dbtcloud.Inputs.ServiceTokenServiceTokenPermissionArgs
     ///             {
     ///                 PermissionSet = "git_admin",
     ///                 AllProjects = true,
     ///             },
-    ///             new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs
+    ///             new Dbtcloud.Inputs.ServiceTokenServiceTokenPermissionArgs
     ///             {
     ///                 PermissionSet = "job_admin",
     ///                 AllProjects = false,

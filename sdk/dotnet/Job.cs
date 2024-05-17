@@ -27,14 +27,14 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
+    /// using Dbtcloud = Pulumi.Dbtcloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     // a job that has github_webhook and git_provider_webhook 
     ///     // set to false will be categorized as a "Deploy Job"
-    ///     var dailyJob = new DbtCloud.Job("daily_job", new()
+    ///     var dailyJob = new Dbtcloud.Job("daily_job", new()
     ///     {
     ///         EnvironmentId = prodEnvironment.EnvironmentId,
     ///         ExecuteSteps = new[]
@@ -74,7 +74,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     // a job that has github_webhook and git_provider_webhook set 
     ///     // to true will be categorized as a "Continuous Integration Job"
-    ///     var ciJob = new DbtCloud.Job("ci_job", new()
+    ///     var ciJob = new Dbtcloud.Job("ci_job", new()
     ///     {
     ///         EnvironmentId = ciEnvironment.EnvironmentId,
     ///         ExecuteSteps = new[]
@@ -109,7 +109,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     // a job that is set to be triggered after another job finishes
     ///     // this is sometimes referred as 'job chaining'
-    ///     var downstreamJob = new DbtCloud.Job("downstream_job", new()
+    ///     var downstreamJob = new Dbtcloud.Job("downstream_job", new()
     ///     {
     ///         EnvironmentId = project2ProdEnvironment.EnvironmentId,
     ///         ExecuteSteps = new[]
@@ -139,7 +139,7 @@ namespace Pulumi.DbtCloud
     ///             6,
     ///         },
     ///         ScheduleType = "days_of_week",
-    ///         CompletionTriggerCondition = new DbtCloud.Inputs.JobJobCompletionTriggerConditionArgs
+    ///         CompletionTriggerCondition = new Dbtcloud.Inputs.JobJobCompletionTriggerConditionArgs
     ///         {
     ///             JobId = dailyJob.Id,
     ///             ProjectId = dbtProject.Id,

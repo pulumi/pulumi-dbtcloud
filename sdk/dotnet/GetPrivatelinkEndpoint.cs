@@ -18,22 +18,22 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using DbtCloud = Pulumi.DbtCloud;
+        /// using Dbtcloud = Pulumi.Dbtcloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testWithName = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     var testWithName = Dbtcloud.GetPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         Name = "My Endpoint Name",
         ///     });
         /// 
-        ///     var testWithUrl = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     var testWithUrl = Dbtcloud.GetPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         PrivateLinkEndpointUrl = "abc.privatelink.def.com",
         ///     });
         /// 
         ///     // in case multiple endpoints have the same name or URL
-        ///     var testWithNameAndUrl = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     var testWithNameAndUrl = Dbtcloud.GetPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         Name = "My Endpoint Name",
         ///         PrivateLinkEndpointUrl = "abc.privatelink.def.com",
@@ -52,22 +52,22 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using DbtCloud = Pulumi.DbtCloud;
+        /// using Dbtcloud = Pulumi.Dbtcloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testWithName = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     var testWithName = Dbtcloud.GetPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         Name = "My Endpoint Name",
         ///     });
         /// 
-        ///     var testWithUrl = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     var testWithUrl = Dbtcloud.GetPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         PrivateLinkEndpointUrl = "abc.privatelink.def.com",
         ///     });
         /// 
         ///     // in case multiple endpoints have the same name or URL
-        ///     var testWithNameAndUrl = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     var testWithNameAndUrl = Dbtcloud.GetPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         Name = "My Endpoint Name",
         ///         PrivateLinkEndpointUrl = "abc.privatelink.def.com",

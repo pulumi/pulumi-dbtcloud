@@ -16,12 +16,12 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
+    /// using Dbtcloud = Pulumi.Dbtcloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var ciEnvironment = new DbtCloud.Environment("ci_environment", new()
+    ///     var ciEnvironment = new Dbtcloud.Environment("ci_environment", new()
     ///     {
     ///         DbtVersion = "1.6.0-latest",
     ///         Name = "CI",
@@ -31,7 +31,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // we can also set a deployment environment as being the production one
-    ///     var prodEnvironment = new DbtCloud.Environment("prod_environment", new()
+    ///     var prodEnvironment = new Dbtcloud.Environment("prod_environment", new()
     ///     {
     ///         DbtVersion = "1.6.0-latest",
     ///         Name = "Prod",
@@ -42,7 +42,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Creating a development environment
-    ///     var devEnvironment = new DbtCloud.Environment("dev_environment", new()
+    ///     var devEnvironment = new Dbtcloud.Environment("dev_environment", new()
     ///     {
     ///         DbtVersion = "1.6.0-latest",
     ///         Name = "Dev",

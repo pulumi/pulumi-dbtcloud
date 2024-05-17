@@ -21,12 +21,12 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
+    /// using Dbtcloud = Pulumi.Dbtcloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var databricks = new DbtCloud.Connection("databricks", new()
+    ///     var databricks = new Dbtcloud.Connection("databricks", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Type = "adapter",
@@ -37,7 +37,7 @@ namespace Pulumi.DbtCloud
     ///         Catalog = "moo",
     ///     });
     /// 
-    ///     var redshift = new DbtCloud.Connection("redshift", new()
+    ///     var redshift = new Dbtcloud.Connection("redshift", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Type = "redshift",
@@ -47,7 +47,7 @@ namespace Pulumi.DbtCloud
     ///         HostName = "my-redshift-hostname",
     ///     });
     /// 
-    ///     var snowflake = new DbtCloud.Connection("snowflake", new()
+    ///     var snowflake = new Dbtcloud.Connection("snowflake", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Type = "snowflake",

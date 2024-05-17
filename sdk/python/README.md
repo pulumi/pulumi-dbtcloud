@@ -9,7 +9,7 @@ This package is available for several languages/platforms:
 - JavaScript/TypeScript: [`@pulumi/dbtcloud`](https://www.npmjs.com/package/@pulumi/dbtcloud)
 - Python: [`pulumi-dbtcloud`](https://pypi.org/project/pulumi-dbtcloud/)
 - Go: [`github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud`](https://pkg.go.dev/github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud)
-- .NET: [`Pulumi.DbtCloud`](https://www.nuget.org/packages/Pulumi.DbtCloud)
+- .NET: [`Pulumi.Dbtcloud`](https://www.nuget.org/packages/Pulumi.DbtCloud)
 
 ## Provider Binary
 

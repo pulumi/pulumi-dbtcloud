@@ -18,11 +18,11 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
+    /// using Dbtcloud = Pulumi.Dbtcloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myFabricConnection = new DbtCloud.FabricConnection("my_fabric_connection", new()
+    ///     var myFabricConnection = new Dbtcloud.FabricConnection("my_fabric_connection", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Name = "Connection Name",

@@ -18,11 +18,11 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using DbtCloud = Pulumi.DbtCloud;
+        /// using Dbtcloud = Pulumi.Dbtcloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myNotification = DbtCloud.GetNotification.Invoke(new()
+        ///     var myNotification = Dbtcloud.GetNotification.Invoke(new()
         ///     {
         ///         NotificationId = 12345,
         ///     });
@@ -40,11 +40,11 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using DbtCloud = Pulumi.DbtCloud;
+        /// using Dbtcloud = Pulumi.Dbtcloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myNotification = DbtCloud.GetNotification.Invoke(new()
+        ///     var myNotification = Dbtcloud.GetNotification.Invoke(new()
         ///     {
         ///         NotificationId = 12345,
         ///     });
