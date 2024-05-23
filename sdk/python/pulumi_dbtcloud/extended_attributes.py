@@ -19,10 +19,6 @@ class ExtendedAttributesArgs:
                  state: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ExtendedAttributes resource.
-        :param pulumi.Input[str] extended_attributes: A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-               `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-               environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-               in your Terraform code. (see example)
         :param pulumi.Input[int] project_id: Project ID to create the extended attributes in
         :param pulumi.Input[int] state: Extended Attributes state (1 is active, 2 is inactive)
         """
@@ -34,12 +30,6 @@ class ExtendedAttributesArgs:
     @property
     @pulumi.getter(name="extendedAttributes")
     def extended_attributes(self) -> pulumi.Input[str]:
-        """
-        A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-        `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-        environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-        in your Terraform code. (see example)
-        """
         return pulumi.get(self, "extended_attributes")
 
     @extended_attributes.setter
@@ -80,10 +70,6 @@ class _ExtendedAttributesState:
                  state: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ExtendedAttributes resources.
-        :param pulumi.Input[str] extended_attributes: A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-               `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-               environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-               in your Terraform code. (see example)
         :param pulumi.Input[int] extended_attributes_id: Extended Attributes ID
         :param pulumi.Input[int] project_id: Project ID to create the extended attributes in
         :param pulumi.Input[int] state: Extended Attributes state (1 is active, 2 is inactive)
@@ -100,12 +86,6 @@ class _ExtendedAttributesState:
     @property
     @pulumi.getter(name="extendedAttributes")
     def extended_attributes(self) -> Optional[pulumi.Input[str]]:
-        """
-        A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-        `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-        environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-        in your Terraform code. (see example)
-        """
         return pulumi.get(self, "extended_attributes")
 
     @extended_attributes.setter
@@ -205,10 +185,6 @@ class ExtendedAttributes(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] extended_attributes: A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-               `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-               environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-               in your Terraform code. (see example)
         :param pulumi.Input[int] project_id: Project ID to create the extended attributes in
         :param pulumi.Input[int] state: Extended Attributes state (1 is active, 2 is inactive)
         """
@@ -319,10 +295,6 @@ class ExtendedAttributes(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] extended_attributes: A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-               `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-               environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-               in your Terraform code. (see example)
         :param pulumi.Input[int] extended_attributes_id: Extended Attributes ID
         :param pulumi.Input[int] project_id: Project ID to create the extended attributes in
         :param pulumi.Input[int] state: Extended Attributes state (1 is active, 2 is inactive)
@@ -340,12 +312,6 @@ class ExtendedAttributes(pulumi.CustomResource):
     @property
     @pulumi.getter(name="extendedAttributes")
     def extended_attributes(self) -> pulumi.Output[str]:
-        """
-        A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-        `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-        environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-        in your Terraform code. (see example)
-        """
         return pulumi.get(self, "extended_attributes")
 
     @property

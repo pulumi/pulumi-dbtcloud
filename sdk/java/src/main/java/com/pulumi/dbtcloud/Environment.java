@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,35 +43,36 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var ciEnvironment = new Environment(&#34;ciEnvironment&#34;, EnvironmentArgs.builder()        
- *             .dbtVersion(&#34;1.6.0-latest&#34;)
- *             .name(&#34;CI&#34;)
+ *         var ciEnvironment = new Environment("ciEnvironment", EnvironmentArgs.builder()
+ *             .dbtVersion("1.6.0-latest")
+ *             .name("CI")
  *             .projectId(dbtProject.id())
- *             .type(&#34;deployment&#34;)
+ *             .type("deployment")
  *             .credentialId(ciCredential.credentialId())
  *             .build());
  * 
  *         // we can also set a deployment environment as being the production one
- *         var prodEnvironment = new Environment(&#34;prodEnvironment&#34;, EnvironmentArgs.builder()        
- *             .dbtVersion(&#34;1.6.0-latest&#34;)
- *             .name(&#34;Prod&#34;)
+ *         var prodEnvironment = new Environment("prodEnvironment", EnvironmentArgs.builder()
+ *             .dbtVersion("1.6.0-latest")
+ *             .name("Prod")
  *             .projectId(dbtProject.id())
- *             .type(&#34;deployment&#34;)
+ *             .type("deployment")
  *             .credentialId(prodCredential.credentialId())
- *             .deploymentType(&#34;production&#34;)
+ *             .deploymentType("production")
  *             .build());
  * 
  *         // Creating a development environment
- *         var devEnvironment = new Environment(&#34;devEnvironment&#34;, EnvironmentArgs.builder()        
- *             .dbtVersion(&#34;1.6.0-latest&#34;)
- *             .name(&#34;Dev&#34;)
+ *         var devEnvironment = new Environment("devEnvironment", EnvironmentArgs.builder()
+ *             .dbtVersion("1.6.0-latest")
+ *             .name("Dev")
  *             .projectId(dbtProject.id())
- *             .type(&#34;development&#34;)
+ *             .type("development")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

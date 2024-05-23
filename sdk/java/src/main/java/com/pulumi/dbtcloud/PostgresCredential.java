@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,19 +44,20 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var postgresProdCredential = new PostgresCredential(&#34;postgresProdCredential&#34;, PostgresCredentialArgs.builder()        
+ *         var postgresProdCredential = new PostgresCredential("postgresProdCredential", PostgresCredentialArgs.builder()
  *             .isActive(true)
  *             .projectId(dbtProject.id())
- *             .type(&#34;postgres&#34;)
- *             .defaultSchema(&#34;my_schema&#34;)
- *             .username(&#34;my_username&#34;)
- *             .password(&#34;my_password&#34;)
+ *             .type("postgres")
+ *             .defaultSchema("my_schema")
+ *             .username("my_username")
+ *             .password("my_password")
  *             .numThreads(16)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

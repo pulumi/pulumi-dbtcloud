@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,15 +45,15 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var testServiceToken = new ServiceToken(&#34;testServiceToken&#34;, ServiceTokenArgs.builder()        
- *             .name(&#34;Test Service Token&#34;)
+ *         var testServiceToken = new ServiceToken("testServiceToken", ServiceTokenArgs.builder()
+ *             .name("Test Service Token")
  *             .serviceTokenPermissions(            
  *                 ServiceTokenServiceTokenPermissionArgs.builder()
- *                     .permissionSet(&#34;git_admin&#34;)
+ *                     .permissionSet("git_admin")
  *                     .allProjects(true)
  *                     .build(),
  *                 ServiceTokenServiceTokenPermissionArgs.builder()
- *                     .permissionSet(&#34;job_admin&#34;)
+ *                     .permissionSet("job_admin")
  *                     .allProjects(false)
  *                     .projectId(dbtProject.id())
  *                     .build())
@@ -60,7 +61,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,14 +47,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var dbtMyEnvVar = new EnvironmentVariable(&#34;dbtMyEnvVar&#34;, EnvironmentVariableArgs.builder()        
- *             .name(&#34;DBT_MY_ENV_VAR&#34;)
+ *         var dbtMyEnvVar = new EnvironmentVariable("dbtMyEnvVar", EnvironmentVariableArgs.builder()
+ *             .name("DBT_MY_ENV_VAR")
  *             .projectId(dbtProject.id())
  *             .environmentValues(Map.ofEntries(
- *                 Map.entry(&#34;project&#34;, &#34;my_project_level_value&#34;),
- *                 Map.entry(&#34;Dev&#34;, &#34;my_env_level_value&#34;),
- *                 Map.entry(&#34;CI&#34;, &#34;my_ci_override_value&#34;),
- *                 Map.entry(&#34;Prod&#34;, &#34;my_prod_override_value&#34;)
+ *                 Map.entry("project", "my_project_level_value"),
+ *                 Map.entry("Dev", "my_env_level_value"),
+ *                 Map.entry("CI", "my_ci_override_value"),
+ *                 Map.entry("Prod", "my_prod_override_value")
  *             ))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(                
@@ -65,7 +66,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

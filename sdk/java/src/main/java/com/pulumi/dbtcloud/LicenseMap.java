@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,26 +42,27 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Developer license group mapping
- *         var devLicenseMap = new LicenseMap(&#34;devLicenseMap&#34;, LicenseMapArgs.builder()        
- *             .licenseType(&#34;developer&#34;)
- *             .ssoLicenseMappingGroups(&#34;DEV-SSO-GROUP&#34;)
+ *         var devLicenseMap = new LicenseMap("devLicenseMap", LicenseMapArgs.builder()
+ *             .licenseType("developer")
+ *             .ssoLicenseMappingGroups("DEV-SSO-GROUP")
  *             .build());
  * 
  *         // Read-only license mapping
- *         var readOnlyLicenseMap = new LicenseMap(&#34;readOnlyLicenseMap&#34;, LicenseMapArgs.builder()        
- *             .licenseType(&#34;read_only&#34;)
- *             .ssoLicenseMappingGroups(&#34;READ-ONLY-SSO-GROUP&#34;)
+ *         var readOnlyLicenseMap = new LicenseMap("readOnlyLicenseMap", LicenseMapArgs.builder()
+ *             .licenseType("read_only")
+ *             .ssoLicenseMappingGroups("READ-ONLY-SSO-GROUP")
  *             .build());
  * 
  *         // IT license mapping
- *         var itLicenseMap = new LicenseMap(&#34;itLicenseMap&#34;, LicenseMapArgs.builder()        
- *             .licenseType(&#34;it&#34;)
- *             .ssoLicenseMappingGroups(&#34;IT-SSO-GROUP&#34;)
+ *         var itLicenseMap = new LicenseMap("itLicenseMap", LicenseMapArgs.builder()
+ *             .licenseType("it")
+ *             .ssoLicenseMappingGroups("IT-SSO-GROUP")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

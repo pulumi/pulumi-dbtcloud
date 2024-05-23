@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,38 +48,39 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var databricks = new Connection(&#34;databricks&#34;, ConnectionArgs.builder()        
+ *         var databricks = new Connection("databricks", ConnectionArgs.builder()
  *             .projectId(dbtProject.id())
- *             .type(&#34;adapter&#34;)
- *             .name(&#34;Databricks&#34;)
- *             .database(&#34;&#34;)
- *             .hostName(&#34;my-databricks-host.cloud.databricks.com&#34;)
- *             .httpPath(&#34;/my/path&#34;)
- *             .catalog(&#34;moo&#34;)
+ *             .type("adapter")
+ *             .name("Databricks")
+ *             .database("")
+ *             .hostName("my-databricks-host.cloud.databricks.com")
+ *             .httpPath("/my/path")
+ *             .catalog("moo")
  *             .build());
  * 
- *         var redshift = new Connection(&#34;redshift&#34;, ConnectionArgs.builder()        
+ *         var redshift = new Connection("redshift", ConnectionArgs.builder()
  *             .projectId(dbtProject.id())
- *             .type(&#34;redshift&#34;)
- *             .name(&#34;My Redshift Warehouse&#34;)
- *             .database(&#34;my-database&#34;)
+ *             .type("redshift")
+ *             .name("My Redshift Warehouse")
+ *             .database("my-database")
  *             .port(5439)
- *             .hostName(&#34;my-redshift-hostname&#34;)
+ *             .hostName("my-redshift-hostname")
  *             .build());
  * 
- *         var snowflake = new Connection(&#34;snowflake&#34;, ConnectionArgs.builder()        
+ *         var snowflake = new Connection("snowflake", ConnectionArgs.builder()
  *             .projectId(dbtProject.id())
- *             .type(&#34;snowflake&#34;)
- *             .name(&#34;My Snowflake warehouse&#34;)
- *             .account(&#34;my-snowflake-account&#34;)
- *             .database(&#34;MY_DATABASE&#34;)
- *             .role(&#34;MY_ROLE&#34;)
- *             .warehouse(&#34;MY_WAREHOUSE&#34;)
+ *             .type("snowflake")
+ *             .name("My Snowflake warehouse")
+ *             .account("my-snowflake-account")
+ *             .database("MY_DATABASE")
+ *             .role("MY_ROLE")
+ *             .warehouse("MY_WAREHOUSE")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

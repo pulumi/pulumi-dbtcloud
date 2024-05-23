@@ -18,7 +18,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -39,16 +40,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myEnvVarJobOverride = new EnvironmentVariableJobOverride(&#34;myEnvVarJobOverride&#34;, EnvironmentVariableJobOverrideArgs.builder()        
+ *         var myEnvVarJobOverride = new EnvironmentVariableJobOverride("myEnvVarJobOverride", EnvironmentVariableJobOverrideArgs.builder()
  *             .name(dbtMyEnvVar.name())
  *             .projectId(dbtProject.id())
  *             .jobDefinitionId(dailyJob.id())
- *             .rawValue(&#34;my_override_value&#34;)
+ *             .rawValue("my_override_value")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

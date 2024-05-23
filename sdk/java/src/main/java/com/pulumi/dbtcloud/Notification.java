@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,40 +49,41 @@ import javax.annotation.Nullable;
  *         // those first into the state file before you can create a new internal notification for that user.
  *         // Failure to do so, will result in the user losing access to existing notifications and dbt
  *         // support will need to be contacted to restore access.
- *         // cmd: terraform import dbtcloud_notification.prod_job_internal_notification &lt;user_id&gt;
- *         var prodJobInternalNotification = new Notification(&#34;prodJobInternalNotification&#34;, NotificationArgs.builder()        
+ *         // cmd: terraform import dbtcloud_notification.prod_job_internal_notification <user_id>
+ *         var prodJobInternalNotification = new Notification("prodJobInternalNotification", NotificationArgs.builder()
  *             .userId(100)
  *             .onSuccesses(prodJob.id())
  *             .onFailures(12345)
  *             .notificationType(1)
  *             .build());
  * 
- *         // we can also send &#34;external&#34; email notifications to emails to related to dbt Cloud users
- *         var prodJobExternalNotification = new Notification(&#34;prodJobExternalNotification&#34;, NotificationArgs.builder()        
+ *         // we can also send "external" email notifications to emails to related to dbt Cloud users
+ *         var prodJobExternalNotification = new Notification("prodJobExternalNotification", NotificationArgs.builder()
  *             .userId(100)
  *             .onFailures(            
  *                 23456,
  *                 56788)
  *             .onCancels(prodJob.id())
  *             .notificationType(4)
- *             .externalEmail(&#34;my_email@mail.com&#34;)
+ *             .externalEmail("my_email{@literal @}mail.com")
  *             .build());
  * 
  *         // and finally, we can set up Slack notifications
- *         var prodJobSlackNotifications = new Notification(&#34;prodJobSlackNotifications&#34;, NotificationArgs.builder()        
+ *         var prodJobSlackNotifications = new Notification("prodJobSlackNotifications", NotificationArgs.builder()
  *             .userId(100)
  *             .onFailures(            
  *                 23456,
  *                 56788)
  *             .onCancels(prodJob.id())
  *             .notificationType(2)
- *             .slackChannelId(&#34;C12345ABCDE&#34;)
- *             .slackChannelName(&#34;#my-awesome-channel&#34;)
+ *             .slackChannelId("C12345ABCDE")
+ *             .slackChannelName("#my-awesome-channel")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

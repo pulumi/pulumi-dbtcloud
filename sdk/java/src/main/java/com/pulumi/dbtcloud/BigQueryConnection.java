@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,48 +46,49 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var myConnection = new BigQueryConnection(&#34;myConnection&#34;, BigQueryConnectionArgs.builder()        
+ *         var myConnection = new BigQueryConnection("myConnection", BigQueryConnectionArgs.builder()
  *             .projectId(dbtProject.id())
- *             .name(&#34;Project Name&#34;)
- *             .type(&#34;bigquery&#34;)
+ *             .name("Project Name")
+ *             .type("bigquery")
  *             .isActive(true)
- *             .gcpProjectId(&#34;my-gcp-project-id&#34;)
+ *             .gcpProjectId("my-gcp-project-id")
  *             .timeoutSeconds(100)
- *             .privateKeyId(&#34;my-private-key-id&#34;)
- *             .privateKey(&#34;ABCDEFGHIJKL&#34;)
- *             .clientEmail(&#34;my_client_email&#34;)
- *             .clientId(&#34;my_client_di&#34;)
- *             .authUri(&#34;my_auth_uri&#34;)
- *             .tokenUri(&#34;my_token_uri&#34;)
- *             .authProviderX509CertUrl(&#34;my_auth_provider_x509_cert_url&#34;)
- *             .clientX509CertUrl(&#34;my_client_x509_cert_url&#34;)
+ *             .privateKeyId("my-private-key-id")
+ *             .privateKey("ABCDEFGHIJKL")
+ *             .clientEmail("my_client_email")
+ *             .clientId("my_client_di")
+ *             .authUri("my_auth_uri")
+ *             .tokenUri("my_token_uri")
+ *             .authProviderX509CertUrl("my_auth_provider_x509_cert_url")
+ *             .clientX509CertUrl("my_client_x509_cert_url")
  *             .retries(3)
  *             .build());
  * 
  *         // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`
- *         var myConnectionWithOauth = new BigQueryConnection(&#34;myConnectionWithOauth&#34;, BigQueryConnectionArgs.builder()        
+ *         var myConnectionWithOauth = new BigQueryConnection("myConnectionWithOauth", BigQueryConnectionArgs.builder()
  *             .projectId(dbtProject.id())
- *             .name(&#34;Project Name&#34;)
- *             .type(&#34;bigquery&#34;)
+ *             .name("Project Name")
+ *             .type("bigquery")
  *             .isActive(true)
- *             .gcpProjectId(&#34;my-gcp-project-id&#34;)
+ *             .gcpProjectId("my-gcp-project-id")
  *             .timeoutSeconds(100)
- *             .privateKeyId(&#34;my-private-key-id&#34;)
- *             .privateKey(&#34;ABCDEFGHIJKL&#34;)
- *             .clientEmail(&#34;my_client_email&#34;)
- *             .clientId(&#34;my_client_di&#34;)
- *             .authUri(&#34;my_auth_uri&#34;)
- *             .tokenUri(&#34;my_token_uri&#34;)
- *             .authProviderX509CertUrl(&#34;my_auth_provider_x509_cert_url&#34;)
- *             .clientX509CertUrl(&#34;my_client_x509_cert_url&#34;)
+ *             .privateKeyId("my-private-key-id")
+ *             .privateKey("ABCDEFGHIJKL")
+ *             .clientEmail("my_client_email")
+ *             .clientId("my_client_di")
+ *             .authUri("my_auth_uri")
+ *             .tokenUri("my_token_uri")
+ *             .authProviderX509CertUrl("my_auth_provider_x509_cert_url")
+ *             .clientX509CertUrl("my_client_x509_cert_url")
  *             .retries(3)
- *             .applicationId(&#34;oauth_application_id&#34;)
- *             .applicationSecret(&#34;oauth_secret_id&#34;)
+ *             .applicationId("oauth_application_id")
+ *             .applicationSecret("oauth_secret_id")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
