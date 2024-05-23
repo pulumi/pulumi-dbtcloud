@@ -34,7 +34,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -58,22 +59,22 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         // a job that has github_webhook and git_provider_webhook 
- *         // set to false will be categorized as a &#34;Deploy Job&#34;
- *         var dailyJob = new Job(&#34;dailyJob&#34;, JobArgs.builder()        
+ *         // set to false will be categorized as a "Deploy Job"
+ *         var dailyJob = new Job("dailyJob", JobArgs.builder()
  *             .environmentId(prodEnvironment.environmentId())
- *             .executeSteps(&#34;dbt build&#34;)
+ *             .executeSteps("dbt build")
  *             .generateDocs(true)
  *             .isActive(true)
- *             .name(&#34;Daily job&#34;)
+ *             .name("Daily job")
  *             .numThreads(64)
  *             .projectId(dbtProject.id())
  *             .runGenerateSources(true)
- *             .targetName(&#34;default&#34;)
+ *             .targetName("default")
  *             .triggers(Map.ofEntries(
- *                 Map.entry(&#34;custom_branch_only&#34;, false),
- *                 Map.entry(&#34;github_webhook&#34;, false),
- *                 Map.entry(&#34;git_provider_webhook&#34;, false),
- *                 Map.entry(&#34;schedule&#34;, true)
+ *                 Map.entry("custom_branch_only", false),
+ *                 Map.entry("github_webhook", false),
+ *                 Map.entry("git_provider_webhook", false),
+ *                 Map.entry("schedule", true)
  *             ))
  *             .scheduleDays(            
  *                 0,
@@ -83,26 +84,26 @@ import javax.annotation.Nullable;
  *                 4,
  *                 5,
  *                 6)
- *             .scheduleType(&#34;days_of_week&#34;)
+ *             .scheduleType("days_of_week")
  *             .scheduleHours(0)
  *             .build());
  * 
  *         // a job that has github_webhook and git_provider_webhook set 
- *         // to true will be categorized as a &#34;Continuous Integration Job&#34;
- *         var ciJob = new Job(&#34;ciJob&#34;, JobArgs.builder()        
+ *         // to true will be categorized as a "Continuous Integration Job"
+ *         var ciJob = new Job("ciJob", JobArgs.builder()
  *             .environmentId(ciEnvironment.environmentId())
- *             .executeSteps(&#34;dbt build -s state:modified+ --fail-fast&#34;)
+ *             .executeSteps("dbt build -s state:modified+ --fail-fast")
  *             .generateDocs(false)
  *             .deferringEnvironmentId(prodEnvironment.environmentId())
- *             .name(&#34;CI Job&#34;)
+ *             .name("CI Job")
  *             .numThreads(32)
  *             .projectId(dbtProject.id())
  *             .runGenerateSources(false)
  *             .triggers(Map.ofEntries(
- *                 Map.entry(&#34;custom_branch_only&#34;, true),
- *                 Map.entry(&#34;github_webhook&#34;, true),
- *                 Map.entry(&#34;git_provider_webhook&#34;, true),
- *                 Map.entry(&#34;schedule&#34;, false)
+ *                 Map.entry("custom_branch_only", true),
+ *                 Map.entry("github_webhook", true),
+ *                 Map.entry("git_provider_webhook", true),
+ *                 Map.entry("schedule", false)
  *             ))
  *             .scheduleDays(            
  *                 0,
@@ -112,24 +113,24 @@ import javax.annotation.Nullable;
  *                 4,
  *                 5,
  *                 6)
- *             .scheduleType(&#34;days_of_week&#34;)
+ *             .scheduleType("days_of_week")
  *             .build());
  * 
  *         // a job that is set to be triggered after another job finishes
- *         // this is sometimes referred as &#39;job chaining&#39;
- *         var downstreamJob = new Job(&#34;downstreamJob&#34;, JobArgs.builder()        
+ *         // this is sometimes referred as 'job chaining'
+ *         var downstreamJob = new Job("downstreamJob", JobArgs.builder()
  *             .environmentId(project2ProdEnvironment.environmentId())
- *             .executeSteps(&#34;dbt build -s +my_model&#34;)
+ *             .executeSteps("dbt build -s +my_model")
  *             .generateDocs(true)
- *             .name(&#34;Downstream job in project 2&#34;)
+ *             .name("Downstream job in project 2")
  *             .numThreads(32)
  *             .projectId(dbtProject2.id())
  *             .runGenerateSources(true)
  *             .triggers(Map.ofEntries(
- *                 Map.entry(&#34;custom_branch_only&#34;, false),
- *                 Map.entry(&#34;github_webhook&#34;, false),
- *                 Map.entry(&#34;git_provider_webhook&#34;, false),
- *                 Map.entry(&#34;schedule&#34;, false)
+ *                 Map.entry("custom_branch_only", false),
+ *                 Map.entry("github_webhook", false),
+ *                 Map.entry("git_provider_webhook", false),
+ *                 Map.entry("schedule", false)
  *             ))
  *             .scheduleDays(            
  *                 0,
@@ -139,17 +140,18 @@ import javax.annotation.Nullable;
  *                 4,
  *                 5,
  *                 6)
- *             .scheduleType(&#34;days_of_week&#34;)
+ *             .scheduleType("days_of_week")
  *             .jobCompletionTriggerCondition(JobJobCompletionTriggerConditionArgs.builder()
  *                 .jobId(dailyJob.id())
  *                 .projectId(dbtProject.id())
- *                 .statuses(&#34;success&#34;)
+ *                 .statuses("success")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

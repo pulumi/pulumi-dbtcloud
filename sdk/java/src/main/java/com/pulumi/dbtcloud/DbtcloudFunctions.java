@@ -86,7 +86,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -108,12 +109,13 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAdoProject = DbtcloudFunctions.getAzureDevOpsProject(GetAzureDevOpsProjectArgs.builder()
-     *             .name(&#34;my-project-name&#34;)
+     *             .name("my-project-name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -129,7 +131,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -151,12 +154,13 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAdoProject = DbtcloudFunctions.getAzureDevOpsProject(GetAzureDevOpsProjectArgs.builder()
-     *             .name(&#34;my-project-name&#34;)
+     *             .name("my-project-name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -172,7 +176,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -194,12 +199,13 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAdoProject = DbtcloudFunctions.getAzureDevOpsProject(GetAzureDevOpsProjectArgs.builder()
-     *             .name(&#34;my-project-name&#34;)
+     *             .name("my-project-name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -215,7 +221,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -237,12 +244,13 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAdoProject = DbtcloudFunctions.getAzureDevOpsProject(GetAzureDevOpsProjectArgs.builder()
-     *             .name(&#34;my-project-name&#34;)
+     *             .name("my-project-name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -258,7 +266,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -280,13 +289,14 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
-     *             .name(&#34;my-repo-name&#34;)
+     *             .name("my-repo-name")
      *             .azureDevOpsProjectId(myAdoProject.id())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -302,7 +312,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -324,13 +335,14 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
-     *             .name(&#34;my-repo-name&#34;)
+     *             .name("my-repo-name")
      *             .azureDevOpsProjectId(myAdoProject.id())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -346,7 +358,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -368,13 +381,14 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
-     *             .name(&#34;my-repo-name&#34;)
+     *             .name("my-repo-name")
      *             .azureDevOpsProjectId(myAdoProject.id())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -390,7 +404,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -412,13 +427,14 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
-     *             .name(&#34;my-repo-name&#34;)
+     *             .name("my-repo-name")
      *             .azureDevOpsProjectId(myAdoProject.id())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -501,7 +517,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -529,7 +546,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -540,7 +558,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -568,7 +587,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -579,7 +599,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -607,7 +628,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -618,7 +640,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -646,7 +669,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -671,7 +695,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -698,7 +723,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -711,7 +737,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -738,7 +765,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -751,7 +779,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -778,7 +807,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -791,7 +821,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -818,7 +849,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -841,7 +873,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -868,7 +901,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -879,7 +913,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -906,7 +941,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -917,7 +953,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -944,7 +981,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -955,7 +993,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -982,7 +1021,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1005,7 +1045,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1027,22 +1068,23 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var testWithName = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
+     *             .name("My Endpoint Name")
      *             .build());
      * 
      *         final var testWithUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *         // in case multiple endpoints have the same name or URL
      *         final var testWithNameAndUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .name("My Endpoint Name")
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1053,7 +1095,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1075,22 +1118,23 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var testWithName = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
+     *             .name("My Endpoint Name")
      *             .build());
      * 
      *         final var testWithUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *         // in case multiple endpoints have the same name or URL
      *         final var testWithNameAndUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .name("My Endpoint Name")
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1101,7 +1145,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1123,22 +1168,23 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var testWithName = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
+     *             .name("My Endpoint Name")
      *             .build());
      * 
      *         final var testWithUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *         // in case multiple endpoints have the same name or URL
      *         final var testWithNameAndUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .name("My Endpoint Name")
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1149,7 +1195,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1171,22 +1218,23 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var testWithName = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
+     *             .name("My Endpoint Name")
      *             .build());
      * 
      *         final var testWithUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *         // in case multiple endpoints have the same name or URL
      *         final var testWithNameAndUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .name("My Endpoint Name")
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1197,7 +1245,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1219,22 +1268,23 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var testWithName = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
+     *             .name("My Endpoint Name")
      *             .build());
      * 
      *         final var testWithUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *         // in case multiple endpoints have the same name or URL
      *         final var testWithNameAndUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .name("My Endpoint Name")
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1245,7 +1295,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1267,22 +1318,23 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var testWithName = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
+     *             .name("My Endpoint Name")
      *             .build());
      * 
      *         final var testWithUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *         // in case multiple endpoints have the same name or URL
      *         final var testWithNameAndUrl = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
-     *             .name(&#34;My Endpoint Name&#34;)
-     *             .privateLinkEndpointUrl(&#34;abc.privatelink.def.com&#34;)
+     *             .name("My Endpoint Name")
+     *             .privateLinkEndpointUrl("abc.privatelink.def.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1293,7 +1345,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1322,12 +1375,13 @@ public final class DbtcloudFunctions {
      *         // or they can use project names
      *         // the provider will raise an error if more than one project is found with the same name
      *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name(&#34;My other project name&#34;)
+     *             .name("My other project name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1338,7 +1392,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1367,12 +1422,13 @@ public final class DbtcloudFunctions {
      *         // or they can use project names
      *         // the provider will raise an error if more than one project is found with the same name
      *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name(&#34;My other project name&#34;)
+     *             .name("My other project name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1383,7 +1439,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1412,12 +1469,13 @@ public final class DbtcloudFunctions {
      *         // or they can use project names
      *         // the provider will raise an error if more than one project is found with the same name
      *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name(&#34;My other project name&#34;)
+     *             .name("My other project name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1428,7 +1486,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1457,12 +1516,13 @@ public final class DbtcloudFunctions {
      *         // or they can use project names
      *         // the provider will raise an error if more than one project is found with the same name
      *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name(&#34;My other project name&#34;)
+     *             .name("My other project name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1473,7 +1533,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1502,12 +1563,13 @@ public final class DbtcloudFunctions {
      *         // or they can use project names
      *         // the provider will raise an error if more than one project is found with the same name
      *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name(&#34;My other project name&#34;)
+     *             .name("My other project name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1518,7 +1580,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1547,12 +1610,13 @@ public final class DbtcloudFunctions {
      *         // or they can use project names
      *         // the provider will raise an error if more than one project is found with the same name
      *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name(&#34;My other project name&#34;)
+     *             .name("My other project name")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1599,7 +1663,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1621,12 +1686,13 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myUser = DbtcloudFunctions.getUser(GetUserArgs.builder()
-     *             .email(&#34;my_user@email.com&#34;)
+     *             .email("my_user{@literal @}email.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1637,7 +1703,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1659,12 +1726,13 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myUser = DbtcloudFunctions.getUser(GetUserArgs.builder()
-     *             .email(&#34;my_user@email.com&#34;)
+     *             .email("my_user{@literal @}email.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1675,7 +1743,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1697,12 +1766,13 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myUser = DbtcloudFunctions.getUser(GetUserArgs.builder()
-     *             .email(&#34;my_user@email.com&#34;)
+     *             .email("my_user{@literal @}email.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1713,7 +1783,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1735,12 +1806,13 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myUser = DbtcloudFunctions.getUser(GetUserArgs.builder()
-     *             .email(&#34;my_user@email.com&#34;)
+     *             .email("my_user{@literal @}email.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1751,7 +1823,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1778,7 +1851,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1789,7 +1863,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1816,7 +1891,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1827,7 +1903,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1854,7 +1931,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1865,7 +1943,8 @@ public final class DbtcloudFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1892,7 +1971,8 @@ public final class DbtcloudFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

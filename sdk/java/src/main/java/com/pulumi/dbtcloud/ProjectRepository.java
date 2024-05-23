@@ -17,7 +17,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -39,14 +40,15 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var dbtProjectRepository = new ProjectRepository(&#34;dbtProjectRepository&#34;, ProjectRepositoryArgs.builder()        
+ *         var dbtProjectRepository = new ProjectRepository("dbtProjectRepository", ProjectRepositoryArgs.builder()
  *             .projectId(dbtProject.id())
  *             .repositoryId(dbtRepository.repositoryId())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,15 +47,15 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var tfGroup1 = new Group(&#34;tfGroup1&#34;, GroupArgs.builder()        
- *             .name(&#34;TF Group 1&#34;)
+ *         var tfGroup1 = new Group("tfGroup1", GroupArgs.builder()
+ *             .name("TF Group 1")
  *             .groupPermissions(            
  *                 GroupGroupPermissionArgs.builder()
- *                     .permissionSet(&#34;member&#34;)
+ *                     .permissionSet("member")
  *                     .allProjects(true)
  *                     .build(),
  *                 GroupGroupPermissionArgs.builder()
- *                     .permissionSet(&#34;developer&#34;)
+ *                     .permissionSet("developer")
  *                     .allProjects(false)
  *                     .projectId(dbtProject.id())
  *                     .build())
@@ -62,7 +63,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

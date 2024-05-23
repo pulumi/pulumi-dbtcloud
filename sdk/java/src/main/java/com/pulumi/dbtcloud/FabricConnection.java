@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,18 +43,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myFabricConnection = new FabricConnection(&#34;myFabricConnection&#34;, FabricConnectionArgs.builder()        
+ *         var myFabricConnection = new FabricConnection("myFabricConnection", FabricConnectionArgs.builder()
  *             .projectId(dbtProject.id())
- *             .name(&#34;Connection Name&#34;)
- *             .server(&#34;my-server&#34;)
- *             .database(&#34;my-database&#34;)
+ *             .name("Connection Name")
+ *             .server("my-server")
+ *             .database("my-database")
  *             .port(1234)
  *             .loginTimeout(30)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
