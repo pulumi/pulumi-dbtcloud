@@ -16,17 +16,17 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var dbtProject = new Dbtcloud.Project("dbt_project", new()
+    ///     var dbtProject = new DbtCloud.Project("dbt_project", new()
     ///     {
     ///         Name = "Analytics",
     ///     });
     /// 
-    ///     var dbtProjectWithSubdir = new Dbtcloud.Project("dbt_project_with_subdir", new()
+    ///     var dbtProjectWithSubdir = new DbtCloud.Project("dbt_project_with_subdir", new()
     ///     {
     ///         Name = "Analytics in Subdir",
     ///         DbtProjectSubdirectory = "/path",

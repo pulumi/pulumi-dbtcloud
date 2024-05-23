@@ -16,12 +16,12 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var testWebhook = new Dbtcloud.Webhook("test_webhook", new()
+    ///     var testWebhook = new DbtCloud.Webhook("test_webhook", new()
     ///     {
     ///         Name = "test-webhook",
     ///         Description = "Test webhook",

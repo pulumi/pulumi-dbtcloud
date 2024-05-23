@@ -23,11 +23,11 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoProject = Dbtcloud.GetAzureDevOpsProject.Invoke(new()
+        ///     var myAdoProject = DbtCloud.GetAzureDevOpsProject.Invoke(new()
         ///     {
         ///         Name = "my-project-name",
         ///     });
@@ -50,11 +50,11 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoProject = Dbtcloud.GetAzureDevOpsProject.Invoke(new()
+        ///     var myAdoProject = DbtCloud.GetAzureDevOpsProject.Invoke(new()
         ///     {
         ///         Name = "my-project-name",
         ///     });

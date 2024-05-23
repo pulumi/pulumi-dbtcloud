@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/dbtcloud",
-    "version": "${VERSION}",
+    "version": "0.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing dbt Cloud resources.",
     "keywords": [
         "pulumi",
@@ -26,6 +26,7 @@
     "pulumi": {
         "resource": true,
         "name": "dbtcloud",
+        "version": "0.0.0-alpha.0+dev",
         "server": "github://api.github.com/pulumi/pulumi-dbtcloud"
     }
 }
