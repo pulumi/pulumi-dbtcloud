@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,28 +44,29 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         // when using the Databricks adapter
- *         var myDatabricksCred = new DatabricksCredential(&#34;myDatabricksCred&#34;, DatabricksCredentialArgs.builder()        
+ *         var myDatabricksCred = new DatabricksCredential("myDatabricksCred", DatabricksCredentialArgs.builder()
  *             .projectId(dbtProject.id())
  *             .adapterId(myDatabricksConnection.adapterId())
- *             .targetName(&#34;prod&#34;)
- *             .token(&#34;abcdefgh&#34;)
- *             .schema(&#34;my_schema&#34;)
- *             .adapterType(&#34;databricks&#34;)
+ *             .targetName("prod")
+ *             .token("abcdefgh")
+ *             .schema("my_schema")
+ *             .adapterType("databricks")
  *             .build());
  * 
  *         // when using the Spark adapter
- *         var mySparkCred = new DatabricksCredential(&#34;mySparkCred&#34;, DatabricksCredentialArgs.builder()        
+ *         var mySparkCred = new DatabricksCredential("mySparkCred", DatabricksCredentialArgs.builder()
  *             .projectId(dbtProject.id())
  *             .adapterId(myDatabricksConnection.adapterId())
- *             .targetName(&#34;prod&#34;)
- *             .token(&#34;abcdefgh&#34;)
- *             .schema(&#34;my_schema&#34;)
- *             .adapterType(&#34;spark&#34;)
+ *             .targetName("prod")
+ *             .token("abcdefgh")
+ *             .schema("my_schema")
+ *             .adapterType("spark")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

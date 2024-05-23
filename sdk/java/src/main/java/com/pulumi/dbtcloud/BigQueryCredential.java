@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,15 +43,16 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var myCredential = new BigQueryCredential(&#34;myCredential&#34;, BigQueryCredentialArgs.builder()        
+ *         var myCredential = new BigQueryCredential("myCredential", BigQueryCredentialArgs.builder()
  *             .projectId(dbtProject.id())
- *             .dataset(&#34;my_bq_dataset&#34;)
+ *             .dataset("my_bq_dataset")
  *             .numThreads(16)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

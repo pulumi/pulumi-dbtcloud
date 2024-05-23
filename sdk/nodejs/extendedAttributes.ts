@@ -78,12 +78,6 @@ export class ExtendedAttributes extends pulumi.CustomResource {
         return obj['__pulumiType'] === ExtendedAttributes.__pulumiType;
     }
 
-    /**
-     * A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-     * `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-     * environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-     * in your Terraform code. (see example)
-     */
     public readonly extendedAttributes!: pulumi.Output<string>;
     /**
      * Extended Attributes ID
@@ -137,12 +131,6 @@ export class ExtendedAttributes extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ExtendedAttributes resources.
  */
 export interface ExtendedAttributesState {
-    /**
-     * A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-     * `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-     * environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-     * in your Terraform code. (see example)
-     */
     extendedAttributes?: pulumi.Input<string>;
     /**
      * Extended Attributes ID
@@ -162,12 +150,6 @@ export interface ExtendedAttributesState {
  * The set of arguments for constructing a ExtendedAttributes resource.
  */
 export interface ExtendedAttributesArgs {
-    /**
-     * A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-     * `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-     * environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-     * in your Terraform code. (see example)
-     */
     extendedAttributes: pulumi.Input<string>;
     /**
      * Project ID to create the extended attributes in

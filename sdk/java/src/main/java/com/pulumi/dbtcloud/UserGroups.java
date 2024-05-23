@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // we can assign groups to users
- *         var myUserGroups = new UserGroups(&#34;myUserGroups&#34;, UserGroupsArgs.builder()        
+ *         var myUserGroups = new UserGroups("myUserGroups", UserGroupsArgs.builder()
  *             .userId(myUser.id())
  *             .groupIds(            
  *                 1234,
@@ -57,14 +58,15 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // as Delete is not handled currently, by design, removing all groups from a user can be done with
- *         var myOtherUserGroups = new UserGroups(&#34;myOtherUserGroups&#34;, UserGroupsArgs.builder()        
+ *         var myOtherUserGroups = new UserGroups("myOtherUserGroups", UserGroupsArgs.builder()
  *             .userId(123456)
  *             .groupIds()
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

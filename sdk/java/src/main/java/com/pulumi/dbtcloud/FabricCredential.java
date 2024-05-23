@@ -20,51 +20,6 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.DatabricksCredential;
- * import com.pulumi.dbtcloud.DatabricksCredentialArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // when using AD authentication
- *         var myDatabricksCred = new DatabricksCredential(&#34;myDatabricksCred&#34;, DatabricksCredentialArgs.builder()        
- *             .projectId(dbtProject.id())
- *             .adapterId(myFabricConnection.adapterId())
- *             .schema(&#34;my_schema&#34;)
- *             .user(&#34;my_user&#34;)
- *             .password(&#34;my_password&#34;)
- *             .schemaAuthorization(&#34;abcd&#34;)
- *             .build());
- * 
- *         // when using service principal authentication
- *         var mySparkCred = new DatabricksCredential(&#34;mySparkCred&#34;, DatabricksCredentialArgs.builder()        
- *             .projectId(dbtProject.id())
- *             .adapterId(myFabricConnection.adapterId())
- *             .schema(&#34;my_schema&#34;)
- *             .clientId(&#34;my_client_id&#34;)
- *             .tenantId(&#34;my_tenant_id&#34;)
- *             .clientSecret(&#34;my_secret&#34;)
- *             .schemaAuthorization(&#34;abcd&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

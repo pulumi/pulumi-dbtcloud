@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,13 +44,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var testWebhook = new Webhook(&#34;testWebhook&#34;, WebhookArgs.builder()        
- *             .name(&#34;test-webhook&#34;)
- *             .description(&#34;Test webhook&#34;)
- *             .clientUrl(&#34;http://localhost/nothing&#34;)
+ *         var testWebhook = new Webhook("testWebhook", WebhookArgs.builder()
+ *             .name("test-webhook")
+ *             .description("Test webhook")
+ *             .clientUrl("http://localhost/nothing")
  *             .eventTypes(            
- *                 &#34;job.run.started&#34;,
- *                 &#34;job.run.completed&#34;)
+ *                 "job.run.started",
+ *                 "job.run.completed")
  *             .jobIds(            
  *                 1234,
  *                 5678)
@@ -57,7 +58,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

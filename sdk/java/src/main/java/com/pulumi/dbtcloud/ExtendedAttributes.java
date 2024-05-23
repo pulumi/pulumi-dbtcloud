@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,35 +46,36 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // extended_attributes can be set as a raw JSON string or encoded with Terraform&#39;s `jsonencode()` function
+ *         // extended_attributes can be set as a raw JSON string or encoded with Terraform's `jsonencode()` function
  *         // we recommend using `jsonencode()` to avoid Terraform reporting changes due to whitespaces or keys ordering
- *         var myAttributes = new ExtendedAttributes(&#34;myAttributes&#34;, ExtendedAttributesArgs.builder()        
+ *         var myAttributes = new ExtendedAttributes("myAttributes", ExtendedAttributesArgs.builder()
  *             .extendedAttributes(serializeJson(
  *                 jsonObject(
- *                     jsonProperty(&#34;type&#34;, &#34;databricks&#34;),
- *                     jsonProperty(&#34;catalog&#34;, &#34;dbt_catalog&#34;),
- *                     jsonProperty(&#34;http_path&#34;, &#34;/sql/your/http/path&#34;),
- *                     jsonProperty(&#34;my_nested_field&#34;, jsonObject(
- *                         jsonProperty(&#34;subfield&#34;, &#34;my_value&#34;)
+ *                     jsonProperty("type", "databricks"),
+ *                     jsonProperty("catalog", "dbt_catalog"),
+ *                     jsonProperty("http_path", "/sql/your/http/path"),
+ *                     jsonProperty("my_nested_field", jsonObject(
+ *                         jsonProperty("subfield", "my_value")
  *                     ))
  *                 )))
  *             .projectId(dbtProject.id())
  *             .build());
  * 
- *         var issueDepl = new Environment(&#34;issueDepl&#34;, EnvironmentArgs.builder()        
- *             .dbtVersion(&#34;1.6.0-latest&#34;)
- *             .name(&#34;My environment&#34;)
+ *         var issueDepl = new Environment("issueDepl", EnvironmentArgs.builder()
+ *             .dbtVersion("1.6.0-latest")
+ *             .name("My environment")
  *             .projectId(dbtProject.id())
- *             .type(&#34;deployment&#34;)
+ *             .type("deployment")
  *             .useCustomBranch(false)
  *             .credentialId(dbtCredentialId)
- *             .deploymentType(&#34;production&#34;)
+ *             .deploymentType("production")
  *             .extendedAttributesId(myAttributes.extendedAttributesId())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -91,23 +93,9 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="dbtcloud:index/extendedAttributes:ExtendedAttributes")
 public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
-    /**
-     * A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-     * `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-     * environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-     * in your Terraform code. (see example)
-     * 
-     */
     @Export(name="extendedAttributes", refs={String.class}, tree="[0]")
     private Output<String> extendedAttributes;
 
-    /**
-     * @return A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the
-     * `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the
-     * environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode`
-     * in your Terraform code. (see example)
-     * 
-     */
     public Output<String> extendedAttributes() {
         return this.extendedAttributes;
     }
