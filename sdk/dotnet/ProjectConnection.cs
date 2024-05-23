@@ -16,12 +16,12 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var dbtProjectConnection = new Dbtcloud.ProjectConnection("dbt_project_connection", new()
+    ///     var dbtProjectConnection = new DbtCloud.ProjectConnection("dbt_project_connection", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         ConnectionId = dbtConnection.ConnectionId,

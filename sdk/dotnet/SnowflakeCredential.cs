@@ -16,12 +16,12 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var prodCredential = new Dbtcloud.SnowflakeCredential("prod_credential", new()
+    ///     var prodCredential = new DbtCloud.SnowflakeCredential("prod_credential", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AuthType = "password",

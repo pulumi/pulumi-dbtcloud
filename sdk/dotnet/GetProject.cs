@@ -18,19 +18,19 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-        ///     var testProject = Dbtcloud.GetProject.Invoke(new()
+        ///     var testProject = DbtCloud.GetProject.Invoke(new()
         ///     {
         ///         ProjectId = dbtCloudProjectId,
         ///     });
         /// 
         ///     // or they can use project names
         ///     // the provider will raise an error if more than one project is found with the same name
-        ///     var anotherTestProject = Dbtcloud.GetProject.Invoke(new()
+        ///     var anotherTestProject = DbtCloud.GetProject.Invoke(new()
         ///     {
         ///         Name = "My other project name",
         ///     });
@@ -48,19 +48,19 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-        ///     var testProject = Dbtcloud.GetProject.Invoke(new()
+        ///     var testProject = DbtCloud.GetProject.Invoke(new()
         ///     {
         ///         ProjectId = dbtCloudProjectId,
         ///     });
         /// 
         ///     // or they can use project names
         ///     // the provider will raise an error if more than one project is found with the same name
-        ///     var anotherTestProject = Dbtcloud.GetProject.Invoke(new()
+        ///     var anotherTestProject = DbtCloud.GetProject.Invoke(new()
         ///     {
         ///         Name = "My other project name",
         ///     });

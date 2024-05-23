@@ -16,11 +16,11 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myEnvVarJobOverride = new Dbtcloud.EnvironmentVariableJobOverride("my_env_var_job_override", new()
+    ///     var myEnvVarJobOverride = new DbtCloud.EnvironmentVariableJobOverride("my_env_var_job_override", new()
     ///     {
     ///         Name = dbtMyEnvVar.Name,
     ///         ProjectId = dbtProject.Id,

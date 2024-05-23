@@ -263,9 +263,11 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0",
 				"@types/mime": "^2.0.0",
 			},
+			RespectSchemaVersion: true,
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: "pulumi_dbtcloud",
+			RespectSchemaVersion: true,
+			PackageName:          "pulumi_dbtcloud",
 
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
@@ -281,9 +283,11 @@ func Provider() tfbridge.ProviderInfo {
 				mainPkg,
 			),
 			GenerateResourceContainerTypes: true,
+			RespectSchemaVersion:           true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Pulumi",
+			RespectSchemaVersion: true,
+			RootNamespace:        "Pulumi",
 			Namespaces: map[string]string{
 				"dbtcloud": "DbtCloud",
 			},

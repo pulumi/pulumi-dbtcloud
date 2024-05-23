@@ -18,11 +18,11 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUserGroups = Dbtcloud.GetUserGroups.Invoke(new()
+        ///     var myUserGroups = DbtCloud.GetUserGroups.Invoke(new()
         ///     {
         ///         UserId = 12345,
         ///     });
@@ -40,11 +40,11 @@ namespace Pulumi.DbtCloud
         /// using System.Collections.Generic;
         /// using System.Linq;
         /// using Pulumi;
-        /// using Dbtcloud = Pulumi.Dbtcloud;
+        /// using DbtCloud = Pulumi.DbtCloud;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUserGroups = Dbtcloud.GetUserGroups.Invoke(new()
+        ///     var myUserGroups = DbtCloud.GetUserGroups.Invoke(new()
         ///     {
         ///         UserId = 12345,
         ///     });

@@ -18,12 +18,12 @@ namespace Pulumi.DbtCloud
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Dbtcloud = Pulumi.Dbtcloud;
+    /// using DbtCloud = Pulumi.DbtCloud;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE for customers using the LEGACY dbt_cloud provider:
-    ///     var myConnection = new Dbtcloud.BigQueryConnection("my_connection", new()
+    ///     var myConnection = new DbtCloud.BigQueryConnection("my_connection", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Name = "Project Name",
@@ -43,7 +43,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`
-    ///     var myConnectionWithOauth = new Dbtcloud.BigQueryConnection("my_connection_with_oauth", new()
+    ///     var myConnectionWithOauth = new DbtCloud.BigQueryConnection("my_connection_with_oauth", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Name = "Project Name",
