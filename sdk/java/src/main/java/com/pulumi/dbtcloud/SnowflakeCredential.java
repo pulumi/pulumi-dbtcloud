@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,18 +44,19 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // NOTE for customers using the LEGACY dbt_cloud provider:
- *         var prodCredential = new SnowflakeCredential(&#34;prodCredential&#34;, SnowflakeCredentialArgs.builder()        
+ *         var prodCredential = new SnowflakeCredential("prodCredential", SnowflakeCredentialArgs.builder()
  *             .projectId(dbtProject.id())
- *             .authType(&#34;password&#34;)
+ *             .authType("password")
  *             .numThreads(16)
- *             .schema(&#34;SCHEMA&#34;)
- *             .user(&#34;user&#34;)
- *             .password(&#34;password&#34;)
+ *             .schema("SCHEMA")
+ *             .user("user")
+ *             .password("password")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
