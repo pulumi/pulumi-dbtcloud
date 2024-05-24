@@ -42,6 +42,17 @@
                     }
                 }
             },
+            "dbtcloud_group_partial_permissions": {
+                "current": "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions",
+                "fields": {
+                    "group_permissions": {
+                        "maxItemsOne": false
+                    },
+                    "sso_mapping_groups": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "dbtcloud_job": {
                 "current": "dbtcloud:index/job:Job",
                 "fields": {
@@ -76,6 +87,20 @@
             },
             "dbtcloud_notification": {
                 "current": "dbtcloud:index/notification:Notification",
+                "fields": {
+                    "on_cancel": {
+                        "maxItemsOne": false
+                    },
+                    "on_failure": {
+                        "maxItemsOne": false
+                    },
+                    "on_success": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "dbtcloud_partial_notification": {
+                "current": "dbtcloud:index/partialNotification:PartialNotification",
                 "fields": {
                     "on_cancel": {
                         "maxItemsOne": false
@@ -161,6 +186,14 @@
             },
             "dbtcloud_environment_variable": {
                 "current": "dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable"
+            },
+            "dbtcloud_environments": {
+                "current": "dbtcloud:index/getEnvironments:getEnvironments",
+                "fields": {
+                    "environments": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "dbtcloud_extended_attributes": {
                 "current": "dbtcloud:index/getExtendedAttributes:getExtendedAttributes"
@@ -258,6 +291,61 @@
         }
     },
     "auto-settings": {},
+    "mux": {
+        "resources": {
+            "dbtcloud:index/bigQueryConnection:BigQueryConnection": 0,
+            "dbtcloud:index/bigQueryCredential:BigQueryCredential": 0,
+            "dbtcloud:index/connection:Connection": 0,
+            "dbtcloud:index/databricksCredential:DatabricksCredential": 0,
+            "dbtcloud:index/environment:Environment": 0,
+            "dbtcloud:index/environmentVariable:EnvironmentVariable": 0,
+            "dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride": 0,
+            "dbtcloud:index/extendedAttributes:ExtendedAttributes": 0,
+            "dbtcloud:index/fabricConnection:FabricConnection": 0,
+            "dbtcloud:index/fabricCredential:FabricCredential": 0,
+            "dbtcloud:index/group:Group": 0,
+            "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": 1,
+            "dbtcloud:index/job:Job": 0,
+            "dbtcloud:index/licenseMap:LicenseMap": 0,
+            "dbtcloud:index/notification:Notification": 1,
+            "dbtcloud:index/partialNotification:PartialNotification": 1,
+            "dbtcloud:index/postgresCredential:PostgresCredential": 0,
+            "dbtcloud:index/project:Project": 0,
+            "dbtcloud:index/projectArtefacts:ProjectArtefacts": 0,
+            "dbtcloud:index/projectConnection:ProjectConnection": 0,
+            "dbtcloud:index/projectRepository:ProjectRepository": 0,
+            "dbtcloud:index/repository:Repository": 0,
+            "dbtcloud:index/serviceToken:ServiceToken": 0,
+            "dbtcloud:index/snowflakeCredential:SnowflakeCredential": 0,
+            "dbtcloud:index/userGroups:UserGroups": 0,
+            "dbtcloud:index/webhook:Webhook": 0
+        },
+        "functions": {
+            "dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject": 0,
+            "dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository": 0,
+            "dbtcloud:index/getBigQueryConnection:getBigQueryConnection": 0,
+            "dbtcloud:index/getBigQueryCredential:getBigQueryCredential": 0,
+            "dbtcloud:index/getConnection:getConnection": 0,
+            "dbtcloud:index/getDatabricksCredential:getDatabricksCredential": 0,
+            "dbtcloud:index/getEnvironment:getEnvironment": 1,
+            "dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable": 0,
+            "dbtcloud:index/getEnvironments:getEnvironments": 1,
+            "dbtcloud:index/getExtendedAttributes:getExtendedAttributes": 0,
+            "dbtcloud:index/getGroup:getGroup": 0,
+            "dbtcloud:index/getGroupUsers:getGroupUsers": 0,
+            "dbtcloud:index/getJob:getJob": 0,
+            "dbtcloud:index/getNotification:getNotification": 1,
+            "dbtcloud:index/getPostgresCredential:getPostgresCredential": 0,
+            "dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint": 0,
+            "dbtcloud:index/getProject:getProject": 0,
+            "dbtcloud:index/getRepository:getRepository": 0,
+            "dbtcloud:index/getServiceToken:getServiceToken": 0,
+            "dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential": 0,
+            "dbtcloud:index/getUser:getUser": 1,
+            "dbtcloud:index/getUserGroups:getUserGroups": 0,
+            "dbtcloud:index/getWebhook:getWebhook": 0
+        }
+    },
     "renames": {
         "resources": {
             "dbtcloud:index/bigQueryConnection:BigQueryConnection": "dbtcloud_bigquery_connection",

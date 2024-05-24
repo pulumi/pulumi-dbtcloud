@@ -17,18 +17,19 @@
 package main
 
 import (
+	"context"
 	_ "embed" // to embed schema-embed.json
 
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 
 	dbtcloud "github.com/pulumi/pulumi-dbtcloud/provider"
-	"github.com/pulumi/pulumi-dbtcloud/provider/pkg/version"
 )
 
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
 func main() {
+	ctx := context.Background()
 	// Modify the path to point to the new provider
-	tfbridge.Main("dbtcloud", version.Version, dbtcloud.Provider(), pulumiSchema)
+	tfbridge.MainWithMuxer(ctx, "dbtcloud", dbtcloud.Provider(ctx), pulumiSchema)
 }

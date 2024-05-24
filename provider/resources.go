@@ -15,16 +15,21 @@
 package dbtcloud
 
 import (
+	"context"
 	"fmt"
 	"path/filepath"
+	"strconv"
 
 	_ "embed" // to embed bridge metadata
 
 	dbtcloud "github.com/dbt-labs/terraform-provider-dbtcloud/pkg/provider"
 
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 
 	"github.com/pulumi/pulumi-dbtcloud/provider/pkg/version"
 )
@@ -39,13 +44,14 @@ const (
 )
 
 // Provider returns additional overlaid schema and metadata associated with the provider
-func Provider() tfbridge.ProviderInfo {
-	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(dbtcloud.Provider())
+func Provider(ctx context.Context) tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                 p,
+		P: pfbridge.MuxShimWithPF(ctx,
+			shimv2.NewProvider(dbtcloud.SDKProvider("")()),
+			dbtcloud.New(),
+		),
 		Name:              "dbtcloud",
 		DisplayName:       "dbt Cloud",
 		Publisher:         "pulumi",
@@ -309,5 +315,29 @@ func Provider() tfbridge.ProviderInfo {
 
 	prov.SetAutonaming(255, "-")
 
+	convertIDType(&prov, "dbtcloud_group_partial_permissions")
+
 	return prov
+}
+
+func convertIDType(prov *tfbridge.ProviderInfo, tfName string) {
+
+	if schema := prov.P.ResourcesMap().Get(tfName).Schema(); schema.Get("id").Type() != shim.TypeInt {
+		panic("convertIDType expects to convert from an int to a string")
+	}
+
+	prov.Resources[tfName].ComputeID = func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+		id, ok := state["id"]
+		const post = "; this is always a provider bug"
+		if !ok {
+			return "", fmt.Errorf("missing id property%s", post)
+		}
+		if !id.IsNumber() {
+			return "", fmt.Errorf(`unexpected id type, expected "number", found %s%s`,
+				id.TypeString(), post,
+			)
+		}
+
+		return resource.ID(strconv.FormatFloat(id.NumberValue(), 'f', -1, 64)), nil
+	}
 }
