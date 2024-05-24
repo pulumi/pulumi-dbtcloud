@@ -71,7 +71,7 @@ public final class GetJobResult {
      */
     private Integer timeoutSeconds;
     /**
-     * @return Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, custom*branch_only
+     * @return Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
      * 
      */
     private Map<String,Boolean> triggers;
@@ -160,7 +160,7 @@ public final class GetJobResult {
         return this.timeoutSeconds;
     }
     /**
-     * @return Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, custom*branch_only
+     * @return Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
      * 
      */
     public Map<String,Boolean> triggers() {

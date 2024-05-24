@@ -20,11 +20,76 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.FabricCredential;
+ * import com.pulumi.dbtcloud.FabricCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // when using AD authentication
+ *         var myFabricCredAd = new FabricCredential("myFabricCredAd", FabricCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .adapterId(myFabricConnection.adapterId())
+ *             .schema("my_schema")
+ *             .user("my_user")
+ *             .password("my_password")
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *         // when using service principal authentication
+ *         var myFabricCredServPrinc = new FabricCredential("myFabricCredServPrinc", FabricCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .adapterId(myFabricConnection.adapterId())
+ *             .schema("my_schema")
+ *             .clientId("my_client_id")
+ *             .tenantId("my_tenant_id")
+ *             .clientSecret("my_secret")
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * Import using a project ID and credential ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_fabric_credential.my_fabric_credential
+ * 
+ *   id = &#34;project_id:credential_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_fabric_credential.my_fabric_credential
+ * 
+ *   id = &#34;12345:6789&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential &#34;project_id:credential_id&#34;

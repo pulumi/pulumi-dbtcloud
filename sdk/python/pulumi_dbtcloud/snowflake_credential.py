@@ -447,7 +447,6 @@ class SnowflakeCredential(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         prod_credential = dbtcloud.SnowflakeCredential("prod_credential",
             project_id=dbt_project["id"],
             auth_type="password",
@@ -459,7 +458,25 @@ class SnowflakeCredential(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and credential ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_snowflake_credential.prod_snowflake_credential
+
+          id = "project_id:credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_snowflake_credential.prod_snowflake_credential
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/snowflakeCredential:SnowflakeCredential prod_snowflake_credential "project_id:credential_id"
@@ -497,7 +514,6 @@ class SnowflakeCredential(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         prod_credential = dbtcloud.SnowflakeCredential("prod_credential",
             project_id=dbt_project["id"],
             auth_type="password",
@@ -509,7 +525,25 @@ class SnowflakeCredential(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and credential ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_snowflake_credential.prod_snowflake_credential
+
+          id = "project_id:credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_snowflake_credential.prod_snowflake_credential
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/snowflakeCredential:SnowflakeCredential prod_snowflake_credential "project_id:credential_id"

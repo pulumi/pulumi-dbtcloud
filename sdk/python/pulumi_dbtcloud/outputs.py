@@ -11,8 +11,10 @@ from . import _utilities
 
 __all__ = [
     'GroupGroupPermission',
+    'GroupPartialPermissionsGroupPermission',
     'JobJobCompletionTriggerCondition',
     'ServiceTokenServiceTokenPermission',
+    'GetEnvironmentsEnvironmentResult',
     'GetGroupUsersUserResult',
     'GetJobJobCompletionTriggerConditionResult',
     'GetServiceTokenServiceTokenPermissionResult',
@@ -76,6 +78,68 @@ class GroupGroupPermission(dict):
     def project_id(self) -> Optional[int]:
         """
         Project ID to apply this permission to for this group
+        """
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class GroupPartialPermissionsGroupPermission(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allProjects":
+            suggest = "all_projects"
+        elif key == "permissionSet":
+            suggest = "permission_set"
+        elif key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupPartialPermissionsGroupPermission. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupPartialPermissionsGroupPermission.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupPartialPermissionsGroupPermission.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 all_projects: bool,
+                 permission_set: str,
+                 project_id: Optional[int] = None):
+        """
+        :param bool all_projects: Whether access should be provided for all projects or not.
+        :param str permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        :param int project_id: Project ID to apply this permission to for this group.
+        """
+        pulumi.set(__self__, "all_projects", all_projects)
+        pulumi.set(__self__, "permission_set", permission_set)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> bool:
+        """
+        Whether access should be provided for all projects or not.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @property
+    @pulumi.getter(name="permissionSet")
+    def permission_set(self) -> str:
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        return pulumi.get(self, "permission_set")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[int]:
+        """
+        Project ID to apply this permission to for this group.
         """
         return pulumi.get(self, "project_id")
 
@@ -199,6 +263,123 @@ class ServiceTokenServiceTokenPermission(dict):
         Project ID to apply this permission to for this service token
         """
         return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class GetEnvironmentsEnvironmentResult(dict):
+    def __init__(__self__, *,
+                 credentials_id: int,
+                 custom_branch: str,
+                 dbt_version: str,
+                 deployment_type: str,
+                 environment_id: int,
+                 extended_attributes_id: int,
+                 name: str,
+                 project_id: int,
+                 type: str,
+                 use_custom_branch: bool):
+        """
+        :param int credentials_id: The project ID to which the environment belong
+        :param str custom_branch: The type of deployment environment (currently 'production', 'staging' or empty)
+        :param str dbt_version: Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+        :param str deployment_type: The name of the environment
+        :param int environment_id: The ID of the environment
+        :param int extended_attributes_id: The ID of the extended attributes applied
+        :param str name: The name of the environment
+        :param int project_id: The project ID to which the environment belong
+        :param str type: The name of the environment
+        :param bool use_custom_branch: Whether to use a custom git branch in this environment
+        """
+        pulumi.set(__self__, "credentials_id", credentials_id)
+        pulumi.set(__self__, "custom_branch", custom_branch)
+        pulumi.set(__self__, "dbt_version", dbt_version)
+        pulumi.set(__self__, "deployment_type", deployment_type)
+        pulumi.set(__self__, "environment_id", environment_id)
+        pulumi.set(__self__, "extended_attributes_id", extended_attributes_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "use_custom_branch", use_custom_branch)
+
+    @property
+    @pulumi.getter(name="credentialsId")
+    def credentials_id(self) -> int:
+        """
+        The project ID to which the environment belong
+        """
+        return pulumi.get(self, "credentials_id")
+
+    @property
+    @pulumi.getter(name="customBranch")
+    def custom_branch(self) -> str:
+        """
+        The type of deployment environment (currently 'production', 'staging' or empty)
+        """
+        return pulumi.get(self, "custom_branch")
+
+    @property
+    @pulumi.getter(name="dbtVersion")
+    def dbt_version(self) -> str:
+        """
+        Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+        """
+        return pulumi.get(self, "dbt_version")
+
+    @property
+    @pulumi.getter(name="deploymentType")
+    def deployment_type(self) -> str:
+        """
+        The name of the environment
+        """
+        return pulumi.get(self, "deployment_type")
+
+    @property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> int:
+        """
+        The ID of the environment
+        """
+        return pulumi.get(self, "environment_id")
+
+    @property
+    @pulumi.getter(name="extendedAttributesId")
+    def extended_attributes_id(self) -> int:
+        """
+        The ID of the extended attributes applied
+        """
+        return pulumi.get(self, "extended_attributes_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the environment
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> int:
+        """
+        The project ID to which the environment belong
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The name of the environment
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="useCustomBranch")
+    def use_custom_branch(self) -> bool:
+        """
+        Whether to use a custom git branch in this environment
+        """
+        return pulumi.get(self, "use_custom_branch")
 
 
 @pulumi.output_type

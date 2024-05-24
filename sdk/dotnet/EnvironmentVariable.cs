@@ -23,7 +23,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var dbtMyEnvVar = new DbtCloud.EnvironmentVariable("dbt_my_env_var", new()
     ///     {
     ///         Name = "DBT_MY_ENV_VAR",
@@ -51,7 +50,25 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a project ID and environment variable name found in the URL and UI or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_environment_variable.test_environment_variable
+    /// 
+    ///   id = "project_id:environment_variable_name"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_environment_variable.test_environment_variable
+    /// 
+    ///   id = "12345:DBT_ENV_VAR"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable "project_id:environment_variable_name"

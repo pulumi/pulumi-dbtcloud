@@ -155,7 +155,7 @@ class GetJobResult:
     @pulumi.getter
     def triggers(self) -> Mapping[str, bool]:
         """
-        Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, custom*branch_only
+        Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
         """
         return pulumi.get(self, "triggers")
 

@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // NOTE for customers using the LEGACY dbt_cloud provider:
  * const myConnection = new dbtcloud.BigQueryConnection("my_connection", {
  *     projectId: dbtProject.id,
  *     name: "Project Name",
@@ -54,6 +53,26 @@ import * as utilities from "./utilities";
  * ```
  *
  * ## Import
+ *
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_bigquery_connection.my_connection
+ *
+ *   id = "project_id:connection_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_bigquery_connection.my_connection
+ *
+ *   id = "12345:6789"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
  * $ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection "project_id:connection_id"

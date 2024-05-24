@@ -40,7 +40,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var dbtProject = new Project("dbtProject", ProjectArgs.builder()
  *             .name("Analytics")
  *             .build());
@@ -58,14 +57,32 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a project ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_project.my_project
+ * 
+ *   id = &#34;project_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_project.my_project
+ * 
+ *   id = &#34;12345&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/project:Project test_project &#34;project_id&#34;
+ * $ pulumi import dbtcloud:index/project:Project my_project &#34;project_id&#34;
  * ```
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/project:Project test_project 12345
+ * $ pulumi import dbtcloud:index/project:Project my_project 12345
  * ```
  * 
  */

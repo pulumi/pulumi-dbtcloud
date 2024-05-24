@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Retrieve data for a single environment
+ */
 export function getEnvironment(args: GetEnvironmentArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvironmentResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -18,11 +21,11 @@ export function getEnvironment(args: GetEnvironmentArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetEnvironmentArgs {
     /**
-     * ID of the environment
+     * The ID of the environment
      */
     environmentId: number;
     /**
-     * Project ID to create the environment in
+     * The project ID to which the environment belong
      */
     projectId: number;
 }
@@ -32,11 +35,11 @@ export interface GetEnvironmentArgs {
  */
 export interface GetEnvironmentResult {
     /**
-     * Credential ID to create the environment with
+     * The project ID to which the environment belong
      */
-    readonly credentialId: number;
+    readonly credentialsId: number;
     /**
-     * Which custom branch to use in this environment
+     * The type of deployment environment (currently 'production', 'staging' or empty)
      */
     readonly customBranch: string;
     /**
@@ -44,11 +47,11 @@ export interface GetEnvironmentResult {
      */
     readonly dbtVersion: string;
     /**
-     * The type of deployment environment (currently 'production' or empty)
+     * The name of the environment
      */
     readonly deploymentType: string;
     /**
-     * ID of the environment
+     * The ID of the environment
      */
     readonly environmentId: number;
     /**
@@ -60,19 +63,15 @@ export interface GetEnvironmentResult {
      */
     readonly id: string;
     /**
-     * Whether the environment is active
-     */
-    readonly isActive: boolean;
-    /**
-     * Environment name
+     * The name of the environment
      */
     readonly name: string;
     /**
-     * Project ID to create the environment in
+     * The project ID to which the environment belong
      */
     readonly projectId: number;
     /**
-     * The type of environment (must be either development or deployment)
+     * The name of the environment
      */
     readonly type: string;
     /**
@@ -80,6 +79,9 @@ export interface GetEnvironmentResult {
      */
     readonly useCustomBranch: boolean;
 }
+/**
+ * Retrieve data for a single environment
+ */
 export function getEnvironmentOutput(args: GetEnvironmentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentResult> {
     return pulumi.output(args).apply((a: any) => getEnvironment(a, opts))
 }
@@ -89,11 +91,11 @@ export function getEnvironmentOutput(args: GetEnvironmentOutputArgs, opts?: pulu
  */
 export interface GetEnvironmentOutputArgs {
     /**
-     * ID of the environment
+     * The ID of the environment
      */
     environmentId: pulumi.Input<number>;
     /**
-     * Project ID to create the environment in
+     * The project ID to which the environment belong
      */
     projectId: pulumi.Input<number>;
 }

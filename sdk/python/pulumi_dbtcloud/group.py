@@ -193,15 +193,12 @@ class Group(pulumi.CustomResource):
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        *Note*: Groups currently do not support updates, as per both the API and the UI.
-
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         tf_group1 = dbtcloud.Group("tf_group_1",
             name="TF Group 1",
             group_permissions=[
@@ -219,14 +216,32 @@ class Group(pulumi.CustomResource):
 
         ## Import
 
-        Import using a group ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_group.my_group
+
+          id = "group_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_group.my_group
+
+          id = "12345"
+
+        }
+
+        using the older import command
 
         ```sh
-        $ pulumi import dbtcloud:index/group:Group test_group "group_id"
+        $ pulumi import dbtcloud:index/group:Group my_group "group_id"
         ```
 
         ```sh
-        $ pulumi import dbtcloud:index/group:Group test_group 12345
+        $ pulumi import dbtcloud:index/group:Group my_group 12345
         ```
 
         :param str resource_name: The name of the resource.
@@ -243,15 +258,12 @@ class Group(pulumi.CustomResource):
                  args: Optional[GroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        *Note*: Groups currently do not support updates, as per both the API and the UI.
-
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         tf_group1 = dbtcloud.Group("tf_group_1",
             name="TF Group 1",
             group_permissions=[
@@ -269,14 +281,32 @@ class Group(pulumi.CustomResource):
 
         ## Import
 
-        Import using a group ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_group.my_group
+
+          id = "group_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_group.my_group
+
+          id = "12345"
+
+        }
+
+        using the older import command
 
         ```sh
-        $ pulumi import dbtcloud:index/group:Group test_group "group_id"
+        $ pulumi import dbtcloud:index/group:Group my_group "group_id"
         ```
 
         ```sh
-        $ pulumi import dbtcloud:index/group:Group test_group 12345
+        $ pulumi import dbtcloud:index/group:Group my_group 12345
         ```
 
         :param str resource_name: The name of the resource.

@@ -26,7 +26,6 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// NOTE for customers using the LEGACY dbt_cloud provider:
 //			_, err := dbtcloud.NewBigQueryCredential(ctx, "my_credential", &dbtcloud.BigQueryCredentialArgs{
 //				ProjectId:  pulumi.Any(dbtProject.Id),
 //				Dataset:    pulumi.String("my_bq_dataset"),
@@ -42,6 +41,26 @@ import (
 // ```
 //
 // ## Import
+//
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_bigquery_credential.my_credential
+//
+//	id = "project_id:credential_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_bigquery_credential.my_credential
+//
+//	id = "12345:5678"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential "project_id:credential_id"

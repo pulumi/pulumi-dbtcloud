@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Retrieve user details
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -48,6 +50,8 @@ export interface GetUserResult {
     readonly id: number;
 }
 /**
+ * Retrieve user details
+ *
  * ## Example Usage
  *
  * ```typescript

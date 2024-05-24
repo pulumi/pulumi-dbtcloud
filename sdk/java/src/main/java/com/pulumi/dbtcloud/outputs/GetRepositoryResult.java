@@ -22,7 +22,11 @@ public final class GetRepositoryResult {
     /**
      * @return Whether we should return the public deploy key
      * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key`
+     * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key` */
     private @Nullable Boolean fetchDeployKey;
     /**
      * @return Git clone strategy for the repository
@@ -81,7 +85,11 @@ public final class GetRepositoryResult {
     /**
      * @return Whether we should return the public deploy key
      * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key`
+     * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key` */
     public Optional<Boolean> fetchDeployKey() {
         return Optional.ofNullable(this.fetchDeployKey);
     }

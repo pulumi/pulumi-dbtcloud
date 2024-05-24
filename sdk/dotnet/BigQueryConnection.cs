@@ -22,7 +22,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var myConnection = new DbtCloud.BigQueryConnection("my_connection", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
@@ -68,6 +67,26 @@ namespace Pulumi.DbtCloud
     /// ```
     /// 
     /// ## Import
+    /// 
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_bigquery_connection.my_connection
+    /// 
+    ///   id = "project_id:connection_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_bigquery_connection.my_connection
+    /// 
+    ///   id = "12345:6789"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection "project_id:connection_id"

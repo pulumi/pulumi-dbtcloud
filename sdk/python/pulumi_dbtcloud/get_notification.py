@@ -21,7 +21,7 @@ class GetNotificationResult:
     """
     A collection of values returned by getNotification.
     """
-    def __init__(__self__, external_email=None, id=None, notification_id=None, notification_type=None, on_cancels=None, on_failures=None, on_successes=None, user_id=None):
+    def __init__(__self__, external_email=None, id=None, notification_id=None, notification_type=None, on_cancels=None, on_failures=None, on_successes=None, slack_channel_id=None, slack_channel_name=None, state=None, user_id=None):
         if external_email and not isinstance(external_email, str):
             raise TypeError("Expected argument 'external_email' to be a str")
         pulumi.set(__self__, "external_email", external_email)
@@ -43,6 +43,15 @@ class GetNotificationResult:
         if on_successes and not isinstance(on_successes, list):
             raise TypeError("Expected argument 'on_successes' to be a list")
         pulumi.set(__self__, "on_successes", on_successes)
+        if slack_channel_id and not isinstance(slack_channel_id, str):
+            raise TypeError("Expected argument 'slack_channel_id' to be a str")
+        pulumi.set(__self__, "slack_channel_id", slack_channel_id)
+        if slack_channel_name and not isinstance(slack_channel_name, str):
+            raise TypeError("Expected argument 'slack_channel_name' to be a str")
+        pulumi.set(__self__, "slack_channel_name", slack_channel_name)
+        if state and not isinstance(state, int):
+            raise TypeError("Expected argument 'state' to be a int")
+        pulumi.set(__self__, "state", state)
         if user_id and not isinstance(user_id, int):
             raise TypeError("Expected argument 'user_id' to be a int")
         pulumi.set(__self__, "user_id", user_id)
@@ -67,7 +76,7 @@ class GetNotificationResult:
     @pulumi.getter(name="notificationId")
     def notification_id(self) -> int:
         """
-        ID of the notification
+        The ID of the notification
         """
         return pulumi.get(self, "notification_id")
 
@@ -75,7 +84,7 @@ class GetNotificationResult:
     @pulumi.getter(name="notificationType")
     def notification_type(self) -> int:
         """
-        Type of notification (1 = dbt Cloud user email (default): does not require an external*email ; 4 = external email: requires setting an external*email)
+        Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
         """
         return pulumi.get(self, "notification_type")
 
@@ -104,6 +113,30 @@ class GetNotificationResult:
         return pulumi.get(self, "on_successes")
 
     @property
+    @pulumi.getter(name="slackChannelId")
+    def slack_channel_id(self) -> str:
+        """
+        The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
+        """
+        return pulumi.get(self, "slack_channel_id")
+
+    @property
+    @pulumi.getter(name="slackChannelName")
+    def slack_channel_name(self) -> str:
+        """
+        The name of the slack channel
+        """
+        return pulumi.get(self, "slack_channel_name")
+
+    @property
+    @pulumi.getter
+    def state(self) -> int:
+        """
+        State of the notification (1 = active (default), 2 = inactive)
+        """
+        return pulumi.get(self, "state")
+
+    @property
     @pulumi.getter(name="userId")
     def user_id(self) -> int:
         """
@@ -125,12 +158,17 @@ class AwaitableGetNotificationResult(GetNotificationResult):
             on_cancels=self.on_cancels,
             on_failures=self.on_failures,
             on_successes=self.on_successes,
+            slack_channel_id=self.slack_channel_id,
+            slack_channel_name=self.slack_channel_name,
+            state=self.state,
             user_id=self.user_id)
 
 
 def get_notification(notification_id: Optional[int] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationResult:
     """
+    Retrieve notification details
+
     ## Example Usage
 
     ```python
@@ -141,7 +179,7 @@ def get_notification(notification_id: Optional[int] = None,
     ```
 
 
-    :param int notification_id: ID of the notification
+    :param int notification_id: The ID of the notification
     """
     __args__ = dict()
     __args__['notificationId'] = notification_id
@@ -156,6 +194,9 @@ def get_notification(notification_id: Optional[int] = None,
         on_cancels=pulumi.get(__ret__, 'on_cancels'),
         on_failures=pulumi.get(__ret__, 'on_failures'),
         on_successes=pulumi.get(__ret__, 'on_successes'),
+        slack_channel_id=pulumi.get(__ret__, 'slack_channel_id'),
+        slack_channel_name=pulumi.get(__ret__, 'slack_channel_name'),
+        state=pulumi.get(__ret__, 'state'),
         user_id=pulumi.get(__ret__, 'user_id'))
 
 
@@ -163,6 +204,8 @@ def get_notification(notification_id: Optional[int] = None,
 def get_notification_output(notification_id: Optional[pulumi.Input[int]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNotificationResult]:
     """
+    Retrieve notification details
+
     ## Example Usage
 
     ```python
@@ -173,6 +216,6 @@ def get_notification_output(notification_id: Optional[pulumi.Input[int]] = None,
     ```
 
 
-    :param int notification_id: ID of the notification
+    :param int notification_id: The ID of the notification
     """
     ...

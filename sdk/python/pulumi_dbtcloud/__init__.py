@@ -23,6 +23,7 @@ from .get_connection import *
 from .get_databricks_credential import *
 from .get_environment import *
 from .get_environment_variable import *
+from .get_environments import *
 from .get_extended_attributes import *
 from .get_group import *
 from .get_group_users import *
@@ -38,9 +39,11 @@ from .get_user import *
 from .get_user_groups import *
 from .get_webhook import *
 from .group import *
+from .group_partial_permissions import *
 from .job import *
 from .license_map import *
 from .notification import *
+from .partial_notification import *
 from .postgres_credential import *
 from .project import *
 from .project_artefacts import *
@@ -155,6 +158,14 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/groupPartialPermissions",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": "GroupPartialPermissions"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/job",
   "fqn": "pulumi_dbtcloud",
   "classes": {
@@ -175,6 +186,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/notification:Notification": "Notification"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/partialNotification",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/partialNotification:PartialNotification": "PartialNotification"
   }
  },
  {

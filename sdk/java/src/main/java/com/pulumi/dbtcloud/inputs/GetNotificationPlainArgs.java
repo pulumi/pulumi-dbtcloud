@@ -14,14 +14,14 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
     public static final GetNotificationPlainArgs Empty = new GetNotificationPlainArgs();
 
     /**
-     * ID of the notification
+     * The ID of the notification
      * 
      */
     @Import(name="notificationId", required=true)
     private Integer notificationId;
 
     /**
-     * @return ID of the notification
+     * @return The ID of the notification
      * 
      */
     public Integer notificationId() {
@@ -53,7 +53,7 @@ public final class GetNotificationPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param notificationId ID of the notification
+         * @param notificationId The ID of the notification
          * 
          * @return builder
          * 

@@ -18,14 +18,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     public static final ConnectionState Empty = new ConnectionState();
 
     /**
-     * Account name for the connection
+     * Account name for the connection (for Snowflake)
      * 
      */
     @Import(name="account")
     private @Nullable Output<String> account;
 
     /**
-     * @return Account name for the connection
+     * @return Account name for the connection (for Snowflake)
      * 
      */
     public Optional<Output<String>> account() {
@@ -33,14 +33,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Adapter id created for the Databricks connection
+     * Adapter id created for the Databricks connection (for Databricks)
      * 
      */
     @Import(name="adapterId")
     private @Nullable Output<Integer> adapterId;
 
     /**
-     * @return Adapter id created for the Databricks connection
+     * @return Adapter id created for the Databricks connection (for Databricks)
      * 
      */
     public Optional<Output<Integer>> adapterId() {
@@ -48,14 +48,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Whether or not the connection should allow client session keep alive
+     * Whether or not the connection should allow client session keep alive (for Snowflake)
      * 
      */
     @Import(name="allowKeepAlive")
     private @Nullable Output<Boolean> allowKeepAlive;
 
     /**
-     * @return Whether or not the connection should allow client session keep alive
+     * @return Whether or not the connection should allow client session keep alive (for Snowflake)
      * 
      */
     public Optional<Output<Boolean>> allowKeepAlive() {
@@ -63,14 +63,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Whether or not the connection should allow SSO
+     * Whether or not the connection should allow SSO (for Snowflake)
      * 
      */
     @Import(name="allowSso")
     private @Nullable Output<Boolean> allowSso;
 
     /**
-     * @return Whether or not the connection should allow SSO
+     * @return Whether or not the connection should allow SSO (for Snowflake)
      * 
      */
     public Optional<Output<Boolean>> allowSso() {
@@ -78,14 +78,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Catalog name if Unity Catalog is enabled in your Databricks workspace
+     * Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
      * 
      */
     @Import(name="catalog")
     private @Nullable Output<String> catalog;
 
     /**
-     * @return Catalog name if Unity Catalog is enabled in your Databricks workspace
+     * @return Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
      * 
      */
     public Optional<Output<String>> catalog() {
@@ -138,14 +138,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The HTTP path of the Databricks cluster or SQL warehouse
+     * The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
      * 
      */
     @Import(name="httpPath")
     private @Nullable Output<String> httpPath;
 
     /**
-     * @return The HTTP path of the Databricks cluster or SQL warehouse
+     * @return The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
      * 
      */
     public Optional<Output<String>> httpPath() {
@@ -183,14 +183,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * OAuth client identifier
+     * OAuth client identifier (for Snowflake and Databricks)
      * 
      */
     @Import(name="oauthClientId")
     private @Nullable Output<String> oauthClientId;
 
     /**
-     * @return OAuth client identifier
+     * @return OAuth client identifier (for Snowflake and Databricks)
      * 
      */
     public Optional<Output<String>> oauthClientId() {
@@ -198,14 +198,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * OAuth client secret
+     * OAuth client secret (for Snowflake and Databricks)
      * 
      */
     @Import(name="oauthClientSecret")
     private @Nullable Output<String> oauthClientSecret;
 
     /**
-     * @return OAuth client secret
+     * @return OAuth client secret (for Snowflake and Databricks)
      * 
      */
     public Optional<Output<String>> oauthClientSecret() {
@@ -258,14 +258,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Role name for the connection
+     * Role name for the connection (for Snowflake)
      * 
      */
     @Import(name="role")
     private @Nullable Output<String> role;
 
     /**
-     * @return Role name for the connection
+     * @return Role name for the connection (for Snowflake)
      * 
      */
     public Optional<Output<String>> role() {
@@ -303,14 +303,14 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Warehouse name for the connection
+     * Warehouse name for the connection (for Snowflake)
      * 
      */
     @Import(name="warehouse")
     private @Nullable Output<String> warehouse;
 
     /**
-     * @return Warehouse name for the connection
+     * @return Warehouse name for the connection (for Snowflake)
      * 
      */
     public Optional<Output<String>> warehouse() {
@@ -361,7 +361,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param account Account name for the connection
+         * @param account Account name for the connection (for Snowflake)
          * 
          * @return builder
          * 
@@ -372,7 +372,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param account Account name for the connection
+         * @param account Account name for the connection (for Snowflake)
          * 
          * @return builder
          * 
@@ -382,7 +382,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param adapterId Adapter id created for the Databricks connection
+         * @param adapterId Adapter id created for the Databricks connection (for Databricks)
          * 
          * @return builder
          * 
@@ -393,7 +393,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param adapterId Adapter id created for the Databricks connection
+         * @param adapterId Adapter id created for the Databricks connection (for Databricks)
          * 
          * @return builder
          * 
@@ -403,7 +403,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowKeepAlive Whether or not the connection should allow client session keep alive
+         * @param allowKeepAlive Whether or not the connection should allow client session keep alive (for Snowflake)
          * 
          * @return builder
          * 
@@ -414,7 +414,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowKeepAlive Whether or not the connection should allow client session keep alive
+         * @param allowKeepAlive Whether or not the connection should allow client session keep alive (for Snowflake)
          * 
          * @return builder
          * 
@@ -424,7 +424,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowSso Whether or not the connection should allow SSO
+         * @param allowSso Whether or not the connection should allow SSO (for Snowflake)
          * 
          * @return builder
          * 
@@ -435,7 +435,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowSso Whether or not the connection should allow SSO
+         * @param allowSso Whether or not the connection should allow SSO (for Snowflake)
          * 
          * @return builder
          * 
@@ -445,7 +445,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param catalog Catalog name if Unity Catalog is enabled in your Databricks workspace
+         * @param catalog Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
          * 
          * @return builder
          * 
@@ -456,7 +456,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param catalog Catalog name if Unity Catalog is enabled in your Databricks workspace
+         * @param catalog Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
          * 
          * @return builder
          * 
@@ -529,7 +529,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param httpPath The HTTP path of the Databricks cluster or SQL warehouse
+         * @param httpPath The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
          * 
          * @return builder
          * 
@@ -540,7 +540,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param httpPath The HTTP path of the Databricks cluster or SQL warehouse
+         * @param httpPath The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
          * 
          * @return builder
          * 
@@ -592,7 +592,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientId OAuth client identifier
+         * @param oauthClientId OAuth client identifier (for Snowflake and Databricks)
          * 
          * @return builder
          * 
@@ -603,7 +603,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientId OAuth client identifier
+         * @param oauthClientId OAuth client identifier (for Snowflake and Databricks)
          * 
          * @return builder
          * 
@@ -613,7 +613,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientSecret OAuth client secret
+         * @param oauthClientSecret OAuth client secret (for Snowflake and Databricks)
          * 
          * @return builder
          * 
@@ -624,7 +624,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientSecret OAuth client secret
+         * @param oauthClientSecret OAuth client secret (for Snowflake and Databricks)
          * 
          * @return builder
          * 
@@ -697,7 +697,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param role Role name for the connection
+         * @param role Role name for the connection (for Snowflake)
          * 
          * @return builder
          * 
@@ -708,7 +708,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param role Role name for the connection
+         * @param role Role name for the connection (for Snowflake)
          * 
          * @return builder
          * 
@@ -760,7 +760,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param warehouse Warehouse name for the connection
+         * @param warehouse Warehouse name for the connection (for Snowflake)
          * 
          * @return builder
          * 
@@ -771,7 +771,7 @@ public final class ConnectionState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param warehouse Warehouse name for the connection
+         * @param warehouse Warehouse name for the connection (for Snowflake)
          * 
          * @return builder
          * 

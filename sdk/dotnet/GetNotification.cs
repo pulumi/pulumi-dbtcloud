@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     public static class GetNotification
     {
         /// <summary>
+        /// Retrieve notification details
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -34,6 +36,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNotificationResult>("dbtcloud:index/getNotification:getNotification", args ?? new GetNotificationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Retrieve notification details
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -60,7 +64,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetNotificationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the notification
+        /// The ID of the notification
         /// </summary>
         [Input("notificationId", required: true)]
         public int NotificationId { get; set; }
@@ -74,7 +78,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetNotificationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the notification
+        /// The ID of the notification
         /// </summary>
         [Input("notificationId", required: true)]
         public Input<int> NotificationId { get; set; } = null!;
@@ -98,11 +102,11 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// ID of the notification
+        /// The ID of the notification
         /// </summary>
         public readonly int NotificationId;
         /// <summary>
-        /// Type of notification (1 = dbt Cloud user email (default): does not require an external*email ; 4 = external email: requires setting an external*email)
+        /// Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
         /// </summary>
         public readonly int NotificationType;
         /// <summary>
@@ -117,6 +121,18 @@ namespace Pulumi.DbtCloud
         /// List of job IDs to trigger the webhook on success
         /// </summary>
         public readonly ImmutableArray<int> OnSuccesses;
+        /// <summary>
+        /// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
+        /// </summary>
+        public readonly string SlackChannelId;
+        /// <summary>
+        /// The name of the slack channel
+        /// </summary>
+        public readonly string SlackChannelName;
+        /// <summary>
+        /// State of the notification (1 = active (default), 2 = inactive)
+        /// </summary>
+        public readonly int State;
         /// <summary>
         /// Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
         /// </summary>
@@ -138,6 +154,12 @@ namespace Pulumi.DbtCloud
 
             ImmutableArray<int> onSuccesses,
 
+            string slackChannelId,
+
+            string slackChannelName,
+
+            int state,
+
             int userId)
         {
             ExternalEmail = externalEmail;
@@ -147,6 +169,9 @@ namespace Pulumi.DbtCloud
             OnCancels = onCancels;
             OnFailures = onFailures;
             OnSuccesses = onSuccesses;
+            SlackChannelId = slackChannelId;
+            SlackChannelName = slackChannelName;
+            State = state;
             UserId = userId;
         }
     }

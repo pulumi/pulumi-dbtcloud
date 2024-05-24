@@ -23,12 +23,12 @@ public final class GetNotificationResult {
      */
     private String id;
     /**
-     * @return ID of the notification
+     * @return The ID of the notification
      * 
      */
     private Integer notificationId;
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external*email ; 4 = external email: requires setting an external*email)
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
      * 
      */
     private Integer notificationType;
@@ -47,6 +47,21 @@ public final class GetNotificationResult {
      * 
      */
     private List<Integer> onSuccesses;
+    /**
+     * @return The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
+     * 
+     */
+    private String slackChannelId;
+    /**
+     * @return The name of the slack channel
+     * 
+     */
+    private String slackChannelName;
+    /**
+     * @return State of the notification (1 = active (default), 2 = inactive)
+     * 
+     */
+    private Integer state;
     /**
      * @return Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
      * 
@@ -69,14 +84,14 @@ public final class GetNotificationResult {
         return this.id;
     }
     /**
-     * @return ID of the notification
+     * @return The ID of the notification
      * 
      */
     public Integer notificationId() {
         return this.notificationId;
     }
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external*email ; 4 = external email: requires setting an external*email)
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
      * 
      */
     public Integer notificationType() {
@@ -104,6 +119,27 @@ public final class GetNotificationResult {
         return this.onSuccesses;
     }
     /**
+     * @return The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
+     * 
+     */
+    public String slackChannelId() {
+        return this.slackChannelId;
+    }
+    /**
+     * @return The name of the slack channel
+     * 
+     */
+    public String slackChannelName() {
+        return this.slackChannelName;
+    }
+    /**
+     * @return State of the notification (1 = active (default), 2 = inactive)
+     * 
+     */
+    public Integer state() {
+        return this.state;
+    }
+    /**
      * @return Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
      * 
      */
@@ -127,6 +163,9 @@ public final class GetNotificationResult {
         private List<Integer> onCancels;
         private List<Integer> onFailures;
         private List<Integer> onSuccesses;
+        private String slackChannelId;
+        private String slackChannelName;
+        private Integer state;
         private Integer userId;
         public Builder() {}
         public Builder(GetNotificationResult defaults) {
@@ -138,6 +177,9 @@ public final class GetNotificationResult {
     	      this.onCancels = defaults.onCancels;
     	      this.onFailures = defaults.onFailures;
     	      this.onSuccesses = defaults.onSuccesses;
+    	      this.slackChannelId = defaults.slackChannelId;
+    	      this.slackChannelName = defaults.slackChannelName;
+    	      this.state = defaults.state;
     	      this.userId = defaults.userId;
         }
 
@@ -207,6 +249,30 @@ public final class GetNotificationResult {
             return onSuccesses(List.of(onSuccesses));
         }
         @CustomType.Setter
+        public Builder slackChannelId(String slackChannelId) {
+            if (slackChannelId == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "slackChannelId");
+            }
+            this.slackChannelId = slackChannelId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder slackChannelName(String slackChannelName) {
+            if (slackChannelName == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "slackChannelName");
+            }
+            this.slackChannelName = slackChannelName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder state(Integer state) {
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "state");
+            }
+            this.state = state;
+            return this;
+        }
+        @CustomType.Setter
         public Builder userId(Integer userId) {
             if (userId == null) {
               throw new MissingRequiredPropertyException("GetNotificationResult", "userId");
@@ -223,6 +289,9 @@ public final class GetNotificationResult {
             _resultValue.onCancels = onCancels;
             _resultValue.onFailures = onFailures;
             _resultValue.onSuccesses = onSuccesses;
+            _resultValue.slackChannelId = slackChannelId;
+            _resultValue.slackChannelName = slackChannelName;
+            _resultValue.state = state;
             _resultValue.userId = userId;
             return _resultValue;
         }

@@ -43,12 +43,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FabricCredential{}
 	case "dbtcloud:index/group:Group":
 		r = &Group{}
+	case "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions":
+		r = &GroupPartialPermissions{}
 	case "dbtcloud:index/job:Job":
 		r = &Job{}
 	case "dbtcloud:index/licenseMap:LicenseMap":
 		r = &LicenseMap{}
 	case "dbtcloud:index/notification:Notification":
 		r = &Notification{}
+	case "dbtcloud:index/partialNotification:PartialNotification":
+		r = &PartialNotification{}
 	case "dbtcloud:index/postgresCredential:PostgresCredential":
 		r = &PostgresCredential{}
 	case "dbtcloud:index/project:Project":
@@ -157,6 +161,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/groupPartialPermissions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/job",
 		&module{version},
 	)
@@ -168,6 +177,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/notification",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/partialNotification",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

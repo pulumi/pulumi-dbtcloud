@@ -15,14 +15,14 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetEnvironmentArgs Empty = new GetEnvironmentArgs();
 
     /**
-     * ID of the environment
+     * The ID of the environment
      * 
      */
     @Import(name="environmentId", required=true)
     private Output<Integer> environmentId;
 
     /**
-     * @return ID of the environment
+     * @return The ID of the environment
      * 
      */
     public Output<Integer> environmentId() {
@@ -30,14 +30,14 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Project ID to create the environment in
+     * The project ID to which the environment belong
      * 
      */
     @Import(name="projectId", required=true)
     private Output<Integer> projectId;
 
     /**
-     * @return Project ID to create the environment in
+     * @return The project ID to which the environment belong
      * 
      */
     public Output<Integer> projectId() {
@@ -70,7 +70,7 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param environmentId ID of the environment
+         * @param environmentId The ID of the environment
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param environmentId ID of the environment
+         * @param environmentId The ID of the environment
          * 
          * @return builder
          * 
@@ -91,7 +91,7 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId Project ID to create the environment in
+         * @param projectId The project ID to which the environment belong
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId Project ID to create the environment in
+         * @param projectId The project ID to which the environment belong
          * 
          * @return builder
          * 

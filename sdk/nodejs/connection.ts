@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // NOTE for customers using the LEGACY dbt_cloud provider:
  * const databricks = new dbtcloud.Connection("databricks", {
  *     projectId: dbtProject.id,
  *     type: "adapter",
@@ -25,6 +24,8 @@ import * as utilities from "./utilities";
  *     hostName: "my-databricks-host.cloud.databricks.com",
  *     httpPath: "/my/path",
  *     catalog: "moo",
+ *     oauthClientId: "yourclientid",
+ *     oauthClientSecret: "yourclientsecret",
  * });
  * const redshift = new dbtcloud.Connection("redshift", {
  *     projectId: dbtProject.id,
@@ -42,12 +43,33 @@ import * as utilities from "./utilities";
  *     database: "MY_DATABASE",
  *     role: "MY_ROLE",
  *     warehouse: "MY_WAREHOUSE",
+ *     oauthClientId: "yourclientid",
+ *     oauthClientSecret: "yourclientsecret",
+ *     allowSso: true,
  * });
  * ```
  *
  * ## Import
  *
- * Import using a project ID and connection ID found in the URL or via the API.
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_connection.test_connection
+ *
+ *   id = "project_id:connection_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_connection.test_connection
+ *
+ *   id = "12345:6789"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
  * $ pulumi import dbtcloud:index/connection:Connection test_connection "project_id:connection_id"
@@ -86,23 +108,23 @@ export class Connection extends pulumi.CustomResource {
     }
 
     /**
-     * Account name for the connection
+     * Account name for the connection (for Snowflake)
      */
     public readonly account!: pulumi.Output<string | undefined>;
     /**
-     * Adapter id created for the Databricks connection
+     * Adapter id created for the Databricks connection (for Databricks)
      */
     public /*out*/ readonly adapterId!: pulumi.Output<number>;
     /**
-     * Whether or not the connection should allow client session keep alive
+     * Whether or not the connection should allow client session keep alive (for Snowflake)
      */
     public readonly allowKeepAlive!: pulumi.Output<boolean | undefined>;
     /**
-     * Whether or not the connection should allow SSO
+     * Whether or not the connection should allow SSO (for Snowflake)
      */
     public readonly allowSso!: pulumi.Output<boolean | undefined>;
     /**
-     * Catalog name if Unity Catalog is enabled in your Databricks workspace
+     * Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
      */
     public readonly catalog!: pulumi.Output<string | undefined>;
     /**
@@ -118,7 +140,7 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly hostName!: pulumi.Output<string | undefined>;
     /**
-     * The HTTP path of the Databricks cluster or SQL warehouse
+     * The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
      */
     public readonly httpPath!: pulumi.Output<string | undefined>;
     /**
@@ -130,11 +152,11 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * OAuth client identifier
+     * OAuth client identifier (for Snowflake and Databricks)
      */
     public readonly oauthClientId!: pulumi.Output<string | undefined>;
     /**
-     * OAuth client secret
+     * OAuth client secret (for Snowflake and Databricks)
      */
     public readonly oauthClientSecret!: pulumi.Output<string | undefined>;
     /**
@@ -150,7 +172,7 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
-     * Role name for the connection
+     * Role name for the connection (for Snowflake)
      */
     public readonly role!: pulumi.Output<string | undefined>;
     /**
@@ -162,7 +184,7 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * Warehouse name for the connection
+     * Warehouse name for the connection (for Snowflake)
      */
     public readonly warehouse!: pulumi.Output<string | undefined>;
 
@@ -241,23 +263,23 @@ export class Connection extends pulumi.CustomResource {
  */
 export interface ConnectionState {
     /**
-     * Account name for the connection
+     * Account name for the connection (for Snowflake)
      */
     account?: pulumi.Input<string>;
     /**
-     * Adapter id created for the Databricks connection
+     * Adapter id created for the Databricks connection (for Databricks)
      */
     adapterId?: pulumi.Input<number>;
     /**
-     * Whether or not the connection should allow client session keep alive
+     * Whether or not the connection should allow client session keep alive (for Snowflake)
      */
     allowKeepAlive?: pulumi.Input<boolean>;
     /**
-     * Whether or not the connection should allow SSO
+     * Whether or not the connection should allow SSO (for Snowflake)
      */
     allowSso?: pulumi.Input<boolean>;
     /**
-     * Catalog name if Unity Catalog is enabled in your Databricks workspace
+     * Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
      */
     catalog?: pulumi.Input<string>;
     /**
@@ -273,7 +295,7 @@ export interface ConnectionState {
      */
     hostName?: pulumi.Input<string>;
     /**
-     * The HTTP path of the Databricks cluster or SQL warehouse
+     * The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
      */
     httpPath?: pulumi.Input<string>;
     /**
@@ -285,11 +307,11 @@ export interface ConnectionState {
      */
     name?: pulumi.Input<string>;
     /**
-     * OAuth client identifier
+     * OAuth client identifier (for Snowflake and Databricks)
      */
     oauthClientId?: pulumi.Input<string>;
     /**
-     * OAuth client secret
+     * OAuth client secret (for Snowflake and Databricks)
      */
     oauthClientSecret?: pulumi.Input<string>;
     /**
@@ -305,7 +327,7 @@ export interface ConnectionState {
      */
     projectId?: pulumi.Input<number>;
     /**
-     * Role name for the connection
+     * Role name for the connection (for Snowflake)
      */
     role?: pulumi.Input<string>;
     /**
@@ -317,7 +339,7 @@ export interface ConnectionState {
      */
     type?: pulumi.Input<string>;
     /**
-     * Warehouse name for the connection
+     * Warehouse name for the connection (for Snowflake)
      */
     warehouse?: pulumi.Input<string>;
 }
@@ -327,19 +349,19 @@ export interface ConnectionState {
  */
 export interface ConnectionArgs {
     /**
-     * Account name for the connection
+     * Account name for the connection (for Snowflake)
      */
     account?: pulumi.Input<string>;
     /**
-     * Whether or not the connection should allow client session keep alive
+     * Whether or not the connection should allow client session keep alive (for Snowflake)
      */
     allowKeepAlive?: pulumi.Input<boolean>;
     /**
-     * Whether or not the connection should allow SSO
+     * Whether or not the connection should allow SSO (for Snowflake)
      */
     allowSso?: pulumi.Input<boolean>;
     /**
-     * Catalog name if Unity Catalog is enabled in your Databricks workspace
+     * Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
      */
     catalog?: pulumi.Input<string>;
     /**
@@ -351,7 +373,7 @@ export interface ConnectionArgs {
      */
     hostName?: pulumi.Input<string>;
     /**
-     * The HTTP path of the Databricks cluster or SQL warehouse
+     * The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
      */
     httpPath?: pulumi.Input<string>;
     /**
@@ -363,11 +385,11 @@ export interface ConnectionArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * OAuth client identifier
+     * OAuth client identifier (for Snowflake and Databricks)
      */
     oauthClientId?: pulumi.Input<string>;
     /**
-     * OAuth client secret
+     * OAuth client secret (for Snowflake and Databricks)
      */
     oauthClientSecret?: pulumi.Input<string>;
     /**
@@ -383,7 +405,7 @@ export interface ConnectionArgs {
      */
     projectId: pulumi.Input<number>;
     /**
-     * Role name for the connection
+     * Role name for the connection (for Snowflake)
      */
     role?: pulumi.Input<string>;
     /**
@@ -395,7 +417,7 @@ export interface ConnectionArgs {
      */
     type: pulumi.Input<string>;
     /**
-     * Warehouse name for the connection
+     * Warehouse name for the connection (for Snowflake)
      */
     warehouse?: pulumi.Input<string>;
 }

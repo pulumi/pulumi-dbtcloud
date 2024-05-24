@@ -138,7 +138,6 @@ class ProjectArtefacts(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         my_project_artefacts = dbtcloud.ProjectArtefacts("my_project_artefacts",
             project_id=dbt_project["id"],
             docs_job_id=prod_job["id"],
@@ -147,7 +146,25 @@ class ProjectArtefacts(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_project_artefacts.my_artefacts
+
+          id = "project_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_project_artefacts.my_artefacts
+
+          id = "12345"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts "project_id"
@@ -176,7 +193,6 @@ class ProjectArtefacts(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         my_project_artefacts = dbtcloud.ProjectArtefacts("my_project_artefacts",
             project_id=dbt_project["id"],
             docs_job_id=prod_job["id"],
@@ -185,7 +201,25 @@ class ProjectArtefacts(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_project_artefacts.my_artefacts
+
+          id = "project_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_project_artefacts.my_artefacts
+
+          id = "12345"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts "project_id"

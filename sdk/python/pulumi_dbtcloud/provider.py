@@ -147,7 +147,9 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["host_url"] = host_url
             if token is None:
                 token = _utilities.get_env('DBT_CLOUD_TOKEN')
-            __props__.__dict__["token"] = token
+            __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'dbtcloud',
             resource_name,

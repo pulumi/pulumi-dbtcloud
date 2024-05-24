@@ -31,15 +31,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// NOTE for customers using the LEGACY dbt_cloud provider:
 //			_, err := dbtcloud.NewConnection(ctx, "databricks", &dbtcloud.ConnectionArgs{
-//				ProjectId: pulumi.Any(dbtProject.Id),
-//				Type:      pulumi.String("adapter"),
-//				Name:      pulumi.String("Databricks"),
-//				Database:  pulumi.String(""),
-//				HostName:  pulumi.String("my-databricks-host.cloud.databricks.com"),
-//				HttpPath:  pulumi.String("/my/path"),
-//				Catalog:   pulumi.String("moo"),
+//				ProjectId:         pulumi.Any(dbtProject.Id),
+//				Type:              pulumi.String("adapter"),
+//				Name:              pulumi.String("Databricks"),
+//				Database:          pulumi.String(""),
+//				HostName:          pulumi.String("my-databricks-host.cloud.databricks.com"),
+//				HttpPath:          pulumi.String("/my/path"),
+//				Catalog:           pulumi.String("moo"),
+//				OauthClientId:     pulumi.String("yourclientid"),
+//				OauthClientSecret: pulumi.String("yourclientsecret"),
 //			})
 //			if err != nil {
 //				return err
@@ -56,13 +57,16 @@ import (
 //				return err
 //			}
 //			_, err = dbtcloud.NewConnection(ctx, "snowflake", &dbtcloud.ConnectionArgs{
-//				ProjectId: pulumi.Any(dbtProject.Id),
-//				Type:      pulumi.String("snowflake"),
-//				Name:      pulumi.String("My Snowflake warehouse"),
-//				Account:   pulumi.String("my-snowflake-account"),
-//				Database:  pulumi.String("MY_DATABASE"),
-//				Role:      pulumi.String("MY_ROLE"),
-//				Warehouse: pulumi.String("MY_WAREHOUSE"),
+//				ProjectId:         pulumi.Any(dbtProject.Id),
+//				Type:              pulumi.String("snowflake"),
+//				Name:              pulumi.String("My Snowflake warehouse"),
+//				Account:           pulumi.String("my-snowflake-account"),
+//				Database:          pulumi.String("MY_DATABASE"),
+//				Role:              pulumi.String("MY_ROLE"),
+//				Warehouse:         pulumi.String("MY_WAREHOUSE"),
+//				OauthClientId:     pulumi.String("yourclientid"),
+//				OauthClientSecret: pulumi.String("yourclientsecret"),
+//				AllowSso:          pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -75,7 +79,25 @@ import (
 //
 // ## Import
 //
-// Import using a project ID and connection ID found in the URL or via the API.
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_connection.test_connection
+//
+//	id = "project_id:connection_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_connection.test_connection
+//
+//	id = "12345:6789"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/connection:Connection test_connection "project_id:connection_id"
@@ -87,15 +109,15 @@ import (
 type Connection struct {
 	pulumi.CustomResourceState
 
-	// Account name for the connection
+	// Account name for the connection (for Snowflake)
 	Account pulumi.StringPtrOutput `pulumi:"account"`
-	// Adapter id created for the Databricks connection
+	// Adapter id created for the Databricks connection (for Databricks)
 	AdapterId pulumi.IntOutput `pulumi:"adapterId"`
-	// Whether or not the connection should allow client session keep alive
+	// Whether or not the connection should allow client session keep alive (for Snowflake)
 	AllowKeepAlive pulumi.BoolPtrOutput `pulumi:"allowKeepAlive"`
-	// Whether or not the connection should allow SSO
+	// Whether or not the connection should allow SSO (for Snowflake)
 	AllowSso pulumi.BoolPtrOutput `pulumi:"allowSso"`
-	// Catalog name if Unity Catalog is enabled in your Databricks workspace
+	// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
 	Catalog pulumi.StringPtrOutput `pulumi:"catalog"`
 	// Connection Identifier
 	ConnectionId pulumi.IntOutput `pulumi:"connectionId"`
@@ -103,15 +125,15 @@ type Connection struct {
 	Database pulumi.StringOutput `pulumi:"database"`
 	// Host name for the connection, including Databricks cluster
 	HostName pulumi.StringPtrOutput `pulumi:"hostName"`
-	// The HTTP path of the Databricks cluster or SQL warehouse
+	// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
 	HttpPath pulumi.StringPtrOutput `pulumi:"httpPath"`
 	// Whether the connection is active
 	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
 	// Connection name
 	Name pulumi.StringOutput `pulumi:"name"`
-	// OAuth client identifier
+	// OAuth client identifier (for Snowflake and Databricks)
 	OauthClientId pulumi.StringPtrOutput `pulumi:"oauthClientId"`
-	// OAuth client secret
+	// OAuth client secret (for Snowflake and Databricks)
 	OauthClientSecret pulumi.StringPtrOutput `pulumi:"oauthClientSecret"`
 	// Port number to connect via
 	Port pulumi.IntPtrOutput `pulumi:"port"`
@@ -119,13 +141,13 @@ type Connection struct {
 	PrivateLinkEndpointId pulumi.StringPtrOutput `pulumi:"privateLinkEndpointId"`
 	// Project ID to create the connection in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
-	// Role name for the connection
+	// Role name for the connection (for Snowflake)
 	Role pulumi.StringPtrOutput `pulumi:"role"`
 	// Whether or not tunneling should be enabled on your database connection
 	TunnelEnabled pulumi.BoolPtrOutput `pulumi:"tunnelEnabled"`
 	// The type of connection
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Warehouse name for the connection
+	// Warehouse name for the connection (for Snowflake)
 	Warehouse pulumi.StringPtrOutput `pulumi:"warehouse"`
 }
 
@@ -168,15 +190,15 @@ func GetConnection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Connection resources.
 type connectionState struct {
-	// Account name for the connection
+	// Account name for the connection (for Snowflake)
 	Account *string `pulumi:"account"`
-	// Adapter id created for the Databricks connection
+	// Adapter id created for the Databricks connection (for Databricks)
 	AdapterId *int `pulumi:"adapterId"`
-	// Whether or not the connection should allow client session keep alive
+	// Whether or not the connection should allow client session keep alive (for Snowflake)
 	AllowKeepAlive *bool `pulumi:"allowKeepAlive"`
-	// Whether or not the connection should allow SSO
+	// Whether or not the connection should allow SSO (for Snowflake)
 	AllowSso *bool `pulumi:"allowSso"`
-	// Catalog name if Unity Catalog is enabled in your Databricks workspace
+	// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
 	Catalog *string `pulumi:"catalog"`
 	// Connection Identifier
 	ConnectionId *int `pulumi:"connectionId"`
@@ -184,15 +206,15 @@ type connectionState struct {
 	Database *string `pulumi:"database"`
 	// Host name for the connection, including Databricks cluster
 	HostName *string `pulumi:"hostName"`
-	// The HTTP path of the Databricks cluster or SQL warehouse
+	// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
 	HttpPath *string `pulumi:"httpPath"`
 	// Whether the connection is active
 	IsActive *bool `pulumi:"isActive"`
 	// Connection name
 	Name *string `pulumi:"name"`
-	// OAuth client identifier
+	// OAuth client identifier (for Snowflake and Databricks)
 	OauthClientId *string `pulumi:"oauthClientId"`
-	// OAuth client secret
+	// OAuth client secret (for Snowflake and Databricks)
 	OauthClientSecret *string `pulumi:"oauthClientSecret"`
 	// Port number to connect via
 	Port *int `pulumi:"port"`
@@ -200,26 +222,26 @@ type connectionState struct {
 	PrivateLinkEndpointId *string `pulumi:"privateLinkEndpointId"`
 	// Project ID to create the connection in
 	ProjectId *int `pulumi:"projectId"`
-	// Role name for the connection
+	// Role name for the connection (for Snowflake)
 	Role *string `pulumi:"role"`
 	// Whether or not tunneling should be enabled on your database connection
 	TunnelEnabled *bool `pulumi:"tunnelEnabled"`
 	// The type of connection
 	Type *string `pulumi:"type"`
-	// Warehouse name for the connection
+	// Warehouse name for the connection (for Snowflake)
 	Warehouse *string `pulumi:"warehouse"`
 }
 
 type ConnectionState struct {
-	// Account name for the connection
+	// Account name for the connection (for Snowflake)
 	Account pulumi.StringPtrInput
-	// Adapter id created for the Databricks connection
+	// Adapter id created for the Databricks connection (for Databricks)
 	AdapterId pulumi.IntPtrInput
-	// Whether or not the connection should allow client session keep alive
+	// Whether or not the connection should allow client session keep alive (for Snowflake)
 	AllowKeepAlive pulumi.BoolPtrInput
-	// Whether or not the connection should allow SSO
+	// Whether or not the connection should allow SSO (for Snowflake)
 	AllowSso pulumi.BoolPtrInput
-	// Catalog name if Unity Catalog is enabled in your Databricks workspace
+	// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
 	Catalog pulumi.StringPtrInput
 	// Connection Identifier
 	ConnectionId pulumi.IntPtrInput
@@ -227,15 +249,15 @@ type ConnectionState struct {
 	Database pulumi.StringPtrInput
 	// Host name for the connection, including Databricks cluster
 	HostName pulumi.StringPtrInput
-	// The HTTP path of the Databricks cluster or SQL warehouse
+	// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
 	HttpPath pulumi.StringPtrInput
 	// Whether the connection is active
 	IsActive pulumi.BoolPtrInput
 	// Connection name
 	Name pulumi.StringPtrInput
-	// OAuth client identifier
+	// OAuth client identifier (for Snowflake and Databricks)
 	OauthClientId pulumi.StringPtrInput
-	// OAuth client secret
+	// OAuth client secret (for Snowflake and Databricks)
 	OauthClientSecret pulumi.StringPtrInput
 	// Port number to connect via
 	Port pulumi.IntPtrInput
@@ -243,13 +265,13 @@ type ConnectionState struct {
 	PrivateLinkEndpointId pulumi.StringPtrInput
 	// Project ID to create the connection in
 	ProjectId pulumi.IntPtrInput
-	// Role name for the connection
+	// Role name for the connection (for Snowflake)
 	Role pulumi.StringPtrInput
 	// Whether or not tunneling should be enabled on your database connection
 	TunnelEnabled pulumi.BoolPtrInput
 	// The type of connection
 	Type pulumi.StringPtrInput
-	// Warehouse name for the connection
+	// Warehouse name for the connection (for Snowflake)
 	Warehouse pulumi.StringPtrInput
 }
 
@@ -258,27 +280,27 @@ func (ConnectionState) ElementType() reflect.Type {
 }
 
 type connectionArgs struct {
-	// Account name for the connection
+	// Account name for the connection (for Snowflake)
 	Account *string `pulumi:"account"`
-	// Whether or not the connection should allow client session keep alive
+	// Whether or not the connection should allow client session keep alive (for Snowflake)
 	AllowKeepAlive *bool `pulumi:"allowKeepAlive"`
-	// Whether or not the connection should allow SSO
+	// Whether or not the connection should allow SSO (for Snowflake)
 	AllowSso *bool `pulumi:"allowSso"`
-	// Catalog name if Unity Catalog is enabled in your Databricks workspace
+	// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
 	Catalog *string `pulumi:"catalog"`
 	// Database name for the connection
 	Database string `pulumi:"database"`
 	// Host name for the connection, including Databricks cluster
 	HostName *string `pulumi:"hostName"`
-	// The HTTP path of the Databricks cluster or SQL warehouse
+	// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
 	HttpPath *string `pulumi:"httpPath"`
 	// Whether the connection is active
 	IsActive *bool `pulumi:"isActive"`
 	// Connection name
 	Name *string `pulumi:"name"`
-	// OAuth client identifier
+	// OAuth client identifier (for Snowflake and Databricks)
 	OauthClientId *string `pulumi:"oauthClientId"`
-	// OAuth client secret
+	// OAuth client secret (for Snowflake and Databricks)
 	OauthClientSecret *string `pulumi:"oauthClientSecret"`
 	// Port number to connect via
 	Port *int `pulumi:"port"`
@@ -286,39 +308,39 @@ type connectionArgs struct {
 	PrivateLinkEndpointId *string `pulumi:"privateLinkEndpointId"`
 	// Project ID to create the connection in
 	ProjectId int `pulumi:"projectId"`
-	// Role name for the connection
+	// Role name for the connection (for Snowflake)
 	Role *string `pulumi:"role"`
 	// Whether or not tunneling should be enabled on your database connection
 	TunnelEnabled *bool `pulumi:"tunnelEnabled"`
 	// The type of connection
 	Type string `pulumi:"type"`
-	// Warehouse name for the connection
+	// Warehouse name for the connection (for Snowflake)
 	Warehouse *string `pulumi:"warehouse"`
 }
 
 // The set of arguments for constructing a Connection resource.
 type ConnectionArgs struct {
-	// Account name for the connection
+	// Account name for the connection (for Snowflake)
 	Account pulumi.StringPtrInput
-	// Whether or not the connection should allow client session keep alive
+	// Whether or not the connection should allow client session keep alive (for Snowflake)
 	AllowKeepAlive pulumi.BoolPtrInput
-	// Whether or not the connection should allow SSO
+	// Whether or not the connection should allow SSO (for Snowflake)
 	AllowSso pulumi.BoolPtrInput
-	// Catalog name if Unity Catalog is enabled in your Databricks workspace
+	// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
 	Catalog pulumi.StringPtrInput
 	// Database name for the connection
 	Database pulumi.StringInput
 	// Host name for the connection, including Databricks cluster
 	HostName pulumi.StringPtrInput
-	// The HTTP path of the Databricks cluster or SQL warehouse
+	// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
 	HttpPath pulumi.StringPtrInput
 	// Whether the connection is active
 	IsActive pulumi.BoolPtrInput
 	// Connection name
 	Name pulumi.StringPtrInput
-	// OAuth client identifier
+	// OAuth client identifier (for Snowflake and Databricks)
 	OauthClientId pulumi.StringPtrInput
-	// OAuth client secret
+	// OAuth client secret (for Snowflake and Databricks)
 	OauthClientSecret pulumi.StringPtrInput
 	// Port number to connect via
 	Port pulumi.IntPtrInput
@@ -326,13 +348,13 @@ type ConnectionArgs struct {
 	PrivateLinkEndpointId pulumi.StringPtrInput
 	// Project ID to create the connection in
 	ProjectId pulumi.IntInput
-	// Role name for the connection
+	// Role name for the connection (for Snowflake)
 	Role pulumi.StringPtrInput
 	// Whether or not tunneling should be enabled on your database connection
 	TunnelEnabled pulumi.BoolPtrInput
 	// The type of connection
 	Type pulumi.StringInput
-	// Warehouse name for the connection
+	// Warehouse name for the connection (for Snowflake)
 	Warehouse pulumi.StringPtrInput
 }
 
@@ -423,27 +445,27 @@ func (o ConnectionOutput) ToConnectionOutputWithContext(ctx context.Context) Con
 	return o
 }
 
-// Account name for the connection
+// Account name for the connection (for Snowflake)
 func (o ConnectionOutput) Account() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.Account }).(pulumi.StringPtrOutput)
 }
 
-// Adapter id created for the Databricks connection
+// Adapter id created for the Databricks connection (for Databricks)
 func (o ConnectionOutput) AdapterId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Connection) pulumi.IntOutput { return v.AdapterId }).(pulumi.IntOutput)
 }
 
-// Whether or not the connection should allow client session keep alive
+// Whether or not the connection should allow client session keep alive (for Snowflake)
 func (o ConnectionOutput) AllowKeepAlive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.BoolPtrOutput { return v.AllowKeepAlive }).(pulumi.BoolPtrOutput)
 }
 
-// Whether or not the connection should allow SSO
+// Whether or not the connection should allow SSO (for Snowflake)
 func (o ConnectionOutput) AllowSso() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.BoolPtrOutput { return v.AllowSso }).(pulumi.BoolPtrOutput)
 }
 
-// Catalog name if Unity Catalog is enabled in your Databricks workspace
+// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
 func (o ConnectionOutput) Catalog() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.Catalog }).(pulumi.StringPtrOutput)
 }
@@ -463,7 +485,7 @@ func (o ConnectionOutput) HostName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.HostName }).(pulumi.StringPtrOutput)
 }
 
-// The HTTP path of the Databricks cluster or SQL warehouse
+// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
 func (o ConnectionOutput) HttpPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.HttpPath }).(pulumi.StringPtrOutput)
 }
@@ -478,12 +500,12 @@ func (o ConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// OAuth client identifier
+// OAuth client identifier (for Snowflake and Databricks)
 func (o ConnectionOutput) OauthClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.OauthClientId }).(pulumi.StringPtrOutput)
 }
 
-// OAuth client secret
+// OAuth client secret (for Snowflake and Databricks)
 func (o ConnectionOutput) OauthClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.OauthClientSecret }).(pulumi.StringPtrOutput)
 }
@@ -503,7 +525,7 @@ func (o ConnectionOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Connection) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// Role name for the connection
+// Role name for the connection (for Snowflake)
 func (o ConnectionOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.Role }).(pulumi.StringPtrOutput)
 }
@@ -518,7 +540,7 @@ func (o ConnectionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// Warehouse name for the connection
+// Warehouse name for the connection (for Snowflake)
 func (o ConnectionOutput) Warehouse() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.Warehouse }).(pulumi.StringPtrOutput)
 }

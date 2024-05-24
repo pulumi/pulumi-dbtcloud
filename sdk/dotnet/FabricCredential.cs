@@ -12,9 +12,61 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // when using AD authentication
+    ///     var myFabricCredAd = new DbtCloud.FabricCredential("my_fabric_cred_ad", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         AdapterId = myFabricConnection.AdapterId,
+    ///         Schema = "my_schema",
+    ///         User = "my_user",
+    ///         Password = "my_password",
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    ///     // when using service principal authentication
+    ///     var myFabricCredServPrinc = new DbtCloud.FabricCredential("my_fabric_cred_serv_princ", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         AdapterId = myFabricConnection.AdapterId,
+    ///         Schema = "my_schema",
+    ///         ClientId = "my_client_id",
+    ///         TenantId = "my_tenant_id",
+    ///         ClientSecret = "my_secret",
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
-    /// Import using a project ID and credential ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_fabric_credential.my_fabric_credential
+    /// 
+    ///   id = "project_id:credential_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_fabric_credential.my_fabric_credential
+    /// 
+    ///   id = "12345:6789"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential "project_id:credential_id"

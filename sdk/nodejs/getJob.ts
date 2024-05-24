@@ -78,7 +78,7 @@ export interface GetJobResult {
      */
     readonly timeoutSeconds: number;
     /**
-     * Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, custom*branch_only
+     * Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
      */
     readonly triggers: {[key: string]: boolean};
     /**

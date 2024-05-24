@@ -20,7 +20,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var testWebhook = new DbtCloud.Webhook("test_webhook", new()
     ///     {
     ///         Name = "test-webhook",
@@ -43,14 +42,32 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a job ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_webhook.my_webhook
+    /// 
+    ///   id = "webhook_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_webhook.my_webhook
+    /// 
+    ///   id = "wsu_abcdefg"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
-    /// $ pulumi import dbtcloud:index/webhook:Webhook test_webhook "job_id"
+    /// $ pulumi import dbtcloud:index/webhook:Webhook my_webhook "webhook_id"
     /// ```
     /// 
     /// ```sh
-    /// $ pulumi import dbtcloud:index/webhook:Webhook test_webhook wsu_abcdefg
+    /// $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
     /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/webhook:Webhook")]

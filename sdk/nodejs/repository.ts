@@ -5,8 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * *Note*: Some upstream resources can be slow to create, so if creating a project at
- * the same time as the repository, it's recommended to use the `dependsOn` meta argument.
+ * This resource allows you to manage connections to git repositories in dbt Cloud.
+ *
+ * By itself, this resource won't show you the repository in the dbt Cloud UI.
+ * You will need to also set up a `dbtcloud.ProjectRepository` resource as well to link your dbt Cloud project and the git repository.
  *
  * In order to find the `githubInstallationId`, you can log in to dbt Cloud, replace `<dbt_cloud_url>` by your dbt Cloud
  * URL and run the following commands in the Google Chrome console:
@@ -16,16 +18,67 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ## Import
+ * ### repo cloned via the GitHub integration, manually entering the `githubInstallationId`
+ * resource "dbtcloud.Repository" "githubRepo" {
+ *   projectId             = dbtcloud_project.dbt_project.id
+ *   remoteUrl             = "git@github.com:<github_org>/<github_repo>.git"
+ *   githubInstallationId = 9876
+ *   gitCloneStrategy     = "githubApp"
+ * }
  *
- * Import using a project ID and repository ID found in the URL or via the API.
+ * ### repo cloned via the GitHub integration, with auto-retrieval of the `githubInstallationId`
+ * # here, we assume that `token` and `hostUrl` are respectively accessible via `var.dbt_token` and `var.dbt_host_url`
+ * # NOTE: the following requires connecting via a user token and can't be retrieved with a service token
+ * data "http" "githubInstallationsResponse" {
+ *   url = format("%s/v2/integrations/github/installations/", var.dbt_host_url)
+ *   requestHeaders = {
+ *     Authorization = format("Bearer %s", var.dbt_token)
+ *   }
+ * }
+ *
+ * locals {
+ *   githubInstallationId = jsondecode(data.http.github_installations_response.response_body)[0].id
+ * }
+ *
+ * resource "dbtcloud.Repository" "githubRepoOther" {
+ *   projectId             = dbtcloud_project.dbt_project.id
+ *   remoteUrl             = "git@github.com:<github_org>/<github_repo>.git"
+ *   githubInstallationId = local.github_installation_id
+ *   gitCloneStrategy     = "githubApp"
+ * }
+ *
+ * ### repo cloned via the GitLab integration
+ * # as of 15 Sept 2023 this resource requires using a user token and can't be set with a service token - CC-791
+ * resource "dbtcloud.Repository" "gitlabRepo" {
+ *   projectId         = dbtcloud_project.dbt_project.id
+ *   remoteUrl         = "<gitlab-group>/<gitlab-project>"
+ *   gitlabProjectId  = 8765
+ *   gitCloneStrategy = "deployToken"
+ * }
+ *
+ * ### repo cloned via the deploy token strategy
+ * resource "dbtcloud.Repository" "deployRepo" {
+ *   projectId         = dbtcloud_project.dbt_project.id
+ *   remoteUrl         = "git://github.com/<github_org>/<github_repo>.git"
+ *   gitCloneStrategy = "deployKey"
+ * }
+ *
+ * ### repo cloned via the Azure Dev Ops integration
+ * resource "dbtcloud.Repository" "adoRepo" {
+ *   projectId = dbtcloud_project.dbt_project.id
+ * # the following values can be added manually (IDs can be retrieved from the ADO API) or via data sources
+ * # remoteUrl                              = "https://abc@dev.azure.com/abc/def/_git/my_repo"
+ * # azureActiveDirectoryProjectId       = "12345678-1234-1234-1234-1234567890ab"
+ * # azureActiveDirectoryRepositoryId    = "87654321-4321-abcd-abcd-464327678642"
+ *   remoteUrl                                = data.dbtcloud_azure_dev_ops_repository.my_devops_repo.remote_url
+ *   azureActiveDirectoryRepositoryId      = data.dbtcloud_azure_dev_ops_repository.my_devops_repo.id
+ *   azureActiveDirectoryProjectId         = data.dbtcloud_azure_dev_ops_project.my_devops_project.id
+ *   azureBypassWebhookRegistrationFailure = false
+ *   gitCloneStrategy                        = "azureActiveDirectoryApp"
+ * }
  *
  * ```sh
- * $ pulumi import dbtcloud:index/repository:Repository test_repository "project_id:repository_id"
- * ```
- *
- * ```sh
- * $ pulumi import dbtcloud:index/repository:Repository test_repository 12345:6789
+ * $ pulumi import dbtcloud:index/repository:Repository my_repository 12345:6789
  * ```
  */
 export class Repository extends pulumi.CustomResource {
@@ -74,6 +127,8 @@ export class Repository extends pulumi.CustomResource {
     public /*out*/ readonly deployKey!: pulumi.Output<string>;
     /**
      * Whether we should return the public deploy key - (for the `deployKey` strategy)
+     *
+     * @deprecated This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
      */
     public readonly fetchDeployKey!: pulumi.Output<boolean | undefined>;
     /**
@@ -184,6 +239,8 @@ export interface RepositoryState {
     deployKey?: pulumi.Input<string>;
     /**
      * Whether we should return the public deploy key - (for the `deployKey` strategy)
+     *
+     * @deprecated This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
      */
     fetchDeployKey?: pulumi.Input<boolean>;
     /**
@@ -238,6 +295,8 @@ export interface RepositoryArgs {
     azureBypassWebhookRegistrationFailure?: pulumi.Input<boolean>;
     /**
      * Whether we should return the public deploy key - (for the `deployKey` strategy)
+     *
+     * @deprecated This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
      */
     fetchDeployKey?: pulumi.Input<boolean>;
     /**

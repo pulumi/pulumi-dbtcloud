@@ -25,7 +25,6 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// NOTE for customers using the LEGACY dbt_cloud provider:
 //			_, err := dbtcloud.NewServiceToken(ctx, "test_service_token", &dbtcloud.ServiceTokenArgs{
 //				Name: pulumi.String("Test Service Token"),
 //				ServiceTokenPermissions: dbtcloud.ServiceTokenServiceTokenPermissionArray{
@@ -51,14 +50,32 @@ import (
 //
 // ## Import
 //
-// Import using a group ID found in the URL or via the API.
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_group.my_service_token
+//
+//	id = "service_token_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_group.my_service_token
+//
+//	id = "12345"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
-// $ pulumi import dbtcloud:index/serviceToken:ServiceToken test_service_token "service_token_id"
+// $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token "service_token_id"
 // ```
 //
 // ```sh
-// $ pulumi import dbtcloud:index/serviceToken:ServiceToken test_service_token 12345
+// $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345
 // ```
 type ServiceToken struct {
 	pulumi.CustomResourceState

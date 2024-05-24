@@ -37,21 +37,21 @@ class ConnectionArgs:
         :param pulumi.Input[str] database: Database name for the connection
         :param pulumi.Input[int] project_id: Project ID to create the connection in
         :param pulumi.Input[str] type: The type of connection
-        :param pulumi.Input[str] account: Account name for the connection
-        :param pulumi.Input[bool] allow_keep_alive: Whether or not the connection should allow client session keep alive
-        :param pulumi.Input[bool] allow_sso: Whether or not the connection should allow SSO
-        :param pulumi.Input[str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace
+        :param pulumi.Input[str] account: Account name for the connection (for Snowflake)
+        :param pulumi.Input[bool] allow_keep_alive: Whether or not the connection should allow client session keep alive (for Snowflake)
+        :param pulumi.Input[bool] allow_sso: Whether or not the connection should allow SSO (for Snowflake)
+        :param pulumi.Input[str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         :param pulumi.Input[str] host_name: Host name for the connection, including Databricks cluster
-        :param pulumi.Input[str] http_path: The HTTP path of the Databricks cluster or SQL warehouse
+        :param pulumi.Input[str] http_path: The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         :param pulumi.Input[bool] is_active: Whether the connection is active
         :param pulumi.Input[str] name: Connection name
-        :param pulumi.Input[str] oauth_client_id: OAuth client identifier
-        :param pulumi.Input[str] oauth_client_secret: OAuth client secret
+        :param pulumi.Input[str] oauth_client_id: OAuth client identifier (for Snowflake and Databricks)
+        :param pulumi.Input[str] oauth_client_secret: OAuth client secret (for Snowflake and Databricks)
         :param pulumi.Input[int] port: Port number to connect via
         :param pulumi.Input[str] private_link_endpoint_id: The ID of the PrivateLink connection. This ID can be found using the `privatelink_endpoint` data source
-        :param pulumi.Input[str] role: Role name for the connection
+        :param pulumi.Input[str] role: Role name for the connection (for Snowflake)
         :param pulumi.Input[bool] tunnel_enabled: Whether or not tunneling should be enabled on your database connection
-        :param pulumi.Input[str] warehouse: Warehouse name for the connection
+        :param pulumi.Input[str] warehouse: Warehouse name for the connection (for Snowflake)
         """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "project_id", project_id)
@@ -127,7 +127,7 @@ class ConnectionArgs:
     @pulumi.getter
     def account(self) -> Optional[pulumi.Input[str]]:
         """
-        Account name for the connection
+        Account name for the connection (for Snowflake)
         """
         return pulumi.get(self, "account")
 
@@ -139,7 +139,7 @@ class ConnectionArgs:
     @pulumi.getter(name="allowKeepAlive")
     def allow_keep_alive(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not the connection should allow client session keep alive
+        Whether or not the connection should allow client session keep alive (for Snowflake)
         """
         return pulumi.get(self, "allow_keep_alive")
 
@@ -151,7 +151,7 @@ class ConnectionArgs:
     @pulumi.getter(name="allowSso")
     def allow_sso(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not the connection should allow SSO
+        Whether or not the connection should allow SSO (for Snowflake)
         """
         return pulumi.get(self, "allow_sso")
 
@@ -163,7 +163,7 @@ class ConnectionArgs:
     @pulumi.getter
     def catalog(self) -> Optional[pulumi.Input[str]]:
         """
-        Catalog name if Unity Catalog is enabled in your Databricks workspace
+        Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         """
         return pulumi.get(self, "catalog")
 
@@ -187,7 +187,7 @@ class ConnectionArgs:
     @pulumi.getter(name="httpPath")
     def http_path(self) -> Optional[pulumi.Input[str]]:
         """
-        The HTTP path of the Databricks cluster or SQL warehouse
+        The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         """
         return pulumi.get(self, "http_path")
 
@@ -223,7 +223,7 @@ class ConnectionArgs:
     @pulumi.getter(name="oauthClientId")
     def oauth_client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        OAuth client identifier
+        OAuth client identifier (for Snowflake and Databricks)
         """
         return pulumi.get(self, "oauth_client_id")
 
@@ -235,7 +235,7 @@ class ConnectionArgs:
     @pulumi.getter(name="oauthClientSecret")
     def oauth_client_secret(self) -> Optional[pulumi.Input[str]]:
         """
-        OAuth client secret
+        OAuth client secret (for Snowflake and Databricks)
         """
         return pulumi.get(self, "oauth_client_secret")
 
@@ -271,7 +271,7 @@ class ConnectionArgs:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Role name for the connection
+        Role name for the connection (for Snowflake)
         """
         return pulumi.get(self, "role")
 
@@ -295,7 +295,7 @@ class ConnectionArgs:
     @pulumi.getter
     def warehouse(self) -> Optional[pulumi.Input[str]]:
         """
-        Warehouse name for the connection
+        Warehouse name for the connection (for Snowflake)
         """
         return pulumi.get(self, "warehouse")
 
@@ -329,26 +329,26 @@ class _ConnectionState:
                  warehouse: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Connection resources.
-        :param pulumi.Input[str] account: Account name for the connection
-        :param pulumi.Input[int] adapter_id: Adapter id created for the Databricks connection
-        :param pulumi.Input[bool] allow_keep_alive: Whether or not the connection should allow client session keep alive
-        :param pulumi.Input[bool] allow_sso: Whether or not the connection should allow SSO
-        :param pulumi.Input[str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace
+        :param pulumi.Input[str] account: Account name for the connection (for Snowflake)
+        :param pulumi.Input[int] adapter_id: Adapter id created for the Databricks connection (for Databricks)
+        :param pulumi.Input[bool] allow_keep_alive: Whether or not the connection should allow client session keep alive (for Snowflake)
+        :param pulumi.Input[bool] allow_sso: Whether or not the connection should allow SSO (for Snowflake)
+        :param pulumi.Input[str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         :param pulumi.Input[int] connection_id: Connection Identifier
         :param pulumi.Input[str] database: Database name for the connection
         :param pulumi.Input[str] host_name: Host name for the connection, including Databricks cluster
-        :param pulumi.Input[str] http_path: The HTTP path of the Databricks cluster or SQL warehouse
+        :param pulumi.Input[str] http_path: The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         :param pulumi.Input[bool] is_active: Whether the connection is active
         :param pulumi.Input[str] name: Connection name
-        :param pulumi.Input[str] oauth_client_id: OAuth client identifier
-        :param pulumi.Input[str] oauth_client_secret: OAuth client secret
+        :param pulumi.Input[str] oauth_client_id: OAuth client identifier (for Snowflake and Databricks)
+        :param pulumi.Input[str] oauth_client_secret: OAuth client secret (for Snowflake and Databricks)
         :param pulumi.Input[int] port: Port number to connect via
         :param pulumi.Input[str] private_link_endpoint_id: The ID of the PrivateLink connection. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input[int] project_id: Project ID to create the connection in
-        :param pulumi.Input[str] role: Role name for the connection
+        :param pulumi.Input[str] role: Role name for the connection (for Snowflake)
         :param pulumi.Input[bool] tunnel_enabled: Whether or not tunneling should be enabled on your database connection
         :param pulumi.Input[str] type: The type of connection
-        :param pulumi.Input[str] warehouse: Warehouse name for the connection
+        :param pulumi.Input[str] warehouse: Warehouse name for the connection (for Snowflake)
         """
         if account is not None:
             pulumi.set(__self__, "account", account)
@@ -395,7 +395,7 @@ class _ConnectionState:
     @pulumi.getter
     def account(self) -> Optional[pulumi.Input[str]]:
         """
-        Account name for the connection
+        Account name for the connection (for Snowflake)
         """
         return pulumi.get(self, "account")
 
@@ -407,7 +407,7 @@ class _ConnectionState:
     @pulumi.getter(name="adapterId")
     def adapter_id(self) -> Optional[pulumi.Input[int]]:
         """
-        Adapter id created for the Databricks connection
+        Adapter id created for the Databricks connection (for Databricks)
         """
         return pulumi.get(self, "adapter_id")
 
@@ -419,7 +419,7 @@ class _ConnectionState:
     @pulumi.getter(name="allowKeepAlive")
     def allow_keep_alive(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not the connection should allow client session keep alive
+        Whether or not the connection should allow client session keep alive (for Snowflake)
         """
         return pulumi.get(self, "allow_keep_alive")
 
@@ -431,7 +431,7 @@ class _ConnectionState:
     @pulumi.getter(name="allowSso")
     def allow_sso(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not the connection should allow SSO
+        Whether or not the connection should allow SSO (for Snowflake)
         """
         return pulumi.get(self, "allow_sso")
 
@@ -443,7 +443,7 @@ class _ConnectionState:
     @pulumi.getter
     def catalog(self) -> Optional[pulumi.Input[str]]:
         """
-        Catalog name if Unity Catalog is enabled in your Databricks workspace
+        Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         """
         return pulumi.get(self, "catalog")
 
@@ -491,7 +491,7 @@ class _ConnectionState:
     @pulumi.getter(name="httpPath")
     def http_path(self) -> Optional[pulumi.Input[str]]:
         """
-        The HTTP path of the Databricks cluster or SQL warehouse
+        The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         """
         return pulumi.get(self, "http_path")
 
@@ -527,7 +527,7 @@ class _ConnectionState:
     @pulumi.getter(name="oauthClientId")
     def oauth_client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        OAuth client identifier
+        OAuth client identifier (for Snowflake and Databricks)
         """
         return pulumi.get(self, "oauth_client_id")
 
@@ -539,7 +539,7 @@ class _ConnectionState:
     @pulumi.getter(name="oauthClientSecret")
     def oauth_client_secret(self) -> Optional[pulumi.Input[str]]:
         """
-        OAuth client secret
+        OAuth client secret (for Snowflake and Databricks)
         """
         return pulumi.get(self, "oauth_client_secret")
 
@@ -587,7 +587,7 @@ class _ConnectionState:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Role name for the connection
+        Role name for the connection (for Snowflake)
         """
         return pulumi.get(self, "role")
 
@@ -623,7 +623,7 @@ class _ConnectionState:
     @pulumi.getter
     def warehouse(self) -> Optional[pulumi.Input[str]]:
         """
-        Warehouse name for the connection
+        Warehouse name for the connection (for Snowflake)
         """
         return pulumi.get(self, "warehouse")
 
@@ -668,7 +668,6 @@ class Connection(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         databricks = dbtcloud.Connection("databricks",
             project_id=dbt_project["id"],
             type="adapter",
@@ -676,7 +675,9 @@ class Connection(pulumi.CustomResource):
             database="",
             host_name="my-databricks-host.cloud.databricks.com",
             http_path="/my/path",
-            catalog="moo")
+            catalog="moo",
+            oauth_client_id="yourclientid",
+            oauth_client_secret="yourclientsecret")
         redshift = dbtcloud.Connection("redshift",
             project_id=dbt_project["id"],
             type="redshift",
@@ -691,12 +692,33 @@ class Connection(pulumi.CustomResource):
             account="my-snowflake-account",
             database="MY_DATABASE",
             role="MY_ROLE",
-            warehouse="MY_WAREHOUSE")
+            warehouse="MY_WAREHOUSE",
+            oauth_client_id="yourclientid",
+            oauth_client_secret="yourclientsecret",
+            allow_sso=True)
         ```
 
         ## Import
 
-        Import using a project ID and connection ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_connection.test_connection
+
+          id = "project_id:connection_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_connection.test_connection
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/connection:Connection test_connection "project_id:connection_id"
@@ -708,24 +730,24 @@ class Connection(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account: Account name for the connection
-        :param pulumi.Input[bool] allow_keep_alive: Whether or not the connection should allow client session keep alive
-        :param pulumi.Input[bool] allow_sso: Whether or not the connection should allow SSO
-        :param pulumi.Input[str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace
+        :param pulumi.Input[str] account: Account name for the connection (for Snowflake)
+        :param pulumi.Input[bool] allow_keep_alive: Whether or not the connection should allow client session keep alive (for Snowflake)
+        :param pulumi.Input[bool] allow_sso: Whether or not the connection should allow SSO (for Snowflake)
+        :param pulumi.Input[str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         :param pulumi.Input[str] database: Database name for the connection
         :param pulumi.Input[str] host_name: Host name for the connection, including Databricks cluster
-        :param pulumi.Input[str] http_path: The HTTP path of the Databricks cluster or SQL warehouse
+        :param pulumi.Input[str] http_path: The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         :param pulumi.Input[bool] is_active: Whether the connection is active
         :param pulumi.Input[str] name: Connection name
-        :param pulumi.Input[str] oauth_client_id: OAuth client identifier
-        :param pulumi.Input[str] oauth_client_secret: OAuth client secret
+        :param pulumi.Input[str] oauth_client_id: OAuth client identifier (for Snowflake and Databricks)
+        :param pulumi.Input[str] oauth_client_secret: OAuth client secret (for Snowflake and Databricks)
         :param pulumi.Input[int] port: Port number to connect via
         :param pulumi.Input[str] private_link_endpoint_id: The ID of the PrivateLink connection. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input[int] project_id: Project ID to create the connection in
-        :param pulumi.Input[str] role: Role name for the connection
+        :param pulumi.Input[str] role: Role name for the connection (for Snowflake)
         :param pulumi.Input[bool] tunnel_enabled: Whether or not tunneling should be enabled on your database connection
         :param pulumi.Input[str] type: The type of connection
-        :param pulumi.Input[str] warehouse: Warehouse name for the connection
+        :param pulumi.Input[str] warehouse: Warehouse name for the connection (for Snowflake)
         """
         ...
     @overload
@@ -745,7 +767,6 @@ class Connection(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         databricks = dbtcloud.Connection("databricks",
             project_id=dbt_project["id"],
             type="adapter",
@@ -753,7 +774,9 @@ class Connection(pulumi.CustomResource):
             database="",
             host_name="my-databricks-host.cloud.databricks.com",
             http_path="/my/path",
-            catalog="moo")
+            catalog="moo",
+            oauth_client_id="yourclientid",
+            oauth_client_secret="yourclientsecret")
         redshift = dbtcloud.Connection("redshift",
             project_id=dbt_project["id"],
             type="redshift",
@@ -768,12 +791,33 @@ class Connection(pulumi.CustomResource):
             account="my-snowflake-account",
             database="MY_DATABASE",
             role="MY_ROLE",
-            warehouse="MY_WAREHOUSE")
+            warehouse="MY_WAREHOUSE",
+            oauth_client_id="yourclientid",
+            oauth_client_secret="yourclientsecret",
+            allow_sso=True)
         ```
 
         ## Import
 
-        Import using a project ID and connection ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_connection.test_connection
+
+          id = "project_id:connection_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_connection.test_connection
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/connection:Connection test_connection "project_id:connection_id"
@@ -888,26 +932,26 @@ class Connection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account: Account name for the connection
-        :param pulumi.Input[int] adapter_id: Adapter id created for the Databricks connection
-        :param pulumi.Input[bool] allow_keep_alive: Whether or not the connection should allow client session keep alive
-        :param pulumi.Input[bool] allow_sso: Whether or not the connection should allow SSO
-        :param pulumi.Input[str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace
+        :param pulumi.Input[str] account: Account name for the connection (for Snowflake)
+        :param pulumi.Input[int] adapter_id: Adapter id created for the Databricks connection (for Databricks)
+        :param pulumi.Input[bool] allow_keep_alive: Whether or not the connection should allow client session keep alive (for Snowflake)
+        :param pulumi.Input[bool] allow_sso: Whether or not the connection should allow SSO (for Snowflake)
+        :param pulumi.Input[str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         :param pulumi.Input[int] connection_id: Connection Identifier
         :param pulumi.Input[str] database: Database name for the connection
         :param pulumi.Input[str] host_name: Host name for the connection, including Databricks cluster
-        :param pulumi.Input[str] http_path: The HTTP path of the Databricks cluster or SQL warehouse
+        :param pulumi.Input[str] http_path: The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         :param pulumi.Input[bool] is_active: Whether the connection is active
         :param pulumi.Input[str] name: Connection name
-        :param pulumi.Input[str] oauth_client_id: OAuth client identifier
-        :param pulumi.Input[str] oauth_client_secret: OAuth client secret
+        :param pulumi.Input[str] oauth_client_id: OAuth client identifier (for Snowflake and Databricks)
+        :param pulumi.Input[str] oauth_client_secret: OAuth client secret (for Snowflake and Databricks)
         :param pulumi.Input[int] port: Port number to connect via
         :param pulumi.Input[str] private_link_endpoint_id: The ID of the PrivateLink connection. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input[int] project_id: Project ID to create the connection in
-        :param pulumi.Input[str] role: Role name for the connection
+        :param pulumi.Input[str] role: Role name for the connection (for Snowflake)
         :param pulumi.Input[bool] tunnel_enabled: Whether or not tunneling should be enabled on your database connection
         :param pulumi.Input[str] type: The type of connection
-        :param pulumi.Input[str] warehouse: Warehouse name for the connection
+        :param pulumi.Input[str] warehouse: Warehouse name for the connection (for Snowflake)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -939,7 +983,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter
     def account(self) -> pulumi.Output[Optional[str]]:
         """
-        Account name for the connection
+        Account name for the connection (for Snowflake)
         """
         return pulumi.get(self, "account")
 
@@ -947,7 +991,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="adapterId")
     def adapter_id(self) -> pulumi.Output[int]:
         """
-        Adapter id created for the Databricks connection
+        Adapter id created for the Databricks connection (for Databricks)
         """
         return pulumi.get(self, "adapter_id")
 
@@ -955,7 +999,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="allowKeepAlive")
     def allow_keep_alive(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether or not the connection should allow client session keep alive
+        Whether or not the connection should allow client session keep alive (for Snowflake)
         """
         return pulumi.get(self, "allow_keep_alive")
 
@@ -963,7 +1007,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="allowSso")
     def allow_sso(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether or not the connection should allow SSO
+        Whether or not the connection should allow SSO (for Snowflake)
         """
         return pulumi.get(self, "allow_sso")
 
@@ -971,7 +1015,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter
     def catalog(self) -> pulumi.Output[Optional[str]]:
         """
-        Catalog name if Unity Catalog is enabled in your Databricks workspace
+        Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         """
         return pulumi.get(self, "catalog")
 
@@ -1003,7 +1047,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="httpPath")
     def http_path(self) -> pulumi.Output[Optional[str]]:
         """
-        The HTTP path of the Databricks cluster or SQL warehouse
+        The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         """
         return pulumi.get(self, "http_path")
 
@@ -1027,7 +1071,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="oauthClientId")
     def oauth_client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        OAuth client identifier
+        OAuth client identifier (for Snowflake and Databricks)
         """
         return pulumi.get(self, "oauth_client_id")
 
@@ -1035,7 +1079,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="oauthClientSecret")
     def oauth_client_secret(self) -> pulumi.Output[Optional[str]]:
         """
-        OAuth client secret
+        OAuth client secret (for Snowflake and Databricks)
         """
         return pulumi.get(self, "oauth_client_secret")
 
@@ -1067,7 +1111,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[Optional[str]]:
         """
-        Role name for the connection
+        Role name for the connection (for Snowflake)
         """
         return pulumi.get(self, "role")
 
@@ -1091,7 +1135,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter
     def warehouse(self) -> pulumi.Output[Optional[str]]:
         """
-        Warehouse name for the connection
+        Warehouse name for the connection (for Snowflake)
         """
         return pulumi.get(self, "warehouse")
 

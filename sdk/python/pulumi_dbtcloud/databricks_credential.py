@@ -282,7 +282,6 @@ class DatabricksCredential(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         # when using the Databricks adapter
         my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
             project_id=dbt_project["id"],
@@ -303,7 +302,25 @@ class DatabricksCredential(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and credential ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_databricks_credential.my_databricks_credential
+
+          id = "project_id:credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_databricks_credential.my_databricks_credential
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential "project_id:credential_id"
@@ -336,7 +353,6 @@ class DatabricksCredential(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         # when using the Databricks adapter
         my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
             project_id=dbt_project["id"],
@@ -357,7 +373,25 @@ class DatabricksCredential(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and credential ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_databricks_credential.my_databricks_credential
+
+          id = "project_id:credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_databricks_credential.my_databricks_credential
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential "project_id:credential_id"

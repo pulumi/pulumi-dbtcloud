@@ -39,7 +39,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var dbtProjectConnection = new ProjectConnection("dbtProjectConnection", ProjectConnectionArgs.builder()
  *             .projectId(dbtProject.id())
  *             .connectionId(dbtConnection.connectionId())
@@ -53,7 +52,25 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a project ID and Connection ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_project_connection.my_project
+ * 
+ *   id = &#34;project_id:connection_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_project_connection.my_project
+ * 
+ *   id = &#34;12345:5678&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/projectConnection:ProjectConnection my_project &#34;project_id:connection_id&#34;

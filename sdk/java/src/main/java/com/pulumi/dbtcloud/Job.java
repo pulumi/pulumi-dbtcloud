@@ -20,16 +20,16 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * &gt; As of October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
+ * &gt; In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
  * &lt;br/&gt;
  * &lt;br/&gt;
  * Those improvements include modifications to deferral which was historically set at the job level and will now be set at the environment level.
  * Deferral can still be set to &#34;self&#34; by setting `self_deferring` to `true` but with the new approach, deferral to other runs need to be done with `deferring_environment_id` instead of `deferring_job_id`.
  * 
- * &gt; As of beginning of February 2024, job chaining with `job_completion_trigger_condition` is in private beta and not available to all users.
+ * &gt; New with 0.3.1, `triggers` now accepts a `on_merge` value to trigger jobs when code is merged in git. If `on_merge` is `true` all other triggers need to be `false`.
  * &lt;br/&gt;
  * &lt;br/&gt;
- * This notice will be removed once the feature is generally available.
+ * For now, it is not a mandatory field, but it will be in a future version. Please add `on_merge` in your config or modules.
  * 
  * ## Example Usage
  * 
@@ -57,7 +57,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         // a job that has github_webhook and git_provider_webhook 
  *         // set to false will be categorized as a "Deploy Job"
  *         var dailyJob = new Job("dailyJob", JobArgs.builder()
@@ -71,10 +70,10 @@ import javax.annotation.Nullable;
  *             .runGenerateSources(true)
  *             .targetName("default")
  *             .triggers(Map.ofEntries(
- *                 Map.entry("custom_branch_only", false),
  *                 Map.entry("github_webhook", false),
  *                 Map.entry("git_provider_webhook", false),
- *                 Map.entry("schedule", true)
+ *                 Map.entry("schedule", true),
+ *                 Map.entry("on_merge", false)
  *             ))
  *             .scheduleDays(            
  *                 0,
@@ -100,10 +99,10 @@ import javax.annotation.Nullable;
  *             .projectId(dbtProject.id())
  *             .runGenerateSources(false)
  *             .triggers(Map.ofEntries(
- *                 Map.entry("custom_branch_only", true),
  *                 Map.entry("github_webhook", true),
  *                 Map.entry("git_provider_webhook", true),
- *                 Map.entry("schedule", false)
+ *                 Map.entry("schedule", false),
+ *                 Map.entry("on_merge", false)
  *             ))
  *             .scheduleDays(            
  *                 0,
@@ -127,10 +126,10 @@ import javax.annotation.Nullable;
  *             .projectId(dbtProject2.id())
  *             .runGenerateSources(true)
  *             .triggers(Map.ofEntries(
- *                 Map.entry("custom_branch_only", false),
  *                 Map.entry("github_webhook", false),
  *                 Map.entry("git_provider_webhook", false),
- *                 Map.entry("schedule", false)
+ *                 Map.entry("schedule", false),
+ *                 Map.entry("on_merge", false)
  *             ))
  *             .scheduleDays(            
  *                 0,
@@ -156,14 +155,32 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a job ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_job.my_job
+ * 
+ *   id = &#34;job_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_job.my_job
+ * 
+ *   id = &#34;12345&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/job:Job test_job &#34;job_id&#34;
+ * $ pulumi import dbtcloud:index/job:Job my_job &#34;job_id&#34;
  * ```
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/job:Job test_job 12345
+ * $ pulumi import dbtcloud:index/job:Job my_job 12345
  * ```
  * 
  */
@@ -464,14 +481,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.timeoutSeconds);
     }
     /**
-     * Flags for which types of triggers to use, possible values are `github_webhook`, `git_provider_webhook`, `schedule` and `custom_branch_only`. \n\n`custom_branch_only` is only relevant for CI jobs triggered automatically on PR creation to only trigger a job on a PR to the custom branch of the environment. To create a job in a &#39;deactivated&#39; state, set all to `false`.
+     * Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
     @Export(name="triggers", refs={Map.class,String.class,Boolean.class}, tree="[0,1,2]")
     private Output<Map<String,Boolean>> triggers;
 
     /**
-     * @return Flags for which types of triggers to use, possible values are `github_webhook`, `git_provider_webhook`, `schedule` and `custom_branch_only`. \n\n`custom_branch_only` is only relevant for CI jobs triggered automatically on PR creation to only trigger a job on a PR to the custom branch of the environment. To create a job in a &#39;deactivated&#39; state, set all to `false`.
+     * @return Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
     public Output<Map<String,Boolean>> triggers() {

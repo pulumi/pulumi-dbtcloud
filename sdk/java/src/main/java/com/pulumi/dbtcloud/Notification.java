@@ -17,6 +17,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Setup notifications on jobs success/failure to internal users, external email addresses or Slack channels
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -43,6 +45,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // dbt Cloud allows us to create internal and external notifications
+ *         //
  *         // an internal notification will send emails to the user mentioned in `user_id`
  *         //
  *         // NOTE: If internal notification settings already exist for a user, currently you MUST import
@@ -88,7 +91,25 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a notification ID
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_notification.my_notification
+ * 
+ *   id = &#34;notification_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_notification.my_notification
+ * 
+ *   id = &#34;12345&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/notification:Notification my_notification &#34;notification_id&#34;
@@ -120,56 +141,56 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="notificationType", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> notificationType;
+    private Output<Integer> notificationType;
 
     /**
      * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
      * 
      */
-    public Output<Optional<Integer>> notificationType() {
-        return Codegen.optional(this.notificationType);
+    public Output<Integer> notificationType() {
+        return this.notificationType;
     }
     /**
      * List of job IDs to trigger the webhook on cancel
      * 
      */
     @Export(name="onCancels", refs={List.class,Integer.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<Integer>> onCancels;
+    private Output<List<Integer>> onCancels;
 
     /**
      * @return List of job IDs to trigger the webhook on cancel
      * 
      */
-    public Output<Optional<List<Integer>>> onCancels() {
-        return Codegen.optional(this.onCancels);
+    public Output<List<Integer>> onCancels() {
+        return this.onCancels;
     }
     /**
      * List of job IDs to trigger the webhook on failure
      * 
      */
     @Export(name="onFailures", refs={List.class,Integer.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<Integer>> onFailures;
+    private Output<List<Integer>> onFailures;
 
     /**
      * @return List of job IDs to trigger the webhook on failure
      * 
      */
-    public Output<Optional<List<Integer>>> onFailures() {
-        return Codegen.optional(this.onFailures);
+    public Output<List<Integer>> onFailures() {
+        return this.onFailures;
     }
     /**
      * List of job IDs to trigger the webhook on success
      * 
      */
     @Export(name="onSuccesses", refs={List.class,Integer.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<Integer>> onSuccesses;
+    private Output<List<Integer>> onSuccesses;
 
     /**
      * @return List of job IDs to trigger the webhook on success
      * 
      */
-    public Output<Optional<List<Integer>>> onSuccesses() {
-        return Codegen.optional(this.onSuccesses);
+    public Output<List<Integer>> onSuccesses() {
+        return this.onSuccesses;
     }
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
@@ -204,14 +225,14 @@ public class Notification extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="state", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> state;
+    private Output<Integer> state;
 
     /**
      * @return State of the notification (1 = active (default), 2 = inactive)
      * 
      */
-    public Output<Optional<Integer>> state() {
-        return Codegen.optional(this.state);
+    public Output<Integer> state() {
+        return this.state;
     }
     /**
      * Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one

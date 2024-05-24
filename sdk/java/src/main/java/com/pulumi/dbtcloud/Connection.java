@@ -47,7 +47,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var databricks = new Connection("databricks", ConnectionArgs.builder()
  *             .projectId(dbtProject.id())
  *             .type("adapter")
@@ -56,6 +55,8 @@ import javax.annotation.Nullable;
  *             .hostName("my-databricks-host.cloud.databricks.com")
  *             .httpPath("/my/path")
  *             .catalog("moo")
+ *             .oauthClientId("yourclientid")
+ *             .oauthClientSecret("yourclientsecret")
  *             .build());
  * 
  *         var redshift = new Connection("redshift", ConnectionArgs.builder()
@@ -75,6 +76,9 @@ import javax.annotation.Nullable;
  *             .database("MY_DATABASE")
  *             .role("MY_ROLE")
  *             .warehouse("MY_WAREHOUSE")
+ *             .oauthClientId("yourclientid")
+ *             .oauthClientSecret("yourclientsecret")
+ *             .allowSso(true)
  *             .build());
  * 
  *     }
@@ -85,7 +89,25 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a project ID and connection ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_connection.test_connection
+ * 
+ *   id = &#34;project_id:connection_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_connection.test_connection
+ * 
+ *   id = &#34;12345:6789&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/connection:Connection test_connection &#34;project_id:connection_id&#34;
@@ -99,70 +121,70 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/connection:Connection")
 public class Connection extends com.pulumi.resources.CustomResource {
     /**
-     * Account name for the connection
+     * Account name for the connection (for Snowflake)
      * 
      */
     @Export(name="account", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> account;
 
     /**
-     * @return Account name for the connection
+     * @return Account name for the connection (for Snowflake)
      * 
      */
     public Output<Optional<String>> account() {
         return Codegen.optional(this.account);
     }
     /**
-     * Adapter id created for the Databricks connection
+     * Adapter id created for the Databricks connection (for Databricks)
      * 
      */
     @Export(name="adapterId", refs={Integer.class}, tree="[0]")
     private Output<Integer> adapterId;
 
     /**
-     * @return Adapter id created for the Databricks connection
+     * @return Adapter id created for the Databricks connection (for Databricks)
      * 
      */
     public Output<Integer> adapterId() {
         return this.adapterId;
     }
     /**
-     * Whether or not the connection should allow client session keep alive
+     * Whether or not the connection should allow client session keep alive (for Snowflake)
      * 
      */
     @Export(name="allowKeepAlive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowKeepAlive;
 
     /**
-     * @return Whether or not the connection should allow client session keep alive
+     * @return Whether or not the connection should allow client session keep alive (for Snowflake)
      * 
      */
     public Output<Optional<Boolean>> allowKeepAlive() {
         return Codegen.optional(this.allowKeepAlive);
     }
     /**
-     * Whether or not the connection should allow SSO
+     * Whether or not the connection should allow SSO (for Snowflake)
      * 
      */
     @Export(name="allowSso", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowSso;
 
     /**
-     * @return Whether or not the connection should allow SSO
+     * @return Whether or not the connection should allow SSO (for Snowflake)
      * 
      */
     public Output<Optional<Boolean>> allowSso() {
         return Codegen.optional(this.allowSso);
     }
     /**
-     * Catalog name if Unity Catalog is enabled in your Databricks workspace
+     * Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
      * 
      */
     @Export(name="catalog", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> catalog;
 
     /**
-     * @return Catalog name if Unity Catalog is enabled in your Databricks workspace
+     * @return Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
      * 
      */
     public Output<Optional<String>> catalog() {
@@ -211,14 +233,14 @@ public class Connection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.hostName);
     }
     /**
-     * The HTTP path of the Databricks cluster or SQL warehouse
+     * The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
      * 
      */
     @Export(name="httpPath", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> httpPath;
 
     /**
-     * @return The HTTP path of the Databricks cluster or SQL warehouse
+     * @return The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
      * 
      */
     public Output<Optional<String>> httpPath() {
@@ -253,28 +275,28 @@ public class Connection extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * OAuth client identifier
+     * OAuth client identifier (for Snowflake and Databricks)
      * 
      */
     @Export(name="oauthClientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientId;
 
     /**
-     * @return OAuth client identifier
+     * @return OAuth client identifier (for Snowflake and Databricks)
      * 
      */
     public Output<Optional<String>> oauthClientId() {
         return Codegen.optional(this.oauthClientId);
     }
     /**
-     * OAuth client secret
+     * OAuth client secret (for Snowflake and Databricks)
      * 
      */
     @Export(name="oauthClientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientSecret;
 
     /**
-     * @return OAuth client secret
+     * @return OAuth client secret (for Snowflake and Databricks)
      * 
      */
     public Output<Optional<String>> oauthClientSecret() {
@@ -323,14 +345,14 @@ public class Connection extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Role name for the connection
+     * Role name for the connection (for Snowflake)
      * 
      */
     @Export(name="role", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> role;
 
     /**
-     * @return Role name for the connection
+     * @return Role name for the connection (for Snowflake)
      * 
      */
     public Output<Optional<String>> role() {
@@ -365,14 +387,14 @@ public class Connection extends com.pulumi.resources.CustomResource {
         return this.type;
     }
     /**
-     * Warehouse name for the connection
+     * Warehouse name for the connection (for Snowflake)
      * 
      */
     @Export(name="warehouse", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> warehouse;
 
     /**
-     * @return Warehouse name for the connection
+     * @return Warehouse name for the connection (for Snowflake)
      * 
      */
     public Output<Optional<String>> warehouse() {

@@ -26,7 +26,6 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// NOTE for customers using the LEGACY dbt_cloud provider:
 //			_, err := dbtcloud.NewEnvironment(ctx, "ci_environment", &dbtcloud.EnvironmentArgs{
 //				DbtVersion:   pulumi.String("1.6.0-latest"),
 //				Name:         pulumi.String("CI"),
@@ -67,7 +66,25 @@ import (
 //
 // ## Import
 //
-// Import using a project ID and environment ID found in the URL or via the API.
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_environment.prod_environment
+//
+//	id = "project_id:environment_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_environment.prod_environment
+//
+//	id = "12345:6789"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/environment:Environment prod_environment "project_id:environment_id"
@@ -83,7 +100,7 @@ type Environment struct {
 	CredentialId pulumi.IntPtrOutput `pulumi:"credentialId"`
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrOutput `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
 	DbtVersion pulumi.StringOutput `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
 	DeploymentType pulumi.StringPtrOutput `pulumi:"deploymentType"`
@@ -146,7 +163,7 @@ type environmentState struct {
 	CredentialId *int `pulumi:"credentialId"`
 	// Which custom branch to use in this environment
 	CustomBranch *string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
 	DeploymentType *string `pulumi:"deploymentType"`
@@ -171,7 +188,7 @@ type EnvironmentState struct {
 	CredentialId pulumi.IntPtrInput
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrInput
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
 	DbtVersion pulumi.StringPtrInput
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
 	DeploymentType pulumi.StringPtrInput
@@ -200,7 +217,7 @@ type environmentArgs struct {
 	CredentialId *int `pulumi:"credentialId"`
 	// Which custom branch to use in this environment
 	CustomBranch *string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
 	DeploymentType *string `pulumi:"deploymentType"`
@@ -224,7 +241,7 @@ type EnvironmentArgs struct {
 	CredentialId pulumi.IntPtrInput
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrInput
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
 	DbtVersion pulumi.StringInput
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
 	DeploymentType pulumi.StringPtrInput
@@ -339,7 +356,7 @@ func (o EnvironmentOutput) CustomBranch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.CustomBranch }).(pulumi.StringPtrOutput)
 }
 
-// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
 func (o EnvironmentOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.DbtVersion }).(pulumi.StringOutput)
 }

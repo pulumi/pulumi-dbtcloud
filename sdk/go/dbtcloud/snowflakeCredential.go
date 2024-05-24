@@ -26,7 +26,6 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// NOTE for customers using the LEGACY dbt_cloud provider:
 //			_, err := dbtcloud.NewSnowflakeCredential(ctx, "prod_credential", &dbtcloud.SnowflakeCredentialArgs{
 //				ProjectId:  pulumi.Any(dbtProject.Id),
 //				AuthType:   pulumi.String("password"),
@@ -46,7 +45,25 @@ import (
 //
 // ## Import
 //
-// Import using a project ID and credential ID found in the URL or via the API.
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_snowflake_credential.prod_snowflake_credential
+//
+//	id = "project_id:credential_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_snowflake_credential.prod_snowflake_credential
+//
+//	id = "12345:6789"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/snowflakeCredential:SnowflakeCredential prod_snowflake_credential "project_id:credential_id"

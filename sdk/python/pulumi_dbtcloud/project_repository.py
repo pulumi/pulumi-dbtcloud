@@ -98,13 +98,14 @@ class ProjectRepository(pulumi.CustomResource):
                  repository_id: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        This resource allows you to link a dbt Cloud project to a git repository.
+
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         dbt_project_repository = dbtcloud.ProjectRepository("dbt_project_repository",
             project_id=dbt_project["id"],
             repository_id=dbt_repository["repositoryId"])
@@ -112,7 +113,25 @@ class ProjectRepository(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and Connection ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_project_repository.my_project
+
+          id = "project_id:repository_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_project_repository.my_project
+
+          id = "12345:5678"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project "project_id:repository_id"
@@ -134,13 +153,14 @@ class ProjectRepository(pulumi.CustomResource):
                  args: ProjectRepositoryArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource allows you to link a dbt Cloud project to a git repository.
+
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         dbt_project_repository = dbtcloud.ProjectRepository("dbt_project_repository",
             project_id=dbt_project["id"],
             repository_id=dbt_repository["repositoryId"])
@@ -148,7 +168,25 @@ class ProjectRepository(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and Connection ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_project_repository.my_project
+
+          id = "project_id:repository_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_project_repository.my_project
+
+          id = "12345:5678"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project "project_id:repository_id"

@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Setup notifications on jobs success/failure to internal users, external email addresses or Slack channels
+//
 // ## Example Usage
 //
 // ```go
@@ -27,6 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// dbt Cloud allows us to create internal and external notifications
+//			//
 //			// an internal notification will send emails to the user mentioned in `user_id`
 //			//
 //			// NOTE: If internal notification settings already exist for a user, currently you MUST import
@@ -88,7 +91,25 @@ import (
 //
 // ## Import
 //
-// # Import using a notification ID
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_notification.my_notification
+//
+//	id = "notification_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_notification.my_notification
+//
+//	id = "12345"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/notification:Notification my_notification "notification_id"
@@ -103,7 +124,7 @@ type Notification struct {
 	// The external email to receive the notification
 	ExternalEmail pulumi.StringPtrOutput `pulumi:"externalEmail"`
 	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
-	NotificationType pulumi.IntPtrOutput `pulumi:"notificationType"`
+	NotificationType pulumi.IntOutput `pulumi:"notificationType"`
 	// List of job IDs to trigger the webhook on cancel
 	OnCancels pulumi.IntArrayOutput `pulumi:"onCancels"`
 	// List of job IDs to trigger the webhook on failure
@@ -115,7 +136,7 @@ type Notification struct {
 	// The name of the slack channel
 	SlackChannelName pulumi.StringPtrOutput `pulumi:"slackChannelName"`
 	// State of the notification (1 = active (default), 2 = inactive)
-	State pulumi.IntPtrOutput `pulumi:"state"`
+	State pulumi.IntOutput `pulumi:"state"`
 	// Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
 	UserId pulumi.IntOutput `pulumi:"userId"`
 }
@@ -334,8 +355,8 @@ func (o NotificationOutput) ExternalEmail() pulumi.StringPtrOutput {
 }
 
 // Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
-func (o NotificationOutput) NotificationType() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Notification) pulumi.IntPtrOutput { return v.NotificationType }).(pulumi.IntPtrOutput)
+func (o NotificationOutput) NotificationType() pulumi.IntOutput {
+	return o.ApplyT(func(v *Notification) pulumi.IntOutput { return v.NotificationType }).(pulumi.IntOutput)
 }
 
 // List of job IDs to trigger the webhook on cancel
@@ -364,8 +385,8 @@ func (o NotificationOutput) SlackChannelName() pulumi.StringPtrOutput {
 }
 
 // State of the notification (1 = active (default), 2 = inactive)
-func (o NotificationOutput) State() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Notification) pulumi.IntPtrOutput { return v.State }).(pulumi.IntPtrOutput)
+func (o NotificationOutput) State() pulumi.IntOutput {
+	return o.ApplyT(func(v *Notification) pulumi.IntOutput { return v.State }).(pulumi.IntOutput)
 }
 
 // Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one

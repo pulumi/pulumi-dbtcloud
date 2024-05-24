@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
-    /// This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes-beta)).&lt;br/&gt;&lt;br/&gt;In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
+    /// This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes)).&lt;br/&gt;&lt;br/&gt;In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
     /// 
     /// ## Example Usage
     /// 
@@ -57,7 +57,25 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a project ID and extended attribute ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_extended_attributes.test_extended_attributes
+    /// 
+    ///   id = "project_id_id:extended_attributes_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_extended_attributes.test_extended_attributes
+    /// 
+    ///   id = "12345:6789"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes "project_id_id:extended_attributes_id"

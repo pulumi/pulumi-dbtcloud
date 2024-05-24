@@ -40,7 +40,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var myProjectArtefacts = new ProjectArtefacts("myProjectArtefacts", ProjectArtefactsArgs.builder()
  *             .projectId(dbtProject.id())
  *             .docsJobId(prodJob.id())
@@ -55,7 +54,25 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a project ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_project_artefacts.my_artefacts
+ * 
+ *   id = &#34;project_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_project_artefacts.my_artefacts
+ * 
+ *   id = &#34;12345&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts &#34;project_id&#34;

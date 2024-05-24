@@ -26,7 +26,7 @@ class EnvironmentArgs:
                  use_custom_branch: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Environment resource.
-        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
         :param pulumi.Input[int] project_id: Project ID to create the environment in
         :param pulumi.Input[str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
@@ -59,7 +59,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Input[str]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -194,7 +194,7 @@ class _EnvironmentState:
         Input properties used for looking up and filtering Environment resources.
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
-        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
         :param pulumi.Input[int] environment_id: Environment ID within the project
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
@@ -255,7 +255,7 @@ class _EnvironmentState:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -383,7 +383,6 @@ class Environment(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         ci_environment = dbtcloud.Environment("ci_environment",
             dbt_version="1.6.0-latest",
             name="CI",
@@ -408,7 +407,25 @@ class Environment(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and environment ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_environment.prod_environment
+
+          id = "project_id:environment_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_environment.prod_environment
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/environment:Environment prod_environment "project_id:environment_id"
@@ -422,7 +439,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
-        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
@@ -444,7 +461,6 @@ class Environment(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         ci_environment = dbtcloud.Environment("ci_environment",
             dbt_version="1.6.0-latest",
             name="CI",
@@ -469,7 +485,25 @@ class Environment(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and environment ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_environment.prod_environment
+
+          id = "project_id:environment_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_environment.prod_environment
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/environment:Environment prod_environment "project_id:environment_id"
@@ -560,7 +594,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
-        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
         :param pulumi.Input[int] environment_id: Environment ID within the project
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
@@ -607,7 +641,7 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Output[str]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 

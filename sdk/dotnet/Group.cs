@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
-    /// *Note*: Groups currently do not support updates, as per both the API and the UI.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -22,7 +20,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var tfGroup1 = new DbtCloud.Group("tf_group_1", new()
     ///     {
     ///         Name = "TF Group 1",
@@ -47,14 +44,32 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a group ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_group.my_group
+    /// 
+    ///   id = "group_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_group.my_group
+    /// 
+    ///   id = "12345"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
-    /// $ pulumi import dbtcloud:index/group:Group test_group "group_id"
+    /// $ pulumi import dbtcloud:index/group:Group my_group "group_id"
     /// ```
     /// 
     /// ```sh
-    /// $ pulumi import dbtcloud:index/group:Group test_group 12345
+    /// $ pulumi import dbtcloud:index/group:Group my_group 12345
     /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/group:Group")]

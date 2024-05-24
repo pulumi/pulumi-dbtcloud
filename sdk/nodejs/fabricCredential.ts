@@ -7,9 +7,52 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // when using AD authentication
+ * const myFabricCredAd = new dbtcloud.FabricCredential("my_fabric_cred_ad", {
+ *     projectId: dbtProject.id,
+ *     adapterId: myFabricConnection.adapterId,
+ *     schema: "my_schema",
+ *     user: "my_user",
+ *     password: "my_password",
+ *     schemaAuthorization: "abcd",
+ * });
+ * // when using service principal authentication
+ * const myFabricCredServPrinc = new dbtcloud.FabricCredential("my_fabric_cred_serv_princ", {
+ *     projectId: dbtProject.id,
+ *     adapterId: myFabricConnection.adapterId,
+ *     schema: "my_schema",
+ *     clientId: "my_client_id",
+ *     tenantId: "my_tenant_id",
+ *     clientSecret: "my_secret",
+ *     schemaAuthorization: "abcd",
+ * });
+ * ```
+ *
  * ## Import
  *
- * Import using a project ID and credential ID found in the URL or via the API.
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_fabric_credential.my_fabric_credential
+ *
+ *   id = "project_id:credential_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_fabric_credential.my_fabric_credential
+ *
+ *   id = "12345:6789"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
  * $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential "project_id:credential_id"

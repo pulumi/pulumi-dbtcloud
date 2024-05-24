@@ -44,7 +44,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var testServiceToken = new ServiceToken("testServiceToken", ServiceTokenArgs.builder()
  *             .name("Test Service Token")
  *             .serviceTokenPermissions(            
@@ -67,14 +66,32 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a group ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_group.my_service_token
+ * 
+ *   id = &#34;service_token_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_group.my_service_token
+ * 
+ *   id = &#34;12345&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/serviceToken:ServiceToken test_service_token &#34;service_token_id&#34;
+ * $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token &#34;service_token_id&#34;
  * ```
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/serviceToken:ServiceToken test_service_token 12345
+ * $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345
  * ```
  * 
  */

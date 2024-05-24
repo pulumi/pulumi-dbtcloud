@@ -185,7 +185,6 @@ class BigQueryCredential(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         my_credential = dbtcloud.BigQueryCredential("my_credential",
             project_id=dbt_project["id"],
             dataset="my_bq_dataset",
@@ -193,6 +192,26 @@ class BigQueryCredential(pulumi.CustomResource):
         ```
 
         ## Import
+
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_bigquery_credential.my_credential
+
+          id = "project_id:credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_bigquery_credential.my_credential
+
+          id = "12345:5678"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential "project_id:credential_id"
@@ -222,7 +241,6 @@ class BigQueryCredential(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         my_credential = dbtcloud.BigQueryCredential("my_credential",
             project_id=dbt_project["id"],
             dataset="my_bq_dataset",
@@ -230,6 +248,26 @@ class BigQueryCredential(pulumi.CustomResource):
         ```
 
         ## Import
+
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_bigquery_credential.my_credential
+
+          id = "project_id:credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_bigquery_credential.my_credential
+
+          id = "12345:5678"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential "project_id:credential_id"

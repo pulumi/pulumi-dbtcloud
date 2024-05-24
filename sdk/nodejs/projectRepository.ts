@@ -5,13 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * This resource allows you to link a dbt Cloud project to a git repository.
+ *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // NOTE for customers using the LEGACY dbt_cloud provider:
  * const dbtProjectRepository = new dbtcloud.ProjectRepository("dbt_project_repository", {
  *     projectId: dbtProject.id,
  *     repositoryId: dbtRepository.repositoryId,
@@ -20,7 +21,25 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Import using a project ID and Connection ID found in the URL or via the API.
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_project_repository.my_project
+ *
+ *   id = "project_id:repository_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_project_repository.my_project
+ *
+ *   id = "12345:5678"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
  * $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project "project_id:repository_id"
