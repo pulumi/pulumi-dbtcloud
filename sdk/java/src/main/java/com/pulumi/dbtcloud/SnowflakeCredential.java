@@ -43,7 +43,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var prodCredential = new SnowflakeCredential("prodCredential", SnowflakeCredentialArgs.builder()
  *             .projectId(dbtProject.id())
  *             .authType("password")
@@ -61,7 +60,25 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a project ID and credential ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_snowflake_credential.prod_snowflake_credential
+ * 
+ *   id = &#34;project_id:credential_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_snowflake_credential.prod_snowflake_credential
+ * 
+ *   id = &#34;12345:6789&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/snowflakeCredential:SnowflakeCredential prod_snowflake_credential &#34;project_id:credential_id&#34;

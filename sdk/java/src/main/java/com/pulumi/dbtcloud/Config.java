@@ -16,8 +16,8 @@ public final class Config {
  * variable `DBT_CLOUD_ACCOUNT_ID`
  * 
  */
-    public Integer accountId() {
-        return Codegen.integerProp("accountId").config(config).env("DBT_CLOUD_ACCOUNT_ID").require();
+    public Optional<Integer> accountId() {
+        return Codegen.integerProp("accountId").config(config).env("DBT_CLOUD_ACCOUNT_ID").get();
     }
 /**
  * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
@@ -31,7 +31,7 @@ public final class Config {
  * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
  * 
  */
-    public String token() {
-        return Codegen.stringProp("token").config(config).env("DBT_CLOUD_TOKEN").require();
+    public Optional<String> token() {
+        return Codegen.stringProp("token").config(config).env("DBT_CLOUD_TOKEN").get();
     }
 }

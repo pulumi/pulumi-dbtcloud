@@ -80,14 +80,22 @@ public final class RepositoryState extends com.pulumi.resources.ResourceArgs {
     /**
      * Whether we should return the public deploy key - (for the `deploy_key` strategy)
      * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`
+     * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key` */
     @Import(name="fetchDeployKey")
     private @Nullable Output<Boolean> fetchDeployKey;
 
     /**
      * @return Whether we should return the public deploy key - (for the `deploy_key` strategy)
      * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`
+     * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key` */
     public Optional<Output<Boolean>> fetchDeployKey() {
         return Optional.ofNullable(this.fetchDeployKey);
     }
@@ -337,7 +345,11 @@ public final class RepositoryState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key` */
         public Builder fetchDeployKey(@Nullable Output<Boolean> fetchDeployKey) {
             $.fetchDeployKey = fetchDeployKey;
             return this;
@@ -348,7 +360,11 @@ public final class RepositoryState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key` */
         public Builder fetchDeployKey(Boolean fetchDeployKey) {
             return fetchDeployKey(Output.of(fetchDeployKey));
         }

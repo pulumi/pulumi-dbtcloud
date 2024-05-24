@@ -346,9 +346,50 @@ class FabricCredential(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # when using AD authentication
+        my_fabric_cred_ad = dbtcloud.FabricCredential("my_fabric_cred_ad",
+            project_id=dbt_project["id"],
+            adapter_id=my_fabric_connection["adapterId"],
+            schema="my_schema",
+            user="my_user",
+            password="my_password",
+            schema_authorization="abcd")
+        # when using service principal authentication
+        my_fabric_cred_serv_princ = dbtcloud.FabricCredential("my_fabric_cred_serv_princ",
+            project_id=dbt_project["id"],
+            adapter_id=my_fabric_connection["adapterId"],
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret="my_secret",
+            schema_authorization="abcd")
+        ```
+
         ## Import
 
-        Import using a project ID and credential ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_fabric_credential.my_fabric_credential
+
+          id = "project_id:credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_fabric_credential.my_fabric_credential
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential "project_id:credential_id"
@@ -379,9 +420,50 @@ class FabricCredential(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # when using AD authentication
+        my_fabric_cred_ad = dbtcloud.FabricCredential("my_fabric_cred_ad",
+            project_id=dbt_project["id"],
+            adapter_id=my_fabric_connection["adapterId"],
+            schema="my_schema",
+            user="my_user",
+            password="my_password",
+            schema_authorization="abcd")
+        # when using service principal authentication
+        my_fabric_cred_serv_princ = dbtcloud.FabricCredential("my_fabric_cred_serv_princ",
+            project_id=dbt_project["id"],
+            adapter_id=my_fabric_connection["adapterId"],
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret="my_secret",
+            schema_authorization="abcd")
+        ```
+
         ## Import
 
-        Import using a project ID and credential ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_fabric_credential.my_fabric_credential
+
+          id = "project_id:credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_fabric_credential.my_fabric_credential
+
+          id = "12345:6789"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential "project_id:credential_id"

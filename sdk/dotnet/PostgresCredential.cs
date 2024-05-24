@@ -20,7 +20,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var postgresProdCredential = new DbtCloud.PostgresCredential("postgres_prod_credential", new()
     ///     {
     ///         IsActive = true,
@@ -37,7 +36,25 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a project ID and credential ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_postgres_credential.my_credential
+    /// 
+    ///   id = "project_id:credential_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_postgres_credential.my_credential
+    /// 
+    ///   id = "12345:6789"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential "project_id:credential_id"

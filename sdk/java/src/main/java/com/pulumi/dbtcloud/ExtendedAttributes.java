@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes-beta)).&lt;br/&gt;&lt;br/&gt;In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
+ * This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes)).&lt;br/&gt;&lt;br/&gt;In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
  * 
  * ## Example Usage
  * 
@@ -80,7 +80,25 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a project ID and extended attribute ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_extended_attributes.test_extended_attributes
+ * 
+ *   id = &#34;project_id_id:extended_attributes_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_extended_attributes.test_extended_attributes
+ * 
+ *   id = &#34;12345:6789&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes &#34;project_id_id:extended_attributes_id&#34;

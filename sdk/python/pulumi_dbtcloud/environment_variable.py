@@ -140,7 +140,6 @@ class EnvironmentVariable(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         dbt_my_env_var = dbtcloud.EnvironmentVariable("dbt_my_env_var",
             name="DBT_MY_ENV_VAR",
             project_id=dbt_project["id"],
@@ -160,7 +159,25 @@ class EnvironmentVariable(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and environment variable name found in the URL and UI or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_environment_variable.test_environment_variable
+
+          id = "project_id:environment_variable_name"
+
+        }
+
+        import {
+
+          to = dbtcloud_environment_variable.test_environment_variable
+
+          id = "12345:DBT_ENV_VAR"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable "project_id:environment_variable_name"
@@ -192,7 +209,6 @@ class EnvironmentVariable(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         dbt_my_env_var = dbtcloud.EnvironmentVariable("dbt_my_env_var",
             name="DBT_MY_ENV_VAR",
             project_id=dbt_project["id"],
@@ -212,7 +228,25 @@ class EnvironmentVariable(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and environment variable name found in the URL and UI or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_environment_variable.test_environment_variable
+
+          id = "project_id:environment_variable_name"
+
+        }
+
+        import {
+
+          to = dbtcloud_environment_variable.test_environment_variable
+
+          id = "12345:DBT_ENV_VAR"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable "project_id:environment_variable_name"

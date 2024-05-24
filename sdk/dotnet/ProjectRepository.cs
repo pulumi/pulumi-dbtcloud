@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// This resource allows you to link a dbt Cloud project to a git repository.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -20,7 +22,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var dbtProjectRepository = new DbtCloud.ProjectRepository("dbt_project_repository", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
@@ -32,7 +33,25 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a project ID and Connection ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_project_repository.my_project
+    /// 
+    ///   id = "project_id:repository_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_project_repository.my_project
+    /// 
+    ///   id = "12345:5678"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project "project_id:repository_id"

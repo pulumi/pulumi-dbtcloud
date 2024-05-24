@@ -20,7 +20,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var dbtProjectConnection = new DbtCloud.ProjectConnection("dbt_project_connection", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
@@ -32,7 +31,25 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a project ID and Connection ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_project_connection.my_project
+    /// 
+    ///   id = "project_id:connection_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_project_connection.my_project
+    /// 
+    ///   id = "12345:5678"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/projectConnection:ProjectConnection my_project "project_id:connection_id"

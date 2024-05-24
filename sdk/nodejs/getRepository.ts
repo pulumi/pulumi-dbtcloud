@@ -20,6 +20,8 @@ export function getRepository(args: GetRepositoryArgs, opts?: pulumi.InvokeOptio
 export interface GetRepositoryArgs {
     /**
      * Whether we should return the public deploy key
+     *
+     * @deprecated This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey`
      */
     fetchDeployKey?: boolean;
     /**
@@ -42,6 +44,8 @@ export interface GetRepositoryResult {
     readonly deployKey: string;
     /**
      * Whether we should return the public deploy key
+     *
+     * @deprecated This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey`
      */
     readonly fetchDeployKey?: boolean;
     /**
@@ -91,6 +95,8 @@ export function getRepositoryOutput(args: GetRepositoryOutputArgs, opts?: pulumi
 export interface GetRepositoryOutputArgs {
     /**
      * Whether we should return the public deploy key
+     *
+     * @deprecated This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey`
      */
     fetchDeployKey?: pulumi.Input<boolean>;
     /**

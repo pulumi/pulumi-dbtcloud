@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Retrieve notification details
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -29,7 +31,7 @@ export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeO
  */
 export interface GetNotificationArgs {
     /**
-     * ID of the notification
+     * The ID of the notification
      */
     notificationId: number;
 }
@@ -47,11 +49,11 @@ export interface GetNotificationResult {
      */
     readonly id: string;
     /**
-     * ID of the notification
+     * The ID of the notification
      */
     readonly notificationId: number;
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an external*email ; 4 = external email: requires setting an external*email)
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      */
     readonly notificationType: number;
     /**
@@ -67,11 +69,25 @@ export interface GetNotificationResult {
      */
     readonly onSuccesses: number[];
     /**
+     * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
+     */
+    readonly slackChannelId: string;
+    /**
+     * The name of the slack channel
+     */
+    readonly slackChannelName: string;
+    /**
+     * State of the notification (1 = active (default), 2 = inactive)
+     */
+    readonly state: number;
+    /**
      * Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
      */
     readonly userId: number;
 }
 /**
+ * Retrieve notification details
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -92,7 +108,7 @@ export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pu
  */
 export interface GetNotificationOutputArgs {
     /**
-     * ID of the notification
+     * The ID of the notification
      */
     notificationId: pulumi.Input<number>;
 }

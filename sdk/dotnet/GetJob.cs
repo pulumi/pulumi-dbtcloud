@@ -108,7 +108,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int TimeoutSeconds;
         /// <summary>
-        /// Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, custom*branch_only
+        /// Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
         /// </summary>
         public readonly ImmutableDictionary<string, bool> Triggers;
         /// <summary>

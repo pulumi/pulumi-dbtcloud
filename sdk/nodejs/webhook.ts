@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // NOTE for customers using the LEGACY dbt_cloud provider:
  * const testWebhook = new dbtcloud.Webhook("test_webhook", {
  *     name: "test-webhook",
  *     description: "Test webhook",
@@ -29,14 +28,32 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Import using a job ID found in the URL or via the API.
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_webhook.my_webhook
+ *
+ *   id = "webhook_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_webhook.my_webhook
+ *
+ *   id = "wsu_abcdefg"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
- * $ pulumi import dbtcloud:index/webhook:Webhook test_webhook "job_id"
+ * $ pulumi import dbtcloud:index/webhook:Webhook my_webhook "webhook_id"
  * ```
  *
  * ```sh
- * $ pulumi import dbtcloud:index/webhook:Webhook test_webhook wsu_abcdefg
+ * $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
  * ```
  */
 export class Webhook extends pulumi.CustomResource {

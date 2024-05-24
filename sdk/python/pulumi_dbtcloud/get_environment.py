@@ -21,10 +21,10 @@ class GetEnvironmentResult:
     """
     A collection of values returned by getEnvironment.
     """
-    def __init__(__self__, credential_id=None, custom_branch=None, dbt_version=None, deployment_type=None, environment_id=None, extended_attributes_id=None, id=None, is_active=None, name=None, project_id=None, type=None, use_custom_branch=None):
-        if credential_id and not isinstance(credential_id, int):
-            raise TypeError("Expected argument 'credential_id' to be a int")
-        pulumi.set(__self__, "credential_id", credential_id)
+    def __init__(__self__, credentials_id=None, custom_branch=None, dbt_version=None, deployment_type=None, environment_id=None, extended_attributes_id=None, id=None, name=None, project_id=None, type=None, use_custom_branch=None):
+        if credentials_id and not isinstance(credentials_id, int):
+            raise TypeError("Expected argument 'credentials_id' to be a int")
+        pulumi.set(__self__, "credentials_id", credentials_id)
         if custom_branch and not isinstance(custom_branch, str):
             raise TypeError("Expected argument 'custom_branch' to be a str")
         pulumi.set(__self__, "custom_branch", custom_branch)
@@ -43,9 +43,6 @@ class GetEnvironmentResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if is_active and not isinstance(is_active, bool):
-            raise TypeError("Expected argument 'is_active' to be a bool")
-        pulumi.set(__self__, "is_active", is_active)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -60,18 +57,18 @@ class GetEnvironmentResult:
         pulumi.set(__self__, "use_custom_branch", use_custom_branch)
 
     @property
-    @pulumi.getter(name="credentialId")
-    def credential_id(self) -> int:
+    @pulumi.getter(name="credentialsId")
+    def credentials_id(self) -> int:
         """
-        Credential ID to create the environment with
+        The project ID to which the environment belong
         """
-        return pulumi.get(self, "credential_id")
+        return pulumi.get(self, "credentials_id")
 
     @property
     @pulumi.getter(name="customBranch")
     def custom_branch(self) -> str:
         """
-        Which custom branch to use in this environment
+        The type of deployment environment (currently 'production', 'staging' or empty)
         """
         return pulumi.get(self, "custom_branch")
 
@@ -87,7 +84,7 @@ class GetEnvironmentResult:
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> str:
         """
-        The type of deployment environment (currently 'production' or empty)
+        The name of the environment
         """
         return pulumi.get(self, "deployment_type")
 
@@ -95,7 +92,7 @@ class GetEnvironmentResult:
     @pulumi.getter(name="environmentId")
     def environment_id(self) -> int:
         """
-        ID of the environment
+        The ID of the environment
         """
         return pulumi.get(self, "environment_id")
 
@@ -116,18 +113,10 @@ class GetEnvironmentResult:
         return pulumi.get(self, "id")
 
     @property
-    @pulumi.getter(name="isActive")
-    def is_active(self) -> bool:
-        """
-        Whether the environment is active
-        """
-        return pulumi.get(self, "is_active")
-
-    @property
     @pulumi.getter
     def name(self) -> str:
         """
-        Environment name
+        The name of the environment
         """
         return pulumi.get(self, "name")
 
@@ -135,7 +124,7 @@ class GetEnvironmentResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> int:
         """
-        Project ID to create the environment in
+        The project ID to which the environment belong
         """
         return pulumi.get(self, "project_id")
 
@@ -143,7 +132,7 @@ class GetEnvironmentResult:
     @pulumi.getter
     def type(self) -> str:
         """
-        The type of environment (must be either development or deployment)
+        The name of the environment
         """
         return pulumi.get(self, "type")
 
@@ -162,14 +151,13 @@ class AwaitableGetEnvironmentResult(GetEnvironmentResult):
         if False:
             yield self
         return GetEnvironmentResult(
-            credential_id=self.credential_id,
+            credentials_id=self.credentials_id,
             custom_branch=self.custom_branch,
             dbt_version=self.dbt_version,
             deployment_type=self.deployment_type,
             environment_id=self.environment_id,
             extended_attributes_id=self.extended_attributes_id,
             id=self.id,
-            is_active=self.is_active,
             name=self.name,
             project_id=self.project_id,
             type=self.type,
@@ -180,10 +168,11 @@ def get_environment(environment_id: Optional[int] = None,
                     project_id: Optional[int] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvironmentResult:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve data for a single environment
 
-    :param int environment_id: ID of the environment
-    :param int project_id: Project ID to create the environment in
+
+    :param int environment_id: The ID of the environment
+    :param int project_id: The project ID to which the environment belong
     """
     __args__ = dict()
     __args__['environmentId'] = environment_id
@@ -192,14 +181,13 @@ def get_environment(environment_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getEnvironment:getEnvironment', __args__, opts=opts, typ=GetEnvironmentResult).value
 
     return AwaitableGetEnvironmentResult(
-        credential_id=pulumi.get(__ret__, 'credential_id'),
+        credentials_id=pulumi.get(__ret__, 'credentials_id'),
         custom_branch=pulumi.get(__ret__, 'custom_branch'),
         dbt_version=pulumi.get(__ret__, 'dbt_version'),
         deployment_type=pulumi.get(__ret__, 'deployment_type'),
         environment_id=pulumi.get(__ret__, 'environment_id'),
         extended_attributes_id=pulumi.get(__ret__, 'extended_attributes_id'),
         id=pulumi.get(__ret__, 'id'),
-        is_active=pulumi.get(__ret__, 'is_active'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         type=pulumi.get(__ret__, 'type'),
@@ -211,9 +199,10 @@ def get_environment_output(environment_id: Optional[pulumi.Input[int]] = None,
                            project_id: Optional[pulumi.Input[int]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentResult]:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve data for a single environment
 
-    :param int environment_id: ID of the environment
-    :param int project_id: Project ID to create the environment in
+
+    :param int environment_id: The ID of the environment
+    :param int project_id: The project ID to which the environment belong
     """
     ...

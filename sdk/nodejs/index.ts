@@ -95,6 +95,11 @@ export const getEnvironmentVariable: typeof import("./getEnvironmentVariable").g
 export const getEnvironmentVariableOutput: typeof import("./getEnvironmentVariable").getEnvironmentVariableOutput = null as any;
 utilities.lazyLoad(exports, ["getEnvironmentVariable","getEnvironmentVariableOutput"], () => require("./getEnvironmentVariable"));
 
+export { GetEnvironmentsArgs, GetEnvironmentsResult, GetEnvironmentsOutputArgs } from "./getEnvironments";
+export const getEnvironments: typeof import("./getEnvironments").getEnvironments = null as any;
+export const getEnvironmentsOutput: typeof import("./getEnvironments").getEnvironmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getEnvironments","getEnvironmentsOutput"], () => require("./getEnvironments"));
+
 export { GetExtendedAttributesArgs, GetExtendedAttributesResult, GetExtendedAttributesOutputArgs } from "./getExtendedAttributes";
 export const getExtendedAttributes: typeof import("./getExtendedAttributes").getExtendedAttributes = null as any;
 export const getExtendedAttributesOutput: typeof import("./getExtendedAttributes").getExtendedAttributesOutput = null as any;
@@ -170,6 +175,11 @@ export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;
 utilities.lazyLoad(exports, ["Group"], () => require("./group"));
 
+export { GroupPartialPermissionsArgs, GroupPartialPermissionsState } from "./groupPartialPermissions";
+export type GroupPartialPermissions = import("./groupPartialPermissions").GroupPartialPermissions;
+export const GroupPartialPermissions: typeof import("./groupPartialPermissions").GroupPartialPermissions = null as any;
+utilities.lazyLoad(exports, ["GroupPartialPermissions"], () => require("./groupPartialPermissions"));
+
 export { JobArgs, JobState } from "./job";
 export type Job = import("./job").Job;
 export const Job: typeof import("./job").Job = null as any;
@@ -184,6 +194,11 @@ export { NotificationArgs, NotificationState } from "./notification";
 export type Notification = import("./notification").Notification;
 export const Notification: typeof import("./notification").Notification = null as any;
 utilities.lazyLoad(exports, ["Notification"], () => require("./notification"));
+
+export { PartialNotificationArgs, PartialNotificationState } from "./partialNotification";
+export type PartialNotification = import("./partialNotification").PartialNotification;
+export const PartialNotification: typeof import("./partialNotification").PartialNotification = null as any;
+utilities.lazyLoad(exports, ["PartialNotification"], () => require("./partialNotification"));
 
 export { PostgresCredentialArgs, PostgresCredentialState } from "./postgresCredential";
 export type PostgresCredential = import("./postgresCredential").PostgresCredential;
@@ -276,12 +291,16 @@ const _module = {
                 return new FabricCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/group:Group":
                 return new Group(name, <any>undefined, { urn })
+            case "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions":
+                return new GroupPartialPermissions(name, <any>undefined, { urn })
             case "dbtcloud:index/job:Job":
                 return new Job(name, <any>undefined, { urn })
             case "dbtcloud:index/licenseMap:LicenseMap":
                 return new LicenseMap(name, <any>undefined, { urn })
             case "dbtcloud:index/notification:Notification":
                 return new Notification(name, <any>undefined, { urn })
+            case "dbtcloud:index/partialNotification:PartialNotification":
+                return new PartialNotification(name, <any>undefined, { urn })
             case "dbtcloud:index/postgresCredential:PostgresCredential":
                 return new PostgresCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/project:Project":
@@ -318,9 +337,11 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/extendedAttributes", _m
 pulumi.runtime.registerResourceModule("dbtcloud", "index/fabricConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/fabricCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/group", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/groupPartialPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/job", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/licenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/notification", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/partialNotification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/postgresCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/project", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/projectArtefacts", _module)

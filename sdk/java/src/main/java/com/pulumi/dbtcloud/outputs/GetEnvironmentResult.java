@@ -13,12 +13,12 @@ import java.util.Objects;
 @CustomType
 public final class GetEnvironmentResult {
     /**
-     * @return Credential ID to create the environment with
+     * @return The project ID to which the environment belong
      * 
      */
-    private Integer credentialId;
+    private Integer credentialsId;
     /**
-     * @return Which custom branch to use in this environment
+     * @return The type of deployment environment (currently &#39;production&#39;, &#39;staging&#39; or empty)
      * 
      */
     private String customBranch;
@@ -28,12 +28,12 @@ public final class GetEnvironmentResult {
      */
     private String dbtVersion;
     /**
-     * @return The type of deployment environment (currently &#39;production&#39; or empty)
+     * @return The name of the environment
      * 
      */
     private String deploymentType;
     /**
-     * @return ID of the environment
+     * @return The ID of the environment
      * 
      */
     private Integer environmentId;
@@ -48,22 +48,17 @@ public final class GetEnvironmentResult {
      */
     private String id;
     /**
-     * @return Whether the environment is active
-     * 
-     */
-    private Boolean isActive;
-    /**
-     * @return Environment name
+     * @return The name of the environment
      * 
      */
     private String name;
     /**
-     * @return Project ID to create the environment in
+     * @return The project ID to which the environment belong
      * 
      */
     private Integer projectId;
     /**
-     * @return The type of environment (must be either development or deployment)
+     * @return The name of the environment
      * 
      */
     private String type;
@@ -75,14 +70,14 @@ public final class GetEnvironmentResult {
 
     private GetEnvironmentResult() {}
     /**
-     * @return Credential ID to create the environment with
+     * @return The project ID to which the environment belong
      * 
      */
-    public Integer credentialId() {
-        return this.credentialId;
+    public Integer credentialsId() {
+        return this.credentialsId;
     }
     /**
-     * @return Which custom branch to use in this environment
+     * @return The type of deployment environment (currently &#39;production&#39;, &#39;staging&#39; or empty)
      * 
      */
     public String customBranch() {
@@ -96,14 +91,14 @@ public final class GetEnvironmentResult {
         return this.dbtVersion;
     }
     /**
-     * @return The type of deployment environment (currently &#39;production&#39; or empty)
+     * @return The name of the environment
      * 
      */
     public String deploymentType() {
         return this.deploymentType;
     }
     /**
-     * @return ID of the environment
+     * @return The ID of the environment
      * 
      */
     public Integer environmentId() {
@@ -124,28 +119,21 @@ public final class GetEnvironmentResult {
         return this.id;
     }
     /**
-     * @return Whether the environment is active
-     * 
-     */
-    public Boolean isActive() {
-        return this.isActive;
-    }
-    /**
-     * @return Environment name
+     * @return The name of the environment
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return Project ID to create the environment in
+     * @return The project ID to which the environment belong
      * 
      */
     public Integer projectId() {
         return this.projectId;
     }
     /**
-     * @return The type of environment (must be either development or deployment)
+     * @return The name of the environment
      * 
      */
     public String type() {
@@ -168,14 +156,13 @@ public final class GetEnvironmentResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Integer credentialId;
+        private Integer credentialsId;
         private String customBranch;
         private String dbtVersion;
         private String deploymentType;
         private Integer environmentId;
         private Integer extendedAttributesId;
         private String id;
-        private Boolean isActive;
         private String name;
         private Integer projectId;
         private String type;
@@ -183,14 +170,13 @@ public final class GetEnvironmentResult {
         public Builder() {}
         public Builder(GetEnvironmentResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.credentialId = defaults.credentialId;
+    	      this.credentialsId = defaults.credentialsId;
     	      this.customBranch = defaults.customBranch;
     	      this.dbtVersion = defaults.dbtVersion;
     	      this.deploymentType = defaults.deploymentType;
     	      this.environmentId = defaults.environmentId;
     	      this.extendedAttributesId = defaults.extendedAttributesId;
     	      this.id = defaults.id;
-    	      this.isActive = defaults.isActive;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
     	      this.type = defaults.type;
@@ -198,11 +184,11 @@ public final class GetEnvironmentResult {
         }
 
         @CustomType.Setter
-        public Builder credentialId(Integer credentialId) {
-            if (credentialId == null) {
-              throw new MissingRequiredPropertyException("GetEnvironmentResult", "credentialId");
+        public Builder credentialsId(Integer credentialsId) {
+            if (credentialsId == null) {
+              throw new MissingRequiredPropertyException("GetEnvironmentResult", "credentialsId");
             }
-            this.credentialId = credentialId;
+            this.credentialsId = credentialsId;
             return this;
         }
         @CustomType.Setter
@@ -254,14 +240,6 @@ public final class GetEnvironmentResult {
             return this;
         }
         @CustomType.Setter
-        public Builder isActive(Boolean isActive) {
-            if (isActive == null) {
-              throw new MissingRequiredPropertyException("GetEnvironmentResult", "isActive");
-            }
-            this.isActive = isActive;
-            return this;
-        }
-        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetEnvironmentResult", "name");
@@ -295,14 +273,13 @@ public final class GetEnvironmentResult {
         }
         public GetEnvironmentResult build() {
             final var _resultValue = new GetEnvironmentResult();
-            _resultValue.credentialId = credentialId;
+            _resultValue.credentialsId = credentialsId;
             _resultValue.customBranch = customBranch;
             _resultValue.dbtVersion = dbtVersion;
             _resultValue.deploymentType = deploymentType;
             _resultValue.environmentId = environmentId;
             _resultValue.extendedAttributesId = extendedAttributesId;
             _resultValue.id = id;
-            _resultValue.isActive = isActive;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
             _resultValue.type = type;

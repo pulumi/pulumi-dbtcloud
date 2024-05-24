@@ -128,6 +128,121 @@ func (o GroupGroupPermissionArrayOutput) Index(i pulumi.IntInput) GroupGroupPerm
 	}).(GroupGroupPermissionOutput)
 }
 
+type GroupPartialPermissionsGroupPermission struct {
+	// Whether access should be provided for all projects or not.
+	AllProjects bool `pulumi:"allProjects"`
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	PermissionSet string `pulumi:"permissionSet"`
+	// Project ID to apply this permission to for this group.
+	ProjectId *int `pulumi:"projectId"`
+}
+
+// GroupPartialPermissionsGroupPermissionInput is an input type that accepts GroupPartialPermissionsGroupPermissionArgs and GroupPartialPermissionsGroupPermissionOutput values.
+// You can construct a concrete instance of `GroupPartialPermissionsGroupPermissionInput` via:
+//
+//	GroupPartialPermissionsGroupPermissionArgs{...}
+type GroupPartialPermissionsGroupPermissionInput interface {
+	pulumi.Input
+
+	ToGroupPartialPermissionsGroupPermissionOutput() GroupPartialPermissionsGroupPermissionOutput
+	ToGroupPartialPermissionsGroupPermissionOutputWithContext(context.Context) GroupPartialPermissionsGroupPermissionOutput
+}
+
+type GroupPartialPermissionsGroupPermissionArgs struct {
+	// Whether access should be provided for all projects or not.
+	AllProjects pulumi.BoolInput `pulumi:"allProjects"`
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
+	// Project ID to apply this permission to for this group.
+	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
+}
+
+func (GroupPartialPermissionsGroupPermissionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupPartialPermissionsGroupPermission)(nil)).Elem()
+}
+
+func (i GroupPartialPermissionsGroupPermissionArgs) ToGroupPartialPermissionsGroupPermissionOutput() GroupPartialPermissionsGroupPermissionOutput {
+	return i.ToGroupPartialPermissionsGroupPermissionOutputWithContext(context.Background())
+}
+
+func (i GroupPartialPermissionsGroupPermissionArgs) ToGroupPartialPermissionsGroupPermissionOutputWithContext(ctx context.Context) GroupPartialPermissionsGroupPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupPartialPermissionsGroupPermissionOutput)
+}
+
+// GroupPartialPermissionsGroupPermissionArrayInput is an input type that accepts GroupPartialPermissionsGroupPermissionArray and GroupPartialPermissionsGroupPermissionArrayOutput values.
+// You can construct a concrete instance of `GroupPartialPermissionsGroupPermissionArrayInput` via:
+//
+//	GroupPartialPermissionsGroupPermissionArray{ GroupPartialPermissionsGroupPermissionArgs{...} }
+type GroupPartialPermissionsGroupPermissionArrayInput interface {
+	pulumi.Input
+
+	ToGroupPartialPermissionsGroupPermissionArrayOutput() GroupPartialPermissionsGroupPermissionArrayOutput
+	ToGroupPartialPermissionsGroupPermissionArrayOutputWithContext(context.Context) GroupPartialPermissionsGroupPermissionArrayOutput
+}
+
+type GroupPartialPermissionsGroupPermissionArray []GroupPartialPermissionsGroupPermissionInput
+
+func (GroupPartialPermissionsGroupPermissionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupPartialPermissionsGroupPermission)(nil)).Elem()
+}
+
+func (i GroupPartialPermissionsGroupPermissionArray) ToGroupPartialPermissionsGroupPermissionArrayOutput() GroupPartialPermissionsGroupPermissionArrayOutput {
+	return i.ToGroupPartialPermissionsGroupPermissionArrayOutputWithContext(context.Background())
+}
+
+func (i GroupPartialPermissionsGroupPermissionArray) ToGroupPartialPermissionsGroupPermissionArrayOutputWithContext(ctx context.Context) GroupPartialPermissionsGroupPermissionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GroupPartialPermissionsGroupPermissionArrayOutput)
+}
+
+type GroupPartialPermissionsGroupPermissionOutput struct{ *pulumi.OutputState }
+
+func (GroupPartialPermissionsGroupPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GroupPartialPermissionsGroupPermission)(nil)).Elem()
+}
+
+func (o GroupPartialPermissionsGroupPermissionOutput) ToGroupPartialPermissionsGroupPermissionOutput() GroupPartialPermissionsGroupPermissionOutput {
+	return o
+}
+
+func (o GroupPartialPermissionsGroupPermissionOutput) ToGroupPartialPermissionsGroupPermissionOutputWithContext(ctx context.Context) GroupPartialPermissionsGroupPermissionOutput {
+	return o
+}
+
+// Whether access should be provided for all projects or not.
+func (o GroupPartialPermissionsGroupPermissionOutput) AllProjects() pulumi.BoolOutput {
+	return o.ApplyT(func(v GroupPartialPermissionsGroupPermission) bool { return v.AllProjects }).(pulumi.BoolOutput)
+}
+
+// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+func (o GroupPartialPermissionsGroupPermissionOutput) PermissionSet() pulumi.StringOutput {
+	return o.ApplyT(func(v GroupPartialPermissionsGroupPermission) string { return v.PermissionSet }).(pulumi.StringOutput)
+}
+
+// Project ID to apply this permission to for this group.
+func (o GroupPartialPermissionsGroupPermissionOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GroupPartialPermissionsGroupPermission) *int { return v.ProjectId }).(pulumi.IntPtrOutput)
+}
+
+type GroupPartialPermissionsGroupPermissionArrayOutput struct{ *pulumi.OutputState }
+
+func (GroupPartialPermissionsGroupPermissionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GroupPartialPermissionsGroupPermission)(nil)).Elem()
+}
+
+func (o GroupPartialPermissionsGroupPermissionArrayOutput) ToGroupPartialPermissionsGroupPermissionArrayOutput() GroupPartialPermissionsGroupPermissionArrayOutput {
+	return o
+}
+
+func (o GroupPartialPermissionsGroupPermissionArrayOutput) ToGroupPartialPermissionsGroupPermissionArrayOutputWithContext(ctx context.Context) GroupPartialPermissionsGroupPermissionArrayOutput {
+	return o
+}
+
+func (o GroupPartialPermissionsGroupPermissionArrayOutput) Index(i pulumi.IntInput) GroupPartialPermissionsGroupPermissionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GroupPartialPermissionsGroupPermission {
+		return vs[0].([]GroupPartialPermissionsGroupPermission)[vs[1].(int)]
+	}).(GroupPartialPermissionsGroupPermissionOutput)
+}
+
 type JobJobCompletionTriggerCondition struct {
 	// The ID of the job that would trigger this job after completion.
 	JobId int `pulumi:"jobId"`
@@ -416,6 +531,184 @@ func (o ServiceTokenServiceTokenPermissionArrayOutput) Index(i pulumi.IntInput) 
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceTokenServiceTokenPermission {
 		return vs[0].([]ServiceTokenServiceTokenPermission)[vs[1].(int)]
 	}).(ServiceTokenServiceTokenPermissionOutput)
+}
+
+type GetEnvironmentsEnvironment struct {
+	// The project ID to which the environment belong
+	CredentialsId int `pulumi:"credentialsId"`
+	// The type of deployment environment (currently 'production', 'staging' or empty)
+	CustomBranch string `pulumi:"customBranch"`
+	// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+	DbtVersion string `pulumi:"dbtVersion"`
+	// The name of the environment
+	DeploymentType string `pulumi:"deploymentType"`
+	// The ID of the environment
+	EnvironmentId int `pulumi:"environmentId"`
+	// The ID of the extended attributes applied
+	ExtendedAttributesId int `pulumi:"extendedAttributesId"`
+	// The name of the environment
+	Name string `pulumi:"name"`
+	// The project ID to which the environment belong
+	ProjectId int `pulumi:"projectId"`
+	// The name of the environment
+	Type string `pulumi:"type"`
+	// Whether to use a custom git branch in this environment
+	UseCustomBranch bool `pulumi:"useCustomBranch"`
+}
+
+// GetEnvironmentsEnvironmentInput is an input type that accepts GetEnvironmentsEnvironmentArgs and GetEnvironmentsEnvironmentOutput values.
+// You can construct a concrete instance of `GetEnvironmentsEnvironmentInput` via:
+//
+//	GetEnvironmentsEnvironmentArgs{...}
+type GetEnvironmentsEnvironmentInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentsEnvironmentOutput() GetEnvironmentsEnvironmentOutput
+	ToGetEnvironmentsEnvironmentOutputWithContext(context.Context) GetEnvironmentsEnvironmentOutput
+}
+
+type GetEnvironmentsEnvironmentArgs struct {
+	// The project ID to which the environment belong
+	CredentialsId pulumi.IntInput `pulumi:"credentialsId"`
+	// The type of deployment environment (currently 'production', 'staging' or empty)
+	CustomBranch pulumi.StringInput `pulumi:"customBranch"`
+	// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
+	// The name of the environment
+	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
+	// The ID of the environment
+	EnvironmentId pulumi.IntInput `pulumi:"environmentId"`
+	// The ID of the extended attributes applied
+	ExtendedAttributesId pulumi.IntInput `pulumi:"extendedAttributesId"`
+	// The name of the environment
+	Name pulumi.StringInput `pulumi:"name"`
+	// The project ID to which the environment belong
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// The name of the environment
+	Type pulumi.StringInput `pulumi:"type"`
+	// Whether to use a custom git branch in this environment
+	UseCustomBranch pulumi.BoolInput `pulumi:"useCustomBranch"`
+}
+
+func (GetEnvironmentsEnvironmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentsEnvironment)(nil)).Elem()
+}
+
+func (i GetEnvironmentsEnvironmentArgs) ToGetEnvironmentsEnvironmentOutput() GetEnvironmentsEnvironmentOutput {
+	return i.ToGetEnvironmentsEnvironmentOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentsEnvironmentArgs) ToGetEnvironmentsEnvironmentOutputWithContext(ctx context.Context) GetEnvironmentsEnvironmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentsEnvironmentOutput)
+}
+
+// GetEnvironmentsEnvironmentArrayInput is an input type that accepts GetEnvironmentsEnvironmentArray and GetEnvironmentsEnvironmentArrayOutput values.
+// You can construct a concrete instance of `GetEnvironmentsEnvironmentArrayInput` via:
+//
+//	GetEnvironmentsEnvironmentArray{ GetEnvironmentsEnvironmentArgs{...} }
+type GetEnvironmentsEnvironmentArrayInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentsEnvironmentArrayOutput() GetEnvironmentsEnvironmentArrayOutput
+	ToGetEnvironmentsEnvironmentArrayOutputWithContext(context.Context) GetEnvironmentsEnvironmentArrayOutput
+}
+
+type GetEnvironmentsEnvironmentArray []GetEnvironmentsEnvironmentInput
+
+func (GetEnvironmentsEnvironmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentsEnvironment)(nil)).Elem()
+}
+
+func (i GetEnvironmentsEnvironmentArray) ToGetEnvironmentsEnvironmentArrayOutput() GetEnvironmentsEnvironmentArrayOutput {
+	return i.ToGetEnvironmentsEnvironmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentsEnvironmentArray) ToGetEnvironmentsEnvironmentArrayOutputWithContext(ctx context.Context) GetEnvironmentsEnvironmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentsEnvironmentArrayOutput)
+}
+
+type GetEnvironmentsEnvironmentOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentsEnvironmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentsEnvironment)(nil)).Elem()
+}
+
+func (o GetEnvironmentsEnvironmentOutput) ToGetEnvironmentsEnvironmentOutput() GetEnvironmentsEnvironmentOutput {
+	return o
+}
+
+func (o GetEnvironmentsEnvironmentOutput) ToGetEnvironmentsEnvironmentOutputWithContext(ctx context.Context) GetEnvironmentsEnvironmentOutput {
+	return o
+}
+
+// The project ID to which the environment belong
+func (o GetEnvironmentsEnvironmentOutput) CredentialsId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.CredentialsId }).(pulumi.IntOutput)
+}
+
+// The type of deployment environment (currently 'production', 'staging' or empty)
+func (o GetEnvironmentsEnvironmentOutput) CustomBranch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.CustomBranch }).(pulumi.StringOutput)
+}
+
+// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+func (o GetEnvironmentsEnvironmentOutput) DbtVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.DbtVersion }).(pulumi.StringOutput)
+}
+
+// The name of the environment
+func (o GetEnvironmentsEnvironmentOutput) DeploymentType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.DeploymentType }).(pulumi.StringOutput)
+}
+
+// The ID of the environment
+func (o GetEnvironmentsEnvironmentOutput) EnvironmentId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.EnvironmentId }).(pulumi.IntOutput)
+}
+
+// The ID of the extended attributes applied
+func (o GetEnvironmentsEnvironmentOutput) ExtendedAttributesId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.ExtendedAttributesId }).(pulumi.IntOutput)
+}
+
+// The name of the environment
+func (o GetEnvironmentsEnvironmentOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The project ID to which the environment belong
+func (o GetEnvironmentsEnvironmentOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// The name of the environment
+func (o GetEnvironmentsEnvironmentOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Whether to use a custom git branch in this environment
+func (o GetEnvironmentsEnvironmentOutput) UseCustomBranch() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) bool { return v.UseCustomBranch }).(pulumi.BoolOutput)
+}
+
+type GetEnvironmentsEnvironmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentsEnvironmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEnvironmentsEnvironment)(nil)).Elem()
+}
+
+func (o GetEnvironmentsEnvironmentArrayOutput) ToGetEnvironmentsEnvironmentArrayOutput() GetEnvironmentsEnvironmentArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentsEnvironmentArrayOutput) ToGetEnvironmentsEnvironmentArrayOutputWithContext(ctx context.Context) GetEnvironmentsEnvironmentArrayOutput {
+	return o
+}
+
+func (o GetEnvironmentsEnvironmentArrayOutput) Index(i pulumi.IntInput) GetEnvironmentsEnvironmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentsEnvironment {
+		return vs[0].([]GetEnvironmentsEnvironment)[vs[1].(int)]
+	}).(GetEnvironmentsEnvironmentOutput)
 }
 
 type GetGroupUsersUser struct {
@@ -751,10 +1044,14 @@ func (o GetServiceTokenServiceTokenPermissionArrayOutput) Index(i pulumi.IntInpu
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionInput)(nil)).Elem(), GroupGroupPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionArrayInput)(nil)).Elem(), GroupGroupPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupPartialPermissionsGroupPermissionInput)(nil)).Elem(), GroupPartialPermissionsGroupPermissionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GroupPartialPermissionsGroupPermissionArrayInput)(nil)).Elem(), GroupPartialPermissionsGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionInput)(nil)).Elem(), JobJobCompletionTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionPtrInput)(nil)).Elem(), JobJobCompletionTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentsEnvironmentInput)(nil)).Elem(), GetEnvironmentsEnvironmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentsEnvironmentArrayInput)(nil)).Elem(), GetEnvironmentsEnvironmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserInput)(nil)).Elem(), GetGroupUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserArrayInput)(nil)).Elem(), GetGroupUsersUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobJobCompletionTriggerConditionInput)(nil)).Elem(), GetJobJobCompletionTriggerConditionArgs{})
@@ -763,10 +1060,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), GetServiceTokenServiceTokenPermissionArray{})
 	pulumi.RegisterOutputType(GroupGroupPermissionOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionArrayOutput{})
+	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionOutput{})
+	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionOutput{})
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionPtrOutput{})
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionOutput{})
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentsEnvironmentOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentsEnvironmentArrayOutput{})
 	pulumi.RegisterOutputType(GetGroupUsersUserOutput{})
 	pulumi.RegisterOutputType(GetGroupUsersUserArrayOutput{})
 	pulumi.RegisterOutputType(GetJobJobCompletionTriggerConditionOutput{})

@@ -15,14 +15,14 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetNotificationArgs Empty = new GetNotificationArgs();
 
     /**
-     * ID of the notification
+     * The ID of the notification
      * 
      */
     @Import(name="notificationId", required=true)
     private Output<Integer> notificationId;
 
     /**
-     * @return ID of the notification
+     * @return The ID of the notification
      * 
      */
     public Output<Integer> notificationId() {
@@ -54,7 +54,7 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param notificationId ID of the notification
+         * @param notificationId The ID of the notification
          * 
          * @return builder
          * 
@@ -65,7 +65,7 @@ public final class GetNotificationArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param notificationId ID of the notification
+         * @param notificationId The ID of the notification
          * 
          * @return builder
          * 

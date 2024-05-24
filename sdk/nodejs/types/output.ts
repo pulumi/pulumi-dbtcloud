@@ -5,6 +5,49 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface GetEnvironmentsEnvironment {
+    /**
+     * The project ID to which the environment belong
+     */
+    credentialsId: number;
+    /**
+     * The type of deployment environment (currently 'production', 'staging' or empty)
+     */
+    customBranch: string;
+    /**
+     * Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+     */
+    dbtVersion: string;
+    /**
+     * The name of the environment
+     */
+    deploymentType: string;
+    /**
+     * The ID of the environment
+     */
+    environmentId: number;
+    /**
+     * The ID of the extended attributes applied
+     */
+    extendedAttributesId: number;
+    /**
+     * The name of the environment
+     */
+    name: string;
+    /**
+     * The project ID to which the environment belong
+     */
+    projectId: number;
+    /**
+     * The name of the environment
+     */
+    type: string;
+    /**
+     * Whether to use a custom git branch in this environment
+     */
+    useCustomBranch: boolean;
+}
+
 export interface GetGroupUsersUser {
     email: string;
     id: number;
@@ -51,6 +94,21 @@ export interface GroupGroupPermission {
     permissionSet: string;
     /**
      * Project ID to apply this permission to for this group
+     */
+    projectId?: number;
+}
+
+export interface GroupPartialPermissionsGroupPermission {
+    /**
+     * Whether access should be provided for all projects or not.
+     */
+    allProjects: boolean;
+    /**
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+     */
+    permissionSet: string;
+    /**
+     * Project ID to apply this permission to for this group.
      */
     projectId?: number;
 }

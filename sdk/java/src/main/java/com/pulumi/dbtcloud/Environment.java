@@ -42,7 +42,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var ciEnvironment = new Environment("ciEnvironment", EnvironmentArgs.builder()
  *             .dbtVersion("1.6.0-latest")
  *             .name("CI")
@@ -77,7 +76,25 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a project ID and environment ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_environment.prod_environment
+ * 
+ *   id = &#34;project_id:environment_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_environment.prod_environment
+ * 
+ *   id = &#34;12345:6789&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/environment:Environment prod_environment &#34;project_id:environment_id&#34;
@@ -119,14 +136,14 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customBranch);
     }
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
     private Output<String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` or `major.minor.0-pre`, e.g. `1.5.0-latest`
+     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
      * 
      */
     public Output<String> dbtVersion() {

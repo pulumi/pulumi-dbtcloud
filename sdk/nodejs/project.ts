@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // NOTE for customers using the LEGACY dbt_cloud provider:
  * const dbtProject = new dbtcloud.Project("dbt_project", {name: "Analytics"});
  * const dbtProjectWithSubdir = new dbtcloud.Project("dbt_project_with_subdir", {
  *     name: "Analytics in Subdir",
@@ -21,14 +20,32 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Import using a project ID found in the URL or via the API.
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_project.my_project
+ *
+ *   id = "project_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_project.my_project
+ *
+ *   id = "12345"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
- * $ pulumi import dbtcloud:index/project:Project test_project "project_id"
+ * $ pulumi import dbtcloud:index/project:Project my_project "project_id"
  * ```
  *
  * ```sh
- * $ pulumi import dbtcloud:index/project:Project test_project 12345
+ * $ pulumi import dbtcloud:index/project:Project my_project 12345
  * ```
  */
 export class Project extends pulumi.CustomResource {

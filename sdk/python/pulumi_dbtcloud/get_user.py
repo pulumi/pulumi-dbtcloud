@@ -59,6 +59,8 @@ class AwaitableGetUserResult(GetUserResult):
 def get_user(email: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
+    Retrieve user details
+
     ## Example Usage
 
     ```python
@@ -85,6 +87,8 @@ def get_user(email: Optional[str] = None,
 def get_user_output(email: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
     """
+    Retrieve user details
+
     ## Example Usage
 
     ```python

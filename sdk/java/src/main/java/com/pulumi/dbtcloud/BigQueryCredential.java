@@ -42,7 +42,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var myCredential = new BigQueryCredential("myCredential", BigQueryCredentialArgs.builder()
  *             .projectId(dbtProject.id())
  *             .dataset("my_bq_dataset")
@@ -56,6 +55,26 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
+ * 
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_bigquery_credential.my_credential
+ * 
+ *   id = &#34;project_id:credential_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_bigquery_credential.my_credential
+ * 
+ *   id = &#34;12345:5678&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential &#34;project_id:credential_id&#34;

@@ -48,9 +48,11 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["accountId"] = pulumi.output((args ? args.accountId : undefined) ?? utilities.getEnvNumber("DBT_CLOUD_ACCOUNT_ID")).apply(JSON.stringify);
             resourceInputs["hostUrl"] = (args ? args.hostUrl : undefined) ?? (utilities.getEnv("DBT_CLOUD_HOST_URL") || "https://cloud.getdbt.com/api");
-            resourceInputs["token"] = (args ? args.token : undefined) ?? utilities.getEnv("DBT_CLOUD_TOKEN");
+            resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("DBT_CLOUD_TOKEN");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

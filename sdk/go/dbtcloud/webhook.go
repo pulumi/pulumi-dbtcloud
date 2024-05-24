@@ -26,7 +26,6 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// NOTE for customers using the LEGACY dbt_cloud provider:
 //			_, err := dbtcloud.NewWebhook(ctx, "test_webhook", &dbtcloud.WebhookArgs{
 //				Name:        pulumi.String("test-webhook"),
 //				Description: pulumi.String("Test webhook"),
@@ -51,14 +50,32 @@ import (
 //
 // ## Import
 //
-// Import using a job ID found in the URL or via the API.
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_webhook.my_webhook
+//
+//	id = "webhook_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_webhook.my_webhook
+//
+//	id = "wsu_abcdefg"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
-// $ pulumi import dbtcloud:index/webhook:Webhook test_webhook "job_id"
+// $ pulumi import dbtcloud:index/webhook:Webhook my_webhook "webhook_id"
 // ```
 //
 // ```sh
-// $ pulumi import dbtcloud:index/webhook:Webhook test_webhook wsu_abcdefg
+// $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
 // ```
 type Webhook struct {
 	pulumi.CustomResourceState

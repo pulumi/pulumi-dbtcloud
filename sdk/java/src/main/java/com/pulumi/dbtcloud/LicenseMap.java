@@ -67,14 +67,32 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a license map ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_license_map.my_license_map
+ * 
+ *   id = &#34;license_map_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_license_map.my_license_map
+ * 
+ *   id = &#34;12345&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/licenseMap:LicenseMap test_license_map &#34;license_map_id&#34;
+ * $ pulumi import dbtcloud:index/licenseMap:LicenseMap my_license_map &#34;license_map_id&#34;
  * ```
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/licenseMap:LicenseMap test_license_map 12345
+ * $ pulumi import dbtcloud:index/licenseMap:LicenseMap my_license_map 12345
  * ```
  * 
  */

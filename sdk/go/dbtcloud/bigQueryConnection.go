@@ -28,7 +28,6 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// NOTE for customers using the LEGACY dbt_cloud provider:
 //			_, err := dbtcloud.NewBigQueryConnection(ctx, "my_connection", &dbtcloud.BigQueryConnectionArgs{
 //				ProjectId:               pulumi.Any(dbtProject.Id),
 //				Name:                    pulumi.String("Project Name"),
@@ -79,6 +78,26 @@ import (
 // ```
 //
 // ## Import
+//
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_bigquery_connection.my_connection
+//
+//	id = "project_id:connection_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_bigquery_connection.my_connection
+//
+//	id = "12345:6789"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection "project_id:connection_id"

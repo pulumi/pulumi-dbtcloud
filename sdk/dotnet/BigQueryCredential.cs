@@ -20,7 +20,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var myCredential = new DbtCloud.BigQueryCredential("my_credential", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
@@ -32,6 +31,26 @@ namespace Pulumi.DbtCloud
     /// ```
     /// 
     /// ## Import
+    /// 
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_bigquery_credential.my_credential
+    /// 
+    ///   id = "project_id:credential_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_bigquery_credential.my_credential
+    /// 
+    ///   id = "12345:5678"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential "project_id:credential_id"

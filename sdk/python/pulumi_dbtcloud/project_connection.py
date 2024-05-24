@@ -104,7 +104,6 @@ class ProjectConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         dbt_project_connection = dbtcloud.ProjectConnection("dbt_project_connection",
             project_id=dbt_project["id"],
             connection_id=dbt_connection["connectionId"])
@@ -112,7 +111,25 @@ class ProjectConnection(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and Connection ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_project_connection.my_project
+
+          id = "project_id:connection_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_project_connection.my_project
+
+          id = "12345:5678"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/projectConnection:ProjectConnection my_project "project_id:connection_id"
@@ -140,7 +157,6 @@ class ProjectConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # NOTE for customers using the LEGACY dbt_cloud provider:
         dbt_project_connection = dbtcloud.ProjectConnection("dbt_project_connection",
             project_id=dbt_project["id"],
             connection_id=dbt_connection["connectionId"])
@@ -148,7 +164,25 @@ class ProjectConnection(pulumi.CustomResource):
 
         ## Import
 
-        Import using a project ID and Connection ID found in the URL or via the API.
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_project_connection.my_project
+
+          id = "project_id:connection_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_project_connection.my_project
+
+          id = "12345:5678"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/projectConnection:ProjectConnection my_project "project_id:connection_id"

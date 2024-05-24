@@ -20,7 +20,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var myProjectArtefacts = new DbtCloud.ProjectArtefacts("my_project_artefacts", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
@@ -33,7 +32,25 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a project ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_project_artefacts.my_artefacts
+    /// 
+    ///   id = "project_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_project_artefacts.my_artefacts
+    /// 
+    ///   id = "12345"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts "project_id"

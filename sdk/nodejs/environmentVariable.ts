@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // NOTE for customers using the LEGACY dbt_cloud provider:
  * const dbtMyEnvVar = new dbtcloud.EnvironmentVariable("dbt_my_env_var", {
  *     name: "DBT_MY_ENV_VAR",
  *     projectId: dbtProject.id,
@@ -36,7 +35,25 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Import using a project ID and environment variable name found in the URL and UI or via the API.
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_environment_variable.test_environment_variable
+ *
+ *   id = "project_id:environment_variable_name"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_environment_variable.test_environment_variable
+ *
+ *   id = "12345:DBT_ENV_VAR"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
  * $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable "project_id:environment_variable_name"

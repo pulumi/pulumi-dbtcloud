@@ -53,7 +53,7 @@ type LookupJobResult struct {
 	SelfDeferring bool `pulumi:"selfDeferring"`
 	// Number of seconds before the job times out
 	TimeoutSeconds int `pulumi:"timeoutSeconds"`
-	// Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, custom*branch_only
+	// Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
 	Triggers map[string]bool `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr bool `pulumi:"triggersOnDraftPr"`
@@ -154,7 +154,7 @@ func (o LookupJobResultOutput) TimeoutSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.TimeoutSeconds }).(pulumi.IntOutput)
 }
 
-// Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, custom*branch_only
+// Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
 func (o LookupJobResultOutput) Triggers() pulumi.BoolMapOutput {
 	return o.ApplyT(func(v LookupJobResult) map[string]bool { return v.Triggers }).(pulumi.BoolMapOutput)
 }

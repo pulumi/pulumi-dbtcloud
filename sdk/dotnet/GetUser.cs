@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     public static class GetUser
     {
         /// <summary>
+        /// Retrieve user details
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -34,6 +36,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("dbtcloud:index/getUser:getUser", args ?? new GetUserArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Retrieve user details
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

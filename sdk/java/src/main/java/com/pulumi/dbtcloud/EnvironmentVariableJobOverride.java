@@ -55,7 +55,25 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a project ID, a job ID and the environment variable override ID
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_environment_variable_job_override.test_environment_variable_job_override
+ * 
+ *   id = &#34;project_id:job_id:environment_variable_override_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_environment_variable_job_override.test_environment_variable_job_override
+ * 
+ *   id = &#34;12345:678:123456&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride test_environment_variable_job_override &#34;project_id:job_id:environment_variable_override_id&#34;

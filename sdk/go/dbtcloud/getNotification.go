@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Retrieve notification details
+//
 // ## Example Usage
 //
 // ```go
@@ -48,7 +50,7 @@ func LookupNotification(ctx *pulumi.Context, args *LookupNotificationArgs, opts 
 
 // A collection of arguments for invoking getNotification.
 type LookupNotificationArgs struct {
-	// ID of the notification
+	// The ID of the notification
 	NotificationId int `pulumi:"notificationId"`
 }
 
@@ -58,9 +60,9 @@ type LookupNotificationResult struct {
 	ExternalEmail string `pulumi:"externalEmail"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// ID of the notification
+	// The ID of the notification
 	NotificationId int `pulumi:"notificationId"`
-	// Type of notification (1 = dbt Cloud user email (default): does not require an external*email ; 4 = external email: requires setting an external*email)
+	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
 	NotificationType int `pulumi:"notificationType"`
 	// List of job IDs to trigger the webhook on cancel
 	OnCancels []int `pulumi:"onCancels"`
@@ -68,6 +70,12 @@ type LookupNotificationResult struct {
 	OnFailures []int `pulumi:"onFailures"`
 	// List of job IDs to trigger the webhook on success
 	OnSuccesses []int `pulumi:"onSuccesses"`
+	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
+	SlackChannelId string `pulumi:"slackChannelId"`
+	// The name of the slack channel
+	SlackChannelName string `pulumi:"slackChannelName"`
+	// State of the notification (1 = active (default), 2 = inactive)
+	State int `pulumi:"state"`
 	// Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
 	UserId int `pulumi:"userId"`
 }
@@ -87,7 +95,7 @@ func LookupNotificationOutput(ctx *pulumi.Context, args LookupNotificationOutput
 
 // A collection of arguments for invoking getNotification.
 type LookupNotificationOutputArgs struct {
-	// ID of the notification
+	// The ID of the notification
 	NotificationId pulumi.IntInput `pulumi:"notificationId"`
 }
 
@@ -120,12 +128,12 @@ func (o LookupNotificationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNotificationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// ID of the notification
+// The ID of the notification
 func (o LookupNotificationResultOutput) NotificationId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNotificationResult) int { return v.NotificationId }).(pulumi.IntOutput)
 }
 
-// Type of notification (1 = dbt Cloud user email (default): does not require an external*email ; 4 = external email: requires setting an external*email)
+// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
 func (o LookupNotificationResultOutput) NotificationType() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNotificationResult) int { return v.NotificationType }).(pulumi.IntOutput)
 }
@@ -143,6 +151,21 @@ func (o LookupNotificationResultOutput) OnFailures() pulumi.IntArrayOutput {
 // List of job IDs to trigger the webhook on success
 func (o LookupNotificationResultOutput) OnSuccesses() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v LookupNotificationResult) []int { return v.OnSuccesses }).(pulumi.IntArrayOutput)
+}
+
+// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
+func (o LookupNotificationResultOutput) SlackChannelId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNotificationResult) string { return v.SlackChannelId }).(pulumi.StringOutput)
+}
+
+// The name of the slack channel
+func (o LookupNotificationResultOutput) SlackChannelName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNotificationResult) string { return v.SlackChannelName }).(pulumi.StringOutput)
+}
+
+// State of the notification (1 = active (default), 2 = inactive)
+func (o LookupNotificationResultOutput) State() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupNotificationResult) int { return v.State }).(pulumi.IntOutput)
 }
 
 // Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one

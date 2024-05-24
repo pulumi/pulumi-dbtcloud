@@ -45,7 +45,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var myConnection = new BigQueryConnection("myConnection", BigQueryConnectionArgs.builder()
  *             .projectId(dbtProject.id())
  *             .name("Project Name")
@@ -92,6 +91,26 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
+ * 
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_bigquery_connection.my_connection
+ * 
+ *   id = &#34;project_id:connection_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_bigquery_connection.my_connection
+ * 
+ *   id = &#34;12345:6789&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection &#34;project_id:connection_id&#34;

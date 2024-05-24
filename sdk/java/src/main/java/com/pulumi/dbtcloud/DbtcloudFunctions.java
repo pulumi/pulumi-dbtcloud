@@ -22,6 +22,8 @@ import com.pulumi.dbtcloud.inputs.GetEnvironmentArgs;
 import com.pulumi.dbtcloud.inputs.GetEnvironmentPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
 import com.pulumi.dbtcloud.inputs.GetEnvironmentVariablePlainArgs;
+import com.pulumi.dbtcloud.inputs.GetEnvironmentsArgs;
+import com.pulumi.dbtcloud.inputs.GetEnvironmentsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetExtendedAttributesArgs;
 import com.pulumi.dbtcloud.inputs.GetExtendedAttributesPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetGroupArgs;
@@ -58,6 +60,7 @@ import com.pulumi.dbtcloud.outputs.GetConnectionResult;
 import com.pulumi.dbtcloud.outputs.GetDatabricksCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentResult;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentVariableResult;
+import com.pulumi.dbtcloud.outputs.GetEnvironmentsResult;
 import com.pulumi.dbtcloud.outputs.GetExtendedAttributesResult;
 import com.pulumi.dbtcloud.outputs.GetGroupResult;
 import com.pulumi.dbtcloud.outputs.GetGroupUsersResult;
@@ -489,15 +492,31 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetDatabricksCredentialResult> getDatabricksCredentialPlain(GetDatabricksCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", TypeShape.of(GetDatabricksCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve data for a single environment
+     * 
+     */
     public static Output<GetEnvironmentResult> getEnvironment(GetEnvironmentArgs args) {
         return getEnvironment(args, InvokeOptions.Empty);
     }
+    /**
+     * Retrieve data for a single environment
+     * 
+     */
     public static CompletableFuture<GetEnvironmentResult> getEnvironmentPlain(GetEnvironmentPlainArgs args) {
         return getEnvironmentPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Retrieve data for a single environment
+     * 
+     */
     public static Output<GetEnvironmentResult> getEnvironment(GetEnvironmentArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getEnvironment:getEnvironment", TypeShape.of(GetEnvironmentResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve data for a single environment
+     * 
+     */
     public static CompletableFuture<GetEnvironmentResult> getEnvironmentPlain(GetEnvironmentPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getEnvironment:getEnvironment", TypeShape.of(GetEnvironmentResult.class), args, Utilities.withVersion(options));
     }
@@ -512,6 +531,48 @@ public final class DbtcloudFunctions {
     }
     public static CompletableFuture<GetEnvironmentVariableResult> getEnvironmentVariablePlain(GetEnvironmentVariablePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", TypeShape.of(GetEnvironmentVariableResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve data for multiple environments
+     * 
+     */
+    public static Output<GetEnvironmentsResult> getEnvironments() {
+        return getEnvironments(GetEnvironmentsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve data for multiple environments
+     * 
+     */
+    public static CompletableFuture<GetEnvironmentsResult> getEnvironmentsPlain() {
+        return getEnvironmentsPlain(GetEnvironmentsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve data for multiple environments
+     * 
+     */
+    public static Output<GetEnvironmentsResult> getEnvironments(GetEnvironmentsArgs args) {
+        return getEnvironments(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve data for multiple environments
+     * 
+     */
+    public static CompletableFuture<GetEnvironmentsResult> getEnvironmentsPlain(GetEnvironmentsPlainArgs args) {
+        return getEnvironmentsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve data for multiple environments
+     * 
+     */
+    public static Output<GetEnvironmentsResult> getEnvironments(GetEnvironmentsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getEnvironments:getEnvironments", TypeShape.of(GetEnvironmentsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve data for multiple environments
+     * 
+     */
+    public static CompletableFuture<GetEnvironmentsResult> getEnvironmentsPlain(GetEnvironmentsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getEnvironments:getEnvironments", TypeShape.of(GetEnvironmentsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
@@ -870,6 +931,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getJob:getJob", TypeShape.of(GetJobResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve notification details
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -910,6 +973,8 @@ public final class DbtcloudFunctions {
         return getNotification(args, InvokeOptions.Empty);
     }
     /**
+     * Retrieve notification details
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -950,6 +1015,8 @@ public final class DbtcloudFunctions {
         return getNotificationPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Retrieve notification details
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -990,6 +1057,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve notification details
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1660,6 +1729,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", TypeShape.of(GetSnowflakeCredentialResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve user details
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1700,6 +1771,8 @@ public final class DbtcloudFunctions {
         return getUser(args, InvokeOptions.Empty);
     }
     /**
+     * Retrieve user details
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1740,6 +1813,8 @@ public final class DbtcloudFunctions {
         return getUserPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Retrieve user details
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1780,6 +1855,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve user details
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;

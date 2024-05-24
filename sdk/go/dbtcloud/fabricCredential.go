@@ -14,9 +14,70 @@ import (
 
 // ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// when using AD authentication
+//			_, err := dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_ad", &dbtcloud.FabricCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				AdapterId:           pulumi.Any(myFabricConnection.AdapterId),
+//				Schema:              pulumi.String("my_schema"),
+//				User:                pulumi.String("my_user"),
+//				Password:            pulumi.String("my_password"),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// when using service principal authentication
+//			_, err = dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_serv_princ", &dbtcloud.FabricCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				AdapterId:           pulumi.Any(myFabricConnection.AdapterId),
+//				Schema:              pulumi.String("my_schema"),
+//				ClientId:            pulumi.String("my_client_id"),
+//				TenantId:            pulumi.String("my_tenant_id"),
+//				ClientSecret:        pulumi.String("my_secret"),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
-// Import using a project ID and credential ID found in the URL or via the API.
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_fabric_credential.my_fabric_credential
+//
+//	id = "project_id:credential_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_fabric_credential.my_fabric_credential
+//
+//	id = "12345:6789"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential "project_id:credential_id"

@@ -11,9 +11,15 @@ namespace Pulumi.DbtCloud
 {
     public static class GetEnvironment
     {
+        /// <summary>
+        /// Retrieve data for a single environment
+        /// </summary>
         public static Task<GetEnvironmentResult> InvokeAsync(GetEnvironmentArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEnvironmentResult>("dbtcloud:index/getEnvironment:getEnvironment", args ?? new GetEnvironmentArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Retrieve data for a single environment
+        /// </summary>
         public static Output<GetEnvironmentResult> Invoke(GetEnvironmentInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEnvironmentResult>("dbtcloud:index/getEnvironment:getEnvironment", args ?? new GetEnvironmentInvokeArgs(), options.WithDefaults());
     }
@@ -22,13 +28,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetEnvironmentArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the environment
+        /// The ID of the environment
         /// </summary>
         [Input("environmentId", required: true)]
         public int EnvironmentId { get; set; }
 
         /// <summary>
-        /// Project ID to create the environment in
+        /// The project ID to which the environment belong
         /// </summary>
         [Input("projectId", required: true)]
         public int ProjectId { get; set; }
@@ -42,13 +48,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetEnvironmentInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the environment
+        /// The ID of the environment
         /// </summary>
         [Input("environmentId", required: true)]
         public Input<int> EnvironmentId { get; set; } = null!;
 
         /// <summary>
-        /// Project ID to create the environment in
+        /// The project ID to which the environment belong
         /// </summary>
         [Input("projectId", required: true)]
         public Input<int> ProjectId { get; set; } = null!;
@@ -64,11 +70,11 @@ namespace Pulumi.DbtCloud
     public sealed class GetEnvironmentResult
     {
         /// <summary>
-        /// Credential ID to create the environment with
+        /// The project ID to which the environment belong
         /// </summary>
-        public readonly int CredentialId;
+        public readonly int CredentialsId;
         /// <summary>
-        /// Which custom branch to use in this environment
+        /// The type of deployment environment (currently 'production', 'staging' or empty)
         /// </summary>
         public readonly string CustomBranch;
         /// <summary>
@@ -76,11 +82,11 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string DbtVersion;
         /// <summary>
-        /// The type of deployment environment (currently 'production' or empty)
+        /// The name of the environment
         /// </summary>
         public readonly string DeploymentType;
         /// <summary>
-        /// ID of the environment
+        /// The ID of the environment
         /// </summary>
         public readonly int EnvironmentId;
         /// <summary>
@@ -92,19 +98,15 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Whether the environment is active
-        /// </summary>
-        public readonly bool IsActive;
-        /// <summary>
-        /// Environment name
+        /// The name of the environment
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Project ID to create the environment in
+        /// The project ID to which the environment belong
         /// </summary>
         public readonly int ProjectId;
         /// <summary>
-        /// The type of environment (must be either development or deployment)
+        /// The name of the environment
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -114,7 +116,7 @@ namespace Pulumi.DbtCloud
 
         [OutputConstructor]
         private GetEnvironmentResult(
-            int credentialId,
+            int credentialsId,
 
             string customBranch,
 
@@ -128,8 +130,6 @@ namespace Pulumi.DbtCloud
 
             string id,
 
-            bool isActive,
-
             string name,
 
             int projectId,
@@ -138,14 +138,13 @@ namespace Pulumi.DbtCloud
 
             bool useCustomBranch)
         {
-            CredentialId = credentialId;
+            CredentialsId = credentialsId;
             CustomBranch = customBranch;
             DbtVersion = dbtVersion;
             DeploymentType = deploymentType;
             EnvironmentId = environmentId;
             ExtendedAttributesId = extendedAttributesId;
             Id = id;
-            IsActive = isActive;
             Name = name;
             ProjectId = projectId;
             Type = type;

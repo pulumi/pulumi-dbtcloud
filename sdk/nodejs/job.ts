@@ -7,16 +7,16 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * > As of October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
+ * > In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
  * <br/>
  * <br/>
  * Those improvements include modifications to deferral which was historically set at the job level and will now be set at the environment level.
  * Deferral can still be set to "self" by setting `selfDeferring` to `true` but with the new approach, deferral to other runs need to be done with `deferringEnvironmentId` instead of `deferringJobId`.
  *
- * > As of beginning of February 2024, job chaining with `jobCompletionTriggerCondition` is in private beta and not available to all users.
+ * > New with 0.3.1, `triggers` now accepts a `onMerge` value to trigger jobs when code is merged in git. If `onMerge` is `true` all other triggers need to be `false`.
  * <br/>
  * <br/>
- * This notice will be removed once the feature is generally available.
+ * For now, it is not a mandatory field, but it will be in a future version. Please add `onMerge` in your config or modules.
  *
  * ## Example Usage
  *
@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // NOTE for customers using the LEGACY dbt_cloud provider:
  * // a job that has github_webhook and git_provider_webhook 
  * // set to false will be categorized as a "Deploy Job"
  * const dailyJob = new dbtcloud.Job("daily_job", {
@@ -38,10 +37,10 @@ import * as utilities from "./utilities";
  *     runGenerateSources: true,
  *     targetName: "default",
  *     triggers: {
- *         custom_branch_only: false,
  *         github_webhook: false,
  *         git_provider_webhook: false,
  *         schedule: true,
+ *         on_merge: false,
  *     },
  *     scheduleDays: [
  *         0,
@@ -67,10 +66,10 @@ import * as utilities from "./utilities";
  *     projectId: dbtProject.id,
  *     runGenerateSources: false,
  *     triggers: {
- *         custom_branch_only: true,
  *         github_webhook: true,
  *         git_provider_webhook: true,
  *         schedule: false,
+ *         on_merge: false,
  *     },
  *     scheduleDays: [
  *         0,
@@ -94,10 +93,10 @@ import * as utilities from "./utilities";
  *     projectId: dbtProject2.id,
  *     runGenerateSources: true,
  *     triggers: {
- *         custom_branch_only: false,
  *         github_webhook: false,
  *         git_provider_webhook: false,
  *         schedule: false,
+ *         on_merge: false,
  *     },
  *     scheduleDays: [
  *         0,
@@ -119,14 +118,32 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Import using a job ID found in the URL or via the API.
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_job.my_job
+ *
+ *   id = "job_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_job.my_job
+ *
+ *   id = "12345"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
- * $ pulumi import dbtcloud:index/job:Job test_job "job_id"
+ * $ pulumi import dbtcloud:index/job:Job my_job "job_id"
  * ```
  *
  * ```sh
- * $ pulumi import dbtcloud:index/job:Job test_job 12345
+ * $ pulumi import dbtcloud:index/job:Job my_job 12345
  * ```
  */
 export class Job extends pulumi.CustomResource {
@@ -242,7 +259,7 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly timeoutSeconds!: pulumi.Output<number | undefined>;
     /**
-     * Flags for which types of triggers to use, possible values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `customBranchOnly`. \n\n`customBranchOnly` is only relevant for CI jobs triggered automatically on PR creation to only trigger a job on a PR to the custom branch of the environment. To create a job in a 'deactivated' state, set all to `false`.
+     * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
     public readonly triggers!: pulumi.Output<{[key: string]: boolean}>;
     /**
@@ -418,7 +435,7 @@ export interface JobState {
      */
     timeoutSeconds?: pulumi.Input<number>;
     /**
-     * Flags for which types of triggers to use, possible values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `customBranchOnly`. \n\n`customBranchOnly` is only relevant for CI jobs triggered automatically on PR creation to only trigger a job on a PR to the custom branch of the environment. To create a job in a 'deactivated' state, set all to `false`.
+     * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
     triggers?: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
     /**
@@ -516,7 +533,7 @@ export interface JobArgs {
      */
     timeoutSeconds?: pulumi.Input<number>;
     /**
-     * Flags for which types of triggers to use, possible values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `customBranchOnly`. \n\n`customBranchOnly` is only relevant for CI jobs triggered automatically on PR creation to only trigger a job on a PR to the custom branch of the environment. To create a job in a 'deactivated' state, set all to `false`.
+     * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
     triggers: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
     /**

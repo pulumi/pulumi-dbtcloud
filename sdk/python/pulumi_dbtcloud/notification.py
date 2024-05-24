@@ -330,6 +330,8 @@ class Notification(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        Setup notifications on jobs success/failure to internal users, external email addresses or Slack channels
+
         ## Example Usage
 
         ```python
@@ -337,6 +339,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         # dbt Cloud allows us to create internal and external notifications
+        #
         # an internal notification will send emails to the user mentioned in `user_id`
         #
         # NOTE: If internal notification settings already exist for a user, currently you MUST import
@@ -374,7 +377,25 @@ class Notification(pulumi.CustomResource):
 
         ## Import
 
-        Import using a notification ID
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_notification.my_notification
+
+          id = "notification_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_notification.my_notification
+
+          id = "12345"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/notification:Notification my_notification "notification_id"
@@ -403,6 +424,8 @@ class Notification(pulumi.CustomResource):
                  args: NotificationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Setup notifications on jobs success/failure to internal users, external email addresses or Slack channels
+
         ## Example Usage
 
         ```python
@@ -410,6 +433,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         # dbt Cloud allows us to create internal and external notifications
+        #
         # an internal notification will send emails to the user mentioned in `user_id`
         #
         # NOTE: If internal notification settings already exist for a user, currently you MUST import
@@ -447,7 +471,25 @@ class Notification(pulumi.CustomResource):
 
         ## Import
 
-        Import using a notification ID
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_notification.my_notification
+
+          id = "notification_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_notification.my_notification
+
+          id = "12345"
+
+        }
+
+        using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/notification:Notification my_notification "notification_id"
@@ -562,7 +604,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="notificationType")
-    def notification_type(self) -> pulumi.Output[Optional[int]]:
+    def notification_type(self) -> pulumi.Output[int]:
         """
         Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
         """
@@ -570,7 +612,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="onCancels")
-    def on_cancels(self) -> pulumi.Output[Optional[Sequence[int]]]:
+    def on_cancels(self) -> pulumi.Output[Sequence[int]]:
         """
         List of job IDs to trigger the webhook on cancel
         """
@@ -578,7 +620,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="onFailures")
-    def on_failures(self) -> pulumi.Output[Optional[Sequence[int]]]:
+    def on_failures(self) -> pulumi.Output[Sequence[int]]:
         """
         List of job IDs to trigger the webhook on failure
         """
@@ -586,7 +628,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="onSuccesses")
-    def on_successes(self) -> pulumi.Output[Optional[Sequence[int]]]:
+    def on_successes(self) -> pulumi.Output[Sequence[int]]:
         """
         List of job IDs to trigger the webhook on success
         """
@@ -610,7 +652,7 @@ class Notification(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def state(self) -> pulumi.Output[Optional[int]]:
+    def state(self) -> pulumi.Output[int]:
         """
         State of the notification (1 = active (default), 2 = inactive)
         """

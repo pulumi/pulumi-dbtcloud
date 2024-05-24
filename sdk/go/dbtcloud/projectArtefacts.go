@@ -26,7 +26,6 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// NOTE for customers using the LEGACY dbt_cloud provider:
 //			_, err := dbtcloud.NewProjectArtefacts(ctx, "my_project_artefacts", &dbtcloud.ProjectArtefactsArgs{
 //				ProjectId:      pulumi.Any(dbtProject.Id),
 //				DocsJobId:      pulumi.Any(prodJob.Id),
@@ -43,7 +42,25 @@ import (
 //
 // ## Import
 //
-// Import using a project ID found in the URL or via the API.
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_project_artefacts.my_artefacts
+//
+//	id = "project_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_project_artefacts.my_artefacts
+//
+//	id = "12345"
+//
+// }
+//
+// using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts "project_id"

@@ -20,6 +20,21 @@ export interface GroupGroupPermission {
     projectId?: pulumi.Input<number>;
 }
 
+export interface GroupPartialPermissionsGroupPermission {
+    /**
+     * Whether access should be provided for all projects or not.
+     */
+    allProjects: pulumi.Input<boolean>;
+    /**
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+     */
+    permissionSet: pulumi.Input<string>;
+    /**
+     * Project ID to apply this permission to for this group.
+     */
+    projectId?: pulumi.Input<number>;
+}
+
 export interface JobJobCompletionTriggerCondition {
     /**
      * The ID of the job that would trigger this job after completion.

@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Setup notifications on jobs success/failure to internal users, external email addresses or Slack channels
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -21,6 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // dbt Cloud allows us to create internal and external notifications
+    ///     //
     ///     // an internal notification will send emails to the user mentioned in `user_id`
     ///     //
     ///     // NOTE: If internal notification settings already exist for a user, currently you MUST import
@@ -82,7 +85,25 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a notification ID
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_notification.my_notification
+    /// 
+    ///   id = "notification_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_notification.my_notification
+    /// 
+    ///   id = "12345"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/notification:Notification my_notification "notification_id"
@@ -105,7 +126,7 @@ namespace Pulumi.DbtCloud
         /// Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
         /// </summary>
         [Output("notificationType")]
-        public Output<int?> NotificationType { get; private set; } = null!;
+        public Output<int> NotificationType { get; private set; } = null!;
 
         /// <summary>
         /// List of job IDs to trigger the webhook on cancel
@@ -141,7 +162,7 @@ namespace Pulumi.DbtCloud
         /// State of the notification (1 = active (default), 2 = inactive)
         /// </summary>
         [Output("state")]
-        public Output<int?> State { get; private set; } = null!;
+        public Output<int> State { get; private set; } = null!;
 
         /// <summary>
         /// Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one

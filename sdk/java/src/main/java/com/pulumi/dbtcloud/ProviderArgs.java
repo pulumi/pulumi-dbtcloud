@@ -162,7 +162,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         public ProviderArgs build() {
             $.accountId = Codegen.integerProp("accountId").output().arg($.accountId).env("DBT_CLOUD_ACCOUNT_ID").getNullable();
             $.hostUrl = Codegen.stringProp("hostUrl").output().arg($.hostUrl).env("DBT_CLOUD_HOST_URL").def("https://cloud.getdbt.com/api").getNullable();
-            $.token = Codegen.stringProp("token").output().arg($.token).env("DBT_CLOUD_TOKEN").getNullable();
+            $.token = Codegen.stringProp("token").secret().arg($.token).env("DBT_CLOUD_TOKEN").getNullable();
             return $;
         }
     }

@@ -43,7 +43,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // NOTE for customers using the LEGACY dbt_cloud provider:
  *         var testWebhook = new Webhook("testWebhook", WebhookArgs.builder()
  *             .name("test-webhook")
  *             .description("Test webhook")
@@ -64,14 +63,32 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Import using a job ID found in the URL or via the API.
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_webhook.my_webhook
+ * 
+ *   id = &#34;webhook_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_webhook.my_webhook
+ * 
+ *   id = &#34;wsu_abcdefg&#34;
+ * 
+ * }
+ * 
+ * using the older import command
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/webhook:Webhook test_webhook &#34;job_id&#34;
+ * $ pulumi import dbtcloud:index/webhook:Webhook my_webhook &#34;webhook_id&#34;
  * ```
  * 
  * ```sh
- * $ pulumi import dbtcloud:index/webhook:Webhook test_webhook wsu_abcdefg
+ * $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
  * ```
  * 
  */

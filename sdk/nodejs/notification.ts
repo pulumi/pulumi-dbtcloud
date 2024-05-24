@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Setup notifications on jobs success/failure to internal users, external email addresses or Slack channels
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -12,6 +14,7 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * // dbt Cloud allows us to create internal and external notifications
+ * //
  * // an internal notification will send emails to the user mentioned in `user_id`
  * //
  * // NOTE: If internal notification settings already exist for a user, currently you MUST import
@@ -52,7 +55,25 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Import using a notification ID
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_notification.my_notification
+ *
+ *   id = "notification_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_notification.my_notification
+ *
+ *   id = "12345"
+ *
+ * }
+ *
+ * using the older import command
  *
  * ```sh
  * $ pulumi import dbtcloud:index/notification:Notification my_notification "notification_id"
@@ -97,19 +118,19 @@ export class Notification extends pulumi.CustomResource {
     /**
      * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      */
-    public readonly notificationType!: pulumi.Output<number | undefined>;
+    public readonly notificationType!: pulumi.Output<number>;
     /**
      * List of job IDs to trigger the webhook on cancel
      */
-    public readonly onCancels!: pulumi.Output<number[] | undefined>;
+    public readonly onCancels!: pulumi.Output<number[]>;
     /**
      * List of job IDs to trigger the webhook on failure
      */
-    public readonly onFailures!: pulumi.Output<number[] | undefined>;
+    public readonly onFailures!: pulumi.Output<number[]>;
     /**
      * List of job IDs to trigger the webhook on success
      */
-    public readonly onSuccesses!: pulumi.Output<number[] | undefined>;
+    public readonly onSuccesses!: pulumi.Output<number[]>;
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      */
@@ -121,7 +142,7 @@ export class Notification extends pulumi.CustomResource {
     /**
      * State of the notification (1 = active (default), 2 = inactive)
      */
-    public readonly state!: pulumi.Output<number | undefined>;
+    public readonly state!: pulumi.Output<number>;
     /**
      * Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
      */

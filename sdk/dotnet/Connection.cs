@@ -25,7 +25,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // NOTE for customers using the LEGACY dbt_cloud provider:
     ///     var databricks = new DbtCloud.Connection("databricks", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
@@ -35,6 +34,8 @@ namespace Pulumi.DbtCloud
     ///         HostName = "my-databricks-host.cloud.databricks.com",
     ///         HttpPath = "/my/path",
     ///         Catalog = "moo",
+    ///         OauthClientId = "yourclientid",
+    ///         OauthClientSecret = "yourclientsecret",
     ///     });
     /// 
     ///     var redshift = new DbtCloud.Connection("redshift", new()
@@ -56,6 +57,9 @@ namespace Pulumi.DbtCloud
     ///         Database = "MY_DATABASE",
     ///         Role = "MY_ROLE",
     ///         Warehouse = "MY_WAREHOUSE",
+    ///         OauthClientId = "yourclientid",
+    ///         OauthClientSecret = "yourclientsecret",
+    ///         AllowSso = true,
     ///     });
     /// 
     /// });
@@ -63,7 +67,25 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Import
     /// 
-    /// Import using a project ID and connection ID found in the URL or via the API.
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_connection.test_connection
+    /// 
+    ///   id = "project_id:connection_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_connection.test_connection
+    /// 
+    ///   id = "12345:6789"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/connection:Connection test_connection "project_id:connection_id"
@@ -77,31 +99,31 @@ namespace Pulumi.DbtCloud
     public partial class Connection : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Account name for the connection
+        /// Account name for the connection (for Snowflake)
         /// </summary>
         [Output("account")]
         public Output<string?> Account { get; private set; } = null!;
 
         /// <summary>
-        /// Adapter id created for the Databricks connection
+        /// Adapter id created for the Databricks connection (for Databricks)
         /// </summary>
         [Output("adapterId")]
         public Output<int> AdapterId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not the connection should allow client session keep alive
+        /// Whether or not the connection should allow client session keep alive (for Snowflake)
         /// </summary>
         [Output("allowKeepAlive")]
         public Output<bool?> AllowKeepAlive { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not the connection should allow SSO
+        /// Whether or not the connection should allow SSO (for Snowflake)
         /// </summary>
         [Output("allowSso")]
         public Output<bool?> AllowSso { get; private set; } = null!;
 
         /// <summary>
-        /// Catalog name if Unity Catalog is enabled in your Databricks workspace
+        /// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         /// </summary>
         [Output("catalog")]
         public Output<string?> Catalog { get; private set; } = null!;
@@ -125,7 +147,7 @@ namespace Pulumi.DbtCloud
         public Output<string?> HostName { get; private set; } = null!;
 
         /// <summary>
-        /// The HTTP path of the Databricks cluster or SQL warehouse
+        /// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         /// </summary>
         [Output("httpPath")]
         public Output<string?> HttpPath { get; private set; } = null!;
@@ -143,13 +165,13 @@ namespace Pulumi.DbtCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// OAuth client identifier
+        /// OAuth client identifier (for Snowflake and Databricks)
         /// </summary>
         [Output("oauthClientId")]
         public Output<string?> OauthClientId { get; private set; } = null!;
 
         /// <summary>
-        /// OAuth client secret
+        /// OAuth client secret (for Snowflake and Databricks)
         /// </summary>
         [Output("oauthClientSecret")]
         public Output<string?> OauthClientSecret { get; private set; } = null!;
@@ -173,7 +195,7 @@ namespace Pulumi.DbtCloud
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Role name for the connection
+        /// Role name for the connection (for Snowflake)
         /// </summary>
         [Output("role")]
         public Output<string?> Role { get; private set; } = null!;
@@ -191,7 +213,7 @@ namespace Pulumi.DbtCloud
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Warehouse name for the connection
+        /// Warehouse name for the connection (for Snowflake)
         /// </summary>
         [Output("warehouse")]
         public Output<string?> Warehouse { get; private set; } = null!;
@@ -244,25 +266,25 @@ namespace Pulumi.DbtCloud
     public sealed class ConnectionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Account name for the connection
+        /// Account name for the connection (for Snowflake)
         /// </summary>
         [Input("account")]
         public Input<string>? Account { get; set; }
 
         /// <summary>
-        /// Whether or not the connection should allow client session keep alive
+        /// Whether or not the connection should allow client session keep alive (for Snowflake)
         /// </summary>
         [Input("allowKeepAlive")]
         public Input<bool>? AllowKeepAlive { get; set; }
 
         /// <summary>
-        /// Whether or not the connection should allow SSO
+        /// Whether or not the connection should allow SSO (for Snowflake)
         /// </summary>
         [Input("allowSso")]
         public Input<bool>? AllowSso { get; set; }
 
         /// <summary>
-        /// Catalog name if Unity Catalog is enabled in your Databricks workspace
+        /// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         /// </summary>
         [Input("catalog")]
         public Input<string>? Catalog { get; set; }
@@ -280,7 +302,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? HostName { get; set; }
 
         /// <summary>
-        /// The HTTP path of the Databricks cluster or SQL warehouse
+        /// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         /// </summary>
         [Input("httpPath")]
         public Input<string>? HttpPath { get; set; }
@@ -298,13 +320,13 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// OAuth client identifier
+        /// OAuth client identifier (for Snowflake and Databricks)
         /// </summary>
         [Input("oauthClientId")]
         public Input<string>? OauthClientId { get; set; }
 
         /// <summary>
-        /// OAuth client secret
+        /// OAuth client secret (for Snowflake and Databricks)
         /// </summary>
         [Input("oauthClientSecret")]
         public Input<string>? OauthClientSecret { get; set; }
@@ -328,7 +350,7 @@ namespace Pulumi.DbtCloud
         public Input<int> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Role name for the connection
+        /// Role name for the connection (for Snowflake)
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
@@ -346,7 +368,7 @@ namespace Pulumi.DbtCloud
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// Warehouse name for the connection
+        /// Warehouse name for the connection (for Snowflake)
         /// </summary>
         [Input("warehouse")]
         public Input<string>? Warehouse { get; set; }
@@ -360,31 +382,31 @@ namespace Pulumi.DbtCloud
     public sealed class ConnectionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Account name for the connection
+        /// Account name for the connection (for Snowflake)
         /// </summary>
         [Input("account")]
         public Input<string>? Account { get; set; }
 
         /// <summary>
-        /// Adapter id created for the Databricks connection
+        /// Adapter id created for the Databricks connection (for Databricks)
         /// </summary>
         [Input("adapterId")]
         public Input<int>? AdapterId { get; set; }
 
         /// <summary>
-        /// Whether or not the connection should allow client session keep alive
+        /// Whether or not the connection should allow client session keep alive (for Snowflake)
         /// </summary>
         [Input("allowKeepAlive")]
         public Input<bool>? AllowKeepAlive { get; set; }
 
         /// <summary>
-        /// Whether or not the connection should allow SSO
+        /// Whether or not the connection should allow SSO (for Snowflake)
         /// </summary>
         [Input("allowSso")]
         public Input<bool>? AllowSso { get; set; }
 
         /// <summary>
-        /// Catalog name if Unity Catalog is enabled in your Databricks workspace
+        /// Catalog name if Unity Catalog is enabled in your Databricks workspace (for Databricks)
         /// </summary>
         [Input("catalog")]
         public Input<string>? Catalog { get; set; }
@@ -408,7 +430,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? HostName { get; set; }
 
         /// <summary>
-        /// The HTTP path of the Databricks cluster or SQL warehouse
+        /// The HTTP path of the Databricks cluster or SQL warehouse (for Databricks)
         /// </summary>
         [Input("httpPath")]
         public Input<string>? HttpPath { get; set; }
@@ -426,13 +448,13 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// OAuth client identifier
+        /// OAuth client identifier (for Snowflake and Databricks)
         /// </summary>
         [Input("oauthClientId")]
         public Input<string>? OauthClientId { get; set; }
 
         /// <summary>
-        /// OAuth client secret
+        /// OAuth client secret (for Snowflake and Databricks)
         /// </summary>
         [Input("oauthClientSecret")]
         public Input<string>? OauthClientSecret { get; set; }
@@ -456,7 +478,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? ProjectId { get; set; }
 
         /// <summary>
-        /// Role name for the connection
+        /// Role name for the connection (for Snowflake)
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
@@ -474,7 +496,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Warehouse name for the connection
+        /// Warehouse name for the connection (for Snowflake)
         /// </summary>
         [Input("warehouse")]
         public Input<string>? Warehouse { get; set; }

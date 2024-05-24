@@ -60,6 +60,26 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_fabric_connection.my_connection
+ * 
+ *   id = &#34;project_id:connection_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_fabric_connection.my_connection
+ * 
+ *   id = &#34;12345:6789&#34;
+ * 
+ * }
+ * 
+ * using the older import command
+ * 
  * ```sh
  * $ pulumi import dbtcloud:index/fabricConnection:FabricConnection my_connection &#34;project_id:connection_id&#34;
  * ```
