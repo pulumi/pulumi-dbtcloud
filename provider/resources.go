@@ -326,7 +326,7 @@ func convertIDType(prov *tfbridge.ProviderInfo, tfName string) {
 		panic("convertIDType expects to convert from an int to a string")
 	}
 
-	prov.Resources[tfName].ComputeID = func(ctx context.Context, state resource.PropertyMap) (resource.ID, error) {
+	prov.Resources[tfName].ComputeID = func(_ context.Context, state resource.PropertyMap) (resource.ID, error) {
 		id, ok := state["id"]
 		const post = "; this is always a provider bug"
 		if !ok {

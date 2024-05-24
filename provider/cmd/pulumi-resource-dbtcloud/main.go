@@ -18,6 +18,7 @@ package main
 
 import (
 	"context"
+
 	_ "embed" // to embed schema-embed.json
 
 	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
