@@ -45,7 +45,6 @@ const (
 
 // Provider returns additional overlaid schema and metadata associated with the provider
 func Provider(ctx context.Context) tfbridge.ProviderInfo {
-
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P: pfbridge.MuxShimWithPF(ctx,
@@ -321,7 +320,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 }
 
 func convertIDType(prov *tfbridge.ProviderInfo, tfName string) {
-
 	if schema := prov.P.ResourcesMap().Get(tfName).Schema(); schema.Get("id").Type() != shim.TypeInt {
 		panic("convertIDType expects to convert from an int to a string")
 	}
