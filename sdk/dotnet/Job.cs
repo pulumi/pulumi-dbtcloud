@@ -228,7 +228,7 @@ namespace Pulumi.DbtCloud
         public Output<bool?> GenerateDocs { get; private set; } = null!;
 
         /// <summary>
-        /// Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         /// </summary>
         [Output("isActive")]
         public Output<bool?> IsActive { get; private set; } = null!;
@@ -419,7 +419,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? GenerateDocs { get; set; }
 
         /// <summary>
-        /// Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
@@ -589,7 +589,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? GenerateDocs { get; set; }
 
         /// <summary>
-        /// Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }

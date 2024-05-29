@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// [Deprecated] Resource for mentioning what jobs are the source of truth for the legacy dbt Docs and dbt Source Freshness pages. dbt Explorer doesn't require this config anymore.
+//
 // ## Example Usage
 //
 // ```go

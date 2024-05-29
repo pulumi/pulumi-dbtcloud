@@ -203,7 +203,7 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly generateDocs!: pulumi.Output<boolean | undefined>;
     /**
-     * Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
      */
     public readonly isActive!: pulumi.Output<boolean | undefined>;
     /**
@@ -379,7 +379,7 @@ export interface JobState {
      */
     generateDocs?: pulumi.Input<boolean>;
     /**
-     * Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
      */
     isActive?: pulumi.Input<boolean>;
     /**
@@ -477,7 +477,7 @@ export interface JobArgs {
      */
     generateDocs?: pulumi.Input<boolean>;
     /**
-     * Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
      */
     isActive?: pulumi.Input<boolean>;
     /**

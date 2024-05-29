@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// [Deprecated] Resource for mentioning what jobs are the source of truth for the legacy dbt Docs and dbt Source Freshness pages. dbt Explorer doesn't require this config anymore.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

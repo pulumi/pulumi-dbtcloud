@@ -195,6 +195,11 @@ export type Notification = import("./notification").Notification;
 export const Notification: typeof import("./notification").Notification = null as any;
 utilities.lazyLoad(exports, ["Notification"], () => require("./notification"));
 
+export { PartialLicenseMapArgs, PartialLicenseMapState } from "./partialLicenseMap";
+export type PartialLicenseMap = import("./partialLicenseMap").PartialLicenseMap;
+export const PartialLicenseMap: typeof import("./partialLicenseMap").PartialLicenseMap = null as any;
+utilities.lazyLoad(exports, ["PartialLicenseMap"], () => require("./partialLicenseMap"));
+
 export { PartialNotificationArgs, PartialNotificationState } from "./partialNotification";
 export type PartialNotification = import("./partialNotification").PartialNotification;
 export const PartialNotification: typeof import("./partialNotification").PartialNotification = null as any;
@@ -299,6 +304,8 @@ const _module = {
                 return new LicenseMap(name, <any>undefined, { urn })
             case "dbtcloud:index/notification:Notification":
                 return new Notification(name, <any>undefined, { urn })
+            case "dbtcloud:index/partialLicenseMap:PartialLicenseMap":
+                return new PartialLicenseMap(name, <any>undefined, { urn })
             case "dbtcloud:index/partialNotification:PartialNotification":
                 return new PartialNotification(name, <any>undefined, { urn })
             case "dbtcloud:index/postgresCredential:PostgresCredential":
@@ -341,6 +348,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/groupPartialPermissions
 pulumi.runtime.registerResourceModule("dbtcloud", "index/job", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/licenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/notification", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/partialLicenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialNotification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/postgresCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/project", _module)
