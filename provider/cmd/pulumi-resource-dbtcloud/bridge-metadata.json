@@ -99,6 +99,14 @@
                     }
                 }
             },
+            "dbtcloud_partial_license_map": {
+                "current": "dbtcloud:index/partialLicenseMap:PartialLicenseMap",
+                "fields": {
+                    "sso_license_mapping_groups": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "dbtcloud_partial_notification": {
                 "current": "dbtcloud:index/partialNotification:PartialNotification",
                 "fields": {
@@ -308,6 +316,7 @@
             "dbtcloud:index/job:Job": 0,
             "dbtcloud:index/licenseMap:LicenseMap": 0,
             "dbtcloud:index/notification:Notification": 1,
+            "dbtcloud:index/partialLicenseMap:PartialLicenseMap": 1,
             "dbtcloud:index/partialNotification:PartialNotification": 1,
             "dbtcloud:index/postgresCredential:PostgresCredential": 0,
             "dbtcloud:index/project:Project": 0,
