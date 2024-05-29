@@ -61,6 +61,7 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 		Homepage:          "https://www.pulumi.com",
 		Repository:        "https://github.com/pulumi/pulumi-dbtcloud",
 		GitHubOrg:         "dbt-labs",
+		Version:           version.Version,
 		LogoURL:           "https://raw.githubusercontent.com/pulumi/pulumi-dbtcloud/main/res/dbt-bit_tm.png",
 		TFProviderLicense: tfbridge.SetProviderLicense(tfbridge.MITLicenseType),
 		MetadataInfo:      tfbridge.NewProviderMetadata(bridgeMetadata),
