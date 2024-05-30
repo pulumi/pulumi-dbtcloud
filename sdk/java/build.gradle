@@ -89,8 +89,8 @@ publishing {
             artifact javadocJar
 
             pom {
-                inceptionYear = ""
-                name = ""
+                inceptionYear = "2022"
+                name = "pulumi-dbtcloud"
                 packaging = "jar"
                 description = "A Pulumi package for creating and managing dbt Cloud resources."
 
@@ -111,9 +111,9 @@ publishing {
 
                 developers {
                     developer {
-                        id = ""
-                        name = ""
-                        email = ""
+                        id = "pulumi"
+                        name = "Pulumi"
+                        email = "support@pulumi.com"
                     }
                 }
             }

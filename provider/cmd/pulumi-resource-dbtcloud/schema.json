@@ -15,7 +15,7 @@
     "repository": "https://github.com/pulumi/pulumi-dbtcloud",
     "logoUrl": "https://raw.githubusercontent.com/pulumi/pulumi-dbtcloud/main/res/dbt-bit_tm.png",
     "pluginDownloadURL": "github://api.github.com/pulumi/pulumi-dbtcloud",
-    "publisher": "pulumi",
+    "publisher": "Pulumi",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },

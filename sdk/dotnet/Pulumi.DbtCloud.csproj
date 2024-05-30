@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>pulumi</Authors>
-    <Company>pulumi</Company>
+    <Authors>Pulumi</Authors>
+    <Company>Pulumi</Company>
     <Description>A Pulumi package for creating and managing dbt Cloud resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://www.pulumi.com</PackageProjectUrl>

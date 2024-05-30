@@ -53,7 +53,7 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 		),
 		Name:              "dbtcloud",
 		DisplayName:       "dbt Cloud",
-		Publisher:         "pulumi",
+		Publisher:         "Pulumi",
 		PluginDownloadURL: "github://api.github.com/pulumi/pulumi-dbtcloud",
 		Description:       "A Pulumi package for creating and managing dbt Cloud resources.",
 		Keywords:          []string{"pulumi", "dbtcloud", "dbt", "cloud", "category/cloud"},
