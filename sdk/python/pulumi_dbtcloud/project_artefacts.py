@@ -132,6 +132,8 @@ class ProjectArtefacts(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        [Deprecated] Resource for mentioning what jobs are the source of truth for the legacy dbt Docs and dbt Source Freshness pages. dbt Explorer doesn't require this config anymore.
+
         ## Example Usage
 
         ```python
@@ -187,6 +189,8 @@ class ProjectArtefacts(pulumi.CustomResource):
                  args: ProjectArtefactsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        [Deprecated] Resource for mentioning what jobs are the source of truth for the legacy dbt Docs and dbt Source Freshness pages. dbt Explorer doesn't require this config anymore.
+
         ## Example Usage
 
         ```python

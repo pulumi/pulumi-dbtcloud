@@ -54,6 +54,7 @@
         "job.ts",
         "licenseMap.ts",
         "notification.ts",
+        "partialLicenseMap.ts",
         "partialNotification.ts",
         "postgresCredential.ts",
         "project.ts",
