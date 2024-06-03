@@ -2083,7 +2083,7 @@
                 },
                 "isActive": {
                     "type": "boolean",
-                    "description": "Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.\n"
+                    "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.\n"
                 },
                 "jobCompletionTriggerCondition": {
                     "$ref": "#/types/dbtcloud:index/JobJobCompletionTriggerCondition:JobJobCompletionTriggerCondition",
@@ -2201,7 +2201,7 @@
                 },
                 "isActive": {
                     "type": "boolean",
-                    "description": "Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.\n"
+                    "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.\n"
                 },
                 "jobCompletionTriggerCondition": {
                     "$ref": "#/types/dbtcloud:index/JobJobCompletionTriggerCondition:JobJobCompletionTriggerCondition",
@@ -2321,7 +2321,7 @@
                     },
                     "isActive": {
                         "type": "boolean",
-                        "description": "Flag for whether the job is marked active or deleted. To create/keep a job in a 'deactivated' state, check  the `triggers` config.\n"
+                        "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.\n"
                     },
                     "jobCompletionTriggerCondition": {
                         "$ref": "#/types/dbtcloud:index/JobJobCompletionTriggerCondition:JobJobCompletionTriggerCondition",
@@ -2608,6 +2608,60 @@
                     "userId": {
                         "type": "integer",
                         "description": "Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/partialLicenseMap:PartialLicenseMap": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// Developer license group mapping\nconst devLicenseMap = new dbtcloud.PartialLicenseMap(\"dev_license_map\", {\n    licenseType: \"developer\",\n    ssoLicenseMappingGroups: [\"DEV-SSO-GROUP\"],\n});\n// Read-only license mapping\nconst readOnlyLicenseMap = new dbtcloud.PartialLicenseMap(\"read_only_license_map\", {\n    licenseType: \"read_only\",\n    ssoLicenseMappingGroups: [\"READ-ONLY-SSO-GROUP\"],\n});\n// IT license mapping\nconst itLicenseMap = new dbtcloud.PartialLicenseMap(\"it_license_map\", {\n    licenseType: \"it\",\n    ssoLicenseMappingGroups: [\"IT-SSO-GROUP\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# Developer license group mapping\ndev_license_map = dbtcloud.PartialLicenseMap(\"dev_license_map\",\n    license_type=\"developer\",\n    sso_license_mapping_groups=[\"DEV-SSO-GROUP\"])\n# Read-only license mapping\nread_only_license_map = dbtcloud.PartialLicenseMap(\"read_only_license_map\",\n    license_type=\"read_only\",\n    sso_license_mapping_groups=[\"READ-ONLY-SSO-GROUP\"])\n# IT license mapping\nit_license_map = dbtcloud.PartialLicenseMap(\"it_license_map\",\n    license_type=\"it\",\n    sso_license_mapping_groups=[\"IT-SSO-GROUP\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Developer license group mapping\n    var devLicenseMap = new DbtCloud.PartialLicenseMap(\"dev_license_map\", new()\n    {\n        LicenseType = \"developer\",\n        SsoLicenseMappingGroups = new[]\n        {\n            \"DEV-SSO-GROUP\",\n        },\n    });\n\n    // Read-only license mapping\n    var readOnlyLicenseMap = new DbtCloud.PartialLicenseMap(\"read_only_license_map\", new()\n    {\n        LicenseType = \"read_only\",\n        SsoLicenseMappingGroups = new[]\n        {\n            \"READ-ONLY-SSO-GROUP\",\n        },\n    });\n\n    // IT license mapping\n    var itLicenseMap = new DbtCloud.PartialLicenseMap(\"it_license_map\", new()\n    {\n        LicenseType = \"it\",\n        SsoLicenseMappingGroups = new[]\n        {\n            \"IT-SSO-GROUP\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Developer license group mapping\n\t\t_, err := dbtcloud.NewPartialLicenseMap(ctx, \"dev_license_map\", \u0026dbtcloud.PartialLicenseMapArgs{\n\t\t\tLicenseType: pulumi.String(\"developer\"),\n\t\t\tSsoLicenseMappingGroups: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"DEV-SSO-GROUP\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Read-only license mapping\n\t\t_, err = dbtcloud.NewPartialLicenseMap(ctx, \"read_only_license_map\", \u0026dbtcloud.PartialLicenseMapArgs{\n\t\t\tLicenseType: pulumi.String(\"read_only\"),\n\t\t\tSsoLicenseMappingGroups: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"READ-ONLY-SSO-GROUP\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// IT license mapping\n\t\t_, err = dbtcloud.NewPartialLicenseMap(ctx, \"it_license_map\", \u0026dbtcloud.PartialLicenseMapArgs{\n\t\t\tLicenseType: pulumi.String(\"it\"),\n\t\t\tSsoLicenseMappingGroups: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"IT-SSO-GROUP\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.PartialLicenseMap;\nimport com.pulumi.dbtcloud.PartialLicenseMapArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Developer license group mapping\n        var devLicenseMap = new PartialLicenseMap(\"devLicenseMap\", PartialLicenseMapArgs.builder()\n            .licenseType(\"developer\")\n            .ssoLicenseMappingGroups(\"DEV-SSO-GROUP\")\n            .build());\n\n        // Read-only license mapping\n        var readOnlyLicenseMap = new PartialLicenseMap(\"readOnlyLicenseMap\", PartialLicenseMapArgs.builder()\n            .licenseType(\"read_only\")\n            .ssoLicenseMappingGroups(\"READ-ONLY-SSO-GROUP\")\n            .build());\n\n        // IT license mapping\n        var itLicenseMap = new PartialLicenseMap(\"itLicenseMap\", PartialLicenseMapArgs.builder()\n            .licenseType(\"it\")\n            .ssoLicenseMappingGroups(\"IT-SSO-GROUP\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Developer license group mapping\n  devLicenseMap:\n    type: dbtcloud:PartialLicenseMap\n    name: dev_license_map\n    properties:\n      licenseType: developer\n      ssoLicenseMappingGroups:\n        - DEV-SSO-GROUP\n  # Read-only license mapping\n  readOnlyLicenseMap:\n    type: dbtcloud:PartialLicenseMap\n    name: read_only_license_map\n    properties:\n      licenseType: read_only\n      ssoLicenseMappingGroups:\n        - READ-ONLY-SSO-GROUP\n  # IT license mapping\n  itLicenseMap:\n    type: dbtcloud:PartialLicenseMap\n    name: it_license_map\n    properties:\n      licenseType: it\n      ssoLicenseMappingGroups:\n        - IT-SSO-GROUP\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "licenseType": {
+                    "type": "string",
+                    "description": "The license type to update\n"
+                },
+                "ssoLicenseMappingGroups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of SSO groups to map to the license type.\n"
+                }
+            },
+            "required": [
+                "licenseType",
+                "ssoLicenseMappingGroups"
+            ],
+            "inputProperties": {
+                "licenseType": {
+                    "type": "string",
+                    "description": "The license type to update\n"
+                },
+                "ssoLicenseMappingGroups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of SSO groups to map to the license type.\n"
+                }
+            },
+            "requiredInputs": [
+                "licenseType",
+                "ssoLicenseMappingGroups"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering PartialLicenseMap resources.\n",
+                "properties": {
+                    "licenseType": {
+                        "type": "string",
+                        "description": "The license type to update\n"
+                    },
+                    "ssoLicenseMappingGroups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of SSO groups to map to the license type.\n"
                     }
                 },
                 "type": "object"
@@ -2948,7 +3002,7 @@
             }
         },
         "dbtcloud:index/projectArtefacts:ProjectArtefacts": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myProjectArtefacts = new dbtcloud.ProjectArtefacts(\"my_project_artefacts\", {\n    projectId: dbtProject.id,\n    docsJobId: prodJob.id,\n    freshnessJobId: prodJob.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_project_artefacts = dbtcloud.ProjectArtefacts(\"my_project_artefacts\",\n    project_id=dbt_project[\"id\"],\n    docs_job_id=prod_job[\"id\"],\n    freshness_job_id=prod_job[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProjectArtefacts = new DbtCloud.ProjectArtefacts(\"my_project_artefacts\", new()\n    {\n        ProjectId = dbtProject.Id,\n        DocsJobId = prodJob.Id,\n        FreshnessJobId = prodJob.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewProjectArtefacts(ctx, \"my_project_artefacts\", \u0026dbtcloud.ProjectArtefactsArgs{\n\t\t\tProjectId:      pulumi.Any(dbtProject.Id),\n\t\t\tDocsJobId:      pulumi.Any(prodJob.Id),\n\t\t\tFreshnessJobId: pulumi.Any(prodJob.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.ProjectArtefacts;\nimport com.pulumi.dbtcloud.ProjectArtefactsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProjectArtefacts = new ProjectArtefacts(\"myProjectArtefacts\", ProjectArtefactsArgs.builder()\n            .projectId(dbtProject.id())\n            .docsJobId(prodJob.id())\n            .freshnessJobId(prodJob.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProjectArtefacts:\n    type: dbtcloud:ProjectArtefacts\n    name: my_project_artefacts\n    properties:\n      projectId: ${dbtProject.id}\n      docsJobId: ${prodJob.id}\n      freshnessJobId: ${prodJob.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_project_artefacts.my_artefacts\n\n  id = \"project_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_project_artefacts.my_artefacts\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts \"project_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts 12345\n```\n\n",
+            "description": "[Deprecated] Resource for mentioning what jobs are the source of truth for the legacy dbt Docs and dbt Source Freshness pages. dbt Explorer doesn't require this config anymore.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myProjectArtefacts = new dbtcloud.ProjectArtefacts(\"my_project_artefacts\", {\n    projectId: dbtProject.id,\n    docsJobId: prodJob.id,\n    freshnessJobId: prodJob.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_project_artefacts = dbtcloud.ProjectArtefacts(\"my_project_artefacts\",\n    project_id=dbt_project[\"id\"],\n    docs_job_id=prod_job[\"id\"],\n    freshness_job_id=prod_job[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProjectArtefacts = new DbtCloud.ProjectArtefacts(\"my_project_artefacts\", new()\n    {\n        ProjectId = dbtProject.Id,\n        DocsJobId = prodJob.Id,\n        FreshnessJobId = prodJob.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewProjectArtefacts(ctx, \"my_project_artefacts\", \u0026dbtcloud.ProjectArtefactsArgs{\n\t\t\tProjectId:      pulumi.Any(dbtProject.Id),\n\t\t\tDocsJobId:      pulumi.Any(prodJob.Id),\n\t\t\tFreshnessJobId: pulumi.Any(prodJob.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.ProjectArtefacts;\nimport com.pulumi.dbtcloud.ProjectArtefactsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myProjectArtefacts = new ProjectArtefacts(\"myProjectArtefacts\", ProjectArtefactsArgs.builder()\n            .projectId(dbtProject.id())\n            .docsJobId(prodJob.id())\n            .freshnessJobId(prodJob.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myProjectArtefacts:\n    type: dbtcloud:ProjectArtefacts\n    name: my_project_artefacts\n    properties:\n      projectId: ${dbtProject.id}\n      docsJobId: ${prodJob.id}\n      freshnessJobId: ${prodJob.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_project_artefacts.my_artefacts\n\n  id = \"project_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_project_artefacts.my_artefacts\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts \"project_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts 12345\n```\n\n",
             "properties": {
                 "docsJobId": {
                     "type": "integer",
