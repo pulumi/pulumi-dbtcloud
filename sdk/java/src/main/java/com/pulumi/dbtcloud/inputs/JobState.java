@@ -126,14 +126,14 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Flag for whether the job is marked active or deleted. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
      * 
      */
     @Import(name="isActive")
     private @Nullable Output<Boolean> isActive;
 
     /**
-     * @return Flag for whether the job is marked active or deleted. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+     * @return Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
      * 
      */
     public Optional<Output<Boolean>> isActive() {
@@ -569,7 +569,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isActive Flag for whether the job is marked active or deleted. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+         * @param isActive Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
          * 
          * @return builder
          * 
@@ -580,7 +580,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isActive Flag for whether the job is marked active or deleted. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+         * @param isActive Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
          * 
          * @return builder
          * 

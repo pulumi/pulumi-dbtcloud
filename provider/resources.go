@@ -37,6 +37,10 @@ import (
 //go:embed cmd/pulumi-resource-dbtcloud/bridge-metadata.json
 var bridgeMetadata []byte
 
+func computeIDField(field resource.PropertyKey) tfbridge.ComputeID {
+	return tfbridge.DelegateIDField(field, "dbtcloud", "https://github.com/pulumi/pulumi-dbtcloud")
+}
+
 // all of the token components used below.
 const (
 	mainPkg = "dbtcloud"
@@ -183,6 +187,9 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			"dbtcloud_fabric_credential": {
 				Tok:  tfbridge.MakeResource(mainPkg, mainMod, "FabricCredential"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
+			},
+			"dbtcloud_partial_license_map": {
+				ComputeID: computeIDField("id"),
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{

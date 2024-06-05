@@ -43,6 +43,7 @@ from .group_partial_permissions import *
 from .job import *
 from .license_map import *
 from .notification import *
+from .partial_license_map import *
 from .partial_notification import *
 from .postgres_credential import *
 from .project import *
@@ -186,6 +187,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/notification:Notification": "Notification"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/partialLicenseMap",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/partialLicenseMap:PartialLicenseMap": "PartialLicenseMap"
   }
  },
  {

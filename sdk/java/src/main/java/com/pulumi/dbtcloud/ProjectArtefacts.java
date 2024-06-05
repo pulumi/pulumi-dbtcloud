@@ -15,6 +15,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * [Deprecated] Resource for mentioning what jobs are the source of truth for the legacy dbt Docs and dbt Source Freshness pages. dbt Explorer doesn&#39;t require this config anymore.
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;

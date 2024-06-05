@@ -285,14 +285,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.generateDocs);
     }
     /**
-     * Flag for whether the job is marked active or deleted. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
      * 
      */
     @Export(name="isActive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isActive;
 
     /**
-     * @return Flag for whether the job is marked active or deleted. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+     * @return Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
      * 
      */
     public Output<Optional<Boolean>> isActive() {
