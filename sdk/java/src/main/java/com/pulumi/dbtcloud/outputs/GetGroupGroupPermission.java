@@ -10,11 +10,9 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
-public final class GroupPartialPermissionsGroupPermission {
+public final class GetGroupGroupPermission {
     /**
      * @return Whether access should be provided for all projects or not.
      * 
@@ -29,18 +27,14 @@ public final class GroupPartialPermissionsGroupPermission {
      * @return Project ID to apply this permission to for this group.
      * 
      */
-    private @Nullable Integer projectId;
+    private Integer projectId;
     /**
      * @return What types of environments to apply Write permissions to.
-     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
-     * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
      * 
      */
-    private @Nullable List<String> writableEnvironmentCategories;
+    private List<String> writableEnvironmentCategories;
 
-    private GroupPartialPermissionsGroupPermission() {}
+    private GetGroupGroupPermission() {}
     /**
      * @return Whether access should be provided for all projects or not.
      * 
@@ -59,36 +53,32 @@ public final class GroupPartialPermissionsGroupPermission {
      * @return Project ID to apply this permission to for this group.
      * 
      */
-    public Optional<Integer> projectId() {
-        return Optional.ofNullable(this.projectId);
+    public Integer projectId() {
+        return this.projectId;
     }
     /**
      * @return What types of environments to apply Write permissions to.
-     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
-     * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
      * 
      */
     public List<String> writableEnvironmentCategories() {
-        return this.writableEnvironmentCategories == null ? List.of() : this.writableEnvironmentCategories;
+        return this.writableEnvironmentCategories;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public static Builder builder(GroupPartialPermissionsGroupPermission defaults) {
+    public static Builder builder(GetGroupGroupPermission defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
     public static final class Builder {
         private Boolean allProjects;
         private String permissionSet;
-        private @Nullable Integer projectId;
-        private @Nullable List<String> writableEnvironmentCategories;
+        private Integer projectId;
+        private List<String> writableEnvironmentCategories;
         public Builder() {}
-        public Builder(GroupPartialPermissionsGroupPermission defaults) {
+        public Builder(GetGroupGroupPermission defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allProjects = defaults.allProjects;
     	      this.permissionSet = defaults.permissionSet;
@@ -99,7 +89,7 @@ public final class GroupPartialPermissionsGroupPermission {
         @CustomType.Setter
         public Builder allProjects(Boolean allProjects) {
             if (allProjects == null) {
-              throw new MissingRequiredPropertyException("GroupPartialPermissionsGroupPermission", "allProjects");
+              throw new MissingRequiredPropertyException("GetGroupGroupPermission", "allProjects");
             }
             this.allProjects = allProjects;
             return this;
@@ -107,28 +97,32 @@ public final class GroupPartialPermissionsGroupPermission {
         @CustomType.Setter
         public Builder permissionSet(String permissionSet) {
             if (permissionSet == null) {
-              throw new MissingRequiredPropertyException("GroupPartialPermissionsGroupPermission", "permissionSet");
+              throw new MissingRequiredPropertyException("GetGroupGroupPermission", "permissionSet");
             }
             this.permissionSet = permissionSet;
             return this;
         }
         @CustomType.Setter
-        public Builder projectId(@Nullable Integer projectId) {
-
+        public Builder projectId(Integer projectId) {
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("GetGroupGroupPermission", "projectId");
+            }
             this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
-        public Builder writableEnvironmentCategories(@Nullable List<String> writableEnvironmentCategories) {
-
+        public Builder writableEnvironmentCategories(List<String> writableEnvironmentCategories) {
+            if (writableEnvironmentCategories == null) {
+              throw new MissingRequiredPropertyException("GetGroupGroupPermission", "writableEnvironmentCategories");
+            }
             this.writableEnvironmentCategories = writableEnvironmentCategories;
             return this;
         }
         public Builder writableEnvironmentCategories(String... writableEnvironmentCategories) {
             return writableEnvironmentCategories(List.of(writableEnvironmentCategories));
         }
-        public GroupPartialPermissionsGroupPermission build() {
-            final var _resultValue = new GroupPartialPermissionsGroupPermission();
+        public GetGroupGroupPermission build() {
+            final var _resultValue = new GetGroupGroupPermission();
             _resultValue.allProjects = allProjects;
             _resultValue.permissionSet = permissionSet;
             _resultValue.projectId = projectId;

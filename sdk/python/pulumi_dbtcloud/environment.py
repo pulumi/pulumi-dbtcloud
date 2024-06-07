@@ -384,14 +384,14 @@ class Environment(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         ci_environment = dbtcloud.Environment("ci_environment",
-            dbt_version="1.6.0-latest",
+            dbt_version="versionless",
             name="CI",
             project_id=dbt_project["id"],
             type="deployment",
             credential_id=ci_credential["credentialId"])
         # we can also set a deployment environment as being the production one
         prod_environment = dbtcloud.Environment("prod_environment",
-            dbt_version="1.6.0-latest",
+            dbt_version="1.7.0-latest",
             name="Prod",
             project_id=dbt_project["id"],
             type="deployment",
@@ -399,7 +399,7 @@ class Environment(pulumi.CustomResource):
             deployment_type="production")
         # Creating a development environment
         dev_environment = dbtcloud.Environment("dev_environment",
-            dbt_version="1.6.0-latest",
+            dbt_version="versionless",
             name="Dev",
             project_id=dbt_project["id"],
             type="development")
@@ -462,14 +462,14 @@ class Environment(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         ci_environment = dbtcloud.Environment("ci_environment",
-            dbt_version="1.6.0-latest",
+            dbt_version="versionless",
             name="CI",
             project_id=dbt_project["id"],
             type="deployment",
             credential_id=ci_credential["credentialId"])
         # we can also set a deployment environment as being the production one
         prod_environment = dbtcloud.Environment("prod_environment",
-            dbt_version="1.6.0-latest",
+            dbt_version="1.7.0-latest",
             name="Prod",
             project_id=dbt_project["id"],
             type="deployment",
@@ -477,7 +477,7 @@ class Environment(pulumi.CustomResource):
             deployment_type="production")
         # Creating a development environment
         dev_environment = dbtcloud.Environment("dev_environment",
-            dbt_version="1.6.0-latest",
+            dbt_version="versionless",
             name="Dev",
             project_id=dbt_project["id"],
             type="development")

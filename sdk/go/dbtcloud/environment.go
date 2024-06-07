@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := dbtcloud.NewEnvironment(ctx, "ci_environment", &dbtcloud.EnvironmentArgs{
-//				DbtVersion:   pulumi.String("1.6.0-latest"),
+//				DbtVersion:   pulumi.String("versionless"),
 //				Name:         pulumi.String("CI"),
 //				ProjectId:    pulumi.Any(dbtProject.Id),
 //				Type:         pulumi.String("deployment"),
@@ -38,7 +38,7 @@ import (
 //			}
 //			// we can also set a deployment environment as being the production one
 //			_, err = dbtcloud.NewEnvironment(ctx, "prod_environment", &dbtcloud.EnvironmentArgs{
-//				DbtVersion:     pulumi.String("1.6.0-latest"),
+//				DbtVersion:     pulumi.String("1.7.0-latest"),
 //				Name:           pulumi.String("Prod"),
 //				ProjectId:      pulumi.Any(dbtProject.Id),
 //				Type:           pulumi.String("deployment"),
@@ -50,7 +50,7 @@ import (
 //			}
 //			// Creating a development environment
 //			_, err = dbtcloud.NewEnvironment(ctx, "dev_environment", &dbtcloud.EnvironmentArgs{
-//				DbtVersion: pulumi.String("1.6.0-latest"),
+//				DbtVersion: pulumi.String("versionless"),
 //				Name:       pulumi.String("Dev"),
 //				ProjectId:  pulumi.Any(dbtProject.Id),
 //				Type:       pulumi.String("development"),

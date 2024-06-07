@@ -68,7 +68,7 @@ class GetEnvironmentResult:
     @pulumi.getter(name="customBranch")
     def custom_branch(self) -> str:
         """
-        The type of deployment environment (currently 'production', 'staging' or empty)
+        The custom branch name to use
         """
         return pulumi.get(self, "custom_branch")
 
@@ -76,7 +76,7 @@ class GetEnvironmentResult:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> str:
         """
-        Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+        Version number of dbt to use in this environment.
         """
         return pulumi.get(self, "dbt_version")
 
@@ -84,7 +84,7 @@ class GetEnvironmentResult:
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> str:
         """
-        The name of the environment
+        The type of deployment environment (currently 'production', 'staging' or empty)
         """
         return pulumi.get(self, "deployment_type")
 
@@ -132,7 +132,7 @@ class GetEnvironmentResult:
     @pulumi.getter
     def type(self) -> str:
         """
-        The name of the environment
+        The type of environment (must be either development or deployment)
         """
         return pulumi.get(self, "type")
 

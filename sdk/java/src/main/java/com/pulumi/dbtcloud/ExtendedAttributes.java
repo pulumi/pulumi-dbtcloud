@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var issueDepl = new Environment("issueDepl", EnvironmentArgs.builder()
- *             .dbtVersion("1.6.0-latest")
+ *             .dbtVersion("versionless")
  *             .name("My environment")
  *             .projectId(dbtProject.id())
  *             .type("deployment")

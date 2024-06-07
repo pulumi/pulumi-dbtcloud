@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var ciEnvironment = new Environment("ciEnvironment", EnvironmentArgs.builder()
- *             .dbtVersion("1.6.0-latest")
+ *             .dbtVersion("versionless")
  *             .name("CI")
  *             .projectId(dbtProject.id())
  *             .type("deployment")
@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * 
  *         // we can also set a deployment environment as being the production one
  *         var prodEnvironment = new Environment("prodEnvironment", EnvironmentArgs.builder()
- *             .dbtVersion("1.6.0-latest")
+ *             .dbtVersion("1.7.0-latest")
  *             .name("Prod")
  *             .projectId(dbtProject.id())
  *             .type("deployment")
@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  * 
  *         // Creating a development environment
  *         var devEnvironment = new Environment("devEnvironment", EnvironmentArgs.builder()
- *             .dbtVersion("1.6.0-latest")
+ *             .dbtVersion("versionless")
  *             .name("Dev")
  *             .projectId(dbtProject.id())
  *             .type("development")

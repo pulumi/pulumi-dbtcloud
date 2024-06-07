@@ -738,15 +738,31 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetExtendedAttributesResult> getExtendedAttributesPlain(GetExtendedAttributesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", TypeShape.of(GetExtendedAttributesResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve group details
+     * 
+     */
     public static Output<GetGroupResult> getGroup(GetGroupArgs args) {
         return getGroup(args, InvokeOptions.Empty);
     }
+    /**
+     * Retrieve group details
+     * 
+     */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args) {
         return getGroupPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Retrieve group details
+     * 
+     */
     public static Output<GetGroupResult> getGroup(GetGroupArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve group details
+     * 
+     */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
     }

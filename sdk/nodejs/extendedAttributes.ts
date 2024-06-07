@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *     projectId: dbtProject.id,
  * });
  * const issueDepl = new dbtcloud.Environment("issue_depl", {
- *     dbtVersion: "1.6.0-latest",
+ *     dbtVersion: "versionless",
  *     name: "My environment",
  *     projectId: dbtProject.id,
  *     type: "deployment",

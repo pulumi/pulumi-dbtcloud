@@ -76,28 +76,25 @@ namespace Pulumi.DbtCloud
     public partial class Group : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether or not to assign this group to users by default
+        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         /// </summary>
         [Output("assignByDefault")]
-        public Output<bool?> AssignByDefault { get; private set; } = null!;
+        public Output<bool> AssignByDefault { get; private set; } = null!;
 
+        /// <summary>
+        /// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        /// </summary>
         [Output("groupPermissions")]
         public Output<ImmutableArray<Outputs.GroupGroupPermission>> GroupPermissions { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the group is active
-        /// </summary>
-        [Output("isActive")]
-        public Output<bool?> IsActive { get; private set; } = null!;
-
-        /// <summary>
-        /// Group name
+        /// The name of the group. This is used to identify an existing group
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// SSO mapping group names for this group
+        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         /// </summary>
         [Output("ssoMappingGroups")]
         public Output<ImmutableArray<string>> SsoMappingGroups { get; private set; } = null!;
@@ -150,13 +147,17 @@ namespace Pulumi.DbtCloud
     public sealed class GroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether or not to assign this group to users by default
+        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         /// </summary>
         [Input("assignByDefault")]
         public Input<bool>? AssignByDefault { get; set; }
 
         [Input("groupPermissions")]
         private InputList<Inputs.GroupGroupPermissionArgs>? _groupPermissions;
+
+        /// <summary>
+        /// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        /// </summary>
         public InputList<Inputs.GroupGroupPermissionArgs> GroupPermissions
         {
             get => _groupPermissions ?? (_groupPermissions = new InputList<Inputs.GroupGroupPermissionArgs>());
@@ -164,13 +165,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// Whether the group is active
-        /// </summary>
-        [Input("isActive")]
-        public Input<bool>? IsActive { get; set; }
-
-        /// <summary>
-        /// Group name
+        /// The name of the group. This is used to identify an existing group
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -179,7 +174,7 @@ namespace Pulumi.DbtCloud
         private InputList<string>? _ssoMappingGroups;
 
         /// <summary>
-        /// SSO mapping group names for this group
+        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         /// </summary>
         public InputList<string> SsoMappingGroups
         {
@@ -196,13 +191,17 @@ namespace Pulumi.DbtCloud
     public sealed class GroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether or not to assign this group to users by default
+        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         /// </summary>
         [Input("assignByDefault")]
         public Input<bool>? AssignByDefault { get; set; }
 
         [Input("groupPermissions")]
         private InputList<Inputs.GroupGroupPermissionGetArgs>? _groupPermissions;
+
+        /// <summary>
+        /// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        /// </summary>
         public InputList<Inputs.GroupGroupPermissionGetArgs> GroupPermissions
         {
             get => _groupPermissions ?? (_groupPermissions = new InputList<Inputs.GroupGroupPermissionGetArgs>());
@@ -210,13 +209,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// Whether the group is active
-        /// </summary>
-        [Input("isActive")]
-        public Input<bool>? IsActive { get; set; }
-
-        /// <summary>
-        /// Group name
+        /// The name of the group. This is used to identify an existing group
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -225,7 +218,7 @@ namespace Pulumi.DbtCloud
         private InputList<string>? _ssoMappingGroups;
 
         /// <summary>
-        /// SSO mapping group names for this group
+        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         /// </summary>
         public InputList<string> SsoMappingGroups
         {

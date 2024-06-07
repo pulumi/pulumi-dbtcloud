@@ -39,15 +39,15 @@ export interface GetEnvironmentResult {
      */
     readonly credentialsId: number;
     /**
-     * The type of deployment environment (currently 'production', 'staging' or empty)
+     * The custom branch name to use
      */
     readonly customBranch: string;
     /**
-     * Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+     * Version number of dbt to use in this environment.
      */
     readonly dbtVersion: string;
     /**
-     * The name of the environment
+     * The type of deployment environment (currently 'production', 'staging' or empty)
      */
     readonly deploymentType: string;
     /**
@@ -71,7 +71,7 @@ export interface GetEnvironmentResult {
      */
     readonly projectId: number;
     /**
-     * The name of the environment
+     * The type of environment (must be either development or deployment)
      */
     readonly type: string;
     /**

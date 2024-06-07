@@ -2,8 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Retrieve group details
+ */
 export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -17,7 +22,7 @@ export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promi
  */
 export interface GetGroupArgs {
     /**
-     * ID of the group
+     * The ID of the group
      */
     groupId: number;
 }
@@ -27,21 +32,21 @@ export interface GetGroupArgs {
  */
 export interface GetGroupResult {
     /**
-     * Whether or not to assign this group to users by default
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      */
     readonly assignByDefault: boolean;
     /**
-     * ID of the group
+     * The ID of the group
      */
     readonly groupId: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
      */
-    readonly id: string;
+    readonly groupPermissions: outputs.GetGroupGroupPermission[];
     /**
-     * Whether the group is active
+     * The ID of this resource
      */
-    readonly isActive: boolean;
+    readonly id: number;
     /**
      * Group name
      */
@@ -51,6 +56,9 @@ export interface GetGroupResult {
      */
     readonly ssoMappingGroups: string[];
 }
+/**
+ * Retrieve group details
+ */
 export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
     return pulumi.output(args).apply((a: any) => getGroup(a, opts))
 }
@@ -60,7 +68,7 @@ export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetGroupOutputArgs {
     /**
-     * ID of the group
+     * The ID of the group
      */
     groupId: pulumi.Input<number>;
 }

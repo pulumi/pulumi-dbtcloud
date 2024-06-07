@@ -42,7 +42,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var issueDepl = new DbtCloud.Environment("issue_depl", new()
     ///     {
-    ///         DbtVersion = "1.6.0-latest",
+    ///         DbtVersion = "versionless",
     ///         Name = "My environment",
     ///         ProjectId = dbtProject.Id,
     ///         Type = "deployment",

@@ -14,12 +14,18 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type GroupGroupPermission struct {
-	// Whether or not to apply this permission to all projects for this group
+	// Whether access should be provided for all projects or not.
 	AllProjects bool `pulumi:"allProjects"`
-	// Set of permissions to apply
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
 	PermissionSet string `pulumi:"permissionSet"`
-	// Project ID to apply this permission to for this group
+	// Project ID to apply this permission to for this group.
 	ProjectId *int `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
 
 // GroupGroupPermissionInput is an input type that accepts GroupGroupPermissionArgs and GroupGroupPermissionOutput values.
@@ -34,12 +40,18 @@ type GroupGroupPermissionInput interface {
 }
 
 type GroupGroupPermissionArgs struct {
-	// Whether or not to apply this permission to all projects for this group
+	// Whether access should be provided for all projects or not.
 	AllProjects pulumi.BoolInput `pulumi:"allProjects"`
-	// Set of permissions to apply
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
 	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
-	// Project ID to apply this permission to for this group
+	// Project ID to apply this permission to for this group.
 	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
 
 func (GroupGroupPermissionArgs) ElementType() reflect.Type {
@@ -93,19 +105,28 @@ func (o GroupGroupPermissionOutput) ToGroupGroupPermissionOutputWithContext(ctx 
 	return o
 }
 
-// Whether or not to apply this permission to all projects for this group
+// Whether access should be provided for all projects or not.
 func (o GroupGroupPermissionOutput) AllProjects() pulumi.BoolOutput {
 	return o.ApplyT(func(v GroupGroupPermission) bool { return v.AllProjects }).(pulumi.BoolOutput)
 }
 
-// Set of permissions to apply
+// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
 func (o GroupGroupPermissionOutput) PermissionSet() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupGroupPermission) string { return v.PermissionSet }).(pulumi.StringOutput)
 }
 
-// Project ID to apply this permission to for this group
+// Project ID to apply this permission to for this group.
 func (o GroupGroupPermissionOutput) ProjectId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GroupGroupPermission) *int { return v.ProjectId }).(pulumi.IntPtrOutput)
+}
+
+// What types of environments to apply Write permissions to.
+// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+// Not setting a value is the same as selecting `all`.
+// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+func (o GroupGroupPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GroupGroupPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
 }
 
 type GroupGroupPermissionArrayOutput struct{ *pulumi.OutputState }
@@ -135,6 +156,12 @@ type GroupPartialPermissionsGroupPermission struct {
 	PermissionSet string `pulumi:"permissionSet"`
 	// Project ID to apply this permission to for this group.
 	ProjectId *int `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
 
 // GroupPartialPermissionsGroupPermissionInput is an input type that accepts GroupPartialPermissionsGroupPermissionArgs and GroupPartialPermissionsGroupPermissionOutput values.
@@ -155,6 +182,12 @@ type GroupPartialPermissionsGroupPermissionArgs struct {
 	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
 	// Project ID to apply this permission to for this group.
 	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
 
 func (GroupPartialPermissionsGroupPermissionArgs) ElementType() reflect.Type {
@@ -221,6 +254,15 @@ func (o GroupPartialPermissionsGroupPermissionOutput) PermissionSet() pulumi.Str
 // Project ID to apply this permission to for this group.
 func (o GroupPartialPermissionsGroupPermissionOutput) ProjectId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GroupPartialPermissionsGroupPermission) *int { return v.ProjectId }).(pulumi.IntPtrOutput)
+}
+
+// What types of environments to apply Write permissions to.
+// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+// Not setting a value is the same as selecting `all`.
+// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+func (o GroupPartialPermissionsGroupPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GroupPartialPermissionsGroupPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
 }
 
 type GroupPartialPermissionsGroupPermissionArrayOutput struct{ *pulumi.OutputState }
@@ -534,13 +576,13 @@ func (o ServiceTokenServiceTokenPermissionArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetEnvironmentsEnvironment struct {
-	// The project ID to which the environment belong
+	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
 	CredentialsId int `pulumi:"credentialsId"`
-	// The type of deployment environment (currently 'production', 'staging' or empty)
+	// The custom branch name to use
 	CustomBranch string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+	// Version number of dbt to use in this environment.
 	DbtVersion string `pulumi:"dbtVersion"`
-	// The name of the environment
+	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType string `pulumi:"deploymentType"`
 	// The ID of the environment
 	EnvironmentId int `pulumi:"environmentId"`
@@ -550,7 +592,7 @@ type GetEnvironmentsEnvironment struct {
 	Name string `pulumi:"name"`
 	// The project ID to which the environment belong
 	ProjectId int `pulumi:"projectId"`
-	// The name of the environment
+	// The type of environment (must be either development or deployment)
 	Type string `pulumi:"type"`
 	// Whether to use a custom git branch in this environment
 	UseCustomBranch bool `pulumi:"useCustomBranch"`
@@ -568,13 +610,13 @@ type GetEnvironmentsEnvironmentInput interface {
 }
 
 type GetEnvironmentsEnvironmentArgs struct {
-	// The project ID to which the environment belong
+	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
 	CredentialsId pulumi.IntInput `pulumi:"credentialsId"`
-	// The type of deployment environment (currently 'production', 'staging' or empty)
+	// The custom branch name to use
 	CustomBranch pulumi.StringInput `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+	// Version number of dbt to use in this environment.
 	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
-	// The name of the environment
+	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
 	// The ID of the environment
 	EnvironmentId pulumi.IntInput `pulumi:"environmentId"`
@@ -584,7 +626,7 @@ type GetEnvironmentsEnvironmentArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The project ID to which the environment belong
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
-	// The name of the environment
+	// The type of environment (must be either development or deployment)
 	Type pulumi.StringInput `pulumi:"type"`
 	// Whether to use a custom git branch in this environment
 	UseCustomBranch pulumi.BoolInput `pulumi:"useCustomBranch"`
@@ -641,22 +683,22 @@ func (o GetEnvironmentsEnvironmentOutput) ToGetEnvironmentsEnvironmentOutputWith
 	return o
 }
 
-// The project ID to which the environment belong
+// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
 func (o GetEnvironmentsEnvironmentOutput) CredentialsId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.CredentialsId }).(pulumi.IntOutput)
 }
 
-// The type of deployment environment (currently 'production', 'staging' or empty)
+// The custom branch name to use
 func (o GetEnvironmentsEnvironmentOutput) CustomBranch() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.CustomBranch }).(pulumi.StringOutput)
 }
 
-// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+// Version number of dbt to use in this environment.
 func (o GetEnvironmentsEnvironmentOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.DbtVersion }).(pulumi.StringOutput)
 }
 
-// The name of the environment
+// The type of deployment environment (currently 'production', 'staging' or empty)
 func (o GetEnvironmentsEnvironmentOutput) DeploymentType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.DeploymentType }).(pulumi.StringOutput)
 }
@@ -681,7 +723,7 @@ func (o GetEnvironmentsEnvironmentOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// The name of the environment
+// The type of environment (must be either development or deployment)
 func (o GetEnvironmentsEnvironmentOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -709,6 +751,130 @@ func (o GetEnvironmentsEnvironmentArrayOutput) Index(i pulumi.IntInput) GetEnvir
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEnvironmentsEnvironment {
 		return vs[0].([]GetEnvironmentsEnvironment)[vs[1].(int)]
 	}).(GetEnvironmentsEnvironmentOutput)
+}
+
+type GetGroupGroupPermission struct {
+	// Whether access should be provided for all projects or not.
+	AllProjects bool `pulumi:"allProjects"`
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	PermissionSet string `pulumi:"permissionSet"`
+	// Project ID to apply this permission to for this group.
+	ProjectId int `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
+}
+
+// GetGroupGroupPermissionInput is an input type that accepts GetGroupGroupPermissionArgs and GetGroupGroupPermissionOutput values.
+// You can construct a concrete instance of `GetGroupGroupPermissionInput` via:
+//
+//	GetGroupGroupPermissionArgs{...}
+type GetGroupGroupPermissionInput interface {
+	pulumi.Input
+
+	ToGetGroupGroupPermissionOutput() GetGroupGroupPermissionOutput
+	ToGetGroupGroupPermissionOutputWithContext(context.Context) GetGroupGroupPermissionOutput
+}
+
+type GetGroupGroupPermissionArgs struct {
+	// Whether access should be provided for all projects or not.
+	AllProjects pulumi.BoolInput `pulumi:"allProjects"`
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
+	// Project ID to apply this permission to for this group.
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
+}
+
+func (GetGroupGroupPermissionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupGroupPermission)(nil)).Elem()
+}
+
+func (i GetGroupGroupPermissionArgs) ToGetGroupGroupPermissionOutput() GetGroupGroupPermissionOutput {
+	return i.ToGetGroupGroupPermissionOutputWithContext(context.Background())
+}
+
+func (i GetGroupGroupPermissionArgs) ToGetGroupGroupPermissionOutputWithContext(ctx context.Context) GetGroupGroupPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupGroupPermissionOutput)
+}
+
+// GetGroupGroupPermissionArrayInput is an input type that accepts GetGroupGroupPermissionArray and GetGroupGroupPermissionArrayOutput values.
+// You can construct a concrete instance of `GetGroupGroupPermissionArrayInput` via:
+//
+//	GetGroupGroupPermissionArray{ GetGroupGroupPermissionArgs{...} }
+type GetGroupGroupPermissionArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupGroupPermissionArrayOutput() GetGroupGroupPermissionArrayOutput
+	ToGetGroupGroupPermissionArrayOutputWithContext(context.Context) GetGroupGroupPermissionArrayOutput
+}
+
+type GetGroupGroupPermissionArray []GetGroupGroupPermissionInput
+
+func (GetGroupGroupPermissionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupGroupPermission)(nil)).Elem()
+}
+
+func (i GetGroupGroupPermissionArray) ToGetGroupGroupPermissionArrayOutput() GetGroupGroupPermissionArrayOutput {
+	return i.ToGetGroupGroupPermissionArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupGroupPermissionArray) ToGetGroupGroupPermissionArrayOutputWithContext(ctx context.Context) GetGroupGroupPermissionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupGroupPermissionArrayOutput)
+}
+
+type GetGroupGroupPermissionOutput struct{ *pulumi.OutputState }
+
+func (GetGroupGroupPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupGroupPermission)(nil)).Elem()
+}
+
+func (o GetGroupGroupPermissionOutput) ToGetGroupGroupPermissionOutput() GetGroupGroupPermissionOutput {
+	return o
+}
+
+func (o GetGroupGroupPermissionOutput) ToGetGroupGroupPermissionOutputWithContext(ctx context.Context) GetGroupGroupPermissionOutput {
+	return o
+}
+
+// Whether access should be provided for all projects or not.
+func (o GetGroupGroupPermissionOutput) AllProjects() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupGroupPermission) bool { return v.AllProjects }).(pulumi.BoolOutput)
+}
+
+// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+func (o GetGroupGroupPermissionOutput) PermissionSet() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupGroupPermission) string { return v.PermissionSet }).(pulumi.StringOutput)
+}
+
+// Project ID to apply this permission to for this group.
+func (o GetGroupGroupPermissionOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupGroupPermission) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// What types of environments to apply Write permissions to.
+func (o GetGroupGroupPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGroupGroupPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
+}
+
+type GetGroupGroupPermissionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupGroupPermissionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupGroupPermission)(nil)).Elem()
+}
+
+func (o GetGroupGroupPermissionArrayOutput) ToGetGroupGroupPermissionArrayOutput() GetGroupGroupPermissionArrayOutput {
+	return o
+}
+
+func (o GetGroupGroupPermissionArrayOutput) ToGetGroupGroupPermissionArrayOutputWithContext(ctx context.Context) GetGroupGroupPermissionArrayOutput {
+	return o
+}
+
+func (o GetGroupGroupPermissionArrayOutput) Index(i pulumi.IntInput) GetGroupGroupPermissionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupGroupPermission {
+		return vs[0].([]GetGroupGroupPermission)[vs[1].(int)]
+	}).(GetGroupGroupPermissionOutput)
 }
 
 type GetGroupUsersUser struct {
@@ -1052,6 +1218,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentsEnvironmentInput)(nil)).Elem(), GetEnvironmentsEnvironmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentsEnvironmentArrayInput)(nil)).Elem(), GetEnvironmentsEnvironmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupGroupPermissionInput)(nil)).Elem(), GetGroupGroupPermissionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupGroupPermissionArrayInput)(nil)).Elem(), GetGroupGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserInput)(nil)).Elem(), GetGroupUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserArrayInput)(nil)).Elem(), GetGroupUsersUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobJobCompletionTriggerConditionInput)(nil)).Elem(), GetJobJobCompletionTriggerConditionArgs{})
@@ -1068,6 +1236,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GetEnvironmentsEnvironmentOutput{})
 	pulumi.RegisterOutputType(GetEnvironmentsEnvironmentArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupGroupPermissionOutput{})
+	pulumi.RegisterOutputType(GetGroupGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GetGroupUsersUserOutput{})
 	pulumi.RegisterOutputType(GetGroupUsersUserArrayOutput{})
 	pulumi.RegisterOutputType(GetJobJobCompletionTriggerConditionOutput{})

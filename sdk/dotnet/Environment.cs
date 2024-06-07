@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// {
     ///     var ciEnvironment = new DbtCloud.Environment("ci_environment", new()
     ///     {
-    ///         DbtVersion = "1.6.0-latest",
+    ///         DbtVersion = "versionless",
     ///         Name = "CI",
     ///         ProjectId = dbtProject.Id,
     ///         Type = "deployment",
@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud
     ///     // we can also set a deployment environment as being the production one
     ///     var prodEnvironment = new DbtCloud.Environment("prod_environment", new()
     ///     {
-    ///         DbtVersion = "1.6.0-latest",
+    ///         DbtVersion = "1.7.0-latest",
     ///         Name = "Prod",
     ///         ProjectId = dbtProject.Id,
     ///         Type = "deployment",
@@ -43,7 +43,7 @@ namespace Pulumi.DbtCloud
     ///     // Creating a development environment
     ///     var devEnvironment = new DbtCloud.Environment("dev_environment", new()
     ///     {
-    ///         DbtVersion = "1.6.0-latest",
+    ///         DbtVersion = "versionless",
     ///         Name = "Dev",
     ///         ProjectId = dbtProject.Id,
     ///         Type = "development",
