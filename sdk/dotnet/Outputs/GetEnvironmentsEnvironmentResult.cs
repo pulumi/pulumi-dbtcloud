@@ -14,19 +14,19 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class GetEnvironmentsEnvironmentResult
     {
         /// <summary>
-        /// The project ID to which the environment belong
+        /// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         /// </summary>
         public readonly int CredentialsId;
         /// <summary>
-        /// The type of deployment environment (currently 'production', 'staging' or empty)
+        /// The custom branch name to use
         /// </summary>
         public readonly string CustomBranch;
         /// <summary>
-        /// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+        /// Version number of dbt to use in this environment.
         /// </summary>
         public readonly string DbtVersion;
         /// <summary>
-        /// The name of the environment
+        /// The type of deployment environment (currently 'production', 'staging' or empty)
         /// </summary>
         public readonly string DeploymentType;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int ProjectId;
         /// <summary>
-        /// The name of the environment
+        /// The type of environment (must be either development or deployment)
         /// </summary>
         public readonly string Type;
         /// <summary>

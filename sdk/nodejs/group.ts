@@ -88,22 +88,21 @@ export class Group extends pulumi.CustomResource {
     }
 
     /**
-     * Whether or not to assign this group to users by default
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      */
-    public readonly assignByDefault!: pulumi.Output<boolean | undefined>;
+    public readonly assignByDefault!: pulumi.Output<boolean>;
+    /**
+     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     */
     public readonly groupPermissions!: pulumi.Output<outputs.GroupGroupPermission[] | undefined>;
     /**
-     * Whether the group is active
-     */
-    public readonly isActive!: pulumi.Output<boolean | undefined>;
-    /**
-     * Group name
+     * The name of the group. This is used to identify an existing group
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * SSO mapping group names for this group
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      */
-    public readonly ssoMappingGroups!: pulumi.Output<string[] | undefined>;
+    public readonly ssoMappingGroups!: pulumi.Output<string[]>;
 
     /**
      * Create a Group resource with the given unique name, arguments, and options.
@@ -120,14 +119,12 @@ export class Group extends pulumi.CustomResource {
             const state = argsOrState as GroupState | undefined;
             resourceInputs["assignByDefault"] = state ? state.assignByDefault : undefined;
             resourceInputs["groupPermissions"] = state ? state.groupPermissions : undefined;
-            resourceInputs["isActive"] = state ? state.isActive : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["ssoMappingGroups"] = state ? state.ssoMappingGroups : undefined;
         } else {
             const args = argsOrState as GroupArgs | undefined;
             resourceInputs["assignByDefault"] = args ? args.assignByDefault : undefined;
             resourceInputs["groupPermissions"] = args ? args.groupPermissions : undefined;
-            resourceInputs["isActive"] = args ? args.isActive : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["ssoMappingGroups"] = args ? args.ssoMappingGroups : undefined;
         }
@@ -141,20 +138,19 @@ export class Group extends pulumi.CustomResource {
  */
 export interface GroupState {
     /**
-     * Whether or not to assign this group to users by default
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      */
     assignByDefault?: pulumi.Input<boolean>;
+    /**
+     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     */
     groupPermissions?: pulumi.Input<pulumi.Input<inputs.GroupGroupPermission>[]>;
     /**
-     * Whether the group is active
-     */
-    isActive?: pulumi.Input<boolean>;
-    /**
-     * Group name
+     * The name of the group. This is used to identify an existing group
      */
     name?: pulumi.Input<string>;
     /**
-     * SSO mapping group names for this group
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      */
     ssoMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -164,20 +160,19 @@ export interface GroupState {
  */
 export interface GroupArgs {
     /**
-     * Whether or not to assign this group to users by default
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      */
     assignByDefault?: pulumi.Input<boolean>;
+    /**
+     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     */
     groupPermissions?: pulumi.Input<pulumi.Input<inputs.GroupGroupPermission>[]>;
     /**
-     * Whether the group is active
-     */
-    isActive?: pulumi.Input<boolean>;
-    /**
-     * Group name
+     * The name of the group. This is used to identify an existing group
      */
     name?: pulumi.Input<string>;
     /**
-     * SSO mapping group names for this group
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      */
     ssoMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
 }

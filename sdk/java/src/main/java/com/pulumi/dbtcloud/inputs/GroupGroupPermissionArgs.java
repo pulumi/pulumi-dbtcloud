@@ -9,6 +9,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -19,14 +20,14 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
     public static final GroupGroupPermissionArgs Empty = new GroupGroupPermissionArgs();
 
     /**
-     * Whether or not to apply this permission to all projects for this group
+     * Whether access should be provided for all projects or not.
      * 
      */
     @Import(name="allProjects", required=true)
     private Output<Boolean> allProjects;
 
     /**
-     * @return Whether or not to apply this permission to all projects for this group
+     * @return Whether access should be provided for all projects or not.
      * 
      */
     public Output<Boolean> allProjects() {
@@ -34,14 +35,14 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Set of permissions to apply
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
      * 
      */
     @Import(name="permissionSet", required=true)
     private Output<String> permissionSet;
 
     /**
-     * @return Set of permissions to apply
+     * @return Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
      * 
      */
     public Output<String> permissionSet() {
@@ -49,18 +50,41 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Project ID to apply this permission to for this group
+     * Project ID to apply this permission to for this group.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<Integer> projectId;
 
     /**
-     * @return Project ID to apply this permission to for this group
+     * @return Project ID to apply this permission to for this group.
      * 
      */
     public Optional<Output<Integer>> projectId() {
         return Optional.ofNullable(this.projectId);
+    }
+
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+     * 
+     */
+    @Import(name="writableEnvironmentCategories")
+    private @Nullable Output<List<String>> writableEnvironmentCategories;
+
+    /**
+     * @return What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+     * 
+     */
+    public Optional<Output<List<String>>> writableEnvironmentCategories() {
+        return Optional.ofNullable(this.writableEnvironmentCategories);
     }
 
     private GroupGroupPermissionArgs() {}
@@ -69,6 +93,7 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
         this.allProjects = $.allProjects;
         this.permissionSet = $.permissionSet;
         this.projectId = $.projectId;
+        this.writableEnvironmentCategories = $.writableEnvironmentCategories;
     }
 
     public static Builder builder() {
@@ -90,7 +115,7 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param allProjects Whether or not to apply this permission to all projects for this group
+         * @param allProjects Whether access should be provided for all projects or not.
          * 
          * @return builder
          * 
@@ -101,7 +126,7 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param allProjects Whether or not to apply this permission to all projects for this group
+         * @param allProjects Whether access should be provided for all projects or not.
          * 
          * @return builder
          * 
@@ -111,7 +136,7 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param permissionSet Set of permissions to apply
+         * @param permissionSet Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
          * 
          * @return builder
          * 
@@ -122,7 +147,7 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param permissionSet Set of permissions to apply
+         * @param permissionSet Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
          * 
          * @return builder
          * 
@@ -132,7 +157,7 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param projectId Project ID to apply this permission to for this group
+         * @param projectId Project ID to apply this permission to for this group.
          * 
          * @return builder
          * 
@@ -143,13 +168,56 @@ public final class GroupGroupPermissionArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param projectId Project ID to apply this permission to for this group
+         * @param projectId Project ID to apply this permission to for this group.
          * 
          * @return builder
          * 
          */
         public Builder projectId(Integer projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
+         * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+         * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+         * Not setting a value is the same as selecting `all`.
+         * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writableEnvironmentCategories(@Nullable Output<List<String>> writableEnvironmentCategories) {
+            $.writableEnvironmentCategories = writableEnvironmentCategories;
+            return this;
+        }
+
+        /**
+         * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
+         * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+         * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+         * Not setting a value is the same as selecting `all`.
+         * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writableEnvironmentCategories(List<String> writableEnvironmentCategories) {
+            return writableEnvironmentCategories(Output.of(writableEnvironmentCategories));
+        }
+
+        /**
+         * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
+         * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+         * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+         * Not setting a value is the same as selecting `all`.
+         * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writableEnvironmentCategories(String... writableEnvironmentCategories) {
+            return writableEnvironmentCategories(List.of(writableEnvironmentCategories));
         }
 
         public GroupGroupPermissionArgs build() {

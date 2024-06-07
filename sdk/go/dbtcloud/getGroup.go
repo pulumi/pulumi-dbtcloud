@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Retrieve group details
 func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.InvokeOption) (*LookupGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupGroupResult
@@ -23,20 +24,20 @@ func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getGroup.
 type LookupGroupArgs struct {
-	// ID of the group
+	// The ID of the group
 	GroupId int `pulumi:"groupId"`
 }
 
 // A collection of values returned by getGroup.
 type LookupGroupResult struct {
-	// Whether or not to assign this group to users by default
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 	AssignByDefault bool `pulumi:"assignByDefault"`
-	// ID of the group
+	// The ID of the group
 	GroupId int `pulumi:"groupId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Whether the group is active
-	IsActive bool `pulumi:"isActive"`
+	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+	GroupPermissions []GetGroupGroupPermission `pulumi:"groupPermissions"`
+	// The ID of this resource
+	Id int `pulumi:"id"`
 	// Group name
 	Name string `pulumi:"name"`
 	// SSO mapping group names for this group
@@ -58,7 +59,7 @@ func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...
 
 // A collection of arguments for invoking getGroup.
 type LookupGroupOutputArgs struct {
-	// ID of the group
+	// The ID of the group
 	GroupId pulumi.IntInput `pulumi:"groupId"`
 }
 
@@ -81,24 +82,24 @@ func (o LookupGroupResultOutput) ToLookupGroupResultOutputWithContext(ctx contex
 	return o
 }
 
-// Whether or not to assign this group to users by default
+// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 func (o LookupGroupResultOutput) AssignByDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupGroupResult) bool { return v.AssignByDefault }).(pulumi.BoolOutput)
 }
 
-// ID of the group
+// The ID of the group
 func (o LookupGroupResultOutput) GroupId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGroupResult) int { return v.GroupId }).(pulumi.IntOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
-func (o LookupGroupResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupGroupResult) string { return v.Id }).(pulumi.StringOutput)
+// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+func (o LookupGroupResultOutput) GroupPermissions() GetGroupGroupPermissionArrayOutput {
+	return o.ApplyT(func(v LookupGroupResult) []GetGroupGroupPermission { return v.GroupPermissions }).(GetGroupGroupPermissionArrayOutput)
 }
 
-// Whether the group is active
-func (o LookupGroupResultOutput) IsActive() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.IsActive }).(pulumi.BoolOutput)
+// The ID of this resource
+func (o LookupGroupResultOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGroupResult) int { return v.Id }).(pulumi.IntOutput)
 }
 
 // Group name

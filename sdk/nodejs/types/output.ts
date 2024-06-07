@@ -7,19 +7,19 @@ import * as outputs from "../types/output";
 
 export interface GetEnvironmentsEnvironment {
     /**
-     * The project ID to which the environment belong
+     * Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
      */
     credentialsId: number;
     /**
-     * The type of deployment environment (currently 'production', 'staging' or empty)
+     * The custom branch name to use
      */
     customBranch: string;
     /**
-     * Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+     * Version number of dbt to use in this environment.
      */
     dbtVersion: string;
     /**
-     * The name of the environment
+     * The type of deployment environment (currently 'production', 'staging' or empty)
      */
     deploymentType: string;
     /**
@@ -39,13 +39,32 @@ export interface GetEnvironmentsEnvironment {
      */
     projectId: number;
     /**
-     * The name of the environment
+     * The type of environment (must be either development or deployment)
      */
     type: string;
     /**
      * Whether to use a custom git branch in this environment
      */
     useCustomBranch: boolean;
+}
+
+export interface GetGroupGroupPermission {
+    /**
+     * Whether access should be provided for all projects or not.
+     */
+    allProjects: boolean;
+    /**
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+     */
+    permissionSet: string;
+    /**
+     * Project ID to apply this permission to for this group.
+     */
+    projectId: number;
+    /**
+     * What types of environments to apply Write permissions to.
+     */
+    writableEnvironmentCategories: string[];
 }
 
 export interface GetGroupUsersUser {
@@ -85,17 +104,25 @@ export interface GetServiceTokenServiceTokenPermission {
 
 export interface GroupGroupPermission {
     /**
-     * Whether or not to apply this permission to all projects for this group
+     * Whether access should be provided for all projects or not.
      */
     allProjects: boolean;
     /**
-     * Set of permissions to apply
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
      */
     permissionSet: string;
     /**
-     * Project ID to apply this permission to for this group
+     * Project ID to apply this permission to for this group.
      */
     projectId?: number;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories: string[];
 }
 
 export interface GroupPartialPermissionsGroupPermission {
@@ -111,6 +138,14 @@ export interface GroupPartialPermissionsGroupPermission {
      * Project ID to apply this permission to for this group.
      */
     projectId?: number;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories?: string[];
 }
 
 export interface JobJobCompletionTriggerCondition {

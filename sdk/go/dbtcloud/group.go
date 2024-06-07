@@ -80,14 +80,13 @@ import (
 type Group struct {
 	pulumi.CustomResourceState
 
-	// Whether or not to assign this group to users by default
-	AssignByDefault  pulumi.BoolPtrOutput            `pulumi:"assignByDefault"`
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	AssignByDefault pulumi.BoolOutput `pulumi:"assignByDefault"`
+	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions GroupGroupPermissionArrayOutput `pulumi:"groupPermissions"`
-	// Whether the group is active
-	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
-	// Group name
+	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringOutput `pulumi:"name"`
-	// SSO mapping group names for this group
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
 	SsoMappingGroups pulumi.StringArrayOutput `pulumi:"ssoMappingGroups"`
 }
 
@@ -121,26 +120,24 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
-	// Whether or not to assign this group to users by default
-	AssignByDefault  *bool                  `pulumi:"assignByDefault"`
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	AssignByDefault *bool `pulumi:"assignByDefault"`
+	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions []GroupGroupPermission `pulumi:"groupPermissions"`
-	// Whether the group is active
-	IsActive *bool `pulumi:"isActive"`
-	// Group name
+	// The name of the group. This is used to identify an existing group
 	Name *string `pulumi:"name"`
-	// SSO mapping group names for this group
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
 	SsoMappingGroups []string `pulumi:"ssoMappingGroups"`
 }
 
 type GroupState struct {
-	// Whether or not to assign this group to users by default
-	AssignByDefault  pulumi.BoolPtrInput
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	AssignByDefault pulumi.BoolPtrInput
+	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions GroupGroupPermissionArrayInput
-	// Whether the group is active
-	IsActive pulumi.BoolPtrInput
-	// Group name
+	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringPtrInput
-	// SSO mapping group names for this group
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
 	SsoMappingGroups pulumi.StringArrayInput
 }
 
@@ -149,27 +146,25 @@ func (GroupState) ElementType() reflect.Type {
 }
 
 type groupArgs struct {
-	// Whether or not to assign this group to users by default
-	AssignByDefault  *bool                  `pulumi:"assignByDefault"`
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	AssignByDefault *bool `pulumi:"assignByDefault"`
+	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions []GroupGroupPermission `pulumi:"groupPermissions"`
-	// Whether the group is active
-	IsActive *bool `pulumi:"isActive"`
-	// Group name
+	// The name of the group. This is used to identify an existing group
 	Name *string `pulumi:"name"`
-	// SSO mapping group names for this group
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
 	SsoMappingGroups []string `pulumi:"ssoMappingGroups"`
 }
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
-	// Whether or not to assign this group to users by default
-	AssignByDefault  pulumi.BoolPtrInput
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	AssignByDefault pulumi.BoolPtrInput
+	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions GroupGroupPermissionArrayInput
-	// Whether the group is active
-	IsActive pulumi.BoolPtrInput
-	// Group name
+	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringPtrInput
-	// SSO mapping group names for this group
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
 	SsoMappingGroups pulumi.StringArrayInput
 }
 
@@ -260,26 +255,22 @@ func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
 }
 
-// Whether or not to assign this group to users by default
-func (o GroupOutput) AssignByDefault() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.AssignByDefault }).(pulumi.BoolPtrOutput)
+// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+func (o GroupOutput) AssignByDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Group) pulumi.BoolOutput { return v.AssignByDefault }).(pulumi.BoolOutput)
 }
 
+// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 func (o GroupOutput) GroupPermissions() GroupGroupPermissionArrayOutput {
 	return o.ApplyT(func(v *Group) GroupGroupPermissionArrayOutput { return v.GroupPermissions }).(GroupGroupPermissionArrayOutput)
 }
 
-// Whether the group is active
-func (o GroupOutput) IsActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Group) pulumi.BoolPtrOutput { return v.IsActive }).(pulumi.BoolPtrOutput)
-}
-
-// Group name
+// The name of the group. This is used to identify an existing group
 func (o GroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// SSO mapping group names for this group
+// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
 func (o GroupOutput) SsoMappingGroups() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringArrayOutput { return v.SsoMappingGroups }).(pulumi.StringArrayOutput)
 }

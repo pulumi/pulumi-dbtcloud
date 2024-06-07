@@ -4,6 +4,7 @@
 package com.pulumi.dbtcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.dbtcloud.outputs.GetGroupGroupPermission;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -14,25 +15,25 @@ import java.util.Objects;
 @CustomType
 public final class GetGroupResult {
     /**
-     * @return Whether or not to assign this group to users by default
+     * @return Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      * 
      */
     private Boolean assignByDefault;
     /**
-     * @return ID of the group
+     * @return The ID of the group
      * 
      */
     private Integer groupId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
      * 
      */
-    private String id;
+    private List<GetGroupGroupPermission> groupPermissions;
     /**
-     * @return Whether the group is active
+     * @return The ID of this resource
      * 
      */
-    private Boolean isActive;
+    private Integer id;
     /**
      * @return Group name
      * 
@@ -46,32 +47,32 @@ public final class GetGroupResult {
 
     private GetGroupResult() {}
     /**
-     * @return Whether or not to assign this group to users by default
+     * @return Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      * 
      */
     public Boolean assignByDefault() {
         return this.assignByDefault;
     }
     /**
-     * @return ID of the group
+     * @return The ID of the group
      * 
      */
     public Integer groupId() {
         return this.groupId;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
      * 
      */
-    public String id() {
-        return this.id;
+    public List<GetGroupGroupPermission> groupPermissions() {
+        return this.groupPermissions;
     }
     /**
-     * @return Whether the group is active
+     * @return The ID of this resource
      * 
      */
-    public Boolean isActive() {
-        return this.isActive;
+    public Integer id() {
+        return this.id;
     }
     /**
      * @return Group name
@@ -99,8 +100,8 @@ public final class GetGroupResult {
     public static final class Builder {
         private Boolean assignByDefault;
         private Integer groupId;
-        private String id;
-        private Boolean isActive;
+        private List<GetGroupGroupPermission> groupPermissions;
+        private Integer id;
         private String name;
         private List<String> ssoMappingGroups;
         public Builder() {}
@@ -108,8 +109,8 @@ public final class GetGroupResult {
     	      Objects.requireNonNull(defaults);
     	      this.assignByDefault = defaults.assignByDefault;
     	      this.groupId = defaults.groupId;
+    	      this.groupPermissions = defaults.groupPermissions;
     	      this.id = defaults.id;
-    	      this.isActive = defaults.isActive;
     	      this.name = defaults.name;
     	      this.ssoMappingGroups = defaults.ssoMappingGroups;
         }
@@ -131,19 +132,22 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
-        public Builder id(String id) {
+        public Builder groupPermissions(List<GetGroupGroupPermission> groupPermissions) {
+            if (groupPermissions == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "groupPermissions");
+            }
+            this.groupPermissions = groupPermissions;
+            return this;
+        }
+        public Builder groupPermissions(GetGroupGroupPermission... groupPermissions) {
+            return groupPermissions(List.of(groupPermissions));
+        }
+        @CustomType.Setter
+        public Builder id(Integer id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "id");
             }
             this.id = id;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder isActive(Boolean isActive) {
-            if (isActive == null) {
-              throw new MissingRequiredPropertyException("GetGroupResult", "isActive");
-            }
-            this.isActive = isActive;
             return this;
         }
         @CustomType.Setter
@@ -169,8 +173,8 @@ public final class GetGroupResult {
             final var _resultValue = new GetGroupResult();
             _resultValue.assignByDefault = assignByDefault;
             _resultValue.groupId = groupId;
+            _resultValue.groupPermissions = groupPermissions;
             _resultValue.id = id;
-            _resultValue.isActive = isActive;
             _resultValue.name = name;
             _resultValue.ssoMappingGroups = ssoMappingGroups;
             return _resultValue;

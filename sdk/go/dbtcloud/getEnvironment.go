@@ -34,11 +34,11 @@ type LookupEnvironmentArgs struct {
 type LookupEnvironmentResult struct {
 	// The project ID to which the environment belong
 	CredentialsId int `pulumi:"credentialsId"`
-	// The type of deployment environment (currently 'production', 'staging' or empty)
+	// The custom branch name to use
 	CustomBranch string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+	// Version number of dbt to use in this environment.
 	DbtVersion string `pulumi:"dbtVersion"`
-	// The name of the environment
+	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType string `pulumi:"deploymentType"`
 	// The ID of the environment
 	EnvironmentId int `pulumi:"environmentId"`
@@ -50,7 +50,7 @@ type LookupEnvironmentResult struct {
 	Name string `pulumi:"name"`
 	// The project ID to which the environment belong
 	ProjectId int `pulumi:"projectId"`
-	// The name of the environment
+	// The type of environment (must be either development or deployment)
 	Type string `pulumi:"type"`
 	// Whether to use a custom git branch in this environment
 	UseCustomBranch bool `pulumi:"useCustomBranch"`
@@ -101,17 +101,17 @@ func (o LookupEnvironmentResultOutput) CredentialsId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.CredentialsId }).(pulumi.IntOutput)
 }
 
-// The type of deployment environment (currently 'production', 'staging' or empty)
+// The custom branch name to use
 func (o LookupEnvironmentResultOutput) CustomBranch() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.CustomBranch }).(pulumi.StringOutput)
 }
 
-// Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+// Version number of dbt to use in this environment.
 func (o LookupEnvironmentResultOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.DbtVersion }).(pulumi.StringOutput)
 }
 
-// The name of the environment
+// The type of deployment environment (currently 'production', 'staging' or empty)
 func (o LookupEnvironmentResultOutput) DeploymentType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.DeploymentType }).(pulumi.StringOutput)
 }
@@ -141,7 +141,7 @@ func (o LookupEnvironmentResultOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// The name of the environment
+// The type of environment (must be either development or deployment)
 func (o LookupEnvironmentResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.Type }).(pulumi.StringOutput)
 }

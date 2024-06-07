@@ -128,14 +128,14 @@ public class GroupPartialPermissions extends com.pulumi.resources.CustomResource
      * 
      */
     @Export(name="ssoMappingGroups", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> ssoMappingGroups;
+    private Output<List<String>> ssoMappingGroups;
 
     /**
      * @return Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      * 
      */
-    public Output<Optional<List<String>>> ssoMappingGroups() {
-        return Codegen.optional(this.ssoMappingGroups);
+    public Output<List<String>> ssoMappingGroups() {
+        return this.ssoMappingGroups;
     }
 
     /**

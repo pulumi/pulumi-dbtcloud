@@ -11,9 +11,15 @@ namespace Pulumi.DbtCloud
 {
     public static class GetGroup
     {
+        /// <summary>
+        /// Retrieve group details
+        /// </summary>
         public static Task<GetGroupResult> InvokeAsync(GetGroupArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("dbtcloud:index/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Retrieve group details
+        /// </summary>
         public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupResult>("dbtcloud:index/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
     }
@@ -22,7 +28,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetGroupArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the group
+        /// The ID of the group
         /// </summary>
         [Input("groupId", required: true)]
         public int GroupId { get; set; }
@@ -36,7 +42,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the group
+        /// The ID of the group
         /// </summary>
         [Input("groupId", required: true)]
         public Input<int> GroupId { get; set; } = null!;
@@ -52,21 +58,21 @@ namespace Pulumi.DbtCloud
     public sealed class GetGroupResult
     {
         /// <summary>
-        /// Whether or not to assign this group to users by default
+        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         /// </summary>
         public readonly bool AssignByDefault;
         /// <summary>
-        /// ID of the group
+        /// The ID of the group
         /// </summary>
         public readonly int GroupId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         /// </summary>
-        public readonly string Id;
+        public readonly ImmutableArray<Outputs.GetGroupGroupPermissionResult> GroupPermissions;
         /// <summary>
-        /// Whether the group is active
+        /// The ID of this resource
         /// </summary>
-        public readonly bool IsActive;
+        public readonly int Id;
         /// <summary>
         /// Group name
         /// </summary>
@@ -82,9 +88,9 @@ namespace Pulumi.DbtCloud
 
             int groupId,
 
-            string id,
+            ImmutableArray<Outputs.GetGroupGroupPermissionResult> groupPermissions,
 
-            bool isActive,
+            int id,
 
             string name,
 
@@ -92,8 +98,8 @@ namespace Pulumi.DbtCloud
         {
             AssignByDefault = assignByDefault;
             GroupId = groupId;
+            GroupPermissions = groupPermissions;
             Id = id;
-            IsActive = isActive;
             Name = name;
             SsoMappingGroups = ssoMappingGroups;
         }

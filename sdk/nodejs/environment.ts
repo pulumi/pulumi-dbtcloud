@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const ciEnvironment = new dbtcloud.Environment("ci_environment", {
- *     dbtVersion: "1.6.0-latest",
+ *     dbtVersion: "versionless",
  *     name: "CI",
  *     projectId: dbtProject.id,
  *     type: "deployment",
@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  * });
  * // we can also set a deployment environment as being the production one
  * const prodEnvironment = new dbtcloud.Environment("prod_environment", {
- *     dbtVersion: "1.6.0-latest",
+ *     dbtVersion: "1.7.0-latest",
  *     name: "Prod",
  *     projectId: dbtProject.id,
  *     type: "deployment",
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  * });
  * // Creating a development environment
  * const devEnvironment = new dbtcloud.Environment("dev_environment", {
- *     dbtVersion: "1.6.0-latest",
+ *     dbtVersion: "versionless",
  *     name: "Dev",
  *     projectId: dbtProject.id,
  *     type: "development",

@@ -18,17 +18,17 @@ public final class GetEnvironmentResult {
      */
     private Integer credentialsId;
     /**
-     * @return The type of deployment environment (currently &#39;production&#39;, &#39;staging&#39; or empty)
+     * @return The custom branch name to use
      * 
      */
     private String customBranch;
     /**
-     * @return Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+     * @return Version number of dbt to use in this environment.
      * 
      */
     private String dbtVersion;
     /**
-     * @return The name of the environment
+     * @return The type of deployment environment (currently &#39;production&#39;, &#39;staging&#39; or empty)
      * 
      */
     private String deploymentType;
@@ -58,7 +58,7 @@ public final class GetEnvironmentResult {
      */
     private Integer projectId;
     /**
-     * @return The name of the environment
+     * @return The type of environment (must be either development or deployment)
      * 
      */
     private String type;
@@ -77,21 +77,21 @@ public final class GetEnvironmentResult {
         return this.credentialsId;
     }
     /**
-     * @return The type of deployment environment (currently &#39;production&#39;, &#39;staging&#39; or empty)
+     * @return The custom branch name to use
      * 
      */
     public String customBranch() {
         return this.customBranch;
     }
     /**
-     * @return Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+     * @return Version number of dbt to use in this environment.
      * 
      */
     public String dbtVersion() {
         return this.dbtVersion;
     }
     /**
-     * @return The name of the environment
+     * @return The type of deployment environment (currently &#39;production&#39;, &#39;staging&#39; or empty)
      * 
      */
     public String deploymentType() {
@@ -133,7 +133,7 @@ public final class GetEnvironmentResult {
         return this.projectId;
     }
     /**
-     * @return The name of the environment
+     * @return The type of environment (must be either development or deployment)
      * 
      */
     public String type() {

@@ -52,7 +52,7 @@ export class GroupPartialPermissions extends pulumi.CustomResource {
     /**
      * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      */
-    public readonly ssoMappingGroups!: pulumi.Output<string[] | undefined>;
+    public readonly ssoMappingGroups!: pulumi.Output<string[]>;
 
     /**
      * Create a GroupPartialPermissions resource with the given unique name, arguments, and options.

@@ -18,22 +18,19 @@ class GroupArgs:
     def __init__(__self__, *,
                  assign_by_default: Optional[pulumi.Input[bool]] = None,
                  group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]]] = None,
-                 is_active: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Group resource.
-        :param pulumi.Input[bool] assign_by_default: Whether or not to assign this group to users by default
-        :param pulumi.Input[bool] is_active: Whether the group is active
-        :param pulumi.Input[str] name: Group name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: SSO mapping group names for this group
+        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
         if assign_by_default is not None:
             pulumi.set(__self__, "assign_by_default", assign_by_default)
         if group_permissions is not None:
             pulumi.set(__self__, "group_permissions", group_permissions)
-        if is_active is not None:
-            pulumi.set(__self__, "is_active", is_active)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if sso_mapping_groups is not None:
@@ -43,7 +40,7 @@ class GroupArgs:
     @pulumi.getter(name="assignByDefault")
     def assign_by_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not to assign this group to users by default
+        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         """
         return pulumi.get(self, "assign_by_default")
 
@@ -54,6 +51,9 @@ class GroupArgs:
     @property
     @pulumi.getter(name="groupPermissions")
     def group_permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]]]:
+        """
+        Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        """
         return pulumi.get(self, "group_permissions")
 
     @group_permissions.setter
@@ -61,22 +61,10 @@ class GroupArgs:
         pulumi.set(self, "group_permissions", value)
 
     @property
-    @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Whether the group is active
-        """
-        return pulumi.get(self, "is_active")
-
-    @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "is_active", value)
-
-    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Group name
+        The name of the group. This is used to identify an existing group
         """
         return pulumi.get(self, "name")
 
@@ -88,7 +76,7 @@ class GroupArgs:
     @pulumi.getter(name="ssoMappingGroups")
     def sso_mapping_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        SSO mapping group names for this group
+        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
         return pulumi.get(self, "sso_mapping_groups")
 
@@ -102,22 +90,19 @@ class _GroupState:
     def __init__(__self__, *,
                  assign_by_default: Optional[pulumi.Input[bool]] = None,
                  group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]]] = None,
-                 is_active: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Group resources.
-        :param pulumi.Input[bool] assign_by_default: Whether or not to assign this group to users by default
-        :param pulumi.Input[bool] is_active: Whether the group is active
-        :param pulumi.Input[str] name: Group name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: SSO mapping group names for this group
+        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
         if assign_by_default is not None:
             pulumi.set(__self__, "assign_by_default", assign_by_default)
         if group_permissions is not None:
             pulumi.set(__self__, "group_permissions", group_permissions)
-        if is_active is not None:
-            pulumi.set(__self__, "is_active", is_active)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if sso_mapping_groups is not None:
@@ -127,7 +112,7 @@ class _GroupState:
     @pulumi.getter(name="assignByDefault")
     def assign_by_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not to assign this group to users by default
+        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         """
         return pulumi.get(self, "assign_by_default")
 
@@ -138,6 +123,9 @@ class _GroupState:
     @property
     @pulumi.getter(name="groupPermissions")
     def group_permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]]]:
+        """
+        Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        """
         return pulumi.get(self, "group_permissions")
 
     @group_permissions.setter
@@ -145,22 +133,10 @@ class _GroupState:
         pulumi.set(self, "group_permissions", value)
 
     @property
-    @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Whether the group is active
-        """
-        return pulumi.get(self, "is_active")
-
-    @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "is_active", value)
-
-    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Group name
+        The name of the group. This is used to identify an existing group
         """
         return pulumi.get(self, "name")
 
@@ -172,7 +148,7 @@ class _GroupState:
     @pulumi.getter(name="ssoMappingGroups")
     def sso_mapping_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        SSO mapping group names for this group
+        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
         return pulumi.get(self, "sso_mapping_groups")
 
@@ -188,7 +164,6 @@ class Group(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assign_by_default: Optional[pulumi.Input[bool]] = None,
                  group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGroupPermissionArgs']]]]] = None,
-                 is_active: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -246,10 +221,10 @@ class Group(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] assign_by_default: Whether or not to assign this group to users by default
-        :param pulumi.Input[bool] is_active: Whether the group is active
-        :param pulumi.Input[str] name: Group name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: SSO mapping group names for this group
+        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGroupPermissionArgs']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
         ...
     @overload
@@ -326,7 +301,6 @@ class Group(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assign_by_default: Optional[pulumi.Input[bool]] = None,
                  group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGroupPermissionArgs']]]]] = None,
-                 is_active: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -340,7 +314,6 @@ class Group(pulumi.CustomResource):
 
             __props__.__dict__["assign_by_default"] = assign_by_default
             __props__.__dict__["group_permissions"] = group_permissions
-            __props__.__dict__["is_active"] = is_active
             __props__.__dict__["name"] = name
             __props__.__dict__["sso_mapping_groups"] = sso_mapping_groups
         super(Group, __self__).__init__(
@@ -355,7 +328,6 @@ class Group(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             assign_by_default: Optional[pulumi.Input[bool]] = None,
             group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGroupPermissionArgs']]]]] = None,
-            is_active: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Group':
         """
@@ -365,10 +337,10 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] assign_by_default: Whether or not to assign this group to users by default
-        :param pulumi.Input[bool] is_active: Whether the group is active
-        :param pulumi.Input[str] name: Group name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: SSO mapping group names for this group
+        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupGroupPermissionArgs']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -376,45 +348,39 @@ class Group(pulumi.CustomResource):
 
         __props__.__dict__["assign_by_default"] = assign_by_default
         __props__.__dict__["group_permissions"] = group_permissions
-        __props__.__dict__["is_active"] = is_active
         __props__.__dict__["name"] = name
         __props__.__dict__["sso_mapping_groups"] = sso_mapping_groups
         return Group(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="assignByDefault")
-    def assign_by_default(self) -> pulumi.Output[Optional[bool]]:
+    def assign_by_default(self) -> pulumi.Output[bool]:
         """
-        Whether or not to assign this group to users by default
+        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         """
         return pulumi.get(self, "assign_by_default")
 
     @property
     @pulumi.getter(name="groupPermissions")
     def group_permissions(self) -> pulumi.Output[Optional[Sequence['outputs.GroupGroupPermission']]]:
+        """
+        Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        """
         return pulumi.get(self, "group_permissions")
-
-    @property
-    @pulumi.getter(name="isActive")
-    def is_active(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Whether the group is active
-        """
-        return pulumi.get(self, "is_active")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Group name
+        The name of the group. This is used to identify an existing group
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="ssoMappingGroups")
-    def sso_mapping_groups(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def sso_mapping_groups(self) -> pulumi.Output[Sequence[str]]:
         """
-        SSO mapping group names for this group
+        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
         return pulumi.get(self, "sso_mapping_groups")
 

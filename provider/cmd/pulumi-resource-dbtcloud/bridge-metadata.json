@@ -35,7 +35,14 @@
                 "current": "dbtcloud:index/group:Group",
                 "fields": {
                     "group_permissions": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "writable_environment_categories": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "sso_mapping_groups": {
                         "maxItemsOne": false
@@ -46,7 +53,14 @@
                 "current": "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions",
                 "fields": {
                     "group_permissions": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "writable_environment_categories": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "sso_mapping_groups": {
                         "maxItemsOne": false
@@ -209,6 +223,16 @@
             "dbtcloud_group": {
                 "current": "dbtcloud:index/getGroup:getGroup",
                 "fields": {
+                    "group_permissions": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "writable_environment_categories": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "sso_mapping_groups": {
                         "maxItemsOne": false
                     }
@@ -311,7 +335,7 @@
             "dbtcloud:index/extendedAttributes:ExtendedAttributes": 0,
             "dbtcloud:index/fabricConnection:FabricConnection": 0,
             "dbtcloud:index/fabricCredential:FabricCredential": 0,
-            "dbtcloud:index/group:Group": 0,
+            "dbtcloud:index/group:Group": 1,
             "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": 1,
             "dbtcloud:index/job:Job": 0,
             "dbtcloud:index/licenseMap:LicenseMap": 0,
@@ -340,7 +364,7 @@
             "dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable": 0,
             "dbtcloud:index/getEnvironments:getEnvironments": 1,
             "dbtcloud:index/getExtendedAttributes:getExtendedAttributes": 0,
-            "dbtcloud:index/getGroup:getGroup": 0,
+            "dbtcloud:index/getGroup:getGroup": 1,
             "dbtcloud:index/getGroupUsers:getGroupUsers": 0,
             "dbtcloud:index/getJob:getJob": 0,
             "dbtcloud:index/getNotification:getNotification": 1,

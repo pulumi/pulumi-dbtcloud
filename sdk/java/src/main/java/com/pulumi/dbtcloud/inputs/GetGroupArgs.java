@@ -15,14 +15,14 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetGroupArgs Empty = new GetGroupArgs();
 
     /**
-     * ID of the group
+     * The ID of the group
      * 
      */
     @Import(name="groupId", required=true)
     private Output<Integer> groupId;
 
     /**
-     * @return ID of the group
+     * @return The ID of the group
      * 
      */
     public Output<Integer> groupId() {
@@ -54,7 +54,7 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param groupId ID of the group
+         * @param groupId The ID of the group
          * 
          * @return builder
          * 
@@ -65,7 +65,7 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param groupId ID of the group
+         * @param groupId The ID of the group
          * 
          * @return builder
          * 

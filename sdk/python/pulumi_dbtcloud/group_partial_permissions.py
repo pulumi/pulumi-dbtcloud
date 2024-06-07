@@ -280,7 +280,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ssoMappingGroups")
-    def sso_mapping_groups(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def sso_mapping_groups(self) -> pulumi.Output[Sequence[str]]:
         """
         Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """

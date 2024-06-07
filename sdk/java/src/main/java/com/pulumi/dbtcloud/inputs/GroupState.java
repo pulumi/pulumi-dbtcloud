@@ -19,51 +19,44 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     public static final GroupState Empty = new GroupState();
 
     /**
-     * Whether or not to assign this group to users by default
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      * 
      */
     @Import(name="assignByDefault")
     private @Nullable Output<Boolean> assignByDefault;
 
     /**
-     * @return Whether or not to assign this group to users by default
+     * @return Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      * 
      */
     public Optional<Output<Boolean>> assignByDefault() {
         return Optional.ofNullable(this.assignByDefault);
     }
 
+    /**
+     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * 
+     */
     @Import(name="groupPermissions")
     private @Nullable Output<List<GroupGroupPermissionArgs>> groupPermissions;
 
+    /**
+     * @return Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * 
+     */
     public Optional<Output<List<GroupGroupPermissionArgs>>> groupPermissions() {
         return Optional.ofNullable(this.groupPermissions);
     }
 
     /**
-     * Whether the group is active
-     * 
-     */
-    @Import(name="isActive")
-    private @Nullable Output<Boolean> isActive;
-
-    /**
-     * @return Whether the group is active
-     * 
-     */
-    public Optional<Output<Boolean>> isActive() {
-        return Optional.ofNullable(this.isActive);
-    }
-
-    /**
-     * Group name
+     * The name of the group. This is used to identify an existing group
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Group name
+     * @return The name of the group. This is used to identify an existing group
      * 
      */
     public Optional<Output<String>> name() {
@@ -71,14 +64,14 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SSO mapping group names for this group
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      * 
      */
     @Import(name="ssoMappingGroups")
     private @Nullable Output<List<String>> ssoMappingGroups;
 
     /**
-     * @return SSO mapping group names for this group
+     * @return Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      * 
      */
     public Optional<Output<List<String>>> ssoMappingGroups() {
@@ -90,7 +83,6 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     private GroupState(GroupState $) {
         this.assignByDefault = $.assignByDefault;
         this.groupPermissions = $.groupPermissions;
-        this.isActive = $.isActive;
         this.name = $.name;
         this.ssoMappingGroups = $.ssoMappingGroups;
     }
@@ -114,7 +106,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param assignByDefault Whether or not to assign this group to users by default
+         * @param assignByDefault Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
          * 
          * @return builder
          * 
@@ -125,7 +117,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param assignByDefault Whether or not to assign this group to users by default
+         * @param assignByDefault Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
          * 
          * @return builder
          * 
@@ -134,42 +126,39 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
             return assignByDefault(Output.of(assignByDefault));
         }
 
+        /**
+         * @param groupPermissions Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupPermissions(@Nullable Output<List<GroupGroupPermissionArgs>> groupPermissions) {
             $.groupPermissions = groupPermissions;
             return this;
         }
 
+        /**
+         * @param groupPermissions Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupPermissions(List<GroupGroupPermissionArgs> groupPermissions) {
             return groupPermissions(Output.of(groupPermissions));
         }
 
+        /**
+         * @param groupPermissions Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupPermissions(GroupGroupPermissionArgs... groupPermissions) {
             return groupPermissions(List.of(groupPermissions));
         }
 
         /**
-         * @param isActive Whether the group is active
-         * 
-         * @return builder
-         * 
-         */
-        public Builder isActive(@Nullable Output<Boolean> isActive) {
-            $.isActive = isActive;
-            return this;
-        }
-
-        /**
-         * @param isActive Whether the group is active
-         * 
-         * @return builder
-         * 
-         */
-        public Builder isActive(Boolean isActive) {
-            return isActive(Output.of(isActive));
-        }
-
-        /**
-         * @param name Group name
+         * @param name The name of the group. This is used to identify an existing group
          * 
          * @return builder
          * 
@@ -180,7 +169,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Group name
+         * @param name The name of the group. This is used to identify an existing group
          * 
          * @return builder
          * 
@@ -190,7 +179,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ssoMappingGroups SSO mapping group names for this group
+         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
          * 
          * @return builder
          * 
@@ -201,7 +190,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ssoMappingGroups SSO mapping group names for this group
+         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
          * 
          * @return builder
          * 
@@ -211,7 +200,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ssoMappingGroups SSO mapping group names for this group
+         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
          * 
          * @return builder
          * 

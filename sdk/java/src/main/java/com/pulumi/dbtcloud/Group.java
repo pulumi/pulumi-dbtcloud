@@ -98,66 +98,60 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/group:Group")
 public class Group extends com.pulumi.resources.CustomResource {
     /**
-     * Whether or not to assign this group to users by default
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      * 
      */
     @Export(name="assignByDefault", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> assignByDefault;
+    private Output<Boolean> assignByDefault;
 
     /**
-     * @return Whether or not to assign this group to users by default
+     * @return Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      * 
      */
-    public Output<Optional<Boolean>> assignByDefault() {
-        return Codegen.optional(this.assignByDefault);
+    public Output<Boolean> assignByDefault() {
+        return this.assignByDefault;
     }
+    /**
+     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * 
+     */
     @Export(name="groupPermissions", refs={List.class,GroupGroupPermission.class}, tree="[0,1]")
     private Output</* @Nullable */ List<GroupGroupPermission>> groupPermissions;
 
+    /**
+     * @return Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * 
+     */
     public Output<Optional<List<GroupGroupPermission>>> groupPermissions() {
         return Codegen.optional(this.groupPermissions);
     }
     /**
-     * Whether the group is active
-     * 
-     */
-    @Export(name="isActive", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> isActive;
-
-    /**
-     * @return Whether the group is active
-     * 
-     */
-    public Output<Optional<Boolean>> isActive() {
-        return Codegen.optional(this.isActive);
-    }
-    /**
-     * Group name
+     * The name of the group. This is used to identify an existing group
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Group name
+     * @return The name of the group. This is used to identify an existing group
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * SSO mapping group names for this group
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      * 
      */
     @Export(name="ssoMappingGroups", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> ssoMappingGroups;
+    private Output<List<String>> ssoMappingGroups;
 
     /**
-     * @return SSO mapping group names for this group
+     * @return Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      * 
      */
-    public Output<Optional<List<String>>> ssoMappingGroups() {
-        return Codegen.optional(this.ssoMappingGroups);
+    public Output<List<String>> ssoMappingGroups() {
+        return this.ssoMappingGroups;
     }
 
     /**

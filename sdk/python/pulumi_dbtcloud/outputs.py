@@ -15,6 +15,7 @@ __all__ = [
     'JobJobCompletionTriggerCondition',
     'ServiceTokenServiceTokenPermission',
     'GetEnvironmentsEnvironmentResult',
+    'GetGroupGroupPermissionResult',
     'GetGroupUsersUserResult',
     'GetJobJobCompletionTriggerConditionResult',
     'GetServiceTokenServiceTokenPermissionResult',
@@ -31,6 +32,8 @@ class GroupGroupPermission(dict):
             suggest = "permission_set"
         elif key == "projectId":
             suggest = "project_id"
+        elif key == "writableEnvironmentCategories":
+            suggest = "writable_environment_categories"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in GroupGroupPermission. Access the value via the '{suggest}' property getter instead.")
@@ -46,78 +49,24 @@ class GroupGroupPermission(dict):
     def __init__(__self__, *,
                  all_projects: bool,
                  permission_set: str,
-                 project_id: Optional[int] = None):
-        """
-        :param bool all_projects: Whether or not to apply this permission to all projects for this group
-        :param str permission_set: Set of permissions to apply
-        :param int project_id: Project ID to apply this permission to for this group
-        """
-        pulumi.set(__self__, "all_projects", all_projects)
-        pulumi.set(__self__, "permission_set", permission_set)
-        if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
-
-    @property
-    @pulumi.getter(name="allProjects")
-    def all_projects(self) -> bool:
-        """
-        Whether or not to apply this permission to all projects for this group
-        """
-        return pulumi.get(self, "all_projects")
-
-    @property
-    @pulumi.getter(name="permissionSet")
-    def permission_set(self) -> str:
-        """
-        Set of permissions to apply
-        """
-        return pulumi.get(self, "permission_set")
-
-    @property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[int]:
-        """
-        Project ID to apply this permission to for this group
-        """
-        return pulumi.get(self, "project_id")
-
-
-@pulumi.output_type
-class GroupPartialPermissionsGroupPermission(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "allProjects":
-            suggest = "all_projects"
-        elif key == "permissionSet":
-            suggest = "permission_set"
-        elif key == "projectId":
-            suggest = "project_id"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in GroupPartialPermissionsGroupPermission. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        GroupPartialPermissionsGroupPermission.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        GroupPartialPermissionsGroupPermission.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 all_projects: bool,
-                 permission_set: str,
-                 project_id: Optional[int] = None):
+                 project_id: Optional[int] = None,
+                 writable_environment_categories: Optional[Sequence[str]] = None):
         """
         :param bool all_projects: Whether access should be provided for all projects or not.
         :param str permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
         :param int project_id: Project ID to apply this permission to for this group.
+        :param Sequence[str] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
         pulumi.set(__self__, "permission_set", permission_set)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if writable_environment_categories is not None:
+            pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
 
     @property
     @pulumi.getter(name="allProjects")
@@ -142,6 +91,102 @@ class GroupPartialPermissionsGroupPermission(dict):
         Project ID to apply this permission to for this group.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Optional[Sequence[str]]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
+
+
+@pulumi.output_type
+class GroupPartialPermissionsGroupPermission(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allProjects":
+            suggest = "all_projects"
+        elif key == "permissionSet":
+            suggest = "permission_set"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "writableEnvironmentCategories":
+            suggest = "writable_environment_categories"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GroupPartialPermissionsGroupPermission. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GroupPartialPermissionsGroupPermission.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GroupPartialPermissionsGroupPermission.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 all_projects: bool,
+                 permission_set: str,
+                 project_id: Optional[int] = None,
+                 writable_environment_categories: Optional[Sequence[str]] = None):
+        """
+        :param bool all_projects: Whether access should be provided for all projects or not.
+        :param str permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        :param int project_id: Project ID to apply this permission to for this group.
+        :param Sequence[str] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        pulumi.set(__self__, "all_projects", all_projects)
+        pulumi.set(__self__, "permission_set", permission_set)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if writable_environment_categories is not None:
+            pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
+
+    @property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> bool:
+        """
+        Whether access should be provided for all projects or not.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @property
+    @pulumi.getter(name="permissionSet")
+    def permission_set(self) -> str:
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        return pulumi.get(self, "permission_set")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[int]:
+        """
+        Project ID to apply this permission to for this group.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Optional[Sequence[str]]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
 
 
 @pulumi.output_type
@@ -279,15 +324,15 @@ class GetEnvironmentsEnvironmentResult(dict):
                  type: str,
                  use_custom_branch: bool):
         """
-        :param int credentials_id: The project ID to which the environment belong
-        :param str custom_branch: The type of deployment environment (currently 'production', 'staging' or empty)
-        :param str dbt_version: Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
-        :param str deployment_type: The name of the environment
+        :param int credentials_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+        :param str custom_branch: The custom branch name to use
+        :param str dbt_version: Version number of dbt to use in this environment.
+        :param str deployment_type: The type of deployment environment (currently 'production', 'staging' or empty)
         :param int environment_id: The ID of the environment
         :param int extended_attributes_id: The ID of the extended attributes applied
         :param str name: The name of the environment
         :param int project_id: The project ID to which the environment belong
-        :param str type: The name of the environment
+        :param str type: The type of environment (must be either development or deployment)
         :param bool use_custom_branch: Whether to use a custom git branch in this environment
         """
         pulumi.set(__self__, "credentials_id", credentials_id)
@@ -305,7 +350,7 @@ class GetEnvironmentsEnvironmentResult(dict):
     @pulumi.getter(name="credentialsId")
     def credentials_id(self) -> int:
         """
-        The project ID to which the environment belong
+        Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         """
         return pulumi.get(self, "credentials_id")
 
@@ -313,7 +358,7 @@ class GetEnvironmentsEnvironmentResult(dict):
     @pulumi.getter(name="customBranch")
     def custom_branch(self) -> str:
         """
-        The type of deployment environment (currently 'production', 'staging' or empty)
+        The custom branch name to use
         """
         return pulumi.get(self, "custom_branch")
 
@@ -321,7 +366,7 @@ class GetEnvironmentsEnvironmentResult(dict):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> str:
         """
-        Version number of dbt to use in this environment, usually in the format 1.2.0-latest rather than core versions
+        Version number of dbt to use in this environment.
         """
         return pulumi.get(self, "dbt_version")
 
@@ -329,7 +374,7 @@ class GetEnvironmentsEnvironmentResult(dict):
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> str:
         """
-        The name of the environment
+        The type of deployment environment (currently 'production', 'staging' or empty)
         """
         return pulumi.get(self, "deployment_type")
 
@@ -369,7 +414,7 @@ class GetEnvironmentsEnvironmentResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        The name of the environment
+        The type of environment (must be either development or deployment)
         """
         return pulumi.get(self, "type")
 
@@ -380,6 +425,57 @@ class GetEnvironmentsEnvironmentResult(dict):
         Whether to use a custom git branch in this environment
         """
         return pulumi.get(self, "use_custom_branch")
+
+
+@pulumi.output_type
+class GetGroupGroupPermissionResult(dict):
+    def __init__(__self__, *,
+                 all_projects: bool,
+                 permission_set: str,
+                 project_id: int,
+                 writable_environment_categories: Sequence[str]):
+        """
+        :param bool all_projects: Whether access should be provided for all projects or not.
+        :param str permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        :param int project_id: Project ID to apply this permission to for this group.
+        :param Sequence[str] writable_environment_categories: What types of environments to apply Write permissions to.
+        """
+        pulumi.set(__self__, "all_projects", all_projects)
+        pulumi.set(__self__, "permission_set", permission_set)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
+
+    @property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> bool:
+        """
+        Whether access should be provided for all projects or not.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @property
+    @pulumi.getter(name="permissionSet")
+    def permission_set(self) -> str:
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        return pulumi.get(self, "permission_set")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> int:
+        """
+        Project ID to apply this permission to for this group.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Sequence[str]:
+        """
+        What types of environments to apply Write permissions to.
+        """
+        return pulumi.get(self, "writable_environment_categories")
 
 
 @pulumi.output_type

@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetGroupResult',
@@ -21,19 +22,19 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, assign_by_default=None, group_id=None, id=None, is_active=None, name=None, sso_mapping_groups=None):
+    def __init__(__self__, assign_by_default=None, group_id=None, group_permissions=None, id=None, name=None, sso_mapping_groups=None):
         if assign_by_default and not isinstance(assign_by_default, bool):
             raise TypeError("Expected argument 'assign_by_default' to be a bool")
         pulumi.set(__self__, "assign_by_default", assign_by_default)
         if group_id and not isinstance(group_id, int):
             raise TypeError("Expected argument 'group_id' to be a int")
         pulumi.set(__self__, "group_id", group_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
+        if group_permissions and not isinstance(group_permissions, list):
+            raise TypeError("Expected argument 'group_permissions' to be a list")
+        pulumi.set(__self__, "group_permissions", group_permissions)
+        if id and not isinstance(id, int):
+            raise TypeError("Expected argument 'id' to be a int")
         pulumi.set(__self__, "id", id)
-        if is_active and not isinstance(is_active, bool):
-            raise TypeError("Expected argument 'is_active' to be a bool")
-        pulumi.set(__self__, "is_active", is_active)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -45,7 +46,7 @@ class GetGroupResult:
     @pulumi.getter(name="assignByDefault")
     def assign_by_default(self) -> bool:
         """
-        Whether or not to assign this group to users by default
+        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         """
         return pulumi.get(self, "assign_by_default")
 
@@ -53,25 +54,25 @@ class GetGroupResult:
     @pulumi.getter(name="groupId")
     def group_id(self) -> int:
         """
-        ID of the group
+        The ID of the group
         """
         return pulumi.get(self, "group_id")
 
     @property
-    @pulumi.getter
-    def id(self) -> str:
+    @pulumi.getter(name="groupPermissions")
+    def group_permissions(self) -> Sequence['outputs.GetGroupGroupPermissionResult']:
         """
-        The provider-assigned unique ID for this managed resource.
+        Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         """
-        return pulumi.get(self, "id")
+        return pulumi.get(self, "group_permissions")
 
     @property
-    @pulumi.getter(name="isActive")
-    def is_active(self) -> bool:
+    @pulumi.getter
+    def id(self) -> int:
         """
-        Whether the group is active
+        The ID of this resource
         """
-        return pulumi.get(self, "is_active")
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -98,8 +99,8 @@ class AwaitableGetGroupResult(GetGroupResult):
         return GetGroupResult(
             assign_by_default=self.assign_by_default,
             group_id=self.group_id,
+            group_permissions=self.group_permissions,
             id=self.id,
-            is_active=self.is_active,
             name=self.name,
             sso_mapping_groups=self.sso_mapping_groups)
 
@@ -107,9 +108,10 @@ class AwaitableGetGroupResult(GetGroupResult):
 def get_group(group_id: Optional[int] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve group details
 
-    :param int group_id: ID of the group
+
+    :param int group_id: The ID of the group
     """
     __args__ = dict()
     __args__['groupId'] = group_id
@@ -119,8 +121,8 @@ def get_group(group_id: Optional[int] = None,
     return AwaitableGetGroupResult(
         assign_by_default=pulumi.get(__ret__, 'assign_by_default'),
         group_id=pulumi.get(__ret__, 'group_id'),
+        group_permissions=pulumi.get(__ret__, 'group_permissions'),
         id=pulumi.get(__ret__, 'id'),
-        is_active=pulumi.get(__ret__, 'is_active'),
         name=pulumi.get(__ret__, 'name'),
         sso_mapping_groups=pulumi.get(__ret__, 'sso_mapping_groups'))
 
@@ -129,8 +131,9 @@ def get_group(group_id: Optional[int] = None,
 def get_group_output(group_id: Optional[pulumi.Input[int]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve group details
 
-    :param int group_id: ID of the group
+
+    :param int group_id: The ID of the group
     """
     ...
