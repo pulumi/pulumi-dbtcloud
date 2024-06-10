@@ -138,7 +138,7 @@ jobs:
           client-payload: |-
             {
               "project": "${{ github.repository }}",
-              "project-shortname": "${{ github.event.repository.name }}",
+              "project-shortname": "dbtcloud",
               "ref": "${{ github.ref_name }}"
             }
   lint:
