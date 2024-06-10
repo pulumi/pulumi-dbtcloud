@@ -133,11 +133,11 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.PULUMI_BOT_TOKEN }}
-          repository: pulumi/pulumi/registry
+          repository: pulumi/registry
           event-type: resource-provider
           client-payload: |-
             {
-              "project": "pulumi-${{ github.repository }}",
+              "project": "${{ github.repository }}",
               "shortname": "${{ github.event.repository.name }}",
               "ref": "${{ github.ref_name }}"
             }
