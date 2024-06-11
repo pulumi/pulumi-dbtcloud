@@ -131,6 +131,8 @@ type Notification struct {
 	OnFailures pulumi.IntArrayOutput `pulumi:"onFailures"`
 	// List of job IDs to trigger the webhook on success
 	OnSuccesses pulumi.IntArrayOutput `pulumi:"onSuccesses"`
+	// List of job IDs to trigger the webhook on warning
+	OnWarnings pulumi.IntArrayOutput `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
 	SlackChannelId pulumi.StringPtrOutput `pulumi:"slackChannelId"`
 	// The name of the slack channel
@@ -184,6 +186,8 @@ type notificationState struct {
 	OnFailures []int `pulumi:"onFailures"`
 	// List of job IDs to trigger the webhook on success
 	OnSuccesses []int `pulumi:"onSuccesses"`
+	// List of job IDs to trigger the webhook on warning
+	OnWarnings []int `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
 	SlackChannelId *string `pulumi:"slackChannelId"`
 	// The name of the slack channel
@@ -205,6 +209,8 @@ type NotificationState struct {
 	OnFailures pulumi.IntArrayInput
 	// List of job IDs to trigger the webhook on success
 	OnSuccesses pulumi.IntArrayInput
+	// List of job IDs to trigger the webhook on warning
+	OnWarnings pulumi.IntArrayInput
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
 	SlackChannelId pulumi.StringPtrInput
 	// The name of the slack channel
@@ -230,6 +236,8 @@ type notificationArgs struct {
 	OnFailures []int `pulumi:"onFailures"`
 	// List of job IDs to trigger the webhook on success
 	OnSuccesses []int `pulumi:"onSuccesses"`
+	// List of job IDs to trigger the webhook on warning
+	OnWarnings []int `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
 	SlackChannelId *string `pulumi:"slackChannelId"`
 	// The name of the slack channel
@@ -252,6 +260,8 @@ type NotificationArgs struct {
 	OnFailures pulumi.IntArrayInput
 	// List of job IDs to trigger the webhook on success
 	OnSuccesses pulumi.IntArrayInput
+	// List of job IDs to trigger the webhook on warning
+	OnWarnings pulumi.IntArrayInput
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
 	SlackChannelId pulumi.StringPtrInput
 	// The name of the slack channel
@@ -372,6 +382,11 @@ func (o NotificationOutput) OnFailures() pulumi.IntArrayOutput {
 // List of job IDs to trigger the webhook on success
 func (o NotificationOutput) OnSuccesses() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *Notification) pulumi.IntArrayOutput { return v.OnSuccesses }).(pulumi.IntArrayOutput)
+}
+
+// List of job IDs to trigger the webhook on warning
+func (o NotificationOutput) OnWarnings() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *Notification) pulumi.IntArrayOutput { return v.OnWarnings }).(pulumi.IntArrayOutput)
 }
 
 // The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings

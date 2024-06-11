@@ -92,6 +92,10 @@ export class PartialNotification extends pulumi.CustomResource {
      */
     public readonly onSuccesses!: pulumi.Output<number[]>;
     /**
+     * List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+     */
+    public readonly onWarnings!: pulumi.Output<number[]>;
+    /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
      */
     public readonly slackChannelId!: pulumi.Output<string | undefined>;
@@ -126,6 +130,7 @@ export class PartialNotification extends pulumi.CustomResource {
             resourceInputs["onCancels"] = state ? state.onCancels : undefined;
             resourceInputs["onFailures"] = state ? state.onFailures : undefined;
             resourceInputs["onSuccesses"] = state ? state.onSuccesses : undefined;
+            resourceInputs["onWarnings"] = state ? state.onWarnings : undefined;
             resourceInputs["slackChannelId"] = state ? state.slackChannelId : undefined;
             resourceInputs["slackChannelName"] = state ? state.slackChannelName : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
@@ -140,6 +145,7 @@ export class PartialNotification extends pulumi.CustomResource {
             resourceInputs["onCancels"] = args ? args.onCancels : undefined;
             resourceInputs["onFailures"] = args ? args.onFailures : undefined;
             resourceInputs["onSuccesses"] = args ? args.onSuccesses : undefined;
+            resourceInputs["onWarnings"] = args ? args.onWarnings : undefined;
             resourceInputs["slackChannelId"] = args ? args.slackChannelId : undefined;
             resourceInputs["slackChannelName"] = args ? args.slackChannelName : undefined;
             resourceInputs["state"] = args ? args.state : undefined;
@@ -174,6 +180,10 @@ export interface PartialNotificationState {
      * List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
      */
     onSuccesses?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+     */
+    onWarnings?: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
      */
@@ -216,6 +226,10 @@ export interface PartialNotificationArgs {
      * List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
      */
     onSuccesses?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+     */
+    onWarnings?: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
      */

@@ -36,6 +36,10 @@ import (
 //						PermissionSet: pulumi.String("developer"),
 //						AllProjects:   pulumi.Bool(false),
 //						ProjectId:     pulumi.Any(dbtProject.Id),
+//						WritableEnvironmentCategories: pulumi.StringArray{
+//							pulumi.String("development"),
+//							pulumi.String("staging"),
+//						},
 //					},
 //				},
 //			})

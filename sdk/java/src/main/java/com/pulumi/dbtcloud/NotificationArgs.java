@@ -94,6 +94,21 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * List of job IDs to trigger the webhook on warning
+     * 
+     */
+    @Import(name="onWarnings")
+    private @Nullable Output<List<Integer>> onWarnings;
+
+    /**
+     * @return List of job IDs to trigger the webhook on warning
+     * 
+     */
+    public Optional<Output<List<Integer>>> onWarnings() {
+        return Optional.ofNullable(this.onWarnings);
+    }
+
+    /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      * 
      */
@@ -161,6 +176,7 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
         this.onCancels = $.onCancels;
         this.onFailures = $.onFailures;
         this.onSuccesses = $.onSuccesses;
+        this.onWarnings = $.onWarnings;
         this.slackChannelId = $.slackChannelId;
         this.slackChannelName = $.slackChannelName;
         this.state = $.state;
@@ -318,6 +334,37 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder onSuccesses(Integer... onSuccesses) {
             return onSuccesses(List.of(onSuccesses));
+        }
+
+        /**
+         * @param onWarnings List of job IDs to trigger the webhook on warning
+         * 
+         * @return builder
+         * 
+         */
+        public Builder onWarnings(@Nullable Output<List<Integer>> onWarnings) {
+            $.onWarnings = onWarnings;
+            return this;
+        }
+
+        /**
+         * @param onWarnings List of job IDs to trigger the webhook on warning
+         * 
+         * @return builder
+         * 
+         */
+        public Builder onWarnings(List<Integer> onWarnings) {
+            return onWarnings(Output.of(onWarnings));
+        }
+
+        /**
+         * @param onWarnings List of job IDs to trigger the webhook on warning
+         * 
+         * @return builder
+         * 
+         */
+        public Builder onWarnings(Integer... onWarnings) {
+            return onWarnings(List.of(onWarnings));
         }
 
         /**

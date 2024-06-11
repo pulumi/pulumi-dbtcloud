@@ -21,7 +21,7 @@ class GetNotificationResult:
     """
     A collection of values returned by getNotification.
     """
-    def __init__(__self__, external_email=None, id=None, notification_id=None, notification_type=None, on_cancels=None, on_failures=None, on_successes=None, slack_channel_id=None, slack_channel_name=None, state=None, user_id=None):
+    def __init__(__self__, external_email=None, id=None, notification_id=None, notification_type=None, on_cancels=None, on_failures=None, on_successes=None, on_warnings=None, slack_channel_id=None, slack_channel_name=None, state=None, user_id=None):
         if external_email and not isinstance(external_email, str):
             raise TypeError("Expected argument 'external_email' to be a str")
         pulumi.set(__self__, "external_email", external_email)
@@ -43,6 +43,9 @@ class GetNotificationResult:
         if on_successes and not isinstance(on_successes, list):
             raise TypeError("Expected argument 'on_successes' to be a list")
         pulumi.set(__self__, "on_successes", on_successes)
+        if on_warnings and not isinstance(on_warnings, list):
+            raise TypeError("Expected argument 'on_warnings' to be a list")
+        pulumi.set(__self__, "on_warnings", on_warnings)
         if slack_channel_id and not isinstance(slack_channel_id, str):
             raise TypeError("Expected argument 'slack_channel_id' to be a str")
         pulumi.set(__self__, "slack_channel_id", slack_channel_id)
@@ -113,6 +116,14 @@ class GetNotificationResult:
         return pulumi.get(self, "on_successes")
 
     @property
+    @pulumi.getter(name="onWarnings")
+    def on_warnings(self) -> Sequence[int]:
+        """
+        List of job IDs to trigger the webhook on warning
+        """
+        return pulumi.get(self, "on_warnings")
+
+    @property
     @pulumi.getter(name="slackChannelId")
     def slack_channel_id(self) -> str:
         """
@@ -158,6 +169,7 @@ class AwaitableGetNotificationResult(GetNotificationResult):
             on_cancels=self.on_cancels,
             on_failures=self.on_failures,
             on_successes=self.on_successes,
+            on_warnings=self.on_warnings,
             slack_channel_id=self.slack_channel_id,
             slack_channel_name=self.slack_channel_name,
             state=self.state,
@@ -194,6 +206,7 @@ def get_notification(notification_id: Optional[int] = None,
         on_cancels=pulumi.get(__ret__, 'on_cancels'),
         on_failures=pulumi.get(__ret__, 'on_failures'),
         on_successes=pulumi.get(__ret__, 'on_successes'),
+        on_warnings=pulumi.get(__ret__, 'on_warnings'),
         slack_channel_id=pulumi.get(__ret__, 'slack_channel_id'),
         slack_channel_name=pulumi.get(__ret__, 'slack_channel_name'),
         state=pulumi.get(__ret__, 'state'),

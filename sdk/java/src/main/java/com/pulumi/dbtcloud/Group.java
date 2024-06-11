@@ -55,6 +55,9 @@ import javax.annotation.Nullable;
  *                     .permissionSet("developer")
  *                     .allProjects(false)
  *                     .projectId(dbtProject.id())
+ *                     .writableEnvironmentCategories(                    
+ *                         "development",
+ *                         "staging")
  *                     .build())
  *             .build());
  * 

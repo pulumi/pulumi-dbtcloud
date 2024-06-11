@@ -24,6 +24,10 @@ import * as utilities from "./utilities";
  *             permissionSet: "developer",
  *             allProjects: false,
  *             projectId: dbtProject.id,
+ *             writableEnvironmentCategories: [
+ *                 "development",
+ *                 "staging",
+ *             ],
  *         },
  *     ],
  * });

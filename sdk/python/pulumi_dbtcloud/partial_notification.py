@@ -20,6 +20,7 @@ class PartialNotificationArgs:
                  on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  slack_channel_id: Optional[pulumi.Input[str]] = None,
                  slack_channel_name: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[int]] = None):
@@ -31,6 +32,7 @@ class PartialNotificationArgs:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_failures: List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_successes: List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] on_warnings: List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         :param pulumi.Input[str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
         :param pulumi.Input[str] slack_channel_name: The name of the slack channel [global, used as identifier]
         :param pulumi.Input[int] state: State of the notification (1 = active (default), 2 = inactive) [global]
@@ -46,6 +48,8 @@ class PartialNotificationArgs:
             pulumi.set(__self__, "on_failures", on_failures)
         if on_successes is not None:
             pulumi.set(__self__, "on_successes", on_successes)
+        if on_warnings is not None:
+            pulumi.set(__self__, "on_warnings", on_warnings)
         if slack_channel_id is not None:
             pulumi.set(__self__, "slack_channel_id", slack_channel_id)
         if slack_channel_name is not None:
@@ -126,6 +130,18 @@ class PartialNotificationArgs:
         pulumi.set(self, "on_successes", value)
 
     @property
+    @pulumi.getter(name="onWarnings")
+    def on_warnings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+        """
+        return pulumi.get(self, "on_warnings")
+
+    @on_warnings.setter
+    def on_warnings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
+        pulumi.set(self, "on_warnings", value)
+
+    @property
     @pulumi.getter(name="slackChannelId")
     def slack_channel_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -170,6 +186,7 @@ class _PartialNotificationState:
                  on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  slack_channel_id: Optional[pulumi.Input[str]] = None,
                  slack_channel_name: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[int]] = None,
@@ -181,6 +198,7 @@ class _PartialNotificationState:
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_failures: List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_successes: List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] on_warnings: List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         :param pulumi.Input[str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
         :param pulumi.Input[str] slack_channel_name: The name of the slack channel [global, used as identifier]
         :param pulumi.Input[int] state: State of the notification (1 = active (default), 2 = inactive) [global]
@@ -196,6 +214,8 @@ class _PartialNotificationState:
             pulumi.set(__self__, "on_failures", on_failures)
         if on_successes is not None:
             pulumi.set(__self__, "on_successes", on_successes)
+        if on_warnings is not None:
+            pulumi.set(__self__, "on_warnings", on_warnings)
         if slack_channel_id is not None:
             pulumi.set(__self__, "slack_channel_id", slack_channel_id)
         if slack_channel_name is not None:
@@ -266,6 +286,18 @@ class _PartialNotificationState:
         pulumi.set(self, "on_successes", value)
 
     @property
+    @pulumi.getter(name="onWarnings")
+    def on_warnings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+        """
+        return pulumi.get(self, "on_warnings")
+
+    @on_warnings.setter
+    def on_warnings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
+        pulumi.set(self, "on_warnings", value)
+
+    @property
     @pulumi.getter(name="slackChannelId")
     def slack_channel_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -324,6 +356,7 @@ class PartialNotification(pulumi.CustomResource):
                  on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  slack_channel_id: Optional[pulumi.Input[str]] = None,
                  slack_channel_name: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[int]] = None,
@@ -372,6 +405,7 @@ class PartialNotification(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_failures: List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_successes: List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] on_warnings: List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         :param pulumi.Input[str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
         :param pulumi.Input[str] slack_channel_name: The name of the slack channel [global, used as identifier]
         :param pulumi.Input[int] state: State of the notification (1 = active (default), 2 = inactive) [global]
@@ -439,6 +473,7 @@ class PartialNotification(pulumi.CustomResource):
                  on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+                 on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  slack_channel_id: Optional[pulumi.Input[str]] = None,
                  slack_channel_name: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[int]] = None,
@@ -457,6 +492,7 @@ class PartialNotification(pulumi.CustomResource):
             __props__.__dict__["on_cancels"] = on_cancels
             __props__.__dict__["on_failures"] = on_failures
             __props__.__dict__["on_successes"] = on_successes
+            __props__.__dict__["on_warnings"] = on_warnings
             __props__.__dict__["slack_channel_id"] = slack_channel_id
             __props__.__dict__["slack_channel_name"] = slack_channel_name
             __props__.__dict__["state"] = state
@@ -478,6 +514,7 @@ class PartialNotification(pulumi.CustomResource):
             on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
             on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
             on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
+            on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
             slack_channel_id: Optional[pulumi.Input[str]] = None,
             slack_channel_name: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[int]] = None,
@@ -494,6 +531,7 @@ class PartialNotification(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_failures: List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[int]]] on_successes: List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] on_warnings: List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         :param pulumi.Input[str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
         :param pulumi.Input[str] slack_channel_name: The name of the slack channel [global, used as identifier]
         :param pulumi.Input[int] state: State of the notification (1 = active (default), 2 = inactive) [global]
@@ -508,6 +546,7 @@ class PartialNotification(pulumi.CustomResource):
         __props__.__dict__["on_cancels"] = on_cancels
         __props__.__dict__["on_failures"] = on_failures
         __props__.__dict__["on_successes"] = on_successes
+        __props__.__dict__["on_warnings"] = on_warnings
         __props__.__dict__["slack_channel_id"] = slack_channel_id
         __props__.__dict__["slack_channel_name"] = slack_channel_name
         __props__.__dict__["state"] = state
@@ -553,6 +592,14 @@ class PartialNotification(pulumi.CustomResource):
         List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_successes")
+
+    @property
+    @pulumi.getter(name="onWarnings")
+    def on_warnings(self) -> pulumi.Output[Sequence[int]]:
+        """
+        List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+        """
+        return pulumi.get(self, "on_warnings")
 
     @property
     @pulumi.getter(name="slackChannelId")

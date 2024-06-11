@@ -35,6 +35,11 @@ namespace Pulumi.DbtCloud
     ///                 PermissionSet = "developer",
     ///                 AllProjects = false,
     ///                 ProjectId = dbtProject.Id,
+    ///                 WritableEnvironmentCategories = new[]
+    ///                 {
+    ///                     "development",
+    ///                     "staging",
+    ///                 },
     ///             },
     ///         },
     ///     });

@@ -193,6 +193,20 @@ public class Notification extends com.pulumi.resources.CustomResource {
         return this.onSuccesses;
     }
     /**
+     * List of job IDs to trigger the webhook on warning
+     * 
+     */
+    @Export(name="onWarnings", refs={List.class,Integer.class}, tree="[0,1]")
+    private Output<List<Integer>> onWarnings;
+
+    /**
+     * @return List of job IDs to trigger the webhook on warning
+     * 
+     */
+    public Output<List<Integer>> onWarnings() {
+        return this.onWarnings;
+    }
+    /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      * 
      */
