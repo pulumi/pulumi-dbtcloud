@@ -91,6 +91,8 @@ type PartialNotification struct {
 	OnFailures pulumi.IntArrayOutput `pulumi:"onFailures"`
 	// List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
 	OnSuccesses pulumi.IntArrayOutput `pulumi:"onSuccesses"`
+	// List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+	OnWarnings pulumi.IntArrayOutput `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId pulumi.StringPtrOutput `pulumi:"slackChannelId"`
 	// The name of the slack channel [global, used as identifier]
@@ -144,6 +146,8 @@ type partialNotificationState struct {
 	OnFailures []int `pulumi:"onFailures"`
 	// List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
 	OnSuccesses []int `pulumi:"onSuccesses"`
+	// List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+	OnWarnings []int `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId *string `pulumi:"slackChannelId"`
 	// The name of the slack channel [global, used as identifier]
@@ -165,6 +169,8 @@ type PartialNotificationState struct {
 	OnFailures pulumi.IntArrayInput
 	// List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
 	OnSuccesses pulumi.IntArrayInput
+	// List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+	OnWarnings pulumi.IntArrayInput
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId pulumi.StringPtrInput
 	// The name of the slack channel [global, used as identifier]
@@ -190,6 +196,8 @@ type partialNotificationArgs struct {
 	OnFailures []int `pulumi:"onFailures"`
 	// List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
 	OnSuccesses []int `pulumi:"onSuccesses"`
+	// List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+	OnWarnings []int `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId *string `pulumi:"slackChannelId"`
 	// The name of the slack channel [global, used as identifier]
@@ -212,6 +220,8 @@ type PartialNotificationArgs struct {
 	OnFailures pulumi.IntArrayInput
 	// List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
 	OnSuccesses pulumi.IntArrayInput
+	// List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+	OnWarnings pulumi.IntArrayInput
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId pulumi.StringPtrInput
 	// The name of the slack channel [global, used as identifier]
@@ -332,6 +342,11 @@ func (o PartialNotificationOutput) OnFailures() pulumi.IntArrayOutput {
 // List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
 func (o PartialNotificationOutput) OnSuccesses() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *PartialNotification) pulumi.IntArrayOutput { return v.OnSuccesses }).(pulumi.IntArrayOutput)
+}
+
+// List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
+func (o PartialNotificationOutput) OnWarnings() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *PartialNotification) pulumi.IntArrayOutput { return v.OnWarnings }).(pulumi.IntArrayOutput)
 }
 
 // The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]

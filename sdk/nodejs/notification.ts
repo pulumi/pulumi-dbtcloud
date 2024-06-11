@@ -132,6 +132,10 @@ export class Notification extends pulumi.CustomResource {
      */
     public readonly onSuccesses!: pulumi.Output<number[]>;
     /**
+     * List of job IDs to trigger the webhook on warning
+     */
+    public readonly onWarnings!: pulumi.Output<number[]>;
+    /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      */
     public readonly slackChannelId!: pulumi.Output<string | undefined>;
@@ -166,6 +170,7 @@ export class Notification extends pulumi.CustomResource {
             resourceInputs["onCancels"] = state ? state.onCancels : undefined;
             resourceInputs["onFailures"] = state ? state.onFailures : undefined;
             resourceInputs["onSuccesses"] = state ? state.onSuccesses : undefined;
+            resourceInputs["onWarnings"] = state ? state.onWarnings : undefined;
             resourceInputs["slackChannelId"] = state ? state.slackChannelId : undefined;
             resourceInputs["slackChannelName"] = state ? state.slackChannelName : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
@@ -180,6 +185,7 @@ export class Notification extends pulumi.CustomResource {
             resourceInputs["onCancels"] = args ? args.onCancels : undefined;
             resourceInputs["onFailures"] = args ? args.onFailures : undefined;
             resourceInputs["onSuccesses"] = args ? args.onSuccesses : undefined;
+            resourceInputs["onWarnings"] = args ? args.onWarnings : undefined;
             resourceInputs["slackChannelId"] = args ? args.slackChannelId : undefined;
             resourceInputs["slackChannelName"] = args ? args.slackChannelName : undefined;
             resourceInputs["state"] = args ? args.state : undefined;
@@ -214,6 +220,10 @@ export interface NotificationState {
      * List of job IDs to trigger the webhook on success
      */
     onSuccesses?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * List of job IDs to trigger the webhook on warning
+     */
+    onWarnings?: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      */
@@ -256,6 +266,10 @@ export interface NotificationArgs {
      * List of job IDs to trigger the webhook on success
      */
     onSuccesses?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * List of job IDs to trigger the webhook on warning
+     */
+    onWarnings?: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      */

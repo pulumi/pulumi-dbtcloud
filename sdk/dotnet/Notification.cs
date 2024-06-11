@@ -147,6 +147,12 @@ namespace Pulumi.DbtCloud
         public Output<ImmutableArray<int>> OnSuccesses { get; private set; } = null!;
 
         /// <summary>
+        /// List of job IDs to trigger the webhook on warning
+        /// </summary>
+        [Output("onWarnings")]
+        public Output<ImmutableArray<int>> OnWarnings { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
         /// </summary>
         [Output("slackChannelId")]
@@ -265,6 +271,18 @@ namespace Pulumi.DbtCloud
             set => _onSuccesses = value;
         }
 
+        [Input("onWarnings")]
+        private InputList<int>? _onWarnings;
+
+        /// <summary>
+        /// List of job IDs to trigger the webhook on warning
+        /// </summary>
+        public InputList<int> OnWarnings
+        {
+            get => _onWarnings ?? (_onWarnings = new InputList<int>());
+            set => _onWarnings = value;
+        }
+
         /// <summary>
         /// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
         /// </summary>
@@ -343,6 +361,18 @@ namespace Pulumi.DbtCloud
         {
             get => _onSuccesses ?? (_onSuccesses = new InputList<int>());
             set => _onSuccesses = value;
+        }
+
+        [Input("onWarnings")]
+        private InputList<int>? _onWarnings;
+
+        /// <summary>
+        /// List of job IDs to trigger the webhook on warning
+        /// </summary>
+        public InputList<int> OnWarnings
+        {
+            get => _onWarnings ?? (_onWarnings = new InputList<int>());
+            set => _onWarnings = value;
         }
 
         /// <summary>

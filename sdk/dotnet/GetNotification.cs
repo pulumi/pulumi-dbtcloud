@@ -122,6 +122,10 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly ImmutableArray<int> OnSuccesses;
         /// <summary>
+        /// List of job IDs to trigger the webhook on warning
+        /// </summary>
+        public readonly ImmutableArray<int> OnWarnings;
+        /// <summary>
         /// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
         /// </summary>
         public readonly string SlackChannelId;
@@ -154,6 +158,8 @@ namespace Pulumi.DbtCloud
 
             ImmutableArray<int> onSuccesses,
 
+            ImmutableArray<int> onWarnings,
+
             string slackChannelId,
 
             string slackChannelName,
@@ -169,6 +175,7 @@ namespace Pulumi.DbtCloud
             OnCancels = onCancels;
             OnFailures = onFailures;
             OnSuccesses = onSuccesses;
+            OnWarnings = onWarnings;
             SlackChannelId = slackChannelId;
             SlackChannelName = slackChannelName;
             State = state;

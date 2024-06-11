@@ -48,6 +48,11 @@ public final class GetNotificationResult {
      */
     private List<Integer> onSuccesses;
     /**
+     * @return List of job IDs to trigger the webhook on warning
+     * 
+     */
+    private List<Integer> onWarnings;
+    /**
      * @return The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      * 
      */
@@ -119,6 +124,13 @@ public final class GetNotificationResult {
         return this.onSuccesses;
     }
     /**
+     * @return List of job IDs to trigger the webhook on warning
+     * 
+     */
+    public List<Integer> onWarnings() {
+        return this.onWarnings;
+    }
+    /**
      * @return The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      * 
      */
@@ -163,6 +175,7 @@ public final class GetNotificationResult {
         private List<Integer> onCancels;
         private List<Integer> onFailures;
         private List<Integer> onSuccesses;
+        private List<Integer> onWarnings;
         private String slackChannelId;
         private String slackChannelName;
         private Integer state;
@@ -177,6 +190,7 @@ public final class GetNotificationResult {
     	      this.onCancels = defaults.onCancels;
     	      this.onFailures = defaults.onFailures;
     	      this.onSuccesses = defaults.onSuccesses;
+    	      this.onWarnings = defaults.onWarnings;
     	      this.slackChannelId = defaults.slackChannelId;
     	      this.slackChannelName = defaults.slackChannelName;
     	      this.state = defaults.state;
@@ -249,6 +263,17 @@ public final class GetNotificationResult {
             return onSuccesses(List.of(onSuccesses));
         }
         @CustomType.Setter
+        public Builder onWarnings(List<Integer> onWarnings) {
+            if (onWarnings == null) {
+              throw new MissingRequiredPropertyException("GetNotificationResult", "onWarnings");
+            }
+            this.onWarnings = onWarnings;
+            return this;
+        }
+        public Builder onWarnings(Integer... onWarnings) {
+            return onWarnings(List.of(onWarnings));
+        }
+        @CustomType.Setter
         public Builder slackChannelId(String slackChannelId) {
             if (slackChannelId == null) {
               throw new MissingRequiredPropertyException("GetNotificationResult", "slackChannelId");
@@ -289,6 +314,7 @@ public final class GetNotificationResult {
             _resultValue.onCancels = onCancels;
             _resultValue.onFailures = onFailures;
             _resultValue.onSuccesses = onSuccesses;
+            _resultValue.onWarnings = onWarnings;
             _resultValue.slackChannelId = slackChannelId;
             _resultValue.slackChannelName = slackChannelName;
             _resultValue.state = state;

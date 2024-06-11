@@ -52,6 +52,9 @@ import javax.annotation.Nullable;
  *                     .permission_set("developer")
  *                     .project_id(dbtProject.id())
  *                     .all_projects(false)
+ *                     .writable_environment_categories(                    
+ *                         "development",
+ *                         "staging")
  *                     .build(),
  *                 GroupPartialPermissionsGroupPermissionArgs.builder()
  *                     .permission_set("git_admin")

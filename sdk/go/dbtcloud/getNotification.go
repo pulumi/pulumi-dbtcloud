@@ -70,6 +70,8 @@ type LookupNotificationResult struct {
 	OnFailures []int `pulumi:"onFailures"`
 	// List of job IDs to trigger the webhook on success
 	OnSuccesses []int `pulumi:"onSuccesses"`
+	// List of job IDs to trigger the webhook on warning
+	OnWarnings []int `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
 	SlackChannelId string `pulumi:"slackChannelId"`
 	// The name of the slack channel
@@ -151,6 +153,11 @@ func (o LookupNotificationResultOutput) OnFailures() pulumi.IntArrayOutput {
 // List of job IDs to trigger the webhook on success
 func (o LookupNotificationResultOutput) OnSuccesses() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v LookupNotificationResult) []int { return v.OnSuccesses }).(pulumi.IntArrayOutput)
+}
+
+// List of job IDs to trigger the webhook on warning
+func (o LookupNotificationResultOutput) OnWarnings() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v LookupNotificationResult) []int { return v.OnWarnings }).(pulumi.IntArrayOutput)
 }
 
 // The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings

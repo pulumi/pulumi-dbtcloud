@@ -69,6 +69,10 @@ export interface GetNotificationResult {
      */
     readonly onSuccesses: number[];
     /**
+     * List of job IDs to trigger the webhook on warning
+     */
+    readonly onWarnings: number[];
+    /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      */
     readonly slackChannelId: string;
