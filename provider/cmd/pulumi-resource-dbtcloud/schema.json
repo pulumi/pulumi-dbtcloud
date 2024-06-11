@@ -1932,7 +1932,7 @@
             }
         },
         "dbtcloud:index/group:Group": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst tfGroup1 = new dbtcloud.Group(\"tf_group_1\", {\n    name: \"TF Group 1\",\n    groupPermissions: [\n        {\n            permissionSet: \"member\",\n            allProjects: true,\n        },\n        {\n            permissionSet: \"developer\",\n            allProjects: false,\n            projectId: dbtProject.id,\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ntf_group1 = dbtcloud.Group(\"tf_group_1\",\n    name=\"TF Group 1\",\n    group_permissions=[\n        dbtcloud.GroupGroupPermissionArgs(\n            permission_set=\"member\",\n            all_projects=True,\n        ),\n        dbtcloud.GroupGroupPermissionArgs(\n            permission_set=\"developer\",\n            all_projects=False,\n            project_id=dbt_project[\"id\"],\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var tfGroup1 = new DbtCloud.Group(\"tf_group_1\", new()\n    {\n        Name = \"TF Group 1\",\n        GroupPermissions = new[]\n        {\n            new DbtCloud.Inputs.GroupGroupPermissionArgs\n            {\n                PermissionSet = \"member\",\n                AllProjects = true,\n            },\n            new DbtCloud.Inputs.GroupGroupPermissionArgs\n            {\n                PermissionSet = \"developer\",\n                AllProjects = false,\n                ProjectId = dbtProject.Id,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewGroup(ctx, \"tf_group_1\", \u0026dbtcloud.GroupArgs{\n\t\t\tName: pulumi.String(\"TF Group 1\"),\n\t\t\tGroupPermissions: dbtcloud.GroupGroupPermissionArray{\n\t\t\t\t\u0026dbtcloud.GroupGroupPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"member\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t\t\u0026dbtcloud.GroupGroupPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"developer\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(false),\n\t\t\t\t\tProjectId:     pulumi.Any(dbtProject.Id),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Group;\nimport com.pulumi.dbtcloud.GroupArgs;\nimport com.pulumi.dbtcloud.inputs.GroupGroupPermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var tfGroup1 = new Group(\"tfGroup1\", GroupArgs.builder()\n            .name(\"TF Group 1\")\n            .groupPermissions(            \n                GroupGroupPermissionArgs.builder()\n                    .permissionSet(\"member\")\n                    .allProjects(true)\n                    .build(),\n                GroupGroupPermissionArgs.builder()\n                    .permissionSet(\"developer\")\n                    .allProjects(false)\n                    .projectId(dbtProject.id())\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  tfGroup1:\n    type: dbtcloud:Group\n    name: tf_group_1\n    properties:\n      name: TF Group 1\n      groupPermissions:\n        - permissionSet: member\n          allProjects: true\n        - permissionSet: developer\n          allProjects: false\n          projectId: ${dbtProject.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_group.my_group\n\n  id = \"group_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_group.my_group\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/group:Group my_group \"group_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/group:Group my_group 12345\n```\n\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst tfGroup1 = new dbtcloud.Group(\"tf_group_1\", {\n    name: \"TF Group 1\",\n    groupPermissions: [\n        {\n            permissionSet: \"member\",\n            allProjects: true,\n        },\n        {\n            permissionSet: \"developer\",\n            allProjects: false,\n            projectId: dbtProject.id,\n            writableEnvironmentCategories: [\n                \"development\",\n                \"staging\",\n            ],\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ntf_group1 = dbtcloud.Group(\"tf_group_1\",\n    name=\"TF Group 1\",\n    group_permissions=[\n        dbtcloud.GroupGroupPermissionArgs(\n            permission_set=\"member\",\n            all_projects=True,\n        ),\n        dbtcloud.GroupGroupPermissionArgs(\n            permission_set=\"developer\",\n            all_projects=False,\n            project_id=dbt_project[\"id\"],\n            writable_environment_categories=[\n                \"development\",\n                \"staging\",\n            ],\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var tfGroup1 = new DbtCloud.Group(\"tf_group_1\", new()\n    {\n        Name = \"TF Group 1\",\n        GroupPermissions = new[]\n        {\n            new DbtCloud.Inputs.GroupGroupPermissionArgs\n            {\n                PermissionSet = \"member\",\n                AllProjects = true,\n            },\n            new DbtCloud.Inputs.GroupGroupPermissionArgs\n            {\n                PermissionSet = \"developer\",\n                AllProjects = false,\n                ProjectId = dbtProject.Id,\n                WritableEnvironmentCategories = new[]\n                {\n                    \"development\",\n                    \"staging\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewGroup(ctx, \"tf_group_1\", \u0026dbtcloud.GroupArgs{\n\t\t\tName: pulumi.String(\"TF Group 1\"),\n\t\t\tGroupPermissions: dbtcloud.GroupGroupPermissionArray{\n\t\t\t\t\u0026dbtcloud.GroupGroupPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"member\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t\t\u0026dbtcloud.GroupGroupPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"developer\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(false),\n\t\t\t\t\tProjectId:     pulumi.Any(dbtProject.Id),\n\t\t\t\t\tWritableEnvironmentCategories: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"development\"),\n\t\t\t\t\t\tpulumi.String(\"staging\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Group;\nimport com.pulumi.dbtcloud.GroupArgs;\nimport com.pulumi.dbtcloud.inputs.GroupGroupPermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var tfGroup1 = new Group(\"tfGroup1\", GroupArgs.builder()\n            .name(\"TF Group 1\")\n            .groupPermissions(            \n                GroupGroupPermissionArgs.builder()\n                    .permissionSet(\"member\")\n                    .allProjects(true)\n                    .build(),\n                GroupGroupPermissionArgs.builder()\n                    .permissionSet(\"developer\")\n                    .allProjects(false)\n                    .projectId(dbtProject.id())\n                    .writableEnvironmentCategories(                    \n                        \"development\",\n                        \"staging\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  tfGroup1:\n    type: dbtcloud:Group\n    name: tf_group_1\n    properties:\n      name: TF Group 1\n      groupPermissions:\n        - permissionSet: member\n          allProjects: true\n        - permissionSet: developer\n          allProjects: false\n          projectId: ${dbtProject.id}\n          writableEnvironmentCategories:\n            - development\n            - staging\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_group.my_group\n\n  id = \"group_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_group.my_group\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/group:Group my_group \"group_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/group:Group my_group 12345\n```\n\n",
             "properties": {
                 "assignByDefault": {
                     "type": "boolean",
@@ -2016,7 +2016,7 @@
             }
         },
         "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.GroupPartialPermissions;\nimport com.pulumi.dbtcloud.GroupPartialPermissionsArgs;\nimport com.pulumi.dbtcloud.inputs.GroupPartialPermissionsGroupPermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // we add some permissions to the group \"TF Group 1\" (existing or not) to  a new project \n        var tfGroup1 = new GroupPartialPermissions(\"tfGroup1\", GroupPartialPermissionsArgs.builder()\n            .name(\"TF Group 1\")\n            .groupPermissions(            \n                GroupPartialPermissionsGroupPermissionArgs.builder()\n                    .permission_set(\"developer\")\n                    .project_id(dbtProject.id())\n                    .all_projects(false)\n                    .build(),\n                GroupPartialPermissionsGroupPermissionArgs.builder()\n                    .permission_set(\"git_admin\")\n                    .project_id(dbtProject.id())\n                    .all_projects(false)\n                    .build())\n            .build());\n\n        // we add Admin permissions to the group \"TF Group 2\" (existing or not) to  a new project \n        // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource\n        var tfGroup2 = new GroupPartialPermissions(\"tfGroup2\", GroupPartialPermissionsArgs.builder()\n            .name(\"TF Group 2\")\n            .ssoMappingGroups(\"group2\")\n            .groupPermissions(GroupPartialPermissionsGroupPermissionArgs.builder()\n                .permission_set(\"admin\")\n                .project_id(dbtProject.id())\n                .all_projects(false)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # we add some permissions to the group \"TF Group 1\" (existing or not) to  a new project\n  tfGroup1:\n    type: dbtcloud:GroupPartialPermissions\n    name: tf_group_1\n    properties:\n      name: TF Group 1\n      groupPermissions:\n        - permission_set: developer\n          project_id: ${dbtProject.id}\n          all_projects: false\n        - permission_set: git_admin\n          project_id: ${dbtProject.id}\n          all_projects: false\n  # we add Admin permissions to the group \"TF Group 2\" (existing or not) to  a new project \n  # // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource\n  tfGroup2:\n    type: dbtcloud:GroupPartialPermissions\n    name: tf_group_2\n    properties:\n      name: TF Group 2\n      ssoMappingGroups:\n        - group2\n      groupPermissions:\n        - permission_set: admin\n          project_id: ${dbtProject.id}\n          all_projects: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.GroupPartialPermissions;\nimport com.pulumi.dbtcloud.GroupPartialPermissionsArgs;\nimport com.pulumi.dbtcloud.inputs.GroupPartialPermissionsGroupPermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // we add some permissions to the group \"TF Group 1\" (existing or not) to  a new project \n        var tfGroup1 = new GroupPartialPermissions(\"tfGroup1\", GroupPartialPermissionsArgs.builder()\n            .name(\"TF Group 1\")\n            .groupPermissions(            \n                GroupPartialPermissionsGroupPermissionArgs.builder()\n                    .permission_set(\"developer\")\n                    .project_id(dbtProject.id())\n                    .all_projects(false)\n                    .writable_environment_categories(                    \n                        \"development\",\n                        \"staging\")\n                    .build(),\n                GroupPartialPermissionsGroupPermissionArgs.builder()\n                    .permission_set(\"git_admin\")\n                    .project_id(dbtProject.id())\n                    .all_projects(false)\n                    .build())\n            .build());\n\n        // we add Admin permissions to the group \"TF Group 2\" (existing or not) to  a new project \n        // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource\n        var tfGroup2 = new GroupPartialPermissions(\"tfGroup2\", GroupPartialPermissionsArgs.builder()\n            .name(\"TF Group 2\")\n            .ssoMappingGroups(\"group2\")\n            .groupPermissions(GroupPartialPermissionsGroupPermissionArgs.builder()\n                .permission_set(\"admin\")\n                .project_id(dbtProject.id())\n                .all_projects(false)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # we add some permissions to the group \"TF Group 1\" (existing or not) to  a new project\n  tfGroup1:\n    type: dbtcloud:GroupPartialPermissions\n    name: tf_group_1\n    properties:\n      name: TF Group 1\n      groupPermissions:\n        - permission_set: developer\n          project_id: ${dbtProject.id}\n          all_projects: false\n          writable_environment_categories:\n            - development\n            - staging\n        - permission_set: git_admin\n          project_id: ${dbtProject.id}\n          all_projects: false\n  # we add Admin permissions to the group \"TF Group 2\" (existing or not) to  a new project \n  # // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource\n  tfGroup2:\n    type: dbtcloud:GroupPartialPermissions\n    name: tf_group_2\n    properties:\n      name: TF Group 2\n      ssoMappingGroups:\n        - group2\n      groupPermissions:\n        - permission_set: admin\n          project_id: ${dbtProject.id}\n          all_projects: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "assignByDefault": {
                     "type": "boolean",
@@ -2538,6 +2538,13 @@
                     },
                     "description": "List of job IDs to trigger the webhook on success\n"
                 },
+                "onWarnings": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "List of job IDs to trigger the webhook on warning\n"
+                },
                 "slackChannelId": {
                     "type": "string",
                     "description": "The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings\n"
@@ -2560,6 +2567,7 @@
                 "onCancels",
                 "onFailures",
                 "onSuccesses",
+                "onWarnings",
                 "state",
                 "userId"
             ],
@@ -2592,6 +2600,13 @@
                         "type": "integer"
                     },
                     "description": "List of job IDs to trigger the webhook on success\n"
+                },
+                "onWarnings": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "List of job IDs to trigger the webhook on warning\n"
                 },
                 "slackChannelId": {
                     "type": "string",
@@ -2644,6 +2659,13 @@
                             "type": "integer"
                         },
                         "description": "List of job IDs to trigger the webhook on success\n"
+                    },
+                    "onWarnings": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "List of job IDs to trigger the webhook on warning\n"
                     },
                     "slackChannelId": {
                         "type": "string",
@@ -2751,6 +2773,13 @@
                     },
                     "description": "List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.\n"
                 },
+                "onWarnings": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.\n"
+                },
                 "slackChannelId": {
                     "type": "string",
                     "description": "The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]\n"
@@ -2773,6 +2802,7 @@
                 "onCancels",
                 "onFailures",
                 "onSuccesses",
+                "onWarnings",
                 "state",
                 "userId"
             ],
@@ -2805,6 +2835,13 @@
                         "type": "integer"
                     },
                     "description": "List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.\n"
+                },
+                "onWarnings": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.\n"
                 },
                 "slackChannelId": {
                     "type": "string",
@@ -2857,6 +2894,13 @@
                             "type": "integer"
                         },
                         "description": "List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.\n"
+                    },
+                    "onWarnings": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "description": "List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.\n"
                     },
                     "slackChannelId": {
                         "type": "string",
@@ -4838,6 +4882,13 @@
                         },
                         "type": "array"
                     },
+                    "onWarnings": {
+                        "description": "List of job IDs to trigger the webhook on warning\n",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "type": "array"
+                    },
                     "slackChannelId": {
                         "description": "The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings\n",
                         "type": "string"
@@ -4862,6 +4913,7 @@
                     "onCancels",
                     "onFailures",
                     "onSuccesses",
+                    "onWarnings",
                     "slackChannelId",
                     "slackChannelName",
                     "state",
