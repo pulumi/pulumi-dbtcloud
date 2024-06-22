@@ -149,7 +149,7 @@ class EnvironmentVariable(pulumi.CustomResource):
                 "CI": "my_ci_override_value",
                 "Prod": "my_prod_override_value",
             },
-            opts=pulumi.ResourceOptions(depends_on=[
+            opts = pulumi.ResourceOptions(depends_on=[
                     dbt_project,
                     dev_env,
                     ci_env,
@@ -218,7 +218,7 @@ class EnvironmentVariable(pulumi.CustomResource):
                 "CI": "my_ci_override_value",
                 "Prod": "my_prod_override_value",
             },
-            opts=pulumi.ResourceOptions(depends_on=[
+            opts = pulumi.ResourceOptions(depends_on=[
                     dbt_project,
                     dev_env,
                     ci_env,
