@@ -121,13 +121,11 @@ class RepositoryArgs:
 
     @property
     @pulumi.getter(name="fetchDeployKey")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
     def fetch_deploy_key(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether we should return the public deploy key - (for the `deploy_key` strategy)
         """
-        warnings.warn("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""", DeprecationWarning)
-        pulumi.log.warn("""fetch_deploy_key is deprecated: This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
-
         return pulumi.get(self, "fetch_deploy_key")
 
     @fetch_deploy_key.setter
@@ -295,13 +293,11 @@ class _RepositoryState:
 
     @property
     @pulumi.getter(name="fetchDeployKey")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
     def fetch_deploy_key(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether we should return the public deploy key - (for the `deploy_key` strategy)
         """
-        warnings.warn("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""", DeprecationWarning)
-        pulumi.log.warn("""fetch_deploy_key is deprecated: This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
-
         return pulumi.get(self, "fetch_deploy_key")
 
     @fetch_deploy_key.setter
@@ -742,13 +738,11 @@ class Repository(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="fetchDeployKey")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
     def fetch_deploy_key(self) -> pulumi.Output[Optional[bool]]:
         """
         Whether we should return the public deploy key - (for the `deploy_key` strategy)
         """
-        warnings.warn("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""", DeprecationWarning)
-        pulumi.log.warn("""fetch_deploy_key is deprecated: This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
-
         return pulumi.get(self, "fetch_deploy_key")
 
     @property
