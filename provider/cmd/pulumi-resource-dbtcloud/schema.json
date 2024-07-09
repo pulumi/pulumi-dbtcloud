@@ -644,7 +644,8 @@
                 },
                 "projectId": {
                     "type": "integer",
-                    "description": "Project ID to create the connection in\n"
+                    "description": "Project ID to create the connection in\n",
+                    "willReplaceOnChanges": true
                 },
                 "retries": {
                     "type": "integer",
@@ -769,7 +770,8 @@
                     },
                     "projectId": {
                         "type": "integer",
-                        "description": "Project ID to create the connection in\n"
+                        "description": "Project ID to create the connection in\n",
+                        "willReplaceOnChanges": true
                     },
                     "retries": {
                         "type": "integer",
@@ -1020,7 +1022,8 @@
                 },
                 "projectId": {
                     "type": "integer",
-                    "description": "Project ID to create the connection in\n"
+                    "description": "Project ID to create the connection in\n",
+                    "willReplaceOnChanges": true
                 },
                 "role": {
                     "type": "string",
@@ -1110,7 +1113,8 @@
                     },
                     "projectId": {
                         "type": "integer",
-                        "description": "Project ID to create the connection in\n"
+                        "description": "Project ID to create the connection in\n",
+                        "willReplaceOnChanges": true
                     },
                     "role": {
                         "type": "string",
@@ -1275,7 +1279,7 @@
                 },
                 "deploymentType": {
                     "type": "string",
-                    "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'\n"
+                    "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments\n"
                 },
                 "environmentId": {
                     "type": "integer",
@@ -1328,7 +1332,7 @@
                 },
                 "deploymentType": {
                     "type": "string",
-                    "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'\n"
+                    "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments\n"
                 },
                 "extendedAttributesId": {
                     "type": "integer",
@@ -1378,7 +1382,7 @@
                     },
                     "deploymentType": {
                         "type": "string",
-                        "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'\n"
+                        "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments\n"
                     },
                     "environmentId": {
                         "type": "integer",
