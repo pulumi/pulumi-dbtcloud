@@ -31,7 +31,7 @@ class EnvironmentArgs:
         :param pulumi.Input[str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
-        :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
         :param pulumi.Input[str] name: Environment name
@@ -119,7 +119,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
 
@@ -195,7 +195,7 @@ class _EnvironmentState:
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
-        :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[int] environment_id: Environment ID within the project
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
@@ -267,7 +267,7 @@ class _EnvironmentState:
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
 
@@ -440,7 +440,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
-        :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
         :param pulumi.Input[str] name: Environment name
@@ -595,7 +595,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
-        :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[int] environment_id: Environment ID within the project
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
@@ -649,7 +649,7 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
 

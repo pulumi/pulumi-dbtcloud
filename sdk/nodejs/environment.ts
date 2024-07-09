@@ -107,7 +107,7 @@ export class Environment extends pulumi.CustomResource {
      */
     public readonly dbtVersion!: pulumi.Output<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
     public readonly deploymentType!: pulumi.Output<string | undefined>;
     /**
@@ -208,7 +208,7 @@ export interface EnvironmentState {
      */
     dbtVersion?: pulumi.Input<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string>;
     /**
@@ -258,7 +258,7 @@ export interface EnvironmentArgs {
      */
     dbtVersion: pulumi.Input<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string>;
     /**
