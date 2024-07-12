@@ -150,14 +150,14 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return this.dbtVersion;
     }
     /**
-     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be empty or set to &#39;production&#39;
+     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
      * 
      */
     @Export(name="deploymentType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> deploymentType;
 
     /**
-     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be empty or set to &#39;production&#39;
+     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
      * 
      */
     public Output<Optional<String>> deploymentType() {

@@ -104,7 +104,7 @@ namespace Pulumi.DbtCloud
         public Output<string> DbtVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         /// </summary>
         [Output("deploymentType")]
         public Output<string?> DeploymentType { get; private set; } = null!;
@@ -217,7 +217,7 @@ namespace Pulumi.DbtCloud
         public Input<string> DbtVersion { get; set; } = null!;
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         /// </summary>
         [Input("deploymentType")]
         public Input<string>? DeploymentType { get; set; }
@@ -285,7 +285,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? DbtVersion { get; set; }
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be empty or set to 'production'
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         /// </summary>
         [Input("deploymentType")]
         public Input<string>? DeploymentType { get; set; }

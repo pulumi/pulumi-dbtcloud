@@ -63,14 +63,14 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be empty or set to &#39;production&#39;
+     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
      * 
      */
     @Import(name="deploymentType")
     private @Nullable Output<String> deploymentType;
 
     /**
-     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be empty or set to &#39;production&#39;
+     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
      * 
      */
     public Optional<Output<String>> deploymentType() {
@@ -280,7 +280,7 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be empty or set to &#39;production&#39;
+         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
          * 
          * @return builder
          * 
@@ -291,7 +291,7 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be empty or set to &#39;production&#39;
+         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
          * 
          * @return builder
          * 
