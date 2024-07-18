@@ -163,7 +163,14 @@
                 "current": "dbtcloud:index/serviceToken:ServiceToken",
                 "fields": {
                     "service_token_permissions": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "writable_environment_categories": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -267,6 +274,32 @@
                     }
                 }
             },
+            "dbtcloud_jobs": {
+                "current": "dbtcloud:index/getJobs:getJobs",
+                "fields": {
+                    "jobs": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "execute_steps": {
+                                    "maxItemsOne": false
+                                },
+                                "job_completion_trigger_condition": {
+                                    "fields": {
+                                        "condition": {
+                                            "fields": {
+                                                "statuses": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "dbtcloud_notification": {
                 "current": "dbtcloud:index/getNotification:getNotification",
                 "fields": {
@@ -300,7 +333,14 @@
                 "current": "dbtcloud:index/getServiceToken:getServiceToken",
                 "fields": {
                     "service_token_permissions": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "writable_environment_categories": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -314,6 +354,14 @@
                 "current": "dbtcloud:index/getUserGroups:getUserGroups",
                 "fields": {
                     "group_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "dbtcloud_users": {
+                "current": "dbtcloud:index/getUsers:getUsers",
+                "fields": {
+                    "users": {
                         "maxItemsOne": false
                     }
                 }
@@ -357,7 +405,7 @@
             "dbtcloud:index/projectConnection:ProjectConnection": 0,
             "dbtcloud:index/projectRepository:ProjectRepository": 0,
             "dbtcloud:index/repository:Repository": 0,
-            "dbtcloud:index/serviceToken:ServiceToken": 0,
+            "dbtcloud:index/serviceToken:ServiceToken": 1,
             "dbtcloud:index/snowflakeCredential:SnowflakeCredential": 0,
             "dbtcloud:index/userGroups:UserGroups": 0,
             "dbtcloud:index/webhook:Webhook": 0
@@ -376,15 +424,17 @@
             "dbtcloud:index/getGroup:getGroup": 1,
             "dbtcloud:index/getGroupUsers:getGroupUsers": 0,
             "dbtcloud:index/getJob:getJob": 0,
+            "dbtcloud:index/getJobs:getJobs": 1,
             "dbtcloud:index/getNotification:getNotification": 1,
             "dbtcloud:index/getPostgresCredential:getPostgresCredential": 0,
             "dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint": 0,
             "dbtcloud:index/getProject:getProject": 0,
             "dbtcloud:index/getRepository:getRepository": 0,
-            "dbtcloud:index/getServiceToken:getServiceToken": 0,
+            "dbtcloud:index/getServiceToken:getServiceToken": 1,
             "dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential": 0,
             "dbtcloud:index/getUser:getUser": 1,
             "dbtcloud:index/getUserGroups:getUserGroups": 0,
+            "dbtcloud:index/getUsers:getUsers": 1,
             "dbtcloud:index/getWebhook:getWebhook": 0
         }
     },

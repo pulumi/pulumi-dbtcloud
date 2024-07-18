@@ -201,13 +201,29 @@
                 "projectId": {
                     "type": "integer",
                     "description": "Project ID to apply this permission to for this service token\n"
+                },
+                "writableEnvironmentCategories": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "What types of environments to apply Write permissions to.\nEven if Write access is restricted to some environment types, the permission set will have Read access to all environments.\nThe values allowed are `all`, `development`, `staging`, `production` and `other`.\nNot setting a value is the same as selecting `all`.\nNot all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.\n"
                 }
             },
             "type": "object",
             "required": [
                 "allProjects",
                 "permissionSet"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "allProjects",
+                        "permissionSet",
+                        "writableEnvironmentCategories"
+                    ]
+                }
+            }
         },
         "dbtcloud:index/getEnvironmentsEnvironment:getEnvironmentsEnvironment": {
             "properties": {
@@ -356,6 +372,279 @@
                 }
             }
         },
+        "dbtcloud:index/getJobsJob:getJobsJob": {
+            "properties": {
+                "dbtVersion": {
+                    "type": "string",
+                    "description": "The version of dbt used for the job. If not set, the environment version will be used.\n"
+                },
+                "deferringEnvironmentId": {
+                    "type": "integer",
+                    "description": "The ID of the environment this job defers to\n"
+                },
+                "deferringJobDefinitionId": {
+                    "type": "integer",
+                    "description": "[Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the job\n"
+                },
+                "environment": {
+                    "$ref": "#/types/dbtcloud:index/getJobsJobEnvironment:getJobsJobEnvironment",
+                    "description": "Details of the environment the job is running in\n"
+                },
+                "environmentId": {
+                    "type": "integer",
+                    "description": "The ID of environment\n"
+                },
+                "executeSteps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of steps to run in the job\n"
+                },
+                "execution": {
+                    "$ref": "#/types/dbtcloud:index/getJobsJobExecution:getJobsJobExecution"
+                },
+                "generateDocs": {
+                    "type": "boolean",
+                    "description": "Whether the job generate docs\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "The ID of the job\n"
+                },
+                "jobCompletionTriggerCondition": {
+                    "$ref": "#/types/dbtcloud:index/getJobsJobJobCompletionTriggerCondition:getJobsJobJobCompletionTriggerCondition",
+                    "description": "Whether the job is triggered by the completion of another job\n"
+                },
+                "jobType": {
+                    "type": "string",
+                    "description": "The type of job (e.g. CI, scheduled)\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the job\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The ID of the project\n"
+                },
+                "runGenerateSources": {
+                    "type": "boolean",
+                    "description": "Whether the job test source freshness\n"
+                },
+                "schedule": {
+                    "$ref": "#/types/dbtcloud:index/getJobsJobSchedule:getJobsJobSchedule"
+                },
+                "settings": {
+                    "$ref": "#/types/dbtcloud:index/getJobsJobSettings:getJobsJobSettings"
+                },
+                "triggers": {
+                    "$ref": "#/types/dbtcloud:index/getJobsJobTriggers:getJobsJobTriggers"
+                },
+                "triggersOnDraftPr": {
+                    "type": "boolean",
+                    "description": "Whether the CI job should be automatically triggered on draft PRs\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dbtVersion",
+                "deferringEnvironmentId",
+                "deferringJobDefinitionId",
+                "description",
+                "environment",
+                "environmentId",
+                "executeSteps",
+                "execution",
+                "generateDocs",
+                "id",
+                "jobCompletionTriggerCondition",
+                "jobType",
+                "name",
+                "projectId",
+                "runGenerateSources",
+                "schedule",
+                "settings",
+                "triggers",
+                "triggersOnDraftPr"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getJobsJobEnvironment:getJobsJobEnvironment": {
+            "properties": {
+                "deploymentType": {
+                    "type": "string",
+                    "description": "Type of deployment environment: staging, production\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the environment\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the environment\n"
+                },
+                "projectId": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Environment type: development or deployment\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "deploymentType",
+                "id",
+                "name",
+                "projectId",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getJobsJobExecution:getJobsJobExecution": {
+            "properties": {
+                "timeoutSeconds": {
+                    "type": "integer",
+                    "description": "The number of seconds before the job times out\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "timeoutSeconds"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getJobsJobJobCompletionTriggerCondition:getJobsJobJobCompletionTriggerCondition": {
+            "properties": {
+                "condition": {
+                    "$ref": "#/types/dbtcloud:index/getJobsJobJobCompletionTriggerConditionCondition:getJobsJobJobCompletionTriggerConditionCondition"
+                }
+            },
+            "type": "object",
+            "required": [
+                "condition"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getJobsJobJobCompletionTriggerConditionCondition:getJobsJobJobCompletionTriggerConditionCondition": {
+            "properties": {
+                "jobId": {
+                    "type": "integer"
+                },
+                "projectId": {
+                    "type": "integer"
+                },
+                "statuses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "jobId",
+                "projectId",
+                "statuses"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getJobsJobSchedule:getJobsJobSchedule": {
+            "properties": {
+                "cron": {
+                    "type": "string",
+                    "description": "The cron schedule for the job. Only used if triggers.schedule is true\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cron"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getJobsJobSettings:getJobsJobSettings": {
+            "properties": {
+                "targetName": {
+                    "type": "string",
+                    "description": "Value for `target.name` in the Jinja context\n"
+                },
+                "threads": {
+                    "type": "integer",
+                    "description": "Number of threads to run dbt with\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "targetName",
+                "threads"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getJobsJobTriggers:getJobsJobTriggers": {
+            "properties": {
+                "gitProviderWebhook": {
+                    "type": "boolean",
+                    "description": "Whether the job runs automatically on PR creation\n"
+                },
+                "githubWebhook": {
+                    "type": "boolean",
+                    "description": "Whether the job runs automatically on PR creation\n"
+                },
+                "onMerge": {
+                    "type": "boolean",
+                    "description": "Whether the job runs automatically once a PR is merged\n"
+                },
+                "schedule": {
+                    "type": "boolean",
+                    "description": "Whether the job runs on a schedule\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "gitProviderWebhook",
+                "githubWebhook",
+                "onMerge",
+                "schedule"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "dbtcloud:index/getServiceTokenServiceTokenPermission:getServiceTokenServiceTokenPermission": {
             "properties": {
                 "allProjects": {
@@ -369,13 +658,43 @@
                 "projectId": {
                     "type": "integer",
                     "description": "Project ID to apply this permission to for this service token\n"
+                },
+                "writableEnvironmentCategories": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "What types of environments to apply Write permissions to.\nEven if Write access is restricted to some environment types, the permission set will have Read access to all environments.\nThe values allowed are `all`, `development`, `staging`, `production` and `other`.\nNot setting a value is the same as selecting `all`.\nNot all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.\n"
                 }
             },
             "type": "object",
             "required": [
                 "allProjects",
                 "permissionSet",
-                "projectId"
+                "projectId",
+                "writableEnvironmentCategories"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getUsersUser:getUsersUser": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email for the user\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the user\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "email",
+                "id"
             ],
             "language": {
                 "nodejs": {
@@ -3444,7 +3763,7 @@
             }
         },
         "dbtcloud:index/serviceToken:ServiceToken": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst testServiceToken = new dbtcloud.ServiceToken(\"test_service_token\", {\n    name: \"Test Service Token\",\n    serviceTokenPermissions: [\n        {\n            permissionSet: \"git_admin\",\n            allProjects: true,\n        },\n        {\n            permissionSet: \"job_admin\",\n            allProjects: false,\n            projectId: dbtProject.id,\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ntest_service_token = dbtcloud.ServiceToken(\"test_service_token\",\n    name=\"Test Service Token\",\n    service_token_permissions=[\n        dbtcloud.ServiceTokenServiceTokenPermissionArgs(\n            permission_set=\"git_admin\",\n            all_projects=True,\n        ),\n        dbtcloud.ServiceTokenServiceTokenPermissionArgs(\n            permission_set=\"job_admin\",\n            all_projects=False,\n            project_id=dbt_project[\"id\"],\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testServiceToken = new DbtCloud.ServiceToken(\"test_service_token\", new()\n    {\n        Name = \"Test Service Token\",\n        ServiceTokenPermissions = new[]\n        {\n            new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs\n            {\n                PermissionSet = \"git_admin\",\n                AllProjects = true,\n            },\n            new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs\n            {\n                PermissionSet = \"job_admin\",\n                AllProjects = false,\n                ProjectId = dbtProject.Id,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewServiceToken(ctx, \"test_service_token\", \u0026dbtcloud.ServiceTokenArgs{\n\t\t\tName: pulumi.String(\"Test Service Token\"),\n\t\t\tServiceTokenPermissions: dbtcloud.ServiceTokenServiceTokenPermissionArray{\n\t\t\t\t\u0026dbtcloud.ServiceTokenServiceTokenPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"git_admin\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t\t\u0026dbtcloud.ServiceTokenServiceTokenPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"job_admin\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(false),\n\t\t\t\t\tProjectId:     pulumi.Any(dbtProject.Id),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.ServiceToken;\nimport com.pulumi.dbtcloud.ServiceTokenArgs;\nimport com.pulumi.dbtcloud.inputs.ServiceTokenServiceTokenPermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testServiceToken = new ServiceToken(\"testServiceToken\", ServiceTokenArgs.builder()\n            .name(\"Test Service Token\")\n            .serviceTokenPermissions(            \n                ServiceTokenServiceTokenPermissionArgs.builder()\n                    .permissionSet(\"git_admin\")\n                    .allProjects(true)\n                    .build(),\n                ServiceTokenServiceTokenPermissionArgs.builder()\n                    .permissionSet(\"job_admin\")\n                    .allProjects(false)\n                    .projectId(dbtProject.id())\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testServiceToken:\n    type: dbtcloud:ServiceToken\n    name: test_service_token\n    properties:\n      name: Test Service Token\n      serviceTokenPermissions:\n        - permissionSet: git_admin\n          allProjects: true\n        - permissionSet: job_admin\n          allProjects: false\n          projectId: ${dbtProject.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_group.my_service_token\n\n  id = \"service_token_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_group.my_service_token\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token \"service_token_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345\n```\n\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst testServiceToken = new dbtcloud.ServiceToken(\"test_service_token\", {\n    name: \"Test Service Token\",\n    serviceTokenPermissions: [\n        {\n            permissionSet: \"git_admin\",\n            allProjects: true,\n        },\n        {\n            permissionSet: \"job_admin\",\n            allProjects: false,\n            projectId: dbtProject.id,\n        },\n        {\n            permissionSet: \"developer\",\n            allProjects: true,\n            writableEnvironmentCategories: [\n                \"development\",\n                \"staging\",\n            ],\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ntest_service_token = dbtcloud.ServiceToken(\"test_service_token\",\n    name=\"Test Service Token\",\n    service_token_permissions=[\n        dbtcloud.ServiceTokenServiceTokenPermissionArgs(\n            permission_set=\"git_admin\",\n            all_projects=True,\n        ),\n        dbtcloud.ServiceTokenServiceTokenPermissionArgs(\n            permission_set=\"job_admin\",\n            all_projects=False,\n            project_id=dbt_project[\"id\"],\n        ),\n        dbtcloud.ServiceTokenServiceTokenPermissionArgs(\n            permission_set=\"developer\",\n            all_projects=True,\n            writable_environment_categories=[\n                \"development\",\n                \"staging\",\n            ],\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testServiceToken = new DbtCloud.ServiceToken(\"test_service_token\", new()\n    {\n        Name = \"Test Service Token\",\n        ServiceTokenPermissions = new[]\n        {\n            new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs\n            {\n                PermissionSet = \"git_admin\",\n                AllProjects = true,\n            },\n            new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs\n            {\n                PermissionSet = \"job_admin\",\n                AllProjects = false,\n                ProjectId = dbtProject.Id,\n            },\n            new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs\n            {\n                PermissionSet = \"developer\",\n                AllProjects = true,\n                WritableEnvironmentCategories = new[]\n                {\n                    \"development\",\n                    \"staging\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewServiceToken(ctx, \"test_service_token\", \u0026dbtcloud.ServiceTokenArgs{\n\t\t\tName: pulumi.String(\"Test Service Token\"),\n\t\t\tServiceTokenPermissions: dbtcloud.ServiceTokenServiceTokenPermissionArray{\n\t\t\t\t\u0026dbtcloud.ServiceTokenServiceTokenPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"git_admin\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t\t\u0026dbtcloud.ServiceTokenServiceTokenPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"job_admin\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(false),\n\t\t\t\t\tProjectId:     pulumi.Any(dbtProject.Id),\n\t\t\t\t},\n\t\t\t\t\u0026dbtcloud.ServiceTokenServiceTokenPermissionArgs{\n\t\t\t\t\tPermissionSet: pulumi.String(\"developer\"),\n\t\t\t\t\tAllProjects:   pulumi.Bool(true),\n\t\t\t\t\tWritableEnvironmentCategories: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"development\"),\n\t\t\t\t\t\tpulumi.String(\"staging\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.ServiceToken;\nimport com.pulumi.dbtcloud.ServiceTokenArgs;\nimport com.pulumi.dbtcloud.inputs.ServiceTokenServiceTokenPermissionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testServiceToken = new ServiceToken(\"testServiceToken\", ServiceTokenArgs.builder()\n            .name(\"Test Service Token\")\n            .serviceTokenPermissions(            \n                ServiceTokenServiceTokenPermissionArgs.builder()\n                    .permissionSet(\"git_admin\")\n                    .allProjects(true)\n                    .build(),\n                ServiceTokenServiceTokenPermissionArgs.builder()\n                    .permissionSet(\"job_admin\")\n                    .allProjects(false)\n                    .projectId(dbtProject.id())\n                    .build(),\n                ServiceTokenServiceTokenPermissionArgs.builder()\n                    .permissionSet(\"developer\")\n                    .allProjects(true)\n                    .writableEnvironmentCategories(                    \n                        \"development\",\n                        \"staging\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testServiceToken:\n    type: dbtcloud:ServiceToken\n    name: test_service_token\n    properties:\n      name: Test Service Token\n      serviceTokenPermissions:\n        - permissionSet: git_admin\n          allProjects: true\n        - permissionSet: job_admin\n          allProjects: false\n          projectId: ${dbtProject.id}\n        - permissionSet: developer\n          allProjects: true\n          writableEnvironmentCategories:\n            - development\n            - staging\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_service_token.my_service_token\n\n  id = \"service_token_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_service_token.my_service_token\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token \"service_token_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345\n```\n\n",
             "properties": {
                 "name": {
                     "type": "string",
@@ -3473,14 +3792,14 @@
             },
             "required": [
                 "name",
+                "state",
                 "tokenString",
                 "uid"
             ],
             "inputProperties": {
                 "name": {
                     "type": "string",
-                    "description": "Service token name\n",
-                    "willReplaceOnChanges": true
+                    "description": "Service token name\n"
                 },
                 "serviceTokenPermissions": {
                     "type": "array",
@@ -3499,8 +3818,7 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "Service token name\n",
-                        "willReplaceOnChanges": true
+                        "description": "Service token name\n"
                     },
                     "serviceTokenPermissions": {
                         "type": "array",
@@ -4831,6 +5149,52 @@
                 "type": "object"
             }
         },
+        "dbtcloud:index/getJobs:getJobs": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// we can search all jobs by project\nconst testAllJobsInProject = dbtcloud.getJobs({\n    projectId: 1234,\n});\n// or by environment\nconst testAllJobsInEnvironment = dbtcloud.getJobs({\n    environmentId: 1234,\n});\nconst myJobsProd = testAllJobsInProject.then(testAllJobsInProject =\u003e .filter(job =\u003e job.environment?.deploymentType == \"production\").map(job =\u003e (job)));\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# we can search all jobs by project\ntest_all_jobs_in_project = dbtcloud.get_jobs(project_id=1234)\n# or by environment\ntest_all_jobs_in_environment = dbtcloud.get_jobs(environment_id=1234)\nmy_jobs_prod = [job for job in test_all_jobs_in_project.jobs if job.environment.deployment_type == \"production\"]\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // we can search all jobs by project\n    var testAllJobsInProject = DbtCloud.GetJobs.Invoke(new()\n    {\n        ProjectId = 1234,\n    });\n\n    // or by environment\n    var testAllJobsInEnvironment = DbtCloud.GetJobs.Invoke(new()\n    {\n        EnvironmentId = 1234,\n    });\n\n    var myJobsProd = .Where(job =\u003e job.Environment?.DeploymentType == \"production\").Select(job =\u003e \n    {\n        return job;\n    }).ToList();\n\n});\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getJobs.\n",
+                "properties": {
+                    "environmentId": {
+                        "type": "integer",
+                        "description": "The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getJobs.\n",
+                "properties": {
+                    "environmentId": {
+                        "description": "The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)\n",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "jobs": {
+                        "description": "Set of jobs with their details\n",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/getJobsJob:getJobsJob"
+                        },
+                        "type": "array"
+                    },
+                    "projectId": {
+                        "description": "The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "jobs",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "dbtcloud:index/getNotification:getNotification": {
             "description": "Retrieve notification details\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myNotification = dbtcloud.getNotification({\n    notificationId: 12345,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_notification = dbtcloud.get_notification(notification_id=12345)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myNotification = DbtCloud.GetNotification.Invoke(new()\n    {\n        NotificationId = 12345,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.LookupNotification(ctx, \u0026dbtcloud.LookupNotificationArgs{\n\t\t\tNotificationId: 12345,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DbtcloudFunctions;\nimport com.pulumi.dbtcloud.inputs.GetNotificationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myNotification = DbtcloudFunctions.getNotification(GetNotificationArgs.builder()\n            .notificationId(12345)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myNotification:\n    fn::invoke:\n      Function: dbtcloud:getNotification\n      Arguments:\n        notificationId: 12345\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -5201,7 +5565,14 @@
                 "properties": {
                     "serviceTokenId": {
                         "type": "integer",
-                        "description": "ID of the service token\n"
+                        "description": "The ID of the service token\n"
+                    },
+                    "serviceTokenPermissions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/getServiceTokenServiceTokenPermission:getServiceTokenServiceTokenPermission"
+                        },
+                        "description": "Permissions set for the service token\n"
                     }
                 },
                 "type": "object",
@@ -5213,7 +5584,7 @@
                 "description": "A collection of values returned by getServiceToken.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The ID of the service token\n",
                         "type": "string"
                     },
                     "name": {
@@ -5221,7 +5592,7 @@
                         "type": "string"
                     },
                     "serviceTokenId": {
-                        "description": "ID of the service token\n",
+                        "description": "The ID of the service token\n",
                         "type": "integer"
                     },
                     "serviceTokenPermissions": {
@@ -5232,16 +5603,15 @@
                         "type": "array"
                     },
                     "uid": {
-                        "description": "The UID of the service token (part of the token secret)\n",
+                        "description": "Service token UID (part of the token)\n",
                         "type": "string"
                     }
                 },
                 "required": [
+                    "id",
                     "name",
                     "serviceTokenId",
-                    "serviceTokenPermissions",
-                    "uid",
-                    "id"
+                    "uid"
                 ],
                 "type": "object"
             }
@@ -5385,6 +5755,30 @@
                 "required": [
                     "groupIds",
                     "userId",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/getUsers:getUsers": {
+            "description": "Retrieve all users\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// return all users in the dbt Cloud account\nconst all = dbtcloud.getUsers({});\nconst userDetails = all.then(all =\u003e .filter(user =\u003e user.email == \"example@amail.com\").map(user =\u003e (user)));\nconst userExist = userDetails.length.then(length =\u003e length == 1);\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# return all users in the dbt Cloud account\nall = dbtcloud.get_users()\nuser_details = [user for user in all.users if user.email == \"example@amail.com\"]\nuser_exist = len(user_details) == 1\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // return all users in the dbt Cloud account\n    var all = DbtCloud.GetUsers.Invoke();\n\n    var userDetails = .Where(user =\u003e user.Email == \"example@amail.com\").Select(user =\u003e \n    {\n        return user;\n    }).ToList();\n\n    var userExist = userDetails.Length.Apply(length =\u003e length == 1);\n\n});\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "outputs": {
+                "description": "A collection of values returned by getUsers.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "users": {
+                        "description": "Set of users with their internal ID end email\n",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/getUsersUser:getUsersUser"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "users",
                     "id"
                 ],
                 "type": "object"
