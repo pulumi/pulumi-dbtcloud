@@ -14,6 +14,7 @@ __all__ = [
     'GroupPartialPermissionsGroupPermissionArgs',
     'JobJobCompletionTriggerConditionArgs',
     'ServiceTokenServiceTokenPermissionArgs',
+    'GetServiceTokenServiceTokenPermissionArgs',
 ]
 
 @pulumi.input_type
@@ -227,16 +228,24 @@ class ServiceTokenServiceTokenPermissionArgs:
     def __init__(__self__, *,
                  all_projects: pulumi.Input[bool],
                  permission_set: pulumi.Input[str],
-                 project_id: Optional[pulumi.Input[int]] = None):
+                 project_id: Optional[pulumi.Input[int]] = None,
+                 writable_environment_categories: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] all_projects: Whether or not to apply this permission to all projects for this service token
         :param pulumi.Input[str] permission_set: Set of permissions to apply
         :param pulumi.Input[int] project_id: Project ID to apply this permission to for this service token
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
         pulumi.set(__self__, "permission_set", permission_set)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if writable_environment_categories is not None:
+            pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
 
     @property
     @pulumi.getter(name="allProjects")
@@ -273,5 +282,96 @@ class ServiceTokenServiceTokenPermissionArgs:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
+
+    @writable_environment_categories.setter
+    def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "writable_environment_categories", value)
+
+
+@pulumi.input_type
+class GetServiceTokenServiceTokenPermissionArgs:
+    def __init__(__self__, *,
+                 all_projects: bool,
+                 permission_set: str,
+                 project_id: int,
+                 writable_environment_categories: Sequence[str]):
+        """
+        :param bool all_projects: Whether or not to apply this permission to all projects for this service token
+        :param str permission_set: Set of permissions to apply
+        :param int project_id: Project ID to apply this permission to for this service token
+        :param Sequence[str] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        pulumi.set(__self__, "all_projects", all_projects)
+        pulumi.set(__self__, "permission_set", permission_set)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
+
+    @property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> bool:
+        """
+        Whether or not to apply this permission to all projects for this service token
+        """
+        return pulumi.get(self, "all_projects")
+
+    @all_projects.setter
+    def all_projects(self, value: bool):
+        pulumi.set(self, "all_projects", value)
+
+    @property
+    @pulumi.getter(name="permissionSet")
+    def permission_set(self) -> str:
+        """
+        Set of permissions to apply
+        """
+        return pulumi.get(self, "permission_set")
+
+    @permission_set.setter
+    def permission_set(self, value: str):
+        pulumi.set(self, "permission_set", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> int:
+        """
+        Project ID to apply this permission to for this service token
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: int):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Sequence[str]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
+
+    @writable_environment_categories.setter
+    def writable_environment_categories(self, value: Sequence[str]):
+        pulumi.set(self, "writable_environment_categories", value)
 
 

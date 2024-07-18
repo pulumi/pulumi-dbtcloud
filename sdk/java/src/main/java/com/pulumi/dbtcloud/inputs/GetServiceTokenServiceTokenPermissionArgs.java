@@ -11,13 +11,11 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
-public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.resources.ResourceArgs {
+public final class GetServiceTokenServiceTokenPermissionArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final ServiceTokenServiceTokenPermissionArgs Empty = new ServiceTokenServiceTokenPermissionArgs();
+    public static final GetServiceTokenServiceTokenPermissionArgs Empty = new GetServiceTokenServiceTokenPermissionArgs();
 
     /**
      * Whether or not to apply this permission to all projects for this service token
@@ -53,15 +51,15 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
      * Project ID to apply this permission to for this service token
      * 
      */
-    @Import(name="projectId")
-    private @Nullable Output<Integer> projectId;
+    @Import(name="projectId", required=true)
+    private Output<Integer> projectId;
 
     /**
      * @return Project ID to apply this permission to for this service token
      * 
      */
-    public Optional<Output<Integer>> projectId() {
-        return Optional.ofNullable(this.projectId);
+    public Output<Integer> projectId() {
+        return this.projectId;
     }
 
     /**
@@ -72,8 +70,8 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
      * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
      * 
      */
-    @Import(name="writableEnvironmentCategories")
-    private @Nullable Output<List<String>> writableEnvironmentCategories;
+    @Import(name="writableEnvironmentCategories", required=true)
+    private Output<List<String>> writableEnvironmentCategories;
 
     /**
      * @return What types of environments to apply Write permissions to.
@@ -83,13 +81,13 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
      * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
      * 
      */
-    public Optional<Output<List<String>>> writableEnvironmentCategories() {
-        return Optional.ofNullable(this.writableEnvironmentCategories);
+    public Output<List<String>> writableEnvironmentCategories() {
+        return this.writableEnvironmentCategories;
     }
 
-    private ServiceTokenServiceTokenPermissionArgs() {}
+    private GetServiceTokenServiceTokenPermissionArgs() {}
 
-    private ServiceTokenServiceTokenPermissionArgs(ServiceTokenServiceTokenPermissionArgs $) {
+    private GetServiceTokenServiceTokenPermissionArgs(GetServiceTokenServiceTokenPermissionArgs $) {
         this.allProjects = $.allProjects;
         this.permissionSet = $.permissionSet;
         this.projectId = $.projectId;
@@ -99,19 +97,19 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(ServiceTokenServiceTokenPermissionArgs defaults) {
+    public static Builder builder(GetServiceTokenServiceTokenPermissionArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private ServiceTokenServiceTokenPermissionArgs $;
+        private GetServiceTokenServiceTokenPermissionArgs $;
 
         public Builder() {
-            $ = new ServiceTokenServiceTokenPermissionArgs();
+            $ = new GetServiceTokenServiceTokenPermissionArgs();
         }
 
-        public Builder(ServiceTokenServiceTokenPermissionArgs defaults) {
-            $ = new ServiceTokenServiceTokenPermissionArgs(Objects.requireNonNull(defaults));
+        public Builder(GetServiceTokenServiceTokenPermissionArgs defaults) {
+            $ = new GetServiceTokenServiceTokenPermissionArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -162,7 +160,7 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
          * @return builder
          * 
          */
-        public Builder projectId(@Nullable Output<Integer> projectId) {
+        public Builder projectId(Output<Integer> projectId) {
             $.projectId = projectId;
             return this;
         }
@@ -187,7 +185,7 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
          * @return builder
          * 
          */
-        public Builder writableEnvironmentCategories(@Nullable Output<List<String>> writableEnvironmentCategories) {
+        public Builder writableEnvironmentCategories(Output<List<String>> writableEnvironmentCategories) {
             $.writableEnvironmentCategories = writableEnvironmentCategories;
             return this;
         }
@@ -220,12 +218,18 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
             return writableEnvironmentCategories(List.of(writableEnvironmentCategories));
         }
 
-        public ServiceTokenServiceTokenPermissionArgs build() {
+        public GetServiceTokenServiceTokenPermissionArgs build() {
             if ($.allProjects == null) {
-                throw new MissingRequiredPropertyException("ServiceTokenServiceTokenPermissionArgs", "allProjects");
+                throw new MissingRequiredPropertyException("GetServiceTokenServiceTokenPermissionArgs", "allProjects");
             }
             if ($.permissionSet == null) {
-                throw new MissingRequiredPropertyException("ServiceTokenServiceTokenPermissionArgs", "permissionSet");
+                throw new MissingRequiredPropertyException("GetServiceTokenServiceTokenPermissionArgs", "permissionSet");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("GetServiceTokenServiceTokenPermissionArgs", "projectId");
+            }
+            if ($.writableEnvironmentCategories == null) {
+                throw new MissingRequiredPropertyException("GetServiceTokenServiceTokenPermissionArgs", "writableEnvironmentCategories");
             }
             return $;
         }

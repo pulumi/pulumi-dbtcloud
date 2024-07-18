@@ -467,6 +467,12 @@ type ServiceTokenServiceTokenPermission struct {
 	PermissionSet string `pulumi:"permissionSet"`
 	// Project ID to apply this permission to for this service token
 	ProjectId *int `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
 
 // ServiceTokenServiceTokenPermissionInput is an input type that accepts ServiceTokenServiceTokenPermissionArgs and ServiceTokenServiceTokenPermissionOutput values.
@@ -487,6 +493,12 @@ type ServiceTokenServiceTokenPermissionArgs struct {
 	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
 	// Project ID to apply this permission to for this service token
 	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
 
 func (ServiceTokenServiceTokenPermissionArgs) ElementType() reflect.Type {
@@ -553,6 +565,15 @@ func (o ServiceTokenServiceTokenPermissionOutput) PermissionSet() pulumi.StringO
 // Project ID to apply this permission to for this service token
 func (o ServiceTokenServiceTokenPermissionOutput) ProjectId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceTokenServiceTokenPermission) *int { return v.ProjectId }).(pulumi.IntPtrOutput)
+}
+
+// What types of environments to apply Write permissions to.
+// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+// Not setting a value is the same as selecting `all`.
+// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+func (o ServiceTokenServiceTokenPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ServiceTokenServiceTokenPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
 }
 
 type ServiceTokenServiceTokenPermissionArrayOutput struct{ *pulumi.OutputState }
@@ -1092,6 +1113,694 @@ func (o GetJobJobCompletionTriggerConditionArrayOutput) Index(i pulumi.IntInput)
 	}).(GetJobJobCompletionTriggerConditionOutput)
 }
 
+type GetJobsJob struct {
+	// The version of dbt used for the job. If not set, the environment version will be used.
+	DbtVersion string `pulumi:"dbtVersion"`
+	// The ID of the environment this job defers to
+	DeferringEnvironmentId int `pulumi:"deferringEnvironmentId"`
+	// [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+	DeferringJobDefinitionId int `pulumi:"deferringJobDefinitionId"`
+	// The description of the job
+	Description string `pulumi:"description"`
+	// Details of the environment the job is running in
+	Environment GetJobsJobEnvironment `pulumi:"environment"`
+	// The ID of environment
+	EnvironmentId int `pulumi:"environmentId"`
+	// The list of steps to run in the job
+	ExecuteSteps []string            `pulumi:"executeSteps"`
+	Execution    GetJobsJobExecution `pulumi:"execution"`
+	// Whether the job generate docs
+	GenerateDocs bool `pulumi:"generateDocs"`
+	// The ID of the job
+	Id int `pulumi:"id"`
+	// Whether the job is triggered by the completion of another job
+	JobCompletionTriggerCondition GetJobsJobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerCondition"`
+	// The type of job (e.g. CI, scheduled)
+	JobType string `pulumi:"jobType"`
+	// The name of the job
+	Name string `pulumi:"name"`
+	// The ID of the project
+	ProjectId int `pulumi:"projectId"`
+	// Whether the job test source freshness
+	RunGenerateSources bool               `pulumi:"runGenerateSources"`
+	Schedule           GetJobsJobSchedule `pulumi:"schedule"`
+	Settings           GetJobsJobSettings `pulumi:"settings"`
+	Triggers           GetJobsJobTriggers `pulumi:"triggers"`
+	// Whether the CI job should be automatically triggered on draft PRs
+	TriggersOnDraftPr bool `pulumi:"triggersOnDraftPr"`
+}
+
+// GetJobsJobInput is an input type that accepts GetJobsJobArgs and GetJobsJobOutput values.
+// You can construct a concrete instance of `GetJobsJobInput` via:
+//
+//	GetJobsJobArgs{...}
+type GetJobsJobInput interface {
+	pulumi.Input
+
+	ToGetJobsJobOutput() GetJobsJobOutput
+	ToGetJobsJobOutputWithContext(context.Context) GetJobsJobOutput
+}
+
+type GetJobsJobArgs struct {
+	// The version of dbt used for the job. If not set, the environment version will be used.
+	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
+	// The ID of the environment this job defers to
+	DeferringEnvironmentId pulumi.IntInput `pulumi:"deferringEnvironmentId"`
+	// [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+	DeferringJobDefinitionId pulumi.IntInput `pulumi:"deferringJobDefinitionId"`
+	// The description of the job
+	Description pulumi.StringInput `pulumi:"description"`
+	// Details of the environment the job is running in
+	Environment GetJobsJobEnvironmentInput `pulumi:"environment"`
+	// The ID of environment
+	EnvironmentId pulumi.IntInput `pulumi:"environmentId"`
+	// The list of steps to run in the job
+	ExecuteSteps pulumi.StringArrayInput  `pulumi:"executeSteps"`
+	Execution    GetJobsJobExecutionInput `pulumi:"execution"`
+	// Whether the job generate docs
+	GenerateDocs pulumi.BoolInput `pulumi:"generateDocs"`
+	// The ID of the job
+	Id pulumi.IntInput `pulumi:"id"`
+	// Whether the job is triggered by the completion of another job
+	JobCompletionTriggerCondition GetJobsJobJobCompletionTriggerConditionInput `pulumi:"jobCompletionTriggerCondition"`
+	// The type of job (e.g. CI, scheduled)
+	JobType pulumi.StringInput `pulumi:"jobType"`
+	// The name of the job
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// Whether the job test source freshness
+	RunGenerateSources pulumi.BoolInput        `pulumi:"runGenerateSources"`
+	Schedule           GetJobsJobScheduleInput `pulumi:"schedule"`
+	Settings           GetJobsJobSettingsInput `pulumi:"settings"`
+	Triggers           GetJobsJobTriggersInput `pulumi:"triggers"`
+	// Whether the CI job should be automatically triggered on draft PRs
+	TriggersOnDraftPr pulumi.BoolInput `pulumi:"triggersOnDraftPr"`
+}
+
+func (GetJobsJobArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJob)(nil)).Elem()
+}
+
+func (i GetJobsJobArgs) ToGetJobsJobOutput() GetJobsJobOutput {
+	return i.ToGetJobsJobOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobArgs) ToGetJobsJobOutputWithContext(ctx context.Context) GetJobsJobOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobOutput)
+}
+
+// GetJobsJobArrayInput is an input type that accepts GetJobsJobArray and GetJobsJobArrayOutput values.
+// You can construct a concrete instance of `GetJobsJobArrayInput` via:
+//
+//	GetJobsJobArray{ GetJobsJobArgs{...} }
+type GetJobsJobArrayInput interface {
+	pulumi.Input
+
+	ToGetJobsJobArrayOutput() GetJobsJobArrayOutput
+	ToGetJobsJobArrayOutputWithContext(context.Context) GetJobsJobArrayOutput
+}
+
+type GetJobsJobArray []GetJobsJobInput
+
+func (GetJobsJobArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetJobsJob)(nil)).Elem()
+}
+
+func (i GetJobsJobArray) ToGetJobsJobArrayOutput() GetJobsJobArrayOutput {
+	return i.ToGetJobsJobArrayOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobArray) ToGetJobsJobArrayOutputWithContext(ctx context.Context) GetJobsJobArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobArrayOutput)
+}
+
+type GetJobsJobOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJob)(nil)).Elem()
+}
+
+func (o GetJobsJobOutput) ToGetJobsJobOutput() GetJobsJobOutput {
+	return o
+}
+
+func (o GetJobsJobOutput) ToGetJobsJobOutputWithContext(ctx context.Context) GetJobsJobOutput {
+	return o
+}
+
+// The version of dbt used for the job. If not set, the environment version will be used.
+func (o GetJobsJobOutput) DbtVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJob) string { return v.DbtVersion }).(pulumi.StringOutput)
+}
+
+// The ID of the environment this job defers to
+func (o GetJobsJobOutput) DeferringEnvironmentId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJob) int { return v.DeferringEnvironmentId }).(pulumi.IntOutput)
+}
+
+// [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+func (o GetJobsJobOutput) DeferringJobDefinitionId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJob) int { return v.DeferringJobDefinitionId }).(pulumi.IntOutput)
+}
+
+// The description of the job
+func (o GetJobsJobOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJob) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Details of the environment the job is running in
+func (o GetJobsJobOutput) Environment() GetJobsJobEnvironmentOutput {
+	return o.ApplyT(func(v GetJobsJob) GetJobsJobEnvironment { return v.Environment }).(GetJobsJobEnvironmentOutput)
+}
+
+// The ID of environment
+func (o GetJobsJobOutput) EnvironmentId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJob) int { return v.EnvironmentId }).(pulumi.IntOutput)
+}
+
+// The list of steps to run in the job
+func (o GetJobsJobOutput) ExecuteSteps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetJobsJob) []string { return v.ExecuteSteps }).(pulumi.StringArrayOutput)
+}
+
+func (o GetJobsJobOutput) Execution() GetJobsJobExecutionOutput {
+	return o.ApplyT(func(v GetJobsJob) GetJobsJobExecution { return v.Execution }).(GetJobsJobExecutionOutput)
+}
+
+// Whether the job generate docs
+func (o GetJobsJobOutput) GenerateDocs() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJob) bool { return v.GenerateDocs }).(pulumi.BoolOutput)
+}
+
+// The ID of the job
+func (o GetJobsJobOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJob) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Whether the job is triggered by the completion of another job
+func (o GetJobsJobOutput) JobCompletionTriggerCondition() GetJobsJobJobCompletionTriggerConditionOutput {
+	return o.ApplyT(func(v GetJobsJob) GetJobsJobJobCompletionTriggerCondition { return v.JobCompletionTriggerCondition }).(GetJobsJobJobCompletionTriggerConditionOutput)
+}
+
+// The type of job (e.g. CI, scheduled)
+func (o GetJobsJobOutput) JobType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJob) string { return v.JobType }).(pulumi.StringOutput)
+}
+
+// The name of the job
+func (o GetJobsJobOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJob) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project
+func (o GetJobsJobOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJob) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// Whether the job test source freshness
+func (o GetJobsJobOutput) RunGenerateSources() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJob) bool { return v.RunGenerateSources }).(pulumi.BoolOutput)
+}
+
+func (o GetJobsJobOutput) Schedule() GetJobsJobScheduleOutput {
+	return o.ApplyT(func(v GetJobsJob) GetJobsJobSchedule { return v.Schedule }).(GetJobsJobScheduleOutput)
+}
+
+func (o GetJobsJobOutput) Settings() GetJobsJobSettingsOutput {
+	return o.ApplyT(func(v GetJobsJob) GetJobsJobSettings { return v.Settings }).(GetJobsJobSettingsOutput)
+}
+
+func (o GetJobsJobOutput) Triggers() GetJobsJobTriggersOutput {
+	return o.ApplyT(func(v GetJobsJob) GetJobsJobTriggers { return v.Triggers }).(GetJobsJobTriggersOutput)
+}
+
+// Whether the CI job should be automatically triggered on draft PRs
+func (o GetJobsJobOutput) TriggersOnDraftPr() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJob) bool { return v.TriggersOnDraftPr }).(pulumi.BoolOutput)
+}
+
+type GetJobsJobArrayOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetJobsJob)(nil)).Elem()
+}
+
+func (o GetJobsJobArrayOutput) ToGetJobsJobArrayOutput() GetJobsJobArrayOutput {
+	return o
+}
+
+func (o GetJobsJobArrayOutput) ToGetJobsJobArrayOutputWithContext(ctx context.Context) GetJobsJobArrayOutput {
+	return o
+}
+
+func (o GetJobsJobArrayOutput) Index(i pulumi.IntInput) GetJobsJobOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetJobsJob {
+		return vs[0].([]GetJobsJob)[vs[1].(int)]
+	}).(GetJobsJobOutput)
+}
+
+type GetJobsJobEnvironment struct {
+	// Type of deployment environment: staging, production
+	DeploymentType string `pulumi:"deploymentType"`
+	// ID of the environment
+	Id int `pulumi:"id"`
+	// Name of the environment
+	Name      string `pulumi:"name"`
+	ProjectId int    `pulumi:"projectId"`
+	// Environment type: development or deployment
+	Type string `pulumi:"type"`
+}
+
+// GetJobsJobEnvironmentInput is an input type that accepts GetJobsJobEnvironmentArgs and GetJobsJobEnvironmentOutput values.
+// You can construct a concrete instance of `GetJobsJobEnvironmentInput` via:
+//
+//	GetJobsJobEnvironmentArgs{...}
+type GetJobsJobEnvironmentInput interface {
+	pulumi.Input
+
+	ToGetJobsJobEnvironmentOutput() GetJobsJobEnvironmentOutput
+	ToGetJobsJobEnvironmentOutputWithContext(context.Context) GetJobsJobEnvironmentOutput
+}
+
+type GetJobsJobEnvironmentArgs struct {
+	// Type of deployment environment: staging, production
+	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
+	// ID of the environment
+	Id pulumi.IntInput `pulumi:"id"`
+	// Name of the environment
+	Name      pulumi.StringInput `pulumi:"name"`
+	ProjectId pulumi.IntInput    `pulumi:"projectId"`
+	// Environment type: development or deployment
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetJobsJobEnvironmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobEnvironment)(nil)).Elem()
+}
+
+func (i GetJobsJobEnvironmentArgs) ToGetJobsJobEnvironmentOutput() GetJobsJobEnvironmentOutput {
+	return i.ToGetJobsJobEnvironmentOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobEnvironmentArgs) ToGetJobsJobEnvironmentOutputWithContext(ctx context.Context) GetJobsJobEnvironmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobEnvironmentOutput)
+}
+
+type GetJobsJobEnvironmentOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobEnvironmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobEnvironment)(nil)).Elem()
+}
+
+func (o GetJobsJobEnvironmentOutput) ToGetJobsJobEnvironmentOutput() GetJobsJobEnvironmentOutput {
+	return o
+}
+
+func (o GetJobsJobEnvironmentOutput) ToGetJobsJobEnvironmentOutputWithContext(ctx context.Context) GetJobsJobEnvironmentOutput {
+	return o
+}
+
+// Type of deployment environment: staging, production
+func (o GetJobsJobEnvironmentOutput) DeploymentType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJobEnvironment) string { return v.DeploymentType }).(pulumi.StringOutput)
+}
+
+// ID of the environment
+func (o GetJobsJobEnvironmentOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJobEnvironment) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Name of the environment
+func (o GetJobsJobEnvironmentOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJobEnvironment) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetJobsJobEnvironmentOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJobEnvironment) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// Environment type: development or deployment
+func (o GetJobsJobEnvironmentOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJobEnvironment) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetJobsJobExecution struct {
+	// The number of seconds before the job times out
+	TimeoutSeconds int `pulumi:"timeoutSeconds"`
+}
+
+// GetJobsJobExecutionInput is an input type that accepts GetJobsJobExecutionArgs and GetJobsJobExecutionOutput values.
+// You can construct a concrete instance of `GetJobsJobExecutionInput` via:
+//
+//	GetJobsJobExecutionArgs{...}
+type GetJobsJobExecutionInput interface {
+	pulumi.Input
+
+	ToGetJobsJobExecutionOutput() GetJobsJobExecutionOutput
+	ToGetJobsJobExecutionOutputWithContext(context.Context) GetJobsJobExecutionOutput
+}
+
+type GetJobsJobExecutionArgs struct {
+	// The number of seconds before the job times out
+	TimeoutSeconds pulumi.IntInput `pulumi:"timeoutSeconds"`
+}
+
+func (GetJobsJobExecutionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobExecution)(nil)).Elem()
+}
+
+func (i GetJobsJobExecutionArgs) ToGetJobsJobExecutionOutput() GetJobsJobExecutionOutput {
+	return i.ToGetJobsJobExecutionOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobExecutionArgs) ToGetJobsJobExecutionOutputWithContext(ctx context.Context) GetJobsJobExecutionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobExecutionOutput)
+}
+
+type GetJobsJobExecutionOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobExecutionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobExecution)(nil)).Elem()
+}
+
+func (o GetJobsJobExecutionOutput) ToGetJobsJobExecutionOutput() GetJobsJobExecutionOutput {
+	return o
+}
+
+func (o GetJobsJobExecutionOutput) ToGetJobsJobExecutionOutputWithContext(ctx context.Context) GetJobsJobExecutionOutput {
+	return o
+}
+
+// The number of seconds before the job times out
+func (o GetJobsJobExecutionOutput) TimeoutSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJobExecution) int { return v.TimeoutSeconds }).(pulumi.IntOutput)
+}
+
+type GetJobsJobJobCompletionTriggerCondition struct {
+	Condition GetJobsJobJobCompletionTriggerConditionCondition `pulumi:"condition"`
+}
+
+// GetJobsJobJobCompletionTriggerConditionInput is an input type that accepts GetJobsJobJobCompletionTriggerConditionArgs and GetJobsJobJobCompletionTriggerConditionOutput values.
+// You can construct a concrete instance of `GetJobsJobJobCompletionTriggerConditionInput` via:
+//
+//	GetJobsJobJobCompletionTriggerConditionArgs{...}
+type GetJobsJobJobCompletionTriggerConditionInput interface {
+	pulumi.Input
+
+	ToGetJobsJobJobCompletionTriggerConditionOutput() GetJobsJobJobCompletionTriggerConditionOutput
+	ToGetJobsJobJobCompletionTriggerConditionOutputWithContext(context.Context) GetJobsJobJobCompletionTriggerConditionOutput
+}
+
+type GetJobsJobJobCompletionTriggerConditionArgs struct {
+	Condition GetJobsJobJobCompletionTriggerConditionConditionInput `pulumi:"condition"`
+}
+
+func (GetJobsJobJobCompletionTriggerConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobJobCompletionTriggerCondition)(nil)).Elem()
+}
+
+func (i GetJobsJobJobCompletionTriggerConditionArgs) ToGetJobsJobJobCompletionTriggerConditionOutput() GetJobsJobJobCompletionTriggerConditionOutput {
+	return i.ToGetJobsJobJobCompletionTriggerConditionOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobJobCompletionTriggerConditionArgs) ToGetJobsJobJobCompletionTriggerConditionOutputWithContext(ctx context.Context) GetJobsJobJobCompletionTriggerConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobJobCompletionTriggerConditionOutput)
+}
+
+type GetJobsJobJobCompletionTriggerConditionOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobJobCompletionTriggerConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobJobCompletionTriggerCondition)(nil)).Elem()
+}
+
+func (o GetJobsJobJobCompletionTriggerConditionOutput) ToGetJobsJobJobCompletionTriggerConditionOutput() GetJobsJobJobCompletionTriggerConditionOutput {
+	return o
+}
+
+func (o GetJobsJobJobCompletionTriggerConditionOutput) ToGetJobsJobJobCompletionTriggerConditionOutputWithContext(ctx context.Context) GetJobsJobJobCompletionTriggerConditionOutput {
+	return o
+}
+
+func (o GetJobsJobJobCompletionTriggerConditionOutput) Condition() GetJobsJobJobCompletionTriggerConditionConditionOutput {
+	return o.ApplyT(func(v GetJobsJobJobCompletionTriggerCondition) GetJobsJobJobCompletionTriggerConditionCondition {
+		return v.Condition
+	}).(GetJobsJobJobCompletionTriggerConditionConditionOutput)
+}
+
+type GetJobsJobJobCompletionTriggerConditionCondition struct {
+	JobId     int      `pulumi:"jobId"`
+	ProjectId int      `pulumi:"projectId"`
+	Statuses  []string `pulumi:"statuses"`
+}
+
+// GetJobsJobJobCompletionTriggerConditionConditionInput is an input type that accepts GetJobsJobJobCompletionTriggerConditionConditionArgs and GetJobsJobJobCompletionTriggerConditionConditionOutput values.
+// You can construct a concrete instance of `GetJobsJobJobCompletionTriggerConditionConditionInput` via:
+//
+//	GetJobsJobJobCompletionTriggerConditionConditionArgs{...}
+type GetJobsJobJobCompletionTriggerConditionConditionInput interface {
+	pulumi.Input
+
+	ToGetJobsJobJobCompletionTriggerConditionConditionOutput() GetJobsJobJobCompletionTriggerConditionConditionOutput
+	ToGetJobsJobJobCompletionTriggerConditionConditionOutputWithContext(context.Context) GetJobsJobJobCompletionTriggerConditionConditionOutput
+}
+
+type GetJobsJobJobCompletionTriggerConditionConditionArgs struct {
+	JobId     pulumi.IntInput         `pulumi:"jobId"`
+	ProjectId pulumi.IntInput         `pulumi:"projectId"`
+	Statuses  pulumi.StringArrayInput `pulumi:"statuses"`
+}
+
+func (GetJobsJobJobCompletionTriggerConditionConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobJobCompletionTriggerConditionCondition)(nil)).Elem()
+}
+
+func (i GetJobsJobJobCompletionTriggerConditionConditionArgs) ToGetJobsJobJobCompletionTriggerConditionConditionOutput() GetJobsJobJobCompletionTriggerConditionConditionOutput {
+	return i.ToGetJobsJobJobCompletionTriggerConditionConditionOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobJobCompletionTriggerConditionConditionArgs) ToGetJobsJobJobCompletionTriggerConditionConditionOutputWithContext(ctx context.Context) GetJobsJobJobCompletionTriggerConditionConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobJobCompletionTriggerConditionConditionOutput)
+}
+
+type GetJobsJobJobCompletionTriggerConditionConditionOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobJobCompletionTriggerConditionConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobJobCompletionTriggerConditionCondition)(nil)).Elem()
+}
+
+func (o GetJobsJobJobCompletionTriggerConditionConditionOutput) ToGetJobsJobJobCompletionTriggerConditionConditionOutput() GetJobsJobJobCompletionTriggerConditionConditionOutput {
+	return o
+}
+
+func (o GetJobsJobJobCompletionTriggerConditionConditionOutput) ToGetJobsJobJobCompletionTriggerConditionConditionOutputWithContext(ctx context.Context) GetJobsJobJobCompletionTriggerConditionConditionOutput {
+	return o
+}
+
+func (o GetJobsJobJobCompletionTriggerConditionConditionOutput) JobId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJobJobCompletionTriggerConditionCondition) int { return v.JobId }).(pulumi.IntOutput)
+}
+
+func (o GetJobsJobJobCompletionTriggerConditionConditionOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJobJobCompletionTriggerConditionCondition) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+func (o GetJobsJobJobCompletionTriggerConditionConditionOutput) Statuses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetJobsJobJobCompletionTriggerConditionCondition) []string { return v.Statuses }).(pulumi.StringArrayOutput)
+}
+
+type GetJobsJobSchedule struct {
+	// The cron schedule for the job. Only used if triggers.schedule is true
+	Cron string `pulumi:"cron"`
+}
+
+// GetJobsJobScheduleInput is an input type that accepts GetJobsJobScheduleArgs and GetJobsJobScheduleOutput values.
+// You can construct a concrete instance of `GetJobsJobScheduleInput` via:
+//
+//	GetJobsJobScheduleArgs{...}
+type GetJobsJobScheduleInput interface {
+	pulumi.Input
+
+	ToGetJobsJobScheduleOutput() GetJobsJobScheduleOutput
+	ToGetJobsJobScheduleOutputWithContext(context.Context) GetJobsJobScheduleOutput
+}
+
+type GetJobsJobScheduleArgs struct {
+	// The cron schedule for the job. Only used if triggers.schedule is true
+	Cron pulumi.StringInput `pulumi:"cron"`
+}
+
+func (GetJobsJobScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobSchedule)(nil)).Elem()
+}
+
+func (i GetJobsJobScheduleArgs) ToGetJobsJobScheduleOutput() GetJobsJobScheduleOutput {
+	return i.ToGetJobsJobScheduleOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobScheduleArgs) ToGetJobsJobScheduleOutputWithContext(ctx context.Context) GetJobsJobScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobScheduleOutput)
+}
+
+type GetJobsJobScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobSchedule)(nil)).Elem()
+}
+
+func (o GetJobsJobScheduleOutput) ToGetJobsJobScheduleOutput() GetJobsJobScheduleOutput {
+	return o
+}
+
+func (o GetJobsJobScheduleOutput) ToGetJobsJobScheduleOutputWithContext(ctx context.Context) GetJobsJobScheduleOutput {
+	return o
+}
+
+// The cron schedule for the job. Only used if triggers.schedule is true
+func (o GetJobsJobScheduleOutput) Cron() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJobSchedule) string { return v.Cron }).(pulumi.StringOutput)
+}
+
+type GetJobsJobSettings struct {
+	// Value for `target.name` in the Jinja context
+	TargetName string `pulumi:"targetName"`
+	// Number of threads to run dbt with
+	Threads int `pulumi:"threads"`
+}
+
+// GetJobsJobSettingsInput is an input type that accepts GetJobsJobSettingsArgs and GetJobsJobSettingsOutput values.
+// You can construct a concrete instance of `GetJobsJobSettingsInput` via:
+//
+//	GetJobsJobSettingsArgs{...}
+type GetJobsJobSettingsInput interface {
+	pulumi.Input
+
+	ToGetJobsJobSettingsOutput() GetJobsJobSettingsOutput
+	ToGetJobsJobSettingsOutputWithContext(context.Context) GetJobsJobSettingsOutput
+}
+
+type GetJobsJobSettingsArgs struct {
+	// Value for `target.name` in the Jinja context
+	TargetName pulumi.StringInput `pulumi:"targetName"`
+	// Number of threads to run dbt with
+	Threads pulumi.IntInput `pulumi:"threads"`
+}
+
+func (GetJobsJobSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobSettings)(nil)).Elem()
+}
+
+func (i GetJobsJobSettingsArgs) ToGetJobsJobSettingsOutput() GetJobsJobSettingsOutput {
+	return i.ToGetJobsJobSettingsOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobSettingsArgs) ToGetJobsJobSettingsOutputWithContext(ctx context.Context) GetJobsJobSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobSettingsOutput)
+}
+
+type GetJobsJobSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobSettings)(nil)).Elem()
+}
+
+func (o GetJobsJobSettingsOutput) ToGetJobsJobSettingsOutput() GetJobsJobSettingsOutput {
+	return o
+}
+
+func (o GetJobsJobSettingsOutput) ToGetJobsJobSettingsOutputWithContext(ctx context.Context) GetJobsJobSettingsOutput {
+	return o
+}
+
+// Value for `target.name` in the Jinja context
+func (o GetJobsJobSettingsOutput) TargetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobsJobSettings) string { return v.TargetName }).(pulumi.StringOutput)
+}
+
+// Number of threads to run dbt with
+func (o GetJobsJobSettingsOutput) Threads() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJobSettings) int { return v.Threads }).(pulumi.IntOutput)
+}
+
+type GetJobsJobTriggers struct {
+	// Whether the job runs automatically on PR creation
+	GitProviderWebhook bool `pulumi:"gitProviderWebhook"`
+	// Whether the job runs automatically on PR creation
+	GithubWebhook bool `pulumi:"githubWebhook"`
+	// Whether the job runs automatically once a PR is merged
+	OnMerge bool `pulumi:"onMerge"`
+	// Whether the job runs on a schedule
+	Schedule bool `pulumi:"schedule"`
+}
+
+// GetJobsJobTriggersInput is an input type that accepts GetJobsJobTriggersArgs and GetJobsJobTriggersOutput values.
+// You can construct a concrete instance of `GetJobsJobTriggersInput` via:
+//
+//	GetJobsJobTriggersArgs{...}
+type GetJobsJobTriggersInput interface {
+	pulumi.Input
+
+	ToGetJobsJobTriggersOutput() GetJobsJobTriggersOutput
+	ToGetJobsJobTriggersOutputWithContext(context.Context) GetJobsJobTriggersOutput
+}
+
+type GetJobsJobTriggersArgs struct {
+	// Whether the job runs automatically on PR creation
+	GitProviderWebhook pulumi.BoolInput `pulumi:"gitProviderWebhook"`
+	// Whether the job runs automatically on PR creation
+	GithubWebhook pulumi.BoolInput `pulumi:"githubWebhook"`
+	// Whether the job runs automatically once a PR is merged
+	OnMerge pulumi.BoolInput `pulumi:"onMerge"`
+	// Whether the job runs on a schedule
+	Schedule pulumi.BoolInput `pulumi:"schedule"`
+}
+
+func (GetJobsJobTriggersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobTriggers)(nil)).Elem()
+}
+
+func (i GetJobsJobTriggersArgs) ToGetJobsJobTriggersOutput() GetJobsJobTriggersOutput {
+	return i.ToGetJobsJobTriggersOutputWithContext(context.Background())
+}
+
+func (i GetJobsJobTriggersArgs) ToGetJobsJobTriggersOutputWithContext(ctx context.Context) GetJobsJobTriggersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobsJobTriggersOutput)
+}
+
+type GetJobsJobTriggersOutput struct{ *pulumi.OutputState }
+
+func (GetJobsJobTriggersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobsJobTriggers)(nil)).Elem()
+}
+
+func (o GetJobsJobTriggersOutput) ToGetJobsJobTriggersOutput() GetJobsJobTriggersOutput {
+	return o
+}
+
+func (o GetJobsJobTriggersOutput) ToGetJobsJobTriggersOutputWithContext(ctx context.Context) GetJobsJobTriggersOutput {
+	return o
+}
+
+// Whether the job runs automatically on PR creation
+func (o GetJobsJobTriggersOutput) GitProviderWebhook() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJobTriggers) bool { return v.GitProviderWebhook }).(pulumi.BoolOutput)
+}
+
+// Whether the job runs automatically on PR creation
+func (o GetJobsJobTriggersOutput) GithubWebhook() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJobTriggers) bool { return v.GithubWebhook }).(pulumi.BoolOutput)
+}
+
+// Whether the job runs automatically once a PR is merged
+func (o GetJobsJobTriggersOutput) OnMerge() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJobTriggers) bool { return v.OnMerge }).(pulumi.BoolOutput)
+}
+
+// Whether the job runs on a schedule
+func (o GetJobsJobTriggersOutput) Schedule() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJobTriggers) bool { return v.Schedule }).(pulumi.BoolOutput)
+}
+
 type GetServiceTokenServiceTokenPermission struct {
 	// Whether or not to apply this permission to all projects for this service token
 	AllProjects bool `pulumi:"allProjects"`
@@ -1099,6 +1808,12 @@ type GetServiceTokenServiceTokenPermission struct {
 	PermissionSet string `pulumi:"permissionSet"`
 	// Project ID to apply this permission to for this service token
 	ProjectId int `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
 
 // GetServiceTokenServiceTokenPermissionInput is an input type that accepts GetServiceTokenServiceTokenPermissionArgs and GetServiceTokenServiceTokenPermissionOutput values.
@@ -1119,6 +1834,12 @@ type GetServiceTokenServiceTokenPermissionArgs struct {
 	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
 	// Project ID to apply this permission to for this service token
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
 
 func (GetServiceTokenServiceTokenPermissionArgs) ElementType() reflect.Type {
@@ -1187,6 +1908,15 @@ func (o GetServiceTokenServiceTokenPermissionOutput) ProjectId() pulumi.IntOutpu
 	return o.ApplyT(func(v GetServiceTokenServiceTokenPermission) int { return v.ProjectId }).(pulumi.IntOutput)
 }
 
+// What types of environments to apply Write permissions to.
+// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+// Not setting a value is the same as selecting `all`.
+// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+func (o GetServiceTokenServiceTokenPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServiceTokenServiceTokenPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
+}
+
 type GetServiceTokenServiceTokenPermissionArrayOutput struct{ *pulumi.OutputState }
 
 func (GetServiceTokenServiceTokenPermissionArrayOutput) ElementType() reflect.Type {
@@ -1207,6 +1937,112 @@ func (o GetServiceTokenServiceTokenPermissionArrayOutput) Index(i pulumi.IntInpu
 	}).(GetServiceTokenServiceTokenPermissionOutput)
 }
 
+type GetUsersUser struct {
+	// Email for the user
+	Email string `pulumi:"email"`
+	// ID of the user
+	Id int `pulumi:"id"`
+}
+
+// GetUsersUserInput is an input type that accepts GetUsersUserArgs and GetUsersUserOutput values.
+// You can construct a concrete instance of `GetUsersUserInput` via:
+//
+//	GetUsersUserArgs{...}
+type GetUsersUserInput interface {
+	pulumi.Input
+
+	ToGetUsersUserOutput() GetUsersUserOutput
+	ToGetUsersUserOutputWithContext(context.Context) GetUsersUserOutput
+}
+
+type GetUsersUserArgs struct {
+	// Email for the user
+	Email pulumi.StringInput `pulumi:"email"`
+	// ID of the user
+	Id pulumi.IntInput `pulumi:"id"`
+}
+
+func (GetUsersUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutput() GetUsersUserOutput {
+	return i.ToGetUsersUserOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserOutput)
+}
+
+// GetUsersUserArrayInput is an input type that accepts GetUsersUserArray and GetUsersUserArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserArrayInput` via:
+//
+//	GetUsersUserArray{ GetUsersUserArgs{...} }
+type GetUsersUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserArrayOutput() GetUsersUserArrayOutput
+	ToGetUsersUserArrayOutputWithContext(context.Context) GetUsersUserArrayOutput
+}
+
+type GetUsersUserArray []GetUsersUserInput
+
+func (GetUsersUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return i.ToGetUsersUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserArrayOutput)
+}
+
+type GetUsersUserOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutput() GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return o
+}
+
+// Email for the user
+func (o GetUsersUserOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// ID of the user
+func (o GetUsersUserOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetUsersUser) int { return v.Id }).(pulumi.IntOutput)
+}
+
+type GetUsersUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUser {
+		return vs[0].([]GetUsersUser)[vs[1].(int)]
+	}).(GetUsersUserOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionInput)(nil)).Elem(), GroupGroupPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionArrayInput)(nil)).Elem(), GroupGroupPermissionArray{})
@@ -1224,8 +2060,19 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserArrayInput)(nil)).Elem(), GetGroupUsersUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobJobCompletionTriggerConditionInput)(nil)).Elem(), GetJobJobCompletionTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobJobCompletionTriggerConditionArrayInput)(nil)).Elem(), GetJobJobCompletionTriggerConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobInput)(nil)).Elem(), GetJobsJobArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobArrayInput)(nil)).Elem(), GetJobsJobArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobEnvironmentInput)(nil)).Elem(), GetJobsJobEnvironmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobExecutionInput)(nil)).Elem(), GetJobsJobExecutionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobJobCompletionTriggerConditionInput)(nil)).Elem(), GetJobsJobJobCompletionTriggerConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobJobCompletionTriggerConditionConditionInput)(nil)).Elem(), GetJobsJobJobCompletionTriggerConditionConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobScheduleInput)(nil)).Elem(), GetJobsJobScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobSettingsInput)(nil)).Elem(), GetJobsJobSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobTriggersInput)(nil)).Elem(), GetJobsJobTriggersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceTokenServiceTokenPermissionInput)(nil)).Elem(), GetServiceTokenServiceTokenPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), GetServiceTokenServiceTokenPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(GroupGroupPermissionOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionOutput{})
@@ -1242,6 +2089,17 @@ func init() {
 	pulumi.RegisterOutputType(GetGroupUsersUserArrayOutput{})
 	pulumi.RegisterOutputType(GetJobJobCompletionTriggerConditionOutput{})
 	pulumi.RegisterOutputType(GetJobJobCompletionTriggerConditionArrayOutput{})
+	pulumi.RegisterOutputType(GetJobsJobOutput{})
+	pulumi.RegisterOutputType(GetJobsJobArrayOutput{})
+	pulumi.RegisterOutputType(GetJobsJobEnvironmentOutput{})
+	pulumi.RegisterOutputType(GetJobsJobExecutionOutput{})
+	pulumi.RegisterOutputType(GetJobsJobJobCompletionTriggerConditionOutput{})
+	pulumi.RegisterOutputType(GetJobsJobJobCompletionTriggerConditionConditionOutput{})
+	pulumi.RegisterOutputType(GetJobsJobScheduleOutput{})
+	pulumi.RegisterOutputType(GetJobsJobSettingsOutput{})
+	pulumi.RegisterOutputType(GetJobsJobTriggersOutput{})
 	pulumi.RegisterOutputType(GetServiceTokenServiceTokenPermissionOutput{})
 	pulumi.RegisterOutputType(GetServiceTokenServiceTokenPermissionArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserOutput{})
+	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

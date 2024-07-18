@@ -87,6 +87,147 @@ export interface GetJobJobCompletionTriggerCondition {
     statuses: string[];
 }
 
+export interface GetJobsJob {
+    /**
+     * The version of dbt used for the job. If not set, the environment version will be used.
+     */
+    dbtVersion: string;
+    /**
+     * The ID of the environment this job defers to
+     */
+    deferringEnvironmentId: number;
+    /**
+     * [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+     */
+    deferringJobDefinitionId: number;
+    /**
+     * The description of the job
+     */
+    description: string;
+    /**
+     * Details of the environment the job is running in
+     */
+    environment: outputs.GetJobsJobEnvironment;
+    /**
+     * The ID of environment
+     */
+    environmentId: number;
+    /**
+     * The list of steps to run in the job
+     */
+    executeSteps: string[];
+    execution: outputs.GetJobsJobExecution;
+    /**
+     * Whether the job generate docs
+     */
+    generateDocs: boolean;
+    /**
+     * The ID of the job
+     */
+    id: number;
+    /**
+     * Whether the job is triggered by the completion of another job
+     */
+    jobCompletionTriggerCondition: outputs.GetJobsJobJobCompletionTriggerCondition;
+    /**
+     * The type of job (e.g. CI, scheduled)
+     */
+    jobType: string;
+    /**
+     * The name of the job
+     */
+    name: string;
+    /**
+     * The ID of the project
+     */
+    projectId: number;
+    /**
+     * Whether the job test source freshness
+     */
+    runGenerateSources: boolean;
+    schedule: outputs.GetJobsJobSchedule;
+    settings: outputs.GetJobsJobSettings;
+    triggers: outputs.GetJobsJobTriggers;
+    /**
+     * Whether the CI job should be automatically triggered on draft PRs
+     */
+    triggersOnDraftPr: boolean;
+}
+
+export interface GetJobsJobEnvironment {
+    /**
+     * Type of deployment environment: staging, production
+     */
+    deploymentType: string;
+    /**
+     * ID of the environment
+     */
+    id: number;
+    /**
+     * Name of the environment
+     */
+    name: string;
+    projectId: number;
+    /**
+     * Environment type: development or deployment
+     */
+    type: string;
+}
+
+export interface GetJobsJobExecution {
+    /**
+     * The number of seconds before the job times out
+     */
+    timeoutSeconds: number;
+}
+
+export interface GetJobsJobJobCompletionTriggerCondition {
+    condition: outputs.GetJobsJobJobCompletionTriggerConditionCondition;
+}
+
+export interface GetJobsJobJobCompletionTriggerConditionCondition {
+    jobId: number;
+    projectId: number;
+    statuses: string[];
+}
+
+export interface GetJobsJobSchedule {
+    /**
+     * The cron schedule for the job. Only used if triggers.schedule is true
+     */
+    cron: string;
+}
+
+export interface GetJobsJobSettings {
+    /**
+     * Value for `target.name` in the Jinja context
+     */
+    targetName: string;
+    /**
+     * Number of threads to run dbt with
+     */
+    threads: number;
+}
+
+export interface GetJobsJobTriggers {
+    /**
+     * Whether the job runs automatically on PR creation
+     */
+    gitProviderWebhook: boolean;
+    /**
+     * Whether the job runs automatically on PR creation
+     */
+    githubWebhook: boolean;
+    /**
+     * Whether the job runs automatically once a PR is merged
+     */
+    onMerge: boolean;
+    /**
+     * Whether the job runs on a schedule
+     */
+    schedule: boolean;
+}
+
 export interface GetServiceTokenServiceTokenPermission {
     /**
      * Whether or not to apply this permission to all projects for this service token
@@ -100,6 +241,25 @@ export interface GetServiceTokenServiceTokenPermission {
      * Project ID to apply this permission to for this service token
      */
     projectId: number;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories: string[];
+}
+
+export interface GetUsersUser {
+    /**
+     * Email for the user
+     */
+    email: string;
+    /**
+     * ID of the user
+     */
+    id: number;
 }
 
 export interface GroupGroupPermission {
@@ -176,5 +336,13 @@ export interface ServiceTokenServiceTokenPermission {
      * Project ID to apply this permission to for this service token
      */
     projectId?: number;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories: string[];
 }
 

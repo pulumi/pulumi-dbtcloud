@@ -32,6 +32,8 @@ import com.pulumi.dbtcloud.inputs.GetGroupUsersArgs;
 import com.pulumi.dbtcloud.inputs.GetGroupUsersPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetJobArgs;
 import com.pulumi.dbtcloud.inputs.GetJobPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetJobsArgs;
+import com.pulumi.dbtcloud.inputs.GetJobsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetNotificationArgs;
 import com.pulumi.dbtcloud.inputs.GetNotificationPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetPostgresCredentialArgs;
@@ -65,6 +67,7 @@ import com.pulumi.dbtcloud.outputs.GetExtendedAttributesResult;
 import com.pulumi.dbtcloud.outputs.GetGroupResult;
 import com.pulumi.dbtcloud.outputs.GetGroupUsersResult;
 import com.pulumi.dbtcloud.outputs.GetJobResult;
+import com.pulumi.dbtcloud.outputs.GetJobsResult;
 import com.pulumi.dbtcloud.outputs.GetNotificationResult;
 import com.pulumi.dbtcloud.outputs.GetPostgresCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointResult;
@@ -74,9 +77,11 @@ import com.pulumi.dbtcloud.outputs.GetServiceTokenResult;
 import com.pulumi.dbtcloud.outputs.GetSnowflakeCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetUserGroupsResult;
 import com.pulumi.dbtcloud.outputs.GetUserResult;
+import com.pulumi.dbtcloud.outputs.GetUsersResult;
 import com.pulumi.dbtcloud.outputs.GetWebhookResult;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class DbtcloudFunctions {
@@ -945,6 +950,66 @@ public final class DbtcloudFunctions {
     }
     public static CompletableFuture<GetJobResult> getJobPlain(GetJobPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getJob:getJob", TypeShape.of(GetJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetJobsResult> getJobs() {
+        return getJobs(GetJobsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetJobsResult> getJobsPlain() {
+        return getJobsPlain(GetJobsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetJobsResult> getJobs(GetJobsArgs args) {
+        return getJobs(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetJobsResult> getJobsPlain(GetJobsPlainArgs args) {
+        return getJobsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetJobsResult> getJobs(GetJobsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getJobs:getJobs", TypeShape.of(GetJobsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetJobsResult> getJobsPlain(GetJobsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getJobs:getJobs", TypeShape.of(GetJobsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve notification details
@@ -2071,6 +2136,78 @@ public final class DbtcloudFunctions {
      */
     public static CompletableFuture<GetUserGroupsResult> getUserGroupsPlain(GetUserGroupsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getUserGroups:getUserGroups", TypeShape.of(GetUserGroupsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all users
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUsersResult> getUsers() {
+        return getUsers(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all users
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetUsersResult> getUsersPlain() {
+        return getUsersPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all users
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUsersResult> getUsers(InvokeArgs args) {
+        return getUsers(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all users
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetUsersResult> getUsersPlain(InvokeArgs args) {
+        return getUsersPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all users
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUsersResult> getUsers(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all users
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetUsersResult> getUsersPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
     }
     public static Output<GetWebhookResult> getWebhook(GetWebhookArgs args) {
         return getWebhook(args, InvokeOptions.Empty);

@@ -37,6 +37,14 @@ import (
 //						AllProjects:   pulumi.Bool(false),
 //						ProjectId:     pulumi.Any(dbtProject.Id),
 //					},
+//					&dbtcloud.ServiceTokenServiceTokenPermissionArgs{
+//						PermissionSet: pulumi.String("developer"),
+//						AllProjects:   pulumi.Bool(true),
+//						WritableEnvironmentCategories: pulumi.StringArray{
+//							pulumi.String("development"),
+//							pulumi.String("staging"),
+//						},
+//					},
 //				},
 //			})
 //			if err != nil {
@@ -54,7 +62,7 @@ import (
 //
 // import {
 //
-//	to = dbtcloud_group.my_service_token
+//	to = dbtcloud_service_token.my_service_token
 //
 //	id = "service_token_id"
 //
@@ -62,7 +70,7 @@ import (
 //
 // import {
 //
-//	to = dbtcloud_group.my_service_token
+//	to = dbtcloud_service_token.my_service_token
 //
 //	id = "12345"
 //
@@ -85,7 +93,7 @@ type ServiceToken struct {
 	// Permissions set for the service token
 	ServiceTokenPermissions ServiceTokenServiceTokenPermissionArrayOutput `pulumi:"serviceTokenPermissions"`
 	// Service token state (1 is active, 2 is inactive)
-	State pulumi.IntPtrOutput `pulumi:"state"`
+	State pulumi.IntOutput `pulumi:"state"`
 	// Service token secret value (only accessible on creation))
 	TokenString pulumi.StringOutput `pulumi:"tokenString"`
 	// Service token UID (part of the token)
@@ -272,8 +280,8 @@ func (o ServiceTokenOutput) ServiceTokenPermissions() ServiceTokenServiceTokenPe
 }
 
 // Service token state (1 is active, 2 is inactive)
-func (o ServiceTokenOutput) State() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ServiceToken) pulumi.IntPtrOutput { return v.State }).(pulumi.IntPtrOutput)
+func (o ServiceTokenOutput) State() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceToken) pulumi.IntOutput { return v.State }).(pulumi.IntOutput)
 }
 
 // Service token secret value (only accessible on creation))

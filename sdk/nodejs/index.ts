@@ -120,6 +120,11 @@ export const getJob: typeof import("./getJob").getJob = null as any;
 export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
 utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
 
+export { GetJobsArgs, GetJobsResult, GetJobsOutputArgs } from "./getJobs";
+export const getJobs: typeof import("./getJobs").getJobs = null as any;
+export const getJobsOutput: typeof import("./getJobs").getJobsOutput = null as any;
+utilities.lazyLoad(exports, ["getJobs","getJobsOutput"], () => require("./getJobs"));
+
 export { GetNotificationArgs, GetNotificationResult, GetNotificationOutputArgs } from "./getNotification";
 export const getNotification: typeof import("./getNotification").getNotification = null as any;
 export const getNotificationOutput: typeof import("./getNotification").getNotificationOutput = null as any;
@@ -164,6 +169,11 @@ export { GetUserGroupsArgs, GetUserGroupsResult, GetUserGroupsOutputArgs } from 
 export const getUserGroups: typeof import("./getUserGroups").getUserGroups = null as any;
 export const getUserGroupsOutput: typeof import("./getUserGroups").getUserGroupsOutput = null as any;
 utilities.lazyLoad(exports, ["getUserGroups","getUserGroupsOutput"], () => require("./getUserGroups"));
+
+export { GetUsersResult } from "./getUsers";
+export const getUsers: typeof import("./getUsers").getUsers = null as any;
+export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
 
 export { GetWebhookArgs, GetWebhookResult, GetWebhookOutputArgs } from "./getWebhook";
 export const getWebhook: typeof import("./getWebhook").getWebhook = null as any;

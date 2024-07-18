@@ -7,24 +7,32 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.DbtCloud.Outputs
+namespace Pulumi.DbtCloud.Inputs
 {
 
-    [OutputType]
-    public sealed class GetServiceTokenServiceTokenPermissionResult
+    public sealed class GetServiceTokenServiceTokenPermissionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Whether or not to apply this permission to all projects for this service token
         /// </summary>
-        public readonly bool AllProjects;
+        [Input("allProjects", required: true)]
+        public bool AllProjects { get; set; }
+
         /// <summary>
         /// Set of permissions to apply
         /// </summary>
-        public readonly string PermissionSet;
+        [Input("permissionSet", required: true)]
+        public string PermissionSet { get; set; } = null!;
+
         /// <summary>
         /// Project ID to apply this permission to for this service token
         /// </summary>
-        public readonly int ProjectId;
+        [Input("projectId", required: true)]
+        public int ProjectId { get; set; }
+
+        [Input("writableEnvironmentCategories", required: true)]
+        private List<string>? _writableEnvironmentCategories;
+
         /// <summary>
         /// What types of environments to apply Write permissions to.
         /// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -32,22 +40,15 @@ namespace Pulumi.DbtCloud.Outputs
         /// Not setting a value is the same as selecting `all`.
         /// Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         /// </summary>
-        public readonly ImmutableArray<string> WritableEnvironmentCategories;
-
-        [OutputConstructor]
-        private GetServiceTokenServiceTokenPermissionResult(
-            bool allProjects,
-
-            string permissionSet,
-
-            int projectId,
-
-            ImmutableArray<string> writableEnvironmentCategories)
+        public List<string> WritableEnvironmentCategories
         {
-            AllProjects = allProjects;
-            PermissionSet = permissionSet;
-            ProjectId = projectId;
-            WritableEnvironmentCategories = writableEnvironmentCategories;
+            get => _writableEnvironmentCategories ?? (_writableEnvironmentCategories = new List<string>());
+            set => _writableEnvironmentCategories = value;
         }
+
+        public GetServiceTokenServiceTokenPermissionArgs()
+        {
+        }
+        public static new GetServiceTokenServiceTokenPermissionArgs Empty => new GetServiceTokenServiceTokenPermissionArgs();
     }
 }

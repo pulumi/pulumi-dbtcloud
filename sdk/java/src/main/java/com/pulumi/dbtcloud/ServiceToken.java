@@ -55,6 +55,13 @@ import javax.annotation.Nullable;
  *                     .permissionSet("job_admin")
  *                     .allProjects(false)
  *                     .projectId(dbtProject.id())
+ *                     .build(),
+ *                 ServiceTokenServiceTokenPermissionArgs.builder()
+ *                     .permissionSet("developer")
+ *                     .allProjects(true)
+ *                     .writableEnvironmentCategories(                    
+ *                         "development",
+ *                         "staging")
  *                     .build())
  *             .build());
  * 
@@ -70,7 +77,7 @@ import javax.annotation.Nullable;
  * 
  * import {
  * 
- *   to = dbtcloud_group.my_service_token
+ *   to = dbtcloud_service_token.my_service_token
  * 
  *   id = &#34;service_token_id&#34;
  * 
@@ -78,7 +85,7 @@ import javax.annotation.Nullable;
  * 
  * import {
  * 
- *   to = dbtcloud_group.my_service_token
+ *   to = dbtcloud_service_token.my_service_token
  * 
  *   id = &#34;12345&#34;
  * 
@@ -130,14 +137,14 @@ public class ServiceToken extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="state", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> state;
+    private Output<Integer> state;
 
     /**
      * @return Service token state (1 is active, 2 is inactive)
      * 
      */
-    public Output<Optional<Integer>> state() {
-        return Codegen.optional(this.state);
+    public Output<Integer> state() {
+        return this.state;
     }
     /**
      * Service token secret value (only accessible on creation))

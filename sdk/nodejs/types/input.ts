@@ -5,6 +5,52 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface GetServiceTokenServiceTokenPermission {
+    /**
+     * Whether or not to apply this permission to all projects for this service token
+     */
+    allProjects?: boolean;
+    /**
+     * Set of permissions to apply
+     */
+    permissionSet?: string;
+    /**
+     * Project ID to apply this permission to for this service token
+     */
+    projectId?: number;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories?: string[];
+}
+
+export interface GetServiceTokenServiceTokenPermissionArgs {
+    /**
+     * Whether or not to apply this permission to all projects for this service token
+     */
+    allProjects?: pulumi.Input<boolean>;
+    /**
+     * Set of permissions to apply
+     */
+    permissionSet?: pulumi.Input<string>;
+    /**
+     * Project ID to apply this permission to for this service token
+     */
+    projectId?: pulumi.Input<number>;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface GroupGroupPermission {
     /**
      * Whether access should be provided for all projects or not.
@@ -79,4 +125,12 @@ export interface ServiceTokenServiceTokenPermission {
      * Project ID to apply this permission to for this service token
      */
     projectId?: pulumi.Input<number>;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
 }

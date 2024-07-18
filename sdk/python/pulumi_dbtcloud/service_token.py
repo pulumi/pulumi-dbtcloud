@@ -185,6 +185,14 @@ class ServiceToken(pulumi.CustomResource):
                     all_projects=False,
                     project_id=dbt_project["id"],
                 ),
+                dbtcloud.ServiceTokenServiceTokenPermissionArgs(
+                    permission_set="developer",
+                    all_projects=True,
+                    writable_environment_categories=[
+                        "development",
+                        "staging",
+                    ],
+                ),
             ])
         ```
 
@@ -194,7 +202,7 @@ class ServiceToken(pulumi.CustomResource):
 
         import {
 
-          to = dbtcloud_group.my_service_token
+          to = dbtcloud_service_token.my_service_token
 
           id = "service_token_id"
 
@@ -202,7 +210,7 @@ class ServiceToken(pulumi.CustomResource):
 
         import {
 
-          to = dbtcloud_group.my_service_token
+          to = dbtcloud_service_token.my_service_token
 
           id = "12345"
 
@@ -249,6 +257,14 @@ class ServiceToken(pulumi.CustomResource):
                     all_projects=False,
                     project_id=dbt_project["id"],
                 ),
+                dbtcloud.ServiceTokenServiceTokenPermissionArgs(
+                    permission_set="developer",
+                    all_projects=True,
+                    writable_environment_categories=[
+                        "development",
+                        "staging",
+                    ],
+                ),
             ])
         ```
 
@@ -258,7 +274,7 @@ class ServiceToken(pulumi.CustomResource):
 
         import {
 
-          to = dbtcloud_group.my_service_token
+          to = dbtcloud_service_token.my_service_token
 
           id = "service_token_id"
 
@@ -266,7 +282,7 @@ class ServiceToken(pulumi.CustomResource):
 
         import {
 
-          to = dbtcloud_group.my_service_token
+          to = dbtcloud_service_token.my_service_token
 
           id = "12345"
 
@@ -373,7 +389,7 @@ class ServiceToken(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def state(self) -> pulumi.Output[Optional[int]]:
+    def state(self) -> pulumi.Output[int]:
         """
         Service token state (1 is active, 2 is inactive)
         """
