@@ -22,10 +22,22 @@ namespace Pulumi.DbtCloud
     public sealed class GetServiceTokenArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the service token
+        /// The ID of the service token
         /// </summary>
         [Input("serviceTokenId", required: true)]
         public int ServiceTokenId { get; set; }
+
+        [Input("serviceTokenPermissions")]
+        private List<Inputs.GetServiceTokenServiceTokenPermissionArgs>? _serviceTokenPermissions;
+
+        /// <summary>
+        /// Permissions set for the service token
+        /// </summary>
+        public List<Inputs.GetServiceTokenServiceTokenPermissionArgs> ServiceTokenPermissions
+        {
+            get => _serviceTokenPermissions ?? (_serviceTokenPermissions = new List<Inputs.GetServiceTokenServiceTokenPermissionArgs>());
+            set => _serviceTokenPermissions = value;
+        }
 
         public GetServiceTokenArgs()
         {
@@ -36,10 +48,22 @@ namespace Pulumi.DbtCloud
     public sealed class GetServiceTokenInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the service token
+        /// The ID of the service token
         /// </summary>
         [Input("serviceTokenId", required: true)]
         public Input<int> ServiceTokenId { get; set; } = null!;
+
+        [Input("serviceTokenPermissions")]
+        private InputList<Inputs.GetServiceTokenServiceTokenPermissionInputArgs>? _serviceTokenPermissions;
+
+        /// <summary>
+        /// Permissions set for the service token
+        /// </summary>
+        public InputList<Inputs.GetServiceTokenServiceTokenPermissionInputArgs> ServiceTokenPermissions
+        {
+            get => _serviceTokenPermissions ?? (_serviceTokenPermissions = new InputList<Inputs.GetServiceTokenServiceTokenPermissionInputArgs>());
+            set => _serviceTokenPermissions = value;
+        }
 
         public GetServiceTokenInvokeArgs()
         {
@@ -52,7 +76,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetServiceTokenResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of the service token
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -60,7 +84,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// ID of the service token
+        /// The ID of the service token
         /// </summary>
         public readonly int ServiceTokenId;
         /// <summary>
@@ -68,7 +92,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServiceTokenServiceTokenPermissionResult> ServiceTokenPermissions;
         /// <summary>
-        /// The UID of the service token (part of the token secret)
+        /// Service token UID (part of the token)
         /// </summary>
         public readonly string Uid;
 

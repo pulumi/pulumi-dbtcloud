@@ -4,9 +4,13 @@
 package com.pulumi.dbtcloud.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.dbtcloud.inputs.GetServiceTokenServiceTokenPermission;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetServiceTokenPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -14,24 +18,40 @@ public final class GetServiceTokenPlainArgs extends com.pulumi.resources.InvokeA
     public static final GetServiceTokenPlainArgs Empty = new GetServiceTokenPlainArgs();
 
     /**
-     * ID of the service token
+     * The ID of the service token
      * 
      */
     @Import(name="serviceTokenId", required=true)
     private Integer serviceTokenId;
 
     /**
-     * @return ID of the service token
+     * @return The ID of the service token
      * 
      */
     public Integer serviceTokenId() {
         return this.serviceTokenId;
     }
 
+    /**
+     * Permissions set for the service token
+     * 
+     */
+    @Import(name="serviceTokenPermissions")
+    private @Nullable List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions;
+
+    /**
+     * @return Permissions set for the service token
+     * 
+     */
+    public Optional<List<GetServiceTokenServiceTokenPermission>> serviceTokenPermissions() {
+        return Optional.ofNullable(this.serviceTokenPermissions);
+    }
+
     private GetServiceTokenPlainArgs() {}
 
     private GetServiceTokenPlainArgs(GetServiceTokenPlainArgs $) {
         this.serviceTokenId = $.serviceTokenId;
+        this.serviceTokenPermissions = $.serviceTokenPermissions;
     }
 
     public static Builder builder() {
@@ -53,7 +73,7 @@ public final class GetServiceTokenPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param serviceTokenId ID of the service token
+         * @param serviceTokenId The ID of the service token
          * 
          * @return builder
          * 
@@ -61,6 +81,27 @@ public final class GetServiceTokenPlainArgs extends com.pulumi.resources.InvokeA
         public Builder serviceTokenId(Integer serviceTokenId) {
             $.serviceTokenId = serviceTokenId;
             return this;
+        }
+
+        /**
+         * @param serviceTokenPermissions Permissions set for the service token
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceTokenPermissions(@Nullable List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions) {
+            $.serviceTokenPermissions = serviceTokenPermissions;
+            return this;
+        }
+
+        /**
+         * @param serviceTokenPermissions Permissions set for the service token
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceTokenPermissions(GetServiceTokenServiceTokenPermission... serviceTokenPermissions) {
+            return serviceTokenPermissions(List.of(serviceTokenPermissions));
         }
 
         public GetServiceTokenPlainArgs build() {

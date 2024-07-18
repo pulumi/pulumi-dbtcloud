@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetServiceTokenResult',
@@ -43,7 +44,7 @@ class GetServiceTokenResult:
     @pulumi.getter
     def id(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of the service token
         """
         return pulumi.get(self, "id")
 
@@ -59,13 +60,13 @@ class GetServiceTokenResult:
     @pulumi.getter(name="serviceTokenId")
     def service_token_id(self) -> int:
         """
-        ID of the service token
+        The ID of the service token
         """
         return pulumi.get(self, "service_token_id")
 
     @property
     @pulumi.getter(name="serviceTokenPermissions")
-    def service_token_permissions(self) -> Sequence['outputs.GetServiceTokenServiceTokenPermissionResult']:
+    def service_token_permissions(self) -> Optional[Sequence['outputs.GetServiceTokenServiceTokenPermissionResult']]:
         """
         Permissions set for the service token
         """
@@ -75,7 +76,7 @@ class GetServiceTokenResult:
     @pulumi.getter
     def uid(self) -> str:
         """
-        The UID of the service token (part of the token secret)
+        Service token UID (part of the token)
         """
         return pulumi.get(self, "uid")
 
@@ -94,14 +95,17 @@ class AwaitableGetServiceTokenResult(GetServiceTokenResult):
 
 
 def get_service_token(service_token_id: Optional[int] = None,
+                      service_token_permissions: Optional[Sequence[pulumi.InputType['GetServiceTokenServiceTokenPermissionArgs']]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceTokenResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param int service_token_id: ID of the service token
+    :param int service_token_id: The ID of the service token
+    :param Sequence[pulumi.InputType['GetServiceTokenServiceTokenPermissionArgs']] service_token_permissions: Permissions set for the service token
     """
     __args__ = dict()
     __args__['serviceTokenId'] = service_token_id
+    __args__['serviceTokenPermissions'] = service_token_permissions
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getServiceToken:getServiceToken', __args__, opts=opts, typ=GetServiceTokenResult).value
 
@@ -115,10 +119,12 @@ def get_service_token(service_token_id: Optional[int] = None,
 
 @_utilities.lift_output_func(get_service_token)
 def get_service_token_output(service_token_id: Optional[pulumi.Input[int]] = None,
+                             service_token_permissions: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServiceTokenServiceTokenPermissionArgs']]]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceTokenResult]:
     """
     Use this data source to access information about an existing resource.
 
-    :param int service_token_id: ID of the service token
+    :param int service_token_id: The ID of the service token
+    :param Sequence[pulumi.InputType['GetServiceTokenServiceTokenPermissionArgs']] service_token_permissions: Permissions set for the service token
     """
     ...

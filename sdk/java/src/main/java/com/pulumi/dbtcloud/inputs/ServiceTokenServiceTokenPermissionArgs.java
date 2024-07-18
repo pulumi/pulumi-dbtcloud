@@ -9,6 +9,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -63,12 +64,36 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
         return Optional.ofNullable(this.projectId);
     }
 
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+     * 
+     */
+    @Import(name="writableEnvironmentCategories")
+    private @Nullable Output<List<String>> writableEnvironmentCategories;
+
+    /**
+     * @return What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+     * 
+     */
+    public Optional<Output<List<String>>> writableEnvironmentCategories() {
+        return Optional.ofNullable(this.writableEnvironmentCategories);
+    }
+
     private ServiceTokenServiceTokenPermissionArgs() {}
 
     private ServiceTokenServiceTokenPermissionArgs(ServiceTokenServiceTokenPermissionArgs $) {
         this.allProjects = $.allProjects;
         this.permissionSet = $.permissionSet;
         this.projectId = $.projectId;
+        this.writableEnvironmentCategories = $.writableEnvironmentCategories;
     }
 
     public static Builder builder() {
@@ -150,6 +175,49 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
          */
         public Builder projectId(Integer projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
+         * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+         * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+         * Not setting a value is the same as selecting `all`.
+         * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writableEnvironmentCategories(@Nullable Output<List<String>> writableEnvironmentCategories) {
+            $.writableEnvironmentCategories = writableEnvironmentCategories;
+            return this;
+        }
+
+        /**
+         * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
+         * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+         * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+         * Not setting a value is the same as selecting `all`.
+         * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writableEnvironmentCategories(List<String> writableEnvironmentCategories) {
+            return writableEnvironmentCategories(Output.of(writableEnvironmentCategories));
+        }
+
+        /**
+         * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
+         * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+         * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+         * Not setting a value is the same as selecting `all`.
+         * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writableEnvironmentCategories(String... writableEnvironmentCategories) {
+            return writableEnvironmentCategories(List.of(writableEnvironmentCategories));
         }
 
         public ServiceTokenServiceTokenPermissionArgs build() {

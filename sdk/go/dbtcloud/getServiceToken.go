@@ -23,21 +23,23 @@ func LookupServiceToken(ctx *pulumi.Context, args *LookupServiceTokenArgs, opts 
 
 // A collection of arguments for invoking getServiceToken.
 type LookupServiceTokenArgs struct {
-	// ID of the service token
+	// The ID of the service token
 	ServiceTokenId int `pulumi:"serviceTokenId"`
+	// Permissions set for the service token
+	ServiceTokenPermissions []GetServiceTokenServiceTokenPermission `pulumi:"serviceTokenPermissions"`
 }
 
 // A collection of values returned by getServiceToken.
 type LookupServiceTokenResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of the service token
 	Id string `pulumi:"id"`
 	// Service token name
 	Name string `pulumi:"name"`
-	// ID of the service token
+	// The ID of the service token
 	ServiceTokenId int `pulumi:"serviceTokenId"`
 	// Permissions set for the service token
 	ServiceTokenPermissions []GetServiceTokenServiceTokenPermission `pulumi:"serviceTokenPermissions"`
-	// The UID of the service token (part of the token secret)
+	// Service token UID (part of the token)
 	Uid string `pulumi:"uid"`
 }
 
@@ -56,8 +58,10 @@ func LookupServiceTokenOutput(ctx *pulumi.Context, args LookupServiceTokenOutput
 
 // A collection of arguments for invoking getServiceToken.
 type LookupServiceTokenOutputArgs struct {
-	// ID of the service token
+	// The ID of the service token
 	ServiceTokenId pulumi.IntInput `pulumi:"serviceTokenId"`
+	// Permissions set for the service token
+	ServiceTokenPermissions GetServiceTokenServiceTokenPermissionArrayInput `pulumi:"serviceTokenPermissions"`
 }
 
 func (LookupServiceTokenOutputArgs) ElementType() reflect.Type {
@@ -79,7 +83,7 @@ func (o LookupServiceTokenResultOutput) ToLookupServiceTokenResultOutputWithCont
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of the service token
 func (o LookupServiceTokenResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceTokenResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -89,7 +93,7 @@ func (o LookupServiceTokenResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceTokenResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// ID of the service token
+// The ID of the service token
 func (o LookupServiceTokenResultOutput) ServiceTokenId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServiceTokenResult) int { return v.ServiceTokenId }).(pulumi.IntOutput)
 }
@@ -101,7 +105,7 @@ func (o LookupServiceTokenResultOutput) ServiceTokenPermissions() GetServiceToke
 	}).(GetServiceTokenServiceTokenPermissionArrayOutput)
 }
 
-// The UID of the service token (part of the token secret)
+// Service token UID (part of the token)
 func (o LookupServiceTokenResultOutput) Uid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceTokenResult) string { return v.Uid }).(pulumi.StringOutput)
 }

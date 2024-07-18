@@ -36,6 +36,16 @@ namespace Pulumi.DbtCloud
     ///                 AllProjects = false,
     ///                 ProjectId = dbtProject.Id,
     ///             },
+    ///             new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs
+    ///             {
+    ///                 PermissionSet = "developer",
+    ///                 AllProjects = true,
+    ///                 WritableEnvironmentCategories = new[]
+    ///                 {
+    ///                     "development",
+    ///                     "staging",
+    ///                 },
+    ///             },
     ///         },
     ///     });
     /// 
@@ -48,7 +58,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// import {
     /// 
-    ///   to = dbtcloud_group.my_service_token
+    ///   to = dbtcloud_service_token.my_service_token
     /// 
     ///   id = "service_token_id"
     /// 
@@ -56,7 +66,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// import {
     /// 
-    ///   to = dbtcloud_group.my_service_token
+    ///   to = dbtcloud_service_token.my_service_token
     /// 
     ///   id = "12345"
     /// 
@@ -91,7 +101,7 @@ namespace Pulumi.DbtCloud
         /// Service token state (1 is active, 2 is inactive)
         /// </summary>
         [Output("state")]
-        public Output<int?> State { get; private set; } = null!;
+        public Output<int> State { get; private set; } = null!;
 
         /// <summary>
         /// Service token secret value (only accessible on creation))

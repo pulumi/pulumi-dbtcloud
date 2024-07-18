@@ -11,6 +11,7 @@ export function getServiceToken(args: GetServiceTokenArgs, opts?: pulumi.InvokeO
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getServiceToken:getServiceToken", {
         "serviceTokenId": args.serviceTokenId,
+        "serviceTokenPermissions": args.serviceTokenPermissions,
     }, opts);
 }
 
@@ -19,9 +20,13 @@ export function getServiceToken(args: GetServiceTokenArgs, opts?: pulumi.InvokeO
  */
 export interface GetServiceTokenArgs {
     /**
-     * ID of the service token
+     * The ID of the service token
      */
     serviceTokenId: number;
+    /**
+     * Permissions set for the service token
+     */
+    serviceTokenPermissions?: inputs.GetServiceTokenServiceTokenPermission[];
 }
 
 /**
@@ -29,7 +34,7 @@ export interface GetServiceTokenArgs {
  */
 export interface GetServiceTokenResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of the service token
      */
     readonly id: string;
     /**
@@ -37,15 +42,15 @@ export interface GetServiceTokenResult {
      */
     readonly name: string;
     /**
-     * ID of the service token
+     * The ID of the service token
      */
     readonly serviceTokenId: number;
     /**
      * Permissions set for the service token
      */
-    readonly serviceTokenPermissions: outputs.GetServiceTokenServiceTokenPermission[];
+    readonly serviceTokenPermissions?: outputs.GetServiceTokenServiceTokenPermission[];
     /**
-     * The UID of the service token (part of the token secret)
+     * Service token UID (part of the token)
      */
     readonly uid: string;
 }
@@ -58,7 +63,11 @@ export function getServiceTokenOutput(args: GetServiceTokenOutputArgs, opts?: pu
  */
 export interface GetServiceTokenOutputArgs {
     /**
-     * ID of the service token
+     * The ID of the service token
      */
     serviceTokenId: pulumi.Input<number>;
+    /**
+     * Permissions set for the service token
+     */
+    serviceTokenPermissions?: pulumi.Input<pulumi.Input<inputs.GetServiceTokenServiceTokenPermissionArgs>[]>;
 }

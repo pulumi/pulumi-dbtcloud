@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GroupGroupPermission',
@@ -18,7 +19,16 @@ __all__ = [
     'GetGroupGroupPermissionResult',
     'GetGroupUsersUserResult',
     'GetJobJobCompletionTriggerConditionResult',
+    'GetJobsJobResult',
+    'GetJobsJobEnvironmentResult',
+    'GetJobsJobExecutionResult',
+    'GetJobsJobJobCompletionTriggerConditionResult',
+    'GetJobsJobJobCompletionTriggerConditionConditionResult',
+    'GetJobsJobScheduleResult',
+    'GetJobsJobSettingsResult',
+    'GetJobsJobTriggersResult',
     'GetServiceTokenServiceTokenPermissionResult',
+    'GetUsersUserResult',
 ]
 
 @pulumi.output_type
@@ -259,6 +269,8 @@ class ServiceTokenServiceTokenPermission(dict):
             suggest = "permission_set"
         elif key == "projectId":
             suggest = "project_id"
+        elif key == "writableEnvironmentCategories":
+            suggest = "writable_environment_categories"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ServiceTokenServiceTokenPermission. Access the value via the '{suggest}' property getter instead.")
@@ -274,16 +286,24 @@ class ServiceTokenServiceTokenPermission(dict):
     def __init__(__self__, *,
                  all_projects: bool,
                  permission_set: str,
-                 project_id: Optional[int] = None):
+                 project_id: Optional[int] = None,
+                 writable_environment_categories: Optional[Sequence[str]] = None):
         """
         :param bool all_projects: Whether or not to apply this permission to all projects for this service token
         :param str permission_set: Set of permissions to apply
         :param int project_id: Project ID to apply this permission to for this service token
+        :param Sequence[str] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
         pulumi.set(__self__, "permission_set", permission_set)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if writable_environment_categories is not None:
+            pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
 
     @property
     @pulumi.getter(name="allProjects")
@@ -308,6 +328,18 @@ class ServiceTokenServiceTokenPermission(dict):
         Project ID to apply this permission to for this service token
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Optional[Sequence[str]]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
 
 
 @pulumi.output_type
@@ -538,19 +570,438 @@ class GetJobJobCompletionTriggerConditionResult(dict):
 
 
 @pulumi.output_type
+class GetJobsJobResult(dict):
+    def __init__(__self__, *,
+                 dbt_version: str,
+                 deferring_environment_id: int,
+                 deferring_job_definition_id: int,
+                 description: str,
+                 environment: 'outputs.GetJobsJobEnvironmentResult',
+                 environment_id: int,
+                 execute_steps: Sequence[str],
+                 execution: 'outputs.GetJobsJobExecutionResult',
+                 generate_docs: bool,
+                 id: int,
+                 job_completion_trigger_condition: 'outputs.GetJobsJobJobCompletionTriggerConditionResult',
+                 job_type: str,
+                 name: str,
+                 project_id: int,
+                 run_generate_sources: bool,
+                 schedule: 'outputs.GetJobsJobScheduleResult',
+                 settings: 'outputs.GetJobsJobSettingsResult',
+                 triggers: 'outputs.GetJobsJobTriggersResult',
+                 triggers_on_draft_pr: bool):
+        """
+        :param str dbt_version: The version of dbt used for the job. If not set, the environment version will be used.
+        :param int deferring_environment_id: The ID of the environment this job defers to
+        :param int deferring_job_definition_id: [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+        :param str description: The description of the job
+        :param 'GetJobsJobEnvironmentArgs' environment: Details of the environment the job is running in
+        :param int environment_id: The ID of environment
+        :param Sequence[str] execute_steps: The list of steps to run in the job
+        :param bool generate_docs: Whether the job generate docs
+        :param int id: The ID of the job
+        :param 'GetJobsJobJobCompletionTriggerConditionArgs' job_completion_trigger_condition: Whether the job is triggered by the completion of another job
+        :param str job_type: The type of job (e.g. CI, scheduled)
+        :param str name: The name of the job
+        :param int project_id: The ID of the project
+        :param bool run_generate_sources: Whether the job test source freshness
+        :param bool triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
+        """
+        pulumi.set(__self__, "dbt_version", dbt_version)
+        pulumi.set(__self__, "deferring_environment_id", deferring_environment_id)
+        pulumi.set(__self__, "deferring_job_definition_id", deferring_job_definition_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "environment", environment)
+        pulumi.set(__self__, "environment_id", environment_id)
+        pulumi.set(__self__, "execute_steps", execute_steps)
+        pulumi.set(__self__, "execution", execution)
+        pulumi.set(__self__, "generate_docs", generate_docs)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "job_completion_trigger_condition", job_completion_trigger_condition)
+        pulumi.set(__self__, "job_type", job_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "run_generate_sources", run_generate_sources)
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "settings", settings)
+        pulumi.set(__self__, "triggers", triggers)
+        pulumi.set(__self__, "triggers_on_draft_pr", triggers_on_draft_pr)
+
+    @property
+    @pulumi.getter(name="dbtVersion")
+    def dbt_version(self) -> str:
+        """
+        The version of dbt used for the job. If not set, the environment version will be used.
+        """
+        return pulumi.get(self, "dbt_version")
+
+    @property
+    @pulumi.getter(name="deferringEnvironmentId")
+    def deferring_environment_id(self) -> int:
+        """
+        The ID of the environment this job defers to
+        """
+        return pulumi.get(self, "deferring_environment_id")
+
+    @property
+    @pulumi.getter(name="deferringJobDefinitionId")
+    def deferring_job_definition_id(self) -> int:
+        """
+        [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+        """
+        return pulumi.get(self, "deferring_job_definition_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the job
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def environment(self) -> 'outputs.GetJobsJobEnvironmentResult':
+        """
+        Details of the environment the job is running in
+        """
+        return pulumi.get(self, "environment")
+
+    @property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> int:
+        """
+        The ID of environment
+        """
+        return pulumi.get(self, "environment_id")
+
+    @property
+    @pulumi.getter(name="executeSteps")
+    def execute_steps(self) -> Sequence[str]:
+        """
+        The list of steps to run in the job
+        """
+        return pulumi.get(self, "execute_steps")
+
+    @property
+    @pulumi.getter
+    def execution(self) -> 'outputs.GetJobsJobExecutionResult':
+        return pulumi.get(self, "execution")
+
+    @property
+    @pulumi.getter(name="generateDocs")
+    def generate_docs(self) -> bool:
+        """
+        Whether the job generate docs
+        """
+        return pulumi.get(self, "generate_docs")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The ID of the job
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="jobCompletionTriggerCondition")
+    def job_completion_trigger_condition(self) -> 'outputs.GetJobsJobJobCompletionTriggerConditionResult':
+        """
+        Whether the job is triggered by the completion of another job
+        """
+        return pulumi.get(self, "job_completion_trigger_condition")
+
+    @property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> str:
+        """
+        The type of job (e.g. CI, scheduled)
+        """
+        return pulumi.get(self, "job_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the job
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> int:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="runGenerateSources")
+    def run_generate_sources(self) -> bool:
+        """
+        Whether the job test source freshness
+        """
+        return pulumi.get(self, "run_generate_sources")
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> 'outputs.GetJobsJobScheduleResult':
+        return pulumi.get(self, "schedule")
+
+    @property
+    @pulumi.getter
+    def settings(self) -> 'outputs.GetJobsJobSettingsResult':
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def triggers(self) -> 'outputs.GetJobsJobTriggersResult':
+        return pulumi.get(self, "triggers")
+
+    @property
+    @pulumi.getter(name="triggersOnDraftPr")
+    def triggers_on_draft_pr(self) -> bool:
+        """
+        Whether the CI job should be automatically triggered on draft PRs
+        """
+        return pulumi.get(self, "triggers_on_draft_pr")
+
+
+@pulumi.output_type
+class GetJobsJobEnvironmentResult(dict):
+    def __init__(__self__, *,
+                 deployment_type: str,
+                 id: int,
+                 name: str,
+                 project_id: int,
+                 type: str):
+        """
+        :param str deployment_type: Type of deployment environment: staging, production
+        :param int id: ID of the environment
+        :param str name: Name of the environment
+        :param str type: Environment type: development or deployment
+        """
+        pulumi.set(__self__, "deployment_type", deployment_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="deploymentType")
+    def deployment_type(self) -> str:
+        """
+        Type of deployment environment: staging, production
+        """
+        return pulumi.get(self, "deployment_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        ID of the environment
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the environment
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> int:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Environment type: development or deployment
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetJobsJobExecutionResult(dict):
+    def __init__(__self__, *,
+                 timeout_seconds: int):
+        """
+        :param int timeout_seconds: The number of seconds before the job times out
+        """
+        pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+
+    @property
+    @pulumi.getter(name="timeoutSeconds")
+    def timeout_seconds(self) -> int:
+        """
+        The number of seconds before the job times out
+        """
+        return pulumi.get(self, "timeout_seconds")
+
+
+@pulumi.output_type
+class GetJobsJobJobCompletionTriggerConditionResult(dict):
+    def __init__(__self__, *,
+                 condition: 'outputs.GetJobsJobJobCompletionTriggerConditionConditionResult'):
+        pulumi.set(__self__, "condition", condition)
+
+    @property
+    @pulumi.getter
+    def condition(self) -> 'outputs.GetJobsJobJobCompletionTriggerConditionConditionResult':
+        return pulumi.get(self, "condition")
+
+
+@pulumi.output_type
+class GetJobsJobJobCompletionTriggerConditionConditionResult(dict):
+    def __init__(__self__, *,
+                 job_id: int,
+                 project_id: int,
+                 statuses: Sequence[str]):
+        pulumi.set(__self__, "job_id", job_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "statuses", statuses)
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> int:
+        return pulumi.get(self, "job_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> int:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Sequence[str]:
+        return pulumi.get(self, "statuses")
+
+
+@pulumi.output_type
+class GetJobsJobScheduleResult(dict):
+    def __init__(__self__, *,
+                 cron: str):
+        """
+        :param str cron: The cron schedule for the job. Only used if triggers.schedule is true
+        """
+        pulumi.set(__self__, "cron", cron)
+
+    @property
+    @pulumi.getter
+    def cron(self) -> str:
+        """
+        The cron schedule for the job. Only used if triggers.schedule is true
+        """
+        return pulumi.get(self, "cron")
+
+
+@pulumi.output_type
+class GetJobsJobSettingsResult(dict):
+    def __init__(__self__, *,
+                 target_name: str,
+                 threads: int):
+        """
+        :param str target_name: Value for `target.name` in the Jinja context
+        :param int threads: Number of threads to run dbt with
+        """
+        pulumi.set(__self__, "target_name", target_name)
+        pulumi.set(__self__, "threads", threads)
+
+    @property
+    @pulumi.getter(name="targetName")
+    def target_name(self) -> str:
+        """
+        Value for `target.name` in the Jinja context
+        """
+        return pulumi.get(self, "target_name")
+
+    @property
+    @pulumi.getter
+    def threads(self) -> int:
+        """
+        Number of threads to run dbt with
+        """
+        return pulumi.get(self, "threads")
+
+
+@pulumi.output_type
+class GetJobsJobTriggersResult(dict):
+    def __init__(__self__, *,
+                 git_provider_webhook: bool,
+                 github_webhook: bool,
+                 on_merge: bool,
+                 schedule: bool):
+        """
+        :param bool git_provider_webhook: Whether the job runs automatically on PR creation
+        :param bool github_webhook: Whether the job runs automatically on PR creation
+        :param bool on_merge: Whether the job runs automatically once a PR is merged
+        :param bool schedule: Whether the job runs on a schedule
+        """
+        pulumi.set(__self__, "git_provider_webhook", git_provider_webhook)
+        pulumi.set(__self__, "github_webhook", github_webhook)
+        pulumi.set(__self__, "on_merge", on_merge)
+        pulumi.set(__self__, "schedule", schedule)
+
+    @property
+    @pulumi.getter(name="gitProviderWebhook")
+    def git_provider_webhook(self) -> bool:
+        """
+        Whether the job runs automatically on PR creation
+        """
+        return pulumi.get(self, "git_provider_webhook")
+
+    @property
+    @pulumi.getter(name="githubWebhook")
+    def github_webhook(self) -> bool:
+        """
+        Whether the job runs automatically on PR creation
+        """
+        return pulumi.get(self, "github_webhook")
+
+    @property
+    @pulumi.getter(name="onMerge")
+    def on_merge(self) -> bool:
+        """
+        Whether the job runs automatically once a PR is merged
+        """
+        return pulumi.get(self, "on_merge")
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> bool:
+        """
+        Whether the job runs on a schedule
+        """
+        return pulumi.get(self, "schedule")
+
+
+@pulumi.output_type
 class GetServiceTokenServiceTokenPermissionResult(dict):
     def __init__(__self__, *,
                  all_projects: bool,
                  permission_set: str,
-                 project_id: int):
+                 project_id: int,
+                 writable_environment_categories: Sequence[str]):
         """
         :param bool all_projects: Whether or not to apply this permission to all projects for this service token
         :param str permission_set: Set of permissions to apply
         :param int project_id: Project ID to apply this permission to for this service token
+        :param Sequence[str] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
         pulumi.set(__self__, "permission_set", permission_set)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
 
     @property
     @pulumi.getter(name="allProjects")
@@ -575,5 +1026,46 @@ class GetServiceTokenServiceTokenPermissionResult(dict):
         Project ID to apply this permission to for this service token
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Sequence[str]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
+
+
+@pulumi.output_type
+class GetUsersUserResult(dict):
+    def __init__(__self__, *,
+                 email: str,
+                 id: int):
+        """
+        :param str email: Email for the user
+        :param int id: ID of the user
+        """
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        Email for the user
+        """
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        ID of the user
+        """
+        return pulumi.get(self, "id")
 
 

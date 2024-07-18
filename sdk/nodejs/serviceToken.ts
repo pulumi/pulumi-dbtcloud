@@ -25,6 +25,14 @@ import * as utilities from "./utilities";
  *             allProjects: false,
  *             projectId: dbtProject.id,
  *         },
+ *         {
+ *             permissionSet: "developer",
+ *             allProjects: true,
+ *             writableEnvironmentCategories: [
+ *                 "development",
+ *                 "staging",
+ *             ],
+ *         },
  *     ],
  * });
  * ```
@@ -35,7 +43,7 @@ import * as utilities from "./utilities";
  *
  * import {
  *
- *   to = dbtcloud_group.my_service_token
+ *   to = dbtcloud_service_token.my_service_token
  *
  *   id = "service_token_id"
  *
@@ -43,7 +51,7 @@ import * as utilities from "./utilities";
  *
  * import {
  *
- *   to = dbtcloud_group.my_service_token
+ *   to = dbtcloud_service_token.my_service_token
  *
  *   id = "12345"
  *
@@ -98,7 +106,7 @@ export class ServiceToken extends pulumi.CustomResource {
     /**
      * Service token state (1 is active, 2 is inactive)
      */
-    public readonly state!: pulumi.Output<number | undefined>;
+    public readonly state!: pulumi.Output<number>;
     /**
      * Service token secret value (only accessible on creation))
      */

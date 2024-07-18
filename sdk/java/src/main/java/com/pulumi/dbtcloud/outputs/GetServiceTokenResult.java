@@ -10,11 +10,12 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetServiceTokenResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of the service token
      * 
      */
     private String id;
@@ -24,7 +25,7 @@ public final class GetServiceTokenResult {
      */
     private String name;
     /**
-     * @return ID of the service token
+     * @return The ID of the service token
      * 
      */
     private Integer serviceTokenId;
@@ -32,16 +33,16 @@ public final class GetServiceTokenResult {
      * @return Permissions set for the service token
      * 
      */
-    private List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions;
+    private @Nullable List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions;
     /**
-     * @return The UID of the service token (part of the token secret)
+     * @return Service token UID (part of the token)
      * 
      */
     private String uid;
 
     private GetServiceTokenResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of the service token
      * 
      */
     public String id() {
@@ -55,7 +56,7 @@ public final class GetServiceTokenResult {
         return this.name;
     }
     /**
-     * @return ID of the service token
+     * @return The ID of the service token
      * 
      */
     public Integer serviceTokenId() {
@@ -66,10 +67,10 @@ public final class GetServiceTokenResult {
      * 
      */
     public List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions() {
-        return this.serviceTokenPermissions;
+        return this.serviceTokenPermissions == null ? List.of() : this.serviceTokenPermissions;
     }
     /**
-     * @return The UID of the service token (part of the token secret)
+     * @return Service token UID (part of the token)
      * 
      */
     public String uid() {
@@ -88,7 +89,7 @@ public final class GetServiceTokenResult {
         private String id;
         private String name;
         private Integer serviceTokenId;
-        private List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions;
+        private @Nullable List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions;
         private String uid;
         public Builder() {}
         public Builder(GetServiceTokenResult defaults) {
@@ -125,10 +126,8 @@ public final class GetServiceTokenResult {
             return this;
         }
         @CustomType.Setter
-        public Builder serviceTokenPermissions(List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions) {
-            if (serviceTokenPermissions == null) {
-              throw new MissingRequiredPropertyException("GetServiceTokenResult", "serviceTokenPermissions");
-            }
+        public Builder serviceTokenPermissions(@Nullable List<GetServiceTokenServiceTokenPermission> serviceTokenPermissions) {
+
             this.serviceTokenPermissions = serviceTokenPermissions;
             return this;
         }

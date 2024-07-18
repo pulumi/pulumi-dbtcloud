@@ -8,6 +8,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -29,6 +30,15 @@ public final class ServiceTokenServiceTokenPermission {
      * 
      */
     private @Nullable Integer projectId;
+    /**
+     * @return What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+     * 
+     */
+    private @Nullable List<String> writableEnvironmentCategories;
 
     private ServiceTokenServiceTokenPermission() {}
     /**
@@ -52,6 +62,17 @@ public final class ServiceTokenServiceTokenPermission {
     public Optional<Integer> projectId() {
         return Optional.ofNullable(this.projectId);
     }
+    /**
+     * @return What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+     * 
+     */
+    public List<String> writableEnvironmentCategories() {
+        return this.writableEnvironmentCategories == null ? List.of() : this.writableEnvironmentCategories;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -65,12 +86,14 @@ public final class ServiceTokenServiceTokenPermission {
         private Boolean allProjects;
         private String permissionSet;
         private @Nullable Integer projectId;
+        private @Nullable List<String> writableEnvironmentCategories;
         public Builder() {}
         public Builder(ServiceTokenServiceTokenPermission defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allProjects = defaults.allProjects;
     	      this.permissionSet = defaults.permissionSet;
     	      this.projectId = defaults.projectId;
+    	      this.writableEnvironmentCategories = defaults.writableEnvironmentCategories;
         }
 
         @CustomType.Setter
@@ -95,11 +118,21 @@ public final class ServiceTokenServiceTokenPermission {
             this.projectId = projectId;
             return this;
         }
+        @CustomType.Setter
+        public Builder writableEnvironmentCategories(@Nullable List<String> writableEnvironmentCategories) {
+
+            this.writableEnvironmentCategories = writableEnvironmentCategories;
+            return this;
+        }
+        public Builder writableEnvironmentCategories(String... writableEnvironmentCategories) {
+            return writableEnvironmentCategories(List.of(writableEnvironmentCategories));
+        }
         public ServiceTokenServiceTokenPermission build() {
             final var _resultValue = new ServiceTokenServiceTokenPermission();
             _resultValue.allProjects = allProjects;
             _resultValue.permissionSet = permissionSet;
             _resultValue.projectId = projectId;
+            _resultValue.writableEnvironmentCategories = writableEnvironmentCategories;
             return _resultValue;
         }
     }

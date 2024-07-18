@@ -28,6 +28,7 @@ from .get_extended_attributes import *
 from .get_group import *
 from .get_group_users import *
 from .get_job import *
+from .get_jobs import *
 from .get_notification import *
 from .get_postgres_credential import *
 from .get_privatelink_endpoint import *
@@ -37,6 +38,7 @@ from .get_service_token import *
 from .get_snowflake_credential import *
 from .get_user import *
 from .get_user_groups import *
+from .get_users import *
 from .get_webhook import *
 from .group import *
 from .group_partial_permissions import *
