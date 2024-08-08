@@ -247,7 +247,7 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public FabricCredential(String name) {
+    public FabricCredential(java.lang.String name) {
         this(name, FabricCredentialArgs.Empty);
     }
     /**
@@ -255,7 +255,7 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public FabricCredential(String name, FabricCredentialArgs args) {
+    public FabricCredential(java.lang.String name, FabricCredentialArgs args) {
         this(name, args, null);
     }
     /**
@@ -264,15 +264,22 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public FabricCredential(String name, FabricCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/fabricCredential:FabricCredential", name, args == null ? FabricCredentialArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public FabricCredential(java.lang.String name, FabricCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/fabricCredential:FabricCredential", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private FabricCredential(String name, Output<String> id, @Nullable FabricCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/fabricCredential:FabricCredential", name, state, makeResourceOptions(options, id));
+    private FabricCredential(java.lang.String name, Output<java.lang.String> id, @Nullable FabricCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/fabricCredential:FabricCredential", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static FabricCredentialArgs makeArgs(FabricCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? FabricCredentialArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -292,7 +299,7 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static FabricCredential get(String name, Output<String> id, @Nullable FabricCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static FabricCredential get(java.lang.String name, Output<java.lang.String> id, @Nullable FabricCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new FabricCredential(name, id, state, options);
     }
 }

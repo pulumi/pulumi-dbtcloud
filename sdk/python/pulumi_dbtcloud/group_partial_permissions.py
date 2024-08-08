@@ -163,7 +163,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assign_by_default: Optional[pulumi.Input[bool]] = None,
-                 group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupPartialPermissionsGroupPermissionArgs']]]]] = None,
+                 group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GroupPartialPermissionsGroupPermissionArgs', 'GroupPartialPermissionsGroupPermissionArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -173,7 +173,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupPartialPermissionsGroupPermissionArgs']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupPartialPermissionsGroupPermissionArgs', 'GroupPartialPermissionsGroupPermissionArgsDict']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
         :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
@@ -202,7 +202,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assign_by_default: Optional[pulumi.Input[bool]] = None,
-                 group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupPartialPermissionsGroupPermissionArgs']]]]] = None,
+                 group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GroupPartialPermissionsGroupPermissionArgs', 'GroupPartialPermissionsGroupPermissionArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -229,7 +229,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             assign_by_default: Optional[pulumi.Input[bool]] = None,
-            group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupPartialPermissionsGroupPermissionArgs']]]]] = None,
+            group_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GroupPartialPermissionsGroupPermissionArgs', 'GroupPartialPermissionsGroupPermissionArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'GroupPartialPermissions':
         """
@@ -240,7 +240,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupPartialPermissionsGroupPermissionArgs']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupPartialPermissionsGroupPermissionArgs', 'GroupPartialPermissionsGroupPermissionArgsDict']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
         :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
