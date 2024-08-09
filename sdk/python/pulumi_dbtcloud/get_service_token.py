@@ -95,13 +95,13 @@ class AwaitableGetServiceTokenResult(GetServiceTokenResult):
 
 
 def get_service_token(service_token_id: Optional[int] = None,
-                      service_token_permissions: Optional[Sequence[pulumi.InputType['GetServiceTokenServiceTokenPermissionArgs']]] = None,
+                      service_token_permissions: Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceTokenResult:
     """
     Use this data source to access information about an existing resource.
 
     :param int service_token_id: The ID of the service token
-    :param Sequence[pulumi.InputType['GetServiceTokenServiceTokenPermissionArgs']] service_token_permissions: Permissions set for the service token
+    :param Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']] service_token_permissions: Permissions set for the service token
     """
     __args__ = dict()
     __args__['serviceTokenId'] = service_token_id
@@ -119,12 +119,12 @@ def get_service_token(service_token_id: Optional[int] = None,
 
 @_utilities.lift_output_func(get_service_token)
 def get_service_token_output(service_token_id: Optional[pulumi.Input[int]] = None,
-                             service_token_permissions: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServiceTokenServiceTokenPermissionArgs']]]]] = None,
+                             service_token_permissions: Optional[pulumi.Input[Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceTokenResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param int service_token_id: The ID of the service token
-    :param Sequence[pulumi.InputType['GetServiceTokenServiceTokenPermissionArgs']] service_token_permissions: Permissions set for the service token
+    :param Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']] service_token_permissions: Permissions set for the service token
     """
     ...

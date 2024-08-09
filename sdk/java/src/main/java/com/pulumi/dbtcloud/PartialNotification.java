@@ -36,12 +36,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         // the config is the same as for `dbtcloud_notification`
  *         var prodJobInternalNotification = new PartialNotification("prodJobInternalNotification", PartialNotificationArgs.builder()
  *             .userId(100)
@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *                 56788)
  *             .onCancels(prodJob.id())
  *             .notificationType(4)
- *             .externalEmail("my_email{@literal @}mail.com")
+ *             .externalEmail("my_email}{@literal @}{@code mail.com")
  *             .build());
  * 
  *         // and finally, we can set up Slack notifications
@@ -73,8 +73,8 @@ import javax.annotation.Nullable;
  *             .slackChannelName("#my-awesome-channel")
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
@@ -227,7 +227,7 @@ public class PartialNotification extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public PartialNotification(String name) {
+    public PartialNotification(java.lang.String name) {
         this(name, PartialNotificationArgs.Empty);
     }
     /**
@@ -235,7 +235,7 @@ public class PartialNotification extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PartialNotification(String name, PartialNotificationArgs args) {
+    public PartialNotification(java.lang.String name, PartialNotificationArgs args) {
         this(name, args, null);
     }
     /**
@@ -244,15 +244,22 @@ public class PartialNotification extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PartialNotification(String name, PartialNotificationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/partialNotification:PartialNotification", name, args == null ? PartialNotificationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public PartialNotification(java.lang.String name, PartialNotificationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/partialNotification:PartialNotification", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private PartialNotification(String name, Output<String> id, @Nullable PartialNotificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/partialNotification:PartialNotification", name, state, makeResourceOptions(options, id));
+    private PartialNotification(java.lang.String name, Output<java.lang.String> id, @Nullable PartialNotificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/partialNotification:PartialNotification", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static PartialNotificationArgs makeArgs(PartialNotificationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PartialNotificationArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -268,7 +275,7 @@ public class PartialNotification extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static PartialNotification get(String name, Output<String> id, @Nullable PartialNotificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static PartialNotification get(java.lang.String name, Output<java.lang.String> id, @Nullable PartialNotificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new PartialNotification(name, id, state, options);
     }
 }

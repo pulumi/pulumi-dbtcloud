@@ -278,7 +278,7 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SnowflakeCredential(String name) {
+    public SnowflakeCredential(java.lang.String name) {
         this(name, SnowflakeCredentialArgs.Empty);
     }
     /**
@@ -286,7 +286,7 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SnowflakeCredential(String name, SnowflakeCredentialArgs args) {
+    public SnowflakeCredential(java.lang.String name, SnowflakeCredentialArgs args) {
         this(name, args, null);
     }
     /**
@@ -295,15 +295,22 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SnowflakeCredential(String name, SnowflakeCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/snowflakeCredential:SnowflakeCredential", name, args == null ? SnowflakeCredentialArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public SnowflakeCredential(java.lang.String name, SnowflakeCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/snowflakeCredential:SnowflakeCredential", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SnowflakeCredential(String name, Output<String> id, @Nullable SnowflakeCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/snowflakeCredential:SnowflakeCredential", name, state, makeResourceOptions(options, id));
+    private SnowflakeCredential(java.lang.String name, Output<java.lang.String> id, @Nullable SnowflakeCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/snowflakeCredential:SnowflakeCredential", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static SnowflakeCredentialArgs makeArgs(SnowflakeCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SnowflakeCredentialArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -324,7 +331,7 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SnowflakeCredential get(String name, Output<String> id, @Nullable SnowflakeCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SnowflakeCredential get(java.lang.String name, Output<java.lang.String> id, @Nullable SnowflakeCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SnowflakeCredential(name, id, state, options);
     }
 }

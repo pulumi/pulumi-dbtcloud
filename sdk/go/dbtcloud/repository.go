@@ -25,71 +25,31 @@ import (
 //
 // ## Example Usage
 //
-// ### repo cloned via the GitHub integration, manually entering the `githubInstallationId`
+// ## Import
 //
-//	resource "Repository" "githubRepo" {
-//	  projectId             = dbtcloud_project.dbt_project.id
-//	  remoteUrl             = "git@github.com:<github_org>/<github_repo>.git"
-//	  githubInstallationId = 9876
-//	  gitCloneStrategy     = "githubApp"
-//	}
+// using  import blocks (requires Terraform >= 1.5)
 //
-// ### repo cloned via the GitHub integration, with auto-retrieval of the `githubInstallationId`
-// # here, we assume that `token` and `hostUrl` are respectively accessible via `var.dbt_token` and `var.dbt_host_url`
-// # NOTE: the following requires connecting via a user token and can't be retrieved with a service token
+// import {
 //
-//	data "http" "githubInstallationsResponse" {
-//	  url = format("%s/v2/integrations/github/installations/", var.dbt_host_url)
-//	  requestHeaders = {
-//	    Authorization = format("Bearer %s", var.dbt_token)
-//	  }
-//	}
+//	to = dbtcloud_repository.my_repository
 //
-//	locals {
-//	  githubInstallationId = jsondecode(data.http.github_installations_response.response_body)[0].id
-//	}
+//	id = "project_id:repository_id"
 //
-//	resource "Repository" "githubRepoOther" {
-//	  projectId             = dbtcloud_project.dbt_project.id
-//	  remoteUrl             = "git@github.com:<github_org>/<github_repo>.git"
-//	  githubInstallationId = local.github_installation_id
-//	  gitCloneStrategy     = "githubApp"
-//	}
+// }
 //
-// ### repo cloned via the GitLab integration
-// # as of 15 Sept 2023 this resource requires using a user token and can't be set with a service token - CC-791
+// import {
 //
-//	resource "Repository" "gitlabRepo" {
-//	  projectId         = dbtcloud_project.dbt_project.id
-//	  remoteUrl         = "<gitlab-group>/<gitlab-project>"
-//	  gitlabProjectId  = 8765
-//	  gitCloneStrategy = "deployToken"
-//	}
+//	to = dbtcloud_repository.my_repository
 //
-// ### repo cloned via the deploy token strategy
+//	id = "12345:6789"
 //
-//	resource "Repository" "deployRepo" {
-//	  projectId         = dbtcloud_project.dbt_project.id
-//	  remoteUrl         = "git://github.com/<github_org>/<github_repo>.git"
-//	  gitCloneStrategy = "deployKey"
-//	}
+// }
 //
-// ### repo cloned via the Azure Dev Ops integration
+// using the older import command
 //
-//	resource "Repository" "adoRepo" {
-//	  projectId = dbtcloud_project.dbt_project.id
-//
-// # the following values can be added manually (IDs can be retrieved from the ADO API) or via data sources
-// # remoteUrl                              = "https://abc@dev.azure.com/abc/def/_git/my_repo"
-// # azureActiveDirectoryProjectId       = "12345678-1234-1234-1234-1234567890ab"
-// # azureActiveDirectoryRepositoryId    = "87654321-4321-abcd-abcd-464327678642"
-//
-//	  remoteUrl                                = data.dbtcloud_azure_dev_ops_repository.my_devops_repo.remote_url
-//	  azureActiveDirectoryRepositoryId      = data.dbtcloud_azure_dev_ops_repository.my_devops_repo.id
-//	  azureActiveDirectoryProjectId         = data.dbtcloud_azure_dev_ops_project.my_devops_project.id
-//	  azureBypassWebhookRegistrationFailure = false
-//	  gitCloneStrategy                        = "azureActiveDirectoryApp"
-//	}
+// ```sh
+// $ pulumi import dbtcloud:index/repository:Repository my_repository "project_id:repository_id"
+// ```
 //
 // ```sh
 // $ pulumi import dbtcloud:index/repository:Repository my_repository 12345:6789
