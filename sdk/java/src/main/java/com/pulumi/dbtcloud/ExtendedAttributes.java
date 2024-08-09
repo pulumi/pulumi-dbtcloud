@@ -164,7 +164,7 @@ public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ExtendedAttributes(String name) {
+    public ExtendedAttributes(java.lang.String name) {
         this(name, ExtendedAttributesArgs.Empty);
     }
     /**
@@ -172,7 +172,7 @@ public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ExtendedAttributes(String name, ExtendedAttributesArgs args) {
+    public ExtendedAttributes(java.lang.String name, ExtendedAttributesArgs args) {
         this(name, args, null);
     }
     /**
@@ -181,15 +181,22 @@ public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ExtendedAttributes(String name, ExtendedAttributesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/extendedAttributes:ExtendedAttributes", name, args == null ? ExtendedAttributesArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ExtendedAttributes(java.lang.String name, ExtendedAttributesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/extendedAttributes:ExtendedAttributes", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ExtendedAttributes(String name, Output<String> id, @Nullable ExtendedAttributesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/extendedAttributes:ExtendedAttributes", name, state, makeResourceOptions(options, id));
+    private ExtendedAttributes(java.lang.String name, Output<java.lang.String> id, @Nullable ExtendedAttributesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/extendedAttributes:ExtendedAttributes", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ExtendedAttributesArgs makeArgs(ExtendedAttributesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ExtendedAttributesArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -205,7 +212,7 @@ public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ExtendedAttributes get(String name, Output<String> id, @Nullable ExtendedAttributesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ExtendedAttributes get(java.lang.String name, Output<java.lang.String> id, @Nullable ExtendedAttributesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ExtendedAttributes(name, id, state, options);
     }
 }

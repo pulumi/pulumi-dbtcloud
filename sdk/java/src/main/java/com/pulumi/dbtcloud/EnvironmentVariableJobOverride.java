@@ -161,7 +161,7 @@ public class EnvironmentVariableJobOverride extends com.pulumi.resources.CustomR
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public EnvironmentVariableJobOverride(String name) {
+    public EnvironmentVariableJobOverride(java.lang.String name) {
         this(name, EnvironmentVariableJobOverrideArgs.Empty);
     }
     /**
@@ -169,7 +169,7 @@ public class EnvironmentVariableJobOverride extends com.pulumi.resources.CustomR
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public EnvironmentVariableJobOverride(String name, EnvironmentVariableJobOverrideArgs args) {
+    public EnvironmentVariableJobOverride(java.lang.String name, EnvironmentVariableJobOverrideArgs args) {
         this(name, args, null);
     }
     /**
@@ -178,15 +178,22 @@ public class EnvironmentVariableJobOverride extends com.pulumi.resources.CustomR
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public EnvironmentVariableJobOverride(String name, EnvironmentVariableJobOverrideArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride", name, args == null ? EnvironmentVariableJobOverrideArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public EnvironmentVariableJobOverride(java.lang.String name, EnvironmentVariableJobOverrideArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private EnvironmentVariableJobOverride(String name, Output<String> id, @Nullable EnvironmentVariableJobOverrideState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride", name, state, makeResourceOptions(options, id));
+    private EnvironmentVariableJobOverride(java.lang.String name, Output<java.lang.String> id, @Nullable EnvironmentVariableJobOverrideState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static EnvironmentVariableJobOverrideArgs makeArgs(EnvironmentVariableJobOverrideArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? EnvironmentVariableJobOverrideArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -202,7 +209,7 @@ public class EnvironmentVariableJobOverride extends com.pulumi.resources.CustomR
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static EnvironmentVariableJobOverride get(String name, Output<String> id, @Nullable EnvironmentVariableJobOverrideState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static EnvironmentVariableJobOverride get(java.lang.String name, Output<java.lang.String> id, @Nullable EnvironmentVariableJobOverrideState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new EnvironmentVariableJobOverride(name, id, state, options);
     }
 }

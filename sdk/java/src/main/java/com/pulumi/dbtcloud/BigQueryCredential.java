@@ -162,7 +162,7 @@ public class BigQueryCredential extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public BigQueryCredential(String name) {
+    public BigQueryCredential(java.lang.String name) {
         this(name, BigQueryCredentialArgs.Empty);
     }
     /**
@@ -170,7 +170,7 @@ public class BigQueryCredential extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public BigQueryCredential(String name, BigQueryCredentialArgs args) {
+    public BigQueryCredential(java.lang.String name, BigQueryCredentialArgs args) {
         this(name, args, null);
     }
     /**
@@ -179,15 +179,22 @@ public class BigQueryCredential extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public BigQueryCredential(String name, BigQueryCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/bigQueryCredential:BigQueryCredential", name, args == null ? BigQueryCredentialArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public BigQueryCredential(java.lang.String name, BigQueryCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/bigQueryCredential:BigQueryCredential", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private BigQueryCredential(String name, Output<String> id, @Nullable BigQueryCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/bigQueryCredential:BigQueryCredential", name, state, makeResourceOptions(options, id));
+    private BigQueryCredential(java.lang.String name, Output<java.lang.String> id, @Nullable BigQueryCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/bigQueryCredential:BigQueryCredential", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static BigQueryCredentialArgs makeArgs(BigQueryCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? BigQueryCredentialArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -203,7 +210,7 @@ public class BigQueryCredential extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static BigQueryCredential get(String name, Output<String> id, @Nullable BigQueryCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static BigQueryCredential get(java.lang.String name, Output<java.lang.String> id, @Nullable BigQueryCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new BigQueryCredential(name, id, state, options);
     }
 }
