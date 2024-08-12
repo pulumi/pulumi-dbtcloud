@@ -236,7 +236,7 @@ public class FabricConnection extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public FabricConnection(String name) {
+    public FabricConnection(java.lang.String name) {
         this(name, FabricConnectionArgs.Empty);
     }
     /**
@@ -244,7 +244,7 @@ public class FabricConnection extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public FabricConnection(String name, FabricConnectionArgs args) {
+    public FabricConnection(java.lang.String name, FabricConnectionArgs args) {
         this(name, args, null);
     }
     /**
@@ -253,15 +253,22 @@ public class FabricConnection extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public FabricConnection(String name, FabricConnectionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/fabricConnection:FabricConnection", name, args == null ? FabricConnectionArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public FabricConnection(java.lang.String name, FabricConnectionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/fabricConnection:FabricConnection", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private FabricConnection(String name, Output<String> id, @Nullable FabricConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/fabricConnection:FabricConnection", name, state, makeResourceOptions(options, id));
+    private FabricConnection(java.lang.String name, Output<java.lang.String> id, @Nullable FabricConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/fabricConnection:FabricConnection", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static FabricConnectionArgs makeArgs(FabricConnectionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? FabricConnectionArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -277,7 +284,7 @@ public class FabricConnection extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static FabricConnection get(String name, Output<String> id, @Nullable FabricConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static FabricConnection get(java.lang.String name, Output<java.lang.String> id, @Nullable FabricConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new FabricConnection(name, id, state, options);
     }
 }

@@ -223,7 +223,7 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public PostgresCredential(String name) {
+    public PostgresCredential(java.lang.String name) {
         this(name, PostgresCredentialArgs.Empty);
     }
     /**
@@ -231,7 +231,7 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PostgresCredential(String name, PostgresCredentialArgs args) {
+    public PostgresCredential(java.lang.String name, PostgresCredentialArgs args) {
         this(name, args, null);
     }
     /**
@@ -240,15 +240,22 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PostgresCredential(String name, PostgresCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/postgresCredential:PostgresCredential", name, args == null ? PostgresCredentialArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public PostgresCredential(java.lang.String name, PostgresCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/postgresCredential:PostgresCredential", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private PostgresCredential(String name, Output<String> id, @Nullable PostgresCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/postgresCredential:PostgresCredential", name, state, makeResourceOptions(options, id));
+    private PostgresCredential(java.lang.String name, Output<java.lang.String> id, @Nullable PostgresCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/postgresCredential:PostgresCredential", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static PostgresCredentialArgs makeArgs(PostgresCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PostgresCredentialArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -267,7 +274,7 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static PostgresCredential get(String name, Output<String> id, @Nullable PostgresCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static PostgresCredential get(java.lang.String name, Output<java.lang.String> id, @Nullable PostgresCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new PostgresCredential(name, id, state, options);
     }
 }
