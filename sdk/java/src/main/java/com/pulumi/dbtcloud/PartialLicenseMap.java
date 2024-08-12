@@ -100,7 +100,7 @@ public class PartialLicenseMap extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public PartialLicenseMap(String name) {
+    public PartialLicenseMap(java.lang.String name) {
         this(name, PartialLicenseMapArgs.Empty);
     }
     /**
@@ -108,7 +108,7 @@ public class PartialLicenseMap extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PartialLicenseMap(String name, PartialLicenseMapArgs args) {
+    public PartialLicenseMap(java.lang.String name, PartialLicenseMapArgs args) {
         this(name, args, null);
     }
     /**
@@ -117,15 +117,22 @@ public class PartialLicenseMap extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PartialLicenseMap(String name, PartialLicenseMapArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/partialLicenseMap:PartialLicenseMap", name, args == null ? PartialLicenseMapArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public PartialLicenseMap(java.lang.String name, PartialLicenseMapArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/partialLicenseMap:PartialLicenseMap", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private PartialLicenseMap(String name, Output<String> id, @Nullable PartialLicenseMapState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/partialLicenseMap:PartialLicenseMap", name, state, makeResourceOptions(options, id));
+    private PartialLicenseMap(java.lang.String name, Output<java.lang.String> id, @Nullable PartialLicenseMapState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/partialLicenseMap:PartialLicenseMap", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static PartialLicenseMapArgs makeArgs(PartialLicenseMapArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PartialLicenseMapArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -141,7 +148,7 @@ public class PartialLicenseMap extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static PartialLicenseMap get(String name, Output<String> id, @Nullable PartialLicenseMapState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static PartialLicenseMap get(java.lang.String name, Output<java.lang.String> id, @Nullable PartialLicenseMapState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new PartialLicenseMap(name, id, state, options);
     }
 }

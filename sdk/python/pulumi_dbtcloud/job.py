@@ -774,7 +774,7 @@ class Job(pulumi.CustomResource):
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
-                 job_completion_trigger_condition: Optional[pulumi.Input[pulumi.InputType['JobJobCompletionTriggerConditionArgs']]] = None,
+                 job_completion_trigger_condition: Optional[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
@@ -890,11 +890,11 @@ class Job(pulumi.CustomResource):
                 6,
             ],
             schedule_type="days_of_week",
-            job_completion_trigger_condition=dbtcloud.JobJobCompletionTriggerConditionArgs(
-                job_id=daily_job.id,
-                project_id=dbt_project["id"],
-                statuses=["success"],
-            ))
+            job_completion_trigger_condition={
+                "job_id": daily_job.id,
+                "project_id": dbt_project["id"],
+                "statuses": ["success"],
+            })
         ```
 
         ## Import
@@ -937,7 +937,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
-        :param pulumi.Input[pulumi.InputType['JobJobCompletionTriggerConditionArgs']] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
+        :param pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[int] project_id: Project ID to create the job in
@@ -1059,11 +1059,11 @@ class Job(pulumi.CustomResource):
                 6,
             ],
             schedule_type="days_of_week",
-            job_completion_trigger_condition=dbtcloud.JobJobCompletionTriggerConditionArgs(
-                job_id=daily_job.id,
-                project_id=dbt_project["id"],
-                statuses=["success"],
-            ))
+            job_completion_trigger_condition={
+                "job_id": daily_job.id,
+                "project_id": dbt_project["id"],
+                "statuses": ["success"],
+            })
         ```
 
         ## Import
@@ -1119,7 +1119,7 @@ class Job(pulumi.CustomResource):
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
-                 job_completion_trigger_condition: Optional[pulumi.Input[pulumi.InputType['JobJobCompletionTriggerConditionArgs']]] = None,
+                 job_completion_trigger_condition: Optional[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
@@ -1192,7 +1192,7 @@ class Job(pulumi.CustomResource):
             execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             generate_docs: Optional[pulumi.Input[bool]] = None,
             is_active: Optional[pulumi.Input[bool]] = None,
-            job_completion_trigger_condition: Optional[pulumi.Input[pulumi.InputType['JobJobCompletionTriggerConditionArgs']]] = None,
+            job_completion_trigger_condition: Optional[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             num_threads: Optional[pulumi.Input[int]] = None,
             project_id: Optional[pulumi.Input[int]] = None,
@@ -1222,7 +1222,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
-        :param pulumi.Input[pulumi.InputType['JobJobCompletionTriggerConditionArgs']] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
+        :param pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[int] project_id: Project ID to create the job in

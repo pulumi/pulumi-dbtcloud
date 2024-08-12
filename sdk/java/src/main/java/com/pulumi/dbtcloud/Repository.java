@@ -30,64 +30,31 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### repo cloned via the GitHub integration, manually entering the `github_installation_id`
- * resource &#34;dbtcloud.Repository&#34; &#34;github_repo&#34; {
- *   project_id             = dbtcloud_project.dbt_project.id
- *   remote_url             = &#34;git{@literal @}github.com:&lt;github_org&gt;/&lt;github_repo&gt;.git&#34;
- *   github_installation_id = 9876
- *   git_clone_strategy     = &#34;github_app&#34;
+ * ## Import
+ * 
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_repository.my_repository
+ * 
+ *   id = &#34;project_id:repository_id&#34;
+ * 
  * }
  * 
- * ### repo cloned via the GitHub integration, with auto-retrieval of the `github_installation_id`
- * # here, we assume that `token` and `host_url` are respectively accessible via `var.dbt_token` and `var.dbt_host_url`
- * # NOTE: the following requires connecting via a user token and can&#39;t be retrieved with a service token
- * data &#34;http&#34; &#34;github_installations_response&#34; {
- *   url = format(&#34;%s/v2/integrations/github/installations/&#34;, var.dbt_host_url)
- *   request_headers = {
- *     Authorization = format(&#34;Bearer %s&#34;, var.dbt_token)
- *   }
+ * import {
+ * 
+ *   to = dbtcloud_repository.my_repository
+ * 
+ *   id = &#34;12345:6789&#34;
+ * 
  * }
  * 
- * locals {
- *   github_installation_id = jsondecode(data.http.github_installations_response.response_body)[0].id
- * }
+ * using the older import command
  * 
- * resource &#34;dbtcloud.Repository&#34; &#34;github_repo_other&#34; {
- *   project_id             = dbtcloud_project.dbt_project.id
- *   remote_url             = &#34;git{@literal @}github.com:&lt;github_org&gt;/&lt;github_repo&gt;.git&#34;
- *   github_installation_id = local.github_installation_id
- *   git_clone_strategy     = &#34;github_app&#34;
- * }
- * 
- * ### repo cloned via the GitLab integration
- * # as of 15 Sept 2023 this resource requires using a user token and can&#39;t be set with a service token - CC-791
- * resource &#34;dbtcloud.Repository&#34; &#34;gitlab_repo&#34; {
- *   project_id         = dbtcloud_project.dbt_project.id
- *   remote_url         = &#34;&lt;gitlab-group&gt;/&lt;gitlab-project&gt;&#34;
- *   gitlab_project_id  = 8765
- *   git_clone_strategy = &#34;deploy_token&#34;
- * }
- * 
- * ### repo cloned via the deploy token strategy
- * resource &#34;dbtcloud.Repository&#34; &#34;deploy_repo&#34; {
- *   project_id         = dbtcloud_project.dbt_project.id
- *   remote_url         = &#34;git://github.com/&lt;github_org&gt;/&lt;github_repo&gt;.git&#34;
- *   git_clone_strategy = &#34;deploy_key&#34;
- * }
- * 
- * ### repo cloned via the Azure Dev Ops integration
- * resource &#34;dbtcloud.Repository&#34; &#34;ado_repo&#34; {
- *   project_id = dbtcloud_project.dbt_project.id
- * # the following values can be added manually (IDs can be retrieved from the ADO API) or via data sources
- * # remote_url                              = &#34;https://abc{@literal @}dev.azure.com/abc/def/_git/my_repo&#34;
- * # azure_active_directory_project_id       = &#34;12345678-1234-1234-1234-1234567890ab&#34;
- * # azure_active_directory_repository_id    = &#34;87654321-4321-abcd-abcd-464327678642&#34;
- *   remote_url                                = data.dbtcloud_azure_dev_ops_repository.my_devops_repo.remote_url
- *   azure_active_directory_repository_id      = data.dbtcloud_azure_dev_ops_repository.my_devops_repo.id
- *   azure_active_directory_project_id         = data.dbtcloud_azure_dev_ops_project.my_devops_project.id
- *   azure_bypass_webhook_registration_failure = false
- *   git_clone_strategy                        = &#34;azure_active_directory_app&#34;
- * }
+ * ```sh
+ * $ pulumi import dbtcloud:index/repository:Repository my_repository &#34;project_id:repository_id&#34;
+ * ```
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/repository:Repository my_repository 12345:6789
@@ -287,7 +254,7 @@ public class Repository extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Repository(String name) {
+    public Repository(java.lang.String name) {
         this(name, RepositoryArgs.Empty);
     }
     /**
@@ -295,7 +262,7 @@ public class Repository extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Repository(String name, RepositoryArgs args) {
+    public Repository(java.lang.String name, RepositoryArgs args) {
         this(name, args, null);
     }
     /**
@@ -304,15 +271,22 @@ public class Repository extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Repository(String name, RepositoryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/repository:Repository", name, args == null ? RepositoryArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Repository(java.lang.String name, RepositoryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/repository:Repository", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Repository(String name, Output<String> id, @Nullable RepositoryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("dbtcloud:index/repository:Repository", name, state, makeResourceOptions(options, id));
+    private Repository(java.lang.String name, Output<java.lang.String> id, @Nullable RepositoryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("dbtcloud:index/repository:Repository", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static RepositoryArgs makeArgs(RepositoryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RepositoryArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -328,7 +302,7 @@ public class Repository extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Repository get(String name, Output<String> id, @Nullable RepositoryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Repository get(java.lang.String name, Output<java.lang.String> id, @Nullable RepositoryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Repository(name, id, state, options);
     }
 }
