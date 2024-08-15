@@ -6,7 +6,6 @@ package com.pulumi.dbtcloud.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,13 +22,13 @@ public final class EnvironmentVariableState extends com.pulumi.resources.Resourc
      * 
      */
     @Import(name="environmentValues")
-    private @Nullable Output<Map<String,Object>> environmentValues;
+    private @Nullable Output<Map<String,String>> environmentValues;
 
     /**
      * @return Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      * 
      */
-    public Optional<Output<Map<String,Object>>> environmentValues() {
+    public Optional<Output<Map<String,String>>> environmentValues() {
         return Optional.ofNullable(this.environmentValues);
     }
 
@@ -95,7 +94,7 @@ public final class EnvironmentVariableState extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder environmentValues(@Nullable Output<Map<String,Object>> environmentValues) {
+        public Builder environmentValues(@Nullable Output<Map<String,String>> environmentValues) {
             $.environmentValues = environmentValues;
             return this;
         }
@@ -106,7 +105,7 @@ public final class EnvironmentVariableState extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder environmentValues(Map<String,Object> environmentValues) {
+        public Builder environmentValues(Map<String,String> environmentValues) {
             return environmentValues(Output.of(environmentValues));
         }
 

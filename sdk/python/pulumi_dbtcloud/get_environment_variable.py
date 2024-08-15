@@ -37,7 +37,7 @@ class GetEnvironmentVariableResult:
 
     @property
     @pulumi.getter(name="environmentValues")
-    def environment_values(self) -> Mapping[str, Any]:
+    def environment_values(self) -> Mapping[str, str]:
         """
         Map containing the environment variables
         """
