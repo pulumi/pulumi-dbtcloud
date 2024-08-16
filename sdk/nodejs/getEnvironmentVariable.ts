@@ -34,7 +34,7 @@ export interface GetEnvironmentVariableResult {
     /**
      * Map containing the environment variables
      */
-    readonly environmentValues: {[key: string]: any};
+    readonly environmentValues: {[key: string]: string};
     /**
      * The provider-assigned unique ID for this managed resource.
      */

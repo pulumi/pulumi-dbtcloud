@@ -6,7 +6,6 @@ package com.pulumi.dbtcloud.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -17,7 +16,7 @@ public final class GetEnvironmentVariableResult {
      * @return Map containing the environment variables
      * 
      */
-    private Map<String,Object> environmentValues;
+    private Map<String,String> environmentValues;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -39,7 +38,7 @@ public final class GetEnvironmentVariableResult {
      * @return Map containing the environment variables
      * 
      */
-    public Map<String,Object> environmentValues() {
+    public Map<String,String> environmentValues() {
         return this.environmentValues;
     }
     /**
@@ -73,7 +72,7 @@ public final class GetEnvironmentVariableResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> environmentValues;
+        private Map<String,String> environmentValues;
         private String id;
         private String name;
         private Integer projectId;
@@ -87,7 +86,7 @@ public final class GetEnvironmentVariableResult {
         }
 
         @CustomType.Setter
-        public Builder environmentValues(Map<String,Object> environmentValues) {
+        public Builder environmentValues(Map<String,String> environmentValues) {
             if (environmentValues == null) {
               throw new MissingRequiredPropertyException("GetEnvironmentVariableResult", "environmentValues");
             }

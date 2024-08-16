@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -24,13 +23,13 @@ public final class EnvironmentVariableArgs extends com.pulumi.resources.Resource
      * 
      */
     @Import(name="environmentValues", required=true)
-    private Output<Map<String,Object>> environmentValues;
+    private Output<Map<String,String>> environmentValues;
 
     /**
      * @return Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      * 
      */
-    public Output<Map<String,Object>> environmentValues() {
+    public Output<Map<String,String>> environmentValues() {
         return this.environmentValues;
     }
 
@@ -96,7 +95,7 @@ public final class EnvironmentVariableArgs extends com.pulumi.resources.Resource
          * @return builder
          * 
          */
-        public Builder environmentValues(Output<Map<String,Object>> environmentValues) {
+        public Builder environmentValues(Output<Map<String,String>> environmentValues) {
             $.environmentValues = environmentValues;
             return this;
         }
@@ -107,7 +106,7 @@ public final class EnvironmentVariableArgs extends com.pulumi.resources.Resource
          * @return builder
          * 
          */
-        public Builder environmentValues(Map<String,Object> environmentValues) {
+        public Builder environmentValues(Map<String,String> environmentValues) {
             return environmentValues(Output.of(environmentValues));
         }
 
