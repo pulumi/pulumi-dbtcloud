@@ -85,7 +85,7 @@ namespace Pulumi.DbtCloud
         /// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         /// </summary>
         [Output("environmentValues")]
-        public Output<ImmutableDictionary<string, object>> EnvironmentValues { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> EnvironmentValues { get; private set; } = null!;
 
         /// <summary>
         /// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
@@ -147,14 +147,14 @@ namespace Pulumi.DbtCloud
     public sealed class EnvironmentVariableArgs : global::Pulumi.ResourceArgs
     {
         [Input("environmentValues", required: true)]
-        private InputMap<object>? _environmentValues;
+        private InputMap<string>? _environmentValues;
 
         /// <summary>
         /// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         /// </summary>
-        public InputMap<object> EnvironmentValues
+        public InputMap<string> EnvironmentValues
         {
-            get => _environmentValues ?? (_environmentValues = new InputMap<object>());
+            get => _environmentValues ?? (_environmentValues = new InputMap<string>());
             set => _environmentValues = value;
         }
 
@@ -179,14 +179,14 @@ namespace Pulumi.DbtCloud
     public sealed class EnvironmentVariableState : global::Pulumi.ResourceArgs
     {
         [Input("environmentValues")]
-        private InputMap<object>? _environmentValues;
+        private InputMap<string>? _environmentValues;
 
         /// <summary>
         /// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         /// </summary>
-        public InputMap<object> EnvironmentValues
+        public InputMap<string> EnvironmentValues
         {
-            get => _environmentValues ?? (_environmentValues = new InputMap<object>());
+            get => _environmentValues ?? (_environmentValues = new InputMap<string>());
             set => _environmentValues = value;
         }
 

@@ -94,7 +94,7 @@ export class EnvironmentVariable extends pulumi.CustomResource {
     /**
      * Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      */
-    public readonly environmentValues!: pulumi.Output<{[key: string]: any}>;
+    public readonly environmentValues!: pulumi.Output<{[key: string]: string}>;
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
@@ -144,7 +144,7 @@ export interface EnvironmentVariableState {
     /**
      * Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      */
-    environmentValues?: pulumi.Input<{[key: string]: any}>;
+    environmentValues?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
@@ -162,7 +162,7 @@ export interface EnvironmentVariableArgs {
     /**
      * Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      */
-    environmentValues: pulumi.Input<{[key: string]: any}>;
+    environmentValues: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */

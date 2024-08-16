@@ -11,7 +11,6 @@ import com.pulumi.dbtcloud.EnvironmentVariableArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.EnvironmentVariableState;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import javax.annotation.Nullable;
@@ -106,14 +105,14 @@ public class EnvironmentVariable extends com.pulumi.resources.CustomResource {
      * Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      * 
      */
-    @Export(name="environmentValues", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> environmentValues;
+    @Export(name="environmentValues", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> environmentValues;
 
     /**
      * @return Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      * 
      */
-    public Output<Map<String,Object>> environmentValues() {
+    public Output<Map<String,String>> environmentValues() {
         return this.environmentValues;
     }
     /**

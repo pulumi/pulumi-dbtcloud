@@ -32,7 +32,7 @@ type LookupEnvironmentVariableArgs struct {
 // A collection of values returned by getEnvironmentVariable.
 type LookupEnvironmentVariableResult struct {
 	// Map containing the environment variables
-	EnvironmentValues map[string]interface{} `pulumi:"environmentValues"`
+	EnvironmentValues map[string]string `pulumi:"environmentValues"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Name for the variable
@@ -82,8 +82,8 @@ func (o LookupEnvironmentVariableResultOutput) ToLookupEnvironmentVariableResult
 }
 
 // Map containing the environment variables
-func (o LookupEnvironmentVariableResultOutput) EnvironmentValues() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupEnvironmentVariableResult) map[string]interface{} { return v.EnvironmentValues }).(pulumi.MapOutput)
+func (o LookupEnvironmentVariableResultOutput) EnvironmentValues() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupEnvironmentVariableResult) map[string]string { return v.EnvironmentValues }).(pulumi.StringMapOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

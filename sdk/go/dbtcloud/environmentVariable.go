@@ -32,11 +32,11 @@ import (
 //			_, err := dbtcloud.NewEnvironmentVariable(ctx, "dbt_my_env_var", &dbtcloud.EnvironmentVariableArgs{
 //				Name:      pulumi.String("DBT_MY_ENV_VAR"),
 //				ProjectId: pulumi.Any(dbtProject.Id),
-//				EnvironmentValues: pulumi.Map{
-//					"project": pulumi.Any("my_project_level_value"),
-//					"Dev":     pulumi.Any("my_env_level_value"),
-//					"CI":      pulumi.Any("my_ci_override_value"),
-//					"Prod":    pulumi.Any("my_prod_override_value"),
+//				EnvironmentValues: pulumi.StringMap{
+//					"project": pulumi.String("my_project_level_value"),
+//					"Dev":     pulumi.String("my_env_level_value"),
+//					"CI":      pulumi.String("my_ci_override_value"),
+//					"Prod":    pulumi.String("my_prod_override_value"),
 //				},
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				dbtProject,
@@ -86,7 +86,7 @@ type EnvironmentVariable struct {
 	pulumi.CustomResourceState
 
 	// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
-	EnvironmentValues pulumi.MapOutput `pulumi:"environmentValues"`
+	EnvironmentValues pulumi.StringMapOutput `pulumi:"environmentValues"`
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Project for the variable to be created in
@@ -130,7 +130,7 @@ func GetEnvironmentVariable(ctx *pulumi.Context,
 // Input properties used for looking up and filtering EnvironmentVariable resources.
 type environmentVariableState struct {
 	// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
-	EnvironmentValues map[string]interface{} `pulumi:"environmentValues"`
+	EnvironmentValues map[string]string `pulumi:"environmentValues"`
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name *string `pulumi:"name"`
 	// Project for the variable to be created in
@@ -139,7 +139,7 @@ type environmentVariableState struct {
 
 type EnvironmentVariableState struct {
 	// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
-	EnvironmentValues pulumi.MapInput
+	EnvironmentValues pulumi.StringMapInput
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name pulumi.StringPtrInput
 	// Project for the variable to be created in
@@ -152,7 +152,7 @@ func (EnvironmentVariableState) ElementType() reflect.Type {
 
 type environmentVariableArgs struct {
 	// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
-	EnvironmentValues map[string]interface{} `pulumi:"environmentValues"`
+	EnvironmentValues map[string]string `pulumi:"environmentValues"`
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name *string `pulumi:"name"`
 	// Project for the variable to be created in
@@ -162,7 +162,7 @@ type environmentVariableArgs struct {
 // The set of arguments for constructing a EnvironmentVariable resource.
 type EnvironmentVariableArgs struct {
 	// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
-	EnvironmentValues pulumi.MapInput
+	EnvironmentValues pulumi.StringMapInput
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name pulumi.StringPtrInput
 	// Project for the variable to be created in
@@ -257,8 +257,8 @@ func (o EnvironmentVariableOutput) ToEnvironmentVariableOutputWithContext(ctx co
 }
 
 // Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
-func (o EnvironmentVariableOutput) EnvironmentValues() pulumi.MapOutput {
-	return o.ApplyT(func(v *EnvironmentVariable) pulumi.MapOutput { return v.EnvironmentValues }).(pulumi.MapOutput)
+func (o EnvironmentVariableOutput) EnvironmentValues() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvironmentVariable) pulumi.StringMapOutput { return v.EnvironmentValues }).(pulumi.StringMapOutput)
 }
 
 // Name for the variable, must be unique within a project, must be prefixed with 'DBT_'

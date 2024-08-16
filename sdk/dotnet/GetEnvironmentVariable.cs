@@ -66,7 +66,7 @@ namespace Pulumi.DbtCloud
         /// <summary>
         /// Map containing the environment variables
         /// </summary>
-        public readonly ImmutableDictionary<string, object> EnvironmentValues;
+        public readonly ImmutableDictionary<string, string> EnvironmentValues;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -82,7 +82,7 @@ namespace Pulumi.DbtCloud
 
         [OutputConstructor]
         private GetEnvironmentVariableResult(
-            ImmutableDictionary<string, object> environmentValues,
+            ImmutableDictionary<string, string> environmentValues,
 
             string id,
 
