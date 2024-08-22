@@ -40,6 +40,7 @@ from .get_user import *
 from .get_user_groups import *
 from .get_users import *
 from .get_webhook import *
+from .global_connection import *
 from .group import *
 from .group_partial_permissions import *
 from .job import *
@@ -149,6 +150,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/fabricCredential:FabricCredential": "FabricCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/globalConnection",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/globalConnection:GlobalConnection": "GlobalConnection"
   }
  },
  {

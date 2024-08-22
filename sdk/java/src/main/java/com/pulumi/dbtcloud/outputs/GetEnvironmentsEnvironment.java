@@ -13,6 +13,11 @@ import java.util.Objects;
 @CustomType
 public final class GetEnvironmentsEnvironment {
     /**
+     * @return A connection ID (used with Global Connections)
+     * 
+     */
+    private Integer connectionId;
+    /**
      * @return Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
      * 
      */
@@ -64,6 +69,13 @@ public final class GetEnvironmentsEnvironment {
     private Boolean useCustomBranch;
 
     private GetEnvironmentsEnvironment() {}
+    /**
+     * @return A connection ID (used with Global Connections)
+     * 
+     */
+    public Integer connectionId() {
+        return this.connectionId;
+    }
     /**
      * @return Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
      * 
@@ -144,6 +156,7 @@ public final class GetEnvironmentsEnvironment {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Integer connectionId;
         private Integer credentialsId;
         private String customBranch;
         private String dbtVersion;
@@ -157,6 +170,7 @@ public final class GetEnvironmentsEnvironment {
         public Builder() {}
         public Builder(GetEnvironmentsEnvironment defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.connectionId = defaults.connectionId;
     	      this.credentialsId = defaults.credentialsId;
     	      this.customBranch = defaults.customBranch;
     	      this.dbtVersion = defaults.dbtVersion;
@@ -169,6 +183,14 @@ public final class GetEnvironmentsEnvironment {
     	      this.useCustomBranch = defaults.useCustomBranch;
         }
 
+        @CustomType.Setter
+        public Builder connectionId(Integer connectionId) {
+            if (connectionId == null) {
+              throw new MissingRequiredPropertyException("GetEnvironmentsEnvironment", "connectionId");
+            }
+            this.connectionId = connectionId;
+            return this;
+        }
         @CustomType.Setter
         public Builder credentialsId(Integer credentialsId) {
             if (credentialsId == null) {
@@ -251,6 +273,7 @@ public final class GetEnvironmentsEnvironment {
         }
         public GetEnvironmentsEnvironment build() {
             final var _resultValue = new GetEnvironmentsEnvironment();
+            _resultValue.connectionId = connectionId;
             _resultValue.credentialsId = credentialsId;
             _resultValue.customBranch = customBranch;
             _resultValue.dbtVersion = dbtVersion;

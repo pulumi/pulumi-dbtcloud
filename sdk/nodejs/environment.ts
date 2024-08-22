@@ -5,6 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Resource to manage dbt Cloud environments for the different dbt Cloud projects.
+ *
+ * In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
+ *
+ * > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects.
+ * This version of the provider has the `connectionId` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -17,6 +24,7 @@ import * as utilities from "./utilities";
  *     projectId: dbtProject.id,
  *     type: "deployment",
  *     credentialId: ciCredential.credentialId,
+ *     connectionId: myGlobalConnection.id,
  * });
  * // we can also set a deployment environment as being the production one
  * const prodEnvironment = new dbtcloud.Environment("prod_environment", {
@@ -26,6 +34,7 @@ import * as utilities from "./utilities";
  *     type: "deployment",
  *     credentialId: prodCredential.credentialId,
  *     deploymentType: "production",
+ *     connectionId: myLegacyConnection.connectionId,
  * });
  * // Creating a development environment
  * const devEnvironment = new dbtcloud.Environment("dev_environment", {
@@ -33,6 +42,7 @@ import * as utilities from "./utilities";
  *     name: "Dev",
  *     projectId: dbtProject.id,
  *     type: "development",
+ *     connectionId: myOtherGlobalConnection,
  * });
  * ```
  *
@@ -94,8 +104,10 @@ export class Environment extends pulumi.CustomResource {
         return obj['__pulumiType'] === Environment.__pulumiType;
     }
 
+    public readonly connectionId!: pulumi.Output<number | undefined>;
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * Credential ID to create the environment with. A credential is not required for development environments but is required
+     * for deployment environments
      */
     public readonly credentialId!: pulumi.Output<number | undefined>;
     /**
@@ -103,11 +115,14 @@ export class Environment extends pulumi.CustomResource {
      */
     public readonly customBranch!: pulumi.Output<string | undefined>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+     * default if no version is provided
      */
     public readonly dbtVersion!: pulumi.Output<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+     * 'staging' or left empty for generic environments
      */
     public readonly deploymentType!: pulumi.Output<string | undefined>;
     /**
@@ -152,6 +167,7 @@ export class Environment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EnvironmentState | undefined;
+            resourceInputs["connectionId"] = state ? state.connectionId : undefined;
             resourceInputs["credentialId"] = state ? state.credentialId : undefined;
             resourceInputs["customBranch"] = state ? state.customBranch : undefined;
             resourceInputs["dbtVersion"] = state ? state.dbtVersion : undefined;
@@ -174,6 +190,7 @@ export class Environment extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["connectionId"] = args ? args.connectionId : undefined;
             resourceInputs["credentialId"] = args ? args.credentialId : undefined;
             resourceInputs["customBranch"] = args ? args.customBranch : undefined;
             resourceInputs["dbtVersion"] = args ? args.dbtVersion : undefined;
@@ -195,8 +212,10 @@ export class Environment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Environment resources.
  */
 export interface EnvironmentState {
+    connectionId?: pulumi.Input<number>;
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * Credential ID to create the environment with. A credential is not required for development environments but is required
+     * for deployment environments
      */
     credentialId?: pulumi.Input<number>;
     /**
@@ -204,11 +223,14 @@ export interface EnvironmentState {
      */
     customBranch?: pulumi.Input<string>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+     * default if no version is provided
      */
     dbtVersion?: pulumi.Input<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+     * 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string>;
     /**
@@ -245,8 +267,10 @@ export interface EnvironmentState {
  * The set of arguments for constructing a Environment resource.
  */
 export interface EnvironmentArgs {
+    connectionId?: pulumi.Input<number>;
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * Credential ID to create the environment with. A credential is not required for development environments but is required
+     * for deployment environments
      */
     credentialId?: pulumi.Input<number>;
     /**
@@ -254,11 +278,14 @@ export interface EnvironmentArgs {
      */
     customBranch?: pulumi.Input<string>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+     * default if no version is provided
      */
     dbtVersion: pulumi.Input<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+     * 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string>;
     /**

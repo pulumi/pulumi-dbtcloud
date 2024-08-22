@@ -11,6 +11,8 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'GlobalConnectionBigquery',
+    'GlobalConnectionSnowflake',
     'GroupGroupPermission',
     'GroupPartialPermissionsGroupPermission',
     'JobJobCompletionTriggerCondition',
@@ -30,6 +32,470 @@ __all__ = [
     'GetServiceTokenServiceTokenPermissionResult',
     'GetUsersUserResult',
 ]
+
+@pulumi.output_type
+class GlobalConnectionBigquery(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authProviderX509CertUrl":
+            suggest = "auth_provider_x509_cert_url"
+        elif key == "authUri":
+            suggest = "auth_uri"
+        elif key == "clientEmail":
+            suggest = "client_email"
+        elif key == "clientId":
+            suggest = "client_id"
+        elif key == "clientX509CertUrl":
+            suggest = "client_x509_cert_url"
+        elif key == "gcpProjectId":
+            suggest = "gcp_project_id"
+        elif key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyId":
+            suggest = "private_key_id"
+        elif key == "tokenUri":
+            suggest = "token_uri"
+        elif key == "applicationId":
+            suggest = "application_id"
+        elif key == "applicationSecret":
+            suggest = "application_secret"
+        elif key == "dataprocClusterName":
+            suggest = "dataproc_cluster_name"
+        elif key == "dataprocRegion":
+            suggest = "dataproc_region"
+        elif key == "executionProject":
+            suggest = "execution_project"
+        elif key == "gcsBucket":
+            suggest = "gcs_bucket"
+        elif key == "impersonateServiceAccount":
+            suggest = "impersonate_service_account"
+        elif key == "jobCreationTimeoutSeconds":
+            suggest = "job_creation_timeout_seconds"
+        elif key == "jobRetryDeadlineSeconds":
+            suggest = "job_retry_deadline_seconds"
+        elif key == "maximumBytesBilled":
+            suggest = "maximum_bytes_billed"
+        elif key == "timeoutSeconds":
+            suggest = "timeout_seconds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GlobalConnectionBigquery. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GlobalConnectionBigquery.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GlobalConnectionBigquery.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auth_provider_x509_cert_url: str,
+                 auth_uri: str,
+                 client_email: str,
+                 client_id: str,
+                 client_x509_cert_url: str,
+                 gcp_project_id: str,
+                 private_key: str,
+                 private_key_id: str,
+                 token_uri: str,
+                 application_id: Optional[str] = None,
+                 application_secret: Optional[str] = None,
+                 dataproc_cluster_name: Optional[str] = None,
+                 dataproc_region: Optional[str] = None,
+                 execution_project: Optional[str] = None,
+                 gcs_bucket: Optional[str] = None,
+                 impersonate_service_account: Optional[str] = None,
+                 job_creation_timeout_seconds: Optional[int] = None,
+                 job_retry_deadline_seconds: Optional[int] = None,
+                 location: Optional[str] = None,
+                 maximum_bytes_billed: Optional[int] = None,
+                 priority: Optional[str] = None,
+                 retries: Optional[int] = None,
+                 scopes: Optional[Sequence[str]] = None,
+                 timeout_seconds: Optional[int] = None):
+        """
+        :param str auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
+        :param str auth_uri: Auth URI for the Service Account
+        :param str client_email: Service Account email
+        :param str client_id: Client ID of the Service Account
+        :param str client_x509_cert_url: Client X509 Cert URL for the Service Account
+        :param str gcp_project_id: The GCP project ID to use for the connection
+        :param str private_key: Private Key for the Service Account
+        :param str private_key_id: Private Key ID for the Service Account
+        :param str token_uri: Token URI for the Service Account
+        :param str application_id: OAuth Client ID
+        :param str application_secret: OAuth Client Secret
+        :param str dataproc_cluster_name: Dataproc cluster name for PySpark workloads
+        :param str dataproc_region: Google Cloud region for PySpark workloads on Dataproc
+        :param str execution_project: Project to bill for query execution
+        :param str gcs_bucket: URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+        :param str impersonate_service_account: Service Account to impersonate when running queries
+        :param int job_creation_timeout_seconds: Maximum timeout for the job creation step
+        :param int job_retry_deadline_seconds: Total number of seconds to wait while retrying the same query
+        :param str location: Location to create new Datasets in
+        :param int maximum_bytes_billed: Max number of bytes that can be billed for a given BigQuery query
+        :param str priority: The priority with which to execute BigQuery queries (batch or interactive)
+        :param int retries: Number of retries for queries
+        :param Sequence[str] scopes: OAuth scopes for the BigQuery connection
+        :param int timeout_seconds: Timeout in seconds for queries
+        """
+        pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
+        pulumi.set(__self__, "auth_uri", auth_uri)
+        pulumi.set(__self__, "client_email", client_email)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_x509_cert_url", client_x509_cert_url)
+        pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+        pulumi.set(__self__, "private_key", private_key)
+        pulumi.set(__self__, "private_key_id", private_key_id)
+        pulumi.set(__self__, "token_uri", token_uri)
+        if application_id is not None:
+            pulumi.set(__self__, "application_id", application_id)
+        if application_secret is not None:
+            pulumi.set(__self__, "application_secret", application_secret)
+        if dataproc_cluster_name is not None:
+            pulumi.set(__self__, "dataproc_cluster_name", dataproc_cluster_name)
+        if dataproc_region is not None:
+            pulumi.set(__self__, "dataproc_region", dataproc_region)
+        if execution_project is not None:
+            pulumi.set(__self__, "execution_project", execution_project)
+        if gcs_bucket is not None:
+            pulumi.set(__self__, "gcs_bucket", gcs_bucket)
+        if impersonate_service_account is not None:
+            pulumi.set(__self__, "impersonate_service_account", impersonate_service_account)
+        if job_creation_timeout_seconds is not None:
+            pulumi.set(__self__, "job_creation_timeout_seconds", job_creation_timeout_seconds)
+        if job_retry_deadline_seconds is not None:
+            pulumi.set(__self__, "job_retry_deadline_seconds", job_retry_deadline_seconds)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if maximum_bytes_billed is not None:
+            pulumi.set(__self__, "maximum_bytes_billed", maximum_bytes_billed)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
+        if timeout_seconds is not None:
+            pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+
+    @property
+    @pulumi.getter(name="authProviderX509CertUrl")
+    def auth_provider_x509_cert_url(self) -> str:
+        """
+        Auth Provider X509 Cert URL for the Service Account
+        """
+        return pulumi.get(self, "auth_provider_x509_cert_url")
+
+    @property
+    @pulumi.getter(name="authUri")
+    def auth_uri(self) -> str:
+        """
+        Auth URI for the Service Account
+        """
+        return pulumi.get(self, "auth_uri")
+
+    @property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> str:
+        """
+        Service Account email
+        """
+        return pulumi.get(self, "client_email")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        Client ID of the Service Account
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientX509CertUrl")
+    def client_x509_cert_url(self) -> str:
+        """
+        Client X509 Cert URL for the Service Account
+        """
+        return pulumi.get(self, "client_x509_cert_url")
+
+    @property
+    @pulumi.getter(name="gcpProjectId")
+    def gcp_project_id(self) -> str:
+        """
+        The GCP project ID to use for the connection
+        """
+        return pulumi.get(self, "gcp_project_id")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> str:
+        """
+        Private Key for the Service Account
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> str:
+        """
+        Private Key ID for the Service Account
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @property
+    @pulumi.getter(name="tokenUri")
+    def token_uri(self) -> str:
+        """
+        Token URI for the Service Account
+        """
+        return pulumi.get(self, "token_uri")
+
+    @property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> Optional[str]:
+        """
+        OAuth Client ID
+        """
+        return pulumi.get(self, "application_id")
+
+    @property
+    @pulumi.getter(name="applicationSecret")
+    def application_secret(self) -> Optional[str]:
+        """
+        OAuth Client Secret
+        """
+        return pulumi.get(self, "application_secret")
+
+    @property
+    @pulumi.getter(name="dataprocClusterName")
+    def dataproc_cluster_name(self) -> Optional[str]:
+        """
+        Dataproc cluster name for PySpark workloads
+        """
+        return pulumi.get(self, "dataproc_cluster_name")
+
+    @property
+    @pulumi.getter(name="dataprocRegion")
+    def dataproc_region(self) -> Optional[str]:
+        """
+        Google Cloud region for PySpark workloads on Dataproc
+        """
+        return pulumi.get(self, "dataproc_region")
+
+    @property
+    @pulumi.getter(name="executionProject")
+    def execution_project(self) -> Optional[str]:
+        """
+        Project to bill for query execution
+        """
+        return pulumi.get(self, "execution_project")
+
+    @property
+    @pulumi.getter(name="gcsBucket")
+    def gcs_bucket(self) -> Optional[str]:
+        """
+        URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+        """
+        return pulumi.get(self, "gcs_bucket")
+
+    @property
+    @pulumi.getter(name="impersonateServiceAccount")
+    def impersonate_service_account(self) -> Optional[str]:
+        """
+        Service Account to impersonate when running queries
+        """
+        return pulumi.get(self, "impersonate_service_account")
+
+    @property
+    @pulumi.getter(name="jobCreationTimeoutSeconds")
+    def job_creation_timeout_seconds(self) -> Optional[int]:
+        """
+        Maximum timeout for the job creation step
+        """
+        return pulumi.get(self, "job_creation_timeout_seconds")
+
+    @property
+    @pulumi.getter(name="jobRetryDeadlineSeconds")
+    def job_retry_deadline_seconds(self) -> Optional[int]:
+        """
+        Total number of seconds to wait while retrying the same query
+        """
+        return pulumi.get(self, "job_retry_deadline_seconds")
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[str]:
+        """
+        Location to create new Datasets in
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="maximumBytesBilled")
+    def maximum_bytes_billed(self) -> Optional[int]:
+        """
+        Max number of bytes that can be billed for a given BigQuery query
+        """
+        return pulumi.get(self, "maximum_bytes_billed")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[str]:
+        """
+        The priority with which to execute BigQuery queries (batch or interactive)
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[int]:
+        """
+        Number of retries for queries
+        """
+        return pulumi.get(self, "retries")
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> Optional[Sequence[str]]:
+        """
+        OAuth scopes for the BigQuery connection
+        """
+        return pulumi.get(self, "scopes")
+
+    @property
+    @pulumi.getter(name="timeoutSeconds")
+    def timeout_seconds(self) -> Optional[int]:
+        """
+        Timeout in seconds for queries
+        """
+        return pulumi.get(self, "timeout_seconds")
+
+
+@pulumi.output_type
+class GlobalConnectionSnowflake(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowSso":
+            suggest = "allow_sso"
+        elif key == "clientSessionKeepAlive":
+            suggest = "client_session_keep_alive"
+        elif key == "oauthClientId":
+            suggest = "oauth_client_id"
+        elif key == "oauthClientSecret":
+            suggest = "oauth_client_secret"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GlobalConnectionSnowflake. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GlobalConnectionSnowflake.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GlobalConnectionSnowflake.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 account: str,
+                 database: str,
+                 warehouse: str,
+                 allow_sso: Optional[bool] = None,
+                 client_session_keep_alive: Optional[bool] = None,
+                 oauth_client_id: Optional[str] = None,
+                 oauth_client_secret: Optional[str] = None,
+                 role: Optional[str] = None):
+        """
+        :param str account: The Snowflake account name
+        :param str database: The default database for the connection
+        :param str warehouse: The default Snowflake Warehouse to use for the connection
+        :param bool allow_sso: Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+        :param bool client_session_keep_alive: If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+        :param str oauth_client_id: OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+        :param str oauth_client_secret: OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+        :param str role: The Snowflake role to use when running queries on the connection
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "warehouse", warehouse)
+        if allow_sso is not None:
+            pulumi.set(__self__, "allow_sso", allow_sso)
+        if client_session_keep_alive is not None:
+            pulumi.set(__self__, "client_session_keep_alive", client_session_keep_alive)
+        if oauth_client_id is not None:
+            pulumi.set(__self__, "oauth_client_id", oauth_client_id)
+        if oauth_client_secret is not None:
+            pulumi.set(__self__, "oauth_client_secret", oauth_client_secret)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter
+    def account(self) -> str:
+        """
+        The Snowflake account name
+        """
+        return pulumi.get(self, "account")
+
+    @property
+    @pulumi.getter
+    def database(self) -> str:
+        """
+        The default database for the connection
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter
+    def warehouse(self) -> str:
+        """
+        The default Snowflake Warehouse to use for the connection
+        """
+        return pulumi.get(self, "warehouse")
+
+    @property
+    @pulumi.getter(name="allowSso")
+    def allow_sso(self) -> Optional[bool]:
+        """
+        Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+        """
+        return pulumi.get(self, "allow_sso")
+
+    @property
+    @pulumi.getter(name="clientSessionKeepAlive")
+    def client_session_keep_alive(self) -> Optional[bool]:
+        """
+        If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+        """
+        return pulumi.get(self, "client_session_keep_alive")
+
+    @property
+    @pulumi.getter(name="oauthClientId")
+    def oauth_client_id(self) -> Optional[str]:
+        """
+        OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+        """
+        return pulumi.get(self, "oauth_client_id")
+
+    @property
+    @pulumi.getter(name="oauthClientSecret")
+    def oauth_client_secret(self) -> Optional[str]:
+        """
+        OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+        """
+        return pulumi.get(self, "oauth_client_secret")
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[str]:
+        """
+        The Snowflake role to use when running queries on the connection
+        """
+        return pulumi.get(self, "role")
+
 
 @pulumi.output_type
 class GroupGroupPermission(dict):
@@ -345,6 +811,7 @@ class ServiceTokenServiceTokenPermission(dict):
 @pulumi.output_type
 class GetEnvironmentsEnvironmentResult(dict):
     def __init__(__self__, *,
+                 connection_id: int,
                  credentials_id: int,
                  custom_branch: str,
                  dbt_version: str,
@@ -356,6 +823,7 @@ class GetEnvironmentsEnvironmentResult(dict):
                  type: str,
                  use_custom_branch: bool):
         """
+        :param int connection_id: A connection ID (used with Global Connections)
         :param int credentials_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
         :param str custom_branch: The custom branch name to use
         :param str dbt_version: Version number of dbt to use in this environment.
@@ -367,6 +835,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         :param str type: The type of environment (must be either development or deployment)
         :param bool use_custom_branch: Whether to use a custom git branch in this environment
         """
+        pulumi.set(__self__, "connection_id", connection_id)
         pulumi.set(__self__, "credentials_id", credentials_id)
         pulumi.set(__self__, "custom_branch", custom_branch)
         pulumi.set(__self__, "dbt_version", dbt_version)
@@ -377,6 +846,14 @@ class GetEnvironmentsEnvironmentResult(dict):
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "use_custom_branch", use_custom_branch)
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> int:
+        """
+        A connection ID (used with Global Connections)
+        """
+        return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter(name="credentialsId")

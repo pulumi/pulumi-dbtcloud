@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Resource to create BigQuery connections in dbt Cloud. Can be set to use OAuth for developers.
     /// 
+    /// &gt; This resource is going to be deprecated in the future, please use the `dbtcloud.GlobalConnection` resource instead to crate BigQuery connections.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

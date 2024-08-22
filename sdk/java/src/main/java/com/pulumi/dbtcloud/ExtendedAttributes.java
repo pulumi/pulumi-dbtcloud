@@ -148,7 +148,11 @@ public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
     /**
      * Extended Attributes state (1 is active, 2 is inactive)
      * 
+     * @deprecated
+     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     * 
      */
+    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     @Export(name="state", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> state;
 

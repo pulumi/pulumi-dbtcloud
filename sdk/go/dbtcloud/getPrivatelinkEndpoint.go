@@ -79,6 +79,8 @@ type GetPrivatelinkEndpointResult struct {
 	// The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
 	PrivateLinkEndpointUrl *string `pulumi:"privateLinkEndpointUrl"`
 	// PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
+	//
+	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 	State int `pulumi:"state"`
 	// Type of the PrivateLink Endpoint
 	Type string `pulumi:"type"`
@@ -145,6 +147,8 @@ func (o GetPrivatelinkEndpointResultOutput) PrivateLinkEndpointUrl() pulumi.Stri
 }
 
 // PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
+//
+// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 func (o GetPrivatelinkEndpointResultOutput) State() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointResult) int { return v.State }).(pulumi.IntOutput)
 }

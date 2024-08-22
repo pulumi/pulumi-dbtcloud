@@ -50,6 +50,7 @@
         "getUserGroups.ts",
         "getUsers.ts",
         "getWebhook.ts",
+        "globalConnection.ts",
         "group.ts",
         "groupPartialPermissions.ts",
         "index.ts",

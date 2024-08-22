@@ -17,6 +17,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Resource to manage dbt Cloud environments for the different dbt Cloud projects.
+ * 
+ * In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
+ * 
+ * &gt; In August 2024, dbt Cloud released the &#34;global connection&#34; feature, allowing connections to be defined at the account level and reused across environments and projects.
+ * This version of the provider has the `connection_id` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -48,6 +55,7 @@ import javax.annotation.Nullable;
  *             .projectId(dbtProject.id())
  *             .type("deployment")
  *             .credentialId(ciCredential.credentialId())
+ *             .connectionId(myGlobalConnection.id())
  *             .build());
  * 
  *         // we can also set a deployment environment as being the production one
@@ -58,6 +66,7 @@ import javax.annotation.Nullable;
  *             .type("deployment")
  *             .credentialId(prodCredential.credentialId())
  *             .deploymentType("production")
+ *             .connectionId(myLegacyConnection.connectionId())
  *             .build());
  * 
  *         // Creating a development environment
@@ -66,6 +75,7 @@ import javax.annotation.Nullable;
  *             .name("Dev")
  *             .projectId(dbtProject.id())
  *             .type("development")
+ *             .connectionId(myOtherGlobalConnection)
  *             .build());
  * 
  *     }
@@ -107,15 +117,23 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="dbtcloud:index/environment:Environment")
 public class Environment extends com.pulumi.resources.CustomResource {
+    @Export(name="connectionId", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> connectionId;
+
+    public Output<Optional<Integer>> connectionId() {
+        return Codegen.optional(this.connectionId);
+    }
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * Credential ID to create the environment with. A credential is not required for development environments but is required
+     * for deployment environments
      * 
      */
     @Export(name="credentialId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> credentialId;
 
     /**
-     * @return Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * @return Credential ID to create the environment with. A credential is not required for development environments but is required
+     * for deployment environments
      * 
      */
     public Output<Optional<Integer>> credentialId() {
@@ -136,28 +154,34 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customBranch);
     }
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+     * default if no version is provided
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
     private Output<String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+     * default if no version is provided
      * 
      */
     public Output<String> dbtVersion() {
         return this.dbtVersion;
     }
     /**
-     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
+     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
+     * &#39;staging&#39; or left empty for generic environments
      * 
      */
     @Export(name="deploymentType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> deploymentType;
 
     /**
-     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
+     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
+     * &#39;staging&#39; or left empty for generic environments
      * 
      */
     public Output<Optional<String>> deploymentType() {

@@ -10,6 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Resource to manage dbt Cloud environments for the different dbt Cloud projects.
+    /// 
+    /// In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
+    /// 
+    /// &gt; In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects.
+    /// This version of the provider has the `connection_id` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -27,6 +34,7 @@ namespace Pulumi.DbtCloud
     ///         ProjectId = dbtProject.Id,
     ///         Type = "deployment",
     ///         CredentialId = ciCredential.CredentialId,
+    ///         ConnectionId = myGlobalConnection.Id,
     ///     });
     /// 
     ///     // we can also set a deployment environment as being the production one
@@ -38,6 +46,7 @@ namespace Pulumi.DbtCloud
     ///         Type = "deployment",
     ///         CredentialId = prodCredential.CredentialId,
     ///         DeploymentType = "production",
+    ///         ConnectionId = myLegacyConnection.ConnectionId,
     ///     });
     /// 
     ///     // Creating a development environment
@@ -47,6 +56,7 @@ namespace Pulumi.DbtCloud
     ///         Name = "Dev",
     ///         ProjectId = dbtProject.Id,
     ///         Type = "development",
+    ///         ConnectionId = myOtherGlobalConnection,
     ///     });
     /// 
     /// });
@@ -85,8 +95,12 @@ namespace Pulumi.DbtCloud
     [DbtCloudResourceType("dbtcloud:index/environment:Environment")]
     public partial class Environment : global::Pulumi.CustomResource
     {
+        [Output("connectionId")]
+        public Output<int?> ConnectionId { get; private set; } = null!;
+
         /// <summary>
-        /// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+        /// Credential ID to create the environment with. A credential is not required for development environments but is required
+        /// for deployment environments
         /// </summary>
         [Output("credentialId")]
         public Output<int?> CredentialId { get; private set; } = null!;
@@ -98,13 +112,16 @@ namespace Pulumi.DbtCloud
         public Output<string?> CustomBranch { get; private set; } = null!;
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+        /// default if no version is provided
         /// </summary>
         [Output("dbtVersion")]
         public Output<string> DbtVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+        /// 'staging' or left empty for generic environments
         /// </summary>
         [Output("deploymentType")]
         public Output<string?> DeploymentType { get; private set; } = null!;
@@ -198,8 +215,12 @@ namespace Pulumi.DbtCloud
 
     public sealed class EnvironmentArgs : global::Pulumi.ResourceArgs
     {
+        [Input("connectionId")]
+        public Input<int>? ConnectionId { get; set; }
+
         /// <summary>
-        /// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+        /// Credential ID to create the environment with. A credential is not required for development environments but is required
+        /// for deployment environments
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }
@@ -211,13 +232,16 @@ namespace Pulumi.DbtCloud
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+        /// default if no version is provided
         /// </summary>
         [Input("dbtVersion", required: true)]
         public Input<string> DbtVersion { get; set; } = null!;
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+        /// 'staging' or left empty for generic environments
         /// </summary>
         [Input("deploymentType")]
         public Input<string>? DeploymentType { get; set; }
@@ -266,8 +290,12 @@ namespace Pulumi.DbtCloud
 
     public sealed class EnvironmentState : global::Pulumi.ResourceArgs
     {
+        [Input("connectionId")]
+        public Input<int>? ConnectionId { get; set; }
+
         /// <summary>
-        /// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+        /// Credential ID to create the environment with. A credential is not required for development environments but is required
+        /// for deployment environments
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }
@@ -279,13 +307,16 @@ namespace Pulumi.DbtCloud
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+        /// default if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+        /// 'staging' or left empty for generic environments
         /// </summary>
         [Input("deploymentType")]
         public Input<string>? DeploymentType { get; set; }

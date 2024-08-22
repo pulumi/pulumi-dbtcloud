@@ -25,6 +25,9 @@ class ExtendedAttributesArgs:
         pulumi.set(__self__, "extended_attributes", extended_attributes)
         pulumi.set(__self__, "project_id", project_id)
         if state is not None:
+            warnings.warn("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""", DeprecationWarning)
+            pulumi.log.warn("""state is deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
+        if state is not None:
             pulumi.set(__self__, "state", state)
 
     @property
@@ -50,6 +53,7 @@ class ExtendedAttributesArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
     def state(self) -> Optional[pulumi.Input[int]]:
         """
         Extended Attributes state (1 is active, 2 is inactive)
@@ -80,6 +84,9 @@ class _ExtendedAttributesState:
             pulumi.set(__self__, "extended_attributes_id", extended_attributes_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if state is not None:
+            warnings.warn("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""", DeprecationWarning)
+            pulumi.log.warn("""state is deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
         if state is not None:
             pulumi.set(__self__, "state", state)
 
@@ -118,6 +125,7 @@ class _ExtendedAttributesState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
     def state(self) -> Optional[pulumi.Input[int]]:
         """
         Extended Attributes state (1 is active, 2 is inactive)
@@ -368,6 +376,7 @@ class ExtendedAttributes(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
     def state(self) -> pulumi.Output[Optional[int]]:
         """
         Extended Attributes state (1 is active, 2 is inactive)

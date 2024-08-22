@@ -13,6 +13,850 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type GlobalConnectionBigquery struct {
+	// OAuth Client ID
+	ApplicationId *string `pulumi:"applicationId"`
+	// OAuth Client Secret
+	ApplicationSecret *string `pulumi:"applicationSecret"`
+	// Auth Provider X509 Cert URL for the Service Account
+	AuthProviderX509CertUrl string `pulumi:"authProviderX509CertUrl"`
+	// Auth URI for the Service Account
+	AuthUri string `pulumi:"authUri"`
+	// Service Account email
+	ClientEmail string `pulumi:"clientEmail"`
+	// Client ID of the Service Account
+	ClientId string `pulumi:"clientId"`
+	// Client X509 Cert URL for the Service Account
+	ClientX509CertUrl string `pulumi:"clientX509CertUrl"`
+	// Dataproc cluster name for PySpark workloads
+	DataprocClusterName *string `pulumi:"dataprocClusterName"`
+	// Google Cloud region for PySpark workloads on Dataproc
+	DataprocRegion *string `pulumi:"dataprocRegion"`
+	// Project to bill for query execution
+	ExecutionProject *string `pulumi:"executionProject"`
+	// The GCP project ID to use for the connection
+	GcpProjectId string `pulumi:"gcpProjectId"`
+	// URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+	GcsBucket *string `pulumi:"gcsBucket"`
+	// Service Account to impersonate when running queries
+	ImpersonateServiceAccount *string `pulumi:"impersonateServiceAccount"`
+	// Maximum timeout for the job creation step
+	JobCreationTimeoutSeconds *int `pulumi:"jobCreationTimeoutSeconds"`
+	// Total number of seconds to wait while retrying the same query
+	JobRetryDeadlineSeconds *int `pulumi:"jobRetryDeadlineSeconds"`
+	// Location to create new Datasets in
+	Location *string `pulumi:"location"`
+	// Max number of bytes that can be billed for a given BigQuery query
+	MaximumBytesBilled *int `pulumi:"maximumBytesBilled"`
+	// The priority with which to execute BigQuery queries (batch or interactive)
+	Priority *string `pulumi:"priority"`
+	// Private Key for the Service Account
+	PrivateKey string `pulumi:"privateKey"`
+	// Private Key ID for the Service Account
+	PrivateKeyId string `pulumi:"privateKeyId"`
+	// Number of retries for queries
+	Retries *int `pulumi:"retries"`
+	// OAuth scopes for the BigQuery connection
+	Scopes []string `pulumi:"scopes"`
+	// Timeout in seconds for queries
+	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
+	// Token URI for the Service Account
+	TokenUri string `pulumi:"tokenUri"`
+}
+
+// GlobalConnectionBigqueryInput is an input type that accepts GlobalConnectionBigqueryArgs and GlobalConnectionBigqueryOutput values.
+// You can construct a concrete instance of `GlobalConnectionBigqueryInput` via:
+//
+//	GlobalConnectionBigqueryArgs{...}
+type GlobalConnectionBigqueryInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionBigqueryOutput() GlobalConnectionBigqueryOutput
+	ToGlobalConnectionBigqueryOutputWithContext(context.Context) GlobalConnectionBigqueryOutput
+}
+
+type GlobalConnectionBigqueryArgs struct {
+	// OAuth Client ID
+	ApplicationId pulumi.StringPtrInput `pulumi:"applicationId"`
+	// OAuth Client Secret
+	ApplicationSecret pulumi.StringPtrInput `pulumi:"applicationSecret"`
+	// Auth Provider X509 Cert URL for the Service Account
+	AuthProviderX509CertUrl pulumi.StringInput `pulumi:"authProviderX509CertUrl"`
+	// Auth URI for the Service Account
+	AuthUri pulumi.StringInput `pulumi:"authUri"`
+	// Service Account email
+	ClientEmail pulumi.StringInput `pulumi:"clientEmail"`
+	// Client ID of the Service Account
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Client X509 Cert URL for the Service Account
+	ClientX509CertUrl pulumi.StringInput `pulumi:"clientX509CertUrl"`
+	// Dataproc cluster name for PySpark workloads
+	DataprocClusterName pulumi.StringPtrInput `pulumi:"dataprocClusterName"`
+	// Google Cloud region for PySpark workloads on Dataproc
+	DataprocRegion pulumi.StringPtrInput `pulumi:"dataprocRegion"`
+	// Project to bill for query execution
+	ExecutionProject pulumi.StringPtrInput `pulumi:"executionProject"`
+	// The GCP project ID to use for the connection
+	GcpProjectId pulumi.StringInput `pulumi:"gcpProjectId"`
+	// URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+	GcsBucket pulumi.StringPtrInput `pulumi:"gcsBucket"`
+	// Service Account to impersonate when running queries
+	ImpersonateServiceAccount pulumi.StringPtrInput `pulumi:"impersonateServiceAccount"`
+	// Maximum timeout for the job creation step
+	JobCreationTimeoutSeconds pulumi.IntPtrInput `pulumi:"jobCreationTimeoutSeconds"`
+	// Total number of seconds to wait while retrying the same query
+	JobRetryDeadlineSeconds pulumi.IntPtrInput `pulumi:"jobRetryDeadlineSeconds"`
+	// Location to create new Datasets in
+	Location pulumi.StringPtrInput `pulumi:"location"`
+	// Max number of bytes that can be billed for a given BigQuery query
+	MaximumBytesBilled pulumi.IntPtrInput `pulumi:"maximumBytesBilled"`
+	// The priority with which to execute BigQuery queries (batch or interactive)
+	Priority pulumi.StringPtrInput `pulumi:"priority"`
+	// Private Key for the Service Account
+	PrivateKey pulumi.StringInput `pulumi:"privateKey"`
+	// Private Key ID for the Service Account
+	PrivateKeyId pulumi.StringInput `pulumi:"privateKeyId"`
+	// Number of retries for queries
+	Retries pulumi.IntPtrInput `pulumi:"retries"`
+	// OAuth scopes for the BigQuery connection
+	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
+	// Timeout in seconds for queries
+	TimeoutSeconds pulumi.IntPtrInput `pulumi:"timeoutSeconds"`
+	// Token URI for the Service Account
+	TokenUri pulumi.StringInput `pulumi:"tokenUri"`
+}
+
+func (GlobalConnectionBigqueryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionBigquery)(nil)).Elem()
+}
+
+func (i GlobalConnectionBigqueryArgs) ToGlobalConnectionBigqueryOutput() GlobalConnectionBigqueryOutput {
+	return i.ToGlobalConnectionBigqueryOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionBigqueryArgs) ToGlobalConnectionBigqueryOutputWithContext(ctx context.Context) GlobalConnectionBigqueryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionBigqueryOutput)
+}
+
+func (i GlobalConnectionBigqueryArgs) ToGlobalConnectionBigqueryPtrOutput() GlobalConnectionBigqueryPtrOutput {
+	return i.ToGlobalConnectionBigqueryPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionBigqueryArgs) ToGlobalConnectionBigqueryPtrOutputWithContext(ctx context.Context) GlobalConnectionBigqueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionBigqueryOutput).ToGlobalConnectionBigqueryPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionBigqueryPtrInput is an input type that accepts GlobalConnectionBigqueryArgs, GlobalConnectionBigqueryPtr and GlobalConnectionBigqueryPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionBigqueryPtrInput` via:
+//
+//	        GlobalConnectionBigqueryArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionBigqueryPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionBigqueryPtrOutput() GlobalConnectionBigqueryPtrOutput
+	ToGlobalConnectionBigqueryPtrOutputWithContext(context.Context) GlobalConnectionBigqueryPtrOutput
+}
+
+type globalConnectionBigqueryPtrType GlobalConnectionBigqueryArgs
+
+func GlobalConnectionBigqueryPtr(v *GlobalConnectionBigqueryArgs) GlobalConnectionBigqueryPtrInput {
+	return (*globalConnectionBigqueryPtrType)(v)
+}
+
+func (*globalConnectionBigqueryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionBigquery)(nil)).Elem()
+}
+
+func (i *globalConnectionBigqueryPtrType) ToGlobalConnectionBigqueryPtrOutput() GlobalConnectionBigqueryPtrOutput {
+	return i.ToGlobalConnectionBigqueryPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionBigqueryPtrType) ToGlobalConnectionBigqueryPtrOutputWithContext(ctx context.Context) GlobalConnectionBigqueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionBigqueryPtrOutput)
+}
+
+type GlobalConnectionBigqueryOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionBigqueryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionBigquery)(nil)).Elem()
+}
+
+func (o GlobalConnectionBigqueryOutput) ToGlobalConnectionBigqueryOutput() GlobalConnectionBigqueryOutput {
+	return o
+}
+
+func (o GlobalConnectionBigqueryOutput) ToGlobalConnectionBigqueryOutputWithContext(ctx context.Context) GlobalConnectionBigqueryOutput {
+	return o
+}
+
+func (o GlobalConnectionBigqueryOutput) ToGlobalConnectionBigqueryPtrOutput() GlobalConnectionBigqueryPtrOutput {
+	return o.ToGlobalConnectionBigqueryPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionBigqueryOutput) ToGlobalConnectionBigqueryPtrOutputWithContext(ctx context.Context) GlobalConnectionBigqueryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionBigquery) *GlobalConnectionBigquery {
+		return &v
+	}).(GlobalConnectionBigqueryPtrOutput)
+}
+
+// OAuth Client ID
+func (o GlobalConnectionBigqueryOutput) ApplicationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ApplicationId }).(pulumi.StringPtrOutput)
+}
+
+// OAuth Client Secret
+func (o GlobalConnectionBigqueryOutput) ApplicationSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ApplicationSecret }).(pulumi.StringPtrOutput)
+}
+
+// Auth Provider X509 Cert URL for the Service Account
+func (o GlobalConnectionBigqueryOutput) AuthProviderX509CertUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.AuthProviderX509CertUrl }).(pulumi.StringOutput)
+}
+
+// Auth URI for the Service Account
+func (o GlobalConnectionBigqueryOutput) AuthUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.AuthUri }).(pulumi.StringOutput)
+}
+
+// Service Account email
+func (o GlobalConnectionBigqueryOutput) ClientEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.ClientEmail }).(pulumi.StringOutput)
+}
+
+// Client ID of the Service Account
+func (o GlobalConnectionBigqueryOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Client X509 Cert URL for the Service Account
+func (o GlobalConnectionBigqueryOutput) ClientX509CertUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.ClientX509CertUrl }).(pulumi.StringOutput)
+}
+
+// Dataproc cluster name for PySpark workloads
+func (o GlobalConnectionBigqueryOutput) DataprocClusterName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.DataprocClusterName }).(pulumi.StringPtrOutput)
+}
+
+// Google Cloud region for PySpark workloads on Dataproc
+func (o GlobalConnectionBigqueryOutput) DataprocRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.DataprocRegion }).(pulumi.StringPtrOutput)
+}
+
+// Project to bill for query execution
+func (o GlobalConnectionBigqueryOutput) ExecutionProject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ExecutionProject }).(pulumi.StringPtrOutput)
+}
+
+// The GCP project ID to use for the connection
+func (o GlobalConnectionBigqueryOutput) GcpProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.GcpProjectId }).(pulumi.StringOutput)
+}
+
+// URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+func (o GlobalConnectionBigqueryOutput) GcsBucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.GcsBucket }).(pulumi.StringPtrOutput)
+}
+
+// Service Account to impersonate when running queries
+func (o GlobalConnectionBigqueryOutput) ImpersonateServiceAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ImpersonateServiceAccount }).(pulumi.StringPtrOutput)
+}
+
+// Maximum timeout for the job creation step
+func (o GlobalConnectionBigqueryOutput) JobCreationTimeoutSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.JobCreationTimeoutSeconds }).(pulumi.IntPtrOutput)
+}
+
+// Total number of seconds to wait while retrying the same query
+func (o GlobalConnectionBigqueryOutput) JobRetryDeadlineSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.JobRetryDeadlineSeconds }).(pulumi.IntPtrOutput)
+}
+
+// Location to create new Datasets in
+func (o GlobalConnectionBigqueryOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// Max number of bytes that can be billed for a given BigQuery query
+func (o GlobalConnectionBigqueryOutput) MaximumBytesBilled() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.MaximumBytesBilled }).(pulumi.IntPtrOutput)
+}
+
+// The priority with which to execute BigQuery queries (batch or interactive)
+func (o GlobalConnectionBigqueryOutput) Priority() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.Priority }).(pulumi.StringPtrOutput)
+}
+
+// Private Key for the Service Account
+func (o GlobalConnectionBigqueryOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// Private Key ID for the Service Account
+func (o GlobalConnectionBigqueryOutput) PrivateKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.PrivateKeyId }).(pulumi.StringOutput)
+}
+
+// Number of retries for queries
+func (o GlobalConnectionBigqueryOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.Retries }).(pulumi.IntPtrOutput)
+}
+
+// OAuth scopes for the BigQuery connection
+func (o GlobalConnectionBigqueryOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+// Timeout in seconds for queries
+func (o GlobalConnectionBigqueryOutput) TimeoutSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.TimeoutSeconds }).(pulumi.IntPtrOutput)
+}
+
+// Token URI for the Service Account
+func (o GlobalConnectionBigqueryOutput) TokenUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.TokenUri }).(pulumi.StringOutput)
+}
+
+type GlobalConnectionBigqueryPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionBigqueryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionBigquery)(nil)).Elem()
+}
+
+func (o GlobalConnectionBigqueryPtrOutput) ToGlobalConnectionBigqueryPtrOutput() GlobalConnectionBigqueryPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionBigqueryPtrOutput) ToGlobalConnectionBigqueryPtrOutputWithContext(ctx context.Context) GlobalConnectionBigqueryPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionBigqueryPtrOutput) Elem() GlobalConnectionBigqueryOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) GlobalConnectionBigquery {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionBigquery
+		return ret
+	}).(GlobalConnectionBigqueryOutput)
+}
+
+// OAuth Client ID
+func (o GlobalConnectionBigqueryPtrOutput) ApplicationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApplicationId
+	}).(pulumi.StringPtrOutput)
+}
+
+// OAuth Client Secret
+func (o GlobalConnectionBigqueryPtrOutput) ApplicationSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApplicationSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Auth Provider X509 Cert URL for the Service Account
+func (o GlobalConnectionBigqueryPtrOutput) AuthProviderX509CertUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AuthProviderX509CertUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Auth URI for the Service Account
+func (o GlobalConnectionBigqueryPtrOutput) AuthUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AuthUri
+	}).(pulumi.StringPtrOutput)
+}
+
+// Service Account email
+func (o GlobalConnectionBigqueryPtrOutput) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientEmail
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client ID of the Service Account
+func (o GlobalConnectionBigqueryPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client X509 Cert URL for the Service Account
+func (o GlobalConnectionBigqueryPtrOutput) ClientX509CertUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientX509CertUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Dataproc cluster name for PySpark workloads
+func (o GlobalConnectionBigqueryPtrOutput) DataprocClusterName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataprocClusterName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Google Cloud region for PySpark workloads on Dataproc
+func (o GlobalConnectionBigqueryPtrOutput) DataprocRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DataprocRegion
+	}).(pulumi.StringPtrOutput)
+}
+
+// Project to bill for query execution
+func (o GlobalConnectionBigqueryPtrOutput) ExecutionProject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExecutionProject
+	}).(pulumi.StringPtrOutput)
+}
+
+// The GCP project ID to use for the connection
+func (o GlobalConnectionBigqueryPtrOutput) GcpProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.GcpProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+func (o GlobalConnectionBigqueryPtrOutput) GcsBucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GcsBucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// Service Account to impersonate when running queries
+func (o GlobalConnectionBigqueryPtrOutput) ImpersonateServiceAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ImpersonateServiceAccount
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum timeout for the job creation step
+func (o GlobalConnectionBigqueryPtrOutput) JobCreationTimeoutSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.JobCreationTimeoutSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// Total number of seconds to wait while retrying the same query
+func (o GlobalConnectionBigqueryPtrOutput) JobRetryDeadlineSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.JobRetryDeadlineSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// Location to create new Datasets in
+func (o GlobalConnectionBigqueryPtrOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Location
+	}).(pulumi.StringPtrOutput)
+}
+
+// Max number of bytes that can be billed for a given BigQuery query
+func (o GlobalConnectionBigqueryPtrOutput) MaximumBytesBilled() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaximumBytesBilled
+	}).(pulumi.IntPtrOutput)
+}
+
+// The priority with which to execute BigQuery queries (batch or interactive)
+func (o GlobalConnectionBigqueryPtrOutput) Priority() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Priority
+	}).(pulumi.StringPtrOutput)
+}
+
+// Private Key for the Service Account
+func (o GlobalConnectionBigqueryPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Private Key ID for the Service Account
+func (o GlobalConnectionBigqueryPtrOutput) PrivateKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrivateKeyId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of retries for queries
+func (o GlobalConnectionBigqueryPtrOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Retries
+	}).(pulumi.IntPtrOutput)
+}
+
+// OAuth scopes for the BigQuery connection
+func (o GlobalConnectionBigqueryPtrOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Scopes
+	}).(pulumi.StringArrayOutput)
+}
+
+// Timeout in seconds for queries
+func (o GlobalConnectionBigqueryPtrOutput) TimeoutSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TimeoutSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// Token URI for the Service Account
+func (o GlobalConnectionBigqueryPtrOutput) TokenUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TokenUri
+	}).(pulumi.StringPtrOutput)
+}
+
+type GlobalConnectionSnowflake struct {
+	// The Snowflake account name
+	Account string `pulumi:"account"`
+	// Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
+	AllowSso *bool `pulumi:"allowSso"`
+	// If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+	ClientSessionKeepAlive *bool `pulumi:"clientSessionKeepAlive"`
+	// The default database for the connection
+	Database string `pulumi:"database"`
+	// OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+	OauthClientId *string `pulumi:"oauthClientId"`
+	// OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+	OauthClientSecret *string `pulumi:"oauthClientSecret"`
+	// The Snowflake role to use when running queries on the connection
+	Role *string `pulumi:"role"`
+	// The default Snowflake Warehouse to use for the connection
+	Warehouse string `pulumi:"warehouse"`
+}
+
+// GlobalConnectionSnowflakeInput is an input type that accepts GlobalConnectionSnowflakeArgs and GlobalConnectionSnowflakeOutput values.
+// You can construct a concrete instance of `GlobalConnectionSnowflakeInput` via:
+//
+//	GlobalConnectionSnowflakeArgs{...}
+type GlobalConnectionSnowflakeInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionSnowflakeOutput() GlobalConnectionSnowflakeOutput
+	ToGlobalConnectionSnowflakeOutputWithContext(context.Context) GlobalConnectionSnowflakeOutput
+}
+
+type GlobalConnectionSnowflakeArgs struct {
+	// The Snowflake account name
+	Account pulumi.StringInput `pulumi:"account"`
+	// Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
+	AllowSso pulumi.BoolPtrInput `pulumi:"allowSso"`
+	// If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+	ClientSessionKeepAlive pulumi.BoolPtrInput `pulumi:"clientSessionKeepAlive"`
+	// The default database for the connection
+	Database pulumi.StringInput `pulumi:"database"`
+	// OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+	OauthClientId pulumi.StringPtrInput `pulumi:"oauthClientId"`
+	// OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+	OauthClientSecret pulumi.StringPtrInput `pulumi:"oauthClientSecret"`
+	// The Snowflake role to use when running queries on the connection
+	Role pulumi.StringPtrInput `pulumi:"role"`
+	// The default Snowflake Warehouse to use for the connection
+	Warehouse pulumi.StringInput `pulumi:"warehouse"`
+}
+
+func (GlobalConnectionSnowflakeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionSnowflake)(nil)).Elem()
+}
+
+func (i GlobalConnectionSnowflakeArgs) ToGlobalConnectionSnowflakeOutput() GlobalConnectionSnowflakeOutput {
+	return i.ToGlobalConnectionSnowflakeOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionSnowflakeArgs) ToGlobalConnectionSnowflakeOutputWithContext(ctx context.Context) GlobalConnectionSnowflakeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSnowflakeOutput)
+}
+
+func (i GlobalConnectionSnowflakeArgs) ToGlobalConnectionSnowflakePtrOutput() GlobalConnectionSnowflakePtrOutput {
+	return i.ToGlobalConnectionSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionSnowflakeArgs) ToGlobalConnectionSnowflakePtrOutputWithContext(ctx context.Context) GlobalConnectionSnowflakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSnowflakeOutput).ToGlobalConnectionSnowflakePtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionSnowflakePtrInput is an input type that accepts GlobalConnectionSnowflakeArgs, GlobalConnectionSnowflakePtr and GlobalConnectionSnowflakePtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionSnowflakePtrInput` via:
+//
+//	        GlobalConnectionSnowflakeArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionSnowflakePtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionSnowflakePtrOutput() GlobalConnectionSnowflakePtrOutput
+	ToGlobalConnectionSnowflakePtrOutputWithContext(context.Context) GlobalConnectionSnowflakePtrOutput
+}
+
+type globalConnectionSnowflakePtrType GlobalConnectionSnowflakeArgs
+
+func GlobalConnectionSnowflakePtr(v *GlobalConnectionSnowflakeArgs) GlobalConnectionSnowflakePtrInput {
+	return (*globalConnectionSnowflakePtrType)(v)
+}
+
+func (*globalConnectionSnowflakePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionSnowflake)(nil)).Elem()
+}
+
+func (i *globalConnectionSnowflakePtrType) ToGlobalConnectionSnowflakePtrOutput() GlobalConnectionSnowflakePtrOutput {
+	return i.ToGlobalConnectionSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionSnowflakePtrType) ToGlobalConnectionSnowflakePtrOutputWithContext(ctx context.Context) GlobalConnectionSnowflakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSnowflakePtrOutput)
+}
+
+type GlobalConnectionSnowflakeOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionSnowflakeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionSnowflake)(nil)).Elem()
+}
+
+func (o GlobalConnectionSnowflakeOutput) ToGlobalConnectionSnowflakeOutput() GlobalConnectionSnowflakeOutput {
+	return o
+}
+
+func (o GlobalConnectionSnowflakeOutput) ToGlobalConnectionSnowflakeOutputWithContext(ctx context.Context) GlobalConnectionSnowflakeOutput {
+	return o
+}
+
+func (o GlobalConnectionSnowflakeOutput) ToGlobalConnectionSnowflakePtrOutput() GlobalConnectionSnowflakePtrOutput {
+	return o.ToGlobalConnectionSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionSnowflakeOutput) ToGlobalConnectionSnowflakePtrOutputWithContext(ctx context.Context) GlobalConnectionSnowflakePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionSnowflake) *GlobalConnectionSnowflake {
+		return &v
+	}).(GlobalConnectionSnowflakePtrOutput)
+}
+
+// The Snowflake account name
+func (o GlobalConnectionSnowflakeOutput) Account() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionSnowflake) string { return v.Account }).(pulumi.StringOutput)
+}
+
+// Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
+func (o GlobalConnectionSnowflakeOutput) AllowSso() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSnowflake) *bool { return v.AllowSso }).(pulumi.BoolPtrOutput)
+}
+
+// If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+func (o GlobalConnectionSnowflakeOutput) ClientSessionKeepAlive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSnowflake) *bool { return v.ClientSessionKeepAlive }).(pulumi.BoolPtrOutput)
+}
+
+// The default database for the connection
+func (o GlobalConnectionSnowflakeOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionSnowflake) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+func (o GlobalConnectionSnowflakeOutput) OauthClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSnowflake) *string { return v.OauthClientId }).(pulumi.StringPtrOutput)
+}
+
+// OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+func (o GlobalConnectionSnowflakeOutput) OauthClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSnowflake) *string { return v.OauthClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// The Snowflake role to use when running queries on the connection
+func (o GlobalConnectionSnowflakeOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSnowflake) *string { return v.Role }).(pulumi.StringPtrOutput)
+}
+
+// The default Snowflake Warehouse to use for the connection
+func (o GlobalConnectionSnowflakeOutput) Warehouse() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionSnowflake) string { return v.Warehouse }).(pulumi.StringOutput)
+}
+
+type GlobalConnectionSnowflakePtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionSnowflakePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionSnowflake)(nil)).Elem()
+}
+
+func (o GlobalConnectionSnowflakePtrOutput) ToGlobalConnectionSnowflakePtrOutput() GlobalConnectionSnowflakePtrOutput {
+	return o
+}
+
+func (o GlobalConnectionSnowflakePtrOutput) ToGlobalConnectionSnowflakePtrOutputWithContext(ctx context.Context) GlobalConnectionSnowflakePtrOutput {
+	return o
+}
+
+func (o GlobalConnectionSnowflakePtrOutput) Elem() GlobalConnectionSnowflakeOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) GlobalConnectionSnowflake {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionSnowflake
+		return ret
+	}).(GlobalConnectionSnowflakeOutput)
+}
+
+// The Snowflake account name
+func (o GlobalConnectionSnowflakePtrOutput) Account() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Account
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
+func (o GlobalConnectionSnowflakePtrOutput) AllowSso() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowSso
+	}).(pulumi.BoolPtrOutput)
+}
+
+// If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+func (o GlobalConnectionSnowflakePtrOutput) ClientSessionKeepAlive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSessionKeepAlive
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The default database for the connection
+func (o GlobalConnectionSnowflakePtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+func (o GlobalConnectionSnowflakePtrOutput) OauthClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OauthClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+func (o GlobalConnectionSnowflakePtrOutput) OauthClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OauthClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Snowflake role to use when running queries on the connection
+func (o GlobalConnectionSnowflakePtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+// The default Snowflake Warehouse to use for the connection
+func (o GlobalConnectionSnowflakePtrOutput) Warehouse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Warehouse
+	}).(pulumi.StringPtrOutput)
+}
+
 type GroupGroupPermission struct {
 	// Whether access should be provided for all projects or not.
 	AllProjects bool `pulumi:"allProjects"`
@@ -597,6 +1441,8 @@ func (o ServiceTokenServiceTokenPermissionArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetEnvironmentsEnvironment struct {
+	// A connection ID (used with Global Connections)
+	ConnectionId int `pulumi:"connectionId"`
 	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
 	CredentialsId int `pulumi:"credentialsId"`
 	// The custom branch name to use
@@ -631,6 +1477,8 @@ type GetEnvironmentsEnvironmentInput interface {
 }
 
 type GetEnvironmentsEnvironmentArgs struct {
+	// A connection ID (used with Global Connections)
+	ConnectionId pulumi.IntInput `pulumi:"connectionId"`
 	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
 	CredentialsId pulumi.IntInput `pulumi:"credentialsId"`
 	// The custom branch name to use
@@ -702,6 +1550,11 @@ func (o GetEnvironmentsEnvironmentOutput) ToGetEnvironmentsEnvironmentOutput() G
 
 func (o GetEnvironmentsEnvironmentOutput) ToGetEnvironmentsEnvironmentOutputWithContext(ctx context.Context) GetEnvironmentsEnvironmentOutput {
 	return o
+}
+
+// A connection ID (used with Global Connections)
+func (o GetEnvironmentsEnvironmentOutput) ConnectionId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.ConnectionId }).(pulumi.IntOutput)
 }
 
 // Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
@@ -2044,6 +2897,10 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionBigqueryInput)(nil)).Elem(), GlobalConnectionBigqueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionBigqueryPtrInput)(nil)).Elem(), GlobalConnectionBigqueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSnowflakeInput)(nil)).Elem(), GlobalConnectionSnowflakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSnowflakePtrInput)(nil)).Elem(), GlobalConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionInput)(nil)).Elem(), GroupGroupPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionArrayInput)(nil)).Elem(), GroupGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPartialPermissionsGroupPermissionInput)(nil)).Elem(), GroupPartialPermissionsGroupPermissionArgs{})
@@ -2073,6 +2930,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), GetServiceTokenServiceTokenPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterOutputType(GlobalConnectionBigqueryOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionBigqueryPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionSnowflakeOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionSnowflakePtrOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionOutput{})

@@ -35,6 +35,10 @@ export interface GetEnvironmentArgs {
  */
 export interface GetEnvironmentResult {
     /**
+     * A connection ID (used with Global Connections)
+     */
+    readonly connectionId: number;
+    /**
      * The project ID to which the environment belong
      */
     readonly credentialsId: number;

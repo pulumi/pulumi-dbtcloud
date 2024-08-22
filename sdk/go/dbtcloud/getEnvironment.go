@@ -32,6 +32,8 @@ type LookupEnvironmentArgs struct {
 
 // A collection of values returned by getEnvironment.
 type LookupEnvironmentResult struct {
+	// A connection ID (used with Global Connections)
+	ConnectionId int `pulumi:"connectionId"`
 	// The project ID to which the environment belong
 	CredentialsId int `pulumi:"credentialsId"`
 	// The custom branch name to use
@@ -94,6 +96,11 @@ func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutput() LookupE
 
 func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutputWithContext(ctx context.Context) LookupEnvironmentResultOutput {
 	return o
+}
+
+// A connection ID (used with Global Connections)
+func (o LookupEnvironmentResultOutput) ConnectionId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.ConnectionId }).(pulumi.IntOutput)
 }
 
 // The project ID to which the environment belong

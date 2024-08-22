@@ -80,6 +80,8 @@ type LookupProjectResult struct {
 	// ID of the repository associated with the project
 	RepositoryId int `pulumi:"repositoryId"`
 	// Project state should be 1 = active, as 2 = deleted
+	//
+	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 	State int `pulumi:"state"`
 }
 
@@ -159,6 +161,8 @@ func (o LookupProjectResultOutput) RepositoryId() pulumi.IntOutput {
 }
 
 // Project state should be 1 = active, as 2 = deleted
+//
+// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 func (o LookupProjectResultOutput) State() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupProjectResult) int { return v.State }).(pulumi.IntOutput)
 }

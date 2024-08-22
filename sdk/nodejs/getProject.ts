@@ -80,6 +80,8 @@ export interface GetProjectResult {
     readonly repositoryId: number;
     /**
      * Project state should be 1 = active, as 2 = deleted
+     *
+     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
      */
     readonly state: number;
 }

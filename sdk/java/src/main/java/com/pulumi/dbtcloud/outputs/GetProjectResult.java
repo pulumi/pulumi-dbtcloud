@@ -51,7 +51,11 @@ public final class GetProjectResult {
     /**
      * @return Project state should be 1 = active, as 2 = deleted
      * 
+     * @deprecated
+     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     * 
      */
+    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     private Integer state;
 
     private GetProjectResult() {}
@@ -107,7 +111,11 @@ public final class GetProjectResult {
     /**
      * @return Project state should be 1 = active, as 2 = deleted
      * 
+     * @deprecated
+     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     * 
      */
+    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     public Integer state() {
         return this.state;
     }

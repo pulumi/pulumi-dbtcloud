@@ -42,14 +42,22 @@ public final class ExtendedAttributesArgs extends com.pulumi.resources.ResourceA
     /**
      * Extended Attributes state (1 is active, 2 is inactive)
      * 
+     * @deprecated
+     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     * 
      */
+    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     @Import(name="state")
     private @Nullable Output<Integer> state;
 
     /**
      * @return Extended Attributes state (1 is active, 2 is inactive)
      * 
+     * @deprecated
+     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     * 
      */
+    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     public Optional<Output<Integer>> state() {
         return Optional.ofNullable(this.state);
     }
@@ -115,7 +123,11 @@ public final class ExtendedAttributesArgs extends com.pulumi.resources.ResourceA
          * 
          * @return builder
          * 
+         * @deprecated
+         * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+         * 
          */
+        @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
         public Builder state(@Nullable Output<Integer> state) {
             $.state = state;
             return this;
@@ -126,7 +138,11 @@ public final class ExtendedAttributesArgs extends com.pulumi.resources.ResourceA
          * 
          * @return builder
          * 
+         * @deprecated
+         * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+         * 
          */
+        @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
         public Builder state(Integer state) {
             return state(Output.of(state));
         }
