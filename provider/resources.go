@@ -164,6 +164,11 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 				Tok:       tfbridge.MakeResource(mainPkg, mainMod, "Group"),
 				ComputeID: computeIDField("id"),
 			},
+			"dbtcloud_global_connection": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {Type: "string"},
+				},
+			},
 			"dbtcloud_service_token": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ServiceToken"),
 			},
