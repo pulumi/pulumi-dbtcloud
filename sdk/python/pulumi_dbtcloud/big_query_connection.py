@@ -848,6 +848,8 @@ class BigQueryConnection(pulumi.CustomResource):
         """
         Resource to create BigQuery connections in dbt Cloud. Can be set to use OAuth for developers.
 
+        > This resource is going to be deprecated in the future, please use the `GlobalConnection` resource instead to crate BigQuery connections.
+
         ## Example Usage
 
         ```python
@@ -956,6 +958,8 @@ class BigQueryConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Resource to create BigQuery connections in dbt Cloud. Can be set to use OAuth for developers.
+
+        > This resource is going to be deprecated in the future, please use the `GlobalConnection` resource instead to crate BigQuery connections.
 
         ## Example Usage
 

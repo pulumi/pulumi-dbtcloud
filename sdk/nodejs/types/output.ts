@@ -7,6 +7,10 @@ import * as outputs from "../types/output";
 
 export interface GetEnvironmentsEnvironment {
     /**
+     * A connection ID (used with Global Connections)
+     */
+    connectionId: number;
+    /**
      * Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
      */
     credentialsId: number;
@@ -260,6 +264,140 @@ export interface GetUsersUser {
      * ID of the user
      */
     id: number;
+}
+
+export interface GlobalConnectionBigquery {
+    /**
+     * OAuth Client ID
+     */
+    applicationId?: string;
+    /**
+     * OAuth Client Secret
+     */
+    applicationSecret?: string;
+    /**
+     * Auth Provider X509 Cert URL for the Service Account
+     */
+    authProviderX509CertUrl: string;
+    /**
+     * Auth URI for the Service Account
+     */
+    authUri: string;
+    /**
+     * Service Account email
+     */
+    clientEmail: string;
+    /**
+     * Client ID of the Service Account
+     */
+    clientId: string;
+    /**
+     * Client X509 Cert URL for the Service Account
+     */
+    clientX509CertUrl: string;
+    /**
+     * Dataproc cluster name for PySpark workloads
+     */
+    dataprocClusterName?: string;
+    /**
+     * Google Cloud region for PySpark workloads on Dataproc
+     */
+    dataprocRegion?: string;
+    /**
+     * Project to bill for query execution
+     */
+    executionProject?: string;
+    /**
+     * The GCP project ID to use for the connection
+     */
+    gcpProjectId: string;
+    /**
+     * URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+     */
+    gcsBucket?: string;
+    /**
+     * Service Account to impersonate when running queries
+     */
+    impersonateServiceAccount?: string;
+    /**
+     * Maximum timeout for the job creation step
+     */
+    jobCreationTimeoutSeconds?: number;
+    /**
+     * Total number of seconds to wait while retrying the same query
+     */
+    jobRetryDeadlineSeconds?: number;
+    /**
+     * Location to create new Datasets in
+     */
+    location?: string;
+    /**
+     * Max number of bytes that can be billed for a given BigQuery query
+     */
+    maximumBytesBilled?: number;
+    /**
+     * The priority with which to execute BigQuery queries (batch or interactive)
+     */
+    priority?: string;
+    /**
+     * Private Key for the Service Account
+     */
+    privateKey: string;
+    /**
+     * Private Key ID for the Service Account
+     */
+    privateKeyId: string;
+    /**
+     * Number of retries for queries
+     */
+    retries: number;
+    /**
+     * OAuth scopes for the BigQuery connection
+     */
+    scopes: string[];
+    /**
+     * Timeout in seconds for queries
+     */
+    timeoutSeconds: number;
+    /**
+     * Token URI for the Service Account
+     */
+    tokenUri: string;
+}
+
+export interface GlobalConnectionSnowflake {
+    /**
+     * The Snowflake account name
+     */
+    account: string;
+    /**
+     * Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
+     */
+    allowSso: boolean;
+    /**
+     * If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+     */
+    clientSessionKeepAlive: boolean;
+    /**
+     * The default database for the connection
+     */
+    database: string;
+    /**
+     * OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+     */
+    oauthClientId?: string;
+    /**
+     * OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+     */
+    oauthClientSecret?: string;
+    /**
+     * The Snowflake role to use when running queries on the connection
+     */
+    role?: string;
+    /**
+     * The default Snowflake Warehouse to use for the connection
+     */
+    warehouse: string;
 }
 
 export interface GroupGroupPermission {

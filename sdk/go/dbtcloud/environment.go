@@ -12,6 +12,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Resource to manage dbt Cloud environments for the different dbt Cloud projects.
+//
+// In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
+//
+// > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects.
+// This version of the provider has the `connectionId` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+//
 // ## Example Usage
 //
 // ```go
@@ -32,6 +39,7 @@ import (
 //				ProjectId:    pulumi.Any(dbtProject.Id),
 //				Type:         pulumi.String("deployment"),
 //				CredentialId: pulumi.Any(ciCredential.CredentialId),
+//				ConnectionId: pulumi.Any(myGlobalConnection.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -44,16 +52,18 @@ import (
 //				Type:           pulumi.String("deployment"),
 //				CredentialId:   pulumi.Any(prodCredential.CredentialId),
 //				DeploymentType: pulumi.String("production"),
+//				ConnectionId:   pulumi.Any(myLegacyConnection.ConnectionId),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Creating a development environment
 //			_, err = dbtcloud.NewEnvironment(ctx, "dev_environment", &dbtcloud.EnvironmentArgs{
-//				DbtVersion: pulumi.String("versionless"),
-//				Name:       pulumi.String("Dev"),
-//				ProjectId:  pulumi.Any(dbtProject.Id),
-//				Type:       pulumi.String("development"),
+//				DbtVersion:   pulumi.String("versionless"),
+//				Name:         pulumi.String("Dev"),
+//				ProjectId:    pulumi.Any(dbtProject.Id),
+//				Type:         pulumi.String("development"),
+//				ConnectionId: pulumi.Any(myOtherGlobalConnection),
 //			})
 //			if err != nil {
 //				return err
@@ -96,13 +106,18 @@ import (
 type Environment struct {
 	pulumi.CustomResourceState
 
-	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+	ConnectionId pulumi.IntPtrOutput `pulumi:"connectionId"`
+	// Credential ID to create the environment with. A credential is not required for development environments but is required
+	// for deployment environments
 	CredentialId pulumi.IntPtrOutput `pulumi:"credentialId"`
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrOutput `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+	// default if no version is provided
 	DbtVersion pulumi.StringOutput `pulumi:"dbtVersion"`
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+	// 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrOutput `pulumi:"deploymentType"`
 	// Environment ID within the project
 	EnvironmentId pulumi.IntOutput `pulumi:"environmentId"`
@@ -159,13 +174,18 @@ func GetEnvironment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Environment resources.
 type environmentState struct {
-	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+	ConnectionId *int `pulumi:"connectionId"`
+	// Credential ID to create the environment with. A credential is not required for development environments but is required
+	// for deployment environments
 	CredentialId *int `pulumi:"credentialId"`
 	// Which custom branch to use in this environment
 	CustomBranch *string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+	// default if no version is provided
 	DbtVersion *string `pulumi:"dbtVersion"`
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+	// 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
 	// Environment ID within the project
 	EnvironmentId *int `pulumi:"environmentId"`
@@ -184,13 +204,18 @@ type environmentState struct {
 }
 
 type EnvironmentState struct {
-	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+	ConnectionId pulumi.IntPtrInput
+	// Credential ID to create the environment with. A credential is not required for development environments but is required
+	// for deployment environments
 	CredentialId pulumi.IntPtrInput
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrInput
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+	// default if no version is provided
 	DbtVersion pulumi.StringPtrInput
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+	// 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
 	// Environment ID within the project
 	EnvironmentId pulumi.IntPtrInput
@@ -213,13 +238,18 @@ func (EnvironmentState) ElementType() reflect.Type {
 }
 
 type environmentArgs struct {
-	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+	ConnectionId *int `pulumi:"connectionId"`
+	// Credential ID to create the environment with. A credential is not required for development environments but is required
+	// for deployment environments
 	CredentialId *int `pulumi:"credentialId"`
 	// Which custom branch to use in this environment
 	CustomBranch *string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+	// default if no version is provided
 	DbtVersion string `pulumi:"dbtVersion"`
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+	// 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
 	// ID of the extended attributes for the environment
 	ExtendedAttributesId *int `pulumi:"extendedAttributesId"`
@@ -237,13 +267,18 @@ type environmentArgs struct {
 
 // The set of arguments for constructing a Environment resource.
 type EnvironmentArgs struct {
-	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+	ConnectionId pulumi.IntPtrInput
+	// Credential ID to create the environment with. A credential is not required for development environments but is required
+	// for deployment environments
 	CredentialId pulumi.IntPtrInput
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrInput
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+	// default if no version is provided
 	DbtVersion pulumi.StringInput
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+	// 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
 	// ID of the extended attributes for the environment
 	ExtendedAttributesId pulumi.IntPtrInput
@@ -346,7 +381,12 @@ func (o EnvironmentOutput) ToEnvironmentOutputWithContext(ctx context.Context) E
 	return o
 }
 
-// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+func (o EnvironmentOutput) ConnectionId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Environment) pulumi.IntPtrOutput { return v.ConnectionId }).(pulumi.IntPtrOutput)
+}
+
+// Credential ID to create the environment with. A credential is not required for development environments but is required
+// for deployment environments
 func (o EnvironmentOutput) CredentialId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.IntPtrOutput { return v.CredentialId }).(pulumi.IntPtrOutput)
 }
@@ -356,12 +396,15 @@ func (o EnvironmentOutput) CustomBranch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.CustomBranch }).(pulumi.StringPtrOutput)
 }
 
-// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+// default if no version is provided
 func (o EnvironmentOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.DbtVersion }).(pulumi.StringOutput)
 }
 
-// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
+// 'staging' or left empty for generic environments
 func (o EnvironmentOutput) DeploymentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.DeploymentType }).(pulumi.StringPtrOutput)
 }

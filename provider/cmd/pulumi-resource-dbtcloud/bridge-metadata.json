@@ -31,6 +31,18 @@
             "dbtcloud_fabric_credential": {
                 "current": "dbtcloud:index/fabricCredential:FabricCredential"
             },
+            "dbtcloud_global_connection": {
+                "current": "dbtcloud:index/globalConnection:GlobalConnection",
+                "fields": {
+                    "bigquery": {
+                        "fields": {
+                            "scopes": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "dbtcloud_group": {
                 "current": "dbtcloud:index/group:Group",
                 "fields": {
@@ -392,6 +404,7 @@
             "dbtcloud:index/extendedAttributes:ExtendedAttributes": 0,
             "dbtcloud:index/fabricConnection:FabricConnection": 0,
             "dbtcloud:index/fabricCredential:FabricCredential": 0,
+            "dbtcloud:index/globalConnection:GlobalConnection": 1,
             "dbtcloud:index/group:Group": 1,
             "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": 1,
             "dbtcloud:index/job:Job": 0,

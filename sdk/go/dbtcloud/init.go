@@ -41,6 +41,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FabricConnection{}
 	case "dbtcloud:index/fabricCredential:FabricCredential":
 		r = &FabricCredential{}
+	case "dbtcloud:index/globalConnection:GlobalConnection":
+		r = &GlobalConnection{}
 	case "dbtcloud:index/group:Group":
 		r = &Group{}
 	case "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions":
@@ -154,6 +156,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/fabricCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/globalConnection",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

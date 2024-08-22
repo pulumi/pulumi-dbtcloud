@@ -21,7 +21,10 @@ class GetEnvironmentResult:
     """
     A collection of values returned by getEnvironment.
     """
-    def __init__(__self__, credentials_id=None, custom_branch=None, dbt_version=None, deployment_type=None, environment_id=None, extended_attributes_id=None, id=None, name=None, project_id=None, type=None, use_custom_branch=None):
+    def __init__(__self__, connection_id=None, credentials_id=None, custom_branch=None, dbt_version=None, deployment_type=None, environment_id=None, extended_attributes_id=None, id=None, name=None, project_id=None, type=None, use_custom_branch=None):
+        if connection_id and not isinstance(connection_id, int):
+            raise TypeError("Expected argument 'connection_id' to be a int")
+        pulumi.set(__self__, "connection_id", connection_id)
         if credentials_id and not isinstance(credentials_id, int):
             raise TypeError("Expected argument 'credentials_id' to be a int")
         pulumi.set(__self__, "credentials_id", credentials_id)
@@ -55,6 +58,14 @@ class GetEnvironmentResult:
         if use_custom_branch and not isinstance(use_custom_branch, bool):
             raise TypeError("Expected argument 'use_custom_branch' to be a bool")
         pulumi.set(__self__, "use_custom_branch", use_custom_branch)
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> int:
+        """
+        A connection ID (used with Global Connections)
+        """
+        return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter(name="credentialsId")
@@ -151,6 +162,7 @@ class AwaitableGetEnvironmentResult(GetEnvironmentResult):
         if False:
             yield self
         return GetEnvironmentResult(
+            connection_id=self.connection_id,
             credentials_id=self.credentials_id,
             custom_branch=self.custom_branch,
             dbt_version=self.dbt_version,
@@ -181,6 +193,7 @@ def get_environment(environment_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getEnvironment:getEnvironment', __args__, opts=opts, typ=GetEnvironmentResult).value
 
     return AwaitableGetEnvironmentResult(
+        connection_id=pulumi.get(__ret__, 'connection_id'),
         credentials_id=pulumi.get(__ret__, 'credentials_id'),
         custom_branch=pulumi.get(__ret__, 'custom_branch'),
         dbt_version=pulumi.get(__ret__, 'dbt_version'),

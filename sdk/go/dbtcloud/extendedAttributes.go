@@ -108,6 +108,8 @@ type ExtendedAttributes struct {
 	// Project ID to create the extended attributes in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// Extended Attributes state (1 is active, 2 is inactive)
+	//
+	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 	State pulumi.IntPtrOutput `pulumi:"state"`
 }
 
@@ -153,6 +155,8 @@ type extendedAttributesState struct {
 	// Project ID to create the extended attributes in
 	ProjectId *int `pulumi:"projectId"`
 	// Extended Attributes state (1 is active, 2 is inactive)
+	//
+	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 	State *int `pulumi:"state"`
 }
 
@@ -163,6 +167,8 @@ type ExtendedAttributesState struct {
 	// Project ID to create the extended attributes in
 	ProjectId pulumi.IntPtrInput
 	// Extended Attributes state (1 is active, 2 is inactive)
+	//
+	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 	State pulumi.IntPtrInput
 }
 
@@ -175,6 +181,8 @@ type extendedAttributesArgs struct {
 	// Project ID to create the extended attributes in
 	ProjectId int `pulumi:"projectId"`
 	// Extended Attributes state (1 is active, 2 is inactive)
+	//
+	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 	State *int `pulumi:"state"`
 }
 
@@ -184,6 +192,8 @@ type ExtendedAttributesArgs struct {
 	// Project ID to create the extended attributes in
 	ProjectId pulumi.IntInput
 	// Extended Attributes state (1 is active, 2 is inactive)
+	//
+	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 	State pulumi.IntPtrInput
 }
 
@@ -289,6 +299,8 @@ func (o ExtendedAttributesOutput) ProjectId() pulumi.IntOutput {
 }
 
 // Extended Attributes state (1 is active, 2 is inactive)
+//
+// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 func (o ExtendedAttributesOutput) State() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ExtendedAttributes) pulumi.IntPtrOutput { return v.State }).(pulumi.IntPtrOutput)
 }

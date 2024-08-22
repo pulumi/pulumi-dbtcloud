@@ -13,6 +13,11 @@ import java.util.Objects;
 @CustomType
 public final class GetEnvironmentResult {
     /**
+     * @return A connection ID (used with Global Connections)
+     * 
+     */
+    private Integer connectionId;
+    /**
      * @return The project ID to which the environment belong
      * 
      */
@@ -69,6 +74,13 @@ public final class GetEnvironmentResult {
     private Boolean useCustomBranch;
 
     private GetEnvironmentResult() {}
+    /**
+     * @return A connection ID (used with Global Connections)
+     * 
+     */
+    public Integer connectionId() {
+        return this.connectionId;
+    }
     /**
      * @return The project ID to which the environment belong
      * 
@@ -156,6 +168,7 @@ public final class GetEnvironmentResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Integer connectionId;
         private Integer credentialsId;
         private String customBranch;
         private String dbtVersion;
@@ -170,6 +183,7 @@ public final class GetEnvironmentResult {
         public Builder() {}
         public Builder(GetEnvironmentResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.connectionId = defaults.connectionId;
     	      this.credentialsId = defaults.credentialsId;
     	      this.customBranch = defaults.customBranch;
     	      this.dbtVersion = defaults.dbtVersion;
@@ -183,6 +197,14 @@ public final class GetEnvironmentResult {
     	      this.useCustomBranch = defaults.useCustomBranch;
         }
 
+        @CustomType.Setter
+        public Builder connectionId(Integer connectionId) {
+            if (connectionId == null) {
+              throw new MissingRequiredPropertyException("GetEnvironmentResult", "connectionId");
+            }
+            this.connectionId = connectionId;
+            return this;
+        }
         @CustomType.Setter
         public Builder credentialsId(Integer credentialsId) {
             if (credentialsId == null) {
@@ -273,6 +295,7 @@ public final class GetEnvironmentResult {
         }
         public GetEnvironmentResult build() {
             final var _resultValue = new GetEnvironmentResult();
+            _resultValue.connectionId = connectionId;
             _resultValue.credentialsId = credentialsId;
             _resultValue.customBranch = customBranch;
             _resultValue.dbtVersion = dbtVersion;

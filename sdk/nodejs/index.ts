@@ -180,6 +180,11 @@ export const getWebhook: typeof import("./getWebhook").getWebhook = null as any;
 export const getWebhookOutput: typeof import("./getWebhook").getWebhookOutput = null as any;
 utilities.lazyLoad(exports, ["getWebhook","getWebhookOutput"], () => require("./getWebhook"));
 
+export { GlobalConnectionArgs, GlobalConnectionState } from "./globalConnection";
+export type GlobalConnection = import("./globalConnection").GlobalConnection;
+export const GlobalConnection: typeof import("./globalConnection").GlobalConnection = null as any;
+utilities.lazyLoad(exports, ["GlobalConnection"], () => require("./globalConnection"));
+
 export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;
@@ -304,6 +309,8 @@ const _module = {
                 return new FabricConnection(name, <any>undefined, { urn })
             case "dbtcloud:index/fabricCredential:FabricCredential":
                 return new FabricCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/globalConnection:GlobalConnection":
+                return new GlobalConnection(name, <any>undefined, { urn })
             case "dbtcloud:index/group:Group":
                 return new Group(name, <any>undefined, { urn })
             case "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions":
@@ -353,6 +360,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/environmentVariableJobO
 pulumi.runtime.registerResourceModule("dbtcloud", "index/extendedAttributes", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/fabricConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/fabricCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/globalConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/group", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/groupPartialPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/job", _module)

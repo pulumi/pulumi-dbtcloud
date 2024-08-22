@@ -20,5 +20,10 @@ actions:
       run: |
         cd provider && go test -v -json -count=1 -cover -timeout 2h -tags=${{ matrix.language }} -parallel 4 . 2>&1 | tee /tmp/gotest.log | gotestfmt
 
+license:
+  ignore:
+    # This project does have a LISCENCE, but it's not of the standard format. It is Apache-2.0.
+    - github.com/oapi-codegen/nullable
+
 # Use `pulumi convert` for translating examples from TF to Pulumi.
 pulumiConvert: 1

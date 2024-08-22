@@ -70,6 +70,10 @@ namespace Pulumi.DbtCloud
     public sealed class GetEnvironmentResult
     {
         /// <summary>
+        /// A connection ID (used with Global Connections)
+        /// </summary>
+        public readonly int ConnectionId;
+        /// <summary>
         /// The project ID to which the environment belong
         /// </summary>
         public readonly int CredentialsId;
@@ -116,6 +120,8 @@ namespace Pulumi.DbtCloud
 
         [OutputConstructor]
         private GetEnvironmentResult(
+            int connectionId,
+
             int credentialsId,
 
             string customBranch,
@@ -138,6 +144,7 @@ namespace Pulumi.DbtCloud
 
             bool useCustomBranch)
         {
+            ConnectionId = connectionId;
             CredentialsId = credentialsId;
             CustomBranch = customBranch;
             DbtVersion = dbtVersion;

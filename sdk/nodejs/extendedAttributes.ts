@@ -107,6 +107,8 @@ export class ExtendedAttributes extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<number>;
     /**
      * Extended Attributes state (1 is active, 2 is inactive)
+     *
+     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
      */
     public readonly state!: pulumi.Output<number | undefined>;
 
@@ -160,6 +162,8 @@ export interface ExtendedAttributesState {
     projectId?: pulumi.Input<number>;
     /**
      * Extended Attributes state (1 is active, 2 is inactive)
+     *
+     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
      */
     state?: pulumi.Input<number>;
 }
@@ -175,6 +179,8 @@ export interface ExtendedAttributesArgs {
     projectId: pulumi.Input<number>;
     /**
      * Extended Attributes state (1 is active, 2 is inactive)
+     *
+     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
      */
     state?: pulumi.Input<number>;
 }

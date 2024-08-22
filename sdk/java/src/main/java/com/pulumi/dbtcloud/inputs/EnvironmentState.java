@@ -17,15 +17,24 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
 
     public static final EnvironmentState Empty = new EnvironmentState();
 
+    @Import(name="connectionId")
+    private @Nullable Output<Integer> connectionId;
+
+    public Optional<Output<Integer>> connectionId() {
+        return Optional.ofNullable(this.connectionId);
+    }
+
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * Credential ID to create the environment with. A credential is not required for development environments but is required
+     * for deployment environments
      * 
      */
     @Import(name="credentialId")
     private @Nullable Output<Integer> credentialId;
 
     /**
-     * @return Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * @return Credential ID to create the environment with. A credential is not required for development environments but is required
+     * for deployment environments
      * 
      */
     public Optional<Output<Integer>> credentialId() {
@@ -48,14 +57,18 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+     * default if no version is provided
      * 
      */
     @Import(name="dbtVersion")
     private @Nullable Output<String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+     * default if no version is provided
      * 
      */
     public Optional<Output<String>> dbtVersion() {
@@ -63,14 +76,16 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
+     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
+     * &#39;staging&#39; or left empty for generic environments
      * 
      */
     @Import(name="deploymentType")
     private @Nullable Output<String> deploymentType;
 
     /**
-     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
+     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
+     * &#39;staging&#39; or left empty for generic environments
      * 
      */
     public Optional<Output<String>> deploymentType() {
@@ -185,6 +200,7 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
     private EnvironmentState() {}
 
     private EnvironmentState(EnvironmentState $) {
+        this.connectionId = $.connectionId;
         this.credentialId = $.credentialId;
         this.customBranch = $.customBranch;
         this.dbtVersion = $.dbtVersion;
@@ -216,8 +232,18 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
             $ = new EnvironmentState(Objects.requireNonNull(defaults));
         }
 
+        public Builder connectionId(@Nullable Output<Integer> connectionId) {
+            $.connectionId = connectionId;
+            return this;
+        }
+
+        public Builder connectionId(Integer connectionId) {
+            return connectionId(Output.of(connectionId));
+        }
+
         /**
-         * @param credentialId Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+         * @param credentialId Credential ID to create the environment with. A credential is not required for development environments but is required
+         * for deployment environments
          * 
          * @return builder
          * 
@@ -228,7 +254,8 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param credentialId Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+         * @param credentialId Credential ID to create the environment with. A credential is not required for development environments but is required
+         * for deployment environments
          * 
          * @return builder
          * 
@@ -259,7 +286,9 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+         * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+         * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+         * default if no version is provided
          * 
          * @return builder
          * 
@@ -270,7 +299,9 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the default if no version is provided
+         * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+         * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
+         * default if no version is provided
          * 
          * @return builder
          * 
@@ -280,7 +311,8 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
+         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
+         * &#39;staging&#39; or left empty for generic environments
          * 
          * @return builder
          * 
@@ -291,7 +323,8 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
+         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
+         * &#39;staging&#39; or left empty for generic environments
          * 
          * @return builder
          * 
