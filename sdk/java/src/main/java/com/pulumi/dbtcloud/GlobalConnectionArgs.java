@@ -6,6 +6,7 @@ package com.pulumi.dbtcloud;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -22,6 +23,21 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
 
     public Optional<Output<GlobalConnectionBigqueryArgs>> bigquery() {
         return Optional.ofNullable(this.bigquery);
+    }
+
+    /**
+     * Databricks connection configuration
+     * 
+     */
+    @Import(name="databricks")
+    private @Nullable Output<GlobalConnectionDatabricksArgs> databricks;
+
+    /**
+     * @return Databricks connection configuration
+     * 
+     */
+    public Optional<Output<GlobalConnectionDatabricksArgs>> databricks() {
+        return Optional.ofNullable(this.databricks);
     }
 
     /**
@@ -73,6 +89,7 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
 
     private GlobalConnectionArgs(GlobalConnectionArgs $) {
         this.bigquery = $.bigquery;
+        this.databricks = $.databricks;
         this.name = $.name;
         this.privateLinkEndpointId = $.privateLinkEndpointId;
         this.snowflake = $.snowflake;
@@ -103,6 +120,27 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
 
         public Builder bigquery(GlobalConnectionBigqueryArgs bigquery) {
             return bigquery(Output.of(bigquery));
+        }
+
+        /**
+         * @param databricks Databricks connection configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder databricks(@Nullable Output<GlobalConnectionDatabricksArgs> databricks) {
+            $.databricks = databricks;
+            return this;
+        }
+
+        /**
+         * @param databricks Databricks connection configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder databricks(GlobalConnectionDatabricksArgs databricks) {
+            return databricks(Output.of(databricks));
         }
 
         /**

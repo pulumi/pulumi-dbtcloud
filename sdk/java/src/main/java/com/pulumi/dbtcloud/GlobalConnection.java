@@ -11,6 +11,7 @@ import com.pulumi.dbtcloud.GlobalConnectionArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionState;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionBigquery;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionDatabricks;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionSnowflake;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -23,7 +24,7 @@ import javax.annotation.Nullable;
  * 
  * Those connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
  * 
- * For now, only BigQuery and Snowflake connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
+ * For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
  * but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
  * 
  * ## Example Usage
@@ -38,8 +39,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.dbtcloud.GlobalConnection;
  * import com.pulumi.dbtcloud.GlobalConnectionArgs;
- * import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -53,20 +55,6 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var snowflake = new GlobalConnection("snowflake", GlobalConnectionArgs.builder()
- *             .name("My Snowflake connection")
- *             .privateLinkEndpointId(myPrivateLink.id())
- *             .snowflake(GlobalConnectionSnowflakeArgs.builder()
- *                 .account("my-snowflake-account")
- *                 .database("MY_DATABASE")
- *                 .warehouse("MY_WAREHOUSE")
- *                 .client_session_keep_alive(false)
- *                 .allow_sso(true)
- *                 .oauth_client_id("yourclientid")
- *                 .oauth_client_secret("yourclientsecret")
- *                 .build())
- *             .build());
- * 
  *         var bigquery = new GlobalConnection("bigquery", GlobalConnectionArgs.builder()
  *             .name("My BigQuery connection")
  *             .bigquery(GlobalConnectionBigqueryArgs.builder()
@@ -85,11 +73,76 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         var databricks = new GlobalConnection("databricks", GlobalConnectionArgs.builder()
+ *             .name("My Databricks connection")
+ *             .databricks(GlobalConnectionDatabricksArgs.builder()
+ *                 .host("my-databricks-host.cloud.databricks.com")
+ *                 .http_path("/sql/my/http/path")
+ *                 .catalog("dbt_catalog")
+ *                 .client_id("yourclientid")
+ *                 .client_secret("yourclientsecret")
+ *                 .build())
+ *             .build());
+ * 
+ *         var snowflake = new GlobalConnection("snowflake", GlobalConnectionArgs.builder()
+ *             .name("My Snowflake connection")
+ *             .privateLinkEndpointId(myPrivateLink.id())
+ *             .snowflake(GlobalConnectionSnowflakeArgs.builder()
+ *                 .account("my-snowflake-account")
+ *                 .database("MY_DATABASE")
+ *                 .warehouse("MY_WAREHOUSE")
+ *                 .client_session_keep_alive(false)
+ *                 .allow_sso(true)
+ *                 .oauth_client_id("yourclientid")
+ *                 .oauth_client_secret("yourclientsecret")
+ *                 .build())
+ *             .build());
+ * 
  *     }
  * }
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Import
+ * 
+ * A project-scoped connection can be imported as a global connection by specifying the connection ID
+ * 
+ * Migrating from project-scoped connections to global connections could be done by:
+ * 
+ * 1. Adding the config for the global connection and importing it (see below)
+ * 
+ * 2. Removing the project-scoped connection from the config AND from the state
+ *    
+ *    - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply
+ * 
+ * using  import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_global_connection.my_connection
+ * 
+ *   id = &#34;connection_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_global_connection.my_connection
+ * 
+ *   id = &#34;1234&#34;
+ * 
+ * }
+ * 
+ * using the older import command
+ * 
+ * ```sh
+ * $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection &#34;connection_id&#34;
+ * ```
+ * 
+ * ```sh
+ * $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
+ * ```
  * 
  */
 @ResourceType(type="dbtcloud:index/globalConnection:GlobalConnection")
@@ -113,6 +166,20 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<GlobalConnectionBigquery>> bigquery() {
         return Codegen.optional(this.bigquery);
+    }
+    /**
+     * Databricks connection configuration
+     * 
+     */
+    @Export(name="databricks", refs={GlobalConnectionDatabricks.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionDatabricks> databricks;
+
+    /**
+     * @return Databricks connection configuration
+     * 
+     */
+    public Output<Optional<GlobalConnectionDatabricks>> databricks() {
+        return Codegen.optional(this.databricks);
     }
     /**
      * Whether the connection can use an SSH tunnel

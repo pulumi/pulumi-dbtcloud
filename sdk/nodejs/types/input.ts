@@ -150,6 +150,29 @@ export interface GlobalConnectionBigquery {
     tokenUri: pulumi.Input<string>;
 }
 
+export interface GlobalConnectionDatabricks {
+    /**
+     * Catalog name if Unity Catalog is enabled in your Databricks workspace.
+     */
+    catalog?: pulumi.Input<string>;
+    /**
+     * Required to enable Databricks OAuth authentication for IDE developers.
+     */
+    clientId?: pulumi.Input<string>;
+    /**
+     * Required to enable Databricks OAuth authentication for IDE developers.
+     */
+    clientSecret?: pulumi.Input<string>;
+    /**
+     * The hostname of the Databricks cluster or SQL warehouse.
+     */
+    host: pulumi.Input<string>;
+    /**
+     * The HTTP path of the Databricks cluster or SQL warehouse.
+     */
+    httpPath: pulumi.Input<string>;
+}
+
 export interface GlobalConnectionSnowflake {
     /**
      * The Snowflake account name

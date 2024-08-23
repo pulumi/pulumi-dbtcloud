@@ -17,17 +17,21 @@ __all__ = ['GlobalConnectionArgs', 'GlobalConnection']
 class GlobalConnectionArgs:
     def __init__(__self__, *,
                  bigquery: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']] = None,
+                 databricks: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[str]] = None,
                  snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None):
         """
         The set of arguments for constructing a GlobalConnection resource.
+        :param pulumi.Input['GlobalConnectionDatabricksArgs'] databricks: Databricks connection configuration
         :param pulumi.Input[str] name: Connection name
         :param pulumi.Input[str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input['GlobalConnectionSnowflakeArgs'] snowflake: Snowflake connection configuration
         """
         if bigquery is not None:
             pulumi.set(__self__, "bigquery", bigquery)
+        if databricks is not None:
+            pulumi.set(__self__, "databricks", databricks)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if private_link_endpoint_id is not None:
@@ -43,6 +47,18 @@ class GlobalConnectionArgs:
     @bigquery.setter
     def bigquery(self, value: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']]):
         pulumi.set(self, "bigquery", value)
+
+    @property
+    @pulumi.getter
+    def databricks(self) -> Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]:
+        """
+        Databricks connection configuration
+        """
+        return pulumi.get(self, "databricks")
+
+    @databricks.setter
+    def databricks(self, value: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]):
+        pulumi.set(self, "databricks", value)
 
     @property
     @pulumi.getter
@@ -86,6 +102,7 @@ class _GlobalConnectionState:
     def __init__(__self__, *,
                  adapter_version: Optional[pulumi.Input[str]] = None,
                  bigquery: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']] = None,
+                 databricks: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']] = None,
                  is_ssh_tunnel_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oauth_configuration_id: Optional[pulumi.Input[int]] = None,
@@ -94,6 +111,7 @@ class _GlobalConnectionState:
         """
         Input properties used for looking up and filtering GlobalConnection resources.
         :param pulumi.Input[str] adapter_version: Version of the adapter
+        :param pulumi.Input['GlobalConnectionDatabricksArgs'] databricks: Databricks connection configuration
         :param pulumi.Input[bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
         :param pulumi.Input[str] name: Connection name
         :param pulumi.Input[str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
@@ -103,6 +121,8 @@ class _GlobalConnectionState:
             pulumi.set(__self__, "adapter_version", adapter_version)
         if bigquery is not None:
             pulumi.set(__self__, "bigquery", bigquery)
+        if databricks is not None:
+            pulumi.set(__self__, "databricks", databricks)
         if is_ssh_tunnel_enabled is not None:
             pulumi.set(__self__, "is_ssh_tunnel_enabled", is_ssh_tunnel_enabled)
         if name is not None:
@@ -134,6 +154,18 @@ class _GlobalConnectionState:
     @bigquery.setter
     def bigquery(self, value: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']]):
         pulumi.set(self, "bigquery", value)
+
+    @property
+    @pulumi.getter
+    def databricks(self) -> Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]:
+        """
+        Databricks connection configuration
+        """
+        return pulumi.get(self, "databricks")
+
+    @databricks.setter
+    def databricks(self, value: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]):
+        pulumi.set(self, "databricks", value)
 
     @property
     @pulumi.getter(name="isSshTunnelEnabled")
@@ -199,6 +231,7 @@ class GlobalConnection(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
+                 databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[str]] = None,
                  snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
@@ -208,11 +241,52 @@ class GlobalConnection(pulumi.CustomResource):
 
         Those connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
 
-        For now, only BigQuery and Snowflake connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
+        For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
         but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+
+        ## Import
+
+        A project-scoped connection can be imported as a global connection by specifying the connection ID
+
+        Migrating from project-scoped connections to global connections could be done by:
+
+        1. Adding the config for the global connection and importing it (see below)
+
+        2. Removing the project-scoped connection from the config AND from the state
+           
+           - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply
+
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_global_connection.my_connection
+
+          id = "connection_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_global_connection.my_connection
+
+          id = "1234"
+
+        }
+
+        using the older import command
+
+        ```sh
+        $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection "connection_id"
+        ```
+
+        ```sh
+        $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']] databricks: Databricks connection configuration
         :param pulumi.Input[str] name: Connection name
         :param pulumi.Input[str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
@@ -228,8 +302,48 @@ class GlobalConnection(pulumi.CustomResource):
 
         Those connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
 
-        For now, only BigQuery and Snowflake connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
+        For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
         but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+
+        ## Import
+
+        A project-scoped connection can be imported as a global connection by specifying the connection ID
+
+        Migrating from project-scoped connections to global connections could be done by:
+
+        1. Adding the config for the global connection and importing it (see below)
+
+        2. Removing the project-scoped connection from the config AND from the state
+           
+           - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply
+
+        using  import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_global_connection.my_connection
+
+          id = "connection_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_global_connection.my_connection
+
+          id = "1234"
+
+        }
+
+        using the older import command
+
+        ```sh
+        $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection "connection_id"
+        ```
+
+        ```sh
+        $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
+        ```
 
         :param str resource_name: The name of the resource.
         :param GlobalConnectionArgs args: The arguments to use to populate this resource's properties.
@@ -247,6 +361,7 @@ class GlobalConnection(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
+                 databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[str]] = None,
                  snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
@@ -260,6 +375,7 @@ class GlobalConnection(pulumi.CustomResource):
             __props__ = GlobalConnectionArgs.__new__(GlobalConnectionArgs)
 
             __props__.__dict__["bigquery"] = bigquery
+            __props__.__dict__["databricks"] = databricks
             __props__.__dict__["name"] = name
             __props__.__dict__["private_link_endpoint_id"] = private_link_endpoint_id
             __props__.__dict__["snowflake"] = snowflake
@@ -278,6 +394,7 @@ class GlobalConnection(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             adapter_version: Optional[pulumi.Input[str]] = None,
             bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
+            databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
             is_ssh_tunnel_enabled: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             oauth_configuration_id: Optional[pulumi.Input[int]] = None,
@@ -291,6 +408,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] adapter_version: Version of the adapter
+        :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']] databricks: Databricks connection configuration
         :param pulumi.Input[bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
         :param pulumi.Input[str] name: Connection name
         :param pulumi.Input[str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
@@ -302,6 +420,7 @@ class GlobalConnection(pulumi.CustomResource):
 
         __props__.__dict__["adapter_version"] = adapter_version
         __props__.__dict__["bigquery"] = bigquery
+        __props__.__dict__["databricks"] = databricks
         __props__.__dict__["is_ssh_tunnel_enabled"] = is_ssh_tunnel_enabled
         __props__.__dict__["name"] = name
         __props__.__dict__["oauth_configuration_id"] = oauth_configuration_id
@@ -321,6 +440,14 @@ class GlobalConnection(pulumi.CustomResource):
     @pulumi.getter
     def bigquery(self) -> pulumi.Output[Optional['outputs.GlobalConnectionBigquery']]:
         return pulumi.get(self, "bigquery")
+
+    @property
+    @pulumi.getter
+    def databricks(self) -> pulumi.Output[Optional['outputs.GlobalConnectionDatabricks']]:
+        """
+        Databricks connection configuration
+        """
+        return pulumi.get(self, "databricks")
 
     @property
     @pulumi.getter(name="isSshTunnelEnabled")

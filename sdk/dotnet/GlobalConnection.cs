@@ -14,8 +14,48 @@ namespace Pulumi.DbtCloud
     /// 
     /// Those connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
     /// 
-    /// For now, only BigQuery and Snowflake connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
+    /// For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
     /// but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+    /// 
+    /// ## Import
+    /// 
+    /// A project-scoped connection can be imported as a global connection by specifying the connection ID
+    /// 
+    /// Migrating from project-scoped connections to global connections could be done by:
+    /// 
+    /// 1. Adding the config for the global connection and importing it (see below)
+    /// 
+    /// 2. Removing the project-scoped connection from the config AND from the state
+    ///    
+    ///    - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply
+    /// 
+    /// using  import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_global_connection.my_connection
+    /// 
+    ///   id = "connection_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_global_connection.my_connection
+    /// 
+    ///   id = "1234"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
+    /// 
+    /// ```sh
+    /// $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection "connection_id"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
+    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/globalConnection:GlobalConnection")]
     public partial class GlobalConnection : global::Pulumi.CustomResource
@@ -28,6 +68,12 @@ namespace Pulumi.DbtCloud
 
         [Output("bigquery")]
         public Output<Outputs.GlobalConnectionBigquery?> Bigquery { get; private set; } = null!;
+
+        /// <summary>
+        /// Databricks connection configuration
+        /// </summary>
+        [Output("databricks")]
+        public Output<Outputs.GlobalConnectionDatabricks?> Databricks { get; private set; } = null!;
 
         /// <summary>
         /// Whether the connection can use an SSH tunnel
@@ -107,6 +153,12 @@ namespace Pulumi.DbtCloud
         public Input<Inputs.GlobalConnectionBigqueryArgs>? Bigquery { get; set; }
 
         /// <summary>
+        /// Databricks connection configuration
+        /// </summary>
+        [Input("databricks")]
+        public Input<Inputs.GlobalConnectionDatabricksArgs>? Databricks { get; set; }
+
+        /// <summary>
         /// Connection name
         /// </summary>
         [Input("name")]
@@ -140,6 +192,12 @@ namespace Pulumi.DbtCloud
 
         [Input("bigquery")]
         public Input<Inputs.GlobalConnectionBigqueryGetArgs>? Bigquery { get; set; }
+
+        /// <summary>
+        /// Databricks connection configuration
+        /// </summary>
+        [Input("databricks")]
+        public Input<Inputs.GlobalConnectionDatabricksGetArgs>? Databricks { get; set; }
 
         /// <summary>
         /// Whether the connection can use an SSH tunnel
