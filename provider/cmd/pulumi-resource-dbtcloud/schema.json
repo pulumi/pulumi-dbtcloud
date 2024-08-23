@@ -234,6 +234,35 @@
                 }
             }
         },
+        "dbtcloud:index/GlobalConnectionDatabricks:GlobalConnectionDatabricks": {
+            "properties": {
+                "catalog": {
+                    "type": "string",
+                    "description": "Catalog name if Unity Catalog is enabled in your Databricks workspace.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "Required to enable Databricks OAuth authentication for IDE developers.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "Required to enable Databricks OAuth authentication for IDE developers.\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The hostname of the Databricks cluster or SQL warehouse.\n"
+                },
+                "httpPath": {
+                    "type": "string",
+                    "description": "The HTTP path of the Databricks cluster or SQL warehouse.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "host",
+                "httpPath"
+            ]
+        },
         "dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake": {
             "properties": {
                 "account": {
@@ -2463,7 +2492,7 @@
             }
         },
         "dbtcloud:index/globalConnection:GlobalConnection": {
-            "description": "This resource can be used to create global connections as introduced in dbt Cloud in August 2024.\n\nThose connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.\n\nFor now, only BigQuery and Snowflake connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` , \nbut all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.GlobalConnection;\nimport com.pulumi.dbtcloud.GlobalConnectionArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var snowflake = new GlobalConnection(\"snowflake\", GlobalConnectionArgs.builder()\n            .name(\"My Snowflake connection\")\n            .privateLinkEndpointId(myPrivateLink.id())\n            .snowflake(GlobalConnectionSnowflakeArgs.builder()\n                .account(\"my-snowflake-account\")\n                .database(\"MY_DATABASE\")\n                .warehouse(\"MY_WAREHOUSE\")\n                .client_session_keep_alive(false)\n                .allow_sso(true)\n                .oauth_client_id(\"yourclientid\")\n                .oauth_client_secret(\"yourclientsecret\")\n                .build())\n            .build());\n\n        var bigquery = new GlobalConnection(\"bigquery\", GlobalConnectionArgs.builder()\n            .name(\"My BigQuery connection\")\n            .bigquery(GlobalConnectionBigqueryArgs.builder()\n                .gcp_project_id(\"my-gcp-project-id\")\n                .timeout_seconds(1000)\n                .private_key_id(\"my-private-key-id\")\n                .private_key(\"ABCDEFGHIJKL\")\n                .client_email(\"my_client_email\")\n                .client_id(\"my_client_id\")\n                .auth_uri(\"my_auth_uri\")\n                .token_uri(\"my_token_uri\")\n                .auth_provider_x509_cert_url(\"my_auth_provider_x509_cert_url\")\n                .client_x509_cert_url(\"my_client_x509_cert_url\")\n                .application_id(\"oauth_application_id\")\n                .application_secret(\"oauth_secret_id\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  snowflake:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Snowflake connection\n      privateLinkEndpointId: ${myPrivateLink.id}\n      snowflake:\n        account: my-snowflake-account\n        database: MY_DATABASE\n        warehouse: MY_WAREHOUSE\n        client_session_keep_alive: false\n        allow_sso: true\n        oauth_client_id: yourclientid\n        oauth_client_secret: yourclientsecret\n  bigquery:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My BigQuery connection\n      bigquery:\n        gcp_project_id: my-gcp-project-id\n        timeout_seconds: 1000\n        private_key_id: my-private-key-id\n        private_key: ABCDEFGHIJKL\n        client_email: my_client_email\n        client_id: my_client_id\n        auth_uri: my_auth_uri\n        token_uri: my_token_uri\n        auth_provider_x509_cert_url: my_auth_provider_x509_cert_url\n        client_x509_cert_url: my_client_x509_cert_url\n        application_id: oauth_application_id\n        application_secret: oauth_secret_id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "This resource can be used to create global connections as introduced in dbt Cloud in August 2024.\n\nThose connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.\n\nFor now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` , \nbut all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.GlobalConnection;\nimport com.pulumi.dbtcloud.GlobalConnectionArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var bigquery = new GlobalConnection(\"bigquery\", GlobalConnectionArgs.builder()\n            .name(\"My BigQuery connection\")\n            .bigquery(GlobalConnectionBigqueryArgs.builder()\n                .gcp_project_id(\"my-gcp-project-id\")\n                .timeout_seconds(1000)\n                .private_key_id(\"my-private-key-id\")\n                .private_key(\"ABCDEFGHIJKL\")\n                .client_email(\"my_client_email\")\n                .client_id(\"my_client_id\")\n                .auth_uri(\"my_auth_uri\")\n                .token_uri(\"my_token_uri\")\n                .auth_provider_x509_cert_url(\"my_auth_provider_x509_cert_url\")\n                .client_x509_cert_url(\"my_client_x509_cert_url\")\n                .application_id(\"oauth_application_id\")\n                .application_secret(\"oauth_secret_id\")\n                .build())\n            .build());\n\n        var databricks = new GlobalConnection(\"databricks\", GlobalConnectionArgs.builder()\n            .name(\"My Databricks connection\")\n            .databricks(GlobalConnectionDatabricksArgs.builder()\n                .host(\"my-databricks-host.cloud.databricks.com\")\n                .http_path(\"/sql/my/http/path\")\n                .catalog(\"dbt_catalog\")\n                .client_id(\"yourclientid\")\n                .client_secret(\"yourclientsecret\")\n                .build())\n            .build());\n\n        var snowflake = new GlobalConnection(\"snowflake\", GlobalConnectionArgs.builder()\n            .name(\"My Snowflake connection\")\n            .privateLinkEndpointId(myPrivateLink.id())\n            .snowflake(GlobalConnectionSnowflakeArgs.builder()\n                .account(\"my-snowflake-account\")\n                .database(\"MY_DATABASE\")\n                .warehouse(\"MY_WAREHOUSE\")\n                .client_session_keep_alive(false)\n                .allow_sso(true)\n                .oauth_client_id(\"yourclientid\")\n                .oauth_client_secret(\"yourclientsecret\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  bigquery:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My BigQuery connection\n      bigquery:\n        gcp_project_id: my-gcp-project-id\n        timeout_seconds: 1000\n        private_key_id: my-private-key-id\n        private_key: ABCDEFGHIJKL\n        client_email: my_client_email\n        client_id: my_client_id\n        auth_uri: my_auth_uri\n        token_uri: my_token_uri\n        auth_provider_x509_cert_url: my_auth_provider_x509_cert_url\n        client_x509_cert_url: my_client_x509_cert_url\n        application_id: oauth_application_id\n        application_secret: oauth_secret_id\n  databricks:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Databricks connection\n      databricks:\n        host: my-databricks-host.cloud.databricks.com\n        http_path: /sql/my/http/path\n        catalog: dbt_catalog\n        client_id: yourclientid\n        client_secret: yourclientsecret\n  snowflake:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Snowflake connection\n      privateLinkEndpointId: ${myPrivateLink.id}\n      snowflake:\n        account: my-snowflake-account\n        database: MY_DATABASE\n        warehouse: MY_WAREHOUSE\n        client_session_keep_alive: false\n        allow_sso: true\n        oauth_client_id: yourclientid\n        oauth_client_secret: yourclientsecret\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA project-scoped connection can be imported as a global connection by specifying the connection ID\n\nMigrating from project-scoped connections to global connections could be done by:\n\n1. Adding the config for the global connection and importing it (see below)\n\n2. Removing the project-scoped connection from the config AND from the state\n\n   - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_global_connection.my_connection\n\n  id = \"connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_global_connection.my_connection\n\n  id = \"1234\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection \"connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234\n```\n\n",
             "properties": {
                 "adapterVersion": {
                     "type": "string",
@@ -2471,6 +2500,10 @@
                 },
                 "bigquery": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionBigquery:GlobalConnectionBigquery"
+                },
+                "databricks": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionDatabricks:GlobalConnectionDatabricks",
+                    "description": "Databricks connection configuration\n"
                 },
                 "isSshTunnelEnabled": {
                     "type": "boolean",
@@ -2502,6 +2535,10 @@
                 "bigquery": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionBigquery:GlobalConnectionBigquery"
                 },
+                "databricks": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionDatabricks:GlobalConnectionDatabricks",
+                    "description": "Databricks connection configuration\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Connection name\n"
@@ -2524,6 +2561,10 @@
                     },
                     "bigquery": {
                         "$ref": "#/types/dbtcloud:index/GlobalConnectionBigquery:GlobalConnectionBigquery"
+                    },
+                    "databricks": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionDatabricks:GlobalConnectionDatabricks",
+                        "description": "Databricks connection configuration\n"
                     },
                     "isSshTunnelEnabled": {
                         "type": "boolean",
