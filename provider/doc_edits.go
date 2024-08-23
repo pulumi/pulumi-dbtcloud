@@ -18,6 +18,8 @@ const postProjectExample string = `data "dbtcloud_project" "another_test_project
 func editRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
 	return append(
 		defaults,
+		removeContent(warning, "index.md"),
+		removeContent(optional, "index.md"),
 		simpleReplace("appplication_id", "applicationId"),
 		simpleReplace("appplication_id", "application_id"),
 		simpleReplace(preProjectExample, postProjectExample),
@@ -48,6 +50,21 @@ func reReplace(from string, to string) tfbridge.DocsEdit {
 		Path: "*",
 		Edit: func(_ string, content []byte) ([]byte, error) {
 			return fromR.ReplaceAll(content, toB), nil
+		},
+	}
+}
+
+var warning = []byte("~> 🚧 IMPORTANT! 🚧  \nSince 0.3, only resources starting with `dbtcloud_xxx` are allowed. If you use the legacy `dbt_cloud_xxx` ones, you will have to stay on 0.2.x or move to the new resources.\nInstruction on how to do it is available in the 0.2.x docs.")
+var optional = []byte("### Optional")
+
+// Helper func to remove a content byte from a file
+func removeContent(text []byte, path string) tfbridge.DocsEdit {
+	return tfbridge.DocsEdit{
+		Path: path,
+		Edit: func(_ string, content []byte) ([]byte, error) {
+			contentSplit := bytes.Split(content, text)
+			content = bytes.Join(contentSplit, []byte(" "))
+			return content, nil
 		},
 	}
 }
