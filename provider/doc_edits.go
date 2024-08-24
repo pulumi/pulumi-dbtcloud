@@ -53,7 +53,9 @@ func reReplace(from string, to string) tfbridge.DocsEdit {
 	}
 }
 
-var warning = []byte("~> 🚧 IMPORTANT! 🚧  \nSince 0.3, only resources starting with `dbtcloud_xxx` are allowed. If you use the legacy `dbt_cloud_xxx` ones, you will have to stay on 0.2.x or move to the new resources.\nInstruction on how to do it is available in the 0.2.x docs.")
+var warning = []byte("~> 🚧 IMPORTANT! 🚧  \nSince 0.3, only resources starting with `dbtcloud_xxx` are allowed. " +
+	"If you use the legacy `dbt_cloud_xxx` ones, you will have to stay on 0.2.x or move to the new resources.\n" +
+	"Instruction on how to do it is available in the 0.2.x docs.")
 
 // Helper func to remove a content byte from a file
 func removeContent(text []byte, path string) tfbridge.DocsEdit {
