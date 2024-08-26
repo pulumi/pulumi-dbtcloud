@@ -11,8 +11,48 @@ import * as utilities from "./utilities";
  *
  * Those connections are not linked to a project and can be linked to environments from different projects by using the `connectionId` field in the `dbtcloud.Environment` resource.
  *
- * For now, only BigQuery and Snowflake connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
+ * For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
  * but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+ *
+ * ## Import
+ *
+ * A project-scoped connection can be imported as a global connection by specifying the connection ID
+ *
+ * Migrating from project-scoped connections to global connections could be done by:
+ *
+ * 1. Adding the config for the global connection and importing it (see below)
+ *
+ * 2. Removing the project-scoped connection from the config AND from the state
+ *    
+ *    - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply
+ *
+ * using  import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_global_connection.my_connection
+ *
+ *   id = "connection_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_global_connection.my_connection
+ *
+ *   id = "1234"
+ *
+ * }
+ *
+ * using the older import command
+ *
+ * ```sh
+ * $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection "connection_id"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
+ * ```
  */
 export class GlobalConnection extends pulumi.CustomResource {
     /**
@@ -48,6 +88,10 @@ export class GlobalConnection extends pulumi.CustomResource {
     public /*out*/ readonly adapterVersion!: pulumi.Output<string>;
     public readonly bigquery!: pulumi.Output<outputs.GlobalConnectionBigquery | undefined>;
     /**
+     * Databricks connection configuration
+     */
+    public readonly databricks!: pulumi.Output<outputs.GlobalConnectionDatabricks | undefined>;
+    /**
      * Whether the connection can use an SSH tunnel
      */
     public /*out*/ readonly isSshTunnelEnabled!: pulumi.Output<boolean>;
@@ -80,6 +124,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             const state = argsOrState as GlobalConnectionState | undefined;
             resourceInputs["adapterVersion"] = state ? state.adapterVersion : undefined;
             resourceInputs["bigquery"] = state ? state.bigquery : undefined;
+            resourceInputs["databricks"] = state ? state.databricks : undefined;
             resourceInputs["isSshTunnelEnabled"] = state ? state.isSshTunnelEnabled : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oauthConfigurationId"] = state ? state.oauthConfigurationId : undefined;
@@ -88,6 +133,7 @@ export class GlobalConnection extends pulumi.CustomResource {
         } else {
             const args = argsOrState as GlobalConnectionArgs | undefined;
             resourceInputs["bigquery"] = args ? args.bigquery : undefined;
+            resourceInputs["databricks"] = args ? args.databricks : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateLinkEndpointId"] = args ? args.privateLinkEndpointId : undefined;
             resourceInputs["snowflake"] = args ? args.snowflake : undefined;
@@ -109,6 +155,10 @@ export interface GlobalConnectionState {
      */
     adapterVersion?: pulumi.Input<string>;
     bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery>;
+    /**
+     * Databricks connection configuration
+     */
+    databricks?: pulumi.Input<inputs.GlobalConnectionDatabricks>;
     /**
      * Whether the connection can use an SSH tunnel
      */
@@ -133,6 +183,10 @@ export interface GlobalConnectionState {
  */
 export interface GlobalConnectionArgs {
     bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery>;
+    /**
+     * Databricks connection configuration
+     */
+    databricks?: pulumi.Input<inputs.GlobalConnectionDatabricks>;
     /**
      * Connection name
      */

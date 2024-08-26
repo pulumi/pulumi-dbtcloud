@@ -365,6 +365,29 @@ export interface GlobalConnectionBigquery {
     tokenUri: string;
 }
 
+export interface GlobalConnectionDatabricks {
+    /**
+     * Catalog name if Unity Catalog is enabled in your Databricks workspace.
+     */
+    catalog?: string;
+    /**
+     * Required to enable Databricks OAuth authentication for IDE developers.
+     */
+    clientId?: string;
+    /**
+     * Required to enable Databricks OAuth authentication for IDE developers.
+     */
+    clientSecret?: string;
+    /**
+     * The hostname of the Databricks cluster or SQL warehouse.
+     */
+    host: string;
+    /**
+     * The HTTP path of the Databricks cluster or SQL warehouse.
+     */
+    httpPath: string;
+}
+
 export interface GlobalConnectionSnowflake {
     /**
      * The Snowflake account name

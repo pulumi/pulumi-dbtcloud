@@ -12,6 +12,7 @@ from . import outputs
 
 __all__ = [
     'GlobalConnectionBigquery',
+    'GlobalConnectionDatabricks',
     'GlobalConnectionSnowflake',
     'GroupGroupPermission',
     'GroupPartialPermissionsGroupPermission',
@@ -372,6 +373,92 @@ class GlobalConnectionBigquery(dict):
         Timeout in seconds for queries
         """
         return pulumi.get(self, "timeout_seconds")
+
+
+@pulumi.output_type
+class GlobalConnectionDatabricks(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "httpPath":
+            suggest = "http_path"
+        elif key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GlobalConnectionDatabricks. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GlobalConnectionDatabricks.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GlobalConnectionDatabricks.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host: str,
+                 http_path: str,
+                 catalog: Optional[str] = None,
+                 client_id: Optional[str] = None,
+                 client_secret: Optional[str] = None):
+        """
+        :param str host: The hostname of the Databricks cluster or SQL warehouse.
+        :param str http_path: The HTTP path of the Databricks cluster or SQL warehouse.
+        :param str catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace.
+        :param str client_id: Required to enable Databricks OAuth authentication for IDE developers.
+        :param str client_secret: Required to enable Databricks OAuth authentication for IDE developers.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "http_path", http_path)
+        if catalog is not None:
+            pulumi.set(__self__, "catalog", catalog)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The hostname of the Databricks cluster or SQL warehouse.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="httpPath")
+    def http_path(self) -> str:
+        """
+        The HTTP path of the Databricks cluster or SQL warehouse.
+        """
+        return pulumi.get(self, "http_path")
+
+    @property
+    @pulumi.getter
+    def catalog(self) -> Optional[str]:
+        """
+        Catalog name if Unity Catalog is enabled in your Databricks workspace.
+        """
+        return pulumi.get(self, "catalog")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[str]:
+        """
+        Required to enable Databricks OAuth authentication for IDE developers.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[str]:
+        """
+        Required to enable Databricks OAuth authentication for IDE developers.
+        """
+        return pulumi.get(self, "client_secret")
 
 
 @pulumi.output_type

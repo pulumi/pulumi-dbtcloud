@@ -587,6 +587,219 @@ func (o GlobalConnectionBigqueryPtrOutput) TokenUri() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GlobalConnectionDatabricks struct {
+	// Catalog name if Unity Catalog is enabled in your Databricks workspace.
+	Catalog *string `pulumi:"catalog"`
+	// Required to enable Databricks OAuth authentication for IDE developers.
+	ClientId *string `pulumi:"clientId"`
+	// Required to enable Databricks OAuth authentication for IDE developers.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// The hostname of the Databricks cluster or SQL warehouse.
+	Host string `pulumi:"host"`
+	// The HTTP path of the Databricks cluster or SQL warehouse.
+	HttpPath string `pulumi:"httpPath"`
+}
+
+// GlobalConnectionDatabricksInput is an input type that accepts GlobalConnectionDatabricksArgs and GlobalConnectionDatabricksOutput values.
+// You can construct a concrete instance of `GlobalConnectionDatabricksInput` via:
+//
+//	GlobalConnectionDatabricksArgs{...}
+type GlobalConnectionDatabricksInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionDatabricksOutput() GlobalConnectionDatabricksOutput
+	ToGlobalConnectionDatabricksOutputWithContext(context.Context) GlobalConnectionDatabricksOutput
+}
+
+type GlobalConnectionDatabricksArgs struct {
+	// Catalog name if Unity Catalog is enabled in your Databricks workspace.
+	Catalog pulumi.StringPtrInput `pulumi:"catalog"`
+	// Required to enable Databricks OAuth authentication for IDE developers.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// Required to enable Databricks OAuth authentication for IDE developers.
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
+	// The hostname of the Databricks cluster or SQL warehouse.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The HTTP path of the Databricks cluster or SQL warehouse.
+	HttpPath pulumi.StringInput `pulumi:"httpPath"`
+}
+
+func (GlobalConnectionDatabricksArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionDatabricks)(nil)).Elem()
+}
+
+func (i GlobalConnectionDatabricksArgs) ToGlobalConnectionDatabricksOutput() GlobalConnectionDatabricksOutput {
+	return i.ToGlobalConnectionDatabricksOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionDatabricksArgs) ToGlobalConnectionDatabricksOutputWithContext(ctx context.Context) GlobalConnectionDatabricksOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionDatabricksOutput)
+}
+
+func (i GlobalConnectionDatabricksArgs) ToGlobalConnectionDatabricksPtrOutput() GlobalConnectionDatabricksPtrOutput {
+	return i.ToGlobalConnectionDatabricksPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionDatabricksArgs) ToGlobalConnectionDatabricksPtrOutputWithContext(ctx context.Context) GlobalConnectionDatabricksPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionDatabricksOutput).ToGlobalConnectionDatabricksPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionDatabricksPtrInput is an input type that accepts GlobalConnectionDatabricksArgs, GlobalConnectionDatabricksPtr and GlobalConnectionDatabricksPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionDatabricksPtrInput` via:
+//
+//	        GlobalConnectionDatabricksArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionDatabricksPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionDatabricksPtrOutput() GlobalConnectionDatabricksPtrOutput
+	ToGlobalConnectionDatabricksPtrOutputWithContext(context.Context) GlobalConnectionDatabricksPtrOutput
+}
+
+type globalConnectionDatabricksPtrType GlobalConnectionDatabricksArgs
+
+func GlobalConnectionDatabricksPtr(v *GlobalConnectionDatabricksArgs) GlobalConnectionDatabricksPtrInput {
+	return (*globalConnectionDatabricksPtrType)(v)
+}
+
+func (*globalConnectionDatabricksPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionDatabricks)(nil)).Elem()
+}
+
+func (i *globalConnectionDatabricksPtrType) ToGlobalConnectionDatabricksPtrOutput() GlobalConnectionDatabricksPtrOutput {
+	return i.ToGlobalConnectionDatabricksPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionDatabricksPtrType) ToGlobalConnectionDatabricksPtrOutputWithContext(ctx context.Context) GlobalConnectionDatabricksPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionDatabricksPtrOutput)
+}
+
+type GlobalConnectionDatabricksOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionDatabricksOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionDatabricks)(nil)).Elem()
+}
+
+func (o GlobalConnectionDatabricksOutput) ToGlobalConnectionDatabricksOutput() GlobalConnectionDatabricksOutput {
+	return o
+}
+
+func (o GlobalConnectionDatabricksOutput) ToGlobalConnectionDatabricksOutputWithContext(ctx context.Context) GlobalConnectionDatabricksOutput {
+	return o
+}
+
+func (o GlobalConnectionDatabricksOutput) ToGlobalConnectionDatabricksPtrOutput() GlobalConnectionDatabricksPtrOutput {
+	return o.ToGlobalConnectionDatabricksPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionDatabricksOutput) ToGlobalConnectionDatabricksPtrOutputWithContext(ctx context.Context) GlobalConnectionDatabricksPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionDatabricks) *GlobalConnectionDatabricks {
+		return &v
+	}).(GlobalConnectionDatabricksPtrOutput)
+}
+
+// Catalog name if Unity Catalog is enabled in your Databricks workspace.
+func (o GlobalConnectionDatabricksOutput) Catalog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionDatabricks) *string { return v.Catalog }).(pulumi.StringPtrOutput)
+}
+
+// Required to enable Databricks OAuth authentication for IDE developers.
+func (o GlobalConnectionDatabricksOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionDatabricks) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// Required to enable Databricks OAuth authentication for IDE developers.
+func (o GlobalConnectionDatabricksOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionDatabricks) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// The hostname of the Databricks cluster or SQL warehouse.
+func (o GlobalConnectionDatabricksOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionDatabricks) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The HTTP path of the Databricks cluster or SQL warehouse.
+func (o GlobalConnectionDatabricksOutput) HttpPath() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionDatabricks) string { return v.HttpPath }).(pulumi.StringOutput)
+}
+
+type GlobalConnectionDatabricksPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionDatabricksPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionDatabricks)(nil)).Elem()
+}
+
+func (o GlobalConnectionDatabricksPtrOutput) ToGlobalConnectionDatabricksPtrOutput() GlobalConnectionDatabricksPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionDatabricksPtrOutput) ToGlobalConnectionDatabricksPtrOutputWithContext(ctx context.Context) GlobalConnectionDatabricksPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionDatabricksPtrOutput) Elem() GlobalConnectionDatabricksOutput {
+	return o.ApplyT(func(v *GlobalConnectionDatabricks) GlobalConnectionDatabricks {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionDatabricks
+		return ret
+	}).(GlobalConnectionDatabricksOutput)
+}
+
+// Catalog name if Unity Catalog is enabled in your Databricks workspace.
+func (o GlobalConnectionDatabricksPtrOutput) Catalog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionDatabricks) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Catalog
+	}).(pulumi.StringPtrOutput)
+}
+
+// Required to enable Databricks OAuth authentication for IDE developers.
+func (o GlobalConnectionDatabricksPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionDatabricks) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Required to enable Databricks OAuth authentication for IDE developers.
+func (o GlobalConnectionDatabricksPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionDatabricks) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// The hostname of the Databricks cluster or SQL warehouse.
+func (o GlobalConnectionDatabricksPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionDatabricks) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// The HTTP path of the Databricks cluster or SQL warehouse.
+func (o GlobalConnectionDatabricksPtrOutput) HttpPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionDatabricks) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.HttpPath
+	}).(pulumi.StringPtrOutput)
+}
+
 type GlobalConnectionSnowflake struct {
 	// The Snowflake account name
 	Account string `pulumi:"account"`
@@ -2899,6 +3112,8 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionBigqueryInput)(nil)).Elem(), GlobalConnectionBigqueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionBigqueryPtrInput)(nil)).Elem(), GlobalConnectionBigqueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionDatabricksInput)(nil)).Elem(), GlobalConnectionDatabricksArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionDatabricksPtrInput)(nil)).Elem(), GlobalConnectionDatabricksArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSnowflakeInput)(nil)).Elem(), GlobalConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSnowflakePtrInput)(nil)).Elem(), GlobalConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionInput)(nil)).Elem(), GroupGroupPermissionArgs{})
@@ -2932,6 +3147,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(GlobalConnectionBigqueryOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionBigqueryPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionDatabricksOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionDatabricksPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionSnowflakeOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionSnowflakePtrOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionOutput{})

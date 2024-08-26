@@ -15,14 +15,56 @@ import (
 //
 // Those connections are not linked to a project and can be linked to environments from different projects by using the `connectionId` field in the `Environment` resource.
 //
-// For now, only BigQuery and Snowflake connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
+// For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
 // but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+//
+// ## Import
+//
+// # A project-scoped connection can be imported as a global connection by specifying the connection ID
+//
+// Migrating from project-scoped connections to global connections could be done by:
+//
+// 1. Adding the config for the global connection and importing it (see below)
+//
+// 2. Removing the project-scoped connection from the config AND from the state
+//
+//   - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply
+//
+// using  import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_global_connection.my_connection
+//
+//	id = "connection_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_global_connection.my_connection
+//
+//	id = "1234"
+//
+// }
+//
+// using the older import command
+//
+// ```sh
+// $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection "connection_id"
+// ```
+//
+// ```sh
+// $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
+// ```
 type GlobalConnection struct {
 	pulumi.CustomResourceState
 
 	// Version of the adapter
 	AdapterVersion pulumi.StringOutput               `pulumi:"adapterVersion"`
 	Bigquery       GlobalConnectionBigqueryPtrOutput `pulumi:"bigquery"`
+	// Databricks connection configuration
+	Databricks GlobalConnectionDatabricksPtrOutput `pulumi:"databricks"`
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled pulumi.BoolOutput `pulumi:"isSshTunnelEnabled"`
 	// Connection name
@@ -67,6 +109,8 @@ type globalConnectionState struct {
 	// Version of the adapter
 	AdapterVersion *string                   `pulumi:"adapterVersion"`
 	Bigquery       *GlobalConnectionBigquery `pulumi:"bigquery"`
+	// Databricks connection configuration
+	Databricks *GlobalConnectionDatabricks `pulumi:"databricks"`
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled *bool `pulumi:"isSshTunnelEnabled"`
 	// Connection name
@@ -82,6 +126,8 @@ type GlobalConnectionState struct {
 	// Version of the adapter
 	AdapterVersion pulumi.StringPtrInput
 	Bigquery       GlobalConnectionBigqueryPtrInput
+	// Databricks connection configuration
+	Databricks GlobalConnectionDatabricksPtrInput
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled pulumi.BoolPtrInput
 	// Connection name
@@ -99,6 +145,8 @@ func (GlobalConnectionState) ElementType() reflect.Type {
 
 type globalConnectionArgs struct {
 	Bigquery *GlobalConnectionBigquery `pulumi:"bigquery"`
+	// Databricks connection configuration
+	Databricks *GlobalConnectionDatabricks `pulumi:"databricks"`
 	// Connection name
 	Name *string `pulumi:"name"`
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
@@ -110,6 +158,8 @@ type globalConnectionArgs struct {
 // The set of arguments for constructing a GlobalConnection resource.
 type GlobalConnectionArgs struct {
 	Bigquery GlobalConnectionBigqueryPtrInput
+	// Databricks connection configuration
+	Databricks GlobalConnectionDatabricksPtrInput
 	// Connection name
 	Name pulumi.StringPtrInput
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
@@ -212,6 +262,11 @@ func (o GlobalConnectionOutput) AdapterVersion() pulumi.StringOutput {
 
 func (o GlobalConnectionOutput) Bigquery() GlobalConnectionBigqueryPtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionBigqueryPtrOutput { return v.Bigquery }).(GlobalConnectionBigqueryPtrOutput)
+}
+
+// Databricks connection configuration
+func (o GlobalConnectionOutput) Databricks() GlobalConnectionDatabricksPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionDatabricksPtrOutput { return v.Databricks }).(GlobalConnectionDatabricksPtrOutput)
 }
 
 // Whether the connection can use an SSH tunnel
