@@ -16,28 +16,80 @@ __all__ = ['GlobalConnectionArgs', 'GlobalConnection']
 @pulumi.input_type
 class GlobalConnectionArgs:
     def __init__(__self__, *,
+                 apache_spark: Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']] = None,
+                 athena: Optional[pulumi.Input['GlobalConnectionAthenaArgs']] = None,
                  bigquery: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']] = None,
                  databricks: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']] = None,
+                 fabric: Optional[pulumi.Input['GlobalConnectionFabricArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 postgres: Optional[pulumi.Input['GlobalConnectionPostgresArgs']] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[str]] = None,
-                 snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None):
+                 redshift: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']] = None,
+                 snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None,
+                 starburst: Optional[pulumi.Input['GlobalConnectionStarburstArgs']] = None,
+                 synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None):
         """
         The set of arguments for constructing a GlobalConnection resource.
+        :param pulumi.Input['GlobalConnectionApacheSparkArgs'] apache_spark: Apache Spark connection configuration.
+        :param pulumi.Input['GlobalConnectionAthenaArgs'] athena: Athena connection configuration.
         :param pulumi.Input['GlobalConnectionDatabricksArgs'] databricks: Databricks connection configuration
+        :param pulumi.Input['GlobalConnectionFabricArgs'] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[str] name: Connection name
+        :param pulumi.Input['GlobalConnectionPostgresArgs'] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+        :param pulumi.Input['GlobalConnectionRedshiftArgs'] redshift: Redshift connection configuration
         :param pulumi.Input['GlobalConnectionSnowflakeArgs'] snowflake: Snowflake connection configuration
+        :param pulumi.Input['GlobalConnectionStarburstArgs'] starburst: Starburst/Trino connection configuration.
+        :param pulumi.Input['GlobalConnectionSynapseArgs'] synapse: Azure Synapse Analytics connection configuration.
         """
+        if apache_spark is not None:
+            pulumi.set(__self__, "apache_spark", apache_spark)
+        if athena is not None:
+            pulumi.set(__self__, "athena", athena)
         if bigquery is not None:
             pulumi.set(__self__, "bigquery", bigquery)
         if databricks is not None:
             pulumi.set(__self__, "databricks", databricks)
+        if fabric is not None:
+            pulumi.set(__self__, "fabric", fabric)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if postgres is not None:
+            pulumi.set(__self__, "postgres", postgres)
         if private_link_endpoint_id is not None:
             pulumi.set(__self__, "private_link_endpoint_id", private_link_endpoint_id)
+        if redshift is not None:
+            pulumi.set(__self__, "redshift", redshift)
         if snowflake is not None:
             pulumi.set(__self__, "snowflake", snowflake)
+        if starburst is not None:
+            pulumi.set(__self__, "starburst", starburst)
+        if synapse is not None:
+            pulumi.set(__self__, "synapse", synapse)
+
+    @property
+    @pulumi.getter(name="apacheSpark")
+    def apache_spark(self) -> Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']]:
+        """
+        Apache Spark connection configuration.
+        """
+        return pulumi.get(self, "apache_spark")
+
+    @apache_spark.setter
+    def apache_spark(self, value: Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']]):
+        pulumi.set(self, "apache_spark", value)
+
+    @property
+    @pulumi.getter
+    def athena(self) -> Optional[pulumi.Input['GlobalConnectionAthenaArgs']]:
+        """
+        Athena connection configuration.
+        """
+        return pulumi.get(self, "athena")
+
+    @athena.setter
+    def athena(self, value: Optional[pulumi.Input['GlobalConnectionAthenaArgs']]):
+        pulumi.set(self, "athena", value)
 
     @property
     @pulumi.getter
@@ -62,6 +114,18 @@ class GlobalConnectionArgs:
 
     @property
     @pulumi.getter
+    def fabric(self) -> Optional[pulumi.Input['GlobalConnectionFabricArgs']]:
+        """
+        Microsoft Fabric connection configuration.
+        """
+        return pulumi.get(self, "fabric")
+
+    @fabric.setter
+    def fabric(self, value: Optional[pulumi.Input['GlobalConnectionFabricArgs']]):
+        pulumi.set(self, "fabric", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Connection name
@@ -71,6 +135,18 @@ class GlobalConnectionArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def postgres(self) -> Optional[pulumi.Input['GlobalConnectionPostgresArgs']]:
+        """
+        PostgreSQL connection configuration.
+        """
+        return pulumi.get(self, "postgres")
+
+    @postgres.setter
+    def postgres(self, value: Optional[pulumi.Input['GlobalConnectionPostgresArgs']]):
+        pulumi.set(self, "postgres", value)
 
     @property
     @pulumi.getter(name="privateLinkEndpointId")
@@ -86,6 +162,18 @@ class GlobalConnectionArgs:
 
     @property
     @pulumi.getter
+    def redshift(self) -> Optional[pulumi.Input['GlobalConnectionRedshiftArgs']]:
+        """
+        Redshift connection configuration
+        """
+        return pulumi.get(self, "redshift")
+
+    @redshift.setter
+    def redshift(self, value: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']]):
+        pulumi.set(self, "redshift", value)
+
+    @property
+    @pulumi.getter
     def snowflake(self) -> Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]:
         """
         Snowflake connection configuration
@@ -96,43 +184,95 @@ class GlobalConnectionArgs:
     def snowflake(self, value: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]):
         pulumi.set(self, "snowflake", value)
 
+    @property
+    @pulumi.getter
+    def starburst(self) -> Optional[pulumi.Input['GlobalConnectionStarburstArgs']]:
+        """
+        Starburst/Trino connection configuration.
+        """
+        return pulumi.get(self, "starburst")
+
+    @starburst.setter
+    def starburst(self, value: Optional[pulumi.Input['GlobalConnectionStarburstArgs']]):
+        pulumi.set(self, "starburst", value)
+
+    @property
+    @pulumi.getter
+    def synapse(self) -> Optional[pulumi.Input['GlobalConnectionSynapseArgs']]:
+        """
+        Azure Synapse Analytics connection configuration.
+        """
+        return pulumi.get(self, "synapse")
+
+    @synapse.setter
+    def synapse(self, value: Optional[pulumi.Input['GlobalConnectionSynapseArgs']]):
+        pulumi.set(self, "synapse", value)
+
 
 @pulumi.input_type
 class _GlobalConnectionState:
     def __init__(__self__, *,
                  adapter_version: Optional[pulumi.Input[str]] = None,
+                 apache_spark: Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']] = None,
+                 athena: Optional[pulumi.Input['GlobalConnectionAthenaArgs']] = None,
                  bigquery: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']] = None,
                  databricks: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']] = None,
+                 fabric: Optional[pulumi.Input['GlobalConnectionFabricArgs']] = None,
                  is_ssh_tunnel_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  oauth_configuration_id: Optional[pulumi.Input[int]] = None,
+                 postgres: Optional[pulumi.Input['GlobalConnectionPostgresArgs']] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[str]] = None,
-                 snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None):
+                 redshift: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']] = None,
+                 snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None,
+                 starburst: Optional[pulumi.Input['GlobalConnectionStarburstArgs']] = None,
+                 synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None):
         """
         Input properties used for looking up and filtering GlobalConnection resources.
         :param pulumi.Input[str] adapter_version: Version of the adapter
+        :param pulumi.Input['GlobalConnectionApacheSparkArgs'] apache_spark: Apache Spark connection configuration.
+        :param pulumi.Input['GlobalConnectionAthenaArgs'] athena: Athena connection configuration.
         :param pulumi.Input['GlobalConnectionDatabricksArgs'] databricks: Databricks connection configuration
+        :param pulumi.Input['GlobalConnectionFabricArgs'] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
         :param pulumi.Input[str] name: Connection name
+        :param pulumi.Input['GlobalConnectionPostgresArgs'] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+        :param pulumi.Input['GlobalConnectionRedshiftArgs'] redshift: Redshift connection configuration
         :param pulumi.Input['GlobalConnectionSnowflakeArgs'] snowflake: Snowflake connection configuration
+        :param pulumi.Input['GlobalConnectionStarburstArgs'] starburst: Starburst/Trino connection configuration.
+        :param pulumi.Input['GlobalConnectionSynapseArgs'] synapse: Azure Synapse Analytics connection configuration.
         """
         if adapter_version is not None:
             pulumi.set(__self__, "adapter_version", adapter_version)
+        if apache_spark is not None:
+            pulumi.set(__self__, "apache_spark", apache_spark)
+        if athena is not None:
+            pulumi.set(__self__, "athena", athena)
         if bigquery is not None:
             pulumi.set(__self__, "bigquery", bigquery)
         if databricks is not None:
             pulumi.set(__self__, "databricks", databricks)
+        if fabric is not None:
+            pulumi.set(__self__, "fabric", fabric)
         if is_ssh_tunnel_enabled is not None:
             pulumi.set(__self__, "is_ssh_tunnel_enabled", is_ssh_tunnel_enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if oauth_configuration_id is not None:
             pulumi.set(__self__, "oauth_configuration_id", oauth_configuration_id)
+        if postgres is not None:
+            pulumi.set(__self__, "postgres", postgres)
         if private_link_endpoint_id is not None:
             pulumi.set(__self__, "private_link_endpoint_id", private_link_endpoint_id)
+        if redshift is not None:
+            pulumi.set(__self__, "redshift", redshift)
         if snowflake is not None:
             pulumi.set(__self__, "snowflake", snowflake)
+        if starburst is not None:
+            pulumi.set(__self__, "starburst", starburst)
+        if synapse is not None:
+            pulumi.set(__self__, "synapse", synapse)
 
     @property
     @pulumi.getter(name="adapterVersion")
@@ -145,6 +285,30 @@ class _GlobalConnectionState:
     @adapter_version.setter
     def adapter_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "adapter_version", value)
+
+    @property
+    @pulumi.getter(name="apacheSpark")
+    def apache_spark(self) -> Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']]:
+        """
+        Apache Spark connection configuration.
+        """
+        return pulumi.get(self, "apache_spark")
+
+    @apache_spark.setter
+    def apache_spark(self, value: Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']]):
+        pulumi.set(self, "apache_spark", value)
+
+    @property
+    @pulumi.getter
+    def athena(self) -> Optional[pulumi.Input['GlobalConnectionAthenaArgs']]:
+        """
+        Athena connection configuration.
+        """
+        return pulumi.get(self, "athena")
+
+    @athena.setter
+    def athena(self, value: Optional[pulumi.Input['GlobalConnectionAthenaArgs']]):
+        pulumi.set(self, "athena", value)
 
     @property
     @pulumi.getter
@@ -166,6 +330,18 @@ class _GlobalConnectionState:
     @databricks.setter
     def databricks(self, value: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]):
         pulumi.set(self, "databricks", value)
+
+    @property
+    @pulumi.getter
+    def fabric(self) -> Optional[pulumi.Input['GlobalConnectionFabricArgs']]:
+        """
+        Microsoft Fabric connection configuration.
+        """
+        return pulumi.get(self, "fabric")
+
+    @fabric.setter
+    def fabric(self, value: Optional[pulumi.Input['GlobalConnectionFabricArgs']]):
+        pulumi.set(self, "fabric", value)
 
     @property
     @pulumi.getter(name="isSshTunnelEnabled")
@@ -201,6 +377,18 @@ class _GlobalConnectionState:
         pulumi.set(self, "oauth_configuration_id", value)
 
     @property
+    @pulumi.getter
+    def postgres(self) -> Optional[pulumi.Input['GlobalConnectionPostgresArgs']]:
+        """
+        PostgreSQL connection configuration.
+        """
+        return pulumi.get(self, "postgres")
+
+    @postgres.setter
+    def postgres(self, value: Optional[pulumi.Input['GlobalConnectionPostgresArgs']]):
+        pulumi.set(self, "postgres", value)
+
+    @property
     @pulumi.getter(name="privateLinkEndpointId")
     def private_link_endpoint_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -214,6 +402,18 @@ class _GlobalConnectionState:
 
     @property
     @pulumi.getter
+    def redshift(self) -> Optional[pulumi.Input['GlobalConnectionRedshiftArgs']]:
+        """
+        Redshift connection configuration
+        """
+        return pulumi.get(self, "redshift")
+
+    @redshift.setter
+    def redshift(self, value: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']]):
+        pulumi.set(self, "redshift", value)
+
+    @property
+    @pulumi.getter
     def snowflake(self) -> Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]:
         """
         Snowflake connection configuration
@@ -224,25 +424,55 @@ class _GlobalConnectionState:
     def snowflake(self, value: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]):
         pulumi.set(self, "snowflake", value)
 
+    @property
+    @pulumi.getter
+    def starburst(self) -> Optional[pulumi.Input['GlobalConnectionStarburstArgs']]:
+        """
+        Starburst/Trino connection configuration.
+        """
+        return pulumi.get(self, "starburst")
+
+    @starburst.setter
+    def starburst(self, value: Optional[pulumi.Input['GlobalConnectionStarburstArgs']]):
+        pulumi.set(self, "starburst", value)
+
+    @property
+    @pulumi.getter
+    def synapse(self) -> Optional[pulumi.Input['GlobalConnectionSynapseArgs']]:
+        """
+        Azure Synapse Analytics connection configuration.
+        """
+        return pulumi.get(self, "synapse")
+
+    @synapse.setter
+    def synapse(self, value: Optional[pulumi.Input['GlobalConnectionSynapseArgs']]):
+        pulumi.set(self, "synapse", value)
+
 
 class GlobalConnection(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 apache_spark: Optional[pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
+                 athena: Optional[pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
                  bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
                  databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
+                 fabric: Optional[pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[str]] = None,
+                 redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
                  snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
+                 starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
+                 synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
                  __props__=None):
         """
         This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
 
-        Those connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
+        Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
 
-        For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
-        but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+        All connections types are supported, and the old resources `Connection`, `BigQueryConnection` and `FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
 
         ## Import
 
@@ -286,10 +516,17 @@ class GlobalConnection(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']] apache_spark: Apache Spark connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']] athena: Athena connection configuration.
         :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']] databricks: Databricks connection configuration
+        :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[str] name: Connection name
+        :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+        :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']] redshift: Redshift connection configuration
         :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
+        :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']] starburst: Starburst/Trino connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']] synapse: Azure Synapse Analytics connection configuration.
         """
         ...
     @overload
@@ -300,10 +537,9 @@ class GlobalConnection(pulumi.CustomResource):
         """
         This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
 
-        Those connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
+        Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
 
-        For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
-        but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+        All connections types are supported, and the old resources `Connection`, `BigQueryConnection` and `FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
 
         ## Import
 
@@ -360,11 +596,18 @@ class GlobalConnection(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 apache_spark: Optional[pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
+                 athena: Optional[pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
                  bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
                  databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
+                 fabric: Optional[pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[str]] = None,
+                 redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
                  snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
+                 starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
+                 synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -374,11 +617,18 @@ class GlobalConnection(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = GlobalConnectionArgs.__new__(GlobalConnectionArgs)
 
+            __props__.__dict__["apache_spark"] = apache_spark
+            __props__.__dict__["athena"] = athena
             __props__.__dict__["bigquery"] = bigquery
             __props__.__dict__["databricks"] = databricks
+            __props__.__dict__["fabric"] = fabric
             __props__.__dict__["name"] = name
+            __props__.__dict__["postgres"] = postgres
             __props__.__dict__["private_link_endpoint_id"] = private_link_endpoint_id
+            __props__.__dict__["redshift"] = redshift
             __props__.__dict__["snowflake"] = snowflake
+            __props__.__dict__["starburst"] = starburst
+            __props__.__dict__["synapse"] = synapse
             __props__.__dict__["adapter_version"] = None
             __props__.__dict__["is_ssh_tunnel_enabled"] = None
             __props__.__dict__["oauth_configuration_id"] = None
@@ -393,13 +643,20 @@ class GlobalConnection(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             adapter_version: Optional[pulumi.Input[str]] = None,
+            apache_spark: Optional[pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
+            athena: Optional[pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
             bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
             databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
+            fabric: Optional[pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
             is_ssh_tunnel_enabled: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             oauth_configuration_id: Optional[pulumi.Input[int]] = None,
+            postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
             private_link_endpoint_id: Optional[pulumi.Input[str]] = None,
-            snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None) -> 'GlobalConnection':
+            redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
+            snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
+            starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
+            synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None) -> 'GlobalConnection':
         """
         Get an existing GlobalConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -408,24 +665,38 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] adapter_version: Version of the adapter
+        :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']] apache_spark: Apache Spark connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']] athena: Athena connection configuration.
         :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']] databricks: Databricks connection configuration
+        :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
         :param pulumi.Input[str] name: Connection name
+        :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+        :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']] redshift: Redshift connection configuration
         :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
+        :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']] starburst: Starburst/Trino connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']] synapse: Azure Synapse Analytics connection configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _GlobalConnectionState.__new__(_GlobalConnectionState)
 
         __props__.__dict__["adapter_version"] = adapter_version
+        __props__.__dict__["apache_spark"] = apache_spark
+        __props__.__dict__["athena"] = athena
         __props__.__dict__["bigquery"] = bigquery
         __props__.__dict__["databricks"] = databricks
+        __props__.__dict__["fabric"] = fabric
         __props__.__dict__["is_ssh_tunnel_enabled"] = is_ssh_tunnel_enabled
         __props__.__dict__["name"] = name
         __props__.__dict__["oauth_configuration_id"] = oauth_configuration_id
+        __props__.__dict__["postgres"] = postgres
         __props__.__dict__["private_link_endpoint_id"] = private_link_endpoint_id
+        __props__.__dict__["redshift"] = redshift
         __props__.__dict__["snowflake"] = snowflake
+        __props__.__dict__["starburst"] = starburst
+        __props__.__dict__["synapse"] = synapse
         return GlobalConnection(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -435,6 +706,22 @@ class GlobalConnection(pulumi.CustomResource):
         Version of the adapter
         """
         return pulumi.get(self, "adapter_version")
+
+    @property
+    @pulumi.getter(name="apacheSpark")
+    def apache_spark(self) -> pulumi.Output[Optional['outputs.GlobalConnectionApacheSpark']]:
+        """
+        Apache Spark connection configuration.
+        """
+        return pulumi.get(self, "apache_spark")
+
+    @property
+    @pulumi.getter
+    def athena(self) -> pulumi.Output[Optional['outputs.GlobalConnectionAthena']]:
+        """
+        Athena connection configuration.
+        """
+        return pulumi.get(self, "athena")
 
     @property
     @pulumi.getter
@@ -448,6 +735,14 @@ class GlobalConnection(pulumi.CustomResource):
         Databricks connection configuration
         """
         return pulumi.get(self, "databricks")
+
+    @property
+    @pulumi.getter
+    def fabric(self) -> pulumi.Output[Optional['outputs.GlobalConnectionFabric']]:
+        """
+        Microsoft Fabric connection configuration.
+        """
+        return pulumi.get(self, "fabric")
 
     @property
     @pulumi.getter(name="isSshTunnelEnabled")
@@ -471,6 +766,14 @@ class GlobalConnection(pulumi.CustomResource):
         return pulumi.get(self, "oauth_configuration_id")
 
     @property
+    @pulumi.getter
+    def postgres(self) -> pulumi.Output[Optional['outputs.GlobalConnectionPostgres']]:
+        """
+        PostgreSQL connection configuration.
+        """
+        return pulumi.get(self, "postgres")
+
+    @property
     @pulumi.getter(name="privateLinkEndpointId")
     def private_link_endpoint_id(self) -> pulumi.Output[Optional[str]]:
         """
@@ -480,9 +783,33 @@ class GlobalConnection(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def redshift(self) -> pulumi.Output[Optional['outputs.GlobalConnectionRedshift']]:
+        """
+        Redshift connection configuration
+        """
+        return pulumi.get(self, "redshift")
+
+    @property
+    @pulumi.getter
     def snowflake(self) -> pulumi.Output[Optional['outputs.GlobalConnectionSnowflake']]:
         """
         Snowflake connection configuration
         """
         return pulumi.get(self, "snowflake")
+
+    @property
+    @pulumi.getter
+    def starburst(self) -> pulumi.Output[Optional['outputs.GlobalConnectionStarburst']]:
+        """
+        Starburst/Trino connection configuration.
+        """
+        return pulumi.get(self, "starburst")
+
+    @property
+    @pulumi.getter
+    def synapse(self) -> pulumi.Output[Optional['outputs.GlobalConnectionSynapse']]:
+        """
+        Azure Synapse Analytics connection configuration.
+        """
+        return pulumi.get(self, "synapse")
 

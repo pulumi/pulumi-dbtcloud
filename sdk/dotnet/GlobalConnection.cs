@@ -12,10 +12,9 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
     /// 
-    /// Those connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
+    /// Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
     /// 
-    /// For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
-    /// but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+    /// All connections types are supported, and the old resources `dbtcloud.Connection`, `dbtcloud.BigQueryConnection` and `dbtcloud.FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
     /// 
     /// ## Import
     /// 
@@ -66,6 +65,18 @@ namespace Pulumi.DbtCloud
         [Output("adapterVersion")]
         public Output<string> AdapterVersion { get; private set; } = null!;
 
+        /// <summary>
+        /// Apache Spark connection configuration.
+        /// </summary>
+        [Output("apacheSpark")]
+        public Output<Outputs.GlobalConnectionApacheSpark?> ApacheSpark { get; private set; } = null!;
+
+        /// <summary>
+        /// Athena connection configuration.
+        /// </summary>
+        [Output("athena")]
+        public Output<Outputs.GlobalConnectionAthena?> Athena { get; private set; } = null!;
+
         [Output("bigquery")]
         public Output<Outputs.GlobalConnectionBigquery?> Bigquery { get; private set; } = null!;
 
@@ -74,6 +85,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Output("databricks")]
         public Output<Outputs.GlobalConnectionDatabricks?> Databricks { get; private set; } = null!;
+
+        /// <summary>
+        /// Microsoft Fabric connection configuration.
+        /// </summary>
+        [Output("fabric")]
+        public Output<Outputs.GlobalConnectionFabric?> Fabric { get; private set; } = null!;
 
         /// <summary>
         /// Whether the connection can use an SSH tunnel
@@ -91,16 +108,40 @@ namespace Pulumi.DbtCloud
         public Output<int> OauthConfigurationId { get; private set; } = null!;
 
         /// <summary>
+        /// PostgreSQL connection configuration.
+        /// </summary>
+        [Output("postgres")]
+        public Output<Outputs.GlobalConnectionPostgres?> Postgres { get; private set; } = null!;
+
+        /// <summary>
         /// Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         /// </summary>
         [Output("privateLinkEndpointId")]
         public Output<string?> PrivateLinkEndpointId { get; private set; } = null!;
 
         /// <summary>
+        /// Redshift connection configuration
+        /// </summary>
+        [Output("redshift")]
+        public Output<Outputs.GlobalConnectionRedshift?> Redshift { get; private set; } = null!;
+
+        /// <summary>
         /// Snowflake connection configuration
         /// </summary>
         [Output("snowflake")]
         public Output<Outputs.GlobalConnectionSnowflake?> Snowflake { get; private set; } = null!;
+
+        /// <summary>
+        /// Starburst/Trino connection configuration.
+        /// </summary>
+        [Output("starburst")]
+        public Output<Outputs.GlobalConnectionStarburst?> Starburst { get; private set; } = null!;
+
+        /// <summary>
+        /// Azure Synapse Analytics connection configuration.
+        /// </summary>
+        [Output("synapse")]
+        public Output<Outputs.GlobalConnectionSynapse?> Synapse { get; private set; } = null!;
 
 
         /// <summary>
@@ -149,6 +190,18 @@ namespace Pulumi.DbtCloud
 
     public sealed class GlobalConnectionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Apache Spark connection configuration.
+        /// </summary>
+        [Input("apacheSpark")]
+        public Input<Inputs.GlobalConnectionApacheSparkArgs>? ApacheSpark { get; set; }
+
+        /// <summary>
+        /// Athena connection configuration.
+        /// </summary>
+        [Input("athena")]
+        public Input<Inputs.GlobalConnectionAthenaArgs>? Athena { get; set; }
+
         [Input("bigquery")]
         public Input<Inputs.GlobalConnectionBigqueryArgs>? Bigquery { get; set; }
 
@@ -159,10 +212,22 @@ namespace Pulumi.DbtCloud
         public Input<Inputs.GlobalConnectionDatabricksArgs>? Databricks { get; set; }
 
         /// <summary>
+        /// Microsoft Fabric connection configuration.
+        /// </summary>
+        [Input("fabric")]
+        public Input<Inputs.GlobalConnectionFabricArgs>? Fabric { get; set; }
+
+        /// <summary>
         /// Connection name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// PostgreSQL connection configuration.
+        /// </summary>
+        [Input("postgres")]
+        public Input<Inputs.GlobalConnectionPostgresArgs>? Postgres { get; set; }
 
         /// <summary>
         /// Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
@@ -171,10 +236,28 @@ namespace Pulumi.DbtCloud
         public Input<string>? PrivateLinkEndpointId { get; set; }
 
         /// <summary>
+        /// Redshift connection configuration
+        /// </summary>
+        [Input("redshift")]
+        public Input<Inputs.GlobalConnectionRedshiftArgs>? Redshift { get; set; }
+
+        /// <summary>
         /// Snowflake connection configuration
         /// </summary>
         [Input("snowflake")]
         public Input<Inputs.GlobalConnectionSnowflakeArgs>? Snowflake { get; set; }
+
+        /// <summary>
+        /// Starburst/Trino connection configuration.
+        /// </summary>
+        [Input("starburst")]
+        public Input<Inputs.GlobalConnectionStarburstArgs>? Starburst { get; set; }
+
+        /// <summary>
+        /// Azure Synapse Analytics connection configuration.
+        /// </summary>
+        [Input("synapse")]
+        public Input<Inputs.GlobalConnectionSynapseArgs>? Synapse { get; set; }
 
         public GlobalConnectionArgs()
         {
@@ -190,6 +273,18 @@ namespace Pulumi.DbtCloud
         [Input("adapterVersion")]
         public Input<string>? AdapterVersion { get; set; }
 
+        /// <summary>
+        /// Apache Spark connection configuration.
+        /// </summary>
+        [Input("apacheSpark")]
+        public Input<Inputs.GlobalConnectionApacheSparkGetArgs>? ApacheSpark { get; set; }
+
+        /// <summary>
+        /// Athena connection configuration.
+        /// </summary>
+        [Input("athena")]
+        public Input<Inputs.GlobalConnectionAthenaGetArgs>? Athena { get; set; }
+
         [Input("bigquery")]
         public Input<Inputs.GlobalConnectionBigqueryGetArgs>? Bigquery { get; set; }
 
@@ -198,6 +293,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("databricks")]
         public Input<Inputs.GlobalConnectionDatabricksGetArgs>? Databricks { get; set; }
+
+        /// <summary>
+        /// Microsoft Fabric connection configuration.
+        /// </summary>
+        [Input("fabric")]
+        public Input<Inputs.GlobalConnectionFabricGetArgs>? Fabric { get; set; }
 
         /// <summary>
         /// Whether the connection can use an SSH tunnel
@@ -215,16 +316,40 @@ namespace Pulumi.DbtCloud
         public Input<int>? OauthConfigurationId { get; set; }
 
         /// <summary>
+        /// PostgreSQL connection configuration.
+        /// </summary>
+        [Input("postgres")]
+        public Input<Inputs.GlobalConnectionPostgresGetArgs>? Postgres { get; set; }
+
+        /// <summary>
         /// Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         /// </summary>
         [Input("privateLinkEndpointId")]
         public Input<string>? PrivateLinkEndpointId { get; set; }
 
         /// <summary>
+        /// Redshift connection configuration
+        /// </summary>
+        [Input("redshift")]
+        public Input<Inputs.GlobalConnectionRedshiftGetArgs>? Redshift { get; set; }
+
+        /// <summary>
         /// Snowflake connection configuration
         /// </summary>
         [Input("snowflake")]
         public Input<Inputs.GlobalConnectionSnowflakeGetArgs>? Snowflake { get; set; }
+
+        /// <summary>
+        /// Starburst/Trino connection configuration.
+        /// </summary>
+        [Input("starburst")]
+        public Input<Inputs.GlobalConnectionStarburstGetArgs>? Starburst { get; set; }
+
+        /// <summary>
+        /// Azure Synapse Analytics connection configuration.
+        /// </summary>
+        [Input("synapse")]
+        public Input<Inputs.GlobalConnectionSynapseGetArgs>? Synapse { get; set; }
 
         public GlobalConnectionState()
         {

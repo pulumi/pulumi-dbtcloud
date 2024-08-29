@@ -10,9 +10,16 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.dbtcloud.GlobalConnectionArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionState;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionApacheSpark;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionAthena;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionBigquery;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionDatabricks;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionFabric;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionPostgres;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionRedshift;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionSnowflake;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionStarburst;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionSynapse;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -22,10 +29,9 @@ import javax.annotation.Nullable;
 /**
  * This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
  * 
- * Those connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
+ * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
  * 
- * For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
- * but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+ * All connections types are supported, and the old resources `dbtcloud.Connection`, `dbtcloud.BigQueryConnection` and `dbtcloud.FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
  * 
  * ## Example Usage
  * 
@@ -39,9 +45,16 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.dbtcloud.GlobalConnection;
  * import com.pulumi.dbtcloud.GlobalConnectionArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionApacheSparkArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionAthenaArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionFabricArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionPostgresArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionRedshiftArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionStarburstArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionSynapseArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -55,6 +68,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         var apacheSpark = new GlobalConnection("apacheSpark", GlobalConnectionArgs.builder()
+ *             .name("My Apache Spark connection")
+ *             .apacheSpark(GlobalConnectionApacheSparkArgs.builder()
+ *                 .method("http")
+ *                 .host("my-spark-host.com")
+ *                 .cluster("my-cluster")
+ *                 .connect_timeout(100)
+ *                 .build())
+ *             .build());
+ * 
+ *         var athena = new GlobalConnection("athena", GlobalConnectionArgs.builder()
+ *             .name("My Athena connection")
+ *             .athena(GlobalConnectionAthenaArgs.builder()
+ *                 .region_name("us-east-1")
+ *                 .database("mydatabase")
+ *                 .s3_staging_dir("my_dir")
+ *                 .work_group("my_work_group")
+ *                 .build())
+ *             .build());
+ * 
  *         var bigquery = new GlobalConnection("bigquery", GlobalConnectionArgs.builder()
  *             .name("My BigQuery connection")
  *             .bigquery(GlobalConnectionBigqueryArgs.builder()
@@ -84,6 +117,36 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         var fabric = new GlobalConnection("fabric", GlobalConnectionArgs.builder()
+ *             .name("My Fabric connection")
+ *             .fabric(GlobalConnectionFabricArgs.builder()
+ *                 .server("my-fabric-server.com")
+ *                 .database("mydb")
+ *                 .port(1234)
+ *                 .retries(3)
+ *                 .login_timeout(60)
+ *                 .query_timeout(3600)
+ *                 .build())
+ *             .build());
+ * 
+ *         var postgres = new GlobalConnection("postgres", GlobalConnectionArgs.builder()
+ *             .name("My PostgreSQL connection")
+ *             .postgres(GlobalConnectionPostgresArgs.builder()
+ *                 .hostname("my-postgresql-server.com")
+ *                 .port(5432)
+ *                 .dbname("my_database")
+ *                 .build())
+ *             .build());
+ * 
+ *         var redshift = new GlobalConnection("redshift", GlobalConnectionArgs.builder()
+ *             .name("My Redshift connection")
+ *             .redshift(GlobalConnectionRedshiftArgs.builder()
+ *                 .hostname("my-redshift-connection.com")
+ *                 .port(5432)
+ *                 .dbname("my_database")
+ *                 .build())
+ *             .build());
+ * 
  *         var snowflake = new GlobalConnection("snowflake", GlobalConnectionArgs.builder()
  *             .name("My Snowflake connection")
  *             .privateLinkEndpointId(myPrivateLink.id())
@@ -95,6 +158,26 @@ import javax.annotation.Nullable;
  *                 .allow_sso(true)
  *                 .oauth_client_id("yourclientid")
  *                 .oauth_client_secret("yourclientsecret")
+ *                 .build())
+ *             .build());
+ * 
+ *         var starburst = new GlobalConnection("starburst", GlobalConnectionArgs.builder()
+ *             .name("My Starburst connection")
+ *             .starburst(GlobalConnectionStarburstArgs.builder()
+ *                 .host("my-starburst-host.com")
+ *                 .database("mydb")
+ *                 .build())
+ *             .build());
+ * 
+ *         var synapse = new GlobalConnection("synapse", GlobalConnectionArgs.builder()
+ *             .name("My Synapse connection")
+ *             .synapse(GlobalConnectionSynapseArgs.builder()
+ *                 .host("my-synapse-server.com")
+ *                 .database("mydb")
+ *                 .port(1234)
+ *                 .retries(3)
+ *                 .login_timeout(60)
+ *                 .query_timeout(3600)
  *                 .build())
  *             .build());
  * 
@@ -161,6 +244,34 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
     public Output<String> adapterVersion() {
         return this.adapterVersion;
     }
+    /**
+     * Apache Spark connection configuration.
+     * 
+     */
+    @Export(name="apacheSpark", refs={GlobalConnectionApacheSpark.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionApacheSpark> apacheSpark;
+
+    /**
+     * @return Apache Spark connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionApacheSpark>> apacheSpark() {
+        return Codegen.optional(this.apacheSpark);
+    }
+    /**
+     * Athena connection configuration.
+     * 
+     */
+    @Export(name="athena", refs={GlobalConnectionAthena.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionAthena> athena;
+
+    /**
+     * @return Athena connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionAthena>> athena() {
+        return Codegen.optional(this.athena);
+    }
     @Export(name="bigquery", refs={GlobalConnectionBigquery.class}, tree="[0]")
     private Output</* @Nullable */ GlobalConnectionBigquery> bigquery;
 
@@ -180,6 +291,20 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<GlobalConnectionDatabricks>> databricks() {
         return Codegen.optional(this.databricks);
+    }
+    /**
+     * Microsoft Fabric connection configuration.
+     * 
+     */
+    @Export(name="fabric", refs={GlobalConnectionFabric.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionFabric> fabric;
+
+    /**
+     * @return Microsoft Fabric connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionFabric>> fabric() {
+        return Codegen.optional(this.fabric);
     }
     /**
      * Whether the connection can use an SSH tunnel
@@ -216,6 +341,20 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
         return this.oauthConfigurationId;
     }
     /**
+     * PostgreSQL connection configuration.
+     * 
+     */
+    @Export(name="postgres", refs={GlobalConnectionPostgres.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionPostgres> postgres;
+
+    /**
+     * @return PostgreSQL connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionPostgres>> postgres() {
+        return Codegen.optional(this.postgres);
+    }
+    /**
      * Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
      * 
      */
@@ -230,6 +369,20 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.privateLinkEndpointId);
     }
     /**
+     * Redshift connection configuration
+     * 
+     */
+    @Export(name="redshift", refs={GlobalConnectionRedshift.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionRedshift> redshift;
+
+    /**
+     * @return Redshift connection configuration
+     * 
+     */
+    public Output<Optional<GlobalConnectionRedshift>> redshift() {
+        return Codegen.optional(this.redshift);
+    }
+    /**
      * Snowflake connection configuration
      * 
      */
@@ -242,6 +395,34 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<GlobalConnectionSnowflake>> snowflake() {
         return Codegen.optional(this.snowflake);
+    }
+    /**
+     * Starburst/Trino connection configuration.
+     * 
+     */
+    @Export(name="starburst", refs={GlobalConnectionStarburst.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionStarburst> starburst;
+
+    /**
+     * @return Starburst/Trino connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionStarburst>> starburst() {
+        return Codegen.optional(this.starburst);
+    }
+    /**
+     * Azure Synapse Analytics connection configuration.
+     * 
+     */
+    @Export(name="synapse", refs={GlobalConnectionSynapse.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionSynapse> synapse;
+
+    /**
+     * @return Azure Synapse Analytics connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionSynapse>> synapse() {
+        return Codegen.optional(this.synapse);
     }
 
     /**

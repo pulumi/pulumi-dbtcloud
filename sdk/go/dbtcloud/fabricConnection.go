@@ -12,7 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Resource to create Microsoft Fabric connections in dbt Cloud
+// Resource to create a MS Fabric connection in dbt Cloud.
+//
+// > This resource is deprecated and is going to be removed in the next major release, please use the `GlobalConnection` resource instead to create any DW connection.
 //
 // ## Example Usage
 //

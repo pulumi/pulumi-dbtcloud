@@ -10,15 +10,368 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
+    'GlobalConnectionApacheSparkArgs',
+    'GlobalConnectionAthenaArgs',
     'GlobalConnectionBigqueryArgs',
     'GlobalConnectionDatabricksArgs',
+    'GlobalConnectionFabricArgs',
+    'GlobalConnectionPostgresArgs',
+    'GlobalConnectionPostgresSshTunnelArgs',
+    'GlobalConnectionRedshiftArgs',
+    'GlobalConnectionRedshiftSshTunnelArgs',
     'GlobalConnectionSnowflakeArgs',
+    'GlobalConnectionStarburstArgs',
+    'GlobalConnectionSynapseArgs',
     'GroupGroupPermissionArgs',
     'GroupPartialPermissionsGroupPermissionArgs',
     'JobJobCompletionTriggerConditionArgs',
     'ServiceTokenServiceTokenPermissionArgs',
     'GetServiceTokenServiceTokenPermissionArgs',
 ]
+
+@pulumi.input_type
+class GlobalConnectionApacheSparkArgs:
+    def __init__(__self__, *,
+                 cluster: pulumi.Input[str],
+                 host: pulumi.Input[str],
+                 method: pulumi.Input[str],
+                 auth: Optional[pulumi.Input[str]] = None,
+                 connect_retries: Optional[pulumi.Input[int]] = None,
+                 connect_timeout: Optional[pulumi.Input[int]] = None,
+                 organization: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] cluster: Spark cluster for the connection
+        :param pulumi.Input[str] host: Hostname of the connection
+        :param pulumi.Input[str] method: Authentication method for the connection (http or thrift).
+        :param pulumi.Input[str] auth: Auth
+        :param pulumi.Input[int] connect_retries: Connection retries. Default=0
+        :param pulumi.Input[int] connect_timeout: Connection time out in seconds. Default=10
+        :param pulumi.Input[str] organization: Organization ID
+        :param pulumi.Input[int] port: Port for the connection. Default=443
+        :param pulumi.Input[str] user: User
+        """
+        pulumi.set(__self__, "cluster", cluster)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "method", method)
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if connect_retries is not None:
+            pulumi.set(__self__, "connect_retries", connect_retries)
+        if connect_timeout is not None:
+            pulumi.set(__self__, "connect_timeout", connect_timeout)
+        if organization is not None:
+            pulumi.set(__self__, "organization", organization)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def cluster(self) -> pulumi.Input[str]:
+        """
+        Spark cluster for the connection
+        """
+        return pulumi.get(self, "cluster")
+
+    @cluster.setter
+    def cluster(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cluster", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the connection
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[str]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
+    def method(self) -> pulumi.Input[str]:
+        """
+        Authentication method for the connection (http or thrift).
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: pulumi.Input[str]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Auth
+        """
+        return pulumi.get(self, "auth")
+
+    @auth.setter
+    def auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth", value)
+
+    @property
+    @pulumi.getter(name="connectRetries")
+    def connect_retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Connection retries. Default=0
+        """
+        return pulumi.get(self, "connect_retries")
+
+    @connect_retries.setter
+    def connect_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connect_retries", value)
+
+    @property
+    @pulumi.getter(name="connectTimeout")
+    def connect_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Connection time out in seconds. Default=10
+        """
+        return pulumi.get(self, "connect_timeout")
+
+    @connect_timeout.setter
+    def connect_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connect_timeout", value)
+
+    @property
+    @pulumi.getter
+    def organization(self) -> Optional[pulumi.Input[str]]:
+        """
+        Organization ID
+        """
+        return pulumi.get(self, "organization")
+
+    @organization.setter
+    def organization(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "organization", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port for the connection. Default=443
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user", value)
+
+
+@pulumi.input_type
+class GlobalConnectionAthenaArgs:
+    def __init__(__self__, *,
+                 database: pulumi.Input[str],
+                 region_name: pulumi.Input[str],
+                 s3_staging_dir: pulumi.Input[str],
+                 num_boto3_retries: Optional[pulumi.Input[int]] = None,
+                 num_iceberg_retries: Optional[pulumi.Input[int]] = None,
+                 num_retries: Optional[pulumi.Input[int]] = None,
+                 poll_interval: Optional[pulumi.Input[int]] = None,
+                 s3_data_dir: Optional[pulumi.Input[str]] = None,
+                 s3_data_naming: Optional[pulumi.Input[str]] = None,
+                 s3_tmp_table_dir: Optional[pulumi.Input[str]] = None,
+                 spark_work_group: Optional[pulumi.Input[str]] = None,
+                 work_group: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] database: Specify the database (data catalog) to build models into (lowercase only).
+        :param pulumi.Input[str] region_name: AWS region of your Athena instance.
+        :param pulumi.Input[str] s3_staging_dir: S3 location to store Athena query results and metadata.
+        :param pulumi.Input[int] num_boto3_retries: Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+        :param pulumi.Input[int] num_iceberg_retries: Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+        :param pulumi.Input[int] num_retries: Number of times to retry a failing query.
+        :param pulumi.Input[int] poll_interval: Interval in seconds to use for polling the status of query results in Athena.
+        :param pulumi.Input[str] s3_data_dir: Prefix for storing tables, if different from the connection's S3 staging directory.
+        :param pulumi.Input[str] s3_data_naming: How to generate table paths in the S3 data directory.
+        :param pulumi.Input[str] s3_tmp_table_dir: Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        :param pulumi.Input[str] spark_work_group: Identifier of Athena Spark workgroup for running Python models.
+        :param pulumi.Input[str] work_group: Identifier of Athena workgroup.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "s3_staging_dir", s3_staging_dir)
+        if num_boto3_retries is not None:
+            pulumi.set(__self__, "num_boto3_retries", num_boto3_retries)
+        if num_iceberg_retries is not None:
+            pulumi.set(__self__, "num_iceberg_retries", num_iceberg_retries)
+        if num_retries is not None:
+            pulumi.set(__self__, "num_retries", num_retries)
+        if poll_interval is not None:
+            pulumi.set(__self__, "poll_interval", poll_interval)
+        if s3_data_dir is not None:
+            pulumi.set(__self__, "s3_data_dir", s3_data_dir)
+        if s3_data_naming is not None:
+            pulumi.set(__self__, "s3_data_naming", s3_data_naming)
+        if s3_tmp_table_dir is not None:
+            pulumi.set(__self__, "s3_tmp_table_dir", s3_tmp_table_dir)
+        if spark_work_group is not None:
+            pulumi.set(__self__, "spark_work_group", spark_work_group)
+        if work_group is not None:
+            pulumi.set(__self__, "work_group", work_group)
+
+    @property
+    @pulumi.getter
+    def database(self) -> pulumi.Input[str]:
+        """
+        Specify the database (data catalog) to build models into (lowercase only).
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: pulumi.Input[str]):
+        pulumi.set(self, "database", value)
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> pulumi.Input[str]:
+        """
+        AWS region of your Athena instance.
+        """
+        return pulumi.get(self, "region_name")
+
+    @region_name.setter
+    def region_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region_name", value)
+
+    @property
+    @pulumi.getter(name="s3StagingDir")
+    def s3_staging_dir(self) -> pulumi.Input[str]:
+        """
+        S3 location to store Athena query results and metadata.
+        """
+        return pulumi.get(self, "s3_staging_dir")
+
+    @s3_staging_dir.setter
+    def s3_staging_dir(self, value: pulumi.Input[str]):
+        pulumi.set(self, "s3_staging_dir", value)
+
+    @property
+    @pulumi.getter(name="numBoto3Retries")
+    def num_boto3_retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+        """
+        return pulumi.get(self, "num_boto3_retries")
+
+    @num_boto3_retries.setter
+    def num_boto3_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_boto3_retries", value)
+
+    @property
+    @pulumi.getter(name="numIcebergRetries")
+    def num_iceberg_retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+        """
+        return pulumi.get(self, "num_iceberg_retries")
+
+    @num_iceberg_retries.setter
+    def num_iceberg_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_iceberg_retries", value)
+
+    @property
+    @pulumi.getter(name="numRetries")
+    def num_retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of times to retry a failing query.
+        """
+        return pulumi.get(self, "num_retries")
+
+    @num_retries.setter
+    def num_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_retries", value)
+
+    @property
+    @pulumi.getter(name="pollInterval")
+    def poll_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Interval in seconds to use for polling the status of query results in Athena.
+        """
+        return pulumi.get(self, "poll_interval")
+
+    @poll_interval.setter
+    def poll_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "poll_interval", value)
+
+    @property
+    @pulumi.getter(name="s3DataDir")
+    def s3_data_dir(self) -> Optional[pulumi.Input[str]]:
+        """
+        Prefix for storing tables, if different from the connection's S3 staging directory.
+        """
+        return pulumi.get(self, "s3_data_dir")
+
+    @s3_data_dir.setter
+    def s3_data_dir(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_data_dir", value)
+
+    @property
+    @pulumi.getter(name="s3DataNaming")
+    def s3_data_naming(self) -> Optional[pulumi.Input[str]]:
+        """
+        How to generate table paths in the S3 data directory.
+        """
+        return pulumi.get(self, "s3_data_naming")
+
+    @s3_data_naming.setter
+    def s3_data_naming(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_data_naming", value)
+
+    @property
+    @pulumi.getter(name="s3TmpTableDir")
+    def s3_tmp_table_dir(self) -> Optional[pulumi.Input[str]]:
+        """
+        Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        """
+        return pulumi.get(self, "s3_tmp_table_dir")
+
+    @s3_tmp_table_dir.setter
+    def s3_tmp_table_dir(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_tmp_table_dir", value)
+
+    @property
+    @pulumi.getter(name="sparkWorkGroup")
+    def spark_work_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of Athena Spark workgroup for running Python models.
+        """
+        return pulumi.get(self, "spark_work_group")
+
+    @spark_work_group.setter
+    def spark_work_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "spark_work_group", value)
+
+    @property
+    @pulumi.getter(name="workGroup")
+    def work_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of Athena workgroup.
+        """
+        return pulumi.get(self, "work_group")
+
+    @work_group.setter
+    def work_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "work_group", value)
+
 
 @pulumi.input_type
 class GlobalConnectionBigqueryArgs:
@@ -488,6 +841,415 @@ class GlobalConnectionDatabricksArgs:
 
 
 @pulumi.input_type
+class GlobalConnectionFabricArgs:
+    def __init__(__self__, *,
+                 database: pulumi.Input[str],
+                 server: pulumi.Input[str],
+                 login_timeout: Optional[pulumi.Input[int]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 query_timeout: Optional[pulumi.Input[int]] = None,
+                 retries: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] database: The database to connect to for this connection.
+        :param pulumi.Input[str] server: The server hostname.
+        :param pulumi.Input[int] login_timeout: The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param pulumi.Input[int] port: The port to connect to for this connection. Default=1433
+        :param pulumi.Input[int] query_timeout: The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param pulumi.Input[int] retries: The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "server", server)
+        if login_timeout is not None:
+            pulumi.set(__self__, "login_timeout", login_timeout)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if query_timeout is not None:
+            pulumi.set(__self__, "query_timeout", query_timeout)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
+
+    @property
+    @pulumi.getter
+    def database(self) -> pulumi.Input[str]:
+        """
+        The database to connect to for this connection.
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: pulumi.Input[str]):
+        pulumi.set(self, "database", value)
+
+    @property
+    @pulumi.getter
+    def server(self) -> pulumi.Input[str]:
+        """
+        The server hostname.
+        """
+        return pulumi.get(self, "server")
+
+    @server.setter
+    def server(self, value: pulumi.Input[str]):
+        pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="loginTimeout")
+    def login_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "login_timeout")
+
+    @login_timeout.setter
+    def login_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "login_timeout", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port to connect to for this connection. Default=1433
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="queryTimeout")
+    def query_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "query_timeout")
+
+    @query_timeout.setter
+    def query_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "query_timeout", value)
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        return pulumi.get(self, "retries")
+
+    @retries.setter
+    def retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retries", value)
+
+
+@pulumi.input_type
+class GlobalConnectionPostgresArgs:
+    def __init__(__self__, *,
+                 hostname: pulumi.Input[str],
+                 dbname: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 ssh_tunnel: Optional[pulumi.Input['GlobalConnectionPostgresSshTunnelArgs']] = None):
+        """
+        :param pulumi.Input[str] hostname: The hostname of the database.
+        :param pulumi.Input[str] dbname: The database name for this connection.
+        :param pulumi.Input[int] port: The port to connect to for this connection. Default=5432
+        :param pulumi.Input['GlobalConnectionPostgresSshTunnelArgs'] ssh_tunnel: PostgreSQL SSH Tunnel configuration
+        """
+        pulumi.set(__self__, "hostname", hostname)
+        if dbname is not None:
+            pulumi.set(__self__, "dbname", dbname)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if ssh_tunnel is not None:
+            pulumi.set(__self__, "ssh_tunnel", ssh_tunnel)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> pulumi.Input[str]:
+        """
+        The hostname of the database.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> Optional[pulumi.Input[str]]:
+        """
+        The database name for this connection.
+        """
+        return pulumi.get(self, "dbname")
+
+    @dbname.setter
+    def dbname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dbname", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port to connect to for this connection. Default=5432
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="sshTunnel")
+    def ssh_tunnel(self) -> Optional[pulumi.Input['GlobalConnectionPostgresSshTunnelArgs']]:
+        """
+        PostgreSQL SSH Tunnel configuration
+        """
+        return pulumi.get(self, "ssh_tunnel")
+
+    @ssh_tunnel.setter
+    def ssh_tunnel(self, value: Optional[pulumi.Input['GlobalConnectionPostgresSshTunnelArgs']]):
+        pulumi.set(self, "ssh_tunnel", value)
+
+
+@pulumi.input_type
+class GlobalConnectionPostgresSshTunnelArgs:
+    def __init__(__self__, *,
+                 hostname: pulumi.Input[str],
+                 port: pulumi.Input[int],
+                 username: pulumi.Input[str],
+                 id: Optional[pulumi.Input[int]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] hostname: The hostname for the SSH tunnel.
+        :param pulumi.Input[int] port: The HTTP port for the SSH tunnel.
+        :param pulumi.Input[str] username: The username to use for the SSH tunnel.
+        :param pulumi.Input[int] id: The ID of the SSH tunnel connection.
+        :param pulumi.Input[str] public_key: The SSH public key generated to allow connecting via SSH tunnel.
+        """
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "username", username)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> pulumi.Input[str]:
+        """
+        The hostname for the SSH tunnel.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> pulumi.Input[int]:
+        """
+        The HTTP port for the SSH tunnel.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: pulumi.Input[int]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        """
+        The username to use for the SSH tunnel.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The ID of the SSH tunnel connection.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The SSH public key generated to allow connecting via SSH tunnel.
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_key", value)
+
+
+@pulumi.input_type
+class GlobalConnectionRedshiftArgs:
+    def __init__(__self__, *,
+                 hostname: pulumi.Input[str],
+                 dbname: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 ssh_tunnel: Optional[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs']] = None):
+        """
+        :param pulumi.Input[str] hostname: The hostname of the data warehouse.
+        :param pulumi.Input[str] dbname: The database name for this connection.
+        :param pulumi.Input[int] port: The port to connect to for this connection. Default=5432
+        :param pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs'] ssh_tunnel: Redshift SSH Tunnel configuration
+        """
+        pulumi.set(__self__, "hostname", hostname)
+        if dbname is not None:
+            pulumi.set(__self__, "dbname", dbname)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if ssh_tunnel is not None:
+            pulumi.set(__self__, "ssh_tunnel", ssh_tunnel)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> pulumi.Input[str]:
+        """
+        The hostname of the data warehouse.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> Optional[pulumi.Input[str]]:
+        """
+        The database name for this connection.
+        """
+        return pulumi.get(self, "dbname")
+
+    @dbname.setter
+    def dbname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dbname", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port to connect to for this connection. Default=5432
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="sshTunnel")
+    def ssh_tunnel(self) -> Optional[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs']]:
+        """
+        Redshift SSH Tunnel configuration
+        """
+        return pulumi.get(self, "ssh_tunnel")
+
+    @ssh_tunnel.setter
+    def ssh_tunnel(self, value: Optional[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs']]):
+        pulumi.set(self, "ssh_tunnel", value)
+
+
+@pulumi.input_type
+class GlobalConnectionRedshiftSshTunnelArgs:
+    def __init__(__self__, *,
+                 hostname: pulumi.Input[str],
+                 port: pulumi.Input[int],
+                 username: pulumi.Input[str],
+                 id: Optional[pulumi.Input[int]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] hostname: The hostname for the SSH tunnel.
+        :param pulumi.Input[int] port: The HTTP port for the SSH tunnel.
+        :param pulumi.Input[str] username: The username to use for the SSH tunnel.
+        :param pulumi.Input[int] id: The ID of the SSH tunnel connection.
+        :param pulumi.Input[str] public_key: The SSH public key generated to allow connecting via SSH tunnel.
+        """
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "username", username)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> pulumi.Input[str]:
+        """
+        The hostname for the SSH tunnel.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> pulumi.Input[int]:
+        """
+        The HTTP port for the SSH tunnel.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: pulumi.Input[int]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[str]:
+        """
+        The username to use for the SSH tunnel.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[str]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The ID of the SSH tunnel connection.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The SSH public key generated to allow connecting via SSH tunnel.
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_key", value)
+
+
+@pulumi.input_type
 class GlobalConnectionSnowflakeArgs:
     def __init__(__self__, *,
                  account: pulumi.Input[str],
@@ -617,6 +1379,161 @@ class GlobalConnectionSnowflakeArgs:
     @role.setter
     def role(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role", value)
+
+
+@pulumi.input_type
+class GlobalConnectionStarburstArgs:
+    def __init__(__self__, *,
+                 host: pulumi.Input[str],
+                 method: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] host: The hostname of the account to connect to.
+        :param pulumi.Input[str] method: The authentication method. Only LDAP for now.
+        :param pulumi.Input[int] port: The port to connect to for this connection. Default=443
+        """
+        pulumi.set(__self__, "host", host)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[str]:
+        """
+        The hostname of the account to connect to.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[str]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication method. Only LDAP for now.
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port to connect to for this connection. Default=443
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+
+@pulumi.input_type
+class GlobalConnectionSynapseArgs:
+    def __init__(__self__, *,
+                 database: pulumi.Input[str],
+                 host: pulumi.Input[str],
+                 login_timeout: Optional[pulumi.Input[int]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 query_timeout: Optional[pulumi.Input[int]] = None,
+                 retries: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] database: The database to connect to for this connection.
+        :param pulumi.Input[str] host: The server hostname.
+        :param pulumi.Input[int] login_timeout: The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param pulumi.Input[int] port: The port to connect to for this connection. Default=1433
+        :param pulumi.Input[int] query_timeout: The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param pulumi.Input[int] retries: The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "host", host)
+        if login_timeout is not None:
+            pulumi.set(__self__, "login_timeout", login_timeout)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if query_timeout is not None:
+            pulumi.set(__self__, "query_timeout", query_timeout)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
+
+    @property
+    @pulumi.getter
+    def database(self) -> pulumi.Input[str]:
+        """
+        The database to connect to for this connection.
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: pulumi.Input[str]):
+        pulumi.set(self, "database", value)
+
+    @property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[str]:
+        """
+        The server hostname.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[str]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter(name="loginTimeout")
+    def login_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "login_timeout")
+
+    @login_timeout.setter
+    def login_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "login_timeout", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port to connect to for this connection. Default=1433
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="queryTimeout")
+    def query_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "query_timeout")
+
+    @query_timeout.setter
+    def query_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "query_timeout", value)
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        return pulumi.get(self, "retries")
+
+    @retries.setter
+    def retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retries", value)
 
 
 @pulumi.input_type

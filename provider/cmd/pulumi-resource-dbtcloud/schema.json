@@ -98,6 +98,122 @@
         }
     },
     "types": {
+        "dbtcloud:index/GlobalConnectionApacheSpark:GlobalConnectionApacheSpark": {
+            "properties": {
+                "auth": {
+                    "type": "string",
+                    "description": "Auth\n"
+                },
+                "cluster": {
+                    "type": "string",
+                    "description": "Spark cluster for the connection\n"
+                },
+                "connectRetries": {
+                    "type": "integer",
+                    "description": "Connection retries. Default=0\n"
+                },
+                "connectTimeout": {
+                    "type": "integer",
+                    "description": "Connection time out in seconds. Default=10\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "Hostname of the connection\n"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "Authentication method for the connection (http or thrift).\n"
+                },
+                "organization": {
+                    "type": "string",
+                    "description": "Organization ID\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Port for the connection. Default=443\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "User\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cluster",
+                "host",
+                "method"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "cluster",
+                        "connectRetries",
+                        "connectTimeout",
+                        "host",
+                        "method",
+                        "port"
+                    ]
+                }
+            }
+        },
+        "dbtcloud:index/GlobalConnectionAthena:GlobalConnectionAthena": {
+            "properties": {
+                "database": {
+                    "type": "string",
+                    "description": "Specify the database (data catalog) to build models into (lowercase only).\n"
+                },
+                "numBoto3Retries": {
+                    "type": "integer",
+                    "description": "Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).\n"
+                },
+                "numIcebergRetries": {
+                    "type": "integer",
+                    "description": "Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.\n"
+                },
+                "numRetries": {
+                    "type": "integer",
+                    "description": "Number of times to retry a failing query.\n"
+                },
+                "pollInterval": {
+                    "type": "integer",
+                    "description": "Interval in seconds to use for polling the status of query results in Athena.\n"
+                },
+                "regionName": {
+                    "type": "string",
+                    "description": "AWS region of your Athena instance.\n"
+                },
+                "s3DataDir": {
+                    "type": "string",
+                    "description": "Prefix for storing tables, if different from the connection's S3 staging directory.\n"
+                },
+                "s3DataNaming": {
+                    "type": "string",
+                    "description": "How to generate table paths in the S3 data directory.\n"
+                },
+                "s3StagingDir": {
+                    "type": "string",
+                    "description": "S3 location to store Athena query results and metadata.\n"
+                },
+                "s3TmpTableDir": {
+                    "type": "string",
+                    "description": "Prefix for storing temporary tables, if different from the connection's S3 data directory.\n"
+                },
+                "sparkWorkGroup": {
+                    "type": "string",
+                    "description": "Identifier of Athena Spark workgroup for running Python models.\n"
+                },
+                "workGroup": {
+                    "type": "string",
+                    "description": "Identifier of Athena workgroup.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "database",
+                "regionName",
+                "s3StagingDir"
+            ]
+        },
         "dbtcloud:index/GlobalConnectionBigquery:GlobalConnectionBigquery": {
             "properties": {
                 "applicationId": {
@@ -263,6 +379,197 @@
                 "httpPath"
             ]
         },
+        "dbtcloud:index/GlobalConnectionFabric:GlobalConnectionFabric": {
+            "properties": {
+                "database": {
+                    "type": "string",
+                    "description": "The database to connect to for this connection.\n"
+                },
+                "loginTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=1433\n"
+                },
+                "queryTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.\n"
+                },
+                "server": {
+                    "type": "string",
+                    "description": "The server hostname.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "database",
+                "server"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "database",
+                        "loginTimeout",
+                        "port",
+                        "queryTimeout",
+                        "retries",
+                        "server"
+                    ]
+                }
+            }
+        },
+        "dbtcloud:index/GlobalConnectionPostgres:GlobalConnectionPostgres": {
+            "properties": {
+                "dbname": {
+                    "type": "string",
+                    "description": "The database name for this connection.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the database.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=5432\n"
+                },
+                "sshTunnel": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionPostgresSshTunnel:GlobalConnectionPostgresSshTunnel",
+                    "description": "PostgreSQL SSH Tunnel configuration\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "hostname"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "hostname",
+                        "port"
+                    ]
+                }
+            }
+        },
+        "dbtcloud:index/GlobalConnectionPostgresSshTunnel:GlobalConnectionPostgresSshTunnel": {
+            "properties": {
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname for the SSH tunnel.\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "The ID of the SSH tunnel connection.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The HTTP port for the SSH tunnel.\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The SSH public key generated to allow connecting via SSH tunnel.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to use for the SSH tunnel.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "hostname",
+                "port",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "hostname",
+                        "id",
+                        "port",
+                        "publicKey",
+                        "username"
+                    ]
+                }
+            }
+        },
+        "dbtcloud:index/GlobalConnectionRedshift:GlobalConnectionRedshift": {
+            "properties": {
+                "dbname": {
+                    "type": "string",
+                    "description": "The database name for this connection.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the data warehouse.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=5432\n"
+                },
+                "sshTunnel": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionRedshiftSshTunnel:GlobalConnectionRedshiftSshTunnel",
+                    "description": "Redshift SSH Tunnel configuration\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "hostname"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "hostname",
+                        "port"
+                    ]
+                }
+            }
+        },
+        "dbtcloud:index/GlobalConnectionRedshiftSshTunnel:GlobalConnectionRedshiftSshTunnel": {
+            "properties": {
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname for the SSH tunnel.\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "The ID of the SSH tunnel connection.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The HTTP port for the SSH tunnel.\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The SSH public key generated to allow connecting via SSH tunnel.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to use for the SSH tunnel.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "hostname",
+                "port",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "hostname",
+                        "id",
+                        "port",
+                        "publicKey",
+                        "username"
+                    ]
+                }
+            }
+        },
         "dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake": {
             "properties": {
                 "account": {
@@ -314,6 +621,80 @@
                         "clientSessionKeepAlive",
                         "database",
                         "warehouse"
+                    ]
+                }
+            }
+        },
+        "dbtcloud:index/GlobalConnectionStarburst:GlobalConnectionStarburst": {
+            "properties": {
+                "host": {
+                    "type": "string",
+                    "description": "The hostname of the account to connect to.\n"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "The authentication method. Only LDAP for now.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=443\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "host"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "host",
+                        "method",
+                        "port"
+                    ]
+                }
+            }
+        },
+        "dbtcloud:index/GlobalConnectionSynapse:GlobalConnectionSynapse": {
+            "properties": {
+                "database": {
+                    "type": "string",
+                    "description": "The database to connect to for this connection.\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The server hostname.\n"
+                },
+                "loginTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=1433\n"
+                },
+                "queryTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "database",
+                "host"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "database",
+                        "host",
+                        "loginTimeout",
+                        "port",
+                        "queryTimeout",
+                        "retries"
                     ]
                 }
             }
@@ -979,7 +1360,7 @@
     },
     "resources": {
         "dbtcloud:index/bigQueryConnection:BigQueryConnection": {
-            "description": "Resource to create BigQuery connections in dbt Cloud. Can be set to use OAuth for developers.\n\n\u003e This resource is going to be deprecated in the future, please use the `dbtcloud.GlobalConnection` resource instead to crate BigQuery connections.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myConnection = new dbtcloud.BigQueryConnection(\"my_connection\", {\n    projectId: dbtProject.id,\n    name: \"Project Name\",\n    type: \"bigquery\",\n    isActive: true,\n    gcpProjectId: \"my-gcp-project-id\",\n    timeoutSeconds: 100,\n    privateKeyId: \"my-private-key-id\",\n    privateKey: \"ABCDEFGHIJKL\",\n    clientEmail: \"my_client_email\",\n    clientId: \"my_client_di\",\n    authUri: \"my_auth_uri\",\n    tokenUri: \"my_token_uri\",\n    authProviderX509CertUrl: \"my_auth_provider_x509_cert_url\",\n    clientX509CertUrl: \"my_client_x509_cert_url\",\n    retries: 3,\n});\n// it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\nconst myConnectionWithOauth = new dbtcloud.BigQueryConnection(\"my_connection_with_oauth\", {\n    projectId: dbtProject.id,\n    name: \"Project Name\",\n    type: \"bigquery\",\n    isActive: true,\n    gcpProjectId: \"my-gcp-project-id\",\n    timeoutSeconds: 100,\n    privateKeyId: \"my-private-key-id\",\n    privateKey: \"ABCDEFGHIJKL\",\n    clientEmail: \"my_client_email\",\n    clientId: \"my_client_di\",\n    authUri: \"my_auth_uri\",\n    tokenUri: \"my_token_uri\",\n    authProviderX509CertUrl: \"my_auth_provider_x509_cert_url\",\n    clientX509CertUrl: \"my_client_x509_cert_url\",\n    retries: 3,\n    applicationId: \"oauth_application_id\",\n    applicationSecret: \"oauth_secret_id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_connection = dbtcloud.BigQueryConnection(\"my_connection\",\n    project_id=dbt_project[\"id\"],\n    name=\"Project Name\",\n    type=\"bigquery\",\n    is_active=True,\n    gcp_project_id=\"my-gcp-project-id\",\n    timeout_seconds=100,\n    private_key_id=\"my-private-key-id\",\n    private_key=\"ABCDEFGHIJKL\",\n    client_email=\"my_client_email\",\n    client_id=\"my_client_di\",\n    auth_uri=\"my_auth_uri\",\n    token_uri=\"my_token_uri\",\n    auth_provider_x509_cert_url=\"my_auth_provider_x509_cert_url\",\n    client_x509_cert_url=\"my_client_x509_cert_url\",\n    retries=3)\n# it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\nmy_connection_with_oauth = dbtcloud.BigQueryConnection(\"my_connection_with_oauth\",\n    project_id=dbt_project[\"id\"],\n    name=\"Project Name\",\n    type=\"bigquery\",\n    is_active=True,\n    gcp_project_id=\"my-gcp-project-id\",\n    timeout_seconds=100,\n    private_key_id=\"my-private-key-id\",\n    private_key=\"ABCDEFGHIJKL\",\n    client_email=\"my_client_email\",\n    client_id=\"my_client_di\",\n    auth_uri=\"my_auth_uri\",\n    token_uri=\"my_token_uri\",\n    auth_provider_x509_cert_url=\"my_auth_provider_x509_cert_url\",\n    client_x509_cert_url=\"my_client_x509_cert_url\",\n    retries=3,\n    application_id=\"oauth_application_id\",\n    application_secret=\"oauth_secret_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myConnection = new DbtCloud.BigQueryConnection(\"my_connection\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Name = \"Project Name\",\n        Type = \"bigquery\",\n        IsActive = true,\n        GcpProjectId = \"my-gcp-project-id\",\n        TimeoutSeconds = 100,\n        PrivateKeyId = \"my-private-key-id\",\n        PrivateKey = \"ABCDEFGHIJKL\",\n        ClientEmail = \"my_client_email\",\n        ClientId = \"my_client_di\",\n        AuthUri = \"my_auth_uri\",\n        TokenUri = \"my_token_uri\",\n        AuthProviderX509CertUrl = \"my_auth_provider_x509_cert_url\",\n        ClientX509CertUrl = \"my_client_x509_cert_url\",\n        Retries = 3,\n    });\n\n    // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n    var myConnectionWithOauth = new DbtCloud.BigQueryConnection(\"my_connection_with_oauth\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Name = \"Project Name\",\n        Type = \"bigquery\",\n        IsActive = true,\n        GcpProjectId = \"my-gcp-project-id\",\n        TimeoutSeconds = 100,\n        PrivateKeyId = \"my-private-key-id\",\n        PrivateKey = \"ABCDEFGHIJKL\",\n        ClientEmail = \"my_client_email\",\n        ClientId = \"my_client_di\",\n        AuthUri = \"my_auth_uri\",\n        TokenUri = \"my_token_uri\",\n        AuthProviderX509CertUrl = \"my_auth_provider_x509_cert_url\",\n        ClientX509CertUrl = \"my_client_x509_cert_url\",\n        Retries = 3,\n        ApplicationId = \"oauth_application_id\",\n        ApplicationSecret = \"oauth_secret_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewBigQueryConnection(ctx, \"my_connection\", \u0026dbtcloud.BigQueryConnectionArgs{\n\t\t\tProjectId:               pulumi.Any(dbtProject.Id),\n\t\t\tName:                    pulumi.String(\"Project Name\"),\n\t\t\tType:                    pulumi.String(\"bigquery\"),\n\t\t\tIsActive:                pulumi.Bool(true),\n\t\t\tGcpProjectId:            pulumi.String(\"my-gcp-project-id\"),\n\t\t\tTimeoutSeconds:          pulumi.Int(100),\n\t\t\tPrivateKeyId:            pulumi.String(\"my-private-key-id\"),\n\t\t\tPrivateKey:              pulumi.String(\"ABCDEFGHIJKL\"),\n\t\t\tClientEmail:             pulumi.String(\"my_client_email\"),\n\t\t\tClientId:                pulumi.String(\"my_client_di\"),\n\t\t\tAuthUri:                 pulumi.String(\"my_auth_uri\"),\n\t\t\tTokenUri:                pulumi.String(\"my_token_uri\"),\n\t\t\tAuthProviderX509CertUrl: pulumi.String(\"my_auth_provider_x509_cert_url\"),\n\t\t\tClientX509CertUrl:       pulumi.String(\"my_client_x509_cert_url\"),\n\t\t\tRetries:                 pulumi.Int(3),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n\t\t_, err = dbtcloud.NewBigQueryConnection(ctx, \"my_connection_with_oauth\", \u0026dbtcloud.BigQueryConnectionArgs{\n\t\t\tProjectId:               pulumi.Any(dbtProject.Id),\n\t\t\tName:                    pulumi.String(\"Project Name\"),\n\t\t\tType:                    pulumi.String(\"bigquery\"),\n\t\t\tIsActive:                pulumi.Bool(true),\n\t\t\tGcpProjectId:            pulumi.String(\"my-gcp-project-id\"),\n\t\t\tTimeoutSeconds:          pulumi.Int(100),\n\t\t\tPrivateKeyId:            pulumi.String(\"my-private-key-id\"),\n\t\t\tPrivateKey:              pulumi.String(\"ABCDEFGHIJKL\"),\n\t\t\tClientEmail:             pulumi.String(\"my_client_email\"),\n\t\t\tClientId:                pulumi.String(\"my_client_di\"),\n\t\t\tAuthUri:                 pulumi.String(\"my_auth_uri\"),\n\t\t\tTokenUri:                pulumi.String(\"my_token_uri\"),\n\t\t\tAuthProviderX509CertUrl: pulumi.String(\"my_auth_provider_x509_cert_url\"),\n\t\t\tClientX509CertUrl:       pulumi.String(\"my_client_x509_cert_url\"),\n\t\t\tRetries:                 pulumi.Int(3),\n\t\t\tApplicationId:           pulumi.String(\"oauth_application_id\"),\n\t\t\tApplicationSecret:       pulumi.String(\"oauth_secret_id\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.BigQueryConnection;\nimport com.pulumi.dbtcloud.BigQueryConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myConnection = new BigQueryConnection(\"myConnection\", BigQueryConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .name(\"Project Name\")\n            .type(\"bigquery\")\n            .isActive(true)\n            .gcpProjectId(\"my-gcp-project-id\")\n            .timeoutSeconds(100)\n            .privateKeyId(\"my-private-key-id\")\n            .privateKey(\"ABCDEFGHIJKL\")\n            .clientEmail(\"my_client_email\")\n            .clientId(\"my_client_di\")\n            .authUri(\"my_auth_uri\")\n            .tokenUri(\"my_token_uri\")\n            .authProviderX509CertUrl(\"my_auth_provider_x509_cert_url\")\n            .clientX509CertUrl(\"my_client_x509_cert_url\")\n            .retries(3)\n            .build());\n\n        // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n        var myConnectionWithOauth = new BigQueryConnection(\"myConnectionWithOauth\", BigQueryConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .name(\"Project Name\")\n            .type(\"bigquery\")\n            .isActive(true)\n            .gcpProjectId(\"my-gcp-project-id\")\n            .timeoutSeconds(100)\n            .privateKeyId(\"my-private-key-id\")\n            .privateKey(\"ABCDEFGHIJKL\")\n            .clientEmail(\"my_client_email\")\n            .clientId(\"my_client_di\")\n            .authUri(\"my_auth_uri\")\n            .tokenUri(\"my_token_uri\")\n            .authProviderX509CertUrl(\"my_auth_provider_x509_cert_url\")\n            .clientX509CertUrl(\"my_client_x509_cert_url\")\n            .retries(3)\n            .applicationId(\"oauth_application_id\")\n            .applicationSecret(\"oauth_secret_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myConnection:\n    type: dbtcloud:BigQueryConnection\n    name: my_connection\n    properties:\n      projectId: ${dbtProject.id}\n      name: Project Name\n      type: bigquery\n      isActive: true\n      gcpProjectId: my-gcp-project-id\n      timeoutSeconds: 100\n      privateKeyId: my-private-key-id\n      privateKey: ABCDEFGHIJKL\n      clientEmail: my_client_email\n      clientId: my_client_di\n      authUri: my_auth_uri\n      tokenUri: my_token_uri\n      authProviderX509CertUrl: my_auth_provider_x509_cert_url\n      clientX509CertUrl: my_client_x509_cert_url\n      retries: 3\n  # it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n  myConnectionWithOauth:\n    type: dbtcloud:BigQueryConnection\n    name: my_connection_with_oauth\n    properties:\n      projectId: ${dbtProject.id}\n      name: Project Name\n      type: bigquery\n      isActive: true\n      gcpProjectId: my-gcp-project-id\n      timeoutSeconds: 100\n      privateKeyId: my-private-key-id\n      privateKey: ABCDEFGHIJKL\n      clientEmail: my_client_email\n      clientId: my_client_di\n      authUri: my_auth_uri\n      tokenUri: my_token_uri\n      authProviderX509CertUrl: my_auth_provider_x509_cert_url\n      clientX509CertUrl: my_client_x509_cert_url\n      retries: 3\n      applicationId: oauth_application_id\n      applicationSecret: oauth_secret_id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_bigquery_connection.my_connection\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_bigquery_connection.my_connection\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection 12345:6789\n```\n\n",
+            "description": "Resource to create BigQuery connections in dbt Cloud. Can be set to use OAuth for developers.\n\n\u003e This resource is deprecated and is going to be removed in the next major release, please use the `dbtcloud.GlobalConnection` resource instead to create BigQuery connections.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myConnection = new dbtcloud.BigQueryConnection(\"my_connection\", {\n    projectId: dbtProject.id,\n    name: \"Project Name\",\n    type: \"bigquery\",\n    isActive: true,\n    gcpProjectId: \"my-gcp-project-id\",\n    timeoutSeconds: 100,\n    privateKeyId: \"my-private-key-id\",\n    privateKey: \"ABCDEFGHIJKL\",\n    clientEmail: \"my_client_email\",\n    clientId: \"my_client_di\",\n    authUri: \"my_auth_uri\",\n    tokenUri: \"my_token_uri\",\n    authProviderX509CertUrl: \"my_auth_provider_x509_cert_url\",\n    clientX509CertUrl: \"my_client_x509_cert_url\",\n    retries: 3,\n});\n// it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\nconst myConnectionWithOauth = new dbtcloud.BigQueryConnection(\"my_connection_with_oauth\", {\n    projectId: dbtProject.id,\n    name: \"Project Name\",\n    type: \"bigquery\",\n    isActive: true,\n    gcpProjectId: \"my-gcp-project-id\",\n    timeoutSeconds: 100,\n    privateKeyId: \"my-private-key-id\",\n    privateKey: \"ABCDEFGHIJKL\",\n    clientEmail: \"my_client_email\",\n    clientId: \"my_client_di\",\n    authUri: \"my_auth_uri\",\n    tokenUri: \"my_token_uri\",\n    authProviderX509CertUrl: \"my_auth_provider_x509_cert_url\",\n    clientX509CertUrl: \"my_client_x509_cert_url\",\n    retries: 3,\n    applicationId: \"oauth_application_id\",\n    applicationSecret: \"oauth_secret_id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_connection = dbtcloud.BigQueryConnection(\"my_connection\",\n    project_id=dbt_project[\"id\"],\n    name=\"Project Name\",\n    type=\"bigquery\",\n    is_active=True,\n    gcp_project_id=\"my-gcp-project-id\",\n    timeout_seconds=100,\n    private_key_id=\"my-private-key-id\",\n    private_key=\"ABCDEFGHIJKL\",\n    client_email=\"my_client_email\",\n    client_id=\"my_client_di\",\n    auth_uri=\"my_auth_uri\",\n    token_uri=\"my_token_uri\",\n    auth_provider_x509_cert_url=\"my_auth_provider_x509_cert_url\",\n    client_x509_cert_url=\"my_client_x509_cert_url\",\n    retries=3)\n# it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\nmy_connection_with_oauth = dbtcloud.BigQueryConnection(\"my_connection_with_oauth\",\n    project_id=dbt_project[\"id\"],\n    name=\"Project Name\",\n    type=\"bigquery\",\n    is_active=True,\n    gcp_project_id=\"my-gcp-project-id\",\n    timeout_seconds=100,\n    private_key_id=\"my-private-key-id\",\n    private_key=\"ABCDEFGHIJKL\",\n    client_email=\"my_client_email\",\n    client_id=\"my_client_di\",\n    auth_uri=\"my_auth_uri\",\n    token_uri=\"my_token_uri\",\n    auth_provider_x509_cert_url=\"my_auth_provider_x509_cert_url\",\n    client_x509_cert_url=\"my_client_x509_cert_url\",\n    retries=3,\n    application_id=\"oauth_application_id\",\n    application_secret=\"oauth_secret_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myConnection = new DbtCloud.BigQueryConnection(\"my_connection\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Name = \"Project Name\",\n        Type = \"bigquery\",\n        IsActive = true,\n        GcpProjectId = \"my-gcp-project-id\",\n        TimeoutSeconds = 100,\n        PrivateKeyId = \"my-private-key-id\",\n        PrivateKey = \"ABCDEFGHIJKL\",\n        ClientEmail = \"my_client_email\",\n        ClientId = \"my_client_di\",\n        AuthUri = \"my_auth_uri\",\n        TokenUri = \"my_token_uri\",\n        AuthProviderX509CertUrl = \"my_auth_provider_x509_cert_url\",\n        ClientX509CertUrl = \"my_client_x509_cert_url\",\n        Retries = 3,\n    });\n\n    // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n    var myConnectionWithOauth = new DbtCloud.BigQueryConnection(\"my_connection_with_oauth\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Name = \"Project Name\",\n        Type = \"bigquery\",\n        IsActive = true,\n        GcpProjectId = \"my-gcp-project-id\",\n        TimeoutSeconds = 100,\n        PrivateKeyId = \"my-private-key-id\",\n        PrivateKey = \"ABCDEFGHIJKL\",\n        ClientEmail = \"my_client_email\",\n        ClientId = \"my_client_di\",\n        AuthUri = \"my_auth_uri\",\n        TokenUri = \"my_token_uri\",\n        AuthProviderX509CertUrl = \"my_auth_provider_x509_cert_url\",\n        ClientX509CertUrl = \"my_client_x509_cert_url\",\n        Retries = 3,\n        ApplicationId = \"oauth_application_id\",\n        ApplicationSecret = \"oauth_secret_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewBigQueryConnection(ctx, \"my_connection\", \u0026dbtcloud.BigQueryConnectionArgs{\n\t\t\tProjectId:               pulumi.Any(dbtProject.Id),\n\t\t\tName:                    pulumi.String(\"Project Name\"),\n\t\t\tType:                    pulumi.String(\"bigquery\"),\n\t\t\tIsActive:                pulumi.Bool(true),\n\t\t\tGcpProjectId:            pulumi.String(\"my-gcp-project-id\"),\n\t\t\tTimeoutSeconds:          pulumi.Int(100),\n\t\t\tPrivateKeyId:            pulumi.String(\"my-private-key-id\"),\n\t\t\tPrivateKey:              pulumi.String(\"ABCDEFGHIJKL\"),\n\t\t\tClientEmail:             pulumi.String(\"my_client_email\"),\n\t\t\tClientId:                pulumi.String(\"my_client_di\"),\n\t\t\tAuthUri:                 pulumi.String(\"my_auth_uri\"),\n\t\t\tTokenUri:                pulumi.String(\"my_token_uri\"),\n\t\t\tAuthProviderX509CertUrl: pulumi.String(\"my_auth_provider_x509_cert_url\"),\n\t\t\tClientX509CertUrl:       pulumi.String(\"my_client_x509_cert_url\"),\n\t\t\tRetries:                 pulumi.Int(3),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n\t\t_, err = dbtcloud.NewBigQueryConnection(ctx, \"my_connection_with_oauth\", \u0026dbtcloud.BigQueryConnectionArgs{\n\t\t\tProjectId:               pulumi.Any(dbtProject.Id),\n\t\t\tName:                    pulumi.String(\"Project Name\"),\n\t\t\tType:                    pulumi.String(\"bigquery\"),\n\t\t\tIsActive:                pulumi.Bool(true),\n\t\t\tGcpProjectId:            pulumi.String(\"my-gcp-project-id\"),\n\t\t\tTimeoutSeconds:          pulumi.Int(100),\n\t\t\tPrivateKeyId:            pulumi.String(\"my-private-key-id\"),\n\t\t\tPrivateKey:              pulumi.String(\"ABCDEFGHIJKL\"),\n\t\t\tClientEmail:             pulumi.String(\"my_client_email\"),\n\t\t\tClientId:                pulumi.String(\"my_client_di\"),\n\t\t\tAuthUri:                 pulumi.String(\"my_auth_uri\"),\n\t\t\tTokenUri:                pulumi.String(\"my_token_uri\"),\n\t\t\tAuthProviderX509CertUrl: pulumi.String(\"my_auth_provider_x509_cert_url\"),\n\t\t\tClientX509CertUrl:       pulumi.String(\"my_client_x509_cert_url\"),\n\t\t\tRetries:                 pulumi.Int(3),\n\t\t\tApplicationId:           pulumi.String(\"oauth_application_id\"),\n\t\t\tApplicationSecret:       pulumi.String(\"oauth_secret_id\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.BigQueryConnection;\nimport com.pulumi.dbtcloud.BigQueryConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myConnection = new BigQueryConnection(\"myConnection\", BigQueryConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .name(\"Project Name\")\n            .type(\"bigquery\")\n            .isActive(true)\n            .gcpProjectId(\"my-gcp-project-id\")\n            .timeoutSeconds(100)\n            .privateKeyId(\"my-private-key-id\")\n            .privateKey(\"ABCDEFGHIJKL\")\n            .clientEmail(\"my_client_email\")\n            .clientId(\"my_client_di\")\n            .authUri(\"my_auth_uri\")\n            .tokenUri(\"my_token_uri\")\n            .authProviderX509CertUrl(\"my_auth_provider_x509_cert_url\")\n            .clientX509CertUrl(\"my_client_x509_cert_url\")\n            .retries(3)\n            .build());\n\n        // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n        var myConnectionWithOauth = new BigQueryConnection(\"myConnectionWithOauth\", BigQueryConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .name(\"Project Name\")\n            .type(\"bigquery\")\n            .isActive(true)\n            .gcpProjectId(\"my-gcp-project-id\")\n            .timeoutSeconds(100)\n            .privateKeyId(\"my-private-key-id\")\n            .privateKey(\"ABCDEFGHIJKL\")\n            .clientEmail(\"my_client_email\")\n            .clientId(\"my_client_di\")\n            .authUri(\"my_auth_uri\")\n            .tokenUri(\"my_token_uri\")\n            .authProviderX509CertUrl(\"my_auth_provider_x509_cert_url\")\n            .clientX509CertUrl(\"my_client_x509_cert_url\")\n            .retries(3)\n            .applicationId(\"oauth_application_id\")\n            .applicationSecret(\"oauth_secret_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myConnection:\n    type: dbtcloud:BigQueryConnection\n    name: my_connection\n    properties:\n      projectId: ${dbtProject.id}\n      name: Project Name\n      type: bigquery\n      isActive: true\n      gcpProjectId: my-gcp-project-id\n      timeoutSeconds: 100\n      privateKeyId: my-private-key-id\n      privateKey: ABCDEFGHIJKL\n      clientEmail: my_client_email\n      clientId: my_client_di\n      authUri: my_auth_uri\n      tokenUri: my_token_uri\n      authProviderX509CertUrl: my_auth_provider_x509_cert_url\n      clientX509CertUrl: my_client_x509_cert_url\n      retries: 3\n  # it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n  myConnectionWithOauth:\n    type: dbtcloud:BigQueryConnection\n    name: my_connection_with_oauth\n    properties:\n      projectId: ${dbtProject.id}\n      name: Project Name\n      type: bigquery\n      isActive: true\n      gcpProjectId: my-gcp-project-id\n      timeoutSeconds: 100\n      privateKeyId: my-private-key-id\n      privateKey: ABCDEFGHIJKL\n      clientEmail: my_client_email\n      clientId: my_client_di\n      authUri: my_auth_uri\n      tokenUri: my_token_uri\n      authProviderX509CertUrl: my_auth_provider_x509_cert_url\n      clientX509CertUrl: my_client_x509_cert_url\n      retries: 3\n      applicationId: oauth_application_id\n      applicationSecret: oauth_secret_id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_bigquery_connection.my_connection\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_bigquery_connection.my_connection\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection 12345:6789\n```\n\n",
             "properties": {
                 "applicationId": {
                     "type": "string",
@@ -1420,7 +1801,7 @@
             }
         },
         "dbtcloud:index/connection:Connection": {
-            "description": "Create a Data Warehouse connection for your project in dbt Cloud. The connection will need to be linked to the dbt Cloud project via a `dbtcloud.ProjectConnection` resource.\n\t\t\nThis resource can be used for Databricks, Postgres, Redshift, Snowflake and AlloyDB connections.\nFor BigQuery, due to the list of fields being very different, you can use the `dbtcloud.BigQueryConnection` resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst databricks = new dbtcloud.Connection(\"databricks\", {\n    projectId: dbtProject.id,\n    type: \"adapter\",\n    name: \"Databricks\",\n    database: \"\",\n    hostName: \"my-databricks-host.cloud.databricks.com\",\n    httpPath: \"/my/path\",\n    catalog: \"moo\",\n    oauthClientId: \"yourclientid\",\n    oauthClientSecret: \"yourclientsecret\",\n});\nconst redshift = new dbtcloud.Connection(\"redshift\", {\n    projectId: dbtProject.id,\n    type: \"redshift\",\n    name: \"My Redshift Warehouse\",\n    database: \"my-database\",\n    port: 5439,\n    hostName: \"my-redshift-hostname\",\n});\nconst snowflake = new dbtcloud.Connection(\"snowflake\", {\n    projectId: dbtProject.id,\n    type: \"snowflake\",\n    name: \"My Snowflake warehouse\",\n    account: \"my-snowflake-account\",\n    database: \"MY_DATABASE\",\n    role: \"MY_ROLE\",\n    warehouse: \"MY_WAREHOUSE\",\n    oauthClientId: \"yourclientid\",\n    oauthClientSecret: \"yourclientsecret\",\n    allowSso: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ndatabricks = dbtcloud.Connection(\"databricks\",\n    project_id=dbt_project[\"id\"],\n    type=\"adapter\",\n    name=\"Databricks\",\n    database=\"\",\n    host_name=\"my-databricks-host.cloud.databricks.com\",\n    http_path=\"/my/path\",\n    catalog=\"moo\",\n    oauth_client_id=\"yourclientid\",\n    oauth_client_secret=\"yourclientsecret\")\nredshift = dbtcloud.Connection(\"redshift\",\n    project_id=dbt_project[\"id\"],\n    type=\"redshift\",\n    name=\"My Redshift Warehouse\",\n    database=\"my-database\",\n    port=5439,\n    host_name=\"my-redshift-hostname\")\nsnowflake = dbtcloud.Connection(\"snowflake\",\n    project_id=dbt_project[\"id\"],\n    type=\"snowflake\",\n    name=\"My Snowflake warehouse\",\n    account=\"my-snowflake-account\",\n    database=\"MY_DATABASE\",\n    role=\"MY_ROLE\",\n    warehouse=\"MY_WAREHOUSE\",\n    oauth_client_id=\"yourclientid\",\n    oauth_client_secret=\"yourclientsecret\",\n    allow_sso=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var databricks = new DbtCloud.Connection(\"databricks\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Type = \"adapter\",\n        Name = \"Databricks\",\n        Database = \"\",\n        HostName = \"my-databricks-host.cloud.databricks.com\",\n        HttpPath = \"/my/path\",\n        Catalog = \"moo\",\n        OauthClientId = \"yourclientid\",\n        OauthClientSecret = \"yourclientsecret\",\n    });\n\n    var redshift = new DbtCloud.Connection(\"redshift\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Type = \"redshift\",\n        Name = \"My Redshift Warehouse\",\n        Database = \"my-database\",\n        Port = 5439,\n        HostName = \"my-redshift-hostname\",\n    });\n\n    var snowflake = new DbtCloud.Connection(\"snowflake\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Type = \"snowflake\",\n        Name = \"My Snowflake warehouse\",\n        Account = \"my-snowflake-account\",\n        Database = \"MY_DATABASE\",\n        Role = \"MY_ROLE\",\n        Warehouse = \"MY_WAREHOUSE\",\n        OauthClientId = \"yourclientid\",\n        OauthClientSecret = \"yourclientsecret\",\n        AllowSso = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewConnection(ctx, \"databricks\", \u0026dbtcloud.ConnectionArgs{\n\t\t\tProjectId:         pulumi.Any(dbtProject.Id),\n\t\t\tType:              pulumi.String(\"adapter\"),\n\t\t\tName:              pulumi.String(\"Databricks\"),\n\t\t\tDatabase:          pulumi.String(\"\"),\n\t\t\tHostName:          pulumi.String(\"my-databricks-host.cloud.databricks.com\"),\n\t\t\tHttpPath:          pulumi.String(\"/my/path\"),\n\t\t\tCatalog:           pulumi.String(\"moo\"),\n\t\t\tOauthClientId:     pulumi.String(\"yourclientid\"),\n\t\t\tOauthClientSecret: pulumi.String(\"yourclientsecret\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewConnection(ctx, \"redshift\", \u0026dbtcloud.ConnectionArgs{\n\t\t\tProjectId: pulumi.Any(dbtProject.Id),\n\t\t\tType:      pulumi.String(\"redshift\"),\n\t\t\tName:      pulumi.String(\"My Redshift Warehouse\"),\n\t\t\tDatabase:  pulumi.String(\"my-database\"),\n\t\t\tPort:      pulumi.Int(5439),\n\t\t\tHostName:  pulumi.String(\"my-redshift-hostname\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewConnection(ctx, \"snowflake\", \u0026dbtcloud.ConnectionArgs{\n\t\t\tProjectId:         pulumi.Any(dbtProject.Id),\n\t\t\tType:              pulumi.String(\"snowflake\"),\n\t\t\tName:              pulumi.String(\"My Snowflake warehouse\"),\n\t\t\tAccount:           pulumi.String(\"my-snowflake-account\"),\n\t\t\tDatabase:          pulumi.String(\"MY_DATABASE\"),\n\t\t\tRole:              pulumi.String(\"MY_ROLE\"),\n\t\t\tWarehouse:         pulumi.String(\"MY_WAREHOUSE\"),\n\t\t\tOauthClientId:     pulumi.String(\"yourclientid\"),\n\t\t\tOauthClientSecret: pulumi.String(\"yourclientsecret\"),\n\t\t\tAllowSso:          pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Connection;\nimport com.pulumi.dbtcloud.ConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var databricks = new Connection(\"databricks\", ConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .type(\"adapter\")\n            .name(\"Databricks\")\n            .database(\"\")\n            .hostName(\"my-databricks-host.cloud.databricks.com\")\n            .httpPath(\"/my/path\")\n            .catalog(\"moo\")\n            .oauthClientId(\"yourclientid\")\n            .oauthClientSecret(\"yourclientsecret\")\n            .build());\n\n        var redshift = new Connection(\"redshift\", ConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .type(\"redshift\")\n            .name(\"My Redshift Warehouse\")\n            .database(\"my-database\")\n            .port(5439)\n            .hostName(\"my-redshift-hostname\")\n            .build());\n\n        var snowflake = new Connection(\"snowflake\", ConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .type(\"snowflake\")\n            .name(\"My Snowflake warehouse\")\n            .account(\"my-snowflake-account\")\n            .database(\"MY_DATABASE\")\n            .role(\"MY_ROLE\")\n            .warehouse(\"MY_WAREHOUSE\")\n            .oauthClientId(\"yourclientid\")\n            .oauthClientSecret(\"yourclientsecret\")\n            .allowSso(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  databricks:\n    type: dbtcloud:Connection\n    properties:\n      projectId: ${dbtProject.id}\n      type: adapter\n      name: Databricks\n      database:\n      hostName: my-databricks-host.cloud.databricks.com\n      httpPath: /my/path\n      catalog: moo\n      oauthClientId: yourclientid\n      oauthClientSecret: yourclientsecret\n  redshift:\n    type: dbtcloud:Connection\n    properties:\n      projectId: ${dbtProject.id}\n      type: redshift\n      name: My Redshift Warehouse\n      database: my-database\n      port: 5439\n      hostName: my-redshift-hostname\n  snowflake:\n    type: dbtcloud:Connection\n    properties:\n      projectId: ${dbtProject.id}\n      type: snowflake\n      name: My Snowflake warehouse\n      account: my-snowflake-account\n      database: MY_DATABASE\n      role: MY_ROLE\n      warehouse: MY_WAREHOUSE\n      oauthClientId: yourclientid\n      oauthClientSecret: yourclientsecret\n      allowSso: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_connection.test_connection\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_connection.test_connection\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/connection:Connection test_connection \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/connection:Connection test_connection 12345:6789\n```\n\n",
+            "description": "Resource to create a Data Warehouse connection in dbt Cloud.\n\n\u003e This resource is deprecated and is going to be removed in the next major release, please use the `dbtcloud.GlobalConnection` resource instead to create connections.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst databricks = new dbtcloud.Connection(\"databricks\", {\n    projectId: dbtProject.id,\n    type: \"adapter\",\n    name: \"Databricks\",\n    database: \"\",\n    hostName: \"my-databricks-host.cloud.databricks.com\",\n    httpPath: \"/my/path\",\n    catalog: \"moo\",\n    oauthClientId: \"yourclientid\",\n    oauthClientSecret: \"yourclientsecret\",\n});\nconst redshift = new dbtcloud.Connection(\"redshift\", {\n    projectId: dbtProject.id,\n    type: \"redshift\",\n    name: \"My Redshift Warehouse\",\n    database: \"my-database\",\n    port: 5439,\n    hostName: \"my-redshift-hostname\",\n});\nconst snowflake = new dbtcloud.Connection(\"snowflake\", {\n    projectId: dbtProject.id,\n    type: \"snowflake\",\n    name: \"My Snowflake warehouse\",\n    account: \"my-snowflake-account\",\n    database: \"MY_DATABASE\",\n    role: \"MY_ROLE\",\n    warehouse: \"MY_WAREHOUSE\",\n    oauthClientId: \"yourclientid\",\n    oauthClientSecret: \"yourclientsecret\",\n    allowSso: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ndatabricks = dbtcloud.Connection(\"databricks\",\n    project_id=dbt_project[\"id\"],\n    type=\"adapter\",\n    name=\"Databricks\",\n    database=\"\",\n    host_name=\"my-databricks-host.cloud.databricks.com\",\n    http_path=\"/my/path\",\n    catalog=\"moo\",\n    oauth_client_id=\"yourclientid\",\n    oauth_client_secret=\"yourclientsecret\")\nredshift = dbtcloud.Connection(\"redshift\",\n    project_id=dbt_project[\"id\"],\n    type=\"redshift\",\n    name=\"My Redshift Warehouse\",\n    database=\"my-database\",\n    port=5439,\n    host_name=\"my-redshift-hostname\")\nsnowflake = dbtcloud.Connection(\"snowflake\",\n    project_id=dbt_project[\"id\"],\n    type=\"snowflake\",\n    name=\"My Snowflake warehouse\",\n    account=\"my-snowflake-account\",\n    database=\"MY_DATABASE\",\n    role=\"MY_ROLE\",\n    warehouse=\"MY_WAREHOUSE\",\n    oauth_client_id=\"yourclientid\",\n    oauth_client_secret=\"yourclientsecret\",\n    allow_sso=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var databricks = new DbtCloud.Connection(\"databricks\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Type = \"adapter\",\n        Name = \"Databricks\",\n        Database = \"\",\n        HostName = \"my-databricks-host.cloud.databricks.com\",\n        HttpPath = \"/my/path\",\n        Catalog = \"moo\",\n        OauthClientId = \"yourclientid\",\n        OauthClientSecret = \"yourclientsecret\",\n    });\n\n    var redshift = new DbtCloud.Connection(\"redshift\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Type = \"redshift\",\n        Name = \"My Redshift Warehouse\",\n        Database = \"my-database\",\n        Port = 5439,\n        HostName = \"my-redshift-hostname\",\n    });\n\n    var snowflake = new DbtCloud.Connection(\"snowflake\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Type = \"snowflake\",\n        Name = \"My Snowflake warehouse\",\n        Account = \"my-snowflake-account\",\n        Database = \"MY_DATABASE\",\n        Role = \"MY_ROLE\",\n        Warehouse = \"MY_WAREHOUSE\",\n        OauthClientId = \"yourclientid\",\n        OauthClientSecret = \"yourclientsecret\",\n        AllowSso = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewConnection(ctx, \"databricks\", \u0026dbtcloud.ConnectionArgs{\n\t\t\tProjectId:         pulumi.Any(dbtProject.Id),\n\t\t\tType:              pulumi.String(\"adapter\"),\n\t\t\tName:              pulumi.String(\"Databricks\"),\n\t\t\tDatabase:          pulumi.String(\"\"),\n\t\t\tHostName:          pulumi.String(\"my-databricks-host.cloud.databricks.com\"),\n\t\t\tHttpPath:          pulumi.String(\"/my/path\"),\n\t\t\tCatalog:           pulumi.String(\"moo\"),\n\t\t\tOauthClientId:     pulumi.String(\"yourclientid\"),\n\t\t\tOauthClientSecret: pulumi.String(\"yourclientsecret\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewConnection(ctx, \"redshift\", \u0026dbtcloud.ConnectionArgs{\n\t\t\tProjectId: pulumi.Any(dbtProject.Id),\n\t\t\tType:      pulumi.String(\"redshift\"),\n\t\t\tName:      pulumi.String(\"My Redshift Warehouse\"),\n\t\t\tDatabase:  pulumi.String(\"my-database\"),\n\t\t\tPort:      pulumi.Int(5439),\n\t\t\tHostName:  pulumi.String(\"my-redshift-hostname\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewConnection(ctx, \"snowflake\", \u0026dbtcloud.ConnectionArgs{\n\t\t\tProjectId:         pulumi.Any(dbtProject.Id),\n\t\t\tType:              pulumi.String(\"snowflake\"),\n\t\t\tName:              pulumi.String(\"My Snowflake warehouse\"),\n\t\t\tAccount:           pulumi.String(\"my-snowflake-account\"),\n\t\t\tDatabase:          pulumi.String(\"MY_DATABASE\"),\n\t\t\tRole:              pulumi.String(\"MY_ROLE\"),\n\t\t\tWarehouse:         pulumi.String(\"MY_WAREHOUSE\"),\n\t\t\tOauthClientId:     pulumi.String(\"yourclientid\"),\n\t\t\tOauthClientSecret: pulumi.String(\"yourclientsecret\"),\n\t\t\tAllowSso:          pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Connection;\nimport com.pulumi.dbtcloud.ConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var databricks = new Connection(\"databricks\", ConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .type(\"adapter\")\n            .name(\"Databricks\")\n            .database(\"\")\n            .hostName(\"my-databricks-host.cloud.databricks.com\")\n            .httpPath(\"/my/path\")\n            .catalog(\"moo\")\n            .oauthClientId(\"yourclientid\")\n            .oauthClientSecret(\"yourclientsecret\")\n            .build());\n\n        var redshift = new Connection(\"redshift\", ConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .type(\"redshift\")\n            .name(\"My Redshift Warehouse\")\n            .database(\"my-database\")\n            .port(5439)\n            .hostName(\"my-redshift-hostname\")\n            .build());\n\n        var snowflake = new Connection(\"snowflake\", ConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .type(\"snowflake\")\n            .name(\"My Snowflake warehouse\")\n            .account(\"my-snowflake-account\")\n            .database(\"MY_DATABASE\")\n            .role(\"MY_ROLE\")\n            .warehouse(\"MY_WAREHOUSE\")\n            .oauthClientId(\"yourclientid\")\n            .oauthClientSecret(\"yourclientsecret\")\n            .allowSso(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  databricks:\n    type: dbtcloud:Connection\n    properties:\n      projectId: ${dbtProject.id}\n      type: adapter\n      name: Databricks\n      database:\n      hostName: my-databricks-host.cloud.databricks.com\n      httpPath: /my/path\n      catalog: moo\n      oauthClientId: yourclientid\n      oauthClientSecret: yourclientsecret\n  redshift:\n    type: dbtcloud:Connection\n    properties:\n      projectId: ${dbtProject.id}\n      type: redshift\n      name: My Redshift Warehouse\n      database: my-database\n      port: 5439\n      hostName: my-redshift-hostname\n  snowflake:\n    type: dbtcloud:Connection\n    properties:\n      projectId: ${dbtProject.id}\n      type: snowflake\n      name: My Snowflake warehouse\n      account: my-snowflake-account\n      database: MY_DATABASE\n      role: MY_ROLE\n      warehouse: MY_WAREHOUSE\n      oauthClientId: yourclientid\n      oauthClientSecret: yourclientsecret\n      allowSso: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_connection.test_connection\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_connection.test_connection\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/connection:Connection test_connection \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/connection:Connection test_connection 12345:6789\n```\n\n",
             "properties": {
                 "account": {
                     "type": "string",
@@ -2202,7 +2583,7 @@
             }
         },
         "dbtcloud:index/fabricConnection:FabricConnection": {
-            "description": "Resource to create Microsoft Fabric connections in dbt Cloud\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myFabricConnection = new dbtcloud.FabricConnection(\"my_fabric_connection\", {\n    projectId: dbtProject.id,\n    name: \"Connection Name\",\n    server: \"my-server\",\n    database: \"my-database\",\n    port: 1234,\n    loginTimeout: 30,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_fabric_connection = dbtcloud.FabricConnection(\"my_fabric_connection\",\n    project_id=dbt_project[\"id\"],\n    name=\"Connection Name\",\n    server=\"my-server\",\n    database=\"my-database\",\n    port=1234,\n    login_timeout=30)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myFabricConnection = new DbtCloud.FabricConnection(\"my_fabric_connection\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Name = \"Connection Name\",\n        Server = \"my-server\",\n        Database = \"my-database\",\n        Port = 1234,\n        LoginTimeout = 30,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewFabricConnection(ctx, \"my_fabric_connection\", \u0026dbtcloud.FabricConnectionArgs{\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tName:         pulumi.String(\"Connection Name\"),\n\t\t\tServer:       pulumi.String(\"my-server\"),\n\t\t\tDatabase:     pulumi.String(\"my-database\"),\n\t\t\tPort:         pulumi.Int(1234),\n\t\t\tLoginTimeout: pulumi.Int(30),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.FabricConnection;\nimport com.pulumi.dbtcloud.FabricConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myFabricConnection = new FabricConnection(\"myFabricConnection\", FabricConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .name(\"Connection Name\")\n            .server(\"my-server\")\n            .database(\"my-database\")\n            .port(1234)\n            .loginTimeout(30)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myFabricConnection:\n    type: dbtcloud:FabricConnection\n    name: my_fabric_connection\n    properties:\n      projectId: ${dbtProject.id}\n      name: Connection Name\n      server: my-server\n      database: my-database\n      port: 1234\n      loginTimeout: 30\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_fabric_connection.my_connection\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_fabric_connection.my_connection\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/fabricConnection:FabricConnection my_connection \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/fabricConnection:FabricConnection my_connection 12345:6789\n```\n\n",
+            "description": "Resource to create a MS Fabric connection in dbt Cloud.\n\n\u003e This resource is deprecated and is going to be removed in the next major release, please use the `dbtcloud.GlobalConnection` resource instead to create any DW connection.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myFabricConnection = new dbtcloud.FabricConnection(\"my_fabric_connection\", {\n    projectId: dbtProject.id,\n    name: \"Connection Name\",\n    server: \"my-server\",\n    database: \"my-database\",\n    port: 1234,\n    loginTimeout: 30,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_fabric_connection = dbtcloud.FabricConnection(\"my_fabric_connection\",\n    project_id=dbt_project[\"id\"],\n    name=\"Connection Name\",\n    server=\"my-server\",\n    database=\"my-database\",\n    port=1234,\n    login_timeout=30)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myFabricConnection = new DbtCloud.FabricConnection(\"my_fabric_connection\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Name = \"Connection Name\",\n        Server = \"my-server\",\n        Database = \"my-database\",\n        Port = 1234,\n        LoginTimeout = 30,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewFabricConnection(ctx, \"my_fabric_connection\", \u0026dbtcloud.FabricConnectionArgs{\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tName:         pulumi.String(\"Connection Name\"),\n\t\t\tServer:       pulumi.String(\"my-server\"),\n\t\t\tDatabase:     pulumi.String(\"my-database\"),\n\t\t\tPort:         pulumi.Int(1234),\n\t\t\tLoginTimeout: pulumi.Int(30),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.FabricConnection;\nimport com.pulumi.dbtcloud.FabricConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myFabricConnection = new FabricConnection(\"myFabricConnection\", FabricConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .name(\"Connection Name\")\n            .server(\"my-server\")\n            .database(\"my-database\")\n            .port(1234)\n            .loginTimeout(30)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myFabricConnection:\n    type: dbtcloud:FabricConnection\n    name: my_fabric_connection\n    properties:\n      projectId: ${dbtProject.id}\n      name: Connection Name\n      server: my-server\n      database: my-database\n      port: 1234\n      loginTimeout: 30\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_fabric_connection.my_connection\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_fabric_connection.my_connection\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/fabricConnection:FabricConnection my_connection \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/fabricConnection:FabricConnection my_connection 12345:6789\n```\n\n",
             "properties": {
                 "adapterId": {
                     "type": "integer",
@@ -2492,11 +2873,19 @@
             }
         },
         "dbtcloud:index/globalConnection:GlobalConnection": {
-            "description": "This resource can be used to create global connections as introduced in dbt Cloud in August 2024.\n\nThose connections are not linked to a project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.\n\nFor now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` , \nbut all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.GlobalConnection;\nimport com.pulumi.dbtcloud.GlobalConnectionArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var bigquery = new GlobalConnection(\"bigquery\", GlobalConnectionArgs.builder()\n            .name(\"My BigQuery connection\")\n            .bigquery(GlobalConnectionBigqueryArgs.builder()\n                .gcp_project_id(\"my-gcp-project-id\")\n                .timeout_seconds(1000)\n                .private_key_id(\"my-private-key-id\")\n                .private_key(\"ABCDEFGHIJKL\")\n                .client_email(\"my_client_email\")\n                .client_id(\"my_client_id\")\n                .auth_uri(\"my_auth_uri\")\n                .token_uri(\"my_token_uri\")\n                .auth_provider_x509_cert_url(\"my_auth_provider_x509_cert_url\")\n                .client_x509_cert_url(\"my_client_x509_cert_url\")\n                .application_id(\"oauth_application_id\")\n                .application_secret(\"oauth_secret_id\")\n                .build())\n            .build());\n\n        var databricks = new GlobalConnection(\"databricks\", GlobalConnectionArgs.builder()\n            .name(\"My Databricks connection\")\n            .databricks(GlobalConnectionDatabricksArgs.builder()\n                .host(\"my-databricks-host.cloud.databricks.com\")\n                .http_path(\"/sql/my/http/path\")\n                .catalog(\"dbt_catalog\")\n                .client_id(\"yourclientid\")\n                .client_secret(\"yourclientsecret\")\n                .build())\n            .build());\n\n        var snowflake = new GlobalConnection(\"snowflake\", GlobalConnectionArgs.builder()\n            .name(\"My Snowflake connection\")\n            .privateLinkEndpointId(myPrivateLink.id())\n            .snowflake(GlobalConnectionSnowflakeArgs.builder()\n                .account(\"my-snowflake-account\")\n                .database(\"MY_DATABASE\")\n                .warehouse(\"MY_WAREHOUSE\")\n                .client_session_keep_alive(false)\n                .allow_sso(true)\n                .oauth_client_id(\"yourclientid\")\n                .oauth_client_secret(\"yourclientsecret\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  bigquery:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My BigQuery connection\n      bigquery:\n        gcp_project_id: my-gcp-project-id\n        timeout_seconds: 1000\n        private_key_id: my-private-key-id\n        private_key: ABCDEFGHIJKL\n        client_email: my_client_email\n        client_id: my_client_id\n        auth_uri: my_auth_uri\n        token_uri: my_token_uri\n        auth_provider_x509_cert_url: my_auth_provider_x509_cert_url\n        client_x509_cert_url: my_client_x509_cert_url\n        application_id: oauth_application_id\n        application_secret: oauth_secret_id\n  databricks:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Databricks connection\n      databricks:\n        host: my-databricks-host.cloud.databricks.com\n        http_path: /sql/my/http/path\n        catalog: dbt_catalog\n        client_id: yourclientid\n        client_secret: yourclientsecret\n  snowflake:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Snowflake connection\n      privateLinkEndpointId: ${myPrivateLink.id}\n      snowflake:\n        account: my-snowflake-account\n        database: MY_DATABASE\n        warehouse: MY_WAREHOUSE\n        client_session_keep_alive: false\n        allow_sso: true\n        oauth_client_id: yourclientid\n        oauth_client_secret: yourclientsecret\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA project-scoped connection can be imported as a global connection by specifying the connection ID\n\nMigrating from project-scoped connections to global connections could be done by:\n\n1. Adding the config for the global connection and importing it (see below)\n\n2. Removing the project-scoped connection from the config AND from the state\n\n   - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_global_connection.my_connection\n\n  id = \"connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_global_connection.my_connection\n\n  id = \"1234\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection \"connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234\n```\n\n",
+            "description": "This resource can be used to create global connections as introduced in dbt Cloud in August 2024.\n\nThose connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.\n\nAll connections types are supported, and the old resources `dbtcloud.Connection`, `dbtcloud.BigQueryConnection` and `dbtcloud.FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.GlobalConnection;\nimport com.pulumi.dbtcloud.GlobalConnectionArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionApacheSparkArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionAthenaArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionFabricArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionPostgresArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionRedshiftArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionStarburstArgs;\nimport com.pulumi.dbtcloud.inputs.GlobalConnectionSynapseArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var apacheSpark = new GlobalConnection(\"apacheSpark\", GlobalConnectionArgs.builder()\n            .name(\"My Apache Spark connection\")\n            .apacheSpark(GlobalConnectionApacheSparkArgs.builder()\n                .method(\"http\")\n                .host(\"my-spark-host.com\")\n                .cluster(\"my-cluster\")\n                .connect_timeout(100)\n                .build())\n            .build());\n\n        var athena = new GlobalConnection(\"athena\", GlobalConnectionArgs.builder()\n            .name(\"My Athena connection\")\n            .athena(GlobalConnectionAthenaArgs.builder()\n                .region_name(\"us-east-1\")\n                .database(\"mydatabase\")\n                .s3_staging_dir(\"my_dir\")\n                .work_group(\"my_work_group\")\n                .build())\n            .build());\n\n        var bigquery = new GlobalConnection(\"bigquery\", GlobalConnectionArgs.builder()\n            .name(\"My BigQuery connection\")\n            .bigquery(GlobalConnectionBigqueryArgs.builder()\n                .gcp_project_id(\"my-gcp-project-id\")\n                .timeout_seconds(1000)\n                .private_key_id(\"my-private-key-id\")\n                .private_key(\"ABCDEFGHIJKL\")\n                .client_email(\"my_client_email\")\n                .client_id(\"my_client_id\")\n                .auth_uri(\"my_auth_uri\")\n                .token_uri(\"my_token_uri\")\n                .auth_provider_x509_cert_url(\"my_auth_provider_x509_cert_url\")\n                .client_x509_cert_url(\"my_client_x509_cert_url\")\n                .application_id(\"oauth_application_id\")\n                .application_secret(\"oauth_secret_id\")\n                .build())\n            .build());\n\n        var databricks = new GlobalConnection(\"databricks\", GlobalConnectionArgs.builder()\n            .name(\"My Databricks connection\")\n            .databricks(GlobalConnectionDatabricksArgs.builder()\n                .host(\"my-databricks-host.cloud.databricks.com\")\n                .http_path(\"/sql/my/http/path\")\n                .catalog(\"dbt_catalog\")\n                .client_id(\"yourclientid\")\n                .client_secret(\"yourclientsecret\")\n                .build())\n            .build());\n\n        var fabric = new GlobalConnection(\"fabric\", GlobalConnectionArgs.builder()\n            .name(\"My Fabric connection\")\n            .fabric(GlobalConnectionFabricArgs.builder()\n                .server(\"my-fabric-server.com\")\n                .database(\"mydb\")\n                .port(1234)\n                .retries(3)\n                .login_timeout(60)\n                .query_timeout(3600)\n                .build())\n            .build());\n\n        var postgres = new GlobalConnection(\"postgres\", GlobalConnectionArgs.builder()\n            .name(\"My PostgreSQL connection\")\n            .postgres(GlobalConnectionPostgresArgs.builder()\n                .hostname(\"my-postgresql-server.com\")\n                .port(5432)\n                .dbname(\"my_database\")\n                .build())\n            .build());\n\n        var redshift = new GlobalConnection(\"redshift\", GlobalConnectionArgs.builder()\n            .name(\"My Redshift connection\")\n            .redshift(GlobalConnectionRedshiftArgs.builder()\n                .hostname(\"my-redshift-connection.com\")\n                .port(5432)\n                .dbname(\"my_database\")\n                .build())\n            .build());\n\n        var snowflake = new GlobalConnection(\"snowflake\", GlobalConnectionArgs.builder()\n            .name(\"My Snowflake connection\")\n            .privateLinkEndpointId(myPrivateLink.id())\n            .snowflake(GlobalConnectionSnowflakeArgs.builder()\n                .account(\"my-snowflake-account\")\n                .database(\"MY_DATABASE\")\n                .warehouse(\"MY_WAREHOUSE\")\n                .client_session_keep_alive(false)\n                .allow_sso(true)\n                .oauth_client_id(\"yourclientid\")\n                .oauth_client_secret(\"yourclientsecret\")\n                .build())\n            .build());\n\n        var starburst = new GlobalConnection(\"starburst\", GlobalConnectionArgs.builder()\n            .name(\"My Starburst connection\")\n            .starburst(GlobalConnectionStarburstArgs.builder()\n                .host(\"my-starburst-host.com\")\n                .database(\"mydb\")\n                .build())\n            .build());\n\n        var synapse = new GlobalConnection(\"synapse\", GlobalConnectionArgs.builder()\n            .name(\"My Synapse connection\")\n            .synapse(GlobalConnectionSynapseArgs.builder()\n                .host(\"my-synapse-server.com\")\n                .database(\"mydb\")\n                .port(1234)\n                .retries(3)\n                .login_timeout(60)\n                .query_timeout(3600)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  apacheSpark:\n    type: dbtcloud:GlobalConnection\n    name: apache_spark\n    properties:\n      name: My Apache Spark connection\n      apacheSpark:\n        method: http\n        host: my-spark-host.com\n        cluster: my-cluster\n        connect_timeout: 100\n  athena:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Athena connection\n      athena:\n        region_name: us-east-1\n        database: mydatabase\n        s3_staging_dir: my_dir\n        work_group: my_work_group\n  bigquery:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My BigQuery connection\n      bigquery:\n        gcp_project_id: my-gcp-project-id\n        timeout_seconds: 1000\n        private_key_id: my-private-key-id\n        private_key: ABCDEFGHIJKL\n        client_email: my_client_email\n        client_id: my_client_id\n        auth_uri: my_auth_uri\n        token_uri: my_token_uri\n        auth_provider_x509_cert_url: my_auth_provider_x509_cert_url\n        client_x509_cert_url: my_client_x509_cert_url\n        application_id: oauth_application_id\n        application_secret: oauth_secret_id\n  databricks:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Databricks connection\n      databricks:\n        host: my-databricks-host.cloud.databricks.com\n        http_path: /sql/my/http/path\n        catalog: dbt_catalog\n        client_id: yourclientid\n        client_secret: yourclientsecret\n  fabric:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Fabric connection\n      fabric:\n        server: my-fabric-server.com\n        database: mydb\n        port: 1234\n        retries: 3\n        login_timeout: 60\n        query_timeout: 3600\n  postgres:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My PostgreSQL connection\n      postgres:\n        hostname: my-postgresql-server.com\n        port: 5432\n        dbname: my_database\n  redshift:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Redshift connection\n      redshift:\n        hostname: my-redshift-connection.com\n        port: 5432\n        dbname: my_database\n  snowflake:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Snowflake connection\n      privateLinkEndpointId: ${myPrivateLink.id}\n      snowflake:\n        account: my-snowflake-account\n        database: MY_DATABASE\n        warehouse: MY_WAREHOUSE\n        client_session_keep_alive: false\n        allow_sso: true\n        oauth_client_id: yourclientid\n        oauth_client_secret: yourclientsecret\n  starburst:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Starburst connection\n      starburst:\n        host: my-starburst-host.com\n        database: mydb\n  synapse:\n    type: dbtcloud:GlobalConnection\n    properties:\n      name: My Synapse connection\n      synapse:\n        host: my-synapse-server.com\n        database: mydb\n        port: 1234\n        retries: 3\n        login_timeout: 60\n        query_timeout: 3600\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA project-scoped connection can be imported as a global connection by specifying the connection ID\n\nMigrating from project-scoped connections to global connections could be done by:\n\n1. Adding the config for the global connection and importing it (see below)\n\n2. Removing the project-scoped connection from the config AND from the state\n\n   - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_global_connection.my_connection\n\n  id = \"connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_global_connection.my_connection\n\n  id = \"1234\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection \"connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234\n```\n\n",
             "properties": {
                 "adapterVersion": {
                     "type": "string",
                     "description": "Version of the adapter\n"
+                },
+                "apacheSpark": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionApacheSpark:GlobalConnectionApacheSpark",
+                    "description": "Apache Spark connection configuration.\n"
+                },
+                "athena": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionAthena:GlobalConnectionAthena",
+                    "description": "Athena connection configuration.\n"
                 },
                 "bigquery": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionBigquery:GlobalConnectionBigquery"
@@ -2504,6 +2893,10 @@
                 "databricks": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionDatabricks:GlobalConnectionDatabricks",
                     "description": "Databricks connection configuration\n"
+                },
+                "fabric": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionFabric:GlobalConnectionFabric",
+                    "description": "Microsoft Fabric connection configuration.\n"
                 },
                 "isSshTunnelEnabled": {
                     "type": "boolean",
@@ -2516,13 +2909,29 @@
                 "oauthConfigurationId": {
                     "type": "integer"
                 },
+                "postgres": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionPostgres:GlobalConnectionPostgres",
+                    "description": "PostgreSQL connection configuration.\n"
+                },
                 "privateLinkEndpointId": {
                     "type": "string",
                     "description": "Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source\n"
                 },
+                "redshift": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionRedshift:GlobalConnectionRedshift",
+                    "description": "Redshift connection configuration\n"
+                },
                 "snowflake": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake",
                     "description": "Snowflake connection configuration\n"
+                },
+                "starburst": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionStarburst:GlobalConnectionStarburst",
+                    "description": "Starburst/Trino connection configuration.\n"
+                },
+                "synapse": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionSynapse:GlobalConnectionSynapse",
+                    "description": "Azure Synapse Analytics connection configuration.\n"
                 }
             },
             "required": [
@@ -2532,6 +2941,14 @@
                 "oauthConfigurationId"
             ],
             "inputProperties": {
+                "apacheSpark": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionApacheSpark:GlobalConnectionApacheSpark",
+                    "description": "Apache Spark connection configuration.\n"
+                },
+                "athena": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionAthena:GlobalConnectionAthena",
+                    "description": "Athena connection configuration.\n"
+                },
                 "bigquery": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionBigquery:GlobalConnectionBigquery"
                 },
@@ -2539,17 +2956,37 @@
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionDatabricks:GlobalConnectionDatabricks",
                     "description": "Databricks connection configuration\n"
                 },
+                "fabric": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionFabric:GlobalConnectionFabric",
+                    "description": "Microsoft Fabric connection configuration.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Connection name\n"
+                },
+                "postgres": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionPostgres:GlobalConnectionPostgres",
+                    "description": "PostgreSQL connection configuration.\n"
                 },
                 "privateLinkEndpointId": {
                     "type": "string",
                     "description": "Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source\n"
                 },
+                "redshift": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionRedshift:GlobalConnectionRedshift",
+                    "description": "Redshift connection configuration\n"
+                },
                 "snowflake": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake",
                     "description": "Snowflake connection configuration\n"
+                },
+                "starburst": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionStarburst:GlobalConnectionStarburst",
+                    "description": "Starburst/Trino connection configuration.\n"
+                },
+                "synapse": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionSynapse:GlobalConnectionSynapse",
+                    "description": "Azure Synapse Analytics connection configuration.\n"
                 }
             },
             "stateInputs": {
@@ -2559,12 +2996,24 @@
                         "type": "string",
                         "description": "Version of the adapter\n"
                     },
+                    "apacheSpark": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionApacheSpark:GlobalConnectionApacheSpark",
+                        "description": "Apache Spark connection configuration.\n"
+                    },
+                    "athena": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionAthena:GlobalConnectionAthena",
+                        "description": "Athena connection configuration.\n"
+                    },
                     "bigquery": {
                         "$ref": "#/types/dbtcloud:index/GlobalConnectionBigquery:GlobalConnectionBigquery"
                     },
                     "databricks": {
                         "$ref": "#/types/dbtcloud:index/GlobalConnectionDatabricks:GlobalConnectionDatabricks",
                         "description": "Databricks connection configuration\n"
+                    },
+                    "fabric": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionFabric:GlobalConnectionFabric",
+                        "description": "Microsoft Fabric connection configuration.\n"
                     },
                     "isSshTunnelEnabled": {
                         "type": "boolean",
@@ -2577,13 +3026,29 @@
                     "oauthConfigurationId": {
                         "type": "integer"
                     },
+                    "postgres": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionPostgres:GlobalConnectionPostgres",
+                        "description": "PostgreSQL connection configuration.\n"
+                    },
                     "privateLinkEndpointId": {
                         "type": "string",
                         "description": "Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source\n"
                     },
+                    "redshift": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionRedshift:GlobalConnectionRedshift",
+                        "description": "Redshift connection configuration\n"
+                    },
                     "snowflake": {
                         "$ref": "#/types/dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake",
                         "description": "Snowflake connection configuration\n"
+                    },
+                    "starburst": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionStarburst:GlobalConnectionStarburst",
+                        "description": "Starburst/Trino connection configuration.\n"
+                    },
+                    "synapse": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionSynapse:GlobalConnectionSynapse",
+                        "description": "Azure Synapse Analytics connection configuration.\n"
                     }
                 },
                 "type": "object"
