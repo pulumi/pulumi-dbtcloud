@@ -14,7 +14,7 @@ import (
 
 // Resource to create BigQuery connections in dbt Cloud. Can be set to use OAuth for developers.
 //
-// > This resource is going to be deprecated in the future, please use the `GlobalConnection` resource instead to crate BigQuery connections.
+// > This resource is deprecated and is going to be removed in the next major release, please use the `GlobalConnection` resource instead to create BigQuery connections.
 //
 // ## Example Usage
 //

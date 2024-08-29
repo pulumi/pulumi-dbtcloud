@@ -13,10 +13,9 @@ import (
 
 // This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
 //
-// Those connections are not linked to a project and can be linked to environments from different projects by using the `connectionId` field in the `Environment` resource.
+// Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connectionId` field in the `Environment` resource.
 //
-// For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `Connection` and `FabricConnection` ,
-// but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+// All connections types are supported, and the old resources `Connection`, `BigQueryConnection` and `FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
 //
 // ## Import
 //
@@ -61,19 +60,33 @@ type GlobalConnection struct {
 	pulumi.CustomResourceState
 
 	// Version of the adapter
-	AdapterVersion pulumi.StringOutput               `pulumi:"adapterVersion"`
-	Bigquery       GlobalConnectionBigqueryPtrOutput `pulumi:"bigquery"`
+	AdapterVersion pulumi.StringOutput `pulumi:"adapterVersion"`
+	// Apache Spark connection configuration.
+	ApacheSpark GlobalConnectionApacheSparkPtrOutput `pulumi:"apacheSpark"`
+	// Athena connection configuration.
+	Athena   GlobalConnectionAthenaPtrOutput   `pulumi:"athena"`
+	Bigquery GlobalConnectionBigqueryPtrOutput `pulumi:"bigquery"`
 	// Databricks connection configuration
 	Databricks GlobalConnectionDatabricksPtrOutput `pulumi:"databricks"`
+	// Microsoft Fabric connection configuration.
+	Fabric GlobalConnectionFabricPtrOutput `pulumi:"fabric"`
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled pulumi.BoolOutput `pulumi:"isSshTunnelEnabled"`
 	// Connection name
 	Name                 pulumi.StringOutput `pulumi:"name"`
 	OauthConfigurationId pulumi.IntOutput    `pulumi:"oauthConfigurationId"`
+	// PostgreSQL connection configuration.
+	Postgres GlobalConnectionPostgresPtrOutput `pulumi:"postgres"`
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
 	PrivateLinkEndpointId pulumi.StringPtrOutput `pulumi:"privateLinkEndpointId"`
+	// Redshift connection configuration
+	Redshift GlobalConnectionRedshiftPtrOutput `pulumi:"redshift"`
 	// Snowflake connection configuration
 	Snowflake GlobalConnectionSnowflakePtrOutput `pulumi:"snowflake"`
+	// Starburst/Trino connection configuration.
+	Starburst GlobalConnectionStarburstPtrOutput `pulumi:"starburst"`
+	// Azure Synapse Analytics connection configuration.
+	Synapse GlobalConnectionSynapsePtrOutput `pulumi:"synapse"`
 }
 
 // NewGlobalConnection registers a new resource with the given unique name, arguments, and options.
@@ -107,36 +120,64 @@ func GetGlobalConnection(ctx *pulumi.Context,
 // Input properties used for looking up and filtering GlobalConnection resources.
 type globalConnectionState struct {
 	// Version of the adapter
-	AdapterVersion *string                   `pulumi:"adapterVersion"`
-	Bigquery       *GlobalConnectionBigquery `pulumi:"bigquery"`
+	AdapterVersion *string `pulumi:"adapterVersion"`
+	// Apache Spark connection configuration.
+	ApacheSpark *GlobalConnectionApacheSpark `pulumi:"apacheSpark"`
+	// Athena connection configuration.
+	Athena   *GlobalConnectionAthena   `pulumi:"athena"`
+	Bigquery *GlobalConnectionBigquery `pulumi:"bigquery"`
 	// Databricks connection configuration
 	Databricks *GlobalConnectionDatabricks `pulumi:"databricks"`
+	// Microsoft Fabric connection configuration.
+	Fabric *GlobalConnectionFabric `pulumi:"fabric"`
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled *bool `pulumi:"isSshTunnelEnabled"`
 	// Connection name
 	Name                 *string `pulumi:"name"`
 	OauthConfigurationId *int    `pulumi:"oauthConfigurationId"`
+	// PostgreSQL connection configuration.
+	Postgres *GlobalConnectionPostgres `pulumi:"postgres"`
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
 	PrivateLinkEndpointId *string `pulumi:"privateLinkEndpointId"`
+	// Redshift connection configuration
+	Redshift *GlobalConnectionRedshift `pulumi:"redshift"`
 	// Snowflake connection configuration
 	Snowflake *GlobalConnectionSnowflake `pulumi:"snowflake"`
+	// Starburst/Trino connection configuration.
+	Starburst *GlobalConnectionStarburst `pulumi:"starburst"`
+	// Azure Synapse Analytics connection configuration.
+	Synapse *GlobalConnectionSynapse `pulumi:"synapse"`
 }
 
 type GlobalConnectionState struct {
 	// Version of the adapter
 	AdapterVersion pulumi.StringPtrInput
-	Bigquery       GlobalConnectionBigqueryPtrInput
+	// Apache Spark connection configuration.
+	ApacheSpark GlobalConnectionApacheSparkPtrInput
+	// Athena connection configuration.
+	Athena   GlobalConnectionAthenaPtrInput
+	Bigquery GlobalConnectionBigqueryPtrInput
 	// Databricks connection configuration
 	Databricks GlobalConnectionDatabricksPtrInput
+	// Microsoft Fabric connection configuration.
+	Fabric GlobalConnectionFabricPtrInput
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled pulumi.BoolPtrInput
 	// Connection name
 	Name                 pulumi.StringPtrInput
 	OauthConfigurationId pulumi.IntPtrInput
+	// PostgreSQL connection configuration.
+	Postgres GlobalConnectionPostgresPtrInput
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
 	PrivateLinkEndpointId pulumi.StringPtrInput
+	// Redshift connection configuration
+	Redshift GlobalConnectionRedshiftPtrInput
 	// Snowflake connection configuration
 	Snowflake GlobalConnectionSnowflakePtrInput
+	// Starburst/Trino connection configuration.
+	Starburst GlobalConnectionStarburstPtrInput
+	// Azure Synapse Analytics connection configuration.
+	Synapse GlobalConnectionSynapsePtrInput
 }
 
 func (GlobalConnectionState) ElementType() reflect.Type {
@@ -144,28 +185,56 @@ func (GlobalConnectionState) ElementType() reflect.Type {
 }
 
 type globalConnectionArgs struct {
+	// Apache Spark connection configuration.
+	ApacheSpark *GlobalConnectionApacheSpark `pulumi:"apacheSpark"`
+	// Athena connection configuration.
+	Athena   *GlobalConnectionAthena   `pulumi:"athena"`
 	Bigquery *GlobalConnectionBigquery `pulumi:"bigquery"`
 	// Databricks connection configuration
 	Databricks *GlobalConnectionDatabricks `pulumi:"databricks"`
+	// Microsoft Fabric connection configuration.
+	Fabric *GlobalConnectionFabric `pulumi:"fabric"`
 	// Connection name
 	Name *string `pulumi:"name"`
+	// PostgreSQL connection configuration.
+	Postgres *GlobalConnectionPostgres `pulumi:"postgres"`
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
 	PrivateLinkEndpointId *string `pulumi:"privateLinkEndpointId"`
+	// Redshift connection configuration
+	Redshift *GlobalConnectionRedshift `pulumi:"redshift"`
 	// Snowflake connection configuration
 	Snowflake *GlobalConnectionSnowflake `pulumi:"snowflake"`
+	// Starburst/Trino connection configuration.
+	Starburst *GlobalConnectionStarburst `pulumi:"starburst"`
+	// Azure Synapse Analytics connection configuration.
+	Synapse *GlobalConnectionSynapse `pulumi:"synapse"`
 }
 
 // The set of arguments for constructing a GlobalConnection resource.
 type GlobalConnectionArgs struct {
+	// Apache Spark connection configuration.
+	ApacheSpark GlobalConnectionApacheSparkPtrInput
+	// Athena connection configuration.
+	Athena   GlobalConnectionAthenaPtrInput
 	Bigquery GlobalConnectionBigqueryPtrInput
 	// Databricks connection configuration
 	Databricks GlobalConnectionDatabricksPtrInput
+	// Microsoft Fabric connection configuration.
+	Fabric GlobalConnectionFabricPtrInput
 	// Connection name
 	Name pulumi.StringPtrInput
+	// PostgreSQL connection configuration.
+	Postgres GlobalConnectionPostgresPtrInput
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
 	PrivateLinkEndpointId pulumi.StringPtrInput
+	// Redshift connection configuration
+	Redshift GlobalConnectionRedshiftPtrInput
 	// Snowflake connection configuration
 	Snowflake GlobalConnectionSnowflakePtrInput
+	// Starburst/Trino connection configuration.
+	Starburst GlobalConnectionStarburstPtrInput
+	// Azure Synapse Analytics connection configuration.
+	Synapse GlobalConnectionSynapsePtrInput
 }
 
 func (GlobalConnectionArgs) ElementType() reflect.Type {
@@ -260,6 +329,16 @@ func (o GlobalConnectionOutput) AdapterVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *GlobalConnection) pulumi.StringOutput { return v.AdapterVersion }).(pulumi.StringOutput)
 }
 
+// Apache Spark connection configuration.
+func (o GlobalConnectionOutput) ApacheSpark() GlobalConnectionApacheSparkPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionApacheSparkPtrOutput { return v.ApacheSpark }).(GlobalConnectionApacheSparkPtrOutput)
+}
+
+// Athena connection configuration.
+func (o GlobalConnectionOutput) Athena() GlobalConnectionAthenaPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionAthenaPtrOutput { return v.Athena }).(GlobalConnectionAthenaPtrOutput)
+}
+
 func (o GlobalConnectionOutput) Bigquery() GlobalConnectionBigqueryPtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionBigqueryPtrOutput { return v.Bigquery }).(GlobalConnectionBigqueryPtrOutput)
 }
@@ -267,6 +346,11 @@ func (o GlobalConnectionOutput) Bigquery() GlobalConnectionBigqueryPtrOutput {
 // Databricks connection configuration
 func (o GlobalConnectionOutput) Databricks() GlobalConnectionDatabricksPtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionDatabricksPtrOutput { return v.Databricks }).(GlobalConnectionDatabricksPtrOutput)
+}
+
+// Microsoft Fabric connection configuration.
+func (o GlobalConnectionOutput) Fabric() GlobalConnectionFabricPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionFabricPtrOutput { return v.Fabric }).(GlobalConnectionFabricPtrOutput)
 }
 
 // Whether the connection can use an SSH tunnel
@@ -283,14 +367,34 @@ func (o GlobalConnectionOutput) OauthConfigurationId() pulumi.IntOutput {
 	return o.ApplyT(func(v *GlobalConnection) pulumi.IntOutput { return v.OauthConfigurationId }).(pulumi.IntOutput)
 }
 
+// PostgreSQL connection configuration.
+func (o GlobalConnectionOutput) Postgres() GlobalConnectionPostgresPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionPostgresPtrOutput { return v.Postgres }).(GlobalConnectionPostgresPtrOutput)
+}
+
 // Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
 func (o GlobalConnectionOutput) PrivateLinkEndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) pulumi.StringPtrOutput { return v.PrivateLinkEndpointId }).(pulumi.StringPtrOutput)
 }
 
+// Redshift connection configuration
+func (o GlobalConnectionOutput) Redshift() GlobalConnectionRedshiftPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionRedshiftPtrOutput { return v.Redshift }).(GlobalConnectionRedshiftPtrOutput)
+}
+
 // Snowflake connection configuration
 func (o GlobalConnectionOutput) Snowflake() GlobalConnectionSnowflakePtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionSnowflakePtrOutput { return v.Snowflake }).(GlobalConnectionSnowflakePtrOutput)
+}
+
+// Starburst/Trino connection configuration.
+func (o GlobalConnectionOutput) Starburst() GlobalConnectionStarburstPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionStarburstPtrOutput { return v.Starburst }).(GlobalConnectionStarburstPtrOutput)
+}
+
+// Azure Synapse Analytics connection configuration.
+func (o GlobalConnectionOutput) Synapse() GlobalConnectionSynapsePtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionSynapsePtrOutput { return v.Synapse }).(GlobalConnectionSynapsePtrOutput)
 }
 
 type GlobalConnectionArrayOutput struct{ *pulumi.OutputState }

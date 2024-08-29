@@ -657,10 +657,9 @@ class Connection(pulumi.CustomResource):
                  warehouse: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Data Warehouse connection for your project in dbt Cloud. The connection will need to be linked to the dbt Cloud project via a `ProjectConnection` resource.
+        Resource to create a Data Warehouse connection in dbt Cloud.
 
-        This resource can be used for Databricks, Postgres, Redshift, Snowflake and AlloyDB connections.
-        For BigQuery, due to the list of fields being very different, you can use the `BigQueryConnection` resource.
+        > This resource is deprecated and is going to be removed in the next major release, please use the `GlobalConnection` resource instead to create connections.
 
         ## Example Usage
 
@@ -756,10 +755,9 @@ class Connection(pulumi.CustomResource):
                  args: ConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Data Warehouse connection for your project in dbt Cloud. The connection will need to be linked to the dbt Cloud project via a `ProjectConnection` resource.
+        Resource to create a Data Warehouse connection in dbt Cloud.
 
-        This resource can be used for Databricks, Postgres, Redshift, Snowflake and AlloyDB connections.
-        For BigQuery, due to the list of fields being very different, you can use the `BigQueryConnection` resource.
+        > This resource is deprecated and is going to be removed in the next major release, please use the `GlobalConnection` resource instead to create connections.
 
         ## Example Usage
 

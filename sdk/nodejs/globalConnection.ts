@@ -9,10 +9,9 @@ import * as utilities from "./utilities";
 /**
  * This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
  *
- * Those connections are not linked to a project and can be linked to environments from different projects by using the `connectionId` field in the `dbtcloud.Environment` resource.
+ * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connectionId` field in the `dbtcloud.Environment` resource.
  *
- * For now, only a subset of connections are supported and the other Data Warehouses can continue using the existing resources `dbtcloud.Connection` and `dbtcloud.FabricConnection` ,
- * but all Data Warehouses will soon be supported under this resource and the other ones will be deprecated in the future.
+ * All connections types are supported, and the old resources `dbtcloud.Connection`, `dbtcloud.BigQueryConnection` and `dbtcloud.FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
  *
  * ## Import
  *
@@ -86,11 +85,23 @@ export class GlobalConnection extends pulumi.CustomResource {
      * Version of the adapter
      */
     public /*out*/ readonly adapterVersion!: pulumi.Output<string>;
+    /**
+     * Apache Spark connection configuration.
+     */
+    public readonly apacheSpark!: pulumi.Output<outputs.GlobalConnectionApacheSpark | undefined>;
+    /**
+     * Athena connection configuration.
+     */
+    public readonly athena!: pulumi.Output<outputs.GlobalConnectionAthena | undefined>;
     public readonly bigquery!: pulumi.Output<outputs.GlobalConnectionBigquery | undefined>;
     /**
      * Databricks connection configuration
      */
     public readonly databricks!: pulumi.Output<outputs.GlobalConnectionDatabricks | undefined>;
+    /**
+     * Microsoft Fabric connection configuration.
+     */
+    public readonly fabric!: pulumi.Output<outputs.GlobalConnectionFabric | undefined>;
     /**
      * Whether the connection can use an SSH tunnel
      */
@@ -101,13 +112,29 @@ export class GlobalConnection extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly oauthConfigurationId!: pulumi.Output<number>;
     /**
+     * PostgreSQL connection configuration.
+     */
+    public readonly postgres!: pulumi.Output<outputs.GlobalConnectionPostgres | undefined>;
+    /**
      * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      */
     public readonly privateLinkEndpointId!: pulumi.Output<string | undefined>;
     /**
+     * Redshift connection configuration
+     */
+    public readonly redshift!: pulumi.Output<outputs.GlobalConnectionRedshift | undefined>;
+    /**
      * Snowflake connection configuration
      */
     public readonly snowflake!: pulumi.Output<outputs.GlobalConnectionSnowflake | undefined>;
+    /**
+     * Starburst/Trino connection configuration.
+     */
+    public readonly starburst!: pulumi.Output<outputs.GlobalConnectionStarburst | undefined>;
+    /**
+     * Azure Synapse Analytics connection configuration.
+     */
+    public readonly synapse!: pulumi.Output<outputs.GlobalConnectionSynapse | undefined>;
 
     /**
      * Create a GlobalConnection resource with the given unique name, arguments, and options.
@@ -123,20 +150,34 @@ export class GlobalConnection extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as GlobalConnectionState | undefined;
             resourceInputs["adapterVersion"] = state ? state.adapterVersion : undefined;
+            resourceInputs["apacheSpark"] = state ? state.apacheSpark : undefined;
+            resourceInputs["athena"] = state ? state.athena : undefined;
             resourceInputs["bigquery"] = state ? state.bigquery : undefined;
             resourceInputs["databricks"] = state ? state.databricks : undefined;
+            resourceInputs["fabric"] = state ? state.fabric : undefined;
             resourceInputs["isSshTunnelEnabled"] = state ? state.isSshTunnelEnabled : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oauthConfigurationId"] = state ? state.oauthConfigurationId : undefined;
+            resourceInputs["postgres"] = state ? state.postgres : undefined;
             resourceInputs["privateLinkEndpointId"] = state ? state.privateLinkEndpointId : undefined;
+            resourceInputs["redshift"] = state ? state.redshift : undefined;
             resourceInputs["snowflake"] = state ? state.snowflake : undefined;
+            resourceInputs["starburst"] = state ? state.starburst : undefined;
+            resourceInputs["synapse"] = state ? state.synapse : undefined;
         } else {
             const args = argsOrState as GlobalConnectionArgs | undefined;
+            resourceInputs["apacheSpark"] = args ? args.apacheSpark : undefined;
+            resourceInputs["athena"] = args ? args.athena : undefined;
             resourceInputs["bigquery"] = args ? args.bigquery : undefined;
             resourceInputs["databricks"] = args ? args.databricks : undefined;
+            resourceInputs["fabric"] = args ? args.fabric : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["postgres"] = args ? args.postgres : undefined;
             resourceInputs["privateLinkEndpointId"] = args ? args.privateLinkEndpointId : undefined;
+            resourceInputs["redshift"] = args ? args.redshift : undefined;
             resourceInputs["snowflake"] = args ? args.snowflake : undefined;
+            resourceInputs["starburst"] = args ? args.starburst : undefined;
+            resourceInputs["synapse"] = args ? args.synapse : undefined;
             resourceInputs["adapterVersion"] = undefined /*out*/;
             resourceInputs["isSshTunnelEnabled"] = undefined /*out*/;
             resourceInputs["oauthConfigurationId"] = undefined /*out*/;
@@ -154,11 +195,23 @@ export interface GlobalConnectionState {
      * Version of the adapter
      */
     adapterVersion?: pulumi.Input<string>;
+    /**
+     * Apache Spark connection configuration.
+     */
+    apacheSpark?: pulumi.Input<inputs.GlobalConnectionApacheSpark>;
+    /**
+     * Athena connection configuration.
+     */
+    athena?: pulumi.Input<inputs.GlobalConnectionAthena>;
     bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery>;
     /**
      * Databricks connection configuration
      */
     databricks?: pulumi.Input<inputs.GlobalConnectionDatabricks>;
+    /**
+     * Microsoft Fabric connection configuration.
+     */
+    fabric?: pulumi.Input<inputs.GlobalConnectionFabric>;
     /**
      * Whether the connection can use an SSH tunnel
      */
@@ -169,34 +222,78 @@ export interface GlobalConnectionState {
     name?: pulumi.Input<string>;
     oauthConfigurationId?: pulumi.Input<number>;
     /**
+     * PostgreSQL connection configuration.
+     */
+    postgres?: pulumi.Input<inputs.GlobalConnectionPostgres>;
+    /**
      * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      */
     privateLinkEndpointId?: pulumi.Input<string>;
     /**
+     * Redshift connection configuration
+     */
+    redshift?: pulumi.Input<inputs.GlobalConnectionRedshift>;
+    /**
      * Snowflake connection configuration
      */
     snowflake?: pulumi.Input<inputs.GlobalConnectionSnowflake>;
+    /**
+     * Starburst/Trino connection configuration.
+     */
+    starburst?: pulumi.Input<inputs.GlobalConnectionStarburst>;
+    /**
+     * Azure Synapse Analytics connection configuration.
+     */
+    synapse?: pulumi.Input<inputs.GlobalConnectionSynapse>;
 }
 
 /**
  * The set of arguments for constructing a GlobalConnection resource.
  */
 export interface GlobalConnectionArgs {
+    /**
+     * Apache Spark connection configuration.
+     */
+    apacheSpark?: pulumi.Input<inputs.GlobalConnectionApacheSpark>;
+    /**
+     * Athena connection configuration.
+     */
+    athena?: pulumi.Input<inputs.GlobalConnectionAthena>;
     bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery>;
     /**
      * Databricks connection configuration
      */
     databricks?: pulumi.Input<inputs.GlobalConnectionDatabricks>;
     /**
+     * Microsoft Fabric connection configuration.
+     */
+    fabric?: pulumi.Input<inputs.GlobalConnectionFabric>;
+    /**
      * Connection name
      */
     name?: pulumi.Input<string>;
+    /**
+     * PostgreSQL connection configuration.
+     */
+    postgres?: pulumi.Input<inputs.GlobalConnectionPostgres>;
     /**
      * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      */
     privateLinkEndpointId?: pulumi.Input<string>;
     /**
+     * Redshift connection configuration
+     */
+    redshift?: pulumi.Input<inputs.GlobalConnectionRedshift>;
+    /**
      * Snowflake connection configuration
      */
     snowflake?: pulumi.Input<inputs.GlobalConnectionSnowflake>;
+    /**
+     * Starburst/Trino connection configuration.
+     */
+    starburst?: pulumi.Input<inputs.GlobalConnectionStarburst>;
+    /**
+     * Azure Synapse Analytics connection configuration.
+     */
+    synapse?: pulumi.Input<inputs.GlobalConnectionSynapse>;
 }

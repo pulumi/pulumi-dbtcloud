@@ -326,7 +326,9 @@ class FabricConnection(pulumi.CustomResource):
                  server: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Resource to create Microsoft Fabric connections in dbt Cloud
+        Resource to create a MS Fabric connection in dbt Cloud.
+
+        > This resource is deprecated and is going to be removed in the next major release, please use the `GlobalConnection` resource instead to create any DW connection.
 
         ## Example Usage
 
@@ -391,7 +393,9 @@ class FabricConnection(pulumi.CustomResource):
                  args: FabricConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Resource to create Microsoft Fabric connections in dbt Cloud
+        Resource to create a MS Fabric connection in dbt Cloud.
+
+        > This resource is deprecated and is going to be removed in the next major release, please use the `GlobalConnection` resource instead to create any DW connection.
 
         ## Example Usage
 

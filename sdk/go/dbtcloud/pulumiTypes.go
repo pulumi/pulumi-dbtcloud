@@ -13,6 +13,641 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type GlobalConnectionApacheSpark struct {
+	// Auth
+	Auth *string `pulumi:"auth"`
+	// Spark cluster for the connection
+	Cluster string `pulumi:"cluster"`
+	// Connection retries. Default=0
+	ConnectRetries *int `pulumi:"connectRetries"`
+	// Connection time out in seconds. Default=10
+	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// Hostname of the connection
+	Host string `pulumi:"host"`
+	// Authentication method for the connection (http or thrift).
+	Method string `pulumi:"method"`
+	// Organization ID
+	Organization *string `pulumi:"organization"`
+	// Port for the connection. Default=443
+	Port *int `pulumi:"port"`
+	// User
+	User *string `pulumi:"user"`
+}
+
+// GlobalConnectionApacheSparkInput is an input type that accepts GlobalConnectionApacheSparkArgs and GlobalConnectionApacheSparkOutput values.
+// You can construct a concrete instance of `GlobalConnectionApacheSparkInput` via:
+//
+//	GlobalConnectionApacheSparkArgs{...}
+type GlobalConnectionApacheSparkInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionApacheSparkOutput() GlobalConnectionApacheSparkOutput
+	ToGlobalConnectionApacheSparkOutputWithContext(context.Context) GlobalConnectionApacheSparkOutput
+}
+
+type GlobalConnectionApacheSparkArgs struct {
+	// Auth
+	Auth pulumi.StringPtrInput `pulumi:"auth"`
+	// Spark cluster for the connection
+	Cluster pulumi.StringInput `pulumi:"cluster"`
+	// Connection retries. Default=0
+	ConnectRetries pulumi.IntPtrInput `pulumi:"connectRetries"`
+	// Connection time out in seconds. Default=10
+	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// Hostname of the connection
+	Host pulumi.StringInput `pulumi:"host"`
+	// Authentication method for the connection (http or thrift).
+	Method pulumi.StringInput `pulumi:"method"`
+	// Organization ID
+	Organization pulumi.StringPtrInput `pulumi:"organization"`
+	// Port for the connection. Default=443
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// User
+	User pulumi.StringPtrInput `pulumi:"user"`
+}
+
+func (GlobalConnectionApacheSparkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionApacheSpark)(nil)).Elem()
+}
+
+func (i GlobalConnectionApacheSparkArgs) ToGlobalConnectionApacheSparkOutput() GlobalConnectionApacheSparkOutput {
+	return i.ToGlobalConnectionApacheSparkOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionApacheSparkArgs) ToGlobalConnectionApacheSparkOutputWithContext(ctx context.Context) GlobalConnectionApacheSparkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionApacheSparkOutput)
+}
+
+func (i GlobalConnectionApacheSparkArgs) ToGlobalConnectionApacheSparkPtrOutput() GlobalConnectionApacheSparkPtrOutput {
+	return i.ToGlobalConnectionApacheSparkPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionApacheSparkArgs) ToGlobalConnectionApacheSparkPtrOutputWithContext(ctx context.Context) GlobalConnectionApacheSparkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionApacheSparkOutput).ToGlobalConnectionApacheSparkPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionApacheSparkPtrInput is an input type that accepts GlobalConnectionApacheSparkArgs, GlobalConnectionApacheSparkPtr and GlobalConnectionApacheSparkPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionApacheSparkPtrInput` via:
+//
+//	        GlobalConnectionApacheSparkArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionApacheSparkPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionApacheSparkPtrOutput() GlobalConnectionApacheSparkPtrOutput
+	ToGlobalConnectionApacheSparkPtrOutputWithContext(context.Context) GlobalConnectionApacheSparkPtrOutput
+}
+
+type globalConnectionApacheSparkPtrType GlobalConnectionApacheSparkArgs
+
+func GlobalConnectionApacheSparkPtr(v *GlobalConnectionApacheSparkArgs) GlobalConnectionApacheSparkPtrInput {
+	return (*globalConnectionApacheSparkPtrType)(v)
+}
+
+func (*globalConnectionApacheSparkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionApacheSpark)(nil)).Elem()
+}
+
+func (i *globalConnectionApacheSparkPtrType) ToGlobalConnectionApacheSparkPtrOutput() GlobalConnectionApacheSparkPtrOutput {
+	return i.ToGlobalConnectionApacheSparkPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionApacheSparkPtrType) ToGlobalConnectionApacheSparkPtrOutputWithContext(ctx context.Context) GlobalConnectionApacheSparkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionApacheSparkPtrOutput)
+}
+
+type GlobalConnectionApacheSparkOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionApacheSparkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionApacheSpark)(nil)).Elem()
+}
+
+func (o GlobalConnectionApacheSparkOutput) ToGlobalConnectionApacheSparkOutput() GlobalConnectionApacheSparkOutput {
+	return o
+}
+
+func (o GlobalConnectionApacheSparkOutput) ToGlobalConnectionApacheSparkOutputWithContext(ctx context.Context) GlobalConnectionApacheSparkOutput {
+	return o
+}
+
+func (o GlobalConnectionApacheSparkOutput) ToGlobalConnectionApacheSparkPtrOutput() GlobalConnectionApacheSparkPtrOutput {
+	return o.ToGlobalConnectionApacheSparkPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionApacheSparkOutput) ToGlobalConnectionApacheSparkPtrOutputWithContext(ctx context.Context) GlobalConnectionApacheSparkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionApacheSpark) *GlobalConnectionApacheSpark {
+		return &v
+	}).(GlobalConnectionApacheSparkPtrOutput)
+}
+
+// Auth
+func (o GlobalConnectionApacheSparkOutput) Auth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) *string { return v.Auth }).(pulumi.StringPtrOutput)
+}
+
+// Spark cluster for the connection
+func (o GlobalConnectionApacheSparkOutput) Cluster() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) string { return v.Cluster }).(pulumi.StringOutput)
+}
+
+// Connection retries. Default=0
+func (o GlobalConnectionApacheSparkOutput) ConnectRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) *int { return v.ConnectRetries }).(pulumi.IntPtrOutput)
+}
+
+// Connection time out in seconds. Default=10
+func (o GlobalConnectionApacheSparkOutput) ConnectTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
+}
+
+// Hostname of the connection
+func (o GlobalConnectionApacheSparkOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Authentication method for the connection (http or thrift).
+func (o GlobalConnectionApacheSparkOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Organization ID
+func (o GlobalConnectionApacheSparkOutput) Organization() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) *string { return v.Organization }).(pulumi.StringPtrOutput)
+}
+
+// Port for the connection. Default=443
+func (o GlobalConnectionApacheSparkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// User
+func (o GlobalConnectionApacheSparkOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionApacheSpark) *string { return v.User }).(pulumi.StringPtrOutput)
+}
+
+type GlobalConnectionApacheSparkPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionApacheSparkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionApacheSpark)(nil)).Elem()
+}
+
+func (o GlobalConnectionApacheSparkPtrOutput) ToGlobalConnectionApacheSparkPtrOutput() GlobalConnectionApacheSparkPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionApacheSparkPtrOutput) ToGlobalConnectionApacheSparkPtrOutputWithContext(ctx context.Context) GlobalConnectionApacheSparkPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionApacheSparkPtrOutput) Elem() GlobalConnectionApacheSparkOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) GlobalConnectionApacheSpark {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionApacheSpark
+		return ret
+	}).(GlobalConnectionApacheSparkOutput)
+}
+
+// Auth
+func (o GlobalConnectionApacheSparkPtrOutput) Auth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Auth
+	}).(pulumi.StringPtrOutput)
+}
+
+// Spark cluster for the connection
+func (o GlobalConnectionApacheSparkPtrOutput) Cluster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Cluster
+	}).(pulumi.StringPtrOutput)
+}
+
+// Connection retries. Default=0
+func (o GlobalConnectionApacheSparkPtrOutput) ConnectRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ConnectRetries
+	}).(pulumi.IntPtrOutput)
+}
+
+// Connection time out in seconds. Default=10
+func (o GlobalConnectionApacheSparkPtrOutput) ConnectTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ConnectTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// Hostname of the connection
+func (o GlobalConnectionApacheSparkPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// Authentication method for the connection (http or thrift).
+func (o GlobalConnectionApacheSparkPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// Organization ID
+func (o GlobalConnectionApacheSparkPtrOutput) Organization() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Organization
+	}).(pulumi.StringPtrOutput)
+}
+
+// Port for the connection. Default=443
+func (o GlobalConnectionApacheSparkPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// User
+func (o GlobalConnectionApacheSparkPtrOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionApacheSpark) *string {
+		if v == nil {
+			return nil
+		}
+		return v.User
+	}).(pulumi.StringPtrOutput)
+}
+
+type GlobalConnectionAthena struct {
+	// Specify the database (data catalog) to build models into (lowercase only).
+	Database string `pulumi:"database"`
+	// Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+	NumBoto3Retries *int `pulumi:"numBoto3Retries"`
+	// Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+	NumIcebergRetries *int `pulumi:"numIcebergRetries"`
+	// Number of times to retry a failing query.
+	NumRetries *int `pulumi:"numRetries"`
+	// Interval in seconds to use for polling the status of query results in Athena.
+	PollInterval *int `pulumi:"pollInterval"`
+	// AWS region of your Athena instance.
+	RegionName string `pulumi:"regionName"`
+	// Prefix for storing tables, if different from the connection's S3 staging directory.
+	S3DataDir *string `pulumi:"s3DataDir"`
+	// How to generate table paths in the S3 data directory.
+	S3DataNaming *string `pulumi:"s3DataNaming"`
+	// S3 location to store Athena query results and metadata.
+	S3StagingDir string `pulumi:"s3StagingDir"`
+	// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+	S3TmpTableDir *string `pulumi:"s3TmpTableDir"`
+	// Identifier of Athena Spark workgroup for running Python models.
+	SparkWorkGroup *string `pulumi:"sparkWorkGroup"`
+	// Identifier of Athena workgroup.
+	WorkGroup *string `pulumi:"workGroup"`
+}
+
+// GlobalConnectionAthenaInput is an input type that accepts GlobalConnectionAthenaArgs and GlobalConnectionAthenaOutput values.
+// You can construct a concrete instance of `GlobalConnectionAthenaInput` via:
+//
+//	GlobalConnectionAthenaArgs{...}
+type GlobalConnectionAthenaInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionAthenaOutput() GlobalConnectionAthenaOutput
+	ToGlobalConnectionAthenaOutputWithContext(context.Context) GlobalConnectionAthenaOutput
+}
+
+type GlobalConnectionAthenaArgs struct {
+	// Specify the database (data catalog) to build models into (lowercase only).
+	Database pulumi.StringInput `pulumi:"database"`
+	// Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+	NumBoto3Retries pulumi.IntPtrInput `pulumi:"numBoto3Retries"`
+	// Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+	NumIcebergRetries pulumi.IntPtrInput `pulumi:"numIcebergRetries"`
+	// Number of times to retry a failing query.
+	NumRetries pulumi.IntPtrInput `pulumi:"numRetries"`
+	// Interval in seconds to use for polling the status of query results in Athena.
+	PollInterval pulumi.IntPtrInput `pulumi:"pollInterval"`
+	// AWS region of your Athena instance.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+	// Prefix for storing tables, if different from the connection's S3 staging directory.
+	S3DataDir pulumi.StringPtrInput `pulumi:"s3DataDir"`
+	// How to generate table paths in the S3 data directory.
+	S3DataNaming pulumi.StringPtrInput `pulumi:"s3DataNaming"`
+	// S3 location to store Athena query results and metadata.
+	S3StagingDir pulumi.StringInput `pulumi:"s3StagingDir"`
+	// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+	S3TmpTableDir pulumi.StringPtrInput `pulumi:"s3TmpTableDir"`
+	// Identifier of Athena Spark workgroup for running Python models.
+	SparkWorkGroup pulumi.StringPtrInput `pulumi:"sparkWorkGroup"`
+	// Identifier of Athena workgroup.
+	WorkGroup pulumi.StringPtrInput `pulumi:"workGroup"`
+}
+
+func (GlobalConnectionAthenaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionAthena)(nil)).Elem()
+}
+
+func (i GlobalConnectionAthenaArgs) ToGlobalConnectionAthenaOutput() GlobalConnectionAthenaOutput {
+	return i.ToGlobalConnectionAthenaOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionAthenaArgs) ToGlobalConnectionAthenaOutputWithContext(ctx context.Context) GlobalConnectionAthenaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionAthenaOutput)
+}
+
+func (i GlobalConnectionAthenaArgs) ToGlobalConnectionAthenaPtrOutput() GlobalConnectionAthenaPtrOutput {
+	return i.ToGlobalConnectionAthenaPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionAthenaArgs) ToGlobalConnectionAthenaPtrOutputWithContext(ctx context.Context) GlobalConnectionAthenaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionAthenaOutput).ToGlobalConnectionAthenaPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionAthenaPtrInput is an input type that accepts GlobalConnectionAthenaArgs, GlobalConnectionAthenaPtr and GlobalConnectionAthenaPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionAthenaPtrInput` via:
+//
+//	        GlobalConnectionAthenaArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionAthenaPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionAthenaPtrOutput() GlobalConnectionAthenaPtrOutput
+	ToGlobalConnectionAthenaPtrOutputWithContext(context.Context) GlobalConnectionAthenaPtrOutput
+}
+
+type globalConnectionAthenaPtrType GlobalConnectionAthenaArgs
+
+func GlobalConnectionAthenaPtr(v *GlobalConnectionAthenaArgs) GlobalConnectionAthenaPtrInput {
+	return (*globalConnectionAthenaPtrType)(v)
+}
+
+func (*globalConnectionAthenaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionAthena)(nil)).Elem()
+}
+
+func (i *globalConnectionAthenaPtrType) ToGlobalConnectionAthenaPtrOutput() GlobalConnectionAthenaPtrOutput {
+	return i.ToGlobalConnectionAthenaPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionAthenaPtrType) ToGlobalConnectionAthenaPtrOutputWithContext(ctx context.Context) GlobalConnectionAthenaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionAthenaPtrOutput)
+}
+
+type GlobalConnectionAthenaOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionAthenaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionAthena)(nil)).Elem()
+}
+
+func (o GlobalConnectionAthenaOutput) ToGlobalConnectionAthenaOutput() GlobalConnectionAthenaOutput {
+	return o
+}
+
+func (o GlobalConnectionAthenaOutput) ToGlobalConnectionAthenaOutputWithContext(ctx context.Context) GlobalConnectionAthenaOutput {
+	return o
+}
+
+func (o GlobalConnectionAthenaOutput) ToGlobalConnectionAthenaPtrOutput() GlobalConnectionAthenaPtrOutput {
+	return o.ToGlobalConnectionAthenaPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionAthenaOutput) ToGlobalConnectionAthenaPtrOutputWithContext(ctx context.Context) GlobalConnectionAthenaPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionAthena) *GlobalConnectionAthena {
+		return &v
+	}).(GlobalConnectionAthenaPtrOutput)
+}
+
+// Specify the database (data catalog) to build models into (lowercase only).
+func (o GlobalConnectionAthenaOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+func (o GlobalConnectionAthenaOutput) NumBoto3Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *int { return v.NumBoto3Retries }).(pulumi.IntPtrOutput)
+}
+
+// Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+func (o GlobalConnectionAthenaOutput) NumIcebergRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *int { return v.NumIcebergRetries }).(pulumi.IntPtrOutput)
+}
+
+// Number of times to retry a failing query.
+func (o GlobalConnectionAthenaOutput) NumRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *int { return v.NumRetries }).(pulumi.IntPtrOutput)
+}
+
+// Interval in seconds to use for polling the status of query results in Athena.
+func (o GlobalConnectionAthenaOutput) PollInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *int { return v.PollInterval }).(pulumi.IntPtrOutput)
+}
+
+// AWS region of your Athena instance.
+func (o GlobalConnectionAthenaOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// Prefix for storing tables, if different from the connection's S3 staging directory.
+func (o GlobalConnectionAthenaOutput) S3DataDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *string { return v.S3DataDir }).(pulumi.StringPtrOutput)
+}
+
+// How to generate table paths in the S3 data directory.
+func (o GlobalConnectionAthenaOutput) S3DataNaming() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *string { return v.S3DataNaming }).(pulumi.StringPtrOutput)
+}
+
+// S3 location to store Athena query results and metadata.
+func (o GlobalConnectionAthenaOutput) S3StagingDir() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) string { return v.S3StagingDir }).(pulumi.StringOutput)
+}
+
+// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+func (o GlobalConnectionAthenaOutput) S3TmpTableDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *string { return v.S3TmpTableDir }).(pulumi.StringPtrOutput)
+}
+
+// Identifier of Athena Spark workgroup for running Python models.
+func (o GlobalConnectionAthenaOutput) SparkWorkGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *string { return v.SparkWorkGroup }).(pulumi.StringPtrOutput)
+}
+
+// Identifier of Athena workgroup.
+func (o GlobalConnectionAthenaOutput) WorkGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionAthena) *string { return v.WorkGroup }).(pulumi.StringPtrOutput)
+}
+
+type GlobalConnectionAthenaPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionAthenaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionAthena)(nil)).Elem()
+}
+
+func (o GlobalConnectionAthenaPtrOutput) ToGlobalConnectionAthenaPtrOutput() GlobalConnectionAthenaPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionAthenaPtrOutput) ToGlobalConnectionAthenaPtrOutputWithContext(ctx context.Context) GlobalConnectionAthenaPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionAthenaPtrOutput) Elem() GlobalConnectionAthenaOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) GlobalConnectionAthena {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionAthena
+		return ret
+	}).(GlobalConnectionAthenaOutput)
+}
+
+// Specify the database (data catalog) to build models into (lowercase only).
+func (o GlobalConnectionAthenaPtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+func (o GlobalConnectionAthenaPtrOutput) NumBoto3Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NumBoto3Retries
+	}).(pulumi.IntPtrOutput)
+}
+
+// Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+func (o GlobalConnectionAthenaPtrOutput) NumIcebergRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NumIcebergRetries
+	}).(pulumi.IntPtrOutput)
+}
+
+// Number of times to retry a failing query.
+func (o GlobalConnectionAthenaPtrOutput) NumRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NumRetries
+	}).(pulumi.IntPtrOutput)
+}
+
+// Interval in seconds to use for polling the status of query results in Athena.
+func (o GlobalConnectionAthenaPtrOutput) PollInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PollInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// AWS region of your Athena instance.
+func (o GlobalConnectionAthenaPtrOutput) RegionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RegionName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Prefix for storing tables, if different from the connection's S3 staging directory.
+func (o GlobalConnectionAthenaPtrOutput) S3DataDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
+		if v == nil {
+			return nil
+		}
+		return v.S3DataDir
+	}).(pulumi.StringPtrOutput)
+}
+
+// How to generate table paths in the S3 data directory.
+func (o GlobalConnectionAthenaPtrOutput) S3DataNaming() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
+		if v == nil {
+			return nil
+		}
+		return v.S3DataNaming
+	}).(pulumi.StringPtrOutput)
+}
+
+// S3 location to store Athena query results and metadata.
+func (o GlobalConnectionAthenaPtrOutput) S3StagingDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.S3StagingDir
+	}).(pulumi.StringPtrOutput)
+}
+
+// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+func (o GlobalConnectionAthenaPtrOutput) S3TmpTableDir() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
+		if v == nil {
+			return nil
+		}
+		return v.S3TmpTableDir
+	}).(pulumi.StringPtrOutput)
+}
+
+// Identifier of Athena Spark workgroup for running Python models.
+func (o GlobalConnectionAthenaPtrOutput) SparkWorkGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SparkWorkGroup
+	}).(pulumi.StringPtrOutput)
+}
+
+// Identifier of Athena workgroup.
+func (o GlobalConnectionAthenaPtrOutput) WorkGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WorkGroup
+	}).(pulumi.StringPtrOutput)
+}
+
 type GlobalConnectionBigquery struct {
 	// OAuth Client ID
 	ApplicationId *string `pulumi:"applicationId"`
@@ -800,6 +1435,1052 @@ func (o GlobalConnectionDatabricksPtrOutput) HttpPath() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GlobalConnectionFabric struct {
+	// The database to connect to for this connection.
+	Database string `pulumi:"database"`
+	// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	LoginTimeout *int `pulumi:"loginTimeout"`
+	// The port to connect to for this connection. Default=1433
+	Port *int `pulumi:"port"`
+	// The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	QueryTimeout *int `pulumi:"queryTimeout"`
+	// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+	Retries *int `pulumi:"retries"`
+	// The server hostname.
+	Server string `pulumi:"server"`
+}
+
+// GlobalConnectionFabricInput is an input type that accepts GlobalConnectionFabricArgs and GlobalConnectionFabricOutput values.
+// You can construct a concrete instance of `GlobalConnectionFabricInput` via:
+//
+//	GlobalConnectionFabricArgs{...}
+type GlobalConnectionFabricInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionFabricOutput() GlobalConnectionFabricOutput
+	ToGlobalConnectionFabricOutputWithContext(context.Context) GlobalConnectionFabricOutput
+}
+
+type GlobalConnectionFabricArgs struct {
+	// The database to connect to for this connection.
+	Database pulumi.StringInput `pulumi:"database"`
+	// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	LoginTimeout pulumi.IntPtrInput `pulumi:"loginTimeout"`
+	// The port to connect to for this connection. Default=1433
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	QueryTimeout pulumi.IntPtrInput `pulumi:"queryTimeout"`
+	// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+	Retries pulumi.IntPtrInput `pulumi:"retries"`
+	// The server hostname.
+	Server pulumi.StringInput `pulumi:"server"`
+}
+
+func (GlobalConnectionFabricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionFabric)(nil)).Elem()
+}
+
+func (i GlobalConnectionFabricArgs) ToGlobalConnectionFabricOutput() GlobalConnectionFabricOutput {
+	return i.ToGlobalConnectionFabricOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionFabricArgs) ToGlobalConnectionFabricOutputWithContext(ctx context.Context) GlobalConnectionFabricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionFabricOutput)
+}
+
+func (i GlobalConnectionFabricArgs) ToGlobalConnectionFabricPtrOutput() GlobalConnectionFabricPtrOutput {
+	return i.ToGlobalConnectionFabricPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionFabricArgs) ToGlobalConnectionFabricPtrOutputWithContext(ctx context.Context) GlobalConnectionFabricPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionFabricOutput).ToGlobalConnectionFabricPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionFabricPtrInput is an input type that accepts GlobalConnectionFabricArgs, GlobalConnectionFabricPtr and GlobalConnectionFabricPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionFabricPtrInput` via:
+//
+//	        GlobalConnectionFabricArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionFabricPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionFabricPtrOutput() GlobalConnectionFabricPtrOutput
+	ToGlobalConnectionFabricPtrOutputWithContext(context.Context) GlobalConnectionFabricPtrOutput
+}
+
+type globalConnectionFabricPtrType GlobalConnectionFabricArgs
+
+func GlobalConnectionFabricPtr(v *GlobalConnectionFabricArgs) GlobalConnectionFabricPtrInput {
+	return (*globalConnectionFabricPtrType)(v)
+}
+
+func (*globalConnectionFabricPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionFabric)(nil)).Elem()
+}
+
+func (i *globalConnectionFabricPtrType) ToGlobalConnectionFabricPtrOutput() GlobalConnectionFabricPtrOutput {
+	return i.ToGlobalConnectionFabricPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionFabricPtrType) ToGlobalConnectionFabricPtrOutputWithContext(ctx context.Context) GlobalConnectionFabricPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionFabricPtrOutput)
+}
+
+type GlobalConnectionFabricOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionFabricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionFabric)(nil)).Elem()
+}
+
+func (o GlobalConnectionFabricOutput) ToGlobalConnectionFabricOutput() GlobalConnectionFabricOutput {
+	return o
+}
+
+func (o GlobalConnectionFabricOutput) ToGlobalConnectionFabricOutputWithContext(ctx context.Context) GlobalConnectionFabricOutput {
+	return o
+}
+
+func (o GlobalConnectionFabricOutput) ToGlobalConnectionFabricPtrOutput() GlobalConnectionFabricPtrOutput {
+	return o.ToGlobalConnectionFabricPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionFabricOutput) ToGlobalConnectionFabricPtrOutputWithContext(ctx context.Context) GlobalConnectionFabricPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionFabric) *GlobalConnectionFabric {
+		return &v
+	}).(GlobalConnectionFabricPtrOutput)
+}
+
+// The database to connect to for this connection.
+func (o GlobalConnectionFabricOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionFabric) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionFabricOutput) LoginTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionFabric) *int { return v.LoginTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The port to connect to for this connection. Default=1433
+func (o GlobalConnectionFabricOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionFabric) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionFabricOutput) QueryTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionFabric) *int { return v.QueryTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+func (o GlobalConnectionFabricOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionFabric) *int { return v.Retries }).(pulumi.IntPtrOutput)
+}
+
+// The server hostname.
+func (o GlobalConnectionFabricOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionFabric) string { return v.Server }).(pulumi.StringOutput)
+}
+
+type GlobalConnectionFabricPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionFabricPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionFabric)(nil)).Elem()
+}
+
+func (o GlobalConnectionFabricPtrOutput) ToGlobalConnectionFabricPtrOutput() GlobalConnectionFabricPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionFabricPtrOutput) ToGlobalConnectionFabricPtrOutputWithContext(ctx context.Context) GlobalConnectionFabricPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionFabricPtrOutput) Elem() GlobalConnectionFabricOutput {
+	return o.ApplyT(func(v *GlobalConnectionFabric) GlobalConnectionFabric {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionFabric
+		return ret
+	}).(GlobalConnectionFabricOutput)
+}
+
+// The database to connect to for this connection.
+func (o GlobalConnectionFabricPtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionFabric) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionFabricPtrOutput) LoginTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionFabric) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LoginTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// The port to connect to for this connection. Default=1433
+func (o GlobalConnectionFabricPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionFabric) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionFabricPtrOutput) QueryTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionFabric) *int {
+		if v == nil {
+			return nil
+		}
+		return v.QueryTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+func (o GlobalConnectionFabricPtrOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionFabric) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Retries
+	}).(pulumi.IntPtrOutput)
+}
+
+// The server hostname.
+func (o GlobalConnectionFabricPtrOutput) Server() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionFabric) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Server
+	}).(pulumi.StringPtrOutput)
+}
+
+type GlobalConnectionPostgres struct {
+	// The database name for this connection.
+	Dbname *string `pulumi:"dbname"`
+	// The hostname of the database.
+	Hostname string `pulumi:"hostname"`
+	// The port to connect to for this connection. Default=5432
+	Port *int `pulumi:"port"`
+	// PostgreSQL SSH Tunnel configuration
+	SshTunnel *GlobalConnectionPostgresSshTunnel `pulumi:"sshTunnel"`
+}
+
+// GlobalConnectionPostgresInput is an input type that accepts GlobalConnectionPostgresArgs and GlobalConnectionPostgresOutput values.
+// You can construct a concrete instance of `GlobalConnectionPostgresInput` via:
+//
+//	GlobalConnectionPostgresArgs{...}
+type GlobalConnectionPostgresInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionPostgresOutput() GlobalConnectionPostgresOutput
+	ToGlobalConnectionPostgresOutputWithContext(context.Context) GlobalConnectionPostgresOutput
+}
+
+type GlobalConnectionPostgresArgs struct {
+	// The database name for this connection.
+	Dbname pulumi.StringPtrInput `pulumi:"dbname"`
+	// The hostname of the database.
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	// The port to connect to for this connection. Default=5432
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// PostgreSQL SSH Tunnel configuration
+	SshTunnel GlobalConnectionPostgresSshTunnelPtrInput `pulumi:"sshTunnel"`
+}
+
+func (GlobalConnectionPostgresArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionPostgres)(nil)).Elem()
+}
+
+func (i GlobalConnectionPostgresArgs) ToGlobalConnectionPostgresOutput() GlobalConnectionPostgresOutput {
+	return i.ToGlobalConnectionPostgresOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionPostgresArgs) ToGlobalConnectionPostgresOutputWithContext(ctx context.Context) GlobalConnectionPostgresOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionPostgresOutput)
+}
+
+func (i GlobalConnectionPostgresArgs) ToGlobalConnectionPostgresPtrOutput() GlobalConnectionPostgresPtrOutput {
+	return i.ToGlobalConnectionPostgresPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionPostgresArgs) ToGlobalConnectionPostgresPtrOutputWithContext(ctx context.Context) GlobalConnectionPostgresPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionPostgresOutput).ToGlobalConnectionPostgresPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionPostgresPtrInput is an input type that accepts GlobalConnectionPostgresArgs, GlobalConnectionPostgresPtr and GlobalConnectionPostgresPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionPostgresPtrInput` via:
+//
+//	        GlobalConnectionPostgresArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionPostgresPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionPostgresPtrOutput() GlobalConnectionPostgresPtrOutput
+	ToGlobalConnectionPostgresPtrOutputWithContext(context.Context) GlobalConnectionPostgresPtrOutput
+}
+
+type globalConnectionPostgresPtrType GlobalConnectionPostgresArgs
+
+func GlobalConnectionPostgresPtr(v *GlobalConnectionPostgresArgs) GlobalConnectionPostgresPtrInput {
+	return (*globalConnectionPostgresPtrType)(v)
+}
+
+func (*globalConnectionPostgresPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionPostgres)(nil)).Elem()
+}
+
+func (i *globalConnectionPostgresPtrType) ToGlobalConnectionPostgresPtrOutput() GlobalConnectionPostgresPtrOutput {
+	return i.ToGlobalConnectionPostgresPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionPostgresPtrType) ToGlobalConnectionPostgresPtrOutputWithContext(ctx context.Context) GlobalConnectionPostgresPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionPostgresPtrOutput)
+}
+
+type GlobalConnectionPostgresOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionPostgresOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionPostgres)(nil)).Elem()
+}
+
+func (o GlobalConnectionPostgresOutput) ToGlobalConnectionPostgresOutput() GlobalConnectionPostgresOutput {
+	return o
+}
+
+func (o GlobalConnectionPostgresOutput) ToGlobalConnectionPostgresOutputWithContext(ctx context.Context) GlobalConnectionPostgresOutput {
+	return o
+}
+
+func (o GlobalConnectionPostgresOutput) ToGlobalConnectionPostgresPtrOutput() GlobalConnectionPostgresPtrOutput {
+	return o.ToGlobalConnectionPostgresPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionPostgresOutput) ToGlobalConnectionPostgresPtrOutputWithContext(ctx context.Context) GlobalConnectionPostgresPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionPostgres) *GlobalConnectionPostgres {
+		return &v
+	}).(GlobalConnectionPostgresPtrOutput)
+}
+
+// The database name for this connection.
+func (o GlobalConnectionPostgresOutput) Dbname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgres) *string { return v.Dbname }).(pulumi.StringPtrOutput)
+}
+
+// The hostname of the database.
+func (o GlobalConnectionPostgresOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgres) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// The port to connect to for this connection. Default=5432
+func (o GlobalConnectionPostgresOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgres) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// PostgreSQL SSH Tunnel configuration
+func (o GlobalConnectionPostgresOutput) SshTunnel() GlobalConnectionPostgresSshTunnelPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgres) *GlobalConnectionPostgresSshTunnel { return v.SshTunnel }).(GlobalConnectionPostgresSshTunnelPtrOutput)
+}
+
+type GlobalConnectionPostgresPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionPostgresPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionPostgres)(nil)).Elem()
+}
+
+func (o GlobalConnectionPostgresPtrOutput) ToGlobalConnectionPostgresPtrOutput() GlobalConnectionPostgresPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionPostgresPtrOutput) ToGlobalConnectionPostgresPtrOutputWithContext(ctx context.Context) GlobalConnectionPostgresPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionPostgresPtrOutput) Elem() GlobalConnectionPostgresOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgres) GlobalConnectionPostgres {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionPostgres
+		return ret
+	}).(GlobalConnectionPostgresOutput)
+}
+
+// The database name for this connection.
+func (o GlobalConnectionPostgresPtrOutput) Dbname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgres) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dbname
+	}).(pulumi.StringPtrOutput)
+}
+
+// The hostname of the database.
+func (o GlobalConnectionPostgresPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgres) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+// The port to connect to for this connection. Default=5432
+func (o GlobalConnectionPostgresPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgres) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// PostgreSQL SSH Tunnel configuration
+func (o GlobalConnectionPostgresPtrOutput) SshTunnel() GlobalConnectionPostgresSshTunnelPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgres) *GlobalConnectionPostgresSshTunnel {
+		if v == nil {
+			return nil
+		}
+		return v.SshTunnel
+	}).(GlobalConnectionPostgresSshTunnelPtrOutput)
+}
+
+type GlobalConnectionPostgresSshTunnel struct {
+	// The hostname for the SSH tunnel.
+	Hostname string `pulumi:"hostname"`
+	// The ID of the SSH tunnel connection.
+	Id *int `pulumi:"id"`
+	// The HTTP port for the SSH tunnel.
+	Port int `pulumi:"port"`
+	// The SSH public key generated to allow connecting via SSH tunnel.
+	PublicKey *string `pulumi:"publicKey"`
+	// The username to use for the SSH tunnel.
+	Username string `pulumi:"username"`
+}
+
+// GlobalConnectionPostgresSshTunnelInput is an input type that accepts GlobalConnectionPostgresSshTunnelArgs and GlobalConnectionPostgresSshTunnelOutput values.
+// You can construct a concrete instance of `GlobalConnectionPostgresSshTunnelInput` via:
+//
+//	GlobalConnectionPostgresSshTunnelArgs{...}
+type GlobalConnectionPostgresSshTunnelInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionPostgresSshTunnelOutput() GlobalConnectionPostgresSshTunnelOutput
+	ToGlobalConnectionPostgresSshTunnelOutputWithContext(context.Context) GlobalConnectionPostgresSshTunnelOutput
+}
+
+type GlobalConnectionPostgresSshTunnelArgs struct {
+	// The hostname for the SSH tunnel.
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	// The ID of the SSH tunnel connection.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// The HTTP port for the SSH tunnel.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The SSH public key generated to allow connecting via SSH tunnel.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The username to use for the SSH tunnel.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GlobalConnectionPostgresSshTunnelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionPostgresSshTunnel)(nil)).Elem()
+}
+
+func (i GlobalConnectionPostgresSshTunnelArgs) ToGlobalConnectionPostgresSshTunnelOutput() GlobalConnectionPostgresSshTunnelOutput {
+	return i.ToGlobalConnectionPostgresSshTunnelOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionPostgresSshTunnelArgs) ToGlobalConnectionPostgresSshTunnelOutputWithContext(ctx context.Context) GlobalConnectionPostgresSshTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionPostgresSshTunnelOutput)
+}
+
+func (i GlobalConnectionPostgresSshTunnelArgs) ToGlobalConnectionPostgresSshTunnelPtrOutput() GlobalConnectionPostgresSshTunnelPtrOutput {
+	return i.ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionPostgresSshTunnelArgs) ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(ctx context.Context) GlobalConnectionPostgresSshTunnelPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionPostgresSshTunnelOutput).ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionPostgresSshTunnelPtrInput is an input type that accepts GlobalConnectionPostgresSshTunnelArgs, GlobalConnectionPostgresSshTunnelPtr and GlobalConnectionPostgresSshTunnelPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionPostgresSshTunnelPtrInput` via:
+//
+//	        GlobalConnectionPostgresSshTunnelArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionPostgresSshTunnelPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionPostgresSshTunnelPtrOutput() GlobalConnectionPostgresSshTunnelPtrOutput
+	ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(context.Context) GlobalConnectionPostgresSshTunnelPtrOutput
+}
+
+type globalConnectionPostgresSshTunnelPtrType GlobalConnectionPostgresSshTunnelArgs
+
+func GlobalConnectionPostgresSshTunnelPtr(v *GlobalConnectionPostgresSshTunnelArgs) GlobalConnectionPostgresSshTunnelPtrInput {
+	return (*globalConnectionPostgresSshTunnelPtrType)(v)
+}
+
+func (*globalConnectionPostgresSshTunnelPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionPostgresSshTunnel)(nil)).Elem()
+}
+
+func (i *globalConnectionPostgresSshTunnelPtrType) ToGlobalConnectionPostgresSshTunnelPtrOutput() GlobalConnectionPostgresSshTunnelPtrOutput {
+	return i.ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionPostgresSshTunnelPtrType) ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(ctx context.Context) GlobalConnectionPostgresSshTunnelPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionPostgresSshTunnelPtrOutput)
+}
+
+type GlobalConnectionPostgresSshTunnelOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionPostgresSshTunnelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionPostgresSshTunnel)(nil)).Elem()
+}
+
+func (o GlobalConnectionPostgresSshTunnelOutput) ToGlobalConnectionPostgresSshTunnelOutput() GlobalConnectionPostgresSshTunnelOutput {
+	return o
+}
+
+func (o GlobalConnectionPostgresSshTunnelOutput) ToGlobalConnectionPostgresSshTunnelOutputWithContext(ctx context.Context) GlobalConnectionPostgresSshTunnelOutput {
+	return o
+}
+
+func (o GlobalConnectionPostgresSshTunnelOutput) ToGlobalConnectionPostgresSshTunnelPtrOutput() GlobalConnectionPostgresSshTunnelPtrOutput {
+	return o.ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionPostgresSshTunnelOutput) ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(ctx context.Context) GlobalConnectionPostgresSshTunnelPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionPostgresSshTunnel) *GlobalConnectionPostgresSshTunnel {
+		return &v
+	}).(GlobalConnectionPostgresSshTunnelPtrOutput)
+}
+
+// The hostname for the SSH tunnel.
+func (o GlobalConnectionPostgresSshTunnelOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgresSshTunnel) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// The ID of the SSH tunnel connection.
+func (o GlobalConnectionPostgresSshTunnelOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgresSshTunnel) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// The HTTP port for the SSH tunnel.
+func (o GlobalConnectionPostgresSshTunnelOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgresSshTunnel) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The SSH public key generated to allow connecting via SSH tunnel.
+func (o GlobalConnectionPostgresSshTunnelOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgresSshTunnel) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The username to use for the SSH tunnel.
+func (o GlobalConnectionPostgresSshTunnelOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgresSshTunnel) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GlobalConnectionPostgresSshTunnelPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionPostgresSshTunnelPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionPostgresSshTunnel)(nil)).Elem()
+}
+
+func (o GlobalConnectionPostgresSshTunnelPtrOutput) ToGlobalConnectionPostgresSshTunnelPtrOutput() GlobalConnectionPostgresSshTunnelPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionPostgresSshTunnelPtrOutput) ToGlobalConnectionPostgresSshTunnelPtrOutputWithContext(ctx context.Context) GlobalConnectionPostgresSshTunnelPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionPostgresSshTunnelPtrOutput) Elem() GlobalConnectionPostgresSshTunnelOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgresSshTunnel) GlobalConnectionPostgresSshTunnel {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionPostgresSshTunnel
+		return ret
+	}).(GlobalConnectionPostgresSshTunnelOutput)
+}
+
+// The hostname for the SSH tunnel.
+func (o GlobalConnectionPostgresSshTunnelPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgresSshTunnel) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the SSH tunnel connection.
+func (o GlobalConnectionPostgresSshTunnelPtrOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgresSshTunnel) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.IntPtrOutput)
+}
+
+// The HTTP port for the SSH tunnel.
+func (o GlobalConnectionPostgresSshTunnelPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgresSshTunnel) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The SSH public key generated to allow connecting via SSH tunnel.
+func (o GlobalConnectionPostgresSshTunnelPtrOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgresSshTunnel) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PublicKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The username to use for the SSH tunnel.
+func (o GlobalConnectionPostgresSshTunnelPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionPostgresSshTunnel) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type GlobalConnectionRedshift struct {
+	// The database name for this connection.
+	Dbname *string `pulumi:"dbname"`
+	// The hostname of the data warehouse.
+	Hostname string `pulumi:"hostname"`
+	// The port to connect to for this connection. Default=5432
+	Port *int `pulumi:"port"`
+	// Redshift SSH Tunnel configuration
+	SshTunnel *GlobalConnectionRedshiftSshTunnel `pulumi:"sshTunnel"`
+}
+
+// GlobalConnectionRedshiftInput is an input type that accepts GlobalConnectionRedshiftArgs and GlobalConnectionRedshiftOutput values.
+// You can construct a concrete instance of `GlobalConnectionRedshiftInput` via:
+//
+//	GlobalConnectionRedshiftArgs{...}
+type GlobalConnectionRedshiftInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionRedshiftOutput() GlobalConnectionRedshiftOutput
+	ToGlobalConnectionRedshiftOutputWithContext(context.Context) GlobalConnectionRedshiftOutput
+}
+
+type GlobalConnectionRedshiftArgs struct {
+	// The database name for this connection.
+	Dbname pulumi.StringPtrInput `pulumi:"dbname"`
+	// The hostname of the data warehouse.
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	// The port to connect to for this connection. Default=5432
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Redshift SSH Tunnel configuration
+	SshTunnel GlobalConnectionRedshiftSshTunnelPtrInput `pulumi:"sshTunnel"`
+}
+
+func (GlobalConnectionRedshiftArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionRedshift)(nil)).Elem()
+}
+
+func (i GlobalConnectionRedshiftArgs) ToGlobalConnectionRedshiftOutput() GlobalConnectionRedshiftOutput {
+	return i.ToGlobalConnectionRedshiftOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionRedshiftArgs) ToGlobalConnectionRedshiftOutputWithContext(ctx context.Context) GlobalConnectionRedshiftOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionRedshiftOutput)
+}
+
+func (i GlobalConnectionRedshiftArgs) ToGlobalConnectionRedshiftPtrOutput() GlobalConnectionRedshiftPtrOutput {
+	return i.ToGlobalConnectionRedshiftPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionRedshiftArgs) ToGlobalConnectionRedshiftPtrOutputWithContext(ctx context.Context) GlobalConnectionRedshiftPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionRedshiftOutput).ToGlobalConnectionRedshiftPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionRedshiftPtrInput is an input type that accepts GlobalConnectionRedshiftArgs, GlobalConnectionRedshiftPtr and GlobalConnectionRedshiftPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionRedshiftPtrInput` via:
+//
+//	        GlobalConnectionRedshiftArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionRedshiftPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionRedshiftPtrOutput() GlobalConnectionRedshiftPtrOutput
+	ToGlobalConnectionRedshiftPtrOutputWithContext(context.Context) GlobalConnectionRedshiftPtrOutput
+}
+
+type globalConnectionRedshiftPtrType GlobalConnectionRedshiftArgs
+
+func GlobalConnectionRedshiftPtr(v *GlobalConnectionRedshiftArgs) GlobalConnectionRedshiftPtrInput {
+	return (*globalConnectionRedshiftPtrType)(v)
+}
+
+func (*globalConnectionRedshiftPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionRedshift)(nil)).Elem()
+}
+
+func (i *globalConnectionRedshiftPtrType) ToGlobalConnectionRedshiftPtrOutput() GlobalConnectionRedshiftPtrOutput {
+	return i.ToGlobalConnectionRedshiftPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionRedshiftPtrType) ToGlobalConnectionRedshiftPtrOutputWithContext(ctx context.Context) GlobalConnectionRedshiftPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionRedshiftPtrOutput)
+}
+
+type GlobalConnectionRedshiftOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionRedshiftOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionRedshift)(nil)).Elem()
+}
+
+func (o GlobalConnectionRedshiftOutput) ToGlobalConnectionRedshiftOutput() GlobalConnectionRedshiftOutput {
+	return o
+}
+
+func (o GlobalConnectionRedshiftOutput) ToGlobalConnectionRedshiftOutputWithContext(ctx context.Context) GlobalConnectionRedshiftOutput {
+	return o
+}
+
+func (o GlobalConnectionRedshiftOutput) ToGlobalConnectionRedshiftPtrOutput() GlobalConnectionRedshiftPtrOutput {
+	return o.ToGlobalConnectionRedshiftPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionRedshiftOutput) ToGlobalConnectionRedshiftPtrOutputWithContext(ctx context.Context) GlobalConnectionRedshiftPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionRedshift) *GlobalConnectionRedshift {
+		return &v
+	}).(GlobalConnectionRedshiftPtrOutput)
+}
+
+// The database name for this connection.
+func (o GlobalConnectionRedshiftOutput) Dbname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshift) *string { return v.Dbname }).(pulumi.StringPtrOutput)
+}
+
+// The hostname of the data warehouse.
+func (o GlobalConnectionRedshiftOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshift) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// The port to connect to for this connection. Default=5432
+func (o GlobalConnectionRedshiftOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshift) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Redshift SSH Tunnel configuration
+func (o GlobalConnectionRedshiftOutput) SshTunnel() GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshift) *GlobalConnectionRedshiftSshTunnel { return v.SshTunnel }).(GlobalConnectionRedshiftSshTunnelPtrOutput)
+}
+
+type GlobalConnectionRedshiftPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionRedshiftPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionRedshift)(nil)).Elem()
+}
+
+func (o GlobalConnectionRedshiftPtrOutput) ToGlobalConnectionRedshiftPtrOutput() GlobalConnectionRedshiftPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionRedshiftPtrOutput) ToGlobalConnectionRedshiftPtrOutputWithContext(ctx context.Context) GlobalConnectionRedshiftPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionRedshiftPtrOutput) Elem() GlobalConnectionRedshiftOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshift) GlobalConnectionRedshift {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionRedshift
+		return ret
+	}).(GlobalConnectionRedshiftOutput)
+}
+
+// The database name for this connection.
+func (o GlobalConnectionRedshiftPtrOutput) Dbname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshift) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dbname
+	}).(pulumi.StringPtrOutput)
+}
+
+// The hostname of the data warehouse.
+func (o GlobalConnectionRedshiftPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshift) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+// The port to connect to for this connection. Default=5432
+func (o GlobalConnectionRedshiftPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshift) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// Redshift SSH Tunnel configuration
+func (o GlobalConnectionRedshiftPtrOutput) SshTunnel() GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshift) *GlobalConnectionRedshiftSshTunnel {
+		if v == nil {
+			return nil
+		}
+		return v.SshTunnel
+	}).(GlobalConnectionRedshiftSshTunnelPtrOutput)
+}
+
+type GlobalConnectionRedshiftSshTunnel struct {
+	// The hostname for the SSH tunnel.
+	Hostname string `pulumi:"hostname"`
+	// The ID of the SSH tunnel connection.
+	Id *int `pulumi:"id"`
+	// The HTTP port for the SSH tunnel.
+	Port int `pulumi:"port"`
+	// The SSH public key generated to allow connecting via SSH tunnel.
+	PublicKey *string `pulumi:"publicKey"`
+	// The username to use for the SSH tunnel.
+	Username string `pulumi:"username"`
+}
+
+// GlobalConnectionRedshiftSshTunnelInput is an input type that accepts GlobalConnectionRedshiftSshTunnelArgs and GlobalConnectionRedshiftSshTunnelOutput values.
+// You can construct a concrete instance of `GlobalConnectionRedshiftSshTunnelInput` via:
+//
+//	GlobalConnectionRedshiftSshTunnelArgs{...}
+type GlobalConnectionRedshiftSshTunnelInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionRedshiftSshTunnelOutput() GlobalConnectionRedshiftSshTunnelOutput
+	ToGlobalConnectionRedshiftSshTunnelOutputWithContext(context.Context) GlobalConnectionRedshiftSshTunnelOutput
+}
+
+type GlobalConnectionRedshiftSshTunnelArgs struct {
+	// The hostname for the SSH tunnel.
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	// The ID of the SSH tunnel connection.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// The HTTP port for the SSH tunnel.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The SSH public key generated to allow connecting via SSH tunnel.
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The username to use for the SSH tunnel.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GlobalConnectionRedshiftSshTunnelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionRedshiftSshTunnel)(nil)).Elem()
+}
+
+func (i GlobalConnectionRedshiftSshTunnelArgs) ToGlobalConnectionRedshiftSshTunnelOutput() GlobalConnectionRedshiftSshTunnelOutput {
+	return i.ToGlobalConnectionRedshiftSshTunnelOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionRedshiftSshTunnelArgs) ToGlobalConnectionRedshiftSshTunnelOutputWithContext(ctx context.Context) GlobalConnectionRedshiftSshTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionRedshiftSshTunnelOutput)
+}
+
+func (i GlobalConnectionRedshiftSshTunnelArgs) ToGlobalConnectionRedshiftSshTunnelPtrOutput() GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return i.ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionRedshiftSshTunnelArgs) ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(ctx context.Context) GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionRedshiftSshTunnelOutput).ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionRedshiftSshTunnelPtrInput is an input type that accepts GlobalConnectionRedshiftSshTunnelArgs, GlobalConnectionRedshiftSshTunnelPtr and GlobalConnectionRedshiftSshTunnelPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionRedshiftSshTunnelPtrInput` via:
+//
+//	        GlobalConnectionRedshiftSshTunnelArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionRedshiftSshTunnelPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionRedshiftSshTunnelPtrOutput() GlobalConnectionRedshiftSshTunnelPtrOutput
+	ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(context.Context) GlobalConnectionRedshiftSshTunnelPtrOutput
+}
+
+type globalConnectionRedshiftSshTunnelPtrType GlobalConnectionRedshiftSshTunnelArgs
+
+func GlobalConnectionRedshiftSshTunnelPtr(v *GlobalConnectionRedshiftSshTunnelArgs) GlobalConnectionRedshiftSshTunnelPtrInput {
+	return (*globalConnectionRedshiftSshTunnelPtrType)(v)
+}
+
+func (*globalConnectionRedshiftSshTunnelPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionRedshiftSshTunnel)(nil)).Elem()
+}
+
+func (i *globalConnectionRedshiftSshTunnelPtrType) ToGlobalConnectionRedshiftSshTunnelPtrOutput() GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return i.ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionRedshiftSshTunnelPtrType) ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(ctx context.Context) GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionRedshiftSshTunnelPtrOutput)
+}
+
+type GlobalConnectionRedshiftSshTunnelOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionRedshiftSshTunnelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionRedshiftSshTunnel)(nil)).Elem()
+}
+
+func (o GlobalConnectionRedshiftSshTunnelOutput) ToGlobalConnectionRedshiftSshTunnelOutput() GlobalConnectionRedshiftSshTunnelOutput {
+	return o
+}
+
+func (o GlobalConnectionRedshiftSshTunnelOutput) ToGlobalConnectionRedshiftSshTunnelOutputWithContext(ctx context.Context) GlobalConnectionRedshiftSshTunnelOutput {
+	return o
+}
+
+func (o GlobalConnectionRedshiftSshTunnelOutput) ToGlobalConnectionRedshiftSshTunnelPtrOutput() GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return o.ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionRedshiftSshTunnelOutput) ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(ctx context.Context) GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionRedshiftSshTunnel) *GlobalConnectionRedshiftSshTunnel {
+		return &v
+	}).(GlobalConnectionRedshiftSshTunnelPtrOutput)
+}
+
+// The hostname for the SSH tunnel.
+func (o GlobalConnectionRedshiftSshTunnelOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshiftSshTunnel) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// The ID of the SSH tunnel connection.
+func (o GlobalConnectionRedshiftSshTunnelOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshiftSshTunnel) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// The HTTP port for the SSH tunnel.
+func (o GlobalConnectionRedshiftSshTunnelOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshiftSshTunnel) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The SSH public key generated to allow connecting via SSH tunnel.
+func (o GlobalConnectionRedshiftSshTunnelOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshiftSshTunnel) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The username to use for the SSH tunnel.
+func (o GlobalConnectionRedshiftSshTunnelOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshiftSshTunnel) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GlobalConnectionRedshiftSshTunnelPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionRedshiftSshTunnelPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionRedshiftSshTunnel)(nil)).Elem()
+}
+
+func (o GlobalConnectionRedshiftSshTunnelPtrOutput) ToGlobalConnectionRedshiftSshTunnelPtrOutput() GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionRedshiftSshTunnelPtrOutput) ToGlobalConnectionRedshiftSshTunnelPtrOutputWithContext(ctx context.Context) GlobalConnectionRedshiftSshTunnelPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionRedshiftSshTunnelPtrOutput) Elem() GlobalConnectionRedshiftSshTunnelOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshiftSshTunnel) GlobalConnectionRedshiftSshTunnel {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionRedshiftSshTunnel
+		return ret
+	}).(GlobalConnectionRedshiftSshTunnelOutput)
+}
+
+// The hostname for the SSH tunnel.
+func (o GlobalConnectionRedshiftSshTunnelPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshiftSshTunnel) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the SSH tunnel connection.
+func (o GlobalConnectionRedshiftSshTunnelPtrOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshiftSshTunnel) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.IntPtrOutput)
+}
+
+// The HTTP port for the SSH tunnel.
+func (o GlobalConnectionRedshiftSshTunnelPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshiftSshTunnel) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The SSH public key generated to allow connecting via SSH tunnel.
+func (o GlobalConnectionRedshiftSshTunnelPtrOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshiftSshTunnel) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PublicKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The username to use for the SSH tunnel.
+func (o GlobalConnectionRedshiftSshTunnelPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionRedshiftSshTunnel) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
 type GlobalConnectionSnowflake struct {
 	// The Snowflake account name
 	Account string `pulumi:"account"`
@@ -1068,6 +2749,413 @@ func (o GlobalConnectionSnowflakePtrOutput) Warehouse() pulumi.StringPtrOutput {
 		}
 		return &v.Warehouse
 	}).(pulumi.StringPtrOutput)
+}
+
+type GlobalConnectionStarburst struct {
+	// The hostname of the account to connect to.
+	Host string `pulumi:"host"`
+	// The authentication method. Only LDAP for now.
+	Method *string `pulumi:"method"`
+	// The port to connect to for this connection. Default=443
+	Port *int `pulumi:"port"`
+}
+
+// GlobalConnectionStarburstInput is an input type that accepts GlobalConnectionStarburstArgs and GlobalConnectionStarburstOutput values.
+// You can construct a concrete instance of `GlobalConnectionStarburstInput` via:
+//
+//	GlobalConnectionStarburstArgs{...}
+type GlobalConnectionStarburstInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionStarburstOutput() GlobalConnectionStarburstOutput
+	ToGlobalConnectionStarburstOutputWithContext(context.Context) GlobalConnectionStarburstOutput
+}
+
+type GlobalConnectionStarburstArgs struct {
+	// The hostname of the account to connect to.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The authentication method. Only LDAP for now.
+	Method pulumi.StringPtrInput `pulumi:"method"`
+	// The port to connect to for this connection. Default=443
+	Port pulumi.IntPtrInput `pulumi:"port"`
+}
+
+func (GlobalConnectionStarburstArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionStarburst)(nil)).Elem()
+}
+
+func (i GlobalConnectionStarburstArgs) ToGlobalConnectionStarburstOutput() GlobalConnectionStarburstOutput {
+	return i.ToGlobalConnectionStarburstOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionStarburstArgs) ToGlobalConnectionStarburstOutputWithContext(ctx context.Context) GlobalConnectionStarburstOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionStarburstOutput)
+}
+
+func (i GlobalConnectionStarburstArgs) ToGlobalConnectionStarburstPtrOutput() GlobalConnectionStarburstPtrOutput {
+	return i.ToGlobalConnectionStarburstPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionStarburstArgs) ToGlobalConnectionStarburstPtrOutputWithContext(ctx context.Context) GlobalConnectionStarburstPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionStarburstOutput).ToGlobalConnectionStarburstPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionStarburstPtrInput is an input type that accepts GlobalConnectionStarburstArgs, GlobalConnectionStarburstPtr and GlobalConnectionStarburstPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionStarburstPtrInput` via:
+//
+//	        GlobalConnectionStarburstArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionStarburstPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionStarburstPtrOutput() GlobalConnectionStarburstPtrOutput
+	ToGlobalConnectionStarburstPtrOutputWithContext(context.Context) GlobalConnectionStarburstPtrOutput
+}
+
+type globalConnectionStarburstPtrType GlobalConnectionStarburstArgs
+
+func GlobalConnectionStarburstPtr(v *GlobalConnectionStarburstArgs) GlobalConnectionStarburstPtrInput {
+	return (*globalConnectionStarburstPtrType)(v)
+}
+
+func (*globalConnectionStarburstPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionStarburst)(nil)).Elem()
+}
+
+func (i *globalConnectionStarburstPtrType) ToGlobalConnectionStarburstPtrOutput() GlobalConnectionStarburstPtrOutput {
+	return i.ToGlobalConnectionStarburstPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionStarburstPtrType) ToGlobalConnectionStarburstPtrOutputWithContext(ctx context.Context) GlobalConnectionStarburstPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionStarburstPtrOutput)
+}
+
+type GlobalConnectionStarburstOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionStarburstOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionStarburst)(nil)).Elem()
+}
+
+func (o GlobalConnectionStarburstOutput) ToGlobalConnectionStarburstOutput() GlobalConnectionStarburstOutput {
+	return o
+}
+
+func (o GlobalConnectionStarburstOutput) ToGlobalConnectionStarburstOutputWithContext(ctx context.Context) GlobalConnectionStarburstOutput {
+	return o
+}
+
+func (o GlobalConnectionStarburstOutput) ToGlobalConnectionStarburstPtrOutput() GlobalConnectionStarburstPtrOutput {
+	return o.ToGlobalConnectionStarburstPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionStarburstOutput) ToGlobalConnectionStarburstPtrOutputWithContext(ctx context.Context) GlobalConnectionStarburstPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionStarburst) *GlobalConnectionStarburst {
+		return &v
+	}).(GlobalConnectionStarburstPtrOutput)
+}
+
+// The hostname of the account to connect to.
+func (o GlobalConnectionStarburstOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionStarburst) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The authentication method. Only LDAP for now.
+func (o GlobalConnectionStarburstOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionStarburst) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// The port to connect to for this connection. Default=443
+func (o GlobalConnectionStarburstOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionStarburst) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type GlobalConnectionStarburstPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionStarburstPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionStarburst)(nil)).Elem()
+}
+
+func (o GlobalConnectionStarburstPtrOutput) ToGlobalConnectionStarburstPtrOutput() GlobalConnectionStarburstPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionStarburstPtrOutput) ToGlobalConnectionStarburstPtrOutputWithContext(ctx context.Context) GlobalConnectionStarburstPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionStarburstPtrOutput) Elem() GlobalConnectionStarburstOutput {
+	return o.ApplyT(func(v *GlobalConnectionStarburst) GlobalConnectionStarburst {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionStarburst
+		return ret
+	}).(GlobalConnectionStarburstOutput)
+}
+
+// The hostname of the account to connect to.
+func (o GlobalConnectionStarburstPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionStarburst) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// The authentication method. Only LDAP for now.
+func (o GlobalConnectionStarburstPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionStarburst) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// The port to connect to for this connection. Default=443
+func (o GlobalConnectionStarburstPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionStarburst) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+type GlobalConnectionSynapse struct {
+	// The database to connect to for this connection.
+	Database string `pulumi:"database"`
+	// The server hostname.
+	Host string `pulumi:"host"`
+	// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	LoginTimeout *int `pulumi:"loginTimeout"`
+	// The port to connect to for this connection. Default=1433
+	Port *int `pulumi:"port"`
+	// The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	QueryTimeout *int `pulumi:"queryTimeout"`
+	// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+	Retries *int `pulumi:"retries"`
+}
+
+// GlobalConnectionSynapseInput is an input type that accepts GlobalConnectionSynapseArgs and GlobalConnectionSynapseOutput values.
+// You can construct a concrete instance of `GlobalConnectionSynapseInput` via:
+//
+//	GlobalConnectionSynapseArgs{...}
+type GlobalConnectionSynapseInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionSynapseOutput() GlobalConnectionSynapseOutput
+	ToGlobalConnectionSynapseOutputWithContext(context.Context) GlobalConnectionSynapseOutput
+}
+
+type GlobalConnectionSynapseArgs struct {
+	// The database to connect to for this connection.
+	Database pulumi.StringInput `pulumi:"database"`
+	// The server hostname.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	LoginTimeout pulumi.IntPtrInput `pulumi:"loginTimeout"`
+	// The port to connect to for this connection. Default=1433
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	QueryTimeout pulumi.IntPtrInput `pulumi:"queryTimeout"`
+	// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+	Retries pulumi.IntPtrInput `pulumi:"retries"`
+}
+
+func (GlobalConnectionSynapseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionSynapse)(nil)).Elem()
+}
+
+func (i GlobalConnectionSynapseArgs) ToGlobalConnectionSynapseOutput() GlobalConnectionSynapseOutput {
+	return i.ToGlobalConnectionSynapseOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionSynapseArgs) ToGlobalConnectionSynapseOutputWithContext(ctx context.Context) GlobalConnectionSynapseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSynapseOutput)
+}
+
+func (i GlobalConnectionSynapseArgs) ToGlobalConnectionSynapsePtrOutput() GlobalConnectionSynapsePtrOutput {
+	return i.ToGlobalConnectionSynapsePtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionSynapseArgs) ToGlobalConnectionSynapsePtrOutputWithContext(ctx context.Context) GlobalConnectionSynapsePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSynapseOutput).ToGlobalConnectionSynapsePtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionSynapsePtrInput is an input type that accepts GlobalConnectionSynapseArgs, GlobalConnectionSynapsePtr and GlobalConnectionSynapsePtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionSynapsePtrInput` via:
+//
+//	        GlobalConnectionSynapseArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionSynapsePtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionSynapsePtrOutput() GlobalConnectionSynapsePtrOutput
+	ToGlobalConnectionSynapsePtrOutputWithContext(context.Context) GlobalConnectionSynapsePtrOutput
+}
+
+type globalConnectionSynapsePtrType GlobalConnectionSynapseArgs
+
+func GlobalConnectionSynapsePtr(v *GlobalConnectionSynapseArgs) GlobalConnectionSynapsePtrInput {
+	return (*globalConnectionSynapsePtrType)(v)
+}
+
+func (*globalConnectionSynapsePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionSynapse)(nil)).Elem()
+}
+
+func (i *globalConnectionSynapsePtrType) ToGlobalConnectionSynapsePtrOutput() GlobalConnectionSynapsePtrOutput {
+	return i.ToGlobalConnectionSynapsePtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionSynapsePtrType) ToGlobalConnectionSynapsePtrOutputWithContext(ctx context.Context) GlobalConnectionSynapsePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSynapsePtrOutput)
+}
+
+type GlobalConnectionSynapseOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionSynapseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionSynapse)(nil)).Elem()
+}
+
+func (o GlobalConnectionSynapseOutput) ToGlobalConnectionSynapseOutput() GlobalConnectionSynapseOutput {
+	return o
+}
+
+func (o GlobalConnectionSynapseOutput) ToGlobalConnectionSynapseOutputWithContext(ctx context.Context) GlobalConnectionSynapseOutput {
+	return o
+}
+
+func (o GlobalConnectionSynapseOutput) ToGlobalConnectionSynapsePtrOutput() GlobalConnectionSynapsePtrOutput {
+	return o.ToGlobalConnectionSynapsePtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionSynapseOutput) ToGlobalConnectionSynapsePtrOutputWithContext(ctx context.Context) GlobalConnectionSynapsePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionSynapse) *GlobalConnectionSynapse {
+		return &v
+	}).(GlobalConnectionSynapsePtrOutput)
+}
+
+// The database to connect to for this connection.
+func (o GlobalConnectionSynapseOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionSynapse) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// The server hostname.
+func (o GlobalConnectionSynapseOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionSynapse) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionSynapseOutput) LoginTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSynapse) *int { return v.LoginTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The port to connect to for this connection. Default=1433
+func (o GlobalConnectionSynapseOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSynapse) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionSynapseOutput) QueryTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSynapse) *int { return v.QueryTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+func (o GlobalConnectionSynapseOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSynapse) *int { return v.Retries }).(pulumi.IntPtrOutput)
+}
+
+type GlobalConnectionSynapsePtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionSynapsePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionSynapse)(nil)).Elem()
+}
+
+func (o GlobalConnectionSynapsePtrOutput) ToGlobalConnectionSynapsePtrOutput() GlobalConnectionSynapsePtrOutput {
+	return o
+}
+
+func (o GlobalConnectionSynapsePtrOutput) ToGlobalConnectionSynapsePtrOutputWithContext(ctx context.Context) GlobalConnectionSynapsePtrOutput {
+	return o
+}
+
+func (o GlobalConnectionSynapsePtrOutput) Elem() GlobalConnectionSynapseOutput {
+	return o.ApplyT(func(v *GlobalConnectionSynapse) GlobalConnectionSynapse {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionSynapse
+		return ret
+	}).(GlobalConnectionSynapseOutput)
+}
+
+// The database to connect to for this connection.
+func (o GlobalConnectionSynapsePtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSynapse) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// The server hostname.
+func (o GlobalConnectionSynapsePtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSynapse) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionSynapsePtrOutput) LoginTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSynapse) *int {
+		if v == nil {
+			return nil
+		}
+		return v.LoginTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// The port to connect to for this connection. Default=1433
+func (o GlobalConnectionSynapsePtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSynapse) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionSynapsePtrOutput) QueryTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSynapse) *int {
+		if v == nil {
+			return nil
+		}
+		return v.QueryTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+func (o GlobalConnectionSynapsePtrOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSynapse) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Retries
+	}).(pulumi.IntPtrOutput)
 }
 
 type GroupGroupPermission struct {
@@ -3110,12 +5198,30 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionApacheSparkInput)(nil)).Elem(), GlobalConnectionApacheSparkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionApacheSparkPtrInput)(nil)).Elem(), GlobalConnectionApacheSparkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionAthenaInput)(nil)).Elem(), GlobalConnectionAthenaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionAthenaPtrInput)(nil)).Elem(), GlobalConnectionAthenaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionBigqueryInput)(nil)).Elem(), GlobalConnectionBigqueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionBigqueryPtrInput)(nil)).Elem(), GlobalConnectionBigqueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionDatabricksInput)(nil)).Elem(), GlobalConnectionDatabricksArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionDatabricksPtrInput)(nil)).Elem(), GlobalConnectionDatabricksArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionFabricInput)(nil)).Elem(), GlobalConnectionFabricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionFabricPtrInput)(nil)).Elem(), GlobalConnectionFabricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionPostgresInput)(nil)).Elem(), GlobalConnectionPostgresArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionPostgresPtrInput)(nil)).Elem(), GlobalConnectionPostgresArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionPostgresSshTunnelInput)(nil)).Elem(), GlobalConnectionPostgresSshTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionPostgresSshTunnelPtrInput)(nil)).Elem(), GlobalConnectionPostgresSshTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionRedshiftInput)(nil)).Elem(), GlobalConnectionRedshiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionRedshiftPtrInput)(nil)).Elem(), GlobalConnectionRedshiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionRedshiftSshTunnelInput)(nil)).Elem(), GlobalConnectionRedshiftSshTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionRedshiftSshTunnelPtrInput)(nil)).Elem(), GlobalConnectionRedshiftSshTunnelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSnowflakeInput)(nil)).Elem(), GlobalConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSnowflakePtrInput)(nil)).Elem(), GlobalConnectionSnowflakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionStarburstInput)(nil)).Elem(), GlobalConnectionStarburstArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionStarburstPtrInput)(nil)).Elem(), GlobalConnectionStarburstArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSynapseInput)(nil)).Elem(), GlobalConnectionSynapseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSynapsePtrInput)(nil)).Elem(), GlobalConnectionSynapseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionInput)(nil)).Elem(), GroupGroupPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionArrayInput)(nil)).Elem(), GroupGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPartialPermissionsGroupPermissionInput)(nil)).Elem(), GroupPartialPermissionsGroupPermissionArgs{})
@@ -3145,12 +5251,30 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), GetServiceTokenServiceTokenPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterOutputType(GlobalConnectionApacheSparkOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionApacheSparkPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionAthenaOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionAthenaPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionBigqueryOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionBigqueryPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionDatabricksOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionDatabricksPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionFabricOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionFabricPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionPostgresOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionPostgresPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionPostgresSshTunnelOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionPostgresSshTunnelPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionRedshiftOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionRedshiftPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionRedshiftSshTunnelOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionRedshiftSshTunnelPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionSnowflakeOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionSnowflakePtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionStarburstOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionStarburstPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionSynapseOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionSynapsePtrOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionOutput{})

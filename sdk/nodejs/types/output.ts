@@ -266,6 +266,96 @@ export interface GetUsersUser {
     id: number;
 }
 
+export interface GlobalConnectionApacheSpark {
+    /**
+     * Auth
+     */
+    auth?: string;
+    /**
+     * Spark cluster for the connection
+     */
+    cluster: string;
+    /**
+     * Connection retries. Default=0
+     */
+    connectRetries: number;
+    /**
+     * Connection time out in seconds. Default=10
+     */
+    connectTimeout: number;
+    /**
+     * Hostname of the connection
+     */
+    host: string;
+    /**
+     * Authentication method for the connection (http or thrift).
+     */
+    method: string;
+    /**
+     * Organization ID
+     */
+    organization?: string;
+    /**
+     * Port for the connection. Default=443
+     */
+    port: number;
+    /**
+     * User
+     */
+    user?: string;
+}
+
+export interface GlobalConnectionAthena {
+    /**
+     * Specify the database (data catalog) to build models into (lowercase only).
+     */
+    database: string;
+    /**
+     * Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+     */
+    numBoto3Retries?: number;
+    /**
+     * Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+     */
+    numIcebergRetries?: number;
+    /**
+     * Number of times to retry a failing query.
+     */
+    numRetries?: number;
+    /**
+     * Interval in seconds to use for polling the status of query results in Athena.
+     */
+    pollInterval?: number;
+    /**
+     * AWS region of your Athena instance.
+     */
+    regionName: string;
+    /**
+     * Prefix for storing tables, if different from the connection's S3 staging directory.
+     */
+    s3DataDir?: string;
+    /**
+     * How to generate table paths in the S3 data directory.
+     */
+    s3DataNaming?: string;
+    /**
+     * S3 location to store Athena query results and metadata.
+     */
+    s3StagingDir: string;
+    /**
+     * Prefix for storing temporary tables, if different from the connection's S3 data directory.
+     */
+    s3TmpTableDir?: string;
+    /**
+     * Identifier of Athena Spark workgroup for running Python models.
+     */
+    sparkWorkGroup?: string;
+    /**
+     * Identifier of Athena workgroup.
+     */
+    workGroup?: string;
+}
+
 export interface GlobalConnectionBigquery {
     /**
      * OAuth Client ID
@@ -388,6 +478,117 @@ export interface GlobalConnectionDatabricks {
     httpPath: string;
 }
 
+export interface GlobalConnectionFabric {
+    /**
+     * The database to connect to for this connection.
+     */
+    database: string;
+    /**
+     * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    loginTimeout: number;
+    /**
+     * The port to connect to for this connection. Default=1433
+     */
+    port: number;
+    /**
+     * The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    queryTimeout: number;
+    /**
+     * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+     */
+    retries: number;
+    /**
+     * The server hostname.
+     */
+    server: string;
+}
+
+export interface GlobalConnectionPostgres {
+    /**
+     * The database name for this connection.
+     */
+    dbname?: string;
+    /**
+     * The hostname of the database.
+     */
+    hostname: string;
+    /**
+     * The port to connect to for this connection. Default=5432
+     */
+    port: number;
+    /**
+     * PostgreSQL SSH Tunnel configuration
+     */
+    sshTunnel?: outputs.GlobalConnectionPostgresSshTunnel;
+}
+
+export interface GlobalConnectionPostgresSshTunnel {
+    /**
+     * The hostname for the SSH tunnel.
+     */
+    hostname: string;
+    /**
+     * The ID of the SSH tunnel connection.
+     */
+    id: number;
+    /**
+     * The HTTP port for the SSH tunnel.
+     */
+    port: number;
+    /**
+     * The SSH public key generated to allow connecting via SSH tunnel.
+     */
+    publicKey: string;
+    /**
+     * The username to use for the SSH tunnel.
+     */
+    username: string;
+}
+
+export interface GlobalConnectionRedshift {
+    /**
+     * The database name for this connection.
+     */
+    dbname?: string;
+    /**
+     * The hostname of the data warehouse.
+     */
+    hostname: string;
+    /**
+     * The port to connect to for this connection. Default=5432
+     */
+    port: number;
+    /**
+     * Redshift SSH Tunnel configuration
+     */
+    sshTunnel?: outputs.GlobalConnectionRedshiftSshTunnel;
+}
+
+export interface GlobalConnectionRedshiftSshTunnel {
+    /**
+     * The hostname for the SSH tunnel.
+     */
+    hostname: string;
+    /**
+     * The ID of the SSH tunnel connection.
+     */
+    id: number;
+    /**
+     * The HTTP port for the SSH tunnel.
+     */
+    port: number;
+    /**
+     * The SSH public key generated to allow connecting via SSH tunnel.
+     */
+    publicKey: string;
+    /**
+     * The username to use for the SSH tunnel.
+     */
+    username: string;
+}
+
 export interface GlobalConnectionSnowflake {
     /**
      * The Snowflake account name
@@ -421,6 +622,48 @@ export interface GlobalConnectionSnowflake {
      * The default Snowflake Warehouse to use for the connection
      */
     warehouse: string;
+}
+
+export interface GlobalConnectionStarburst {
+    /**
+     * The hostname of the account to connect to.
+     */
+    host: string;
+    /**
+     * The authentication method. Only LDAP for now.
+     */
+    method: string;
+    /**
+     * The port to connect to for this connection. Default=443
+     */
+    port: number;
+}
+
+export interface GlobalConnectionSynapse {
+    /**
+     * The database to connect to for this connection.
+     */
+    database: string;
+    /**
+     * The server hostname.
+     */
+    host: string;
+    /**
+     * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    loginTimeout: number;
+    /**
+     * The port to connect to for this connection. Default=1433
+     */
+    port: number;
+    /**
+     * The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    queryTimeout: number;
+    /**
+     * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+     */
+    retries: number;
 }
 
 export interface GroupGroupPermission {

@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Resource to create Microsoft Fabric connections in dbt Cloud
+ * Resource to create a MS Fabric connection in dbt Cloud.
+ *
+ * > This resource is deprecated and is going to be removed in the next major release, please use the `dbtcloud.GlobalConnection` resource instead to create any DW connection.
  *
  * ## Example Usage
  *

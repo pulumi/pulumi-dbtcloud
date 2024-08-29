@@ -5,9 +5,16 @@ package com.pulumi.dbtcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionApacheSparkArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionAthenaArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionFabricArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionPostgresArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionRedshiftArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionStarburstArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionSynapseArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -35,6 +42,36 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.adapterVersion);
     }
 
+    /**
+     * Apache Spark connection configuration.
+     * 
+     */
+    @Import(name="apacheSpark")
+    private @Nullable Output<GlobalConnectionApacheSparkArgs> apacheSpark;
+
+    /**
+     * @return Apache Spark connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionApacheSparkArgs>> apacheSpark() {
+        return Optional.ofNullable(this.apacheSpark);
+    }
+
+    /**
+     * Athena connection configuration.
+     * 
+     */
+    @Import(name="athena")
+    private @Nullable Output<GlobalConnectionAthenaArgs> athena;
+
+    /**
+     * @return Athena connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionAthenaArgs>> athena() {
+        return Optional.ofNullable(this.athena);
+    }
+
     @Import(name="bigquery")
     private @Nullable Output<GlobalConnectionBigqueryArgs> bigquery;
 
@@ -55,6 +92,21 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<GlobalConnectionDatabricksArgs>> databricks() {
         return Optional.ofNullable(this.databricks);
+    }
+
+    /**
+     * Microsoft Fabric connection configuration.
+     * 
+     */
+    @Import(name="fabric")
+    private @Nullable Output<GlobalConnectionFabricArgs> fabric;
+
+    /**
+     * @return Microsoft Fabric connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionFabricArgs>> fabric() {
+        return Optional.ofNullable(this.fabric);
     }
 
     /**
@@ -95,6 +147,21 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * PostgreSQL connection configuration.
+     * 
+     */
+    @Import(name="postgres")
+    private @Nullable Output<GlobalConnectionPostgresArgs> postgres;
+
+    /**
+     * @return PostgreSQL connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionPostgresArgs>> postgres() {
+        return Optional.ofNullable(this.postgres);
+    }
+
+    /**
      * Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
      * 
      */
@@ -107,6 +174,21 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<String>> privateLinkEndpointId() {
         return Optional.ofNullable(this.privateLinkEndpointId);
+    }
+
+    /**
+     * Redshift connection configuration
+     * 
+     */
+    @Import(name="redshift")
+    private @Nullable Output<GlobalConnectionRedshiftArgs> redshift;
+
+    /**
+     * @return Redshift connection configuration
+     * 
+     */
+    public Optional<Output<GlobalConnectionRedshiftArgs>> redshift() {
+        return Optional.ofNullable(this.redshift);
     }
 
     /**
@@ -124,17 +206,54 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.snowflake);
     }
 
+    /**
+     * Starburst/Trino connection configuration.
+     * 
+     */
+    @Import(name="starburst")
+    private @Nullable Output<GlobalConnectionStarburstArgs> starburst;
+
+    /**
+     * @return Starburst/Trino connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionStarburstArgs>> starburst() {
+        return Optional.ofNullable(this.starburst);
+    }
+
+    /**
+     * Azure Synapse Analytics connection configuration.
+     * 
+     */
+    @Import(name="synapse")
+    private @Nullable Output<GlobalConnectionSynapseArgs> synapse;
+
+    /**
+     * @return Azure Synapse Analytics connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionSynapseArgs>> synapse() {
+        return Optional.ofNullable(this.synapse);
+    }
+
     private GlobalConnectionState() {}
 
     private GlobalConnectionState(GlobalConnectionState $) {
         this.adapterVersion = $.adapterVersion;
+        this.apacheSpark = $.apacheSpark;
+        this.athena = $.athena;
         this.bigquery = $.bigquery;
         this.databricks = $.databricks;
+        this.fabric = $.fabric;
         this.isSshTunnelEnabled = $.isSshTunnelEnabled;
         this.name = $.name;
         this.oauthConfigurationId = $.oauthConfigurationId;
+        this.postgres = $.postgres;
         this.privateLinkEndpointId = $.privateLinkEndpointId;
+        this.redshift = $.redshift;
         this.snowflake = $.snowflake;
+        this.starburst = $.starburst;
+        this.synapse = $.synapse;
     }
 
     public static Builder builder() {
@@ -176,6 +295,48 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
             return adapterVersion(Output.of(adapterVersion));
         }
 
+        /**
+         * @param apacheSpark Apache Spark connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apacheSpark(@Nullable Output<GlobalConnectionApacheSparkArgs> apacheSpark) {
+            $.apacheSpark = apacheSpark;
+            return this;
+        }
+
+        /**
+         * @param apacheSpark Apache Spark connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apacheSpark(GlobalConnectionApacheSparkArgs apacheSpark) {
+            return apacheSpark(Output.of(apacheSpark));
+        }
+
+        /**
+         * @param athena Athena connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder athena(@Nullable Output<GlobalConnectionAthenaArgs> athena) {
+            $.athena = athena;
+            return this;
+        }
+
+        /**
+         * @param athena Athena connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder athena(GlobalConnectionAthenaArgs athena) {
+            return athena(Output.of(athena));
+        }
+
         public Builder bigquery(@Nullable Output<GlobalConnectionBigqueryArgs> bigquery) {
             $.bigquery = bigquery;
             return this;
@@ -204,6 +365,27 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
          */
         public Builder databricks(GlobalConnectionDatabricksArgs databricks) {
             return databricks(Output.of(databricks));
+        }
+
+        /**
+         * @param fabric Microsoft Fabric connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fabric(@Nullable Output<GlobalConnectionFabricArgs> fabric) {
+            $.fabric = fabric;
+            return this;
+        }
+
+        /**
+         * @param fabric Microsoft Fabric connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fabric(GlobalConnectionFabricArgs fabric) {
+            return fabric(Output.of(fabric));
         }
 
         /**
@@ -258,6 +440,27 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param postgres PostgreSQL connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder postgres(@Nullable Output<GlobalConnectionPostgresArgs> postgres) {
+            $.postgres = postgres;
+            return this;
+        }
+
+        /**
+         * @param postgres PostgreSQL connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder postgres(GlobalConnectionPostgresArgs postgres) {
+            return postgres(Output.of(postgres));
+        }
+
+        /**
          * @param privateLinkEndpointId Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
          * 
          * @return builder
@@ -279,6 +482,27 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param redshift Redshift connection configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redshift(@Nullable Output<GlobalConnectionRedshiftArgs> redshift) {
+            $.redshift = redshift;
+            return this;
+        }
+
+        /**
+         * @param redshift Redshift connection configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder redshift(GlobalConnectionRedshiftArgs redshift) {
+            return redshift(Output.of(redshift));
+        }
+
+        /**
          * @param snowflake Snowflake connection configuration
          * 
          * @return builder
@@ -297,6 +521,48 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
          */
         public Builder snowflake(GlobalConnectionSnowflakeArgs snowflake) {
             return snowflake(Output.of(snowflake));
+        }
+
+        /**
+         * @param starburst Starburst/Trino connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder starburst(@Nullable Output<GlobalConnectionStarburstArgs> starburst) {
+            $.starburst = starburst;
+            return this;
+        }
+
+        /**
+         * @param starburst Starburst/Trino connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder starburst(GlobalConnectionStarburstArgs starburst) {
+            return starburst(Output.of(starburst));
+        }
+
+        /**
+         * @param synapse Azure Synapse Analytics connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder synapse(@Nullable Output<GlobalConnectionSynapseArgs> synapse) {
+            $.synapse = synapse;
+            return this;
+        }
+
+        /**
+         * @param synapse Azure Synapse Analytics connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder synapse(GlobalConnectionSynapseArgs synapse) {
+            return synapse(Output.of(synapse));
         }
 
         public GlobalConnectionState build() {
