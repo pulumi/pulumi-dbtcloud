@@ -176,6 +176,21 @@ public final class RepositoryState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+     * 
+     */
+    @Import(name="pullRequestUrlTemplate")
+    private @Nullable Output<String> pullRequestUrlTemplate;
+
+    /**
+     * @return URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+     * 
+     */
+    public Optional<Output<String>> pullRequestUrlTemplate() {
+        return Optional.ofNullable(this.pullRequestUrlTemplate);
+    }
+
+    /**
      * Git URL for the repository or &lt;Group&gt;/&lt;Project&gt; for Gitlab
      * 
      */
@@ -233,6 +248,7 @@ public final class RepositoryState extends com.pulumi.resources.ResourceArgs {
         this.gitlabProjectId = $.gitlabProjectId;
         this.isActive = $.isActive;
         this.projectId = $.projectId;
+        this.pullRequestUrlTemplate = $.pullRequestUrlTemplate;
         this.remoteUrl = $.remoteUrl;
         this.repositoryCredentialsId = $.repositoryCredentialsId;
         this.repositoryId = $.repositoryId;
@@ -472,6 +488,27 @@ public final class RepositoryState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder projectId(Integer projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param pullRequestUrlTemplate URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pullRequestUrlTemplate(@Nullable Output<String> pullRequestUrlTemplate) {
+            $.pullRequestUrlTemplate = pullRequestUrlTemplate;
+            return this;
+        }
+
+        /**
+         * @param pullRequestUrlTemplate URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pullRequestUrlTemplate(String pullRequestUrlTemplate) {
+            return pullRequestUrlTemplate(Output.of(pullRequestUrlTemplate));
         }
 
         /**

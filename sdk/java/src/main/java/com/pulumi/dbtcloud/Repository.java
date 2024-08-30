@@ -208,6 +208,20 @@ public class Repository extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
+     * URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+     * 
+     */
+    @Export(name="pullRequestUrlTemplate", refs={String.class}, tree="[0]")
+    private Output<String> pullRequestUrlTemplate;
+
+    /**
+     * @return URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+     * 
+     */
+    public Output<String> pullRequestUrlTemplate() {
+        return this.pullRequestUrlTemplate;
+    }
+    /**
      * Git URL for the repository or &lt;Group&gt;/&lt;Project&gt; for Gitlab
      * 
      */

@@ -79,6 +79,8 @@ type Repository struct {
 	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
 	// Project ID to create the repository in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
+	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+	PullRequestUrlTemplate pulumi.StringOutput `pulumi:"pullRequestUrlTemplate"`
 	// Git URL for the repository or <Group>/<Project> for Gitlab
 	RemoteUrl pulumi.StringOutput `pulumi:"remoteUrl"`
 	// Credentials ID for the repository (From the repository side not the dbt Cloud ID)
@@ -145,6 +147,8 @@ type repositoryState struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Project ID to create the repository in
 	ProjectId *int `pulumi:"projectId"`
+	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+	PullRequestUrlTemplate *string `pulumi:"pullRequestUrlTemplate"`
 	// Git URL for the repository or <Group>/<Project> for Gitlab
 	RemoteUrl *string `pulumi:"remoteUrl"`
 	// Credentials ID for the repository (From the repository side not the dbt Cloud ID)
@@ -176,6 +180,8 @@ type RepositoryState struct {
 	IsActive pulumi.BoolPtrInput
 	// Project ID to create the repository in
 	ProjectId pulumi.IntPtrInput
+	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+	PullRequestUrlTemplate pulumi.StringPtrInput
 	// Git URL for the repository or <Group>/<Project> for Gitlab
 	RemoteUrl pulumi.StringPtrInput
 	// Credentials ID for the repository (From the repository side not the dbt Cloud ID)
@@ -209,6 +215,8 @@ type repositoryArgs struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Project ID to create the repository in
 	ProjectId int `pulumi:"projectId"`
+	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+	PullRequestUrlTemplate *string `pulumi:"pullRequestUrlTemplate"`
 	// Git URL for the repository or <Group>/<Project> for Gitlab
 	RemoteUrl string `pulumi:"remoteUrl"`
 }
@@ -235,6 +243,8 @@ type RepositoryArgs struct {
 	IsActive pulumi.BoolPtrInput
 	// Project ID to create the repository in
 	ProjectId pulumi.IntInput
+	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+	PullRequestUrlTemplate pulumi.StringPtrInput
 	// Git URL for the repository or <Group>/<Project> for Gitlab
 	RemoteUrl pulumi.StringInput
 }
@@ -376,6 +386,11 @@ func (o RepositoryOutput) IsActive() pulumi.BoolPtrOutput {
 // Project ID to create the repository in
 func (o RepositoryOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Repository) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+func (o RepositoryOutput) PullRequestUrlTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v *Repository) pulumi.StringOutput { return v.PullRequestUrlTemplate }).(pulumi.StringOutput)
 }
 
 // Git URL for the repository or <Group>/<Project> for Gitlab

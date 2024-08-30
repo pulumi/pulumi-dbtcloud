@@ -117,6 +117,12 @@ namespace Pulumi.DbtCloud
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+        /// </summary>
+        [Output("pullRequestUrlTemplate")]
+        public Output<string> PullRequestUrlTemplate { get; private set; } = null!;
+
+        /// <summary>
         /// Git URL for the repository or &lt;Group&gt;/&lt;Project&gt; for Gitlab
         /// </summary>
         [Output("remoteUrl")]
@@ -236,6 +242,12 @@ namespace Pulumi.DbtCloud
         public Input<int> ProjectId { get; set; } = null!;
 
         /// <summary>
+        /// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+        /// </summary>
+        [Input("pullRequestUrlTemplate")]
+        public Input<string>? PullRequestUrlTemplate { get; set; }
+
+        /// <summary>
         /// Git URL for the repository or &lt;Group&gt;/&lt;Project&gt; for Gitlab
         /// </summary>
         [Input("remoteUrl", required: true)]
@@ -308,6 +320,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("projectId")]
         public Input<int>? ProjectId { get; set; }
+
+        /// <summary>
+        /// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+        /// </summary>
+        [Input("pullRequestUrlTemplate")]
+        public Input<string>? PullRequestUrlTemplate { get; set; }
 
         /// <summary>
         /// Git URL for the repository or &lt;Group&gt;/&lt;Project&gt; for Gitlab
