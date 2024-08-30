@@ -4419,6 +4419,10 @@
                     "type": "integer",
                     "description": "Project ID to create the repository in\n"
                 },
+                "pullRequestUrlTemplate": {
+                    "type": "string",
+                    "description": "URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.\n"
+                },
                 "remoteUrl": {
                     "type": "string",
                     "description": "Git URL for the repository or \u003cGroup\u003e/\u003cProject\u003e for Gitlab\n"
@@ -4435,6 +4439,7 @@
             "required": [
                 "deployKey",
                 "projectId",
+                "pullRequestUrlTemplate",
                 "remoteUrl",
                 "repositoryCredentialsId",
                 "repositoryId"
@@ -4483,6 +4488,10 @@
                     "type": "integer",
                     "description": "Project ID to create the repository in\n",
                     "willReplaceOnChanges": true
+                },
+                "pullRequestUrlTemplate": {
+                    "type": "string",
+                    "description": "URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.\n"
                 },
                 "remoteUrl": {
                     "type": "string",
@@ -4544,6 +4553,10 @@
                         "type": "integer",
                         "description": "Project ID to create the repository in\n",
                         "willReplaceOnChanges": true
+                    },
+                    "pullRequestUrlTemplate": {
+                        "type": "string",
+                        "description": "URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.\n"
                     },
                     "remoteUrl": {
                         "type": "string",
