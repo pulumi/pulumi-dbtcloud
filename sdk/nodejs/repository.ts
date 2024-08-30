@@ -119,6 +119,10 @@ export class Repository extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
+     * URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+     */
+    public readonly pullRequestUrlTemplate!: pulumi.Output<string>;
+    /**
      * Git URL for the repository or <Group>/<Project> for Gitlab
      */
     public readonly remoteUrl!: pulumi.Output<string>;
@@ -154,6 +158,7 @@ export class Repository extends pulumi.CustomResource {
             resourceInputs["gitlabProjectId"] = state ? state.gitlabProjectId : undefined;
             resourceInputs["isActive"] = state ? state.isActive : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["pullRequestUrlTemplate"] = state ? state.pullRequestUrlTemplate : undefined;
             resourceInputs["remoteUrl"] = state ? state.remoteUrl : undefined;
             resourceInputs["repositoryCredentialsId"] = state ? state.repositoryCredentialsId : undefined;
             resourceInputs["repositoryId"] = state ? state.repositoryId : undefined;
@@ -174,6 +179,7 @@ export class Repository extends pulumi.CustomResource {
             resourceInputs["gitlabProjectId"] = args ? args.gitlabProjectId : undefined;
             resourceInputs["isActive"] = args ? args.isActive : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["pullRequestUrlTemplate"] = args ? args.pullRequestUrlTemplate : undefined;
             resourceInputs["remoteUrl"] = args ? args.remoteUrl : undefined;
             resourceInputs["deployKey"] = undefined /*out*/;
             resourceInputs["repositoryCredentialsId"] = undefined /*out*/;
@@ -231,6 +237,10 @@ export interface RepositoryState {
      */
     projectId?: pulumi.Input<number>;
     /**
+     * URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+     */
+    pullRequestUrlTemplate?: pulumi.Input<string>;
+    /**
      * Git URL for the repository or <Group>/<Project> for Gitlab
      */
     remoteUrl?: pulumi.Input<string>;
@@ -286,6 +296,10 @@ export interface RepositoryArgs {
      * Project ID to create the repository in
      */
     projectId: pulumi.Input<number>;
+    /**
+     * URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+     */
+    pullRequestUrlTemplate?: pulumi.Input<string>;
     /**
      * Git URL for the repository or <Group>/<Project> for Gitlab
      */

@@ -23,7 +23,8 @@ class RepositoryArgs:
                  git_clone_strategy: Optional[pulumi.Input[str]] = None,
                  github_installation_id: Optional[pulumi.Input[int]] = None,
                  gitlab_project_id: Optional[pulumi.Input[int]] = None,
-                 is_active: Optional[pulumi.Input[bool]] = None):
+                 is_active: Optional[pulumi.Input[bool]] = None,
+                 pull_request_url_template: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Repository resource.
         :param pulumi.Input[int] project_id: Project ID to create the repository in
@@ -36,6 +37,7 @@ class RepositoryArgs:
         :param pulumi.Input[int] github_installation_id: Identifier for the GitHub App - (for GitHub native integration only)
         :param pulumi.Input[int] gitlab_project_id: Identifier for the Gitlab project -  (for GitLab native integration only)
         :param pulumi.Input[bool] is_active: Whether the repository is active
+        :param pulumi.Input[str] pull_request_url_template: URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "remote_url", remote_url)
@@ -58,6 +60,8 @@ class RepositoryArgs:
             pulumi.set(__self__, "gitlab_project_id", gitlab_project_id)
         if is_active is not None:
             pulumi.set(__self__, "is_active", is_active)
+        if pull_request_url_template is not None:
+            pulumi.set(__self__, "pull_request_url_template", pull_request_url_template)
 
     @property
     @pulumi.getter(name="projectId")
@@ -180,6 +184,18 @@ class RepositoryArgs:
     def is_active(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "is_active", value)
 
+    @property
+    @pulumi.getter(name="pullRequestUrlTemplate")
+    def pull_request_url_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+        """
+        return pulumi.get(self, "pull_request_url_template")
+
+    @pull_request_url_template.setter
+    def pull_request_url_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pull_request_url_template", value)
+
 
 @pulumi.input_type
 class _RepositoryState:
@@ -194,6 +210,7 @@ class _RepositoryState:
                  gitlab_project_id: Optional[pulumi.Input[int]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
+                 pull_request_url_template: Optional[pulumi.Input[str]] = None,
                  remote_url: Optional[pulumi.Input[str]] = None,
                  repository_credentials_id: Optional[pulumi.Input[int]] = None,
                  repository_id: Optional[pulumi.Input[int]] = None):
@@ -209,6 +226,7 @@ class _RepositoryState:
         :param pulumi.Input[int] gitlab_project_id: Identifier for the Gitlab project -  (for GitLab native integration only)
         :param pulumi.Input[bool] is_active: Whether the repository is active
         :param pulumi.Input[int] project_id: Project ID to create the repository in
+        :param pulumi.Input[str] pull_request_url_template: URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         :param pulumi.Input[str] remote_url: Git URL for the repository or <Group>/<Project> for Gitlab
         :param pulumi.Input[int] repository_credentials_id: Credentials ID for the repository (From the repository side not the dbt Cloud ID)
         :param pulumi.Input[int] repository_id: Repository Identifier
@@ -236,6 +254,8 @@ class _RepositoryState:
             pulumi.set(__self__, "is_active", is_active)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if pull_request_url_template is not None:
+            pulumi.set(__self__, "pull_request_url_template", pull_request_url_template)
         if remote_url is not None:
             pulumi.set(__self__, "remote_url", remote_url)
         if repository_credentials_id is not None:
@@ -365,6 +385,18 @@ class _RepositoryState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="pullRequestUrlTemplate")
+    def pull_request_url_template(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+        """
+        return pulumi.get(self, "pull_request_url_template")
+
+    @pull_request_url_template.setter
+    def pull_request_url_template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pull_request_url_template", value)
+
+    @property
     @pulumi.getter(name="remoteUrl")
     def remote_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -415,6 +447,7 @@ class Repository(pulumi.CustomResource):
                  gitlab_project_id: Optional[pulumi.Input[int]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
+                 pull_request_url_template: Optional[pulumi.Input[str]] = None,
                  remote_url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -472,6 +505,7 @@ class Repository(pulumi.CustomResource):
         :param pulumi.Input[int] gitlab_project_id: Identifier for the Gitlab project -  (for GitLab native integration only)
         :param pulumi.Input[bool] is_active: Whether the repository is active
         :param pulumi.Input[int] project_id: Project ID to create the repository in
+        :param pulumi.Input[str] pull_request_url_template: URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         :param pulumi.Input[str] remote_url: Git URL for the repository or <Group>/<Project> for Gitlab
         """
         ...
@@ -548,6 +582,7 @@ class Repository(pulumi.CustomResource):
                  gitlab_project_id: Optional[pulumi.Input[int]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
+                 pull_request_url_template: Optional[pulumi.Input[str]] = None,
                  remote_url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -569,6 +604,7 @@ class Repository(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["pull_request_url_template"] = pull_request_url_template
             if remote_url is None and not opts.urn:
                 raise TypeError("Missing required property 'remote_url'")
             __props__.__dict__["remote_url"] = remote_url
@@ -595,6 +631,7 @@ class Repository(pulumi.CustomResource):
             gitlab_project_id: Optional[pulumi.Input[int]] = None,
             is_active: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[int]] = None,
+            pull_request_url_template: Optional[pulumi.Input[str]] = None,
             remote_url: Optional[pulumi.Input[str]] = None,
             repository_credentials_id: Optional[pulumi.Input[int]] = None,
             repository_id: Optional[pulumi.Input[int]] = None) -> 'Repository':
@@ -615,6 +652,7 @@ class Repository(pulumi.CustomResource):
         :param pulumi.Input[int] gitlab_project_id: Identifier for the Gitlab project -  (for GitLab native integration only)
         :param pulumi.Input[bool] is_active: Whether the repository is active
         :param pulumi.Input[int] project_id: Project ID to create the repository in
+        :param pulumi.Input[str] pull_request_url_template: URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         :param pulumi.Input[str] remote_url: Git URL for the repository or <Group>/<Project> for Gitlab
         :param pulumi.Input[int] repository_credentials_id: Credentials ID for the repository (From the repository side not the dbt Cloud ID)
         :param pulumi.Input[int] repository_id: Repository Identifier
@@ -633,6 +671,7 @@ class Repository(pulumi.CustomResource):
         __props__.__dict__["gitlab_project_id"] = gitlab_project_id
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["pull_request_url_template"] = pull_request_url_template
         __props__.__dict__["remote_url"] = remote_url
         __props__.__dict__["repository_credentials_id"] = repository_credentials_id
         __props__.__dict__["repository_id"] = repository_id
@@ -718,6 +757,14 @@ class Repository(pulumi.CustomResource):
         Project ID to create the repository in
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="pullRequestUrlTemplate")
+    def pull_request_url_template(self) -> pulumi.Output[str]:
+        """
+        URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
+        """
+        return pulumi.get(self, "pull_request_url_template")
 
     @property
     @pulumi.getter(name="remoteUrl")
