@@ -12,9 +12,9 @@ namespace Pulumi.DbtCloud
     public static class GetAzureDevOpsRepository
     {
         /// <summary>
-        /// Use this data source to retrieve the ID and details of an Azure Dev Ops repository 
+        /// Use this data source to retrieve the ID and details of an Azure Dev Ops repository
         /// based on its name and the ID of the Azure Dev Ops project it belongs to.
-        /// 		
+        /// 
         /// This data source requires connecting with a user token and doesn't work with a service token.
         /// 
         /// ## Example Usage
@@ -40,9 +40,9 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAzureDevOpsRepositoryResult>("dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository", args ?? new GetAzureDevOpsRepositoryArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to retrieve the ID and details of an Azure Dev Ops repository 
+        /// Use this data source to retrieve the ID and details of an Azure Dev Ops repository
         /// based on its name and the ID of the Azure Dev Ops project it belongs to.
-        /// 		
+        /// 
         /// This data source requires connecting with a user token and doesn't work with a service token.
         /// 
         /// ## Example Usage

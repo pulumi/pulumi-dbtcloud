@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // we add some permissions to the group "TF Group 1" (existing or not) to  a new project 
+ *         // we add some permissions to the group "TF Group 1" (existing or not) to  a new project
  *         var tfGroup1 = new GroupPartialPermissions("tfGroup1", GroupPartialPermissionsArgs.builder()
  *             .name("TF Group 1")
  *             .groupPermissions(            
@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *             .build());
  * 
- *         // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
+ *         // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project
  *         // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
  *         var tfGroup2 = new GroupPartialPermissions("tfGroup2", GroupPartialPermissionsArgs.builder()
  *             .name("TF Group 2")

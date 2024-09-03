@@ -808,7 +808,7 @@ class Job(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # a job that has github_webhook and git_provider_webhook 
+        # a job that has github_webhook and git_provider_webhook
         # set to false will be categorized as a "Deploy Job"
         daily_job = dbtcloud.Job("daily_job",
             environment_id=prod_environment["environmentId"],
@@ -837,7 +837,7 @@ class Job(pulumi.CustomResource):
             ],
             schedule_type="days_of_week",
             schedule_hours=[0])
-        # a job that has github_webhook and git_provider_webhook set 
+        # a job that has github_webhook and git_provider_webhook set
         # to true will be categorized as a "Continuous Integration Job"
         ci_job = dbtcloud.Job("ci_job",
             environment_id=ci_environment["environmentId"],
@@ -977,7 +977,7 @@ class Job(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # a job that has github_webhook and git_provider_webhook 
+        # a job that has github_webhook and git_provider_webhook
         # set to false will be categorized as a "Deploy Job"
         daily_job = dbtcloud.Job("daily_job",
             environment_id=prod_environment["environmentId"],
@@ -1006,7 +1006,7 @@ class Job(pulumi.CustomResource):
             ],
             schedule_type="days_of_week",
             schedule_hours=[0])
-        # a job that has github_webhook and git_provider_webhook set 
+        # a job that has github_webhook and git_provider_webhook set
         # to true will be categorized as a "Continuous Integration Job"
         ci_job = dbtcloud.Job("ci_job",
             environment_id=ci_environment["environmentId"],
