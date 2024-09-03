@@ -167,65 +167,7 @@ class ServiceToken(pulumi.CustomResource):
                  state: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        test_service_token = dbtcloud.ServiceToken("test_service_token",
-            name="Test Service Token",
-            service_token_permissions=[
-                {
-                    "permission_set": "git_admin",
-                    "all_projects": True,
-                },
-                {
-                    "permission_set": "job_admin",
-                    "all_projects": False,
-                    "project_id": dbt_project["id"],
-                },
-                {
-                    "permission_set": "developer",
-                    "all_projects": True,
-                    "writable_environment_categories": [
-                        "development",
-                        "staging",
-                    ],
-                },
-            ])
-        ```
-
-        ## Import
-
-        using  import blocks (requires Terraform >= 1.5)
-
-        import {
-
-          to = dbtcloud_service_token.my_service_token
-
-          id = "service_token_id"
-
-        }
-
-        import {
-
-          to = dbtcloud_service_token.my_service_token
-
-          id = "12345"
-
-        }
-
-        using the older import command
-
-        ```sh
-        $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token "service_token_id"
-        ```
-
-        ```sh
-        $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345
-        ```
-
+        Create a ServiceToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Service token name
@@ -239,65 +181,7 @@ class ServiceToken(pulumi.CustomResource):
                  args: Optional[ServiceTokenArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        test_service_token = dbtcloud.ServiceToken("test_service_token",
-            name="Test Service Token",
-            service_token_permissions=[
-                {
-                    "permission_set": "git_admin",
-                    "all_projects": True,
-                },
-                {
-                    "permission_set": "job_admin",
-                    "all_projects": False,
-                    "project_id": dbt_project["id"],
-                },
-                {
-                    "permission_set": "developer",
-                    "all_projects": True,
-                    "writable_environment_categories": [
-                        "development",
-                        "staging",
-                    ],
-                },
-            ])
-        ```
-
-        ## Import
-
-        using  import blocks (requires Terraform >= 1.5)
-
-        import {
-
-          to = dbtcloud_service_token.my_service_token
-
-          id = "service_token_id"
-
-        }
-
-        import {
-
-          to = dbtcloud_service_token.my_service_token
-
-          id = "12345"
-
-        }
-
-        using the older import command
-
-        ```sh
-        $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token "service_token_id"
-        ```
-
-        ```sh
-        $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345
-        ```
-
+        Create a ServiceToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ServiceTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -680,10 +680,10 @@ export interface GroupGroupPermission {
      */
     projectId?: number;
     /**
-     * What types of environments to apply Write permissions to.
-     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * What types of environments to apply Write permissions to. 
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments. 
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`. 
+     * Not setting a value is the same as selecting `all`. 
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories: string[];

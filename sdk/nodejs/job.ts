@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // a job that has github_webhook and git_provider_webhook 
+ * // a job that has github_webhook and git_provider_webhook
  * // set to false will be categorized as a "Deploy Job"
  * const dailyJob = new dbtcloud.Job("daily_job", {
  *     environmentId: prodEnvironment.environmentId,
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  *     scheduleType: "days_of_week",
  *     scheduleHours: [0],
  * });
- * // a job that has github_webhook and git_provider_webhook set 
+ * // a job that has github_webhook and git_provider_webhook set
  * // to true will be categorized as a "Continuous Integration Job"
  * const ciJob = new dbtcloud.Job("ci_job", {
  *     environmentId: ciEnvironment.environmentId,

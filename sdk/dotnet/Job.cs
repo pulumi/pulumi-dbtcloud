@@ -31,7 +31,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // a job that has github_webhook and git_provider_webhook 
+    ///     // a job that has github_webhook and git_provider_webhook
     ///     // set to false will be categorized as a "Deploy Job"
     ///     var dailyJob = new DbtCloud.Job("daily_job", new()
     ///     {
@@ -71,7 +71,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     // a job that has github_webhook and git_provider_webhook set 
+    ///     // a job that has github_webhook and git_provider_webhook set
     ///     // to true will be categorized as a "Continuous Integration Job"
     ///     var ciJob = new DbtCloud.Job("ci_job", new()
     ///     {

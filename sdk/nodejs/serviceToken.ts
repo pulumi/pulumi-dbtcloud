@@ -6,67 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * const testServiceToken = new dbtcloud.ServiceToken("test_service_token", {
- *     name: "Test Service Token",
- *     serviceTokenPermissions: [
- *         {
- *             permissionSet: "git_admin",
- *             allProjects: true,
- *         },
- *         {
- *             permissionSet: "job_admin",
- *             allProjects: false,
- *             projectId: dbtProject.id,
- *         },
- *         {
- *             permissionSet: "developer",
- *             allProjects: true,
- *             writableEnvironmentCategories: [
- *                 "development",
- *                 "staging",
- *             ],
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * using  import blocks (requires Terraform >= 1.5)
- *
- * import {
- *
- *   to = dbtcloud_service_token.my_service_token
- *
- *   id = "service_token_id"
- *
- * }
- *
- * import {
- *
- *   to = dbtcloud_service_token.my_service_token
- *
- *   id = "12345"
- *
- * }
- *
- * using the older import command
- *
- * ```sh
- * $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token "service_token_id"
- * ```
- *
- * ```sh
- * $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345
- * ```
- */
 export class ServiceToken extends pulumi.CustomResource {
     /**
      * Get an existing ServiceToken resource's state with the given name, ID, and optional extra

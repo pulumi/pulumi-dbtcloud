@@ -6,63 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * const tfGroup1 = new dbtcloud.Group("tf_group_1", {
- *     name: "TF Group 1",
- *     groupPermissions: [
- *         {
- *             permissionSet: "member",
- *             allProjects: true,
- *         },
- *         {
- *             permissionSet: "developer",
- *             allProjects: false,
- *             projectId: dbtProject.id,
- *             writableEnvironmentCategories: [
- *                 "development",
- *                 "staging",
- *             ],
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * using  import blocks (requires Terraform >= 1.5)
- *
- * import {
- *
- *   to = dbtcloud_group.my_group
- *
- *   id = "group_id"
- *
- * }
- *
- * import {
- *
- *   to = dbtcloud_group.my_group
- *
- *   id = "12345"
- *
- * }
- *
- * using the older import command
- *
- * ```sh
- * $ pulumi import dbtcloud:index/group:Group my_group "group_id"
- * ```
- *
- * ```sh
- * $ pulumi import dbtcloud:index/group:Group my_group 12345
- * ```
- */
 export class Group extends pulumi.CustomResource {
     /**
      * Get an existing Group resource's state with the given name, ID, and optional extra
@@ -92,7 +35,8 @@ export class Group extends pulumi.CustomResource {
     }
 
     /**
-     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+     * the same group.
      */
     public readonly assignByDefault!: pulumi.Output<boolean>;
     /**
@@ -104,7 +48,8 @@ export class Group extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+     * same group.
      */
     public readonly ssoMappingGroups!: pulumi.Output<string[]>;
 
@@ -142,7 +87,8 @@ export class Group extends pulumi.CustomResource {
  */
 export interface GroupState {
     /**
-     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+     * the same group.
      */
     assignByDefault?: pulumi.Input<boolean>;
     /**
@@ -154,7 +100,8 @@ export interface GroupState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+     * same group.
      */
     ssoMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -164,7 +111,8 @@ export interface GroupState {
  */
 export interface GroupArgs {
     /**
-     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+     * the same group.
      */
     assignByDefault?: pulumi.Input<boolean>;
     /**
@@ -176,7 +124,8 @@ export interface GroupArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+     * same group.
      */
     ssoMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
 }

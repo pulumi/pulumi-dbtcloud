@@ -11,86 +11,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.NewGroup(ctx, "tf_group_1", &dbtcloud.GroupArgs{
-//				Name: pulumi.String("TF Group 1"),
-//				GroupPermissions: dbtcloud.GroupGroupPermissionArray{
-//					&dbtcloud.GroupGroupPermissionArgs{
-//						PermissionSet: pulumi.String("member"),
-//						AllProjects:   pulumi.Bool(true),
-//					},
-//					&dbtcloud.GroupGroupPermissionArgs{
-//						PermissionSet: pulumi.String("developer"),
-//						AllProjects:   pulumi.Bool(false),
-//						ProjectId:     pulumi.Any(dbtProject.Id),
-//						WritableEnvironmentCategories: pulumi.StringArray{
-//							pulumi.String("development"),
-//							pulumi.String("staging"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// using  import blocks (requires Terraform >= 1.5)
-//
-// import {
-//
-//	to = dbtcloud_group.my_group
-//
-//	id = "group_id"
-//
-// }
-//
-// import {
-//
-//	to = dbtcloud_group.my_group
-//
-//	id = "12345"
-//
-// }
-//
-// using the older import command
-//
-// ```sh
-// $ pulumi import dbtcloud:index/group:Group my_group "group_id"
-// ```
-//
-// ```sh
-// $ pulumi import dbtcloud:index/group:Group my_group 12345
-// ```
 type Group struct {
 	pulumi.CustomResourceState
 
-	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+	// the same group.
 	AssignByDefault pulumi.BoolOutput `pulumi:"assignByDefault"`
 	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions GroupGroupPermissionArrayOutput `pulumi:"groupPermissions"`
 	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+	// same group.
 	SsoMappingGroups pulumi.StringArrayOutput `pulumi:"ssoMappingGroups"`
 }
 
@@ -124,24 +56,28 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
-	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+	// the same group.
 	AssignByDefault *bool `pulumi:"assignByDefault"`
 	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions []GroupGroupPermission `pulumi:"groupPermissions"`
 	// The name of the group. This is used to identify an existing group
 	Name *string `pulumi:"name"`
-	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+	// same group.
 	SsoMappingGroups []string `pulumi:"ssoMappingGroups"`
 }
 
 type GroupState struct {
-	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+	// the same group.
 	AssignByDefault pulumi.BoolPtrInput
 	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions GroupGroupPermissionArrayInput
 	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringPtrInput
-	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+	// same group.
 	SsoMappingGroups pulumi.StringArrayInput
 }
 
@@ -150,25 +86,29 @@ func (GroupState) ElementType() reflect.Type {
 }
 
 type groupArgs struct {
-	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+	// the same group.
 	AssignByDefault *bool `pulumi:"assignByDefault"`
 	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions []GroupGroupPermission `pulumi:"groupPermissions"`
 	// The name of the group. This is used to identify an existing group
 	Name *string `pulumi:"name"`
-	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+	// same group.
 	SsoMappingGroups []string `pulumi:"ssoMappingGroups"`
 }
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
-	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+	// the same group.
 	AssignByDefault pulumi.BoolPtrInput
 	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
 	GroupPermissions GroupGroupPermissionArrayInput
 	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringPtrInput
-	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+	// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+	// same group.
 	SsoMappingGroups pulumi.StringArrayInput
 }
 
@@ -259,7 +199,8 @@ func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
 }
 
-// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+// the same group.
 func (o GroupOutput) AssignByDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolOutput { return v.AssignByDefault }).(pulumi.BoolOutput)
 }
@@ -274,7 +215,8 @@ func (o GroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+// same group.
 func (o GroupOutput) SsoMappingGroups() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringArrayOutput { return v.SsoMappingGroups }).(pulumi.StringArrayOutput)
 }

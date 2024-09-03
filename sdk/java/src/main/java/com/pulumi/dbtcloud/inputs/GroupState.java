@@ -19,14 +19,16 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     public static final GroupState Empty = new GroupState();
 
     /**
-     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+     * the same group.
      * 
      */
     @Import(name="assignByDefault")
     private @Nullable Output<Boolean> assignByDefault;
 
     /**
-     * @return Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+     * @return Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+     * the same group.
      * 
      */
     public Optional<Output<Boolean>> assignByDefault() {
@@ -64,14 +66,16 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+     * same group.
      * 
      */
     @Import(name="ssoMappingGroups")
     private @Nullable Output<List<String>> ssoMappingGroups;
 
     /**
-     * @return Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+     * @return Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+     * same group.
      * 
      */
     public Optional<Output<List<String>>> ssoMappingGroups() {
@@ -106,7 +110,8 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param assignByDefault Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+         * @param assignByDefault Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+         * the same group.
          * 
          * @return builder
          * 
@@ -117,7 +122,8 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param assignByDefault Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+         * @param assignByDefault Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+         * the same group.
          * 
          * @return builder
          * 
@@ -179,7 +185,8 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+         * same group.
          * 
          * @return builder
          * 
@@ -190,7 +197,8 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+         * same group.
          * 
          * @return builder
          * 
@@ -200,7 +208,8 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+         * @param ssoMappingGroups Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+         * same group.
          * 
          * @return builder
          * 

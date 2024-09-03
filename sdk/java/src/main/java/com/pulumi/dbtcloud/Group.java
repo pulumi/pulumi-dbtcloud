@@ -17,98 +17,19 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-/**
- * ## Example Usage
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.Group;
- * import com.pulumi.dbtcloud.GroupArgs;
- * import com.pulumi.dbtcloud.inputs.GroupGroupPermissionArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var tfGroup1 = new Group("tfGroup1", GroupArgs.builder()
- *             .name("TF Group 1")
- *             .groupPermissions(            
- *                 GroupGroupPermissionArgs.builder()
- *                     .permissionSet("member")
- *                     .allProjects(true)
- *                     .build(),
- *                 GroupGroupPermissionArgs.builder()
- *                     .permissionSet("developer")
- *                     .allProjects(false)
- *                     .projectId(dbtProject.id())
- *                     .writableEnvironmentCategories(                    
- *                         "development",
- *                         "staging")
- *                     .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ## Import
- * 
- * using  import blocks (requires Terraform &gt;= 1.5)
- * 
- * import {
- * 
- *   to = dbtcloud_group.my_group
- * 
- *   id = &#34;group_id&#34;
- * 
- * }
- * 
- * import {
- * 
- *   to = dbtcloud_group.my_group
- * 
- *   id = &#34;12345&#34;
- * 
- * }
- * 
- * using the older import command
- * 
- * ```sh
- * $ pulumi import dbtcloud:index/group:Group my_group &#34;group_id&#34;
- * ```
- * 
- * ```sh
- * $ pulumi import dbtcloud:index/group:Group my_group 12345
- * ```
- * 
- */
 @ResourceType(type="dbtcloud:index/group:Group")
 public class Group extends com.pulumi.resources.CustomResource {
     /**
-     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+     * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+     * the same group.
      * 
      */
     @Export(name="assignByDefault", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> assignByDefault;
 
     /**
-     * @return Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+     * @return Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+     * the same group.
      * 
      */
     public Output<Boolean> assignByDefault() {
@@ -143,14 +64,16 @@ public class Group extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+     * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+     * same group.
      * 
      */
     @Export(name="ssoMappingGroups", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> ssoMappingGroups;
 
     /**
-     * @return Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+     * @return Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+     * same group.
      * 
      */
     public Output<List<String>> ssoMappingGroups() {

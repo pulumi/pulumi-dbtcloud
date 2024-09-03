@@ -22,10 +22,12 @@ class GroupArgs:
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Group resource.
-        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+               the same group.
         :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+               same group.
         """
         if assign_by_default is not None:
             pulumi.set(__self__, "assign_by_default", assign_by_default)
@@ -40,7 +42,8 @@ class GroupArgs:
     @pulumi.getter(name="assignByDefault")
     def assign_by_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+        the same group.
         """
         return pulumi.get(self, "assign_by_default")
 
@@ -76,7 +79,8 @@ class GroupArgs:
     @pulumi.getter(name="ssoMappingGroups")
     def sso_mapping_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+        same group.
         """
         return pulumi.get(self, "sso_mapping_groups")
 
@@ -94,10 +98,12 @@ class _GroupState:
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Group resources.
-        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+               the same group.
         :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+               same group.
         """
         if assign_by_default is not None:
             pulumi.set(__self__, "assign_by_default", assign_by_default)
@@ -112,7 +118,8 @@ class _GroupState:
     @pulumi.getter(name="assignByDefault")
     def assign_by_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+        the same group.
         """
         return pulumi.get(self, "assign_by_default")
 
@@ -148,7 +155,8 @@ class _GroupState:
     @pulumi.getter(name="ssoMappingGroups")
     def sso_mapping_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+        same group.
         """
         return pulumi.get(self, "sso_mapping_groups")
 
@@ -168,67 +176,15 @@ class Group(pulumi.CustomResource):
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        tf_group1 = dbtcloud.Group("tf_group_1",
-            name="TF Group 1",
-            group_permissions=[
-                {
-                    "permission_set": "member",
-                    "all_projects": True,
-                },
-                {
-                    "permission_set": "developer",
-                    "all_projects": False,
-                    "project_id": dbt_project["id"],
-                    "writable_environment_categories": [
-                        "development",
-                        "staging",
-                    ],
-                },
-            ])
-        ```
-
-        ## Import
-
-        using  import blocks (requires Terraform >= 1.5)
-
-        import {
-
-          to = dbtcloud_group.my_group
-
-          id = "group_id"
-
-        }
-
-        import {
-
-          to = dbtcloud_group.my_group
-
-          id = "12345"
-
-        }
-
-        using the older import command
-
-        ```sh
-        $ pulumi import dbtcloud:index/group:Group my_group "group_id"
-        ```
-
-        ```sh
-        $ pulumi import dbtcloud:index/group:Group my_group 12345
-        ```
-
+        Create a Group resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+               the same group.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+               same group.
         """
         ...
     @overload
@@ -237,61 +193,7 @@ class Group(pulumi.CustomResource):
                  args: Optional[GroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        tf_group1 = dbtcloud.Group("tf_group_1",
-            name="TF Group 1",
-            group_permissions=[
-                {
-                    "permission_set": "member",
-                    "all_projects": True,
-                },
-                {
-                    "permission_set": "developer",
-                    "all_projects": False,
-                    "project_id": dbt_project["id"],
-                    "writable_environment_categories": [
-                        "development",
-                        "staging",
-                    ],
-                },
-            ])
-        ```
-
-        ## Import
-
-        using  import blocks (requires Terraform >= 1.5)
-
-        import {
-
-          to = dbtcloud_group.my_group
-
-          id = "group_id"
-
-        }
-
-        import {
-
-          to = dbtcloud_group.my_group
-
-          id = "12345"
-
-        }
-
-        using the older import command
-
-        ```sh
-        $ pulumi import dbtcloud:index/group:Group my_group "group_id"
-        ```
-
-        ```sh
-        $ pulumi import dbtcloud:index/group:Group my_group 12345
-        ```
-
+        Create a Group resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -345,10 +247,12 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        :param pulumi.Input[bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+               the same group.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         :param pulumi.Input[str] name: The name of the group. This is used to identify an existing group
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+               same group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -364,7 +268,8 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="assignByDefault")
     def assign_by_default(self) -> pulumi.Output[bool]:
         """
-        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+        the same group.
         """
         return pulumi.get(self, "assign_by_default")
 
@@ -388,7 +293,8 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="ssoMappingGroups")
     def sso_mapping_groups(self) -> pulumi.Output[Sequence[str]]:
         """
-        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+        same group.
         """
         return pulumi.get(self, "sso_mapping_groups")
 

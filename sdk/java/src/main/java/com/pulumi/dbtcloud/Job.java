@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // a job that has github_webhook and git_provider_webhook 
+ *         // a job that has github_webhook and git_provider_webhook
  *         // set to false will be categorized as a "Deploy Job"
  *         var dailyJob = new Job("dailyJob", JobArgs.builder()
  *             .environmentId(prodEnvironment.environmentId())
@@ -87,7 +87,7 @@ import javax.annotation.Nullable;
  *             .scheduleHours(0)
  *             .build());
  * 
- *         // a job that has github_webhook and git_provider_webhook set 
+ *         // a job that has github_webhook and git_provider_webhook set
  *         // to true will be categorized as a "Continuous Integration Job"
  *         var ciJob = new Job("ciJob", JobArgs.builder()
  *             .environmentId(ciEnvironment.environmentId())

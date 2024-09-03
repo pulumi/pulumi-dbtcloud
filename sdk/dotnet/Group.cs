@@ -9,79 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.DbtCloud
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var tfGroup1 = new DbtCloud.Group("tf_group_1", new()
-    ///     {
-    ///         Name = "TF Group 1",
-    ///         GroupPermissions = new[]
-    ///         {
-    ///             new DbtCloud.Inputs.GroupGroupPermissionArgs
-    ///             {
-    ///                 PermissionSet = "member",
-    ///                 AllProjects = true,
-    ///             },
-    ///             new DbtCloud.Inputs.GroupGroupPermissionArgs
-    ///             {
-    ///                 PermissionSet = "developer",
-    ///                 AllProjects = false,
-    ///                 ProjectId = dbtProject.Id,
-    ///                 WritableEnvironmentCategories = new[]
-    ///                 {
-    ///                     "development",
-    ///                     "staging",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
-    /// import {
-    /// 
-    ///   to = dbtcloud_group.my_group
-    /// 
-    ///   id = "group_id"
-    /// 
-    /// }
-    /// 
-    /// import {
-    /// 
-    ///   to = dbtcloud_group.my_group
-    /// 
-    ///   id = "12345"
-    /// 
-    /// }
-    /// 
-    /// using the older import command
-    /// 
-    /// ```sh
-    /// $ pulumi import dbtcloud:index/group:Group my_group "group_id"
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import dbtcloud:index/group:Group my_group 12345
-    /// ```
-    /// </summary>
     [DbtCloudResourceType("dbtcloud:index/group:Group")]
     public partial class Group : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+        /// the same group.
         /// </summary>
         [Output("assignByDefault")]
         public Output<bool> AssignByDefault { get; private set; } = null!;
@@ -99,7 +32,8 @@ namespace Pulumi.DbtCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+        /// same group.
         /// </summary>
         [Output("ssoMappingGroups")]
         public Output<ImmutableArray<string>> SsoMappingGroups { get; private set; } = null!;
@@ -152,7 +86,8 @@ namespace Pulumi.DbtCloud
     public sealed class GroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+        /// the same group.
         /// </summary>
         [Input("assignByDefault")]
         public Input<bool>? AssignByDefault { get; set; }
@@ -179,7 +114,8 @@ namespace Pulumi.DbtCloud
         private InputList<string>? _ssoMappingGroups;
 
         /// <summary>
-        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+        /// same group.
         /// </summary>
         public InputList<string> SsoMappingGroups
         {
@@ -196,7 +132,8 @@ namespace Pulumi.DbtCloud
     public sealed class GroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
+        /// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for
+        /// the same group.
         /// </summary>
         [Input("assignByDefault")]
         public Input<bool>? AssignByDefault { get; set; }
@@ -223,7 +160,8 @@ namespace Pulumi.DbtCloud
         private InputList<string>? _ssoMappingGroups;
 
         /// <summary>
-        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
+        /// Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the
+        /// same group.
         /// </summary>
         public InputList<string> SsoMappingGroups
         {
