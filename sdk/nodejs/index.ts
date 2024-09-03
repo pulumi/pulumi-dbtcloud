@@ -105,6 +105,16 @@ export const getExtendedAttributes: typeof import("./getExtendedAttributes").get
 export const getExtendedAttributesOutput: typeof import("./getExtendedAttributes").getExtendedAttributesOutput = null as any;
 utilities.lazyLoad(exports, ["getExtendedAttributes","getExtendedAttributesOutput"], () => require("./getExtendedAttributes"));
 
+export { GetGlobalConnectionArgs, GetGlobalConnectionResult, GetGlobalConnectionOutputArgs } from "./getGlobalConnection";
+export const getGlobalConnection: typeof import("./getGlobalConnection").getGlobalConnection = null as any;
+export const getGlobalConnectionOutput: typeof import("./getGlobalConnection").getGlobalConnectionOutput = null as any;
+utilities.lazyLoad(exports, ["getGlobalConnection","getGlobalConnectionOutput"], () => require("./getGlobalConnection"));
+
+export { GetGlobalConnectionsResult } from "./getGlobalConnections";
+export const getGlobalConnections: typeof import("./getGlobalConnections").getGlobalConnections = null as any;
+export const getGlobalConnectionsOutput: typeof import("./getGlobalConnections").getGlobalConnectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getGlobalConnections","getGlobalConnectionsOutput"], () => require("./getGlobalConnections"));
+
 export { GetGroupArgs, GetGroupResult, GetGroupOutputArgs } from "./getGroup";
 export const getGroup: typeof import("./getGroup").getGroup = null as any;
 export const getGroupOutput: typeof import("./getGroup").getGroupOutput = null as any;
@@ -144,6 +154,11 @@ export { GetProjectArgs, GetProjectResult, GetProjectOutputArgs } from "./getPro
 export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;
 utilities.lazyLoad(exports, ["getProject","getProjectOutput"], () => require("./getProject"));
+
+export { GetProjectsArgs, GetProjectsResult, GetProjectsOutputArgs } from "./getProjects";
+export const getProjects: typeof import("./getProjects").getProjects = null as any;
+export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
+utilities.lazyLoad(exports, ["getProjects","getProjectsOutput"], () => require("./getProjects"));
 
 export { GetRepositoryArgs, GetRepositoryResult, GetRepositoryOutputArgs } from "./getRepository";
 export const getRepository: typeof import("./getRepository").getRepository = null as any;

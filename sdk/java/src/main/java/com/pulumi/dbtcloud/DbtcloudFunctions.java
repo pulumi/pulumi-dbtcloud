@@ -26,6 +26,8 @@ import com.pulumi.dbtcloud.inputs.GetEnvironmentsArgs;
 import com.pulumi.dbtcloud.inputs.GetEnvironmentsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetExtendedAttributesArgs;
 import com.pulumi.dbtcloud.inputs.GetExtendedAttributesPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
+import com.pulumi.dbtcloud.inputs.GetGlobalConnectionPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetGroupArgs;
 import com.pulumi.dbtcloud.inputs.GetGroupPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetGroupUsersArgs;
@@ -42,6 +44,8 @@ import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
 import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetProjectArgs;
 import com.pulumi.dbtcloud.inputs.GetProjectPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetProjectsArgs;
+import com.pulumi.dbtcloud.inputs.GetProjectsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetRepositoryArgs;
 import com.pulumi.dbtcloud.inputs.GetRepositoryPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetServiceTokenArgs;
@@ -64,6 +68,8 @@ import com.pulumi.dbtcloud.outputs.GetEnvironmentResult;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentVariableResult;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentsResult;
 import com.pulumi.dbtcloud.outputs.GetExtendedAttributesResult;
+import com.pulumi.dbtcloud.outputs.GetGlobalConnectionResult;
+import com.pulumi.dbtcloud.outputs.GetGlobalConnectionsResult;
 import com.pulumi.dbtcloud.outputs.GetGroupResult;
 import com.pulumi.dbtcloud.outputs.GetGroupUsersResult;
 import com.pulumi.dbtcloud.outputs.GetJobResult;
@@ -72,6 +78,7 @@ import com.pulumi.dbtcloud.outputs.GetNotificationResult;
 import com.pulumi.dbtcloud.outputs.GetPostgresCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointResult;
 import com.pulumi.dbtcloud.outputs.GetProjectResult;
+import com.pulumi.dbtcloud.outputs.GetProjectsResult;
 import com.pulumi.dbtcloud.outputs.GetRepositoryResult;
 import com.pulumi.dbtcloud.outputs.GetServiceTokenResult;
 import com.pulumi.dbtcloud.outputs.GetSnowflakeCredentialResult;
@@ -742,6 +749,400 @@ public final class DbtcloudFunctions {
      */
     public static CompletableFuture<GetExtendedAttributesResult> getExtendedAttributesPlain(GetExtendedAttributesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", TypeShape.of(GetExtendedAttributesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnection = DbtcloudFunctions.getGlobalConnection(GetGlobalConnectionArgs.builder()
+     *             .id(1234)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGlobalConnectionResult> getGlobalConnection(GetGlobalConnectionArgs args) {
+        return getGlobalConnection(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnection = DbtcloudFunctions.getGlobalConnection(GetGlobalConnectionArgs.builder()
+     *             .id(1234)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGlobalConnectionResult> getGlobalConnectionPlain(GetGlobalConnectionPlainArgs args) {
+        return getGlobalConnectionPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnection = DbtcloudFunctions.getGlobalConnection(GetGlobalConnectionArgs.builder()
+     *             .id(1234)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGlobalConnectionResult> getGlobalConnection(GetGlobalConnectionArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getGlobalConnection:getGlobalConnection", TypeShape.of(GetGlobalConnectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnection = DbtcloudFunctions.getGlobalConnection(GetGlobalConnectionArgs.builder()
+     *             .id(1234)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGlobalConnectionResult> getGlobalConnectionPlain(GetGlobalConnectionPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getGlobalConnection:getGlobalConnection", TypeShape.of(GetGlobalConnectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGlobalConnectionsResult> getGlobalConnections() {
+        return getGlobalConnections(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGlobalConnectionsResult> getGlobalConnectionsPlain() {
+        return getGlobalConnectionsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGlobalConnectionsResult> getGlobalConnections(InvokeArgs args) {
+        return getGlobalConnections(args, InvokeOptions.Empty);
+    }
+    /**
+     * All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGlobalConnectionsResult> getGlobalConnectionsPlain(InvokeArgs args) {
+        return getGlobalConnectionsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetGlobalConnectionsResult> getGlobalConnections(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getGlobalConnections:getGlobalConnections", TypeShape.of(GetGlobalConnectionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetGlobalConnectionsResult> getGlobalConnectionsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getGlobalConnections:getGlobalConnections", TypeShape.of(GetGlobalConnectionsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve group details
@@ -1772,6 +2173,48 @@ public final class DbtcloudFunctions {
      */
     public static CompletableFuture<GetProjectResult> getProjectPlain(GetProjectPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
+     * 
+     */
+    public static Output<GetProjectsResult> getProjects() {
+        return getProjects(GetProjectsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
+     * 
+     */
+    public static CompletableFuture<GetProjectsResult> getProjectsPlain() {
+        return getProjectsPlain(GetProjectsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
+     * 
+     */
+    public static Output<GetProjectsResult> getProjects(GetProjectsArgs args) {
+        return getProjects(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
+     * 
+     */
+    public static CompletableFuture<GetProjectsResult> getProjectsPlain(GetProjectsPlainArgs args) {
+        return getProjectsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
+     * 
+     */
+    public static Output<GetProjectsResult> getProjects(GetProjectsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getProjects:getProjects", TypeShape.of(GetProjectsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
+     * 
+     */
+    public static CompletableFuture<GetProjectsResult> getProjectsPlain(GetProjectsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getProjects:getProjects", TypeShape.of(GetProjectsResult.class), args, Utilities.withVersion(options));
     }
     public static Output<GetRepositoryResult> getRepository(GetRepositoryArgs args) {
         return getRepository(args, InvokeOptions.Empty);
