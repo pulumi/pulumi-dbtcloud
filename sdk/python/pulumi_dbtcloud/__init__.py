@@ -25,6 +25,8 @@ from .get_environment import *
 from .get_environment_variable import *
 from .get_environments import *
 from .get_extended_attributes import *
+from .get_global_connection import *
+from .get_global_connections import *
 from .get_group import *
 from .get_group_users import *
 from .get_job import *
@@ -33,6 +35,7 @@ from .get_notification import *
 from .get_postgres_credential import *
 from .get_privatelink_endpoint import *
 from .get_project import *
+from .get_projects import *
 from .get_repository import *
 from .get_service_token import *
 from .get_snowflake_credential import *

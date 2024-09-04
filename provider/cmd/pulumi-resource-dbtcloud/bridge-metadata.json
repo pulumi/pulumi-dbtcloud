@@ -245,6 +245,26 @@
             "dbtcloud_extended_attributes": {
                 "current": "dbtcloud:index/getExtendedAttributes:getExtendedAttributes"
             },
+            "dbtcloud_global_connection": {
+                "current": "dbtcloud:index/getGlobalConnection:getGlobalConnection",
+                "fields": {
+                    "bigquery": {
+                        "fields": {
+                            "scopes": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "dbtcloud_global_connections": {
+                "current": "dbtcloud:index/getGlobalConnections:getGlobalConnections",
+                "fields": {
+                    "connections": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "dbtcloud_group": {
                 "current": "dbtcloud:index/getGroup:getGroup",
                 "fields": {
@@ -337,6 +357,14 @@
             },
             "dbtcloud_project": {
                 "current": "dbtcloud:index/getProject:getProject"
+            },
+            "dbtcloud_projects": {
+                "current": "dbtcloud:index/getProjects:getProjects",
+                "fields": {
+                    "projects": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "dbtcloud_repository": {
                 "current": "dbtcloud:index/getRepository:getRepository"
@@ -434,6 +462,8 @@
             "dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable": 0,
             "dbtcloud:index/getEnvironments:getEnvironments": 1,
             "dbtcloud:index/getExtendedAttributes:getExtendedAttributes": 0,
+            "dbtcloud:index/getGlobalConnection:getGlobalConnection": 1,
+            "dbtcloud:index/getGlobalConnections:getGlobalConnections": 1,
             "dbtcloud:index/getGroup:getGroup": 1,
             "dbtcloud:index/getGroupUsers:getGroupUsers": 0,
             "dbtcloud:index/getJob:getJob": 0,
@@ -442,6 +472,7 @@
             "dbtcloud:index/getPostgresCredential:getPostgresCredential": 0,
             "dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint": 0,
             "dbtcloud:index/getProject:getProject": 0,
+            "dbtcloud:index/getProjects:getProjects": 1,
             "dbtcloud:index/getRepository:getRepository": 0,
             "dbtcloud:index/getServiceToken:getServiceToken": 1,
             "dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential": 0,

@@ -893,6 +893,668 @@
                 }
             }
         },
+        "dbtcloud:index/getGlobalConnectionApacheSpark:getGlobalConnectionApacheSpark": {
+            "properties": {
+                "auth": {
+                    "type": "string",
+                    "description": "Auth\n"
+                },
+                "cluster": {
+                    "type": "string",
+                    "description": "Spark cluster for the connection\n"
+                },
+                "connectRetries": {
+                    "type": "integer",
+                    "description": "Connection retries. Default=0\n"
+                },
+                "connectTimeout": {
+                    "type": "integer",
+                    "description": "Connection time out in seconds. Default=10\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "Hostname of the connection\n"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "Authentication method for the connection (http or thrift).\n"
+                },
+                "organization": {
+                    "type": "string",
+                    "description": "Organization ID\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "Port for the connection. Default=443\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "User\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "auth",
+                "cluster",
+                "connectRetries",
+                "connectTimeout",
+                "host",
+                "method",
+                "organization",
+                "port",
+                "user"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionAthena:getGlobalConnectionAthena": {
+            "properties": {
+                "database": {
+                    "type": "string",
+                    "description": "Specify the database (data catalog) to build models into (lowercase only).\n"
+                },
+                "numBoto3Retries": {
+                    "type": "integer",
+                    "description": "Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).\n"
+                },
+                "numIcebergRetries": {
+                    "type": "integer",
+                    "description": "Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.\n"
+                },
+                "numRetries": {
+                    "type": "integer",
+                    "description": "Number of times to retry a failing query.\n"
+                },
+                "pollInterval": {
+                    "type": "integer",
+                    "description": "Interval in seconds to use for polling the status of query results in Athena.\n"
+                },
+                "regionName": {
+                    "type": "string",
+                    "description": "AWS region of your Athena instance.\n"
+                },
+                "s3DataDir": {
+                    "type": "string",
+                    "description": "Prefix for storing tables, if different from the connection's S3 staging directory.\n"
+                },
+                "s3DataNaming": {
+                    "type": "string",
+                    "description": "How to generate table paths in the S3 data directory.\n"
+                },
+                "s3StagingDir": {
+                    "type": "string",
+                    "description": "S3 location to store Athena query results and metadata.\n"
+                },
+                "s3TmpTableDir": {
+                    "type": "string",
+                    "description": "Prefix for storing temporary tables, if different from the connection's S3 data directory.\n"
+                },
+                "sparkWorkGroup": {
+                    "type": "string",
+                    "description": "Identifier of Athena Spark workgroup for running Python models.\n"
+                },
+                "workGroup": {
+                    "type": "string",
+                    "description": "Identifier of Athena workgroup.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "database",
+                "numBoto3Retries",
+                "numIcebergRetries",
+                "numRetries",
+                "pollInterval",
+                "regionName",
+                "s3DataDir",
+                "s3DataNaming",
+                "s3StagingDir",
+                "s3TmpTableDir",
+                "sparkWorkGroup",
+                "workGroup"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionBigquery:getGlobalConnectionBigquery": {
+            "properties": {
+                "applicationId": {
+                    "type": "string",
+                    "description": "OAuth Client ID\n",
+                    "secret": true
+                },
+                "applicationSecret": {
+                    "type": "string",
+                    "description": "OAuth Client Secret\n",
+                    "secret": true
+                },
+                "authProviderX509CertUrl": {
+                    "type": "string",
+                    "description": "Auth Provider X509 Cert URL for the Service Account\n"
+                },
+                "authUri": {
+                    "type": "string",
+                    "description": "Auth URI for the Service Account\n"
+                },
+                "clientEmail": {
+                    "type": "string",
+                    "description": "Service Account email\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "Client ID of the Service Account\n"
+                },
+                "clientX509CertUrl": {
+                    "type": "string",
+                    "description": "Client X509 Cert URL for the Service Account\n"
+                },
+                "dataprocClusterName": {
+                    "type": "string",
+                    "description": "Dataproc cluster name for PySpark workloads\n"
+                },
+                "dataprocRegion": {
+                    "type": "string",
+                    "description": "Google Cloud region for PySpark workloads on Dataproc\n"
+                },
+                "executionProject": {
+                    "type": "string",
+                    "description": "Project to bill for query execution\n"
+                },
+                "gcpProjectId": {
+                    "type": "string",
+                    "description": "The GCP project ID to use for the connection\n"
+                },
+                "gcsBucket": {
+                    "type": "string",
+                    "description": "URI for a Google Cloud Storage bucket to host Python code executed via Datapro\n"
+                },
+                "impersonateServiceAccount": {
+                    "type": "string",
+                    "description": "Service Account to impersonate when running queries\n"
+                },
+                "jobCreationTimeoutSeconds": {
+                    "type": "integer",
+                    "description": "Maximum timeout for the job creation step\n"
+                },
+                "jobRetryDeadlineSeconds": {
+                    "type": "integer",
+                    "description": "Total number of seconds to wait while retrying the same query\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "Location to create new Datasets in\n"
+                },
+                "maximumBytesBilled": {
+                    "type": "integer",
+                    "description": "Max number of bytes that can be billed for a given BigQuery query\n"
+                },
+                "priority": {
+                    "type": "string",
+                    "description": "The priority with which to execute BigQuery queries (batch or interactive)\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "Private Key for the Service Account\n",
+                    "secret": true
+                },
+                "privateKeyId": {
+                    "type": "string",
+                    "description": "Private Key ID for the Service Account\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "Number of retries for queries\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "OAuth scopes for the BigQuery connection\n"
+                },
+                "timeoutSeconds": {
+                    "type": "integer",
+                    "description": "Timeout in seconds for queries\n"
+                },
+                "tokenUri": {
+                    "type": "string",
+                    "description": "Token URI for the Service Account\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "applicationId",
+                "applicationSecret",
+                "authProviderX509CertUrl",
+                "authUri",
+                "clientEmail",
+                "clientId",
+                "clientX509CertUrl",
+                "dataprocClusterName",
+                "dataprocRegion",
+                "executionProject",
+                "gcpProjectId",
+                "gcsBucket",
+                "impersonateServiceAccount",
+                "jobCreationTimeoutSeconds",
+                "jobRetryDeadlineSeconds",
+                "location",
+                "maximumBytesBilled",
+                "priority",
+                "privateKey",
+                "privateKeyId",
+                "retries",
+                "scopes",
+                "timeoutSeconds",
+                "tokenUri"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionDatabricks:getGlobalConnectionDatabricks": {
+            "properties": {
+                "catalog": {
+                    "type": "string",
+                    "description": "Catalog name if Unity Catalog is enabled in your Databricks workspace.\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "Required to enable Databricks OAuth authentication for IDE developers.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "Required to enable Databricks OAuth authentication for IDE developers.\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The hostname of the Databricks cluster or SQL warehouse.\n"
+                },
+                "httpPath": {
+                    "type": "string",
+                    "description": "The HTTP path of the Databricks cluster or SQL warehouse.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "catalog",
+                "clientId",
+                "clientSecret",
+                "host",
+                "httpPath"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionFabric:getGlobalConnectionFabric": {
+            "properties": {
+                "database": {
+                    "type": "string",
+                    "description": "The database to connect to for this connection.\n"
+                },
+                "loginTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=1433\n"
+                },
+                "queryTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.\n"
+                },
+                "server": {
+                    "type": "string",
+                    "description": "The server hostname.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "database",
+                "loginTimeout",
+                "port",
+                "queryTimeout",
+                "retries",
+                "server"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionPostgres:getGlobalConnectionPostgres": {
+            "properties": {
+                "dbname": {
+                    "type": "string",
+                    "description": "The database name for this connection.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the database.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=5432\n"
+                },
+                "sshTunnel": {
+                    "$ref": "#/types/dbtcloud:index/getGlobalConnectionPostgresSshTunnel:getGlobalConnectionPostgresSshTunnel",
+                    "description": "PostgreSQL SSH Tunnel configuration\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dbname",
+                "hostname",
+                "port",
+                "sshTunnel"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionPostgresSshTunnel:getGlobalConnectionPostgresSshTunnel": {
+            "properties": {
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname for the SSH tunnel.\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "The ID of the SSH tunnel connection.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The HTTP port for the SSH tunnel.\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The SSH public key generated to allow connecting via SSH tunnel.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to use for the SSH tunnel.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "hostname",
+                "id",
+                "port",
+                "publicKey",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionRedshift:getGlobalConnectionRedshift": {
+            "properties": {
+                "dbname": {
+                    "type": "string",
+                    "description": "The database name for this connection.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the data warehouse.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=5432\n"
+                },
+                "sshTunnel": {
+                    "$ref": "#/types/dbtcloud:index/getGlobalConnectionRedshiftSshTunnel:getGlobalConnectionRedshiftSshTunnel",
+                    "description": "Redshift SSH Tunnel configuration\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dbname",
+                "hostname",
+                "port",
+                "sshTunnel"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionRedshiftSshTunnel:getGlobalConnectionRedshiftSshTunnel": {
+            "properties": {
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname for the SSH tunnel.\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "The ID of the SSH tunnel connection.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The HTTP port for the SSH tunnel.\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The SSH public key generated to allow connecting via SSH tunnel.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username to use for the SSH tunnel.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "hostname",
+                "id",
+                "port",
+                "publicKey",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionSnowflake:getGlobalConnectionSnowflake": {
+            "properties": {
+                "account": {
+                    "type": "string",
+                    "description": "The Snowflake account name\n"
+                },
+                "allowSso": {
+                    "type": "boolean",
+                    "description": "Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set\n"
+                },
+                "clientSessionKeepAlive": {
+                    "type": "boolean",
+                    "description": "If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (\u003e 4 hours)\n"
+                },
+                "database": {
+                    "type": "string",
+                    "description": "The default database for the connection\n"
+                },
+                "oauthClientId": {
+                    "type": "string",
+                    "description": "OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake\n",
+                    "secret": true
+                },
+                "oauthClientSecret": {
+                    "type": "string",
+                    "description": "OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake\n",
+                    "secret": true
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The Snowflake role to use when running queries on the connection\n"
+                },
+                "warehouse": {
+                    "type": "string",
+                    "description": "The default Snowflake Warehouse to use for the connection\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "account",
+                "allowSso",
+                "clientSessionKeepAlive",
+                "database",
+                "oauthClientId",
+                "oauthClientSecret",
+                "role",
+                "warehouse"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionStarburst:getGlobalConnectionStarburst": {
+            "properties": {
+                "host": {
+                    "type": "string",
+                    "description": "The hostname of the account to connect to.\n"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "The authentication method. Only LDAP for now.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=443\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "host",
+                "method",
+                "port"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionSynapse:getGlobalConnectionSynapse": {
+            "properties": {
+                "database": {
+                    "type": "string",
+                    "description": "The database to connect to for this connection.\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "The server hostname.\n"
+                },
+                "loginTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port to connect to for this connection. Default=1433\n"
+                },
+                "queryTimeout": {
+                    "type": "integer",
+                    "description": "The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "database",
+                "host",
+                "loginTimeout",
+                "port",
+                "queryTimeout",
+                "retries"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionsConnection:getGlobalConnectionsConnection": {
+            "properties": {
+                "adapterVersion": {
+                    "type": "string",
+                    "description": "Type of adapter used for the connection\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "When the connection was created\n"
+                },
+                "environmentCount": {
+                    "type": "integer",
+                    "description": "Number of environments using this connection\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "Connection Identifier\n"
+                },
+                "isSshTunnelEnabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Connection name\n"
+                },
+                "oauthConfigurationId": {
+                    "type": "integer"
+                },
+                "privateLinkEndpointId": {
+                    "type": "integer",
+                    "description": "Private Link Endpoint ID.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "When the connection was updated\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "adapterVersion",
+                "createdAt",
+                "environmentCount",
+                "id",
+                "isSshTunnelEnabled",
+                "name",
+                "oauthConfigurationId",
+                "privateLinkEndpointId",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "dbtcloud:index/getGroupGroupPermission:getGroupGroupPermission": {
             "properties": {
                 "allProjects": {
@@ -1244,6 +1906,117 @@
                 "githubWebhook",
                 "onMerge",
                 "schedule"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getProjectsProject:getProjectsProject": {
+            "properties": {
+                "connection": {
+                    "$ref": "#/types/dbtcloud:index/getProjectsProjectConnection:getProjectsProjectConnection",
+                    "description": "Details for the connection linked to the project\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "When the project was created\n"
+                },
+                "dbtProjectSubdirectory": {
+                    "type": "string",
+                    "description": "Subdirectory for the dbt project inside the git repo\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Project description\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "Project ID\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Project name\n"
+                },
+                "repository": {
+                    "$ref": "#/types/dbtcloud:index/getProjectsProjectRepository:getProjectsProjectRepository",
+                    "description": "Details for the repository linked to the project\n"
+                },
+                "semanticLayerConfigId": {
+                    "type": "integer",
+                    "description": "Semantic layer config ID\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "When the project was last updated\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "connection",
+                "createdAt",
+                "dbtProjectSubdirectory",
+                "description",
+                "id",
+                "name",
+                "repository",
+                "semanticLayerConfigId",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getProjectsProjectConnection:getProjectsProjectConnection": {
+            "properties": {
+                "adapterVersion": {
+                    "type": "string",
+                    "description": "Version of the adapter for the connection. Will tell what connection type it is\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "Connection ID\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Connection name\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "adapterVersion",
+                "id",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getProjectsProjectRepository:getProjectsProjectRepository": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Repository ID\n"
+                },
+                "pullRequestUrlTemplate": {
+                    "type": "string",
+                    "description": "URL template for PRs\n"
+                },
+                "remoteUrl": {
+                    "type": "string",
+                    "description": "URL of the git repo remote\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "pullRequestUrlTemplate",
+                "remoteUrl"
             ],
             "language": {
                 "nodejs": {
@@ -5761,6 +6534,132 @@
                 "type": "object"
             }
         },
+        "dbtcloud:index/getGlobalConnection:getGlobalConnection": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myConnection = dbtcloud.getGlobalConnection({\n    id: 1234,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_connection = dbtcloud.get_global_connection(id=1234)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myConnection = DbtCloud.GetGlobalConnection.Invoke(new()\n    {\n        Id = 1234,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.LookupGlobalConnection(ctx, \u0026dbtcloud.LookupGlobalConnectionArgs{\n\t\t\tId: 1234,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DbtcloudFunctions;\nimport com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myConnection = DbtcloudFunctions.getGlobalConnection(GetGlobalConnectionArgs.builder()\n            .id(1234)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myConnection:\n    fn::invoke:\n      Function: dbtcloud:getGlobalConnection\n      Arguments:\n        id: 1234\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getGlobalConnection.\n",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Connection Identifier\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getGlobalConnection.\n",
+                "properties": {
+                    "adapterVersion": {
+                        "description": "Version of the adapter\n",
+                        "type": "string"
+                    },
+                    "apacheSpark": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionApacheSpark:getGlobalConnectionApacheSpark",
+                        "description": "Apache Spark connection configuration.\n"
+                    },
+                    "athena": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionAthena:getGlobalConnectionAthena",
+                        "description": "Athena connection configuration.\n"
+                    },
+                    "bigquery": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionBigquery:getGlobalConnectionBigquery"
+                    },
+                    "databricks": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionDatabricks:getGlobalConnectionDatabricks",
+                        "description": "Databricks connection configuration\n"
+                    },
+                    "fabric": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionFabric:getGlobalConnectionFabric",
+                        "description": "Microsoft Fabric connection configuration.\n"
+                    },
+                    "id": {
+                        "description": "Connection Identifier\n",
+                        "type": "integer"
+                    },
+                    "isSshTunnelEnabled": {
+                        "description": "Whether the connection can use an SSH tunnel\n",
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "description": "Connection name\n",
+                        "type": "string"
+                    },
+                    "oauthConfigurationId": {
+                        "type": "integer"
+                    },
+                    "postgres": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionPostgres:getGlobalConnectionPostgres",
+                        "description": "PostgreSQL connection configuration.\n"
+                    },
+                    "privateLinkEndpointId": {
+                        "description": "Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source\n",
+                        "type": "string"
+                    },
+                    "redshift": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionRedshift:getGlobalConnectionRedshift",
+                        "description": "Redshift connection configuration\n"
+                    },
+                    "snowflake": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionSnowflake:getGlobalConnectionSnowflake",
+                        "description": "Snowflake connection configuration\n"
+                    },
+                    "starburst": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionStarburst:getGlobalConnectionStarburst",
+                        "description": "Starburst/Trino connection configuration.\n"
+                    },
+                    "synapse": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionSynapse:getGlobalConnectionSynapse",
+                        "description": "Azure Synapse Analytics connection configuration.\n"
+                    }
+                },
+                "required": [
+                    "adapterVersion",
+                    "apacheSpark",
+                    "athena",
+                    "bigquery",
+                    "databricks",
+                    "fabric",
+                    "id",
+                    "isSshTunnelEnabled",
+                    "name",
+                    "oauthConfigurationId",
+                    "postgres",
+                    "privateLinkEndpointId",
+                    "redshift",
+                    "snowflake",
+                    "starburst",
+                    "synapse"
+                ],
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/getGlobalConnections:getGlobalConnections": {
+            "description": "All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myConnections = dbtcloud.getGlobalConnections({});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_connections = dbtcloud.get_global_connections()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myConnections = DbtCloud.GetGlobalConnections.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.GetGlobalConnections(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DbtcloudFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myConnections = DbtcloudFunctions.getGlobalConnections();\n\n    }\n}\n```\n```yaml\nvariables:\n  myConnections:\n    fn::invoke:\n      Function: dbtcloud:getGlobalConnections\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "outputs": {
+                "description": "A collection of values returned by getGlobalConnections.\n",
+                "properties": {
+                    "connections": {
+                        "description": "A set of all the connections\n",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/getGlobalConnectionsConnection:getGlobalConnectionsConnection"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "connections",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "dbtcloud:index/getGroup:getGroup": {
             "description": "Retrieve group details\n",
             "inputs": {
@@ -6286,6 +7185,45 @@
                     "name",
                     "repositoryId",
                     "state",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/getProjects:getProjects": {
+            "description": "Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.\n\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getProjects.\n",
+                "properties": {
+                    "nameContains": {
+                        "type": "string",
+                        "description": "Used to filter projects by name, Optional\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProjects.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "nameContains": {
+                        "description": "Used to filter projects by name, Optional\n",
+                        "type": "string"
+                    },
+                    "projects": {
+                        "description": "Set of projects with their details\n",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/getProjectsProject:getProjectsProject"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "nameContains",
+                    "projects",
                     "id"
                 ],
                 "type": "object"

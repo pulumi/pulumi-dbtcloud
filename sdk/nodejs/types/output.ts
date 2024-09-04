@@ -52,6 +52,439 @@ export interface GetEnvironmentsEnvironment {
     useCustomBranch: boolean;
 }
 
+export interface GetGlobalConnectionApacheSpark {
+    /**
+     * Auth
+     */
+    auth: string;
+    /**
+     * Spark cluster for the connection
+     */
+    cluster: string;
+    /**
+     * Connection retries. Default=0
+     */
+    connectRetries: number;
+    /**
+     * Connection time out in seconds. Default=10
+     */
+    connectTimeout: number;
+    /**
+     * Hostname of the connection
+     */
+    host: string;
+    /**
+     * Authentication method for the connection (http or thrift).
+     */
+    method: string;
+    /**
+     * Organization ID
+     */
+    organization: string;
+    /**
+     * Port for the connection. Default=443
+     */
+    port: number;
+    /**
+     * User
+     */
+    user: string;
+}
+
+export interface GetGlobalConnectionAthena {
+    /**
+     * Specify the database (data catalog) to build models into (lowercase only).
+     */
+    database: string;
+    /**
+     * Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+     */
+    numBoto3Retries: number;
+    /**
+     * Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+     */
+    numIcebergRetries: number;
+    /**
+     * Number of times to retry a failing query.
+     */
+    numRetries: number;
+    /**
+     * Interval in seconds to use for polling the status of query results in Athena.
+     */
+    pollInterval: number;
+    /**
+     * AWS region of your Athena instance.
+     */
+    regionName: string;
+    /**
+     * Prefix for storing tables, if different from the connection's S3 staging directory.
+     */
+    s3DataDir: string;
+    /**
+     * How to generate table paths in the S3 data directory.
+     */
+    s3DataNaming: string;
+    /**
+     * S3 location to store Athena query results and metadata.
+     */
+    s3StagingDir: string;
+    /**
+     * Prefix for storing temporary tables, if different from the connection's S3 data directory.
+     */
+    s3TmpTableDir: string;
+    /**
+     * Identifier of Athena Spark workgroup for running Python models.
+     */
+    sparkWorkGroup: string;
+    /**
+     * Identifier of Athena workgroup.
+     */
+    workGroup: string;
+}
+
+export interface GetGlobalConnectionBigquery {
+    /**
+     * OAuth Client ID
+     */
+    applicationId: string;
+    /**
+     * OAuth Client Secret
+     */
+    applicationSecret: string;
+    /**
+     * Auth Provider X509 Cert URL for the Service Account
+     */
+    authProviderX509CertUrl: string;
+    /**
+     * Auth URI for the Service Account
+     */
+    authUri: string;
+    /**
+     * Service Account email
+     */
+    clientEmail: string;
+    /**
+     * Client ID of the Service Account
+     */
+    clientId: string;
+    /**
+     * Client X509 Cert URL for the Service Account
+     */
+    clientX509CertUrl: string;
+    /**
+     * Dataproc cluster name for PySpark workloads
+     */
+    dataprocClusterName: string;
+    /**
+     * Google Cloud region for PySpark workloads on Dataproc
+     */
+    dataprocRegion: string;
+    /**
+     * Project to bill for query execution
+     */
+    executionProject: string;
+    /**
+     * The GCP project ID to use for the connection
+     */
+    gcpProjectId: string;
+    /**
+     * URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+     */
+    gcsBucket: string;
+    /**
+     * Service Account to impersonate when running queries
+     */
+    impersonateServiceAccount: string;
+    /**
+     * Maximum timeout for the job creation step
+     */
+    jobCreationTimeoutSeconds: number;
+    /**
+     * Total number of seconds to wait while retrying the same query
+     */
+    jobRetryDeadlineSeconds: number;
+    /**
+     * Location to create new Datasets in
+     */
+    location: string;
+    /**
+     * Max number of bytes that can be billed for a given BigQuery query
+     */
+    maximumBytesBilled: number;
+    /**
+     * The priority with which to execute BigQuery queries (batch or interactive)
+     */
+    priority: string;
+    /**
+     * Private Key for the Service Account
+     */
+    privateKey: string;
+    /**
+     * Private Key ID for the Service Account
+     */
+    privateKeyId: string;
+    /**
+     * Number of retries for queries
+     */
+    retries: number;
+    /**
+     * OAuth scopes for the BigQuery connection
+     */
+    scopes: string[];
+    /**
+     * Timeout in seconds for queries
+     */
+    timeoutSeconds: number;
+    /**
+     * Token URI for the Service Account
+     */
+    tokenUri: string;
+}
+
+export interface GetGlobalConnectionDatabricks {
+    /**
+     * Catalog name if Unity Catalog is enabled in your Databricks workspace.
+     */
+    catalog: string;
+    /**
+     * Required to enable Databricks OAuth authentication for IDE developers.
+     */
+    clientId: string;
+    /**
+     * Required to enable Databricks OAuth authentication for IDE developers.
+     */
+    clientSecret: string;
+    /**
+     * The hostname of the Databricks cluster or SQL warehouse.
+     */
+    host: string;
+    /**
+     * The HTTP path of the Databricks cluster or SQL warehouse.
+     */
+    httpPath: string;
+}
+
+export interface GetGlobalConnectionFabric {
+    /**
+     * The database to connect to for this connection.
+     */
+    database: string;
+    /**
+     * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    loginTimeout: number;
+    /**
+     * The port to connect to for this connection. Default=1433
+     */
+    port: number;
+    /**
+     * The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    queryTimeout: number;
+    /**
+     * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+     */
+    retries: number;
+    /**
+     * The server hostname.
+     */
+    server: string;
+}
+
+export interface GetGlobalConnectionPostgres {
+    /**
+     * The database name for this connection.
+     */
+    dbname: string;
+    /**
+     * The hostname of the database.
+     */
+    hostname: string;
+    /**
+     * The port to connect to for this connection. Default=5432
+     */
+    port: number;
+    /**
+     * PostgreSQL SSH Tunnel configuration
+     */
+    sshTunnel: outputs.GetGlobalConnectionPostgresSshTunnel;
+}
+
+export interface GetGlobalConnectionPostgresSshTunnel {
+    /**
+     * The hostname for the SSH tunnel.
+     */
+    hostname: string;
+    /**
+     * The ID of the SSH tunnel connection.
+     */
+    id: number;
+    /**
+     * The HTTP port for the SSH tunnel.
+     */
+    port: number;
+    /**
+     * The SSH public key generated to allow connecting via SSH tunnel.
+     */
+    publicKey: string;
+    /**
+     * The username to use for the SSH tunnel.
+     */
+    username: string;
+}
+
+export interface GetGlobalConnectionRedshift {
+    /**
+     * The database name for this connection.
+     */
+    dbname: string;
+    /**
+     * The hostname of the data warehouse.
+     */
+    hostname: string;
+    /**
+     * The port to connect to for this connection. Default=5432
+     */
+    port: number;
+    /**
+     * Redshift SSH Tunnel configuration
+     */
+    sshTunnel: outputs.GetGlobalConnectionRedshiftSshTunnel;
+}
+
+export interface GetGlobalConnectionRedshiftSshTunnel {
+    /**
+     * The hostname for the SSH tunnel.
+     */
+    hostname: string;
+    /**
+     * The ID of the SSH tunnel connection.
+     */
+    id: number;
+    /**
+     * The HTTP port for the SSH tunnel.
+     */
+    port: number;
+    /**
+     * The SSH public key generated to allow connecting via SSH tunnel.
+     */
+    publicKey: string;
+    /**
+     * The username to use for the SSH tunnel.
+     */
+    username: string;
+}
+
+export interface GetGlobalConnectionSnowflake {
+    /**
+     * The Snowflake account name
+     */
+    account: string;
+    /**
+     * Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
+     */
+    allowSso: boolean;
+    /**
+     * If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+     */
+    clientSessionKeepAlive: boolean;
+    /**
+     * The default database for the connection
+     */
+    database: string;
+    /**
+     * OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+     */
+    oauthClientId: string;
+    /**
+     * OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+     */
+    oauthClientSecret: string;
+    /**
+     * The Snowflake role to use when running queries on the connection
+     */
+    role: string;
+    /**
+     * The default Snowflake Warehouse to use for the connection
+     */
+    warehouse: string;
+}
+
+export interface GetGlobalConnectionStarburst {
+    /**
+     * The hostname of the account to connect to.
+     */
+    host: string;
+    /**
+     * The authentication method. Only LDAP for now.
+     */
+    method: string;
+    /**
+     * The port to connect to for this connection. Default=443
+     */
+    port: number;
+}
+
+export interface GetGlobalConnectionSynapse {
+    /**
+     * The database to connect to for this connection.
+     */
+    database: string;
+    /**
+     * The server hostname.
+     */
+    host: string;
+    /**
+     * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    loginTimeout: number;
+    /**
+     * The port to connect to for this connection. Default=1433
+     */
+    port: number;
+    /**
+     * The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    queryTimeout: number;
+    /**
+     * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+     */
+    retries: number;
+}
+
+export interface GetGlobalConnectionsConnection {
+    /**
+     * Type of adapter used for the connection
+     */
+    adapterVersion: string;
+    /**
+     * When the connection was created
+     */
+    createdAt: string;
+    /**
+     * Number of environments using this connection
+     */
+    environmentCount: number;
+    /**
+     * Connection Identifier
+     */
+    id: number;
+    isSshTunnelEnabled: boolean;
+    /**
+     * Connection name
+     */
+    name: string;
+    oauthConfigurationId: number;
+    /**
+     * Private Link Endpoint ID.
+     */
+    privateLinkEndpointId: number;
+    /**
+     * When the connection was updated
+     */
+    updatedAt: string;
+}
+
 export interface GetGroupGroupPermission {
     /**
      * Whether access should be provided for all projects or not.
@@ -230,6 +663,75 @@ export interface GetJobsJobTriggers {
      * Whether the job runs on a schedule
      */
     schedule: boolean;
+}
+
+export interface GetProjectsProject {
+    /**
+     * Details for the connection linked to the project
+     */
+    connection: outputs.GetProjectsProjectConnection;
+    /**
+     * When the project was created
+     */
+    createdAt: string;
+    /**
+     * Subdirectory for the dbt project inside the git repo
+     */
+    dbtProjectSubdirectory: string;
+    /**
+     * Project description
+     */
+    description: string;
+    /**
+     * Project ID
+     */
+    id: number;
+    /**
+     * Project name
+     */
+    name: string;
+    /**
+     * Details for the repository linked to the project
+     */
+    repository: outputs.GetProjectsProjectRepository;
+    /**
+     * Semantic layer config ID
+     */
+    semanticLayerConfigId: number;
+    /**
+     * When the project was last updated
+     */
+    updatedAt: string;
+}
+
+export interface GetProjectsProjectConnection {
+    /**
+     * Version of the adapter for the connection. Will tell what connection type it is
+     */
+    adapterVersion: string;
+    /**
+     * Connection ID
+     */
+    id: number;
+    /**
+     * Connection name
+     */
+    name: string;
+}
+
+export interface GetProjectsProjectRepository {
+    /**
+     * Repository ID
+     */
+    id: number;
+    /**
+     * URL template for PRs
+     */
+    pullRequestUrlTemplate: string;
+    /**
+     * URL of the git repo remote
+     */
+    remoteUrl: string;
 }
 
 export interface GetServiceTokenServiceTokenPermission {

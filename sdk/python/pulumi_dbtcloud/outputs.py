@@ -28,6 +28,19 @@ __all__ = [
     'JobJobCompletionTriggerCondition',
     'ServiceTokenServiceTokenPermission',
     'GetEnvironmentsEnvironmentResult',
+    'GetGlobalConnectionApacheSparkResult',
+    'GetGlobalConnectionAthenaResult',
+    'GetGlobalConnectionBigqueryResult',
+    'GetGlobalConnectionDatabricksResult',
+    'GetGlobalConnectionFabricResult',
+    'GetGlobalConnectionPostgresResult',
+    'GetGlobalConnectionPostgresSshTunnelResult',
+    'GetGlobalConnectionRedshiftResult',
+    'GetGlobalConnectionRedshiftSshTunnelResult',
+    'GetGlobalConnectionSnowflakeResult',
+    'GetGlobalConnectionStarburstResult',
+    'GetGlobalConnectionSynapseResult',
+    'GetGlobalConnectionsConnectionResult',
     'GetGroupGroupPermissionResult',
     'GetGroupUsersUserResult',
     'GetJobJobCompletionTriggerConditionResult',
@@ -39,6 +52,9 @@ __all__ = [
     'GetJobsJobScheduleResult',
     'GetJobsJobSettingsResult',
     'GetJobsJobTriggersResult',
+    'GetProjectsProjectResult',
+    'GetProjectsProjectConnectionResult',
+    'GetProjectsProjectRepositoryResult',
     'GetServiceTokenServiceTokenPermissionResult',
     'GetUsersUserResult',
 ]
@@ -1887,6 +1903,1189 @@ class GetEnvironmentsEnvironmentResult(dict):
 
 
 @pulumi.output_type
+class GetGlobalConnectionApacheSparkResult(dict):
+    def __init__(__self__, *,
+                 auth: str,
+                 cluster: str,
+                 connect_retries: int,
+                 connect_timeout: int,
+                 host: str,
+                 method: str,
+                 organization: str,
+                 port: int,
+                 user: str):
+        """
+        :param str auth: Auth
+        :param str cluster: Spark cluster for the connection
+        :param int connect_retries: Connection retries. Default=0
+        :param int connect_timeout: Connection time out in seconds. Default=10
+        :param str host: Hostname of the connection
+        :param str method: Authentication method for the connection (http or thrift).
+        :param str organization: Organization ID
+        :param int port: Port for the connection. Default=443
+        :param str user: User
+        """
+        pulumi.set(__self__, "auth", auth)
+        pulumi.set(__self__, "cluster", cluster)
+        pulumi.set(__self__, "connect_retries", connect_retries)
+        pulumi.set(__self__, "connect_timeout", connect_timeout)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "organization", organization)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> str:
+        """
+        Auth
+        """
+        return pulumi.get(self, "auth")
+
+    @property
+    @pulumi.getter
+    def cluster(self) -> str:
+        """
+        Spark cluster for the connection
+        """
+        return pulumi.get(self, "cluster")
+
+    @property
+    @pulumi.getter(name="connectRetries")
+    def connect_retries(self) -> int:
+        """
+        Connection retries. Default=0
+        """
+        return pulumi.get(self, "connect_retries")
+
+    @property
+    @pulumi.getter(name="connectTimeout")
+    def connect_timeout(self) -> int:
+        """
+        Connection time out in seconds. Default=10
+        """
+        return pulumi.get(self, "connect_timeout")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        Hostname of the connection
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        Authentication method for the connection (http or thrift).
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def organization(self) -> str:
+        """
+        Organization ID
+        """
+        return pulumi.get(self, "organization")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        Port for the connection. Default=443
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        User
+        """
+        return pulumi.get(self, "user")
+
+
+@pulumi.output_type
+class GetGlobalConnectionAthenaResult(dict):
+    def __init__(__self__, *,
+                 database: str,
+                 num_boto3_retries: int,
+                 num_iceberg_retries: int,
+                 num_retries: int,
+                 poll_interval: int,
+                 region_name: str,
+                 s3_data_dir: str,
+                 s3_data_naming: str,
+                 s3_staging_dir: str,
+                 s3_tmp_table_dir: str,
+                 spark_work_group: str,
+                 work_group: str):
+        """
+        :param str database: Specify the database (data catalog) to build models into (lowercase only).
+        :param int num_boto3_retries: Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+        :param int num_iceberg_retries: Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+        :param int num_retries: Number of times to retry a failing query.
+        :param int poll_interval: Interval in seconds to use for polling the status of query results in Athena.
+        :param str region_name: AWS region of your Athena instance.
+        :param str s3_data_dir: Prefix for storing tables, if different from the connection's S3 staging directory.
+        :param str s3_data_naming: How to generate table paths in the S3 data directory.
+        :param str s3_staging_dir: S3 location to store Athena query results and metadata.
+        :param str s3_tmp_table_dir: Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        :param str spark_work_group: Identifier of Athena Spark workgroup for running Python models.
+        :param str work_group: Identifier of Athena workgroup.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "num_boto3_retries", num_boto3_retries)
+        pulumi.set(__self__, "num_iceberg_retries", num_iceberg_retries)
+        pulumi.set(__self__, "num_retries", num_retries)
+        pulumi.set(__self__, "poll_interval", poll_interval)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "s3_data_dir", s3_data_dir)
+        pulumi.set(__self__, "s3_data_naming", s3_data_naming)
+        pulumi.set(__self__, "s3_staging_dir", s3_staging_dir)
+        pulumi.set(__self__, "s3_tmp_table_dir", s3_tmp_table_dir)
+        pulumi.set(__self__, "spark_work_group", spark_work_group)
+        pulumi.set(__self__, "work_group", work_group)
+
+    @property
+    @pulumi.getter
+    def database(self) -> str:
+        """
+        Specify the database (data catalog) to build models into (lowercase only).
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter(name="numBoto3Retries")
+    def num_boto3_retries(self) -> int:
+        """
+        Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+        """
+        return pulumi.get(self, "num_boto3_retries")
+
+    @property
+    @pulumi.getter(name="numIcebergRetries")
+    def num_iceberg_retries(self) -> int:
+        """
+        Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+        """
+        return pulumi.get(self, "num_iceberg_retries")
+
+    @property
+    @pulumi.getter(name="numRetries")
+    def num_retries(self) -> int:
+        """
+        Number of times to retry a failing query.
+        """
+        return pulumi.get(self, "num_retries")
+
+    @property
+    @pulumi.getter(name="pollInterval")
+    def poll_interval(self) -> int:
+        """
+        Interval in seconds to use for polling the status of query results in Athena.
+        """
+        return pulumi.get(self, "poll_interval")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        AWS region of your Athena instance.
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="s3DataDir")
+    def s3_data_dir(self) -> str:
+        """
+        Prefix for storing tables, if different from the connection's S3 staging directory.
+        """
+        return pulumi.get(self, "s3_data_dir")
+
+    @property
+    @pulumi.getter(name="s3DataNaming")
+    def s3_data_naming(self) -> str:
+        """
+        How to generate table paths in the S3 data directory.
+        """
+        return pulumi.get(self, "s3_data_naming")
+
+    @property
+    @pulumi.getter(name="s3StagingDir")
+    def s3_staging_dir(self) -> str:
+        """
+        S3 location to store Athena query results and metadata.
+        """
+        return pulumi.get(self, "s3_staging_dir")
+
+    @property
+    @pulumi.getter(name="s3TmpTableDir")
+    def s3_tmp_table_dir(self) -> str:
+        """
+        Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        """
+        return pulumi.get(self, "s3_tmp_table_dir")
+
+    @property
+    @pulumi.getter(name="sparkWorkGroup")
+    def spark_work_group(self) -> str:
+        """
+        Identifier of Athena Spark workgroup for running Python models.
+        """
+        return pulumi.get(self, "spark_work_group")
+
+    @property
+    @pulumi.getter(name="workGroup")
+    def work_group(self) -> str:
+        """
+        Identifier of Athena workgroup.
+        """
+        return pulumi.get(self, "work_group")
+
+
+@pulumi.output_type
+class GetGlobalConnectionBigqueryResult(dict):
+    def __init__(__self__, *,
+                 application_id: str,
+                 application_secret: str,
+                 auth_provider_x509_cert_url: str,
+                 auth_uri: str,
+                 client_email: str,
+                 client_id: str,
+                 client_x509_cert_url: str,
+                 dataproc_cluster_name: str,
+                 dataproc_region: str,
+                 execution_project: str,
+                 gcp_project_id: str,
+                 gcs_bucket: str,
+                 impersonate_service_account: str,
+                 job_creation_timeout_seconds: int,
+                 job_retry_deadline_seconds: int,
+                 location: str,
+                 maximum_bytes_billed: int,
+                 priority: str,
+                 private_key: str,
+                 private_key_id: str,
+                 retries: int,
+                 scopes: Sequence[str],
+                 timeout_seconds: int,
+                 token_uri: str):
+        """
+        :param str application_id: OAuth Client ID
+        :param str application_secret: OAuth Client Secret
+        :param str auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
+        :param str auth_uri: Auth URI for the Service Account
+        :param str client_email: Service Account email
+        :param str client_id: Client ID of the Service Account
+        :param str client_x509_cert_url: Client X509 Cert URL for the Service Account
+        :param str dataproc_cluster_name: Dataproc cluster name for PySpark workloads
+        :param str dataproc_region: Google Cloud region for PySpark workloads on Dataproc
+        :param str execution_project: Project to bill for query execution
+        :param str gcp_project_id: The GCP project ID to use for the connection
+        :param str gcs_bucket: URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+        :param str impersonate_service_account: Service Account to impersonate when running queries
+        :param int job_creation_timeout_seconds: Maximum timeout for the job creation step
+        :param int job_retry_deadline_seconds: Total number of seconds to wait while retrying the same query
+        :param str location: Location to create new Datasets in
+        :param int maximum_bytes_billed: Max number of bytes that can be billed for a given BigQuery query
+        :param str priority: The priority with which to execute BigQuery queries (batch or interactive)
+        :param str private_key: Private Key for the Service Account
+        :param str private_key_id: Private Key ID for the Service Account
+        :param int retries: Number of retries for queries
+        :param Sequence[str] scopes: OAuth scopes for the BigQuery connection
+        :param int timeout_seconds: Timeout in seconds for queries
+        :param str token_uri: Token URI for the Service Account
+        """
+        pulumi.set(__self__, "application_id", application_id)
+        pulumi.set(__self__, "application_secret", application_secret)
+        pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
+        pulumi.set(__self__, "auth_uri", auth_uri)
+        pulumi.set(__self__, "client_email", client_email)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_x509_cert_url", client_x509_cert_url)
+        pulumi.set(__self__, "dataproc_cluster_name", dataproc_cluster_name)
+        pulumi.set(__self__, "dataproc_region", dataproc_region)
+        pulumi.set(__self__, "execution_project", execution_project)
+        pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+        pulumi.set(__self__, "gcs_bucket", gcs_bucket)
+        pulumi.set(__self__, "impersonate_service_account", impersonate_service_account)
+        pulumi.set(__self__, "job_creation_timeout_seconds", job_creation_timeout_seconds)
+        pulumi.set(__self__, "job_retry_deadline_seconds", job_retry_deadline_seconds)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "maximum_bytes_billed", maximum_bytes_billed)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "private_key", private_key)
+        pulumi.set(__self__, "private_key_id", private_key_id)
+        pulumi.set(__self__, "retries", retries)
+        pulumi.set(__self__, "scopes", scopes)
+        pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+        pulumi.set(__self__, "token_uri", token_uri)
+
+    @property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> str:
+        """
+        OAuth Client ID
+        """
+        return pulumi.get(self, "application_id")
+
+    @property
+    @pulumi.getter(name="applicationSecret")
+    def application_secret(self) -> str:
+        """
+        OAuth Client Secret
+        """
+        return pulumi.get(self, "application_secret")
+
+    @property
+    @pulumi.getter(name="authProviderX509CertUrl")
+    def auth_provider_x509_cert_url(self) -> str:
+        """
+        Auth Provider X509 Cert URL for the Service Account
+        """
+        return pulumi.get(self, "auth_provider_x509_cert_url")
+
+    @property
+    @pulumi.getter(name="authUri")
+    def auth_uri(self) -> str:
+        """
+        Auth URI for the Service Account
+        """
+        return pulumi.get(self, "auth_uri")
+
+    @property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> str:
+        """
+        Service Account email
+        """
+        return pulumi.get(self, "client_email")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        Client ID of the Service Account
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientX509CertUrl")
+    def client_x509_cert_url(self) -> str:
+        """
+        Client X509 Cert URL for the Service Account
+        """
+        return pulumi.get(self, "client_x509_cert_url")
+
+    @property
+    @pulumi.getter(name="dataprocClusterName")
+    def dataproc_cluster_name(self) -> str:
+        """
+        Dataproc cluster name for PySpark workloads
+        """
+        return pulumi.get(self, "dataproc_cluster_name")
+
+    @property
+    @pulumi.getter(name="dataprocRegion")
+    def dataproc_region(self) -> str:
+        """
+        Google Cloud region for PySpark workloads on Dataproc
+        """
+        return pulumi.get(self, "dataproc_region")
+
+    @property
+    @pulumi.getter(name="executionProject")
+    def execution_project(self) -> str:
+        """
+        Project to bill for query execution
+        """
+        return pulumi.get(self, "execution_project")
+
+    @property
+    @pulumi.getter(name="gcpProjectId")
+    def gcp_project_id(self) -> str:
+        """
+        The GCP project ID to use for the connection
+        """
+        return pulumi.get(self, "gcp_project_id")
+
+    @property
+    @pulumi.getter(name="gcsBucket")
+    def gcs_bucket(self) -> str:
+        """
+        URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+        """
+        return pulumi.get(self, "gcs_bucket")
+
+    @property
+    @pulumi.getter(name="impersonateServiceAccount")
+    def impersonate_service_account(self) -> str:
+        """
+        Service Account to impersonate when running queries
+        """
+        return pulumi.get(self, "impersonate_service_account")
+
+    @property
+    @pulumi.getter(name="jobCreationTimeoutSeconds")
+    def job_creation_timeout_seconds(self) -> int:
+        """
+        Maximum timeout for the job creation step
+        """
+        return pulumi.get(self, "job_creation_timeout_seconds")
+
+    @property
+    @pulumi.getter(name="jobRetryDeadlineSeconds")
+    def job_retry_deadline_seconds(self) -> int:
+        """
+        Total number of seconds to wait while retrying the same query
+        """
+        return pulumi.get(self, "job_retry_deadline_seconds")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        Location to create new Datasets in
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="maximumBytesBilled")
+    def maximum_bytes_billed(self) -> int:
+        """
+        Max number of bytes that can be billed for a given BigQuery query
+        """
+        return pulumi.get(self, "maximum_bytes_billed")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> str:
+        """
+        The priority with which to execute BigQuery queries (batch or interactive)
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> str:
+        """
+        Private Key for the Service Account
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> str:
+        """
+        Private Key ID for the Service Account
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> int:
+        """
+        Number of retries for queries
+        """
+        return pulumi.get(self, "retries")
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> Sequence[str]:
+        """
+        OAuth scopes for the BigQuery connection
+        """
+        return pulumi.get(self, "scopes")
+
+    @property
+    @pulumi.getter(name="timeoutSeconds")
+    def timeout_seconds(self) -> int:
+        """
+        Timeout in seconds for queries
+        """
+        return pulumi.get(self, "timeout_seconds")
+
+    @property
+    @pulumi.getter(name="tokenUri")
+    def token_uri(self) -> str:
+        """
+        Token URI for the Service Account
+        """
+        return pulumi.get(self, "token_uri")
+
+
+@pulumi.output_type
+class GetGlobalConnectionDatabricksResult(dict):
+    def __init__(__self__, *,
+                 catalog: str,
+                 client_id: str,
+                 client_secret: str,
+                 host: str,
+                 http_path: str):
+        """
+        :param str catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace.
+        :param str client_id: Required to enable Databricks OAuth authentication for IDE developers.
+        :param str client_secret: Required to enable Databricks OAuth authentication for IDE developers.
+        :param str host: The hostname of the Databricks cluster or SQL warehouse.
+        :param str http_path: The HTTP path of the Databricks cluster or SQL warehouse.
+        """
+        pulumi.set(__self__, "catalog", catalog)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "http_path", http_path)
+
+    @property
+    @pulumi.getter
+    def catalog(self) -> str:
+        """
+        Catalog name if Unity Catalog is enabled in your Databricks workspace.
+        """
+        return pulumi.get(self, "catalog")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        Required to enable Databricks OAuth authentication for IDE developers.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> str:
+        """
+        Required to enable Databricks OAuth authentication for IDE developers.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The hostname of the Databricks cluster or SQL warehouse.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="httpPath")
+    def http_path(self) -> str:
+        """
+        The HTTP path of the Databricks cluster or SQL warehouse.
+        """
+        return pulumi.get(self, "http_path")
+
+
+@pulumi.output_type
+class GetGlobalConnectionFabricResult(dict):
+    def __init__(__self__, *,
+                 database: str,
+                 login_timeout: int,
+                 port: int,
+                 query_timeout: int,
+                 retries: int,
+                 server: str):
+        """
+        :param str database: The database to connect to for this connection.
+        :param int login_timeout: The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param int port: The port to connect to for this connection. Default=1433
+        :param int query_timeout: The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param int retries: The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        :param str server: The server hostname.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "login_timeout", login_timeout)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "query_timeout", query_timeout)
+        pulumi.set(__self__, "retries", retries)
+        pulumi.set(__self__, "server", server)
+
+    @property
+    @pulumi.getter
+    def database(self) -> str:
+        """
+        The database to connect to for this connection.
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter(name="loginTimeout")
+    def login_timeout(self) -> int:
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "login_timeout")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port to connect to for this connection. Default=1433
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="queryTimeout")
+    def query_timeout(self) -> int:
+        """
+        The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "query_timeout")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> int:
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        return pulumi.get(self, "retries")
+
+    @property
+    @pulumi.getter
+    def server(self) -> str:
+        """
+        The server hostname.
+        """
+        return pulumi.get(self, "server")
+
+
+@pulumi.output_type
+class GetGlobalConnectionPostgresResult(dict):
+    def __init__(__self__, *,
+                 dbname: str,
+                 hostname: str,
+                 port: int,
+                 ssh_tunnel: 'outputs.GetGlobalConnectionPostgresSshTunnelResult'):
+        """
+        :param str dbname: The database name for this connection.
+        :param str hostname: The hostname of the database.
+        :param int port: The port to connect to for this connection. Default=5432
+        :param 'GetGlobalConnectionPostgresSshTunnelArgs' ssh_tunnel: PostgreSQL SSH Tunnel configuration
+        """
+        pulumi.set(__self__, "dbname", dbname)
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "ssh_tunnel", ssh_tunnel)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> str:
+        """
+        The database name for this connection.
+        """
+        return pulumi.get(self, "dbname")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        """
+        The hostname of the database.
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port to connect to for this connection. Default=5432
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="sshTunnel")
+    def ssh_tunnel(self) -> 'outputs.GetGlobalConnectionPostgresSshTunnelResult':
+        """
+        PostgreSQL SSH Tunnel configuration
+        """
+        return pulumi.get(self, "ssh_tunnel")
+
+
+@pulumi.output_type
+class GetGlobalConnectionPostgresSshTunnelResult(dict):
+    def __init__(__self__, *,
+                 hostname: str,
+                 id: int,
+                 port: int,
+                 public_key: str,
+                 username: str):
+        """
+        :param str hostname: The hostname for the SSH tunnel.
+        :param int id: The ID of the SSH tunnel connection.
+        :param int port: The HTTP port for the SSH tunnel.
+        :param str public_key: The SSH public key generated to allow connecting via SSH tunnel.
+        :param str username: The username to use for the SSH tunnel.
+        """
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "public_key", public_key)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        """
+        The hostname for the SSH tunnel.
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The ID of the SSH tunnel connection.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The HTTP port for the SSH tunnel.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The SSH public key generated to allow connecting via SSH tunnel.
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username to use for the SSH tunnel.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetGlobalConnectionRedshiftResult(dict):
+    def __init__(__self__, *,
+                 dbname: str,
+                 hostname: str,
+                 port: int,
+                 ssh_tunnel: 'outputs.GetGlobalConnectionRedshiftSshTunnelResult'):
+        """
+        :param str dbname: The database name for this connection.
+        :param str hostname: The hostname of the data warehouse.
+        :param int port: The port to connect to for this connection. Default=5432
+        :param 'GetGlobalConnectionRedshiftSshTunnelArgs' ssh_tunnel: Redshift SSH Tunnel configuration
+        """
+        pulumi.set(__self__, "dbname", dbname)
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "ssh_tunnel", ssh_tunnel)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> str:
+        """
+        The database name for this connection.
+        """
+        return pulumi.get(self, "dbname")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        """
+        The hostname of the data warehouse.
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port to connect to for this connection. Default=5432
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="sshTunnel")
+    def ssh_tunnel(self) -> 'outputs.GetGlobalConnectionRedshiftSshTunnelResult':
+        """
+        Redshift SSH Tunnel configuration
+        """
+        return pulumi.get(self, "ssh_tunnel")
+
+
+@pulumi.output_type
+class GetGlobalConnectionRedshiftSshTunnelResult(dict):
+    def __init__(__self__, *,
+                 hostname: str,
+                 id: int,
+                 port: int,
+                 public_key: str,
+                 username: str):
+        """
+        :param str hostname: The hostname for the SSH tunnel.
+        :param int id: The ID of the SSH tunnel connection.
+        :param int port: The HTTP port for the SSH tunnel.
+        :param str public_key: The SSH public key generated to allow connecting via SSH tunnel.
+        :param str username: The username to use for the SSH tunnel.
+        """
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "public_key", public_key)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
+        """
+        The hostname for the SSH tunnel.
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        The ID of the SSH tunnel connection.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The HTTP port for the SSH tunnel.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        """
+        The SSH public key generated to allow connecting via SSH tunnel.
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username to use for the SSH tunnel.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetGlobalConnectionSnowflakeResult(dict):
+    def __init__(__self__, *,
+                 account: str,
+                 allow_sso: bool,
+                 client_session_keep_alive: bool,
+                 database: str,
+                 oauth_client_id: str,
+                 oauth_client_secret: str,
+                 role: str,
+                 warehouse: str):
+        """
+        :param str account: The Snowflake account name
+        :param bool allow_sso: Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+        :param bool client_session_keep_alive: If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+        :param str database: The default database for the connection
+        :param str oauth_client_id: OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+        :param str oauth_client_secret: OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+        :param str role: The Snowflake role to use when running queries on the connection
+        :param str warehouse: The default Snowflake Warehouse to use for the connection
+        """
+        pulumi.set(__self__, "account", account)
+        pulumi.set(__self__, "allow_sso", allow_sso)
+        pulumi.set(__self__, "client_session_keep_alive", client_session_keep_alive)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "oauth_client_id", oauth_client_id)
+        pulumi.set(__self__, "oauth_client_secret", oauth_client_secret)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "warehouse", warehouse)
+
+    @property
+    @pulumi.getter
+    def account(self) -> str:
+        """
+        The Snowflake account name
+        """
+        return pulumi.get(self, "account")
+
+    @property
+    @pulumi.getter(name="allowSso")
+    def allow_sso(self) -> bool:
+        """
+        Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+        """
+        return pulumi.get(self, "allow_sso")
+
+    @property
+    @pulumi.getter(name="clientSessionKeepAlive")
+    def client_session_keep_alive(self) -> bool:
+        """
+        If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+        """
+        return pulumi.get(self, "client_session_keep_alive")
+
+    @property
+    @pulumi.getter
+    def database(self) -> str:
+        """
+        The default database for the connection
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter(name="oauthClientId")
+    def oauth_client_id(self) -> str:
+        """
+        OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+        """
+        return pulumi.get(self, "oauth_client_id")
+
+    @property
+    @pulumi.getter(name="oauthClientSecret")
+    def oauth_client_secret(self) -> str:
+        """
+        OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+        """
+        return pulumi.get(self, "oauth_client_secret")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The Snowflake role to use when running queries on the connection
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def warehouse(self) -> str:
+        """
+        The default Snowflake Warehouse to use for the connection
+        """
+        return pulumi.get(self, "warehouse")
+
+
+@pulumi.output_type
+class GetGlobalConnectionStarburstResult(dict):
+    def __init__(__self__, *,
+                 host: str,
+                 method: str,
+                 port: int):
+        """
+        :param str host: The hostname of the account to connect to.
+        :param str method: The authentication method. Only LDAP for now.
+        :param int port: The port to connect to for this connection. Default=443
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The hostname of the account to connect to.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        The authentication method. Only LDAP for now.
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port to connect to for this connection. Default=443
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetGlobalConnectionSynapseResult(dict):
+    def __init__(__self__, *,
+                 database: str,
+                 host: str,
+                 login_timeout: int,
+                 port: int,
+                 query_timeout: int,
+                 retries: int):
+        """
+        :param str database: The database to connect to for this connection.
+        :param str host: The server hostname.
+        :param int login_timeout: The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param int port: The port to connect to for this connection. Default=1433
+        :param int query_timeout: The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param int retries: The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "login_timeout", login_timeout)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "query_timeout", query_timeout)
+        pulumi.set(__self__, "retries", retries)
+
+    @property
+    @pulumi.getter
+    def database(self) -> str:
+        """
+        The database to connect to for this connection.
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The server hostname.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="loginTimeout")
+    def login_timeout(self) -> int:
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "login_timeout")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port to connect to for this connection. Default=1433
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="queryTimeout")
+    def query_timeout(self) -> int:
+        """
+        The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "query_timeout")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> int:
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        return pulumi.get(self, "retries")
+
+
+@pulumi.output_type
+class GetGlobalConnectionsConnectionResult(dict):
+    def __init__(__self__, *,
+                 adapter_version: str,
+                 created_at: str,
+                 environment_count: int,
+                 id: int,
+                 is_ssh_tunnel_enabled: bool,
+                 name: str,
+                 oauth_configuration_id: int,
+                 private_link_endpoint_id: int,
+                 updated_at: str):
+        """
+        :param str adapter_version: Type of adapter used for the connection
+        :param str created_at: When the connection was created
+        :param int environment_count: Number of environments using this connection
+        :param int id: Connection Identifier
+        :param str name: Connection name
+        :param int private_link_endpoint_id: Private Link Endpoint ID.
+        :param str updated_at: When the connection was updated
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "environment_count", environment_count)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_ssh_tunnel_enabled", is_ssh_tunnel_enabled)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "oauth_configuration_id", oauth_configuration_id)
+        pulumi.set(__self__, "private_link_endpoint_id", private_link_endpoint_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> str:
+        """
+        Type of adapter used for the connection
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        When the connection was created
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="environmentCount")
+    def environment_count(self) -> int:
+        """
+        Number of environments using this connection
+        """
+        return pulumi.get(self, "environment_count")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Connection Identifier
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isSshTunnelEnabled")
+    def is_ssh_tunnel_enabled(self) -> bool:
+        return pulumi.get(self, "is_ssh_tunnel_enabled")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Connection name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="oauthConfigurationId")
+    def oauth_configuration_id(self) -> int:
+        return pulumi.get(self, "oauth_configuration_id")
+
+    @property
+    @pulumi.getter(name="privateLinkEndpointId")
+    def private_link_endpoint_id(self) -> int:
+        """
+        Private Link Endpoint ID.
+        """
+        return pulumi.get(self, "private_link_endpoint_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        When the connection was updated
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
 class GetGroupGroupPermissionResult(dict):
     def __init__(__self__, *,
                  all_projects: bool,
@@ -2406,6 +3605,192 @@ class GetJobsJobTriggersResult(dict):
         Whether the job runs on a schedule
         """
         return pulumi.get(self, "schedule")
+
+
+@pulumi.output_type
+class GetProjectsProjectResult(dict):
+    def __init__(__self__, *,
+                 connection: 'outputs.GetProjectsProjectConnectionResult',
+                 created_at: str,
+                 dbt_project_subdirectory: str,
+                 description: str,
+                 id: int,
+                 name: str,
+                 repository: 'outputs.GetProjectsProjectRepositoryResult',
+                 semantic_layer_config_id: int,
+                 updated_at: str):
+        """
+        :param 'GetProjectsProjectConnectionArgs' connection: Details for the connection linked to the project
+        :param str created_at: When the project was created
+        :param str dbt_project_subdirectory: Subdirectory for the dbt project inside the git repo
+        :param str description: Project description
+        :param int id: Project ID
+        :param str name: Project name
+        :param 'GetProjectsProjectRepositoryArgs' repository: Details for the repository linked to the project
+        :param int semantic_layer_config_id: Semantic layer config ID
+        :param str updated_at: When the project was last updated
+        """
+        pulumi.set(__self__, "connection", connection)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "dbt_project_subdirectory", dbt_project_subdirectory)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "repository", repository)
+        pulumi.set(__self__, "semantic_layer_config_id", semantic_layer_config_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter
+    def connection(self) -> 'outputs.GetProjectsProjectConnectionResult':
+        """
+        Details for the connection linked to the project
+        """
+        return pulumi.get(self, "connection")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        When the project was created
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dbtProjectSubdirectory")
+    def dbt_project_subdirectory(self) -> str:
+        """
+        Subdirectory for the dbt project inside the git repo
+        """
+        return pulumi.get(self, "dbt_project_subdirectory")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Project description
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Project ID
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Project name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def repository(self) -> 'outputs.GetProjectsProjectRepositoryResult':
+        """
+        Details for the repository linked to the project
+        """
+        return pulumi.get(self, "repository")
+
+    @property
+    @pulumi.getter(name="semanticLayerConfigId")
+    def semantic_layer_config_id(self) -> int:
+        """
+        Semantic layer config ID
+        """
+        return pulumi.get(self, "semantic_layer_config_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        When the project was last updated
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetProjectsProjectConnectionResult(dict):
+    def __init__(__self__, *,
+                 adapter_version: str,
+                 id: int,
+                 name: str):
+        """
+        :param str adapter_version: Version of the adapter for the connection. Will tell what connection type it is
+        :param int id: Connection ID
+        :param str name: Connection name
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> str:
+        """
+        Version of the adapter for the connection. Will tell what connection type it is
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Connection ID
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Connection name
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetProjectsProjectRepositoryResult(dict):
+    def __init__(__self__, *,
+                 id: int,
+                 pull_request_url_template: str,
+                 remote_url: str):
+        """
+        :param int id: Repository ID
+        :param str pull_request_url_template: URL template for PRs
+        :param str remote_url: URL of the git repo remote
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "pull_request_url_template", pull_request_url_template)
+        pulumi.set(__self__, "remote_url", remote_url)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Repository ID
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="pullRequestUrlTemplate")
+    def pull_request_url_template(self) -> str:
+        """
+        URL template for PRs
+        """
+        return pulumi.get(self, "pull_request_url_template")
+
+    @property
+    @pulumi.getter(name="remoteUrl")
+    def remote_url(self) -> str:
+        """
+        URL of the git repo remote
+        """
+        return pulumi.get(self, "remote_url")
 
 
 @pulumi.output_type
