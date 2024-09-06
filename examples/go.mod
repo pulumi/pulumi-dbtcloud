@@ -3,8 +3,8 @@ module github.com/pulumi/pulumi-dbtcloud/examples
 go 1.21
 
 require (
-	github.com/pulumi/pulumi/pkg/v3 v3.129.0
-	github.com/pulumi/pulumi/sdk/v3 v3.129.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.130.0
+	github.com/pulumi/pulumi/sdk/v3 v3.130.0 // indirect
 )
 
 require (
