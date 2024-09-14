@@ -16,7 +16,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// <summary>
         /// The database name for this connection.
         /// </summary>
-        public readonly string? Dbname;
+        public readonly string Dbname;
         /// <summary>
         /// The hostname of the data warehouse.
         /// </summary>
@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud.Outputs
 
         [OutputConstructor]
         private GlobalConnectionRedshift(
-            string? dbname,
+            string dbname,
 
             string hostname,
 

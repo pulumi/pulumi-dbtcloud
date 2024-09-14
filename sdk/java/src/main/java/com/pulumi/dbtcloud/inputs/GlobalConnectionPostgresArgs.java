@@ -22,15 +22,15 @@ public final class GlobalConnectionPostgresArgs extends com.pulumi.resources.Res
      * The database name for this connection.
      * 
      */
-    @Import(name="dbname")
-    private @Nullable Output<String> dbname;
+    @Import(name="dbname", required=true)
+    private Output<String> dbname;
 
     /**
      * @return The database name for this connection.
      * 
      */
-    public Optional<Output<String>> dbname() {
-        return Optional.ofNullable(this.dbname);
+    public Output<String> dbname() {
+        return this.dbname;
     }
 
     /**
@@ -111,7 +111,7 @@ public final class GlobalConnectionPostgresArgs extends com.pulumi.resources.Res
          * @return builder
          * 
          */
-        public Builder dbname(@Nullable Output<String> dbname) {
+        public Builder dbname(Output<String> dbname) {
             $.dbname = dbname;
             return this;
         }
@@ -190,6 +190,9 @@ public final class GlobalConnectionPostgresArgs extends com.pulumi.resources.Res
         }
 
         public GlobalConnectionPostgresArgs build() {
+            if ($.dbname == null) {
+                throw new MissingRequiredPropertyException("GlobalConnectionPostgresArgs", "dbname");
+            }
             if ($.hostname == null) {
                 throw new MissingRequiredPropertyException("GlobalConnectionPostgresArgs", "hostname");
             }

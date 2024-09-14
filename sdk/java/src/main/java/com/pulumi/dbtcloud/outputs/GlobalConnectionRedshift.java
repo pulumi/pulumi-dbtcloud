@@ -18,7 +18,7 @@ public final class GlobalConnectionRedshift {
      * @return The database name for this connection.
      * 
      */
-    private @Nullable String dbname;
+    private String dbname;
     /**
      * @return The hostname of the data warehouse.
      * 
@@ -40,8 +40,8 @@ public final class GlobalConnectionRedshift {
      * @return The database name for this connection.
      * 
      */
-    public Optional<String> dbname() {
-        return Optional.ofNullable(this.dbname);
+    public String dbname() {
+        return this.dbname;
     }
     /**
      * @return The hostname of the data warehouse.
@@ -74,7 +74,7 @@ public final class GlobalConnectionRedshift {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable String dbname;
+        private String dbname;
         private String hostname;
         private @Nullable Integer port;
         private @Nullable GlobalConnectionRedshiftSshTunnel sshTunnel;
@@ -88,8 +88,10 @@ public final class GlobalConnectionRedshift {
         }
 
         @CustomType.Setter
-        public Builder dbname(@Nullable String dbname) {
-
+        public Builder dbname(String dbname) {
+            if (dbname == null) {
+              throw new MissingRequiredPropertyException("GlobalConnectionRedshift", "dbname");
+            }
             this.dbname = dbname;
             return this;
         }

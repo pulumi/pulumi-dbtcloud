@@ -918,23 +918,30 @@ class GlobalConnectionPostgres(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 dbname: str,
                  hostname: str,
-                 dbname: Optional[str] = None,
                  port: Optional[int] = None,
                  ssh_tunnel: Optional['outputs.GlobalConnectionPostgresSshTunnel'] = None):
         """
-        :param str hostname: The hostname of the database.
         :param str dbname: The database name for this connection.
+        :param str hostname: The hostname of the database.
         :param int port: The port to connect to for this connection. Default=5432
         :param 'GlobalConnectionPostgresSshTunnelArgs' ssh_tunnel: PostgreSQL SSH Tunnel configuration
         """
+        pulumi.set(__self__, "dbname", dbname)
         pulumi.set(__self__, "hostname", hostname)
-        if dbname is not None:
-            pulumi.set(__self__, "dbname", dbname)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if ssh_tunnel is not None:
             pulumi.set(__self__, "ssh_tunnel", ssh_tunnel)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> str:
+        """
+        The database name for this connection.
+        """
+        return pulumi.get(self, "dbname")
 
     @property
     @pulumi.getter
@@ -943,14 +950,6 @@ class GlobalConnectionPostgres(dict):
         The hostname of the database.
         """
         return pulumi.get(self, "hostname")
-
-    @property
-    @pulumi.getter
-    def dbname(self) -> Optional[str]:
-        """
-        The database name for this connection.
-        """
-        return pulumi.get(self, "dbname")
 
     @property
     @pulumi.getter
@@ -1070,23 +1069,30 @@ class GlobalConnectionRedshift(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 dbname: str,
                  hostname: str,
-                 dbname: Optional[str] = None,
                  port: Optional[int] = None,
                  ssh_tunnel: Optional['outputs.GlobalConnectionRedshiftSshTunnel'] = None):
         """
-        :param str hostname: The hostname of the data warehouse.
         :param str dbname: The database name for this connection.
+        :param str hostname: The hostname of the data warehouse.
         :param int port: The port to connect to for this connection. Default=5432
         :param 'GlobalConnectionRedshiftSshTunnelArgs' ssh_tunnel: Redshift SSH Tunnel configuration
         """
+        pulumi.set(__self__, "dbname", dbname)
         pulumi.set(__self__, "hostname", hostname)
-        if dbname is not None:
-            pulumi.set(__self__, "dbname", dbname)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if ssh_tunnel is not None:
             pulumi.set(__self__, "ssh_tunnel", ssh_tunnel)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> str:
+        """
+        The database name for this connection.
+        """
+        return pulumi.get(self, "dbname")
 
     @property
     @pulumi.getter
@@ -1095,14 +1101,6 @@ class GlobalConnectionRedshift(dict):
         The hostname of the data warehouse.
         """
         return pulumi.get(self, "hostname")
-
-    @property
-    @pulumi.getter
-    def dbname(self) -> Optional[str]:
-        """
-        The database name for this connection.
-        """
-        return pulumi.get(self, "dbname")
 
     @property
     @pulumi.getter
