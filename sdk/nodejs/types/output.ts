@@ -1011,7 +1011,7 @@ export interface GlobalConnectionPostgres {
     /**
      * The database name for this connection.
      */
-    dbname?: string;
+    dbname: string;
     /**
      * The hostname of the database.
      */
@@ -1053,7 +1053,7 @@ export interface GlobalConnectionRedshift {
     /**
      * The database name for this connection.
      */
-    dbname?: string;
+    dbname: string;
     /**
      * The hostname of the data warehouse.
      */

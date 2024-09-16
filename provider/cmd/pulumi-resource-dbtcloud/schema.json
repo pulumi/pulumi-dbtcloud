@@ -445,11 +445,13 @@
             },
             "type": "object",
             "required": [
+                "dbname",
                 "hostname"
             ],
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "dbname",
                         "hostname",
                         "port"
                     ]
@@ -518,11 +520,13 @@
             },
             "type": "object",
             "required": [
+                "dbname",
                 "hostname"
             ],
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "dbname",
                         "hostname",
                         "port"
                     ]

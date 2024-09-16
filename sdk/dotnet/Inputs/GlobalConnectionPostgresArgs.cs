@@ -15,8 +15,8 @@ namespace Pulumi.DbtCloud.Inputs
         /// <summary>
         /// The database name for this connection.
         /// </summary>
-        [Input("dbname")]
-        public Input<string>? Dbname { get; set; }
+        [Input("dbname", required: true)]
+        public Input<string> Dbname { get; set; } = null!;
 
         /// <summary>
         /// The hostname of the database.

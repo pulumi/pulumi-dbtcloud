@@ -1669,7 +1669,7 @@ func (o GlobalConnectionFabricPtrOutput) Server() pulumi.StringPtrOutput {
 
 type GlobalConnectionPostgres struct {
 	// The database name for this connection.
-	Dbname *string `pulumi:"dbname"`
+	Dbname string `pulumi:"dbname"`
 	// The hostname of the database.
 	Hostname string `pulumi:"hostname"`
 	// The port to connect to for this connection. Default=5432
@@ -1691,7 +1691,7 @@ type GlobalConnectionPostgresInput interface {
 
 type GlobalConnectionPostgresArgs struct {
 	// The database name for this connection.
-	Dbname pulumi.StringPtrInput `pulumi:"dbname"`
+	Dbname pulumi.StringInput `pulumi:"dbname"`
 	// The hostname of the database.
 	Hostname pulumi.StringInput `pulumi:"hostname"`
 	// The port to connect to for this connection. Default=5432
@@ -1778,8 +1778,8 @@ func (o GlobalConnectionPostgresOutput) ToGlobalConnectionPostgresPtrOutputWithC
 }
 
 // The database name for this connection.
-func (o GlobalConnectionPostgresOutput) Dbname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GlobalConnectionPostgres) *string { return v.Dbname }).(pulumi.StringPtrOutput)
+func (o GlobalConnectionPostgresOutput) Dbname() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionPostgres) string { return v.Dbname }).(pulumi.StringOutput)
 }
 
 // The hostname of the database.
@@ -1827,7 +1827,7 @@ func (o GlobalConnectionPostgresPtrOutput) Dbname() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return v.Dbname
+		return &v.Dbname
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2076,7 +2076,7 @@ func (o GlobalConnectionPostgresSshTunnelPtrOutput) Username() pulumi.StringPtrO
 
 type GlobalConnectionRedshift struct {
 	// The database name for this connection.
-	Dbname *string `pulumi:"dbname"`
+	Dbname string `pulumi:"dbname"`
 	// The hostname of the data warehouse.
 	Hostname string `pulumi:"hostname"`
 	// The port to connect to for this connection. Default=5432
@@ -2098,7 +2098,7 @@ type GlobalConnectionRedshiftInput interface {
 
 type GlobalConnectionRedshiftArgs struct {
 	// The database name for this connection.
-	Dbname pulumi.StringPtrInput `pulumi:"dbname"`
+	Dbname pulumi.StringInput `pulumi:"dbname"`
 	// The hostname of the data warehouse.
 	Hostname pulumi.StringInput `pulumi:"hostname"`
 	// The port to connect to for this connection. Default=5432
@@ -2185,8 +2185,8 @@ func (o GlobalConnectionRedshiftOutput) ToGlobalConnectionRedshiftPtrOutputWithC
 }
 
 // The database name for this connection.
-func (o GlobalConnectionRedshiftOutput) Dbname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GlobalConnectionRedshift) *string { return v.Dbname }).(pulumi.StringPtrOutput)
+func (o GlobalConnectionRedshiftOutput) Dbname() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionRedshift) string { return v.Dbname }).(pulumi.StringOutput)
 }
 
 // The hostname of the data warehouse.
@@ -2234,7 +2234,7 @@ func (o GlobalConnectionRedshiftPtrOutput) Dbname() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return v.Dbname
+		return &v.Dbname
 	}).(pulumi.StringPtrOutput)
 }
 

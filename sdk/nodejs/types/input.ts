@@ -294,7 +294,7 @@ export interface GlobalConnectionPostgres {
     /**
      * The database name for this connection.
      */
-    dbname?: pulumi.Input<string>;
+    dbname: pulumi.Input<string>;
     /**
      * The hostname of the database.
      */
@@ -336,7 +336,7 @@ export interface GlobalConnectionRedshift {
     /**
      * The database name for this connection.
      */
-    dbname?: pulumi.Input<string>;
+    dbname: pulumi.Input<string>;
     /**
      * The hostname of the data warehouse.
      */

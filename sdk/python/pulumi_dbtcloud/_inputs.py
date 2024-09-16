@@ -944,23 +944,34 @@ class GlobalConnectionFabricArgs:
 @pulumi.input_type
 class GlobalConnectionPostgresArgs:
     def __init__(__self__, *,
+                 dbname: pulumi.Input[str],
                  hostname: pulumi.Input[str],
-                 dbname: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  ssh_tunnel: Optional[pulumi.Input['GlobalConnectionPostgresSshTunnelArgs']] = None):
         """
-        :param pulumi.Input[str] hostname: The hostname of the database.
         :param pulumi.Input[str] dbname: The database name for this connection.
+        :param pulumi.Input[str] hostname: The hostname of the database.
         :param pulumi.Input[int] port: The port to connect to for this connection. Default=5432
         :param pulumi.Input['GlobalConnectionPostgresSshTunnelArgs'] ssh_tunnel: PostgreSQL SSH Tunnel configuration
         """
+        pulumi.set(__self__, "dbname", dbname)
         pulumi.set(__self__, "hostname", hostname)
-        if dbname is not None:
-            pulumi.set(__self__, "dbname", dbname)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if ssh_tunnel is not None:
             pulumi.set(__self__, "ssh_tunnel", ssh_tunnel)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> pulumi.Input[str]:
+        """
+        The database name for this connection.
+        """
+        return pulumi.get(self, "dbname")
+
+    @dbname.setter
+    def dbname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "dbname", value)
 
     @property
     @pulumi.getter
@@ -973,18 +984,6 @@ class GlobalConnectionPostgresArgs:
     @hostname.setter
     def hostname(self, value: pulumi.Input[str]):
         pulumi.set(self, "hostname", value)
-
-    @property
-    @pulumi.getter
-    def dbname(self) -> Optional[pulumi.Input[str]]:
-        """
-        The database name for this connection.
-        """
-        return pulumi.get(self, "dbname")
-
-    @dbname.setter
-    def dbname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "dbname", value)
 
     @property
     @pulumi.getter
@@ -1098,23 +1097,34 @@ class GlobalConnectionPostgresSshTunnelArgs:
 @pulumi.input_type
 class GlobalConnectionRedshiftArgs:
     def __init__(__self__, *,
+                 dbname: pulumi.Input[str],
                  hostname: pulumi.Input[str],
-                 dbname: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  ssh_tunnel: Optional[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs']] = None):
         """
-        :param pulumi.Input[str] hostname: The hostname of the data warehouse.
         :param pulumi.Input[str] dbname: The database name for this connection.
+        :param pulumi.Input[str] hostname: The hostname of the data warehouse.
         :param pulumi.Input[int] port: The port to connect to for this connection. Default=5432
         :param pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs'] ssh_tunnel: Redshift SSH Tunnel configuration
         """
+        pulumi.set(__self__, "dbname", dbname)
         pulumi.set(__self__, "hostname", hostname)
-        if dbname is not None:
-            pulumi.set(__self__, "dbname", dbname)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if ssh_tunnel is not None:
             pulumi.set(__self__, "ssh_tunnel", ssh_tunnel)
+
+    @property
+    @pulumi.getter
+    def dbname(self) -> pulumi.Input[str]:
+        """
+        The database name for this connection.
+        """
+        return pulumi.get(self, "dbname")
+
+    @dbname.setter
+    def dbname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "dbname", value)
 
     @property
     @pulumi.getter
@@ -1127,18 +1137,6 @@ class GlobalConnectionRedshiftArgs:
     @hostname.setter
     def hostname(self, value: pulumi.Input[str]):
         pulumi.set(self, "hostname", value)
-
-    @property
-    @pulumi.getter
-    def dbname(self) -> Optional[pulumi.Input[str]]:
-        """
-        The database name for this connection.
-        """
-        return pulumi.get(self, "dbname")
-
-    @dbname.setter
-    def dbname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "dbname", value)
 
     @property
     @pulumi.getter
