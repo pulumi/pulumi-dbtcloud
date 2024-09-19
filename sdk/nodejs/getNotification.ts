@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getNotification(args: GetNotificationArgs, opts?: pulumi.InvokeOptions): Promise<GetNotificationResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getNotification:getNotification", {
         "notificationId": args.notificationId,
@@ -104,7 +103,10 @@ export interface GetNotificationResult {
  * ```
  */
 export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNotificationResult> {
-    return pulumi.output(args).apply((a: any) => getNotification(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getNotification:getNotification", {
+        "notificationId": args.notificationId,
+    }, opts);
 }
 
 /**

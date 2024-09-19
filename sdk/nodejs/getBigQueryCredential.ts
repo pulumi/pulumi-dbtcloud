@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getBigQueryCredential(args: GetBigQueryCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetBigQueryCredentialResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", {
         "credentialId": args.credentialId,
@@ -57,7 +56,11 @@ export interface GetBigQueryCredentialResult {
     readonly projectId: number;
 }
 export function getBigQueryCredentialOutput(args: GetBigQueryCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBigQueryCredentialResult> {
-    return pulumi.output(args).apply((a: any) => getBigQueryCredential(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", {
+        "credentialId": args.credentialId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getRepository(args: GetRepositoryArgs, opts?: pulumi.InvokeOptions): Promise<GetRepositoryResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getRepository:getRepository", {
         "fetchDeployKey": args.fetchDeployKey,
@@ -86,7 +85,12 @@ export interface GetRepositoryResult {
     readonly repositoryId: number;
 }
 export function getRepositoryOutput(args: GetRepositoryOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRepositoryResult> {
-    return pulumi.output(args).apply((a: any) => getRepository(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getRepository:getRepository", {
+        "fetchDeployKey": args.fetchDeployKey,
+        "projectId": args.projectId,
+        "repositoryId": args.repositoryId,
+    }, opts);
 }
 
 /**

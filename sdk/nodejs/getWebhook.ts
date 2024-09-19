@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getWebhook(args: GetWebhookArgs, opts?: pulumi.InvokeOptions): Promise<GetWebhookResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getWebhook:getWebhook", {
         "webhookId": args.webhookId,
@@ -68,7 +67,10 @@ export interface GetWebhookResult {
     readonly webhookId: string;
 }
 export function getWebhookOutput(args: GetWebhookOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebhookResult> {
-    return pulumi.output(args).apply((a: any) => getWebhook(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getWebhook:getWebhook", {
+        "webhookId": args.webhookId,
+    }, opts);
 }
 
 /**

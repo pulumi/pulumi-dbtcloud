@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getEnvironments(args?: GetEnvironmentsArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvironmentsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getEnvironments:getEnvironments", {
         "projectId": args.projectId,
@@ -49,7 +48,11 @@ export interface GetEnvironmentsResult {
  * Retrieve data for multiple environments
  */
 export function getEnvironmentsOutput(args?: GetEnvironmentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentsResult> {
-    return pulumi.output(args).apply((a: any) => getEnvironments(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getEnvironments:getEnvironments", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

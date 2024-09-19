@@ -17,7 +17,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getUserGroups(args: GetUserGroupsArgs, opts?: pulumi.InvokeOptions): Promise<GetUserGroupsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getUserGroups:getUserGroups", {
         "userId": args.userId,
@@ -64,7 +63,10 @@ export interface GetUserGroupsResult {
  * ```
  */
 export function getUserGroupsOutput(args: GetUserGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserGroupsResult> {
-    return pulumi.output(args).apply((a: any) => getUserGroups(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getUserGroups:getUserGroups", {
+        "userId": args.userId,
+    }, opts);
 }
 
 /**
