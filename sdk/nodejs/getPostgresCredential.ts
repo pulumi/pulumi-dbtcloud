@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getPostgresCredential(args: GetPostgresCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetPostgresCredentialResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getPostgresCredential:getPostgresCredential", {
         "credentialId": args.credentialId,
@@ -61,7 +60,11 @@ export interface GetPostgresCredentialResult {
     readonly username: string;
 }
 export function getPostgresCredentialOutput(args: GetPostgresCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPostgresCredentialResult> {
-    return pulumi.output(args).apply((a: any) => getPostgresCredential(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getPostgresCredential:getPostgresCredential", {
+        "credentialId": args.credentialId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getExtendedAttributes(args: GetExtendedAttributesArgs, opts?: pulumi.InvokeOptions): Promise<GetExtendedAttributesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", {
         "extendedAttributesId": args.extendedAttributesId,
@@ -79,7 +78,11 @@ export interface GetExtendedAttributesResult {
  * ```
  */
 export function getExtendedAttributesOutput(args: GetExtendedAttributesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetExtendedAttributesResult> {
-    return pulumi.output(args).apply((a: any) => getExtendedAttributes(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", {
+        "extendedAttributesId": args.extendedAttributesId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

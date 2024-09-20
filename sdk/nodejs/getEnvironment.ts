@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
  * Retrieve data for a single environment
  */
 export function getEnvironment(args: GetEnvironmentArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvironmentResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getEnvironment:getEnvironment", {
         "environmentId": args.environmentId,
@@ -87,7 +86,11 @@ export interface GetEnvironmentResult {
  * Retrieve data for a single environment
  */
 export function getEnvironmentOutput(args: GetEnvironmentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentResult> {
-    return pulumi.output(args).apply((a: any) => getEnvironment(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getEnvironment:getEnvironment", {
+        "environmentId": args.environmentId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

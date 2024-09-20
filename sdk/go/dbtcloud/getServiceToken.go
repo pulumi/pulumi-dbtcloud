@@ -45,14 +45,20 @@ type LookupServiceTokenResult struct {
 
 func LookupServiceTokenOutput(ctx *pulumi.Context, args LookupServiceTokenOutputArgs, opts ...pulumi.InvokeOption) LookupServiceTokenResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupServiceTokenResult, error) {
+		ApplyT(func(v interface{}) (LookupServiceTokenResultOutput, error) {
 			args := v.(LookupServiceTokenArgs)
-			r, err := LookupServiceToken(ctx, &args, opts...)
-			var s LookupServiceTokenResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupServiceTokenResult
+			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getServiceToken:getServiceToken", args, &rv, "", opts...)
+			if err != nil {
+				return LookupServiceTokenResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupServiceTokenResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupServiceTokenResultOutput), nil
+			}
+			return output, nil
 		}).(LookupServiceTokenResultOutput)
 }
 

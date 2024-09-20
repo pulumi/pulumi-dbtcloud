@@ -71,14 +71,20 @@ type LookupExtendedAttributesResult struct {
 
 func LookupExtendedAttributesOutput(ctx *pulumi.Context, args LookupExtendedAttributesOutputArgs, opts ...pulumi.InvokeOption) LookupExtendedAttributesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupExtendedAttributesResult, error) {
+		ApplyT(func(v interface{}) (LookupExtendedAttributesResultOutput, error) {
 			args := v.(LookupExtendedAttributesArgs)
-			r, err := LookupExtendedAttributes(ctx, &args, opts...)
-			var s LookupExtendedAttributesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupExtendedAttributesResult
+			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", args, &rv, "", opts...)
+			if err != nil {
+				return LookupExtendedAttributesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupExtendedAttributesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupExtendedAttributesResultOutput), nil
+			}
+			return output, nil
 		}).(LookupExtendedAttributesResultOutput)
 }
 

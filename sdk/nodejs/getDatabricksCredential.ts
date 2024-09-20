@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getDatabricksCredential(args: GetDatabricksCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabricksCredentialResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", {
         "credentialId": args.credentialId,
@@ -65,7 +64,11 @@ export interface GetDatabricksCredentialResult {
     readonly targetName: string;
 }
 export function getDatabricksCredentialOutput(args: GetDatabricksCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabricksCredentialResult> {
-    return pulumi.output(args).apply((a: any) => getDatabricksCredential(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", {
+        "credentialId": args.credentialId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

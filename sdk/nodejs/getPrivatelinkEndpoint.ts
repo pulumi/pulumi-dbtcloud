@@ -26,7 +26,6 @@ import * as utilities from "./utilities";
  */
 export function getPrivatelinkEndpoint(args?: GetPrivatelinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", {
         "name": args.name,
@@ -100,7 +99,12 @@ export interface GetPrivatelinkEndpointResult {
  * ```
  */
 export function getPrivatelinkEndpointOutput(args?: GetPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointResult> {
-    return pulumi.output(args).apply((a: any) => getPrivatelinkEndpoint(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", {
+        "name": args.name,
+        "privateLinkEndpointUrl": args.privateLinkEndpointUrl,
+    }, opts);
 }
 
 /**

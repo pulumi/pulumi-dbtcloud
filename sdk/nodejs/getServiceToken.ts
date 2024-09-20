@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getServiceToken(args: GetServiceTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceTokenResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getServiceToken:getServiceToken", {
         "serviceTokenId": args.serviceTokenId,
@@ -55,7 +54,11 @@ export interface GetServiceTokenResult {
     readonly uid: string;
 }
 export function getServiceTokenOutput(args: GetServiceTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceTokenResult> {
-    return pulumi.output(args).apply((a: any) => getServiceToken(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getServiceToken:getServiceToken", {
+        "serviceTokenId": args.serviceTokenId,
+        "serviceTokenPermissions": args.serviceTokenPermissions,
+    }, opts);
 }
 
 /**

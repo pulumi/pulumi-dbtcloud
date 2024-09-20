@@ -26,7 +26,6 @@ import * as utilities from "./utilities";
  */
 export function getJobs(args?: GetJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetJobsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getJobs:getJobs", {
         "environmentId": args.environmentId,
@@ -88,7 +87,12 @@ export interface GetJobsResult {
  * ```
  */
 export function getJobsOutput(args?: GetJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobsResult> {
-    return pulumi.output(args).apply((a: any) => getJobs(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getJobs:getJobs", {
+        "environmentId": args.environmentId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

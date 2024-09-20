@@ -51,14 +51,20 @@ type LookupDatabricksCredentialResult struct {
 
 func LookupDatabricksCredentialOutput(ctx *pulumi.Context, args LookupDatabricksCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupDatabricksCredentialResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDatabricksCredentialResult, error) {
+		ApplyT(func(v interface{}) (LookupDatabricksCredentialResultOutput, error) {
 			args := v.(LookupDatabricksCredentialArgs)
-			r, err := LookupDatabricksCredential(ctx, &args, opts...)
-			var s LookupDatabricksCredentialResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupDatabricksCredentialResult
+			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", args, &rv, "", opts...)
+			if err != nil {
+				return LookupDatabricksCredentialResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupDatabricksCredentialResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupDatabricksCredentialResultOutput), nil
+			}
+			return output, nil
 		}).(LookupDatabricksCredentialResultOutput)
 }
 
