@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getProjects(args?: GetProjectsArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getProjects:getProjects", {
         "nameContains": args.nameContains,
@@ -49,7 +48,11 @@ export interface GetProjectsResult {
  * Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
  */
 export function getProjectsOutput(args?: GetProjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectsResult> {
-    return pulumi.output(args).apply((a: any) => getProjects(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getProjects:getProjects", {
+        "nameContains": args.nameContains,
+    }, opts);
 }
 
 /**

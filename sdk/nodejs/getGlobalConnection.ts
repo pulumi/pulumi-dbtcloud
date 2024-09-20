@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getGlobalConnection(args: GetGlobalConnectionArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalConnectionResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getGlobalConnection:getGlobalConnection", {
         "id": args.id,
@@ -112,7 +111,10 @@ export interface GetGlobalConnectionResult {
  * ```
  */
 export function getGlobalConnectionOutput(args: GetGlobalConnectionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalConnectionResult> {
-    return pulumi.output(args).apply((a: any) => getGlobalConnection(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getGlobalConnection:getGlobalConnection", {
+        "id": args.id,
+    }, opts);
 }
 
 /**

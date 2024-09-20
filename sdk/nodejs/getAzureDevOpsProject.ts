@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAzureDevOpsProject(args: GetAzureDevOpsProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetAzureDevOpsProjectResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject", {
         "name": args.name,
@@ -74,7 +73,10 @@ export interface GetAzureDevOpsProjectResult {
  * ```
  */
 export function getAzureDevOpsProjectOutput(args: GetAzureDevOpsProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureDevOpsProjectResult> {
-    return pulumi.output(args).apply((a: any) => getAzureDevOpsProject(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject", {
+        "name": args.name,
+    }, opts);
 }
 
 /**

@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAzureDevOpsRepository(args: GetAzureDevOpsRepositoryArgs, opts?: pulumi.InvokeOptions): Promise<GetAzureDevOpsRepositoryResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository", {
         "azureDevOpsProjectId": args.azureDevOpsProjectId,
@@ -97,7 +96,11 @@ export interface GetAzureDevOpsRepositoryResult {
  * ```
  */
 export function getAzureDevOpsRepositoryOutput(args: GetAzureDevOpsRepositoryOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureDevOpsRepositoryResult> {
-    return pulumi.output(args).apply((a: any) => getAzureDevOpsRepository(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository", {
+        "azureDevOpsProjectId": args.azureDevOpsProjectId,
+        "name": args.name,
+    }, opts);
 }
 
 /**

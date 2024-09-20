@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getEnvironmentVariable(args: GetEnvironmentVariableArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvironmentVariableResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", {
         "name": args.name,
@@ -49,7 +48,11 @@ export interface GetEnvironmentVariableResult {
     readonly projectId: number;
 }
 export function getEnvironmentVariableOutput(args: GetEnvironmentVariableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentVariableResult> {
-    return pulumi.output(args).apply((a: any) => getEnvironmentVariable(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", {
+        "name": args.name,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

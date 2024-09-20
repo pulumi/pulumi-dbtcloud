@@ -49,14 +49,20 @@ type LookupPostgresCredentialResult struct {
 
 func LookupPostgresCredentialOutput(ctx *pulumi.Context, args LookupPostgresCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupPostgresCredentialResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupPostgresCredentialResult, error) {
+		ApplyT(func(v interface{}) (LookupPostgresCredentialResultOutput, error) {
 			args := v.(LookupPostgresCredentialArgs)
-			r, err := LookupPostgresCredential(ctx, &args, opts...)
-			var s LookupPostgresCredentialResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupPostgresCredentialResult
+			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getPostgresCredential:getPostgresCredential", args, &rv, "", opts...)
+			if err != nil {
+				return LookupPostgresCredentialResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupPostgresCredentialResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupPostgresCredentialResultOutput), nil
+			}
+			return output, nil
 		}).(LookupPostgresCredentialResultOutput)
 }
 

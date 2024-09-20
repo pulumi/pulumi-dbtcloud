@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getBigQueryConnection(args: GetBigQueryConnectionArgs, opts?: pulumi.InvokeOptions): Promise<GetBigQueryConnectionResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", {
         "connectionId": args.connectionId,
@@ -133,7 +132,11 @@ export interface GetBigQueryConnectionResult {
     readonly type: string;
 }
 export function getBigQueryConnectionOutput(args: GetBigQueryConnectionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBigQueryConnectionResult> {
-    return pulumi.output(args).apply((a: any) => getBigQueryConnection(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", {
+        "connectionId": args.connectionId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

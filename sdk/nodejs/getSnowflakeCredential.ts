@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getSnowflakeCredential(args: GetSnowflakeCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetSnowflakeCredentialResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", {
         "credentialId": args.credentialId,
@@ -65,7 +64,11 @@ export interface GetSnowflakeCredentialResult {
     readonly user: string;
 }
 export function getSnowflakeCredentialOutput(args: GetSnowflakeCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSnowflakeCredentialResult> {
-    return pulumi.output(args).apply((a: any) => getSnowflakeCredential(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", {
+        "credentialId": args.credentialId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

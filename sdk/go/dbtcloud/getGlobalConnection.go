@@ -88,14 +88,20 @@ type LookupGlobalConnectionResult struct {
 
 func LookupGlobalConnectionOutput(ctx *pulumi.Context, args LookupGlobalConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupGlobalConnectionResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupGlobalConnectionResult, error) {
+		ApplyT(func(v interface{}) (LookupGlobalConnectionResultOutput, error) {
 			args := v.(LookupGlobalConnectionArgs)
-			r, err := LookupGlobalConnection(ctx, &args, opts...)
-			var s LookupGlobalConnectionResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupGlobalConnectionResult
+			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getGlobalConnection:getGlobalConnection", args, &rv, "", opts...)
+			if err != nil {
+				return LookupGlobalConnectionResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupGlobalConnectionResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupGlobalConnectionResultOutput), nil
+			}
+			return output, nil
 		}).(LookupGlobalConnectionResultOutput)
 }
 
