@@ -274,9 +274,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@pulumi/dbtcloud",
 
-			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0",
-			},
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0",
 				"@types/mime": "^2.0.0",
@@ -286,10 +283,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 		Python: &tfbridge.PythonInfo{
 			RespectSchemaVersion: true,
 			PackageName:          "pulumi_dbtcloud",
-
-			Requires: map[string]string{
-				"pulumi": ">=3.0.0,<4.0.0",
-			},
 
 			PyProject: struct{ Enabled bool }{true},
 		},
