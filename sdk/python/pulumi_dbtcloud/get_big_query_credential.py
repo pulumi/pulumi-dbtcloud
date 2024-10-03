@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -126,9 +131,6 @@ def get_big_query_credential(credential_id: Optional[int] = None,
         is_active=pulumi.get(__ret__, 'is_active'),
         num_threads=pulumi.get(__ret__, 'num_threads'),
         project_id=pulumi.get(__ret__, 'project_id'))
-
-
-@_utilities.lift_output_func(get_big_query_credential)
 def get_big_query_credential_output(credential_id: Optional[pulumi.Input[int]] = None,
                                     project_id: Optional[pulumi.Input[int]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBigQueryCredentialResult]:
@@ -138,4 +140,15 @@ def get_big_query_credential_output(credential_id: Optional[pulumi.Input[int]] =
     :param int credential_id: Credential ID
     :param int project_id: Project ID
     """
-    ...
+    __args__ = dict()
+    __args__['credentialId'] = credential_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getBigQueryCredential:getBigQueryCredential', __args__, opts=opts, typ=GetBigQueryCredentialResult)
+    return __ret__.apply(lambda __response__: GetBigQueryCredentialResult(
+        credential_id=pulumi.get(__response__, 'credential_id'),
+        dataset=pulumi.get(__response__, 'dataset'),
+        id=pulumi.get(__response__, 'id'),
+        is_active=pulumi.get(__response__, 'is_active'),
+        num_threads=pulumi.get(__response__, 'num_threads'),
+        project_id=pulumi.get(__response__, 'project_id')))

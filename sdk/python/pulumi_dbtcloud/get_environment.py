@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -205,9 +210,6 @@ def get_environment(environment_id: Optional[int] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         type=pulumi.get(__ret__, 'type'),
         use_custom_branch=pulumi.get(__ret__, 'use_custom_branch'))
-
-
-@_utilities.lift_output_func(get_environment)
 def get_environment_output(environment_id: Optional[pulumi.Input[int]] = None,
                            project_id: Optional[pulumi.Input[int]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentResult]:
@@ -218,4 +220,21 @@ def get_environment_output(environment_id: Optional[pulumi.Input[int]] = None,
     :param int environment_id: The ID of the environment
     :param int project_id: The project ID to which the environment belong
     """
-    ...
+    __args__ = dict()
+    __args__['environmentId'] = environment_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getEnvironment:getEnvironment', __args__, opts=opts, typ=GetEnvironmentResult)
+    return __ret__.apply(lambda __response__: GetEnvironmentResult(
+        connection_id=pulumi.get(__response__, 'connection_id'),
+        credentials_id=pulumi.get(__response__, 'credentials_id'),
+        custom_branch=pulumi.get(__response__, 'custom_branch'),
+        dbt_version=pulumi.get(__response__, 'dbt_version'),
+        deployment_type=pulumi.get(__response__, 'deployment_type'),
+        environment_id=pulumi.get(__response__, 'environment_id'),
+        extended_attributes_id=pulumi.get(__response__, 'extended_attributes_id'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        type=pulumi.get(__response__, 'type'),
+        use_custom_branch=pulumi.get(__response__, 'use_custom_branch')))

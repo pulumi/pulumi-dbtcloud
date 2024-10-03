@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -86,9 +91,6 @@ def get_projects(name_contains: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name_contains=pulumi.get(__ret__, 'name_contains'),
         projects=pulumi.get(__ret__, 'projects'))
-
-
-@_utilities.lift_output_func(get_projects)
 def get_projects_output(name_contains: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectsResult]:
     """
@@ -97,4 +99,11 @@ def get_projects_output(name_contains: Optional[pulumi.Input[Optional[str]]] = N
 
     :param str name_contains: Used to filter projects by name, Optional
     """
-    ...
+    __args__ = dict()
+    __args__['nameContains'] = name_contains
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult)
+    return __ret__.apply(lambda __response__: GetProjectsResult(
+        id=pulumi.get(__response__, 'id'),
+        name_contains=pulumi.get(__response__, 'name_contains'),
+        projects=pulumi.get(__response__, 'projects')))

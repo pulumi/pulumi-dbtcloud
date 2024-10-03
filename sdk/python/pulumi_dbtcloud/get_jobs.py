@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -113,9 +118,6 @@ def get_jobs(environment_id: Optional[int] = None,
         id=pulumi.get(__ret__, 'id'),
         jobs=pulumi.get(__ret__, 'jobs'),
         project_id=pulumi.get(__ret__, 'project_id'))
-
-
-@_utilities.lift_output_func(get_jobs)
 def get_jobs_output(environment_id: Optional[pulumi.Input[Optional[int]]] = None,
                     project_id: Optional[pulumi.Input[Optional[int]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobsResult]:
@@ -137,4 +139,13 @@ def get_jobs_output(environment_id: Optional[pulumi.Input[Optional[int]]] = None
     :param int environment_id: The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
     :param int project_id: The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
     """
-    ...
+    __args__ = dict()
+    __args__['environmentId'] = environment_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getJobs:getJobs', __args__, opts=opts, typ=GetJobsResult)
+    return __ret__.apply(lambda __response__: GetJobsResult(
+        environment_id=pulumi.get(__response__, 'environment_id'),
+        id=pulumi.get(__response__, 'id'),
+        jobs=pulumi.get(__response__, 'jobs'),
+        project_id=pulumi.get(__response__, 'project_id')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -175,9 +180,6 @@ def get_webhook(webhook_id: Optional[str] = None,
         job_ids=pulumi.get(__ret__, 'job_ids'),
         name=pulumi.get(__ret__, 'name'),
         webhook_id=pulumi.get(__ret__, 'webhook_id'))
-
-
-@_utilities.lift_output_func(get_webhook)
 def get_webhook_output(webhook_id: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebhookResult]:
     """
@@ -185,4 +187,18 @@ def get_webhook_output(webhook_id: Optional[pulumi.Input[str]] = None,
 
     :param str webhook_id: Webhooks ID
     """
-    ...
+    __args__ = dict()
+    __args__['webhookId'] = webhook_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getWebhook:getWebhook', __args__, opts=opts, typ=GetWebhookResult)
+    return __ret__.apply(lambda __response__: GetWebhookResult(
+        account_identifier=pulumi.get(__response__, 'account_identifier'),
+        active=pulumi.get(__response__, 'active'),
+        client_url=pulumi.get(__response__, 'client_url'),
+        description=pulumi.get(__response__, 'description'),
+        event_types=pulumi.get(__response__, 'event_types'),
+        http_status_code=pulumi.get(__response__, 'http_status_code'),
+        id=pulumi.get(__response__, 'id'),
+        job_ids=pulumi.get(__response__, 'job_ids'),
+        name=pulumi.get(__response__, 'name'),
+        webhook_id=pulumi.get(__response__, 'webhook_id')))

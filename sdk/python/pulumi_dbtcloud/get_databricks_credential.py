@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -152,9 +157,6 @@ def get_databricks_credential(credential_id: Optional[int] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         schema=pulumi.get(__ret__, 'schema'),
         target_name=pulumi.get(__ret__, 'target_name'))
-
-
-@_utilities.lift_output_func(get_databricks_credential)
 def get_databricks_credential_output(credential_id: Optional[pulumi.Input[int]] = None,
                                      project_id: Optional[pulumi.Input[int]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabricksCredentialResult]:
@@ -164,4 +166,17 @@ def get_databricks_credential_output(credential_id: Optional[pulumi.Input[int]] 
     :param int credential_id: Credential ID
     :param int project_id: Project ID
     """
-    ...
+    __args__ = dict()
+    __args__['credentialId'] = credential_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getDatabricksCredential:getDatabricksCredential', __args__, opts=opts, typ=GetDatabricksCredentialResult)
+    return __ret__.apply(lambda __response__: GetDatabricksCredentialResult(
+        adapter_id=pulumi.get(__response__, 'adapter_id'),
+        catalog=pulumi.get(__response__, 'catalog'),
+        credential_id=pulumi.get(__response__, 'credential_id'),
+        id=pulumi.get(__response__, 'id'),
+        num_threads=pulumi.get(__response__, 'num_threads'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        schema=pulumi.get(__response__, 'schema'),
+        target_name=pulumi.get(__response__, 'target_name')))
