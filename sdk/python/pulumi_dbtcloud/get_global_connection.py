@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -256,9 +261,6 @@ def get_global_connection(id: Optional[int] = None,
         snowflake=pulumi.get(__ret__, 'snowflake'),
         starburst=pulumi.get(__ret__, 'starburst'),
         synapse=pulumi.get(__ret__, 'synapse'))
-
-
-@_utilities.lift_output_func(get_global_connection)
 def get_global_connection_output(id: Optional[pulumi.Input[int]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalConnectionResult]:
     """
@@ -274,4 +276,24 @@ def get_global_connection_output(id: Optional[pulumi.Input[int]] = None,
 
     :param int id: Connection Identifier
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGlobalConnection:getGlobalConnection', __args__, opts=opts, typ=GetGlobalConnectionResult)
+    return __ret__.apply(lambda __response__: GetGlobalConnectionResult(
+        adapter_version=pulumi.get(__response__, 'adapter_version'),
+        apache_spark=pulumi.get(__response__, 'apache_spark'),
+        athena=pulumi.get(__response__, 'athena'),
+        bigquery=pulumi.get(__response__, 'bigquery'),
+        databricks=pulumi.get(__response__, 'databricks'),
+        fabric=pulumi.get(__response__, 'fabric'),
+        id=pulumi.get(__response__, 'id'),
+        is_ssh_tunnel_enabled=pulumi.get(__response__, 'is_ssh_tunnel_enabled'),
+        name=pulumi.get(__response__, 'name'),
+        oauth_configuration_id=pulumi.get(__response__, 'oauth_configuration_id'),
+        postgres=pulumi.get(__response__, 'postgres'),
+        private_link_endpoint_id=pulumi.get(__response__, 'private_link_endpoint_id'),
+        redshift=pulumi.get(__response__, 'redshift'),
+        snowflake=pulumi.get(__response__, 'snowflake'),
+        starburst=pulumi.get(__response__, 'starburst'),
+        synapse=pulumi.get(__response__, 'synapse')))

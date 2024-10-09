@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -125,9 +130,6 @@ def get_group(group_id: Optional[int] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         sso_mapping_groups=pulumi.get(__ret__, 'sso_mapping_groups'))
-
-
-@_utilities.lift_output_func(get_group)
 def get_group_output(group_id: Optional[pulumi.Input[int]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
     """
@@ -136,4 +138,14 @@ def get_group_output(group_id: Optional[pulumi.Input[int]] = None,
 
     :param int group_id: The ID of the group
     """
-    ...
+    __args__ = dict()
+    __args__['groupId'] = group_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
+    return __ret__.apply(lambda __response__: GetGroupResult(
+        assign_by_default=pulumi.get(__response__, 'assign_by_default'),
+        group_id=pulumi.get(__response__, 'group_id'),
+        group_permissions=pulumi.get(__response__, 'group_permissions'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        sso_mapping_groups=pulumi.get(__response__, 'sso_mapping_groups')))

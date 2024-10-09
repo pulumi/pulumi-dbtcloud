@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -211,9 +216,6 @@ def get_notification(notification_id: Optional[int] = None,
         slack_channel_name=pulumi.get(__ret__, 'slack_channel_name'),
         state=pulumi.get(__ret__, 'state'),
         user_id=pulumi.get(__ret__, 'user_id'))
-
-
-@_utilities.lift_output_func(get_notification)
 def get_notification_output(notification_id: Optional[pulumi.Input[int]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNotificationResult]:
     """
@@ -231,4 +233,20 @@ def get_notification_output(notification_id: Optional[pulumi.Input[int]] = None,
 
     :param int notification_id: The ID of the notification
     """
-    ...
+    __args__ = dict()
+    __args__['notificationId'] = notification_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult)
+    return __ret__.apply(lambda __response__: GetNotificationResult(
+        external_email=pulumi.get(__response__, 'external_email'),
+        id=pulumi.get(__response__, 'id'),
+        notification_id=pulumi.get(__response__, 'notification_id'),
+        notification_type=pulumi.get(__response__, 'notification_type'),
+        on_cancels=pulumi.get(__response__, 'on_cancels'),
+        on_failures=pulumi.get(__response__, 'on_failures'),
+        on_successes=pulumi.get(__response__, 'on_successes'),
+        on_warnings=pulumi.get(__response__, 'on_warnings'),
+        slack_channel_id=pulumi.get(__response__, 'slack_channel_id'),
+        slack_channel_name=pulumi.get(__response__, 'slack_channel_name'),
+        state=pulumi.get(__response__, 'state'),
+        user_id=pulumi.get(__response__, 'user_id')))

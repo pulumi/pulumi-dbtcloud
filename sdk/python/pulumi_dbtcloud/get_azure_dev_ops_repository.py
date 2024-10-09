@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -153,9 +158,6 @@ def get_azure_dev_ops_repository(azure_dev_ops_project_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         remote_url=pulumi.get(__ret__, 'remote_url'),
         web_url=pulumi.get(__ret__, 'web_url'))
-
-
-@_utilities.lift_output_func(get_azure_dev_ops_repository)
 def get_azure_dev_ops_repository_output(azure_dev_ops_project_id: Optional[pulumi.Input[str]] = None,
                                         name: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzureDevOpsRepositoryResult]:
@@ -179,4 +181,16 @@ def get_azure_dev_ops_repository_output(azure_dev_ops_project_id: Optional[pulum
     :param str azure_dev_ops_project_id: The internal Azure Dev Ops ID of the ADO Project. Can be retrieved using the data source dbtcloud*azure*dev*ops*project and the project name
     :param str name: The name of the ADO repository
     """
-    ...
+    __args__ = dict()
+    __args__['azureDevOpsProjectId'] = azure_dev_ops_project_id
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository', __args__, opts=opts, typ=GetAzureDevOpsRepositoryResult)
+    return __ret__.apply(lambda __response__: GetAzureDevOpsRepositoryResult(
+        azure_dev_ops_project_id=pulumi.get(__response__, 'azure_dev_ops_project_id'),
+        default_branch=pulumi.get(__response__, 'default_branch'),
+        details_url=pulumi.get(__response__, 'details_url'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        remote_url=pulumi.get(__response__, 'remote_url'),
+        web_url=pulumi.get(__response__, 'web_url')))

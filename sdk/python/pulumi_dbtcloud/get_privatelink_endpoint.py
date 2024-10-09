@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -139,9 +144,6 @@ def get_privatelink_endpoint(name: Optional[str] = None,
         private_link_endpoint_url=pulumi.get(__ret__, 'private_link_endpoint_url'),
         state=pulumi.get(__ret__, 'state'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_privatelink_endpoint)
 def get_privatelink_endpoint_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                     private_link_endpoint_url: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointResult]:
@@ -163,4 +165,15 @@ def get_privatelink_endpoint_output(name: Optional[pulumi.Input[Optional[str]]] 
     :param str name: Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
     :param str private_link_endpoint_url: The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['privateLinkEndpointUrl'] = private_link_endpoint_url
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint', __args__, opts=opts, typ=GetPrivatelinkEndpointResult)
+    return __ret__.apply(lambda __response__: GetPrivatelinkEndpointResult(
+        cidr_range=pulumi.get(__response__, 'cidr_range'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        private_link_endpoint_url=pulumi.get(__response__, 'private_link_endpoint_url'),
+        state=pulumi.get(__response__, 'state'),
+        type=pulumi.get(__response__, 'type')))

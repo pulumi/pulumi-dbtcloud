@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -195,9 +200,6 @@ def get_repository(fetch_deploy_key: Optional[bool] = None,
         remote_url=pulumi.get(__ret__, 'remote_url'),
         repository_credentials_id=pulumi.get(__ret__, 'repository_credentials_id'),
         repository_id=pulumi.get(__ret__, 'repository_id'))
-
-
-@_utilities.lift_output_func(get_repository)
 def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[bool]]] = None,
                           project_id: Optional[pulumi.Input[int]] = None,
                           repository_id: Optional[pulumi.Input[int]] = None,
@@ -209,4 +211,21 @@ def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[bool]
     :param int project_id: Project ID to create the repository in
     :param int repository_id: ID for the repository
     """
-    ...
+    __args__ = dict()
+    __args__['fetchDeployKey'] = fetch_deploy_key
+    __args__['projectId'] = project_id
+    __args__['repositoryId'] = repository_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getRepository:getRepository', __args__, opts=opts, typ=GetRepositoryResult)
+    return __ret__.apply(lambda __response__: GetRepositoryResult(
+        deploy_key=pulumi.get(__response__, 'deploy_key'),
+        fetch_deploy_key=pulumi.get(__response__, 'fetch_deploy_key'),
+        git_clone_strategy=pulumi.get(__response__, 'git_clone_strategy'),
+        github_installation_id=pulumi.get(__response__, 'github_installation_id'),
+        gitlab_project_id=pulumi.get(__response__, 'gitlab_project_id'),
+        id=pulumi.get(__response__, 'id'),
+        is_active=pulumi.get(__response__, 'is_active'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        remote_url=pulumi.get(__response__, 'remote_url'),
+        repository_credentials_id=pulumi.get(__response__, 'repository_credentials_id'),
+        repository_id=pulumi.get(__response__, 'repository_id')))
