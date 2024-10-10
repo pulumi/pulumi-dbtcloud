@@ -4,30 +4,95 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'GlobalConnectionApacheSparkArgs',
+    'GlobalConnectionApacheSparkArgsDict',
     'GlobalConnectionAthenaArgs',
+    'GlobalConnectionAthenaArgsDict',
     'GlobalConnectionBigqueryArgs',
+    'GlobalConnectionBigqueryArgsDict',
     'GlobalConnectionDatabricksArgs',
+    'GlobalConnectionDatabricksArgsDict',
     'GlobalConnectionFabricArgs',
+    'GlobalConnectionFabricArgsDict',
     'GlobalConnectionPostgresArgs',
+    'GlobalConnectionPostgresArgsDict',
     'GlobalConnectionPostgresSshTunnelArgs',
+    'GlobalConnectionPostgresSshTunnelArgsDict',
     'GlobalConnectionRedshiftArgs',
+    'GlobalConnectionRedshiftArgsDict',
     'GlobalConnectionRedshiftSshTunnelArgs',
+    'GlobalConnectionRedshiftSshTunnelArgsDict',
     'GlobalConnectionSnowflakeArgs',
+    'GlobalConnectionSnowflakeArgsDict',
     'GlobalConnectionStarburstArgs',
+    'GlobalConnectionStarburstArgsDict',
     'GlobalConnectionSynapseArgs',
+    'GlobalConnectionSynapseArgsDict',
     'GroupGroupPermissionArgs',
+    'GroupGroupPermissionArgsDict',
     'GroupPartialPermissionsGroupPermissionArgs',
+    'GroupPartialPermissionsGroupPermissionArgsDict',
     'JobJobCompletionTriggerConditionArgs',
+    'JobJobCompletionTriggerConditionArgsDict',
     'ServiceTokenServiceTokenPermissionArgs',
+    'ServiceTokenServiceTokenPermissionArgsDict',
     'GetServiceTokenServiceTokenPermissionArgs',
+    'GetServiceTokenServiceTokenPermissionArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class GlobalConnectionApacheSparkArgsDict(TypedDict):
+        cluster: pulumi.Input[str]
+        """
+        Spark cluster for the connection
+        """
+        host: pulumi.Input[str]
+        """
+        Hostname of the connection
+        """
+        method: pulumi.Input[str]
+        """
+        Authentication method for the connection (http or thrift).
+        """
+        auth: NotRequired[pulumi.Input[str]]
+        """
+        Auth
+        """
+        connect_retries: NotRequired[pulumi.Input[int]]
+        """
+        Connection retries. Default=0
+        """
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        Connection time out in seconds. Default=10
+        """
+        organization: NotRequired[pulumi.Input[str]]
+        """
+        Organization ID
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        Port for the connection. Default=443
+        """
+        user: NotRequired[pulumi.Input[str]]
+        """
+        User
+        """
+elif False:
+    GlobalConnectionApacheSparkArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GlobalConnectionApacheSparkArgs:
@@ -176,6 +241,59 @@ class GlobalConnectionApacheSparkArgs:
     def user(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user", value)
 
+
+if not MYPY:
+    class GlobalConnectionAthenaArgsDict(TypedDict):
+        database: pulumi.Input[str]
+        """
+        Specify the database (data catalog) to build models into (lowercase only).
+        """
+        region_name: pulumi.Input[str]
+        """
+        AWS region of your Athena instance.
+        """
+        s3_staging_dir: pulumi.Input[str]
+        """
+        S3 location to store Athena query results and metadata.
+        """
+        num_boto3_retries: NotRequired[pulumi.Input[int]]
+        """
+        Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+        """
+        num_iceberg_retries: NotRequired[pulumi.Input[int]]
+        """
+        Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+        """
+        num_retries: NotRequired[pulumi.Input[int]]
+        """
+        Number of times to retry a failing query.
+        """
+        poll_interval: NotRequired[pulumi.Input[int]]
+        """
+        Interval in seconds to use for polling the status of query results in Athena.
+        """
+        s3_data_dir: NotRequired[pulumi.Input[str]]
+        """
+        Prefix for storing tables, if different from the connection's S3 staging directory.
+        """
+        s3_data_naming: NotRequired[pulumi.Input[str]]
+        """
+        How to generate table paths in the S3 data directory.
+        """
+        s3_tmp_table_dir: NotRequired[pulumi.Input[str]]
+        """
+        Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        """
+        spark_work_group: NotRequired[pulumi.Input[str]]
+        """
+        Identifier of Athena Spark workgroup for running Python models.
+        """
+        work_group: NotRequired[pulumi.Input[str]]
+        """
+        Identifier of Athena workgroup.
+        """
+elif False:
+    GlobalConnectionAthenaArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GlobalConnectionAthenaArgs:
@@ -372,6 +490,107 @@ class GlobalConnectionAthenaArgs:
     def work_group(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "work_group", value)
 
+
+if not MYPY:
+    class GlobalConnectionBigqueryArgsDict(TypedDict):
+        auth_provider_x509_cert_url: pulumi.Input[str]
+        """
+        Auth Provider X509 Cert URL for the Service Account
+        """
+        auth_uri: pulumi.Input[str]
+        """
+        Auth URI for the Service Account
+        """
+        client_email: pulumi.Input[str]
+        """
+        Service Account email
+        """
+        client_id: pulumi.Input[str]
+        """
+        Client ID of the Service Account
+        """
+        client_x509_cert_url: pulumi.Input[str]
+        """
+        Client X509 Cert URL for the Service Account
+        """
+        gcp_project_id: pulumi.Input[str]
+        """
+        The GCP project ID to use for the connection
+        """
+        private_key: pulumi.Input[str]
+        """
+        Private Key for the Service Account
+        """
+        private_key_id: pulumi.Input[str]
+        """
+        Private Key ID for the Service Account
+        """
+        token_uri: pulumi.Input[str]
+        """
+        Token URI for the Service Account
+        """
+        application_id: NotRequired[pulumi.Input[str]]
+        """
+        OAuth Client ID
+        """
+        application_secret: NotRequired[pulumi.Input[str]]
+        """
+        OAuth Client Secret
+        """
+        dataproc_cluster_name: NotRequired[pulumi.Input[str]]
+        """
+        Dataproc cluster name for PySpark workloads
+        """
+        dataproc_region: NotRequired[pulumi.Input[str]]
+        """
+        Google Cloud region for PySpark workloads on Dataproc
+        """
+        execution_project: NotRequired[pulumi.Input[str]]
+        """
+        Project to bill for query execution
+        """
+        gcs_bucket: NotRequired[pulumi.Input[str]]
+        """
+        URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+        """
+        impersonate_service_account: NotRequired[pulumi.Input[str]]
+        """
+        Service Account to impersonate when running queries
+        """
+        job_creation_timeout_seconds: NotRequired[pulumi.Input[int]]
+        """
+        Maximum timeout for the job creation step
+        """
+        job_retry_deadline_seconds: NotRequired[pulumi.Input[int]]
+        """
+        Total number of seconds to wait while retrying the same query
+        """
+        location: NotRequired[pulumi.Input[str]]
+        """
+        Location to create new Datasets in
+        """
+        maximum_bytes_billed: NotRequired[pulumi.Input[int]]
+        """
+        Max number of bytes that can be billed for a given BigQuery query
+        """
+        priority: NotRequired[pulumi.Input[str]]
+        """
+        The priority with which to execute BigQuery queries (batch or interactive)
+        """
+        retries: NotRequired[pulumi.Input[int]]
+        """
+        Number of retries for queries
+        """
+        scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        OAuth scopes for the BigQuery connection
+        """
+        timeout_seconds: NotRequired[pulumi.Input[int]]
+        """
+        Timeout in seconds for queries
+        """
+elif False:
+    GlobalConnectionBigqueryArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GlobalConnectionBigqueryArgs:
@@ -755,6 +974,31 @@ class GlobalConnectionBigqueryArgs:
         pulumi.set(self, "timeout_seconds", value)
 
 
+if not MYPY:
+    class GlobalConnectionDatabricksArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        The hostname of the Databricks cluster or SQL warehouse.
+        """
+        http_path: pulumi.Input[str]
+        """
+        The HTTP path of the Databricks cluster or SQL warehouse.
+        """
+        catalog: NotRequired[pulumi.Input[str]]
+        """
+        Catalog name if Unity Catalog is enabled in your Databricks workspace.
+        """
+        client_id: NotRequired[pulumi.Input[str]]
+        """
+        Required to enable Databricks OAuth authentication for IDE developers.
+        """
+        client_secret: NotRequired[pulumi.Input[str]]
+        """
+        Required to enable Databricks OAuth authentication for IDE developers.
+        """
+elif False:
+    GlobalConnectionDatabricksArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GlobalConnectionDatabricksArgs:
     def __init__(__self__, *,
@@ -839,6 +1083,35 @@ class GlobalConnectionDatabricksArgs:
     def client_secret(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_secret", value)
 
+
+if not MYPY:
+    class GlobalConnectionFabricArgsDict(TypedDict):
+        database: pulumi.Input[str]
+        """
+        The database to connect to for this connection.
+        """
+        server: pulumi.Input[str]
+        """
+        The server hostname.
+        """
+        login_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port to connect to for this connection. Default=1433
+        """
+        query_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        retries: NotRequired[pulumi.Input[int]]
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+elif False:
+    GlobalConnectionFabricArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GlobalConnectionFabricArgs:
@@ -941,6 +1214,27 @@ class GlobalConnectionFabricArgs:
         pulumi.set(self, "retries", value)
 
 
+if not MYPY:
+    class GlobalConnectionPostgresArgsDict(TypedDict):
+        dbname: pulumi.Input[str]
+        """
+        The database name for this connection.
+        """
+        hostname: pulumi.Input[str]
+        """
+        The hostname of the database.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port to connect to for this connection. Default=5432
+        """
+        ssh_tunnel: NotRequired[pulumi.Input['GlobalConnectionPostgresSshTunnelArgsDict']]
+        """
+        PostgreSQL SSH Tunnel configuration
+        """
+elif False:
+    GlobalConnectionPostgresArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GlobalConnectionPostgresArgs:
     def __init__(__self__, *,
@@ -1009,6 +1303,31 @@ class GlobalConnectionPostgresArgs:
     def ssh_tunnel(self, value: Optional[pulumi.Input['GlobalConnectionPostgresSshTunnelArgs']]):
         pulumi.set(self, "ssh_tunnel", value)
 
+
+if not MYPY:
+    class GlobalConnectionPostgresSshTunnelArgsDict(TypedDict):
+        hostname: pulumi.Input[str]
+        """
+        The hostname for the SSH tunnel.
+        """
+        port: pulumi.Input[int]
+        """
+        The HTTP port for the SSH tunnel.
+        """
+        username: pulumi.Input[str]
+        """
+        The username to use for the SSH tunnel.
+        """
+        id: NotRequired[pulumi.Input[int]]
+        """
+        The ID of the SSH tunnel connection.
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        The SSH public key generated to allow connecting via SSH tunnel.
+        """
+elif False:
+    GlobalConnectionPostgresSshTunnelArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GlobalConnectionPostgresSshTunnelArgs:
@@ -1094,6 +1413,27 @@ class GlobalConnectionPostgresSshTunnelArgs:
         pulumi.set(self, "public_key", value)
 
 
+if not MYPY:
+    class GlobalConnectionRedshiftArgsDict(TypedDict):
+        dbname: pulumi.Input[str]
+        """
+        The database name for this connection.
+        """
+        hostname: pulumi.Input[str]
+        """
+        The hostname of the data warehouse.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port to connect to for this connection. Default=5432
+        """
+        ssh_tunnel: NotRequired[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgsDict']]
+        """
+        Redshift SSH Tunnel configuration
+        """
+elif False:
+    GlobalConnectionRedshiftArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GlobalConnectionRedshiftArgs:
     def __init__(__self__, *,
@@ -1162,6 +1502,31 @@ class GlobalConnectionRedshiftArgs:
     def ssh_tunnel(self, value: Optional[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs']]):
         pulumi.set(self, "ssh_tunnel", value)
 
+
+if not MYPY:
+    class GlobalConnectionRedshiftSshTunnelArgsDict(TypedDict):
+        hostname: pulumi.Input[str]
+        """
+        The hostname for the SSH tunnel.
+        """
+        port: pulumi.Input[int]
+        """
+        The HTTP port for the SSH tunnel.
+        """
+        username: pulumi.Input[str]
+        """
+        The username to use for the SSH tunnel.
+        """
+        id: NotRequired[pulumi.Input[int]]
+        """
+        The ID of the SSH tunnel connection.
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        The SSH public key generated to allow connecting via SSH tunnel.
+        """
+elif False:
+    GlobalConnectionRedshiftSshTunnelArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GlobalConnectionRedshiftSshTunnelArgs:
@@ -1246,6 +1611,43 @@ class GlobalConnectionRedshiftSshTunnelArgs:
     def public_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "public_key", value)
 
+
+if not MYPY:
+    class GlobalConnectionSnowflakeArgsDict(TypedDict):
+        account: pulumi.Input[str]
+        """
+        The Snowflake account name
+        """
+        database: pulumi.Input[str]
+        """
+        The default database for the connection
+        """
+        warehouse: pulumi.Input[str]
+        """
+        The default Snowflake Warehouse to use for the connection
+        """
+        allow_sso: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+        """
+        client_session_keep_alive: NotRequired[pulumi.Input[bool]]
+        """
+        If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+        """
+        oauth_client_id: NotRequired[pulumi.Input[str]]
+        """
+        OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+        """
+        oauth_client_secret: NotRequired[pulumi.Input[str]]
+        """
+        OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+        """
+        role: NotRequired[pulumi.Input[str]]
+        """
+        The Snowflake role to use when running queries on the connection
+        """
+elif False:
+    GlobalConnectionSnowflakeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GlobalConnectionSnowflakeArgs:
@@ -1379,6 +1781,23 @@ class GlobalConnectionSnowflakeArgs:
         pulumi.set(self, "role", value)
 
 
+if not MYPY:
+    class GlobalConnectionStarburstArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        The hostname of the account to connect to.
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        The authentication method. Only LDAP for now.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port to connect to for this connection. Default=443
+        """
+elif False:
+    GlobalConnectionStarburstArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GlobalConnectionStarburstArgs:
     def __init__(__self__, *,
@@ -1432,6 +1851,35 @@ class GlobalConnectionStarburstArgs:
     def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
 
+
+if not MYPY:
+    class GlobalConnectionSynapseArgsDict(TypedDict):
+        database: pulumi.Input[str]
+        """
+        The database to connect to for this connection.
+        """
+        host: pulumi.Input[str]
+        """
+        The server hostname.
+        """
+        login_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port to connect to for this connection. Default=1433
+        """
+        query_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        retries: NotRequired[pulumi.Input[int]]
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+elif False:
+    GlobalConnectionSynapseArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GlobalConnectionSynapseArgs:
@@ -1534,6 +1982,31 @@ class GlobalConnectionSynapseArgs:
         pulumi.set(self, "retries", value)
 
 
+if not MYPY:
+    class GroupGroupPermissionArgsDict(TypedDict):
+        all_projects: pulumi.Input[bool]
+        """
+        Whether access should be provided for all projects or not.
+        """
+        permission_set: pulumi.Input[str]
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        project_id: NotRequired[pulumi.Input[int]]
+        """
+        Project ID to apply this permission to for this group.
+        """
+        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+elif False:
+    GroupGroupPermissionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GroupGroupPermissionArgs:
     def __init__(__self__, *,
@@ -1610,6 +2083,31 @@ class GroupGroupPermissionArgs:
     def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "writable_environment_categories", value)
 
+
+if not MYPY:
+    class GroupPartialPermissionsGroupPermissionArgsDict(TypedDict):
+        all_projects: pulumi.Input[bool]
+        """
+        Whether access should be provided for all projects or not.
+        """
+        permission_set: pulumi.Input[str]
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        project_id: NotRequired[pulumi.Input[int]]
+        """
+        Project ID to apply this permission to for this group.
+        """
+        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+elif False:
+    GroupPartialPermissionsGroupPermissionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GroupPartialPermissionsGroupPermissionArgs:
@@ -1688,6 +2186,23 @@ class GroupPartialPermissionsGroupPermissionArgs:
         pulumi.set(self, "writable_environment_categories", value)
 
 
+if not MYPY:
+    class JobJobCompletionTriggerConditionArgsDict(TypedDict):
+        job_id: pulumi.Input[int]
+        """
+        The ID of the job that would trigger this job after completion.
+        """
+        project_id: pulumi.Input[int]
+        """
+        The ID of the project where the trigger job is running in.
+        """
+        statuses: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        List of statuses to trigger the job on. Possible values are `success`, `error` and `canceled`.
+        """
+elif False:
+    JobJobCompletionTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class JobJobCompletionTriggerConditionArgs:
     def __init__(__self__, *,
@@ -1739,6 +2254,31 @@ class JobJobCompletionTriggerConditionArgs:
     def statuses(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "statuses", value)
 
+
+if not MYPY:
+    class ServiceTokenServiceTokenPermissionArgsDict(TypedDict):
+        all_projects: pulumi.Input[bool]
+        """
+        Whether or not to apply this permission to all projects for this service token
+        """
+        permission_set: pulumi.Input[str]
+        """
+        Set of permissions to apply
+        """
+        project_id: NotRequired[pulumi.Input[int]]
+        """
+        Project ID to apply this permission to for this service token
+        """
+        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+elif False:
+    ServiceTokenServiceTokenPermissionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceTokenServiceTokenPermissionArgs:
@@ -1816,6 +2356,31 @@ class ServiceTokenServiceTokenPermissionArgs:
     def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "writable_environment_categories", value)
 
+
+if not MYPY:
+    class GetServiceTokenServiceTokenPermissionArgsDict(TypedDict):
+        all_projects: bool
+        """
+        Whether or not to apply this permission to all projects for this service token
+        """
+        permission_set: str
+        """
+        Set of permissions to apply
+        """
+        project_id: int
+        """
+        Project ID to apply this permission to for this service token
+        """
+        writable_environment_categories: Sequence[str]
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+elif False:
+    GetServiceTokenServiceTokenPermissionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetServiceTokenServiceTokenPermissionArgs:

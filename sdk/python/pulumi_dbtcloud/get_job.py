@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -218,9 +223,6 @@ def get_job(job_id: Optional[int] = None,
         timeout_seconds=pulumi.get(__ret__, 'timeout_seconds'),
         triggers=pulumi.get(__ret__, 'triggers'),
         triggers_on_draft_pr=pulumi.get(__ret__, 'triggers_on_draft_pr'))
-
-
-@_utilities.lift_output_func(get_job)
 def get_job_output(job_id: Optional[pulumi.Input[int]] = None,
                    project_id: Optional[pulumi.Input[int]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobResult]:
@@ -230,4 +232,22 @@ def get_job_output(job_id: Optional[pulumi.Input[int]] = None,
     :param int job_id: ID of the job
     :param int project_id: ID of the project the job is in
     """
-    ...
+    __args__ = dict()
+    __args__['jobId'] = job_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getJob:getJob', __args__, opts=opts, typ=GetJobResult)
+    return __ret__.apply(lambda __response__: GetJobResult(
+        deferring_environment_id=pulumi.get(__response__, 'deferring_environment_id'),
+        deferring_job_id=pulumi.get(__response__, 'deferring_job_id'),
+        description=pulumi.get(__response__, 'description'),
+        environment_id=pulumi.get(__response__, 'environment_id'),
+        id=pulumi.get(__response__, 'id'),
+        job_completion_trigger_conditions=pulumi.get(__response__, 'job_completion_trigger_conditions'),
+        job_id=pulumi.get(__response__, 'job_id'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        self_deferring=pulumi.get(__response__, 'self_deferring'),
+        timeout_seconds=pulumi.get(__response__, 'timeout_seconds'),
+        triggers=pulumi.get(__response__, 'triggers'),
+        triggers_on_draft_pr=pulumi.get(__response__, 'triggers_on_draft_pr')))
