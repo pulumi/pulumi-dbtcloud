@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -86,9 +91,6 @@ def get_environments(project_id: Optional[int] = None,
         environments=pulumi.get(__ret__, 'environments'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-
-
-@_utilities.lift_output_func(get_environments)
 def get_environments_output(project_id: Optional[pulumi.Input[Optional[int]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentsResult]:
     """
@@ -97,4 +99,11 @@ def get_environments_output(project_id: Optional[pulumi.Input[Optional[int]]] = 
 
     :param int project_id: The project ID to filter the environments for [Optional]
     """
-    ...
+    __args__ = dict()
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getEnvironments:getEnvironments', __args__, opts=opts, typ=GetEnvironmentsResult)
+    return __ret__.apply(lambda __response__: GetEnvironmentsResult(
+        environments=pulumi.get(__response__, 'environments'),
+        id=pulumi.get(__response__, 'id'),
+        project_id=pulumi.get(__response__, 'project_id')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -373,9 +378,6 @@ def get_big_query_connection(connection_id: Optional[int] = None,
         timeout_seconds=pulumi.get(__ret__, 'timeout_seconds'),
         token_uri=pulumi.get(__ret__, 'token_uri'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_big_query_connection)
 def get_big_query_connection_output(connection_id: Optional[pulumi.Input[int]] = None,
                                     project_id: Optional[pulumi.Input[int]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBigQueryConnectionResult]:
@@ -385,4 +387,34 @@ def get_big_query_connection_output(connection_id: Optional[pulumi.Input[int]] =
     :param int connection_id: Connection Identifier
     :param int project_id: Project ID to create the connection in
     """
-    ...
+    __args__ = dict()
+    __args__['connectionId'] = connection_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getBigQueryConnection:getBigQueryConnection', __args__, opts=opts, typ=GetBigQueryConnectionResult)
+    return __ret__.apply(lambda __response__: GetBigQueryConnectionResult(
+        auth_provider_x509_cert_url=pulumi.get(__response__, 'auth_provider_x509_cert_url'),
+        auth_uri=pulumi.get(__response__, 'auth_uri'),
+        client_email=pulumi.get(__response__, 'client_email'),
+        client_id=pulumi.get(__response__, 'client_id'),
+        client_x509_cert_url=pulumi.get(__response__, 'client_x509_cert_url'),
+        connection_id=pulumi.get(__response__, 'connection_id'),
+        dataproc_cluster_name=pulumi.get(__response__, 'dataproc_cluster_name'),
+        dataproc_region=pulumi.get(__response__, 'dataproc_region'),
+        execution_project=pulumi.get(__response__, 'execution_project'),
+        gcp_project_id=pulumi.get(__response__, 'gcp_project_id'),
+        gcs_bucket=pulumi.get(__response__, 'gcs_bucket'),
+        id=pulumi.get(__response__, 'id'),
+        is_active=pulumi.get(__response__, 'is_active'),
+        is_configured_for_oauth=pulumi.get(__response__, 'is_configured_for_oauth'),
+        location=pulumi.get(__response__, 'location'),
+        maximum_bytes_billed=pulumi.get(__response__, 'maximum_bytes_billed'),
+        name=pulumi.get(__response__, 'name'),
+        priority=pulumi.get(__response__, 'priority'),
+        private_key=pulumi.get(__response__, 'private_key'),
+        private_key_id=pulumi.get(__response__, 'private_key_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        retries=pulumi.get(__response__, 'retries'),
+        timeout_seconds=pulumi.get(__response__, 'timeout_seconds'),
+        token_uri=pulumi.get(__response__, 'token_uri'),
+        type=pulumi.get(__response__, 'type')))

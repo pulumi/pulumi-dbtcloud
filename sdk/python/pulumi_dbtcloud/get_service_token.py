@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -115,9 +120,6 @@ def get_service_token(service_token_id: Optional[int] = None,
         service_token_id=pulumi.get(__ret__, 'service_token_id'),
         service_token_permissions=pulumi.get(__ret__, 'service_token_permissions'),
         uid=pulumi.get(__ret__, 'uid'))
-
-
-@_utilities.lift_output_func(get_service_token)
 def get_service_token_output(service_token_id: Optional[pulumi.Input[int]] = None,
                              service_token_permissions: Optional[pulumi.Input[Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceTokenResult]:
@@ -127,4 +129,14 @@ def get_service_token_output(service_token_id: Optional[pulumi.Input[int]] = Non
     :param int service_token_id: The ID of the service token
     :param Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']] service_token_permissions: Permissions set for the service token
     """
-    ...
+    __args__ = dict()
+    __args__['serviceTokenId'] = service_token_id
+    __args__['serviceTokenPermissions'] = service_token_permissions
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getServiceToken:getServiceToken', __args__, opts=opts, typ=GetServiceTokenResult)
+    return __ret__.apply(lambda __response__: GetServiceTokenResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        service_token_id=pulumi.get(__response__, 'service_token_id'),
+        service_token_permissions=pulumi.get(__response__, 'service_token_permissions'),
+        uid=pulumi.get(__response__, 'uid')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -77,9 +82,6 @@ def get_global_connections(opts: Optional[pulumi.InvokeOptions] = None) -> Await
     return AwaitableGetGlobalConnectionsResult(
         connections=pulumi.get(__ret__, 'connections'),
         id=pulumi.get(__ret__, 'id'))
-
-
-@_utilities.lift_output_func(get_global_connections)
 def get_global_connections_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalConnectionsResult]:
     """
     All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
@@ -93,4 +95,9 @@ def get_global_connections_output(opts: Optional[pulumi.InvokeOptions] = None) -
     my_connections = dbtcloud.get_global_connections()
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGlobalConnections:getGlobalConnections', __args__, opts=opts, typ=GetGlobalConnectionsResult)
+    return __ret__.apply(lambda __response__: GetGlobalConnectionsResult(
+        connections=pulumi.get(__response__, 'connections'),
+        id=pulumi.get(__response__, 'id')))

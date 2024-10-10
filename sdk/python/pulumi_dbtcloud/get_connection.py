@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -217,9 +222,6 @@ def get_connection(connection_id: Optional[int] = None,
         role=pulumi.get(__ret__, 'role'),
         type=pulumi.get(__ret__, 'type'),
         warehouse=pulumi.get(__ret__, 'warehouse'))
-
-
-@_utilities.lift_output_func(get_connection)
 def get_connection_output(connection_id: Optional[pulumi.Input[int]] = None,
                           project_id: Optional[pulumi.Input[int]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConnectionResult]:
@@ -229,4 +231,22 @@ def get_connection_output(connection_id: Optional[pulumi.Input[int]] = None,
     :param int connection_id: ID for the connection
     :param int project_id: Project ID to create the connection in
     """
-    ...
+    __args__ = dict()
+    __args__['connectionId'] = connection_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getConnection:getConnection', __args__, opts=opts, typ=GetConnectionResult)
+    return __ret__.apply(lambda __response__: GetConnectionResult(
+        account=pulumi.get(__response__, 'account'),
+        allow_keep_alive=pulumi.get(__response__, 'allow_keep_alive'),
+        allow_sso=pulumi.get(__response__, 'allow_sso'),
+        connection_id=pulumi.get(__response__, 'connection_id'),
+        database=pulumi.get(__response__, 'database'),
+        id=pulumi.get(__response__, 'id'),
+        is_active=pulumi.get(__response__, 'is_active'),
+        name=pulumi.get(__response__, 'name'),
+        private_link_endpoint_id=pulumi.get(__response__, 'private_link_endpoint_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        role=pulumi.get(__response__, 'role'),
+        type=pulumi.get(__response__, 'type'),
+        warehouse=pulumi.get(__response__, 'warehouse')))
