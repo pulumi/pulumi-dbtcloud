@@ -56,7 +56,7 @@ namespace Pulumi.DbtCloud
     ///         Name = "Dev",
     ///         ProjectId = dbtProject.Id,
     ///         Type = "development",
-    ///         ConnectionId = myOtherGlobalConnection,
+    ///         ConnectionId = myOtherGlobalConnection.Id,
     ///     });
     /// 
     /// });
@@ -113,11 +113,10 @@ namespace Pulumi.DbtCloud
 
         /// <summary>
         /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-        /// default if no version is provided
+        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         /// </summary>
         [Output("dbtVersion")]
-        public Output<string> DbtVersion { get; private set; } = null!;
+        public Output<string?> DbtVersion { get; private set; } = null!;
 
         /// <summary>
         /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
@@ -233,11 +232,10 @@ namespace Pulumi.DbtCloud
 
         /// <summary>
         /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-        /// default if no version is provided
+        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         /// </summary>
-        [Input("dbtVersion", required: true)]
-        public Input<string> DbtVersion { get; set; } = null!;
+        [Input("dbtVersion")]
+        public Input<string>? DbtVersion { get; set; }
 
         /// <summary>
         /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
@@ -308,8 +306,7 @@ namespace Pulumi.DbtCloud
 
         /// <summary>
         /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-        /// default if no version is provided
+        /// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }

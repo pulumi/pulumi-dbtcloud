@@ -19,12 +19,12 @@ __all__ = ['EnvironmentArgs', 'Environment']
 @pulumi.input_type
 class EnvironmentArgs:
     def __init__(__self__, *,
-                 dbt_version: pulumi.Input[str],
                  project_id: pulumi.Input[int],
                  type: pulumi.Input[str],
                  connection_id: Optional[pulumi.Input[int]] = None,
                  credential_id: Optional[pulumi.Input[int]] = None,
                  custom_branch: Optional[pulumi.Input[str]] = None,
+                 dbt_version: Optional[pulumi.Input[str]] = None,
                  deployment_type: Optional[pulumi.Input[str]] = None,
                  extended_attributes_id: Optional[pulumi.Input[int]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
@@ -32,14 +32,13 @@ class EnvironmentArgs:
                  use_custom_branch: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Environment resource.
-        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-               `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-               default if no version is provided
         :param pulumi.Input[int] project_id: Project ID to create the environment in
         :param pulumi.Input[str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required
                for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
+        :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+               `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
                'staging' or left empty for generic environments
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
@@ -47,7 +46,6 @@ class EnvironmentArgs:
         :param pulumi.Input[str] name: Environment name
         :param pulumi.Input[bool] use_custom_branch: Whether to use a custom git branch in this environment
         """
-        pulumi.set(__self__, "dbt_version", dbt_version)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "type", type)
         if connection_id is not None:
@@ -56,6 +54,8 @@ class EnvironmentArgs:
             pulumi.set(__self__, "credential_id", credential_id)
         if custom_branch is not None:
             pulumi.set(__self__, "custom_branch", custom_branch)
+        if dbt_version is not None:
+            pulumi.set(__self__, "dbt_version", dbt_version)
         if deployment_type is not None:
             pulumi.set(__self__, "deployment_type", deployment_type)
         if extended_attributes_id is not None:
@@ -66,20 +66,6 @@ class EnvironmentArgs:
             pulumi.set(__self__, "name", name)
         if use_custom_branch is not None:
             pulumi.set(__self__, "use_custom_branch", use_custom_branch)
-
-    @property
-    @pulumi.getter(name="dbtVersion")
-    def dbt_version(self) -> pulumi.Input[str]:
-        """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-        default if no version is provided
-        """
-        return pulumi.get(self, "dbt_version")
-
-    @dbt_version.setter
-    def dbt_version(self, value: pulumi.Input[str]):
-        pulumi.set(self, "dbt_version", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -138,6 +124,19 @@ class EnvironmentArgs:
     @custom_branch.setter
     def custom_branch(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "custom_branch", value)
+
+    @property
+    @pulumi.getter(name="dbtVersion")
+    def dbt_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
+        `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+        """
+        return pulumi.get(self, "dbt_version")
+
+    @dbt_version.setter
+    def dbt_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dbt_version", value)
 
     @property
     @pulumi.getter(name="deploymentType")
@@ -222,8 +221,7 @@ class _EnvironmentState:
                for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-               `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-               default if no version is provided
+               `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
                'staging' or left empty for generic environments
         :param pulumi.Input[int] environment_id: Environment ID within the project
@@ -298,8 +296,7 @@ class _EnvironmentState:
     def dbt_version(self) -> Optional[pulumi.Input[str]]:
         """
         Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-        default if no version is provided
+        `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -458,7 +455,7 @@ class Environment(pulumi.CustomResource):
             name="Dev",
             project_id=dbt_project["id"],
             type="development",
-            connection_id=my_other_global_connection)
+            connection_id=my_other_global_connection["id"])
         ```
 
         ## Import
@@ -497,8 +494,7 @@ class Environment(pulumi.CustomResource):
                for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-               `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-               default if no version is provided
+               `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
                'staging' or left empty for generic environments
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
@@ -550,7 +546,7 @@ class Environment(pulumi.CustomResource):
             name="Dev",
             project_id=dbt_project["id"],
             type="development",
-            connection_id=my_other_global_connection)
+            connection_id=my_other_global_connection["id"])
         ```
 
         ## Import
@@ -621,8 +617,6 @@ class Environment(pulumi.CustomResource):
             __props__.__dict__["connection_id"] = connection_id
             __props__.__dict__["credential_id"] = credential_id
             __props__.__dict__["custom_branch"] = custom_branch
-            if dbt_version is None and not opts.urn:
-                raise TypeError("Missing required property 'dbt_version'")
             __props__.__dict__["dbt_version"] = dbt_version
             __props__.__dict__["deployment_type"] = deployment_type
             __props__.__dict__["extended_attributes_id"] = extended_attributes_id
@@ -669,8 +663,7 @@ class Environment(pulumi.CustomResource):
                for deployment environments
         :param pulumi.Input[str] custom_branch: Which custom branch to use in this environment
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-               `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-               default if no version is provided
+               `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
                'staging' or left empty for generic environments
         :param pulumi.Input[int] environment_id: Environment ID within the project
@@ -723,11 +716,10 @@ class Environment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dbtVersion")
-    def dbt_version(self) -> pulumi.Output[str]:
+    def dbt_version(self) -> pulumi.Output[Optional[str]]:
         """
         Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-        default if no version is provided
+        `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 

@@ -63,7 +63,7 @@ import (
 //				Name:         pulumi.String("Dev"),
 //				ProjectId:    pulumi.Any(dbtProject.Id),
 //				Type:         pulumi.String("development"),
-//				ConnectionId: pulumi.Any(myOtherGlobalConnection),
+//				ConnectionId: pulumi.Any(myOtherGlobalConnection.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -113,9 +113,8 @@ type Environment struct {
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrOutput `pulumi:"customBranch"`
 	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-	// default if no version is provided
-	DbtVersion pulumi.StringOutput `pulumi:"dbtVersion"`
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+	DbtVersion pulumi.StringPtrOutput `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrOutput `pulumi:"deploymentType"`
@@ -142,9 +141,6 @@ func NewEnvironment(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DbtVersion == nil {
-		return nil, errors.New("invalid value for required argument 'DbtVersion'")
-	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
@@ -181,8 +177,7 @@ type environmentState struct {
 	// Which custom branch to use in this environment
 	CustomBranch *string `pulumi:"customBranch"`
 	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-	// default if no version is provided
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
@@ -211,8 +206,7 @@ type EnvironmentState struct {
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrInput
 	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-	// default if no version is provided
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
 	DbtVersion pulumi.StringPtrInput
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
@@ -245,9 +239,8 @@ type environmentArgs struct {
 	// Which custom branch to use in this environment
 	CustomBranch *string `pulumi:"customBranch"`
 	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-	// default if no version is provided
-	DbtVersion string `pulumi:"dbtVersion"`
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+	DbtVersion *string `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
@@ -274,9 +267,8 @@ type EnvironmentArgs struct {
 	// Which custom branch to use in this environment
 	CustomBranch pulumi.StringPtrInput
 	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-	// default if no version is provided
-	DbtVersion pulumi.StringInput
+	// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+	DbtVersion pulumi.StringPtrInput
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
@@ -397,10 +389,9 @@ func (o EnvironmentOutput) CustomBranch() pulumi.StringPtrOutput {
 }
 
 // Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-// default if no version is provided
-func (o EnvironmentOutput) DbtVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.DbtVersion }).(pulumi.StringOutput)
+// `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+func (o EnvironmentOutput) DbtVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.DbtVersion }).(pulumi.StringPtrOutput)
 }
 
 // The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',

@@ -69,6 +69,10 @@ export interface GetJobResult {
      */
     readonly projectId: number;
     /**
+     * Whether the CI job should compare data changes introduced by the code change in the PR.
+     */
+    readonly runCompareChanges: boolean;
+    /**
      * Whether this job defers on a previous run of itself (overrides value in deferring*job*id)
      */
     readonly selfDeferring: boolean;

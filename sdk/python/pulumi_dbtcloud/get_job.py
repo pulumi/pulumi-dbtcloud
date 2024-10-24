@@ -27,7 +27,7 @@ class GetJobResult:
     """
     A collection of values returned by getJob.
     """
-    def __init__(__self__, deferring_environment_id=None, deferring_job_id=None, description=None, environment_id=None, id=None, job_completion_trigger_conditions=None, job_id=None, name=None, project_id=None, self_deferring=None, timeout_seconds=None, triggers=None, triggers_on_draft_pr=None):
+    def __init__(__self__, deferring_environment_id=None, deferring_job_id=None, description=None, environment_id=None, id=None, job_completion_trigger_conditions=None, job_id=None, name=None, project_id=None, run_compare_changes=None, self_deferring=None, timeout_seconds=None, triggers=None, triggers_on_draft_pr=None):
         if deferring_environment_id and not isinstance(deferring_environment_id, int):
             raise TypeError("Expected argument 'deferring_environment_id' to be a int")
         pulumi.set(__self__, "deferring_environment_id", deferring_environment_id)
@@ -55,6 +55,9 @@ class GetJobResult:
         if project_id and not isinstance(project_id, int):
             raise TypeError("Expected argument 'project_id' to be a int")
         pulumi.set(__self__, "project_id", project_id)
+        if run_compare_changes and not isinstance(run_compare_changes, bool):
+            raise TypeError("Expected argument 'run_compare_changes' to be a bool")
+        pulumi.set(__self__, "run_compare_changes", run_compare_changes)
         if self_deferring and not isinstance(self_deferring, bool):
             raise TypeError("Expected argument 'self_deferring' to be a bool")
         pulumi.set(__self__, "self_deferring", self_deferring)
@@ -141,6 +144,14 @@ class GetJobResult:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="runCompareChanges")
+    def run_compare_changes(self) -> bool:
+        """
+        Whether the CI job should compare data changes introduced by the code change in the PR.
+        """
+        return pulumi.get(self, "run_compare_changes")
+
+    @property
     @pulumi.getter(name="selfDeferring")
     def self_deferring(self) -> bool:
         """
@@ -188,6 +199,7 @@ class AwaitableGetJobResult(GetJobResult):
             job_id=self.job_id,
             name=self.name,
             project_id=self.project_id,
+            run_compare_changes=self.run_compare_changes,
             self_deferring=self.self_deferring,
             timeout_seconds=self.timeout_seconds,
             triggers=self.triggers,
@@ -219,6 +231,7 @@ def get_job(job_id: Optional[int] = None,
         job_id=pulumi.get(__ret__, 'job_id'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        run_compare_changes=pulumi.get(__ret__, 'run_compare_changes'),
         self_deferring=pulumi.get(__ret__, 'self_deferring'),
         timeout_seconds=pulumi.get(__ret__, 'timeout_seconds'),
         triggers=pulumi.get(__ret__, 'triggers'),
@@ -247,6 +260,7 @@ def get_job_output(job_id: Optional[pulumi.Input[int]] = None,
         job_id=pulumi.get(__response__, 'job_id'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
+        run_compare_changes=pulumi.get(__response__, 'run_compare_changes'),
         self_deferring=pulumi.get(__response__, 'self_deferring'),
         timeout_seconds=pulumi.get(__response__, 'timeout_seconds'),
         triggers=pulumi.get(__response__, 'triggers'),

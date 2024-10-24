@@ -61,6 +61,11 @@ public final class GetJobResult {
      */
     private Integer projectId;
     /**
+     * @return Whether the CI job should compare data changes introduced by the code change in the PR.
+     * 
+     */
+    private Boolean runCompareChanges;
+    /**
      * @return Whether this job defers on a previous run of itself (overrides value in deferring*job*id)
      * 
      */
@@ -146,6 +151,13 @@ public final class GetJobResult {
         return this.projectId;
     }
     /**
+     * @return Whether the CI job should compare data changes introduced by the code change in the PR.
+     * 
+     */
+    public Boolean runCompareChanges() {
+        return this.runCompareChanges;
+    }
+    /**
      * @return Whether this job defers on a previous run of itself (overrides value in deferring*job*id)
      * 
      */
@@ -192,6 +204,7 @@ public final class GetJobResult {
         private Integer jobId;
         private String name;
         private Integer projectId;
+        private Boolean runCompareChanges;
         private Boolean selfDeferring;
         private Integer timeoutSeconds;
         private Map<String,Boolean> triggers;
@@ -208,6 +221,7 @@ public final class GetJobResult {
     	      this.jobId = defaults.jobId;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
+    	      this.runCompareChanges = defaults.runCompareChanges;
     	      this.selfDeferring = defaults.selfDeferring;
     	      this.timeoutSeconds = defaults.timeoutSeconds;
     	      this.triggers = defaults.triggers;
@@ -290,6 +304,14 @@ public final class GetJobResult {
             return this;
         }
         @CustomType.Setter
+        public Builder runCompareChanges(Boolean runCompareChanges) {
+            if (runCompareChanges == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "runCompareChanges");
+            }
+            this.runCompareChanges = runCompareChanges;
+            return this;
+        }
+        @CustomType.Setter
         public Builder selfDeferring(Boolean selfDeferring) {
             if (selfDeferring == null) {
               throw new MissingRequiredPropertyException("GetJobResult", "selfDeferring");
@@ -332,6 +354,7 @@ public final class GetJobResult {
             _resultValue.jobId = jobId;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
+            _resultValue.runCompareChanges = runCompareChanges;
             _resultValue.selfDeferring = selfDeferring;
             _resultValue.timeoutSeconds = timeoutSeconds;
             _resultValue.triggers = triggers;

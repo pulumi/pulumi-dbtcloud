@@ -208,6 +208,8 @@ type Job struct {
 	NumThreads pulumi.IntPtrOutput `pulumi:"numThreads"`
 	// Project ID to create the job in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
+	// Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+	RunCompareChanges pulumi.BoolPtrOutput `pulumi:"runCompareChanges"`
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources pulumi.BoolPtrOutput `pulumi:"runGenerateSources"`
 	// Custom cron expression for schedule
@@ -298,6 +300,8 @@ type jobState struct {
 	NumThreads *int `pulumi:"numThreads"`
 	// Project ID to create the job in
 	ProjectId *int `pulumi:"projectId"`
+	// Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+	RunCompareChanges *bool `pulumi:"runCompareChanges"`
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources *bool `pulumi:"runGenerateSources"`
 	// Custom cron expression for schedule
@@ -347,6 +351,8 @@ type JobState struct {
 	NumThreads pulumi.IntPtrInput
 	// Project ID to create the job in
 	ProjectId pulumi.IntPtrInput
+	// Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+	RunCompareChanges pulumi.BoolPtrInput
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources pulumi.BoolPtrInput
 	// Custom cron expression for schedule
@@ -400,6 +406,8 @@ type jobArgs struct {
 	NumThreads *int `pulumi:"numThreads"`
 	// Project ID to create the job in
 	ProjectId int `pulumi:"projectId"`
+	// Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+	RunCompareChanges *bool `pulumi:"runCompareChanges"`
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources *bool `pulumi:"runGenerateSources"`
 	// Custom cron expression for schedule
@@ -450,6 +458,8 @@ type JobArgs struct {
 	NumThreads pulumi.IntPtrInput
 	// Project ID to create the job in
 	ProjectId pulumi.IntInput
+	// Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+	RunCompareChanges pulumi.BoolPtrInput
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources pulumi.BoolPtrInput
 	// Custom cron expression for schedule
@@ -619,6 +629,11 @@ func (o JobOutput) NumThreads() pulumi.IntPtrOutput {
 // Project ID to create the job in
 func (o JobOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+func (o JobOutput) RunCompareChanges() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.RunCompareChanges }).(pulumi.BoolPtrOutput)
 }
 
 // Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.

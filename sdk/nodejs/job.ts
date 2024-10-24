@@ -223,6 +223,10 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
+     * Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     */
+    public readonly runCompareChanges!: pulumi.Output<boolean | undefined>;
+    /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
     public readonly runGenerateSources!: pulumi.Output<boolean | undefined>;
@@ -292,6 +296,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["numThreads"] = state ? state.numThreads : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["runCompareChanges"] = state ? state.runCompareChanges : undefined;
             resourceInputs["runGenerateSources"] = state ? state.runGenerateSources : undefined;
             resourceInputs["scheduleCron"] = state ? state.scheduleCron : undefined;
             resourceInputs["scheduleDays"] = state ? state.scheduleDays : undefined;
@@ -329,6 +334,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["numThreads"] = args ? args.numThreads : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["runCompareChanges"] = args ? args.runCompareChanges : undefined;
             resourceInputs["runGenerateSources"] = args ? args.runGenerateSources : undefined;
             resourceInputs["scheduleCron"] = args ? args.scheduleCron : undefined;
             resourceInputs["scheduleDays"] = args ? args.scheduleDays : undefined;
@@ -398,6 +404,10 @@ export interface JobState {
      * Project ID to create the job in
      */
     projectId?: pulumi.Input<number>;
+    /**
+     * Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     */
+    runCompareChanges?: pulumi.Input<boolean>;
     /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
@@ -496,6 +506,10 @@ export interface JobArgs {
      * Project ID to create the job in
      */
     projectId: pulumi.Input<number>;
+    /**
+     * Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     */
+    runCompareChanges?: pulumi.Input<boolean>;
     /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */

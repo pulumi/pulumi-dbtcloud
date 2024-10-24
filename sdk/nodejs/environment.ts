@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  *     name: "Dev",
  *     projectId: dbtProject.id,
  *     type: "development",
- *     connectionId: myOtherGlobalConnection,
+ *     connectionId: myOtherGlobalConnection.id,
  * });
  * ```
  *
@@ -116,10 +116,9 @@ export class Environment extends pulumi.CustomResource {
     public readonly customBranch!: pulumi.Output<string | undefined>;
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-     * default if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
      */
-    public readonly dbtVersion!: pulumi.Output<string>;
+    public readonly dbtVersion!: pulumi.Output<string | undefined>;
     /**
      * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
      * 'staging' or left empty for generic environments
@@ -181,9 +180,6 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["useCustomBranch"] = state ? state.useCustomBranch : undefined;
         } else {
             const args = argsOrState as EnvironmentArgs | undefined;
-            if ((!args || args.dbtVersion === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'dbtVersion'");
-            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -224,8 +220,7 @@ export interface EnvironmentState {
     customBranch?: pulumi.Input<string>;
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-     * default if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
      */
     dbtVersion?: pulumi.Input<string>;
     /**
@@ -279,10 +274,9 @@ export interface EnvironmentArgs {
     customBranch?: pulumi.Input<string>;
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-     * default if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
      */
-    dbtVersion: pulumi.Input<string>;
+    dbtVersion?: pulumi.Input<string>;
     /**
      * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
      * 'staging' or left empty for generic environments
