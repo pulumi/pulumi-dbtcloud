@@ -1698,6 +1698,10 @@
                     "type": "integer",
                     "description": "The ID of the project\n"
                 },
+                "runCompareChanges": {
+                    "type": "boolean",
+                    "description": "Whether the job should compare data changes introduced by the code change in the PR\n"
+                },
                 "runGenerateSources": {
                     "type": "boolean",
                     "description": "Whether the job test source freshness\n"
@@ -1732,6 +1736,7 @@
                 "jobType",
                 "name",
                 "projectId",
+                "runCompareChanges",
                 "runGenerateSources",
                 "schedule",
                 "settings",
@@ -2834,11 +2839,11 @@
             }
         },
         "dbtcloud:index/databricksCredential:DatabricksCredential": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// when using the Databricks adapter\nconst myDatabricksCred = new dbtcloud.DatabricksCredential(\"my_databricks_cred\", {\n    projectId: dbtProject.id,\n    adapterId: myDatabricksConnection.adapterId,\n    targetName: \"prod\",\n    token: \"abcdefgh\",\n    schema: \"my_schema\",\n    adapterType: \"databricks\",\n});\n// when using the Spark adapter\nconst mySparkCred = new dbtcloud.DatabricksCredential(\"my_spark_cred\", {\n    projectId: dbtProject.id,\n    adapterId: myDatabricksConnection.adapterId,\n    targetName: \"prod\",\n    token: \"abcdefgh\",\n    schema: \"my_schema\",\n    adapterType: \"spark\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# when using the Databricks adapter\nmy_databricks_cred = dbtcloud.DatabricksCredential(\"my_databricks_cred\",\n    project_id=dbt_project[\"id\"],\n    adapter_id=my_databricks_connection[\"adapterId\"],\n    target_name=\"prod\",\n    token=\"abcdefgh\",\n    schema=\"my_schema\",\n    adapter_type=\"databricks\")\n# when using the Spark adapter\nmy_spark_cred = dbtcloud.DatabricksCredential(\"my_spark_cred\",\n    project_id=dbt_project[\"id\"],\n    adapter_id=my_databricks_connection[\"adapterId\"],\n    target_name=\"prod\",\n    token=\"abcdefgh\",\n    schema=\"my_schema\",\n    adapter_type=\"spark\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // when using the Databricks adapter\n    var myDatabricksCred = new DbtCloud.DatabricksCredential(\"my_databricks_cred\", new()\n    {\n        ProjectId = dbtProject.Id,\n        AdapterId = myDatabricksConnection.AdapterId,\n        TargetName = \"prod\",\n        Token = \"abcdefgh\",\n        Schema = \"my_schema\",\n        AdapterType = \"databricks\",\n    });\n\n    // when using the Spark adapter\n    var mySparkCred = new DbtCloud.DatabricksCredential(\"my_spark_cred\", new()\n    {\n        ProjectId = dbtProject.Id,\n        AdapterId = myDatabricksConnection.AdapterId,\n        TargetName = \"prod\",\n        Token = \"abcdefgh\",\n        Schema = \"my_schema\",\n        AdapterType = \"spark\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// when using the Databricks adapter\n\t\t_, err := dbtcloud.NewDatabricksCredential(ctx, \"my_databricks_cred\", \u0026dbtcloud.DatabricksCredentialArgs{\n\t\t\tProjectId:   pulumi.Any(dbtProject.Id),\n\t\t\tAdapterId:   pulumi.Any(myDatabricksConnection.AdapterId),\n\t\t\tTargetName:  pulumi.String(\"prod\"),\n\t\t\tToken:       pulumi.String(\"abcdefgh\"),\n\t\t\tSchema:      pulumi.String(\"my_schema\"),\n\t\t\tAdapterType: pulumi.String(\"databricks\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// when using the Spark adapter\n\t\t_, err = dbtcloud.NewDatabricksCredential(ctx, \"my_spark_cred\", \u0026dbtcloud.DatabricksCredentialArgs{\n\t\t\tProjectId:   pulumi.Any(dbtProject.Id),\n\t\t\tAdapterId:   pulumi.Any(myDatabricksConnection.AdapterId),\n\t\t\tTargetName:  pulumi.String(\"prod\"),\n\t\t\tToken:       pulumi.String(\"abcdefgh\"),\n\t\t\tSchema:      pulumi.String(\"my_schema\"),\n\t\t\tAdapterType: pulumi.String(\"spark\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DatabricksCredential;\nimport com.pulumi.dbtcloud.DatabricksCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // when using the Databricks adapter\n        var myDatabricksCred = new DatabricksCredential(\"myDatabricksCred\", DatabricksCredentialArgs.builder()\n            .projectId(dbtProject.id())\n            .adapterId(myDatabricksConnection.adapterId())\n            .targetName(\"prod\")\n            .token(\"abcdefgh\")\n            .schema(\"my_schema\")\n            .adapterType(\"databricks\")\n            .build());\n\n        // when using the Spark adapter\n        var mySparkCred = new DatabricksCredential(\"mySparkCred\", DatabricksCredentialArgs.builder()\n            .projectId(dbtProject.id())\n            .adapterId(myDatabricksConnection.adapterId())\n            .targetName(\"prod\")\n            .token(\"abcdefgh\")\n            .schema(\"my_schema\")\n            .adapterType(\"spark\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # when using the Databricks adapter\n  myDatabricksCred:\n    type: dbtcloud:DatabricksCredential\n    name: my_databricks_cred\n    properties:\n      projectId: ${dbtProject.id}\n      adapterId: ${myDatabricksConnection.adapterId}\n      targetName: prod\n      token: abcdefgh\n      schema: my_schema\n      adapterType: databricks\n  # when using the Spark adapter\n  mySparkCred:\n    type: dbtcloud:DatabricksCredential\n    name: my_spark_cred\n    properties:\n      projectId: ${dbtProject.id}\n      adapterId: ${myDatabricksConnection.adapterId}\n      targetName: prod\n      token: abcdefgh\n      schema: my_schema\n      adapterType: spark\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_databricks_credential.my_databricks_credential\n\n  id = \"project_id:credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_databricks_credential.my_databricks_credential\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential \"project_id:credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential 12345:6789\n```\n\n",
+            "description": "## Example Usage\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_databricks_credential.my_databricks_credential\n\n  id = \"project_id:credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_databricks_credential.my_databricks_credential\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential \"project_id:credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential 12345:6789\n```\n\n",
             "properties": {
                 "adapterId": {
                     "type": "integer",
-                    "description": "Databricks adapter ID for the credential\n"
+                    "description": "Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)\n"
                 },
                 "adapterType": {
                     "type": "string",
@@ -2862,7 +2867,8 @@
                 },
                 "targetName": {
                     "type": "string",
-                    "description": "Target name\n"
+                    "description": "Target name\n",
+                    "deprecationMessage": "This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables."
                 },
                 "token": {
                     "type": "string",
@@ -2871,7 +2877,6 @@
                 }
             },
             "required": [
-                "adapterId",
                 "adapterType",
                 "credentialId",
                 "projectId",
@@ -2881,11 +2886,13 @@
             "inputProperties": {
                 "adapterId": {
                     "type": "integer",
-                    "description": "Databricks adapter ID for the credential\n"
+                    "description": "Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)\n",
+                    "willReplaceOnChanges": true
                 },
                 "adapterType": {
                     "type": "string",
-                    "description": "The type of the adapter (databricks or spark)\n"
+                    "description": "The type of the adapter (databricks or spark)\n",
+                    "willReplaceOnChanges": true
                 },
                 "catalog": {
                     "type": "string",
@@ -2902,7 +2909,8 @@
                 },
                 "targetName": {
                     "type": "string",
-                    "description": "Target name\n"
+                    "description": "Target name\n",
+                    "deprecationMessage": "This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables."
                 },
                 "token": {
                     "type": "string",
@@ -2911,7 +2919,6 @@
                 }
             },
             "requiredInputs": [
-                "adapterId",
                 "adapterType",
                 "projectId",
                 "schema",
@@ -2922,11 +2929,13 @@
                 "properties": {
                     "adapterId": {
                         "type": "integer",
-                        "description": "Databricks adapter ID for the credential\n"
+                        "description": "Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)\n",
+                        "willReplaceOnChanges": true
                     },
                     "adapterType": {
                         "type": "string",
-                        "description": "The type of the adapter (databricks or spark)\n"
+                        "description": "The type of the adapter (databricks or spark)\n",
+                        "willReplaceOnChanges": true
                     },
                     "catalog": {
                         "type": "string",
@@ -2947,7 +2956,8 @@
                     },
                     "targetName": {
                         "type": "string",
-                        "description": "Target name\n"
+                        "description": "Target name\n",
+                        "deprecationMessage": "This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables."
                     },
                     "token": {
                         "type": "string",
@@ -2959,7 +2969,7 @@
             }
         },
         "dbtcloud:index/environment:Environment": {
-            "description": "Resource to manage dbt Cloud environments for the different dbt Cloud projects.\n\nIn a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.\n\n\u003e In August 2024, dbt Cloud released the \"global connection\" feature, allowing connections to be defined at the account level and reused across environments and projects.\nThis version of the provider has the `connection_id` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst ciEnvironment = new dbtcloud.Environment(\"ci_environment\", {\n    dbtVersion: \"versionless\",\n    name: \"CI\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    credentialId: ciCredential.credentialId,\n    connectionId: myGlobalConnection.id,\n});\n// we can also set a deployment environment as being the production one\nconst prodEnvironment = new dbtcloud.Environment(\"prod_environment\", {\n    dbtVersion: \"1.7.0-latest\",\n    name: \"Prod\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    credentialId: prodCredential.credentialId,\n    deploymentType: \"production\",\n    connectionId: myLegacyConnection.connectionId,\n});\n// Creating a development environment\nconst devEnvironment = new dbtcloud.Environment(\"dev_environment\", {\n    dbtVersion: \"versionless\",\n    name: \"Dev\",\n    projectId: dbtProject.id,\n    type: \"development\",\n    connectionId: myOtherGlobalConnection,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nci_environment = dbtcloud.Environment(\"ci_environment\",\n    dbt_version=\"versionless\",\n    name=\"CI\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    credential_id=ci_credential[\"credentialId\"],\n    connection_id=my_global_connection[\"id\"])\n# we can also set a deployment environment as being the production one\nprod_environment = dbtcloud.Environment(\"prod_environment\",\n    dbt_version=\"1.7.0-latest\",\n    name=\"Prod\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    credential_id=prod_credential[\"credentialId\"],\n    deployment_type=\"production\",\n    connection_id=my_legacy_connection[\"connectionId\"])\n# Creating a development environment\ndev_environment = dbtcloud.Environment(\"dev_environment\",\n    dbt_version=\"versionless\",\n    name=\"Dev\",\n    project_id=dbt_project[\"id\"],\n    type=\"development\",\n    connection_id=my_other_global_connection)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciEnvironment = new DbtCloud.Environment(\"ci_environment\", new()\n    {\n        DbtVersion = \"versionless\",\n        Name = \"CI\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        CredentialId = ciCredential.CredentialId,\n        ConnectionId = myGlobalConnection.Id,\n    });\n\n    // we can also set a deployment environment as being the production one\n    var prodEnvironment = new DbtCloud.Environment(\"prod_environment\", new()\n    {\n        DbtVersion = \"1.7.0-latest\",\n        Name = \"Prod\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        CredentialId = prodCredential.CredentialId,\n        DeploymentType = \"production\",\n        ConnectionId = myLegacyConnection.ConnectionId,\n    });\n\n    // Creating a development environment\n    var devEnvironment = new DbtCloud.Environment(\"dev_environment\", new()\n    {\n        DbtVersion = \"versionless\",\n        Name = \"Dev\",\n        ProjectId = dbtProject.Id,\n        Type = \"development\",\n        ConnectionId = myOtherGlobalConnection,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewEnvironment(ctx, \"ci_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:   pulumi.String(\"versionless\"),\n\t\t\tName:         pulumi.String(\"CI\"),\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tType:         pulumi.String(\"deployment\"),\n\t\t\tCredentialId: pulumi.Any(ciCredential.CredentialId),\n\t\t\tConnectionId: pulumi.Any(myGlobalConnection.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// we can also set a deployment environment as being the production one\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"prod_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:     pulumi.String(\"1.7.0-latest\"),\n\t\t\tName:           pulumi.String(\"Prod\"),\n\t\t\tProjectId:      pulumi.Any(dbtProject.Id),\n\t\t\tType:           pulumi.String(\"deployment\"),\n\t\t\tCredentialId:   pulumi.Any(prodCredential.CredentialId),\n\t\t\tDeploymentType: pulumi.String(\"production\"),\n\t\t\tConnectionId:   pulumi.Any(myLegacyConnection.ConnectionId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Creating a development environment\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"dev_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:   pulumi.String(\"versionless\"),\n\t\t\tName:         pulumi.String(\"Dev\"),\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tType:         pulumi.String(\"development\"),\n\t\t\tConnectionId: pulumi.Any(myOtherGlobalConnection),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Environment;\nimport com.pulumi.dbtcloud.EnvironmentArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciEnvironment = new Environment(\"ciEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"versionless\")\n            .name(\"CI\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .credentialId(ciCredential.credentialId())\n            .connectionId(myGlobalConnection.id())\n            .build());\n\n        // we can also set a deployment environment as being the production one\n        var prodEnvironment = new Environment(\"prodEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"1.7.0-latest\")\n            .name(\"Prod\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .credentialId(prodCredential.credentialId())\n            .deploymentType(\"production\")\n            .connectionId(myLegacyConnection.connectionId())\n            .build());\n\n        // Creating a development environment\n        var devEnvironment = new Environment(\"devEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"versionless\")\n            .name(\"Dev\")\n            .projectId(dbtProject.id())\n            .type(\"development\")\n            .connectionId(myOtherGlobalConnection)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciEnvironment:\n    type: dbtcloud:Environment\n    name: ci_environment\n    properties:\n      dbtVersion: versionless\n      name: CI\n      projectId: ${dbtProject.id}\n      type: deployment\n      credentialId: ${ciCredential.credentialId}\n      connectionId: ${myGlobalConnection.id}\n  # we can also set a deployment environment as being the production one\n  prodEnvironment:\n    type: dbtcloud:Environment\n    name: prod_environment\n    properties:\n      dbtVersion: 1.7.0-latest\n      name: Prod\n      projectId: ${dbtProject.id}\n      type: deployment\n      credentialId: ${prodCredential.credentialId}\n      deploymentType: production\n      connectionId: ${myLegacyConnection.connectionId}\n  # Creating a development environment\n  devEnvironment:\n    type: dbtcloud:Environment\n    name: dev_environment\n    properties:\n      dbtVersion: versionless\n      name: Dev\n      projectId: ${dbtProject.id}\n      type: development\n      connectionId: ${myOtherGlobalConnection}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_environment.prod_environment\n\n  id = \"project_id:environment_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_environment.prod_environment\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/environment:Environment prod_environment \"project_id:environment_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/environment:Environment prod_environment 12345:6789\n```\n\n",
+            "description": "Resource to manage dbt Cloud environments for the different dbt Cloud projects.\n\nIn a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.\n\n\u003e In August 2024, dbt Cloud released the \"global connection\" feature, allowing connections to be defined at the account level and reused across environments and projects.\nThis version of the provider has the `connection_id` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst ciEnvironment = new dbtcloud.Environment(\"ci_environment\", {\n    dbtVersion: \"versionless\",\n    name: \"CI\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    credentialId: ciCredential.credentialId,\n    connectionId: myGlobalConnection.id,\n});\n// we can also set a deployment environment as being the production one\nconst prodEnvironment = new dbtcloud.Environment(\"prod_environment\", {\n    dbtVersion: \"1.7.0-latest\",\n    name: \"Prod\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    credentialId: prodCredential.credentialId,\n    deploymentType: \"production\",\n    connectionId: myLegacyConnection.connectionId,\n});\n// Creating a development environment\nconst devEnvironment = new dbtcloud.Environment(\"dev_environment\", {\n    dbtVersion: \"versionless\",\n    name: \"Dev\",\n    projectId: dbtProject.id,\n    type: \"development\",\n    connectionId: myOtherGlobalConnection.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nci_environment = dbtcloud.Environment(\"ci_environment\",\n    dbt_version=\"versionless\",\n    name=\"CI\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    credential_id=ci_credential[\"credentialId\"],\n    connection_id=my_global_connection[\"id\"])\n# we can also set a deployment environment as being the production one\nprod_environment = dbtcloud.Environment(\"prod_environment\",\n    dbt_version=\"1.7.0-latest\",\n    name=\"Prod\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    credential_id=prod_credential[\"credentialId\"],\n    deployment_type=\"production\",\n    connection_id=my_legacy_connection[\"connectionId\"])\n# Creating a development environment\ndev_environment = dbtcloud.Environment(\"dev_environment\",\n    dbt_version=\"versionless\",\n    name=\"Dev\",\n    project_id=dbt_project[\"id\"],\n    type=\"development\",\n    connection_id=my_other_global_connection[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciEnvironment = new DbtCloud.Environment(\"ci_environment\", new()\n    {\n        DbtVersion = \"versionless\",\n        Name = \"CI\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        CredentialId = ciCredential.CredentialId,\n        ConnectionId = myGlobalConnection.Id,\n    });\n\n    // we can also set a deployment environment as being the production one\n    var prodEnvironment = new DbtCloud.Environment(\"prod_environment\", new()\n    {\n        DbtVersion = \"1.7.0-latest\",\n        Name = \"Prod\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        CredentialId = prodCredential.CredentialId,\n        DeploymentType = \"production\",\n        ConnectionId = myLegacyConnection.ConnectionId,\n    });\n\n    // Creating a development environment\n    var devEnvironment = new DbtCloud.Environment(\"dev_environment\", new()\n    {\n        DbtVersion = \"versionless\",\n        Name = \"Dev\",\n        ProjectId = dbtProject.Id,\n        Type = \"development\",\n        ConnectionId = myOtherGlobalConnection.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewEnvironment(ctx, \"ci_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:   pulumi.String(\"versionless\"),\n\t\t\tName:         pulumi.String(\"CI\"),\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tType:         pulumi.String(\"deployment\"),\n\t\t\tCredentialId: pulumi.Any(ciCredential.CredentialId),\n\t\t\tConnectionId: pulumi.Any(myGlobalConnection.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// we can also set a deployment environment as being the production one\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"prod_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:     pulumi.String(\"1.7.0-latest\"),\n\t\t\tName:           pulumi.String(\"Prod\"),\n\t\t\tProjectId:      pulumi.Any(dbtProject.Id),\n\t\t\tType:           pulumi.String(\"deployment\"),\n\t\t\tCredentialId:   pulumi.Any(prodCredential.CredentialId),\n\t\t\tDeploymentType: pulumi.String(\"production\"),\n\t\t\tConnectionId:   pulumi.Any(myLegacyConnection.ConnectionId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Creating a development environment\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"dev_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:   pulumi.String(\"versionless\"),\n\t\t\tName:         pulumi.String(\"Dev\"),\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tType:         pulumi.String(\"development\"),\n\t\t\tConnectionId: pulumi.Any(myOtherGlobalConnection.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Environment;\nimport com.pulumi.dbtcloud.EnvironmentArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciEnvironment = new Environment(\"ciEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"versionless\")\n            .name(\"CI\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .credentialId(ciCredential.credentialId())\n            .connectionId(myGlobalConnection.id())\n            .build());\n\n        // we can also set a deployment environment as being the production one\n        var prodEnvironment = new Environment(\"prodEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"1.7.0-latest\")\n            .name(\"Prod\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .credentialId(prodCredential.credentialId())\n            .deploymentType(\"production\")\n            .connectionId(myLegacyConnection.connectionId())\n            .build());\n\n        // Creating a development environment\n        var devEnvironment = new Environment(\"devEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"versionless\")\n            .name(\"Dev\")\n            .projectId(dbtProject.id())\n            .type(\"development\")\n            .connectionId(myOtherGlobalConnection.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciEnvironment:\n    type: dbtcloud:Environment\n    name: ci_environment\n    properties:\n      dbtVersion: versionless\n      name: CI\n      projectId: ${dbtProject.id}\n      type: deployment\n      credentialId: ${ciCredential.credentialId}\n      connectionId: ${myGlobalConnection.id}\n  # we can also set a deployment environment as being the production one\n  prodEnvironment:\n    type: dbtcloud:Environment\n    name: prod_environment\n    properties:\n      dbtVersion: 1.7.0-latest\n      name: Prod\n      projectId: ${dbtProject.id}\n      type: deployment\n      credentialId: ${prodCredential.credentialId}\n      deploymentType: production\n      connectionId: ${myLegacyConnection.connectionId}\n  # Creating a development environment\n  devEnvironment:\n    type: dbtcloud:Environment\n    name: dev_environment\n    properties:\n      dbtVersion: versionless\n      name: Dev\n      projectId: ${dbtProject.id}\n      type: development\n      connectionId: ${myOtherGlobalConnection.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_environment.prod_environment\n\n  id = \"project_id:environment_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_environment.prod_environment\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/environment:Environment prod_environment \"project_id:environment_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/environment:Environment prod_environment 12345:6789\n```\n\n",
             "properties": {
                 "connectionId": {
                     "type": "integer"
@@ -2974,7 +2984,7 @@
                 },
                 "dbtVersion": {
                     "type": "string",
-                    "description": "Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.\n`1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the\ndefault if no version is provided\n"
+                    "description": "Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.\n`1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided\n"
                 },
                 "deploymentType": {
                     "type": "string",
@@ -3010,7 +3020,6 @@
                 }
             },
             "required": [
-                "dbtVersion",
                 "environmentId",
                 "name",
                 "projectId",
@@ -3030,7 +3039,7 @@
                 },
                 "dbtVersion": {
                     "type": "string",
-                    "description": "Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.\n`1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the\ndefault if no version is provided\n"
+                    "description": "Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.\n`1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided\n"
                 },
                 "deploymentType": {
                     "type": "string",
@@ -3063,7 +3072,6 @@
                 }
             },
             "requiredInputs": [
-                "dbtVersion",
                 "projectId",
                 "type"
             ],
@@ -3083,7 +3091,7 @@
                     },
                     "dbtVersion": {
                         "type": "string",
-                        "description": "Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.\n`1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the\ndefault if no version is provided\n"
+                        "description": "Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.\n`1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided\n"
                     },
                     "deploymentType": {
                         "type": "string",
@@ -4052,6 +4060,10 @@
                     "type": "integer",
                     "description": "Project ID to create the job in\n"
                 },
+                "runCompareChanges": {
+                    "type": "boolean",
+                    "description": "Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)\n"
+                },
                 "runGenerateSources": {
                     "type": "boolean",
                     "description": "Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.\n"
@@ -4170,6 +4182,10 @@
                     "type": "integer",
                     "description": "Project ID to create the job in\n",
                     "willReplaceOnChanges": true
+                },
+                "runCompareChanges": {
+                    "type": "boolean",
+                    "description": "Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)\n"
                 },
                 "runGenerateSources": {
                     "type": "boolean",
@@ -4290,6 +4306,10 @@
                         "type": "integer",
                         "description": "Project ID to create the job in\n",
                         "willReplaceOnChanges": true
+                    },
+                    "runCompareChanges": {
+                        "type": "boolean",
+                        "description": "Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)\n"
                     },
                     "runGenerateSources": {
                         "type": "boolean",
@@ -6826,6 +6846,10 @@
                         "description": "ID of the project the job is in\n",
                         "type": "integer"
                     },
+                    "runCompareChanges": {
+                        "description": "Whether the CI job should compare data changes introduced by the code change in the PR.\n",
+                        "type": "boolean"
+                    },
                     "selfDeferring": {
                         "description": "Whether this job defers on a previous run of itself (overrides value in deferring*job*id)\n",
                         "type": "boolean"
@@ -6855,6 +6879,7 @@
                     "jobId",
                     "name",
                     "projectId",
+                    "runCompareChanges",
                     "selfDeferring",
                     "timeoutSeconds",
                     "triggers",
