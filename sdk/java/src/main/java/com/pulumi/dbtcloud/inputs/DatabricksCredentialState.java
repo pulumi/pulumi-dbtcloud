@@ -17,14 +17,14 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
     public static final DatabricksCredentialState Empty = new DatabricksCredentialState();
 
     /**
-     * Databricks adapter ID for the credential
+     * Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
      * 
      */
     @Import(name="adapterId")
     private @Nullable Output<Integer> adapterId;
 
     /**
-     * @return Databricks adapter ID for the credential
+     * @return Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
      * 
      */
     public Optional<Output<Integer>> adapterId() {
@@ -109,14 +109,22 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
     /**
      * Target name
      * 
+     * @deprecated
+     * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+     * 
      */
+    @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
     @Import(name="targetName")
     private @Nullable Output<String> targetName;
 
     /**
      * @return Target name
      * 
+     * @deprecated
+     * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+     * 
      */
+    @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
     public Optional<Output<String>> targetName() {
         return Optional.ofNullable(this.targetName);
     }
@@ -168,7 +176,7 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param adapterId Databricks adapter ID for the credential
+         * @param adapterId Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
          * 
          * @return builder
          * 
@@ -179,7 +187,7 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param adapterId Databricks adapter ID for the credential
+         * @param adapterId Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
          * 
          * @return builder
          * 
@@ -298,7 +306,11 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+         * 
          */
+        @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
         public Builder targetName(@Nullable Output<String> targetName) {
             $.targetName = targetName;
             return this;
@@ -309,7 +321,11 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+         * 
          */
+        @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
         public Builder targetName(String targetName) {
             return targetName(Output.of(targetName));
         }

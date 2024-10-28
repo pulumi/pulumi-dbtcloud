@@ -14,48 +14,6 @@ import (
 
 // ## Example Usage
 //
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// when using the Databricks adapter
-//			_, err := dbtcloud.NewDatabricksCredential(ctx, "my_databricks_cred", &dbtcloud.DatabricksCredentialArgs{
-//				ProjectId:   pulumi.Any(dbtProject.Id),
-//				AdapterId:   pulumi.Any(myDatabricksConnection.AdapterId),
-//				TargetName:  pulumi.String("prod"),
-//				Token:       pulumi.String("abcdefgh"),
-//				Schema:      pulumi.String("my_schema"),
-//				AdapterType: pulumi.String("databricks"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// when using the Spark adapter
-//			_, err = dbtcloud.NewDatabricksCredential(ctx, "my_spark_cred", &dbtcloud.DatabricksCredentialArgs{
-//				ProjectId:   pulumi.Any(dbtProject.Id),
-//				AdapterId:   pulumi.Any(myDatabricksConnection.AdapterId),
-//				TargetName:  pulumi.String("prod"),
-//				Token:       pulumi.String("abcdefgh"),
-//				Schema:      pulumi.String("my_schema"),
-//				AdapterType: pulumi.String("spark"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -88,8 +46,8 @@ import (
 type DatabricksCredential struct {
 	pulumi.CustomResourceState
 
-	// Databricks adapter ID for the credential
-	AdapterId pulumi.IntOutput `pulumi:"adapterId"`
+	// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
+	AdapterId pulumi.IntPtrOutput `pulumi:"adapterId"`
 	// The type of the adapter (databricks or spark)
 	AdapterType pulumi.StringOutput `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
@@ -101,6 +59,8 @@ type DatabricksCredential struct {
 	// The schema where to create models
 	Schema pulumi.StringOutput `pulumi:"schema"`
 	// Target name
+	//
+	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringPtrOutput `pulumi:"targetName"`
 	// Token for Databricks user
 	Token pulumi.StringOutput `pulumi:"token"`
@@ -113,9 +73,6 @@ func NewDatabricksCredential(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.AdapterId == nil {
-		return nil, errors.New("invalid value for required argument 'AdapterId'")
-	}
 	if args.AdapterType == nil {
 		return nil, errors.New("invalid value for required argument 'AdapterType'")
 	}
@@ -158,7 +115,7 @@ func GetDatabricksCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabricksCredential resources.
 type databricksCredentialState struct {
-	// Databricks adapter ID for the credential
+	// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
 	AdapterId *int `pulumi:"adapterId"`
 	// The type of the adapter (databricks or spark)
 	AdapterType *string `pulumi:"adapterType"`
@@ -171,13 +128,15 @@ type databricksCredentialState struct {
 	// The schema where to create models
 	Schema *string `pulumi:"schema"`
 	// Target name
+	//
+	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName *string `pulumi:"targetName"`
 	// Token for Databricks user
 	Token *string `pulumi:"token"`
 }
 
 type DatabricksCredentialState struct {
-	// Databricks adapter ID for the credential
+	// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
 	AdapterId pulumi.IntPtrInput
 	// The type of the adapter (databricks or spark)
 	AdapterType pulumi.StringPtrInput
@@ -190,6 +149,8 @@ type DatabricksCredentialState struct {
 	// The schema where to create models
 	Schema pulumi.StringPtrInput
 	// Target name
+	//
+	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringPtrInput
 	// Token for Databricks user
 	Token pulumi.StringPtrInput
@@ -200,8 +161,8 @@ func (DatabricksCredentialState) ElementType() reflect.Type {
 }
 
 type databricksCredentialArgs struct {
-	// Databricks adapter ID for the credential
-	AdapterId int `pulumi:"adapterId"`
+	// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
+	AdapterId *int `pulumi:"adapterId"`
 	// The type of the adapter (databricks or spark)
 	AdapterType string `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
@@ -211,6 +172,8 @@ type databricksCredentialArgs struct {
 	// The schema where to create models
 	Schema string `pulumi:"schema"`
 	// Target name
+	//
+	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName *string `pulumi:"targetName"`
 	// Token for Databricks user
 	Token string `pulumi:"token"`
@@ -218,8 +181,8 @@ type databricksCredentialArgs struct {
 
 // The set of arguments for constructing a DatabricksCredential resource.
 type DatabricksCredentialArgs struct {
-	// Databricks adapter ID for the credential
-	AdapterId pulumi.IntInput
+	// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
+	AdapterId pulumi.IntPtrInput
 	// The type of the adapter (databricks or spark)
 	AdapterType pulumi.StringInput
 	// The catalog where to create models (only for the databricks adapter)
@@ -229,6 +192,8 @@ type DatabricksCredentialArgs struct {
 	// The schema where to create models
 	Schema pulumi.StringInput
 	// Target name
+	//
+	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringPtrInput
 	// Token for Databricks user
 	Token pulumi.StringInput
@@ -321,9 +286,9 @@ func (o DatabricksCredentialOutput) ToDatabricksCredentialOutputWithContext(ctx 
 	return o
 }
 
-// Databricks adapter ID for the credential
-func (o DatabricksCredentialOutput) AdapterId() pulumi.IntOutput {
-	return o.ApplyT(func(v *DatabricksCredential) pulumi.IntOutput { return v.AdapterId }).(pulumi.IntOutput)
+// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
+func (o DatabricksCredentialOutput) AdapterId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabricksCredential) pulumi.IntPtrOutput { return v.AdapterId }).(pulumi.IntPtrOutput)
 }
 
 // The type of the adapter (databricks or spark)
@@ -352,6 +317,8 @@ func (o DatabricksCredentialOutput) Schema() pulumi.StringOutput {
 }
 
 // Target name
+//
+// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 func (o DatabricksCredentialOutput) TargetName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabricksCredential) pulumi.StringPtrOutput { return v.TargetName }).(pulumi.StringPtrOutput)
 }

@@ -86,6 +86,11 @@ public final class GetJobsJob {
      */
     private Integer projectId;
     /**
+     * @return Whether the job should compare data changes introduced by the code change in the PR
+     * 
+     */
+    private Boolean runCompareChanges;
+    /**
      * @return Whether the job test source freshness
      * 
      */
@@ -195,6 +200,13 @@ public final class GetJobsJob {
         return this.projectId;
     }
     /**
+     * @return Whether the job should compare data changes introduced by the code change in the PR
+     * 
+     */
+    public Boolean runCompareChanges() {
+        return this.runCompareChanges;
+    }
+    /**
      * @return Whether the job test source freshness
      * 
      */
@@ -241,6 +253,7 @@ public final class GetJobsJob {
         private String jobType;
         private String name;
         private Integer projectId;
+        private Boolean runCompareChanges;
         private Boolean runGenerateSources;
         private GetJobsJobSchedule schedule;
         private GetJobsJobSettings settings;
@@ -263,6 +276,7 @@ public final class GetJobsJob {
     	      this.jobType = defaults.jobType;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
+    	      this.runCompareChanges = defaults.runCompareChanges;
     	      this.runGenerateSources = defaults.runGenerateSources;
     	      this.schedule = defaults.schedule;
     	      this.settings = defaults.settings;
@@ -386,6 +400,14 @@ public final class GetJobsJob {
             return this;
         }
         @CustomType.Setter
+        public Builder runCompareChanges(Boolean runCompareChanges) {
+            if (runCompareChanges == null) {
+              throw new MissingRequiredPropertyException("GetJobsJob", "runCompareChanges");
+            }
+            this.runCompareChanges = runCompareChanges;
+            return this;
+        }
+        @CustomType.Setter
         public Builder runGenerateSources(Boolean runGenerateSources) {
             if (runGenerateSources == null) {
               throw new MissingRequiredPropertyException("GetJobsJob", "runGenerateSources");
@@ -441,6 +463,7 @@ public final class GetJobsJob {
             _resultValue.jobType = jobType;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
+            _resultValue.runCompareChanges = runCompareChanges;
             _resultValue.runGenerateSources = runGenerateSources;
             _resultValue.schedule = schedule;
             _resultValue.settings = settings;

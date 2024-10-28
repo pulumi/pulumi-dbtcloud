@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  *             .name("Dev")
  *             .projectId(dbtProject.id())
  *             .type("development")
- *             .connectionId(myOtherGlobalConnection)
+ *             .connectionId(myOtherGlobalConnection.id())
  *             .build());
  * 
  *     }
@@ -155,21 +155,19 @@ public class Environment extends com.pulumi.resources.CustomResource {
     }
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-     * default if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
-    private Output<String> dbtVersion;
+    private Output</* @Nullable */ String> dbtVersion;
 
     /**
      * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-     * default if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
      * 
      */
-    public Output<String> dbtVersion() {
-        return this.dbtVersion;
+    public Output<Optional<String>> dbtVersion() {
+        return Codegen.optional(this.dbtVersion);
     }
     /**
      * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,

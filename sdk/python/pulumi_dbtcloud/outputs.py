@@ -3215,6 +3215,7 @@ class GetJobsJobResult(dict):
                  job_type: str,
                  name: str,
                  project_id: int,
+                 run_compare_changes: bool,
                  run_generate_sources: bool,
                  schedule: 'outputs.GetJobsJobScheduleResult',
                  settings: 'outputs.GetJobsJobSettingsResult',
@@ -3234,6 +3235,7 @@ class GetJobsJobResult(dict):
         :param str job_type: The type of job (e.g. CI, scheduled)
         :param str name: The name of the job
         :param int project_id: The ID of the project
+        :param bool run_compare_changes: Whether the job should compare data changes introduced by the code change in the PR
         :param bool run_generate_sources: Whether the job test source freshness
         :param bool triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         """
@@ -3251,6 +3253,7 @@ class GetJobsJobResult(dict):
         pulumi.set(__self__, "job_type", job_type)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "run_compare_changes", run_compare_changes)
         pulumi.set(__self__, "run_generate_sources", run_generate_sources)
         pulumi.set(__self__, "schedule", schedule)
         pulumi.set(__self__, "settings", settings)
@@ -3365,6 +3368,14 @@ class GetJobsJobResult(dict):
         The ID of the project
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="runCompareChanges")
+    def run_compare_changes(self) -> bool:
+        """
+        Whether the job should compare data changes introduced by the code change in the PR
+        """
+        return pulumi.get(self, "run_compare_changes")
 
     @property
     @pulumi.getter(name="runGenerateSources")

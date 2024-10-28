@@ -355,6 +355,20 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
+     * Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     * 
+     */
+    @Export(name="runCompareChanges", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> runCompareChanges;
+
+    /**
+     * @return Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     * 
+     */
+    public Output<Optional<Boolean>> runCompareChanges() {
+        return Codegen.optional(this.runCompareChanges);
+    }
+    /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      * 
      */

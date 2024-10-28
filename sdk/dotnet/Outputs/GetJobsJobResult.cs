@@ -67,6 +67,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int ProjectId;
         /// <summary>
+        /// Whether the job should compare data changes introduced by the code change in the PR
+        /// </summary>
+        public readonly bool RunCompareChanges;
+        /// <summary>
         /// Whether the job test source freshness
         /// </summary>
         public readonly bool RunGenerateSources;
@@ -108,6 +112,8 @@ namespace Pulumi.DbtCloud.Outputs
 
             int projectId,
 
+            bool runCompareChanges,
+
             bool runGenerateSources,
 
             Outputs.GetJobsJobScheduleResult schedule,
@@ -132,6 +138,7 @@ namespace Pulumi.DbtCloud.Outputs
             JobType = jobType;
             Name = name;
             ProjectId = projectId;
+            RunCompareChanges = runCompareChanges;
             RunGenerateSources = runGenerateSources;
             Schedule = schedule;
             Settings = settings;

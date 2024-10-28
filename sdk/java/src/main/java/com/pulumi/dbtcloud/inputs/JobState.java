@@ -201,6 +201,21 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     * 
+     */
+    @Import(name="runCompareChanges")
+    private @Nullable Output<Boolean> runCompareChanges;
+
+    /**
+     * @return Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     * 
+     */
+    public Optional<Output<Boolean>> runCompareChanges() {
+        return Optional.ofNullable(this.runCompareChanges);
+    }
+
+    /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      * 
      */
@@ -380,6 +395,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.numThreads = $.numThreads;
         this.projectId = $.projectId;
+        this.runCompareChanges = $.runCompareChanges;
         this.runGenerateSources = $.runGenerateSources;
         this.scheduleCron = $.scheduleCron;
         this.scheduleDays = $.scheduleDays;
@@ -671,6 +687,27 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder projectId(Integer projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param runCompareChanges Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder runCompareChanges(@Nullable Output<Boolean> runCompareChanges) {
+            $.runCompareChanges = runCompareChanges;
+            return this;
+        }
+
+        /**
+         * @param runCompareChanges Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder runCompareChanges(Boolean runCompareChanges) {
+            return runCompareChanges(Output.of(runCompareChanges));
         }
 
         /**

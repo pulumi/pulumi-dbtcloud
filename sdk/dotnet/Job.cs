@@ -258,6 +258,12 @@ namespace Pulumi.DbtCloud
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        /// </summary>
+        [Output("runCompareChanges")]
+        public Output<bool?> RunCompareChanges { get; private set; } = null!;
+
+        /// <summary>
         /// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         /// </summary>
         [Output("runGenerateSources")]
@@ -449,6 +455,12 @@ namespace Pulumi.DbtCloud
         public Input<int> ProjectId { get; set; } = null!;
 
         /// <summary>
+        /// Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        /// </summary>
+        [Input("runCompareChanges")]
+        public Input<bool>? RunCompareChanges { get; set; }
+
+        /// <summary>
         /// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         /// </summary>
         [Input("runGenerateSources")]
@@ -617,6 +629,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("projectId")]
         public Input<int>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        /// </summary>
+        [Input("runCompareChanges")]
+        public Input<bool>? RunCompareChanges { get; set; }
 
         /// <summary>
         /// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.

@@ -100,6 +100,10 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int ProjectId;
         /// <summary>
+        /// Whether the CI job should compare data changes introduced by the code change in the PR.
+        /// </summary>
+        public readonly bool RunCompareChanges;
+        /// <summary>
         /// Whether this job defers on a previous run of itself (overrides value in deferring*job*id)
         /// </summary>
         public readonly bool SelfDeferring;
@@ -136,6 +140,8 @@ namespace Pulumi.DbtCloud
 
             int projectId,
 
+            bool runCompareChanges,
+
             bool selfDeferring,
 
             int timeoutSeconds,
@@ -153,6 +159,7 @@ namespace Pulumi.DbtCloud
             JobId = jobId;
             Name = name;
             ProjectId = projectId;
+            RunCompareChanges = runCompareChanges;
             SelfDeferring = selfDeferring;
             TimeoutSeconds = timeoutSeconds;
             Triggers = triggers;

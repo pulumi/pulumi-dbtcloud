@@ -12,39 +12,6 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // when using the Databricks adapter
-    ///     var myDatabricksCred = new DbtCloud.DatabricksCredential("my_databricks_cred", new()
-    ///     {
-    ///         ProjectId = dbtProject.Id,
-    ///         AdapterId = myDatabricksConnection.AdapterId,
-    ///         TargetName = "prod",
-    ///         Token = "abcdefgh",
-    ///         Schema = "my_schema",
-    ///         AdapterType = "databricks",
-    ///     });
-    /// 
-    ///     // when using the Spark adapter
-    ///     var mySparkCred = new DbtCloud.DatabricksCredential("my_spark_cred", new()
-    ///     {
-    ///         ProjectId = dbtProject.Id,
-    ///         AdapterId = myDatabricksConnection.AdapterId,
-    ///         TargetName = "prod",
-    ///         Token = "abcdefgh",
-    ///         Schema = "my_schema",
-    ///         AdapterType = "spark",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
@@ -79,10 +46,10 @@ namespace Pulumi.DbtCloud
     public partial class DatabricksCredential : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Databricks adapter ID for the credential
+        /// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
         /// </summary>
         [Output("adapterId")]
-        public Output<int> AdapterId { get; private set; } = null!;
+        public Output<int?> AdapterId { get; private set; } = null!;
 
         /// <summary>
         /// The type of the adapter (databricks or spark)
@@ -178,10 +145,10 @@ namespace Pulumi.DbtCloud
     public sealed class DatabricksCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Databricks adapter ID for the credential
+        /// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
         /// </summary>
-        [Input("adapterId", required: true)]
-        public Input<int> AdapterId { get; set; } = null!;
+        [Input("adapterId")]
+        public Input<int>? AdapterId { get; set; }
 
         /// <summary>
         /// The type of the adapter (databricks or spark)
@@ -238,7 +205,7 @@ namespace Pulumi.DbtCloud
     public sealed class DatabricksCredentialState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Databricks adapter ID for the credential
+        /// Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
         /// </summary>
         [Input("adapterId")]
         public Input<int>? AdapterId { get; set; }

@@ -49,6 +49,8 @@ type LookupJobResult struct {
 	Name string `pulumi:"name"`
 	// ID of the project the job is in
 	ProjectId int `pulumi:"projectId"`
+	// Whether the CI job should compare data changes introduced by the code change in the PR.
+	RunCompareChanges bool `pulumi:"runCompareChanges"`
 	// Whether this job defers on a previous run of itself (overrides value in deferring*job*id)
 	SelfDeferring bool `pulumi:"selfDeferring"`
 	// Number of seconds before the job times out
@@ -148,6 +150,11 @@ func (o LookupJobResultOutput) Name() pulumi.StringOutput {
 // ID of the project the job is in
 func (o LookupJobResultOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// Whether the CI job should compare data changes introduced by the code change in the PR.
+func (o LookupJobResultOutput) RunCompareChanges() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupJobResult) bool { return v.RunCompareChanges }).(pulumi.BoolOutput)
 }
 
 // Whether this job defers on a previous run of itself (overrides value in deferring*job*id)

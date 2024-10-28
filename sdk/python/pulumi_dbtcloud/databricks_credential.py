@@ -19,44 +19,36 @@ __all__ = ['DatabricksCredentialArgs', 'DatabricksCredential']
 @pulumi.input_type
 class DatabricksCredentialArgs:
     def __init__(__self__, *,
-                 adapter_id: pulumi.Input[int],
                  adapter_type: pulumi.Input[str],
                  project_id: pulumi.Input[int],
                  schema: pulumi.Input[str],
                  token: pulumi.Input[str],
+                 adapter_id: Optional[pulumi.Input[int]] = None,
                  catalog: Optional[pulumi.Input[str]] = None,
                  target_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DatabricksCredential resource.
-        :param pulumi.Input[int] adapter_id: Databricks adapter ID for the credential
         :param pulumi.Input[str] adapter_type: The type of the adapter (databricks or spark)
         :param pulumi.Input[int] project_id: Project ID to create the Databricks credential in
         :param pulumi.Input[str] schema: The schema where to create models
         :param pulumi.Input[str] token: Token for Databricks user
+        :param pulumi.Input[int] adapter_id: Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
         :param pulumi.Input[str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[str] target_name: Target name
         """
-        pulumi.set(__self__, "adapter_id", adapter_id)
         pulumi.set(__self__, "adapter_type", adapter_type)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "schema", schema)
         pulumi.set(__self__, "token", token)
+        if adapter_id is not None:
+            pulumi.set(__self__, "adapter_id", adapter_id)
         if catalog is not None:
             pulumi.set(__self__, "catalog", catalog)
         if target_name is not None:
+            warnings.warn("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""", DeprecationWarning)
+            pulumi.log.warn("""target_name is deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
+        if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
-
-    @property
-    @pulumi.getter(name="adapterId")
-    def adapter_id(self) -> pulumi.Input[int]:
-        """
-        Databricks adapter ID for the credential
-        """
-        return pulumi.get(self, "adapter_id")
-
-    @adapter_id.setter
-    def adapter_id(self, value: pulumi.Input[int]):
-        pulumi.set(self, "adapter_id", value)
 
     @property
     @pulumi.getter(name="adapterType")
@@ -107,6 +99,18 @@ class DatabricksCredentialArgs:
         pulumi.set(self, "token", value)
 
     @property
+    @pulumi.getter(name="adapterId")
+    def adapter_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
+        """
+        return pulumi.get(self, "adapter_id")
+
+    @adapter_id.setter
+    def adapter_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "adapter_id", value)
+
+    @property
     @pulumi.getter
     def catalog(self) -> Optional[pulumi.Input[str]]:
         """
@@ -120,6 +124,7 @@ class DatabricksCredentialArgs:
 
     @property
     @pulumi.getter(name="targetName")
+    @_utilities.deprecated("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
     def target_name(self) -> Optional[pulumi.Input[str]]:
         """
         Target name
@@ -144,7 +149,7 @@ class _DatabricksCredentialState:
                  token: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DatabricksCredential resources.
-        :param pulumi.Input[int] adapter_id: Databricks adapter ID for the credential
+        :param pulumi.Input[int] adapter_id: Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
         :param pulumi.Input[str] adapter_type: The type of the adapter (databricks or spark)
         :param pulumi.Input[str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[int] credential_id: The system Databricks credential ID
@@ -166,6 +171,9 @@ class _DatabricksCredentialState:
         if schema is not None:
             pulumi.set(__self__, "schema", schema)
         if target_name is not None:
+            warnings.warn("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""", DeprecationWarning)
+            pulumi.log.warn("""target_name is deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
+        if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
         if token is not None:
             pulumi.set(__self__, "token", token)
@@ -174,7 +182,7 @@ class _DatabricksCredentialState:
     @pulumi.getter(name="adapterId")
     def adapter_id(self) -> Optional[pulumi.Input[int]]:
         """
-        Databricks adapter ID for the credential
+        Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
         """
         return pulumi.get(self, "adapter_id")
 
@@ -244,6 +252,7 @@ class _DatabricksCredentialState:
 
     @property
     @pulumi.getter(name="targetName")
+    @_utilities.deprecated("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
     def target_name(self) -> Optional[pulumi.Input[str]]:
         """
         Target name
@@ -283,28 +292,6 @@ class DatabricksCredential(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        # when using the Databricks adapter
-        my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
-            project_id=dbt_project["id"],
-            adapter_id=my_databricks_connection["adapterId"],
-            target_name="prod",
-            token="abcdefgh",
-            schema="my_schema",
-            adapter_type="databricks")
-        # when using the Spark adapter
-        my_spark_cred = dbtcloud.DatabricksCredential("my_spark_cred",
-            project_id=dbt_project["id"],
-            adapter_id=my_databricks_connection["adapterId"],
-            target_name="prod",
-            token="abcdefgh",
-            schema="my_schema",
-            adapter_type="spark")
-        ```
-
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -337,7 +324,7 @@ class DatabricksCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] adapter_id: Databricks adapter ID for the credential
+        :param pulumi.Input[int] adapter_id: Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
         :param pulumi.Input[str] adapter_type: The type of the adapter (databricks or spark)
         :param pulumi.Input[str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[int] project_id: Project ID to create the Databricks credential in
@@ -353,28 +340,6 @@ class DatabricksCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        # when using the Databricks adapter
-        my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
-            project_id=dbt_project["id"],
-            adapter_id=my_databricks_connection["adapterId"],
-            target_name="prod",
-            token="abcdefgh",
-            schema="my_schema",
-            adapter_type="databricks")
-        # when using the Spark adapter
-        my_spark_cred = dbtcloud.DatabricksCredential("my_spark_cred",
-            project_id=dbt_project["id"],
-            adapter_id=my_databricks_connection["adapterId"],
-            target_name="prod",
-            token="abcdefgh",
-            schema="my_schema",
-            adapter_type="spark")
-        ```
 
         ## Import
 
@@ -437,8 +402,6 @@ class DatabricksCredential(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DatabricksCredentialArgs.__new__(DatabricksCredentialArgs)
 
-            if adapter_id is None and not opts.urn:
-                raise TypeError("Missing required property 'adapter_id'")
             __props__.__dict__["adapter_id"] = adapter_id
             if adapter_type is None and not opts.urn:
                 raise TypeError("Missing required property 'adapter_type'")
@@ -482,7 +445,7 @@ class DatabricksCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] adapter_id: Databricks adapter ID for the credential
+        :param pulumi.Input[int] adapter_id: Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
         :param pulumi.Input[str] adapter_type: The type of the adapter (databricks or spark)
         :param pulumi.Input[str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[int] credential_id: The system Databricks credential ID
@@ -507,9 +470,9 @@ class DatabricksCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="adapterId")
-    def adapter_id(self) -> pulumi.Output[int]:
+    def adapter_id(self) -> pulumi.Output[Optional[int]]:
         """
-        Databricks adapter ID for the credential
+        Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `Connection`)
         """
         return pulumi.get(self, "adapter_id")
 
@@ -555,6 +518,7 @@ class DatabricksCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="targetName")
+    @_utilities.deprecated("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
     def target_name(self) -> pulumi.Output[Optional[str]]:
         """
         Target name

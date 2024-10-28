@@ -579,6 +579,10 @@ export interface GetJobsJob {
      */
     projectId: number;
     /**
+     * Whether the job should compare data changes introduced by the code change in the PR
+     */
+    runCompareChanges: boolean;
+    /**
      * Whether the job test source freshness
      */
     runGenerateSources: boolean;

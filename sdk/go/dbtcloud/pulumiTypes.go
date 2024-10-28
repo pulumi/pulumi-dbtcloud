@@ -5793,6 +5793,8 @@ type GetJobsJob struct {
 	Name string `pulumi:"name"`
 	// The ID of the project
 	ProjectId int `pulumi:"projectId"`
+	// Whether the job should compare data changes introduced by the code change in the PR
+	RunCompareChanges bool `pulumi:"runCompareChanges"`
 	// Whether the job test source freshness
 	RunGenerateSources bool               `pulumi:"runGenerateSources"`
 	Schedule           GetJobsJobSchedule `pulumi:"schedule"`
@@ -5841,6 +5843,8 @@ type GetJobsJobArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of the project
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// Whether the job should compare data changes introduced by the code change in the PR
+	RunCompareChanges pulumi.BoolInput `pulumi:"runCompareChanges"`
 	// Whether the job test source freshness
 	RunGenerateSources pulumi.BoolInput        `pulumi:"runGenerateSources"`
 	Schedule           GetJobsJobScheduleInput `pulumi:"schedule"`
@@ -5968,6 +5972,11 @@ func (o GetJobsJobOutput) Name() pulumi.StringOutput {
 // The ID of the project
 func (o GetJobsJobOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetJobsJob) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// Whether the job should compare data changes introduced by the code change in the PR
+func (o GetJobsJobOutput) RunCompareChanges() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJob) bool { return v.RunCompareChanges }).(pulumi.BoolOutput)
 }
 
 // Whether the job test source freshness

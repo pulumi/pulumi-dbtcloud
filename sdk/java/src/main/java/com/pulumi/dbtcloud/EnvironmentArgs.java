@@ -59,21 +59,19 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-     * default if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
      * 
      */
-    @Import(name="dbtVersion", required=true)
-    private Output<String> dbtVersion;
+    @Import(name="dbtVersion")
+    private @Nullable Output<String> dbtVersion;
 
     /**
      * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-     * default if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
      * 
      */
-    public Output<String> dbtVersion() {
-        return this.dbtVersion;
+    public Optional<Output<String>> dbtVersion() {
+        return Optional.ofNullable(this.dbtVersion);
     }
 
     /**
@@ -272,21 +270,19 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-         * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-         * default if no version is provided
+         * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
          * 
          * @return builder
          * 
          */
-        public Builder dbtVersion(Output<String> dbtVersion) {
+        public Builder dbtVersion(@Nullable Output<String> dbtVersion) {
             $.dbtVersion = dbtVersion;
             return this;
         }
 
         /**
          * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-         * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. In a future version of the provider `versionless` will be the
-         * default if no version is provided
+         * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
          * 
          * @return builder
          * 
@@ -445,9 +441,6 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public EnvironmentArgs build() {
-            if ($.dbtVersion == null) {
-                throw new MissingRequiredPropertyException("EnvironmentArgs", "dbtVersion");
-            }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("EnvironmentArgs", "projectId");
             }

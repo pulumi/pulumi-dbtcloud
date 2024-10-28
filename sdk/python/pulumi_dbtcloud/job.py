@@ -34,6 +34,7 @@ class JobArgs:
                  job_completion_trigger_condition: Optional[pulumi.Input['JobJobCompletionTriggerConditionArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
+                 run_compare_changes: Optional[pulumi.Input[bool]] = None,
                  run_generate_sources: Optional[pulumi.Input[bool]] = None,
                  schedule_cron: Optional[pulumi.Input[str]] = None,
                  schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -59,6 +60,7 @@ class JobArgs:
         :param pulumi.Input['JobJobCompletionTriggerConditionArgs'] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
+        :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         :param pulumi.Input[bool] run_generate_sources: Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         :param pulumi.Input[str] schedule_cron: Custom cron expression for schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_days: List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -92,6 +94,8 @@ class JobArgs:
             pulumi.set(__self__, "name", name)
         if num_threads is not None:
             pulumi.set(__self__, "num_threads", num_threads)
+        if run_compare_changes is not None:
+            pulumi.set(__self__, "run_compare_changes", run_compare_changes)
         if run_generate_sources is not None:
             pulumi.set(__self__, "run_generate_sources", run_generate_sources)
         if schedule_cron is not None:
@@ -270,6 +274,18 @@ class JobArgs:
         pulumi.set(self, "num_threads", value)
 
     @property
+    @pulumi.getter(name="runCompareChanges")
+    def run_compare_changes(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        """
+        return pulumi.get(self, "run_compare_changes")
+
+    @run_compare_changes.setter
+    def run_compare_changes(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "run_compare_changes", value)
+
+    @property
     @pulumi.getter(name="runGenerateSources")
     def run_generate_sources(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -405,6 +421,7 @@ class _JobState:
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
+                 run_compare_changes: Optional[pulumi.Input[bool]] = None,
                  run_generate_sources: Optional[pulumi.Input[bool]] = None,
                  schedule_cron: Optional[pulumi.Input[str]] = None,
                  schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -430,6 +447,7 @@ class _JobState:
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[int] project_id: Project ID to create the job in
+        :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         :param pulumi.Input[bool] run_generate_sources: Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         :param pulumi.Input[str] schedule_cron: Custom cron expression for schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_days: List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -466,6 +484,8 @@ class _JobState:
             pulumi.set(__self__, "num_threads", num_threads)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if run_compare_changes is not None:
+            pulumi.set(__self__, "run_compare_changes", run_compare_changes)
         if run_generate_sources is not None:
             pulumi.set(__self__, "run_generate_sources", run_generate_sources)
         if schedule_cron is not None:
@@ -634,6 +654,18 @@ class _JobState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="runCompareChanges")
+    def run_compare_changes(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        """
+        return pulumi.get(self, "run_compare_changes")
+
+    @run_compare_changes.setter
+    def run_compare_changes(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "run_compare_changes", value)
+
+    @property
     @pulumi.getter(name="runGenerateSources")
     def run_generate_sources(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -783,6 +815,7 @@ class Job(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
+                 run_compare_changes: Optional[pulumi.Input[bool]] = None,
                  run_generate_sources: Optional[pulumi.Input[bool]] = None,
                  schedule_cron: Optional[pulumi.Input[str]] = None,
                  schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -946,6 +979,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[int] project_id: Project ID to create the job in
+        :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         :param pulumi.Input[bool] run_generate_sources: Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         :param pulumi.Input[str] schedule_cron: Custom cron expression for schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_days: List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -1128,6 +1162,7 @@ class Job(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
+                 run_compare_changes: Optional[pulumi.Input[bool]] = None,
                  run_generate_sources: Optional[pulumi.Input[bool]] = None,
                  schedule_cron: Optional[pulumi.Input[str]] = None,
                  schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -1166,6 +1201,7 @@ class Job(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["run_compare_changes"] = run_compare_changes
             __props__.__dict__["run_generate_sources"] = run_generate_sources
             __props__.__dict__["schedule_cron"] = schedule_cron
             __props__.__dict__["schedule_days"] = schedule_days
@@ -1201,6 +1237,7 @@ class Job(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             num_threads: Optional[pulumi.Input[int]] = None,
             project_id: Optional[pulumi.Input[int]] = None,
+            run_compare_changes: Optional[pulumi.Input[bool]] = None,
             run_generate_sources: Optional[pulumi.Input[bool]] = None,
             schedule_cron: Optional[pulumi.Input[str]] = None,
             schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -1231,6 +1268,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[int] project_id: Project ID to create the job in
+        :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         :param pulumi.Input[bool] run_generate_sources: Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         :param pulumi.Input[str] schedule_cron: Custom cron expression for schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_days: List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -1259,6 +1297,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["num_threads"] = num_threads
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["run_compare_changes"] = run_compare_changes
         __props__.__dict__["run_generate_sources"] = run_generate_sources
         __props__.__dict__["schedule_cron"] = schedule_cron
         __props__.__dict__["schedule_days"] = schedule_days
@@ -1367,6 +1406,14 @@ class Job(pulumi.CustomResource):
         Project ID to create the job in
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="runCompareChanges")
+    def run_compare_changes(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        """
+        return pulumi.get(self, "run_compare_changes")
 
     @property
     @pulumi.getter(name="runGenerateSources")
