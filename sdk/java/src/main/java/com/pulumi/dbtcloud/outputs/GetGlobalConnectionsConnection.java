@@ -43,7 +43,7 @@ public final class GetGlobalConnectionsConnection {
      * @return Private Link Endpoint ID.
      * 
      */
-    private Integer privateLinkEndpointId;
+    private String privateLinkEndpointId;
     /**
      * @return When the connection was updated
      * 
@@ -96,7 +96,7 @@ public final class GetGlobalConnectionsConnection {
      * @return Private Link Endpoint ID.
      * 
      */
-    public Integer privateLinkEndpointId() {
+    public String privateLinkEndpointId() {
         return this.privateLinkEndpointId;
     }
     /**
@@ -123,7 +123,7 @@ public final class GetGlobalConnectionsConnection {
         private Boolean isSshTunnelEnabled;
         private String name;
         private Integer oauthConfigurationId;
-        private Integer privateLinkEndpointId;
+        private String privateLinkEndpointId;
         private String updatedAt;
         public Builder() {}
         public Builder(GetGlobalConnectionsConnection defaults) {
@@ -196,7 +196,7 @@ public final class GetGlobalConnectionsConnection {
             return this;
         }
         @CustomType.Setter
-        public Builder privateLinkEndpointId(Integer privateLinkEndpointId) {
+        public Builder privateLinkEndpointId(String privateLinkEndpointId) {
             if (privateLinkEndpointId == null) {
               throw new MissingRequiredPropertyException("GetGlobalConnectionsConnection", "privateLinkEndpointId");
             }

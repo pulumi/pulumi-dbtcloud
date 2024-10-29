@@ -126,6 +126,12 @@ namespace Pulumi.DbtCloud
         public Output<string?> DeploymentType { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+        /// </summary>
+        [Output("enableModelQueryHistory")]
+        public Output<bool?> EnableModelQueryHistory { get; private set; } = null!;
+
+        /// <summary>
         /// Environment ID within the project
         /// </summary>
         [Output("environmentId")]
@@ -245,6 +251,12 @@ namespace Pulumi.DbtCloud
         public Input<string>? DeploymentType { get; set; }
 
         /// <summary>
+        /// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+        /// </summary>
+        [Input("enableModelQueryHistory")]
+        public Input<bool>? EnableModelQueryHistory { get; set; }
+
+        /// <summary>
         /// ID of the extended attributes for the environment
         /// </summary>
         [Input("extendedAttributesId")]
@@ -317,6 +329,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("deploymentType")]
         public Input<string>? DeploymentType { get; set; }
+
+        /// <summary>
+        /// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+        /// </summary>
+        [Input("enableModelQueryHistory")]
+        public Input<bool>? EnableModelQueryHistory { get; set; }
 
         /// <summary>
         /// Environment ID within the project

@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > This resource is deprecated with the release of global connections and it will be removed in a future version of the provider. Going forward, please set the `connectionId` in the `Environment` resource instead.
+//
 // ## Example Usage
 //
 // ```go

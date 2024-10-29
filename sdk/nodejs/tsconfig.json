@@ -59,6 +59,7 @@
         "index.ts",
         "job.ts",
         "licenseMap.ts",
+        "lineageIntegration.ts",
         "notification.ts",
         "partialLicenseMap.ts",
         "partialNotification.ts",

@@ -51,6 +51,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Job{}
 	case "dbtcloud:index/licenseMap:LicenseMap":
 		r = &LicenseMap{}
+	case "dbtcloud:index/lineageIntegration:LineageIntegration":
+		r = &LineageIntegration{}
 	case "dbtcloud:index/notification:Notification":
 		r = &Notification{}
 	case "dbtcloud:index/partialLicenseMap:PartialLicenseMap":
@@ -181,6 +183,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/licenseMap",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/lineageIntegration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

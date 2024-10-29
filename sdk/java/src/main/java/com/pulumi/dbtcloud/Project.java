@@ -44,6 +44,11 @@ import javax.annotation.Nullable;
  *             .name("Analytics")
  *             .build());
  * 
+ *         var dbtProjectWithDescription = new Project("dbtProjectWithDescription", ProjectArgs.builder()
+ *             .name("Analytics with description")
+ *             .description("My awesome analytics project")
+ *             .build());
+ * 
  *         var dbtProjectWithSubdir = new Project("dbtProjectWithSubdir", ProjectArgs.builder()
  *             .name("Analytics in Subdir")
  *             .dbtProjectSubdirectory("/path")
@@ -101,6 +106,20 @@ public class Project extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> dbtProjectSubdirectory() {
         return Codegen.optional(this.dbtProjectSubdirectory);
+    }
+    /**
+     * Description for the project. Will show in dbt Explorer.
+     * 
+     */
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> description;
+
+    /**
+     * @return Description for the project. Will show in dbt Explorer.
+     * 
+     */
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
     }
     /**
      * Project name

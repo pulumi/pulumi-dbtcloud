@@ -220,6 +220,11 @@ export type LicenseMap = import("./licenseMap").LicenseMap;
 export const LicenseMap: typeof import("./licenseMap").LicenseMap = null as any;
 utilities.lazyLoad(exports, ["LicenseMap"], () => require("./licenseMap"));
 
+export { LineageIntegrationArgs, LineageIntegrationState } from "./lineageIntegration";
+export type LineageIntegration = import("./lineageIntegration").LineageIntegration;
+export const LineageIntegration: typeof import("./lineageIntegration").LineageIntegration = null as any;
+utilities.lazyLoad(exports, ["LineageIntegration"], () => require("./lineageIntegration"));
+
 export { NotificationArgs, NotificationState } from "./notification";
 export type Notification = import("./notification").Notification;
 export const Notification: typeof import("./notification").Notification = null as any;
@@ -334,6 +339,8 @@ const _module = {
                 return new Job(name, <any>undefined, { urn })
             case "dbtcloud:index/licenseMap:LicenseMap":
                 return new LicenseMap(name, <any>undefined, { urn })
+            case "dbtcloud:index/lineageIntegration:LineageIntegration":
+                return new LineageIntegration(name, <any>undefined, { urn })
             case "dbtcloud:index/notification:Notification":
                 return new Notification(name, <any>undefined, { urn })
             case "dbtcloud:index/partialLicenseMap:PartialLicenseMap":
@@ -380,6 +387,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/group", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/groupPartialPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/job", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/licenseMap", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/lineageIntegration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/notification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialLicenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialNotification", _module)

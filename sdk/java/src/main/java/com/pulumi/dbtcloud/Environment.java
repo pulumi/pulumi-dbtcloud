@@ -186,6 +186,20 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.deploymentType);
     }
     /**
+     * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+     * 
+     */
+    @Export(name="enableModelQueryHistory", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> enableModelQueryHistory;
+
+    /**
+     * @return Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+     * 
+     */
+    public Output<Optional<Boolean>> enableModelQueryHistory() {
+        return Codegen.optional(this.enableModelQueryHistory);
+    }
+    /**
      * Environment ID within the project
      * 
      */

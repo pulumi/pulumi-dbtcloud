@@ -54,6 +54,10 @@ export interface GetEnvironmentResult {
      */
     readonly deploymentType: string;
     /**
+     * Whether model query history is on
+     */
+    readonly enableModelQueryHistory: boolean;
+    /**
      * The ID of the environment
      */
     readonly environmentId: number;

@@ -48,6 +48,7 @@ from .group import *
 from .group_partial_permissions import *
 from .job import *
 from .license_map import *
+from .lineage_integration import *
 from .notification import *
 from .partial_license_map import *
 from .partial_notification import *
@@ -193,6 +194,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/licenseMap:LicenseMap": "LicenseMap"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/lineageIntegration",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/lineageIntegration:LineageIntegration": "LineageIntegration"
   }
  },
  {

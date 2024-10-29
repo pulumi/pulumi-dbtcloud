@@ -31,6 +31,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = dbtcloud.NewProject(ctx, "dbt_project_with_description", &dbtcloud.ProjectArgs{
+//				Name:        pulumi.String("Analytics with description"),
+//				Description: pulumi.String("My awesome analytics project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = dbtcloud.NewProject(ctx, "dbt_project_with_subdir", &dbtcloud.ProjectArgs{
 //				Name:                   pulumi.String("Analytics in Subdir"),
 //				DbtProjectSubdirectory: pulumi.String("/path"),
@@ -78,6 +85,8 @@ type Project struct {
 
 	// dbt project subdirectory path
 	DbtProjectSubdirectory pulumi.StringPtrOutput `pulumi:"dbtProjectSubdirectory"`
+	// Description for the project. Will show in dbt Explorer.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Project name
 	Name pulumi.StringOutput `pulumi:"name"`
 }
@@ -114,6 +123,8 @@ func GetProject(ctx *pulumi.Context,
 type projectState struct {
 	// dbt project subdirectory path
 	DbtProjectSubdirectory *string `pulumi:"dbtProjectSubdirectory"`
+	// Description for the project. Will show in dbt Explorer.
+	Description *string `pulumi:"description"`
 	// Project name
 	Name *string `pulumi:"name"`
 }
@@ -121,6 +132,8 @@ type projectState struct {
 type ProjectState struct {
 	// dbt project subdirectory path
 	DbtProjectSubdirectory pulumi.StringPtrInput
+	// Description for the project. Will show in dbt Explorer.
+	Description pulumi.StringPtrInput
 	// Project name
 	Name pulumi.StringPtrInput
 }
@@ -132,6 +145,8 @@ func (ProjectState) ElementType() reflect.Type {
 type projectArgs struct {
 	// dbt project subdirectory path
 	DbtProjectSubdirectory *string `pulumi:"dbtProjectSubdirectory"`
+	// Description for the project. Will show in dbt Explorer.
+	Description *string `pulumi:"description"`
 	// Project name
 	Name *string `pulumi:"name"`
 }
@@ -140,6 +155,8 @@ type projectArgs struct {
 type ProjectArgs struct {
 	// dbt project subdirectory path
 	DbtProjectSubdirectory pulumi.StringPtrInput
+	// Description for the project. Will show in dbt Explorer.
+	Description pulumi.StringPtrInput
 	// Project name
 	Name pulumi.StringPtrInput
 }
@@ -234,6 +251,11 @@ func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOu
 // dbt project subdirectory path
 func (o ProjectOutput) DbtProjectSubdirectory() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringPtrOutput { return v.DbtProjectSubdirectory }).(pulumi.StringPtrOutput)
+}
+
+// Description for the project. Will show in dbt Explorer.
+func (o ProjectOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // Project name
