@@ -20,14 +20,18 @@ __all__ = ['ProjectArgs', 'Project']
 class ProjectArgs:
     def __init__(__self__, *,
                  dbt_project_subdirectory: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Project resource.
         :param pulumi.Input[str] dbt_project_subdirectory: dbt project subdirectory path
+        :param pulumi.Input[str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[str] name: Project name
         """
         if dbt_project_subdirectory is not None:
             pulumi.set(__self__, "dbt_project_subdirectory", dbt_project_subdirectory)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -42,6 +46,18 @@ class ProjectArgs:
     @dbt_project_subdirectory.setter
     def dbt_project_subdirectory(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dbt_project_subdirectory", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description for the project. Will show in dbt Explorer.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -60,14 +76,18 @@ class ProjectArgs:
 class _ProjectState:
     def __init__(__self__, *,
                  dbt_project_subdirectory: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
         :param pulumi.Input[str] dbt_project_subdirectory: dbt project subdirectory path
+        :param pulumi.Input[str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[str] name: Project name
         """
         if dbt_project_subdirectory is not None:
             pulumi.set(__self__, "dbt_project_subdirectory", dbt_project_subdirectory)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -82,6 +102,18 @@ class _ProjectState:
     @dbt_project_subdirectory.setter
     def dbt_project_subdirectory(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dbt_project_subdirectory", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description for the project. Will show in dbt Explorer.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -102,6 +134,7 @@ class Project(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dbt_project_subdirectory: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -112,6 +145,9 @@ class Project(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         dbt_project = dbtcloud.Project("dbt_project", name="Analytics")
+        dbt_project_with_description = dbtcloud.Project("dbt_project_with_description",
+            name="Analytics with description",
+            description="My awesome analytics project")
         dbt_project_with_subdir = dbtcloud.Project("dbt_project_with_subdir",
             name="Analytics in Subdir",
             dbt_project_subdirectory="/path")
@@ -150,6 +186,7 @@ class Project(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dbt_project_subdirectory: dbt project subdirectory path
+        :param pulumi.Input[str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[str] name: Project name
         """
         ...
@@ -166,6 +203,9 @@ class Project(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         dbt_project = dbtcloud.Project("dbt_project", name="Analytics")
+        dbt_project_with_description = dbtcloud.Project("dbt_project_with_description",
+            name="Analytics with description",
+            description="My awesome analytics project")
         dbt_project_with_subdir = dbtcloud.Project("dbt_project_with_subdir",
             name="Analytics in Subdir",
             dbt_project_subdirectory="/path")
@@ -217,6 +257,7 @@ class Project(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dbt_project_subdirectory: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -228,6 +269,7 @@ class Project(pulumi.CustomResource):
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
             __props__.__dict__["dbt_project_subdirectory"] = dbt_project_subdirectory
+            __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
         super(Project, __self__).__init__(
             'dbtcloud:index/project:Project',
@@ -240,6 +282,7 @@ class Project(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dbt_project_subdirectory: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
@@ -249,6 +292,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dbt_project_subdirectory: dbt project subdirectory path
+        :param pulumi.Input[str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[str] name: Project name
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -256,6 +300,7 @@ class Project(pulumi.CustomResource):
         __props__ = _ProjectState.__new__(_ProjectState)
 
         __props__.__dict__["dbt_project_subdirectory"] = dbt_project_subdirectory
+        __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
         return Project(resource_name, opts=opts, __props__=__props__)
 
@@ -266,6 +311,14 @@ class Project(pulumi.CustomResource):
         dbt project subdirectory path
         """
         return pulumi.get(self, "dbt_project_subdirectory")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description for the project. Will show in dbt Explorer.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter

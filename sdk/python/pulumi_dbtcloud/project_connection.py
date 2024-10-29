@@ -103,6 +103,8 @@ class ProjectConnection(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        > This resource is deprecated with the release of global connections and it will be removed in a future version of the provider. Going forward, please set the `connection_id` in the `Environment` resource instead.
+
         ## Example Usage
 
         ```python
@@ -156,6 +158,8 @@ class ProjectConnection(pulumi.CustomResource):
                  args: ProjectConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > This resource is deprecated with the release of global connections and it will be removed in a future version of the provider. Going forward, please set the `connection_id` in the `Environment` resource instead.
+
         ## Example Usage
 
         ```python

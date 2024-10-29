@@ -38,6 +38,11 @@ public final class GetEnvironmentResult {
      */
     private String deploymentType;
     /**
+     * @return Whether model query history is on
+     * 
+     */
+    private Boolean enableModelQueryHistory;
+    /**
      * @return The ID of the environment
      * 
      */
@@ -110,6 +115,13 @@ public final class GetEnvironmentResult {
         return this.deploymentType;
     }
     /**
+     * @return Whether model query history is on
+     * 
+     */
+    public Boolean enableModelQueryHistory() {
+        return this.enableModelQueryHistory;
+    }
+    /**
      * @return The ID of the environment
      * 
      */
@@ -173,6 +185,7 @@ public final class GetEnvironmentResult {
         private String customBranch;
         private String dbtVersion;
         private String deploymentType;
+        private Boolean enableModelQueryHistory;
         private Integer environmentId;
         private Integer extendedAttributesId;
         private String id;
@@ -188,6 +201,7 @@ public final class GetEnvironmentResult {
     	      this.customBranch = defaults.customBranch;
     	      this.dbtVersion = defaults.dbtVersion;
     	      this.deploymentType = defaults.deploymentType;
+    	      this.enableModelQueryHistory = defaults.enableModelQueryHistory;
     	      this.environmentId = defaults.environmentId;
     	      this.extendedAttributesId = defaults.extendedAttributesId;
     	      this.id = defaults.id;
@@ -235,6 +249,14 @@ public final class GetEnvironmentResult {
               throw new MissingRequiredPropertyException("GetEnvironmentResult", "deploymentType");
             }
             this.deploymentType = deploymentType;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder enableModelQueryHistory(Boolean enableModelQueryHistory) {
+            if (enableModelQueryHistory == null) {
+              throw new MissingRequiredPropertyException("GetEnvironmentResult", "enableModelQueryHistory");
+            }
+            this.enableModelQueryHistory = enableModelQueryHistory;
             return this;
         }
         @CustomType.Setter
@@ -300,6 +322,7 @@ public final class GetEnvironmentResult {
             _resultValue.customBranch = customBranch;
             _resultValue.dbtVersion = dbtVersion;
             _resultValue.deploymentType = deploymentType;
+            _resultValue.enableModelQueryHistory = enableModelQueryHistory;
             _resultValue.environmentId = environmentId;
             _resultValue.extendedAttributesId = extendedAttributesId;
             _resultValue.id = id;

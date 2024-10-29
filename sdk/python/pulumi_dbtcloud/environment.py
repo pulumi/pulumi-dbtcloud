@@ -26,6 +26,7 @@ class EnvironmentArgs:
                  custom_branch: Optional[pulumi.Input[str]] = None,
                  dbt_version: Optional[pulumi.Input[str]] = None,
                  deployment_type: Optional[pulumi.Input[str]] = None,
+                 enable_model_query_history: Optional[pulumi.Input[bool]] = None,
                  extended_attributes_id: Optional[pulumi.Input[int]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -41,6 +42,7 @@ class EnvironmentArgs:
                `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
                'staging' or left empty for generic environments
+        :param pulumi.Input[bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
         :param pulumi.Input[str] name: Environment name
@@ -58,6 +60,8 @@ class EnvironmentArgs:
             pulumi.set(__self__, "dbt_version", dbt_version)
         if deployment_type is not None:
             pulumi.set(__self__, "deployment_type", deployment_type)
+        if enable_model_query_history is not None:
+            pulumi.set(__self__, "enable_model_query_history", enable_model_query_history)
         if extended_attributes_id is not None:
             pulumi.set(__self__, "extended_attributes_id", extended_attributes_id)
         if is_active is not None:
@@ -152,6 +156,18 @@ class EnvironmentArgs:
         pulumi.set(self, "deployment_type", value)
 
     @property
+    @pulumi.getter(name="enableModelQueryHistory")
+    def enable_model_query_history(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+        """
+        return pulumi.get(self, "enable_model_query_history")
+
+    @enable_model_query_history.setter
+    def enable_model_query_history(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_model_query_history", value)
+
+    @property
     @pulumi.getter(name="extendedAttributesId")
     def extended_attributes_id(self) -> Optional[pulumi.Input[int]]:
         """
@@ -208,6 +224,7 @@ class _EnvironmentState:
                  custom_branch: Optional[pulumi.Input[str]] = None,
                  dbt_version: Optional[pulumi.Input[str]] = None,
                  deployment_type: Optional[pulumi.Input[str]] = None,
+                 enable_model_query_history: Optional[pulumi.Input[bool]] = None,
                  environment_id: Optional[pulumi.Input[int]] = None,
                  extended_attributes_id: Optional[pulumi.Input[int]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
@@ -224,6 +241,7 @@ class _EnvironmentState:
                `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
                'staging' or left empty for generic environments
+        :param pulumi.Input[bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[int] environment_id: Environment ID within the project
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
@@ -242,6 +260,8 @@ class _EnvironmentState:
             pulumi.set(__self__, "dbt_version", dbt_version)
         if deployment_type is not None:
             pulumi.set(__self__, "deployment_type", deployment_type)
+        if enable_model_query_history is not None:
+            pulumi.set(__self__, "enable_model_query_history", enable_model_query_history)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
         if extended_attributes_id is not None:
@@ -316,6 +336,18 @@ class _EnvironmentState:
     @deployment_type.setter
     def deployment_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "deployment_type", value)
+
+    @property
+    @pulumi.getter(name="enableModelQueryHistory")
+    def enable_model_query_history(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+        """
+        return pulumi.get(self, "enable_model_query_history")
+
+    @enable_model_query_history.setter
+    def enable_model_query_history(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_model_query_history", value)
 
     @property
     @pulumi.getter(name="environmentId")
@@ -412,6 +444,7 @@ class Environment(pulumi.CustomResource):
                  custom_branch: Optional[pulumi.Input[str]] = None,
                  dbt_version: Optional[pulumi.Input[str]] = None,
                  deployment_type: Optional[pulumi.Input[str]] = None,
+                 enable_model_query_history: Optional[pulumi.Input[bool]] = None,
                  extended_attributes_id: Optional[pulumi.Input[int]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -497,6 +530,7 @@ class Environment(pulumi.CustomResource):
                `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
                'staging' or left empty for generic environments
+        :param pulumi.Input[bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
         :param pulumi.Input[str] name: Environment name
@@ -599,6 +633,7 @@ class Environment(pulumi.CustomResource):
                  custom_branch: Optional[pulumi.Input[str]] = None,
                  dbt_version: Optional[pulumi.Input[str]] = None,
                  deployment_type: Optional[pulumi.Input[str]] = None,
+                 enable_model_query_history: Optional[pulumi.Input[bool]] = None,
                  extended_attributes_id: Optional[pulumi.Input[int]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -619,6 +654,7 @@ class Environment(pulumi.CustomResource):
             __props__.__dict__["custom_branch"] = custom_branch
             __props__.__dict__["dbt_version"] = dbt_version
             __props__.__dict__["deployment_type"] = deployment_type
+            __props__.__dict__["enable_model_query_history"] = enable_model_query_history
             __props__.__dict__["extended_attributes_id"] = extended_attributes_id
             __props__.__dict__["is_active"] = is_active
             __props__.__dict__["name"] = name
@@ -645,6 +681,7 @@ class Environment(pulumi.CustomResource):
             custom_branch: Optional[pulumi.Input[str]] = None,
             dbt_version: Optional[pulumi.Input[str]] = None,
             deployment_type: Optional[pulumi.Input[str]] = None,
+            enable_model_query_history: Optional[pulumi.Input[bool]] = None,
             environment_id: Optional[pulumi.Input[int]] = None,
             extended_attributes_id: Optional[pulumi.Input[int]] = None,
             is_active: Optional[pulumi.Input[bool]] = None,
@@ -666,6 +703,7 @@ class Environment(pulumi.CustomResource):
                `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
         :param pulumi.Input[str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
                'staging' or left empty for generic environments
+        :param pulumi.Input[bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[int] environment_id: Environment ID within the project
         :param pulumi.Input[int] extended_attributes_id: ID of the extended attributes for the environment
         :param pulumi.Input[bool] is_active: Whether the environment is active
@@ -683,6 +721,7 @@ class Environment(pulumi.CustomResource):
         __props__.__dict__["custom_branch"] = custom_branch
         __props__.__dict__["dbt_version"] = dbt_version
         __props__.__dict__["deployment_type"] = deployment_type
+        __props__.__dict__["enable_model_query_history"] = enable_model_query_history
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["extended_attributes_id"] = extended_attributes_id
         __props__.__dict__["is_active"] = is_active
@@ -731,6 +770,14 @@ class Environment(pulumi.CustomResource):
         'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
+
+    @property
+    @pulumi.getter(name="enableModelQueryHistory")
+    def enable_model_query_history(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+        """
+        return pulumi.get(self, "enable_model_query_history")
 
     @property
     @pulumi.getter(name="environmentId")

@@ -27,6 +27,10 @@ export interface GetEnvironmentsEnvironment {
      */
     deploymentType: string;
     /**
+     * Whether model query history is on
+     */
+    enableModelQueryHistory: boolean;
+    /**
      * The ID of the environment
      */
     environmentId: number;
@@ -478,7 +482,7 @@ export interface GetGlobalConnectionsConnection {
     /**
      * Private Link Endpoint ID.
      */
-    privateLinkEndpointId: number;
+    privateLinkEndpointId: string;
     /**
      * When the connection was updated
      */

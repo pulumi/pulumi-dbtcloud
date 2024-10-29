@@ -25,6 +25,12 @@ namespace Pulumi.DbtCloud
     ///         Name = "Analytics",
     ///     });
     /// 
+    ///     var dbtProjectWithDescription = new DbtCloud.Project("dbt_project_with_description", new()
+    ///     {
+    ///         Name = "Analytics with description",
+    ///         Description = "My awesome analytics project",
+    ///     });
+    /// 
     ///     var dbtProjectWithSubdir = new DbtCloud.Project("dbt_project_with_subdir", new()
     ///     {
     ///         Name = "Analytics in Subdir",
@@ -72,6 +78,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Output("dbtProjectSubdirectory")]
         public Output<string?> DbtProjectSubdirectory { get; private set; } = null!;
+
+        /// <summary>
+        /// Description for the project. Will show in dbt Explorer.
+        /// </summary>
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
         /// Project name
@@ -133,6 +145,12 @@ namespace Pulumi.DbtCloud
         public Input<string>? DbtProjectSubdirectory { get; set; }
 
         /// <summary>
+        /// Description for the project. Will show in dbt Explorer.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// Project name
         /// </summary>
         [Input("name")]
@@ -151,6 +169,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("dbtProjectSubdirectory")]
         public Input<string>? DbtProjectSubdirectory { get; set; }
+
+        /// <summary>
+        /// Description for the project. Will show in dbt Explorer.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// Project name

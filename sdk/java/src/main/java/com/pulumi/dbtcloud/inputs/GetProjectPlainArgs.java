@@ -16,6 +16,21 @@ public final class GetProjectPlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetProjectPlainArgs Empty = new GetProjectPlainArgs();
 
     /**
+     * The description of the project
+     * 
+     */
+    @Import(name="description")
+    private @Nullable String description;
+
+    /**
+     * @return The description of the project
+     * 
+     */
+    public Optional<String> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * Given name for project
      * 
      */
@@ -48,6 +63,7 @@ public final class GetProjectPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetProjectPlainArgs() {}
 
     private GetProjectPlainArgs(GetProjectPlainArgs $) {
+        this.description = $.description;
         this.name = $.name;
         this.projectId = $.projectId;
     }
@@ -68,6 +84,17 @@ public final class GetProjectPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetProjectPlainArgs defaults) {
             $ = new GetProjectPlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param description The description of the project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable String description) {
+            $.description = description;
+            return this;
         }
 
         /**

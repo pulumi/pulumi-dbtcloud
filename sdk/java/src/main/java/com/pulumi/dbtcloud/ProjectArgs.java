@@ -31,6 +31,21 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Description for the project. Will show in dbt Explorer.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return Description for the project. Will show in dbt Explorer.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * Project name
      * 
      */
@@ -49,6 +64,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
 
     private ProjectArgs(ProjectArgs $) {
         this.dbtProjectSubdirectory = $.dbtProjectSubdirectory;
+        this.description = $.description;
         this.name = $.name;
     }
 
@@ -89,6 +105,27 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder dbtProjectSubdirectory(String dbtProjectSubdirectory) {
             return dbtProjectSubdirectory(Output.of(dbtProjectSubdirectory));
+        }
+
+        /**
+         * @param description Description for the project. Will show in dbt Explorer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description Description for the project. Will show in dbt Explorer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

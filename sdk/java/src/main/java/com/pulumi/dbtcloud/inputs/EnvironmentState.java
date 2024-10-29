@@ -91,6 +91,21 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+     * 
+     */
+    @Import(name="enableModelQueryHistory")
+    private @Nullable Output<Boolean> enableModelQueryHistory;
+
+    /**
+     * @return Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+     * 
+     */
+    public Optional<Output<Boolean>> enableModelQueryHistory() {
+        return Optional.ofNullable(this.enableModelQueryHistory);
+    }
+
+    /**
      * Environment ID within the project
      * 
      */
@@ -203,6 +218,7 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         this.customBranch = $.customBranch;
         this.dbtVersion = $.dbtVersion;
         this.deploymentType = $.deploymentType;
+        this.enableModelQueryHistory = $.enableModelQueryHistory;
         this.environmentId = $.environmentId;
         this.extendedAttributesId = $.extendedAttributesId;
         this.isActive = $.isActive;
@@ -327,6 +343,27 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder deploymentType(String deploymentType) {
             return deploymentType(Output.of(deploymentType));
+        }
+
+        /**
+         * @param enableModelQueryHistory Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableModelQueryHistory(@Nullable Output<Boolean> enableModelQueryHistory) {
+            $.enableModelQueryHistory = enableModelQueryHistory;
+            return this;
+        }
+
+        /**
+         * @param enableModelQueryHistory Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableModelQueryHistory(Boolean enableModelQueryHistory) {
+            return enableModelQueryHistory(Output.of(enableModelQueryHistory));
         }
 
         /**

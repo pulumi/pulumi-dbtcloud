@@ -1785,6 +1785,7 @@ class GetEnvironmentsEnvironmentResult(dict):
                  custom_branch: str,
                  dbt_version: str,
                  deployment_type: str,
+                 enable_model_query_history: bool,
                  environment_id: int,
                  extended_attributes_id: int,
                  name: str,
@@ -1797,6 +1798,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         :param str custom_branch: The custom branch name to use
         :param str dbt_version: Version number of dbt to use in this environment.
         :param str deployment_type: The type of deployment environment (currently 'production', 'staging' or empty)
+        :param bool enable_model_query_history: Whether model query history is on
         :param int environment_id: The ID of the environment
         :param int extended_attributes_id: The ID of the extended attributes applied
         :param str name: The name of the environment
@@ -1809,6 +1811,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         pulumi.set(__self__, "custom_branch", custom_branch)
         pulumi.set(__self__, "dbt_version", dbt_version)
         pulumi.set(__self__, "deployment_type", deployment_type)
+        pulumi.set(__self__, "enable_model_query_history", enable_model_query_history)
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "extended_attributes_id", extended_attributes_id)
         pulumi.set(__self__, "name", name)
@@ -1855,6 +1858,14 @@ class GetEnvironmentsEnvironmentResult(dict):
         The type of deployment environment (currently 'production', 'staging' or empty)
         """
         return pulumi.get(self, "deployment_type")
+
+    @property
+    @pulumi.getter(name="enableModelQueryHistory")
+    def enable_model_query_history(self) -> bool:
+        """
+        Whether model query history is on
+        """
+        return pulumi.get(self, "enable_model_query_history")
 
     @property
     @pulumi.getter(name="environmentId")
@@ -3000,7 +3011,7 @@ class GetGlobalConnectionsConnectionResult(dict):
                  is_ssh_tunnel_enabled: bool,
                  name: str,
                  oauth_configuration_id: int,
-                 private_link_endpoint_id: int,
+                 private_link_endpoint_id: str,
                  updated_at: str):
         """
         :param str adapter_version: Type of adapter used for the connection
@@ -3008,7 +3019,7 @@ class GetGlobalConnectionsConnectionResult(dict):
         :param int environment_count: Number of environments using this connection
         :param int id: Connection Identifier
         :param str name: Connection name
-        :param int private_link_endpoint_id: Private Link Endpoint ID.
+        :param str private_link_endpoint_id: Private Link Endpoint ID.
         :param str updated_at: When the connection was updated
         """
         pulumi.set(__self__, "adapter_version", adapter_version)
@@ -3073,7 +3084,7 @@ class GetGlobalConnectionsConnectionResult(dict):
 
     @property
     @pulumi.getter(name="privateLinkEndpointId")
-    def private_link_endpoint_id(self) -> int:
+    def private_link_endpoint_id(self) -> str:
         """
         Private Link Endpoint ID.
         """

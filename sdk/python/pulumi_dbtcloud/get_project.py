@@ -26,10 +26,13 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, connection_id=None, docs_job_id=None, freshness_job_id=None, id=None, name=None, project_id=None, repository_id=None, state=None):
+    def __init__(__self__, connection_id=None, description=None, docs_job_id=None, freshness_job_id=None, id=None, name=None, project_id=None, repository_id=None, state=None):
         if connection_id and not isinstance(connection_id, int):
             raise TypeError("Expected argument 'connection_id' to be a int")
         pulumi.set(__self__, "connection_id", connection_id)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if docs_job_id and not isinstance(docs_job_id, int):
             raise TypeError("Expected argument 'docs_job_id' to be a int")
         pulumi.set(__self__, "docs_job_id", docs_job_id)
@@ -59,6 +62,14 @@ class GetProjectResult:
         ID of the connection associated with the project
         """
         return pulumi.get(self, "connection_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the project
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="docsJobId")
@@ -125,6 +136,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             yield self
         return GetProjectResult(
             connection_id=self.connection_id,
+            description=self.description,
             docs_job_id=self.docs_job_id,
             freshness_job_id=self.freshness_job_id,
             id=self.id,
@@ -134,7 +146,8 @@ class AwaitableGetProjectResult(GetProjectResult):
             state=self.state)
 
 
-def get_project(name: Optional[str] = None,
+def get_project(description: Optional[str] = None,
+                name: Optional[str] = None,
                 project_id: Optional[int] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
@@ -152,10 +165,12 @@ def get_project(name: Optional[str] = None,
     ```
 
 
+    :param str description: The description of the project
     :param str name: Given name for project
     :param int project_id: ID of the project to represent
     """
     __args__ = dict()
+    __args__['description'] = description
     __args__['name'] = name
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -163,6 +178,7 @@ def get_project(name: Optional[str] = None,
 
     return AwaitableGetProjectResult(
         connection_id=pulumi.get(__ret__, 'connection_id'),
+        description=pulumi.get(__ret__, 'description'),
         docs_job_id=pulumi.get(__ret__, 'docs_job_id'),
         freshness_job_id=pulumi.get(__ret__, 'freshness_job_id'),
         id=pulumi.get(__ret__, 'id'),
@@ -170,7 +186,8 @@ def get_project(name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         repository_id=pulumi.get(__ret__, 'repository_id'),
         state=pulumi.get(__ret__, 'state'))
-def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+def get_project_output(description: Optional[pulumi.Input[Optional[str]]] = None,
+                       name: Optional[pulumi.Input[Optional[str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[int]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectResult]:
     """
@@ -188,16 +205,19 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
+    :param str description: The description of the project
     :param str name: Given name for project
     :param int project_id: ID of the project to represent
     """
     __args__ = dict()
+    __args__['description'] = description
     __args__['name'] = name
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult)
     return __ret__.apply(lambda __response__: GetProjectResult(
         connection_id=pulumi.get(__response__, 'connection_id'),
+        description=pulumi.get(__response__, 'description'),
         docs_job_id=pulumi.get(__response__, 'docs_job_id'),
         freshness_job_id=pulumi.get(__response__, 'freshness_job_id'),
         id=pulumi.get(__response__, 'id'),

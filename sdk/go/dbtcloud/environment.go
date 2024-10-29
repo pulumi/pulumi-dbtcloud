@@ -118,6 +118,8 @@ type Environment struct {
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrOutput `pulumi:"deploymentType"`
+	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+	EnableModelQueryHistory pulumi.BoolPtrOutput `pulumi:"enableModelQueryHistory"`
 	// Environment ID within the project
 	EnvironmentId pulumi.IntOutput `pulumi:"environmentId"`
 	// ID of the extended attributes for the environment
@@ -182,6 +184,8 @@ type environmentState struct {
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
+	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+	EnableModelQueryHistory *bool `pulumi:"enableModelQueryHistory"`
 	// Environment ID within the project
 	EnvironmentId *int `pulumi:"environmentId"`
 	// ID of the extended attributes for the environment
@@ -211,6 +215,8 @@ type EnvironmentState struct {
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
+	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+	EnableModelQueryHistory pulumi.BoolPtrInput
 	// Environment ID within the project
 	EnvironmentId pulumi.IntPtrInput
 	// ID of the extended attributes for the environment
@@ -244,6 +250,8 @@ type environmentArgs struct {
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
+	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+	EnableModelQueryHistory *bool `pulumi:"enableModelQueryHistory"`
 	// ID of the extended attributes for the environment
 	ExtendedAttributesId *int `pulumi:"extendedAttributesId"`
 	// Whether the environment is active
@@ -272,6 +280,8 @@ type EnvironmentArgs struct {
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
 	// 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
+	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+	EnableModelQueryHistory pulumi.BoolPtrInput
 	// ID of the extended attributes for the environment
 	ExtendedAttributesId pulumi.IntPtrInput
 	// Whether the environment is active
@@ -398,6 +408,11 @@ func (o EnvironmentOutput) DbtVersion() pulumi.StringPtrOutput {
 // 'staging' or left empty for generic environments
 func (o EnvironmentOutput) DeploymentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.DeploymentType }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+func (o EnvironmentOutput) EnableModelQueryHistory() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Environment) pulumi.BoolPtrOutput { return v.EnableModelQueryHistory }).(pulumi.BoolPtrOutput)
 }
 
 // Environment ID within the project

@@ -38,7 +38,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// <summary>
         /// Private Link Endpoint ID.
         /// </summary>
-        public readonly int PrivateLinkEndpointId;
+        public readonly string PrivateLinkEndpointId;
         /// <summary>
         /// When the connection was updated
         /// </summary>
@@ -60,7 +60,7 @@ namespace Pulumi.DbtCloud.Outputs
 
             int oauthConfigurationId,
 
-            int privateLinkEndpointId,
+            string privateLinkEndpointId,
 
             string updatedAt)
         {

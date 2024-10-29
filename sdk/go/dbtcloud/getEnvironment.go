@@ -42,6 +42,8 @@ type LookupEnvironmentResult struct {
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType string `pulumi:"deploymentType"`
+	// Whether model query history is on
+	EnableModelQueryHistory bool `pulumi:"enableModelQueryHistory"`
 	// The ID of the environment
 	EnvironmentId int `pulumi:"environmentId"`
 	// The ID of the extended attributes applied
@@ -127,6 +129,11 @@ func (o LookupEnvironmentResultOutput) DbtVersion() pulumi.StringOutput {
 // The type of deployment environment (currently 'production', 'staging' or empty)
 func (o LookupEnvironmentResultOutput) DeploymentType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.DeploymentType }).(pulumi.StringOutput)
+}
+
+// Whether model query history is on
+func (o LookupEnvironmentResultOutput) EnableModelQueryHistory() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) bool { return v.EnableModelQueryHistory }).(pulumi.BoolOutput)
 }
 
 // The ID of the environment

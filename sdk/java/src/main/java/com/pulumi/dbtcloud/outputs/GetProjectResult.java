@@ -19,6 +19,11 @@ public final class GetProjectResult {
      */
     private Integer connectionId;
     /**
+     * @return The description of the project
+     * 
+     */
+    private String description;
+    /**
      * @return ID of Job for the documentation
      * 
      */
@@ -65,6 +70,13 @@ public final class GetProjectResult {
      */
     public Integer connectionId() {
         return this.connectionId;
+    }
+    /**
+     * @return The description of the project
+     * 
+     */
+    public String description() {
+        return this.description;
     }
     /**
      * @return ID of Job for the documentation
@@ -130,6 +142,7 @@ public final class GetProjectResult {
     @CustomType.Builder
     public static final class Builder {
         private Integer connectionId;
+        private String description;
         private Integer docsJobId;
         private Integer freshnessJobId;
         private String id;
@@ -141,6 +154,7 @@ public final class GetProjectResult {
         public Builder(GetProjectResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectionId = defaults.connectionId;
+    	      this.description = defaults.description;
     	      this.docsJobId = defaults.docsJobId;
     	      this.freshnessJobId = defaults.freshnessJobId;
     	      this.id = defaults.id;
@@ -156,6 +170,14 @@ public final class GetProjectResult {
               throw new MissingRequiredPropertyException("GetProjectResult", "connectionId");
             }
             this.connectionId = connectionId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder description(String description) {
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
@@ -215,6 +237,7 @@ public final class GetProjectResult {
         public GetProjectResult build() {
             final var _resultValue = new GetProjectResult();
             _resultValue.connectionId = connectionId;
+            _resultValue.description = description;
             _resultValue.docsJobId = docsJobId;
             _resultValue.freshnessJobId = freshnessJobId;
             _resultValue.id = id;

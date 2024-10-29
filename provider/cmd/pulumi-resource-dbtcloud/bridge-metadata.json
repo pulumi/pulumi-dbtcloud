@@ -111,6 +111,9 @@
                     }
                 }
             },
+            "dbtcloud_lineage_integration": {
+                "current": "dbtcloud:index/lineageIntegration:LineageIntegration"
+            },
             "dbtcloud_notification": {
                 "current": "dbtcloud:index/notification:Notification",
                 "fields": {
@@ -437,6 +440,7 @@
             "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": 1,
             "dbtcloud:index/job:Job": 0,
             "dbtcloud:index/licenseMap:LicenseMap": 0,
+            "dbtcloud:index/lineageIntegration:LineageIntegration": 1,
             "dbtcloud:index/notification:Notification": 1,
             "dbtcloud:index/partialLicenseMap:PartialLicenseMap": 1,
             "dbtcloud:index/partialNotification:PartialNotification": 1,

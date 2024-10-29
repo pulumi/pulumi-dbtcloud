@@ -12,6 +12,10 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const dbtProject = new dbtcloud.Project("dbt_project", {name: "Analytics"});
+ * const dbtProjectWithDescription = new dbtcloud.Project("dbt_project_with_description", {
+ *     name: "Analytics with description",
+ *     description: "My awesome analytics project",
+ * });
  * const dbtProjectWithSubdir = new dbtcloud.Project("dbt_project_with_subdir", {
  *     name: "Analytics in Subdir",
  *     dbtProjectSubdirectory: "/path",
@@ -81,6 +85,10 @@ export class Project extends pulumi.CustomResource {
      */
     public readonly dbtProjectSubdirectory!: pulumi.Output<string | undefined>;
     /**
+     * Description for the project. Will show in dbt Explorer.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
+    /**
      * Project name
      */
     public readonly name!: pulumi.Output<string>;
@@ -99,10 +107,12 @@ export class Project extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ProjectState | undefined;
             resourceInputs["dbtProjectSubdirectory"] = state ? state.dbtProjectSubdirectory : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
             resourceInputs["dbtProjectSubdirectory"] = args ? args.dbtProjectSubdirectory : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -119,6 +129,10 @@ export interface ProjectState {
      */
     dbtProjectSubdirectory?: pulumi.Input<string>;
     /**
+     * Description for the project. Will show in dbt Explorer.
+     */
+    description?: pulumi.Input<string>;
+    /**
      * Project name
      */
     name?: pulumi.Input<string>;
@@ -132,6 +146,10 @@ export interface ProjectArgs {
      * dbt project subdirectory path
      */
     dbtProjectSubdirectory?: pulumi.Input<string>;
+    /**
+     * Description for the project. Will show in dbt Explorer.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Project name
      */

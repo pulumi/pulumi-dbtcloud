@@ -3752,6 +3752,8 @@ type GetEnvironmentsEnvironment struct {
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType string `pulumi:"deploymentType"`
+	// Whether model query history is on
+	EnableModelQueryHistory bool `pulumi:"enableModelQueryHistory"`
 	// The ID of the environment
 	EnvironmentId int `pulumi:"environmentId"`
 	// The ID of the extended attributes applied
@@ -3788,6 +3790,8 @@ type GetEnvironmentsEnvironmentArgs struct {
 	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
+	// Whether model query history is on
+	EnableModelQueryHistory pulumi.BoolInput `pulumi:"enableModelQueryHistory"`
 	// The ID of the environment
 	EnvironmentId pulumi.IntInput `pulumi:"environmentId"`
 	// The ID of the extended attributes applied
@@ -3876,6 +3880,11 @@ func (o GetEnvironmentsEnvironmentOutput) DbtVersion() pulumi.StringOutput {
 // The type of deployment environment (currently 'production', 'staging' or empty)
 func (o GetEnvironmentsEnvironmentOutput) DeploymentType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.DeploymentType }).(pulumi.StringOutput)
+}
+
+// Whether model query history is on
+func (o GetEnvironmentsEnvironmentOutput) EnableModelQueryHistory() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) bool { return v.EnableModelQueryHistory }).(pulumi.BoolOutput)
 }
 
 // The ID of the environment
@@ -5277,7 +5286,7 @@ type GetGlobalConnectionsConnection struct {
 	Name                 string `pulumi:"name"`
 	OauthConfigurationId int    `pulumi:"oauthConfigurationId"`
 	// Private Link Endpoint ID.
-	PrivateLinkEndpointId int `pulumi:"privateLinkEndpointId"`
+	PrivateLinkEndpointId string `pulumi:"privateLinkEndpointId"`
 	// When the connection was updated
 	UpdatedAt string `pulumi:"updatedAt"`
 }
@@ -5307,7 +5316,7 @@ type GetGlobalConnectionsConnectionArgs struct {
 	Name                 pulumi.StringInput `pulumi:"name"`
 	OauthConfigurationId pulumi.IntInput    `pulumi:"oauthConfigurationId"`
 	// Private Link Endpoint ID.
-	PrivateLinkEndpointId pulumi.IntInput `pulumi:"privateLinkEndpointId"`
+	PrivateLinkEndpointId pulumi.StringInput `pulumi:"privateLinkEndpointId"`
 	// When the connection was updated
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
@@ -5397,8 +5406,8 @@ func (o GetGlobalConnectionsConnectionOutput) OauthConfigurationId() pulumi.IntO
 }
 
 // Private Link Endpoint ID.
-func (o GetGlobalConnectionsConnectionOutput) PrivateLinkEndpointId() pulumi.IntOutput {
-	return o.ApplyT(func(v GetGlobalConnectionsConnection) int { return v.PrivateLinkEndpointId }).(pulumi.IntOutput)
+func (o GetGlobalConnectionsConnectionOutput) PrivateLinkEndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionsConnection) string { return v.PrivateLinkEndpointId }).(pulumi.StringOutput)
 }
 
 // When the connection was updated

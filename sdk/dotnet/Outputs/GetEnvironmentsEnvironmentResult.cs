@@ -34,6 +34,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string DeploymentType;
         /// <summary>
+        /// Whether model query history is on
+        /// </summary>
+        public readonly bool EnableModelQueryHistory;
+        /// <summary>
         /// The ID of the environment
         /// </summary>
         public readonly int EnvironmentId;
@@ -70,6 +74,8 @@ namespace Pulumi.DbtCloud.Outputs
 
             string deploymentType,
 
+            bool enableModelQueryHistory,
+
             int environmentId,
 
             int extendedAttributesId,
@@ -87,6 +93,7 @@ namespace Pulumi.DbtCloud.Outputs
             CustomBranch = customBranch;
             DbtVersion = dbtVersion;
             DeploymentType = deploymentType;
+            EnableModelQueryHistory = enableModelQueryHistory;
             EnvironmentId = environmentId;
             ExtendedAttributesId = extendedAttributesId;
             Name = name;

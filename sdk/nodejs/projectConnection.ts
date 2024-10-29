@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > This resource is deprecated with the release of global connections and it will be removed in a future version of the provider. Going forward, please set the `connectionId` in the `dbtcloud.Environment` resource instead.
+ *
  * ## Example Usage
  *
  * ```typescript

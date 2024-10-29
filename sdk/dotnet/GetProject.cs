@@ -76,6 +76,12 @@ namespace Pulumi.DbtCloud
     public sealed class GetProjectArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The description of the project
+        /// </summary>
+        [Input("description")]
+        public string? Description { get; set; }
+
+        /// <summary>
         /// Given name for project
         /// </summary>
         [Input("name")]
@@ -95,6 +101,12 @@ namespace Pulumi.DbtCloud
 
     public sealed class GetProjectInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The description of the project
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
         /// <summary>
         /// Given name for project
         /// </summary>
@@ -121,6 +133,10 @@ namespace Pulumi.DbtCloud
         /// ID of the connection associated with the project
         /// </summary>
         public readonly int ConnectionId;
+        /// <summary>
+        /// The description of the project
+        /// </summary>
+        public readonly string Description;
         /// <summary>
         /// ID of Job for the documentation
         /// </summary>
@@ -154,6 +170,8 @@ namespace Pulumi.DbtCloud
         private GetProjectResult(
             int connectionId,
 
+            string description,
+
             int docsJobId,
 
             int freshnessJobId,
@@ -169,6 +187,7 @@ namespace Pulumi.DbtCloud
             int state)
         {
             ConnectionId = connectionId;
+            Description = description;
             DocsJobId = docsJobId;
             FreshnessJobId = freshnessJobId;
             Id = id;

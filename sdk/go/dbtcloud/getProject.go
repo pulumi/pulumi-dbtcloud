@@ -57,6 +57,8 @@ func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getProject.
 type LookupProjectArgs struct {
+	// The description of the project
+	Description *string `pulumi:"description"`
 	// Given name for project
 	Name *string `pulumi:"name"`
 	// ID of the project to represent
@@ -67,6 +69,8 @@ type LookupProjectArgs struct {
 type LookupProjectResult struct {
 	// ID of the connection associated with the project
 	ConnectionId int `pulumi:"connectionId"`
+	// The description of the project
+	Description string `pulumi:"description"`
 	// ID of Job for the documentation
 	DocsJobId int `pulumi:"docsJobId"`
 	// ID of Job for source freshness
@@ -106,6 +110,8 @@ func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts
 
 // A collection of arguments for invoking getProject.
 type LookupProjectOutputArgs struct {
+	// The description of the project
+	Description pulumi.StringPtrInput `pulumi:"description"`
 	// Given name for project
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// ID of the project to represent
@@ -134,6 +140,11 @@ func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx co
 // ID of the connection associated with the project
 func (o LookupProjectResultOutput) ConnectionId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupProjectResult) int { return v.ConnectionId }).(pulumi.IntOutput)
+}
+
+// The description of the project
+func (o LookupProjectResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // ID of Job for the documentation

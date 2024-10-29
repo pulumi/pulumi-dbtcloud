@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// &gt; This resource is deprecated with the release of global connections and it will be removed in a future version of the provider. Going forward, please set the `connection_id` in the `dbtcloud.Environment` resource instead.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

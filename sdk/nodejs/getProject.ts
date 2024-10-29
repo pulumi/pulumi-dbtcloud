@@ -26,6 +26,7 @@ export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): 
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getProject:getProject", {
+        "description": args.description,
         "name": args.name,
         "projectId": args.projectId,
     }, opts);
@@ -35,6 +36,10 @@ export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getProject.
  */
 export interface GetProjectArgs {
+    /**
+     * The description of the project
+     */
+    description?: string;
     /**
      * Given name for project
      */
@@ -53,6 +58,10 @@ export interface GetProjectResult {
      * ID of the connection associated with the project
      */
     readonly connectionId: number;
+    /**
+     * The description of the project
+     */
+    readonly description: string;
     /**
      * ID of Job for the documentation
      */
@@ -106,6 +115,7 @@ export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.Invo
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getProject:getProject", {
+        "description": args.description,
         "name": args.name,
         "projectId": args.projectId,
     }, opts);
@@ -115,6 +125,10 @@ export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getProject.
  */
 export interface GetProjectOutputArgs {
+    /**
+     * The description of the project
+     */
+    description?: pulumi.Input<string>;
     /**
      * Given name for project
      */

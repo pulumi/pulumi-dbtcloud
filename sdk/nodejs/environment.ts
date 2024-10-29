@@ -125,6 +125,10 @@ export class Environment extends pulumi.CustomResource {
      */
     public readonly deploymentType!: pulumi.Output<string | undefined>;
     /**
+     * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+     */
+    public readonly enableModelQueryHistory!: pulumi.Output<boolean | undefined>;
+    /**
      * Environment ID within the project
      */
     public /*out*/ readonly environmentId!: pulumi.Output<number>;
@@ -171,6 +175,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["customBranch"] = state ? state.customBranch : undefined;
             resourceInputs["dbtVersion"] = state ? state.dbtVersion : undefined;
             resourceInputs["deploymentType"] = state ? state.deploymentType : undefined;
+            resourceInputs["enableModelQueryHistory"] = state ? state.enableModelQueryHistory : undefined;
             resourceInputs["environmentId"] = state ? state.environmentId : undefined;
             resourceInputs["extendedAttributesId"] = state ? state.extendedAttributesId : undefined;
             resourceInputs["isActive"] = state ? state.isActive : undefined;
@@ -191,6 +196,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["customBranch"] = args ? args.customBranch : undefined;
             resourceInputs["dbtVersion"] = args ? args.dbtVersion : undefined;
             resourceInputs["deploymentType"] = args ? args.deploymentType : undefined;
+            resourceInputs["enableModelQueryHistory"] = args ? args.enableModelQueryHistory : undefined;
             resourceInputs["extendedAttributesId"] = args ? args.extendedAttributesId : undefined;
             resourceInputs["isActive"] = args ? args.isActive : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -228,6 +234,10 @@ export interface EnvironmentState {
      * 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string>;
+    /**
+     * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+     */
+    enableModelQueryHistory?: pulumi.Input<boolean>;
     /**
      * Environment ID within the project
      */
@@ -282,6 +292,10 @@ export interface EnvironmentArgs {
      * 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string>;
+    /**
+     * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
+     */
+    enableModelQueryHistory?: pulumi.Input<boolean>;
     /**
      * ID of the extended attributes for the environment
      */

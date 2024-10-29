@@ -846,6 +846,10 @@
                     "type": "string",
                     "description": "The type of deployment environment (currently 'production', 'staging' or empty)\n"
                 },
+                "enableModelQueryHistory": {
+                    "type": "boolean",
+                    "description": "Whether model query history is on\n"
+                },
                 "environmentId": {
                     "type": "integer",
                     "description": "The ID of the environment\n"
@@ -878,6 +882,7 @@
                 "customBranch",
                 "dbtVersion",
                 "deploymentType",
+                "enableModelQueryHistory",
                 "environmentId",
                 "extendedAttributesId",
                 "name",
@@ -1527,7 +1532,7 @@
                     "type": "integer"
                 },
                 "privateLinkEndpointId": {
-                    "type": "integer",
+                    "type": "string",
                     "description": "Private Link Endpoint ID.\n"
                 },
                 "updatedAt": {
@@ -2990,6 +2995,10 @@
                     "type": "string",
                     "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',\n'staging' or left empty for generic environments\n"
                 },
+                "enableModelQueryHistory": {
+                    "type": "boolean",
+                    "description": "Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.\n"
+                },
                 "environmentId": {
                     "type": "integer",
                     "description": "Environment ID within the project\n"
@@ -3045,6 +3054,10 @@
                     "type": "string",
                     "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',\n'staging' or left empty for generic environments\n"
                 },
+                "enableModelQueryHistory": {
+                    "type": "boolean",
+                    "description": "Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.\n"
+                },
                 "extendedAttributesId": {
                     "type": "integer",
                     "description": "ID of the extended attributes for the environment\n"
@@ -3096,6 +3109,10 @@
                     "deploymentType": {
                         "type": "string",
                         "description": "The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',\n'staging' or left empty for generic environments\n"
+                    },
+                    "enableModelQueryHistory": {
+                        "type": "boolean",
+                        "description": "Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.\n"
                     },
                     "environmentId": {
                         "type": "integer",
@@ -4420,6 +4437,114 @@
                 "type": "object"
             }
         },
+        "dbtcloud:index/lineageIntegration:LineageIntegration": {
+            "description": "Setup lineage integration for dbt Cloud to automatically fetch lineage from external BI tools in dbt Explorer. Currently supports Tableau.\n\nThis resource requires having an environment tagged as production already created for you project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// the resource can only be configured when a Prod environment has been set\n// so, you might want to explicitly set the dependency on your Prod environment resource\nconst myLineage = new dbtcloud.LineageIntegration(\"my_lineage\", {\n    projectId: myProject.id,\n    host: \"my.host.com\",\n    siteId: \"mysiteid\",\n    tokenName: \"my-token-name\",\n    token: \"my-sensitive-token\",\n}, {\n    dependsOn: [myProdEnv],\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# the resource can only be configured when a Prod environment has been set\n# so, you might want to explicitly set the dependency on your Prod environment resource\nmy_lineage = dbtcloud.LineageIntegration(\"my_lineage\",\n    project_id=my_project[\"id\"],\n    host=\"my.host.com\",\n    site_id=\"mysiteid\",\n    token_name=\"my-token-name\",\n    token=\"my-sensitive-token\",\n    opts = pulumi.ResourceOptions(depends_on=[my_prod_env]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // the resource can only be configured when a Prod environment has been set\n    // so, you might want to explicitly set the dependency on your Prod environment resource\n    var myLineage = new DbtCloud.LineageIntegration(\"my_lineage\", new()\n    {\n        ProjectId = myProject.Id,\n        Host = \"my.host.com\",\n        SiteId = \"mysiteid\",\n        TokenName = \"my-token-name\",\n        Token = \"my-sensitive-token\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            myProdEnv,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// the resource can only be configured when a Prod environment has been set\n\t\t// so, you might want to explicitly set the dependency on your Prod environment resource\n\t\t_, err := dbtcloud.NewLineageIntegration(ctx, \"my_lineage\", \u0026dbtcloud.LineageIntegrationArgs{\n\t\t\tProjectId: pulumi.Any(myProject.Id),\n\t\t\tHost:      pulumi.String(\"my.host.com\"),\n\t\t\tSiteId:    pulumi.String(\"mysiteid\"),\n\t\t\tTokenName: pulumi.String(\"my-token-name\"),\n\t\t\tToken:     pulumi.String(\"my-sensitive-token\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tmyProdEnv,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.LineageIntegration;\nimport com.pulumi.dbtcloud.LineageIntegrationArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // the resource can only be configured when a Prod environment has been set\n        // so, you might want to explicitly set the dependency on your Prod environment resource\n        var myLineage = new LineageIntegration(\"myLineage\", LineageIntegrationArgs.builder()\n            .projectId(myProject.id())\n            .host(\"my.host.com\")\n            .siteId(\"mysiteid\")\n            .tokenName(\"my-token-name\")\n            .token(\"my-sensitive-token\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(myProdEnv)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # the resource can only be configured when a Prod environment has been set\n  # // so, you might want to explicitly set the dependency on your Prod environment resource\n  myLineage:\n    type: dbtcloud:LineageIntegration\n    name: my_lineage\n    properties:\n      projectId: ${myProject.id}\n      host: my.host.com\n      siteId: mysiteid\n      tokenName: my-token-name\n      token: my-sensitive-token\n    options:\n      dependson:\n        - ${myProdEnv}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_lineage_integration.my_lineage_integration\n\n  id = \"projet_id:lineage_integration_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_lineage_integration.my_lineage_integration\n\n  id = \"123:4567\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/lineageIntegration:LineageIntegration my_lineage_integration \"projet_id:lineage_integration_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/lineageIntegration:LineageIntegration my_lineage_integration 123:4567\n```\n\n",
+            "properties": {
+                "host": {
+                    "type": "string",
+                    "description": "The URL of the BI server (see docs for more details)\n"
+                },
+                "lineageIntegrationId": {
+                    "type": "integer",
+                    "description": "The ID of the lineage integration\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The integration type. Today only 'tableau' is supported\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The dbt Cloud project ID for the integration\n"
+                },
+                "siteId": {
+                    "type": "string",
+                    "description": "The sitename for the collections of dashboards (see docs for more details)\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The secret token value to use to authenticate to the BI server\n",
+                    "secret": true
+                },
+                "tokenName": {
+                    "type": "string",
+                    "description": "The token to use to authenticate to the BI server\n"
+                }
+            },
+            "required": [
+                "host",
+                "lineageIntegrationId",
+                "name",
+                "projectId",
+                "siteId",
+                "token",
+                "tokenName"
+            ],
+            "inputProperties": {
+                "host": {
+                    "type": "string",
+                    "description": "The URL of the BI server (see docs for more details)\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The dbt Cloud project ID for the integration\n"
+                },
+                "siteId": {
+                    "type": "string",
+                    "description": "The sitename for the collections of dashboards (see docs for more details)\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The secret token value to use to authenticate to the BI server\n",
+                    "secret": true
+                },
+                "tokenName": {
+                    "type": "string",
+                    "description": "The token to use to authenticate to the BI server\n"
+                }
+            },
+            "requiredInputs": [
+                "host",
+                "projectId",
+                "siteId",
+                "token",
+                "tokenName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LineageIntegration resources.\n",
+                "properties": {
+                    "host": {
+                        "type": "string",
+                        "description": "The URL of the BI server (see docs for more details)\n"
+                    },
+                    "lineageIntegrationId": {
+                        "type": "integer",
+                        "description": "The ID of the lineage integration\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The integration type. Today only 'tableau' is supported\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The dbt Cloud project ID for the integration\n"
+                    },
+                    "siteId": {
+                        "type": "string",
+                        "description": "The sitename for the collections of dashboards (see docs for more details)\n"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "The secret token value to use to authenticate to the BI server\n",
+                        "secret": true
+                    },
+                    "tokenName": {
+                        "type": "string",
+                        "description": "The token to use to authenticate to the BI server\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "dbtcloud:index/notification:Notification": {
             "description": "Setup notifications on jobs success/failure to internal users, external email addresses or Slack channels\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// dbt Cloud allows us to create internal and external notifications\n//\n// an internal notification will send emails to the user mentioned in `user_id`\n//\n// NOTE: If internal notification settings already exist for a user, currently you MUST import\n// those first into the state file before you can create a new internal notification for that user.\n// Failure to do so, will result in the user losing access to existing notifications and dbt\n// support will need to be contacted to restore access.\n// cmd: terraform import dbtcloud_notification.prod_job_internal_notification \u003cuser_id\u003e\nconst prodJobInternalNotification = new dbtcloud.Notification(\"prod_job_internal_notification\", {\n    userId: 100,\n    onSuccesses: [prodJob.id],\n    onFailures: [12345],\n    notificationType: 1,\n});\n// we can also send \"external\" email notifications to emails to related to dbt Cloud users\nconst prodJobExternalNotification = new dbtcloud.Notification(\"prod_job_external_notification\", {\n    userId: 100,\n    onFailures: [\n        23456,\n        56788,\n    ],\n    onCancels: [prodJob.id],\n    notificationType: 4,\n    externalEmail: \"my_email@mail.com\",\n});\n// and finally, we can set up Slack notifications\nconst prodJobSlackNotifications = new dbtcloud.Notification(\"prod_job_slack_notifications\", {\n    userId: 100,\n    onFailures: [\n        23456,\n        56788,\n    ],\n    onCancels: [prodJob.id],\n    notificationType: 2,\n    slackChannelId: \"C12345ABCDE\",\n    slackChannelName: \"#my-awesome-channel\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# dbt Cloud allows us to create internal and external notifications\n#\n# an internal notification will send emails to the user mentioned in `user_id`\n#\n# NOTE: If internal notification settings already exist for a user, currently you MUST import\n# those first into the state file before you can create a new internal notification for that user.\n# Failure to do so, will result in the user losing access to existing notifications and dbt\n# support will need to be contacted to restore access.\n# cmd: terraform import dbtcloud_notification.prod_job_internal_notification \u003cuser_id\u003e\nprod_job_internal_notification = dbtcloud.Notification(\"prod_job_internal_notification\",\n    user_id=100,\n    on_successes=[prod_job[\"id\"]],\n    on_failures=[12345],\n    notification_type=1)\n# we can also send \"external\" email notifications to emails to related to dbt Cloud users\nprod_job_external_notification = dbtcloud.Notification(\"prod_job_external_notification\",\n    user_id=100,\n    on_failures=[\n        23456,\n        56788,\n    ],\n    on_cancels=[prod_job[\"id\"]],\n    notification_type=4,\n    external_email=\"my_email@mail.com\")\n# and finally, we can set up Slack notifications\nprod_job_slack_notifications = dbtcloud.Notification(\"prod_job_slack_notifications\",\n    user_id=100,\n    on_failures=[\n        23456,\n        56788,\n    ],\n    on_cancels=[prod_job[\"id\"]],\n    notification_type=2,\n    slack_channel_id=\"C12345ABCDE\",\n    slack_channel_name=\"#my-awesome-channel\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // dbt Cloud allows us to create internal and external notifications\n    //\n    // an internal notification will send emails to the user mentioned in `user_id`\n    //\n    // NOTE: If internal notification settings already exist for a user, currently you MUST import\n    // those first into the state file before you can create a new internal notification for that user.\n    // Failure to do so, will result in the user losing access to existing notifications and dbt\n    // support will need to be contacted to restore access.\n    // cmd: terraform import dbtcloud_notification.prod_job_internal_notification \u003cuser_id\u003e\n    var prodJobInternalNotification = new DbtCloud.Notification(\"prod_job_internal_notification\", new()\n    {\n        UserId = 100,\n        OnSuccesses = new[]\n        {\n            prodJob.Id,\n        },\n        OnFailures = new[]\n        {\n            12345,\n        },\n        NotificationType = 1,\n    });\n\n    // we can also send \"external\" email notifications to emails to related to dbt Cloud users\n    var prodJobExternalNotification = new DbtCloud.Notification(\"prod_job_external_notification\", new()\n    {\n        UserId = 100,\n        OnFailures = new[]\n        {\n            23456,\n            56788,\n        },\n        OnCancels = new[]\n        {\n            prodJob.Id,\n        },\n        NotificationType = 4,\n        ExternalEmail = \"my_email@mail.com\",\n    });\n\n    // and finally, we can set up Slack notifications\n    var prodJobSlackNotifications = new DbtCloud.Notification(\"prod_job_slack_notifications\", new()\n    {\n        UserId = 100,\n        OnFailures = new[]\n        {\n            23456,\n            56788,\n        },\n        OnCancels = new[]\n        {\n            prodJob.Id,\n        },\n        NotificationType = 2,\n        SlackChannelId = \"C12345ABCDE\",\n        SlackChannelName = \"#my-awesome-channel\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// dbt Cloud allows us to create internal and external notifications\n\t\t//\n\t\t// an internal notification will send emails to the user mentioned in `user_id`\n\t\t//\n\t\t// NOTE: If internal notification settings already exist for a user, currently you MUST import\n\t\t// those first into the state file before you can create a new internal notification for that user.\n\t\t// Failure to do so, will result in the user losing access to existing notifications and dbt\n\t\t// support will need to be contacted to restore access.\n\t\t// cmd: terraform import dbtcloud_notification.prod_job_internal_notification \u003cuser_id\u003e\n\t\t_, err := dbtcloud.NewNotification(ctx, \"prod_job_internal_notification\", \u0026dbtcloud.NotificationArgs{\n\t\t\tUserId: pulumi.Int(100),\n\t\t\tOnSuccesses: pulumi.IntArray{\n\t\t\t\tprodJob.Id,\n\t\t\t},\n\t\t\tOnFailures: pulumi.IntArray{\n\t\t\t\tpulumi.Int(12345),\n\t\t\t},\n\t\t\tNotificationType: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// we can also send \"external\" email notifications to emails to related to dbt Cloud users\n\t\t_, err = dbtcloud.NewNotification(ctx, \"prod_job_external_notification\", \u0026dbtcloud.NotificationArgs{\n\t\t\tUserId: pulumi.Int(100),\n\t\t\tOnFailures: pulumi.IntArray{\n\t\t\t\tpulumi.Int(23456),\n\t\t\t\tpulumi.Int(56788),\n\t\t\t},\n\t\t\tOnCancels: pulumi.IntArray{\n\t\t\t\tprodJob.Id,\n\t\t\t},\n\t\t\tNotificationType: pulumi.Int(4),\n\t\t\tExternalEmail:    pulumi.String(\"my_email@mail.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// and finally, we can set up Slack notifications\n\t\t_, err = dbtcloud.NewNotification(ctx, \"prod_job_slack_notifications\", \u0026dbtcloud.NotificationArgs{\n\t\t\tUserId: pulumi.Int(100),\n\t\t\tOnFailures: pulumi.IntArray{\n\t\t\t\tpulumi.Int(23456),\n\t\t\t\tpulumi.Int(56788),\n\t\t\t},\n\t\t\tOnCancels: pulumi.IntArray{\n\t\t\t\tprodJob.Id,\n\t\t\t},\n\t\t\tNotificationType: pulumi.Int(2),\n\t\t\tSlackChannelId:   pulumi.String(\"C12345ABCDE\"),\n\t\t\tSlackChannelName: pulumi.String(\"#my-awesome-channel\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Notification;\nimport com.pulumi.dbtcloud.NotificationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // dbt Cloud allows us to create internal and external notifications\n        //\n        // an internal notification will send emails to the user mentioned in `user_id`\n        //\n        // NOTE: If internal notification settings already exist for a user, currently you MUST import\n        // those first into the state file before you can create a new internal notification for that user.\n        // Failure to do so, will result in the user losing access to existing notifications and dbt\n        // support will need to be contacted to restore access.\n        // cmd: terraform import dbtcloud_notification.prod_job_internal_notification \u003cuser_id\u003e\n        var prodJobInternalNotification = new Notification(\"prodJobInternalNotification\", NotificationArgs.builder()\n            .userId(100)\n            .onSuccesses(prodJob.id())\n            .onFailures(12345)\n            .notificationType(1)\n            .build());\n\n        // we can also send \"external\" email notifications to emails to related to dbt Cloud users\n        var prodJobExternalNotification = new Notification(\"prodJobExternalNotification\", NotificationArgs.builder()\n            .userId(100)\n            .onFailures(            \n                23456,\n                56788)\n            .onCancels(prodJob.id())\n            .notificationType(4)\n            .externalEmail(\"my_email@mail.com\")\n            .build());\n\n        // and finally, we can set up Slack notifications\n        var prodJobSlackNotifications = new Notification(\"prodJobSlackNotifications\", NotificationArgs.builder()\n            .userId(100)\n            .onFailures(            \n                23456,\n                56788)\n            .onCancels(prodJob.id())\n            .notificationType(2)\n            .slackChannelId(\"C12345ABCDE\")\n            .slackChannelName(\"#my-awesome-channel\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # dbt Cloud allows us to create internal and external notifications\n  # //\n  # // an internal notification will send emails to the user mentioned in `user_id`\n  # //\n  # // NOTE: If internal notification settings already exist for a user, currently you MUST import\n  # // those first into the state file before you can create a new internal notification for that user.\n  # // Failure to do so, will result in the user losing access to existing notifications and dbt\n  # // support will need to be contacted to restore access.\n  # // cmd: terraform import dbtcloud_notification.prod_job_internal_notification \u003cuser_id\u003e\n  prodJobInternalNotification:\n    type: dbtcloud:Notification\n    name: prod_job_internal_notification\n    properties:\n      userId: 100\n      onSuccesses:\n        - ${prodJob.id}\n      onFailures:\n        - 12345\n      notificationType: 1\n  # we can also send \"external\" email notifications to emails to related to dbt Cloud users\n  prodJobExternalNotification:\n    type: dbtcloud:Notification\n    name: prod_job_external_notification\n    properties:\n      userId: 100\n      onFailures:\n        - 23456\n        - 56788\n      onCancels:\n        - ${prodJob.id}\n      notificationType: 4 # the external_email is the email address that will receive the notification\n      externalEmail: my_email@mail.com\n  # and finally, we can set up Slack notifications\n  prodJobSlackNotifications:\n    type: dbtcloud:Notification\n    name: prod_job_slack_notifications\n    properties:\n      userId: 100\n      onFailures:\n        - 23456\n        - 56788\n      onCancels:\n        - ${prodJob.id}\n      notificationType: 2\n      slackChannelId: C12345ABCDE\n      slackChannelName: '#my-awesome-channel'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_notification.my_notification\n\n  id = \"notification_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_notification.my_notification\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/notification:Notification my_notification \"notification_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/notification:Notification my_notification 12345\n```\n\n",
             "properties": {
@@ -4972,11 +5097,15 @@
             }
         },
         "dbtcloud:index/project:Project": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst dbtProject = new dbtcloud.Project(\"dbt_project\", {name: \"Analytics\"});\nconst dbtProjectWithSubdir = new dbtcloud.Project(\"dbt_project_with_subdir\", {\n    name: \"Analytics in Subdir\",\n    dbtProjectSubdirectory: \"/path\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ndbt_project = dbtcloud.Project(\"dbt_project\", name=\"Analytics\")\ndbt_project_with_subdir = dbtcloud.Project(\"dbt_project_with_subdir\",\n    name=\"Analytics in Subdir\",\n    dbt_project_subdirectory=\"/path\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dbtProject = new DbtCloud.Project(\"dbt_project\", new()\n    {\n        Name = \"Analytics\",\n    });\n\n    var dbtProjectWithSubdir = new DbtCloud.Project(\"dbt_project_with_subdir\", new()\n    {\n        Name = \"Analytics in Subdir\",\n        DbtProjectSubdirectory = \"/path\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewProject(ctx, \"dbt_project\", \u0026dbtcloud.ProjectArgs{\n\t\t\tName: pulumi.String(\"Analytics\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewProject(ctx, \"dbt_project_with_subdir\", \u0026dbtcloud.ProjectArgs{\n\t\t\tName:                   pulumi.String(\"Analytics in Subdir\"),\n\t\t\tDbtProjectSubdirectory: pulumi.String(\"/path\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Project;\nimport com.pulumi.dbtcloud.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dbtProject = new Project(\"dbtProject\", ProjectArgs.builder()\n            .name(\"Analytics\")\n            .build());\n\n        var dbtProjectWithSubdir = new Project(\"dbtProjectWithSubdir\", ProjectArgs.builder()\n            .name(\"Analytics in Subdir\")\n            .dbtProjectSubdirectory(\"/path\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dbtProject:\n    type: dbtcloud:Project\n    name: dbt_project\n    properties:\n      name: Analytics\n  dbtProjectWithSubdir:\n    type: dbtcloud:Project\n    name: dbt_project_with_subdir\n    properties:\n      name: Analytics in Subdir\n      dbtProjectSubdirectory: /path\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_project.my_project\n\n  id = \"project_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_project.my_project\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/project:Project my_project \"project_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/project:Project my_project 12345\n```\n\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst dbtProject = new dbtcloud.Project(\"dbt_project\", {name: \"Analytics\"});\nconst dbtProjectWithDescription = new dbtcloud.Project(\"dbt_project_with_description\", {\n    name: \"Analytics with description\",\n    description: \"My awesome analytics project\",\n});\nconst dbtProjectWithSubdir = new dbtcloud.Project(\"dbt_project_with_subdir\", {\n    name: \"Analytics in Subdir\",\n    dbtProjectSubdirectory: \"/path\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ndbt_project = dbtcloud.Project(\"dbt_project\", name=\"Analytics\")\ndbt_project_with_description = dbtcloud.Project(\"dbt_project_with_description\",\n    name=\"Analytics with description\",\n    description=\"My awesome analytics project\")\ndbt_project_with_subdir = dbtcloud.Project(\"dbt_project_with_subdir\",\n    name=\"Analytics in Subdir\",\n    dbt_project_subdirectory=\"/path\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dbtProject = new DbtCloud.Project(\"dbt_project\", new()\n    {\n        Name = \"Analytics\",\n    });\n\n    var dbtProjectWithDescription = new DbtCloud.Project(\"dbt_project_with_description\", new()\n    {\n        Name = \"Analytics with description\",\n        Description = \"My awesome analytics project\",\n    });\n\n    var dbtProjectWithSubdir = new DbtCloud.Project(\"dbt_project_with_subdir\", new()\n    {\n        Name = \"Analytics in Subdir\",\n        DbtProjectSubdirectory = \"/path\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewProject(ctx, \"dbt_project\", \u0026dbtcloud.ProjectArgs{\n\t\t\tName: pulumi.String(\"Analytics\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewProject(ctx, \"dbt_project_with_description\", \u0026dbtcloud.ProjectArgs{\n\t\t\tName:        pulumi.String(\"Analytics with description\"),\n\t\t\tDescription: pulumi.String(\"My awesome analytics project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewProject(ctx, \"dbt_project_with_subdir\", \u0026dbtcloud.ProjectArgs{\n\t\t\tName:                   pulumi.String(\"Analytics in Subdir\"),\n\t\t\tDbtProjectSubdirectory: pulumi.String(\"/path\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Project;\nimport com.pulumi.dbtcloud.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dbtProject = new Project(\"dbtProject\", ProjectArgs.builder()\n            .name(\"Analytics\")\n            .build());\n\n        var dbtProjectWithDescription = new Project(\"dbtProjectWithDescription\", ProjectArgs.builder()\n            .name(\"Analytics with description\")\n            .description(\"My awesome analytics project\")\n            .build());\n\n        var dbtProjectWithSubdir = new Project(\"dbtProjectWithSubdir\", ProjectArgs.builder()\n            .name(\"Analytics in Subdir\")\n            .dbtProjectSubdirectory(\"/path\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dbtProject:\n    type: dbtcloud:Project\n    name: dbt_project\n    properties:\n      name: Analytics\n  dbtProjectWithDescription:\n    type: dbtcloud:Project\n    name: dbt_project_with_description\n    properties:\n      name: Analytics with description\n      description: My awesome analytics project\n  dbtProjectWithSubdir:\n    type: dbtcloud:Project\n    name: dbt_project_with_subdir\n    properties:\n      name: Analytics in Subdir\n      dbtProjectSubdirectory: /path\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_project.my_project\n\n  id = \"project_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_project.my_project\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/project:Project my_project \"project_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/project:Project my_project 12345\n```\n\n",
             "properties": {
                 "dbtProjectSubdirectory": {
                     "type": "string",
                     "description": "dbt project subdirectory path\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description for the project. Will show in dbt Explorer.\n"
                 },
                 "name": {
                     "type": "string",
@@ -4991,6 +5120,10 @@
                     "type": "string",
                     "description": "dbt project subdirectory path\n"
                 },
+                "description": {
+                    "type": "string",
+                    "description": "Description for the project. Will show in dbt Explorer.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Project name\n"
@@ -5002,6 +5135,10 @@
                     "dbtProjectSubdirectory": {
                         "type": "string",
                         "description": "dbt project subdirectory path\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description for the project. Will show in dbt Explorer.\n"
                     },
                     "name": {
                         "type": "string",
@@ -5069,7 +5206,7 @@
             }
         },
         "dbtcloud:index/projectConnection:ProjectConnection": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst dbtProjectConnection = new dbtcloud.ProjectConnection(\"dbt_project_connection\", {\n    projectId: dbtProject.id,\n    connectionId: dbtConnection.connectionId,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ndbt_project_connection = dbtcloud.ProjectConnection(\"dbt_project_connection\",\n    project_id=dbt_project[\"id\"],\n    connection_id=dbt_connection[\"connectionId\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dbtProjectConnection = new DbtCloud.ProjectConnection(\"dbt_project_connection\", new()\n    {\n        ProjectId = dbtProject.Id,\n        ConnectionId = dbtConnection.ConnectionId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewProjectConnection(ctx, \"dbt_project_connection\", \u0026dbtcloud.ProjectConnectionArgs{\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tConnectionId: pulumi.Any(dbtConnection.ConnectionId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.ProjectConnection;\nimport com.pulumi.dbtcloud.ProjectConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dbtProjectConnection = new ProjectConnection(\"dbtProjectConnection\", ProjectConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .connectionId(dbtConnection.connectionId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dbtProjectConnection:\n    type: dbtcloud:ProjectConnection\n    name: dbt_project_connection\n    properties:\n      projectId: ${dbtProject.id}\n      connectionId: ${dbtConnection.connectionId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_project_connection.my_project\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_project_connection.my_project\n\n  id = \"12345:5678\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/projectConnection:ProjectConnection my_project \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/projectConnection:ProjectConnection my_project 12345:5678\n```\n\n",
+            "description": "\u003e This resource is deprecated with the release of global connections and it will be removed in a future version of the provider. Going forward, please set the `connection_id` in the `dbtcloud.Environment` resource instead.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst dbtProjectConnection = new dbtcloud.ProjectConnection(\"dbt_project_connection\", {\n    projectId: dbtProject.id,\n    connectionId: dbtConnection.connectionId,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ndbt_project_connection = dbtcloud.ProjectConnection(\"dbt_project_connection\",\n    project_id=dbt_project[\"id\"],\n    connection_id=dbt_connection[\"connectionId\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dbtProjectConnection = new DbtCloud.ProjectConnection(\"dbt_project_connection\", new()\n    {\n        ProjectId = dbtProject.Id,\n        ConnectionId = dbtConnection.ConnectionId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewProjectConnection(ctx, \"dbt_project_connection\", \u0026dbtcloud.ProjectConnectionArgs{\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tConnectionId: pulumi.Any(dbtConnection.ConnectionId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.ProjectConnection;\nimport com.pulumi.dbtcloud.ProjectConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dbtProjectConnection = new ProjectConnection(\"dbtProjectConnection\", ProjectConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .connectionId(dbtConnection.connectionId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dbtProjectConnection:\n    type: dbtcloud:ProjectConnection\n    name: dbt_project_connection\n    properties:\n      projectId: ${dbtProject.id}\n      connectionId: ${dbtConnection.connectionId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_project_connection.my_project\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_project_connection.my_project\n\n  id = \"12345:5678\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/projectConnection:ProjectConnection my_project \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/projectConnection:ProjectConnection my_project 12345:5678\n```\n\n",
             "properties": {
                 "connectionId": {
                     "type": "integer",
@@ -6363,6 +6500,10 @@
                         "description": "The type of deployment environment (currently 'production', 'staging' or empty)\n",
                         "type": "string"
                     },
+                    "enableModelQueryHistory": {
+                        "description": "Whether model query history is on\n",
+                        "type": "boolean"
+                    },
                     "environmentId": {
                         "description": "The ID of the environment\n",
                         "type": "integer"
@@ -6398,6 +6539,7 @@
                     "customBranch",
                     "dbtVersion",
                     "deploymentType",
+                    "enableModelQueryHistory",
                     "environmentId",
                     "extendedAttributesId",
                     "name",
@@ -7153,6 +7295,10 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getProject.\n",
                 "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the project\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "Given name for project\n"
@@ -7170,6 +7316,10 @@
                     "connectionId": {
                         "description": "ID of the connection associated with the project\n",
                         "type": "integer"
+                    },
+                    "description": {
+                        "description": "The description of the project\n",
+                        "type": "string"
                     },
                     "docsJobId": {
                         "description": "ID of Job for the documentation\n",
@@ -7203,6 +7353,7 @@
                 },
                 "required": [
                     "connectionId",
+                    "description",
                     "docsJobId",
                     "freshnessJobId",
                     "name",
