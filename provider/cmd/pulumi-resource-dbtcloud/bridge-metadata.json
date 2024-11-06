@@ -131,6 +131,9 @@
                     }
                 }
             },
+            "dbtcloud_oauth_configuration": {
+                "current": "dbtcloud:index/oauthConfiguration:OauthConfiguration"
+            },
             "dbtcloud_partial_license_map": {
                 "current": "dbtcloud:index/partialLicenseMap:PartialLicenseMap",
                 "fields": {
@@ -442,6 +445,7 @@
             "dbtcloud:index/licenseMap:LicenseMap": 0,
             "dbtcloud:index/lineageIntegration:LineageIntegration": 1,
             "dbtcloud:index/notification:Notification": 1,
+            "dbtcloud:index/oauthConfiguration:OauthConfiguration": 1,
             "dbtcloud:index/partialLicenseMap:PartialLicenseMap": 1,
             "dbtcloud:index/partialNotification:PartialNotification": 1,
             "dbtcloud:index/postgresCredential:PostgresCredential": 0,

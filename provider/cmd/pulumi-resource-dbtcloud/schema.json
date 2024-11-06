@@ -3703,7 +3703,8 @@
                     "description": "Connection name\n"
                 },
                 "oauthConfigurationId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "External OAuth configuration ID (only Snowflake for now)\n"
                 },
                 "postgres": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionPostgres:GlobalConnectionPostgres",
@@ -3733,8 +3734,7 @@
             "required": [
                 "adapterVersion",
                 "isSshTunnelEnabled",
-                "name",
-                "oauthConfigurationId"
+                "name"
             ],
             "inputProperties": {
                 "apacheSpark": {
@@ -3759,6 +3759,10 @@
                 "name": {
                     "type": "string",
                     "description": "Connection name\n"
+                },
+                "oauthConfigurationId": {
+                    "type": "integer",
+                    "description": "External OAuth configuration ID (only Snowflake for now)\n"
                 },
                 "postgres": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionPostgres:GlobalConnectionPostgres",
@@ -3820,7 +3824,8 @@
                         "description": "Connection name\n"
                     },
                     "oauthConfigurationId": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "External OAuth configuration ID (only Snowflake for now)\n"
                     },
                     "postgres": {
                         "$ref": "#/types/dbtcloud:index/GlobalConnectionPostgres:GlobalConnectionPostgres",
@@ -4721,6 +4726,136 @@
                     "userId": {
                         "type": "integer",
                         "description": "Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/oauthConfiguration:OauthConfiguration": {
+            "description": "Configure an external OAuth integration for the data warehouse. Currently supports Okta and Entra ID (i.e. Azure AD) for Snowflake.\n\nSee the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/external-oauth) for more information on how to configure it.\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_oauth_configuration.my_external_oauth\n\n  id = \"external_oauth_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_oauth_configuration.my_external_oauth\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth \"external_oauth_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth 12345\n```\n\n",
+            "properties": {
+                "applicationIdUri": {
+                    "type": "string",
+                    "description": "The Application ID URI for the OAuth integration. Only for Entra\n"
+                },
+                "authorizeUrl": {
+                    "type": "string",
+                    "description": "The Authorize URL for the OAuth integration\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The Client ID for the OAuth integration\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "The Client secret for the OAuth integration\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of OAuth integration\n"
+                },
+                "redirectUri": {
+                    "type": "string",
+                    "description": "The redirect URL for the OAuth integration\n"
+                },
+                "tokenUrl": {
+                    "type": "string",
+                    "description": "The Token URL for the OAuth integration\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of OAuth integration (`entra` or `okta`)\n"
+                }
+            },
+            "required": [
+                "applicationIdUri",
+                "authorizeUrl",
+                "clientId",
+                "clientSecret",
+                "name",
+                "redirectUri",
+                "tokenUrl",
+                "type"
+            ],
+            "inputProperties": {
+                "applicationIdUri": {
+                    "type": "string",
+                    "description": "The Application ID URI for the OAuth integration. Only for Entra\n"
+                },
+                "authorizeUrl": {
+                    "type": "string",
+                    "description": "The Authorize URL for the OAuth integration\n"
+                },
+                "clientId": {
+                    "type": "string",
+                    "description": "The Client ID for the OAuth integration\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "The Client secret for the OAuth integration\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of OAuth integration\n"
+                },
+                "redirectUri": {
+                    "type": "string",
+                    "description": "The redirect URL for the OAuth integration\n"
+                },
+                "tokenUrl": {
+                    "type": "string",
+                    "description": "The Token URL for the OAuth integration\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of OAuth integration (`entra` or `okta`)\n"
+                }
+            },
+            "requiredInputs": [
+                "authorizeUrl",
+                "clientId",
+                "clientSecret",
+                "redirectUri",
+                "tokenUrl",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering OauthConfiguration resources.\n",
+                "properties": {
+                    "applicationIdUri": {
+                        "type": "string",
+                        "description": "The Application ID URI for the OAuth integration. Only for Entra\n"
+                    },
+                    "authorizeUrl": {
+                        "type": "string",
+                        "description": "The Authorize URL for the OAuth integration\n"
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "description": "The Client ID for the OAuth integration\n"
+                    },
+                    "clientSecret": {
+                        "type": "string",
+                        "description": "The Client secret for the OAuth integration\n",
+                        "secret": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of OAuth integration\n"
+                    },
+                    "redirectUri": {
+                        "type": "string",
+                        "description": "The redirect URL for the OAuth integration\n"
+                    },
+                    "tokenUrl": {
+                        "type": "string",
+                        "description": "The Token URL for the OAuth integration\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of OAuth integration (`entra` or `okta`)\n"
                     }
                 },
                 "type": "object"
