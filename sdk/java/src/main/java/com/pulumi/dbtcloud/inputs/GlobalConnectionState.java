@@ -139,9 +139,17 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * External OAuth configuration ID (only Snowflake for now)
+     * 
+     */
     @Import(name="oauthConfigurationId")
     private @Nullable Output<Integer> oauthConfigurationId;
 
+    /**
+     * @return External OAuth configuration ID (only Snowflake for now)
+     * 
+     */
     public Optional<Output<Integer>> oauthConfigurationId() {
         return Optional.ofNullable(this.oauthConfigurationId);
     }
@@ -430,11 +438,23 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
             return name(Output.of(name));
         }
 
+        /**
+         * @param oauthConfigurationId External OAuth configuration ID (only Snowflake for now)
+         * 
+         * @return builder
+         * 
+         */
         public Builder oauthConfigurationId(@Nullable Output<Integer> oauthConfigurationId) {
             $.oauthConfigurationId = oauthConfigurationId;
             return this;
         }
 
+        /**
+         * @param oauthConfigurationId External OAuth configuration ID (only Snowflake for now)
+         * 
+         * @return builder
+         * 
+         */
         public Builder oauthConfigurationId(Integer oauthConfigurationId) {
             return oauthConfigurationId(Output.of(oauthConfigurationId));
         }

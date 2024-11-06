@@ -334,11 +334,19 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * External OAuth configuration ID (only Snowflake for now)
+     * 
+     */
     @Export(name="oauthConfigurationId", refs={Integer.class}, tree="[0]")
-    private Output<Integer> oauthConfigurationId;
+    private Output</* @Nullable */ Integer> oauthConfigurationId;
 
-    public Output<Integer> oauthConfigurationId() {
-        return this.oauthConfigurationId;
+    /**
+     * @return External OAuth configuration ID (only Snowflake for now)
+     * 
+     */
+    public Output<Optional<Integer>> oauthConfigurationId() {
+        return Codegen.optional(this.oauthConfigurationId);
     }
     /**
      * PostgreSQL connection configuration.

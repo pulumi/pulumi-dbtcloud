@@ -15,6 +15,7 @@ import com.pulumi.dbtcloud.inputs.GlobalConnectionRedshiftArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionStarburstArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionSynapseArgs;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -105,6 +106,21 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * External OAuth configuration ID (only Snowflake for now)
+     * 
+     */
+    @Import(name="oauthConfigurationId")
+    private @Nullable Output<Integer> oauthConfigurationId;
+
+    /**
+     * @return External OAuth configuration ID (only Snowflake for now)
+     * 
+     */
+    public Optional<Output<Integer>> oauthConfigurationId() {
+        return Optional.ofNullable(this.oauthConfigurationId);
     }
 
     /**
@@ -206,6 +222,7 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
         this.databricks = $.databricks;
         this.fabric = $.fabric;
         this.name = $.name;
+        this.oauthConfigurationId = $.oauthConfigurationId;
         this.postgres = $.postgres;
         this.privateLinkEndpointId = $.privateLinkEndpointId;
         this.redshift = $.redshift;
@@ -344,6 +361,27 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param oauthConfigurationId External OAuth configuration ID (only Snowflake for now)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oauthConfigurationId(@Nullable Output<Integer> oauthConfigurationId) {
+            $.oauthConfigurationId = oauthConfigurationId;
+            return this;
+        }
+
+        /**
+         * @param oauthConfigurationId External OAuth configuration ID (only Snowflake for now)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oauthConfigurationId(Integer oauthConfigurationId) {
+            return oauthConfigurationId(Output.of(oauthConfigurationId));
         }
 
         /**

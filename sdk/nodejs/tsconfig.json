@@ -61,6 +61,7 @@
         "licenseMap.ts",
         "lineageIntegration.ts",
         "notification.ts",
+        "oauthConfiguration.ts",
         "partialLicenseMap.ts",
         "partialNotification.ts",
         "postgresCredential.ts",

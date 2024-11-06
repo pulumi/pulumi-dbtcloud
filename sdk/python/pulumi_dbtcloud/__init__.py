@@ -50,6 +50,7 @@ from .job import *
 from .license_map import *
 from .lineage_integration import *
 from .notification import *
+from .oauth_configuration import *
 from .partial_license_map import *
 from .partial_notification import *
 from .postgres_credential import *
@@ -210,6 +211,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/notification:Notification": "Notification"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/oauthConfiguration",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/oauthConfiguration:OauthConfiguration": "OauthConfiguration"
   }
  },
  {
