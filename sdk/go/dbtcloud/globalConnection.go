@@ -73,8 +73,9 @@ type GlobalConnection struct {
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled pulumi.BoolOutput `pulumi:"isSshTunnelEnabled"`
 	// Connection name
-	Name                 pulumi.StringOutput `pulumi:"name"`
-	OauthConfigurationId pulumi.IntOutput    `pulumi:"oauthConfigurationId"`
+	Name pulumi.StringOutput `pulumi:"name"`
+	// External OAuth configuration ID (only Snowflake for now)
+	OauthConfigurationId pulumi.IntPtrOutput `pulumi:"oauthConfigurationId"`
 	// PostgreSQL connection configuration.
 	Postgres GlobalConnectionPostgresPtrOutput `pulumi:"postgres"`
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
@@ -133,8 +134,9 @@ type globalConnectionState struct {
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled *bool `pulumi:"isSshTunnelEnabled"`
 	// Connection name
-	Name                 *string `pulumi:"name"`
-	OauthConfigurationId *int    `pulumi:"oauthConfigurationId"`
+	Name *string `pulumi:"name"`
+	// External OAuth configuration ID (only Snowflake for now)
+	OauthConfigurationId *int `pulumi:"oauthConfigurationId"`
 	// PostgreSQL connection configuration.
 	Postgres *GlobalConnectionPostgres `pulumi:"postgres"`
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
@@ -164,7 +166,8 @@ type GlobalConnectionState struct {
 	// Whether the connection can use an SSH tunnel
 	IsSshTunnelEnabled pulumi.BoolPtrInput
 	// Connection name
-	Name                 pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
+	// External OAuth configuration ID (only Snowflake for now)
 	OauthConfigurationId pulumi.IntPtrInput
 	// PostgreSQL connection configuration.
 	Postgres GlobalConnectionPostgresPtrInput
@@ -196,6 +199,8 @@ type globalConnectionArgs struct {
 	Fabric *GlobalConnectionFabric `pulumi:"fabric"`
 	// Connection name
 	Name *string `pulumi:"name"`
+	// External OAuth configuration ID (only Snowflake for now)
+	OauthConfigurationId *int `pulumi:"oauthConfigurationId"`
 	// PostgreSQL connection configuration.
 	Postgres *GlobalConnectionPostgres `pulumi:"postgres"`
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
@@ -223,6 +228,8 @@ type GlobalConnectionArgs struct {
 	Fabric GlobalConnectionFabricPtrInput
 	// Connection name
 	Name pulumi.StringPtrInput
+	// External OAuth configuration ID (only Snowflake for now)
+	OauthConfigurationId pulumi.IntPtrInput
 	// PostgreSQL connection configuration.
 	Postgres GlobalConnectionPostgresPtrInput
 	// Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
@@ -363,8 +370,9 @@ func (o GlobalConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *GlobalConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GlobalConnectionOutput) OauthConfigurationId() pulumi.IntOutput {
-	return o.ApplyT(func(v *GlobalConnection) pulumi.IntOutput { return v.OauthConfigurationId }).(pulumi.IntOutput)
+// External OAuth configuration ID (only Snowflake for now)
+func (o GlobalConnectionOutput) OauthConfigurationId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) pulumi.IntPtrOutput { return v.OauthConfigurationId }).(pulumi.IntPtrOutput)
 }
 
 // PostgreSQL connection configuration.

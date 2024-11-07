@@ -110,7 +110,10 @@ export class GlobalConnection extends pulumi.CustomResource {
      * Connection name
      */
     public readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly oauthConfigurationId!: pulumi.Output<number>;
+    /**
+     * External OAuth configuration ID (only Snowflake for now)
+     */
+    public readonly oauthConfigurationId!: pulumi.Output<number | undefined>;
     /**
      * PostgreSQL connection configuration.
      */
@@ -172,6 +175,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["databricks"] = args ? args.databricks : undefined;
             resourceInputs["fabric"] = args ? args.fabric : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["oauthConfigurationId"] = args ? args.oauthConfigurationId : undefined;
             resourceInputs["postgres"] = args ? args.postgres : undefined;
             resourceInputs["privateLinkEndpointId"] = args ? args.privateLinkEndpointId : undefined;
             resourceInputs["redshift"] = args ? args.redshift : undefined;
@@ -180,7 +184,6 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["synapse"] = args ? args.synapse : undefined;
             resourceInputs["adapterVersion"] = undefined /*out*/;
             resourceInputs["isSshTunnelEnabled"] = undefined /*out*/;
-            resourceInputs["oauthConfigurationId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GlobalConnection.__pulumiType, name, resourceInputs, opts);
@@ -220,6 +223,9 @@ export interface GlobalConnectionState {
      * Connection name
      */
     name?: pulumi.Input<string>;
+    /**
+     * External OAuth configuration ID (only Snowflake for now)
+     */
     oauthConfigurationId?: pulumi.Input<number>;
     /**
      * PostgreSQL connection configuration.
@@ -272,6 +278,10 @@ export interface GlobalConnectionArgs {
      * Connection name
      */
     name?: pulumi.Input<string>;
+    /**
+     * External OAuth configuration ID (only Snowflake for now)
+     */
+    oauthConfigurationId?: pulumi.Input<number>;
     /**
      * PostgreSQL connection configuration.
      */

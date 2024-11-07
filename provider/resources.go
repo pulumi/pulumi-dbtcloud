@@ -194,6 +194,11 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 				Tok:  tfbridge.MakeResource(mainPkg, mainMod, "FabricCredential"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
+			"dbtcloud_oauth_configuration": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {Type: "string"},
+				},
+			},
 			"dbtcloud_partial_license_map": {
 				ComputeID: computeIDField("id"),
 			},
