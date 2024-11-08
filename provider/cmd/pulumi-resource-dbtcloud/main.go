@@ -21,7 +21,7 @@ import (
 
 	_ "embed" // to embed schema-embed.json
 
-	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
 	dbtcloud "github.com/pulumi/pulumi-dbtcloud/provider"
 )

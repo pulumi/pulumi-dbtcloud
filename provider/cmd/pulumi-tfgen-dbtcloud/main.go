@@ -17,7 +17,7 @@ package main
 import (
 	"context"
 
-	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 
 	dbtcloud "github.com/pulumi/pulumi-dbtcloud/provider"
 )
