@@ -497,6 +497,25 @@ export interface GroupPartialPermissionsGroupPermission {
     writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface IpRestrictionsRuleCidr {
+    /**
+     * IP CIDR range (can be IPv4 or IPv6)
+     */
+    cidr?: pulumi.Input<string>;
+    /**
+     * IPv6 CIDR range (read-only)
+     */
+    cidrIpv6?: pulumi.Input<string>;
+    /**
+     * ID of the CIDR range
+     */
+    id?: pulumi.Input<number>;
+    /**
+     * ID of the IP restriction rule
+     */
+    ipRestrictionRuleId?: pulumi.Input<number>;
+}
+
 export interface JobJobCompletionTriggerCondition {
     /**
      * The ID of the job that would trigger this job after completion.

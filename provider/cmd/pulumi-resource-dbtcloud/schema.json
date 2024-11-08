@@ -762,6 +762,37 @@
                 "permissionSet"
             ]
         },
+        "dbtcloud:index/IpRestrictionsRuleCidr:IpRestrictionsRuleCidr": {
+            "properties": {
+                "cidr": {
+                    "type": "string",
+                    "description": "IP CIDR range (can be IPv4 or IPv6)\n"
+                },
+                "cidrIpv6": {
+                    "type": "string",
+                    "description": "IPv6 CIDR range (read-only)\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "ID of the CIDR range\n"
+                },
+                "ipRestrictionRuleId": {
+                    "type": "integer",
+                    "description": "ID of the IP restriction rule\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "cidr",
+                        "cidrIpv6",
+                        "id",
+                        "ipRestrictionRuleId"
+                    ]
+                }
+            }
+        },
         "dbtcloud:index/JobJobCompletionTriggerCondition:JobJobCompletionTriggerCondition": {
             "properties": {
                 "jobId": {
@@ -2140,6 +2171,60 @@
         }
     },
     "resources": {
+        "dbtcloud:index/accountFeatures:AccountFeatures": {
+            "description": "Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.\n\nWhen destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to `false`.\n",
+            "properties": {
+                "advancedCi": {
+                    "type": "boolean",
+                    "description": "Whether advanced CI is enabled.\n"
+                },
+                "partialParsing": {
+                    "type": "boolean",
+                    "description": "Whether partial parsing is enabled.\n"
+                },
+                "repoCaching": {
+                    "type": "boolean",
+                    "description": "Whether repository caching is enabled.\n"
+                }
+            },
+            "required": [
+                "advancedCi",
+                "partialParsing",
+                "repoCaching"
+            ],
+            "inputProperties": {
+                "advancedCi": {
+                    "type": "boolean",
+                    "description": "Whether advanced CI is enabled.\n"
+                },
+                "partialParsing": {
+                    "type": "boolean",
+                    "description": "Whether partial parsing is enabled.\n"
+                },
+                "repoCaching": {
+                    "type": "boolean",
+                    "description": "Whether repository caching is enabled.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AccountFeatures resources.\n",
+                "properties": {
+                    "advancedCi": {
+                        "type": "boolean",
+                        "description": "Whether advanced CI is enabled.\n"
+                    },
+                    "partialParsing": {
+                        "type": "boolean",
+                        "description": "Whether partial parsing is enabled.\n"
+                    },
+                    "repoCaching": {
+                        "type": "boolean",
+                        "description": "Whether repository caching is enabled.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "dbtcloud:index/bigQueryConnection:BigQueryConnection": {
             "description": "Resource to create BigQuery connections in dbt Cloud. Can be set to use OAuth for developers.\n\n\u003e This resource is deprecated and is going to be removed in the next major release, please use the `dbtcloud.GlobalConnection` resource instead to create BigQuery connections.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myConnection = new dbtcloud.BigQueryConnection(\"my_connection\", {\n    projectId: dbtProject.id,\n    name: \"Project Name\",\n    type: \"bigquery\",\n    isActive: true,\n    gcpProjectId: \"my-gcp-project-id\",\n    timeoutSeconds: 100,\n    privateKeyId: \"my-private-key-id\",\n    privateKey: \"ABCDEFGHIJKL\",\n    clientEmail: \"my_client_email\",\n    clientId: \"my_client_di\",\n    authUri: \"my_auth_uri\",\n    tokenUri: \"my_token_uri\",\n    authProviderX509CertUrl: \"my_auth_provider_x509_cert_url\",\n    clientX509CertUrl: \"my_client_x509_cert_url\",\n    retries: 3,\n});\n// it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\nconst myConnectionWithOauth = new dbtcloud.BigQueryConnection(\"my_connection_with_oauth\", {\n    projectId: dbtProject.id,\n    name: \"Project Name\",\n    type: \"bigquery\",\n    isActive: true,\n    gcpProjectId: \"my-gcp-project-id\",\n    timeoutSeconds: 100,\n    privateKeyId: \"my-private-key-id\",\n    privateKey: \"ABCDEFGHIJKL\",\n    clientEmail: \"my_client_email\",\n    clientId: \"my_client_di\",\n    authUri: \"my_auth_uri\",\n    tokenUri: \"my_token_uri\",\n    authProviderX509CertUrl: \"my_auth_provider_x509_cert_url\",\n    clientX509CertUrl: \"my_client_x509_cert_url\",\n    retries: 3,\n    applicationId: \"oauth_application_id\",\n    applicationSecret: \"oauth_secret_id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_connection = dbtcloud.BigQueryConnection(\"my_connection\",\n    project_id=dbt_project[\"id\"],\n    name=\"Project Name\",\n    type=\"bigquery\",\n    is_active=True,\n    gcp_project_id=\"my-gcp-project-id\",\n    timeout_seconds=100,\n    private_key_id=\"my-private-key-id\",\n    private_key=\"ABCDEFGHIJKL\",\n    client_email=\"my_client_email\",\n    client_id=\"my_client_di\",\n    auth_uri=\"my_auth_uri\",\n    token_uri=\"my_token_uri\",\n    auth_provider_x509_cert_url=\"my_auth_provider_x509_cert_url\",\n    client_x509_cert_url=\"my_client_x509_cert_url\",\n    retries=3)\n# it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\nmy_connection_with_oauth = dbtcloud.BigQueryConnection(\"my_connection_with_oauth\",\n    project_id=dbt_project[\"id\"],\n    name=\"Project Name\",\n    type=\"bigquery\",\n    is_active=True,\n    gcp_project_id=\"my-gcp-project-id\",\n    timeout_seconds=100,\n    private_key_id=\"my-private-key-id\",\n    private_key=\"ABCDEFGHIJKL\",\n    client_email=\"my_client_email\",\n    client_id=\"my_client_di\",\n    auth_uri=\"my_auth_uri\",\n    token_uri=\"my_token_uri\",\n    auth_provider_x509_cert_url=\"my_auth_provider_x509_cert_url\",\n    client_x509_cert_url=\"my_client_x509_cert_url\",\n    retries=3,\n    application_id=\"oauth_application_id\",\n    application_secret=\"oauth_secret_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myConnection = new DbtCloud.BigQueryConnection(\"my_connection\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Name = \"Project Name\",\n        Type = \"bigquery\",\n        IsActive = true,\n        GcpProjectId = \"my-gcp-project-id\",\n        TimeoutSeconds = 100,\n        PrivateKeyId = \"my-private-key-id\",\n        PrivateKey = \"ABCDEFGHIJKL\",\n        ClientEmail = \"my_client_email\",\n        ClientId = \"my_client_di\",\n        AuthUri = \"my_auth_uri\",\n        TokenUri = \"my_token_uri\",\n        AuthProviderX509CertUrl = \"my_auth_provider_x509_cert_url\",\n        ClientX509CertUrl = \"my_client_x509_cert_url\",\n        Retries = 3,\n    });\n\n    // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n    var myConnectionWithOauth = new DbtCloud.BigQueryConnection(\"my_connection_with_oauth\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Name = \"Project Name\",\n        Type = \"bigquery\",\n        IsActive = true,\n        GcpProjectId = \"my-gcp-project-id\",\n        TimeoutSeconds = 100,\n        PrivateKeyId = \"my-private-key-id\",\n        PrivateKey = \"ABCDEFGHIJKL\",\n        ClientEmail = \"my_client_email\",\n        ClientId = \"my_client_di\",\n        AuthUri = \"my_auth_uri\",\n        TokenUri = \"my_token_uri\",\n        AuthProviderX509CertUrl = \"my_auth_provider_x509_cert_url\",\n        ClientX509CertUrl = \"my_client_x509_cert_url\",\n        Retries = 3,\n        ApplicationId = \"oauth_application_id\",\n        ApplicationSecret = \"oauth_secret_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewBigQueryConnection(ctx, \"my_connection\", \u0026dbtcloud.BigQueryConnectionArgs{\n\t\t\tProjectId:               pulumi.Any(dbtProject.Id),\n\t\t\tName:                    pulumi.String(\"Project Name\"),\n\t\t\tType:                    pulumi.String(\"bigquery\"),\n\t\t\tIsActive:                pulumi.Bool(true),\n\t\t\tGcpProjectId:            pulumi.String(\"my-gcp-project-id\"),\n\t\t\tTimeoutSeconds:          pulumi.Int(100),\n\t\t\tPrivateKeyId:            pulumi.String(\"my-private-key-id\"),\n\t\t\tPrivateKey:              pulumi.String(\"ABCDEFGHIJKL\"),\n\t\t\tClientEmail:             pulumi.String(\"my_client_email\"),\n\t\t\tClientId:                pulumi.String(\"my_client_di\"),\n\t\t\tAuthUri:                 pulumi.String(\"my_auth_uri\"),\n\t\t\tTokenUri:                pulumi.String(\"my_token_uri\"),\n\t\t\tAuthProviderX509CertUrl: pulumi.String(\"my_auth_provider_x509_cert_url\"),\n\t\t\tClientX509CertUrl:       pulumi.String(\"my_client_x509_cert_url\"),\n\t\t\tRetries:                 pulumi.Int(3),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n\t\t_, err = dbtcloud.NewBigQueryConnection(ctx, \"my_connection_with_oauth\", \u0026dbtcloud.BigQueryConnectionArgs{\n\t\t\tProjectId:               pulumi.Any(dbtProject.Id),\n\t\t\tName:                    pulumi.String(\"Project Name\"),\n\t\t\tType:                    pulumi.String(\"bigquery\"),\n\t\t\tIsActive:                pulumi.Bool(true),\n\t\t\tGcpProjectId:            pulumi.String(\"my-gcp-project-id\"),\n\t\t\tTimeoutSeconds:          pulumi.Int(100),\n\t\t\tPrivateKeyId:            pulumi.String(\"my-private-key-id\"),\n\t\t\tPrivateKey:              pulumi.String(\"ABCDEFGHIJKL\"),\n\t\t\tClientEmail:             pulumi.String(\"my_client_email\"),\n\t\t\tClientId:                pulumi.String(\"my_client_di\"),\n\t\t\tAuthUri:                 pulumi.String(\"my_auth_uri\"),\n\t\t\tTokenUri:                pulumi.String(\"my_token_uri\"),\n\t\t\tAuthProviderX509CertUrl: pulumi.String(\"my_auth_provider_x509_cert_url\"),\n\t\t\tClientX509CertUrl:       pulumi.String(\"my_client_x509_cert_url\"),\n\t\t\tRetries:                 pulumi.Int(3),\n\t\t\tApplicationId:           pulumi.String(\"oauth_application_id\"),\n\t\t\tApplicationSecret:       pulumi.String(\"oauth_secret_id\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.BigQueryConnection;\nimport com.pulumi.dbtcloud.BigQueryConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myConnection = new BigQueryConnection(\"myConnection\", BigQueryConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .name(\"Project Name\")\n            .type(\"bigquery\")\n            .isActive(true)\n            .gcpProjectId(\"my-gcp-project-id\")\n            .timeoutSeconds(100)\n            .privateKeyId(\"my-private-key-id\")\n            .privateKey(\"ABCDEFGHIJKL\")\n            .clientEmail(\"my_client_email\")\n            .clientId(\"my_client_di\")\n            .authUri(\"my_auth_uri\")\n            .tokenUri(\"my_token_uri\")\n            .authProviderX509CertUrl(\"my_auth_provider_x509_cert_url\")\n            .clientX509CertUrl(\"my_client_x509_cert_url\")\n            .retries(3)\n            .build());\n\n        // it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n        var myConnectionWithOauth = new BigQueryConnection(\"myConnectionWithOauth\", BigQueryConnectionArgs.builder()\n            .projectId(dbtProject.id())\n            .name(\"Project Name\")\n            .type(\"bigquery\")\n            .isActive(true)\n            .gcpProjectId(\"my-gcp-project-id\")\n            .timeoutSeconds(100)\n            .privateKeyId(\"my-private-key-id\")\n            .privateKey(\"ABCDEFGHIJKL\")\n            .clientEmail(\"my_client_email\")\n            .clientId(\"my_client_di\")\n            .authUri(\"my_auth_uri\")\n            .tokenUri(\"my_token_uri\")\n            .authProviderX509CertUrl(\"my_auth_provider_x509_cert_url\")\n            .clientX509CertUrl(\"my_client_x509_cert_url\")\n            .retries(3)\n            .applicationId(\"oauth_application_id\")\n            .applicationSecret(\"oauth_secret_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myConnection:\n    type: dbtcloud:BigQueryConnection\n    name: my_connection\n    properties:\n      projectId: ${dbtProject.id}\n      name: Project Name\n      type: bigquery\n      isActive: true\n      gcpProjectId: my-gcp-project-id\n      timeoutSeconds: 100\n      privateKeyId: my-private-key-id\n      privateKey: ABCDEFGHIJKL\n      clientEmail: my_client_email\n      clientId: my_client_di\n      authUri: my_auth_uri\n      tokenUri: my_token_uri\n      authProviderX509CertUrl: my_auth_provider_x509_cert_url\n      clientX509CertUrl: my_client_x509_cert_url\n      retries: 3\n  # it is also possible to set the connection to use OAuth by filling in `application_id` and `application_secret`\n  myConnectionWithOauth:\n    type: dbtcloud:BigQueryConnection\n    name: my_connection_with_oauth\n    properties:\n      projectId: ${dbtProject.id}\n      name: Project Name\n      type: bigquery\n      isActive: true\n      gcpProjectId: my-gcp-project-id\n      timeoutSeconds: 100\n      privateKeyId: my-private-key-id\n      privateKey: ABCDEFGHIJKL\n      clientEmail: my_client_email\n      clientId: my_client_di\n      authUri: my_auth_uri\n      tokenUri: my_token_uri\n      authProviderX509CertUrl: my_auth_provider_x509_cert_url\n      clientX509CertUrl: my_client_x509_cert_url\n      retries: 3\n      applicationId: oauth_application_id\n      applicationSecret: oauth_secret_id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_bigquery_connection.my_connection\n\n  id = \"project_id:connection_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_bigquery_connection.my_connection\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection \"project_id:connection_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/bigQueryConnection:BigQueryConnection my_connection 12345:6789\n```\n\n",
             "properties": {
@@ -4018,6 +4103,99 @@
                             "type": "string"
                         },
                         "description": "Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule": {
+            "description": "Manages IP restriction rules in dbt Cloud. IP restriction rules allow you to control access to your dbt Cloud instance based on IP address ranges.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst test = new dbtcloud.IpRestrictionsRule(\"test\", {\n    name: \"My restriction rule\",\n    description: \"Important description\",\n    cidrs: [\n        {\n            cidr: \"::ffff:106:708\",\n        },\n        {\n            cidr: \"1.6.7.10/24\",\n        },\n    ],\n    type: \"deny\",\n    ruleSetEnabled: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ntest = dbtcloud.IpRestrictionsRule(\"test\",\n    name=\"My restriction rule\",\n    description=\"Important description\",\n    cidrs=[\n        {\n            \"cidr\": \"::ffff:106:708\",\n        },\n        {\n            \"cidr\": \"1.6.7.10/24\",\n        },\n    ],\n    type=\"deny\",\n    rule_set_enabled=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new DbtCloud.IpRestrictionsRule(\"test\", new()\n    {\n        Name = \"My restriction rule\",\n        Description = \"Important description\",\n        Cidrs = new[]\n        {\n            new DbtCloud.Inputs.IpRestrictionsRuleCidrArgs\n            {\n                Cidr = \"::ffff:106:708\",\n            },\n            new DbtCloud.Inputs.IpRestrictionsRuleCidrArgs\n            {\n                Cidr = \"1.6.7.10/24\",\n            },\n        },\n        Type = \"deny\",\n        RuleSetEnabled = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewIpRestrictionsRule(ctx, \"test\", \u0026dbtcloud.IpRestrictionsRuleArgs{\n\t\t\tName:        pulumi.String(\"My restriction rule\"),\n\t\t\tDescription: pulumi.String(\"Important description\"),\n\t\t\tCidrs: dbtcloud.IpRestrictionsRuleCidrArray{\n\t\t\t\t\u0026dbtcloud.IpRestrictionsRuleCidrArgs{\n\t\t\t\t\tCidr: pulumi.String(\"::ffff:106:708\"),\n\t\t\t\t},\n\t\t\t\t\u0026dbtcloud.IpRestrictionsRuleCidrArgs{\n\t\t\t\t\tCidr: pulumi.String(\"1.6.7.10/24\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tType:           pulumi.String(\"deny\"),\n\t\t\tRuleSetEnabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.IpRestrictionsRule;\nimport com.pulumi.dbtcloud.IpRestrictionsRuleArgs;\nimport com.pulumi.dbtcloud.inputs.IpRestrictionsRuleCidrArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new IpRestrictionsRule(\"test\", IpRestrictionsRuleArgs.builder()\n            .name(\"My restriction rule\")\n            .description(\"Important description\")\n            .cidrs(            \n                IpRestrictionsRuleCidrArgs.builder()\n                    .cidr(\"::ffff:106:708\")\n                    .build(),\n                IpRestrictionsRuleCidrArgs.builder()\n                    .cidr(\"1.6.7.10/24\")\n                    .build())\n            .type(\"deny\")\n            .ruleSetEnabled(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: dbtcloud:IpRestrictionsRule\n    properties:\n      name: My restriction rule\n      description: Important description\n      cidrs:\n        - cidr: ::ffff:106:708\n        - cidr: 1.6.7.10/24\n      type: deny\n      ruleSetEnabled: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_ip_restrictions_rule.my_rule\n\n  id = \"ip_restriction_rule_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_ip_restrictions_rule.my_rule\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule \"ip_restriction_rule_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule 12345\n```\n\n",
+            "properties": {
+                "cidrs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/dbtcloud:index/IpRestrictionsRuleCidr:IpRestrictionsRuleCidr"
+                    },
+                    "description": "Set of CIDR ranges for this rule\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the IP restriction rule\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the IP restriction rule\n"
+                },
+                "ruleSetEnabled": {
+                    "type": "boolean",
+                    "description": "Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the IP restriction rule (allow or deny)\n"
+                }
+            },
+            "required": [
+                "cidrs",
+                "name",
+                "ruleSetEnabled",
+                "type"
+            ],
+            "inputProperties": {
+                "cidrs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/dbtcloud:index/IpRestrictionsRuleCidr:IpRestrictionsRuleCidr"
+                    },
+                    "description": "Set of CIDR ranges for this rule\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the IP restriction rule\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the IP restriction rule\n"
+                },
+                "ruleSetEnabled": {
+                    "type": "boolean",
+                    "description": "Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the IP restriction rule (allow or deny)\n"
+                }
+            },
+            "requiredInputs": [
+                "cidrs",
+                "ruleSetEnabled",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IpRestrictionsRule resources.\n",
+                "properties": {
+                    "cidrs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/IpRestrictionsRuleCidr:IpRestrictionsRuleCidr"
+                        },
+                        "description": "Set of CIDR ranges for this rule\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A description of the IP restriction rule\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the IP restriction rule\n"
+                    },
+                    "ruleSetEnabled": {
+                        "type": "boolean",
+                        "description": "Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the IP restriction rule (allow or deny)\n"
                     }
                 },
                 "type": "object"

@@ -1,6 +1,9 @@
 {
     "auto-aliasing": {
         "resources": {
+            "dbtcloud_account_features": {
+                "current": "dbtcloud:index/accountFeatures:AccountFeatures"
+            },
             "dbtcloud_bigquery_connection": {
                 "current": "dbtcloud:index/bigQueryConnection:BigQueryConnection"
             },
@@ -75,6 +78,14 @@
                         }
                     },
                     "sso_mapping_groups": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "dbtcloud_ip_restrictions_rule": {
+                "current": "dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule",
+                "fields": {
+                    "cidrs": {
                         "maxItemsOne": false
                     }
                 }
@@ -428,6 +439,7 @@
     "auto-settings": {},
     "mux": {
         "resources": {
+            "dbtcloud:index/accountFeatures:AccountFeatures": 1,
             "dbtcloud:index/bigQueryConnection:BigQueryConnection": 0,
             "dbtcloud:index/bigQueryCredential:BigQueryCredential": 0,
             "dbtcloud:index/connection:Connection": 0,
@@ -441,6 +453,7 @@
             "dbtcloud:index/globalConnection:GlobalConnection": 1,
             "dbtcloud:index/group:Group": 1,
             "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": 1,
+            "dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule": 1,
             "dbtcloud:index/job:Job": 0,
             "dbtcloud:index/licenseMap:LicenseMap": 0,
             "dbtcloud:index/lineageIntegration:LineageIntegration": 1,

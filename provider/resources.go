@@ -169,6 +169,11 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 					"id": {Type: "string"},
 				},
 			},
+			"dbtcloud_ip_restrictions_rule": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {Type: "string"},
+				},
+			},
 			"dbtcloud_service_token": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ServiceToken"),
 			},

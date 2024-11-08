@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AccountFeaturesArgs, AccountFeaturesState } from "./accountFeatures";
+export type AccountFeatures = import("./accountFeatures").AccountFeatures;
+export const AccountFeatures: typeof import("./accountFeatures").AccountFeatures = null as any;
+utilities.lazyLoad(exports, ["AccountFeatures"], () => require("./accountFeatures"));
+
 export { BigQueryConnectionArgs, BigQueryConnectionState } from "./bigQueryConnection";
 export type BigQueryConnection = import("./bigQueryConnection").BigQueryConnection;
 export const BigQueryConnection: typeof import("./bigQueryConnection").BigQueryConnection = null as any;
@@ -210,6 +215,11 @@ export type GroupPartialPermissions = import("./groupPartialPermissions").GroupP
 export const GroupPartialPermissions: typeof import("./groupPartialPermissions").GroupPartialPermissions = null as any;
 utilities.lazyLoad(exports, ["GroupPartialPermissions"], () => require("./groupPartialPermissions"));
 
+export { IpRestrictionsRuleArgs, IpRestrictionsRuleState } from "./ipRestrictionsRule";
+export type IpRestrictionsRule = import("./ipRestrictionsRule").IpRestrictionsRule;
+export const IpRestrictionsRule: typeof import("./ipRestrictionsRule").IpRestrictionsRule = null as any;
+utilities.lazyLoad(exports, ["IpRestrictionsRule"], () => require("./ipRestrictionsRule"));
+
 export { JobArgs, JobState } from "./job";
 export type Job = import("./job").Job;
 export const Job: typeof import("./job").Job = null as any;
@@ -314,6 +324,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "dbtcloud:index/accountFeatures:AccountFeatures":
+                return new AccountFeatures(name, <any>undefined, { urn })
             case "dbtcloud:index/bigQueryConnection:BigQueryConnection":
                 return new BigQueryConnection(name, <any>undefined, { urn })
             case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
@@ -340,6 +352,8 @@ const _module = {
                 return new Group(name, <any>undefined, { urn })
             case "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions":
                 return new GroupPartialPermissions(name, <any>undefined, { urn })
+            case "dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule":
+                return new IpRestrictionsRule(name, <any>undefined, { urn })
             case "dbtcloud:index/job:Job":
                 return new Job(name, <any>undefined, { urn })
             case "dbtcloud:index/licenseMap:LicenseMap":
@@ -379,6 +393,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("dbtcloud", "index/accountFeatures", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/connection", _module)
@@ -392,6 +407,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/fabricCredential", _mod
 pulumi.runtime.registerResourceModule("dbtcloud", "index/globalConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/group", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/groupPartialPermissions", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/ipRestrictionsRule", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/job", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/licenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/lineageIntegration", _module)

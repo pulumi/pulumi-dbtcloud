@@ -5,6 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .account_features import *
 from .big_query_connection import *
 from .big_query_credential import *
 from .connection import *
@@ -46,6 +47,7 @@ from .get_webhook import *
 from .global_connection import *
 from .group import *
 from .group_partial_permissions import *
+from .ip_restrictions_rule import *
 from .job import *
 from .license_map import *
 from .lineage_integration import *
@@ -77,6 +79,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/accountFeatures",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/accountFeatures:AccountFeatures": "AccountFeatures"
+  }
+ },
  {
   "pkg": "dbtcloud",
   "mod": "index/bigQueryConnection",
@@ -179,6 +189,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": "GroupPartialPermissions"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/ipRestrictionsRule",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule": "IpRestrictionsRule"
   }
  },
  {

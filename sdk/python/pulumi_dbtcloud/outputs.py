@@ -30,6 +30,7 @@ __all__ = [
     'GlobalConnectionSynapse',
     'GroupGroupPermission',
     'GroupPartialPermissionsGroupPermission',
+    'IpRestrictionsRuleCidr',
     'JobJobCompletionTriggerCondition',
     'ServiceTokenServiceTokenPermission',
     'GetEnvironmentsEnvironmentResult',
@@ -1632,6 +1633,80 @@ class GroupPartialPermissionsGroupPermission(dict):
         Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         return pulumi.get(self, "writable_environment_categories")
+
+
+@pulumi.output_type
+class IpRestrictionsRuleCidr(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cidrIpv6":
+            suggest = "cidr_ipv6"
+        elif key == "ipRestrictionRuleId":
+            suggest = "ip_restriction_rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IpRestrictionsRuleCidr. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IpRestrictionsRuleCidr.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IpRestrictionsRuleCidr.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cidr: Optional[str] = None,
+                 cidr_ipv6: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ip_restriction_rule_id: Optional[int] = None):
+        """
+        :param str cidr: IP CIDR range (can be IPv4 or IPv6)
+        :param str cidr_ipv6: IPv6 CIDR range (read-only)
+        :param int id: ID of the CIDR range
+        :param int ip_restriction_rule_id: ID of the IP restriction rule
+        """
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if cidr_ipv6 is not None:
+            pulumi.set(__self__, "cidr_ipv6", cidr_ipv6)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ip_restriction_rule_id is not None:
+            pulumi.set(__self__, "ip_restriction_rule_id", ip_restriction_rule_id)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> Optional[str]:
+        """
+        IP CIDR range (can be IPv4 or IPv6)
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter(name="cidrIpv6")
+    def cidr_ipv6(self) -> Optional[str]:
+        """
+        IPv6 CIDR range (read-only)
+        """
+        return pulumi.get(self, "cidr_ipv6")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID of the CIDR range
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipRestrictionRuleId")
+    def ip_restriction_rule_id(self) -> Optional[int]:
+        """
+        ID of the IP restriction rule
+        """
+        return pulumi.get(self, "ip_restriction_rule_id")
 
 
 @pulumi.output_type
