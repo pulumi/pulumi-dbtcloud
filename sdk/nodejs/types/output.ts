@@ -1222,6 +1222,25 @@ export interface GroupPartialPermissionsGroupPermission {
     writableEnvironmentCategories?: string[];
 }
 
+export interface IpRestrictionsRuleCidr {
+    /**
+     * IP CIDR range (can be IPv4 or IPv6)
+     */
+    cidr: string;
+    /**
+     * IPv6 CIDR range (read-only)
+     */
+    cidrIpv6: string;
+    /**
+     * ID of the CIDR range
+     */
+    id: number;
+    /**
+     * ID of the IP restriction rule
+     */
+    ipRestrictionRuleId: number;
+}
+
 export interface JobJobCompletionTriggerCondition {
     /**
      * The ID of the job that would trigger this job after completion.

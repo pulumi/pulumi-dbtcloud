@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "dbtcloud:index/accountFeatures:AccountFeatures":
+		r = &AccountFeatures{}
 	case "dbtcloud:index/bigQueryConnection:BigQueryConnection":
 		r = &BigQueryConnection{}
 	case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
@@ -47,6 +49,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Group{}
 	case "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions":
 		r = &GroupPartialPermissions{}
+	case "dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule":
+		r = &IpRestrictionsRule{}
 	case "dbtcloud:index/job:Job":
 		r = &Job{}
 	case "dbtcloud:index/licenseMap:LicenseMap":
@@ -114,6 +118,11 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/accountFeatures",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/bigQueryConnection",
 		&module{version},
 	)
@@ -175,6 +184,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/groupPartialPermissions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/ipRestrictionsRule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

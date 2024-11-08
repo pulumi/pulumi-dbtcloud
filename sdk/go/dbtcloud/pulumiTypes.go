@@ -3430,6 +3430,130 @@ func (o GroupPartialPermissionsGroupPermissionArrayOutput) Index(i pulumi.IntInp
 	}).(GroupPartialPermissionsGroupPermissionOutput)
 }
 
+type IpRestrictionsRuleCidr struct {
+	// IP CIDR range (can be IPv4 or IPv6)
+	Cidr *string `pulumi:"cidr"`
+	// IPv6 CIDR range (read-only)
+	CidrIpv6 *string `pulumi:"cidrIpv6"`
+	// ID of the CIDR range
+	Id *int `pulumi:"id"`
+	// ID of the IP restriction rule
+	IpRestrictionRuleId *int `pulumi:"ipRestrictionRuleId"`
+}
+
+// IpRestrictionsRuleCidrInput is an input type that accepts IpRestrictionsRuleCidrArgs and IpRestrictionsRuleCidrOutput values.
+// You can construct a concrete instance of `IpRestrictionsRuleCidrInput` via:
+//
+//	IpRestrictionsRuleCidrArgs{...}
+type IpRestrictionsRuleCidrInput interface {
+	pulumi.Input
+
+	ToIpRestrictionsRuleCidrOutput() IpRestrictionsRuleCidrOutput
+	ToIpRestrictionsRuleCidrOutputWithContext(context.Context) IpRestrictionsRuleCidrOutput
+}
+
+type IpRestrictionsRuleCidrArgs struct {
+	// IP CIDR range (can be IPv4 or IPv6)
+	Cidr pulumi.StringPtrInput `pulumi:"cidr"`
+	// IPv6 CIDR range (read-only)
+	CidrIpv6 pulumi.StringPtrInput `pulumi:"cidrIpv6"`
+	// ID of the CIDR range
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// ID of the IP restriction rule
+	IpRestrictionRuleId pulumi.IntPtrInput `pulumi:"ipRestrictionRuleId"`
+}
+
+func (IpRestrictionsRuleCidrArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpRestrictionsRuleCidr)(nil)).Elem()
+}
+
+func (i IpRestrictionsRuleCidrArgs) ToIpRestrictionsRuleCidrOutput() IpRestrictionsRuleCidrOutput {
+	return i.ToIpRestrictionsRuleCidrOutputWithContext(context.Background())
+}
+
+func (i IpRestrictionsRuleCidrArgs) ToIpRestrictionsRuleCidrOutputWithContext(ctx context.Context) IpRestrictionsRuleCidrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpRestrictionsRuleCidrOutput)
+}
+
+// IpRestrictionsRuleCidrArrayInput is an input type that accepts IpRestrictionsRuleCidrArray and IpRestrictionsRuleCidrArrayOutput values.
+// You can construct a concrete instance of `IpRestrictionsRuleCidrArrayInput` via:
+//
+//	IpRestrictionsRuleCidrArray{ IpRestrictionsRuleCidrArgs{...} }
+type IpRestrictionsRuleCidrArrayInput interface {
+	pulumi.Input
+
+	ToIpRestrictionsRuleCidrArrayOutput() IpRestrictionsRuleCidrArrayOutput
+	ToIpRestrictionsRuleCidrArrayOutputWithContext(context.Context) IpRestrictionsRuleCidrArrayOutput
+}
+
+type IpRestrictionsRuleCidrArray []IpRestrictionsRuleCidrInput
+
+func (IpRestrictionsRuleCidrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpRestrictionsRuleCidr)(nil)).Elem()
+}
+
+func (i IpRestrictionsRuleCidrArray) ToIpRestrictionsRuleCidrArrayOutput() IpRestrictionsRuleCidrArrayOutput {
+	return i.ToIpRestrictionsRuleCidrArrayOutputWithContext(context.Background())
+}
+
+func (i IpRestrictionsRuleCidrArray) ToIpRestrictionsRuleCidrArrayOutputWithContext(ctx context.Context) IpRestrictionsRuleCidrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpRestrictionsRuleCidrArrayOutput)
+}
+
+type IpRestrictionsRuleCidrOutput struct{ *pulumi.OutputState }
+
+func (IpRestrictionsRuleCidrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpRestrictionsRuleCidr)(nil)).Elem()
+}
+
+func (o IpRestrictionsRuleCidrOutput) ToIpRestrictionsRuleCidrOutput() IpRestrictionsRuleCidrOutput {
+	return o
+}
+
+func (o IpRestrictionsRuleCidrOutput) ToIpRestrictionsRuleCidrOutputWithContext(ctx context.Context) IpRestrictionsRuleCidrOutput {
+	return o
+}
+
+// IP CIDR range (can be IPv4 or IPv6)
+func (o IpRestrictionsRuleCidrOutput) Cidr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpRestrictionsRuleCidr) *string { return v.Cidr }).(pulumi.StringPtrOutput)
+}
+
+// IPv6 CIDR range (read-only)
+func (o IpRestrictionsRuleCidrOutput) CidrIpv6() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpRestrictionsRuleCidr) *string { return v.CidrIpv6 }).(pulumi.StringPtrOutput)
+}
+
+// ID of the CIDR range
+func (o IpRestrictionsRuleCidrOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IpRestrictionsRuleCidr) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// ID of the IP restriction rule
+func (o IpRestrictionsRuleCidrOutput) IpRestrictionRuleId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IpRestrictionsRuleCidr) *int { return v.IpRestrictionRuleId }).(pulumi.IntPtrOutput)
+}
+
+type IpRestrictionsRuleCidrArrayOutput struct{ *pulumi.OutputState }
+
+func (IpRestrictionsRuleCidrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpRestrictionsRuleCidr)(nil)).Elem()
+}
+
+func (o IpRestrictionsRuleCidrArrayOutput) ToIpRestrictionsRuleCidrArrayOutput() IpRestrictionsRuleCidrArrayOutput {
+	return o
+}
+
+func (o IpRestrictionsRuleCidrArrayOutput) ToIpRestrictionsRuleCidrArrayOutputWithContext(ctx context.Context) IpRestrictionsRuleCidrArrayOutput {
+	return o
+}
+
+func (o IpRestrictionsRuleCidrArrayOutput) Index(i pulumi.IntInput) IpRestrictionsRuleCidrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpRestrictionsRuleCidr {
+		return vs[0].([]IpRestrictionsRuleCidr)[vs[1].(int)]
+	}).(IpRestrictionsRuleCidrOutput)
+}
+
 type JobJobCompletionTriggerCondition struct {
 	// The ID of the job that would trigger this job after completion.
 	JobId int `pulumi:"jobId"`
@@ -7051,6 +7175,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionArrayInput)(nil)).Elem(), GroupGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPartialPermissionsGroupPermissionInput)(nil)).Elem(), GroupPartialPermissionsGroupPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPartialPermissionsGroupPermissionArrayInput)(nil)).Elem(), GroupPartialPermissionsGroupPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpRestrictionsRuleCidrInput)(nil)).Elem(), IpRestrictionsRuleCidrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpRestrictionsRuleCidrArrayInput)(nil)).Elem(), IpRestrictionsRuleCidrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionInput)(nil)).Elem(), JobJobCompletionTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionPtrInput)(nil)).Elem(), JobJobCompletionTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArgs{})
@@ -7122,6 +7248,8 @@ func init() {
 	pulumi.RegisterOutputType(GroupGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionOutput{})
 	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionArrayOutput{})
+	pulumi.RegisterOutputType(IpRestrictionsRuleCidrOutput{})
+	pulumi.RegisterOutputType(IpRestrictionsRuleCidrArrayOutput{})
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionOutput{})
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionPtrOutput{})
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionOutput{})
