@@ -1,7 +1,7 @@
 ---
 # *** WARNING: This file was auto-generated. Do not edit by hand unless you're certain you know what you are doing! ***
-title: Dbt Cloud Provider
-meta_desc: Provides an overview on how to configure the Pulumi Dbt Cloud provider.
+title: dbt Cloud Provider
+meta_desc: Provides an overview on how to configure the Pulumi dbt Cloud provider.
 layout: package
 ---
 ## Installation
