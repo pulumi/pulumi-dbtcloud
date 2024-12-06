@@ -72,7 +72,7 @@ export interface GetAzureDevOpsProjectResult {
  * });
  * ```
  */
-export function getAzureDevOpsProjectOutput(args: GetAzureDevOpsProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAzureDevOpsProjectResult> {
+export function getAzureDevOpsProjectOutput(args: GetAzureDevOpsProjectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAzureDevOpsProjectResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject", {
         "name": args.name,

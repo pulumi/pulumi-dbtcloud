@@ -159,7 +159,7 @@ def get_snowflake_credential(credential_id: Optional[int] = None,
         user=pulumi.get(__ret__, 'user'))
 def get_snowflake_credential_output(credential_id: Optional[pulumi.Input[int]] = None,
                                     project_id: Optional[pulumi.Input[int]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSnowflakeCredentialResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSnowflakeCredentialResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -169,7 +169,7 @@ def get_snowflake_credential_output(credential_id: Optional[pulumi.Input[int]] =
     __args__ = dict()
     __args__['credentialId'] = credential_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential', __args__, opts=opts, typ=GetSnowflakeCredentialResult)
     return __ret__.apply(lambda __response__: GetSnowflakeCredentialResult(
         auth_type=pulumi.get(__response__, 'auth_type'),

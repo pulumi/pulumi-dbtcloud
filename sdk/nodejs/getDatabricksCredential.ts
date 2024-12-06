@@ -63,7 +63,7 @@ export interface GetDatabricksCredentialResult {
      */
     readonly targetName: string;
 }
-export function getDatabricksCredentialOutput(args: GetDatabricksCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabricksCredentialResult> {
+export function getDatabricksCredentialOutput(args: GetDatabricksCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabricksCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", {
         "credentialId": args.credentialId,

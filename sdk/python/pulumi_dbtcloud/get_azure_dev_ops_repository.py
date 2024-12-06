@@ -160,7 +160,7 @@ def get_azure_dev_ops_repository(azure_dev_ops_project_id: Optional[str] = None,
         web_url=pulumi.get(__ret__, 'web_url'))
 def get_azure_dev_ops_repository_output(azure_dev_ops_project_id: Optional[pulumi.Input[str]] = None,
                                         name: Optional[pulumi.Input[str]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzureDevOpsRepositoryResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAzureDevOpsRepositoryResult]:
     """
     Use this data source to retrieve the ID and details of an Azure Dev Ops repository
     based on its name and the ID of the Azure Dev Ops project it belongs to.
@@ -184,7 +184,7 @@ def get_azure_dev_ops_repository_output(azure_dev_ops_project_id: Optional[pulum
     __args__ = dict()
     __args__['azureDevOpsProjectId'] = azure_dev_ops_project_id
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository', __args__, opts=opts, typ=GetAzureDevOpsRepositoryResult)
     return __ret__.apply(lambda __response__: GetAzureDevOpsRepositoryResult(
         azure_dev_ops_project_id=pulumi.get(__response__, 'azure_dev_ops_project_id'),

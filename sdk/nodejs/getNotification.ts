@@ -102,7 +102,7 @@ export interface GetNotificationResult {
  * });
  * ```
  */
-export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNotificationResult> {
+export function getNotificationOutput(args: GetNotificationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNotificationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getNotification:getNotification", {
         "notificationId": args.notificationId,

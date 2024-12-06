@@ -86,7 +86,7 @@ export interface GetJobsResult {
  * const myJobsProd = testAllJobsInProject.then(testAllJobsInProject => .filter(job => job.environment?.deploymentType == "production").map(job => (job)));
  * ```
  */
-export function getJobsOutput(args?: GetJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobsResult> {
+export function getJobsOutput(args?: GetJobsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetJobsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getJobs:getJobs", {

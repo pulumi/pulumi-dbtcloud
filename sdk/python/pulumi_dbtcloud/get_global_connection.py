@@ -262,7 +262,7 @@ def get_global_connection(id: Optional[int] = None,
         starburst=pulumi.get(__ret__, 'starburst'),
         synapse=pulumi.get(__ret__, 'synapse'))
 def get_global_connection_output(id: Optional[pulumi.Input[int]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalConnectionResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGlobalConnectionResult]:
     """
     ## Example Usage
 
@@ -278,7 +278,7 @@ def get_global_connection_output(id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGlobalConnection:getGlobalConnection', __args__, opts=opts, typ=GetGlobalConnectionResult)
     return __ret__.apply(lambda __response__: GetGlobalConnectionResult(
         adapter_version=pulumi.get(__response__, 'adapter_version'),
