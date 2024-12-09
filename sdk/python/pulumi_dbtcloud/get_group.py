@@ -131,7 +131,7 @@ def get_group(group_id: Optional[int] = None,
         name=pulumi.get(__ret__, 'name'),
         sso_mapping_groups=pulumi.get(__ret__, 'sso_mapping_groups'))
 def get_group_output(group_id: Optional[pulumi.Input[int]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     Retrieve group details
 
@@ -140,7 +140,7 @@ def get_group_output(group_id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['groupId'] = group_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
     return __ret__.apply(lambda __response__: GetGroupResult(
         assign_by_default=pulumi.get(__response__, 'assign_by_default'),

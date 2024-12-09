@@ -131,7 +131,7 @@ export interface GetBigQueryConnectionResult {
      */
     readonly type: string;
 }
-export function getBigQueryConnectionOutput(args: GetBigQueryConnectionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBigQueryConnectionResult> {
+export function getBigQueryConnectionOutput(args: GetBigQueryConnectionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBigQueryConnectionResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", {
         "connectionId": args.connectionId,

@@ -98,7 +98,7 @@ def get_user_groups(user_id: Optional[int] = None,
         id=pulumi.get(__ret__, 'id'),
         user_id=pulumi.get(__ret__, 'user_id'))
 def get_user_groups_output(user_id: Optional[pulumi.Input[int]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserGroupsResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserGroupsResult]:
     """
     ## Example Usage
 
@@ -114,7 +114,7 @@ def get_user_groups_output(user_id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['userId'] = user_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getUserGroups:getUserGroups', __args__, opts=opts, typ=GetUserGroupsResult)
     return __ret__.apply(lambda __response__: GetUserGroupsResult(
         group_ids=pulumi.get(__response__, 'group_ids'),

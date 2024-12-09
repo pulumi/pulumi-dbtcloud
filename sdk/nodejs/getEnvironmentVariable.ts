@@ -47,7 +47,7 @@ export interface GetEnvironmentVariableResult {
      */
     readonly projectId: number;
 }
-export function getEnvironmentVariableOutput(args: GetEnvironmentVariableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentVariableResult> {
+export function getEnvironmentVariableOutput(args: GetEnvironmentVariableOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEnvironmentVariableResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", {
         "name": args.name,

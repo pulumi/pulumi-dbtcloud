@@ -120,7 +120,7 @@ def get_jobs(environment_id: Optional[int] = None,
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_jobs_output(environment_id: Optional[pulumi.Input[Optional[int]]] = None,
                     project_id: Optional[pulumi.Input[Optional[int]]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobsResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobsResult]:
     """
     ## Example Usage
 
@@ -142,7 +142,7 @@ def get_jobs_output(environment_id: Optional[pulumi.Input[Optional[int]]] = None
     __args__ = dict()
     __args__['environmentId'] = environment_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getJobs:getJobs', __args__, opts=opts, typ=GetJobsResult)
     return __ret__.apply(lambda __response__: GetJobsResult(
         environment_id=pulumi.get(__response__, 'environment_id'),

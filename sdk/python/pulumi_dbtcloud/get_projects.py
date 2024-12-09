@@ -92,7 +92,7 @@ def get_projects(name_contains: Optional[str] = None,
         name_contains=pulumi.get(__ret__, 'name_contains'),
         projects=pulumi.get(__ret__, 'projects'))
 def get_projects_output(name_contains: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectsResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectsResult]:
     """
     Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
 
@@ -101,7 +101,7 @@ def get_projects_output(name_contains: Optional[pulumi.Input[Optional[str]]] = N
     """
     __args__ = dict()
     __args__['nameContains'] = name_contains
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult)
     return __ret__.apply(lambda __response__: GetProjectsResult(
         id=pulumi.get(__response__, 'id'),

@@ -110,7 +110,7 @@ export interface GetGlobalConnectionResult {
  * });
  * ```
  */
-export function getGlobalConnectionOutput(args: GetGlobalConnectionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalConnectionResult> {
+export function getGlobalConnectionOutput(args: GetGlobalConnectionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGlobalConnectionResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getGlobalConnection:getGlobalConnection", {
         "id": args.id,

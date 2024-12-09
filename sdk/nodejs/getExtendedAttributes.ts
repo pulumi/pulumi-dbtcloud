@@ -77,7 +77,7 @@ export interface GetExtendedAttributesResult {
  * });
  * ```
  */
-export function getExtendedAttributesOutput(args: GetExtendedAttributesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetExtendedAttributesResult> {
+export function getExtendedAttributesOutput(args: GetExtendedAttributesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetExtendedAttributesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", {
         "extendedAttributesId": args.extendedAttributesId,
