@@ -82,7 +82,7 @@ def get_global_connections(opts: Optional[pulumi.InvokeOptions] = None) -> Await
     return AwaitableGetGlobalConnectionsResult(
         connections=pulumi.get(__ret__, 'connections'),
         id=pulumi.get(__ret__, 'id'))
-def get_global_connections_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalConnectionsResult]:
+def get_global_connections_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGlobalConnectionsResult]:
     """
     All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
 
@@ -96,7 +96,7 @@ def get_global_connections_output(opts: Optional[pulumi.InvokeOptions] = None) -
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGlobalConnections:getGlobalConnections', __args__, opts=opts, typ=GetGlobalConnectionsResult)
     return __ret__.apply(lambda __response__: GetGlobalConnectionsResult(
         connections=pulumi.get(__response__, 'connections'),

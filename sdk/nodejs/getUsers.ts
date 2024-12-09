@@ -55,7 +55,7 @@ export interface GetUsersResult {
  * const userExist = userDetails.length.then(length => length == 1);
  * ```
  */
-export function getUsersOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetUsersResult> {
+export function getUsersOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUsersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getUsers:getUsers", {
     }, opts);

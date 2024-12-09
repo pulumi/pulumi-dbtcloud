@@ -98,7 +98,7 @@ export interface GetPrivatelinkEndpointResult {
  * });
  * ```
  */
-export function getPrivatelinkEndpointOutput(args?: GetPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointResult> {
+export function getPrivatelinkEndpointOutput(args?: GetPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivatelinkEndpointResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", {

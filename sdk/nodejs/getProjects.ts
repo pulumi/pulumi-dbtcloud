@@ -47,7 +47,7 @@ export interface GetProjectsResult {
 /**
  * Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
  */
-export function getProjectsOutput(args?: GetProjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectsResult> {
+export function getProjectsOutput(args?: GetProjectsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getProjects:getProjects", {

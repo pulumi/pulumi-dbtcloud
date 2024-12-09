@@ -238,7 +238,7 @@ def get_job(job_id: Optional[int] = None,
         triggers_on_draft_pr=pulumi.get(__ret__, 'triggers_on_draft_pr'))
 def get_job_output(job_id: Optional[pulumi.Input[int]] = None,
                    project_id: Optional[pulumi.Input[int]] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobResult]:
+                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -248,7 +248,7 @@ def get_job_output(job_id: Optional[pulumi.Input[int]] = None,
     __args__ = dict()
     __args__['jobId'] = job_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getJob:getJob', __args__, opts=opts, typ=GetJobResult)
     return __ret__.apply(lambda __response__: GetJobResult(
         deferring_environment_id=pulumi.get(__response__, 'deferring_environment_id'),

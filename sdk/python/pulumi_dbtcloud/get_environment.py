@@ -225,7 +225,7 @@ def get_environment(environment_id: Optional[int] = None,
         use_custom_branch=pulumi.get(__ret__, 'use_custom_branch'))
 def get_environment_output(environment_id: Optional[pulumi.Input[int]] = None,
                            project_id: Optional[pulumi.Input[int]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvironmentResult]:
     """
     Retrieve data for a single environment
 
@@ -236,7 +236,7 @@ def get_environment_output(environment_id: Optional[pulumi.Input[int]] = None,
     __args__ = dict()
     __args__['environmentId'] = environment_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getEnvironment:getEnvironment', __args__, opts=opts, typ=GetEnvironmentResult)
     return __ret__.apply(lambda __response__: GetEnvironmentResult(
         connection_id=pulumi.get(__response__, 'connection_id'),

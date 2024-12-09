@@ -101,7 +101,7 @@ def get_group_users(group_id: Optional[int] = None,
         id=pulumi.get(__ret__, 'id'),
         users=pulumi.get(__ret__, 'users'))
 def get_group_users_output(group_id: Optional[pulumi.Input[int]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupUsersResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupUsersResult]:
     """
     Returns a list of users assigned to a specific dbt Cloud group
 
@@ -119,7 +119,7 @@ def get_group_users_output(group_id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['groupId'] = group_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGroupUsers:getGroupUsers', __args__, opts=opts, typ=GetGroupUsersResult)
     return __ret__.apply(lambda __response__: GetGroupUsersResult(
         group_id=pulumi.get(__response__, 'group_id'),

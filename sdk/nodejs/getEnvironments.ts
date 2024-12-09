@@ -47,7 +47,7 @@ export interface GetEnvironmentsResult {
 /**
  * Retrieve data for multiple environments
  */
-export function getEnvironmentsOutput(args?: GetEnvironmentsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEnvironmentsResult> {
+export function getEnvironmentsOutput(args?: GetEnvironmentsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEnvironmentsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getEnvironments:getEnvironments", {

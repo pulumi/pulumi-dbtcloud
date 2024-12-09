@@ -107,7 +107,7 @@ def get_environment_variable(name: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_environment_variable_output(name: Optional[pulumi.Input[str]] = None,
                                     project_id: Optional[pulumi.Input[int]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentVariableResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvironmentVariableResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -117,7 +117,7 @@ def get_environment_variable_output(name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable', __args__, opts=opts, typ=GetEnvironmentVariableResult)
     return __ret__.apply(lambda __response__: GetEnvironmentVariableResult(
         environment_values=pulumi.get(__response__, 'environment_values'),
