@@ -146,7 +146,7 @@ def get_privatelink_endpoint(name: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_privatelink_endpoint_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                     private_link_endpoint_url: Optional[pulumi.Input[Optional[str]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointResult]:
     """
     ## Example Usage
 
@@ -168,7 +168,7 @@ def get_privatelink_endpoint_output(name: Optional[pulumi.Input[Optional[str]]] 
     __args__ = dict()
     __args__['name'] = name
     __args__['privateLinkEndpointUrl'] = private_link_endpoint_url
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint', __args__, opts=opts, typ=GetPrivatelinkEndpointResult)
     return __ret__.apply(lambda __response__: GetPrivatelinkEndpointResult(
         cidr_range=pulumi.get(__response__, 'cidr_range'),

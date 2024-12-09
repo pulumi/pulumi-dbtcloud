@@ -181,7 +181,7 @@ def get_webhook(webhook_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         webhook_id=pulumi.get(__ret__, 'webhook_id'))
 def get_webhook_output(webhook_id: Optional[pulumi.Input[str]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebhookResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWebhookResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -189,7 +189,7 @@ def get_webhook_output(webhook_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['webhookId'] = webhook_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getWebhook:getWebhook', __args__, opts=opts, typ=GetWebhookResult)
     return __ret__.apply(lambda __response__: GetWebhookResult(
         account_identifier=pulumi.get(__response__, 'account_identifier'),

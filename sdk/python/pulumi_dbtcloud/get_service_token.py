@@ -122,7 +122,7 @@ def get_service_token(service_token_id: Optional[int] = None,
         uid=pulumi.get(__ret__, 'uid'))
 def get_service_token_output(service_token_id: Optional[pulumi.Input[int]] = None,
                              service_token_permissions: Optional[pulumi.Input[Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceTokenResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceTokenResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -132,7 +132,7 @@ def get_service_token_output(service_token_id: Optional[pulumi.Input[int]] = Non
     __args__ = dict()
     __args__['serviceTokenId'] = service_token_id
     __args__['serviceTokenPermissions'] = service_token_permissions
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getServiceToken:getServiceToken', __args__, opts=opts, typ=GetServiceTokenResult)
     return __ret__.apply(lambda __response__: GetServiceTokenResult(
         id=pulumi.get(__response__, 'id'),

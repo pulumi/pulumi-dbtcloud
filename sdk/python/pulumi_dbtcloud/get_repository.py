@@ -203,7 +203,7 @@ def get_repository(fetch_deploy_key: Optional[bool] = None,
 def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[bool]]] = None,
                           project_id: Optional[pulumi.Input[int]] = None,
                           repository_id: Optional[pulumi.Input[int]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRepositoryResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRepositoryResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -215,7 +215,7 @@ def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[bool]
     __args__['fetchDeployKey'] = fetch_deploy_key
     __args__['projectId'] = project_id
     __args__['repositoryId'] = repository_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getRepository:getRepository', __args__, opts=opts, typ=GetRepositoryResult)
     return __ret__.apply(lambda __response__: GetRepositoryResult(
         deploy_key=pulumi.get(__response__, 'deploy_key'),
