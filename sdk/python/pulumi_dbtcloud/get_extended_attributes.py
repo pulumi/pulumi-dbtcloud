@@ -129,7 +129,7 @@ def get_extended_attributes(extended_attributes_id: Optional[int] = None,
         state=pulumi.get(__ret__, 'state'))
 def get_extended_attributes_output(extended_attributes_id: Optional[pulumi.Input[int]] = None,
                                    project_id: Optional[pulumi.Input[int]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetExtendedAttributesResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetExtendedAttributesResult]:
     """
     ## Example Usage
 
@@ -148,7 +148,7 @@ def get_extended_attributes_output(extended_attributes_id: Optional[pulumi.Input
     __args__ = dict()
     __args__['extendedAttributesId'] = extended_attributes_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getExtendedAttributes:getExtendedAttributes', __args__, opts=opts, typ=GetExtendedAttributesResult)
     return __ret__.apply(lambda __response__: GetExtendedAttributesResult(
         extended_attributes=pulumi.get(__response__, 'extended_attributes'),

@@ -380,7 +380,7 @@ def get_big_query_connection(connection_id: Optional[int] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_big_query_connection_output(connection_id: Optional[pulumi.Input[int]] = None,
                                     project_id: Optional[pulumi.Input[int]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBigQueryConnectionResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBigQueryConnectionResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -390,7 +390,7 @@ def get_big_query_connection_output(connection_id: Optional[pulumi.Input[int]] =
     __args__ = dict()
     __args__['connectionId'] = connection_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getBigQueryConnection:getBigQueryConnection', __args__, opts=opts, typ=GetBigQueryConnectionResult)
     return __ret__.apply(lambda __response__: GetBigQueryConnectionResult(
         auth_provider_x509_cert_url=pulumi.get(__response__, 'auth_provider_x509_cert_url'),

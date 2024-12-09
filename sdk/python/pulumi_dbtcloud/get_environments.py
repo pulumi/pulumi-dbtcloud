@@ -92,7 +92,7 @@ def get_environments(project_id: Optional[int] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_environments_output(project_id: Optional[pulumi.Input[Optional[int]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEnvironmentsResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvironmentsResult]:
     """
     Retrieve data for multiple environments
 
@@ -101,7 +101,7 @@ def get_environments_output(project_id: Optional[pulumi.Input[Optional[int]]] = 
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getEnvironments:getEnvironments', __args__, opts=opts, typ=GetEnvironmentsResult)
     return __ret__.apply(lambda __response__: GetEnvironmentsResult(
         environments=pulumi.get(__response__, 'environments'),

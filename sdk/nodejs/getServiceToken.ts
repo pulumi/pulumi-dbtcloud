@@ -53,7 +53,7 @@ export interface GetServiceTokenResult {
      */
     readonly uid: string;
 }
-export function getServiceTokenOutput(args: GetServiceTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceTokenResult> {
+export function getServiceTokenOutput(args: GetServiceTokenOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceTokenResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getServiceToken:getServiceToken", {
         "serviceTokenId": args.serviceTokenId,

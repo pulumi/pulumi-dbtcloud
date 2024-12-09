@@ -217,7 +217,7 @@ def get_notification(notification_id: Optional[int] = None,
         state=pulumi.get(__ret__, 'state'),
         user_id=pulumi.get(__ret__, 'user_id'))
 def get_notification_output(notification_id: Optional[pulumi.Input[int]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNotificationResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationResult]:
     """
     Retrieve notification details
 
@@ -235,7 +235,7 @@ def get_notification_output(notification_id: Optional[pulumi.Input[int]] = None,
     """
     __args__ = dict()
     __args__['notificationId'] = notification_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult)
     return __ret__.apply(lambda __response__: GetNotificationResult(
         external_email=pulumi.get(__response__, 'external_email'),
