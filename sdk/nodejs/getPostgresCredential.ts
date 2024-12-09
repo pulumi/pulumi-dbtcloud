@@ -59,7 +59,7 @@ export interface GetPostgresCredentialResult {
      */
     readonly username: string;
 }
-export function getPostgresCredentialOutput(args: GetPostgresCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPostgresCredentialResult> {
+export function getPostgresCredentialOutput(args: GetPostgresCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPostgresCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getPostgresCredential:getPostgresCredential", {
         "credentialId": args.credentialId,

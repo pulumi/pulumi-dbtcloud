@@ -62,7 +62,7 @@ export interface GetUserGroupsResult {
  * });
  * ```
  */
-export function getUserGroupsOutput(args: GetUserGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserGroupsResult> {
+export function getUserGroupsOutput(args: GetUserGroupsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUserGroupsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getUserGroups:getUserGroups", {
         "userId": args.userId,

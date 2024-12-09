@@ -146,7 +146,7 @@ def get_postgres_credential(credential_id: Optional[int] = None,
         username=pulumi.get(__ret__, 'username'))
 def get_postgres_credential_output(credential_id: Optional[pulumi.Input[int]] = None,
                                    project_id: Optional[pulumi.Input[int]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPostgresCredentialResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPostgresCredentialResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -156,7 +156,7 @@ def get_postgres_credential_output(credential_id: Optional[pulumi.Input[int]] = 
     __args__ = dict()
     __args__['credentialId'] = credential_id
     __args__['projectId'] = project_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getPostgresCredential:getPostgresCredential', __args__, opts=opts, typ=GetPostgresCredentialResult)
     return __ret__.apply(lambda __response__: GetPostgresCredentialResult(
         credential_id=pulumi.get(__response__, 'credential_id'),

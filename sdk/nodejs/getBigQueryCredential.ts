@@ -55,7 +55,7 @@ export interface GetBigQueryCredentialResult {
      */
     readonly projectId: number;
 }
-export function getBigQueryCredentialOutput(args: GetBigQueryCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBigQueryCredentialResult> {
+export function getBigQueryCredentialOutput(args: GetBigQueryCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBigQueryCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", {
         "credentialId": args.credentialId,

@@ -49,7 +49,7 @@ export interface GetGlobalConnectionsResult {
  * const myConnections = dbtcloud.getGlobalConnections({});
  * ```
  */
-export function getGlobalConnectionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalConnectionsResult> {
+export function getGlobalConnectionsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGlobalConnectionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getGlobalConnections:getGlobalConnections", {
     }, opts);

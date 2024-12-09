@@ -103,7 +103,7 @@ def get_azure_dev_ops_project(name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         url=pulumi.get(__ret__, 'url'))
 def get_azure_dev_ops_project_output(name: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzureDevOpsProjectResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAzureDevOpsProjectResult]:
     """
     Use this data source to retrieve the ID of an Azure Dev Ops project
     based on its name.
@@ -124,7 +124,7 @@ def get_azure_dev_ops_project_output(name: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject', __args__, opts=opts, typ=GetAzureDevOpsProjectResult)
     return __ret__.apply(lambda __response__: GetAzureDevOpsProjectResult(
         id=pulumi.get(__response__, 'id'),

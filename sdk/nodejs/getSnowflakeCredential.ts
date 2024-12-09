@@ -63,7 +63,7 @@ export interface GetSnowflakeCredentialResult {
      */
     readonly user: string;
 }
-export function getSnowflakeCredentialOutput(args: GetSnowflakeCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSnowflakeCredentialResult> {
+export function getSnowflakeCredentialOutput(args: GetSnowflakeCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSnowflakeCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", {
         "credentialId": args.credentialId,
