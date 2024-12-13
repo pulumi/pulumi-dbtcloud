@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetSnowflakeCredentialResult> Invoke(GetSnowflakeCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSnowflakeCredentialResult>("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", args ?? new GetSnowflakeCredentialInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetSnowflakeCredentialResult> Invoke(GetSnowflakeCredentialInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSnowflakeCredentialResult>("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", args ?? new GetSnowflakeCredentialInvokeArgs(), options.WithDefaults());
     }
 
 

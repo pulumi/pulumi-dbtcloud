@@ -58,6 +58,30 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetGroupUsersResult> Invoke(GetGroupUsersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupUsersResult>("dbtcloud:index/getGroupUsers:getGroupUsers", args ?? new GetGroupUsersInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Returns a list of users assigned to a specific dbt Cloud group
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myGroupUsers = DbtCloud.GetGroupUsers.Invoke(new()
+        ///     {
+        ///         GroupId = 1234,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetGroupUsersResult> Invoke(GetGroupUsersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetGroupUsersResult>("dbtcloud:index/getGroupUsers:getGroupUsers", args ?? new GetGroupUsersInvokeArgs(), options.WithDefaults());
     }
 
 

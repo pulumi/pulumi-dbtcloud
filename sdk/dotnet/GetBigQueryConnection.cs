@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetBigQueryConnectionResult> Invoke(GetBigQueryConnectionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBigQueryConnectionResult>("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", args ?? new GetBigQueryConnectionInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetBigQueryConnectionResult> Invoke(GetBigQueryConnectionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBigQueryConnectionResult>("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", args ?? new GetBigQueryConnectionInvokeArgs(), options.WithDefaults());
     }
 
 

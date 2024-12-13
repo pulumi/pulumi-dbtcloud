@@ -56,6 +56,29 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetExtendedAttributesResult> Invoke(GetExtendedAttributesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetExtendedAttributesResult>("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", args ?? new GetExtendedAttributesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myExtendedAttributes = DbtCloud.GetExtendedAttributes.Invoke(new()
+        ///     {
+        ///         ExtendedAttributesId = 12345,
+        ///         ProjectId = 6789,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetExtendedAttributesResult> Invoke(GetExtendedAttributesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetExtendedAttributesResult>("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", args ?? new GetExtendedAttributesInvokeArgs(), options.WithDefaults());
     }
 
 

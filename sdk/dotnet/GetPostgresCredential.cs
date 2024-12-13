@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetPostgresCredentialResult> Invoke(GetPostgresCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPostgresCredentialResult>("dbtcloud:index/getPostgresCredential:getPostgresCredential", args ?? new GetPostgresCredentialInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetPostgresCredentialResult> Invoke(GetPostgresCredentialInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPostgresCredentialResult>("dbtcloud:index/getPostgresCredential:getPostgresCredential", args ?? new GetPostgresCredentialInvokeArgs(), options.WithDefaults());
     }
 
 

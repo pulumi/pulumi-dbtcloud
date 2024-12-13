@@ -84,21 +84,11 @@ type LookupBigQueryConnectionResult struct {
 }
 
 func LookupBigQueryConnectionOutput(ctx *pulumi.Context, args LookupBigQueryConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupBigQueryConnectionResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupBigQueryConnectionResultOutput, error) {
 			args := v.(LookupBigQueryConnectionArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupBigQueryConnectionResult
-			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", args, &rv, "", opts...)
-			if err != nil {
-				return LookupBigQueryConnectionResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupBigQueryConnectionResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupBigQueryConnectionResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", args, LookupBigQueryConnectionResultOutput{}, options).(LookupBigQueryConnectionResultOutput), nil
 		}).(LookupBigQueryConnectionResultOutput)
 }
 

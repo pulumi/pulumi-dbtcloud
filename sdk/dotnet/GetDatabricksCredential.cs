@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetDatabricksCredentialResult> Invoke(GetDatabricksCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabricksCredentialResult>("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", args ?? new GetDatabricksCredentialInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetDatabricksCredentialResult> Invoke(GetDatabricksCredentialInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabricksCredentialResult>("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", args ?? new GetDatabricksCredentialInvokeArgs(), options.WithDefaults());
     }
 
 

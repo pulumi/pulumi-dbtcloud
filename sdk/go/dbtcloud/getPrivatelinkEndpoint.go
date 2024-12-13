@@ -87,21 +87,11 @@ type GetPrivatelinkEndpointResult struct {
 }
 
 func GetPrivatelinkEndpointOutput(ctx *pulumi.Context, args GetPrivatelinkEndpointOutputArgs, opts ...pulumi.InvokeOption) GetPrivatelinkEndpointResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetPrivatelinkEndpointResultOutput, error) {
 			args := v.(GetPrivatelinkEndpointArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetPrivatelinkEndpointResult
-			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", args, &rv, "", opts...)
-			if err != nil {
-				return GetPrivatelinkEndpointResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetPrivatelinkEndpointResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetPrivatelinkEndpointResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", args, GetPrivatelinkEndpointResultOutput{}, options).(GetPrivatelinkEndpointResultOutput), nil
 		}).(GetPrivatelinkEndpointResultOutput)
 }
 

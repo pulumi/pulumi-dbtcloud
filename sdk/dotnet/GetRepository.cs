@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetRepositoryResult> Invoke(GetRepositoryInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRepositoryResult>("dbtcloud:index/getRepository:getRepository", args ?? new GetRepositoryInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetRepositoryResult> Invoke(GetRepositoryInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRepositoryResult>("dbtcloud:index/getRepository:getRepository", args ?? new GetRepositoryInvokeArgs(), options.WithDefaults());
     }
 
 
