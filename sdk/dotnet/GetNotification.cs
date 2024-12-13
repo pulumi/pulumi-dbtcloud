@@ -58,6 +58,30 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetNotificationResult> Invoke(GetNotificationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("dbtcloud:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve notification details
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myNotification = DbtCloud.GetNotification.Invoke(new()
+        ///     {
+        ///         NotificationId = 12345,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNotificationResult> Invoke(GetNotificationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNotificationResult>("dbtcloud:index/getNotification:getNotification", args ?? new GetNotificationInvokeArgs(), options.WithDefaults());
     }
 
 

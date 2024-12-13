@@ -52,6 +52,27 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetGlobalConnectionsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGlobalConnectionsResult>("dbtcloud:index/getGlobalConnections:getGlobalConnections", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myConnections = DbtCloud.GetGlobalConnections.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetGlobalConnectionsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetGlobalConnectionsResult>("dbtcloud:index/getGlobalConnections:getGlobalConnections", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

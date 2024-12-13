@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetBigQueryCredentialResult> Invoke(GetBigQueryCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBigQueryCredentialResult>("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", args ?? new GetBigQueryCredentialInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetBigQueryCredentialResult> Invoke(GetBigQueryCredentialInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBigQueryCredentialResult>("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", args ?? new GetBigQueryCredentialInvokeArgs(), options.WithDefaults());
     }
 
 

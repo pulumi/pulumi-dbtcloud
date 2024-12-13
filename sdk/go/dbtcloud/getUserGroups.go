@@ -63,21 +63,11 @@ type LookupUserGroupsResult struct {
 }
 
 func LookupUserGroupsOutput(ctx *pulumi.Context, args LookupUserGroupsOutputArgs, opts ...pulumi.InvokeOption) LookupUserGroupsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupUserGroupsResultOutput, error) {
 			args := v.(LookupUserGroupsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupUserGroupsResult
-			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getUserGroups:getUserGroups", args, &rv, "", opts...)
-			if err != nil {
-				return LookupUserGroupsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupUserGroupsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupUserGroupsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("dbtcloud:index/getUserGroups:getUserGroups", args, LookupUserGroupsResultOutput{}, options).(LookupUserGroupsResultOutput), nil
 		}).(LookupUserGroupsResultOutput)
 }
 

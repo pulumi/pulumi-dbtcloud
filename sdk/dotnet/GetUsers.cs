@@ -68,6 +68,35 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetUsersResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("dbtcloud:index/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve all users
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // return all users in the dbt Cloud account
+        ///     var all = DbtCloud.GetUsers.Invoke();
+        /// 
+        ///     var userDetails = .Where(user =&gt; user.Email == "example@amail.com").Select(user =&gt; 
+        ///     {
+        ///         return user;
+        ///     }).ToList();
+        /// 
+        ///     var userExist = userDetails.Length.Apply(length =&gt; length == 1);
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetUsersResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("dbtcloud:index/getUsers:getUsers", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

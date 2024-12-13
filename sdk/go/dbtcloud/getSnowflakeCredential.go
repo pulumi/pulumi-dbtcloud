@@ -50,21 +50,11 @@ type LookupSnowflakeCredentialResult struct {
 }
 
 func LookupSnowflakeCredentialOutput(ctx *pulumi.Context, args LookupSnowflakeCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupSnowflakeCredentialResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupSnowflakeCredentialResultOutput, error) {
 			args := v.(LookupSnowflakeCredentialArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupSnowflakeCredentialResult
-			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", args, &rv, "", opts...)
-			if err != nil {
-				return LookupSnowflakeCredentialResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupSnowflakeCredentialResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupSnowflakeCredentialResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", args, LookupSnowflakeCredentialResultOutput{}, options).(LookupSnowflakeCredentialResultOutput), nil
 		}).(LookupSnowflakeCredentialResultOutput)
 }
 

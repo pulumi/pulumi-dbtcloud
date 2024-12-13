@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetEnvironmentVariableResult> Invoke(GetEnvironmentVariableInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEnvironmentVariableResult>("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args ?? new GetEnvironmentVariableInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetEnvironmentVariableResult> Invoke(GetEnvironmentVariableInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetEnvironmentVariableResult>("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args ?? new GetEnvironmentVariableInvokeArgs(), options.WithDefaults());
     }
 
 

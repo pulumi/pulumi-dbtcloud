@@ -22,6 +22,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetEnvironmentsResult> Invoke(GetEnvironmentsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEnvironmentsResult>("dbtcloud:index/getEnvironments:getEnvironments", args ?? new GetEnvironmentsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve data for multiple environments
+        /// </summary>
+        public static Output<GetEnvironmentsResult> Invoke(GetEnvironmentsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetEnvironmentsResult>("dbtcloud:index/getEnvironments:getEnvironments", args ?? new GetEnvironmentsInvokeArgs(), options.WithDefaults());
     }
 
 

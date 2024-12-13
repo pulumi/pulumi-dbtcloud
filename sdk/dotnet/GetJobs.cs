@@ -78,6 +78,40 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetJobsResult> Invoke(GetJobsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetJobsResult>("dbtcloud:index/getJobs:getJobs", args ?? new GetJobsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // we can search all jobs by project
+        ///     var testAllJobsInProject = DbtCloud.GetJobs.Invoke(new()
+        ///     {
+        ///         ProjectId = 1234,
+        ///     });
+        /// 
+        ///     // or by environment
+        ///     var testAllJobsInEnvironment = DbtCloud.GetJobs.Invoke(new()
+        ///     {
+        ///         EnvironmentId = 1234,
+        ///     });
+        /// 
+        ///     var myJobsProd = .Where(job =&gt; job.Environment?.DeploymentType == "production").Select(job =&gt; 
+        ///     {
+        ///         return job;
+        ///     }).ToList();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetJobsResult> Invoke(GetJobsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetJobsResult>("dbtcloud:index/getJobs:getJobs", args ?? new GetJobsInvokeArgs(), options.WithDefaults());
     }
 
 

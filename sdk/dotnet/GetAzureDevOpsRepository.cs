@@ -66,6 +66,34 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetAzureDevOpsRepositoryResult> Invoke(GetAzureDevOpsRepositoryInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAzureDevOpsRepositoryResult>("dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository", args ?? new GetAzureDevOpsRepositoryInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to retrieve the ID and details of an Azure Dev Ops repository 
+        /// based on its name and the ID of the Azure Dev Ops project it belongs to.
+        /// 		
+        /// This data source requires connecting with a user token and doesn't work with a service token.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myAdoRepository = DbtCloud.GetAzureDevOpsRepository.Invoke(new()
+        ///     {
+        ///         Name = "my-repo-name",
+        ///         AzureDevOpsProjectId = myAdoProject.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAzureDevOpsRepositoryResult> Invoke(GetAzureDevOpsRepositoryInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAzureDevOpsRepositoryResult>("dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository", args ?? new GetAzureDevOpsRepositoryInvokeArgs(), options.WithDefaults());
     }
 
 

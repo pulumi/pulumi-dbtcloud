@@ -42,21 +42,11 @@ type LookupEnvironmentVariableResult struct {
 }
 
 func LookupEnvironmentVariableOutput(ctx *pulumi.Context, args LookupEnvironmentVariableOutputArgs, opts ...pulumi.InvokeOption) LookupEnvironmentVariableResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupEnvironmentVariableResultOutput, error) {
 			args := v.(LookupEnvironmentVariableArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupEnvironmentVariableResult
-			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args, &rv, "", opts...)
-			if err != nil {
-				return LookupEnvironmentVariableResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupEnvironmentVariableResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupEnvironmentVariableResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args, LookupEnvironmentVariableResultOutput{}, options).(LookupEnvironmentVariableResultOutput), nil
 		}).(LookupEnvironmentVariableResultOutput)
 }
 

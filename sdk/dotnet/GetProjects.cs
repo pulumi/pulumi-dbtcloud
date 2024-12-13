@@ -22,6 +22,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetProjectsResult> Invoke(GetProjectsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectsResult>("dbtcloud:index/getProjects:getProjects", args ?? new GetProjectsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve all the projects created in dbt Cloud with an optional filter on parts of the project name.
+        /// </summary>
+        public static Output<GetProjectsResult> Invoke(GetProjectsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetProjectsResult>("dbtcloud:index/getProjects:getProjects", args ?? new GetProjectsInvokeArgs(), options.WithDefaults());
     }
 
 

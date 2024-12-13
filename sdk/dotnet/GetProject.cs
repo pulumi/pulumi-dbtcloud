@@ -70,6 +70,36 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetProjectResult> Invoke(GetProjectInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectResult>("dbtcloud:index/getProject:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+        ///     var testProject = DbtCloud.GetProject.Invoke(new()
+        ///     {
+        ///         ProjectId = dbtCloudProjectId,
+        ///     });
+        /// 
+        ///     // or they can use project names
+        ///     // the provider will raise an error if more than one project is found with the same name
+        ///     var anotherTestProject = DbtCloud.GetProject.Invoke(new()
+        ///     {
+        ///         Name = "My other project name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetProjectResult> Invoke(GetProjectInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetProjectResult>("dbtcloud:index/getProject:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
     }
 
 

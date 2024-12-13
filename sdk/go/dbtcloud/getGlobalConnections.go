@@ -56,18 +56,8 @@ type GetGlobalConnectionsResult struct {
 
 func GetGlobalConnectionsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetGlobalConnectionsResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetGlobalConnectionsResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetGlobalConnectionsResult
-		secret, err := ctx.InvokePackageRaw("dbtcloud:index/getGlobalConnections:getGlobalConnections", nil, &rv, "", opts...)
-		if err != nil {
-			return GetGlobalConnectionsResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetGlobalConnectionsResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetGlobalConnectionsResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("dbtcloud:index/getGlobalConnections:getGlobalConnections", nil, GetGlobalConnectionsResultOutput{}, options).(GetGlobalConnectionsResultOutput), nil
 	}).(GetGlobalConnectionsResultOutput)
 }
 
