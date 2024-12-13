@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetServiceTokenResult> Invoke(GetServiceTokenInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceTokenResult>("dbtcloud:index/getServiceToken:getServiceToken", args ?? new GetServiceTokenInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetServiceTokenResult> Invoke(GetServiceTokenInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetServiceTokenResult>("dbtcloud:index/getServiceToken:getServiceToken", args ?? new GetServiceTokenInvokeArgs(), options.WithDefaults());
     }
 
 

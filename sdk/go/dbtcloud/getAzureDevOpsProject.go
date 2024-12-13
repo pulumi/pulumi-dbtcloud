@@ -68,21 +68,11 @@ type GetAzureDevOpsProjectResult struct {
 }
 
 func GetAzureDevOpsProjectOutput(ctx *pulumi.Context, args GetAzureDevOpsProjectOutputArgs, opts ...pulumi.InvokeOption) GetAzureDevOpsProjectResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAzureDevOpsProjectResultOutput, error) {
 			args := v.(GetAzureDevOpsProjectArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAzureDevOpsProjectResult
-			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject", args, &rv, "", opts...)
-			if err != nil {
-				return GetAzureDevOpsProjectResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAzureDevOpsProjectResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAzureDevOpsProjectResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject", args, GetAzureDevOpsProjectResultOutput{}, options).(GetAzureDevOpsProjectResultOutput), nil
 		}).(GetAzureDevOpsProjectResultOutput)
 }
 

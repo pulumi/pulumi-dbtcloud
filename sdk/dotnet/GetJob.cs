@@ -16,6 +16,9 @@ namespace Pulumi.DbtCloud
 
         public static Output<GetJobResult> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetJobResult>("dbtcloud:index/getJob:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetJobResult> Invoke(GetJobInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetJobResult>("dbtcloud:index/getJob:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
     }
 
 

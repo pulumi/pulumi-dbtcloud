@@ -78,6 +78,40 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public static Output<GetPrivatelinkEndpointResult> Invoke(GetPrivatelinkEndpointInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointResult>("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", args ?? new GetPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testWithName = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         Name = "My Endpoint Name",
+        ///     });
+        /// 
+        ///     var testWithUrl = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         PrivateLinkEndpointUrl = "abc.privatelink.def.com",
+        ///     });
+        /// 
+        ///     // in case multiple endpoints have the same name or URL
+        ///     var testWithNameAndUrl = DbtCloud.GetPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         Name = "My Endpoint Name",
+        ///         PrivateLinkEndpointUrl = "abc.privatelink.def.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetPrivatelinkEndpointResult> Invoke(GetPrivatelinkEndpointInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointResult>("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", args ?? new GetPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
     }
 
 

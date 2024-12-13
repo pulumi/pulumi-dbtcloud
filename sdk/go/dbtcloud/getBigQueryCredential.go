@@ -46,21 +46,11 @@ type LookupBigQueryCredentialResult struct {
 }
 
 func LookupBigQueryCredentialOutput(ctx *pulumi.Context, args LookupBigQueryCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupBigQueryCredentialResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupBigQueryCredentialResultOutput, error) {
 			args := v.(LookupBigQueryCredentialArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupBigQueryCredentialResult
-			secret, err := ctx.InvokePackageRaw("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", args, &rv, "", opts...)
-			if err != nil {
-				return LookupBigQueryCredentialResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupBigQueryCredentialResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupBigQueryCredentialResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", args, LookupBigQueryCredentialResultOutput{}, options).(LookupBigQueryCredentialResultOutput), nil
 		}).(LookupBigQueryCredentialResultOutput)
 }
 
