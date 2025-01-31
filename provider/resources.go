@@ -188,6 +188,9 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			},
 			"dbtcloud_license_map": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LicenseMap"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"id": {Type: "string"},
+				},
 			},
 			"dbtcloud_environment_variable_job_override": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "EnvironmentVariableJobOverride"),

@@ -59,7 +59,8 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
+     * is recommended. Defaults to `latest` if no version is provided
      * 
      */
     @Import(name="dbtVersion")
@@ -67,7 +68,8 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
+     * is recommended. Defaults to `latest` if no version is provided
      * 
      */
     public Optional<Output<String>> dbtVersion() {
@@ -286,7 +288,8 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-         * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+         * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
+         * is recommended. Defaults to `latest` if no version is provided
          * 
          * @return builder
          * 
@@ -298,7 +301,8 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-         * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+         * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
+         * is recommended. Defaults to `latest` if no version is provided
          * 
          * @return builder
          * 

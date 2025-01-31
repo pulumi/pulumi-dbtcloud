@@ -305,7 +305,7 @@ class ProjectArtefacts(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="docsJobId")
-    def docs_job_id(self) -> pulumi.Output[Optional[int]]:
+    def docs_job_id(self) -> pulumi.Output[int]:
         """
         Docs Job ID
         """
@@ -313,7 +313,7 @@ class ProjectArtefacts(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="freshnessJobId")
-    def freshness_job_id(self) -> pulumi.Output[Optional[int]]:
+    def freshness_job_id(self) -> pulumi.Output[int]:
         """
         Freshness Job ID
         """

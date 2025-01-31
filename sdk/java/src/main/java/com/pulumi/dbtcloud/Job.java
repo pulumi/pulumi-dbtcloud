@@ -98,6 +98,8 @@ import javax.annotation.Nullable;
  *             .numThreads(32)
  *             .projectId(dbtProject.id())
  *             .runGenerateSources(false)
+ *             .runLint(true)
+ *             .errorsOnLintFailure(true)
  *             .triggers(Map.ofEntries(
  *                 Map.entry("github_webhook", true),
  *                 Map.entry("git_provider_webhook", true),
@@ -257,6 +259,20 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.environmentId;
     }
     /**
+     * Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+     * 
+     */
+    @Export(name="errorsOnLintFailure", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> errorsOnLintFailure;
+
+    /**
+     * @return Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> errorsOnLintFailure() {
+        return Codegen.optional(this.errorsOnLintFailure);
+    }
+    /**
      * List of commands to execute for the job
      * 
      */
@@ -381,6 +397,20 @@ public class Job extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> runGenerateSources() {
         return Codegen.optional(this.runGenerateSources);
+    }
+    /**
+     * Whether the CI job should lint SQL changes. Defaults to `false`.
+     * 
+     */
+    @Export(name="runLint", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> runLint;
+
+    /**
+     * @return Whether the CI job should lint SQL changes. Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> runLint() {
+        return Codegen.optional(this.runLint);
     }
     /**
      * Custom cron expression for schedule
@@ -562,6 +592,7 @@ public class Job extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

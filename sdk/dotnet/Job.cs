@@ -86,6 +86,8 @@ namespace Pulumi.DbtCloud
     ///         NumThreads = 32,
     ///         ProjectId = dbtProject.Id,
     ///         RunGenerateSources = false,
+    ///         RunLint = true,
+    ///         ErrorsOnLintFailure = true,
     ///         Triggers = 
     ///         {
     ///             { "github_webhook", true },
@@ -216,6 +218,12 @@ namespace Pulumi.DbtCloud
         public Output<int> EnvironmentId { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        /// </summary>
+        [Output("errorsOnLintFailure")]
+        public Output<bool?> ErrorsOnLintFailure { get; private set; } = null!;
+
+        /// <summary>
         /// List of commands to execute for the job
         /// </summary>
         [Output("executeSteps")]
@@ -268,6 +276,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Output("runGenerateSources")]
         public Output<bool?> RunGenerateSources { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the CI job should lint SQL changes. Defaults to `false`.
+        /// </summary>
+        [Output("runLint")]
+        public Output<bool?> RunLint { get; private set; } = null!;
 
         /// <summary>
         /// Custom cron expression for schedule
@@ -406,6 +420,12 @@ namespace Pulumi.DbtCloud
         [Input("environmentId", required: true)]
         public Input<int> EnvironmentId { get; set; } = null!;
 
+        /// <summary>
+        /// Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        /// </summary>
+        [Input("errorsOnLintFailure")]
+        public Input<bool>? ErrorsOnLintFailure { get; set; }
+
         [Input("executeSteps", required: true)]
         private InputList<string>? _executeSteps;
 
@@ -465,6 +485,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("runGenerateSources")]
         public Input<bool>? RunGenerateSources { get; set; }
+
+        /// <summary>
+        /// Whether the CI job should lint SQL changes. Defaults to `false`.
+        /// </summary>
+        [Input("runLint")]
+        public Input<bool>? RunLint { get; set; }
 
         /// <summary>
         /// Custom cron expression for schedule
@@ -582,6 +608,12 @@ namespace Pulumi.DbtCloud
         [Input("environmentId")]
         public Input<int>? EnvironmentId { get; set; }
 
+        /// <summary>
+        /// Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        /// </summary>
+        [Input("errorsOnLintFailure")]
+        public Input<bool>? ErrorsOnLintFailure { get; set; }
+
         [Input("executeSteps")]
         private InputList<string>? _executeSteps;
 
@@ -641,6 +673,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("runGenerateSources")]
         public Input<bool>? RunGenerateSources { get; set; }
+
+        /// <summary>
+        /// Whether the CI job should lint SQL changes. Defaults to `false`.
+        /// </summary>
+        [Input("runLint")]
+        public Input<bool>? RunLint { get; set; }
 
         /// <summary>
         /// Custom cron expression for schedule

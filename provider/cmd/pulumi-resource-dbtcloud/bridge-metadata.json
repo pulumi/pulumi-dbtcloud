@@ -455,7 +455,7 @@
             "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions": 1,
             "dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule": 1,
             "dbtcloud:index/job:Job": 0,
-            "dbtcloud:index/licenseMap:LicenseMap": 0,
+            "dbtcloud:index/licenseMap:LicenseMap": 1,
             "dbtcloud:index/lineageIntegration:LineageIntegration": 1,
             "dbtcloud:index/notification:Notification": 1,
             "dbtcloud:index/oauthConfiguration:OauthConfiguration": 1,
@@ -463,7 +463,7 @@
             "dbtcloud:index/partialNotification:PartialNotification": 1,
             "dbtcloud:index/postgresCredential:PostgresCredential": 0,
             "dbtcloud:index/project:Project": 0,
-            "dbtcloud:index/projectArtefacts:ProjectArtefacts": 0,
+            "dbtcloud:index/projectArtefacts:ProjectArtefacts": 1,
             "dbtcloud:index/projectConnection:ProjectConnection": 0,
             "dbtcloud:index/projectRepository:ProjectRepository": 0,
             "dbtcloud:index/repository:Repository": 0,
@@ -473,8 +473,8 @@
             "dbtcloud:index/webhook:Webhook": 0
         },
         "functions": {
-            "dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject": 0,
-            "dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository": 0,
+            "dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject": 1,
+            "dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository": 1,
             "dbtcloud:index/getBigQueryConnection:getBigQueryConnection": 0,
             "dbtcloud:index/getBigQueryCredential:getBigQueryCredential": 0,
             "dbtcloud:index/getConnection:getConnection": 0,

@@ -96,6 +96,21 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+     * 
+     */
+    @Import(name="errorsOnLintFailure")
+    private @Nullable Output<Boolean> errorsOnLintFailure;
+
+    /**
+     * @return Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> errorsOnLintFailure() {
+        return Optional.ofNullable(this.errorsOnLintFailure);
+    }
+
+    /**
      * List of commands to execute for the job
      * 
      */
@@ -228,6 +243,21 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> runGenerateSources() {
         return Optional.ofNullable(this.runGenerateSources);
+    }
+
+    /**
+     * Whether the CI job should lint SQL changes. Defaults to `false`.
+     * 
+     */
+    @Import(name="runLint")
+    private @Nullable Output<Boolean> runLint;
+
+    /**
+     * @return Whether the CI job should lint SQL changes. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> runLint() {
+        return Optional.ofNullable(this.runLint);
     }
 
     /**
@@ -388,6 +418,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         this.deferringJobId = $.deferringJobId;
         this.description = $.description;
         this.environmentId = $.environmentId;
+        this.errorsOnLintFailure = $.errorsOnLintFailure;
         this.executeSteps = $.executeSteps;
         this.generateDocs = $.generateDocs;
         this.isActive = $.isActive;
@@ -397,6 +428,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         this.projectId = $.projectId;
         this.runCompareChanges = $.runCompareChanges;
         this.runGenerateSources = $.runGenerateSources;
+        this.runLint = $.runLint;
         this.scheduleCron = $.scheduleCron;
         this.scheduleDays = $.scheduleDays;
         this.scheduleHours = $.scheduleHours;
@@ -530,6 +562,27 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder environmentId(Integer environmentId) {
             return environmentId(Output.of(environmentId));
+        }
+
+        /**
+         * @param errorsOnLintFailure Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder errorsOnLintFailure(@Nullable Output<Boolean> errorsOnLintFailure) {
+            $.errorsOnLintFailure = errorsOnLintFailure;
+            return this;
+        }
+
+        /**
+         * @param errorsOnLintFailure Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder errorsOnLintFailure(Boolean errorsOnLintFailure) {
+            return errorsOnLintFailure(Output.of(errorsOnLintFailure));
         }
 
         /**
@@ -729,6 +782,27 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder runGenerateSources(Boolean runGenerateSources) {
             return runGenerateSources(Output.of(runGenerateSources));
+        }
+
+        /**
+         * @param runLint Whether the CI job should lint SQL changes. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder runLint(@Nullable Output<Boolean> runLint) {
+            $.runLint = runLint;
+            return this;
+        }
+
+        /**
+         * @param runLint Whether the CI job should lint SQL changes. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder runLint(Boolean runLint) {
+            return runLint(Output.of(runLint));
         }
 
         /**

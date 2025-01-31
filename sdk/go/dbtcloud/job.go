@@ -87,6 +87,8 @@ import (
 //				NumThreads:             pulumi.Int(32),
 //				ProjectId:              pulumi.Any(dbtProject.Id),
 //				RunGenerateSources:     pulumi.Bool(false),
+//				RunLint:                pulumi.Bool(true),
+//				ErrorsOnLintFailure:    pulumi.Bool(true),
 //				Triggers: pulumi.BoolMap{
 //					"github_webhook":       pulumi.Bool(true),
 //					"git_provider_webhook": pulumi.Bool(true),
@@ -194,6 +196,8 @@ type Job struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Environment ID to create the job in
 	EnvironmentId pulumi.IntOutput `pulumi:"environmentId"`
+	// Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+	ErrorsOnLintFailure pulumi.BoolPtrOutput `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayOutput `pulumi:"executeSteps"`
 	// Flag for whether the job should generate documentation
@@ -212,6 +216,8 @@ type Job struct {
 	RunCompareChanges pulumi.BoolPtrOutput `pulumi:"runCompareChanges"`
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources pulumi.BoolPtrOutput `pulumi:"runGenerateSources"`
+	// Whether the CI job should lint SQL changes. Defaults to `false`.
+	RunLint pulumi.BoolPtrOutput `pulumi:"runLint"`
 	// Custom cron expression for schedule
 	ScheduleCron pulumi.StringPtrOutput `pulumi:"scheduleCron"`
 	// List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -286,6 +292,8 @@ type jobState struct {
 	Description *string `pulumi:"description"`
 	// Environment ID to create the job in
 	EnvironmentId *int `pulumi:"environmentId"`
+	// Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+	ErrorsOnLintFailure *bool `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps []string `pulumi:"executeSteps"`
 	// Flag for whether the job should generate documentation
@@ -304,6 +312,8 @@ type jobState struct {
 	RunCompareChanges *bool `pulumi:"runCompareChanges"`
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources *bool `pulumi:"runGenerateSources"`
+	// Whether the CI job should lint SQL changes. Defaults to `false`.
+	RunLint *bool `pulumi:"runLint"`
 	// Custom cron expression for schedule
 	ScheduleCron *string `pulumi:"scheduleCron"`
 	// List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -337,6 +347,8 @@ type JobState struct {
 	Description pulumi.StringPtrInput
 	// Environment ID to create the job in
 	EnvironmentId pulumi.IntPtrInput
+	// Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+	ErrorsOnLintFailure pulumi.BoolPtrInput
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayInput
 	// Flag for whether the job should generate documentation
@@ -355,6 +367,8 @@ type JobState struct {
 	RunCompareChanges pulumi.BoolPtrInput
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources pulumi.BoolPtrInput
+	// Whether the CI job should lint SQL changes. Defaults to `false`.
+	RunLint pulumi.BoolPtrInput
 	// Custom cron expression for schedule
 	ScheduleCron pulumi.StringPtrInput
 	// List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -392,6 +406,8 @@ type jobArgs struct {
 	Description *string `pulumi:"description"`
 	// Environment ID to create the job in
 	EnvironmentId int `pulumi:"environmentId"`
+	// Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+	ErrorsOnLintFailure *bool `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps []string `pulumi:"executeSteps"`
 	// Flag for whether the job should generate documentation
@@ -410,6 +426,8 @@ type jobArgs struct {
 	RunCompareChanges *bool `pulumi:"runCompareChanges"`
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources *bool `pulumi:"runGenerateSources"`
+	// Whether the CI job should lint SQL changes. Defaults to `false`.
+	RunLint *bool `pulumi:"runLint"`
 	// Custom cron expression for schedule
 	ScheduleCron *string `pulumi:"scheduleCron"`
 	// List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -444,6 +462,8 @@ type JobArgs struct {
 	Description pulumi.StringPtrInput
 	// Environment ID to create the job in
 	EnvironmentId pulumi.IntInput
+	// Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+	ErrorsOnLintFailure pulumi.BoolPtrInput
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayInput
 	// Flag for whether the job should generate documentation
@@ -462,6 +482,8 @@ type JobArgs struct {
 	RunCompareChanges pulumi.BoolPtrInput
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 	RunGenerateSources pulumi.BoolPtrInput
+	// Whether the CI job should lint SQL changes. Defaults to `false`.
+	RunLint pulumi.BoolPtrInput
 	// Custom cron expression for schedule
 	ScheduleCron pulumi.StringPtrInput
 	// List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -596,6 +618,11 @@ func (o JobOutput) EnvironmentId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.EnvironmentId }).(pulumi.IntOutput)
 }
 
+// Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+func (o JobOutput) ErrorsOnLintFailure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.ErrorsOnLintFailure }).(pulumi.BoolPtrOutput)
+}
+
 // List of commands to execute for the job
 func (o JobOutput) ExecuteSteps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.ExecuteSteps }).(pulumi.StringArrayOutput)
@@ -639,6 +666,11 @@ func (o JobOutput) RunCompareChanges() pulumi.BoolPtrOutput {
 // Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
 func (o JobOutput) RunGenerateSources() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.RunGenerateSources }).(pulumi.BoolPtrOutput)
+}
+
+// Whether the CI job should lint SQL changes. Defaults to `false`.
+func (o JobOutput) RunLint() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.RunLint }).(pulumi.BoolPtrOutput)
 }
 
 // Custom cron expression for schedule
