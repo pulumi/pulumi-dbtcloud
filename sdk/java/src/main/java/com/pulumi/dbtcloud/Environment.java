@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var ciEnvironment = new Environment("ciEnvironment", EnvironmentArgs.builder()
- *             .dbtVersion("versionless")
+ *             .dbtVersion("latest")
  *             .name("CI")
  *             .projectId(dbtProject.id())
  *             .type("deployment")
@@ -71,7 +71,7 @@ import javax.annotation.Nullable;
  * 
  *         // Creating a development environment
  *         var devEnvironment = new Environment("devEnvironment", EnvironmentArgs.builder()
- *             .dbtVersion("versionless")
+ *             .dbtVersion("latest")
  *             .name("Dev")
  *             .projectId(dbtProject.id())
  *             .type("development")
@@ -155,7 +155,8 @@ public class Environment extends com.pulumi.resources.CustomResource {
     }
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
+     * is recommended. Defaults to `latest` if no version is provided
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
@@ -163,7 +164,8 @@ public class Environment extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre` or `versionless`. Defaults to`versionless` if no version is provided
+     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
+     * is recommended. Defaults to `latest` if no version is provided
      * 
      */
     public Output<Optional<String>> dbtVersion() {
@@ -337,6 +339,7 @@ public class Environment extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

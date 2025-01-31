@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Maps SSO groups to a given license type
+//
 // ## Example Usage
 //
 // ```go

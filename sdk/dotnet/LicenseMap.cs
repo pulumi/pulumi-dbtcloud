@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Maps SSO groups to a given license type
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

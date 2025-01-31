@@ -65,6 +65,8 @@ import * as utilities from "./utilities";
  *     numThreads: 32,
  *     projectId: dbtProject.id,
  *     runGenerateSources: false,
+ *     runLint: true,
+ *     errorsOnLintFailure: true,
  *     triggers: {
  *         github_webhook: true,
  *         git_provider_webhook: true,
@@ -195,6 +197,10 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly environmentId!: pulumi.Output<number>;
     /**
+     * Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+     */
+    public readonly errorsOnLintFailure!: pulumi.Output<boolean | undefined>;
+    /**
      * List of commands to execute for the job
      */
     public readonly executeSteps!: pulumi.Output<string[]>;
@@ -230,6 +236,10 @@ export class Job extends pulumi.CustomResource {
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
     public readonly runGenerateSources!: pulumi.Output<boolean | undefined>;
+    /**
+     * Whether the CI job should lint SQL changes. Defaults to `false`.
+     */
+    public readonly runLint!: pulumi.Output<boolean | undefined>;
     /**
      * Custom cron expression for schedule
      */
@@ -289,6 +299,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["deferringJobId"] = state ? state.deferringJobId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["environmentId"] = state ? state.environmentId : undefined;
+            resourceInputs["errorsOnLintFailure"] = state ? state.errorsOnLintFailure : undefined;
             resourceInputs["executeSteps"] = state ? state.executeSteps : undefined;
             resourceInputs["generateDocs"] = state ? state.generateDocs : undefined;
             resourceInputs["isActive"] = state ? state.isActive : undefined;
@@ -298,6 +309,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["runCompareChanges"] = state ? state.runCompareChanges : undefined;
             resourceInputs["runGenerateSources"] = state ? state.runGenerateSources : undefined;
+            resourceInputs["runLint"] = state ? state.runLint : undefined;
             resourceInputs["scheduleCron"] = state ? state.scheduleCron : undefined;
             resourceInputs["scheduleDays"] = state ? state.scheduleDays : undefined;
             resourceInputs["scheduleHours"] = state ? state.scheduleHours : undefined;
@@ -327,6 +339,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["deferringJobId"] = args ? args.deferringJobId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["environmentId"] = args ? args.environmentId : undefined;
+            resourceInputs["errorsOnLintFailure"] = args ? args.errorsOnLintFailure : undefined;
             resourceInputs["executeSteps"] = args ? args.executeSteps : undefined;
             resourceInputs["generateDocs"] = args ? args.generateDocs : undefined;
             resourceInputs["isActive"] = args ? args.isActive : undefined;
@@ -336,6 +349,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["runCompareChanges"] = args ? args.runCompareChanges : undefined;
             resourceInputs["runGenerateSources"] = args ? args.runGenerateSources : undefined;
+            resourceInputs["runLint"] = args ? args.runLint : undefined;
             resourceInputs["scheduleCron"] = args ? args.scheduleCron : undefined;
             resourceInputs["scheduleDays"] = args ? args.scheduleDays : undefined;
             resourceInputs["scheduleHours"] = args ? args.scheduleHours : undefined;
@@ -377,6 +391,10 @@ export interface JobState {
      */
     environmentId?: pulumi.Input<number>;
     /**
+     * Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+     */
+    errorsOnLintFailure?: pulumi.Input<boolean>;
+    /**
      * List of commands to execute for the job
      */
     executeSteps?: pulumi.Input<pulumi.Input<string>[]>;
@@ -412,6 +430,10 @@ export interface JobState {
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
     runGenerateSources?: pulumi.Input<boolean>;
+    /**
+     * Whether the CI job should lint SQL changes. Defaults to `false`.
+     */
+    runLint?: pulumi.Input<boolean>;
     /**
      * Custom cron expression for schedule
      */
@@ -479,6 +501,10 @@ export interface JobArgs {
      */
     environmentId: pulumi.Input<number>;
     /**
+     * Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
+     */
+    errorsOnLintFailure?: pulumi.Input<boolean>;
+    /**
      * List of commands to execute for the job
      */
     executeSteps: pulumi.Input<pulumi.Input<string>[]>;
@@ -514,6 +540,10 @@ export interface JobArgs {
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
     runGenerateSources?: pulumi.Input<boolean>;
+    /**
+     * Whether the CI job should lint SQL changes. Defaults to `false`.
+     */
+    runLint?: pulumi.Input<boolean>;
     /**
      * Custom cron expression for schedule
      */

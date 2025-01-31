@@ -75,9 +75,9 @@ type ProjectArtefacts struct {
 	pulumi.CustomResourceState
 
 	// Docs Job ID
-	DocsJobId pulumi.IntPtrOutput `pulumi:"docsJobId"`
+	DocsJobId pulumi.IntOutput `pulumi:"docsJobId"`
 	// Freshness Job ID
-	FreshnessJobId pulumi.IntPtrOutput `pulumi:"freshnessJobId"`
+	FreshnessJobId pulumi.IntOutput `pulumi:"freshnessJobId"`
 	// Project ID
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 }
@@ -243,13 +243,13 @@ func (o ProjectArtefactsOutput) ToProjectArtefactsOutputWithContext(ctx context.
 }
 
 // Docs Job ID
-func (o ProjectArtefactsOutput) DocsJobId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ProjectArtefacts) pulumi.IntPtrOutput { return v.DocsJobId }).(pulumi.IntPtrOutput)
+func (o ProjectArtefactsOutput) DocsJobId() pulumi.IntOutput {
+	return o.ApplyT(func(v *ProjectArtefacts) pulumi.IntOutput { return v.DocsJobId }).(pulumi.IntOutput)
 }
 
 // Freshness Job ID
-func (o ProjectArtefactsOutput) FreshnessJobId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ProjectArtefacts) pulumi.IntPtrOutput { return v.FreshnessJobId }).(pulumi.IntPtrOutput)
+func (o ProjectArtefactsOutput) FreshnessJobId() pulumi.IntOutput {
+	return o.ApplyT(func(v *ProjectArtefacts) pulumi.IntOutput { return v.FreshnessJobId }).(pulumi.IntOutput)
 }
 
 // Project ID

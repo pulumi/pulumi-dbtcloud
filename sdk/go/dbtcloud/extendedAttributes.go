@@ -52,7 +52,7 @@ import (
 //				return err
 //			}
 //			_, err = dbtcloud.NewEnvironment(ctx, "issue_depl", &dbtcloud.EnvironmentArgs{
-//				DbtVersion:           pulumi.String("versionless"),
+//				DbtVersion:           pulumi.String("latest"),
 //				Name:                 pulumi.String("My environment"),
 //				ProjectId:            pulumi.Any(dbtProject.Id),
 //				Type:                 pulumi.String("deployment"),

@@ -69,13 +69,13 @@ namespace Pulumi.DbtCloud
         /// Docs Job ID
         /// </summary>
         [Output("docsJobId")]
-        public Output<int?> DocsJobId { get; private set; } = null!;
+        public Output<int> DocsJobId { get; private set; } = null!;
 
         /// <summary>
         /// Freshness Job ID
         /// </summary>
         [Output("freshnessJobId")]
-        public Output<int?> FreshnessJobId { get; private set; } = null!;
+        public Output<int> FreshnessJobId { get; private set; } = null!;
 
         /// <summary>
         /// Project ID

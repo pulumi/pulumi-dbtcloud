@@ -174,7 +174,7 @@ class ExtendedAttributes(pulumi.CustomResource):
             }),
             project_id=dbt_project["id"])
         issue_depl = dbtcloud.Environment("issue_depl",
-            dbt_version="versionless",
+            dbt_version="latest",
             name="My environment",
             project_id=dbt_project["id"],
             type="deployment",
@@ -248,7 +248,7 @@ class ExtendedAttributes(pulumi.CustomResource):
             }),
             project_id=dbt_project["id"])
         issue_depl = dbtcloud.Environment("issue_depl",
-            dbt_version="versionless",
+            dbt_version="latest",
             name="My environment",
             project_id=dbt_project["id"],
             type="deployment",

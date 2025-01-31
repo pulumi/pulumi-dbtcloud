@@ -11,7 +11,6 @@ import com.pulumi.dbtcloud.ProjectArtefactsArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.ProjectArtefactsState;
 import java.lang.Integer;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -92,28 +91,28 @@ public class ProjectArtefacts extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="docsJobId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> docsJobId;
+    private Output<Integer> docsJobId;
 
     /**
      * @return Docs Job ID
      * 
      */
-    public Output<Optional<Integer>> docsJobId() {
-        return Codegen.optional(this.docsJobId);
+    public Output<Integer> docsJobId() {
+        return this.docsJobId;
     }
     /**
      * Freshness Job ID
      * 
      */
     @Export(name="freshnessJobId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> freshnessJobId;
+    private Output<Integer> freshnessJobId;
 
     /**
      * @return Freshness Job ID
      * 
      */
-    public Output<Optional<Integer>> freshnessJobId() {
-        return Codegen.optional(this.freshnessJobId);
+    public Output<Integer> freshnessJobId() {
+        return this.freshnessJobId;
     }
     /**
      * Project ID
@@ -169,6 +168,7 @@ public class ProjectArtefacts extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

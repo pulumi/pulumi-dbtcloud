@@ -104,6 +104,8 @@ class LicenseMap(pulumi.CustomResource):
                  sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        Maps SSO groups to a given license type
+
         ## Example Usage
 
         ```python
@@ -166,6 +168,8 @@ class LicenseMap(pulumi.CustomResource):
                  args: LicenseMapArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Maps SSO groups to a given license type
+
         ## Example Usage
 
         ```python

@@ -81,11 +81,11 @@ export class ProjectArtefacts extends pulumi.CustomResource {
     /**
      * Docs Job ID
      */
-    public readonly docsJobId!: pulumi.Output<number | undefined>;
+    public readonly docsJobId!: pulumi.Output<number>;
     /**
      * Freshness Job ID
      */
-    public readonly freshnessJobId!: pulumi.Output<number | undefined>;
+    public readonly freshnessJobId!: pulumi.Output<number>;
     /**
      * Project ID
      */

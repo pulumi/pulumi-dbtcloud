@@ -29,6 +29,7 @@ class JobArgs:
                  deferring_environment_id: Optional[pulumi.Input[int]] = None,
                  deferring_job_id: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 errors_on_lint_failure: Optional[pulumi.Input[bool]] = None,
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  job_completion_trigger_condition: Optional[pulumi.Input['JobJobCompletionTriggerConditionArgs']] = None,
@@ -36,6 +37,7 @@ class JobArgs:
                  num_threads: Optional[pulumi.Input[int]] = None,
                  run_compare_changes: Optional[pulumi.Input[bool]] = None,
                  run_generate_sources: Optional[pulumi.Input[bool]] = None,
+                 run_lint: Optional[pulumi.Input[bool]] = None,
                  schedule_cron: Optional[pulumi.Input[str]] = None,
                  schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -55,6 +57,7 @@ class JobArgs:
         :param pulumi.Input[int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[str] description: Description for the job
+        :param pulumi.Input[bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input['JobJobCompletionTriggerConditionArgs'] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -62,6 +65,7 @@ class JobArgs:
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         :param pulumi.Input[bool] run_generate_sources: Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
+        :param pulumi.Input[bool] run_lint: Whether the CI job should lint SQL changes. Defaults to `false`.
         :param pulumi.Input[str] schedule_cron: Custom cron expression for schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_days: List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_hours: List of hours to execute the job at if running on a schedule
@@ -84,6 +88,8 @@ class JobArgs:
             pulumi.set(__self__, "deferring_job_id", deferring_job_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if errors_on_lint_failure is not None:
+            pulumi.set(__self__, "errors_on_lint_failure", errors_on_lint_failure)
         if generate_docs is not None:
             pulumi.set(__self__, "generate_docs", generate_docs)
         if is_active is not None:
@@ -98,6 +104,8 @@ class JobArgs:
             pulumi.set(__self__, "run_compare_changes", run_compare_changes)
         if run_generate_sources is not None:
             pulumi.set(__self__, "run_generate_sources", run_generate_sources)
+        if run_lint is not None:
+            pulumi.set(__self__, "run_lint", run_lint)
         if schedule_cron is not None:
             pulumi.set(__self__, "schedule_cron", schedule_cron)
         if schedule_days is not None:
@@ -214,6 +222,18 @@ class JobArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="errorsOnLintFailure")
+    def errors_on_lint_failure(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        """
+        return pulumi.get(self, "errors_on_lint_failure")
+
+    @errors_on_lint_failure.setter
+    def errors_on_lint_failure(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "errors_on_lint_failure", value)
+
+    @property
     @pulumi.getter(name="generateDocs")
     def generate_docs(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -296,6 +316,18 @@ class JobArgs:
     @run_generate_sources.setter
     def run_generate_sources(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "run_generate_sources", value)
+
+    @property
+    @pulumi.getter(name="runLint")
+    def run_lint(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the CI job should lint SQL changes. Defaults to `false`.
+        """
+        return pulumi.get(self, "run_lint")
+
+    @run_lint.setter
+    def run_lint(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "run_lint", value)
 
     @property
     @pulumi.getter(name="scheduleCron")
@@ -414,6 +446,7 @@ class _JobState:
                  deferring_job_id: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment_id: Optional[pulumi.Input[int]] = None,
+                 errors_on_lint_failure: Optional[pulumi.Input[bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
@@ -423,6 +456,7 @@ class _JobState:
                  project_id: Optional[pulumi.Input[int]] = None,
                  run_compare_changes: Optional[pulumi.Input[bool]] = None,
                  run_generate_sources: Optional[pulumi.Input[bool]] = None,
+                 run_lint: Optional[pulumi.Input[bool]] = None,
                  schedule_cron: Optional[pulumi.Input[str]] = None,
                  schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -440,6 +474,7 @@ class _JobState:
         :param pulumi.Input[int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[str] description: Description for the job
         :param pulumi.Input[int] environment_id: Environment ID to create the job in
+        :param pulumi.Input[bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
@@ -449,6 +484,7 @@ class _JobState:
         :param pulumi.Input[int] project_id: Project ID to create the job in
         :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         :param pulumi.Input[bool] run_generate_sources: Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
+        :param pulumi.Input[bool] run_lint: Whether the CI job should lint SQL changes. Defaults to `false`.
         :param pulumi.Input[str] schedule_cron: Custom cron expression for schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_days: List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_hours: List of hours to execute the job at if running on a schedule
@@ -470,6 +506,8 @@ class _JobState:
             pulumi.set(__self__, "description", description)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
+        if errors_on_lint_failure is not None:
+            pulumi.set(__self__, "errors_on_lint_failure", errors_on_lint_failure)
         if execute_steps is not None:
             pulumi.set(__self__, "execute_steps", execute_steps)
         if generate_docs is not None:
@@ -488,6 +526,8 @@ class _JobState:
             pulumi.set(__self__, "run_compare_changes", run_compare_changes)
         if run_generate_sources is not None:
             pulumi.set(__self__, "run_generate_sources", run_generate_sources)
+        if run_lint is not None:
+            pulumi.set(__self__, "run_lint", run_lint)
         if schedule_cron is not None:
             pulumi.set(__self__, "schedule_cron", schedule_cron)
         if schedule_days is not None:
@@ -568,6 +608,18 @@ class _JobState:
     @environment_id.setter
     def environment_id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "environment_id", value)
+
+    @property
+    @pulumi.getter(name="errorsOnLintFailure")
+    def errors_on_lint_failure(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        """
+        return pulumi.get(self, "errors_on_lint_failure")
+
+    @errors_on_lint_failure.setter
+    def errors_on_lint_failure(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "errors_on_lint_failure", value)
 
     @property
     @pulumi.getter(name="executeSteps")
@@ -676,6 +728,18 @@ class _JobState:
     @run_generate_sources.setter
     def run_generate_sources(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "run_generate_sources", value)
+
+    @property
+    @pulumi.getter(name="runLint")
+    def run_lint(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the CI job should lint SQL changes. Defaults to `false`.
+        """
+        return pulumi.get(self, "run_lint")
+
+    @run_lint.setter
+    def run_lint(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "run_lint", value)
 
     @property
     @pulumi.getter(name="scheduleCron")
@@ -808,6 +872,7 @@ class Job(pulumi.CustomResource):
                  deferring_job_id: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment_id: Optional[pulumi.Input[int]] = None,
+                 errors_on_lint_failure: Optional[pulumi.Input[bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
@@ -817,6 +882,7 @@ class Job(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[int]] = None,
                  run_compare_changes: Optional[pulumi.Input[bool]] = None,
                  run_generate_sources: Optional[pulumi.Input[bool]] = None,
+                 run_lint: Optional[pulumi.Input[bool]] = None,
                  schedule_cron: Optional[pulumi.Input[str]] = None,
                  schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -886,6 +952,8 @@ class Job(pulumi.CustomResource):
             num_threads=32,
             project_id=dbt_project["id"],
             run_generate_sources=False,
+            run_lint=True,
+            errors_on_lint_failure=True,
             triggers={
                 "github_webhook": True,
                 "git_provider_webhook": True,
@@ -972,6 +1040,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[str] description: Description for the job
         :param pulumi.Input[int] environment_id: Environment ID to create the job in
+        :param pulumi.Input[bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
@@ -981,6 +1050,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[int] project_id: Project ID to create the job in
         :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         :param pulumi.Input[bool] run_generate_sources: Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
+        :param pulumi.Input[bool] run_lint: Whether the CI job should lint SQL changes. Defaults to `false`.
         :param pulumi.Input[str] schedule_cron: Custom cron expression for schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_days: List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_hours: List of hours to execute the job at if running on a schedule
@@ -1056,6 +1126,8 @@ class Job(pulumi.CustomResource):
             num_threads=32,
             project_id=dbt_project["id"],
             run_generate_sources=False,
+            run_lint=True,
+            errors_on_lint_failure=True,
             triggers={
                 "github_webhook": True,
                 "git_provider_webhook": True,
@@ -1155,6 +1227,7 @@ class Job(pulumi.CustomResource):
                  deferring_job_id: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment_id: Optional[pulumi.Input[int]] = None,
+                 errors_on_lint_failure: Optional[pulumi.Input[bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
@@ -1164,6 +1237,7 @@ class Job(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[int]] = None,
                  run_compare_changes: Optional[pulumi.Input[bool]] = None,
                  run_generate_sources: Optional[pulumi.Input[bool]] = None,
+                 run_lint: Optional[pulumi.Input[bool]] = None,
                  schedule_cron: Optional[pulumi.Input[str]] = None,
                  schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -1190,6 +1264,7 @@ class Job(pulumi.CustomResource):
             if environment_id is None and not opts.urn:
                 raise TypeError("Missing required property 'environment_id'")
             __props__.__dict__["environment_id"] = environment_id
+            __props__.__dict__["errors_on_lint_failure"] = errors_on_lint_failure
             if execute_steps is None and not opts.urn:
                 raise TypeError("Missing required property 'execute_steps'")
             __props__.__dict__["execute_steps"] = execute_steps
@@ -1203,6 +1278,7 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["run_compare_changes"] = run_compare_changes
             __props__.__dict__["run_generate_sources"] = run_generate_sources
+            __props__.__dict__["run_lint"] = run_lint
             __props__.__dict__["schedule_cron"] = schedule_cron
             __props__.__dict__["schedule_days"] = schedule_days
             __props__.__dict__["schedule_hours"] = schedule_hours
@@ -1230,6 +1306,7 @@ class Job(pulumi.CustomResource):
             deferring_job_id: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             environment_id: Optional[pulumi.Input[int]] = None,
+            errors_on_lint_failure: Optional[pulumi.Input[bool]] = None,
             execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             generate_docs: Optional[pulumi.Input[bool]] = None,
             is_active: Optional[pulumi.Input[bool]] = None,
@@ -1239,6 +1316,7 @@ class Job(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[int]] = None,
             run_compare_changes: Optional[pulumi.Input[bool]] = None,
             run_generate_sources: Optional[pulumi.Input[bool]] = None,
+            run_lint: Optional[pulumi.Input[bool]] = None,
             schedule_cron: Optional[pulumi.Input[str]] = None,
             schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
             schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
@@ -1261,6 +1339,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[str] description: Description for the job
         :param pulumi.Input[int] environment_id: Environment ID to create the job in
+        :param pulumi.Input[bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
@@ -1270,6 +1349,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[int] project_id: Project ID to create the job in
         :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         :param pulumi.Input[bool] run_generate_sources: Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
+        :param pulumi.Input[bool] run_lint: Whether the CI job should lint SQL changes. Defaults to `false`.
         :param pulumi.Input[str] schedule_cron: Custom cron expression for schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_days: List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
         :param pulumi.Input[Sequence[pulumi.Input[int]]] schedule_hours: List of hours to execute the job at if running on a schedule
@@ -1290,6 +1370,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["deferring_job_id"] = deferring_job_id
         __props__.__dict__["description"] = description
         __props__.__dict__["environment_id"] = environment_id
+        __props__.__dict__["errors_on_lint_failure"] = errors_on_lint_failure
         __props__.__dict__["execute_steps"] = execute_steps
         __props__.__dict__["generate_docs"] = generate_docs
         __props__.__dict__["is_active"] = is_active
@@ -1299,6 +1380,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["run_compare_changes"] = run_compare_changes
         __props__.__dict__["run_generate_sources"] = run_generate_sources
+        __props__.__dict__["run_lint"] = run_lint
         __props__.__dict__["schedule_cron"] = schedule_cron
         __props__.__dict__["schedule_days"] = schedule_days
         __props__.__dict__["schedule_hours"] = schedule_hours
@@ -1350,6 +1432,14 @@ class Job(pulumi.CustomResource):
         Environment ID to create the job in
         """
         return pulumi.get(self, "environment_id")
+
+    @property
+    @pulumi.getter(name="errorsOnLintFailure")
+    def errors_on_lint_failure(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        """
+        return pulumi.get(self, "errors_on_lint_failure")
 
     @property
     @pulumi.getter(name="executeSteps")
@@ -1422,6 +1512,14 @@ class Job(pulumi.CustomResource):
         Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         """
         return pulumi.get(self, "run_generate_sources")
+
+    @property
+    @pulumi.getter(name="runLint")
+    def run_lint(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether the CI job should lint SQL changes. Defaults to `false`.
+        """
+        return pulumi.get(self, "run_lint")
 
     @property
     @pulumi.getter(name="scheduleCron")
