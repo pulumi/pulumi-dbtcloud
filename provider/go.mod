@@ -5,7 +5,7 @@ go 1.22.3
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250124205414-92ccb3765401
 
 require (
-	github.com/dbt-labs/terraform-provider-dbtcloud v0.3.22
+	github.com/dbt-labs/terraform-provider-dbtcloud v0.3.23
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.102.0
 	github.com/pulumi/pulumi/sdk/v3 v3.147.0
 )
