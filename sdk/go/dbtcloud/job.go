@@ -186,6 +186,8 @@ import (
 type Job struct {
 	pulumi.CustomResourceState
 
+	// The model selector for checking changes in the compare changes Advanced CI feature
+	CompareChangesFlags pulumi.StringPtrOutput `pulumi:"compareChangesFlags"`
 	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
 	DbtVersion pulumi.StringPtrOutput `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
@@ -206,6 +208,8 @@ type Job struct {
 	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerCondition JobJobCompletionTriggerConditionPtrOutput `pulumi:"jobCompletionTriggerCondition"`
+	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	JobType pulumi.StringOutput `pulumi:"jobType"`
 	// Job name
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Number of threads to use in the job
@@ -282,6 +286,8 @@ func GetJob(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Job resources.
 type jobState struct {
+	// The model selector for checking changes in the compare changes Advanced CI feature
+	CompareChangesFlags *string `pulumi:"compareChangesFlags"`
 	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
@@ -302,6 +308,8 @@ type jobState struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerCondition *JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerCondition"`
+	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	JobType *string `pulumi:"jobType"`
 	// Job name
 	Name *string `pulumi:"name"`
 	// Number of threads to use in the job
@@ -337,6 +345,8 @@ type jobState struct {
 }
 
 type JobState struct {
+	// The model selector for checking changes in the compare changes Advanced CI feature
+	CompareChangesFlags pulumi.StringPtrInput
 	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
 	DbtVersion pulumi.StringPtrInput
 	// Environment identifier that this job defers to (new deferring approach)
@@ -357,6 +367,8 @@ type JobState struct {
 	IsActive pulumi.BoolPtrInput
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerCondition JobJobCompletionTriggerConditionPtrInput
+	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	JobType pulumi.StringPtrInput
 	// Job name
 	Name pulumi.StringPtrInput
 	// Number of threads to use in the job
@@ -396,6 +408,8 @@ func (JobState) ElementType() reflect.Type {
 }
 
 type jobArgs struct {
+	// The model selector for checking changes in the compare changes Advanced CI feature
+	CompareChangesFlags *string `pulumi:"compareChangesFlags"`
 	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
@@ -416,6 +430,8 @@ type jobArgs struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerCondition *JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerCondition"`
+	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	JobType *string `pulumi:"jobType"`
 	// Job name
 	Name *string `pulumi:"name"`
 	// Number of threads to use in the job
@@ -452,6 +468,8 @@ type jobArgs struct {
 
 // The set of arguments for constructing a Job resource.
 type JobArgs struct {
+	// The model selector for checking changes in the compare changes Advanced CI feature
+	CompareChangesFlags pulumi.StringPtrInput
 	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
 	DbtVersion pulumi.StringPtrInput
 	// Environment identifier that this job defers to (new deferring approach)
@@ -472,6 +490,8 @@ type JobArgs struct {
 	IsActive pulumi.BoolPtrInput
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerCondition JobJobCompletionTriggerConditionPtrInput
+	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	JobType pulumi.StringPtrInput
 	// Job name
 	Name pulumi.StringPtrInput
 	// Number of threads to use in the job
@@ -593,6 +613,11 @@ func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return o
 }
 
+// The model selector for checking changes in the compare changes Advanced CI feature
+func (o JobOutput) CompareChangesFlags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.CompareChangesFlags }).(pulumi.StringPtrOutput)
+}
+
 // Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
 func (o JobOutput) DbtVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.DbtVersion }).(pulumi.StringPtrOutput)
@@ -641,6 +666,11 @@ func (o JobOutput) IsActive() pulumi.BoolPtrOutput {
 // Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 func (o JobOutput) JobCompletionTriggerCondition() JobJobCompletionTriggerConditionPtrOutput {
 	return o.ApplyT(func(v *Job) JobJobCompletionTriggerConditionPtrOutput { return v.JobCompletionTriggerCondition }).(JobJobCompletionTriggerConditionPtrOutput)
+}
+
+// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+func (o JobOutput) JobType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.JobType }).(pulumi.StringOutput)
 }
 
 // Job name

@@ -22,6 +22,21 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     public static final JobArgs Empty = new JobArgs();
 
     /**
+     * The model selector for checking changes in the compare changes Advanced CI feature
+     * 
+     */
+    @Import(name="compareChangesFlags")
+    private @Nullable Output<String> compareChangesFlags;
+
+    /**
+     * @return The model selector for checking changes in the compare changes Advanced CI feature
+     * 
+     */
+    public Optional<Output<String>> compareChangesFlags() {
+        return Optional.ofNullable(this.compareChangesFlags);
+    }
+
+    /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      * 
      */
@@ -169,6 +184,21 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<JobJobCompletionTriggerConditionArgs>> jobCompletionTriggerCondition() {
         return Optional.ofNullable(this.jobCompletionTriggerCondition);
+    }
+
+    /**
+     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * 
+     */
+    @Import(name="jobType")
+    private @Nullable Output<String> jobType;
+
+    /**
+     * @return Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * 
+     */
+    public Optional<Output<String>> jobType() {
+        return Optional.ofNullable(this.jobType);
     }
 
     /**
@@ -414,6 +444,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     private JobArgs() {}
 
     private JobArgs(JobArgs $) {
+        this.compareChangesFlags = $.compareChangesFlags;
         this.dbtVersion = $.dbtVersion;
         this.deferringEnvironmentId = $.deferringEnvironmentId;
         this.deferringJobId = $.deferringJobId;
@@ -424,6 +455,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         this.generateDocs = $.generateDocs;
         this.isActive = $.isActive;
         this.jobCompletionTriggerCondition = $.jobCompletionTriggerCondition;
+        this.jobType = $.jobType;
         this.name = $.name;
         this.numThreads = $.numThreads;
         this.projectId = $.projectId;
@@ -458,6 +490,27 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(JobArgs defaults) {
             $ = new JobArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param compareChangesFlags The model selector for checking changes in the compare changes Advanced CI feature
+         * 
+         * @return builder
+         * 
+         */
+        public Builder compareChangesFlags(@Nullable Output<String> compareChangesFlags) {
+            $.compareChangesFlags = compareChangesFlags;
+            return this;
+        }
+
+        /**
+         * @param compareChangesFlags The model selector for checking changes in the compare changes Advanced CI feature
+         * 
+         * @return builder
+         * 
+         */
+        public Builder compareChangesFlags(String compareChangesFlags) {
+            return compareChangesFlags(Output.of(compareChangesFlags));
         }
 
         /**
@@ -678,6 +731,27 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder jobCompletionTriggerCondition(JobJobCompletionTriggerConditionArgs jobCompletionTriggerCondition) {
             return jobCompletionTriggerCondition(Output.of(jobCompletionTriggerCondition));
+        }
+
+        /**
+         * @param jobType Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobType(@Nullable Output<String> jobType) {
+            $.jobType = jobType;
+            return this;
+        }
+
+        /**
+         * @param jobType Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobType(String jobType) {
+            return jobType(Output.of(jobType));
         }
 
         /**

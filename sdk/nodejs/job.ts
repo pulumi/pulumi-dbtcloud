@@ -177,6 +177,10 @@ export class Job extends pulumi.CustomResource {
     }
 
     /**
+     * The model selector for checking changes in the compare changes Advanced CI feature
+     */
+    public readonly compareChangesFlags!: pulumi.Output<string | undefined>;
+    /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      */
     public readonly dbtVersion!: pulumi.Output<string | undefined>;
@@ -216,6 +220,10 @@ export class Job extends pulumi.CustomResource {
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
     public readonly jobCompletionTriggerCondition!: pulumi.Output<outputs.JobJobCompletionTriggerCondition | undefined>;
+    /**
+     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     */
+    public readonly jobType!: pulumi.Output<string>;
     /**
      * Job name
      */
@@ -294,6 +302,7 @@ export class Job extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as JobState | undefined;
+            resourceInputs["compareChangesFlags"] = state ? state.compareChangesFlags : undefined;
             resourceInputs["dbtVersion"] = state ? state.dbtVersion : undefined;
             resourceInputs["deferringEnvironmentId"] = state ? state.deferringEnvironmentId : undefined;
             resourceInputs["deferringJobId"] = state ? state.deferringJobId : undefined;
@@ -304,6 +313,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["generateDocs"] = state ? state.generateDocs : undefined;
             resourceInputs["isActive"] = state ? state.isActive : undefined;
             resourceInputs["jobCompletionTriggerCondition"] = state ? state.jobCompletionTriggerCondition : undefined;
+            resourceInputs["jobType"] = state ? state.jobType : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["numThreads"] = state ? state.numThreads : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -334,6 +344,7 @@ export class Job extends pulumi.CustomResource {
             if ((!args || args.triggers === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'triggers'");
             }
+            resourceInputs["compareChangesFlags"] = args ? args.compareChangesFlags : undefined;
             resourceInputs["dbtVersion"] = args ? args.dbtVersion : undefined;
             resourceInputs["deferringEnvironmentId"] = args ? args.deferringEnvironmentId : undefined;
             resourceInputs["deferringJobId"] = args ? args.deferringJobId : undefined;
@@ -344,6 +355,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["generateDocs"] = args ? args.generateDocs : undefined;
             resourceInputs["isActive"] = args ? args.isActive : undefined;
             resourceInputs["jobCompletionTriggerCondition"] = args ? args.jobCompletionTriggerCondition : undefined;
+            resourceInputs["jobType"] = args ? args.jobType : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["numThreads"] = args ? args.numThreads : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -370,6 +382,10 @@ export class Job extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Job resources.
  */
 export interface JobState {
+    /**
+     * The model selector for checking changes in the compare changes Advanced CI feature
+     */
+    compareChangesFlags?: pulumi.Input<string>;
     /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      */
@@ -410,6 +426,10 @@ export interface JobState {
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
     jobCompletionTriggerCondition?: pulumi.Input<inputs.JobJobCompletionTriggerCondition>;
+    /**
+     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     */
+    jobType?: pulumi.Input<string>;
     /**
      * Job name
      */
@@ -481,6 +501,10 @@ export interface JobState {
  */
 export interface JobArgs {
     /**
+     * The model selector for checking changes in the compare changes Advanced CI feature
+     */
+    compareChangesFlags?: pulumi.Input<string>;
+    /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      */
     dbtVersion?: pulumi.Input<string>;
@@ -520,6 +544,10 @@ export interface JobArgs {
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
     jobCompletionTriggerCondition?: pulumi.Input<inputs.JobJobCompletionTriggerCondition>;
+    /**
+     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     */
+    jobType?: pulumi.Input<string>;
     /**
      * Job name
      */

@@ -25,6 +25,7 @@ class JobArgs:
                  execute_steps: pulumi.Input[Sequence[pulumi.Input[str]]],
                  project_id: pulumi.Input[int],
                  triggers: pulumi.Input[Mapping[str, pulumi.Input[bool]]],
+                 compare_changes_flags: Optional[pulumi.Input[str]] = None,
                  dbt_version: Optional[pulumi.Input[str]] = None,
                  deferring_environment_id: Optional[pulumi.Input[int]] = None,
                  deferring_job_id: Optional[pulumi.Input[int]] = None,
@@ -33,6 +34,7 @@ class JobArgs:
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  job_completion_trigger_condition: Optional[pulumi.Input['JobJobCompletionTriggerConditionArgs']] = None,
+                 job_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  run_compare_changes: Optional[pulumi.Input[bool]] = None,
@@ -53,6 +55,7 @@ class JobArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[int] project_id: Project ID to create the job in
         :param pulumi.Input[Mapping[str, pulumi.Input[bool]]] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
+        :param pulumi.Input[str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         :param pulumi.Input[int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
@@ -61,6 +64,7 @@ class JobArgs:
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input['JobJobCompletionTriggerConditionArgs'] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
+        :param pulumi.Input[str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
@@ -80,6 +84,8 @@ class JobArgs:
         pulumi.set(__self__, "execute_steps", execute_steps)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "triggers", triggers)
+        if compare_changes_flags is not None:
+            pulumi.set(__self__, "compare_changes_flags", compare_changes_flags)
         if dbt_version is not None:
             pulumi.set(__self__, "dbt_version", dbt_version)
         if deferring_environment_id is not None:
@@ -96,6 +102,8 @@ class JobArgs:
             pulumi.set(__self__, "is_active", is_active)
         if job_completion_trigger_condition is not None:
             pulumi.set(__self__, "job_completion_trigger_condition", job_completion_trigger_condition)
+        if job_type is not None:
+            pulumi.set(__self__, "job_type", job_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if num_threads is not None:
@@ -172,6 +180,18 @@ class JobArgs:
     @triggers.setter
     def triggers(self, value: pulumi.Input[Mapping[str, pulumi.Input[bool]]]):
         pulumi.set(self, "triggers", value)
+
+    @property
+    @pulumi.getter(name="compareChangesFlags")
+    def compare_changes_flags(self) -> Optional[pulumi.Input[str]]:
+        """
+        The model selector for checking changes in the compare changes Advanced CI feature
+        """
+        return pulumi.get(self, "compare_changes_flags")
+
+    @compare_changes_flags.setter
+    def compare_changes_flags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "compare_changes_flags", value)
 
     @property
     @pulumi.getter(name="dbtVersion")
@@ -268,6 +288,18 @@ class JobArgs:
     @job_completion_trigger_condition.setter
     def job_completion_trigger_condition(self, value: Optional[pulumi.Input['JobJobCompletionTriggerConditionArgs']]):
         pulumi.set(self, "job_completion_trigger_condition", value)
+
+    @property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        """
+        return pulumi.get(self, "job_type")
+
+    @job_type.setter
+    def job_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "job_type", value)
 
     @property
     @pulumi.getter
@@ -441,6 +473,7 @@ class JobArgs:
 @pulumi.input_type
 class _JobState:
     def __init__(__self__, *,
+                 compare_changes_flags: Optional[pulumi.Input[str]] = None,
                  dbt_version: Optional[pulumi.Input[str]] = None,
                  deferring_environment_id: Optional[pulumi.Input[int]] = None,
                  deferring_job_id: Optional[pulumi.Input[int]] = None,
@@ -451,6 +484,7 @@ class _JobState:
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  job_completion_trigger_condition: Optional[pulumi.Input['JobJobCompletionTriggerConditionArgs']] = None,
+                 job_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
@@ -469,6 +503,7 @@ class _JobState:
                  triggers_on_draft_pr: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Job resources.
+        :param pulumi.Input[str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         :param pulumi.Input[int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
@@ -479,6 +514,7 @@ class _JobState:
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input['JobJobCompletionTriggerConditionArgs'] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
+        :param pulumi.Input[str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[int] project_id: Project ID to create the job in
@@ -496,6 +532,8 @@ class _JobState:
         :param pulumi.Input[Mapping[str, pulumi.Input[bool]]] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         """
+        if compare_changes_flags is not None:
+            pulumi.set(__self__, "compare_changes_flags", compare_changes_flags)
         if dbt_version is not None:
             pulumi.set(__self__, "dbt_version", dbt_version)
         if deferring_environment_id is not None:
@@ -516,6 +554,8 @@ class _JobState:
             pulumi.set(__self__, "is_active", is_active)
         if job_completion_trigger_condition is not None:
             pulumi.set(__self__, "job_completion_trigger_condition", job_completion_trigger_condition)
+        if job_type is not None:
+            pulumi.set(__self__, "job_type", job_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if num_threads is not None:
@@ -548,6 +588,18 @@ class _JobState:
             pulumi.set(__self__, "triggers", triggers)
         if triggers_on_draft_pr is not None:
             pulumi.set(__self__, "triggers_on_draft_pr", triggers_on_draft_pr)
+
+    @property
+    @pulumi.getter(name="compareChangesFlags")
+    def compare_changes_flags(self) -> Optional[pulumi.Input[str]]:
+        """
+        The model selector for checking changes in the compare changes Advanced CI feature
+        """
+        return pulumi.get(self, "compare_changes_flags")
+
+    @compare_changes_flags.setter
+    def compare_changes_flags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "compare_changes_flags", value)
 
     @property
     @pulumi.getter(name="dbtVersion")
@@ -668,6 +720,18 @@ class _JobState:
     @job_completion_trigger_condition.setter
     def job_completion_trigger_condition(self, value: Optional[pulumi.Input['JobJobCompletionTriggerConditionArgs']]):
         pulumi.set(self, "job_completion_trigger_condition", value)
+
+    @property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        """
+        return pulumi.get(self, "job_type")
+
+    @job_type.setter
+    def job_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "job_type", value)
 
     @property
     @pulumi.getter
@@ -867,6 +931,7 @@ class Job(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 compare_changes_flags: Optional[pulumi.Input[str]] = None,
                  dbt_version: Optional[pulumi.Input[str]] = None,
                  deferring_environment_id: Optional[pulumi.Input[int]] = None,
                  deferring_job_id: Optional[pulumi.Input[int]] = None,
@@ -877,6 +942,7 @@ class Job(pulumi.CustomResource):
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  job_completion_trigger_condition: Optional[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]] = None,
+                 job_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
@@ -1035,6 +1101,7 @@ class Job(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         :param pulumi.Input[int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
@@ -1045,6 +1112,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
+        :param pulumi.Input[str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[int] project_id: Project ID to create the job in
@@ -1222,6 +1290,7 @@ class Job(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 compare_changes_flags: Optional[pulumi.Input[str]] = None,
                  dbt_version: Optional[pulumi.Input[str]] = None,
                  deferring_environment_id: Optional[pulumi.Input[int]] = None,
                  deferring_job_id: Optional[pulumi.Input[int]] = None,
@@ -1232,6 +1301,7 @@ class Job(pulumi.CustomResource):
                  generate_docs: Optional[pulumi.Input[bool]] = None,
                  is_active: Optional[pulumi.Input[bool]] = None,
                  job_completion_trigger_condition: Optional[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]] = None,
+                 job_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_threads: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[int]] = None,
@@ -1257,6 +1327,7 @@ class Job(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = JobArgs.__new__(JobArgs)
 
+            __props__.__dict__["compare_changes_flags"] = compare_changes_flags
             __props__.__dict__["dbt_version"] = dbt_version
             __props__.__dict__["deferring_environment_id"] = deferring_environment_id
             __props__.__dict__["deferring_job_id"] = deferring_job_id
@@ -1271,6 +1342,7 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["generate_docs"] = generate_docs
             __props__.__dict__["is_active"] = is_active
             __props__.__dict__["job_completion_trigger_condition"] = job_completion_trigger_condition
+            __props__.__dict__["job_type"] = job_type
             __props__.__dict__["name"] = name
             __props__.__dict__["num_threads"] = num_threads
             if project_id is None and not opts.urn:
@@ -1301,6 +1373,7 @@ class Job(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            compare_changes_flags: Optional[pulumi.Input[str]] = None,
             dbt_version: Optional[pulumi.Input[str]] = None,
             deferring_environment_id: Optional[pulumi.Input[int]] = None,
             deferring_job_id: Optional[pulumi.Input[int]] = None,
@@ -1311,6 +1384,7 @@ class Job(pulumi.CustomResource):
             generate_docs: Optional[pulumi.Input[bool]] = None,
             is_active: Optional[pulumi.Input[bool]] = None,
             job_completion_trigger_condition: Optional[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]] = None,
+            job_type: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             num_threads: Optional[pulumi.Input[int]] = None,
             project_id: Optional[pulumi.Input[int]] = None,
@@ -1334,6 +1408,7 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
         :param pulumi.Input[str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         :param pulumi.Input[int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
@@ -1344,6 +1419,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']] job_completion_trigger_condition: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
+        :param pulumi.Input[str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
         :param pulumi.Input[str] name: Job name
         :param pulumi.Input[int] num_threads: Number of threads to use in the job
         :param pulumi.Input[int] project_id: Project ID to create the job in
@@ -1365,6 +1441,7 @@ class Job(pulumi.CustomResource):
 
         __props__ = _JobState.__new__(_JobState)
 
+        __props__.__dict__["compare_changes_flags"] = compare_changes_flags
         __props__.__dict__["dbt_version"] = dbt_version
         __props__.__dict__["deferring_environment_id"] = deferring_environment_id
         __props__.__dict__["deferring_job_id"] = deferring_job_id
@@ -1375,6 +1452,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["generate_docs"] = generate_docs
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["job_completion_trigger_condition"] = job_completion_trigger_condition
+        __props__.__dict__["job_type"] = job_type
         __props__.__dict__["name"] = name
         __props__.__dict__["num_threads"] = num_threads
         __props__.__dict__["project_id"] = project_id
@@ -1392,6 +1470,14 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["triggers"] = triggers
         __props__.__dict__["triggers_on_draft_pr"] = triggers_on_draft_pr
         return Job(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="compareChangesFlags")
+    def compare_changes_flags(self) -> pulumi.Output[Optional[str]]:
+        """
+        The model selector for checking changes in the compare changes Advanced CI feature
+        """
+        return pulumi.get(self, "compare_changes_flags")
 
     @property
     @pulumi.getter(name="dbtVersion")
@@ -1472,6 +1558,14 @@ class Job(pulumi.CustomResource):
         Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         """
         return pulumi.get(self, "job_completion_trigger_condition")
+
+    @property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> pulumi.Output[str]:
+        """
+        Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        """
+        return pulumi.get(self, "job_type")
 
     @property
     @pulumi.getter
