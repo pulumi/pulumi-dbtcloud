@@ -188,6 +188,12 @@ namespace Pulumi.DbtCloud
     public partial class Job : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The model selector for checking changes in the compare changes Advanced CI feature
+        /// </summary>
+        [Output("compareChangesFlags")]
+        public Output<string?> CompareChangesFlags { get; private set; } = null!;
+
+        /// <summary>
         /// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         /// </summary>
         [Output("dbtVersion")]
@@ -246,6 +252,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Output("jobCompletionTriggerCondition")]
         public Output<Outputs.JobJobCompletionTriggerCondition?> CompletionTriggerCondition { get; private set; } = null!;
+
+        /// <summary>
+        /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        /// </summary>
+        [Output("jobType")]
+        public Output<string> JobType { get; private set; } = null!;
 
         /// <summary>
         /// Job name
@@ -391,6 +403,12 @@ namespace Pulumi.DbtCloud
     public sealed class JobArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The model selector for checking changes in the compare changes Advanced CI feature
+        /// </summary>
+        [Input("compareChangesFlags")]
+        public Input<string>? CompareChangesFlags { get; set; }
+
+        /// <summary>
         /// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         /// </summary>
         [Input("dbtVersion")]
@@ -455,6 +473,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("jobCompletionTriggerCondition")]
         public Input<Inputs.JobJobCompletionTriggerConditionArgs>? CompletionTriggerCondition { get; set; }
+
+        /// <summary>
+        /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        /// </summary>
+        [Input("jobType")]
+        public Input<string>? JobType { get; set; }
 
         /// <summary>
         /// Job name
@@ -579,6 +603,12 @@ namespace Pulumi.DbtCloud
     public sealed class JobState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The model selector for checking changes in the compare changes Advanced CI feature
+        /// </summary>
+        [Input("compareChangesFlags")]
+        public Input<string>? CompareChangesFlags { get; set; }
+
+        /// <summary>
         /// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         /// </summary>
         [Input("dbtVersion")]
@@ -643,6 +673,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("jobCompletionTriggerCondition")]
         public Input<Inputs.JobJobCompletionTriggerConditionGetArgs>? CompletionTriggerCondition { get; set; }
+
+        /// <summary>
+        /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        /// </summary>
+        [Input("jobType")]
+        public Input<string>? JobType { get; set; }
 
         /// <summary>
         /// Job name

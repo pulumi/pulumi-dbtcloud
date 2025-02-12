@@ -189,6 +189,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/job:Job")
 public class Job extends com.pulumi.resources.CustomResource {
     /**
+     * The model selector for checking changes in the compare changes Advanced CI feature
+     * 
+     */
+    @Export(name="compareChangesFlags", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> compareChangesFlags;
+
+    /**
+     * @return The model selector for checking changes in the compare changes Advanced CI feature
+     * 
+     */
+    public Output<Optional<String>> compareChangesFlags() {
+        return Codegen.optional(this.compareChangesFlags);
+    }
+    /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      * 
      */
@@ -327,6 +341,20 @@ public class Job extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<JobJobCompletionTriggerCondition>> jobCompletionTriggerCondition() {
         return Codegen.optional(this.jobCompletionTriggerCondition);
+    }
+    /**
+     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * 
+     */
+    @Export(name="jobType", refs={String.class}, tree="[0]")
+    private Output<String> jobType;
+
+    /**
+     * @return Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * 
+     */
+    public Output<String> jobType() {
+        return this.jobType;
     }
     /**
      * Job name
