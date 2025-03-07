@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "dbtcloud:index/accountFeatures:AccountFeatures":
 		r = &AccountFeatures{}
+	case "dbtcloud:index/athenaCredential:AthenaCredential":
+		r = &AthenaCredential{}
 	case "dbtcloud:index/bigQueryConnection:BigQueryConnection":
 		r = &BigQueryConnection{}
 	case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
@@ -57,6 +59,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LicenseMap{}
 	case "dbtcloud:index/lineageIntegration:LineageIntegration":
 		r = &LineageIntegration{}
+	case "dbtcloud:index/modelNotifications:ModelNotifications":
+		r = &ModelNotifications{}
 	case "dbtcloud:index/notification:Notification":
 		r = &Notification{}
 	case "dbtcloud:index/oauthConfiguration:OauthConfiguration":
@@ -119,6 +123,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/accountFeatures",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/athenaCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -204,6 +213,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/lineageIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/modelNotifications",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

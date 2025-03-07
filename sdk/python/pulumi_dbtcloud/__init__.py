@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .account_features import *
+from .athena_credential import *
 from .big_query_connection import *
 from .big_query_credential import *
 from .connection import *
@@ -16,6 +17,7 @@ from .environment_variable_job_override import *
 from .extended_attributes import *
 from .fabric_connection import *
 from .fabric_credential import *
+from .get_athena_credential import *
 from .get_azure_dev_ops_project import *
 from .get_azure_dev_ops_repository import *
 from .get_big_query_connection import *
@@ -32,6 +34,7 @@ from .get_group import *
 from .get_group_users import *
 from .get_job import *
 from .get_jobs import *
+from .get_model_notifications import *
 from .get_notification import *
 from .get_postgres_credential import *
 from .get_privatelink_endpoint import *
@@ -51,6 +54,7 @@ from .ip_restrictions_rule import *
 from .job import *
 from .license_map import *
 from .lineage_integration import *
+from .model_notifications import *
 from .notification import *
 from .oauth_configuration import *
 from .partial_license_map import *
@@ -85,6 +89,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/accountFeatures:AccountFeatures": "AccountFeatures"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/athenaCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/athenaCredential:AthenaCredential": "AthenaCredential"
   }
  },
  {
@@ -221,6 +233,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/lineageIntegration:LineageIntegration": "LineageIntegration"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/modelNotifications",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/modelNotifications:ModelNotifications": "ModelNotifications"
   }
  },
  {

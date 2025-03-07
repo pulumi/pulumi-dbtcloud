@@ -10,6 +10,11 @@ export type AccountFeatures = import("./accountFeatures").AccountFeatures;
 export const AccountFeatures: typeof import("./accountFeatures").AccountFeatures = null as any;
 utilities.lazyLoad(exports, ["AccountFeatures"], () => require("./accountFeatures"));
 
+export { AthenaCredentialArgs, AthenaCredentialState } from "./athenaCredential";
+export type AthenaCredential = import("./athenaCredential").AthenaCredential;
+export const AthenaCredential: typeof import("./athenaCredential").AthenaCredential = null as any;
+utilities.lazyLoad(exports, ["AthenaCredential"], () => require("./athenaCredential"));
+
 export { BigQueryConnectionArgs, BigQueryConnectionState } from "./bigQueryConnection";
 export type BigQueryConnection = import("./bigQueryConnection").BigQueryConnection;
 export const BigQueryConnection: typeof import("./bigQueryConnection").BigQueryConnection = null as any;
@@ -59,6 +64,11 @@ export { FabricCredentialArgs, FabricCredentialState } from "./fabricCredential"
 export type FabricCredential = import("./fabricCredential").FabricCredential;
 export const FabricCredential: typeof import("./fabricCredential").FabricCredential = null as any;
 utilities.lazyLoad(exports, ["FabricCredential"], () => require("./fabricCredential"));
+
+export { GetAthenaCredentialArgs, GetAthenaCredentialResult, GetAthenaCredentialOutputArgs } from "./getAthenaCredential";
+export const getAthenaCredential: typeof import("./getAthenaCredential").getAthenaCredential = null as any;
+export const getAthenaCredentialOutput: typeof import("./getAthenaCredential").getAthenaCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getAthenaCredential","getAthenaCredentialOutput"], () => require("./getAthenaCredential"));
 
 export { GetAzureDevOpsProjectArgs, GetAzureDevOpsProjectResult, GetAzureDevOpsProjectOutputArgs } from "./getAzureDevOpsProject";
 export const getAzureDevOpsProject: typeof import("./getAzureDevOpsProject").getAzureDevOpsProject = null as any;
@@ -139,6 +149,11 @@ export { GetJobsArgs, GetJobsResult, GetJobsOutputArgs } from "./getJobs";
 export const getJobs: typeof import("./getJobs").getJobs = null as any;
 export const getJobsOutput: typeof import("./getJobs").getJobsOutput = null as any;
 utilities.lazyLoad(exports, ["getJobs","getJobsOutput"], () => require("./getJobs"));
+
+export { GetModelNotificationsArgs, GetModelNotificationsResult, GetModelNotificationsOutputArgs } from "./getModelNotifications";
+export const getModelNotifications: typeof import("./getModelNotifications").getModelNotifications = null as any;
+export const getModelNotificationsOutput: typeof import("./getModelNotifications").getModelNotificationsOutput = null as any;
+utilities.lazyLoad(exports, ["getModelNotifications","getModelNotificationsOutput"], () => require("./getModelNotifications"));
 
 export { GetNotificationArgs, GetNotificationResult, GetNotificationOutputArgs } from "./getNotification";
 export const getNotification: typeof import("./getNotification").getNotification = null as any;
@@ -235,6 +250,11 @@ export type LineageIntegration = import("./lineageIntegration").LineageIntegrati
 export const LineageIntegration: typeof import("./lineageIntegration").LineageIntegration = null as any;
 utilities.lazyLoad(exports, ["LineageIntegration"], () => require("./lineageIntegration"));
 
+export { ModelNotificationsArgs, ModelNotificationsState } from "./modelNotifications";
+export type ModelNotifications = import("./modelNotifications").ModelNotifications;
+export const ModelNotifications: typeof import("./modelNotifications").ModelNotifications = null as any;
+utilities.lazyLoad(exports, ["ModelNotifications"], () => require("./modelNotifications"));
+
 export { NotificationArgs, NotificationState } from "./notification";
 export type Notification = import("./notification").Notification;
 export const Notification: typeof import("./notification").Notification = null as any;
@@ -326,6 +346,8 @@ const _module = {
         switch (type) {
             case "dbtcloud:index/accountFeatures:AccountFeatures":
                 return new AccountFeatures(name, <any>undefined, { urn })
+            case "dbtcloud:index/athenaCredential:AthenaCredential":
+                return new AthenaCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/bigQueryConnection:BigQueryConnection":
                 return new BigQueryConnection(name, <any>undefined, { urn })
             case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
@@ -360,6 +382,8 @@ const _module = {
                 return new LicenseMap(name, <any>undefined, { urn })
             case "dbtcloud:index/lineageIntegration:LineageIntegration":
                 return new LineageIntegration(name, <any>undefined, { urn })
+            case "dbtcloud:index/modelNotifications:ModelNotifications":
+                return new ModelNotifications(name, <any>undefined, { urn })
             case "dbtcloud:index/notification:Notification":
                 return new Notification(name, <any>undefined, { urn })
             case "dbtcloud:index/oauthConfiguration:OauthConfiguration":
@@ -394,6 +418,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("dbtcloud", "index/accountFeatures", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/athenaCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/connection", _module)
@@ -411,6 +436,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/ipRestrictionsRule", _m
 pulumi.runtime.registerResourceModule("dbtcloud", "index/job", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/licenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/lineageIntegration", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/modelNotifications", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/notification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/oauthConfiguration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialLicenseMap", _module)
