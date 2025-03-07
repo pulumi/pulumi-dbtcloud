@@ -4,6 +4,9 @@
             "dbtcloud_account_features": {
                 "current": "dbtcloud:index/accountFeatures:AccountFeatures"
             },
+            "dbtcloud_athena_credential": {
+                "current": "dbtcloud:index/athenaCredential:AthenaCredential"
+            },
             "dbtcloud_bigquery_connection": {
                 "current": "dbtcloud:index/bigQueryConnection:BigQueryConnection"
             },
@@ -125,6 +128,9 @@
             "dbtcloud_lineage_integration": {
                 "current": "dbtcloud:index/lineageIntegration:LineageIntegration"
             },
+            "dbtcloud_model_notifications": {
+                "current": "dbtcloud:index/modelNotifications:ModelNotifications"
+            },
             "dbtcloud_notification": {
                 "current": "dbtcloud:index/notification:Notification",
                 "fields": {
@@ -227,6 +233,9 @@
             }
         },
         "datasources": {
+            "dbtcloud_athena_credential": {
+                "current": "dbtcloud:index/getAthenaCredential:getAthenaCredential"
+            },
             "dbtcloud_azure_dev_ops_project": {
                 "current": "dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject"
             },
@@ -349,6 +358,9 @@
                     }
                 }
             },
+            "dbtcloud_model_notifications": {
+                "current": "dbtcloud:index/getModelNotifications:getModelNotifications"
+            },
             "dbtcloud_notification": {
                 "current": "dbtcloud:index/getNotification:getNotification",
                 "fields": {
@@ -440,6 +452,7 @@
     "mux": {
         "resources": {
             "dbtcloud:index/accountFeatures:AccountFeatures": 1,
+            "dbtcloud:index/athenaCredential:AthenaCredential": 1,
             "dbtcloud:index/bigQueryConnection:BigQueryConnection": 0,
             "dbtcloud:index/bigQueryCredential:BigQueryCredential": 0,
             "dbtcloud:index/connection:Connection": 0,
@@ -457,6 +470,7 @@
             "dbtcloud:index/job:Job": 0,
             "dbtcloud:index/licenseMap:LicenseMap": 1,
             "dbtcloud:index/lineageIntegration:LineageIntegration": 1,
+            "dbtcloud:index/modelNotifications:ModelNotifications": 1,
             "dbtcloud:index/notification:Notification": 1,
             "dbtcloud:index/oauthConfiguration:OauthConfiguration": 1,
             "dbtcloud:index/partialLicenseMap:PartialLicenseMap": 1,
@@ -473,6 +487,7 @@
             "dbtcloud:index/webhook:Webhook": 0
         },
         "functions": {
+            "dbtcloud:index/getAthenaCredential:getAthenaCredential": 1,
             "dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject": 1,
             "dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository": 1,
             "dbtcloud:index/getBigQueryConnection:getBigQueryConnection": 0,
@@ -489,6 +504,7 @@
             "dbtcloud:index/getGroupUsers:getGroupUsers": 0,
             "dbtcloud:index/getJob:getJob": 0,
             "dbtcloud:index/getJobs:getJobs": 1,
+            "dbtcloud:index/getModelNotifications:getModelNotifications": 1,
             "dbtcloud:index/getNotification:getNotification": 1,
             "dbtcloud:index/getPostgresCredential:getPostgresCredential": 0,
             "dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint": 0,

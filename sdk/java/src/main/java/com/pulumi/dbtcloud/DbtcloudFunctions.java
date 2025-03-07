@@ -6,6 +6,8 @@ package com.pulumi.dbtcloud;
 import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.dbtcloud.Utilities;
+import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
+import com.pulumi.dbtcloud.inputs.GetAthenaCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectArgs;
 import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryArgs;
@@ -36,6 +38,8 @@ import com.pulumi.dbtcloud.inputs.GetJobArgs;
 import com.pulumi.dbtcloud.inputs.GetJobPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetJobsArgs;
 import com.pulumi.dbtcloud.inputs.GetJobsPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
+import com.pulumi.dbtcloud.inputs.GetModelNotificationsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetNotificationArgs;
 import com.pulumi.dbtcloud.inputs.GetNotificationPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetPostgresCredentialArgs;
@@ -58,6 +62,7 @@ import com.pulumi.dbtcloud.inputs.GetUserGroupsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetUserPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetWebhookArgs;
 import com.pulumi.dbtcloud.inputs.GetWebhookPlainArgs;
+import com.pulumi.dbtcloud.outputs.GetAthenaCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetAzureDevOpsProjectResult;
 import com.pulumi.dbtcloud.outputs.GetAzureDevOpsRepositoryResult;
 import com.pulumi.dbtcloud.outputs.GetBigQueryConnectionResult;
@@ -74,6 +79,7 @@ import com.pulumi.dbtcloud.outputs.GetGroupResult;
 import com.pulumi.dbtcloud.outputs.GetGroupUsersResult;
 import com.pulumi.dbtcloud.outputs.GetJobResult;
 import com.pulumi.dbtcloud.outputs.GetJobsResult;
+import com.pulumi.dbtcloud.outputs.GetModelNotificationsResult;
 import com.pulumi.dbtcloud.outputs.GetNotificationResult;
 import com.pulumi.dbtcloud.outputs.GetPostgresCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointResult;
@@ -93,6 +99,221 @@ import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class DbtcloudFunctions {
+    /**
+     * Athena credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getAthenaCredential(GetAthenaCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAthenaCredentialResult> getAthenaCredential(GetAthenaCredentialArgs args) {
+        return getAthenaCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * Athena credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getAthenaCredential(GetAthenaCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetAthenaCredentialResult> getAthenaCredentialPlain(GetAthenaCredentialPlainArgs args) {
+        return getAthenaCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Athena credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getAthenaCredential(GetAthenaCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAthenaCredentialResult> getAthenaCredential(GetAthenaCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getAthenaCredential:getAthenaCredential", TypeShape.of(GetAthenaCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Athena credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getAthenaCredential(GetAthenaCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAthenaCredentialResult> getAthenaCredential(GetAthenaCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getAthenaCredential:getAthenaCredential", TypeShape.of(GetAthenaCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Athena credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getAthenaCredential(GetAthenaCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetAthenaCredentialResult> getAthenaCredentialPlain(GetAthenaCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getAthenaCredential:getAthenaCredential", TypeShape.of(GetAthenaCredentialResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Use this data source to retrieve the ID of an Azure Dev Ops project
      * based on its name.
@@ -1714,6 +1935,236 @@ public final class DbtcloudFunctions {
      */
     public static CompletableFuture<GetJobsResult> getJobsPlain(GetJobsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getJobs:getJobs", TypeShape.of(GetJobsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get model notifications configuration for a dbt Cloud environment
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(prodEnvironment.environmentId())
+     *             .build());
+     * 
+     *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetModelNotificationsResult> getModelNotifications(GetModelNotificationsArgs args) {
+        return getModelNotifications(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get model notifications configuration for a dbt Cloud environment
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(prodEnvironment.environmentId())
+     *             .build());
+     * 
+     *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetModelNotificationsResult> getModelNotificationsPlain(GetModelNotificationsPlainArgs args) {
+        return getModelNotificationsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get model notifications configuration for a dbt Cloud environment
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(prodEnvironment.environmentId())
+     *             .build());
+     * 
+     *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetModelNotificationsResult> getModelNotifications(GetModelNotificationsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getModelNotifications:getModelNotifications", TypeShape.of(GetModelNotificationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get model notifications configuration for a dbt Cloud environment
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(prodEnvironment.environmentId())
+     *             .build());
+     * 
+     *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetModelNotificationsResult> getModelNotifications(GetModelNotificationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getModelNotifications:getModelNotifications", TypeShape.of(GetModelNotificationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get model notifications configuration for a dbt Cloud environment
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(prodEnvironment.environmentId())
+     *             .build());
+     * 
+     *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
+     *             .environmentId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetModelNotificationsResult> getModelNotificationsPlain(GetModelNotificationsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getModelNotifications:getModelNotifications", TypeShape.of(GetModelNotificationsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve notification details
