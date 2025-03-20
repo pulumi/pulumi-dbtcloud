@@ -43,6 +43,7 @@ from .get_projects import *
 from .get_repository import *
 from .get_service_token import *
 from .get_snowflake_credential import *
+from .get_starburst_credential import *
 from .get_user import *
 from .get_user_groups import *
 from .get_users import *
@@ -68,6 +69,7 @@ from .provider import *
 from .repository import *
 from .service_token import *
 from .snowflake_credential import *
+from .starburst_credential import *
 from .user_groups import *
 from .webhook import *
 from ._inputs import *
@@ -337,6 +339,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/snowflakeCredential:SnowflakeCredential": "SnowflakeCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/starburstCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/starburstCredential:StarburstCredential": "StarburstCredential"
   }
  },
  {

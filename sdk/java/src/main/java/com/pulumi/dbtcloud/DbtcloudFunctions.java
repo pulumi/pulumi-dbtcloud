@@ -56,6 +56,8 @@ import com.pulumi.dbtcloud.inputs.GetServiceTokenArgs;
 import com.pulumi.dbtcloud.inputs.GetServiceTokenPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetSnowflakeCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetSnowflakeCredentialPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
+import com.pulumi.dbtcloud.inputs.GetStarburstCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetUserArgs;
 import com.pulumi.dbtcloud.inputs.GetUserGroupsArgs;
 import com.pulumi.dbtcloud.inputs.GetUserGroupsPlainArgs;
@@ -88,6 +90,7 @@ import com.pulumi.dbtcloud.outputs.GetProjectsResult;
 import com.pulumi.dbtcloud.outputs.GetRepositoryResult;
 import com.pulumi.dbtcloud.outputs.GetServiceTokenResult;
 import com.pulumi.dbtcloud.outputs.GetSnowflakeCredentialResult;
+import com.pulumi.dbtcloud.outputs.GetStarburstCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetUserGroupsResult;
 import com.pulumi.dbtcloud.outputs.GetUserResult;
 import com.pulumi.dbtcloud.outputs.GetUsersResult;
@@ -3163,6 +3166,221 @@ public final class DbtcloudFunctions {
     }
     public static CompletableFuture<GetSnowflakeCredentialResult> getSnowflakeCredentialPlain(GetSnowflakeCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", TypeShape.of(GetSnowflakeCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Starburst/Trino credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getStarburstCredential(GetStarburstCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStarburstCredentialResult> getStarburstCredential(GetStarburstCredentialArgs args) {
+        return getStarburstCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * Starburst/Trino credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getStarburstCredential(GetStarburstCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStarburstCredentialResult> getStarburstCredentialPlain(GetStarburstCredentialPlainArgs args) {
+        return getStarburstCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Starburst/Trino credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getStarburstCredential(GetStarburstCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStarburstCredentialResult> getStarburstCredential(GetStarburstCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getStarburstCredential:getStarburstCredential", TypeShape.of(GetStarburstCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Starburst/Trino credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getStarburstCredential(GetStarburstCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStarburstCredentialResult> getStarburstCredential(GetStarburstCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getStarburstCredential:getStarburstCredential", TypeShape.of(GetStarburstCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Starburst/Trino credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbtcloudFunctions.getStarburstCredential(GetStarburstCredentialArgs.builder()
+     *             .projectId(123)
+     *             .credentialId(456)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStarburstCredentialResult> getStarburstCredentialPlain(GetStarburstCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getStarburstCredential:getStarburstCredential", TypeShape.of(GetStarburstCredentialResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve user details
