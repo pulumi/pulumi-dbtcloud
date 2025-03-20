@@ -212,6 +212,9 @@
             "dbtcloud_snowflake_credential": {
                 "current": "dbtcloud:index/snowflakeCredential:SnowflakeCredential"
             },
+            "dbtcloud_starburst_credential": {
+                "current": "dbtcloud:index/starburstCredential:StarburstCredential"
+            },
             "dbtcloud_user_groups": {
                 "current": "dbtcloud:index/userGroups:UserGroups",
                 "fields": {
@@ -416,6 +419,9 @@
             "dbtcloud_snowflake_credential": {
                 "current": "dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential"
             },
+            "dbtcloud_starburst_credential": {
+                "current": "dbtcloud:index/getStarburstCredential:getStarburstCredential"
+            },
             "dbtcloud_user": {
                 "current": "dbtcloud:index/getUser:getUser"
             },
@@ -483,6 +489,7 @@
             "dbtcloud:index/repository:Repository": 0,
             "dbtcloud:index/serviceToken:ServiceToken": 1,
             "dbtcloud:index/snowflakeCredential:SnowflakeCredential": 0,
+            "dbtcloud:index/starburstCredential:StarburstCredential": 1,
             "dbtcloud:index/userGroups:UserGroups": 0,
             "dbtcloud:index/webhook:Webhook": 0
         },
@@ -513,6 +520,7 @@
             "dbtcloud:index/getRepository:getRepository": 0,
             "dbtcloud:index/getServiceToken:getServiceToken": 1,
             "dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential": 0,
+            "dbtcloud:index/getStarburstCredential:getStarburstCredential": 1,
             "dbtcloud:index/getUser:getUser": 1,
             "dbtcloud:index/getUserGroups:getUserGroups": 0,
             "dbtcloud:index/getUsers:getUsers": 1,

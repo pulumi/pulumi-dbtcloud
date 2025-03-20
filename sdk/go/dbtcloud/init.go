@@ -85,6 +85,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServiceToken{}
 	case "dbtcloud:index/snowflakeCredential:SnowflakeCredential":
 		r = &SnowflakeCredential{}
+	case "dbtcloud:index/starburstCredential:StarburstCredential":
+		r = &StarburstCredential{}
 	case "dbtcloud:index/userGroups:UserGroups":
 		r = &UserGroups{}
 	case "dbtcloud:index/webhook:Webhook":
@@ -278,6 +280,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/snowflakeCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/starburstCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

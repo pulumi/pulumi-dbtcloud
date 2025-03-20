@@ -6324,6 +6324,105 @@
                 "type": "object"
             }
         },
+        "dbtcloud:index/starburstCredential:StarburstCredential": {
+            "description": "Starburst/Trino credential resource\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst example = new dbtcloud.StarburstCredential(\"example\", {\n    projectId: exampleDbtcloudProject.id,\n    database: \"your_catalog\",\n    schema: \"your_schema\",\n    user: \"your_user\",\n    password: \"your_password\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nexample = dbtcloud.StarburstCredential(\"example\",\n    project_id=example_dbtcloud_project[\"id\"],\n    database=\"your_catalog\",\n    schema=\"your_schema\",\n    user=\"your_user\",\n    password=\"your_password\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new DbtCloud.StarburstCredential(\"example\", new()\n    {\n        ProjectId = exampleDbtcloudProject.Id,\n        Database = \"your_catalog\",\n        Schema = \"your_schema\",\n        User = \"your_user\",\n        Password = \"your_password\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewStarburstCredential(ctx, \"example\", \u0026dbtcloud.StarburstCredentialArgs{\n\t\t\tProjectId: pulumi.Any(exampleDbtcloudProject.Id),\n\t\t\tDatabase:  pulumi.String(\"your_catalog\"),\n\t\t\tSchema:    pulumi.String(\"your_schema\"),\n\t\t\tUser:      pulumi.String(\"your_user\"),\n\t\t\tPassword:  pulumi.String(\"your_password\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.StarburstCredential;\nimport com.pulumi.dbtcloud.StarburstCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new StarburstCredential(\"example\", StarburstCredentialArgs.builder()\n            .projectId(exampleDbtcloudProject.id())\n            .database(\"your_catalog\")\n            .schema(\"your_schema\")\n            .user(\"your_user\")\n            .password(\"your_password\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: dbtcloud:StarburstCredential\n    properties:\n      projectId: ${exampleDbtcloudProject.id}\n      database: your_catalog\n      schema: your_schema\n      user: your_user\n      password: your_password\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_starburst_credential.my_starburst_credential\n\n  id = \"project_id:credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_starburst_credential.my_starburst_credential\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/starburstCredential:StarburstCredential my_starburst_credential \"project_id:credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/starburstCredential:StarburstCredential my_starburst_credential 12345:6789\n```\n\n",
+            "properties": {
+                "credentialId": {
+                    "type": "integer",
+                    "description": "The internal credential ID\n"
+                },
+                "database": {
+                    "type": "string",
+                    "description": "The catalog to connect use\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for the Starburst/Trino account\n",
+                    "secret": true
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "Project ID to create the Starburst/Trino credential in\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The schema where to create models\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for the Starburst/Trino account\n"
+                }
+            },
+            "required": [
+                "credentialId",
+                "database",
+                "password",
+                "projectId",
+                "schema",
+                "user"
+            ],
+            "inputProperties": {
+                "database": {
+                    "type": "string",
+                    "description": "The catalog to connect use\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for the Starburst/Trino account\n",
+                    "secret": true
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "Project ID to create the Starburst/Trino credential in\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The schema where to create models\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username for the Starburst/Trino account\n"
+                }
+            },
+            "requiredInputs": [
+                "database",
+                "password",
+                "projectId",
+                "schema",
+                "user"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering StarburstCredential resources.\n",
+                "properties": {
+                    "credentialId": {
+                        "type": "integer",
+                        "description": "The internal credential ID\n"
+                    },
+                    "database": {
+                        "type": "string",
+                        "description": "The catalog to connect use\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "The password for the Starburst/Trino account\n",
+                        "secret": true
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "Project ID to create the Starburst/Trino credential in\n"
+                    },
+                    "schema": {
+                        "type": "string",
+                        "description": "The schema where to create models\n"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "The username for the Starburst/Trino account\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "dbtcloud:index/userGroups:UserGroups": {
             "description": "Assigns a set of dbt Cloud groups to a given User ID. \n\n\u003e If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.\n\t\t\n\u003e This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).\nThis is intentional in order to prevent accidental deletion of all users groups assigned to a user.\nIf you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set \"group_ids\" to the empty set \"[]\".\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// we can assign groups to users\nconst myUserGroups = new dbtcloud.UserGroups(\"my_user_groups\", {\n    userId: myUser.id,\n    groupIds: [\n        1234,\n        myGroup.id,\n        myGroupId,\n    ],\n});\n// as Delete is not handled currently, by design, removing all groups from a user can be done with\nconst myOtherUserGroups = new dbtcloud.UserGroups(\"my_other_user_groups\", {\n    userId: 123456,\n    groupIds: [],\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# we can assign groups to users\nmy_user_groups = dbtcloud.UserGroups(\"my_user_groups\",\n    user_id=my_user[\"id\"],\n    group_ids=[\n        1234,\n        my_group[\"id\"],\n        my_group_id,\n    ])\n# as Delete is not handled currently, by design, removing all groups from a user can be done with\nmy_other_user_groups = dbtcloud.UserGroups(\"my_other_user_groups\",\n    user_id=123456,\n    group_ids=[])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // we can assign groups to users\n    var myUserGroups = new DbtCloud.UserGroups(\"my_user_groups\", new()\n    {\n        UserId = myUser.Id,\n        GroupIds = new[]\n        {\n            1234,\n            myGroup.Id,\n            myGroupId,\n        },\n    });\n\n    // as Delete is not handled currently, by design, removing all groups from a user can be done with\n    var myOtherUserGroups = new DbtCloud.UserGroups(\"my_other_user_groups\", new()\n    {\n        UserId = 123456,\n        GroupIds = new[] {},\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// we can assign groups to users\n\t\t_, err := dbtcloud.NewUserGroups(ctx, \"my_user_groups\", \u0026dbtcloud.UserGroupsArgs{\n\t\t\tUserId: pulumi.Any(myUser.Id),\n\t\t\tGroupIds: pulumi.IntArray{\n\t\t\t\tpulumi.Int(1234),\n\t\t\t\tmyGroup.Id,\n\t\t\t\tmyGroupId,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// as Delete is not handled currently, by design, removing all groups from a user can be done with\n\t\t_, err = dbtcloud.NewUserGroups(ctx, \"my_other_user_groups\", \u0026dbtcloud.UserGroupsArgs{\n\t\t\tUserId:   pulumi.Int(123456),\n\t\t\tGroupIds: pulumi.IntArray{},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.UserGroups;\nimport com.pulumi.dbtcloud.UserGroupsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // we can assign groups to users\n        var myUserGroups = new UserGroups(\"myUserGroups\", UserGroupsArgs.builder()\n            .userId(myUser.id())\n            .groupIds(            \n                1234,\n                myGroup.id(),\n                myGroupId)\n            .build());\n\n        // as Delete is not handled currently, by design, removing all groups from a user can be done with\n        var myOtherUserGroups = new UserGroups(\"myOtherUserGroups\", UserGroupsArgs.builder()\n            .userId(123456)\n            .groupIds()\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # we can assign groups to users\n  myUserGroups:\n    type: dbtcloud:UserGroups\n    name: my_user_groups\n    properties:\n      userId: ${myUser.id}\n      groupIds:\n        - 1234\n        - ${myGroup.id}\n        - ${myGroupId}\n  # as Delete is not handled currently, by design, removing all groups from a user can be done with\n  myOtherUserGroups:\n    type: dbtcloud:UserGroups\n    name: my_other_user_groups\n    properties:\n      userId: 123456\n      groupIds: []\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nImport using the User ID\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_user_groups.my_user_groups\n\n  id = \"user_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_user_groups.my_user_groups\n\n  id = \"123456\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/userGroups:UserGroups my_user_groups \"user_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/userGroups:UserGroups my_user_groups 123456\n```\n\n",
             "properties": {
@@ -8268,6 +8367,60 @@
                     "schema",
                     "user",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/getStarburstCredential:getStarburstCredential": {
+            "description": "Starburst/Trino credential data source\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst example = dbtcloud.getStarburstCredential({\n    projectId: 123,\n    credentialId: 456,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nexample = dbtcloud.get_starburst_credential(project_id=123,\n    credential_id=456)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = DbtCloud.GetStarburstCredential.Invoke(new()\n    {\n        ProjectId = 123,\n        CredentialId = 456,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.LookupStarburstCredential(ctx, \u0026dbtcloud.LookupStarburstCredentialArgs{\n\t\t\tProjectId:    123,\n\t\t\tCredentialId: 456,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DbtcloudFunctions;\nimport com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = DbtcloudFunctions.getStarburstCredential(GetStarburstCredentialArgs.builder()\n            .projectId(123)\n            .credentialId(456)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: dbtcloud:getStarburstCredential\n      arguments:\n        projectId: 123\n        credentialId: 456\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getStarburstCredential.\n",
+                "properties": {
+                    "credentialId": {
+                        "type": "integer",
+                        "description": "Credential ID\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "Project ID\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "credentialId",
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getStarburstCredential.\n",
+                "properties": {
+                    "credentialId": {
+                        "description": "Credential ID\n",
+                        "type": "integer"
+                    },
+                    "database": {
+                        "description": "The catalog to connect to\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The ID of this resource. Contains the project ID and the credential ID.\n",
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "description": "Project ID\n",
+                        "type": "integer"
+                    },
+                    "schema": {
+                        "description": "The schema where to create models\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "credentialId",
+                    "database",
+                    "id",
+                    "projectId",
+                    "schema"
                 ],
                 "type": "object"
             }

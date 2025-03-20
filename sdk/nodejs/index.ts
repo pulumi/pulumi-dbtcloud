@@ -195,6 +195,11 @@ export const getSnowflakeCredential: typeof import("./getSnowflakeCredential").g
 export const getSnowflakeCredentialOutput: typeof import("./getSnowflakeCredential").getSnowflakeCredentialOutput = null as any;
 utilities.lazyLoad(exports, ["getSnowflakeCredential","getSnowflakeCredentialOutput"], () => require("./getSnowflakeCredential"));
 
+export { GetStarburstCredentialArgs, GetStarburstCredentialResult, GetStarburstCredentialOutputArgs } from "./getStarburstCredential";
+export const getStarburstCredential: typeof import("./getStarburstCredential").getStarburstCredential = null as any;
+export const getStarburstCredentialOutput: typeof import("./getStarburstCredential").getStarburstCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getStarburstCredential","getStarburstCredentialOutput"], () => require("./getStarburstCredential"));
+
 export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
 export const getUser: typeof import("./getUser").getUser = null as any;
 export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
@@ -320,6 +325,11 @@ export type SnowflakeCredential = import("./snowflakeCredential").SnowflakeCrede
 export const SnowflakeCredential: typeof import("./snowflakeCredential").SnowflakeCredential = null as any;
 utilities.lazyLoad(exports, ["SnowflakeCredential"], () => require("./snowflakeCredential"));
 
+export { StarburstCredentialArgs, StarburstCredentialState } from "./starburstCredential";
+export type StarburstCredential = import("./starburstCredential").StarburstCredential;
+export const StarburstCredential: typeof import("./starburstCredential").StarburstCredential = null as any;
+utilities.lazyLoad(exports, ["StarburstCredential"], () => require("./starburstCredential"));
+
 export { UserGroupsArgs, UserGroupsState } from "./userGroups";
 export type UserGroups = import("./userGroups").UserGroups;
 export const UserGroups: typeof import("./userGroups").UserGroups = null as any;
@@ -408,6 +418,8 @@ const _module = {
                 return new ServiceToken(name, <any>undefined, { urn })
             case "dbtcloud:index/snowflakeCredential:SnowflakeCredential":
                 return new SnowflakeCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/starburstCredential:StarburstCredential":
+                return new StarburstCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/userGroups:UserGroups":
                 return new UserGroups(name, <any>undefined, { urn })
             case "dbtcloud:index/webhook:Webhook":
@@ -449,6 +461,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/projectRepository", _mo
 pulumi.runtime.registerResourceModule("dbtcloud", "index/repository", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/serviceToken", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/starburstCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/userGroups", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/webhook", _module)
 pulumi.runtime.registerResourcePackage("dbtcloud", {
