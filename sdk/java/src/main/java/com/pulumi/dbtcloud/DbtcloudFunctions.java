@@ -1363,7 +1363,7 @@ public final class DbtcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1402,7 +1402,7 @@ public final class DbtcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1441,7 +1441,7 @@ public final class DbtcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1480,7 +1480,7 @@ public final class DbtcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1519,7 +1519,7 @@ public final class DbtcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1558,7 +1558,7 @@ public final class DbtcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1597,7 +1597,7 @@ public final class DbtcloudFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var myConnections = DbtcloudFunctions.getGlobalConnections();
+     *         final var myConnections = DbtcloudFunctions.getGlobalConnections(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -1972,7 +1972,7 @@ public final class DbtcloudFunctions {
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(12345)
+     *             .environmentId("12345")
      *             .build());
      * 
      *     }
@@ -2018,7 +2018,7 @@ public final class DbtcloudFunctions {
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(12345)
+     *             .environmentId("12345")
      *             .build());
      * 
      *     }
@@ -2064,7 +2064,7 @@ public final class DbtcloudFunctions {
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(12345)
+     *             .environmentId("12345")
      *             .build());
      * 
      *     }
@@ -2110,7 +2110,7 @@ public final class DbtcloudFunctions {
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(12345)
+     *             .environmentId("12345")
      *             .build());
      * 
      *     }
@@ -2156,7 +2156,7 @@ public final class DbtcloudFunctions {
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(12345)
+     *             .environmentId("12345")
      *             .build());
      * 
      *     }
