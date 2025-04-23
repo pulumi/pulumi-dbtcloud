@@ -175,6 +175,9 @@ class _BigQueryCredentialState:
 
 
 class BigQueryCredential(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/bigQueryCredential:BigQueryCredential"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

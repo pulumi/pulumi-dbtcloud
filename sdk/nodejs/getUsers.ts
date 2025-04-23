@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * // return all users in the dbt Cloud account
  * const all = dbtcloud.getUsers({});
  * const userDetails = all.then(all => .filter(user => user.email == "example@amail.com").map(user => (user)));
- * const userExist = userDetails.length.then(length => length == 1);
+ * const userExist = userDetails.length.apply(length => length == 1);
  * ```
  */
 export function getUsers(opts?: pulumi.InvokeOptions): Promise<GetUsersResult> {
@@ -52,7 +52,7 @@ export interface GetUsersResult {
  * // return all users in the dbt Cloud account
  * const all = dbtcloud.getUsers({});
  * const userDetails = all.then(all => .filter(user => user.email == "example@amail.com").map(user => (user)));
- * const userExist = userDetails.length.then(length => length == 1);
+ * const userExist = userDetails.length.apply(length => length == 1);
  * ```
  */
 export function getUsersOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUsersResult> {
