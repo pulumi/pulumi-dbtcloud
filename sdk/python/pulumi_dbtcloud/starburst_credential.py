@@ -205,6 +205,9 @@ class _StarburstCredentialState:
 
 
 class StarburstCredential(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/starburstCredential:StarburstCredential"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

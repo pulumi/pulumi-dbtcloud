@@ -318,6 +318,9 @@ class _FabricConnectionState:
 
 
 class FabricConnection(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/fabricConnection:FabricConnection"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

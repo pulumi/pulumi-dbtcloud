@@ -221,6 +221,9 @@ class _LineageIntegrationState:
 
 
 class LineageIntegration(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/lineageIntegration:LineageIntegration"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

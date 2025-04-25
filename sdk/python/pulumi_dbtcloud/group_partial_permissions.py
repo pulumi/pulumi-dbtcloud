@@ -164,6 +164,9 @@ class _GroupPartialPermissionsState:
 
 
 class GroupPartialPermissions(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

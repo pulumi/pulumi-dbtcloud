@@ -164,6 +164,9 @@ class _ServiceTokenState:
 
 
 class ServiceToken(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/serviceToken:ServiceToken"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
