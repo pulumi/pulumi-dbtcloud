@@ -429,6 +429,9 @@ class _SnowflakeCredentialState:
 
 
 class SnowflakeCredential(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/snowflakeCredential:SnowflakeCredential"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

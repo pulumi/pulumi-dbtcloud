@@ -130,6 +130,9 @@ class _AccountFeaturesState:
 
 
 class AccountFeatures(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/accountFeatures:AccountFeatures"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

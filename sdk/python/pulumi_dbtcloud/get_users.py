@@ -76,7 +76,7 @@ def get_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersR
     # return all users in the dbt Cloud account
     all = dbtcloud.get_users()
     user_details = [user for user in all.users if user.email == "example@amail.com"]
-    user_exist = len(user_details) == 1
+    user_exist = len(user_details).apply(lambda length: length == 1)
     ```
     """
     __args__ = dict()
@@ -99,7 +99,7 @@ def get_users_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOut
     # return all users in the dbt Cloud account
     all = dbtcloud.get_users()
     user_details = [user for user in all.users if user.email == "example@amail.com"]
-    user_exist = len(user_details) == 1
+    user_exist = len(user_details).apply(lambda length: length == 1)
     ```
     """
     __args__ = dict()

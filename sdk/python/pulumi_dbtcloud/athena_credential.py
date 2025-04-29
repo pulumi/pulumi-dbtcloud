@@ -174,6 +174,9 @@ class _AthenaCredentialState:
 
 
 class AthenaCredential(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/athenaCredential:AthenaCredential"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

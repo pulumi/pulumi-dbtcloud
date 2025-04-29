@@ -822,6 +822,9 @@ class _BigQueryConnectionState:
 
 
 class BigQueryConnection(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/bigQueryConnection:BigQueryConnection"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

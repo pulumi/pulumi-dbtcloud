@@ -225,6 +225,9 @@ class _ModelNotificationsState:
 
 
 class ModelNotifications(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/modelNotifications:ModelNotifications"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

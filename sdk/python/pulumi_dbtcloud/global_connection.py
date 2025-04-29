@@ -476,6 +476,9 @@ class _GlobalConnectionState:
 
 
 class GlobalConnection(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/globalConnection:GlobalConnection"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

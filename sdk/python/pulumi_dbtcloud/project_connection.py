@@ -96,6 +96,9 @@ class _ProjectConnectionState:
 
 
 class ProjectConnection(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/projectConnection:ProjectConnection"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
