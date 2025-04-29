@@ -129,6 +129,9 @@ class _ProjectArtefactsState:
 
 
 class ProjectArtefacts(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/projectArtefacts:ProjectArtefacts"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

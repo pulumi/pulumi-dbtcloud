@@ -96,6 +96,9 @@ class _ProjectRepositoryState:
 
 
 class ProjectRepository(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/projectRepository:ProjectRepository"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

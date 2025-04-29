@@ -193,6 +193,9 @@ class _IpRestrictionsRuleState:
 
 
 class IpRestrictionsRule(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -175,6 +175,9 @@ class _EnvironmentVariableJobOverrideState:
 
 
 class EnvironmentVariableJobOverride(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

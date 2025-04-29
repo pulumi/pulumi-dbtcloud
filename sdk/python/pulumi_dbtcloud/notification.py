@@ -353,6 +353,9 @@ class _NotificationState:
 
 
 class Notification(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/notification:Notification"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

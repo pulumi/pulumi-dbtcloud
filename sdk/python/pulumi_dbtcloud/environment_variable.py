@@ -128,6 +128,9 @@ class _EnvironmentVariableState:
 
 
 class EnvironmentVariable(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/environmentVariable:EnvironmentVariable"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

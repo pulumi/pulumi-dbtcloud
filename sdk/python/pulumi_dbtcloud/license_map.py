@@ -97,6 +97,9 @@ class _LicenseMapState:
 
 
 class LicenseMap(pulumi.CustomResource):
+
+    pulumi_type = "dbtcloud:index/licenseMap:LicenseMap"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
