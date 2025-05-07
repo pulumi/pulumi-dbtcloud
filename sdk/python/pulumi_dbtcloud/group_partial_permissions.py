@@ -163,10 +163,8 @@ class _GroupPartialPermissionsState:
         pulumi.set(self, "sso_mapping_groups", value)
 
 
+@pulumi.type_token("dbtcloud:index/groupPartialPermissions:GroupPartialPermissions")
 class GroupPartialPermissions(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/groupPartialPermissions:GroupPartialPermissions"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

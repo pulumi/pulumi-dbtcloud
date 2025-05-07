@@ -334,10 +334,8 @@ class _FabricCredentialState:
         pulumi.set(self, "user", value)
 
 
+@pulumi.type_token("dbtcloud:index/fabricCredential:FabricCredential")
 class FabricCredential(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/fabricCredential:FabricCredential"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

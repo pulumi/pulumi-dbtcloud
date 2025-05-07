@@ -163,10 +163,8 @@ class _GroupState:
         pulumi.set(self, "sso_mapping_groups", value)
 
 
+@pulumi.type_token("dbtcloud:index/group:Group")
 class Group(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/group:Group"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

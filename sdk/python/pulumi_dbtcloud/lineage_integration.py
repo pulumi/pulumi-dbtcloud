@@ -220,10 +220,8 @@ class _LineageIntegrationState:
         pulumi.set(self, "token_name", value)
 
 
+@pulumi.type_token("dbtcloud:index/lineageIntegration:LineageIntegration")
 class LineageIntegration(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/lineageIntegration:LineageIntegration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

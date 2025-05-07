@@ -143,10 +143,8 @@ class _ExtendedAttributesState:
         pulumi.set(self, "state", value)
 
 
+@pulumi.type_token("dbtcloud:index/extendedAttributes:ExtendedAttributes")
 class ExtendedAttributes(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/extendedAttributes:ExtendedAttributes"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

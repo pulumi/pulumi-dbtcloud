@@ -439,10 +439,8 @@ class _EnvironmentState:
         pulumi.set(self, "use_custom_branch", value)
 
 
+@pulumi.type_token("dbtcloud:index/environment:Environment")
 class Environment(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/environment:Environment"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
