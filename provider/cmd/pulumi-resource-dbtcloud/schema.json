@@ -2168,6 +2168,9 @@
                 },
                 "secret": true
             }
+        },
+        "methods": {
+            "terraformConfig": "pulumi:providers:dbtcloud/terraformConfig"
         }
     },
     "resources": {
@@ -8600,6 +8603,35 @@
                     "name",
                     "webhookId",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "pulumi:providers:dbtcloud/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:dbtcloud"
+                    }
+                },
+                "type": "pulumi:providers:dbtcloud/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
                 ],
                 "type": "object"
             }
