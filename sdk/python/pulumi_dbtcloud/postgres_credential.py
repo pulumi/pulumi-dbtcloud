@@ -301,10 +301,8 @@ class _PostgresCredentialState:
         pulumi.set(self, "username", value)
 
 
+@pulumi.type_token("dbtcloud:index/postgresCredential:PostgresCredential")
 class PostgresCredential(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/postgresCredential:PostgresCredential"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

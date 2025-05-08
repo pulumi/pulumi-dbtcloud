@@ -224,10 +224,8 @@ class _ModelNotificationsState:
         pulumi.set(self, "on_warning", value)
 
 
+@pulumi.type_token("dbtcloud:index/modelNotifications:ModelNotifications")
 class ModelNotifications(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/modelNotifications:ModelNotifications"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

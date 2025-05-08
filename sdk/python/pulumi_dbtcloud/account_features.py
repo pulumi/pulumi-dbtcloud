@@ -129,10 +129,8 @@ class _AccountFeaturesState:
         pulumi.set(self, "repo_caching", value)
 
 
+@pulumi.type_token("dbtcloud:index/accountFeatures:AccountFeatures")
 class AccountFeatures(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/accountFeatures:AccountFeatures"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

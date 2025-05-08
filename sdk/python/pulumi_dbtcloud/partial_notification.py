@@ -352,10 +352,8 @@ class _PartialNotificationState:
         pulumi.set(self, "user_id", value)
 
 
+@pulumi.type_token("dbtcloud:index/partialNotification:PartialNotification")
 class PartialNotification(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/partialNotification:PartialNotification"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

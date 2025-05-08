@@ -287,10 +287,8 @@ class _WebhookState:
         pulumi.set(self, "webhook_id", value)
 
 
+@pulumi.type_token("dbtcloud:index/webhook:Webhook")
 class Webhook(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/webhook:Webhook"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

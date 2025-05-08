@@ -439,10 +439,8 @@ class _RepositoryState:
         pulumi.set(self, "repository_id", value)
 
 
+@pulumi.type_token("dbtcloud:index/repository:Repository")
 class Repository(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/repository:Repository"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

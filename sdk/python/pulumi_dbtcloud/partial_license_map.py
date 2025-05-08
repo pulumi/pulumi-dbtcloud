@@ -95,10 +95,8 @@ class _PartialLicenseMapState:
         pulumi.set(self, "sso_license_mapping_groups", value)
 
 
+@pulumi.type_token("dbtcloud:index/partialLicenseMap:PartialLicenseMap")
 class PartialLicenseMap(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/partialLicenseMap:PartialLicenseMap"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

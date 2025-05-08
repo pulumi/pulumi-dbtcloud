@@ -305,10 +305,8 @@ export type ProjectRepository = import("./projectRepository").ProjectRepository;
 export const ProjectRepository: typeof import("./projectRepository").ProjectRepository = null as any;
 utilities.lazyLoad(exports, ["ProjectRepository"], () => require("./projectRepository"));
 
-export { ProviderArgs } from "./provider";
-export type Provider = import("./provider").Provider;
-export const Provider: typeof import("./provider").Provider = null as any;
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+export * from "./provider";
+import { Provider } from "./provider";
 
 export { RepositoryArgs, RepositoryState } from "./repository";
 export type Repository = import("./repository").Repository;

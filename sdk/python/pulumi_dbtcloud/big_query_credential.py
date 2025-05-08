@@ -174,10 +174,8 @@ class _BigQueryCredentialState:
         pulumi.set(self, "project_id", value)
 
 
+@pulumi.type_token("dbtcloud:index/bigQueryCredential:BigQueryCredential")
 class BigQueryCredential(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/bigQueryCredential:BigQueryCredential"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
