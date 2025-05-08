@@ -129,10 +129,8 @@ class _ProjectState:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("dbtcloud:index/project:Project")
 class Project(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/project:Project"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -96,10 +96,8 @@ class _LicenseMapState:
         pulumi.set(self, "sso_license_mapping_groups", value)
 
 
+@pulumi.type_token("dbtcloud:index/licenseMap:LicenseMap")
 class LicenseMap(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/licenseMap:LicenseMap"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

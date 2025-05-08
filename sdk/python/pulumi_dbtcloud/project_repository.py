@@ -95,10 +95,8 @@ class _ProjectRepositoryState:
         pulumi.set(self, "repository_id", value)
 
 
+@pulumi.type_token("dbtcloud:index/projectRepository:ProjectRepository")
 class ProjectRepository(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/projectRepository:ProjectRepository"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

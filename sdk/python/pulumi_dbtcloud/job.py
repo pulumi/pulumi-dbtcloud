@@ -927,10 +927,8 @@ class _JobState:
         pulumi.set(self, "triggers_on_draft_pr", value)
 
 
+@pulumi.type_token("dbtcloud:index/job:Job")
 class Job(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/job:Job"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -163,10 +163,8 @@ class _ServiceTokenState:
         pulumi.set(self, "uid", value)
 
 
+@pulumi.type_token("dbtcloud:index/serviceToken:ServiceToken")
 class ServiceToken(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/serviceToken:ServiceToken"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

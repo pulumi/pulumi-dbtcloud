@@ -283,10 +283,8 @@ class _OauthConfigurationState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("dbtcloud:index/oauthConfiguration:OauthConfiguration")
 class OauthConfiguration(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/oauthConfiguration:OauthConfiguration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

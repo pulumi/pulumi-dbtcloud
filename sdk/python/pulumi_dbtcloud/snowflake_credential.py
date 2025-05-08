@@ -428,10 +428,8 @@ class _SnowflakeCredentialState:
         pulumi.set(self, "warehouse", value)
 
 
+@pulumi.type_token("dbtcloud:index/snowflakeCredential:SnowflakeCredential")
 class SnowflakeCredential(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/snowflakeCredential:SnowflakeCredential"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

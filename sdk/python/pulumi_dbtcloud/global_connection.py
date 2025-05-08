@@ -475,10 +475,8 @@ class _GlobalConnectionState:
         pulumi.set(self, "synapse", value)
 
 
+@pulumi.type_token("dbtcloud:index/globalConnection:GlobalConnection")
 class GlobalConnection(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/globalConnection:GlobalConnection"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

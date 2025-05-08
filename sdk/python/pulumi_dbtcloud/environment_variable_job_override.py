@@ -174,10 +174,8 @@ class _EnvironmentVariableJobOverrideState:
         pulumi.set(self, "raw_value", value)
 
 
+@pulumi.type_token("dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride")
 class EnvironmentVariableJobOverride(pulumi.CustomResource):
-
-    pulumi_type = "dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
