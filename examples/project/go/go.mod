@@ -8,7 +8,7 @@ replace github.com/pulumi/pulumi-dbtcloud/sdk => ../../../sdk
 
 require (
 	github.com/pulumi/pulumi-dbtcloud/sdk v0.0.0-20240121221520-7c2e69f49e25
-	github.com/pulumi/pulumi/sdk/v3 v3.163.0
+	github.com/pulumi/pulumi/sdk/v3 v3.166.0
 )
 
 require (
