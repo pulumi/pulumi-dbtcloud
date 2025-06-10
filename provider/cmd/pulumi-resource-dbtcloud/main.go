@@ -32,5 +32,7 @@ var pulumiSchema []byte
 func main() {
 	ctx := context.Background()
 	// Modify the path to point to the new provider
-	tfbridge.MainWithMuxer(ctx, "dbtcloud", dbtcloud.Provider(ctx), pulumiSchema)
+	tfbridge.Main(ctx, "dbtcloud", dbtcloud.Provider(ctx), tfbridge.ProviderMetadata{
+		PackageSchema: pulumiSchema,
+	})
 }

@@ -1,5 +1,5 @@
 provider: dbtcloud
-major-version: 0
+major-version: 1
 makeTemplate: bridged
 generate-nightly-test-workflow: true
 providerDefaultBranch: main

@@ -24,5 +24,5 @@ import (
 
 func main() {
 	// Modify the path to point to the new provider
-	tfgen.MainWithMuxer("dbtcloud", dbtcloud.Provider(context.Background()))
+	tfgen.Main("dbtcloud", dbtcloud.Provider(context.Background()))
 }
