@@ -23,35 +23,35 @@ class SnowflakeCredentialArgs:
                  auth_type: pulumi.Input[builtins.str],
                  num_threads: pulumi.Input[builtins.int],
                  project_id: pulumi.Input[builtins.int],
-                 schema: pulumi.Input[builtins.str],
-                 user: pulumi.Input[builtins.str],
                  database: Optional[pulumi.Input[builtins.str]] = None,
                  is_active: Optional[pulumi.Input[builtins.bool]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
                  private_key: Optional[pulumi.Input[builtins.str]] = None,
                  private_key_passphrase: Optional[pulumi.Input[builtins.str]] = None,
                  role: Optional[pulumi.Input[builtins.str]] = None,
+                 schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
+                 user: Optional[pulumi.Input[builtins.str]] = None,
                  warehouse: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a SnowflakeCredential resource.
         :param pulumi.Input[builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Snowflake credential in
-        :param pulumi.Input[builtins.str] schema: Default schema name
-        :param pulumi.Input[builtins.str] user: Username for Snowflake
-        :param pulumi.Input[builtins.str] database: Database to connect to
+        :param pulumi.Input[builtins.str] database: The catalog to connect use
         :param pulumi.Input[builtins.bool] is_active: Whether the Snowflake credential is active
-        :param pulumi.Input[builtins.str] password: Password for Snowflake
-        :param pulumi.Input[builtins.str] private_key: Private key for Snowflake
-        :param pulumi.Input[builtins.str] private_key_passphrase: Private key passphrase for Snowflake
-        :param pulumi.Input[builtins.str] role: Role to assume
-        :param pulumi.Input[builtins.str] warehouse: Warehouse to use
+        :param pulumi.Input[builtins.str] password: The password for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key: The private key for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key_passphrase: The passphrase for the private key
+        :param pulumi.Input[builtins.str] role: The role to assume
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        :param pulumi.Input[builtins.str] user: The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.str] warehouse: The warehouse to use
         """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "num_threads", num_threads)
         pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "schema", schema)
-        pulumi.set(__self__, "user", user)
         if database is not None:
             pulumi.set(__self__, "database", database)
         if is_active is not None:
@@ -64,6 +64,12 @@ class SnowflakeCredentialArgs:
             pulumi.set(__self__, "private_key_passphrase", private_key_passphrase)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
         if warehouse is not None:
             pulumi.set(__self__, "warehouse", warehouse)
 
@@ -105,33 +111,9 @@ class SnowflakeCredentialArgs:
 
     @property
     @pulumi.getter
-    def schema(self) -> pulumi.Input[builtins.str]:
-        """
-        Default schema name
-        """
-        return pulumi.get(self, "schema")
-
-    @schema.setter
-    def schema(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "schema", value)
-
-    @property
-    @pulumi.getter
-    def user(self) -> pulumi.Input[builtins.str]:
-        """
-        Username for Snowflake
-        """
-        return pulumi.get(self, "user")
-
-    @user.setter
-    def user(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "user", value)
-
-    @property
-    @pulumi.getter
     def database(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Database to connect to
+        The catalog to connect use
         """
         return pulumi.get(self, "database")
 
@@ -155,7 +137,7 @@ class SnowflakeCredentialArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Password for Snowflake
+        The password for the Snowflake account
         """
         return pulumi.get(self, "password")
 
@@ -167,7 +149,7 @@ class SnowflakeCredentialArgs:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Private key for Snowflake
+        The private key for the Snowflake account
         """
         return pulumi.get(self, "private_key")
 
@@ -179,7 +161,7 @@ class SnowflakeCredentialArgs:
     @pulumi.getter(name="privateKeyPassphrase")
     def private_key_passphrase(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Private key passphrase for Snowflake
+        The passphrase for the private key
         """
         return pulumi.get(self, "private_key_passphrase")
 
@@ -191,7 +173,7 @@ class SnowflakeCredentialArgs:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Role to assume
+        The role to assume
         """
         return pulumi.get(self, "role")
 
@@ -201,9 +183,45 @@ class SnowflakeCredentialArgs:
 
     @property
     @pulumi.getter
+    def schema(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        """
+        return pulumi.get(self, "schema")
+
+    @schema.setter
+    def schema(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "schema", value)
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "user", value)
+
+    @property
+    @pulumi.getter
     def warehouse(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Warehouse to use
+        The warehouse to use
         """
         return pulumi.get(self, "warehouse")
 
@@ -226,23 +244,25 @@ class _SnowflakeCredentialState:
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  role: Optional[pulumi.Input[builtins.str]] = None,
                  schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  user: Optional[pulumi.Input[builtins.str]] = None,
                  warehouse: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnowflakeCredential resources.
         :param pulumi.Input[builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
-        :param pulumi.Input[builtins.int] credential_id: The system Snowflake credential ID
-        :param pulumi.Input[builtins.str] database: Database to connect to
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
+        :param pulumi.Input[builtins.str] database: The catalog to connect use
         :param pulumi.Input[builtins.bool] is_active: Whether the Snowflake credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[builtins.str] password: Password for Snowflake
-        :param pulumi.Input[builtins.str] private_key: Private key for Snowflake
-        :param pulumi.Input[builtins.str] private_key_passphrase: Private key passphrase for Snowflake
+        :param pulumi.Input[builtins.str] password: The password for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key: The private key for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key_passphrase: The passphrase for the private key
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Snowflake credential in
-        :param pulumi.Input[builtins.str] role: Role to assume
-        :param pulumi.Input[builtins.str] schema: Default schema name
-        :param pulumi.Input[builtins.str] user: Username for Snowflake
-        :param pulumi.Input[builtins.str] warehouse: Warehouse to use
+        :param pulumi.Input[builtins.str] role: The role to assume
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        :param pulumi.Input[builtins.str] user: The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.str] warehouse: The warehouse to use
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -266,6 +286,8 @@ class _SnowflakeCredentialState:
             pulumi.set(__self__, "role", role)
         if schema is not None:
             pulumi.set(__self__, "schema", schema)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
         if user is not None:
             pulumi.set(__self__, "user", user)
         if warehouse is not None:
@@ -287,7 +309,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The system Snowflake credential ID
+        The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
@@ -299,7 +321,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Database to connect to
+        The catalog to connect use
         """
         return pulumi.get(self, "database")
 
@@ -335,7 +357,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Password for Snowflake
+        The password for the Snowflake account
         """
         return pulumi.get(self, "password")
 
@@ -347,7 +369,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Private key for Snowflake
+        The private key for the Snowflake account
         """
         return pulumi.get(self, "private_key")
 
@@ -359,7 +381,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter(name="privateKeyPassphrase")
     def private_key_passphrase(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Private key passphrase for Snowflake
+        The passphrase for the private key
         """
         return pulumi.get(self, "private_key_passphrase")
 
@@ -383,7 +405,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Role to assume
+        The role to assume
         """
         return pulumi.get(self, "role")
 
@@ -395,7 +417,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Default schema name
+        The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         """
         return pulumi.get(self, "schema")
 
@@ -404,10 +426,22 @@ class _SnowflakeCredentialState:
         pulumi.set(self, "schema", value)
 
     @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
+
+    @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Username for Snowflake
+        The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         """
         return pulumi.get(self, "user")
 
@@ -419,7 +453,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter
     def warehouse(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Warehouse to use
+        The warehouse to use
         """
         return pulumi.get(self, "warehouse")
 
@@ -444,10 +478,13 @@ class SnowflakeCredential(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  role: Optional[pulumi.Input[builtins.str]] = None,
                  schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  user: Optional[pulumi.Input[builtins.str]] = None,
                  warehouse: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
+        Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
+
         ## Example Usage
 
         ```python
@@ -496,17 +533,18 @@ class SnowflakeCredential(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
-        :param pulumi.Input[builtins.str] database: Database to connect to
+        :param pulumi.Input[builtins.str] database: The catalog to connect use
         :param pulumi.Input[builtins.bool] is_active: Whether the Snowflake credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[builtins.str] password: Password for Snowflake
-        :param pulumi.Input[builtins.str] private_key: Private key for Snowflake
-        :param pulumi.Input[builtins.str] private_key_passphrase: Private key passphrase for Snowflake
+        :param pulumi.Input[builtins.str] password: The password for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key: The private key for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key_passphrase: The passphrase for the private key
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Snowflake credential in
-        :param pulumi.Input[builtins.str] role: Role to assume
-        :param pulumi.Input[builtins.str] schema: Default schema name
-        :param pulumi.Input[builtins.str] user: Username for Snowflake
-        :param pulumi.Input[builtins.str] warehouse: Warehouse to use
+        :param pulumi.Input[builtins.str] role: The role to assume
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        :param pulumi.Input[builtins.str] user: The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.str] warehouse: The warehouse to use
         """
         ...
     @overload
@@ -515,6 +553,8 @@ class SnowflakeCredential(pulumi.CustomResource):
                  args: SnowflakeCredentialArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
+
         ## Example Usage
 
         ```python
@@ -585,6 +625,7 @@ class SnowflakeCredential(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  role: Optional[pulumi.Input[builtins.str]] = None,
                  schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  user: Optional[pulumi.Input[builtins.str]] = None,
                  warehouse: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -611,11 +652,8 @@ class SnowflakeCredential(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["role"] = role
-            if schema is None and not opts.urn:
-                raise TypeError("Missing required property 'schema'")
             __props__.__dict__["schema"] = schema
-            if user is None and not opts.urn:
-                raise TypeError("Missing required property 'user'")
+            __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
             __props__.__dict__["user"] = user
             __props__.__dict__["warehouse"] = warehouse
             __props__.__dict__["credential_id"] = None
@@ -642,6 +680,7 @@ class SnowflakeCredential(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[builtins.int]] = None,
             role: Optional[pulumi.Input[builtins.str]] = None,
             schema: Optional[pulumi.Input[builtins.str]] = None,
+            semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
             user: Optional[pulumi.Input[builtins.str]] = None,
             warehouse: Optional[pulumi.Input[builtins.str]] = None) -> 'SnowflakeCredential':
         """
@@ -652,18 +691,19 @@ class SnowflakeCredential(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
-        :param pulumi.Input[builtins.int] credential_id: The system Snowflake credential ID
-        :param pulumi.Input[builtins.str] database: Database to connect to
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
+        :param pulumi.Input[builtins.str] database: The catalog to connect use
         :param pulumi.Input[builtins.bool] is_active: Whether the Snowflake credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[builtins.str] password: Password for Snowflake
-        :param pulumi.Input[builtins.str] private_key: Private key for Snowflake
-        :param pulumi.Input[builtins.str] private_key_passphrase: Private key passphrase for Snowflake
+        :param pulumi.Input[builtins.str] password: The password for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key: The private key for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key_passphrase: The passphrase for the private key
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Snowflake credential in
-        :param pulumi.Input[builtins.str] role: Role to assume
-        :param pulumi.Input[builtins.str] schema: Default schema name
-        :param pulumi.Input[builtins.str] user: Username for Snowflake
-        :param pulumi.Input[builtins.str] warehouse: Warehouse to use
+        :param pulumi.Input[builtins.str] role: The role to assume
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        :param pulumi.Input[builtins.str] user: The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.str] warehouse: The warehouse to use
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -680,6 +720,7 @@ class SnowflakeCredential(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["role"] = role
         __props__.__dict__["schema"] = schema
+        __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
         __props__.__dict__["user"] = user
         __props__.__dict__["warehouse"] = warehouse
         return SnowflakeCredential(resource_name, opts=opts, __props__=__props__)
@@ -696,7 +737,7 @@ class SnowflakeCredential(pulumi.CustomResource):
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> pulumi.Output[builtins.int]:
         """
-        The system Snowflake credential ID
+        The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
@@ -704,13 +745,13 @@ class SnowflakeCredential(pulumi.CustomResource):
     @pulumi.getter
     def database(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        Database to connect to
+        The catalog to connect use
         """
         return pulumi.get(self, "database")
 
     @property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def is_active(self) -> pulumi.Output[builtins.bool]:
         """
         Whether the Snowflake credential is active
         """
@@ -726,25 +767,25 @@ class SnowflakeCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def password(self) -> pulumi.Output[Optional[builtins.str]]:
+    def password(self) -> pulumi.Output[builtins.str]:
         """
-        Password for Snowflake
+        The password for the Snowflake account
         """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Output[Optional[builtins.str]]:
+    def private_key(self) -> pulumi.Output[builtins.str]:
         """
-        Private key for Snowflake
+        The private key for the Snowflake account
         """
         return pulumi.get(self, "private_key")
 
     @property
     @pulumi.getter(name="privateKeyPassphrase")
-    def private_key_passphrase(self) -> pulumi.Output[Optional[builtins.str]]:
+    def private_key_passphrase(self) -> pulumi.Output[builtins.str]:
         """
-        Private key passphrase for Snowflake
+        The passphrase for the private key
         """
         return pulumi.get(self, "private_key_passphrase")
 
@@ -760,7 +801,7 @@ class SnowflakeCredential(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        Role to assume
+        The role to assume
         """
         return pulumi.get(self, "role")
 
@@ -768,15 +809,23 @@ class SnowflakeCredential(pulumi.CustomResource):
     @pulumi.getter
     def schema(self) -> pulumi.Output[builtins.str]:
         """
-        Default schema name
+        The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         """
         return pulumi.get(self, "schema")
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> pulumi.Output[builtins.bool]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
 
     @property
     @pulumi.getter
     def user(self) -> pulumi.Output[builtins.str]:
         """
-        Username for Snowflake
+        The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         """
         return pulumi.get(self, "user")
 
@@ -784,7 +833,7 @@ class SnowflakeCredential(pulumi.CustomResource):
     @pulumi.getter
     def warehouse(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        Warehouse to use
+        The warehouse to use
         """
         return pulumi.get(self, "warehouse")
 

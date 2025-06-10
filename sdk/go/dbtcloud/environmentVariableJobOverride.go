@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Environment variable job override resource
+//
 // ## Example Usage
 //
 // ```go
@@ -73,13 +75,15 @@ import (
 type EnvironmentVariableJobOverride struct {
 	pulumi.CustomResourceState
 
-	// The ID of the environment variable job override
+	// The account id
+	AccountId pulumi.IntOutput `pulumi:"accountId"`
+	// The internal ID of this resource. Contains the project ID and the environment variable job override ID.
 	EnvironmentVariableJobOverrideId pulumi.IntOutput `pulumi:"environmentVariableJobOverrideId"`
 	// The job ID for which the environment variable is being overridden
 	JobDefinitionId pulumi.IntOutput `pulumi:"jobDefinitionId"`
 	// The environment variable name to override
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The project ID for which the environment variable is being overridden
+	// Project ID to create the environment variable job override in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The value for the override of the environment variable
 	RawValue pulumi.StringOutput `pulumi:"rawValue"`
@@ -124,26 +128,30 @@ func GetEnvironmentVariableJobOverride(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EnvironmentVariableJobOverride resources.
 type environmentVariableJobOverrideState struct {
-	// The ID of the environment variable job override
+	// The account id
+	AccountId *int `pulumi:"accountId"`
+	// The internal ID of this resource. Contains the project ID and the environment variable job override ID.
 	EnvironmentVariableJobOverrideId *int `pulumi:"environmentVariableJobOverrideId"`
 	// The job ID for which the environment variable is being overridden
 	JobDefinitionId *int `pulumi:"jobDefinitionId"`
 	// The environment variable name to override
 	Name *string `pulumi:"name"`
-	// The project ID for which the environment variable is being overridden
+	// Project ID to create the environment variable job override in
 	ProjectId *int `pulumi:"projectId"`
 	// The value for the override of the environment variable
 	RawValue *string `pulumi:"rawValue"`
 }
 
 type EnvironmentVariableJobOverrideState struct {
-	// The ID of the environment variable job override
+	// The account id
+	AccountId pulumi.IntPtrInput
+	// The internal ID of this resource. Contains the project ID and the environment variable job override ID.
 	EnvironmentVariableJobOverrideId pulumi.IntPtrInput
 	// The job ID for which the environment variable is being overridden
 	JobDefinitionId pulumi.IntPtrInput
 	// The environment variable name to override
 	Name pulumi.StringPtrInput
-	// The project ID for which the environment variable is being overridden
+	// Project ID to create the environment variable job override in
 	ProjectId pulumi.IntPtrInput
 	// The value for the override of the environment variable
 	RawValue pulumi.StringPtrInput
@@ -158,7 +166,7 @@ type environmentVariableJobOverrideArgs struct {
 	JobDefinitionId int `pulumi:"jobDefinitionId"`
 	// The environment variable name to override
 	Name *string `pulumi:"name"`
-	// The project ID for which the environment variable is being overridden
+	// Project ID to create the environment variable job override in
 	ProjectId int `pulumi:"projectId"`
 	// The value for the override of the environment variable
 	RawValue string `pulumi:"rawValue"`
@@ -170,7 +178,7 @@ type EnvironmentVariableJobOverrideArgs struct {
 	JobDefinitionId pulumi.IntInput
 	// The environment variable name to override
 	Name pulumi.StringPtrInput
-	// The project ID for which the environment variable is being overridden
+	// Project ID to create the environment variable job override in
 	ProjectId pulumi.IntInput
 	// The value for the override of the environment variable
 	RawValue pulumi.StringInput
@@ -263,7 +271,12 @@ func (o EnvironmentVariableJobOverrideOutput) ToEnvironmentVariableJobOverrideOu
 	return o
 }
 
-// The ID of the environment variable job override
+// The account id
+func (o EnvironmentVariableJobOverrideOutput) AccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v *EnvironmentVariableJobOverride) pulumi.IntOutput { return v.AccountId }).(pulumi.IntOutput)
+}
+
+// The internal ID of this resource. Contains the project ID and the environment variable job override ID.
 func (o EnvironmentVariableJobOverrideOutput) EnvironmentVariableJobOverrideId() pulumi.IntOutput {
 	return o.ApplyT(func(v *EnvironmentVariableJobOverride) pulumi.IntOutput { return v.EnvironmentVariableJobOverrideId }).(pulumi.IntOutput)
 }
@@ -278,7 +291,7 @@ func (o EnvironmentVariableJobOverrideOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentVariableJobOverride) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The project ID for which the environment variable is being overridden
+// Project ID to create the environment variable job override in
 func (o EnvironmentVariableJobOverrideOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *EnvironmentVariableJobOverride) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }

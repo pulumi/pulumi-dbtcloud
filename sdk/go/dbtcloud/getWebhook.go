@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Retrieve webhook details
 func LookupWebhook(ctx *pulumi.Context, args *LookupWebhookArgs, opts ...pulumi.InvokeOption) (*LookupWebhookResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupWebhookResult
@@ -23,7 +24,9 @@ func LookupWebhook(ctx *pulumi.Context, args *LookupWebhookArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getWebhook.
 type LookupWebhookArgs struct {
-	// Webhooks ID
+	// Webhook's ID
+	//
+	// Deprecated: Use `id` instead
 	WebhookId string `pulumi:"webhookId"`
 }
 
@@ -41,13 +44,15 @@ type LookupWebhookResult struct {
 	EventTypes []string `pulumi:"eventTypes"`
 	// Webhooks HTTP Status Code
 	HttpStatusCode string `pulumi:"httpStatusCode"`
-	// The provider-assigned unique ID for this managed resource.
+	// Webhook's ID
 	Id string `pulumi:"id"`
 	// List of job IDs to trigger the webhook
 	JobIds []int `pulumi:"jobIds"`
 	// Webhooks Name
 	Name string `pulumi:"name"`
-	// Webhooks ID
+	// Webhook's ID
+	//
+	// Deprecated: Use `id` instead
 	WebhookId string `pulumi:"webhookId"`
 }
 
@@ -62,7 +67,9 @@ func LookupWebhookOutput(ctx *pulumi.Context, args LookupWebhookOutputArgs, opts
 
 // A collection of arguments for invoking getWebhook.
 type LookupWebhookOutputArgs struct {
-	// Webhooks ID
+	// Webhook's ID
+	//
+	// Deprecated: Use `id` instead
 	WebhookId pulumi.StringInput `pulumi:"webhookId"`
 }
 
@@ -115,7 +122,7 @@ func (o LookupWebhookResultOutput) HttpStatusCode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWebhookResult) string { return v.HttpStatusCode }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// Webhook's ID
 func (o LookupWebhookResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWebhookResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -130,7 +137,9 @@ func (o LookupWebhookResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWebhookResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Webhooks ID
+// Webhook's ID
+//
+// Deprecated: Use `id` instead
 func (o LookupWebhookResultOutput) WebhookId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWebhookResult) string { return v.WebhookId }).(pulumi.StringOutput)
 }

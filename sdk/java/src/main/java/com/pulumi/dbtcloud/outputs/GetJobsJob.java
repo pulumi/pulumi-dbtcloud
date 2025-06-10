@@ -30,9 +30,13 @@ public final class GetJobsJob {
      */
     private Integer deferringEnvironmentId;
     /**
-     * @return [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+     * @return [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+     * 
+     * @deprecated
+     * Deferral is now set at the environment level
      * 
      */
+    @Deprecated /* Deferral is now set at the environment level */
     private Integer deferringJobDefinitionId;
     /**
      * @return The description of the job
@@ -71,6 +75,11 @@ public final class GetJobsJob {
      */
     private GetJobsJobJobCompletionTriggerCondition jobCompletionTriggerCondition;
     /**
+     * @return The ID of the job
+     * 
+     */
+    private Integer jobId;
+    /**
      * @return The type of job (e.g. CI, scheduled)
      * 
      */
@@ -97,6 +106,15 @@ public final class GetJobsJob {
     private Boolean runGenerateSources;
     private GetJobsJobSchedule schedule;
     private GetJobsJobSettings settings;
+    /**
+     * @return [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+     * 
+     * @deprecated
+     * Moved to execution.timeout_seconds
+     * 
+     */
+    @Deprecated /* Moved to execution.timeout_seconds */
+    private Integer timeoutSeconds;
     private GetJobsJobTriggers triggers;
     /**
      * @return Whether the CI job should be automatically triggered on draft PRs
@@ -120,9 +138,13 @@ public final class GetJobsJob {
         return this.deferringEnvironmentId;
     }
     /**
-     * @return [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+     * @return [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+     * 
+     * @deprecated
+     * Deferral is now set at the environment level
      * 
      */
+    @Deprecated /* Deferral is now set at the environment level */
     public Integer deferringJobDefinitionId() {
         return this.deferringJobDefinitionId;
     }
@@ -179,6 +201,13 @@ public final class GetJobsJob {
         return this.jobCompletionTriggerCondition;
     }
     /**
+     * @return The ID of the job
+     * 
+     */
+    public Integer jobId() {
+        return this.jobId;
+    }
+    /**
      * @return The type of job (e.g. CI, scheduled)
      * 
      */
@@ -219,6 +248,17 @@ public final class GetJobsJob {
     public GetJobsJobSettings settings() {
         return this.settings;
     }
+    /**
+     * @return [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+     * 
+     * @deprecated
+     * Moved to execution.timeout_seconds
+     * 
+     */
+    @Deprecated /* Moved to execution.timeout_seconds */
+    public Integer timeoutSeconds() {
+        return this.timeoutSeconds;
+    }
     public GetJobsJobTriggers triggers() {
         return this.triggers;
     }
@@ -250,6 +290,7 @@ public final class GetJobsJob {
         private Boolean generateDocs;
         private Integer id;
         private GetJobsJobJobCompletionTriggerCondition jobCompletionTriggerCondition;
+        private Integer jobId;
         private String jobType;
         private String name;
         private Integer projectId;
@@ -257,6 +298,7 @@ public final class GetJobsJob {
         private Boolean runGenerateSources;
         private GetJobsJobSchedule schedule;
         private GetJobsJobSettings settings;
+        private Integer timeoutSeconds;
         private GetJobsJobTriggers triggers;
         private Boolean triggersOnDraftPr;
         public Builder() {}
@@ -273,6 +315,7 @@ public final class GetJobsJob {
     	      this.generateDocs = defaults.generateDocs;
     	      this.id = defaults.id;
     	      this.jobCompletionTriggerCondition = defaults.jobCompletionTriggerCondition;
+    	      this.jobId = defaults.jobId;
     	      this.jobType = defaults.jobType;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
@@ -280,6 +323,7 @@ public final class GetJobsJob {
     	      this.runGenerateSources = defaults.runGenerateSources;
     	      this.schedule = defaults.schedule;
     	      this.settings = defaults.settings;
+    	      this.timeoutSeconds = defaults.timeoutSeconds;
     	      this.triggers = defaults.triggers;
     	      this.triggersOnDraftPr = defaults.triggersOnDraftPr;
         }
@@ -376,6 +420,14 @@ public final class GetJobsJob {
             return this;
         }
         @CustomType.Setter
+        public Builder jobId(Integer jobId) {
+            if (jobId == null) {
+              throw new MissingRequiredPropertyException("GetJobsJob", "jobId");
+            }
+            this.jobId = jobId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder jobType(String jobType) {
             if (jobType == null) {
               throw new MissingRequiredPropertyException("GetJobsJob", "jobType");
@@ -432,6 +484,14 @@ public final class GetJobsJob {
             return this;
         }
         @CustomType.Setter
+        public Builder timeoutSeconds(Integer timeoutSeconds) {
+            if (timeoutSeconds == null) {
+              throw new MissingRequiredPropertyException("GetJobsJob", "timeoutSeconds");
+            }
+            this.timeoutSeconds = timeoutSeconds;
+            return this;
+        }
+        @CustomType.Setter
         public Builder triggers(GetJobsJobTriggers triggers) {
             if (triggers == null) {
               throw new MissingRequiredPropertyException("GetJobsJob", "triggers");
@@ -460,6 +520,7 @@ public final class GetJobsJob {
             _resultValue.generateDocs = generateDocs;
             _resultValue.id = id;
             _resultValue.jobCompletionTriggerCondition = jobCompletionTriggerCondition;
+            _resultValue.jobId = jobId;
             _resultValue.jobType = jobType;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
@@ -467,6 +528,7 @@ public final class GetJobsJob {
             _resultValue.runGenerateSources = runGenerateSources;
             _resultValue.schedule = schedule;
             _resultValue.settings = settings;
+            _resultValue.timeoutSeconds = timeoutSeconds;
             _resultValue.triggers = triggers;
             _resultValue.triggersOnDraftPr = triggersOnDraftPr;
             return _resultValue;

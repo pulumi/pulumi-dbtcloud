@@ -36,6 +36,20 @@ public class AccountFeatures extends com.pulumi.resources.CustomResource {
         return this.advancedCi;
     }
     /**
+     * Whether AI features are enabled.
+     * 
+     */
+    @Export(name="aiFeatures", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> aiFeatures;
+
+    /**
+     * @return Whether AI features are enabled.
+     * 
+     */
+    public Output<Boolean> aiFeatures() {
+        return this.aiFeatures;
+    }
+    /**
      * Whether partial parsing is enabled.
      * 
      */
@@ -62,6 +76,20 @@ public class AccountFeatures extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> repoCaching() {
         return this.repoCaching;
+    }
+    /**
+     * Whether warehouse cost visibility is enabled.
+     * 
+     */
+    @Export(name="warehouseCostVisibility", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> warehouseCostVisibility;
+
+    /**
+     * @return Whether warehouse cost visibility is enabled.
+     * 
+     */
+    public Output<Boolean> warehouseCostVisibility() {
+        return this.warehouseCostVisibility;
     }
 
     /**

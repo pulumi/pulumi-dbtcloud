@@ -24,6 +24,12 @@ namespace Pulumi.DbtCloud
         public Output<bool> AdvancedCi { get; private set; } = null!;
 
         /// <summary>
+        /// Whether AI features are enabled.
+        /// </summary>
+        [Output("aiFeatures")]
+        public Output<bool> AiFeatures { get; private set; } = null!;
+
+        /// <summary>
         /// Whether partial parsing is enabled.
         /// </summary>
         [Output("partialParsing")]
@@ -34,6 +40,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Output("repoCaching")]
         public Output<bool> RepoCaching { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether warehouse cost visibility is enabled.
+        /// </summary>
+        [Output("warehouseCostVisibility")]
+        public Output<bool> WarehouseCostVisibility { get; private set; } = null!;
 
 
         /// <summary>
@@ -89,6 +101,12 @@ namespace Pulumi.DbtCloud
         public Input<bool>? AdvancedCi { get; set; }
 
         /// <summary>
+        /// Whether AI features are enabled.
+        /// </summary>
+        [Input("aiFeatures")]
+        public Input<bool>? AiFeatures { get; set; }
+
+        /// <summary>
         /// Whether partial parsing is enabled.
         /// </summary>
         [Input("partialParsing")]
@@ -99,6 +117,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("repoCaching")]
         public Input<bool>? RepoCaching { get; set; }
+
+        /// <summary>
+        /// Whether warehouse cost visibility is enabled.
+        /// </summary>
+        [Input("warehouseCostVisibility")]
+        public Input<bool>? WarehouseCostVisibility { get; set; }
 
         public AccountFeaturesArgs()
         {
@@ -115,6 +139,12 @@ namespace Pulumi.DbtCloud
         public Input<bool>? AdvancedCi { get; set; }
 
         /// <summary>
+        /// Whether AI features are enabled.
+        /// </summary>
+        [Input("aiFeatures")]
+        public Input<bool>? AiFeatures { get; set; }
+
+        /// <summary>
         /// Whether partial parsing is enabled.
         /// </summary>
         [Input("partialParsing")]
@@ -125,6 +155,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("repoCaching")]
         public Input<bool>? RepoCaching { get; set; }
+
+        /// <summary>
+        /// Whether warehouse cost visibility is enabled.
+        /// </summary>
+        [Input("warehouseCostVisibility")]
+        public Input<bool>? WarehouseCostVisibility { get; set; }
 
         public AccountFeaturesState()
         {

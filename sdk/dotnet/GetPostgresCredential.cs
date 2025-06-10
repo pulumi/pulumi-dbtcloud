@@ -11,12 +11,21 @@ namespace Pulumi.DbtCloud
 {
     public static class GetPostgresCredential
     {
+        /// <summary>
+        /// Postgres credential data source.
+        /// </summary>
         public static Task<GetPostgresCredentialResult> InvokeAsync(GetPostgresCredentialArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPostgresCredentialResult>("dbtcloud:index/getPostgresCredential:getPostgresCredential", args ?? new GetPostgresCredentialArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Postgres credential data source.
+        /// </summary>
         public static Output<GetPostgresCredentialResult> Invoke(GetPostgresCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPostgresCredentialResult>("dbtcloud:index/getPostgresCredential:getPostgresCredential", args ?? new GetPostgresCredentialInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Postgres credential data source.
+        /// </summary>
         public static Output<GetPostgresCredentialResult> Invoke(GetPostgresCredentialInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetPostgresCredentialResult>("dbtcloud:index/getPostgresCredential:getPostgresCredential", args ?? new GetPostgresCredentialInvokeArgs(), options.WithDefaults());
     }
@@ -75,7 +84,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string DefaultSchema;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this data source. Contains the project ID and the credential ID.
         /// </summary>
         public readonly string Id;
         /// <summary>

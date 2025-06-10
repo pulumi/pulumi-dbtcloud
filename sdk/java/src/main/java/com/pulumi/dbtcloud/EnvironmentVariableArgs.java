@@ -49,14 +49,14 @@ public final class EnvironmentVariableArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Project for the variable to be created in
+     * Project ID to create the environment variable in
      * 
      */
     @Import(name="projectId", required=true)
     private Output<Integer> projectId;
 
     /**
-     * @return Project for the variable to be created in
+     * @return Project ID to create the environment variable in
      * 
      */
     public Output<Integer> projectId() {
@@ -132,7 +132,7 @@ public final class EnvironmentVariableArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param projectId Project for the variable to be created in
+         * @param projectId Project ID to create the environment variable in
          * 
          * @return builder
          * 
@@ -143,7 +143,7 @@ public final class EnvironmentVariableArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param projectId Project for the variable to be created in
+         * @param projectId Project ID to create the environment variable in
          * 
          * @return builder
          * 

@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Postgres credential resource.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -68,7 +70,7 @@ namespace Pulumi.DbtCloud
     public partial class PostgresCredential : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The system Postgres/Redshift/AlloyDB credential ID
+        /// The system Postgres/Redshift/AlloyDB credential ID.
         /// </summary>
         [Output("credentialId")]
         public Output<int> CredentialId { get; private set; } = null!;
@@ -83,13 +85,13 @@ namespace Pulumi.DbtCloud
         /// Whether the Postgres/Redshift/AlloyDB credential is active
         /// </summary>
         [Output("isActive")]
-        public Output<bool?> IsActive { get; private set; } = null!;
+        public Output<bool> IsActive { get; private set; } = null!;
 
         /// <summary>
-        /// Number of threads to use
+        /// Number of threads to use (required for Redshift)
         /// </summary>
         [Output("numThreads")]
-        public Output<int?> NumThreads { get; private set; } = null!;
+        public Output<int> NumThreads { get; private set; } = null!;
 
         /// <summary>
         /// Password for Postgres/Redshift/AlloyDB
@@ -98,7 +100,7 @@ namespace Pulumi.DbtCloud
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Project ID to create the Postgres/Redshift/AlloyDB credential in
+        /// Project ID to create the Postgres/Redshift/AlloyDB credential in.
         /// </summary>
         [Output("projectId")]
         public Output<int> ProjectId { get; private set; } = null!;
@@ -107,7 +109,7 @@ namespace Pulumi.DbtCloud
         /// Default schema name
         /// </summary>
         [Output("targetName")]
-        public Output<string?> TargetName { get; private set; } = null!;
+        public Output<string> TargetName { get; private set; } = null!;
 
         /// <summary>
         /// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
@@ -185,7 +187,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
-        /// Number of threads to use
+        /// Number of threads to use (required for Redshift)
         /// </summary>
         [Input("numThreads")]
         public Input<int>? NumThreads { get; set; }
@@ -207,7 +209,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// Project ID to create the Postgres/Redshift/AlloyDB credential in
+        /// Project ID to create the Postgres/Redshift/AlloyDB credential in.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<int> ProjectId { get; set; } = null!;
@@ -239,7 +241,7 @@ namespace Pulumi.DbtCloud
     public sealed class PostgresCredentialState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The system Postgres/Redshift/AlloyDB credential ID
+        /// The system Postgres/Redshift/AlloyDB credential ID.
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }
@@ -257,7 +259,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
-        /// Number of threads to use
+        /// Number of threads to use (required for Redshift)
         /// </summary>
         [Input("numThreads")]
         public Input<int>? NumThreads { get; set; }
@@ -279,7 +281,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// Project ID to create the Postgres/Redshift/AlloyDB credential in
+        /// Project ID to create the Postgres/Redshift/AlloyDB credential in.
         /// </summary>
         [Input("projectId")]
         public Input<int>? ProjectId { get; set; }

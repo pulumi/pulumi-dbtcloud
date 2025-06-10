@@ -14,10 +14,6 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class GetProjectsProjectResult
     {
         /// <summary>
-        /// Details for the connection linked to the project
-        /// </summary>
-        public readonly Outputs.GetProjectsProjectConnectionResult Connection;
-        /// <summary>
         /// When the project was created
         /// </summary>
         public readonly string CreatedAt;
@@ -38,6 +34,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Details for the connection linked to the project
+        /// </summary>
+        public readonly Outputs.GetProjectsProjectProjectConnectionResult ProjectConnection;
+        /// <summary>
         /// Details for the repository linked to the project
         /// </summary>
         public readonly Outputs.GetProjectsProjectRepositoryResult Repository;
@@ -46,14 +46,16 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int SemanticLayerConfigId;
         /// <summary>
+        /// The type of dbt project (default or hybrid)
+        /// </summary>
+        public readonly int Type;
+        /// <summary>
         /// When the project was last updated
         /// </summary>
         public readonly string UpdatedAt;
 
         [OutputConstructor]
         private GetProjectsProjectResult(
-            Outputs.GetProjectsProjectConnectionResult connection,
-
             string createdAt,
 
             string dbtProjectSubdirectory,
@@ -64,20 +66,25 @@ namespace Pulumi.DbtCloud.Outputs
 
             string name,
 
+            Outputs.GetProjectsProjectProjectConnectionResult projectConnection,
+
             Outputs.GetProjectsProjectRepositoryResult repository,
 
             int semanticLayerConfigId,
 
+            int type,
+
             string updatedAt)
         {
-            Connection = connection;
             CreatedAt = createdAt;
             DbtProjectSubdirectory = dbtProjectSubdirectory;
             Description = description;
             Id = id;
             Name = name;
+            ProjectConnection = projectConnection;
             Repository = repository;
             SemanticLayerConfigId = semanticLayerConfigId;
+            Type = type;
             UpdatedAt = updatedAt;
         }
     }

@@ -16,6 +16,10 @@ else:
 from . import _utilities
 
 __all__ = [
+    'BigquerySemanticLayerCredentialConfigurationArgs',
+    'BigquerySemanticLayerCredentialConfigurationArgsDict',
+    'BigquerySemanticLayerCredentialCredentialArgs',
+    'BigquerySemanticLayerCredentialCredentialArgsDict',
     'GlobalConnectionApacheSparkArgs',
     'GlobalConnectionApacheSparkArgsDict',
     'GlobalConnectionAthenaArgs',
@@ -40,6 +44,8 @@ __all__ = [
     'GlobalConnectionStarburstArgsDict',
     'GlobalConnectionSynapseArgs',
     'GlobalConnectionSynapseArgsDict',
+    'GlobalConnectionTeradataArgs',
+    'GlobalConnectionTeradataArgsDict',
     'GroupGroupPermissionArgs',
     'GroupGroupPermissionArgsDict',
     'GroupPartialPermissionsGroupPermissionArgs',
@@ -48,13 +54,225 @@ __all__ = [
     'IpRestrictionsRuleCidrArgsDict',
     'JobJobCompletionTriggerConditionArgs',
     'JobJobCompletionTriggerConditionArgsDict',
+    'JobTriggersArgs',
+    'JobTriggersArgsDict',
+    'RedshiftSemanticLayerCredentialConfigurationArgs',
+    'RedshiftSemanticLayerCredentialConfigurationArgsDict',
+    'RedshiftSemanticLayerCredentialCredentialArgs',
+    'RedshiftSemanticLayerCredentialCredentialArgsDict',
     'ServiceTokenServiceTokenPermissionArgs',
     'ServiceTokenServiceTokenPermissionArgsDict',
+    'SnowflakeSemanticLayerCredentialConfigurationArgs',
+    'SnowflakeSemanticLayerCredentialConfigurationArgsDict',
+    'SnowflakeSemanticLayerCredentialCredentialArgs',
+    'SnowflakeSemanticLayerCredentialCredentialArgsDict',
+    'GetJobJobCompletionTriggerConditionArgs',
+    'GetJobJobCompletionTriggerConditionArgsDict',
+    'GetRunsFilterArgs',
+    'GetRunsFilterArgsDict',
     'GetServiceTokenServiceTokenPermissionArgs',
     'GetServiceTokenServiceTokenPermissionArgsDict',
 ]
 
 MYPY = False
+
+if not MYPY:
+    class BigquerySemanticLayerCredentialConfigurationArgsDict(TypedDict):
+        adapter_version: pulumi.Input[builtins.str]
+        """
+        The adapter version
+        """
+        name: pulumi.Input[builtins.str]
+        """
+        The name of the configuration
+        """
+        project_id: pulumi.Input[builtins.int]
+        """
+        The ID of the project
+        """
+elif False:
+    BigquerySemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BigquerySemanticLayerCredentialConfigurationArgs:
+    def __init__(__self__, *,
+                 adapter_version: pulumi.Input[builtins.str],
+                 name: pulumi.Input[builtins.str],
+                 project_id: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.str] adapter_version: The adapter version
+        :param pulumi.Input[builtins.str] name: The name of the configuration
+        :param pulumi.Input[builtins.int] project_id: The ID of the project
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> pulumi.Input[builtins.str]:
+        """
+        The adapter version
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @adapter_version.setter
+    def adapter_version(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "adapter_version", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the configuration
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+
+if not MYPY:
+    class BigquerySemanticLayerCredentialCredentialArgsDict(TypedDict):
+        dataset: pulumi.Input[builtins.str]
+        """
+        Default dataset name
+        """
+        num_threads: pulumi.Input[builtins.int]
+        """
+        Number of threads to use
+        """
+        project_id: pulumi.Input[builtins.int]
+        """
+        Project ID to create the BigQuery credential in
+        """
+        credential_id: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The internal credential ID
+        """
+        id: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        is_active: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the BigQuery credential is active
+        """
+elif False:
+    BigquerySemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BigquerySemanticLayerCredentialCredentialArgs:
+    def __init__(__self__, *,
+                 dataset: pulumi.Input[builtins.str],
+                 num_threads: pulumi.Input[builtins.int],
+                 project_id: pulumi.Input[builtins.int],
+                 credential_id: Optional[pulumi.Input[builtins.int]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 is_active: Optional[pulumi.Input[builtins.bool]] = None):
+        """
+        :param pulumi.Input[builtins.str] dataset: Default dataset name
+        :param pulumi.Input[builtins.int] num_threads: Number of threads to use
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the BigQuery credential in
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
+        :param pulumi.Input[builtins.str] id: The ID of this resource. Contains the project ID and the credential ID.
+        :param pulumi.Input[builtins.bool] is_active: Whether the BigQuery credential is active
+        """
+        pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "num_threads", num_threads)
+        pulumi.set(__self__, "project_id", project_id)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+
+    @property
+    @pulumi.getter
+    def dataset(self) -> pulumi.Input[builtins.str]:
+        """
+        Default dataset name
+        """
+        return pulumi.get(self, "dataset")
+
+    @dataset.setter
+    def dataset(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "dataset", value)
+
+    @property
+    @pulumi.getter(name="numThreads")
+    def num_threads(self) -> pulumi.Input[builtins.int]:
+        """
+        Number of threads to use
+        """
+        return pulumi.get(self, "num_threads")
+
+    @num_threads.setter
+    def num_threads(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "num_threads", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        Project ID to create the BigQuery credential in
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The internal credential ID
+        """
+        return pulumi.get(self, "credential_id")
+
+    @credential_id.setter
+    def credential_id(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "credential_id", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the BigQuery credential is active
+        """
+        return pulumi.get(self, "is_active")
+
+    @is_active.setter
+    def is_active(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "is_active", value)
+
 
 if not MYPY:
     class GlobalConnectionApacheSparkArgsDict(TypedDict):
@@ -1986,6 +2204,116 @@ class GlobalConnectionSynapseArgs:
 
 
 if not MYPY:
+    class GlobalConnectionTeradataArgsDict(TypedDict):
+        host: pulumi.Input[builtins.str]
+        """
+        The hostname of the database.
+        """
+        tmode: pulumi.Input[builtins.str]
+        """
+        The transaction mode to use for the connection.
+        """
+        port: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The port to connect to for this connection. Default=1025
+        """
+        request_timeout: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        retries: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+elif False:
+    GlobalConnectionTeradataArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GlobalConnectionTeradataArgs:
+    def __init__(__self__, *,
+                 host: pulumi.Input[builtins.str],
+                 tmode: pulumi.Input[builtins.str],
+                 port: Optional[pulumi.Input[builtins.str]] = None,
+                 request_timeout: Optional[pulumi.Input[builtins.int]] = None,
+                 retries: Optional[pulumi.Input[builtins.int]] = None):
+        """
+        :param pulumi.Input[builtins.str] host: The hostname of the database.
+        :param pulumi.Input[builtins.str] tmode: The transaction mode to use for the connection.
+        :param pulumi.Input[builtins.str] port: The port to connect to for this connection. Default=1025
+        :param pulumi.Input[builtins.int] request_timeout: The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param pulumi.Input[builtins.int] retries: The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "tmode", tmode)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if request_timeout is not None:
+            pulumi.set(__self__, "request_timeout", request_timeout)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
+
+    @property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[builtins.str]:
+        """
+        The hostname of the database.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "host", value)
+
+    @property
+    @pulumi.getter
+    def tmode(self) -> pulumi.Input[builtins.str]:
+        """
+        The transaction mode to use for the connection.
+        """
+        return pulumi.get(self, "tmode")
+
+    @tmode.setter
+    def tmode(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "tmode", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The port to connect to for this connection. Default=1025
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="requestTimeout")
+    def request_timeout(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "request_timeout")
+
+    @request_timeout.setter
+    def request_timeout(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "request_timeout", value)
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        return pulumi.get(self, "retries")
+
+    @retries.setter
+    def retries(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "retries", value)
+
+
+if not MYPY:
     class GroupGroupPermissionArgsDict(TypedDict):
         all_projects: pulumi.Input[builtins.bool]
         """
@@ -2351,6 +2679,336 @@ class JobJobCompletionTriggerConditionArgs:
 
 
 if not MYPY:
+    class JobTriggersArgsDict(TypedDict):
+        git_provider_webhook: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the job runs automatically on PR creation
+        """
+        github_webhook: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the job runs automatically on PR creation
+        """
+        on_merge: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the job runs automatically once a PR is merged
+        """
+        schedule: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the job runs on a schedule
+        """
+elif False:
+    JobTriggersArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class JobTriggersArgs:
+    def __init__(__self__, *,
+                 git_provider_webhook: Optional[pulumi.Input[builtins.bool]] = None,
+                 github_webhook: Optional[pulumi.Input[builtins.bool]] = None,
+                 on_merge: Optional[pulumi.Input[builtins.bool]] = None,
+                 schedule: Optional[pulumi.Input[builtins.bool]] = None):
+        """
+        :param pulumi.Input[builtins.bool] git_provider_webhook: Whether the job runs automatically on PR creation
+        :param pulumi.Input[builtins.bool] github_webhook: Whether the job runs automatically on PR creation
+        :param pulumi.Input[builtins.bool] on_merge: Whether the job runs automatically once a PR is merged
+        :param pulumi.Input[builtins.bool] schedule: Whether the job runs on a schedule
+        """
+        if git_provider_webhook is not None:
+            pulumi.set(__self__, "git_provider_webhook", git_provider_webhook)
+        if github_webhook is not None:
+            pulumi.set(__self__, "github_webhook", github_webhook)
+        if on_merge is not None:
+            pulumi.set(__self__, "on_merge", on_merge)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
+
+    @property
+    @pulumi.getter(name="gitProviderWebhook")
+    def git_provider_webhook(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the job runs automatically on PR creation
+        """
+        return pulumi.get(self, "git_provider_webhook")
+
+    @git_provider_webhook.setter
+    def git_provider_webhook(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "git_provider_webhook", value)
+
+    @property
+    @pulumi.getter(name="githubWebhook")
+    def github_webhook(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the job runs automatically on PR creation
+        """
+        return pulumi.get(self, "github_webhook")
+
+    @github_webhook.setter
+    def github_webhook(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "github_webhook", value)
+
+    @property
+    @pulumi.getter(name="onMerge")
+    def on_merge(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the job runs automatically once a PR is merged
+        """
+        return pulumi.get(self, "on_merge")
+
+    @on_merge.setter
+    def on_merge(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "on_merge", value)
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the job runs on a schedule
+        """
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "schedule", value)
+
+
+if not MYPY:
+    class RedshiftSemanticLayerCredentialConfigurationArgsDict(TypedDict):
+        adapter_version: pulumi.Input[builtins.str]
+        """
+        The adapter version
+        """
+        name: pulumi.Input[builtins.str]
+        """
+        The name of the configuration
+        """
+        project_id: pulumi.Input[builtins.int]
+        """
+        The ID of the project
+        """
+elif False:
+    RedshiftSemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RedshiftSemanticLayerCredentialConfigurationArgs:
+    def __init__(__self__, *,
+                 adapter_version: pulumi.Input[builtins.str],
+                 name: pulumi.Input[builtins.str],
+                 project_id: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.str] adapter_version: The adapter version
+        :param pulumi.Input[builtins.str] name: The name of the configuration
+        :param pulumi.Input[builtins.int] project_id: The ID of the project
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> pulumi.Input[builtins.str]:
+        """
+        The adapter version
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @adapter_version.setter
+    def adapter_version(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "adapter_version", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the configuration
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+
+if not MYPY:
+    class RedshiftSemanticLayerCredentialCredentialArgsDict(TypedDict):
+        default_schema: pulumi.Input[builtins.str]
+        """
+        Default schema name
+        """
+        num_threads: pulumi.Input[builtins.int]
+        """
+        Number of threads to use
+        """
+        project_id: pulumi.Input[builtins.int]
+        """
+        Project ID to create the Redshift credential in
+        """
+        credential_id: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The internal credential ID
+        """
+        id: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        is_active: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the Redshift credential is active
+        """
+        password: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The password for the Redshift account
+        """
+        username: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The username for the Redshift account.
+        """
+elif False:
+    RedshiftSemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RedshiftSemanticLayerCredentialCredentialArgs:
+    def __init__(__self__, *,
+                 default_schema: pulumi.Input[builtins.str],
+                 num_threads: pulumi.Input[builtins.int],
+                 project_id: pulumi.Input[builtins.int],
+                 credential_id: Optional[pulumi.Input[builtins.int]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 is_active: Optional[pulumi.Input[builtins.bool]] = None,
+                 password: Optional[pulumi.Input[builtins.str]] = None,
+                 username: Optional[pulumi.Input[builtins.str]] = None):
+        """
+        :param pulumi.Input[builtins.str] default_schema: Default schema name
+        :param pulumi.Input[builtins.int] num_threads: Number of threads to use
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the Redshift credential in
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
+        :param pulumi.Input[builtins.str] id: The ID of this resource. Contains the project ID and the credential ID.
+        :param pulumi.Input[builtins.bool] is_active: Whether the Redshift credential is active
+        :param pulumi.Input[builtins.str] password: The password for the Redshift account
+        :param pulumi.Input[builtins.str] username: The username for the Redshift account.
+        """
+        pulumi.set(__self__, "default_schema", default_schema)
+        pulumi.set(__self__, "num_threads", num_threads)
+        pulumi.set(__self__, "project_id", project_id)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="defaultSchema")
+    def default_schema(self) -> pulumi.Input[builtins.str]:
+        """
+        Default schema name
+        """
+        return pulumi.get(self, "default_schema")
+
+    @default_schema.setter
+    def default_schema(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "default_schema", value)
+
+    @property
+    @pulumi.getter(name="numThreads")
+    def num_threads(self) -> pulumi.Input[builtins.int]:
+        """
+        Number of threads to use
+        """
+        return pulumi.get(self, "num_threads")
+
+    @num_threads.setter
+    def num_threads(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "num_threads", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        Project ID to create the Redshift credential in
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The internal credential ID
+        """
+        return pulumi.get(self, "credential_id")
+
+    @credential_id.setter
+    def credential_id(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "credential_id", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the Redshift credential is active
+        """
+        return pulumi.get(self, "is_active")
+
+    @is_active.setter
+    def is_active(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "is_active", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The password for the Redshift account
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The username for the Redshift account.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
+if not MYPY:
     class ServiceTokenServiceTokenPermissionArgsDict(TypedDict):
         all_projects: pulumi.Input[builtins.bool]
         """
@@ -2450,6 +3108,625 @@ class ServiceTokenServiceTokenPermissionArgs:
     @writable_environment_categories.setter
     def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "writable_environment_categories", value)
+
+
+if not MYPY:
+    class SnowflakeSemanticLayerCredentialConfigurationArgsDict(TypedDict):
+        adapter_version: pulumi.Input[builtins.str]
+        """
+        The adapter version
+        """
+        name: pulumi.Input[builtins.str]
+        """
+        The name of the configuration
+        """
+        project_id: pulumi.Input[builtins.int]
+        """
+        The ID of the project
+        """
+elif False:
+    SnowflakeSemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SnowflakeSemanticLayerCredentialConfigurationArgs:
+    def __init__(__self__, *,
+                 adapter_version: pulumi.Input[builtins.str],
+                 name: pulumi.Input[builtins.str],
+                 project_id: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.str] adapter_version: The adapter version
+        :param pulumi.Input[builtins.str] name: The name of the configuration
+        :param pulumi.Input[builtins.int] project_id: The ID of the project
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> pulumi.Input[builtins.str]:
+        """
+        The adapter version
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @adapter_version.setter
+    def adapter_version(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "adapter_version", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the configuration
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+
+if not MYPY:
+    class SnowflakeSemanticLayerCredentialCredentialArgsDict(TypedDict):
+        auth_type: pulumi.Input[builtins.str]
+        """
+        The type of Snowflake credential ('password' or 'keypair')
+        """
+        num_threads: pulumi.Input[builtins.int]
+        """
+        Number of threads to use
+        """
+        project_id: pulumi.Input[builtins.int]
+        """
+        Project ID to create the Snowflake credential in
+        """
+        credential_id: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The internal credential ID
+        """
+        database: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The catalog to connect use
+        """
+        id: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        is_active: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the Snowflake credential is active
+        """
+        password: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The password for the Snowflake account
+        """
+        private_key: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The private key for the Snowflake account
+        """
+        private_key_passphrase: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The passphrase for the private key
+        """
+        role: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The role to assume
+        """
+        schema: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        """
+        semantic_layer_credential: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        """
+        user: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        """
+        warehouse: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The warehouse to use
+        """
+elif False:
+    SnowflakeSemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SnowflakeSemanticLayerCredentialCredentialArgs:
+    def __init__(__self__, *,
+                 auth_type: pulumi.Input[builtins.str],
+                 num_threads: pulumi.Input[builtins.int],
+                 project_id: pulumi.Input[builtins.int],
+                 credential_id: Optional[pulumi.Input[builtins.int]] = None,
+                 database: Optional[pulumi.Input[builtins.str]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 is_active: Optional[pulumi.Input[builtins.bool]] = None,
+                 password: Optional[pulumi.Input[builtins.str]] = None,
+                 private_key: Optional[pulumi.Input[builtins.str]] = None,
+                 private_key_passphrase: Optional[pulumi.Input[builtins.str]] = None,
+                 role: Optional[pulumi.Input[builtins.str]] = None,
+                 schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
+                 user: Optional[pulumi.Input[builtins.str]] = None,
+                 warehouse: Optional[pulumi.Input[builtins.str]] = None):
+        """
+        :param pulumi.Input[builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
+        :param pulumi.Input[builtins.int] num_threads: Number of threads to use
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the Snowflake credential in
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
+        :param pulumi.Input[builtins.str] database: The catalog to connect use
+        :param pulumi.Input[builtins.str] id: The ID of this resource. Contains the project ID and the credential ID.
+        :param pulumi.Input[builtins.bool] is_active: Whether the Snowflake credential is active
+        :param pulumi.Input[builtins.str] password: The password for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key: The private key for the Snowflake account
+        :param pulumi.Input[builtins.str] private_key_passphrase: The passphrase for the private key
+        :param pulumi.Input[builtins.str] role: The role to assume
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        :param pulumi.Input[builtins.str] user: The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param pulumi.Input[builtins.str] warehouse: The warehouse to use
+        """
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "num_threads", num_threads)
+        pulumi.set(__self__, "project_id", project_id)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_passphrase is not None:
+            pulumi.set(__self__, "private_key_passphrase", private_key_passphrase)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+        if warehouse is not None:
+            pulumi.set(__self__, "warehouse", warehouse)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[builtins.str]:
+        """
+        The type of Snowflake credential ('password' or 'keypair')
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "auth_type", value)
+
+    @property
+    @pulumi.getter(name="numThreads")
+    def num_threads(self) -> pulumi.Input[builtins.int]:
+        """
+        Number of threads to use
+        """
+        return pulumi.get(self, "num_threads")
+
+    @num_threads.setter
+    def num_threads(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "num_threads", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        Project ID to create the Snowflake credential in
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The internal credential ID
+        """
+        return pulumi.get(self, "credential_id")
+
+    @credential_id.setter
+    def credential_id(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "credential_id", value)
+
+    @property
+    @pulumi.getter
+    def database(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The catalog to connect use
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "database", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the Snowflake credential is active
+        """
+        return pulumi.get(self, "is_active")
+
+    @is_active.setter
+    def is_active(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "is_active", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The password for the Snowflake account
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The private key for the Snowflake account
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="privateKeyPassphrase")
+    def private_key_passphrase(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The passphrase for the private key
+        """
+        return pulumi.get(self, "private_key_passphrase")
+
+    @private_key_passphrase.setter
+    def private_key_passphrase(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "private_key_passphrase", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The role to assume
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def schema(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        """
+        return pulumi.get(self, "schema")
+
+    @schema.setter
+    def schema(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "schema", value)
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "user", value)
+
+    @property
+    @pulumi.getter
+    def warehouse(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The warehouse to use
+        """
+        return pulumi.get(self, "warehouse")
+
+    @warehouse.setter
+    def warehouse(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "warehouse", value)
+
+
+if not MYPY:
+    class GetJobJobCompletionTriggerConditionArgsDict(TypedDict):
+        job_id: builtins.int
+        """
+        The ID of the job that would trigger this job after completion.
+        """
+        project_id: builtins.int
+        """
+        The ID of the project where the trigger job is running in.
+        """
+        statuses: Sequence[builtins.str]
+        """
+        List of statuses to trigger the job on.
+        """
+elif False:
+    GetJobJobCompletionTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetJobJobCompletionTriggerConditionArgs:
+    def __init__(__self__, *,
+                 job_id: builtins.int,
+                 project_id: builtins.int,
+                 statuses: Sequence[builtins.str]):
+        """
+        :param builtins.int job_id: The ID of the job that would trigger this job after completion.
+        :param builtins.int project_id: The ID of the project where the trigger job is running in.
+        :param Sequence[builtins.str] statuses: List of statuses to trigger the job on.
+        """
+        pulumi.set(__self__, "job_id", job_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "statuses", statuses)
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> builtins.int:
+        """
+        The ID of the job that would trigger this job after completion.
+        """
+        return pulumi.get(self, "job_id")
+
+    @job_id.setter
+    def job_id(self, value: builtins.int):
+        pulumi.set(self, "job_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.int:
+        """
+        The ID of the project where the trigger job is running in.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: builtins.int):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def statuses(self) -> Sequence[builtins.str]:
+        """
+        List of statuses to trigger the job on.
+        """
+        return pulumi.get(self, "statuses")
+
+    @statuses.setter
+    def statuses(self, value: Sequence[builtins.str]):
+        pulumi.set(self, "statuses", value)
+
+
+if not MYPY:
+    class GetRunsFilterArgsDict(TypedDict):
+        environment_id: NotRequired[builtins.int]
+        """
+        The ID of the environment
+        """
+        job_definition_id: NotRequired[builtins.int]
+        """
+        The ID of the job definition
+        """
+        limit: NotRequired[builtins.int]
+        """
+        The limit of the runs
+        """
+        project_id: NotRequired[builtins.int]
+        """
+        The ID of the project
+        """
+        pull_request_id: NotRequired[builtins.int]
+        """
+        The ID of the pull request
+        """
+        status: NotRequired[builtins.int]
+        """
+        The status of the run
+        """
+        status_in: NotRequired[builtins.str]
+        """
+        The status of the run
+        """
+        trigger_id: NotRequired[builtins.int]
+        """
+        The ID of the trigger
+        """
+elif False:
+    GetRunsFilterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetRunsFilterArgs:
+    def __init__(__self__, *,
+                 environment_id: Optional[builtins.int] = None,
+                 job_definition_id: Optional[builtins.int] = None,
+                 limit: Optional[builtins.int] = None,
+                 project_id: Optional[builtins.int] = None,
+                 pull_request_id: Optional[builtins.int] = None,
+                 status: Optional[builtins.int] = None,
+                 status_in: Optional[builtins.str] = None,
+                 trigger_id: Optional[builtins.int] = None):
+        """
+        :param builtins.int environment_id: The ID of the environment
+        :param builtins.int job_definition_id: The ID of the job definition
+        :param builtins.int limit: The limit of the runs
+        :param builtins.int project_id: The ID of the project
+        :param builtins.int pull_request_id: The ID of the pull request
+        :param builtins.int status: The status of the run
+        :param builtins.str status_in: The status of the run
+        :param builtins.int trigger_id: The ID of the trigger
+        """
+        if environment_id is not None:
+            pulumi.set(__self__, "environment_id", environment_id)
+        if job_definition_id is not None:
+            pulumi.set(__self__, "job_definition_id", job_definition_id)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if pull_request_id is not None:
+            pulumi.set(__self__, "pull_request_id", pull_request_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if status_in is not None:
+            pulumi.set(__self__, "status_in", status_in)
+        if trigger_id is not None:
+            pulumi.set(__self__, "trigger_id", trigger_id)
+
+    @property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the environment
+        """
+        return pulumi.get(self, "environment_id")
+
+    @environment_id.setter
+    def environment_id(self, value: Optional[builtins.int]):
+        pulumi.set(self, "environment_id", value)
+
+    @property
+    @pulumi.getter(name="jobDefinitionId")
+    def job_definition_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the job definition
+        """
+        return pulumi.get(self, "job_definition_id")
+
+    @job_definition_id.setter
+    def job_definition_id(self, value: Optional[builtins.int]):
+        pulumi.set(self, "job_definition_id", value)
+
+    @property
+    @pulumi.getter
+    def limit(self) -> Optional[builtins.int]:
+        """
+        The limit of the runs
+        """
+        return pulumi.get(self, "limit")
+
+    @limit.setter
+    def limit(self, value: Optional[builtins.int]):
+        pulumi.set(self, "limit", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="pullRequestId")
+    def pull_request_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the pull request
+        """
+        return pulumi.get(self, "pull_request_id")
+
+    @pull_request_id.setter
+    def pull_request_id(self, value: Optional[builtins.int]):
+        pulumi.set(self, "pull_request_id", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[builtins.int]:
+        """
+        The status of the run
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[builtins.int]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="statusIn")
+    def status_in(self) -> Optional[builtins.str]:
+        """
+        The status of the run
+        """
+        return pulumi.get(self, "status_in")
+
+    @status_in.setter
+    def status_in(self, value: Optional[builtins.str]):
+        pulumi.set(self, "status_in", value)
+
+    @property
+    @pulumi.getter(name="triggerId")
+    def trigger_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the trigger
+        """
+        return pulumi.get(self, "trigger_id")
+
+    @trigger_id.setter
+    def trigger_id(self, value: Optional[builtins.int]):
+        pulumi.set(self, "trigger_id", value)
 
 
 if not MYPY:

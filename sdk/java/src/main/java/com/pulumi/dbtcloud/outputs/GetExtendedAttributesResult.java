@@ -12,22 +12,22 @@ import java.util.Objects;
 @CustomType
 public final class GetExtendedAttributesResult {
     /**
-     * @return A JSON string listing the extended attributes mapping
+     * @return Extended attributes
      * 
      */
     private String extendedAttributes;
     /**
-     * @return ID of the extended attributes
+     * @return Extended attributes ID
      * 
      */
     private Integer extendedAttributesId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the credential ID.
      * 
      */
     private String id;
     /**
-     * @return Project ID the extended attributes refers to
+     * @return Project ID
      * 
      */
     private Integer projectId;
@@ -39,28 +39,28 @@ public final class GetExtendedAttributesResult {
 
     private GetExtendedAttributesResult() {}
     /**
-     * @return A JSON string listing the extended attributes mapping
+     * @return Extended attributes
      * 
      */
     public String extendedAttributes() {
         return this.extendedAttributes;
     }
     /**
-     * @return ID of the extended attributes
+     * @return Extended attributes ID
      * 
      */
     public Integer extendedAttributesId() {
         return this.extendedAttributesId;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the credential ID.
      * 
      */
     public String id() {
         return this.id;
     }
     /**
-     * @return Project ID the extended attributes refers to
+     * @return Project ID
      * 
      */
     public Integer projectId() {

@@ -10,11 +10,13 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.dbtcloud.ProjectArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.ProjectState;
+import java.lang.Integer;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Manages a dbt Cloud project.
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -51,7 +53,7 @@ import javax.annotation.Nullable;
  * 
  *         var dbtProjectWithSubdir = new Project("dbtProjectWithSubdir", ProjectArgs.builder()
  *             .name("Analytics in Subdir")
- *             .dbtProjectSubdirectory("/path")
+ *             .dbtProjectSubdirectory("path")
  *             .build());
  * 
  *     }
@@ -94,32 +96,32 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/project:Project")
 public class Project extends com.pulumi.resources.CustomResource {
     /**
-     * dbt project subdirectory path
+     * DBT project subdirectory
      * 
      */
     @Export(name="dbtProjectSubdirectory", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> dbtProjectSubdirectory;
+    private Output<String> dbtProjectSubdirectory;
 
     /**
-     * @return dbt project subdirectory path
+     * @return DBT project subdirectory
      * 
      */
-    public Output<Optional<String>> dbtProjectSubdirectory() {
-        return Codegen.optional(this.dbtProjectSubdirectory);
+    public Output<String> dbtProjectSubdirectory() {
+        return this.dbtProjectSubdirectory;
     }
     /**
      * Description for the project. Will show in dbt Explorer.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> description;
+    private Output<String> description;
 
     /**
      * @return Description for the project. Will show in dbt Explorer.
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
     }
     /**
      * Project name
@@ -134,6 +136,20 @@ public class Project extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The type of dbt project (0=default or 1=hybrid)
+     * 
+     */
+    @Export(name="type", refs={Integer.class}, tree="[0]")
+    private Output<Integer> type;
+
+    /**
+     * @return The type of dbt project (0=default or 1=hybrid)
+     * 
+     */
+    public Output<Integer> type() {
+        return this.type;
     }
 
     /**

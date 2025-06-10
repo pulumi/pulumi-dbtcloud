@@ -8,8 +8,7 @@ import * as utilities from "./utilities";
  * Assigns a set of dbt Cloud groups to a given User ID.
  *
  * > If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.
- *
- * > This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
+ * This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
  * This is intentional in order to prevent accidental deletion of all users groups assigned to a user.
  * If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set "groupIds" to the empty set "[]".
  *
@@ -100,7 +99,7 @@ export class UserGroups extends pulumi.CustomResource {
      */
     public readonly groupIds!: pulumi.Output<number[]>;
     /**
-     * The internal ID of a dbt Cloud user
+     * The internal ID of a dbt Cloud user.
      */
     public readonly userId!: pulumi.Output<number>;
 
@@ -144,7 +143,7 @@ export interface UserGroupsState {
      */
     groupIds?: pulumi.Input<pulumi.Input<number>[]>;
     /**
-     * The internal ID of a dbt Cloud user
+     * The internal ID of a dbt Cloud user.
      */
     userId?: pulumi.Input<number>;
 }
@@ -158,7 +157,7 @@ export interface UserGroupsArgs {
      */
     groupIds: pulumi.Input<pulumi.Input<number>[]>;
     /**
-     * The internal ID of a dbt Cloud user
+     * The internal ID of a dbt Cloud user.
      */
     userId: pulumi.Input<number>;
 }

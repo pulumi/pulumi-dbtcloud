@@ -97,6 +97,10 @@ export interface GetGlobalConnectionResult {
      * Azure Synapse Analytics connection configuration.
      */
     readonly synapse: outputs.GetGlobalConnectionSynapse;
+    /**
+     * Teradata connection configuration.
+     */
+    readonly teradata: outputs.GetGlobalConnectionTeradata;
 }
 /**
  * ## Example Usage

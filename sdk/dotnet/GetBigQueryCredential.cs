@@ -11,12 +11,21 @@ namespace Pulumi.DbtCloud
 {
     public static class GetBigQueryCredential
     {
+        /// <summary>
+        /// Bigquery credential data source
+        /// </summary>
         public static Task<GetBigQueryCredentialResult> InvokeAsync(GetBigQueryCredentialArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBigQueryCredentialResult>("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", args ?? new GetBigQueryCredentialArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Bigquery credential data source
+        /// </summary>
         public static Output<GetBigQueryCredentialResult> Invoke(GetBigQueryCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBigQueryCredentialResult>("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", args ?? new GetBigQueryCredentialInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Bigquery credential data source
+        /// </summary>
         public static Output<GetBigQueryCredentialResult> Invoke(GetBigQueryCredentialInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetBigQueryCredentialResult>("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", args ?? new GetBigQueryCredentialInvokeArgs(), options.WithDefaults());
     }
@@ -75,7 +84,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string Dataset;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this data source. Contains the project ID and the credential ID.
         /// </summary>
         public readonly string Id;
         /// <summary>

@@ -16,56 +16,40 @@ public final class GetProjectPlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetProjectPlainArgs Empty = new GetProjectPlainArgs();
 
     /**
-     * The description of the project
+     * Project ID
      * 
      */
-    @Import(name="description")
-    private @Nullable String description;
+    @Import(name="id")
+    private @Nullable Integer id;
 
     /**
-     * @return The description of the project
+     * @return Project ID
      * 
      */
-    public Optional<String> description() {
-        return Optional.ofNullable(this.description);
+    public Optional<Integer> id() {
+        return Optional.ofNullable(this.id);
     }
 
     /**
-     * Given name for project
+     * Project name
      * 
      */
     @Import(name="name")
     private @Nullable String name;
 
     /**
-     * @return Given name for project
+     * @return Project name
      * 
      */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * ID of the project to represent
-     * 
-     */
-    @Import(name="projectId")
-    private @Nullable Integer projectId;
-
-    /**
-     * @return ID of the project to represent
-     * 
-     */
-    public Optional<Integer> projectId() {
-        return Optional.ofNullable(this.projectId);
-    }
-
     private GetProjectPlainArgs() {}
 
     private GetProjectPlainArgs(GetProjectPlainArgs $) {
-        this.description = $.description;
+        this.id = $.id;
         this.name = $.name;
-        this.projectId = $.projectId;
     }
 
     public static Builder builder() {
@@ -87,35 +71,24 @@ public final class GetProjectPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param description The description of the project
+         * @param id Project ID
          * 
          * @return builder
          * 
          */
-        public Builder description(@Nullable String description) {
-            $.description = description;
+        public Builder id(@Nullable Integer id) {
+            $.id = id;
             return this;
         }
 
         /**
-         * @param name Given name for project
+         * @param name Project name
          * 
          * @return builder
          * 
          */
         public Builder name(@Nullable String name) {
             $.name = name;
-            return this;
-        }
-
-        /**
-         * @param projectId ID of the project to represent
-         * 
-         * @return builder
-         * 
-         */
-        public Builder projectId(@Nullable Integer projectId) {
-            $.projectId = projectId;
             return this;
         }
 

@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Privatelink endpoint data source.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -30,6 +32,7 @@ export function getPrivatelinkEndpoint(args?: GetPrivatelinkEndpointArgs, opts?:
     return pulumi.runtime.invoke("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", {
         "name": args.name,
         "privateLinkEndpointUrl": args.privateLinkEndpointUrl,
+        "type": args.type,
     }, opts);
 }
 
@@ -42,9 +45,13 @@ export interface GetPrivatelinkEndpointArgs {
      */
     name?: string;
     /**
-     * The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      */
     privateLinkEndpointUrl?: string;
+    /**
+     * Type of the PrivateLink Endpoint
+     */
+    type?: string;
 }
 
 /**
@@ -52,7 +59,7 @@ export interface GetPrivatelinkEndpointArgs {
  */
 export interface GetPrivatelinkEndpointResult {
     /**
-     * The CIDR range of the PrivateLink Endpoint
+     * CIDR range of the PrivateLink Endpoint
      */
     readonly cidrRange: string;
     /**
@@ -64,21 +71,17 @@ export interface GetPrivatelinkEndpointResult {
      */
     readonly name?: string;
     /**
-     * The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      */
     readonly privateLinkEndpointUrl?: string;
-    /**
-     * PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
-     *
-     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
-     */
-    readonly state: number;
     /**
      * Type of the PrivateLink Endpoint
      */
     readonly type: string;
 }
 /**
+ * Privatelink endpoint data source.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -104,6 +107,7 @@ export function getPrivatelinkEndpointOutput(args?: GetPrivatelinkEndpointOutput
     return pulumi.runtime.invokeOutput("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", {
         "name": args.name,
         "privateLinkEndpointUrl": args.privateLinkEndpointUrl,
+        "type": args.type,
     }, opts);
 }
 
@@ -116,7 +120,11 @@ export interface GetPrivatelinkEndpointOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      */
     privateLinkEndpointUrl?: pulumi.Input<string>;
+    /**
+     * Type of the PrivateLink Endpoint
+     */
+    type?: pulumi.Input<string>;
 }

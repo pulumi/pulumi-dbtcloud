@@ -5,12 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Resource to manage dbt Cloud environments for the different dbt Cloud projects.
- *
- * In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
- *
- * > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects.
- * This version of the provider has the `connectionId` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+ * Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connectionId as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
  *
  * ## Example Usage
  *
@@ -104,45 +99,44 @@ export class Environment extends pulumi.CustomResource {
         return obj['__pulumiType'] === Environment.__pulumiType;
     }
 
-    public readonly connectionId!: pulumi.Output<number | undefined>;
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required
-     * for deployment environments
+     * A connection ID (used with Global Connections)
      */
-    public readonly credentialId!: pulumi.Output<number | undefined>;
+    public readonly connectionId!: pulumi.Output<number>;
     /**
-     * Which custom branch to use in this environment
+     * The project ID to which the environment belongs.
+     */
+    public readonly credentialId!: pulumi.Output<number>;
+    /**
+     * The custom branch name to use
      */
     public readonly customBranch!: pulumi.Output<string | undefined>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-     * is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      */
-    public readonly dbtVersion!: pulumi.Output<string | undefined>;
+    public readonly dbtVersion!: pulumi.Output<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-     * 'staging' or left empty for generic environments
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
     public readonly deploymentType!: pulumi.Output<string | undefined>;
     /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      */
-    public readonly enableModelQueryHistory!: pulumi.Output<boolean | undefined>;
+    public readonly enableModelQueryHistory!: pulumi.Output<boolean>;
     /**
-     * Environment ID within the project
+     * The ID of the environment. Duplicated. Here for backward compatibility.
      */
     public /*out*/ readonly environmentId!: pulumi.Output<number>;
     /**
-     * ID of the extended attributes for the environment
+     * The ID of the extended attributes applied
      */
-    public readonly extendedAttributesId!: pulumi.Output<number | undefined>;
+    public readonly extendedAttributesId!: pulumi.Output<number>;
     /**
      * Whether the environment is active
      */
-    public readonly isActive!: pulumi.Output<boolean | undefined>;
+    public readonly isActive!: pulumi.Output<boolean>;
     /**
-     * Environment name
+     * The name of the environment
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -156,7 +150,7 @@ export class Environment extends pulumi.CustomResource {
     /**
      * Whether to use a custom git branch in this environment
      */
-    public readonly useCustomBranch!: pulumi.Output<boolean | undefined>;
+    public readonly useCustomBranch!: pulumi.Output<boolean>;
 
     /**
      * Create a Environment resource with the given unique name, arguments, and options.
@@ -215,25 +209,24 @@ export class Environment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Environment resources.
  */
 export interface EnvironmentState {
+    /**
+     * A connection ID (used with Global Connections)
+     */
     connectionId?: pulumi.Input<number>;
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required
-     * for deployment environments
+     * The project ID to which the environment belongs.
      */
     credentialId?: pulumi.Input<number>;
     /**
-     * Which custom branch to use in this environment
+     * The custom branch name to use
      */
     customBranch?: pulumi.Input<string>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-     * is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      */
     dbtVersion?: pulumi.Input<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-     * 'staging' or left empty for generic environments
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string>;
     /**
@@ -241,11 +234,11 @@ export interface EnvironmentState {
      */
     enableModelQueryHistory?: pulumi.Input<boolean>;
     /**
-     * Environment ID within the project
+     * The ID of the environment. Duplicated. Here for backward compatibility.
      */
     environmentId?: pulumi.Input<number>;
     /**
-     * ID of the extended attributes for the environment
+     * The ID of the extended attributes applied
      */
     extendedAttributesId?: pulumi.Input<number>;
     /**
@@ -253,7 +246,7 @@ export interface EnvironmentState {
      */
     isActive?: pulumi.Input<boolean>;
     /**
-     * Environment name
+     * The name of the environment
      */
     name?: pulumi.Input<string>;
     /**
@@ -274,25 +267,24 @@ export interface EnvironmentState {
  * The set of arguments for constructing a Environment resource.
  */
 export interface EnvironmentArgs {
+    /**
+     * A connection ID (used with Global Connections)
+     */
     connectionId?: pulumi.Input<number>;
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required
-     * for deployment environments
+     * The project ID to which the environment belongs.
      */
     credentialId?: pulumi.Input<number>;
     /**
-     * Which custom branch to use in this environment
+     * The custom branch name to use
      */
     customBranch?: pulumi.Input<string>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-     * is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      */
     dbtVersion?: pulumi.Input<string>;
     /**
-     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-     * 'staging' or left empty for generic environments
+     * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string>;
     /**
@@ -300,7 +292,7 @@ export interface EnvironmentArgs {
      */
     enableModelQueryHistory?: pulumi.Input<boolean>;
     /**
-     * ID of the extended attributes for the environment
+     * The ID of the extended attributes applied
      */
     extendedAttributesId?: pulumi.Input<number>;
     /**
@@ -308,7 +300,7 @@ export interface EnvironmentArgs {
      */
     isActive?: pulumi.Input<boolean>;
     /**
-     * Environment name
+     * The name of the environment
      */
     name?: pulumi.Input<string>;
     /**

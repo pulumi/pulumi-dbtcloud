@@ -18,14 +18,14 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
     public static final BigQueryCredentialState Empty = new BigQueryCredentialState();
 
     /**
-     * The system BigQuery credential ID
+     * The internal credential ID
      * 
      */
     @Import(name="credentialId")
     private @Nullable Output<Integer> credentialId;
 
     /**
-     * @return The system BigQuery credential ID
+     * @return The internal credential ID
      * 
      */
     public Optional<Output<Integer>> credentialId() {
@@ -121,7 +121,7 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param credentialId The system BigQuery credential ID
+         * @param credentialId The internal credential ID
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param credentialId The system BigQuery credential ID
+         * @param credentialId The internal credential ID
          * 
          * @return builder
          * 

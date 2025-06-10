@@ -15,8 +15,6 @@ import (
 //
 // Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connectionId` field in the `Environment` resource.
 //
-// All connections types are supported, and the old resources `Connection`, `BigQueryConnection` and `FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
-//
 // ## Import
 //
 // # A project-scoped connection can be imported as a global connection by specifying the connection ID
@@ -88,6 +86,8 @@ type GlobalConnection struct {
 	Starburst GlobalConnectionStarburstPtrOutput `pulumi:"starburst"`
 	// Azure Synapse Analytics connection configuration.
 	Synapse GlobalConnectionSynapsePtrOutput `pulumi:"synapse"`
+	// Teradata connection configuration.
+	Teradata GlobalConnectionTeradataPtrOutput `pulumi:"teradata"`
 }
 
 // NewGlobalConnection registers a new resource with the given unique name, arguments, and options.
@@ -149,6 +149,8 @@ type globalConnectionState struct {
 	Starburst *GlobalConnectionStarburst `pulumi:"starburst"`
 	// Azure Synapse Analytics connection configuration.
 	Synapse *GlobalConnectionSynapse `pulumi:"synapse"`
+	// Teradata connection configuration.
+	Teradata *GlobalConnectionTeradata `pulumi:"teradata"`
 }
 
 type GlobalConnectionState struct {
@@ -181,6 +183,8 @@ type GlobalConnectionState struct {
 	Starburst GlobalConnectionStarburstPtrInput
 	// Azure Synapse Analytics connection configuration.
 	Synapse GlobalConnectionSynapsePtrInput
+	// Teradata connection configuration.
+	Teradata GlobalConnectionTeradataPtrInput
 }
 
 func (GlobalConnectionState) ElementType() reflect.Type {
@@ -213,6 +217,8 @@ type globalConnectionArgs struct {
 	Starburst *GlobalConnectionStarburst `pulumi:"starburst"`
 	// Azure Synapse Analytics connection configuration.
 	Synapse *GlobalConnectionSynapse `pulumi:"synapse"`
+	// Teradata connection configuration.
+	Teradata *GlobalConnectionTeradata `pulumi:"teradata"`
 }
 
 // The set of arguments for constructing a GlobalConnection resource.
@@ -242,6 +248,8 @@ type GlobalConnectionArgs struct {
 	Starburst GlobalConnectionStarburstPtrInput
 	// Azure Synapse Analytics connection configuration.
 	Synapse GlobalConnectionSynapsePtrInput
+	// Teradata connection configuration.
+	Teradata GlobalConnectionTeradataPtrInput
 }
 
 func (GlobalConnectionArgs) ElementType() reflect.Type {
@@ -403,6 +411,11 @@ func (o GlobalConnectionOutput) Starburst() GlobalConnectionStarburstPtrOutput {
 // Azure Synapse Analytics connection configuration.
 func (o GlobalConnectionOutput) Synapse() GlobalConnectionSynapsePtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionSynapsePtrOutput { return v.Synapse }).(GlobalConnectionSynapsePtrOutput)
+}
+
+// Teradata connection configuration.
+func (o GlobalConnectionOutput) Teradata() GlobalConnectionTeradataPtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionTeradataPtrOutput { return v.Teradata }).(GlobalConnectionTeradataPtrOutput)
 }
 
 type GlobalConnectionArrayOutput struct{ *pulumi.OutputState }

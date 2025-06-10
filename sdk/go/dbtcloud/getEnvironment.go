@@ -26,15 +26,14 @@ func LookupEnvironment(ctx *pulumi.Context, args *LookupEnvironmentArgs, opts ..
 type LookupEnvironmentArgs struct {
 	// The ID of the environment
 	EnvironmentId int `pulumi:"environmentId"`
-	// The project ID to which the environment belong
+	// The project ID to which the environment belongs
 	ProjectId int `pulumi:"projectId"`
 }
 
 // A collection of values returned by getEnvironment.
 type LookupEnvironmentResult struct {
-	// A connection ID (used with Global Connections)
 	ConnectionId int `pulumi:"connectionId"`
-	// The project ID to which the environment belong
+	// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
 	CredentialsId int `pulumi:"credentialsId"`
 	// The custom branch name to use
 	CustomBranch string `pulumi:"customBranch"`
@@ -52,7 +51,7 @@ type LookupEnvironmentResult struct {
 	Id string `pulumi:"id"`
 	// The name of the environment
 	Name string `pulumi:"name"`
-	// The project ID to which the environment belong
+	// The project ID to which the environment belongs
 	ProjectId int `pulumi:"projectId"`
 	// The type of environment (must be either development or deployment)
 	Type string `pulumi:"type"`
@@ -73,7 +72,7 @@ func LookupEnvironmentOutput(ctx *pulumi.Context, args LookupEnvironmentOutputAr
 type LookupEnvironmentOutputArgs struct {
 	// The ID of the environment
 	EnvironmentId pulumi.IntInput `pulumi:"environmentId"`
-	// The project ID to which the environment belong
+	// The project ID to which the environment belongs
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
 }
 
@@ -96,12 +95,11 @@ func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutputWithContex
 	return o
 }
 
-// A connection ID (used with Global Connections)
 func (o LookupEnvironmentResultOutput) ConnectionId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.ConnectionId }).(pulumi.IntOutput)
 }
 
-// The project ID to which the environment belong
+// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
 func (o LookupEnvironmentResultOutput) CredentialsId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.CredentialsId }).(pulumi.IntOutput)
 }
@@ -146,7 +144,7 @@ func (o LookupEnvironmentResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The project ID to which the environment belong
+// The project ID to which the environment belongs
 func (o LookupEnvironmentResultOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.ProjectId }).(pulumi.IntOutput)
 }

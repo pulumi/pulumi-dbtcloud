@@ -42,7 +42,7 @@ class GetUserGroupsResult:
     @pulumi.getter(name="groupIds")
     def group_ids(self) -> Sequence[builtins.int]:
         """
-        IDs of the groups assigned to the user
+        IDs of the groups assigned to the user.
         """
         return pulumi.get(self, "group_ids")
 
@@ -50,7 +50,7 @@ class GetUserGroupsResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource. It is the same as the user_id.
         """
         return pulumi.get(self, "id")
 
@@ -58,7 +58,7 @@ class GetUserGroupsResult:
     @pulumi.getter(name="userId")
     def user_id(self) -> builtins.int:
         """
-        ID of the user
+        The internal ID of a dbt Cloud user.
         """
         return pulumi.get(self, "user_id")
 
@@ -77,6 +77,8 @@ class AwaitableGetUserGroupsResult(GetUserGroupsResult):
 def get_user_groups(user_id: Optional[builtins.int] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserGroupsResult:
     """
+    Gets information about a specific dbt Cloud user's groups.
+
     ## Example Usage
 
     ```python
@@ -87,7 +89,7 @@ def get_user_groups(user_id: Optional[builtins.int] = None,
     ```
 
 
-    :param builtins.int user_id: ID of the user
+    :param builtins.int user_id: The internal ID of a dbt Cloud user.
     """
     __args__ = dict()
     __args__['userId'] = user_id
@@ -101,6 +103,8 @@ def get_user_groups(user_id: Optional[builtins.int] = None,
 def get_user_groups_output(user_id: Optional[pulumi.Input[builtins.int]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserGroupsResult]:
     """
+    Gets information about a specific dbt Cloud user's groups.
+
     ## Example Usage
 
     ```python
@@ -111,7 +115,7 @@ def get_user_groups_output(user_id: Optional[pulumi.Input[builtins.int]] = None,
     ```
 
 
-    :param builtins.int user_id: ID of the user
+    :param builtins.int user_id: The internal ID of a dbt Cloud user.
     """
     __args__ = dict()
     __args__['userId'] = user_id

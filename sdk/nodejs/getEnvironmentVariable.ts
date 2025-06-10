@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Environment variable credential data source
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const myVar = dbtcloud.getEnvironmentVariable({
+ *     projectId: 70403103985068,
+ *     name: "DBT_MY_PARTIAL_VAR",
+ * });
+ * ```
+ */
 export function getEnvironmentVariable(args: GetEnvironmentVariableArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvironmentVariableResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", {
@@ -17,11 +32,11 @@ export function getEnvironmentVariable(args: GetEnvironmentVariableArgs, opts?: 
  */
 export interface GetEnvironmentVariableArgs {
     /**
-     * Name for the variable
+     * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
     name: string;
     /**
-     * Project ID the variable exists in
+     * Project ID to create the environment variable in
      */
     projectId: number;
 }
@@ -31,22 +46,37 @@ export interface GetEnvironmentVariableArgs {
  */
 export interface GetEnvironmentVariableResult {
     /**
-     * Map containing the environment variables
+     * Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      */
     readonly environmentValues: {[key: string]: string};
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource. Contains the project ID and the environment variable ID.
      */
     readonly id: string;
     /**
-     * Name for the variable
+     * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
     readonly name: string;
     /**
-     * Project ID the variable exists in
+     * Project ID to create the environment variable in
      */
     readonly projectId: number;
 }
+/**
+ * Environment variable credential data source
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const myVar = dbtcloud.getEnvironmentVariable({
+ *     projectId: 70403103985068,
+ *     name: "DBT_MY_PARTIAL_VAR",
+ * });
+ * ```
+ */
 export function getEnvironmentVariableOutput(args: GetEnvironmentVariableOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEnvironmentVariableResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", {
@@ -60,11 +90,11 @@ export function getEnvironmentVariableOutput(args: GetEnvironmentVariableOutputA
  */
 export interface GetEnvironmentVariableOutputArgs {
     /**
-     * Name for the variable
+     * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
     name: pulumi.Input<string>;
     /**
-     * Project ID the variable exists in
+     * Project ID to create the environment variable in
      */
     projectId: pulumi.Input<number>;
 }

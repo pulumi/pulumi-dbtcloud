@@ -7,117 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * > In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
- * <br/>
- * <br/>
- * Those improvements include modifications to deferral which was historically set at the job level and will now be set at the environment level.
- * Deferral can still be set to "self" by setting `selfDeferring` to `true` but with the new approach, deferral to other runs need to be done with `deferringEnvironmentId` instead of `deferringJobId`.
- *
- * > New with 0.3.1, `triggers` now accepts a `onMerge` value to trigger jobs when code is merged in git. If `onMerge` is `true` all other triggers need to be `false`.
- * <br/>
- * <br/>
- * For now, it is not a mandatory field, but it will be in a future version. Please add `onMerge` in your config or modules.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * // a job that has github_webhook and git_provider_webhook 
- * // set to false will be categorized as a "Deploy Job"
- * const dailyJob = new dbtcloud.Job("daily_job", {
- *     environmentId: prodEnvironment.environmentId,
- *     executeSteps: ["dbt build"],
- *     generateDocs: true,
- *     isActive: true,
- *     name: "Daily job",
- *     numThreads: 64,
- *     projectId: dbtProject.id,
- *     runGenerateSources: true,
- *     targetName: "default",
- *     triggers: {
- *         github_webhook: false,
- *         git_provider_webhook: false,
- *         schedule: true,
- *         on_merge: false,
- *     },
- *     scheduleDays: [
- *         0,
- *         1,
- *         2,
- *         3,
- *         4,
- *         5,
- *         6,
- *     ],
- *     scheduleType: "days_of_week",
- *     scheduleHours: [0],
- * });
- * // a job that has github_webhook and git_provider_webhook set 
- * // to true will be categorized as a "Continuous Integration Job"
- * const ciJob = new dbtcloud.Job("ci_job", {
- *     environmentId: ciEnvironment.environmentId,
- *     executeSteps: ["dbt build -s state:modified+ --fail-fast"],
- *     generateDocs: false,
- *     deferringEnvironmentId: prodEnvironment.environmentId,
- *     name: "CI Job",
- *     numThreads: 32,
- *     projectId: dbtProject.id,
- *     runGenerateSources: false,
- *     runLint: true,
- *     errorsOnLintFailure: true,
- *     triggers: {
- *         github_webhook: true,
- *         git_provider_webhook: true,
- *         schedule: false,
- *         on_merge: false,
- *     },
- *     scheduleDays: [
- *         0,
- *         1,
- *         2,
- *         3,
- *         4,
- *         5,
- *         6,
- *     ],
- *     scheduleType: "days_of_week",
- * });
- * // a job that is set to be triggered after another job finishes
- * // this is sometimes referred as 'job chaining'
- * const downstreamJob = new dbtcloud.Job("downstream_job", {
- *     environmentId: project2ProdEnvironment.environmentId,
- *     executeSteps: ["dbt build -s +my_model"],
- *     generateDocs: true,
- *     name: "Downstream job in project 2",
- *     numThreads: 32,
- *     projectId: dbtProject2.id,
- *     runGenerateSources: true,
- *     triggers: {
- *         github_webhook: false,
- *         git_provider_webhook: false,
- *         schedule: false,
- *         on_merge: false,
- *     },
- *     scheduleDays: [
- *         0,
- *         1,
- *         2,
- *         3,
- *         4,
- *         5,
- *         6,
- *     ],
- *     scheduleType: "days_of_week",
- *     jobCompletionTriggerCondition: {
- *         jobId: dailyJob.id,
- *         projectId: dbtProject.id,
- *         statuses: ["success"],
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -179,7 +68,7 @@ export class Job extends pulumi.CustomResource {
     /**
      * The model selector for checking changes in the compare changes Advanced CI feature
      */
-    public readonly compareChangesFlags!: pulumi.Output<string | undefined>;
+    public readonly compareChangesFlags!: pulumi.Output<string>;
     /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      */
@@ -195,7 +84,7 @@ export class Job extends pulumi.CustomResource {
     /**
      * Description for the job
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string>;
     /**
      * Environment ID to create the job in
      */
@@ -203,7 +92,7 @@ export class Job extends pulumi.CustomResource {
     /**
      * Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
      */
-    public readonly errorsOnLintFailure!: pulumi.Output<boolean | undefined>;
+    public readonly errorsOnLintFailure!: pulumi.Output<boolean>;
     /**
      * List of commands to execute for the job
      */
@@ -211,15 +100,19 @@ export class Job extends pulumi.CustomResource {
     /**
      * Flag for whether the job should generate documentation
      */
-    public readonly generateDocs!: pulumi.Output<boolean | undefined>;
+    public readonly generateDocs!: pulumi.Output<boolean>;
     /**
      * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
      */
-    public readonly isActive!: pulumi.Output<boolean | undefined>;
+    public readonly isActive!: pulumi.Output<boolean>;
     /**
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
-    public readonly jobCompletionTriggerCondition!: pulumi.Output<outputs.JobJobCompletionTriggerCondition | undefined>;
+    public readonly jobCompletionTriggerConditions!: pulumi.Output<outputs.JobJobCompletionTriggerCondition[] | undefined>;
+    /**
+     * Job identifier
+     */
+    public /*out*/ readonly jobId!: pulumi.Output<number>;
     /**
      * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
      */
@@ -231,7 +124,7 @@ export class Job extends pulumi.CustomResource {
     /**
      * Number of threads to use in the job
      */
-    public readonly numThreads!: pulumi.Output<number | undefined>;
+    public readonly numThreads!: pulumi.Output<number>;
     /**
      * Project ID to create the job in
      */
@@ -239,15 +132,15 @@ export class Job extends pulumi.CustomResource {
     /**
      * Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
      */
-    public readonly runCompareChanges!: pulumi.Output<boolean | undefined>;
+    public readonly runCompareChanges!: pulumi.Output<boolean>;
     /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
-    public readonly runGenerateSources!: pulumi.Output<boolean | undefined>;
+    public readonly runGenerateSources!: pulumi.Output<boolean>;
     /**
      * Whether the CI job should lint SQL changes. Defaults to `false`.
      */
-    public readonly runLint!: pulumi.Output<boolean | undefined>;
+    public readonly runLint!: pulumi.Output<boolean>;
     /**
      * Custom cron expression for schedule
      */
@@ -263,31 +156,33 @@ export class Job extends pulumi.CustomResource {
     /**
      * Number of hours between job executions if running on a schedule
      */
-    public readonly scheduleInterval!: pulumi.Output<number | undefined>;
+    public readonly scheduleInterval!: pulumi.Output<number>;
     /**
-     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      */
-    public readonly scheduleType!: pulumi.Output<string | undefined>;
+    public readonly scheduleType!: pulumi.Output<string>;
     /**
      * Whether this job defers on a previous run of itself
      */
-    public readonly selfDeferring!: pulumi.Output<boolean | undefined>;
+    public readonly selfDeferring!: pulumi.Output<boolean>;
     /**
      * Target name for the dbt profile
      */
-    public readonly targetName!: pulumi.Output<string | undefined>;
+    public readonly targetName!: pulumi.Output<string>;
     /**
-     * Number of seconds to allow the job to run before timing out
+     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     *
+     * @deprecated Moved to execution.timeout_seconds
      */
-    public readonly timeoutSeconds!: pulumi.Output<number | undefined>;
+    public readonly timeoutSeconds!: pulumi.Output<number>;
     /**
      * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
-    public readonly triggers!: pulumi.Output<{[key: string]: boolean}>;
+    public readonly triggers!: pulumi.Output<outputs.JobTriggers>;
     /**
      * Whether the CI job should be automatically triggered on draft PRs
      */
-    public readonly triggersOnDraftPr!: pulumi.Output<boolean | undefined>;
+    public readonly triggersOnDraftPr!: pulumi.Output<boolean>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.
@@ -312,7 +207,8 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["executeSteps"] = state ? state.executeSteps : undefined;
             resourceInputs["generateDocs"] = state ? state.generateDocs : undefined;
             resourceInputs["isActive"] = state ? state.isActive : undefined;
-            resourceInputs["jobCompletionTriggerCondition"] = state ? state.jobCompletionTriggerCondition : undefined;
+            resourceInputs["jobCompletionTriggerConditions"] = state ? state.jobCompletionTriggerConditions : undefined;
+            resourceInputs["jobId"] = state ? state.jobId : undefined;
             resourceInputs["jobType"] = state ? state.jobType : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["numThreads"] = state ? state.numThreads : undefined;
@@ -354,7 +250,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["executeSteps"] = args ? args.executeSteps : undefined;
             resourceInputs["generateDocs"] = args ? args.generateDocs : undefined;
             resourceInputs["isActive"] = args ? args.isActive : undefined;
-            resourceInputs["jobCompletionTriggerCondition"] = args ? args.jobCompletionTriggerCondition : undefined;
+            resourceInputs["jobCompletionTriggerConditions"] = args ? args.jobCompletionTriggerConditions : undefined;
             resourceInputs["jobType"] = args ? args.jobType : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["numThreads"] = args ? args.numThreads : undefined;
@@ -372,6 +268,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["timeoutSeconds"] = args ? args.timeoutSeconds : undefined;
             resourceInputs["triggers"] = args ? args.triggers : undefined;
             resourceInputs["triggersOnDraftPr"] = args ? args.triggersOnDraftPr : undefined;
+            resourceInputs["jobId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Job.__pulumiType, name, resourceInputs, opts);
@@ -425,7 +322,11 @@ export interface JobState {
     /**
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
-    jobCompletionTriggerCondition?: pulumi.Input<inputs.JobJobCompletionTriggerCondition>;
+    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.JobJobCompletionTriggerCondition>[]>;
+    /**
+     * Job identifier
+     */
+    jobId?: pulumi.Input<number>;
     /**
      * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
      */
@@ -471,7 +372,7 @@ export interface JobState {
      */
     scheduleInterval?: pulumi.Input<number>;
     /**
-     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      */
     scheduleType?: pulumi.Input<string>;
     /**
@@ -483,13 +384,15 @@ export interface JobState {
      */
     targetName?: pulumi.Input<string>;
     /**
-     * Number of seconds to allow the job to run before timing out
+     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     *
+     * @deprecated Moved to execution.timeout_seconds
      */
     timeoutSeconds?: pulumi.Input<number>;
     /**
      * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
-    triggers?: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
+    triggers?: pulumi.Input<inputs.JobTriggers>;
     /**
      * Whether the CI job should be automatically triggered on draft PRs
      */
@@ -543,7 +446,7 @@ export interface JobArgs {
     /**
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
-    jobCompletionTriggerCondition?: pulumi.Input<inputs.JobJobCompletionTriggerCondition>;
+    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.JobJobCompletionTriggerCondition>[]>;
     /**
      * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
      */
@@ -589,7 +492,7 @@ export interface JobArgs {
      */
     scheduleInterval?: pulumi.Input<number>;
     /**
-     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      */
     scheduleType?: pulumi.Input<string>;
     /**
@@ -601,13 +504,15 @@ export interface JobArgs {
      */
     targetName?: pulumi.Input<string>;
     /**
-     * Number of seconds to allow the job to run before timing out
+     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     *
+     * @deprecated Moved to execution.timeout_seconds
      */
     timeoutSeconds?: pulumi.Input<number>;
     /**
      * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
-    triggers: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
+    triggers: pulumi.Input<inputs.JobTriggers>;
     /**
      * Whether the CI job should be automatically triggered on draft PRs
      */

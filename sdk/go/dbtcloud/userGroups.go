@@ -15,8 +15,7 @@ import (
 // Assigns a set of dbt Cloud groups to a given User ID.
 //
 // > If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.
-//
-// > This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
+// This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
 // This is intentional in order to prevent accidental deletion of all users groups assigned to a user.
 // If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set "groupIds" to the empty set "[]".
 //
@@ -96,7 +95,7 @@ type UserGroups struct {
 
 	// IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
 	GroupIds pulumi.IntArrayOutput `pulumi:"groupIds"`
-	// The internal ID of a dbt Cloud user
+	// The internal ID of a dbt Cloud user.
 	UserId pulumi.IntOutput `pulumi:"userId"`
 }
 
@@ -138,14 +137,14 @@ func GetUserGroups(ctx *pulumi.Context,
 type userGroupsState struct {
 	// IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
 	GroupIds []int `pulumi:"groupIds"`
-	// The internal ID of a dbt Cloud user
+	// The internal ID of a dbt Cloud user.
 	UserId *int `pulumi:"userId"`
 }
 
 type UserGroupsState struct {
 	// IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
 	GroupIds pulumi.IntArrayInput
-	// The internal ID of a dbt Cloud user
+	// The internal ID of a dbt Cloud user.
 	UserId pulumi.IntPtrInput
 }
 
@@ -156,7 +155,7 @@ func (UserGroupsState) ElementType() reflect.Type {
 type userGroupsArgs struct {
 	// IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
 	GroupIds []int `pulumi:"groupIds"`
-	// The internal ID of a dbt Cloud user
+	// The internal ID of a dbt Cloud user.
 	UserId int `pulumi:"userId"`
 }
 
@@ -164,7 +163,7 @@ type userGroupsArgs struct {
 type UserGroupsArgs struct {
 	// IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
 	GroupIds pulumi.IntArrayInput
-	// The internal ID of a dbt Cloud user
+	// The internal ID of a dbt Cloud user.
 	UserId pulumi.IntInput
 }
 
@@ -260,7 +259,7 @@ func (o UserGroupsOutput) GroupIds() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *UserGroups) pulumi.IntArrayOutput { return v.GroupIds }).(pulumi.IntArrayOutput)
 }
 
-// The internal ID of a dbt Cloud user
+// The internal ID of a dbt Cloud user.
 func (o UserGroupsOutput) UserId() pulumi.IntOutput {
 	return o.ApplyT(func(v *UserGroups) pulumi.IntOutput { return v.UserId }).(pulumi.IntOutput)
 }

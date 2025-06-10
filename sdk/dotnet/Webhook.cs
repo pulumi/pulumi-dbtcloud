@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Webhook details
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -83,7 +85,7 @@ namespace Pulumi.DbtCloud
         /// Webhooks active flag
         /// </summary>
         [Output("active")]
-        public Output<bool?> Active { get; private set; } = null!;
+        public Output<bool> Active { get; private set; } = null!;
 
         /// <summary>
         /// Webhooks Client URL
@@ -95,7 +97,7 @@ namespace Pulumi.DbtCloud
         /// Webhooks Description
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// Webhooks Event Types
@@ -116,7 +118,7 @@ namespace Pulumi.DbtCloud
         public Output<string> HttpStatusCode { get; private set; } = null!;
 
         /// <summary>
-        /// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        /// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         /// </summary>
         [Output("jobIds")]
         public Output<ImmutableArray<int>> JobIds { get; private set; } = null!;
@@ -128,7 +130,7 @@ namespace Pulumi.DbtCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Webhooks ID
+        /// Webhook's ID
         /// </summary>
         [Output("webhookId")]
         public Output<string> WebhookId { get; private set; } = null!;
@@ -218,7 +220,7 @@ namespace Pulumi.DbtCloud
         private InputList<int>? _jobIds;
 
         /// <summary>
-        /// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        /// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         /// </summary>
         public InputList<int> JobIds
         {
@@ -302,7 +304,7 @@ namespace Pulumi.DbtCloud
         private InputList<int>? _jobIds;
 
         /// <summary>
-        /// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        /// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         /// </summary>
         public InputList<int> JobIds
         {
@@ -317,7 +319,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Webhooks ID
+        /// Webhook's ID
         /// </summary>
         [Input("webhookId")]
         public Input<string>? WebhookId { get; set; }

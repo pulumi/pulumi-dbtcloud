@@ -14,14 +14,14 @@ public final class GetExtendedAttributesPlainArgs extends com.pulumi.resources.I
     public static final GetExtendedAttributesPlainArgs Empty = new GetExtendedAttributesPlainArgs();
 
     /**
-     * ID of the extended attributes
+     * Extended attributes ID
      * 
      */
     @Import(name="extendedAttributesId", required=true)
     private Integer extendedAttributesId;
 
     /**
-     * @return ID of the extended attributes
+     * @return Extended attributes ID
      * 
      */
     public Integer extendedAttributesId() {
@@ -29,14 +29,14 @@ public final class GetExtendedAttributesPlainArgs extends com.pulumi.resources.I
     }
 
     /**
-     * Project ID the extended attributes refers to
+     * Project ID
      * 
      */
     @Import(name="projectId", required=true)
     private Integer projectId;
 
     /**
-     * @return Project ID the extended attributes refers to
+     * @return Project ID
      * 
      */
     public Integer projectId() {
@@ -69,7 +69,7 @@ public final class GetExtendedAttributesPlainArgs extends com.pulumi.resources.I
         }
 
         /**
-         * @param extendedAttributesId ID of the extended attributes
+         * @param extendedAttributesId Extended attributes ID
          * 
          * @return builder
          * 
@@ -80,7 +80,7 @@ public final class GetExtendedAttributesPlainArgs extends com.pulumi.resources.I
         }
 
         /**
-         * @param projectId Project ID the extended attributes refers to
+         * @param projectId Project ID
          * 
          * @return builder
          * 

@@ -18,14 +18,14 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
     public static final PostgresCredentialState Empty = new PostgresCredentialState();
 
     /**
-     * The system Postgres/Redshift/AlloyDB credential ID
+     * The system Postgres/Redshift/AlloyDB credential ID.
      * 
      */
     @Import(name="credentialId")
     private @Nullable Output<Integer> credentialId;
 
     /**
-     * @return The system Postgres/Redshift/AlloyDB credential ID
+     * @return The system Postgres/Redshift/AlloyDB credential ID.
      * 
      */
     public Optional<Output<Integer>> credentialId() {
@@ -63,14 +63,14 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
     }
 
     /**
-     * Number of threads to use
+     * Number of threads to use (required for Redshift)
      * 
      */
     @Import(name="numThreads")
     private @Nullable Output<Integer> numThreads;
 
     /**
-     * @return Number of threads to use
+     * @return Number of threads to use (required for Redshift)
      * 
      */
     public Optional<Output<Integer>> numThreads() {
@@ -93,14 +93,14 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
     }
 
     /**
-     * Project ID to create the Postgres/Redshift/AlloyDB credential in
+     * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<Integer> projectId;
 
     /**
-     * @return Project ID to create the Postgres/Redshift/AlloyDB credential in
+     * @return Project ID to create the Postgres/Redshift/AlloyDB credential in.
      * 
      */
     public Optional<Output<Integer>> projectId() {
@@ -185,7 +185,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param credentialId The system Postgres/Redshift/AlloyDB credential ID
+         * @param credentialId The system Postgres/Redshift/AlloyDB credential ID.
          * 
          * @return builder
          * 
@@ -196,7 +196,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param credentialId The system Postgres/Redshift/AlloyDB credential ID
+         * @param credentialId The system Postgres/Redshift/AlloyDB credential ID.
          * 
          * @return builder
          * 
@@ -248,7 +248,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param numThreads Number of threads to use
+         * @param numThreads Number of threads to use (required for Redshift)
          * 
          * @return builder
          * 
@@ -259,7 +259,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param numThreads Number of threads to use
+         * @param numThreads Number of threads to use (required for Redshift)
          * 
          * @return builder
          * 
@@ -290,7 +290,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param projectId Project ID to create the Postgres/Redshift/AlloyDB credential in
+         * @param projectId Project ID to create the Postgres/Redshift/AlloyDB credential in.
          * 
          * @return builder
          * 
@@ -301,7 +301,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param projectId Project ID to create the Postgres/Redshift/AlloyDB credential in
+         * @param projectId Project ID to create the Postgres/Redshift/AlloyDB credential in.
          * 
          * @return builder
          * 

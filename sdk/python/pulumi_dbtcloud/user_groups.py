@@ -25,7 +25,7 @@ class UserGroupsArgs:
         """
         The set of arguments for constructing a UserGroups resource.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] group_ids: IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
-        :param pulumi.Input[builtins.int] user_id: The internal ID of a dbt Cloud user
+        :param pulumi.Input[builtins.int] user_id: The internal ID of a dbt Cloud user.
         """
         pulumi.set(__self__, "group_ids", group_ids)
         pulumi.set(__self__, "user_id", user_id)
@@ -46,7 +46,7 @@ class UserGroupsArgs:
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Input[builtins.int]:
         """
-        The internal ID of a dbt Cloud user
+        The internal ID of a dbt Cloud user.
         """
         return pulumi.get(self, "user_id")
 
@@ -63,7 +63,7 @@ class _UserGroupsState:
         """
         Input properties used for looking up and filtering UserGroups resources.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] group_ids: IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
-        :param pulumi.Input[builtins.int] user_id: The internal ID of a dbt Cloud user
+        :param pulumi.Input[builtins.int] user_id: The internal ID of a dbt Cloud user.
         """
         if group_ids is not None:
             pulumi.set(__self__, "group_ids", group_ids)
@@ -86,7 +86,7 @@ class _UserGroupsState:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The internal ID of a dbt Cloud user
+        The internal ID of a dbt Cloud user.
         """
         return pulumi.get(self, "user_id")
 
@@ -108,8 +108,7 @@ class UserGroups(pulumi.CustomResource):
         Assigns a set of dbt Cloud groups to a given User ID.
 
         > If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.
-
-        > This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
+        This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
         This is intentional in order to prevent accidental deletion of all users groups assigned to a user.
         If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set "group_ids" to the empty set "[]".
 
@@ -168,7 +167,7 @@ class UserGroups(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] group_ids: IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
-        :param pulumi.Input[builtins.int] user_id: The internal ID of a dbt Cloud user
+        :param pulumi.Input[builtins.int] user_id: The internal ID of a dbt Cloud user.
         """
         ...
     @overload
@@ -180,8 +179,7 @@ class UserGroups(pulumi.CustomResource):
         Assigns a set of dbt Cloud groups to a given User ID.
 
         > If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.
-
-        > This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
+        This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
         This is intentional in order to prevent accidental deletion of all users groups assigned to a user.
         If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set "group_ids" to the empty set "[]".
 
@@ -289,7 +287,7 @@ class UserGroups(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] group_ids: IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
-        :param pulumi.Input[builtins.int] user_id: The internal ID of a dbt Cloud user
+        :param pulumi.Input[builtins.int] user_id: The internal ID of a dbt Cloud user.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -311,7 +309,7 @@ class UserGroups(pulumi.CustomResource):
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[builtins.int]:
         """
-        The internal ID of a dbt Cloud user
+        The internal ID of a dbt Cloud user.
         """
         return pulumi.get(self, "user_id")
 

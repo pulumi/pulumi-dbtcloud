@@ -67,7 +67,7 @@ class GetBigQueryCredentialResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this data source. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
@@ -114,7 +114,8 @@ def get_big_query_credential(credential_id: Optional[builtins.int] = None,
                              project_id: Optional[builtins.int] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBigQueryCredentialResult:
     """
-    Use this data source to access information about an existing resource.
+    Bigquery credential data source
+
 
     :param builtins.int credential_id: Credential ID
     :param builtins.int project_id: Project ID
@@ -136,7 +137,8 @@ def get_big_query_credential_output(credential_id: Optional[pulumi.Input[builtin
                                     project_id: Optional[pulumi.Input[builtins.int]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBigQueryCredentialResult]:
     """
-    Use this data source to access information about an existing resource.
+    Bigquery credential data source
+
 
     :param builtins.int credential_id: Credential ID
     :param builtins.int project_id: Project ID

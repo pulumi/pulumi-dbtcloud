@@ -18,6 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Webhook details
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -113,14 +115,14 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="active", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> active;
+    private Output<Boolean> active;
 
     /**
      * @return Webhooks active flag
      * 
      */
-    public Output<Optional<Boolean>> active() {
-        return Codegen.optional(this.active);
+    public Output<Boolean> active() {
+        return this.active;
     }
     /**
      * Webhooks Client URL
@@ -141,14 +143,14 @@ public class Webhook extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> description;
+    private Output<String> description;
 
     /**
      * @return Webhooks Description
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
     }
     /**
      * Webhooks Event Types
@@ -193,14 +195,14 @@ public class Webhook extends com.pulumi.resources.CustomResource {
         return this.httpStatusCode;
     }
     /**
-     * List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+     * List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      * 
      */
     @Export(name="jobIds", refs={List.class,Integer.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Integer>> jobIds;
 
     /**
-     * @return List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+     * @return List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      * 
      */
     public Output<Optional<List<Integer>>> jobIds() {
@@ -221,14 +223,18 @@ public class Webhook extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Webhooks ID
+     * Webhook&#39;s ID
+     * 
+     * @deprecated
+     * Use `id` instead
      * 
      */
+    @Deprecated /* Use `id` instead */
     @Export(name="webhookId", refs={String.class}, tree="[0]")
     private Output<String> webhookId;
 
     /**
-     * @return Webhooks ID
+     * @return Webhook&#39;s ID
      * 
      */
     public Output<String> webhookId() {

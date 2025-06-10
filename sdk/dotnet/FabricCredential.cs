@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Fabric credential resource
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -24,7 +26,6 @@ namespace Pulumi.DbtCloud
     ///     var myFabricCredAd = new DbtCloud.FabricCredential("my_fabric_cred_ad", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
-    ///         AdapterId = myFabricConnection.AdapterId,
     ///         Schema = "my_schema",
     ///         User = "my_user",
     ///         Password = "my_password",
@@ -35,7 +36,6 @@ namespace Pulumi.DbtCloud
     ///     var myFabricCredServPrinc = new DbtCloud.FabricCredential("my_fabric_cred_serv_princ", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
-    ///         AdapterId = myFabricConnection.AdapterId,
     ///         Schema = "my_schema",
     ///         ClientId = "my_client_id",
     ///         TenantId = "my_tenant_id",
@@ -80,25 +80,25 @@ namespace Pulumi.DbtCloud
     public partial class FabricCredential : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Fabric adapter ID for the credential
+        /// The type of the adapter (fabric)
         /// </summary>
-        [Output("adapterId")]
-        public Output<int> AdapterId { get; private set; } = null!;
+        [Output("adapterType")]
+        public Output<string> AdapterType { get; private set; } = null!;
 
         /// <summary>
         /// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         /// </summary>
         [Output("clientId")]
-        public Output<string?> ClientId { get; private set; } = null!;
+        public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
         /// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         /// </summary>
         [Output("clientSecret")]
-        public Output<string?> ClientSecret { get; private set; } = null!;
+        public Output<string> ClientSecret { get; private set; } = null!;
 
         /// <summary>
-        /// The system Fabric credential ID
+        /// The internal credential ID
         /// </summary>
         [Output("credentialId")]
         public Output<int> CredentialId { get; private set; } = null!;
@@ -107,7 +107,7 @@ namespace Pulumi.DbtCloud
         /// The password for the account to connect to. Only used when connection with AD user/pass
         /// </summary>
         [Output("password")]
-        public Output<string?> Password { get; private set; } = null!;
+        public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
         /// Project ID to create the Fabric credential in
@@ -125,19 +125,19 @@ namespace Pulumi.DbtCloud
         /// Optionally set this to the principal who should own the schemas created by dbt
         /// </summary>
         [Output("schemaAuthorization")]
-        public Output<string?> SchemaAuthorization { get; private set; } = null!;
+        public Output<string> SchemaAuthorization { get; private set; } = null!;
 
         /// <summary>
         /// The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
         /// </summary>
         [Output("tenantId")]
-        public Output<string?> TenantId { get; private set; } = null!;
+        public Output<string> TenantId { get; private set; } = null!;
 
         /// <summary>
         /// The username of the Fabric account to connect to. Only used when connection with AD user/pass
         /// </summary>
         [Output("user")]
-        public Output<string?> User { get; private set; } = null!;
+        public Output<string> User { get; private set; } = null!;
 
 
         /// <summary>
@@ -192,10 +192,10 @@ namespace Pulumi.DbtCloud
     public sealed class FabricCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Fabric adapter ID for the credential
+        /// The type of the adapter (fabric)
         /// </summary>
-        [Input("adapterId", required: true)]
-        public Input<int> AdapterId { get; set; } = null!;
+        [Input("adapterType", required: true)]
+        public Input<string> AdapterType { get; set; } = null!;
 
         /// <summary>
         /// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
@@ -274,10 +274,10 @@ namespace Pulumi.DbtCloud
     public sealed class FabricCredentialState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Fabric adapter ID for the credential
+        /// The type of the adapter (fabric)
         /// </summary>
-        [Input("adapterId")]
-        public Input<int>? AdapterId { get; set; }
+        [Input("adapterType")]
+        public Input<string>? AdapterType { get; set; }
 
         /// <summary>
         /// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
@@ -302,7 +302,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// The system Fabric credential ID
+        /// The internal credential ID
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }

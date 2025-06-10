@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Gets information about a specific dbt Cloud user's groups.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -28,7 +30,7 @@ export function getUserGroups(args: GetUserGroupsArgs, opts?: pulumi.InvokeOptio
  */
 export interface GetUserGroupsArgs {
     /**
-     * ID of the user
+     * The internal ID of a dbt Cloud user.
      */
     userId: number;
 }
@@ -38,19 +40,21 @@ export interface GetUserGroupsArgs {
  */
 export interface GetUserGroupsResult {
     /**
-     * IDs of the groups assigned to the user
+     * IDs of the groups assigned to the user.
      */
     readonly groupIds: number[];
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource. It is the same as the user_id.
      */
     readonly id: string;
     /**
-     * ID of the user
+     * The internal ID of a dbt Cloud user.
      */
     readonly userId: number;
 }
 /**
+ * Gets information about a specific dbt Cloud user's groups.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -74,7 +78,7 @@ export function getUserGroupsOutput(args: GetUserGroupsOutputArgs, opts?: pulumi
  */
 export interface GetUserGroupsOutputArgs {
     /**
-     * ID of the user
+     * The internal ID of a dbt Cloud user.
      */
     userId: pulumi.Input<number>;
 }

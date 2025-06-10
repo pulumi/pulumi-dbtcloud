@@ -31,6 +31,21 @@ public final class AccountFeaturesArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Whether AI features are enabled.
+     * 
+     */
+    @Import(name="aiFeatures")
+    private @Nullable Output<Boolean> aiFeatures;
+
+    /**
+     * @return Whether AI features are enabled.
+     * 
+     */
+    public Optional<Output<Boolean>> aiFeatures() {
+        return Optional.ofNullable(this.aiFeatures);
+    }
+
+    /**
      * Whether partial parsing is enabled.
      * 
      */
@@ -60,12 +75,29 @@ public final class AccountFeaturesArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.repoCaching);
     }
 
+    /**
+     * Whether warehouse cost visibility is enabled.
+     * 
+     */
+    @Import(name="warehouseCostVisibility")
+    private @Nullable Output<Boolean> warehouseCostVisibility;
+
+    /**
+     * @return Whether warehouse cost visibility is enabled.
+     * 
+     */
+    public Optional<Output<Boolean>> warehouseCostVisibility() {
+        return Optional.ofNullable(this.warehouseCostVisibility);
+    }
+
     private AccountFeaturesArgs() {}
 
     private AccountFeaturesArgs(AccountFeaturesArgs $) {
         this.advancedCi = $.advancedCi;
+        this.aiFeatures = $.aiFeatures;
         this.partialParsing = $.partialParsing;
         this.repoCaching = $.repoCaching;
+        this.warehouseCostVisibility = $.warehouseCostVisibility;
     }
 
     public static Builder builder() {
@@ -108,6 +140,27 @@ public final class AccountFeaturesArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param aiFeatures Whether AI features are enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aiFeatures(@Nullable Output<Boolean> aiFeatures) {
+            $.aiFeatures = aiFeatures;
+            return this;
+        }
+
+        /**
+         * @param aiFeatures Whether AI features are enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aiFeatures(Boolean aiFeatures) {
+            return aiFeatures(Output.of(aiFeatures));
+        }
+
+        /**
          * @param partialParsing Whether partial parsing is enabled.
          * 
          * @return builder
@@ -147,6 +200,27 @@ public final class AccountFeaturesArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder repoCaching(Boolean repoCaching) {
             return repoCaching(Output.of(repoCaching));
+        }
+
+        /**
+         * @param warehouseCostVisibility Whether warehouse cost visibility is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder warehouseCostVisibility(@Nullable Output<Boolean> warehouseCostVisibility) {
+            $.warehouseCostVisibility = warehouseCostVisibility;
+            return this;
+        }
+
+        /**
+         * @param warehouseCostVisibility Whether warehouse cost visibility is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder warehouseCostVisibility(Boolean warehouseCostVisibility) {
+            return warehouseCostVisibility(Output.of(warehouseCostVisibility));
         }
 
         public AccountFeaturesArgs build() {

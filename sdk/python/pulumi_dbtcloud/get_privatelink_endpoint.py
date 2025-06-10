@@ -27,7 +27,7 @@ class GetPrivatelinkEndpointResult:
     """
     A collection of values returned by getPrivatelinkEndpoint.
     """
-    def __init__(__self__, cidr_range=None, id=None, name=None, private_link_endpoint_url=None, state=None, type=None):
+    def __init__(__self__, cidr_range=None, id=None, name=None, private_link_endpoint_url=None, type=None):
         if cidr_range and not isinstance(cidr_range, str):
             raise TypeError("Expected argument 'cidr_range' to be a str")
         pulumi.set(__self__, "cidr_range", cidr_range)
@@ -40,9 +40,6 @@ class GetPrivatelinkEndpointResult:
         if private_link_endpoint_url and not isinstance(private_link_endpoint_url, str):
             raise TypeError("Expected argument 'private_link_endpoint_url' to be a str")
         pulumi.set(__self__, "private_link_endpoint_url", private_link_endpoint_url)
-        if state and not isinstance(state, int):
-            raise TypeError("Expected argument 'state' to be a int")
-        pulumi.set(__self__, "state", state)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
@@ -51,7 +48,7 @@ class GetPrivatelinkEndpointResult:
     @pulumi.getter(name="cidrRange")
     def cidr_range(self) -> builtins.str:
         """
-        The CIDR range of the PrivateLink Endpoint
+        CIDR range of the PrivateLink Endpoint
         """
         return pulumi.get(self, "cidr_range")
 
@@ -75,18 +72,9 @@ class GetPrivatelinkEndpointResult:
     @pulumi.getter(name="privateLinkEndpointUrl")
     def private_link_endpoint_url(self) -> Optional[builtins.str]:
         """
-        The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+        URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
         """
         return pulumi.get(self, "private_link_endpoint_url")
-
-    @property
-    @pulumi.getter
-    @_utilities.deprecated("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
-    def state(self) -> builtins.int:
-        """
-        PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
-        """
-        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
@@ -107,14 +95,16 @@ class AwaitableGetPrivatelinkEndpointResult(GetPrivatelinkEndpointResult):
             id=self.id,
             name=self.name,
             private_link_endpoint_url=self.private_link_endpoint_url,
-            state=self.state,
             type=self.type)
 
 
 def get_privatelink_endpoint(name: Optional[builtins.str] = None,
                              private_link_endpoint_url: Optional[builtins.str] = None,
+                             type: Optional[builtins.str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointResult:
     """
+    Privatelink endpoint data source.
+
     ## Example Usage
 
     ```python
@@ -130,11 +120,13 @@ def get_privatelink_endpoint(name: Optional[builtins.str] = None,
 
 
     :param builtins.str name: Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
-    :param builtins.str private_link_endpoint_url: The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+    :param builtins.str private_link_endpoint_url: URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+    :param builtins.str type: Type of the PrivateLink Endpoint
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['privateLinkEndpointUrl'] = private_link_endpoint_url
+    __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint', __args__, opts=opts, typ=GetPrivatelinkEndpointResult).value
 
@@ -143,12 +135,14 @@ def get_privatelink_endpoint(name: Optional[builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         private_link_endpoint_url=pulumi.get(__ret__, 'private_link_endpoint_url'),
-        state=pulumi.get(__ret__, 'state'),
         type=pulumi.get(__ret__, 'type'))
 def get_privatelink_endpoint_output(name: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                                     private_link_endpoint_url: Optional[pulumi.Input[Optional[builtins.str]]] = None,
+                                    type: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointResult]:
     """
+    Privatelink endpoint data source.
+
     ## Example Usage
 
     ```python
@@ -164,11 +158,13 @@ def get_privatelink_endpoint_output(name: Optional[pulumi.Input[Optional[builtin
 
 
     :param builtins.str name: Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
-    :param builtins.str private_link_endpoint_url: The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+    :param builtins.str private_link_endpoint_url: URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+    :param builtins.str type: Type of the PrivateLink Endpoint
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['privateLinkEndpointUrl'] = private_link_endpoint_url
+    __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint', __args__, opts=opts, typ=GetPrivatelinkEndpointResult)
     return __ret__.apply(lambda __response__: GetPrivatelinkEndpointResult(
@@ -176,5 +172,4 @@ def get_privatelink_endpoint_output(name: Optional[pulumi.Input[Optional[builtin
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         private_link_endpoint_url=pulumi.get(__response__, 'private_link_endpoint_url'),
-        state=pulumi.get(__response__, 'state'),
         type=pulumi.get(__response__, 'type')))

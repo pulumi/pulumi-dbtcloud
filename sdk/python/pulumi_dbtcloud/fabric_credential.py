@@ -20,7 +20,7 @@ __all__ = ['FabricCredentialArgs', 'FabricCredential']
 @pulumi.input_type
 class FabricCredentialArgs:
     def __init__(__self__, *,
-                 adapter_id: pulumi.Input[builtins.int],
+                 adapter_type: pulumi.Input[builtins.str],
                  project_id: pulumi.Input[builtins.int],
                  schema: pulumi.Input[builtins.str],
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -31,7 +31,7 @@ class FabricCredentialArgs:
                  user: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a FabricCredential resource.
-        :param pulumi.Input[builtins.int] adapter_id: Fabric adapter ID for the credential
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (fabric)
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Fabric credential in
         :param pulumi.Input[builtins.str] schema: The schema where to create the dbt models
         :param pulumi.Input[builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
@@ -41,7 +41,7 @@ class FabricCredentialArgs:
         :param pulumi.Input[builtins.str] tenant_id: The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
         :param pulumi.Input[builtins.str] user: The username of the Fabric account to connect to. Only used when connection with AD user/pass
         """
-        pulumi.set(__self__, "adapter_id", adapter_id)
+        pulumi.set(__self__, "adapter_type", adapter_type)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "schema", schema)
         if client_id is not None:
@@ -58,16 +58,16 @@ class FabricCredentialArgs:
             pulumi.set(__self__, "user", user)
 
     @property
-    @pulumi.getter(name="adapterId")
-    def adapter_id(self) -> pulumi.Input[builtins.int]:
+    @pulumi.getter(name="adapterType")
+    def adapter_type(self) -> pulumi.Input[builtins.str]:
         """
-        Fabric adapter ID for the credential
+        The type of the adapter (fabric)
         """
-        return pulumi.get(self, "adapter_id")
+        return pulumi.get(self, "adapter_type")
 
-    @adapter_id.setter
-    def adapter_id(self, value: pulumi.Input[builtins.int]):
-        pulumi.set(self, "adapter_id", value)
+    @adapter_type.setter
+    def adapter_type(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "adapter_type", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -169,7 +169,7 @@ class FabricCredentialArgs:
 @pulumi.input_type
 class _FabricCredentialState:
     def __init__(__self__, *,
-                 adapter_id: Optional[pulumi.Input[builtins.int]] = None,
+                 adapter_type: Optional[pulumi.Input[builtins.str]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
                  credential_id: Optional[pulumi.Input[builtins.int]] = None,
@@ -181,10 +181,10 @@ class _FabricCredentialState:
                  user: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering FabricCredential resources.
-        :param pulumi.Input[builtins.int] adapter_id: Fabric adapter ID for the credential
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (fabric)
         :param pulumi.Input[builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         :param pulumi.Input[builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-        :param pulumi.Input[builtins.int] credential_id: The system Fabric credential ID
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Fabric credential in
         :param pulumi.Input[builtins.str] schema: The schema where to create the dbt models
@@ -192,8 +192,8 @@ class _FabricCredentialState:
         :param pulumi.Input[builtins.str] tenant_id: The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
         :param pulumi.Input[builtins.str] user: The username of the Fabric account to connect to. Only used when connection with AD user/pass
         """
-        if adapter_id is not None:
-            pulumi.set(__self__, "adapter_id", adapter_id)
+        if adapter_type is not None:
+            pulumi.set(__self__, "adapter_type", adapter_type)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -214,16 +214,16 @@ class _FabricCredentialState:
             pulumi.set(__self__, "user", user)
 
     @property
-    @pulumi.getter(name="adapterId")
-    def adapter_id(self) -> Optional[pulumi.Input[builtins.int]]:
+    @pulumi.getter(name="adapterType")
+    def adapter_type(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Fabric adapter ID for the credential
+        The type of the adapter (fabric)
         """
-        return pulumi.get(self, "adapter_id")
+        return pulumi.get(self, "adapter_type")
 
-    @adapter_id.setter
-    def adapter_id(self, value: Optional[pulumi.Input[builtins.int]]):
-        pulumi.set(self, "adapter_id", value)
+    @adapter_type.setter
+    def adapter_type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "adapter_type", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -253,7 +253,7 @@ class _FabricCredentialState:
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The system Fabric credential ID
+        The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
@@ -340,7 +340,7 @@ class FabricCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 adapter_id: Optional[pulumi.Input[builtins.int]] = None,
+                 adapter_type: Optional[pulumi.Input[builtins.str]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
@@ -351,6 +351,8 @@ class FabricCredential(pulumi.CustomResource):
                  user: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
+        Fabric credential resource
+
         ## Example Usage
 
         ```python
@@ -360,7 +362,6 @@ class FabricCredential(pulumi.CustomResource):
         # when using AD authentication
         my_fabric_cred_ad = dbtcloud.FabricCredential("my_fabric_cred_ad",
             project_id=dbt_project["id"],
-            adapter_id=my_fabric_connection["adapterId"],
             schema="my_schema",
             user="my_user",
             password="my_password",
@@ -368,7 +369,6 @@ class FabricCredential(pulumi.CustomResource):
         # when using service principal authentication
         my_fabric_cred_serv_princ = dbtcloud.FabricCredential("my_fabric_cred_serv_princ",
             project_id=dbt_project["id"],
-            adapter_id=my_fabric_connection["adapterId"],
             schema="my_schema",
             client_id="my_client_id",
             tenant_id="my_tenant_id",
@@ -408,7 +408,7 @@ class FabricCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] adapter_id: Fabric adapter ID for the credential
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (fabric)
         :param pulumi.Input[builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         :param pulumi.Input[builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         :param pulumi.Input[builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass
@@ -425,6 +425,8 @@ class FabricCredential(pulumi.CustomResource):
                  args: FabricCredentialArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Fabric credential resource
+
         ## Example Usage
 
         ```python
@@ -434,7 +436,6 @@ class FabricCredential(pulumi.CustomResource):
         # when using AD authentication
         my_fabric_cred_ad = dbtcloud.FabricCredential("my_fabric_cred_ad",
             project_id=dbt_project["id"],
-            adapter_id=my_fabric_connection["adapterId"],
             schema="my_schema",
             user="my_user",
             password="my_password",
@@ -442,7 +443,6 @@ class FabricCredential(pulumi.CustomResource):
         # when using service principal authentication
         my_fabric_cred_serv_princ = dbtcloud.FabricCredential("my_fabric_cred_serv_princ",
             project_id=dbt_project["id"],
-            adapter_id=my_fabric_connection["adapterId"],
             schema="my_schema",
             client_id="my_client_id",
             tenant_id="my_tenant_id",
@@ -495,7 +495,7 @@ class FabricCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 adapter_id: Optional[pulumi.Input[builtins.int]] = None,
+                 adapter_type: Optional[pulumi.Input[builtins.str]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
@@ -513,9 +513,9 @@ class FabricCredential(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FabricCredentialArgs.__new__(FabricCredentialArgs)
 
-            if adapter_id is None and not opts.urn:
-                raise TypeError("Missing required property 'adapter_id'")
-            __props__.__dict__["adapter_id"] = adapter_id
+            if adapter_type is None and not opts.urn:
+                raise TypeError("Missing required property 'adapter_type'")
+            __props__.__dict__["adapter_type"] = adapter_type
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
@@ -541,7 +541,7 @@ class FabricCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            adapter_id: Optional[pulumi.Input[builtins.int]] = None,
+            adapter_type: Optional[pulumi.Input[builtins.str]] = None,
             client_id: Optional[pulumi.Input[builtins.str]] = None,
             client_secret: Optional[pulumi.Input[builtins.str]] = None,
             credential_id: Optional[pulumi.Input[builtins.int]] = None,
@@ -558,10 +558,10 @@ class FabricCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] adapter_id: Fabric adapter ID for the credential
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (fabric)
         :param pulumi.Input[builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         :param pulumi.Input[builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-        :param pulumi.Input[builtins.int] credential_id: The system Fabric credential ID
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Fabric credential in
         :param pulumi.Input[builtins.str] schema: The schema where to create the dbt models
@@ -573,7 +573,7 @@ class FabricCredential(pulumi.CustomResource):
 
         __props__ = _FabricCredentialState.__new__(_FabricCredentialState)
 
-        __props__.__dict__["adapter_id"] = adapter_id
+        __props__.__dict__["adapter_type"] = adapter_type
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
         __props__.__dict__["credential_id"] = credential_id
@@ -586,16 +586,16 @@ class FabricCredential(pulumi.CustomResource):
         return FabricCredential(resource_name, opts=opts, __props__=__props__)
 
     @property
-    @pulumi.getter(name="adapterId")
-    def adapter_id(self) -> pulumi.Output[builtins.int]:
+    @pulumi.getter(name="adapterType")
+    def adapter_type(self) -> pulumi.Output[builtins.str]:
         """
-        Fabric adapter ID for the credential
+        The type of the adapter (fabric)
         """
-        return pulumi.get(self, "adapter_id")
+        return pulumi.get(self, "adapter_type")
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Output[Optional[builtins.str]]:
+    def client_id(self) -> pulumi.Output[builtins.str]:
         """
         The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         """
@@ -603,7 +603,7 @@ class FabricCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> pulumi.Output[Optional[builtins.str]]:
+    def client_secret(self) -> pulumi.Output[builtins.str]:
         """
         The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         """
@@ -613,13 +613,13 @@ class FabricCredential(pulumi.CustomResource):
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> pulumi.Output[builtins.int]:
         """
-        The system Fabric credential ID
+        The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
     @property
     @pulumi.getter
-    def password(self) -> pulumi.Output[Optional[builtins.str]]:
+    def password(self) -> pulumi.Output[builtins.str]:
         """
         The password for the account to connect to. Only used when connection with AD user/pass
         """
@@ -643,7 +643,7 @@ class FabricCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="schemaAuthorization")
-    def schema_authorization(self) -> pulumi.Output[Optional[builtins.str]]:
+    def schema_authorization(self) -> pulumi.Output[builtins.str]:
         """
         Optionally set this to the principal who should own the schemas created by dbt
         """
@@ -651,7 +651,7 @@ class FabricCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> pulumi.Output[Optional[builtins.str]]:
+    def tenant_id(self) -> pulumi.Output[builtins.str]:
         """
         The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
         """
@@ -659,7 +659,7 @@ class FabricCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def user(self) -> pulumi.Output[Optional[builtins.str]]:
+    def user(self) -> pulumi.Output[builtins.str]:
         """
         The username of the Fabric account to connect to. Only used when connection with AD user/pass
         """

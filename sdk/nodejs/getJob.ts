@@ -6,11 +6,14 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Get detailed information for a specific dbt Cloud job.
+ */
 export function getJob(args: GetJobArgs, opts?: pulumi.InvokeOptions): Promise<GetJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getJob:getJob", {
+        "jobCompletionTriggerConditions": args.jobCompletionTriggerConditions,
         "jobId": args.jobId,
-        "projectId": args.projectId,
     }, opts);
 }
 
@@ -19,13 +22,13 @@ export function getJob(args: GetJobArgs, opts?: pulumi.InvokeOptions): Promise<G
  */
 export interface GetJobArgs {
     /**
-     * ID of the job
+     * Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+     */
+    jobCompletionTriggerConditions?: inputs.GetJobJobCompletionTriggerCondition[];
+    /**
+     * The ID of the job
      */
     jobId: number;
-    /**
-     * ID of the project the job is in
-     */
-    projectId: number;
 }
 
 /**
@@ -33,67 +36,98 @@ export interface GetJobArgs {
  */
 export interface GetJobResult {
     /**
-     * ID of the environment this job defers to
+     * The version of dbt used for the job. If not set, the environment version will be used.
+     */
+    readonly dbtVersion: string;
+    /**
+     * The ID of the environment this job defers to
      */
     readonly deferringEnvironmentId: number;
     /**
-     * ID of the job this job defers to
+     * [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+     *
+     * @deprecated Deferral is now set at the environment level
      */
     readonly deferringJobId: number;
     /**
-     * Long description for the job
+     * The description of the job
      */
     readonly description: string;
     /**
-     * ID of the environment the job is in
+     * Details of the environment the job is running in
+     */
+    readonly environment: outputs.GetJobEnvironment;
+    /**
+     * The ID of environment
      */
     readonly environmentId: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The list of steps to run in the job
      */
-    readonly id: string;
+    readonly executeSteps: string[];
+    readonly execution: outputs.GetJobExecution;
     /**
-     * Which other job should trigger this job when it finishes, and on which conditions.
+     * Whether the job generate docs
+     */
+    readonly generateDocs: boolean;
+    /**
+     * The ID of the job
+     */
+    readonly id: number;
+    /**
+     * Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
      */
     readonly jobCompletionTriggerConditions: outputs.GetJobJobCompletionTriggerCondition[];
     /**
-     * ID of the job
+     * The ID of the job
      */
     readonly jobId: number;
     /**
-     * Given name for the job
+     * The type of job (e.g. CI, scheduled)
+     */
+    readonly jobType: string;
+    /**
+     * The name of the job
      */
     readonly name: string;
     /**
-     * ID of the project the job is in
+     * The ID of the project
      */
     readonly projectId: number;
     /**
-     * Whether the CI job should compare data changes introduced by the code change in the PR.
+     * Whether the job should compare data changes introduced by the code change in the PR
      */
     readonly runCompareChanges: boolean;
+    /**
+     * Whether the job test source freshness
+     */
+    readonly runGenerateSources: boolean;
+    readonly schedule: outputs.GetJobSchedule;
     /**
      * Whether this job defers on a previous run of itself (overrides value in deferring*job*id)
      */
     readonly selfDeferring: boolean;
+    readonly settings: outputs.GetJobSettings;
     /**
-     * Number of seconds before the job times out
+     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+     *
+     * @deprecated Moved to execution.timeout_seconds
      */
     readonly timeoutSeconds: number;
-    /**
-     * Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
-     */
-    readonly triggers: {[key: string]: boolean};
+    readonly triggers: outputs.GetJobTriggers;
     /**
      * Whether the CI job should be automatically triggered on draft PRs
      */
     readonly triggersOnDraftPr: boolean;
 }
+/**
+ * Get detailed information for a specific dbt Cloud job.
+ */
 export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getJob:getJob", {
+        "jobCompletionTriggerConditions": args.jobCompletionTriggerConditions,
         "jobId": args.jobId,
-        "projectId": args.projectId,
     }, opts);
 }
 
@@ -102,11 +136,11 @@ export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOutputO
  */
 export interface GetJobOutputArgs {
     /**
-     * ID of the job
+     * Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+     */
+    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.GetJobJobCompletionTriggerConditionArgs>[]>;
+    /**
+     * The ID of the job
      */
     jobId: pulumi.Input<number>;
-    /**
-     * ID of the project the job is in
-     */
-    projectId: pulumi.Input<number>;
 }

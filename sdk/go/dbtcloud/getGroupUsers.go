@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Returns a list of users assigned to a specific dbt Cloud group
+// Databricks credential data source
 //
 // ## Example Usage
 //
@@ -58,7 +58,7 @@ type GetGroupUsersArgs struct {
 type GetGroupUsersResult struct {
 	// ID of the group
 	GroupId int `pulumi:"groupId"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource. Contains the project ID and the credential ID.
 	Id string `pulumi:"id"`
 	// List of users (map of ID and email) in the group
 	Users []GetGroupUsersUser `pulumi:"users"`
@@ -103,7 +103,7 @@ func (o GetGroupUsersResultOutput) GroupId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetGroupUsersResult) int { return v.GroupId }).(pulumi.IntOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource. Contains the project ID and the credential ID.
 func (o GetGroupUsersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGroupUsersResult) string { return v.Id }).(pulumi.StringOutput)
 }

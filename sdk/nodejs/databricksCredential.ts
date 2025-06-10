@@ -5,7 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Databricks credential resource
+ *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const myDatabricksCred = new dbtcloud.DatabricksCredential("my_databricks_cred", {
+ *     projectId: dbtProject.id,
+ *     token: "abcdefgh",
+ *     schema: "my_schema",
+ *     adapterType: "databricks",
+ * });
+ * ```
  *
  * ## Import
  *
@@ -66,17 +80,13 @@ export class DatabricksCredential extends pulumi.CustomResource {
     }
 
     /**
-     * Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     */
-    public readonly adapterId!: pulumi.Output<number | undefined>;
-    /**
      * The type of the adapter (databricks or spark)
      */
     public readonly adapterType!: pulumi.Output<string>;
     /**
      * The catalog where to create models (only for the databricks adapter)
      */
-    public readonly catalog!: pulumi.Output<string | undefined>;
+    public readonly catalog!: pulumi.Output<string>;
     /**
      * The system Databricks credential ID
      */
@@ -94,7 +104,7 @@ export class DatabricksCredential extends pulumi.CustomResource {
      *
      * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      */
-    public readonly targetName!: pulumi.Output<string | undefined>;
+    public readonly targetName!: pulumi.Output<string>;
     /**
      * Token for Databricks user
      */
@@ -113,7 +123,6 @@ export class DatabricksCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabricksCredentialState | undefined;
-            resourceInputs["adapterId"] = state ? state.adapterId : undefined;
             resourceInputs["adapterType"] = state ? state.adapterType : undefined;
             resourceInputs["catalog"] = state ? state.catalog : undefined;
             resourceInputs["credentialId"] = state ? state.credentialId : undefined;
@@ -135,7 +144,6 @@ export class DatabricksCredential extends pulumi.CustomResource {
             if ((!args || args.token === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'token'");
             }
-            resourceInputs["adapterId"] = args ? args.adapterId : undefined;
             resourceInputs["adapterType"] = args ? args.adapterType : undefined;
             resourceInputs["catalog"] = args ? args.catalog : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -155,10 +163,6 @@ export class DatabricksCredential extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DatabricksCredential resources.
  */
 export interface DatabricksCredentialState {
-    /**
-     * Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     */
-    adapterId?: pulumi.Input<number>;
     /**
      * The type of the adapter (databricks or spark)
      */
@@ -195,10 +199,6 @@ export interface DatabricksCredentialState {
  * The set of arguments for constructing a DatabricksCredential resource.
  */
 export interface DatabricksCredentialArgs {
-    /**
-     * Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     */
-    adapterId?: pulumi.Input<number>;
     /**
      * The type of the adapter (databricks or spark)
      */

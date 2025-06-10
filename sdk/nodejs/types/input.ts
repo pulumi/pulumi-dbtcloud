@@ -5,6 +5,148 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface BigquerySemanticLayerCredentialConfiguration {
+    /**
+     * The adapter version
+     */
+    adapterVersion: pulumi.Input<string>;
+    /**
+     * The name of the configuration
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project
+     */
+    projectId: pulumi.Input<number>;
+}
+
+export interface BigquerySemanticLayerCredentialCredential {
+    /**
+     * The internal credential ID
+     */
+    credentialId?: pulumi.Input<number>;
+    /**
+     * Default dataset name
+     */
+    dataset: pulumi.Input<string>;
+    /**
+     * The ID of this resource. Contains the project ID and the credential ID.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Whether the BigQuery credential is active
+     */
+    isActive?: pulumi.Input<boolean>;
+    /**
+     * Number of threads to use
+     */
+    numThreads: pulumi.Input<number>;
+    /**
+     * Project ID to create the BigQuery credential in
+     */
+    projectId: pulumi.Input<number>;
+}
+
+export interface GetJobJobCompletionTriggerCondition {
+    /**
+     * The ID of the job that would trigger this job after completion.
+     */
+    jobId?: number;
+    /**
+     * The ID of the project where the trigger job is running in.
+     */
+    projectId?: number;
+    /**
+     * List of statuses to trigger the job on.
+     */
+    statuses?: string[];
+}
+
+export interface GetJobJobCompletionTriggerConditionArgs {
+    /**
+     * The ID of the job that would trigger this job after completion.
+     */
+    jobId?: pulumi.Input<number>;
+    /**
+     * The ID of the project where the trigger job is running in.
+     */
+    projectId?: pulumi.Input<number>;
+    /**
+     * List of statuses to trigger the job on.
+     */
+    statuses?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetRunsFilter {
+    /**
+     * The ID of the environment
+     */
+    environmentId?: number;
+    /**
+     * The ID of the job definition
+     */
+    jobDefinitionId?: number;
+    /**
+     * The limit of the runs
+     */
+    limit?: number;
+    /**
+     * The ID of the project
+     */
+    projectId?: number;
+    /**
+     * The ID of the pull request
+     */
+    pullRequestId?: number;
+    /**
+     * The status of the run
+     */
+    status?: number;
+    /**
+     * The status of the run
+     */
+    statusIn?: string;
+    /**
+     * The ID of the trigger
+     */
+    triggerId?: number;
+}
+
+export interface GetRunsFilterArgs {
+    /**
+     * The ID of the environment
+     */
+    environmentId?: pulumi.Input<number>;
+    /**
+     * The ID of the job definition
+     */
+    jobDefinitionId?: pulumi.Input<number>;
+    /**
+     * The limit of the runs
+     */
+    limit?: pulumi.Input<number>;
+    /**
+     * The ID of the project
+     */
+    projectId?: pulumi.Input<number>;
+    /**
+     * The ID of the pull request
+     */
+    pullRequestId?: pulumi.Input<number>;
+    /**
+     * The status of the run
+     */
+    status?: pulumi.Input<number>;
+    /**
+     * The status of the run
+     */
+    statusIn?: pulumi.Input<string>;
+    /**
+     * The ID of the trigger
+     */
+    triggerId?: pulumi.Input<number>;
+}
+
 export interface GetServiceTokenServiceTokenPermission {
     /**
      * Whether or not to apply this permission to all projects for this service token
@@ -451,6 +593,29 @@ export interface GlobalConnectionSynapse {
     retries?: pulumi.Input<number>;
 }
 
+export interface GlobalConnectionTeradata {
+    /**
+     * The hostname of the database.
+     */
+    host: pulumi.Input<string>;
+    /**
+     * The port to connect to for this connection. Default=1025
+     */
+    port?: pulumi.Input<string>;
+    /**
+     * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    requestTimeout?: pulumi.Input<number>;
+    /**
+     * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+     */
+    retries?: pulumi.Input<number>;
+    /**
+     * The transaction mode to use for the connection.
+     */
+    tmode: pulumi.Input<string>;
+}
+
 export interface GroupGroupPermission {
     /**
      * Whether access should be provided for all projects or not.
@@ -531,6 +696,75 @@ export interface JobJobCompletionTriggerCondition {
     statuses: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface JobTriggers {
+    /**
+     * Whether the job runs automatically on PR creation
+     */
+    gitProviderWebhook?: pulumi.Input<boolean>;
+    /**
+     * Whether the job runs automatically on PR creation
+     */
+    githubWebhook?: pulumi.Input<boolean>;
+    /**
+     * Whether the job runs automatically once a PR is merged
+     */
+    onMerge?: pulumi.Input<boolean>;
+    /**
+     * Whether the job runs on a schedule
+     */
+    schedule?: pulumi.Input<boolean>;
+}
+
+export interface RedshiftSemanticLayerCredentialConfiguration {
+    /**
+     * The adapter version
+     */
+    adapterVersion: pulumi.Input<string>;
+    /**
+     * The name of the configuration
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project
+     */
+    projectId: pulumi.Input<number>;
+}
+
+export interface RedshiftSemanticLayerCredentialCredential {
+    /**
+     * The internal credential ID
+     */
+    credentialId?: pulumi.Input<number>;
+    /**
+     * Default schema name
+     */
+    defaultSchema: pulumi.Input<string>;
+    /**
+     * The ID of this resource. Contains the project ID and the credential ID.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Whether the Redshift credential is active
+     */
+    isActive?: pulumi.Input<boolean>;
+    /**
+     * Number of threads to use
+     */
+    numThreads: pulumi.Input<number>;
+    /**
+     * The password for the Redshift account
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * Project ID to create the Redshift credential in
+     */
+    projectId: pulumi.Input<number>;
+    /**
+     * The username for the Redshift account.
+     */
+    username?: pulumi.Input<string>;
+}
+
 export interface ServiceTokenServiceTokenPermission {
     /**
      * Whether or not to apply this permission to all projects for this service token
@@ -552,4 +786,82 @@ export interface ServiceTokenServiceTokenPermission {
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SnowflakeSemanticLayerCredentialConfiguration {
+    /**
+     * The adapter version
+     */
+    adapterVersion: pulumi.Input<string>;
+    /**
+     * The name of the configuration
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project
+     */
+    projectId: pulumi.Input<number>;
+}
+
+export interface SnowflakeSemanticLayerCredentialCredential {
+    /**
+     * The type of Snowflake credential ('password' or 'keypair')
+     */
+    authType: pulumi.Input<string>;
+    /**
+     * The internal credential ID
+     */
+    credentialId?: pulumi.Input<number>;
+    /**
+     * The catalog to connect use
+     */
+    database?: pulumi.Input<string>;
+    /**
+     * The ID of this resource. Contains the project ID and the credential ID.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Whether the Snowflake credential is active
+     */
+    isActive?: pulumi.Input<boolean>;
+    /**
+     * Number of threads to use
+     */
+    numThreads: pulumi.Input<number>;
+    /**
+     * The password for the Snowflake account
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * The private key for the Snowflake account
+     */
+    privateKey?: pulumi.Input<string>;
+    /**
+     * The passphrase for the private key
+     */
+    privateKeyPassphrase?: pulumi.Input<string>;
+    /**
+     * Project ID to create the Snowflake credential in
+     */
+    projectId: pulumi.Input<number>;
+    /**
+     * The role to assume
+     */
+    role?: pulumi.Input<string>;
+    /**
+     * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+     */
+    schema?: pulumi.Input<string>;
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+     */
+    semanticLayerCredential?: pulumi.Input<boolean>;
+    /**
+     * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+     */
+    user?: pulumi.Input<string>;
+    /**
+     * The warehouse to use
+     */
+    warehouse?: pulumi.Input<string>;
 }

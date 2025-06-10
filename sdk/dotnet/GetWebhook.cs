@@ -11,12 +11,21 @@ namespace Pulumi.DbtCloud
 {
     public static class GetWebhook
     {
+        /// <summary>
+        /// Retrieve webhook details
+        /// </summary>
         public static Task<GetWebhookResult> InvokeAsync(GetWebhookArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetWebhookResult>("dbtcloud:index/getWebhook:getWebhook", args ?? new GetWebhookArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Retrieve webhook details
+        /// </summary>
         public static Output<GetWebhookResult> Invoke(GetWebhookInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetWebhookResult>("dbtcloud:index/getWebhook:getWebhook", args ?? new GetWebhookInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Retrieve webhook details
+        /// </summary>
         public static Output<GetWebhookResult> Invoke(GetWebhookInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetWebhookResult>("dbtcloud:index/getWebhook:getWebhook", args ?? new GetWebhookInvokeArgs(), options.WithDefaults());
     }
@@ -25,7 +34,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetWebhookArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Webhooks ID
+        /// Webhook's ID
         /// </summary>
         [Input("webhookId", required: true)]
         public string WebhookId { get; set; } = null!;
@@ -39,7 +48,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetWebhookInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Webhooks ID
+        /// Webhook's ID
         /// </summary>
         [Input("webhookId", required: true)]
         public Input<string> WebhookId { get; set; } = null!;
@@ -79,7 +88,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string HttpStatusCode;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Webhook's ID
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -91,7 +100,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Webhooks ID
+        /// Webhook's ID
         /// </summary>
         public readonly string WebhookId;
 

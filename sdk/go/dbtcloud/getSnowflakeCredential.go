@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Snowflake credential data source
 func LookupSnowflakeCredential(ctx *pulumi.Context, args *LookupSnowflakeCredentialArgs, opts ...pulumi.InvokeOption) (*LookupSnowflakeCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSnowflakeCredentialResult
@@ -35,7 +36,7 @@ type LookupSnowflakeCredentialResult struct {
 	AuthType string `pulumi:"authType"`
 	// Credential ID
 	CredentialId int `pulumi:"credentialId"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource. Contains the project ID and the credential ID.
 	Id string `pulumi:"id"`
 	// Whether the Snowflake credential is active
 	IsActive bool `pulumi:"isActive"`
@@ -43,7 +44,7 @@ type LookupSnowflakeCredentialResult struct {
 	NumThreads int `pulumi:"numThreads"`
 	// Project ID
 	ProjectId int `pulumi:"projectId"`
-	// Default schema name
+	// The schema where to create models
 	Schema string `pulumi:"schema"`
 	// Username for Snowflake
 	User string `pulumi:"user"`
@@ -95,7 +96,7 @@ func (o LookupSnowflakeCredentialResultOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSnowflakeCredentialResult) int { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource. Contains the project ID and the credential ID.
 func (o LookupSnowflakeCredentialResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSnowflakeCredentialResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -115,7 +116,7 @@ func (o LookupSnowflakeCredentialResultOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSnowflakeCredentialResult) int { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// Default schema name
+// The schema where to create models
 func (o LookupSnowflakeCredentialResultOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSnowflakeCredentialResult) string { return v.Schema }).(pulumi.StringOutput)
 }

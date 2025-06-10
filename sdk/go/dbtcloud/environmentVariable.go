@@ -89,7 +89,7 @@ type EnvironmentVariable struct {
 	EnvironmentValues pulumi.StringMapOutput `pulumi:"environmentValues"`
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Project for the variable to be created in
+	// Project ID to create the environment variable in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 }
 
@@ -133,7 +133,7 @@ type environmentVariableState struct {
 	EnvironmentValues map[string]string `pulumi:"environmentValues"`
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name *string `pulumi:"name"`
-	// Project for the variable to be created in
+	// Project ID to create the environment variable in
 	ProjectId *int `pulumi:"projectId"`
 }
 
@@ -142,7 +142,7 @@ type EnvironmentVariableState struct {
 	EnvironmentValues pulumi.StringMapInput
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name pulumi.StringPtrInput
-	// Project for the variable to be created in
+	// Project ID to create the environment variable in
 	ProjectId pulumi.IntPtrInput
 }
 
@@ -155,7 +155,7 @@ type environmentVariableArgs struct {
 	EnvironmentValues map[string]string `pulumi:"environmentValues"`
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name *string `pulumi:"name"`
-	// Project for the variable to be created in
+	// Project ID to create the environment variable in
 	ProjectId int `pulumi:"projectId"`
 }
 
@@ -165,7 +165,7 @@ type EnvironmentVariableArgs struct {
 	EnvironmentValues pulumi.StringMapInput
 	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name pulumi.StringPtrInput
-	// Project for the variable to be created in
+	// Project ID to create the environment variable in
 	ProjectId pulumi.IntInput
 }
 
@@ -266,7 +266,7 @@ func (o EnvironmentVariableOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvironmentVariable) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Project for the variable to be created in
+// Project ID to create the environment variable in
 func (o EnvironmentVariableOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *EnvironmentVariable) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }

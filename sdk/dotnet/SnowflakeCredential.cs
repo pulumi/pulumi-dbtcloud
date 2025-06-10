@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -73,13 +75,13 @@ namespace Pulumi.DbtCloud
         public Output<string> AuthType { get; private set; } = null!;
 
         /// <summary>
-        /// The system Snowflake credential ID
+        /// The internal credential ID
         /// </summary>
         [Output("credentialId")]
         public Output<int> CredentialId { get; private set; } = null!;
 
         /// <summary>
-        /// Database to connect to
+        /// The catalog to connect use
         /// </summary>
         [Output("database")]
         public Output<string?> Database { get; private set; } = null!;
@@ -88,7 +90,7 @@ namespace Pulumi.DbtCloud
         /// Whether the Snowflake credential is active
         /// </summary>
         [Output("isActive")]
-        public Output<bool?> IsActive { get; private set; } = null!;
+        public Output<bool> IsActive { get; private set; } = null!;
 
         /// <summary>
         /// Number of threads to use
@@ -97,22 +99,22 @@ namespace Pulumi.DbtCloud
         public Output<int> NumThreads { get; private set; } = null!;
 
         /// <summary>
-        /// Password for Snowflake
+        /// The password for the Snowflake account
         /// </summary>
         [Output("password")]
-        public Output<string?> Password { get; private set; } = null!;
+        public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Private key for Snowflake
+        /// The private key for the Snowflake account
         /// </summary>
         [Output("privateKey")]
-        public Output<string?> PrivateKey { get; private set; } = null!;
+        public Output<string> PrivateKey { get; private set; } = null!;
 
         /// <summary>
-        /// Private key passphrase for Snowflake
+        /// The passphrase for the private key
         /// </summary>
         [Output("privateKeyPassphrase")]
-        public Output<string?> PrivateKeyPassphrase { get; private set; } = null!;
+        public Output<string> PrivateKeyPassphrase { get; private set; } = null!;
 
         /// <summary>
         /// Project ID to create the Snowflake credential in
@@ -121,25 +123,31 @@ namespace Pulumi.DbtCloud
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Role to assume
+        /// The role to assume
         /// </summary>
         [Output("role")]
         public Output<string?> Role { get; private set; } = null!;
 
         /// <summary>
-        /// Default schema name
+        /// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         /// </summary>
         [Output("schema")]
         public Output<string> Schema { get; private set; } = null!;
 
         /// <summary>
-        /// Username for Snowflake
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        /// </summary>
+        [Output("semanticLayerCredential")]
+        public Output<bool> SemanticLayerCredential { get; private set; } = null!;
+
+        /// <summary>
+        /// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         /// </summary>
         [Output("user")]
         public Output<string> User { get; private set; } = null!;
 
         /// <summary>
-        /// Warehouse to use
+        /// The warehouse to use
         /// </summary>
         [Output("warehouse")]
         public Output<string?> Warehouse { get; private set; } = null!;
@@ -204,7 +212,7 @@ namespace Pulumi.DbtCloud
         public Input<string> AuthType { get; set; } = null!;
 
         /// <summary>
-        /// Database to connect to
+        /// The catalog to connect use
         /// </summary>
         [Input("database")]
         public Input<string>? Database { get; set; }
@@ -225,7 +233,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for Snowflake
+        /// The password for the Snowflake account
         /// </summary>
         public Input<string>? Password
         {
@@ -241,7 +249,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private key for Snowflake
+        /// The private key for the Snowflake account
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -257,7 +265,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKeyPassphrase;
 
         /// <summary>
-        /// Private key passphrase for Snowflake
+        /// The passphrase for the private key
         /// </summary>
         public Input<string>? PrivateKeyPassphrase
         {
@@ -276,25 +284,31 @@ namespace Pulumi.DbtCloud
         public Input<int> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Role to assume
+        /// The role to assume
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// Default schema name
+        /// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         /// </summary>
-        [Input("schema", required: true)]
-        public Input<string> Schema { get; set; } = null!;
+        [Input("schema")]
+        public Input<string>? Schema { get; set; }
 
         /// <summary>
-        /// Username for Snowflake
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
         /// </summary>
-        [Input("user", required: true)]
-        public Input<string> User { get; set; } = null!;
+        [Input("semanticLayerCredential")]
+        public Input<bool>? SemanticLayerCredential { get; set; }
 
         /// <summary>
-        /// Warehouse to use
+        /// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        /// </summary>
+        [Input("user")]
+        public Input<string>? User { get; set; }
+
+        /// <summary>
+        /// The warehouse to use
         /// </summary>
         [Input("warehouse")]
         public Input<string>? Warehouse { get; set; }
@@ -314,13 +328,13 @@ namespace Pulumi.DbtCloud
         public Input<string>? AuthType { get; set; }
 
         /// <summary>
-        /// The system Snowflake credential ID
+        /// The internal credential ID
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }
 
         /// <summary>
-        /// Database to connect to
+        /// The catalog to connect use
         /// </summary>
         [Input("database")]
         public Input<string>? Database { get; set; }
@@ -341,7 +355,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for Snowflake
+        /// The password for the Snowflake account
         /// </summary>
         public Input<string>? Password
         {
@@ -357,7 +371,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private key for Snowflake
+        /// The private key for the Snowflake account
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -373,7 +387,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKeyPassphrase;
 
         /// <summary>
-        /// Private key passphrase for Snowflake
+        /// The passphrase for the private key
         /// </summary>
         public Input<string>? PrivateKeyPassphrase
         {
@@ -392,25 +406,31 @@ namespace Pulumi.DbtCloud
         public Input<int>? ProjectId { get; set; }
 
         /// <summary>
-        /// Role to assume
+        /// The role to assume
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// Default schema name
+        /// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         /// </summary>
         [Input("schema")]
         public Input<string>? Schema { get; set; }
 
         /// <summary>
-        /// Username for Snowflake
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        /// </summary>
+        [Input("semanticLayerCredential")]
+        public Input<bool>? SemanticLayerCredential { get; set; }
+
+        /// <summary>
+        /// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }
 
         /// <summary>
-        /// Warehouse to use
+        /// The warehouse to use
         /// </summary>
         [Input("warehouse")]
         public Input<string>? Warehouse { get; set; }

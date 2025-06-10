@@ -17,6 +17,8 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'BigquerySemanticLayerCredentialConfiguration',
+    'BigquerySemanticLayerCredentialCredential',
     'GlobalConnectionApacheSpark',
     'GlobalConnectionAthena',
     'GlobalConnectionBigquery',
@@ -29,11 +31,17 @@ __all__ = [
     'GlobalConnectionSnowflake',
     'GlobalConnectionStarburst',
     'GlobalConnectionSynapse',
+    'GlobalConnectionTeradata',
     'GroupGroupPermission',
     'GroupPartialPermissionsGroupPermission',
     'IpRestrictionsRuleCidr',
     'JobJobCompletionTriggerCondition',
+    'JobTriggers',
+    'RedshiftSemanticLayerCredentialConfiguration',
+    'RedshiftSemanticLayerCredentialCredential',
     'ServiceTokenServiceTokenPermission',
+    'SnowflakeSemanticLayerCredentialConfiguration',
+    'SnowflakeSemanticLayerCredentialCredential',
     'GetEnvironmentsEnvironmentResult',
     'GetGlobalConnectionApacheSparkResult',
     'GetGlobalConnectionAthenaResult',
@@ -47,10 +55,16 @@ __all__ = [
     'GetGlobalConnectionSnowflakeResult',
     'GetGlobalConnectionStarburstResult',
     'GetGlobalConnectionSynapseResult',
+    'GetGlobalConnectionTeradataResult',
     'GetGlobalConnectionsConnectionResult',
     'GetGroupGroupPermissionResult',
     'GetGroupUsersUserResult',
+    'GetJobEnvironmentResult',
+    'GetJobExecutionResult',
     'GetJobJobCompletionTriggerConditionResult',
+    'GetJobScheduleResult',
+    'GetJobSettingsResult',
+    'GetJobTriggersResult',
     'GetJobsJobResult',
     'GetJobsJobEnvironmentResult',
     'GetJobsJobExecutionResult',
@@ -59,12 +73,174 @@ __all__ = [
     'GetJobsJobScheduleResult',
     'GetJobsJobSettingsResult',
     'GetJobsJobTriggersResult',
+    'GetProjectProjectConnectionResult',
+    'GetProjectRepositoryResult',
     'GetProjectsProjectResult',
-    'GetProjectsProjectConnectionResult',
+    'GetProjectsProjectProjectConnectionResult',
     'GetProjectsProjectRepositoryResult',
+    'GetRunsFilterResult',
+    'GetRunsRunResult',
     'GetServiceTokenServiceTokenPermissionResult',
     'GetUsersUserResult',
 ]
+
+@pulumi.output_type
+class BigquerySemanticLayerCredentialConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "adapterVersion":
+            suggest = "adapter_version"
+        elif key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BigquerySemanticLayerCredentialConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BigquerySemanticLayerCredentialConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BigquerySemanticLayerCredentialConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 adapter_version: builtins.str,
+                 name: builtins.str,
+                 project_id: builtins.int):
+        """
+        :param builtins.str adapter_version: The adapter version
+        :param builtins.str name: The name of the configuration
+        :param builtins.int project_id: The ID of the project
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> builtins.str:
+        """
+        The adapter version
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        The name of the configuration
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.int:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class BigquerySemanticLayerCredentialCredential(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "numThreads":
+            suggest = "num_threads"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "credentialId":
+            suggest = "credential_id"
+        elif key == "isActive":
+            suggest = "is_active"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BigquerySemanticLayerCredentialCredential. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BigquerySemanticLayerCredentialCredential.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BigquerySemanticLayerCredentialCredential.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataset: builtins.str,
+                 num_threads: builtins.int,
+                 project_id: builtins.int,
+                 credential_id: Optional[builtins.int] = None,
+                 id: Optional[builtins.str] = None,
+                 is_active: Optional[builtins.bool] = None):
+        """
+        :param builtins.str dataset: Default dataset name
+        :param builtins.int num_threads: Number of threads to use
+        :param builtins.int project_id: Project ID to create the BigQuery credential in
+        :param builtins.int credential_id: The internal credential ID
+        :param builtins.str id: The ID of this resource. Contains the project ID and the credential ID.
+        :param builtins.bool is_active: Whether the BigQuery credential is active
+        """
+        pulumi.set(__self__, "dataset", dataset)
+        pulumi.set(__self__, "num_threads", num_threads)
+        pulumi.set(__self__, "project_id", project_id)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+
+    @property
+    @pulumi.getter
+    def dataset(self) -> builtins.str:
+        """
+        Default dataset name
+        """
+        return pulumi.get(self, "dataset")
+
+    @property
+    @pulumi.getter(name="numThreads")
+    def num_threads(self) -> builtins.int:
+        """
+        Number of threads to use
+        """
+        return pulumi.get(self, "num_threads")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.int:
+        """
+        Project ID to create the BigQuery credential in
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[builtins.int]:
+        """
+        The internal credential ID
+        """
+        return pulumi.get(self, "credential_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[builtins.str]:
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[builtins.bool]:
+        """
+        Whether the BigQuery credential is active
+        """
+        return pulumi.get(self, "is_active")
+
 
 @pulumi.output_type
 class GlobalConnectionApacheSpark(dict):
@@ -1469,6 +1645,88 @@ class GlobalConnectionSynapse(dict):
 
 
 @pulumi.output_type
+class GlobalConnectionTeradata(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "requestTimeout":
+            suggest = "request_timeout"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GlobalConnectionTeradata. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GlobalConnectionTeradata.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GlobalConnectionTeradata.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host: builtins.str,
+                 tmode: builtins.str,
+                 port: Optional[builtins.str] = None,
+                 request_timeout: Optional[builtins.int] = None,
+                 retries: Optional[builtins.int] = None):
+        """
+        :param builtins.str host: The hostname of the database.
+        :param builtins.str tmode: The transaction mode to use for the connection.
+        :param builtins.str port: The port to connect to for this connection. Default=1025
+        :param builtins.int request_timeout: The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param builtins.int retries: The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "tmode", tmode)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if request_timeout is not None:
+            pulumi.set(__self__, "request_timeout", request_timeout)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
+
+    @property
+    @pulumi.getter
+    def host(self) -> builtins.str:
+        """
+        The hostname of the database.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def tmode(self) -> builtins.str:
+        """
+        The transaction mode to use for the connection.
+        """
+        return pulumi.get(self, "tmode")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[builtins.str]:
+        """
+        The port to connect to for this connection. Default=1025
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="requestTimeout")
+    def request_timeout(self) -> Optional[builtins.int]:
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "request_timeout")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[builtins.int]:
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        return pulumi.get(self, "retries")
+
+
+@pulumi.output_type
 class GroupGroupPermission(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1770,6 +2028,266 @@ class JobJobCompletionTriggerCondition(dict):
 
 
 @pulumi.output_type
+class JobTriggers(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gitProviderWebhook":
+            suggest = "git_provider_webhook"
+        elif key == "githubWebhook":
+            suggest = "github_webhook"
+        elif key == "onMerge":
+            suggest = "on_merge"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTriggers. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTriggers.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTriggers.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 git_provider_webhook: Optional[builtins.bool] = None,
+                 github_webhook: Optional[builtins.bool] = None,
+                 on_merge: Optional[builtins.bool] = None,
+                 schedule: Optional[builtins.bool] = None):
+        """
+        :param builtins.bool git_provider_webhook: Whether the job runs automatically on PR creation
+        :param builtins.bool github_webhook: Whether the job runs automatically on PR creation
+        :param builtins.bool on_merge: Whether the job runs automatically once a PR is merged
+        :param builtins.bool schedule: Whether the job runs on a schedule
+        """
+        if git_provider_webhook is not None:
+            pulumi.set(__self__, "git_provider_webhook", git_provider_webhook)
+        if github_webhook is not None:
+            pulumi.set(__self__, "github_webhook", github_webhook)
+        if on_merge is not None:
+            pulumi.set(__self__, "on_merge", on_merge)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
+
+    @property
+    @pulumi.getter(name="gitProviderWebhook")
+    def git_provider_webhook(self) -> Optional[builtins.bool]:
+        """
+        Whether the job runs automatically on PR creation
+        """
+        return pulumi.get(self, "git_provider_webhook")
+
+    @property
+    @pulumi.getter(name="githubWebhook")
+    def github_webhook(self) -> Optional[builtins.bool]:
+        """
+        Whether the job runs automatically on PR creation
+        """
+        return pulumi.get(self, "github_webhook")
+
+    @property
+    @pulumi.getter(name="onMerge")
+    def on_merge(self) -> Optional[builtins.bool]:
+        """
+        Whether the job runs automatically once a PR is merged
+        """
+        return pulumi.get(self, "on_merge")
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> Optional[builtins.bool]:
+        """
+        Whether the job runs on a schedule
+        """
+        return pulumi.get(self, "schedule")
+
+
+@pulumi.output_type
+class RedshiftSemanticLayerCredentialConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "adapterVersion":
+            suggest = "adapter_version"
+        elif key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RedshiftSemanticLayerCredentialConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RedshiftSemanticLayerCredentialConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RedshiftSemanticLayerCredentialConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 adapter_version: builtins.str,
+                 name: builtins.str,
+                 project_id: builtins.int):
+        """
+        :param builtins.str adapter_version: The adapter version
+        :param builtins.str name: The name of the configuration
+        :param builtins.int project_id: The ID of the project
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> builtins.str:
+        """
+        The adapter version
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        The name of the configuration
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.int:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class RedshiftSemanticLayerCredentialCredential(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultSchema":
+            suggest = "default_schema"
+        elif key == "numThreads":
+            suggest = "num_threads"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "credentialId":
+            suggest = "credential_id"
+        elif key == "isActive":
+            suggest = "is_active"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RedshiftSemanticLayerCredentialCredential. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RedshiftSemanticLayerCredentialCredential.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RedshiftSemanticLayerCredentialCredential.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_schema: builtins.str,
+                 num_threads: builtins.int,
+                 project_id: builtins.int,
+                 credential_id: Optional[builtins.int] = None,
+                 id: Optional[builtins.str] = None,
+                 is_active: Optional[builtins.bool] = None,
+                 password: Optional[builtins.str] = None,
+                 username: Optional[builtins.str] = None):
+        """
+        :param builtins.str default_schema: Default schema name
+        :param builtins.int num_threads: Number of threads to use
+        :param builtins.int project_id: Project ID to create the Redshift credential in
+        :param builtins.int credential_id: The internal credential ID
+        :param builtins.str id: The ID of this resource. Contains the project ID and the credential ID.
+        :param builtins.bool is_active: Whether the Redshift credential is active
+        :param builtins.str password: The password for the Redshift account
+        :param builtins.str username: The username for the Redshift account.
+        """
+        pulumi.set(__self__, "default_schema", default_schema)
+        pulumi.set(__self__, "num_threads", num_threads)
+        pulumi.set(__self__, "project_id", project_id)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="defaultSchema")
+    def default_schema(self) -> builtins.str:
+        """
+        Default schema name
+        """
+        return pulumi.get(self, "default_schema")
+
+    @property
+    @pulumi.getter(name="numThreads")
+    def num_threads(self) -> builtins.int:
+        """
+        Number of threads to use
+        """
+        return pulumi.get(self, "num_threads")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.int:
+        """
+        Project ID to create the Redshift credential in
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[builtins.int]:
+        """
+        The internal credential ID
+        """
+        return pulumi.get(self, "credential_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[builtins.str]:
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[builtins.bool]:
+        """
+        Whether the Redshift credential is active
+        """
+        return pulumi.get(self, "is_active")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[builtins.str]:
+        """
+        The password for the Redshift account
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[builtins.str]:
+        """
+        The username for the Redshift account.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
 class ServiceTokenServiceTokenPermission(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1854,6 +2372,280 @@ class ServiceTokenServiceTokenPermission(dict):
 
 
 @pulumi.output_type
+class SnowflakeSemanticLayerCredentialConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "adapterVersion":
+            suggest = "adapter_version"
+        elif key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SnowflakeSemanticLayerCredentialConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SnowflakeSemanticLayerCredentialConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SnowflakeSemanticLayerCredentialConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 adapter_version: builtins.str,
+                 name: builtins.str,
+                 project_id: builtins.int):
+        """
+        :param builtins.str adapter_version: The adapter version
+        :param builtins.str name: The name of the configuration
+        :param builtins.int project_id: The ID of the project
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> builtins.str:
+        """
+        The adapter version
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        The name of the configuration
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.int:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class SnowflakeSemanticLayerCredentialCredential(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "numThreads":
+            suggest = "num_threads"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "credentialId":
+            suggest = "credential_id"
+        elif key == "isActive":
+            suggest = "is_active"
+        elif key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyPassphrase":
+            suggest = "private_key_passphrase"
+        elif key == "semanticLayerCredential":
+            suggest = "semantic_layer_credential"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SnowflakeSemanticLayerCredentialCredential. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SnowflakeSemanticLayerCredentialCredential.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SnowflakeSemanticLayerCredentialCredential.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auth_type: builtins.str,
+                 num_threads: builtins.int,
+                 project_id: builtins.int,
+                 credential_id: Optional[builtins.int] = None,
+                 database: Optional[builtins.str] = None,
+                 id: Optional[builtins.str] = None,
+                 is_active: Optional[builtins.bool] = None,
+                 password: Optional[builtins.str] = None,
+                 private_key: Optional[builtins.str] = None,
+                 private_key_passphrase: Optional[builtins.str] = None,
+                 role: Optional[builtins.str] = None,
+                 schema: Optional[builtins.str] = None,
+                 semantic_layer_credential: Optional[builtins.bool] = None,
+                 user: Optional[builtins.str] = None,
+                 warehouse: Optional[builtins.str] = None):
+        """
+        :param builtins.str auth_type: The type of Snowflake credential ('password' or 'keypair')
+        :param builtins.int num_threads: Number of threads to use
+        :param builtins.int project_id: Project ID to create the Snowflake credential in
+        :param builtins.int credential_id: The internal credential ID
+        :param builtins.str database: The catalog to connect use
+        :param builtins.str id: The ID of this resource. Contains the project ID and the credential ID.
+        :param builtins.bool is_active: Whether the Snowflake credential is active
+        :param builtins.str password: The password for the Snowflake account
+        :param builtins.str private_key: The private key for the Snowflake account
+        :param builtins.str private_key_passphrase: The passphrase for the private key
+        :param builtins.str role: The role to assume
+        :param builtins.str schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param builtins.bool semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        :param builtins.str user: The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        :param builtins.str warehouse: The warehouse to use
+        """
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "num_threads", num_threads)
+        pulumi.set(__self__, "project_id", project_id)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_passphrase is not None:
+            pulumi.set(__self__, "private_key_passphrase", private_key_passphrase)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+        if warehouse is not None:
+            pulumi.set(__self__, "warehouse", warehouse)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> builtins.str:
+        """
+        The type of Snowflake credential ('password' or 'keypair')
+        """
+        return pulumi.get(self, "auth_type")
+
+    @property
+    @pulumi.getter(name="numThreads")
+    def num_threads(self) -> builtins.int:
+        """
+        Number of threads to use
+        """
+        return pulumi.get(self, "num_threads")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.int:
+        """
+        Project ID to create the Snowflake credential in
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[builtins.int]:
+        """
+        The internal credential ID
+        """
+        return pulumi.get(self, "credential_id")
+
+    @property
+    @pulumi.getter
+    def database(self) -> Optional[builtins.str]:
+        """
+        The catalog to connect use
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[builtins.str]:
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[builtins.bool]:
+        """
+        Whether the Snowflake credential is active
+        """
+        return pulumi.get(self, "is_active")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[builtins.str]:
+        """
+        The password for the Snowflake account
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[builtins.str]:
+        """
+        The private key for the Snowflake account
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="privateKeyPassphrase")
+    def private_key_passphrase(self) -> Optional[builtins.str]:
+        """
+        The passphrase for the private key
+        """
+        return pulumi.get(self, "private_key_passphrase")
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[builtins.str]:
+        """
+        The role to assume
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def schema(self) -> Optional[builtins.str]:
+        """
+        The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        """
+        return pulumi.get(self, "schema")
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[builtins.bool]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[builtins.str]:
+        """
+        The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+        """
+        return pulumi.get(self, "user")
+
+    @property
+    @pulumi.getter
+    def warehouse(self) -> Optional[builtins.str]:
+        """
+        The warehouse to use
+        """
+        return pulumi.get(self, "warehouse")
+
+
+@pulumi.output_type
 class GetEnvironmentsEnvironmentResult(dict):
     def __init__(__self__, *,
                  connection_id: builtins.int,
@@ -1870,7 +2662,7 @@ class GetEnvironmentsEnvironmentResult(dict):
                  use_custom_branch: builtins.bool):
         """
         :param builtins.int connection_id: A connection ID (used with Global Connections)
-        :param builtins.int credentials_id: Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+        :param builtins.int credentials_id: Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
         :param builtins.str custom_branch: The custom branch name to use
         :param builtins.str dbt_version: Version number of dbt to use in this environment.
         :param builtins.str deployment_type: The type of deployment environment (currently 'production', 'staging' or empty)
@@ -1907,7 +2699,7 @@ class GetEnvironmentsEnvironmentResult(dict):
     @pulumi.getter(name="credentialsId")
     def credentials_id(self) -> builtins.int:
         """
-        Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+        Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
         """
         return pulumi.get(self, "credentials_id")
 
@@ -3078,6 +3870,68 @@ class GetGlobalConnectionSynapseResult(dict):
 
 
 @pulumi.output_type
+class GetGlobalConnectionTeradataResult(dict):
+    def __init__(__self__, *,
+                 host: builtins.str,
+                 port: builtins.str,
+                 request_timeout: builtins.int,
+                 retries: builtins.int,
+                 tmode: builtins.str):
+        """
+        :param builtins.str host: The hostname of the database.
+        :param builtins.str port: The port to connect to for this connection. Default=1025
+        :param builtins.int request_timeout: The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        :param builtins.int retries: The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        :param builtins.str tmode: The transaction mode to use for the connection.
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "request_timeout", request_timeout)
+        pulumi.set(__self__, "retries", retries)
+        pulumi.set(__self__, "tmode", tmode)
+
+    @property
+    @pulumi.getter
+    def host(self) -> builtins.str:
+        """
+        The hostname of the database.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def port(self) -> builtins.str:
+        """
+        The port to connect to for this connection. Default=1025
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="requestTimeout")
+    def request_timeout(self) -> builtins.int:
+        """
+        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+        """
+        return pulumi.get(self, "request_timeout")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> builtins.int:
+        """
+        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+        """
+        return pulumi.get(self, "retries")
+
+    @property
+    @pulumi.getter
+    def tmode(self) -> builtins.str:
+        """
+        The transaction mode to use for the connection.
+        """
+        return pulumi.get(self, "tmode")
+
+
+@pulumi.output_type
 class GetGlobalConnectionsConnectionResult(dict):
     def __init__(__self__, *,
                  adapter_version: builtins.str,
@@ -3231,18 +4085,104 @@ class GetGroupUsersUserResult(dict):
     def __init__(__self__, *,
                  email: builtins.str,
                  id: builtins.int):
+        """
+        :param builtins.str email: Email of the user
+        :param builtins.int id: ID of the user
+        """
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter
     def email(self) -> builtins.str:
+        """
+        Email of the user
+        """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
     def id(self) -> builtins.int:
+        """
+        ID of the user
+        """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetJobEnvironmentResult(dict):
+    def __init__(__self__, *,
+                 deployment_type: builtins.str,
+                 id: builtins.int,
+                 name: builtins.str,
+                 project_id: builtins.int,
+                 type: builtins.str):
+        """
+        :param builtins.str deployment_type: Type of deployment environment: staging, production
+        :param builtins.int id: ID of the environment
+        :param builtins.str name: Name of the environment
+        :param builtins.str type: Environment type: development or deployment
+        """
+        pulumi.set(__self__, "deployment_type", deployment_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="deploymentType")
+    def deployment_type(self) -> builtins.str:
+        """
+        Type of deployment environment: staging, production
+        """
+        return pulumi.get(self, "deployment_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.int:
+        """
+        ID of the environment
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        Name of the environment
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.int:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> builtins.str:
+        """
+        Environment type: development or deployment
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetJobExecutionResult(dict):
+    def __init__(__self__, *,
+                 timeout_seconds: builtins.int):
+        """
+        :param builtins.int timeout_seconds: The number of seconds before the job times out
+        """
+        pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+
+    @property
+    @pulumi.getter(name="timeoutSeconds")
+    def timeout_seconds(self) -> builtins.int:
+        """
+        The number of seconds before the job times out
+        """
+        return pulumi.get(self, "timeout_seconds")
 
 
 @pulumi.output_type
@@ -3286,6 +4226,104 @@ class GetJobJobCompletionTriggerConditionResult(dict):
 
 
 @pulumi.output_type
+class GetJobScheduleResult(dict):
+    def __init__(__self__, *,
+                 cron: builtins.str):
+        """
+        :param builtins.str cron: The cron schedule for the job. Only used if triggers.schedule is true
+        """
+        pulumi.set(__self__, "cron", cron)
+
+    @property
+    @pulumi.getter
+    def cron(self) -> builtins.str:
+        """
+        The cron schedule for the job. Only used if triggers.schedule is true
+        """
+        return pulumi.get(self, "cron")
+
+
+@pulumi.output_type
+class GetJobSettingsResult(dict):
+    def __init__(__self__, *,
+                 target_name: builtins.str,
+                 threads: builtins.int):
+        """
+        :param builtins.str target_name: Value for `target.name` in the Jinja context
+        :param builtins.int threads: Number of threads to run dbt with
+        """
+        pulumi.set(__self__, "target_name", target_name)
+        pulumi.set(__self__, "threads", threads)
+
+    @property
+    @pulumi.getter(name="targetName")
+    def target_name(self) -> builtins.str:
+        """
+        Value for `target.name` in the Jinja context
+        """
+        return pulumi.get(self, "target_name")
+
+    @property
+    @pulumi.getter
+    def threads(self) -> builtins.int:
+        """
+        Number of threads to run dbt with
+        """
+        return pulumi.get(self, "threads")
+
+
+@pulumi.output_type
+class GetJobTriggersResult(dict):
+    def __init__(__self__, *,
+                 git_provider_webhook: builtins.bool,
+                 github_webhook: builtins.bool,
+                 on_merge: builtins.bool,
+                 schedule: builtins.bool):
+        """
+        :param builtins.bool git_provider_webhook: Whether the job runs automatically on PR creation
+        :param builtins.bool github_webhook: Whether the job runs automatically on PR creation
+        :param builtins.bool on_merge: Whether the job runs automatically once a PR is merged
+        :param builtins.bool schedule: Whether the job runs on a schedule
+        """
+        pulumi.set(__self__, "git_provider_webhook", git_provider_webhook)
+        pulumi.set(__self__, "github_webhook", github_webhook)
+        pulumi.set(__self__, "on_merge", on_merge)
+        pulumi.set(__self__, "schedule", schedule)
+
+    @property
+    @pulumi.getter(name="gitProviderWebhook")
+    def git_provider_webhook(self) -> builtins.bool:
+        """
+        Whether the job runs automatically on PR creation
+        """
+        return pulumi.get(self, "git_provider_webhook")
+
+    @property
+    @pulumi.getter(name="githubWebhook")
+    def github_webhook(self) -> builtins.bool:
+        """
+        Whether the job runs automatically on PR creation
+        """
+        return pulumi.get(self, "github_webhook")
+
+    @property
+    @pulumi.getter(name="onMerge")
+    def on_merge(self) -> builtins.bool:
+        """
+        Whether the job runs automatically once a PR is merged
+        """
+        return pulumi.get(self, "on_merge")
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> builtins.bool:
+        """
+        Whether the job runs on a schedule
+        """
+        return pulumi.get(self, "schedule")
+
+
+@pulumi.output_type
 class GetJobsJobResult(dict):
     def __init__(__self__, *,
                  dbt_version: builtins.str,
@@ -3299,6 +4337,7 @@ class GetJobsJobResult(dict):
                  generate_docs: builtins.bool,
                  id: builtins.int,
                  job_completion_trigger_condition: 'outputs.GetJobsJobJobCompletionTriggerConditionResult',
+                 job_id: builtins.int,
                  job_type: builtins.str,
                  name: builtins.str,
                  project_id: builtins.int,
@@ -3306,12 +4345,13 @@ class GetJobsJobResult(dict):
                  run_generate_sources: builtins.bool,
                  schedule: 'outputs.GetJobsJobScheduleResult',
                  settings: 'outputs.GetJobsJobSettingsResult',
+                 timeout_seconds: builtins.int,
                  triggers: 'outputs.GetJobsJobTriggersResult',
                  triggers_on_draft_pr: builtins.bool):
         """
         :param builtins.str dbt_version: The version of dbt used for the job. If not set, the environment version will be used.
         :param builtins.int deferring_environment_id: The ID of the environment this job defers to
-        :param builtins.int deferring_job_definition_id: [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+        :param builtins.int deferring_job_definition_id: [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
         :param builtins.str description: The description of the job
         :param 'GetJobsJobEnvironmentArgs' environment: Details of the environment the job is running in
         :param builtins.int environment_id: The ID of environment
@@ -3319,11 +4359,13 @@ class GetJobsJobResult(dict):
         :param builtins.bool generate_docs: Whether the job generate docs
         :param builtins.int id: The ID of the job
         :param 'GetJobsJobJobCompletionTriggerConditionArgs' job_completion_trigger_condition: Whether the job is triggered by the completion of another job
+        :param builtins.int job_id: The ID of the job
         :param builtins.str job_type: The type of job (e.g. CI, scheduled)
         :param builtins.str name: The name of the job
         :param builtins.int project_id: The ID of the project
         :param builtins.bool run_compare_changes: Whether the job should compare data changes introduced by the code change in the PR
         :param builtins.bool run_generate_sources: Whether the job test source freshness
+        :param builtins.int timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
         :param builtins.bool triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         """
         pulumi.set(__self__, "dbt_version", dbt_version)
@@ -3337,6 +4379,7 @@ class GetJobsJobResult(dict):
         pulumi.set(__self__, "generate_docs", generate_docs)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "job_completion_trigger_condition", job_completion_trigger_condition)
+        pulumi.set(__self__, "job_id", job_id)
         pulumi.set(__self__, "job_type", job_type)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
@@ -3344,6 +4387,7 @@ class GetJobsJobResult(dict):
         pulumi.set(__self__, "run_generate_sources", run_generate_sources)
         pulumi.set(__self__, "schedule", schedule)
         pulumi.set(__self__, "settings", settings)
+        pulumi.set(__self__, "timeout_seconds", timeout_seconds)
         pulumi.set(__self__, "triggers", triggers)
         pulumi.set(__self__, "triggers_on_draft_pr", triggers_on_draft_pr)
 
@@ -3365,9 +4409,10 @@ class GetJobsJobResult(dict):
 
     @property
     @pulumi.getter(name="deferringJobDefinitionId")
+    @_utilities.deprecated("""Deferral is now set at the environment level""")
     def deferring_job_definition_id(self) -> builtins.int:
         """
-        [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+        [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
         """
         return pulumi.get(self, "deferring_job_definition_id")
 
@@ -3433,6 +4478,14 @@ class GetJobsJobResult(dict):
         return pulumi.get(self, "job_completion_trigger_condition")
 
     @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> builtins.int:
+        """
+        The ID of the job
+        """
+        return pulumi.get(self, "job_id")
+
+    @property
     @pulumi.getter(name="jobType")
     def job_type(self) -> builtins.str:
         """
@@ -3481,6 +4534,15 @@ class GetJobsJobResult(dict):
     @pulumi.getter
     def settings(self) -> 'outputs.GetJobsJobSettingsResult':
         return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter(name="timeoutSeconds")
+    @_utilities.deprecated("""Moved to execution.timeout_seconds""")
+    def timeout_seconds(self) -> builtins.int:
+        """
+        [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+        """
+        return pulumi.get(self, "timeout_seconds")
 
     @property
     @pulumi.getter
@@ -3709,45 +4771,120 @@ class GetJobsJobTriggersResult(dict):
 
 
 @pulumi.output_type
+class GetProjectProjectConnectionResult(dict):
+    def __init__(__self__, *,
+                 adapter_version: builtins.str,
+                 id: builtins.int,
+                 name: builtins.str):
+        """
+        :param builtins.str adapter_version: Version of the adapter for the connection. Will tell what connection type it is
+        :param builtins.int id: Connection ID
+        :param builtins.str name: Connection name
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> builtins.str:
+        """
+        Version of the adapter for the connection. Will tell what connection type it is
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.int:
+        """
+        Connection ID
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        Connection name
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetProjectRepositoryResult(dict):
+    def __init__(__self__, *,
+                 id: builtins.int,
+                 pull_request_url_template: builtins.str,
+                 remote_url: builtins.str):
+        """
+        :param builtins.int id: Repository ID
+        :param builtins.str pull_request_url_template: URL template for PRs
+        :param builtins.str remote_url: URL of the git repo remote
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "pull_request_url_template", pull_request_url_template)
+        pulumi.set(__self__, "remote_url", remote_url)
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.int:
+        """
+        Repository ID
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="pullRequestUrlTemplate")
+    def pull_request_url_template(self) -> builtins.str:
+        """
+        URL template for PRs
+        """
+        return pulumi.get(self, "pull_request_url_template")
+
+    @property
+    @pulumi.getter(name="remoteUrl")
+    def remote_url(self) -> builtins.str:
+        """
+        URL of the git repo remote
+        """
+        return pulumi.get(self, "remote_url")
+
+
+@pulumi.output_type
 class GetProjectsProjectResult(dict):
     def __init__(__self__, *,
-                 connection: 'outputs.GetProjectsProjectConnectionResult',
                  created_at: builtins.str,
                  dbt_project_subdirectory: builtins.str,
                  description: builtins.str,
                  id: builtins.int,
                  name: builtins.str,
+                 project_connection: 'outputs.GetProjectsProjectProjectConnectionResult',
                  repository: 'outputs.GetProjectsProjectRepositoryResult',
                  semantic_layer_config_id: builtins.int,
+                 type: builtins.int,
                  updated_at: builtins.str):
         """
-        :param 'GetProjectsProjectConnectionArgs' connection: Details for the connection linked to the project
         :param builtins.str created_at: When the project was created
         :param builtins.str dbt_project_subdirectory: Subdirectory for the dbt project inside the git repo
         :param builtins.str description: Project description
         :param builtins.int id: Project ID
         :param builtins.str name: Project name
+        :param 'GetProjectsProjectProjectConnectionArgs' project_connection: Details for the connection linked to the project
         :param 'GetProjectsProjectRepositoryArgs' repository: Details for the repository linked to the project
         :param builtins.int semantic_layer_config_id: Semantic layer config ID
+        :param builtins.int type: The type of dbt project (default or hybrid)
         :param builtins.str updated_at: When the project was last updated
         """
-        pulumi.set(__self__, "connection", connection)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "dbt_project_subdirectory", dbt_project_subdirectory)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_connection", project_connection)
         pulumi.set(__self__, "repository", repository)
         pulumi.set(__self__, "semantic_layer_config_id", semantic_layer_config_id)
+        pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
-
-    @property
-    @pulumi.getter
-    def connection(self) -> 'outputs.GetProjectsProjectConnectionResult':
-        """
-        Details for the connection linked to the project
-        """
-        return pulumi.get(self, "connection")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -3790,6 +4927,14 @@ class GetProjectsProjectResult(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectConnection")
+    def project_connection(self) -> 'outputs.GetProjectsProjectProjectConnectionResult':
+        """
+        Details for the connection linked to the project
+        """
+        return pulumi.get(self, "project_connection")
+
+    @property
     @pulumi.getter
     def repository(self) -> 'outputs.GetProjectsProjectRepositoryResult':
         """
@@ -3806,6 +4951,14 @@ class GetProjectsProjectResult(dict):
         return pulumi.get(self, "semantic_layer_config_id")
 
     @property
+    @pulumi.getter
+    def type(self) -> builtins.int:
+        """
+        The type of dbt project (default or hybrid)
+        """
+        return pulumi.get(self, "type")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> builtins.str:
         """
@@ -3815,7 +4968,7 @@ class GetProjectsProjectResult(dict):
 
 
 @pulumi.output_type
-class GetProjectsProjectConnectionResult(dict):
+class GetProjectsProjectProjectConnectionResult(dict):
     def __init__(__self__, *,
                  adapter_version: builtins.str,
                  id: builtins.int,
@@ -3892,6 +5045,204 @@ class GetProjectsProjectRepositoryResult(dict):
         URL of the git repo remote
         """
         return pulumi.get(self, "remote_url")
+
+
+@pulumi.output_type
+class GetRunsFilterResult(dict):
+    def __init__(__self__, *,
+                 environment_id: Optional[builtins.int] = None,
+                 job_definition_id: Optional[builtins.int] = None,
+                 limit: Optional[builtins.int] = None,
+                 project_id: Optional[builtins.int] = None,
+                 pull_request_id: Optional[builtins.int] = None,
+                 status: Optional[builtins.int] = None,
+                 status_in: Optional[builtins.str] = None,
+                 trigger_id: Optional[builtins.int] = None):
+        """
+        :param builtins.int environment_id: The ID of the environment
+        :param builtins.int job_definition_id: The ID of the job definition
+        :param builtins.int limit: The limit of the runs
+        :param builtins.int project_id: The ID of the project
+        :param builtins.int pull_request_id: The ID of the pull request
+        :param builtins.int status: The status of the run
+        :param builtins.str status_in: The status of the run
+        :param builtins.int trigger_id: The ID of the trigger
+        """
+        if environment_id is not None:
+            pulumi.set(__self__, "environment_id", environment_id)
+        if job_definition_id is not None:
+            pulumi.set(__self__, "job_definition_id", job_definition_id)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if pull_request_id is not None:
+            pulumi.set(__self__, "pull_request_id", pull_request_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if status_in is not None:
+            pulumi.set(__self__, "status_in", status_in)
+        if trigger_id is not None:
+            pulumi.set(__self__, "trigger_id", trigger_id)
+
+    @property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the environment
+        """
+        return pulumi.get(self, "environment_id")
+
+    @property
+    @pulumi.getter(name="jobDefinitionId")
+    def job_definition_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the job definition
+        """
+        return pulumi.get(self, "job_definition_id")
+
+    @property
+    @pulumi.getter
+    def limit(self) -> Optional[builtins.int]:
+        """
+        The limit of the runs
+        """
+        return pulumi.get(self, "limit")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="pullRequestId")
+    def pull_request_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the pull request
+        """
+        return pulumi.get(self, "pull_request_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[builtins.int]:
+        """
+        The status of the run
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="statusIn")
+    def status_in(self) -> Optional[builtins.str]:
+        """
+        The status of the run
+        """
+        return pulumi.get(self, "status_in")
+
+    @property
+    @pulumi.getter(name="triggerId")
+    def trigger_id(self) -> Optional[builtins.int]:
+        """
+        The ID of the trigger
+        """
+        return pulumi.get(self, "trigger_id")
+
+
+@pulumi.output_type
+class GetRunsRunResult(dict):
+    def __init__(__self__, *,
+                 account_id: builtins.int,
+                 cause: builtins.str,
+                 git_branch: builtins.str,
+                 git_sha: builtins.str,
+                 github_pull_request_id: builtins.str,
+                 id: builtins.int,
+                 job_id: builtins.int,
+                 schema_override: builtins.str):
+        """
+        :param builtins.int account_id: The ID of the account
+        :param builtins.str cause: The cause of the run
+        :param builtins.str git_branch: The branch of the commit
+        :param builtins.str git_sha: The SHA of the commit
+        :param builtins.str github_pull_request_id: The ID of the pull request
+        :param builtins.int id: The ID of the run
+        :param builtins.int job_id: The ID of the job
+        :param builtins.str schema_override: The schema override
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "cause", cause)
+        pulumi.set(__self__, "git_branch", git_branch)
+        pulumi.set(__self__, "git_sha", git_sha)
+        pulumi.set(__self__, "github_pull_request_id", github_pull_request_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "job_id", job_id)
+        pulumi.set(__self__, "schema_override", schema_override)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> builtins.int:
+        """
+        The ID of the account
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def cause(self) -> builtins.str:
+        """
+        The cause of the run
+        """
+        return pulumi.get(self, "cause")
+
+    @property
+    @pulumi.getter(name="gitBranch")
+    def git_branch(self) -> builtins.str:
+        """
+        The branch of the commit
+        """
+        return pulumi.get(self, "git_branch")
+
+    @property
+    @pulumi.getter(name="gitSha")
+    def git_sha(self) -> builtins.str:
+        """
+        The SHA of the commit
+        """
+        return pulumi.get(self, "git_sha")
+
+    @property
+    @pulumi.getter(name="githubPullRequestId")
+    def github_pull_request_id(self) -> builtins.str:
+        """
+        The ID of the pull request
+        """
+        return pulumi.get(self, "github_pull_request_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.int:
+        """
+        The ID of the run
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> builtins.int:
+        """
+        The ID of the job
+        """
+        return pulumi.get(self, "job_id")
+
+    @property
+    @pulumi.getter(name="schemaOverride")
+    def schema_override(self) -> builtins.str:
+        """
+        The schema override
+        """
+        return pulumi.get(self, "schema_override")
 
 
 @pulumi.output_type

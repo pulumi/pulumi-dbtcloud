@@ -12,12 +12,8 @@ import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectArgs;
 import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryArgs;
 import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryPlainArgs;
-import com.pulumi.dbtcloud.inputs.GetBigQueryConnectionArgs;
-import com.pulumi.dbtcloud.inputs.GetBigQueryConnectionPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetBigQueryCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetBigQueryCredentialPlainArgs;
-import com.pulumi.dbtcloud.inputs.GetConnectionArgs;
-import com.pulumi.dbtcloud.inputs.GetConnectionPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetDatabricksCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetDatabricksCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetEnvironmentArgs;
@@ -50,14 +46,22 @@ import com.pulumi.dbtcloud.inputs.GetProjectArgs;
 import com.pulumi.dbtcloud.inputs.GetProjectPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetProjectsArgs;
 import com.pulumi.dbtcloud.inputs.GetProjectsPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetRedshiftCredentialArgs;
+import com.pulumi.dbtcloud.inputs.GetRedshiftCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetRepositoryArgs;
 import com.pulumi.dbtcloud.inputs.GetRepositoryPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetRunsArgs;
+import com.pulumi.dbtcloud.inputs.GetRunsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetServiceTokenArgs;
 import com.pulumi.dbtcloud.inputs.GetServiceTokenPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetSnowflakeCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetSnowflakeCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetStarburstCredentialPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetSynapseCredentialArgs;
+import com.pulumi.dbtcloud.inputs.GetSynapseCredentialPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetTeradataCredentialArgs;
+import com.pulumi.dbtcloud.inputs.GetTeradataCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetUserArgs;
 import com.pulumi.dbtcloud.inputs.GetUserGroupsArgs;
 import com.pulumi.dbtcloud.inputs.GetUserGroupsPlainArgs;
@@ -67,9 +71,7 @@ import com.pulumi.dbtcloud.inputs.GetWebhookPlainArgs;
 import com.pulumi.dbtcloud.outputs.GetAthenaCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetAzureDevOpsProjectResult;
 import com.pulumi.dbtcloud.outputs.GetAzureDevOpsRepositoryResult;
-import com.pulumi.dbtcloud.outputs.GetBigQueryConnectionResult;
 import com.pulumi.dbtcloud.outputs.GetBigQueryCredentialResult;
-import com.pulumi.dbtcloud.outputs.GetConnectionResult;
 import com.pulumi.dbtcloud.outputs.GetDatabricksCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentResult;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentVariableResult;
@@ -87,10 +89,14 @@ import com.pulumi.dbtcloud.outputs.GetPostgresCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointResult;
 import com.pulumi.dbtcloud.outputs.GetProjectResult;
 import com.pulumi.dbtcloud.outputs.GetProjectsResult;
+import com.pulumi.dbtcloud.outputs.GetRedshiftCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetRepositoryResult;
+import com.pulumi.dbtcloud.outputs.GetRunsResult;
 import com.pulumi.dbtcloud.outputs.GetServiceTokenResult;
 import com.pulumi.dbtcloud.outputs.GetSnowflakeCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetStarburstCredentialResult;
+import com.pulumi.dbtcloud.outputs.GetSynapseCredentialResult;
+import com.pulumi.dbtcloud.outputs.GetTeradataCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetUserGroupsResult;
 import com.pulumi.dbtcloud.outputs.GetUserResult;
 import com.pulumi.dbtcloud.outputs.GetUsersResult;
@@ -772,63 +778,73 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetAzureDevOpsRepositoryResult> getAzureDevOpsRepositoryPlain(GetAzureDevOpsRepositoryPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository", TypeShape.of(GetAzureDevOpsRepositoryResult.class), args, Utilities.withVersion(options));
     }
-    public static Output<GetBigQueryConnectionResult> getBigQueryConnection(GetBigQueryConnectionArgs args) {
-        return getBigQueryConnection(args, InvokeOptions.Empty);
-    }
-    public static CompletableFuture<GetBigQueryConnectionResult> getBigQueryConnectionPlain(GetBigQueryConnectionPlainArgs args) {
-        return getBigQueryConnectionPlain(args, InvokeOptions.Empty);
-    }
-    public static Output<GetBigQueryConnectionResult> getBigQueryConnection(GetBigQueryConnectionArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", TypeShape.of(GetBigQueryConnectionResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetBigQueryConnectionResult> getBigQueryConnection(GetBigQueryConnectionArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", TypeShape.of(GetBigQueryConnectionResult.class), args, Utilities.withVersion(options));
-    }
-    public static CompletableFuture<GetBigQueryConnectionResult> getBigQueryConnectionPlain(GetBigQueryConnectionPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("dbtcloud:index/getBigQueryConnection:getBigQueryConnection", TypeShape.of(GetBigQueryConnectionResult.class), args, Utilities.withVersion(options));
-    }
+    /**
+     * Bigquery credential data source
+     * 
+     */
     public static Output<GetBigQueryCredentialResult> getBigQueryCredential(GetBigQueryCredentialArgs args) {
         return getBigQueryCredential(args, InvokeOptions.Empty);
     }
+    /**
+     * Bigquery credential data source
+     * 
+     */
     public static CompletableFuture<GetBigQueryCredentialResult> getBigQueryCredentialPlain(GetBigQueryCredentialPlainArgs args) {
         return getBigQueryCredentialPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Bigquery credential data source
+     * 
+     */
     public static Output<GetBigQueryCredentialResult> getBigQueryCredential(GetBigQueryCredentialArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", TypeShape.of(GetBigQueryCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Bigquery credential data source
+     * 
+     */
     public static Output<GetBigQueryCredentialResult> getBigQueryCredential(GetBigQueryCredentialArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", TypeShape.of(GetBigQueryCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Bigquery credential data source
+     * 
+     */
     public static CompletableFuture<GetBigQueryCredentialResult> getBigQueryCredentialPlain(GetBigQueryCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", TypeShape.of(GetBigQueryCredentialResult.class), args, Utilities.withVersion(options));
     }
-    public static Output<GetConnectionResult> getConnection(GetConnectionArgs args) {
-        return getConnection(args, InvokeOptions.Empty);
-    }
-    public static CompletableFuture<GetConnectionResult> getConnectionPlain(GetConnectionPlainArgs args) {
-        return getConnectionPlain(args, InvokeOptions.Empty);
-    }
-    public static Output<GetConnectionResult> getConnection(GetConnectionArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("dbtcloud:index/getConnection:getConnection", TypeShape.of(GetConnectionResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetConnectionResult> getConnection(GetConnectionArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("dbtcloud:index/getConnection:getConnection", TypeShape.of(GetConnectionResult.class), args, Utilities.withVersion(options));
-    }
-    public static CompletableFuture<GetConnectionResult> getConnectionPlain(GetConnectionPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("dbtcloud:index/getConnection:getConnection", TypeShape.of(GetConnectionResult.class), args, Utilities.withVersion(options));
-    }
+    /**
+     * Databricks credential data source
+     * 
+     */
     public static Output<GetDatabricksCredentialResult> getDatabricksCredential(GetDatabricksCredentialArgs args) {
         return getDatabricksCredential(args, InvokeOptions.Empty);
     }
+    /**
+     * Databricks credential data source
+     * 
+     */
     public static CompletableFuture<GetDatabricksCredentialResult> getDatabricksCredentialPlain(GetDatabricksCredentialPlainArgs args) {
         return getDatabricksCredentialPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Databricks credential data source
+     * 
+     */
     public static Output<GetDatabricksCredentialResult> getDatabricksCredential(GetDatabricksCredentialArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", TypeShape.of(GetDatabricksCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Databricks credential data source
+     * 
+     */
     public static Output<GetDatabricksCredentialResult> getDatabricksCredential(GetDatabricksCredentialArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", TypeShape.of(GetDatabricksCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Databricks credential data source
+     * 
+     */
     public static CompletableFuture<GetDatabricksCredentialResult> getDatabricksCredentialPlain(GetDatabricksCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", TypeShape.of(GetDatabricksCredentialResult.class), args, Utilities.withVersion(options));
     }
@@ -867,18 +883,218 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetEnvironmentResult> getEnvironmentPlain(GetEnvironmentPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getEnvironment:getEnvironment", TypeShape.of(GetEnvironmentResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Environment variable credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVar = DbtcloudFunctions.getEnvironmentVariable(GetEnvironmentVariableArgs.builder()
+     *             .projectId(70403103985068)
+     *             .name("DBT_MY_PARTIAL_VAR")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static Output<GetEnvironmentVariableResult> getEnvironmentVariable(GetEnvironmentVariableArgs args) {
         return getEnvironmentVariable(args, InvokeOptions.Empty);
     }
+    /**
+     * Environment variable credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVar = DbtcloudFunctions.getEnvironmentVariable(GetEnvironmentVariableArgs.builder()
+     *             .projectId(70403103985068)
+     *             .name("DBT_MY_PARTIAL_VAR")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetEnvironmentVariableResult> getEnvironmentVariablePlain(GetEnvironmentVariablePlainArgs args) {
         return getEnvironmentVariablePlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Environment variable credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVar = DbtcloudFunctions.getEnvironmentVariable(GetEnvironmentVariableArgs.builder()
+     *             .projectId(70403103985068)
+     *             .name("DBT_MY_PARTIAL_VAR")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static Output<GetEnvironmentVariableResult> getEnvironmentVariable(GetEnvironmentVariableArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", TypeShape.of(GetEnvironmentVariableResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Environment variable credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVar = DbtcloudFunctions.getEnvironmentVariable(GetEnvironmentVariableArgs.builder()
+     *             .projectId(70403103985068)
+     *             .name("DBT_MY_PARTIAL_VAR")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static Output<GetEnvironmentVariableResult> getEnvironmentVariable(GetEnvironmentVariableArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", TypeShape.of(GetEnvironmentVariableResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Environment variable credential data source
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myVar = DbtcloudFunctions.getEnvironmentVariable(GetEnvironmentVariableArgs.builder()
+     *             .projectId(70403103985068)
+     *             .name("DBT_MY_PARTIAL_VAR")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetEnvironmentVariableResult> getEnvironmentVariablePlain(GetEnvironmentVariablePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", TypeShape.of(GetEnvironmentVariableResult.class), args, Utilities.withVersion(options));
     }
@@ -932,6 +1148,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getEnvironments:getEnvironments", TypeShape.of(GetEnvironmentsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Extended attributes data source
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -973,6 +1191,8 @@ public final class DbtcloudFunctions {
         return getExtendedAttributes(args, InvokeOptions.Empty);
     }
     /**
+     * Extended attributes data source
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1014,6 +1234,8 @@ public final class DbtcloudFunctions {
         return getExtendedAttributesPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Extended attributes data source
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1055,6 +1277,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", TypeShape.of(GetExtendedAttributesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Extended attributes data source
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1096,6 +1320,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", TypeShape.of(GetExtendedAttributesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Extended attributes data source
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -1645,7 +1871,7 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns a list of users assigned to a specific dbt Cloud group
+     * Databricks credential data source
      * 
      * ## Example Usage
      * 
@@ -1687,7 +1913,7 @@ public final class DbtcloudFunctions {
         return getGroupUsers(args, InvokeOptions.Empty);
     }
     /**
-     * Returns a list of users assigned to a specific dbt Cloud group
+     * Databricks credential data source
      * 
      * ## Example Usage
      * 
@@ -1729,7 +1955,7 @@ public final class DbtcloudFunctions {
         return getGroupUsersPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Returns a list of users assigned to a specific dbt Cloud group
+     * Databricks credential data source
      * 
      * ## Example Usage
      * 
@@ -1771,7 +1997,7 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getGroupUsers:getGroupUsers", TypeShape.of(GetGroupUsersResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns a list of users assigned to a specific dbt Cloud group
+     * Databricks credential data source
      * 
      * ## Example Usage
      * 
@@ -1813,7 +2039,7 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getGroupUsers:getGroupUsers", TypeShape.of(GetGroupUsersResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Returns a list of users assigned to a specific dbt Cloud group
+     * Databricks credential data source
      * 
      * ## Example Usage
      * 
@@ -1854,18 +2080,38 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetGroupUsersResult> getGroupUsersPlain(GetGroupUsersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getGroupUsers:getGroupUsers", TypeShape.of(GetGroupUsersResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Get detailed information for a specific dbt Cloud job.
+     * 
+     */
     public static Output<GetJobResult> getJob(GetJobArgs args) {
         return getJob(args, InvokeOptions.Empty);
     }
+    /**
+     * Get detailed information for a specific dbt Cloud job.
+     * 
+     */
     public static CompletableFuture<GetJobResult> getJobPlain(GetJobPlainArgs args) {
         return getJobPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Get detailed information for a specific dbt Cloud job.
+     * 
+     */
     public static Output<GetJobResult> getJob(GetJobArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getJob:getJob", TypeShape.of(GetJobResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Get detailed information for a specific dbt Cloud job.
+     * 
+     */
     public static Output<GetJobResult> getJob(GetJobArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getJob:getJob", TypeShape.of(GetJobResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Get detailed information for a specific dbt Cloud job.
+     * 
+     */
     public static CompletableFuture<GetJobResult> getJobPlain(GetJobPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getJob:getJob", TypeShape.of(GetJobResult.class), args, Utilities.withVersion(options));
     }
@@ -2379,22 +2625,44 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetNotificationResult> getNotificationPlain(GetNotificationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getNotification:getNotification", TypeShape.of(GetNotificationResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Postgres credential data source.
+     * 
+     */
     public static Output<GetPostgresCredentialResult> getPostgresCredential(GetPostgresCredentialArgs args) {
         return getPostgresCredential(args, InvokeOptions.Empty);
     }
+    /**
+     * Postgres credential data source.
+     * 
+     */
     public static CompletableFuture<GetPostgresCredentialResult> getPostgresCredentialPlain(GetPostgresCredentialPlainArgs args) {
         return getPostgresCredentialPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Postgres credential data source.
+     * 
+     */
     public static Output<GetPostgresCredentialResult> getPostgresCredential(GetPostgresCredentialArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getPostgresCredential:getPostgresCredential", TypeShape.of(GetPostgresCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Postgres credential data source.
+     * 
+     */
     public static Output<GetPostgresCredentialResult> getPostgresCredential(GetPostgresCredentialArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getPostgresCredential:getPostgresCredential", TypeShape.of(GetPostgresCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Postgres credential data source.
+     * 
+     */
     public static CompletableFuture<GetPostgresCredentialResult> getPostgresCredentialPlain(GetPostgresCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getPostgresCredential:getPostgresCredential", TypeShape.of(GetPostgresCredentialResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Privatelink endpoint data source.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -2445,6 +2713,8 @@ public final class DbtcloudFunctions {
         return getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Privatelink endpoint data source.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -2495,6 +2765,8 @@ public final class DbtcloudFunctions {
         return getPrivatelinkEndpointPlain(GetPrivatelinkEndpointPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Privatelink endpoint data source.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -2545,6 +2817,8 @@ public final class DbtcloudFunctions {
         return getPrivatelinkEndpoint(args, InvokeOptions.Empty);
     }
     /**
+     * Privatelink endpoint data source.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -2595,6 +2869,8 @@ public final class DbtcloudFunctions {
         return getPrivatelinkEndpointPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Privatelink endpoint data source.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -2645,6 +2921,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", TypeShape.of(GetPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Privatelink endpoint data source.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -2695,6 +2973,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", TypeShape.of(GetPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Privatelink endpoint data source.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -2745,46 +3025,11 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", TypeShape.of(GetPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve a specific project from dbt Cloud.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import com.pulumi.dbtcloud.inputs.GetProjectArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-     *         final var testProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .projectId(dbtCloudProjectId)
-     *             .build());
-     * 
-     *         // or they can use project names
-     *         // the provider will raise an error if more than one project is found with the same name
-     *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name("My other project name")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2792,46 +3037,11 @@ public final class DbtcloudFunctions {
         return getProject(GetProjectArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Retrieve a specific project from dbt Cloud.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import com.pulumi.dbtcloud.inputs.GetProjectArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-     *         final var testProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .projectId(dbtCloudProjectId)
-     *             .build());
-     * 
-     *         // or they can use project names
-     *         // the provider will raise an error if more than one project is found with the same name
-     *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name("My other project name")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2839,46 +3049,11 @@ public final class DbtcloudFunctions {
         return getProjectPlain(GetProjectPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Retrieve a specific project from dbt Cloud.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import com.pulumi.dbtcloud.inputs.GetProjectArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-     *         final var testProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .projectId(dbtCloudProjectId)
-     *             .build());
-     * 
-     *         // or they can use project names
-     *         // the provider will raise an error if more than one project is found with the same name
-     *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name("My other project name")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2886,46 +3061,11 @@ public final class DbtcloudFunctions {
         return getProject(args, InvokeOptions.Empty);
     }
     /**
+     * Retrieve a specific project from dbt Cloud.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import com.pulumi.dbtcloud.inputs.GetProjectArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-     *         final var testProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .projectId(dbtCloudProjectId)
-     *             .build());
-     * 
-     *         // or they can use project names
-     *         // the provider will raise an error if more than one project is found with the same name
-     *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name("My other project name")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2933,46 +3073,11 @@ public final class DbtcloudFunctions {
         return getProjectPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Retrieve a specific project from dbt Cloud.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import com.pulumi.dbtcloud.inputs.GetProjectArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-     *         final var testProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .projectId(dbtCloudProjectId)
-     *             .build());
-     * 
-     *         // or they can use project names
-     *         // the provider will raise an error if more than one project is found with the same name
-     *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name("My other project name")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2980,46 +3085,11 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve a specific project from dbt Cloud.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import com.pulumi.dbtcloud.inputs.GetProjectArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-     *         final var testProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .projectId(dbtCloudProjectId)
-     *             .build());
-     * 
-     *         // or they can use project names
-     *         // the provider will raise an error if more than one project is found with the same name
-     *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name("My other project name")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3027,46 +3097,11 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve a specific project from dbt Cloud.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import com.pulumi.dbtcloud.inputs.GetProjectArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-     *         final var testProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .projectId(dbtCloudProjectId)
-     *             .build());
-     * 
-     *         // or they can use project names
-     *         // the provider will raise an error if more than one project is found with the same name
-     *         final var anotherTestProject = DbtcloudFunctions.getProject(GetProjectArgs.builder()
-     *             .name("My other project name")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3122,20 +3157,124 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetProjectsResult> getProjectsPlain(GetProjectsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getProjects:getProjects", TypeShape.of(GetProjectsResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Redshift credential data source
+     * 
+     */
+    public static Output<GetRedshiftCredentialResult> getRedshiftCredential(GetRedshiftCredentialArgs args) {
+        return getRedshiftCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * Redshift credential data source
+     * 
+     */
+    public static CompletableFuture<GetRedshiftCredentialResult> getRedshiftCredentialPlain(GetRedshiftCredentialPlainArgs args) {
+        return getRedshiftCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Redshift credential data source
+     * 
+     */
+    public static Output<GetRedshiftCredentialResult> getRedshiftCredential(GetRedshiftCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getRedshiftCredential:getRedshiftCredential", TypeShape.of(GetRedshiftCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Redshift credential data source
+     * 
+     */
+    public static Output<GetRedshiftCredentialResult> getRedshiftCredential(GetRedshiftCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getRedshiftCredential:getRedshiftCredential", TypeShape.of(GetRedshiftCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Redshift credential data source
+     * 
+     */
+    public static CompletableFuture<GetRedshiftCredentialResult> getRedshiftCredentialPlain(GetRedshiftCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getRedshiftCredential:getRedshiftCredential", TypeShape.of(GetRedshiftCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve data for a single repository
+     * 
+     */
     public static Output<GetRepositoryResult> getRepository(GetRepositoryArgs args) {
         return getRepository(args, InvokeOptions.Empty);
     }
+    /**
+     * Retrieve data for a single repository
+     * 
+     */
     public static CompletableFuture<GetRepositoryResult> getRepositoryPlain(GetRepositoryPlainArgs args) {
         return getRepositoryPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Retrieve data for a single repository
+     * 
+     */
     public static Output<GetRepositoryResult> getRepository(GetRepositoryArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getRepository:getRepository", TypeShape.of(GetRepositoryResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve data for a single repository
+     * 
+     */
     public static Output<GetRepositoryResult> getRepository(GetRepositoryArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getRepository:getRepository", TypeShape.of(GetRepositoryResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve data for a single repository
+     * 
+     */
     public static CompletableFuture<GetRepositoryResult> getRepositoryPlain(GetRepositoryPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getRepository:getRepository", TypeShape.of(GetRepositoryResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all runs
+     * 
+     */
+    public static Output<GetRunsResult> getRuns() {
+        return getRuns(GetRunsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all runs
+     * 
+     */
+    public static CompletableFuture<GetRunsResult> getRunsPlain() {
+        return getRunsPlain(GetRunsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all runs
+     * 
+     */
+    public static Output<GetRunsResult> getRuns(GetRunsArgs args) {
+        return getRuns(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all runs
+     * 
+     */
+    public static CompletableFuture<GetRunsResult> getRunsPlain(GetRunsPlainArgs args) {
+        return getRunsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all runs
+     * 
+     */
+    public static Output<GetRunsResult> getRuns(GetRunsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getRuns:getRuns", TypeShape.of(GetRunsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all runs
+     * 
+     */
+    public static Output<GetRunsResult> getRuns(GetRunsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getRuns:getRuns", TypeShape.of(GetRunsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all runs
+     * 
+     */
+    public static CompletableFuture<GetRunsResult> getRunsPlain(GetRunsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getRuns:getRuns", TypeShape.of(GetRunsResult.class), args, Utilities.withVersion(options));
     }
     public static Output<GetServiceTokenResult> getServiceToken(GetServiceTokenArgs args) {
         return getServiceToken(args, InvokeOptions.Empty);
@@ -3152,18 +3291,38 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetServiceTokenResult> getServiceTokenPlain(GetServiceTokenPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getServiceToken:getServiceToken", TypeShape.of(GetServiceTokenResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Snowflake credential data source
+     * 
+     */
     public static Output<GetSnowflakeCredentialResult> getSnowflakeCredential(GetSnowflakeCredentialArgs args) {
         return getSnowflakeCredential(args, InvokeOptions.Empty);
     }
+    /**
+     * Snowflake credential data source
+     * 
+     */
     public static CompletableFuture<GetSnowflakeCredentialResult> getSnowflakeCredentialPlain(GetSnowflakeCredentialPlainArgs args) {
         return getSnowflakeCredentialPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Snowflake credential data source
+     * 
+     */
     public static Output<GetSnowflakeCredentialResult> getSnowflakeCredential(GetSnowflakeCredentialArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", TypeShape.of(GetSnowflakeCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Snowflake credential data source
+     * 
+     */
     public static Output<GetSnowflakeCredentialResult> getSnowflakeCredential(GetSnowflakeCredentialArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", TypeShape.of(GetSnowflakeCredentialResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Snowflake credential data source
+     * 
+     */
     public static CompletableFuture<GetSnowflakeCredentialResult> getSnowflakeCredentialPlain(GetSnowflakeCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", TypeShape.of(GetSnowflakeCredentialResult.class), args, Utilities.withVersion(options));
     }
@@ -3383,6 +3542,76 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getStarburstCredential:getStarburstCredential", TypeShape.of(GetStarburstCredentialResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Synapse credential data source.
+     * 
+     */
+    public static Output<GetSynapseCredentialResult> getSynapseCredential(GetSynapseCredentialArgs args) {
+        return getSynapseCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * Synapse credential data source.
+     * 
+     */
+    public static CompletableFuture<GetSynapseCredentialResult> getSynapseCredentialPlain(GetSynapseCredentialPlainArgs args) {
+        return getSynapseCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Synapse credential data source.
+     * 
+     */
+    public static Output<GetSynapseCredentialResult> getSynapseCredential(GetSynapseCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getSynapseCredential:getSynapseCredential", TypeShape.of(GetSynapseCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Synapse credential data source.
+     * 
+     */
+    public static Output<GetSynapseCredentialResult> getSynapseCredential(GetSynapseCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getSynapseCredential:getSynapseCredential", TypeShape.of(GetSynapseCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Synapse credential data source.
+     * 
+     */
+    public static CompletableFuture<GetSynapseCredentialResult> getSynapseCredentialPlain(GetSynapseCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getSynapseCredential:getSynapseCredential", TypeShape.of(GetSynapseCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Teradata credential data source
+     * 
+     */
+    public static Output<GetTeradataCredentialResult> getTeradataCredential(GetTeradataCredentialArgs args) {
+        return getTeradataCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * Teradata credential data source
+     * 
+     */
+    public static CompletableFuture<GetTeradataCredentialResult> getTeradataCredentialPlain(GetTeradataCredentialPlainArgs args) {
+        return getTeradataCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Teradata credential data source
+     * 
+     */
+    public static Output<GetTeradataCredentialResult> getTeradataCredential(GetTeradataCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getTeradataCredential:getTeradataCredential", TypeShape.of(GetTeradataCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Teradata credential data source
+     * 
+     */
+    public static Output<GetTeradataCredentialResult> getTeradataCredential(GetTeradataCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getTeradataCredential:getTeradataCredential", TypeShape.of(GetTeradataCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Teradata credential data source
+     * 
+     */
+    public static CompletableFuture<GetTeradataCredentialResult> getTeradataCredentialPlain(GetTeradataCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getTeradataCredential:getTeradataCredential", TypeShape.of(GetTeradataCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Retrieve user details
      * 
      * ## Example Usage
@@ -3593,6 +3822,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about a specific dbt Cloud user&#39;s groups.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3633,6 +3864,8 @@ public final class DbtcloudFunctions {
         return getUserGroups(args, InvokeOptions.Empty);
     }
     /**
+     * Gets information about a specific dbt Cloud user&#39;s groups.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3673,6 +3906,8 @@ public final class DbtcloudFunctions {
         return getUserGroupsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Gets information about a specific dbt Cloud user&#39;s groups.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3713,6 +3948,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getUserGroups:getUserGroups", TypeShape.of(GetUserGroupsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about a specific dbt Cloud user&#39;s groups.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3753,6 +3990,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getUserGroups:getUserGroups", TypeShape.of(GetUserGroupsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Gets information about a specific dbt Cloud user&#39;s groups.
+     * 
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
@@ -3876,18 +4115,38 @@ public final class DbtcloudFunctions {
     public static CompletableFuture<GetUsersResult> getUsersPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve webhook details
+     * 
+     */
     public static Output<GetWebhookResult> getWebhook(GetWebhookArgs args) {
         return getWebhook(args, InvokeOptions.Empty);
     }
+    /**
+     * Retrieve webhook details
+     * 
+     */
     public static CompletableFuture<GetWebhookResult> getWebhookPlain(GetWebhookPlainArgs args) {
         return getWebhookPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * Retrieve webhook details
+     * 
+     */
     public static Output<GetWebhookResult> getWebhook(GetWebhookArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getWebhook:getWebhook", TypeShape.of(GetWebhookResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve webhook details
+     * 
+     */
     public static Output<GetWebhookResult> getWebhook(GetWebhookArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getWebhook:getWebhook", TypeShape.of(GetWebhookResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * Retrieve webhook details
+     * 
+     */
     public static CompletableFuture<GetWebhookResult> getWebhookPlain(GetWebhookPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getWebhook:getWebhook", TypeShape.of(GetWebhookResult.class), args, Utilities.withVersion(options));
     }

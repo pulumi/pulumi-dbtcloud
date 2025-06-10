@@ -11,6 +11,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Environment variable credential data source
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbtcloud.LookupEnvironmentVariable(ctx, &dbtcloud.LookupEnvironmentVariableArgs{
+//				ProjectId: 70403103985068,
+//				Name:      "DBT_MY_PARTIAL_VAR",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupEnvironmentVariable(ctx *pulumi.Context, args *LookupEnvironmentVariableArgs, opts ...pulumi.InvokeOption) (*LookupEnvironmentVariableResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupEnvironmentVariableResult
@@ -23,21 +51,21 @@ func LookupEnvironmentVariable(ctx *pulumi.Context, args *LookupEnvironmentVaria
 
 // A collection of arguments for invoking getEnvironmentVariable.
 type LookupEnvironmentVariableArgs struct {
-	// Name for the variable
+	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name string `pulumi:"name"`
-	// Project ID the variable exists in
+	// Project ID to create the environment variable in
 	ProjectId int `pulumi:"projectId"`
 }
 
 // A collection of values returned by getEnvironmentVariable.
 type LookupEnvironmentVariableResult struct {
-	// Map containing the environment variables
+	// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
 	EnvironmentValues map[string]string `pulumi:"environmentValues"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource. Contains the project ID and the environment variable ID.
 	Id string `pulumi:"id"`
-	// Name for the variable
+	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name string `pulumi:"name"`
-	// Project ID the variable exists in
+	// Project ID to create the environment variable in
 	ProjectId int `pulumi:"projectId"`
 }
 
@@ -52,9 +80,9 @@ func LookupEnvironmentVariableOutput(ctx *pulumi.Context, args LookupEnvironment
 
 // A collection of arguments for invoking getEnvironmentVariable.
 type LookupEnvironmentVariableOutputArgs struct {
-	// Name for the variable
+	// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 	Name pulumi.StringInput `pulumi:"name"`
-	// Project ID the variable exists in
+	// Project ID to create the environment variable in
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
 }
 
@@ -77,22 +105,22 @@ func (o LookupEnvironmentVariableResultOutput) ToLookupEnvironmentVariableResult
 	return o
 }
 
-// Map containing the environment variables
+// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
 func (o LookupEnvironmentVariableResultOutput) EnvironmentValues() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) map[string]string { return v.EnvironmentValues }).(pulumi.StringMapOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource. Contains the project ID and the environment variable ID.
 func (o LookupEnvironmentVariableResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Name for the variable
+// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
 func (o LookupEnvironmentVariableResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Project ID the variable exists in
+// Project ID to create the environment variable in
 func (o LookupEnvironmentVariableResultOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupEnvironmentVariableResult) int { return v.ProjectId }).(pulumi.IntOutput)
 }

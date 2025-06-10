@@ -12,7 +12,7 @@ namespace Pulumi.DbtCloud
     public static class GetGroupUsers
     {
         /// <summary>
-        /// Returns a list of users assigned to a specific dbt Cloud group
+        /// Databricks credential data source
         /// 
         /// ## Example Usage
         /// 
@@ -36,7 +36,7 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGroupUsersResult>("dbtcloud:index/getGroupUsers:getGroupUsers", args ?? new GetGroupUsersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns a list of users assigned to a specific dbt Cloud group
+        /// Databricks credential data source
         /// 
         /// ## Example Usage
         /// 
@@ -60,7 +60,7 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupUsersResult>("dbtcloud:index/getGroupUsers:getGroupUsers", args ?? new GetGroupUsersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Returns a list of users assigned to a specific dbt Cloud group
+        /// Databricks credential data source
         /// 
         /// ## Example Usage
         /// 
@@ -122,7 +122,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int GroupId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource. Contains the project ID and the credential ID.
         /// </summary>
         public readonly string Id;
         /// <summary>

@@ -48,14 +48,14 @@ public final class EnvironmentVariableJobOverrideArgs extends com.pulumi.resourc
     }
 
     /**
-     * The project ID for which the environment variable is being overridden
+     * Project ID to create the environment variable job override in
      * 
      */
     @Import(name="projectId", required=true)
     private Output<Integer> projectId;
 
     /**
-     * @return The project ID for which the environment variable is being overridden
+     * @return Project ID to create the environment variable job override in
      * 
      */
     public Output<Integer> projectId() {
@@ -147,7 +147,7 @@ public final class EnvironmentVariableJobOverrideArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param projectId The project ID for which the environment variable is being overridden
+         * @param projectId Project ID to create the environment variable job override in
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class EnvironmentVariableJobOverrideArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param projectId The project ID for which the environment variable is being overridden
+         * @param projectId Project ID to create the environment variable job override in
          * 
          * @return builder
          * 

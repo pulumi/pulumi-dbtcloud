@@ -14,14 +14,14 @@ public final class GetUserGroupsPlainArgs extends com.pulumi.resources.InvokeArg
     public static final GetUserGroupsPlainArgs Empty = new GetUserGroupsPlainArgs();
 
     /**
-     * ID of the user
+     * The internal ID of a dbt Cloud user.
      * 
      */
     @Import(name="userId", required=true)
     private Integer userId;
 
     /**
-     * @return ID of the user
+     * @return The internal ID of a dbt Cloud user.
      * 
      */
     public Integer userId() {
@@ -53,7 +53,7 @@ public final class GetUserGroupsPlainArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param userId ID of the user
+         * @param userId The internal ID of a dbt Cloud user.
          * 
          * @return builder
          * 

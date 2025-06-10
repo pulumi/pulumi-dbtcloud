@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Privatelink endpoint data source.
+//
 // ## Example Usage
 //
 // ```go
@@ -64,24 +66,22 @@ func GetPrivatelinkEndpoint(ctx *pulumi.Context, args *GetPrivatelinkEndpointArg
 type GetPrivatelinkEndpointArgs struct {
 	// Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	Name *string `pulumi:"name"`
-	// The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	PrivateLinkEndpointUrl *string `pulumi:"privateLinkEndpointUrl"`
+	// Type of the PrivateLink Endpoint
+	Type *string `pulumi:"type"`
 }
 
 // A collection of values returned by getPrivatelinkEndpoint.
 type GetPrivatelinkEndpointResult struct {
-	// The CIDR range of the PrivateLink Endpoint
+	// CIDR range of the PrivateLink Endpoint
 	CidrRange string `pulumi:"cidrRange"`
 	// The internal ID of the PrivateLink Endpoint
 	Id string `pulumi:"id"`
 	// Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	Name *string `pulumi:"name"`
-	// The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	PrivateLinkEndpointUrl *string `pulumi:"privateLinkEndpointUrl"`
-	// PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
-	//
-	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
-	State int `pulumi:"state"`
 	// Type of the PrivateLink Endpoint
 	Type string `pulumi:"type"`
 }
@@ -99,8 +99,10 @@ func GetPrivatelinkEndpointOutput(ctx *pulumi.Context, args GetPrivatelinkEndpoi
 type GetPrivatelinkEndpointOutputArgs struct {
 	// Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	PrivateLinkEndpointUrl pulumi.StringPtrInput `pulumi:"privateLinkEndpointUrl"`
+	// Type of the PrivateLink Endpoint
+	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (GetPrivatelinkEndpointOutputArgs) ElementType() reflect.Type {
@@ -122,7 +124,7 @@ func (o GetPrivatelinkEndpointResultOutput) ToGetPrivatelinkEndpointResultOutput
 	return o
 }
 
-// The CIDR range of the PrivateLink Endpoint
+// CIDR range of the PrivateLink Endpoint
 func (o GetPrivatelinkEndpointResultOutput) CidrRange() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointResult) string { return v.CidrRange }).(pulumi.StringOutput)
 }
@@ -137,16 +139,9 @@ func (o GetPrivatelinkEndpointResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 func (o GetPrivatelinkEndpointResultOutput) PrivateLinkEndpointUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointResult) *string { return v.PrivateLinkEndpointUrl }).(pulumi.StringPtrOutput)
-}
-
-// PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
-//
-// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
-func (o GetPrivatelinkEndpointResultOutput) State() pulumi.IntOutput {
-	return o.ApplyT(func(v GetPrivatelinkEndpointResult) int { return v.State }).(pulumi.IntOutput)
 }
 
 // Type of the PrivateLink Endpoint

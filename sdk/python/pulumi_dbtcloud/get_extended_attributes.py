@@ -48,7 +48,7 @@ class GetExtendedAttributesResult:
     @pulumi.getter(name="extendedAttributes")
     def extended_attributes(self) -> builtins.str:
         """
-        A JSON string listing the extended attributes mapping
+        Extended attributes
         """
         return pulumi.get(self, "extended_attributes")
 
@@ -56,7 +56,7 @@ class GetExtendedAttributesResult:
     @pulumi.getter(name="extendedAttributesId")
     def extended_attributes_id(self) -> builtins.int:
         """
-        ID of the extended attributes
+        Extended attributes ID
         """
         return pulumi.get(self, "extended_attributes_id")
 
@@ -64,7 +64,7 @@ class GetExtendedAttributesResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
@@ -72,7 +72,7 @@ class GetExtendedAttributesResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> builtins.int:
         """
-        Project ID the extended attributes refers to
+        Project ID
         """
         return pulumi.get(self, "project_id")
 
@@ -102,6 +102,8 @@ def get_extended_attributes(extended_attributes_id: Optional[builtins.int] = Non
                             project_id: Optional[builtins.int] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetExtendedAttributesResult:
     """
+    Extended attributes data source
+
     ## Example Usage
 
     ```python
@@ -113,8 +115,8 @@ def get_extended_attributes(extended_attributes_id: Optional[builtins.int] = Non
     ```
 
 
-    :param builtins.int extended_attributes_id: ID of the extended attributes
-    :param builtins.int project_id: Project ID the extended attributes refers to
+    :param builtins.int extended_attributes_id: Extended attributes ID
+    :param builtins.int project_id: Project ID
     """
     __args__ = dict()
     __args__['extendedAttributesId'] = extended_attributes_id
@@ -132,6 +134,8 @@ def get_extended_attributes_output(extended_attributes_id: Optional[pulumi.Input
                                    project_id: Optional[pulumi.Input[builtins.int]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetExtendedAttributesResult]:
     """
+    Extended attributes data source
+
     ## Example Usage
 
     ```python
@@ -143,8 +147,8 @@ def get_extended_attributes_output(extended_attributes_id: Optional[pulumi.Input
     ```
 
 
-    :param builtins.int extended_attributes_id: ID of the extended attributes
-    :param builtins.int project_id: Project ID the extended attributes refers to
+    :param builtins.int extended_attributes_id: Extended attributes ID
+    :param builtins.int project_id: Project ID
     """
     __args__ = dict()
     __args__['extendedAttributesId'] = extended_attributes_id

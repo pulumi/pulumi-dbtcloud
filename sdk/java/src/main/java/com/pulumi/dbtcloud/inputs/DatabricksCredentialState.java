@@ -17,21 +17,6 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
     public static final DatabricksCredentialState Empty = new DatabricksCredentialState();
 
     /**
-     * Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     * 
-     */
-    @Import(name="adapterId")
-    private @Nullable Output<Integer> adapterId;
-
-    /**
-     * @return Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     * 
-     */
-    public Optional<Output<Integer>> adapterId() {
-        return Optional.ofNullable(this.adapterId);
-    }
-
-    /**
      * The type of the adapter (databricks or spark)
      * 
      */
@@ -147,7 +132,6 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
     private DatabricksCredentialState() {}
 
     private DatabricksCredentialState(DatabricksCredentialState $) {
-        this.adapterId = $.adapterId;
         this.adapterType = $.adapterType;
         this.catalog = $.catalog;
         this.credentialId = $.credentialId;
@@ -173,27 +157,6 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
 
         public Builder(DatabricksCredentialState defaults) {
             $ = new DatabricksCredentialState(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @param adapterId Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder adapterId(@Nullable Output<Integer> adapterId) {
-            $.adapterId = adapterId;
-            return this;
-        }
-
-        /**
-         * @param adapterId Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder adapterId(Integer adapterId) {
-            return adapterId(Output.of(adapterId));
         }
 
         /**

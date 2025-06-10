@@ -15,6 +15,7 @@ import com.pulumi.dbtcloud.inputs.GlobalConnectionRedshiftArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionStarburstArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionSynapseArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionTeradataArgs;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -213,6 +214,21 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.synapse);
     }
 
+    /**
+     * Teradata connection configuration.
+     * 
+     */
+    @Import(name="teradata")
+    private @Nullable Output<GlobalConnectionTeradataArgs> teradata;
+
+    /**
+     * @return Teradata connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionTeradataArgs>> teradata() {
+        return Optional.ofNullable(this.teradata);
+    }
+
     private GlobalConnectionArgs() {}
 
     private GlobalConnectionArgs(GlobalConnectionArgs $) {
@@ -229,6 +245,7 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
         this.snowflake = $.snowflake;
         this.starburst = $.starburst;
         this.synapse = $.synapse;
+        this.teradata = $.teradata;
     }
 
     public static Builder builder() {
@@ -508,6 +525,27 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder synapse(GlobalConnectionSynapseArgs synapse) {
             return synapse(Output.of(synapse));
+        }
+
+        /**
+         * @param teradata Teradata connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder teradata(@Nullable Output<GlobalConnectionTeradataArgs> teradata) {
+            $.teradata = teradata;
+            return this;
+        }
+
+        /**
+         * @param teradata Teradata connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder teradata(GlobalConnectionTeradataArgs teradata) {
+            return teradata(Output.of(teradata));
         }
 
         public GlobalConnectionArgs build() {

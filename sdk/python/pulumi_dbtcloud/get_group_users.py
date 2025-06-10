@@ -51,7 +51,7 @@ class GetGroupUsersResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
@@ -78,7 +78,7 @@ class AwaitableGetGroupUsersResult(GetGroupUsersResult):
 def get_group_users(group_id: Optional[builtins.int] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupUsersResult:
     """
-    Returns a list of users assigned to a specific dbt Cloud group
+    Databricks credential data source
 
     ## Example Usage
 
@@ -104,7 +104,7 @@ def get_group_users(group_id: Optional[builtins.int] = None,
 def get_group_users_output(group_id: Optional[pulumi.Input[builtins.int]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupUsersResult]:
     """
-    Returns a list of users assigned to a specific dbt Cloud group
+    Databricks credential data source
 
     ## Example Usage
 

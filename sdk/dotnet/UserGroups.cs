@@ -13,8 +13,7 @@ namespace Pulumi.DbtCloud
     /// Assigns a set of dbt Cloud groups to a given User ID.
     /// 
     /// &gt; If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.
-    /// 
-    /// &gt; This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
+    /// This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
     /// This is intentional in order to prevent accidental deletion of all users groups assigned to a user.
     /// If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set "group_ids" to the empty set "[]".
     /// 
@@ -92,7 +91,7 @@ namespace Pulumi.DbtCloud
         public Output<ImmutableArray<int>> GroupIds { get; private set; } = null!;
 
         /// <summary>
-        /// The internal ID of a dbt Cloud user
+        /// The internal ID of a dbt Cloud user.
         /// </summary>
         [Output("userId")]
         public Output<int> UserId { get; private set; } = null!;
@@ -157,7 +156,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// The internal ID of a dbt Cloud user
+        /// The internal ID of a dbt Cloud user.
         /// </summary>
         [Input("userId", required: true)]
         public Input<int> UserId { get; set; } = null!;
@@ -183,7 +182,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// The internal ID of a dbt Cloud user
+        /// The internal ID of a dbt Cloud user.
         /// </summary>
         [Input("userId")]
         public Input<int>? UserId { get; set; }

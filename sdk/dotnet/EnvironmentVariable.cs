@@ -94,7 +94,7 @@ namespace Pulumi.DbtCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Project for the variable to be created in
+        /// Project ID to create the environment variable in
         /// </summary>
         [Output("projectId")]
         public Output<int> ProjectId { get; private set; } = null!;
@@ -165,7 +165,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Project for the variable to be created in
+        /// Project ID to create the environment variable in
         /// </summary>
         [Input("projectId", required: true)]
         public Input<int> ProjectId { get; set; } = null!;
@@ -197,7 +197,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Project for the variable to be created in
+        /// Project ID to create the environment variable in
         /// </summary>
         [Input("projectId")]
         public Input<int>? ProjectId { get; set; }

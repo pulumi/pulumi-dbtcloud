@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Databricks credential data source
 func LookupDatabricksCredential(ctx *pulumi.Context, args *LookupDatabricksCredentialArgs, opts ...pulumi.InvokeOption) (*LookupDatabricksCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabricksCredentialResult
@@ -31,15 +32,15 @@ type LookupDatabricksCredentialArgs struct {
 
 // A collection of values returned by getDatabricksCredential.
 type LookupDatabricksCredentialResult struct {
-	// Databricks adapter ID for the credential
-	AdapterId int `pulumi:"adapterId"`
+	// The type of the adapter (databricks or spark)
+	AdapterType string `pulumi:"adapterType"`
 	// The catalog where to create models
 	Catalog string `pulumi:"catalog"`
 	// Credential ID
 	CredentialId int `pulumi:"credentialId"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource. Contains the project ID and the credential ID.
 	Id string `pulumi:"id"`
-	// Number of threads to use
+	// The number of threads to use
 	NumThreads int `pulumi:"numThreads"`
 	// Project ID
 	ProjectId int `pulumi:"projectId"`
@@ -85,9 +86,9 @@ func (o LookupDatabricksCredentialResultOutput) ToLookupDatabricksCredentialResu
 	return o
 }
 
-// Databricks adapter ID for the credential
-func (o LookupDatabricksCredentialResultOutput) AdapterId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDatabricksCredentialResult) int { return v.AdapterId }).(pulumi.IntOutput)
+// The type of the adapter (databricks or spark)
+func (o LookupDatabricksCredentialResultOutput) AdapterType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabricksCredentialResult) string { return v.AdapterType }).(pulumi.StringOutput)
 }
 
 // The catalog where to create models
@@ -100,12 +101,12 @@ func (o LookupDatabricksCredentialResultOutput) CredentialId() pulumi.IntOutput 
 	return o.ApplyT(func(v LookupDatabricksCredentialResult) int { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource. Contains the project ID and the credential ID.
 func (o LookupDatabricksCredentialResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabricksCredentialResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Number of threads to use
+// The number of threads to use
 func (o LookupDatabricksCredentialResultOutput) NumThreads() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDatabricksCredentialResult) int { return v.NumThreads }).(pulumi.IntOutput)
 }

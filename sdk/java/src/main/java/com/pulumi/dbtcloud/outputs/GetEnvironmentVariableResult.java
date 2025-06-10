@@ -13,50 +13,50 @@ import java.util.Objects;
 @CustomType
 public final class GetEnvironmentVariableResult {
     /**
-     * @return Map containing the environment variables
+     * @return Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      * 
      */
     private Map<String,String> environmentValues;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the environment variable ID.
      * 
      */
     private String id;
     /**
-     * @return Name for the variable
+     * @return Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
      * 
      */
     private String name;
     /**
-     * @return Project ID the variable exists in
+     * @return Project ID to create the environment variable in
      * 
      */
     private Integer projectId;
 
     private GetEnvironmentVariableResult() {}
     /**
-     * @return Map containing the environment variables
+     * @return Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      * 
      */
     public Map<String,String> environmentValues() {
         return this.environmentValues;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the environment variable ID.
      * 
      */
     public String id() {
         return this.id;
     }
     /**
-     * @return Name for the variable
+     * @return Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return Project ID the variable exists in
+     * @return Project ID to create the environment variable in
      * 
      */
     public Integer projectId() {

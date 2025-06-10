@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connectionId` field in the `dbtcloud.Environment` resource.
  *
- * All connections types are supported, and the old resources `dbtcloud.Connection`, `dbtcloud.BigQueryConnection` and `dbtcloud.FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
- *
  * ## Import
  *
  * A project-scoped connection can be imported as a global connection by specifying the connection ID
@@ -138,6 +136,10 @@ export class GlobalConnection extends pulumi.CustomResource {
      * Azure Synapse Analytics connection configuration.
      */
     public readonly synapse!: pulumi.Output<outputs.GlobalConnectionSynapse | undefined>;
+    /**
+     * Teradata connection configuration.
+     */
+    public readonly teradata!: pulumi.Output<outputs.GlobalConnectionTeradata | undefined>;
 
     /**
      * Create a GlobalConnection resource with the given unique name, arguments, and options.
@@ -167,6 +169,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["snowflake"] = state ? state.snowflake : undefined;
             resourceInputs["starburst"] = state ? state.starburst : undefined;
             resourceInputs["synapse"] = state ? state.synapse : undefined;
+            resourceInputs["teradata"] = state ? state.teradata : undefined;
         } else {
             const args = argsOrState as GlobalConnectionArgs | undefined;
             resourceInputs["apacheSpark"] = args ? args.apacheSpark : undefined;
@@ -182,6 +185,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["snowflake"] = args ? args.snowflake : undefined;
             resourceInputs["starburst"] = args ? args.starburst : undefined;
             resourceInputs["synapse"] = args ? args.synapse : undefined;
+            resourceInputs["teradata"] = args ? args.teradata : undefined;
             resourceInputs["adapterVersion"] = undefined /*out*/;
             resourceInputs["isSshTunnelEnabled"] = undefined /*out*/;
         }
@@ -251,6 +255,10 @@ export interface GlobalConnectionState {
      * Azure Synapse Analytics connection configuration.
      */
     synapse?: pulumi.Input<inputs.GlobalConnectionSynapse>;
+    /**
+     * Teradata connection configuration.
+     */
+    teradata?: pulumi.Input<inputs.GlobalConnectionTeradata>;
 }
 
 /**
@@ -306,4 +314,8 @@ export interface GlobalConnectionArgs {
      * Azure Synapse Analytics connection configuration.
      */
     synapse?: pulumi.Input<inputs.GlobalConnectionSynapse>;
+    /**
+     * Teradata connection configuration.
+     */
+    teradata?: pulumi.Input<inputs.GlobalConnectionTeradata>;
 }

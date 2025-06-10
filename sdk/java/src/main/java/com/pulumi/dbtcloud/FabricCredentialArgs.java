@@ -18,18 +18,18 @@ public final class FabricCredentialArgs extends com.pulumi.resources.ResourceArg
     public static final FabricCredentialArgs Empty = new FabricCredentialArgs();
 
     /**
-     * Fabric adapter ID for the credential
+     * The type of the adapter (fabric)
      * 
      */
-    @Import(name="adapterId", required=true)
-    private Output<Integer> adapterId;
+    @Import(name="adapterType", required=true)
+    private Output<String> adapterType;
 
     /**
-     * @return Fabric adapter ID for the credential
+     * @return The type of the adapter (fabric)
      * 
      */
-    public Output<Integer> adapterId() {
-        return this.adapterId;
+    public Output<String> adapterType() {
+        return this.adapterType;
     }
 
     /**
@@ -155,7 +155,7 @@ public final class FabricCredentialArgs extends com.pulumi.resources.ResourceArg
     private FabricCredentialArgs() {}
 
     private FabricCredentialArgs(FabricCredentialArgs $) {
-        this.adapterId = $.adapterId;
+        this.adapterType = $.adapterType;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
         this.password = $.password;
@@ -185,24 +185,24 @@ public final class FabricCredentialArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param adapterId Fabric adapter ID for the credential
+         * @param adapterType The type of the adapter (fabric)
          * 
          * @return builder
          * 
          */
-        public Builder adapterId(Output<Integer> adapterId) {
-            $.adapterId = adapterId;
+        public Builder adapterType(Output<String> adapterType) {
+            $.adapterType = adapterType;
             return this;
         }
 
         /**
-         * @param adapterId Fabric adapter ID for the credential
+         * @param adapterType The type of the adapter (fabric)
          * 
          * @return builder
          * 
          */
-        public Builder adapterId(Integer adapterId) {
-            return adapterId(Output.of(adapterId));
+        public Builder adapterType(String adapterType) {
+            return adapterType(Output.of(adapterType));
         }
 
         /**
@@ -374,8 +374,8 @@ public final class FabricCredentialArgs extends com.pulumi.resources.ResourceArg
         }
 
         public FabricCredentialArgs build() {
-            if ($.adapterId == null) {
-                throw new MissingRequiredPropertyException("FabricCredentialArgs", "adapterId");
+            if ($.adapterType == null) {
+                throw new MissingRequiredPropertyException("FabricCredentialArgs", "adapterType");
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("FabricCredentialArgs", "projectId");

@@ -18,24 +18,30 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final EnvironmentArgs Empty = new EnvironmentArgs();
 
+    /**
+     * A connection ID (used with Global Connections)
+     * 
+     */
     @Import(name="connectionId")
     private @Nullable Output<Integer> connectionId;
 
+    /**
+     * @return A connection ID (used with Global Connections)
+     * 
+     */
     public Optional<Output<Integer>> connectionId() {
         return Optional.ofNullable(this.connectionId);
     }
 
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required
-     * for deployment environments
+     * The project ID to which the environment belongs.
      * 
      */
     @Import(name="credentialId")
     private @Nullable Output<Integer> credentialId;
 
     /**
-     * @return Credential ID to create the environment with. A credential is not required for development environments but is required
-     * for deployment environments
+     * @return The project ID to which the environment belongs.
      * 
      */
     public Optional<Output<Integer>> credentialId() {
@@ -43,14 +49,14 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Which custom branch to use in this environment
+     * The custom branch name to use
      * 
      */
     @Import(name="customBranch")
     private @Nullable Output<String> customBranch;
 
     /**
-     * @return Which custom branch to use in this environment
+     * @return The custom branch name to use
      * 
      */
     public Optional<Output<String>> customBranch() {
@@ -58,18 +64,14 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-     * is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      * 
      */
     @Import(name="dbtVersion")
     private @Nullable Output<String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-     * is recommended. Defaults to `latest` if no version is provided
+     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      * 
      */
     public Optional<Output<String>> dbtVersion() {
@@ -77,16 +79,14 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
-     * &#39;staging&#39; or left empty for generic environments
+     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
      * 
      */
     @Import(name="deploymentType")
     private @Nullable Output<String> deploymentType;
 
     /**
-     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
-     * &#39;staging&#39; or left empty for generic environments
+     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
      * 
      */
     public Optional<Output<String>> deploymentType() {
@@ -109,14 +109,14 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * ID of the extended attributes for the environment
+     * The ID of the extended attributes applied
      * 
      */
     @Import(name="extendedAttributesId")
     private @Nullable Output<Integer> extendedAttributesId;
 
     /**
-     * @return ID of the extended attributes for the environment
+     * @return The ID of the extended attributes applied
      * 
      */
     public Optional<Output<Integer>> extendedAttributesId() {
@@ -139,14 +139,14 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Environment name
+     * The name of the environment
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Environment name
+     * @return The name of the environment
      * 
      */
     public Optional<Output<String>> name() {
@@ -233,18 +233,29 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
             $ = new EnvironmentArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param connectionId A connection ID (used with Global Connections)
+         * 
+         * @return builder
+         * 
+         */
         public Builder connectionId(@Nullable Output<Integer> connectionId) {
             $.connectionId = connectionId;
             return this;
         }
 
+        /**
+         * @param connectionId A connection ID (used with Global Connections)
+         * 
+         * @return builder
+         * 
+         */
         public Builder connectionId(Integer connectionId) {
             return connectionId(Output.of(connectionId));
         }
 
         /**
-         * @param credentialId Credential ID to create the environment with. A credential is not required for development environments but is required
-         * for deployment environments
+         * @param credentialId The project ID to which the environment belongs.
          * 
          * @return builder
          * 
@@ -255,8 +266,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param credentialId Credential ID to create the environment with. A credential is not required for development environments but is required
-         * for deployment environments
+         * @param credentialId The project ID to which the environment belongs.
          * 
          * @return builder
          * 
@@ -266,7 +276,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customBranch Which custom branch to use in this environment
+         * @param customBranch The custom branch name to use
          * 
          * @return builder
          * 
@@ -277,7 +287,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customBranch Which custom branch to use in this environment
+         * @param customBranch The custom branch name to use
          * 
          * @return builder
          * 
@@ -287,9 +297,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-         * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-         * is recommended. Defaults to `latest` if no version is provided
+         * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
          * 
          * @return builder
          * 
@@ -300,9 +308,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-         * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-         * is recommended. Defaults to `latest` if no version is provided
+         * @param dbtVersion Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
          * 
          * @return builder
          * 
@@ -312,8 +318,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
-         * &#39;staging&#39; or left empty for generic environments
+         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
          * 
          * @return builder
          * 
@@ -324,8 +329,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
-         * &#39;staging&#39; or left empty for generic environments
+         * @param deploymentType The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
          * 
          * @return builder
          * 
@@ -356,7 +360,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param extendedAttributesId ID of the extended attributes for the environment
+         * @param extendedAttributesId The ID of the extended attributes applied
          * 
          * @return builder
          * 
@@ -367,7 +371,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param extendedAttributesId ID of the extended attributes for the environment
+         * @param extendedAttributesId The ID of the extended attributes applied
          * 
          * @return builder
          * 
@@ -398,7 +402,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Environment name
+         * @param name The name of the environment
          * 
          * @return builder
          * 
@@ -409,7 +413,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Environment name
+         * @param name The name of the environment
          * 
          * @return builder
          * 

@@ -18,8 +18,7 @@ import javax.annotation.Nullable;
  * Assigns a set of dbt Cloud groups to a given User ID.
  * 
  * &gt; If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.
- * 
- * &gt; This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
+ * This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
  * This is intentional in order to prevent accidental deletion of all users groups assigned to a user.
  * If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set &#34;group_ids&#34; to the empty set &#34;[]&#34;.
  * 
@@ -119,14 +118,14 @@ public class UserGroups extends com.pulumi.resources.CustomResource {
         return this.groupIds;
     }
     /**
-     * The internal ID of a dbt Cloud user
+     * The internal ID of a dbt Cloud user.
      * 
      */
     @Export(name="userId", refs={Integer.class}, tree="[0]")
     private Output<Integer> userId;
 
     /**
-     * @return The internal ID of a dbt Cloud user
+     * @return The internal ID of a dbt Cloud user.
      * 
      */
     public Output<Integer> userId() {

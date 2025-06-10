@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Postgres credential data source.
 func LookupPostgresCredential(ctx *pulumi.Context, args *LookupPostgresCredentialArgs, opts ...pulumi.InvokeOption) (*LookupPostgresCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPostgresCredentialResult
@@ -35,7 +36,7 @@ type LookupPostgresCredentialResult struct {
 	CredentialId int `pulumi:"credentialId"`
 	// Default schema name
 	DefaultSchema string `pulumi:"defaultSchema"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this data source. Contains the project ID and the credential ID.
 	Id string `pulumi:"id"`
 	// Whether the Postgres credential is active
 	IsActive bool `pulumi:"isActive"`
@@ -93,7 +94,7 @@ func (o LookupPostgresCredentialResultOutput) DefaultSchema() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupPostgresCredentialResult) string { return v.DefaultSchema }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this data source. Contains the project ID and the credential ID.
 func (o LookupPostgresCredentialResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPostgresCredentialResult) string { return v.Id }).(pulumi.StringOutput)
 }

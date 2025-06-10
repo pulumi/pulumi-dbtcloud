@@ -15,20 +15,15 @@ export type AthenaCredential = import("./athenaCredential").AthenaCredential;
 export const AthenaCredential: typeof import("./athenaCredential").AthenaCredential = null as any;
 utilities.lazyLoad(exports, ["AthenaCredential"], () => require("./athenaCredential"));
 
-export { BigQueryConnectionArgs, BigQueryConnectionState } from "./bigQueryConnection";
-export type BigQueryConnection = import("./bigQueryConnection").BigQueryConnection;
-export const BigQueryConnection: typeof import("./bigQueryConnection").BigQueryConnection = null as any;
-utilities.lazyLoad(exports, ["BigQueryConnection"], () => require("./bigQueryConnection"));
-
 export { BigQueryCredentialArgs, BigQueryCredentialState } from "./bigQueryCredential";
 export type BigQueryCredential = import("./bigQueryCredential").BigQueryCredential;
 export const BigQueryCredential: typeof import("./bigQueryCredential").BigQueryCredential = null as any;
 utilities.lazyLoad(exports, ["BigQueryCredential"], () => require("./bigQueryCredential"));
 
-export { ConnectionArgs, ConnectionState } from "./connection";
-export type Connection = import("./connection").Connection;
-export const Connection: typeof import("./connection").Connection = null as any;
-utilities.lazyLoad(exports, ["Connection"], () => require("./connection"));
+export { BigquerySemanticLayerCredentialArgs, BigquerySemanticLayerCredentialState } from "./bigquerySemanticLayerCredential";
+export type BigquerySemanticLayerCredential = import("./bigquerySemanticLayerCredential").BigquerySemanticLayerCredential;
+export const BigquerySemanticLayerCredential: typeof import("./bigquerySemanticLayerCredential").BigquerySemanticLayerCredential = null as any;
+utilities.lazyLoad(exports, ["BigquerySemanticLayerCredential"], () => require("./bigquerySemanticLayerCredential"));
 
 export { DatabricksCredentialArgs, DatabricksCredentialState } from "./databricksCredential";
 export type DatabricksCredential = import("./databricksCredential").DatabricksCredential;
@@ -55,11 +50,6 @@ export type ExtendedAttributes = import("./extendedAttributes").ExtendedAttribut
 export const ExtendedAttributes: typeof import("./extendedAttributes").ExtendedAttributes = null as any;
 utilities.lazyLoad(exports, ["ExtendedAttributes"], () => require("./extendedAttributes"));
 
-export { FabricConnectionArgs, FabricConnectionState } from "./fabricConnection";
-export type FabricConnection = import("./fabricConnection").FabricConnection;
-export const FabricConnection: typeof import("./fabricConnection").FabricConnection = null as any;
-utilities.lazyLoad(exports, ["FabricConnection"], () => require("./fabricConnection"));
-
 export { FabricCredentialArgs, FabricCredentialState } from "./fabricCredential";
 export type FabricCredential = import("./fabricCredential").FabricCredential;
 export const FabricCredential: typeof import("./fabricCredential").FabricCredential = null as any;
@@ -80,20 +70,10 @@ export const getAzureDevOpsRepository: typeof import("./getAzureDevOpsRepository
 export const getAzureDevOpsRepositoryOutput: typeof import("./getAzureDevOpsRepository").getAzureDevOpsRepositoryOutput = null as any;
 utilities.lazyLoad(exports, ["getAzureDevOpsRepository","getAzureDevOpsRepositoryOutput"], () => require("./getAzureDevOpsRepository"));
 
-export { GetBigQueryConnectionArgs, GetBigQueryConnectionResult, GetBigQueryConnectionOutputArgs } from "./getBigQueryConnection";
-export const getBigQueryConnection: typeof import("./getBigQueryConnection").getBigQueryConnection = null as any;
-export const getBigQueryConnectionOutput: typeof import("./getBigQueryConnection").getBigQueryConnectionOutput = null as any;
-utilities.lazyLoad(exports, ["getBigQueryConnection","getBigQueryConnectionOutput"], () => require("./getBigQueryConnection"));
-
 export { GetBigQueryCredentialArgs, GetBigQueryCredentialResult, GetBigQueryCredentialOutputArgs } from "./getBigQueryCredential";
 export const getBigQueryCredential: typeof import("./getBigQueryCredential").getBigQueryCredential = null as any;
 export const getBigQueryCredentialOutput: typeof import("./getBigQueryCredential").getBigQueryCredentialOutput = null as any;
 utilities.lazyLoad(exports, ["getBigQueryCredential","getBigQueryCredentialOutput"], () => require("./getBigQueryCredential"));
-
-export { GetConnectionArgs, GetConnectionResult, GetConnectionOutputArgs } from "./getConnection";
-export const getConnection: typeof import("./getConnection").getConnection = null as any;
-export const getConnectionOutput: typeof import("./getConnection").getConnectionOutput = null as any;
-utilities.lazyLoad(exports, ["getConnection","getConnectionOutput"], () => require("./getConnection"));
 
 export { GetDatabricksCredentialArgs, GetDatabricksCredentialResult, GetDatabricksCredentialOutputArgs } from "./getDatabricksCredential";
 export const getDatabricksCredential: typeof import("./getDatabricksCredential").getDatabricksCredential = null as any;
@@ -180,10 +160,20 @@ export const getProjects: typeof import("./getProjects").getProjects = null as a
 export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
 utilities.lazyLoad(exports, ["getProjects","getProjectsOutput"], () => require("./getProjects"));
 
+export { GetRedshiftCredentialArgs, GetRedshiftCredentialResult, GetRedshiftCredentialOutputArgs } from "./getRedshiftCredential";
+export const getRedshiftCredential: typeof import("./getRedshiftCredential").getRedshiftCredential = null as any;
+export const getRedshiftCredentialOutput: typeof import("./getRedshiftCredential").getRedshiftCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getRedshiftCredential","getRedshiftCredentialOutput"], () => require("./getRedshiftCredential"));
+
 export { GetRepositoryArgs, GetRepositoryResult, GetRepositoryOutputArgs } from "./getRepository";
 export const getRepository: typeof import("./getRepository").getRepository = null as any;
 export const getRepositoryOutput: typeof import("./getRepository").getRepositoryOutput = null as any;
 utilities.lazyLoad(exports, ["getRepository","getRepositoryOutput"], () => require("./getRepository"));
+
+export { GetRunsArgs, GetRunsResult, GetRunsOutputArgs } from "./getRuns";
+export const getRuns: typeof import("./getRuns").getRuns = null as any;
+export const getRunsOutput: typeof import("./getRuns").getRunsOutput = null as any;
+utilities.lazyLoad(exports, ["getRuns","getRunsOutput"], () => require("./getRuns"));
 
 export { GetServiceTokenArgs, GetServiceTokenResult, GetServiceTokenOutputArgs } from "./getServiceToken";
 export const getServiceToken: typeof import("./getServiceToken").getServiceToken = null as any;
@@ -199,6 +189,16 @@ export { GetStarburstCredentialArgs, GetStarburstCredentialResult, GetStarburstC
 export const getStarburstCredential: typeof import("./getStarburstCredential").getStarburstCredential = null as any;
 export const getStarburstCredentialOutput: typeof import("./getStarburstCredential").getStarburstCredentialOutput = null as any;
 utilities.lazyLoad(exports, ["getStarburstCredential","getStarburstCredentialOutput"], () => require("./getStarburstCredential"));
+
+export { GetSynapseCredentialArgs, GetSynapseCredentialResult, GetSynapseCredentialOutputArgs } from "./getSynapseCredential";
+export const getSynapseCredential: typeof import("./getSynapseCredential").getSynapseCredential = null as any;
+export const getSynapseCredentialOutput: typeof import("./getSynapseCredential").getSynapseCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getSynapseCredential","getSynapseCredentialOutput"], () => require("./getSynapseCredential"));
+
+export { GetTeradataCredentialArgs, GetTeradataCredentialResult, GetTeradataCredentialOutputArgs } from "./getTeradataCredential";
+export const getTeradataCredential: typeof import("./getTeradataCredential").getTeradataCredential = null as any;
+export const getTeradataCredentialOutput: typeof import("./getTeradataCredential").getTeradataCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getTeradataCredential","getTeradataCredentialOutput"], () => require("./getTeradataCredential"));
 
 export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
 export const getUser: typeof import("./getUser").getUser = null as any;
@@ -270,6 +270,11 @@ export type OauthConfiguration = import("./oauthConfiguration").OauthConfigurati
 export const OauthConfiguration: typeof import("./oauthConfiguration").OauthConfiguration = null as any;
 utilities.lazyLoad(exports, ["OauthConfiguration"], () => require("./oauthConfiguration"));
 
+export { PartialEnvironmentVariableArgs, PartialEnvironmentVariableState } from "./partialEnvironmentVariable";
+export type PartialEnvironmentVariable = import("./partialEnvironmentVariable").PartialEnvironmentVariable;
+export const PartialEnvironmentVariable: typeof import("./partialEnvironmentVariable").PartialEnvironmentVariable = null as any;
+utilities.lazyLoad(exports, ["PartialEnvironmentVariable"], () => require("./partialEnvironmentVariable"));
+
 export { PartialLicenseMapArgs, PartialLicenseMapState } from "./partialLicenseMap";
 export type PartialLicenseMap = import("./partialLicenseMap").PartialLicenseMap;
 export const PartialLicenseMap: typeof import("./partialLicenseMap").PartialLicenseMap = null as any;
@@ -295,11 +300,6 @@ export type ProjectArtefacts = import("./projectArtefacts").ProjectArtefacts;
 export const ProjectArtefacts: typeof import("./projectArtefacts").ProjectArtefacts = null as any;
 utilities.lazyLoad(exports, ["ProjectArtefacts"], () => require("./projectArtefacts"));
 
-export { ProjectConnectionArgs, ProjectConnectionState } from "./projectConnection";
-export type ProjectConnection = import("./projectConnection").ProjectConnection;
-export const ProjectConnection: typeof import("./projectConnection").ProjectConnection = null as any;
-utilities.lazyLoad(exports, ["ProjectConnection"], () => require("./projectConnection"));
-
 export { ProjectRepositoryArgs, ProjectRepositoryState } from "./projectRepository";
 export type ProjectRepository = import("./projectRepository").ProjectRepository;
 export const ProjectRepository: typeof import("./projectRepository").ProjectRepository = null as any;
@@ -308,10 +308,25 @@ utilities.lazyLoad(exports, ["ProjectRepository"], () => require("./projectRepos
 export * from "./provider";
 import { Provider } from "./provider";
 
+export { RedshiftCredentialArgs, RedshiftCredentialState } from "./redshiftCredential";
+export type RedshiftCredential = import("./redshiftCredential").RedshiftCredential;
+export const RedshiftCredential: typeof import("./redshiftCredential").RedshiftCredential = null as any;
+utilities.lazyLoad(exports, ["RedshiftCredential"], () => require("./redshiftCredential"));
+
+export { RedshiftSemanticLayerCredentialArgs, RedshiftSemanticLayerCredentialState } from "./redshiftSemanticLayerCredential";
+export type RedshiftSemanticLayerCredential = import("./redshiftSemanticLayerCredential").RedshiftSemanticLayerCredential;
+export const RedshiftSemanticLayerCredential: typeof import("./redshiftSemanticLayerCredential").RedshiftSemanticLayerCredential = null as any;
+utilities.lazyLoad(exports, ["RedshiftSemanticLayerCredential"], () => require("./redshiftSemanticLayerCredential"));
+
 export { RepositoryArgs, RepositoryState } from "./repository";
 export type Repository = import("./repository").Repository;
 export const Repository: typeof import("./repository").Repository = null as any;
 utilities.lazyLoad(exports, ["Repository"], () => require("./repository"));
+
+export { SemanticLayerConfigurationArgs, SemanticLayerConfigurationState } from "./semanticLayerConfiguration";
+export type SemanticLayerConfiguration = import("./semanticLayerConfiguration").SemanticLayerConfiguration;
+export const SemanticLayerConfiguration: typeof import("./semanticLayerConfiguration").SemanticLayerConfiguration = null as any;
+utilities.lazyLoad(exports, ["SemanticLayerConfiguration"], () => require("./semanticLayerConfiguration"));
 
 export { ServiceTokenArgs, ServiceTokenState } from "./serviceToken";
 export type ServiceToken = import("./serviceToken").ServiceToken;
@@ -323,10 +338,25 @@ export type SnowflakeCredential = import("./snowflakeCredential").SnowflakeCrede
 export const SnowflakeCredential: typeof import("./snowflakeCredential").SnowflakeCredential = null as any;
 utilities.lazyLoad(exports, ["SnowflakeCredential"], () => require("./snowflakeCredential"));
 
+export { SnowflakeSemanticLayerCredentialArgs, SnowflakeSemanticLayerCredentialState } from "./snowflakeSemanticLayerCredential";
+export type SnowflakeSemanticLayerCredential = import("./snowflakeSemanticLayerCredential").SnowflakeSemanticLayerCredential;
+export const SnowflakeSemanticLayerCredential: typeof import("./snowflakeSemanticLayerCredential").SnowflakeSemanticLayerCredential = null as any;
+utilities.lazyLoad(exports, ["SnowflakeSemanticLayerCredential"], () => require("./snowflakeSemanticLayerCredential"));
+
 export { StarburstCredentialArgs, StarburstCredentialState } from "./starburstCredential";
 export type StarburstCredential = import("./starburstCredential").StarburstCredential;
 export const StarburstCredential: typeof import("./starburstCredential").StarburstCredential = null as any;
 utilities.lazyLoad(exports, ["StarburstCredential"], () => require("./starburstCredential"));
+
+export { SynapseCredentialArgs, SynapseCredentialState } from "./synapseCredential";
+export type SynapseCredential = import("./synapseCredential").SynapseCredential;
+export const SynapseCredential: typeof import("./synapseCredential").SynapseCredential = null as any;
+utilities.lazyLoad(exports, ["SynapseCredential"], () => require("./synapseCredential"));
+
+export { TeradataCredentialArgs, TeradataCredentialState } from "./teradataCredential";
+export type TeradataCredential = import("./teradataCredential").TeradataCredential;
+export const TeradataCredential: typeof import("./teradataCredential").TeradataCredential = null as any;
+utilities.lazyLoad(exports, ["TeradataCredential"], () => require("./teradataCredential"));
 
 export { UserGroupsArgs, UserGroupsState } from "./userGroups";
 export type UserGroups = import("./userGroups").UserGroups;
@@ -356,12 +386,10 @@ const _module = {
                 return new AccountFeatures(name, <any>undefined, { urn })
             case "dbtcloud:index/athenaCredential:AthenaCredential":
                 return new AthenaCredential(name, <any>undefined, { urn })
-            case "dbtcloud:index/bigQueryConnection:BigQueryConnection":
-                return new BigQueryConnection(name, <any>undefined, { urn })
             case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
                 return new BigQueryCredential(name, <any>undefined, { urn })
-            case "dbtcloud:index/connection:Connection":
-                return new Connection(name, <any>undefined, { urn })
+            case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
+                return new BigquerySemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/databricksCredential:DatabricksCredential":
                 return new DatabricksCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/environment:Environment":
@@ -372,8 +400,6 @@ const _module = {
                 return new EnvironmentVariableJobOverride(name, <any>undefined, { urn })
             case "dbtcloud:index/extendedAttributes:ExtendedAttributes":
                 return new ExtendedAttributes(name, <any>undefined, { urn })
-            case "dbtcloud:index/fabricConnection:FabricConnection":
-                return new FabricConnection(name, <any>undefined, { urn })
             case "dbtcloud:index/fabricCredential:FabricCredential":
                 return new FabricCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/globalConnection:GlobalConnection":
@@ -396,6 +422,8 @@ const _module = {
                 return new Notification(name, <any>undefined, { urn })
             case "dbtcloud:index/oauthConfiguration:OauthConfiguration":
                 return new OauthConfiguration(name, <any>undefined, { urn })
+            case "dbtcloud:index/partialEnvironmentVariable:PartialEnvironmentVariable":
+                return new PartialEnvironmentVariable(name, <any>undefined, { urn })
             case "dbtcloud:index/partialLicenseMap:PartialLicenseMap":
                 return new PartialLicenseMap(name, <any>undefined, { urn })
             case "dbtcloud:index/partialNotification:PartialNotification":
@@ -406,18 +434,28 @@ const _module = {
                 return new Project(name, <any>undefined, { urn })
             case "dbtcloud:index/projectArtefacts:ProjectArtefacts":
                 return new ProjectArtefacts(name, <any>undefined, { urn })
-            case "dbtcloud:index/projectConnection:ProjectConnection":
-                return new ProjectConnection(name, <any>undefined, { urn })
             case "dbtcloud:index/projectRepository:ProjectRepository":
                 return new ProjectRepository(name, <any>undefined, { urn })
+            case "dbtcloud:index/redshiftCredential:RedshiftCredential":
+                return new RedshiftCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential":
+                return new RedshiftSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/repository:Repository":
                 return new Repository(name, <any>undefined, { urn })
+            case "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration":
+                return new SemanticLayerConfiguration(name, <any>undefined, { urn })
             case "dbtcloud:index/serviceToken:ServiceToken":
                 return new ServiceToken(name, <any>undefined, { urn })
             case "dbtcloud:index/snowflakeCredential:SnowflakeCredential":
                 return new SnowflakeCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential":
+                return new SnowflakeSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/starburstCredential:StarburstCredential":
                 return new StarburstCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/synapseCredential:SynapseCredential":
+                return new SynapseCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/teradataCredential:TeradataCredential":
+                return new TeradataCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/userGroups:UserGroups":
                 return new UserGroups(name, <any>undefined, { urn })
             case "dbtcloud:index/webhook:Webhook":
@@ -429,15 +467,13 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("dbtcloud", "index/accountFeatures", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/athenaCredential", _module)
-pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryCredential", _module)
-pulumi.runtime.registerResourceModule("dbtcloud", "index/connection", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/bigquerySemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/databricksCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/environment", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/environmentVariable", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/environmentVariableJobOverride", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/extendedAttributes", _module)
-pulumi.runtime.registerResourceModule("dbtcloud", "index/fabricConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/fabricCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/globalConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/group", _module)
@@ -449,17 +485,23 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/lineageIntegration", _m
 pulumi.runtime.registerResourceModule("dbtcloud", "index/modelNotifications", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/notification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/oauthConfiguration", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/partialEnvironmentVariable", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialLicenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialNotification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/postgresCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/project", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/projectArtefacts", _module)
-pulumi.runtime.registerResourceModule("dbtcloud", "index/projectConnection", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/projectRepository", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/repository", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerConfiguration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/serviceToken", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/starburstCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/synapseCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/teradataCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/userGroups", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/webhook", _module)
 pulumi.runtime.registerResourcePackage("dbtcloud", {

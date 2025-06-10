@@ -18,7 +18,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int ConnectionId;
         /// <summary>
-        /// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+        /// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
         /// </summary>
         public readonly int CredentialsId;
         /// <summary>

@@ -36,18 +36,15 @@ class EnvironmentArgs:
         The set of arguments for constructing a Environment resource.
         :param pulumi.Input[builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[builtins.str] type: The type of environment (must be either development or deployment)
-        :param pulumi.Input[builtins.int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required
-               for deployment environments
-        :param pulumi.Input[builtins.str] custom_branch: Which custom branch to use in this environment
-        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-               `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-               is recommended. Defaults to `latest` if no version is provided
-        :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-               'staging' or left empty for generic environments
+        :param pulumi.Input[builtins.int] connection_id: A connection ID (used with Global Connections)
+        :param pulumi.Input[builtins.int] credential_id: The project ID to which the environment belongs.
+        :param pulumi.Input[builtins.str] custom_branch: The custom branch name to use
+        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
-        :param pulumi.Input[builtins.int] extended_attributes_id: ID of the extended attributes for the environment
+        :param pulumi.Input[builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[builtins.bool] is_active: Whether the environment is active
-        :param pulumi.Input[builtins.str] name: Environment name
+        :param pulumi.Input[builtins.str] name: The name of the environment
         :param pulumi.Input[builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -100,6 +97,9 @@ class EnvironmentArgs:
     @property
     @pulumi.getter(name="connectionId")
     def connection_id(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        A connection ID (used with Global Connections)
+        """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
@@ -110,8 +110,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Credential ID to create the environment with. A credential is not required for development environments but is required
-        for deployment environments
+        The project ID to which the environment belongs.
         """
         return pulumi.get(self, "credential_id")
 
@@ -123,7 +122,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="customBranch")
     def custom_branch(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Which custom branch to use in this environment
+        The custom branch name to use
         """
         return pulumi.get(self, "custom_branch")
 
@@ -135,9 +134,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-        is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -149,8 +146,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-        'staging' or left empty for generic environments
+        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
 
@@ -174,7 +170,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="extendedAttributesId")
     def extended_attributes_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        ID of the extended attributes for the environment
+        The ID of the extended attributes applied
         """
         return pulumi.get(self, "extended_attributes_id")
 
@@ -198,7 +194,7 @@ class EnvironmentArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Environment name
+        The name of the environment
         """
         return pulumi.get(self, "name")
 
@@ -237,19 +233,16 @@ class _EnvironmentState:
                  use_custom_branch: Optional[pulumi.Input[builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Environment resources.
-        :param pulumi.Input[builtins.int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required
-               for deployment environments
-        :param pulumi.Input[builtins.str] custom_branch: Which custom branch to use in this environment
-        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-               `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-               is recommended. Defaults to `latest` if no version is provided
-        :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-               'staging' or left empty for generic environments
+        :param pulumi.Input[builtins.int] connection_id: A connection ID (used with Global Connections)
+        :param pulumi.Input[builtins.int] credential_id: The project ID to which the environment belongs.
+        :param pulumi.Input[builtins.str] custom_branch: The custom branch name to use
+        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
-        :param pulumi.Input[builtins.int] environment_id: Environment ID within the project
-        :param pulumi.Input[builtins.int] extended_attributes_id: ID of the extended attributes for the environment
+        :param pulumi.Input[builtins.int] environment_id: The ID of the environment. Duplicated. Here for backward compatibility.
+        :param pulumi.Input[builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[builtins.bool] is_active: Whether the environment is active
-        :param pulumi.Input[builtins.str] name: Environment name
+        :param pulumi.Input[builtins.str] name: The name of the environment
         :param pulumi.Input[builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -284,6 +277,9 @@ class _EnvironmentState:
     @property
     @pulumi.getter(name="connectionId")
     def connection_id(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        A connection ID (used with Global Connections)
+        """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
@@ -294,8 +290,7 @@ class _EnvironmentState:
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Credential ID to create the environment with. A credential is not required for development environments but is required
-        for deployment environments
+        The project ID to which the environment belongs.
         """
         return pulumi.get(self, "credential_id")
 
@@ -307,7 +302,7 @@ class _EnvironmentState:
     @pulumi.getter(name="customBranch")
     def custom_branch(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Which custom branch to use in this environment
+        The custom branch name to use
         """
         return pulumi.get(self, "custom_branch")
 
@@ -319,9 +314,7 @@ class _EnvironmentState:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-        is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -333,8 +326,7 @@ class _EnvironmentState:
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-        'staging' or left empty for generic environments
+        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
 
@@ -358,7 +350,7 @@ class _EnvironmentState:
     @pulumi.getter(name="environmentId")
     def environment_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Environment ID within the project
+        The ID of the environment. Duplicated. Here for backward compatibility.
         """
         return pulumi.get(self, "environment_id")
 
@@ -370,7 +362,7 @@ class _EnvironmentState:
     @pulumi.getter(name="extendedAttributesId")
     def extended_attributes_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        ID of the extended attributes for the environment
+        The ID of the extended attributes applied
         """
         return pulumi.get(self, "extended_attributes_id")
 
@@ -394,7 +386,7 @@ class _EnvironmentState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Environment name
+        The name of the environment
         """
         return pulumi.get(self, "name")
 
@@ -459,12 +451,7 @@ class Environment(pulumi.CustomResource):
                  use_custom_branch: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         """
-        Resource to manage dbt Cloud environments for the different dbt Cloud projects.
-
-        In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
-
-        > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects.
-        This version of the provider has the `connection_id` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+        Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connection_id as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
 
         ## Example Usage
 
@@ -529,18 +516,15 @@ class Environment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required
-               for deployment environments
-        :param pulumi.Input[builtins.str] custom_branch: Which custom branch to use in this environment
-        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-               `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-               is recommended. Defaults to `latest` if no version is provided
-        :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-               'staging' or left empty for generic environments
+        :param pulumi.Input[builtins.int] connection_id: A connection ID (used with Global Connections)
+        :param pulumi.Input[builtins.int] credential_id: The project ID to which the environment belongs.
+        :param pulumi.Input[builtins.str] custom_branch: The custom branch name to use
+        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
-        :param pulumi.Input[builtins.int] extended_attributes_id: ID of the extended attributes for the environment
+        :param pulumi.Input[builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[builtins.bool] is_active: Whether the environment is active
-        :param pulumi.Input[builtins.str] name: Environment name
+        :param pulumi.Input[builtins.str] name: The name of the environment
         :param pulumi.Input[builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -552,12 +536,7 @@ class Environment(pulumi.CustomResource):
                  args: EnvironmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Resource to manage dbt Cloud environments for the different dbt Cloud projects.
-
-        In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
-
-        > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects.
-        This version of the provider has the `connection_id` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+        Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connection_id as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
 
         ## Example Usage
 
@@ -703,19 +682,16 @@ class Environment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] credential_id: Credential ID to create the environment with. A credential is not required for development environments but is required
-               for deployment environments
-        :param pulumi.Input[builtins.str] custom_branch: Which custom branch to use in this environment
-        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-               `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-               is recommended. Defaults to `latest` if no version is provided
-        :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-               'staging' or left empty for generic environments
+        :param pulumi.Input[builtins.int] connection_id: A connection ID (used with Global Connections)
+        :param pulumi.Input[builtins.int] credential_id: The project ID to which the environment belongs.
+        :param pulumi.Input[builtins.str] custom_branch: The custom branch name to use
+        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
-        :param pulumi.Input[builtins.int] environment_id: Environment ID within the project
-        :param pulumi.Input[builtins.int] extended_attributes_id: ID of the extended attributes for the environment
+        :param pulumi.Input[builtins.int] environment_id: The ID of the environment. Duplicated. Here for backward compatibility.
+        :param pulumi.Input[builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[builtins.bool] is_active: Whether the environment is active
-        :param pulumi.Input[builtins.str] name: Environment name
+        :param pulumi.Input[builtins.str] name: The name of the environment
         :param pulumi.Input[builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -741,15 +717,17 @@ class Environment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> pulumi.Output[Optional[builtins.int]]:
+    def connection_id(self) -> pulumi.Output[builtins.int]:
+        """
+        A connection ID (used with Global Connections)
+        """
         return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> pulumi.Output[Optional[builtins.int]]:
+    def credential_id(self) -> pulumi.Output[builtins.int]:
         """
-        Credential ID to create the environment with. A credential is not required for development environments but is required
-        for deployment environments
+        The project ID to which the environment belongs.
         """
         return pulumi.get(self, "credential_id")
 
@@ -757,17 +735,15 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="customBranch")
     def custom_branch(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        Which custom branch to use in this environment
+        The custom branch name to use
         """
         return pulumi.get(self, "custom_branch")
 
     @property
     @pulumi.getter(name="dbtVersion")
-    def dbt_version(self) -> pulumi.Output[Optional[builtins.str]]:
+    def dbt_version(self) -> pulumi.Output[builtins.str]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-        is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -775,14 +751,13 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="deploymentType")
     def deployment_type(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-        'staging' or left empty for generic environments
+        The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
 
     @property
     @pulumi.getter(name="enableModelQueryHistory")
-    def enable_model_query_history(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def enable_model_query_history(self) -> pulumi.Output[builtins.bool]:
         """
         Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         """
@@ -792,21 +767,21 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="environmentId")
     def environment_id(self) -> pulumi.Output[builtins.int]:
         """
-        Environment ID within the project
+        The ID of the environment. Duplicated. Here for backward compatibility.
         """
         return pulumi.get(self, "environment_id")
 
     @property
     @pulumi.getter(name="extendedAttributesId")
-    def extended_attributes_id(self) -> pulumi.Output[Optional[builtins.int]]:
+    def extended_attributes_id(self) -> pulumi.Output[builtins.int]:
         """
-        ID of the extended attributes for the environment
+        The ID of the extended attributes applied
         """
         return pulumi.get(self, "extended_attributes_id")
 
     @property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def is_active(self) -> pulumi.Output[builtins.bool]:
         """
         Whether the environment is active
         """
@@ -816,7 +791,7 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[builtins.str]:
         """
-        Environment name
+        The name of the environment
         """
         return pulumi.get(self, "name")
 
@@ -838,7 +813,7 @@ class Environment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="useCustomBranch")
-    def use_custom_branch(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def use_custom_branch(self) -> pulumi.Output[builtins.bool]:
         """
         Whether to use a custom git branch in this environment
         """

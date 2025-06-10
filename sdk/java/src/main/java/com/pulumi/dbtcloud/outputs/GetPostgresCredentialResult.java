@@ -23,7 +23,7 @@ public final class GetPostgresCredentialResult {
      */
     private String defaultSchema;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this data source. Contains the project ID and the credential ID.
      * 
      */
     private String id;
@@ -64,7 +64,7 @@ public final class GetPostgresCredentialResult {
         return this.defaultSchema;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this data source. Contains the project ID and the credential ID.
      * 
      */
     public String id() {

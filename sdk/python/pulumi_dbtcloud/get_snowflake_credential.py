@@ -73,7 +73,7 @@ class GetSnowflakeCredentialResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
@@ -105,7 +105,7 @@ class GetSnowflakeCredentialResult:
     @pulumi.getter
     def schema(self) -> builtins.str:
         """
-        Default schema name
+        The schema where to create models
         """
         return pulumi.get(self, "schema")
 
@@ -138,7 +138,8 @@ def get_snowflake_credential(credential_id: Optional[builtins.int] = None,
                              project_id: Optional[builtins.int] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSnowflakeCredentialResult:
     """
-    Use this data source to access information about an existing resource.
+    Snowflake credential data source
+
 
     :param builtins.int credential_id: Credential ID
     :param builtins.int project_id: Project ID
@@ -162,7 +163,8 @@ def get_snowflake_credential_output(credential_id: Optional[pulumi.Input[builtin
                                     project_id: Optional[pulumi.Input[builtins.int]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSnowflakeCredentialResult]:
     """
-    Use this data source to access information about an existing resource.
+    Snowflake credential data source
+
 
     :param builtins.int credential_id: Credential ID
     :param builtins.int project_id: Project ID

@@ -13,7 +13,13 @@ namespace Pulumi.DbtCloud.Outputs
     [OutputType]
     public sealed class GetGroupUsersUserResult
     {
+        /// <summary>
+        /// Email of the user
+        /// </summary>
         public readonly string Email;
+        /// <summary>
+        /// ID of the user
+        /// </summary>
         public readonly int Id;
 
         [OutputConstructor]

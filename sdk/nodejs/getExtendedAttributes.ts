@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Extended attributes data source
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -30,11 +32,11 @@ export function getExtendedAttributes(args: GetExtendedAttributesArgs, opts?: pu
  */
 export interface GetExtendedAttributesArgs {
     /**
-     * ID of the extended attributes
+     * Extended attributes ID
      */
     extendedAttributesId: number;
     /**
-     * Project ID the extended attributes refers to
+     * Project ID
      */
     projectId: number;
 }
@@ -44,19 +46,19 @@ export interface GetExtendedAttributesArgs {
  */
 export interface GetExtendedAttributesResult {
     /**
-     * A JSON string listing the extended attributes mapping
+     * Extended attributes
      */
     readonly extendedAttributes: string;
     /**
-     * ID of the extended attributes
+     * Extended attributes ID
      */
     readonly extendedAttributesId: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource. Contains the project ID and the credential ID.
      */
     readonly id: string;
     /**
-     * Project ID the extended attributes refers to
+     * Project ID
      */
     readonly projectId: number;
     /**
@@ -65,6 +67,8 @@ export interface GetExtendedAttributesResult {
     readonly state: number;
 }
 /**
+ * Extended attributes data source
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -90,11 +94,11 @@ export function getExtendedAttributesOutput(args: GetExtendedAttributesOutputArg
  */
 export interface GetExtendedAttributesOutputArgs {
     /**
-     * ID of the extended attributes
+     * Extended attributes ID
      */
     extendedAttributesId: pulumi.Input<number>;
     /**
-     * Project ID the extended attributes refers to
+     * Project ID
      */
     projectId: pulumi.Input<number>;
 }

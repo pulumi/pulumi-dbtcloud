@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a dbt Cloud project.
+//
 // ## Example Usage
 //
 // ```go
@@ -40,7 +42,7 @@ import (
 //			}
 //			_, err = dbtcloud.NewProject(ctx, "dbt_project_with_subdir", &dbtcloud.ProjectArgs{
 //				Name:                   pulumi.String("Analytics in Subdir"),
-//				DbtProjectSubdirectory: pulumi.String("/path"),
+//				DbtProjectSubdirectory: pulumi.String("path"),
 //			})
 //			if err != nil {
 //				return err
@@ -83,12 +85,14 @@ import (
 type Project struct {
 	pulumi.CustomResourceState
 
-	// dbt project subdirectory path
-	DbtProjectSubdirectory pulumi.StringPtrOutput `pulumi:"dbtProjectSubdirectory"`
+	// DBT project subdirectory
+	DbtProjectSubdirectory pulumi.StringOutput `pulumi:"dbtProjectSubdirectory"`
 	// Description for the project. Will show in dbt Explorer.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringOutput `pulumi:"description"`
 	// Project name
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The type of dbt project (0=default or 1=hybrid)
+	Type pulumi.IntOutput `pulumi:"type"`
 }
 
 // NewProject registers a new resource with the given unique name, arguments, and options.
@@ -121,21 +125,25 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
-	// dbt project subdirectory path
+	// DBT project subdirectory
 	DbtProjectSubdirectory *string `pulumi:"dbtProjectSubdirectory"`
 	// Description for the project. Will show in dbt Explorer.
 	Description *string `pulumi:"description"`
 	// Project name
 	Name *string `pulumi:"name"`
+	// The type of dbt project (0=default or 1=hybrid)
+	Type *int `pulumi:"type"`
 }
 
 type ProjectState struct {
-	// dbt project subdirectory path
+	// DBT project subdirectory
 	DbtProjectSubdirectory pulumi.StringPtrInput
 	// Description for the project. Will show in dbt Explorer.
 	Description pulumi.StringPtrInput
 	// Project name
 	Name pulumi.StringPtrInput
+	// The type of dbt project (0=default or 1=hybrid)
+	Type pulumi.IntPtrInput
 }
 
 func (ProjectState) ElementType() reflect.Type {
@@ -143,22 +151,26 @@ func (ProjectState) ElementType() reflect.Type {
 }
 
 type projectArgs struct {
-	// dbt project subdirectory path
+	// DBT project subdirectory
 	DbtProjectSubdirectory *string `pulumi:"dbtProjectSubdirectory"`
 	// Description for the project. Will show in dbt Explorer.
 	Description *string `pulumi:"description"`
 	// Project name
 	Name *string `pulumi:"name"`
+	// The type of dbt project (0=default or 1=hybrid)
+	Type *int `pulumi:"type"`
 }
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
-	// dbt project subdirectory path
+	// DBT project subdirectory
 	DbtProjectSubdirectory pulumi.StringPtrInput
 	// Description for the project. Will show in dbt Explorer.
 	Description pulumi.StringPtrInput
 	// Project name
 	Name pulumi.StringPtrInput
+	// The type of dbt project (0=default or 1=hybrid)
+	Type pulumi.IntPtrInput
 }
 
 func (ProjectArgs) ElementType() reflect.Type {
@@ -248,19 +260,24 @@ func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOu
 	return o
 }
 
-// dbt project subdirectory path
-func (o ProjectOutput) DbtProjectSubdirectory() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Project) pulumi.StringPtrOutput { return v.DbtProjectSubdirectory }).(pulumi.StringPtrOutput)
+// DBT project subdirectory
+func (o ProjectOutput) DbtProjectSubdirectory() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.DbtProjectSubdirectory }).(pulumi.StringOutput)
 }
 
 // Description for the project. Will show in dbt Explorer.
-func (o ProjectOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Project) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+func (o ProjectOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
 // Project name
 func (o ProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The type of dbt project (0=default or 1=hybrid)
+func (o ProjectOutput) Type() pulumi.IntOutput {
+	return o.ApplyT(func(v *Project) pulumi.IntOutput { return v.Type }).(pulumi.IntOutput)
 }
 
 type ProjectArrayOutput struct{ *pulumi.OutputState }

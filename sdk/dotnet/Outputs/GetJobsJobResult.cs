@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int DeferringEnvironmentId;
         /// <summary>
-        /// [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+        /// [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
         /// </summary>
         public readonly int DeferringJobDefinitionId;
         /// <summary>
@@ -55,6 +55,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly Outputs.GetJobsJobJobCompletionTriggerConditionResult JobCompletionTriggerCondition;
         /// <summary>
+        /// The ID of the job
+        /// </summary>
+        public readonly int JobId;
+        /// <summary>
         /// The type of job (e.g. CI, scheduled)
         /// </summary>
         public readonly string JobType;
@@ -76,6 +80,10 @@ namespace Pulumi.DbtCloud.Outputs
         public readonly bool RunGenerateSources;
         public readonly Outputs.GetJobsJobScheduleResult Schedule;
         public readonly Outputs.GetJobsJobSettingsResult Settings;
+        /// <summary>
+        /// [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+        /// </summary>
+        public readonly int TimeoutSeconds;
         public readonly Outputs.GetJobsJobTriggersResult Triggers;
         /// <summary>
         /// Whether the CI job should be automatically triggered on draft PRs
@@ -106,6 +114,8 @@ namespace Pulumi.DbtCloud.Outputs
 
             Outputs.GetJobsJobJobCompletionTriggerConditionResult jobCompletionTriggerCondition,
 
+            int jobId,
+
             string jobType,
 
             string name,
@@ -119,6 +129,8 @@ namespace Pulumi.DbtCloud.Outputs
             Outputs.GetJobsJobScheduleResult schedule,
 
             Outputs.GetJobsJobSettingsResult settings,
+
+            int timeoutSeconds,
 
             Outputs.GetJobsJobTriggersResult triggers,
 
@@ -135,6 +147,7 @@ namespace Pulumi.DbtCloud.Outputs
             GenerateDocs = generateDocs;
             Id = id;
             JobCompletionTriggerCondition = jobCompletionTriggerCondition;
+            JobId = jobId;
             JobType = jobType;
             Name = name;
             ProjectId = projectId;
@@ -142,6 +155,7 @@ namespace Pulumi.DbtCloud.Outputs
             RunGenerateSources = runGenerateSources;
             Schedule = schedule;
             Settings = settings;
+            TimeoutSeconds = timeoutSeconds;
             Triggers = triggers;
             TriggersOnDraftPr = triggersOnDraftPr;
         }

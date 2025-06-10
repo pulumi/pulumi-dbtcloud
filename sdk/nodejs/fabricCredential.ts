@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Fabric credential resource
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -14,7 +16,6 @@ import * as utilities from "./utilities";
  * // when using AD authentication
  * const myFabricCredAd = new dbtcloud.FabricCredential("my_fabric_cred_ad", {
  *     projectId: dbtProject.id,
- *     adapterId: myFabricConnection.adapterId,
  *     schema: "my_schema",
  *     user: "my_user",
  *     password: "my_password",
@@ -23,7 +24,6 @@ import * as utilities from "./utilities";
  * // when using service principal authentication
  * const myFabricCredServPrinc = new dbtcloud.FabricCredential("my_fabric_cred_serv_princ", {
  *     projectId: dbtProject.id,
- *     adapterId: myFabricConnection.adapterId,
  *     schema: "my_schema",
  *     clientId: "my_client_id",
  *     tenantId: "my_tenant_id",
@@ -91,25 +91,25 @@ export class FabricCredential extends pulumi.CustomResource {
     }
 
     /**
-     * Fabric adapter ID for the credential
+     * The type of the adapter (fabric)
      */
-    public readonly adapterId!: pulumi.Output<number>;
+    public readonly adapterType!: pulumi.Output<string>;
     /**
      * The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    public readonly clientId!: pulumi.Output<string>;
     /**
      * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      */
-    public readonly clientSecret!: pulumi.Output<string | undefined>;
+    public readonly clientSecret!: pulumi.Output<string>;
     /**
-     * The system Fabric credential ID
+     * The internal credential ID
      */
     public /*out*/ readonly credentialId!: pulumi.Output<number>;
     /**
      * The password for the account to connect to. Only used when connection with AD user/pass
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    public readonly password!: pulumi.Output<string>;
     /**
      * Project ID to create the Fabric credential in
      */
@@ -121,15 +121,15 @@ export class FabricCredential extends pulumi.CustomResource {
     /**
      * Optionally set this to the principal who should own the schemas created by dbt
      */
-    public readonly schemaAuthorization!: pulumi.Output<string | undefined>;
+    public readonly schemaAuthorization!: pulumi.Output<string>;
     /**
      * The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
      */
-    public readonly tenantId!: pulumi.Output<string | undefined>;
+    public readonly tenantId!: pulumi.Output<string>;
     /**
      * The username of the Fabric account to connect to. Only used when connection with AD user/pass
      */
-    public readonly user!: pulumi.Output<string | undefined>;
+    public readonly user!: pulumi.Output<string>;
 
     /**
      * Create a FabricCredential resource with the given unique name, arguments, and options.
@@ -144,7 +144,7 @@ export class FabricCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FabricCredentialState | undefined;
-            resourceInputs["adapterId"] = state ? state.adapterId : undefined;
+            resourceInputs["adapterType"] = state ? state.adapterType : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
             resourceInputs["credentialId"] = state ? state.credentialId : undefined;
@@ -156,8 +156,8 @@ export class FabricCredential extends pulumi.CustomResource {
             resourceInputs["user"] = state ? state.user : undefined;
         } else {
             const args = argsOrState as FabricCredentialArgs | undefined;
-            if ((!args || args.adapterId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'adapterId'");
+            if ((!args || args.adapterType === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'adapterType'");
             }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
@@ -165,7 +165,7 @@ export class FabricCredential extends pulumi.CustomResource {
             if ((!args || args.schema === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'schema'");
             }
-            resourceInputs["adapterId"] = args ? args.adapterId : undefined;
+            resourceInputs["adapterType"] = args ? args.adapterType : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -188,9 +188,9 @@ export class FabricCredential extends pulumi.CustomResource {
  */
 export interface FabricCredentialState {
     /**
-     * Fabric adapter ID for the credential
+     * The type of the adapter (fabric)
      */
-    adapterId?: pulumi.Input<number>;
+    adapterType?: pulumi.Input<string>;
     /**
      * The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      */
@@ -200,7 +200,7 @@ export interface FabricCredentialState {
      */
     clientSecret?: pulumi.Input<string>;
     /**
-     * The system Fabric credential ID
+     * The internal credential ID
      */
     credentialId?: pulumi.Input<number>;
     /**
@@ -234,9 +234,9 @@ export interface FabricCredentialState {
  */
 export interface FabricCredentialArgs {
     /**
-     * Fabric adapter ID for the credential
+     * The type of the adapter (fabric)
      */
-    adapterId: pulumi.Input<number>;
+    adapterType: pulumi.Input<string>;
     /**
      * The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      */

@@ -13,38 +13,38 @@ import java.util.Objects;
 @CustomType
 public final class GetUserGroupsResult {
     /**
-     * @return IDs of the groups assigned to the user
+     * @return IDs of the groups assigned to the user.
      * 
      */
     private List<Integer> groupIds;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. It is the same as the user_id.
      * 
      */
     private String id;
     /**
-     * @return ID of the user
+     * @return The internal ID of a dbt Cloud user.
      * 
      */
     private Integer userId;
 
     private GetUserGroupsResult() {}
     /**
-     * @return IDs of the groups assigned to the user
+     * @return IDs of the groups assigned to the user.
      * 
      */
     public List<Integer> groupIds() {
         return this.groupIds;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. It is the same as the user_id.
      * 
      */
     public String id() {
         return this.id;
     }
     /**
-     * @return ID of the user
+     * @return The internal ID of a dbt Cloud user.
      * 
      */
     public Integer userId() {

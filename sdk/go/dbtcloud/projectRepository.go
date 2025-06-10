@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows you to link a dbt Cloud project to a git repository.
+// Manages a dbt Cloud project repository.
 //
 // ## Example Usage
 //

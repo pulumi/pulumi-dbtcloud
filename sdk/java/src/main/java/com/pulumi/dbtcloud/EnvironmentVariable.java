@@ -130,14 +130,14 @@ public class EnvironmentVariable extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Project for the variable to be created in
+     * Project ID to create the environment variable in
      * 
      */
     @Export(name="projectId", refs={Integer.class}, tree="[0]")
     private Output<Integer> projectId;
 
     /**
-     * @return Project for the variable to be created in
+     * @return Project ID to create the environment variable in
      * 
      */
     public Output<Integer> projectId() {

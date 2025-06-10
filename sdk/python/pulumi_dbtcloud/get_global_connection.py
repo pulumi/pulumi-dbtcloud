@@ -28,7 +28,7 @@ class GetGlobalConnectionResult:
     """
     A collection of values returned by getGlobalConnection.
     """
-    def __init__(__self__, adapter_version=None, apache_spark=None, athena=None, bigquery=None, databricks=None, fabric=None, id=None, is_ssh_tunnel_enabled=None, name=None, oauth_configuration_id=None, postgres=None, private_link_endpoint_id=None, redshift=None, snowflake=None, starburst=None, synapse=None):
+    def __init__(__self__, adapter_version=None, apache_spark=None, athena=None, bigquery=None, databricks=None, fabric=None, id=None, is_ssh_tunnel_enabled=None, name=None, oauth_configuration_id=None, postgres=None, private_link_endpoint_id=None, redshift=None, snowflake=None, starburst=None, synapse=None, teradata=None):
         if adapter_version and not isinstance(adapter_version, str):
             raise TypeError("Expected argument 'adapter_version' to be a str")
         pulumi.set(__self__, "adapter_version", adapter_version)
@@ -77,6 +77,9 @@ class GetGlobalConnectionResult:
         if synapse and not isinstance(synapse, dict):
             raise TypeError("Expected argument 'synapse' to be a dict")
         pulumi.set(__self__, "synapse", synapse)
+        if teradata and not isinstance(teradata, dict):
+            raise TypeError("Expected argument 'teradata' to be a dict")
+        pulumi.set(__self__, "teradata", teradata)
 
     @property
     @pulumi.getter(name="adapterVersion")
@@ -200,6 +203,14 @@ class GetGlobalConnectionResult:
         """
         return pulumi.get(self, "synapse")
 
+    @property
+    @pulumi.getter
+    def teradata(self) -> 'outputs.GetGlobalConnectionTeradataResult':
+        """
+        Teradata connection configuration.
+        """
+        return pulumi.get(self, "teradata")
+
 
 class AwaitableGetGlobalConnectionResult(GetGlobalConnectionResult):
     # pylint: disable=using-constant-test
@@ -222,7 +233,8 @@ class AwaitableGetGlobalConnectionResult(GetGlobalConnectionResult):
             redshift=self.redshift,
             snowflake=self.snowflake,
             starburst=self.starburst,
-            synapse=self.synapse)
+            synapse=self.synapse,
+            teradata=self.teradata)
 
 
 def get_global_connection(id: Optional[builtins.int] = None,
@@ -261,7 +273,8 @@ def get_global_connection(id: Optional[builtins.int] = None,
         redshift=pulumi.get(__ret__, 'redshift'),
         snowflake=pulumi.get(__ret__, 'snowflake'),
         starburst=pulumi.get(__ret__, 'starburst'),
-        synapse=pulumi.get(__ret__, 'synapse'))
+        synapse=pulumi.get(__ret__, 'synapse'),
+        teradata=pulumi.get(__ret__, 'teradata'))
 def get_global_connection_output(id: Optional[pulumi.Input[builtins.int]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGlobalConnectionResult]:
     """
@@ -297,4 +310,5 @@ def get_global_connection_output(id: Optional[pulumi.Input[builtins.int]] = None
         redshift=pulumi.get(__response__, 'redshift'),
         snowflake=pulumi.get(__response__, 'snowflake'),
         starburst=pulumi.get(__response__, 'starburst'),
-        synapse=pulumi.get(__response__, 'synapse')))
+        synapse=pulumi.get(__response__, 'synapse'),
+        teradata=pulumi.get(__response__, 'teradata')))

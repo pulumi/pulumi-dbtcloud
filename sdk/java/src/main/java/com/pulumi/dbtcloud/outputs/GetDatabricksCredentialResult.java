@@ -12,10 +12,10 @@ import java.util.Objects;
 @CustomType
 public final class GetDatabricksCredentialResult {
     /**
-     * @return Databricks adapter ID for the credential
+     * @return The type of the adapter (databricks or spark)
      * 
      */
-    private Integer adapterId;
+    private String adapterType;
     /**
      * @return The catalog where to create models
      * 
@@ -27,12 +27,12 @@ public final class GetDatabricksCredentialResult {
      */
     private Integer credentialId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the credential ID.
      * 
      */
     private String id;
     /**
-     * @return Number of threads to use
+     * @return The number of threads to use
      * 
      */
     private Integer numThreads;
@@ -54,11 +54,11 @@ public final class GetDatabricksCredentialResult {
 
     private GetDatabricksCredentialResult() {}
     /**
-     * @return Databricks adapter ID for the credential
+     * @return The type of the adapter (databricks or spark)
      * 
      */
-    public Integer adapterId() {
-        return this.adapterId;
+    public String adapterType() {
+        return this.adapterType;
     }
     /**
      * @return The catalog where to create models
@@ -75,14 +75,14 @@ public final class GetDatabricksCredentialResult {
         return this.credentialId;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the credential ID.
      * 
      */
     public String id() {
         return this.id;
     }
     /**
-     * @return Number of threads to use
+     * @return The number of threads to use
      * 
      */
     public Integer numThreads() {
@@ -119,7 +119,7 @@ public final class GetDatabricksCredentialResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Integer adapterId;
+        private String adapterType;
         private String catalog;
         private Integer credentialId;
         private String id;
@@ -130,7 +130,7 @@ public final class GetDatabricksCredentialResult {
         public Builder() {}
         public Builder(GetDatabricksCredentialResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.adapterId = defaults.adapterId;
+    	      this.adapterType = defaults.adapterType;
     	      this.catalog = defaults.catalog;
     	      this.credentialId = defaults.credentialId;
     	      this.id = defaults.id;
@@ -141,11 +141,11 @@ public final class GetDatabricksCredentialResult {
         }
 
         @CustomType.Setter
-        public Builder adapterId(Integer adapterId) {
-            if (adapterId == null) {
-              throw new MissingRequiredPropertyException("GetDatabricksCredentialResult", "adapterId");
+        public Builder adapterType(String adapterType) {
+            if (adapterType == null) {
+              throw new MissingRequiredPropertyException("GetDatabricksCredentialResult", "adapterType");
             }
-            this.adapterId = adapterId;
+            this.adapterType = adapterType;
             return this;
         }
         @CustomType.Setter
@@ -206,7 +206,7 @@ public final class GetDatabricksCredentialResult {
         }
         public GetDatabricksCredentialResult build() {
             final var _resultValue = new GetDatabricksCredentialResult();
-            _resultValue.adapterId = adapterId;
+            _resultValue.adapterType = adapterType;
             _resultValue.catalog = catalog;
             _resultValue.credentialId = credentialId;
             _resultValue.id = id;

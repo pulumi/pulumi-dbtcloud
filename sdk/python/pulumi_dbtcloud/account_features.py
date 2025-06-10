@@ -21,20 +21,28 @@ __all__ = ['AccountFeaturesArgs', 'AccountFeatures']
 class AccountFeaturesArgs:
     def __init__(__self__, *,
                  advanced_ci: Optional[pulumi.Input[builtins.bool]] = None,
+                 ai_features: Optional[pulumi.Input[builtins.bool]] = None,
                  partial_parsing: Optional[pulumi.Input[builtins.bool]] = None,
-                 repo_caching: Optional[pulumi.Input[builtins.bool]] = None):
+                 repo_caching: Optional[pulumi.Input[builtins.bool]] = None,
+                 warehouse_cost_visibility: Optional[pulumi.Input[builtins.bool]] = None):
         """
         The set of arguments for constructing a AccountFeatures resource.
         :param pulumi.Input[builtins.bool] advanced_ci: Whether advanced CI is enabled.
+        :param pulumi.Input[builtins.bool] ai_features: Whether AI features are enabled.
         :param pulumi.Input[builtins.bool] partial_parsing: Whether partial parsing is enabled.
         :param pulumi.Input[builtins.bool] repo_caching: Whether repository caching is enabled.
+        :param pulumi.Input[builtins.bool] warehouse_cost_visibility: Whether warehouse cost visibility is enabled.
         """
         if advanced_ci is not None:
             pulumi.set(__self__, "advanced_ci", advanced_ci)
+        if ai_features is not None:
+            pulumi.set(__self__, "ai_features", ai_features)
         if partial_parsing is not None:
             pulumi.set(__self__, "partial_parsing", partial_parsing)
         if repo_caching is not None:
             pulumi.set(__self__, "repo_caching", repo_caching)
+        if warehouse_cost_visibility is not None:
+            pulumi.set(__self__, "warehouse_cost_visibility", warehouse_cost_visibility)
 
     @property
     @pulumi.getter(name="advancedCi")
@@ -47,6 +55,18 @@ class AccountFeaturesArgs:
     @advanced_ci.setter
     def advanced_ci(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "advanced_ci", value)
+
+    @property
+    @pulumi.getter(name="aiFeatures")
+    def ai_features(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether AI features are enabled.
+        """
+        return pulumi.get(self, "ai_features")
+
+    @ai_features.setter
+    def ai_features(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "ai_features", value)
 
     @property
     @pulumi.getter(name="partialParsing")
@@ -71,26 +91,46 @@ class AccountFeaturesArgs:
     @repo_caching.setter
     def repo_caching(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "repo_caching", value)
+
+    @property
+    @pulumi.getter(name="warehouseCostVisibility")
+    def warehouse_cost_visibility(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether warehouse cost visibility is enabled.
+        """
+        return pulumi.get(self, "warehouse_cost_visibility")
+
+    @warehouse_cost_visibility.setter
+    def warehouse_cost_visibility(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "warehouse_cost_visibility", value)
 
 
 @pulumi.input_type
 class _AccountFeaturesState:
     def __init__(__self__, *,
                  advanced_ci: Optional[pulumi.Input[builtins.bool]] = None,
+                 ai_features: Optional[pulumi.Input[builtins.bool]] = None,
                  partial_parsing: Optional[pulumi.Input[builtins.bool]] = None,
-                 repo_caching: Optional[pulumi.Input[builtins.bool]] = None):
+                 repo_caching: Optional[pulumi.Input[builtins.bool]] = None,
+                 warehouse_cost_visibility: Optional[pulumi.Input[builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AccountFeatures resources.
         :param pulumi.Input[builtins.bool] advanced_ci: Whether advanced CI is enabled.
+        :param pulumi.Input[builtins.bool] ai_features: Whether AI features are enabled.
         :param pulumi.Input[builtins.bool] partial_parsing: Whether partial parsing is enabled.
         :param pulumi.Input[builtins.bool] repo_caching: Whether repository caching is enabled.
+        :param pulumi.Input[builtins.bool] warehouse_cost_visibility: Whether warehouse cost visibility is enabled.
         """
         if advanced_ci is not None:
             pulumi.set(__self__, "advanced_ci", advanced_ci)
+        if ai_features is not None:
+            pulumi.set(__self__, "ai_features", ai_features)
         if partial_parsing is not None:
             pulumi.set(__self__, "partial_parsing", partial_parsing)
         if repo_caching is not None:
             pulumi.set(__self__, "repo_caching", repo_caching)
+        if warehouse_cost_visibility is not None:
+            pulumi.set(__self__, "warehouse_cost_visibility", warehouse_cost_visibility)
 
     @property
     @pulumi.getter(name="advancedCi")
@@ -103,6 +143,18 @@ class _AccountFeaturesState:
     @advanced_ci.setter
     def advanced_ci(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "advanced_ci", value)
+
+    @property
+    @pulumi.getter(name="aiFeatures")
+    def ai_features(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether AI features are enabled.
+        """
+        return pulumi.get(self, "ai_features")
+
+    @ai_features.setter
+    def ai_features(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "ai_features", value)
 
     @property
     @pulumi.getter(name="partialParsing")
@@ -127,6 +179,18 @@ class _AccountFeaturesState:
     @repo_caching.setter
     def repo_caching(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "repo_caching", value)
+
+    @property
+    @pulumi.getter(name="warehouseCostVisibility")
+    def warehouse_cost_visibility(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether warehouse cost visibility is enabled.
+        """
+        return pulumi.get(self, "warehouse_cost_visibility")
+
+    @warehouse_cost_visibility.setter
+    def warehouse_cost_visibility(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "warehouse_cost_visibility", value)
 
 
 @pulumi.type_token("dbtcloud:index/accountFeatures:AccountFeatures")
@@ -136,8 +200,10 @@ class AccountFeatures(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advanced_ci: Optional[pulumi.Input[builtins.bool]] = None,
+                 ai_features: Optional[pulumi.Input[builtins.bool]] = None,
                  partial_parsing: Optional[pulumi.Input[builtins.bool]] = None,
                  repo_caching: Optional[pulumi.Input[builtins.bool]] = None,
+                 warehouse_cost_visibility: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         """
         Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.
@@ -147,8 +213,10 @@ class AccountFeatures(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] advanced_ci: Whether advanced CI is enabled.
+        :param pulumi.Input[builtins.bool] ai_features: Whether AI features are enabled.
         :param pulumi.Input[builtins.bool] partial_parsing: Whether partial parsing is enabled.
         :param pulumi.Input[builtins.bool] repo_caching: Whether repository caching is enabled.
+        :param pulumi.Input[builtins.bool] warehouse_cost_visibility: Whether warehouse cost visibility is enabled.
         """
         ...
     @overload
@@ -177,8 +245,10 @@ class AccountFeatures(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advanced_ci: Optional[pulumi.Input[builtins.bool]] = None,
+                 ai_features: Optional[pulumi.Input[builtins.bool]] = None,
                  partial_parsing: Optional[pulumi.Input[builtins.bool]] = None,
                  repo_caching: Optional[pulumi.Input[builtins.bool]] = None,
+                 warehouse_cost_visibility: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -189,8 +259,10 @@ class AccountFeatures(pulumi.CustomResource):
             __props__ = AccountFeaturesArgs.__new__(AccountFeaturesArgs)
 
             __props__.__dict__["advanced_ci"] = advanced_ci
+            __props__.__dict__["ai_features"] = ai_features
             __props__.__dict__["partial_parsing"] = partial_parsing
             __props__.__dict__["repo_caching"] = repo_caching
+            __props__.__dict__["warehouse_cost_visibility"] = warehouse_cost_visibility
         super(AccountFeatures, __self__).__init__(
             'dbtcloud:index/accountFeatures:AccountFeatures',
             resource_name,
@@ -202,8 +274,10 @@ class AccountFeatures(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             advanced_ci: Optional[pulumi.Input[builtins.bool]] = None,
+            ai_features: Optional[pulumi.Input[builtins.bool]] = None,
             partial_parsing: Optional[pulumi.Input[builtins.bool]] = None,
-            repo_caching: Optional[pulumi.Input[builtins.bool]] = None) -> 'AccountFeatures':
+            repo_caching: Optional[pulumi.Input[builtins.bool]] = None,
+            warehouse_cost_visibility: Optional[pulumi.Input[builtins.bool]] = None) -> 'AccountFeatures':
         """
         Get an existing AccountFeatures resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -212,16 +286,20 @@ class AccountFeatures(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] advanced_ci: Whether advanced CI is enabled.
+        :param pulumi.Input[builtins.bool] ai_features: Whether AI features are enabled.
         :param pulumi.Input[builtins.bool] partial_parsing: Whether partial parsing is enabled.
         :param pulumi.Input[builtins.bool] repo_caching: Whether repository caching is enabled.
+        :param pulumi.Input[builtins.bool] warehouse_cost_visibility: Whether warehouse cost visibility is enabled.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AccountFeaturesState.__new__(_AccountFeaturesState)
 
         __props__.__dict__["advanced_ci"] = advanced_ci
+        __props__.__dict__["ai_features"] = ai_features
         __props__.__dict__["partial_parsing"] = partial_parsing
         __props__.__dict__["repo_caching"] = repo_caching
+        __props__.__dict__["warehouse_cost_visibility"] = warehouse_cost_visibility
         return AccountFeatures(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -231,6 +309,14 @@ class AccountFeatures(pulumi.CustomResource):
         Whether advanced CI is enabled.
         """
         return pulumi.get(self, "advanced_ci")
+
+    @property
+    @pulumi.getter(name="aiFeatures")
+    def ai_features(self) -> pulumi.Output[builtins.bool]:
+        """
+        Whether AI features are enabled.
+        """
+        return pulumi.get(self, "ai_features")
 
     @property
     @pulumi.getter(name="partialParsing")
@@ -247,4 +333,12 @@ class AccountFeatures(pulumi.CustomResource):
         Whether repository caching is enabled.
         """
         return pulumi.get(self, "repo_caching")
+
+    @property
+    @pulumi.getter(name="warehouseCostVisibility")
+    def warehouse_cost_visibility(self) -> pulumi.Output[builtins.bool]:
+        """
+        Whether warehouse cost visibility is enabled.
+        """
+        return pulumi.get(self, "warehouse_cost_visibility")
 

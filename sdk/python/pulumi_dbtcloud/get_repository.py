@@ -27,7 +27,16 @@ class GetRepositoryResult:
     """
     A collection of values returned by getRepository.
     """
-    def __init__(__self__, deploy_key=None, fetch_deploy_key=None, git_clone_strategy=None, github_installation_id=None, gitlab_project_id=None, id=None, is_active=None, project_id=None, remote_url=None, repository_credentials_id=None, repository_id=None):
+    def __init__(__self__, azure_active_directory_project_id=None, azure_active_directory_repository_id=None, azure_bypass_webhook_registration_failure=None, deploy_key=None, fetch_deploy_key=None, git_clone_strategy=None, github_installation_id=None, gitlab_project_id=None, id=None, is_active=None, project_id=None, pull_request_url_template=None, remote_url=None, repository_credentials_id=None, repository_id=None):
+        if azure_active_directory_project_id and not isinstance(azure_active_directory_project_id, str):
+            raise TypeError("Expected argument 'azure_active_directory_project_id' to be a str")
+        pulumi.set(__self__, "azure_active_directory_project_id", azure_active_directory_project_id)
+        if azure_active_directory_repository_id and not isinstance(azure_active_directory_repository_id, str):
+            raise TypeError("Expected argument 'azure_active_directory_repository_id' to be a str")
+        pulumi.set(__self__, "azure_active_directory_repository_id", azure_active_directory_repository_id)
+        if azure_bypass_webhook_registration_failure and not isinstance(azure_bypass_webhook_registration_failure, bool):
+            raise TypeError("Expected argument 'azure_bypass_webhook_registration_failure' to be a bool")
+        pulumi.set(__self__, "azure_bypass_webhook_registration_failure", azure_bypass_webhook_registration_failure)
         if deploy_key and not isinstance(deploy_key, str):
             raise TypeError("Expected argument 'deploy_key' to be a str")
         pulumi.set(__self__, "deploy_key", deploy_key)
@@ -52,6 +61,9 @@ class GetRepositoryResult:
         if project_id and not isinstance(project_id, int):
             raise TypeError("Expected argument 'project_id' to be a int")
         pulumi.set(__self__, "project_id", project_id)
+        if pull_request_url_template and not isinstance(pull_request_url_template, str):
+            raise TypeError("Expected argument 'pull_request_url_template' to be a str")
+        pulumi.set(__self__, "pull_request_url_template", pull_request_url_template)
         if remote_url and not isinstance(remote_url, str):
             raise TypeError("Expected argument 'remote_url' to be a str")
         pulumi.set(__self__, "remote_url", remote_url)
@@ -61,6 +73,30 @@ class GetRepositoryResult:
         if repository_id and not isinstance(repository_id, int):
             raise TypeError("Expected argument 'repository_id' to be a int")
         pulumi.set(__self__, "repository_id", repository_id)
+
+    @property
+    @pulumi.getter(name="azureActiveDirectoryProjectId")
+    def azure_active_directory_project_id(self) -> builtins.str:
+        """
+        The Azure Dev Ops project ID
+        """
+        return pulumi.get(self, "azure_active_directory_project_id")
+
+    @property
+    @pulumi.getter(name="azureActiveDirectoryRepositoryId")
+    def azure_active_directory_repository_id(self) -> builtins.str:
+        """
+        The Azure Dev Ops repository ID
+        """
+        return pulumi.get(self, "azure_active_directory_repository_id")
+
+    @property
+    @pulumi.getter(name="azureBypassWebhookRegistrationFailure")
+    def azure_bypass_webhook_registration_failure(self) -> builtins.bool:
+        """
+        If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks
+        """
+        return pulumi.get(self, "azure_bypass_webhook_registration_failure")
 
     @property
     @pulumi.getter(name="deployKey")
@@ -73,7 +109,7 @@ class GetRepositoryResult:
     @property
     @pulumi.getter(name="fetchDeployKey")
     @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key`""")
-    def fetch_deploy_key(self) -> Optional[builtins.bool]:
+    def fetch_deploy_key(self) -> builtins.bool:
         """
         Whether we should return the public deploy key
         """
@@ -107,7 +143,7 @@ class GetRepositoryResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource
         """
         return pulumi.get(self, "id")
 
@@ -128,10 +164,18 @@ class GetRepositoryResult:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="pullRequestUrlTemplate")
+    def pull_request_url_template(self) -> builtins.str:
+        """
+        The pull request URL template to be used when opening a pull request from within dbt Cloud's IDE
+        """
+        return pulumi.get(self, "pull_request_url_template")
+
+    @property
     @pulumi.getter(name="remoteUrl")
     def remote_url(self) -> builtins.str:
         """
-        Connection name
+        Git URL for the repository or <Group>/<Project> for Gitlab
         """
         return pulumi.get(self, "remote_url")
 
@@ -158,6 +202,9 @@ class AwaitableGetRepositoryResult(GetRepositoryResult):
         if False:
             yield self
         return GetRepositoryResult(
+            azure_active_directory_project_id=self.azure_active_directory_project_id,
+            azure_active_directory_repository_id=self.azure_active_directory_repository_id,
+            azure_bypass_webhook_registration_failure=self.azure_bypass_webhook_registration_failure,
             deploy_key=self.deploy_key,
             fetch_deploy_key=self.fetch_deploy_key,
             git_clone_strategy=self.git_clone_strategy,
@@ -166,6 +213,7 @@ class AwaitableGetRepositoryResult(GetRepositoryResult):
             id=self.id,
             is_active=self.is_active,
             project_id=self.project_id,
+            pull_request_url_template=self.pull_request_url_template,
             remote_url=self.remote_url,
             repository_credentials_id=self.repository_credentials_id,
             repository_id=self.repository_id)
@@ -176,7 +224,8 @@ def get_repository(fetch_deploy_key: Optional[builtins.bool] = None,
                    repository_id: Optional[builtins.int] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRepositoryResult:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve data for a single repository
+
 
     :param builtins.bool fetch_deploy_key: Whether we should return the public deploy key
     :param builtins.int project_id: Project ID to create the repository in
@@ -190,6 +239,9 @@ def get_repository(fetch_deploy_key: Optional[builtins.bool] = None,
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getRepository:getRepository', __args__, opts=opts, typ=GetRepositoryResult).value
 
     return AwaitableGetRepositoryResult(
+        azure_active_directory_project_id=pulumi.get(__ret__, 'azure_active_directory_project_id'),
+        azure_active_directory_repository_id=pulumi.get(__ret__, 'azure_active_directory_repository_id'),
+        azure_bypass_webhook_registration_failure=pulumi.get(__ret__, 'azure_bypass_webhook_registration_failure'),
         deploy_key=pulumi.get(__ret__, 'deploy_key'),
         fetch_deploy_key=pulumi.get(__ret__, 'fetch_deploy_key'),
         git_clone_strategy=pulumi.get(__ret__, 'git_clone_strategy'),
@@ -198,6 +250,7 @@ def get_repository(fetch_deploy_key: Optional[builtins.bool] = None,
         id=pulumi.get(__ret__, 'id'),
         is_active=pulumi.get(__ret__, 'is_active'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        pull_request_url_template=pulumi.get(__ret__, 'pull_request_url_template'),
         remote_url=pulumi.get(__ret__, 'remote_url'),
         repository_credentials_id=pulumi.get(__ret__, 'repository_credentials_id'),
         repository_id=pulumi.get(__ret__, 'repository_id'))
@@ -206,7 +259,8 @@ def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[built
                           repository_id: Optional[pulumi.Input[builtins.int]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRepositoryResult]:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve data for a single repository
+
 
     :param builtins.bool fetch_deploy_key: Whether we should return the public deploy key
     :param builtins.int project_id: Project ID to create the repository in
@@ -219,6 +273,9 @@ def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[built
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getRepository:getRepository', __args__, opts=opts, typ=GetRepositoryResult)
     return __ret__.apply(lambda __response__: GetRepositoryResult(
+        azure_active_directory_project_id=pulumi.get(__response__, 'azure_active_directory_project_id'),
+        azure_active_directory_repository_id=pulumi.get(__response__, 'azure_active_directory_repository_id'),
+        azure_bypass_webhook_registration_failure=pulumi.get(__response__, 'azure_bypass_webhook_registration_failure'),
         deploy_key=pulumi.get(__response__, 'deploy_key'),
         fetch_deploy_key=pulumi.get(__response__, 'fetch_deploy_key'),
         git_clone_strategy=pulumi.get(__response__, 'git_clone_strategy'),
@@ -227,6 +284,7 @@ def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[built
         id=pulumi.get(__response__, 'id'),
         is_active=pulumi.get(__response__, 'is_active'),
         project_id=pulumi.get(__response__, 'project_id'),
+        pull_request_url_template=pulumi.get(__response__, 'pull_request_url_template'),
         remote_url=pulumi.get(__response__, 'remote_url'),
         repository_credentials_id=pulumi.get(__response__, 'repository_credentials_id'),
         repository_id=pulumi.get(__response__, 'repository_id')))

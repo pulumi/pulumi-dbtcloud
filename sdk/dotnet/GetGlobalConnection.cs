@@ -169,6 +169,10 @@ namespace Pulumi.DbtCloud
         /// Azure Synapse Analytics connection configuration.
         /// </summary>
         public readonly Outputs.GetGlobalConnectionSynapseResult Synapse;
+        /// <summary>
+        /// Teradata connection configuration.
+        /// </summary>
+        public readonly Outputs.GetGlobalConnectionTeradataResult Teradata;
 
         [OutputConstructor]
         private GetGlobalConnectionResult(
@@ -202,7 +206,9 @@ namespace Pulumi.DbtCloud
 
             Outputs.GetGlobalConnectionStarburstResult starburst,
 
-            Outputs.GetGlobalConnectionSynapseResult synapse)
+            Outputs.GetGlobalConnectionSynapseResult synapse,
+
+            Outputs.GetGlobalConnectionTeradataResult teradata)
         {
             AdapterVersion = adapterVersion;
             ApacheSpark = apacheSpark;
@@ -220,6 +226,7 @@ namespace Pulumi.DbtCloud
             Snowflake = snowflake;
             Starburst = starburst;
             Synapse = synapse;
+            Teradata = teradata;
         }
     }
 }

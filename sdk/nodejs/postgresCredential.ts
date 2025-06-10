@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Postgres credential resource.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -81,7 +83,7 @@ export class PostgresCredential extends pulumi.CustomResource {
     }
 
     /**
-     * The system Postgres/Redshift/AlloyDB credential ID
+     * The system Postgres/Redshift/AlloyDB credential ID.
      */
     public /*out*/ readonly credentialId!: pulumi.Output<number>;
     /**
@@ -91,23 +93,23 @@ export class PostgresCredential extends pulumi.CustomResource {
     /**
      * Whether the Postgres/Redshift/AlloyDB credential is active
      */
-    public readonly isActive!: pulumi.Output<boolean | undefined>;
+    public readonly isActive!: pulumi.Output<boolean>;
     /**
-     * Number of threads to use
+     * Number of threads to use (required for Redshift)
      */
-    public readonly numThreads!: pulumi.Output<number | undefined>;
+    public readonly numThreads!: pulumi.Output<number>;
     /**
      * Password for Postgres/Redshift/AlloyDB
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
-     * Project ID to create the Postgres/Redshift/AlloyDB credential in
+     * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
      * Default schema name
      */
-    public readonly targetName!: pulumi.Output<string | undefined>;
+    public readonly targetName!: pulumi.Output<string>;
     /**
      * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
      */
@@ -175,7 +177,7 @@ export class PostgresCredential extends pulumi.CustomResource {
  */
 export interface PostgresCredentialState {
     /**
-     * The system Postgres/Redshift/AlloyDB credential ID
+     * The system Postgres/Redshift/AlloyDB credential ID.
      */
     credentialId?: pulumi.Input<number>;
     /**
@@ -187,7 +189,7 @@ export interface PostgresCredentialState {
      */
     isActive?: pulumi.Input<boolean>;
     /**
-     * Number of threads to use
+     * Number of threads to use (required for Redshift)
      */
     numThreads?: pulumi.Input<number>;
     /**
@@ -195,7 +197,7 @@ export interface PostgresCredentialState {
      */
     password?: pulumi.Input<string>;
     /**
-     * Project ID to create the Postgres/Redshift/AlloyDB credential in
+     * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
     projectId?: pulumi.Input<number>;
     /**
@@ -225,7 +227,7 @@ export interface PostgresCredentialArgs {
      */
     isActive?: pulumi.Input<boolean>;
     /**
-     * Number of threads to use
+     * Number of threads to use (required for Redshift)
      */
     numThreads?: pulumi.Input<number>;
     /**
@@ -233,7 +235,7 @@ export interface PostgresCredentialArgs {
      */
     password?: pulumi.Input<string>;
     /**
-     * Project ID to create the Postgres/Redshift/AlloyDB credential in
+     * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
     projectId: pulumi.Input<number>;
     /**

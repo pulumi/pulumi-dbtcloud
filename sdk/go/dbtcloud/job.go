@@ -12,148 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// > In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
-// <br/>
-// <br/>
-// Those improvements include modifications to deferral which was historically set at the job level and will now be set at the environment level.
-// Deferral can still be set to "self" by setting `selfDeferring` to `true` but with the new approach, deferral to other runs need to be done with `deferringEnvironmentId` instead of `deferringJobId`.
-//
-// > New with 0.3.1, `triggers` now accepts a `onMerge` value to trigger jobs when code is merged in git. If `onMerge` is `true` all other triggers need to be `false`.
-// <br/>
-// <br/>
-// For now, it is not a mandatory field, but it will be in a future version. Please add `onMerge` in your config or modules.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// a job that has github_webhook and git_provider_webhook
-//			// set to false will be categorized as a "Deploy Job"
-//			dailyJob, err := dbtcloud.NewJob(ctx, "daily_job", &dbtcloud.JobArgs{
-//				EnvironmentId: pulumi.Any(prodEnvironment.EnvironmentId),
-//				ExecuteSteps: pulumi.StringArray{
-//					pulumi.String("dbt build"),
-//				},
-//				GenerateDocs:       pulumi.Bool(true),
-//				IsActive:           pulumi.Bool(true),
-//				Name:               pulumi.String("Daily job"),
-//				NumThreads:         pulumi.Int(64),
-//				ProjectId:          pulumi.Any(dbtProject.Id),
-//				RunGenerateSources: pulumi.Bool(true),
-//				TargetName:         pulumi.String("default"),
-//				Triggers: pulumi.BoolMap{
-//					"github_webhook":       pulumi.Bool(false),
-//					"git_provider_webhook": pulumi.Bool(false),
-//					"schedule":             pulumi.Bool(true),
-//					"on_merge":             pulumi.Bool(false),
-//				},
-//				ScheduleDays: pulumi.IntArray{
-//					pulumi.Int(0),
-//					pulumi.Int(1),
-//					pulumi.Int(2),
-//					pulumi.Int(3),
-//					pulumi.Int(4),
-//					pulumi.Int(5),
-//					pulumi.Int(6),
-//				},
-//				ScheduleType: pulumi.String("days_of_week"),
-//				ScheduleHours: pulumi.IntArray{
-//					pulumi.Int(0),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// a job that has github_webhook and git_provider_webhook set
-//			// to true will be categorized as a "Continuous Integration Job"
-//			_, err = dbtcloud.NewJob(ctx, "ci_job", &dbtcloud.JobArgs{
-//				EnvironmentId: pulumi.Any(ciEnvironment.EnvironmentId),
-//				ExecuteSteps: pulumi.StringArray{
-//					pulumi.String("dbt build -s state:modified+ --fail-fast"),
-//				},
-//				GenerateDocs:           pulumi.Bool(false),
-//				DeferringEnvironmentId: pulumi.Any(prodEnvironment.EnvironmentId),
-//				Name:                   pulumi.String("CI Job"),
-//				NumThreads:             pulumi.Int(32),
-//				ProjectId:              pulumi.Any(dbtProject.Id),
-//				RunGenerateSources:     pulumi.Bool(false),
-//				RunLint:                pulumi.Bool(true),
-//				ErrorsOnLintFailure:    pulumi.Bool(true),
-//				Triggers: pulumi.BoolMap{
-//					"github_webhook":       pulumi.Bool(true),
-//					"git_provider_webhook": pulumi.Bool(true),
-//					"schedule":             pulumi.Bool(false),
-//					"on_merge":             pulumi.Bool(false),
-//				},
-//				ScheduleDays: pulumi.IntArray{
-//					pulumi.Int(0),
-//					pulumi.Int(1),
-//					pulumi.Int(2),
-//					pulumi.Int(3),
-//					pulumi.Int(4),
-//					pulumi.Int(5),
-//					pulumi.Int(6),
-//				},
-//				ScheduleType: pulumi.String("days_of_week"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// a job that is set to be triggered after another job finishes
-//			// this is sometimes referred as 'job chaining'
-//			_, err = dbtcloud.NewJob(ctx, "downstream_job", &dbtcloud.JobArgs{
-//				EnvironmentId: pulumi.Any(project2ProdEnvironment.EnvironmentId),
-//				ExecuteSteps: pulumi.StringArray{
-//					pulumi.String("dbt build -s +my_model"),
-//				},
-//				GenerateDocs:       pulumi.Bool(true),
-//				Name:               pulumi.String("Downstream job in project 2"),
-//				NumThreads:         pulumi.Int(32),
-//				ProjectId:          pulumi.Any(dbtProject2.Id),
-//				RunGenerateSources: pulumi.Bool(true),
-//				Triggers: pulumi.BoolMap{
-//					"github_webhook":       pulumi.Bool(false),
-//					"git_provider_webhook": pulumi.Bool(false),
-//					"schedule":             pulumi.Bool(false),
-//					"on_merge":             pulumi.Bool(false),
-//				},
-//				ScheduleDays: pulumi.IntArray{
-//					pulumi.Int(0),
-//					pulumi.Int(1),
-//					pulumi.Int(2),
-//					pulumi.Int(3),
-//					pulumi.Int(4),
-//					pulumi.Int(5),
-//					pulumi.Int(6),
-//				},
-//				ScheduleType: pulumi.String("days_of_week"),
-//				JobCompletionTriggerCondition: &dbtcloud.JobJobCompletionTriggerConditionArgs{
-//					JobId:     dailyJob.ID(),
-//					ProjectId: pulumi.Any(dbtProject.Id),
-//					Statuses: pulumi.StringArray{
-//						pulumi.String("success"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -187,7 +45,7 @@ type Job struct {
 	pulumi.CustomResourceState
 
 	// The model selector for checking changes in the compare changes Advanced CI feature
-	CompareChangesFlags pulumi.StringPtrOutput `pulumi:"compareChangesFlags"`
+	CompareChangesFlags pulumi.StringOutput `pulumi:"compareChangesFlags"`
 	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
 	DbtVersion pulumi.StringPtrOutput `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
@@ -195,33 +53,35 @@ type Job struct {
 	// Job identifier that this job defers to (legacy deferring approach)
 	DeferringJobId pulumi.IntPtrOutput `pulumi:"deferringJobId"`
 	// Description for the job
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringOutput `pulumi:"description"`
 	// Environment ID to create the job in
 	EnvironmentId pulumi.IntOutput `pulumi:"environmentId"`
 	// Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
-	ErrorsOnLintFailure pulumi.BoolPtrOutput `pulumi:"errorsOnLintFailure"`
+	ErrorsOnLintFailure pulumi.BoolOutput `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayOutput `pulumi:"executeSteps"`
 	// Flag for whether the job should generate documentation
-	GenerateDocs pulumi.BoolPtrOutput `pulumi:"generateDocs"`
+	GenerateDocs pulumi.BoolOutput `pulumi:"generateDocs"`
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
-	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
+	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
-	JobCompletionTriggerCondition JobJobCompletionTriggerConditionPtrOutput `pulumi:"jobCompletionTriggerCondition"`
+	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayOutput `pulumi:"jobCompletionTriggerConditions"`
+	// Job identifier
+	JobId pulumi.IntOutput `pulumi:"jobId"`
 	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
 	JobType pulumi.StringOutput `pulumi:"jobType"`
 	// Job name
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Number of threads to use in the job
-	NumThreads pulumi.IntPtrOutput `pulumi:"numThreads"`
+	NumThreads pulumi.IntOutput `pulumi:"numThreads"`
 	// Project ID to create the job in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
-	RunCompareChanges pulumi.BoolPtrOutput `pulumi:"runCompareChanges"`
+	RunCompareChanges pulumi.BoolOutput `pulumi:"runCompareChanges"`
 	// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
-	RunGenerateSources pulumi.BoolPtrOutput `pulumi:"runGenerateSources"`
+	RunGenerateSources pulumi.BoolOutput `pulumi:"runGenerateSources"`
 	// Whether the CI job should lint SQL changes. Defaults to `false`.
-	RunLint pulumi.BoolPtrOutput `pulumi:"runLint"`
+	RunLint pulumi.BoolOutput `pulumi:"runLint"`
 	// Custom cron expression for schedule
 	ScheduleCron pulumi.StringPtrOutput `pulumi:"scheduleCron"`
 	// List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
@@ -229,19 +89,21 @@ type Job struct {
 	// List of hours to execute the job at if running on a schedule
 	ScheduleHours pulumi.IntArrayOutput `pulumi:"scheduleHours"`
 	// Number of hours between job executions if running on a schedule
-	ScheduleInterval pulumi.IntPtrOutput `pulumi:"scheduleInterval"`
-	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
-	ScheduleType pulumi.StringPtrOutput `pulumi:"scheduleType"`
+	ScheduleInterval pulumi.IntOutput `pulumi:"scheduleInterval"`
+	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
+	ScheduleType pulumi.StringOutput `pulumi:"scheduleType"`
 	// Whether this job defers on a previous run of itself
-	SelfDeferring pulumi.BoolPtrOutput `pulumi:"selfDeferring"`
+	SelfDeferring pulumi.BoolOutput `pulumi:"selfDeferring"`
 	// Target name for the dbt profile
-	TargetName pulumi.StringPtrOutput `pulumi:"targetName"`
-	// Number of seconds to allow the job to run before timing out
-	TimeoutSeconds pulumi.IntPtrOutput `pulumi:"timeoutSeconds"`
+	TargetName pulumi.StringOutput `pulumi:"targetName"`
+	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	//
+	// Deprecated: Moved to execution.timeout_seconds
+	TimeoutSeconds pulumi.IntOutput `pulumi:"timeoutSeconds"`
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
-	Triggers pulumi.BoolMapOutput `pulumi:"triggers"`
+	Triggers JobTriggersOutput `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
-	TriggersOnDraftPr pulumi.BoolPtrOutput `pulumi:"triggersOnDraftPr"`
+	TriggersOnDraftPr pulumi.BoolOutput `pulumi:"triggersOnDraftPr"`
 }
 
 // NewJob registers a new resource with the given unique name, arguments, and options.
@@ -307,7 +169,9 @@ type jobState struct {
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
 	IsActive *bool `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
-	JobCompletionTriggerCondition *JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerCondition"`
+	JobCompletionTriggerConditions []JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerConditions"`
+	// Job identifier
+	JobId *int `pulumi:"jobId"`
 	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
 	JobType *string `pulumi:"jobType"`
 	// Job name
@@ -330,16 +194,18 @@ type jobState struct {
 	ScheduleHours []int `pulumi:"scheduleHours"`
 	// Number of hours between job executions if running on a schedule
 	ScheduleInterval *int `pulumi:"scheduleInterval"`
-	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
 	ScheduleType *string `pulumi:"scheduleType"`
 	// Whether this job defers on a previous run of itself
 	SelfDeferring *bool `pulumi:"selfDeferring"`
 	// Target name for the dbt profile
 	TargetName *string `pulumi:"targetName"`
-	// Number of seconds to allow the job to run before timing out
+	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	//
+	// Deprecated: Moved to execution.timeout_seconds
 	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
-	Triggers map[string]bool `pulumi:"triggers"`
+	Triggers *JobTriggers `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr *bool `pulumi:"triggersOnDraftPr"`
 }
@@ -366,7 +232,9 @@ type JobState struct {
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
 	IsActive pulumi.BoolPtrInput
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
-	JobCompletionTriggerCondition JobJobCompletionTriggerConditionPtrInput
+	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayInput
+	// Job identifier
+	JobId pulumi.IntPtrInput
 	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
 	JobType pulumi.StringPtrInput
 	// Job name
@@ -389,16 +257,18 @@ type JobState struct {
 	ScheduleHours pulumi.IntArrayInput
 	// Number of hours between job executions if running on a schedule
 	ScheduleInterval pulumi.IntPtrInput
-	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
 	ScheduleType pulumi.StringPtrInput
 	// Whether this job defers on a previous run of itself
 	SelfDeferring pulumi.BoolPtrInput
 	// Target name for the dbt profile
 	TargetName pulumi.StringPtrInput
-	// Number of seconds to allow the job to run before timing out
+	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	//
+	// Deprecated: Moved to execution.timeout_seconds
 	TimeoutSeconds pulumi.IntPtrInput
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
-	Triggers pulumi.BoolMapInput
+	Triggers JobTriggersPtrInput
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr pulumi.BoolPtrInput
 }
@@ -429,7 +299,7 @@ type jobArgs struct {
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
 	IsActive *bool `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
-	JobCompletionTriggerCondition *JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerCondition"`
+	JobCompletionTriggerConditions []JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerConditions"`
 	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
 	JobType *string `pulumi:"jobType"`
 	// Job name
@@ -452,16 +322,18 @@ type jobArgs struct {
 	ScheduleHours []int `pulumi:"scheduleHours"`
 	// Number of hours between job executions if running on a schedule
 	ScheduleInterval *int `pulumi:"scheduleInterval"`
-	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
 	ScheduleType *string `pulumi:"scheduleType"`
 	// Whether this job defers on a previous run of itself
 	SelfDeferring *bool `pulumi:"selfDeferring"`
 	// Target name for the dbt profile
 	TargetName *string `pulumi:"targetName"`
-	// Number of seconds to allow the job to run before timing out
+	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	//
+	// Deprecated: Moved to execution.timeout_seconds
 	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
-	Triggers map[string]bool `pulumi:"triggers"`
+	Triggers JobTriggers `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr *bool `pulumi:"triggersOnDraftPr"`
 }
@@ -489,7 +361,7 @@ type JobArgs struct {
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
 	IsActive pulumi.BoolPtrInput
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
-	JobCompletionTriggerCondition JobJobCompletionTriggerConditionPtrInput
+	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayInput
 	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
 	JobType pulumi.StringPtrInput
 	// Job name
@@ -512,16 +384,18 @@ type JobArgs struct {
 	ScheduleHours pulumi.IntArrayInput
 	// Number of hours between job executions if running on a schedule
 	ScheduleInterval pulumi.IntPtrInput
-	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+	// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
 	ScheduleType pulumi.StringPtrInput
 	// Whether this job defers on a previous run of itself
 	SelfDeferring pulumi.BoolPtrInput
 	// Target name for the dbt profile
 	TargetName pulumi.StringPtrInput
-	// Number of seconds to allow the job to run before timing out
+	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	//
+	// Deprecated: Moved to execution.timeout_seconds
 	TimeoutSeconds pulumi.IntPtrInput
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
-	Triggers pulumi.BoolMapInput
+	Triggers JobTriggersInput
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr pulumi.BoolPtrInput
 }
@@ -614,8 +488,8 @@ func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 }
 
 // The model selector for checking changes in the compare changes Advanced CI feature
-func (o JobOutput) CompareChangesFlags() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.CompareChangesFlags }).(pulumi.StringPtrOutput)
+func (o JobOutput) CompareChangesFlags() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.CompareChangesFlags }).(pulumi.StringOutput)
 }
 
 // Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
@@ -634,8 +508,8 @@ func (o JobOutput) DeferringJobId() pulumi.IntPtrOutput {
 }
 
 // Description for the job
-func (o JobOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+func (o JobOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
 // Environment ID to create the job in
@@ -644,8 +518,8 @@ func (o JobOutput) EnvironmentId() pulumi.IntOutput {
 }
 
 // Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
-func (o JobOutput) ErrorsOnLintFailure() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.ErrorsOnLintFailure }).(pulumi.BoolPtrOutput)
+func (o JobOutput) ErrorsOnLintFailure() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.ErrorsOnLintFailure }).(pulumi.BoolOutput)
 }
 
 // List of commands to execute for the job
@@ -654,18 +528,23 @@ func (o JobOutput) ExecuteSteps() pulumi.StringArrayOutput {
 }
 
 // Flag for whether the job should generate documentation
-func (o JobOutput) GenerateDocs() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.GenerateDocs }).(pulumi.BoolPtrOutput)
+func (o JobOutput) GenerateDocs() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.GenerateDocs }).(pulumi.BoolOutput)
 }
 
 // Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
-func (o JobOutput) IsActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.IsActive }).(pulumi.BoolPtrOutput)
+func (o JobOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.IsActive }).(pulumi.BoolOutput)
 }
 
 // Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
-func (o JobOutput) JobCompletionTriggerCondition() JobJobCompletionTriggerConditionPtrOutput {
-	return o.ApplyT(func(v *Job) JobJobCompletionTriggerConditionPtrOutput { return v.JobCompletionTriggerCondition }).(JobJobCompletionTriggerConditionPtrOutput)
+func (o JobOutput) JobCompletionTriggerConditions() JobJobCompletionTriggerConditionArrayOutput {
+	return o.ApplyT(func(v *Job) JobJobCompletionTriggerConditionArrayOutput { return v.JobCompletionTriggerConditions }).(JobJobCompletionTriggerConditionArrayOutput)
+}
+
+// Job identifier
+func (o JobOutput) JobId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.JobId }).(pulumi.IntOutput)
 }
 
 // Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
@@ -679,8 +558,8 @@ func (o JobOutput) Name() pulumi.StringOutput {
 }
 
 // Number of threads to use in the job
-func (o JobOutput) NumThreads() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.IntPtrOutput { return v.NumThreads }).(pulumi.IntPtrOutput)
+func (o JobOutput) NumThreads() pulumi.IntOutput {
+	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.NumThreads }).(pulumi.IntOutput)
 }
 
 // Project ID to create the job in
@@ -689,18 +568,18 @@ func (o JobOutput) ProjectId() pulumi.IntOutput {
 }
 
 // Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
-func (o JobOutput) RunCompareChanges() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.RunCompareChanges }).(pulumi.BoolPtrOutput)
+func (o JobOutput) RunCompareChanges() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.RunCompareChanges }).(pulumi.BoolOutput)
 }
 
 // Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
-func (o JobOutput) RunGenerateSources() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.RunGenerateSources }).(pulumi.BoolPtrOutput)
+func (o JobOutput) RunGenerateSources() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.RunGenerateSources }).(pulumi.BoolOutput)
 }
 
 // Whether the CI job should lint SQL changes. Defaults to `false`.
-func (o JobOutput) RunLint() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.RunLint }).(pulumi.BoolPtrOutput)
+func (o JobOutput) RunLint() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.RunLint }).(pulumi.BoolOutput)
 }
 
 // Custom cron expression for schedule
@@ -719,38 +598,40 @@ func (o JobOutput) ScheduleHours() pulumi.IntArrayOutput {
 }
 
 // Number of hours between job executions if running on a schedule
-func (o JobOutput) ScheduleInterval() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.IntPtrOutput { return v.ScheduleInterval }).(pulumi.IntPtrOutput)
+func (o JobOutput) ScheduleInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.ScheduleInterval }).(pulumi.IntOutput)
 }
 
-// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
-func (o JobOutput) ScheduleType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.ScheduleType }).(pulumi.StringPtrOutput)
+// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
+func (o JobOutput) ScheduleType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.ScheduleType }).(pulumi.StringOutput)
 }
 
 // Whether this job defers on a previous run of itself
-func (o JobOutput) SelfDeferring() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.SelfDeferring }).(pulumi.BoolPtrOutput)
+func (o JobOutput) SelfDeferring() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.SelfDeferring }).(pulumi.BoolOutput)
 }
 
 // Target name for the dbt profile
-func (o JobOutput) TargetName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.TargetName }).(pulumi.StringPtrOutput)
+func (o JobOutput) TargetName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.TargetName }).(pulumi.StringOutput)
 }
 
-// Number of seconds to allow the job to run before timing out
-func (o JobOutput) TimeoutSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.IntPtrOutput { return v.TimeoutSeconds }).(pulumi.IntPtrOutput)
+// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+//
+// Deprecated: Moved to execution.timeout_seconds
+func (o JobOutput) TimeoutSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.TimeoutSeconds }).(pulumi.IntOutput)
 }
 
 // Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
-func (o JobOutput) Triggers() pulumi.BoolMapOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolMapOutput { return v.Triggers }).(pulumi.BoolMapOutput)
+func (o JobOutput) Triggers() JobTriggersOutput {
+	return o.ApplyT(func(v *Job) JobTriggersOutput { return v.Triggers }).(JobTriggersOutput)
 }
 
 // Whether the CI job should be automatically triggered on draft PRs
-func (o JobOutput) TriggersOnDraftPr() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.TriggersOnDraftPr }).(pulumi.BoolPtrOutput)
+func (o JobOutput) TriggersOnDraftPr() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.TriggersOnDraftPr }).(pulumi.BoolOutput)
 }
 
 type JobArrayOutput struct{ *pulumi.OutputState }

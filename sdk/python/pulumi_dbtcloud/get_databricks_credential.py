@@ -27,10 +27,10 @@ class GetDatabricksCredentialResult:
     """
     A collection of values returned by getDatabricksCredential.
     """
-    def __init__(__self__, adapter_id=None, catalog=None, credential_id=None, id=None, num_threads=None, project_id=None, schema=None, target_name=None):
-        if adapter_id and not isinstance(adapter_id, int):
-            raise TypeError("Expected argument 'adapter_id' to be a int")
-        pulumi.set(__self__, "adapter_id", adapter_id)
+    def __init__(__self__, adapter_type=None, catalog=None, credential_id=None, id=None, num_threads=None, project_id=None, schema=None, target_name=None):
+        if adapter_type and not isinstance(adapter_type, str):
+            raise TypeError("Expected argument 'adapter_type' to be a str")
+        pulumi.set(__self__, "adapter_type", adapter_type)
         if catalog and not isinstance(catalog, str):
             raise TypeError("Expected argument 'catalog' to be a str")
         pulumi.set(__self__, "catalog", catalog)
@@ -54,12 +54,12 @@ class GetDatabricksCredentialResult:
         pulumi.set(__self__, "target_name", target_name)
 
     @property
-    @pulumi.getter(name="adapterId")
-    def adapter_id(self) -> builtins.int:
+    @pulumi.getter(name="adapterType")
+    def adapter_type(self) -> builtins.str:
         """
-        Databricks adapter ID for the credential
+        The type of the adapter (databricks or spark)
         """
-        return pulumi.get(self, "adapter_id")
+        return pulumi.get(self, "adapter_type")
 
     @property
     @pulumi.getter
@@ -81,7 +81,7 @@ class GetDatabricksCredentialResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
@@ -89,7 +89,7 @@ class GetDatabricksCredentialResult:
     @pulumi.getter(name="numThreads")
     def num_threads(self) -> builtins.int:
         """
-        Number of threads to use
+        The number of threads to use
         """
         return pulumi.get(self, "num_threads")
 
@@ -124,7 +124,7 @@ class AwaitableGetDatabricksCredentialResult(GetDatabricksCredentialResult):
         if False:
             yield self
         return GetDatabricksCredentialResult(
-            adapter_id=self.adapter_id,
+            adapter_type=self.adapter_type,
             catalog=self.catalog,
             credential_id=self.credential_id,
             id=self.id,
@@ -138,7 +138,8 @@ def get_databricks_credential(credential_id: Optional[builtins.int] = None,
                               project_id: Optional[builtins.int] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabricksCredentialResult:
     """
-    Use this data source to access information about an existing resource.
+    Databricks credential data source
+
 
     :param builtins.int credential_id: Credential ID
     :param builtins.int project_id: Project ID
@@ -150,7 +151,7 @@ def get_databricks_credential(credential_id: Optional[builtins.int] = None,
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getDatabricksCredential:getDatabricksCredential', __args__, opts=opts, typ=GetDatabricksCredentialResult).value
 
     return AwaitableGetDatabricksCredentialResult(
-        adapter_id=pulumi.get(__ret__, 'adapter_id'),
+        adapter_type=pulumi.get(__ret__, 'adapter_type'),
         catalog=pulumi.get(__ret__, 'catalog'),
         credential_id=pulumi.get(__ret__, 'credential_id'),
         id=pulumi.get(__ret__, 'id'),
@@ -162,7 +163,8 @@ def get_databricks_credential_output(credential_id: Optional[pulumi.Input[builti
                                      project_id: Optional[pulumi.Input[builtins.int]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabricksCredentialResult]:
     """
-    Use this data source to access information about an existing resource.
+    Databricks credential data source
+
 
     :param builtins.int credential_id: Credential ID
     :param builtins.int project_id: Project ID
@@ -173,7 +175,7 @@ def get_databricks_credential_output(credential_id: Optional[pulumi.Input[builti
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getDatabricksCredential:getDatabricksCredential', __args__, opts=opts, typ=GetDatabricksCredentialResult)
     return __ret__.apply(lambda __response__: GetDatabricksCredentialResult(
-        adapter_id=pulumi.get(__response__, 'adapter_id'),
+        adapter_type=pulumi.get(__response__, 'adapter_type'),
         catalog=pulumi.get(__response__, 'catalog'),
         credential_id=pulumi.get(__response__, 'credential_id'),
         id=pulumi.get(__response__, 'id'),

@@ -32,7 +32,7 @@ class WebhookArgs:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] event_types: Webhooks Event Types
         :param pulumi.Input[builtins.bool] active: Webhooks active flag
         :param pulumi.Input[builtins.str] description: Webhooks Description
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] job_ids: List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] job_ids: List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         :param pulumi.Input[builtins.str] name: Webhooks Name
         """
         pulumi.set(__self__, "client_url", client_url)
@@ -98,7 +98,7 @@ class WebhookArgs:
     @pulumi.getter(name="jobIds")
     def job_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.int]]]]:
         """
-        List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         """
         return pulumi.get(self, "job_ids")
 
@@ -141,9 +141,9 @@ class _WebhookState:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] event_types: Webhooks Event Types
         :param pulumi.Input[builtins.str] hmac_secret: Secret key for the webhook. Can be used to validate the authenticity of the webhook.
         :param pulumi.Input[builtins.str] http_status_code: Latest HTTP status of the webhook
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] job_ids: List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] job_ids: List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         :param pulumi.Input[builtins.str] name: Webhooks Name
-        :param pulumi.Input[builtins.str] webhook_id: Webhooks ID
+        :param pulumi.Input[builtins.str] webhook_id: Webhook's ID
         """
         if account_identifier is not None:
             pulumi.set(__self__, "account_identifier", account_identifier)
@@ -163,6 +163,9 @@ class _WebhookState:
             pulumi.set(__self__, "job_ids", job_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if webhook_id is not None:
+            warnings.warn("""Use `id` instead""", DeprecationWarning)
+            pulumi.log.warn("""webhook_id is deprecated: Use `id` instead""")
         if webhook_id is not None:
             pulumi.set(__self__, "webhook_id", webhook_id)
 
@@ -254,7 +257,7 @@ class _WebhookState:
     @pulumi.getter(name="jobIds")
     def job_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.int]]]]:
         """
-        List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         """
         return pulumi.get(self, "job_ids")
 
@@ -276,9 +279,10 @@ class _WebhookState:
 
     @property
     @pulumi.getter(name="webhookId")
+    @_utilities.deprecated("""Use `id` instead""")
     def webhook_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Webhooks ID
+        Webhook's ID
         """
         return pulumi.get(self, "webhook_id")
 
@@ -301,6 +305,8 @@ class Webhook(pulumi.CustomResource):
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
+        Webhook details
+
         ## Example Usage
 
         ```python
@@ -357,7 +363,7 @@ class Webhook(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] client_url: Webhooks Client URL
         :param pulumi.Input[builtins.str] description: Webhooks Description
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] event_types: Webhooks Event Types
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] job_ids: List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] job_ids: List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         :param pulumi.Input[builtins.str] name: Webhooks Name
         """
         ...
@@ -367,6 +373,8 @@ class Webhook(pulumi.CustomResource):
                  args: WebhookArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Webhook details
+
         ## Example Usage
 
         ```python
@@ -497,9 +505,9 @@ class Webhook(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] event_types: Webhooks Event Types
         :param pulumi.Input[builtins.str] hmac_secret: Secret key for the webhook. Can be used to validate the authenticity of the webhook.
         :param pulumi.Input[builtins.str] http_status_code: Latest HTTP status of the webhook
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] job_ids: List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] job_ids: List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         :param pulumi.Input[builtins.str] name: Webhooks Name
-        :param pulumi.Input[builtins.str] webhook_id: Webhooks ID
+        :param pulumi.Input[builtins.str] webhook_id: Webhook's ID
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -527,7 +535,7 @@ class Webhook(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def active(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def active(self) -> pulumi.Output[builtins.bool]:
         """
         Webhooks active flag
         """
@@ -543,7 +551,7 @@ class Webhook(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[builtins.str]]:
+    def description(self) -> pulumi.Output[builtins.str]:
         """
         Webhooks Description
         """
@@ -577,7 +585,7 @@ class Webhook(pulumi.CustomResource):
     @pulumi.getter(name="jobIds")
     def job_ids(self) -> pulumi.Output[Optional[Sequence[builtins.int]]]:
         """
-        List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+        List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         """
         return pulumi.get(self, "job_ids")
 
@@ -591,9 +599,10 @@ class Webhook(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="webhookId")
+    @_utilities.deprecated("""Use `id` instead""")
     def webhook_id(self) -> pulumi.Output[builtins.str]:
         """
-        Webhooks ID
+        Webhook's ID
         """
         return pulumi.get(self, "webhook_id")
 

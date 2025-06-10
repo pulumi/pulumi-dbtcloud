@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Environment variable job override resource
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -78,7 +80,11 @@ export class EnvironmentVariableJobOverride extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the environment variable job override
+     * The account id
+     */
+    public /*out*/ readonly accountId!: pulumi.Output<number>;
+    /**
+     * The internal ID of this resource. Contains the project ID and the environment variable job override ID.
      */
     public /*out*/ readonly environmentVariableJobOverrideId!: pulumi.Output<number>;
     /**
@@ -90,7 +96,7 @@ export class EnvironmentVariableJobOverride extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The project ID for which the environment variable is being overridden
+     * Project ID to create the environment variable job override in
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
@@ -111,6 +117,7 @@ export class EnvironmentVariableJobOverride extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EnvironmentVariableJobOverrideState | undefined;
+            resourceInputs["accountId"] = state ? state.accountId : undefined;
             resourceInputs["environmentVariableJobOverrideId"] = state ? state.environmentVariableJobOverrideId : undefined;
             resourceInputs["jobDefinitionId"] = state ? state.jobDefinitionId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -131,6 +138,7 @@ export class EnvironmentVariableJobOverride extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["rawValue"] = args ? args.rawValue : undefined;
+            resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["environmentVariableJobOverrideId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -143,7 +151,11 @@ export class EnvironmentVariableJobOverride extends pulumi.CustomResource {
  */
 export interface EnvironmentVariableJobOverrideState {
     /**
-     * The ID of the environment variable job override
+     * The account id
+     */
+    accountId?: pulumi.Input<number>;
+    /**
+     * The internal ID of this resource. Contains the project ID and the environment variable job override ID.
      */
     environmentVariableJobOverrideId?: pulumi.Input<number>;
     /**
@@ -155,7 +167,7 @@ export interface EnvironmentVariableJobOverrideState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The project ID for which the environment variable is being overridden
+     * Project ID to create the environment variable job override in
      */
     projectId?: pulumi.Input<number>;
     /**
@@ -177,7 +189,7 @@ export interface EnvironmentVariableJobOverrideArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The project ID for which the environment variable is being overridden
+     * Project ID to create the environment variable job override in
      */
     projectId: pulumi.Input<number>;
     /**

@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Snowflake credential data source
+ */
 export function getSnowflakeCredential(args: GetSnowflakeCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetSnowflakeCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", {
@@ -39,7 +42,7 @@ export interface GetSnowflakeCredentialResult {
      */
     readonly credentialId: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource. Contains the project ID and the credential ID.
      */
     readonly id: string;
     /**
@@ -55,7 +58,7 @@ export interface GetSnowflakeCredentialResult {
      */
     readonly projectId: number;
     /**
-     * Default schema name
+     * The schema where to create models
      */
     readonly schema: string;
     /**
@@ -63,6 +66,9 @@ export interface GetSnowflakeCredentialResult {
      */
     readonly user: string;
 }
+/**
+ * Snowflake credential data source
+ */
 export function getSnowflakeCredentialOutput(args: GetSnowflakeCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSnowflakeCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", {

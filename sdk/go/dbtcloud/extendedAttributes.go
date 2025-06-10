@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes)).<br/><br/>In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
+// Extended attributes resource
 //
 // ## Example Usage
 //
@@ -103,14 +103,12 @@ type ExtendedAttributes struct {
 	pulumi.CustomResourceState
 
 	ExtendedAttributes pulumi.StringOutput `pulumi:"extendedAttributes"`
-	// Extended Attributes ID
+	// Extended attributes ID
 	ExtendedAttributesId pulumi.IntOutput `pulumi:"extendedAttributesId"`
 	// Project ID to create the extended attributes in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
-	// Extended Attributes state (1 is active, 2 is inactive)
-	//
-	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
-	State pulumi.IntPtrOutput `pulumi:"state"`
+	// The state of the extended attributes (1 = active, 2 = inactive)
+	State pulumi.IntOutput `pulumi:"state"`
 }
 
 // NewExtendedAttributes registers a new resource with the given unique name, arguments, and options.
@@ -150,25 +148,21 @@ func GetExtendedAttributes(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ExtendedAttributes resources.
 type extendedAttributesState struct {
 	ExtendedAttributes *string `pulumi:"extendedAttributes"`
-	// Extended Attributes ID
+	// Extended attributes ID
 	ExtendedAttributesId *int `pulumi:"extendedAttributesId"`
 	// Project ID to create the extended attributes in
 	ProjectId *int `pulumi:"projectId"`
-	// Extended Attributes state (1 is active, 2 is inactive)
-	//
-	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
+	// The state of the extended attributes (1 = active, 2 = inactive)
 	State *int `pulumi:"state"`
 }
 
 type ExtendedAttributesState struct {
 	ExtendedAttributes pulumi.StringPtrInput
-	// Extended Attributes ID
+	// Extended attributes ID
 	ExtendedAttributesId pulumi.IntPtrInput
 	// Project ID to create the extended attributes in
 	ProjectId pulumi.IntPtrInput
-	// Extended Attributes state (1 is active, 2 is inactive)
-	//
-	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
+	// The state of the extended attributes (1 = active, 2 = inactive)
 	State pulumi.IntPtrInput
 }
 
@@ -180,9 +174,7 @@ type extendedAttributesArgs struct {
 	ExtendedAttributes string `pulumi:"extendedAttributes"`
 	// Project ID to create the extended attributes in
 	ProjectId int `pulumi:"projectId"`
-	// Extended Attributes state (1 is active, 2 is inactive)
-	//
-	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
+	// The state of the extended attributes (1 = active, 2 = inactive)
 	State *int `pulumi:"state"`
 }
 
@@ -191,9 +183,7 @@ type ExtendedAttributesArgs struct {
 	ExtendedAttributes pulumi.StringInput
 	// Project ID to create the extended attributes in
 	ProjectId pulumi.IntInput
-	// Extended Attributes state (1 is active, 2 is inactive)
-	//
-	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
+	// The state of the extended attributes (1 = active, 2 = inactive)
 	State pulumi.IntPtrInput
 }
 
@@ -288,7 +278,7 @@ func (o ExtendedAttributesOutput) ExtendedAttributes() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExtendedAttributes) pulumi.StringOutput { return v.ExtendedAttributes }).(pulumi.StringOutput)
 }
 
-// Extended Attributes ID
+// Extended attributes ID
 func (o ExtendedAttributesOutput) ExtendedAttributesId() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExtendedAttributes) pulumi.IntOutput { return v.ExtendedAttributesId }).(pulumi.IntOutput)
 }
@@ -298,11 +288,9 @@ func (o ExtendedAttributesOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExtendedAttributes) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// Extended Attributes state (1 is active, 2 is inactive)
-//
-// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
-func (o ExtendedAttributesOutput) State() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ExtendedAttributes) pulumi.IntPtrOutput { return v.State }).(pulumi.IntPtrOutput)
+// The state of the extended attributes (1 = active, 2 = inactive)
+func (o ExtendedAttributesOutput) State() pulumi.IntOutput {
+	return o.ApplyT(func(v *ExtendedAttributes) pulumi.IntOutput { return v.State }).(pulumi.IntOutput)
 }
 
 type ExtendedAttributesArrayOutput struct{ *pulumi.OutputState }

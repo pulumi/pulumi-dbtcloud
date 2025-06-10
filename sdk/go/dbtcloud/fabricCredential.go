@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Fabric credential resource
+//
 // ## Example Usage
 //
 // ```go
@@ -29,7 +31,6 @@ import (
 //			// when using AD authentication
 //			_, err := dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_ad", &dbtcloud.FabricCredentialArgs{
 //				ProjectId:           pulumi.Any(dbtProject.Id),
-//				AdapterId:           pulumi.Any(myFabricConnection.AdapterId),
 //				Schema:              pulumi.String("my_schema"),
 //				User:                pulumi.String("my_user"),
 //				Password:            pulumi.String("my_password"),
@@ -41,7 +42,6 @@ import (
 //			// when using service principal authentication
 //			_, err = dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_serv_princ", &dbtcloud.FabricCredentialArgs{
 //				ProjectId:           pulumi.Any(dbtProject.Id),
-//				AdapterId:           pulumi.Any(myFabricConnection.AdapterId),
 //				Schema:              pulumi.String("my_schema"),
 //				ClientId:            pulumi.String("my_client_id"),
 //				TenantId:            pulumi.String("my_tenant_id"),
@@ -89,26 +89,26 @@ import (
 type FabricCredential struct {
 	pulumi.CustomResourceState
 
-	// Fabric adapter ID for the credential
-	AdapterId pulumi.IntOutput `pulumi:"adapterId"`
+	// The type of the adapter (fabric)
+	AdapterType pulumi.StringOutput `pulumi:"adapterType"`
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
-	// The system Fabric credential ID
+	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// The internal credential ID
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// The password for the account to connect to. Only used when connection with AD user/pass
-	Password pulumi.StringPtrOutput `pulumi:"password"`
+	Password pulumi.StringOutput `pulumi:"password"`
 	// Project ID to create the Fabric credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The schema where to create the dbt models
 	Schema pulumi.StringOutput `pulumi:"schema"`
 	// Optionally set this to the principal who should own the schemas created by dbt
-	SchemaAuthorization pulumi.StringPtrOutput `pulumi:"schemaAuthorization"`
+	SchemaAuthorization pulumi.StringOutput `pulumi:"schemaAuthorization"`
 	// The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
-	TenantId pulumi.StringPtrOutput `pulumi:"tenantId"`
+	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 	// The username of the Fabric account to connect to. Only used when connection with AD user/pass
-	User pulumi.StringPtrOutput `pulumi:"user"`
+	User pulumi.StringOutput `pulumi:"user"`
 }
 
 // NewFabricCredential registers a new resource with the given unique name, arguments, and options.
@@ -118,8 +118,8 @@ func NewFabricCredential(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.AdapterId == nil {
-		return nil, errors.New("invalid value for required argument 'AdapterId'")
+	if args.AdapterType == nil {
+		return nil, errors.New("invalid value for required argument 'AdapterType'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -161,13 +161,13 @@ func GetFabricCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FabricCredential resources.
 type fabricCredentialState struct {
-	// Fabric adapter ID for the credential
-	AdapterId *int `pulumi:"adapterId"`
+	// The type of the adapter (fabric)
+	AdapterType *string `pulumi:"adapterType"`
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId *string `pulumi:"clientId"`
 	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientSecret *string `pulumi:"clientSecret"`
-	// The system Fabric credential ID
+	// The internal credential ID
 	CredentialId *int `pulumi:"credentialId"`
 	// The password for the account to connect to. Only used when connection with AD user/pass
 	Password *string `pulumi:"password"`
@@ -184,13 +184,13 @@ type fabricCredentialState struct {
 }
 
 type FabricCredentialState struct {
-	// Fabric adapter ID for the credential
-	AdapterId pulumi.IntPtrInput
+	// The type of the adapter (fabric)
+	AdapterType pulumi.StringPtrInput
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId pulumi.StringPtrInput
 	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientSecret pulumi.StringPtrInput
-	// The system Fabric credential ID
+	// The internal credential ID
 	CredentialId pulumi.IntPtrInput
 	// The password for the account to connect to. Only used when connection with AD user/pass
 	Password pulumi.StringPtrInput
@@ -211,8 +211,8 @@ func (FabricCredentialState) ElementType() reflect.Type {
 }
 
 type fabricCredentialArgs struct {
-	// Fabric adapter ID for the credential
-	AdapterId int `pulumi:"adapterId"`
+	// The type of the adapter (fabric)
+	AdapterType string `pulumi:"adapterType"`
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId *string `pulumi:"clientId"`
 	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
@@ -233,8 +233,8 @@ type fabricCredentialArgs struct {
 
 // The set of arguments for constructing a FabricCredential resource.
 type FabricCredentialArgs struct {
-	// Fabric adapter ID for the credential
-	AdapterId pulumi.IntInput
+	// The type of the adapter (fabric)
+	AdapterType pulumi.StringInput
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId pulumi.StringPtrInput
 	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
@@ -340,29 +340,29 @@ func (o FabricCredentialOutput) ToFabricCredentialOutputWithContext(ctx context.
 	return o
 }
 
-// Fabric adapter ID for the credential
-func (o FabricCredentialOutput) AdapterId() pulumi.IntOutput {
-	return o.ApplyT(func(v *FabricCredential) pulumi.IntOutput { return v.AdapterId }).(pulumi.IntOutput)
+// The type of the adapter (fabric)
+func (o FabricCredentialOutput) AdapterType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.AdapterType }).(pulumi.StringOutput)
 }
 
 // The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-func (o FabricCredentialOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FabricCredential) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+func (o FabricCredentialOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
 }
 
 // The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-func (o FabricCredentialOutput) ClientSecret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FabricCredential) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+func (o FabricCredentialOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
-// The system Fabric credential ID
+// The internal credential ID
 func (o FabricCredentialOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v *FabricCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
 
 // The password for the account to connect to. Only used when connection with AD user/pass
-func (o FabricCredentialOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FabricCredential) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+func (o FabricCredentialOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
 // Project ID to create the Fabric credential in
@@ -376,18 +376,18 @@ func (o FabricCredentialOutput) Schema() pulumi.StringOutput {
 }
 
 // Optionally set this to the principal who should own the schemas created by dbt
-func (o FabricCredentialOutput) SchemaAuthorization() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FabricCredential) pulumi.StringPtrOutput { return v.SchemaAuthorization }).(pulumi.StringPtrOutput)
+func (o FabricCredentialOutput) SchemaAuthorization() pulumi.StringOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.SchemaAuthorization }).(pulumi.StringOutput)
 }
 
 // The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
-func (o FabricCredentialOutput) TenantId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FabricCredential) pulumi.StringPtrOutput { return v.TenantId }).(pulumi.StringPtrOutput)
+func (o FabricCredentialOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
 }
 
 // The username of the Fabric account to connect to. Only used when connection with AD user/pass
-func (o FabricCredentialOutput) User() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FabricCredential) pulumi.StringPtrOutput { return v.User }).(pulumi.StringPtrOutput)
+func (o FabricCredentialOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
 }
 
 type FabricCredentialArrayOutput struct{ *pulumi.OutputState }
