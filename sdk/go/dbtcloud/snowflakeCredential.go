@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
+//
 // ## Example Usage
 //
 // ```go
@@ -77,29 +79,31 @@ type SnowflakeCredential struct {
 
 	// The type of Snowflake credential ('password' or 'keypair')
 	AuthType pulumi.StringOutput `pulumi:"authType"`
-	// The system Snowflake credential ID
+	// The internal credential ID
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
-	// Database to connect to
+	// The catalog to connect use
 	Database pulumi.StringPtrOutput `pulumi:"database"`
 	// Whether the Snowflake credential is active
-	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
+	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads pulumi.IntOutput `pulumi:"numThreads"`
-	// Password for Snowflake
-	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Private key for Snowflake
-	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
-	// Private key passphrase for Snowflake
-	PrivateKeyPassphrase pulumi.StringPtrOutput `pulumi:"privateKeyPassphrase"`
+	// The password for the Snowflake account
+	Password pulumi.StringOutput `pulumi:"password"`
+	// The private key for the Snowflake account
+	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// The passphrase for the private key
+	PrivateKeyPassphrase pulumi.StringOutput `pulumi:"privateKeyPassphrase"`
 	// Project ID to create the Snowflake credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
-	// Role to assume
+	// The role to assume
 	Role pulumi.StringPtrOutput `pulumi:"role"`
-	// Default schema name
+	// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
 	Schema pulumi.StringOutput `pulumi:"schema"`
-	// Username for Snowflake
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolOutput `pulumi:"semanticLayerCredential"`
+	// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
 	User pulumi.StringOutput `pulumi:"user"`
-	// Warehouse to use
+	// The warehouse to use
 	Warehouse pulumi.StringPtrOutput `pulumi:"warehouse"`
 }
 
@@ -118,12 +122,6 @@ func NewSnowflakeCredential(ctx *pulumi.Context,
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
-	}
-	if args.Schema == nil {
-		return nil, errors.New("invalid value for required argument 'Schema'")
-	}
-	if args.User == nil {
-		return nil, errors.New("invalid value for required argument 'User'")
 	}
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
@@ -165,58 +163,62 @@ func GetSnowflakeCredential(ctx *pulumi.Context,
 type snowflakeCredentialState struct {
 	// The type of Snowflake credential ('password' or 'keypair')
 	AuthType *string `pulumi:"authType"`
-	// The system Snowflake credential ID
+	// The internal credential ID
 	CredentialId *int `pulumi:"credentialId"`
-	// Database to connect to
+	// The catalog to connect use
 	Database *string `pulumi:"database"`
 	// Whether the Snowflake credential is active
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads *int `pulumi:"numThreads"`
-	// Password for Snowflake
+	// The password for the Snowflake account
 	Password *string `pulumi:"password"`
-	// Private key for Snowflake
+	// The private key for the Snowflake account
 	PrivateKey *string `pulumi:"privateKey"`
-	// Private key passphrase for Snowflake
+	// The passphrase for the private key
 	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
 	// Project ID to create the Snowflake credential in
 	ProjectId *int `pulumi:"projectId"`
-	// Role to assume
+	// The role to assume
 	Role *string `pulumi:"role"`
-	// Default schema name
+	// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
 	Schema *string `pulumi:"schema"`
-	// Username for Snowflake
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
+	// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
 	User *string `pulumi:"user"`
-	// Warehouse to use
+	// The warehouse to use
 	Warehouse *string `pulumi:"warehouse"`
 }
 
 type SnowflakeCredentialState struct {
 	// The type of Snowflake credential ('password' or 'keypair')
 	AuthType pulumi.StringPtrInput
-	// The system Snowflake credential ID
+	// The internal credential ID
 	CredentialId pulumi.IntPtrInput
-	// Database to connect to
+	// The catalog to connect use
 	Database pulumi.StringPtrInput
 	// Whether the Snowflake credential is active
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use
 	NumThreads pulumi.IntPtrInput
-	// Password for Snowflake
+	// The password for the Snowflake account
 	Password pulumi.StringPtrInput
-	// Private key for Snowflake
+	// The private key for the Snowflake account
 	PrivateKey pulumi.StringPtrInput
-	// Private key passphrase for Snowflake
+	// The passphrase for the private key
 	PrivateKeyPassphrase pulumi.StringPtrInput
 	// Project ID to create the Snowflake credential in
 	ProjectId pulumi.IntPtrInput
-	// Role to assume
+	// The role to assume
 	Role pulumi.StringPtrInput
-	// Default schema name
+	// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
 	Schema pulumi.StringPtrInput
-	// Username for Snowflake
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput
+	// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
 	User pulumi.StringPtrInput
-	// Warehouse to use
+	// The warehouse to use
 	Warehouse pulumi.StringPtrInput
 }
 
@@ -227,27 +229,29 @@ func (SnowflakeCredentialState) ElementType() reflect.Type {
 type snowflakeCredentialArgs struct {
 	// The type of Snowflake credential ('password' or 'keypair')
 	AuthType string `pulumi:"authType"`
-	// Database to connect to
+	// The catalog to connect use
 	Database *string `pulumi:"database"`
 	// Whether the Snowflake credential is active
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads int `pulumi:"numThreads"`
-	// Password for Snowflake
+	// The password for the Snowflake account
 	Password *string `pulumi:"password"`
-	// Private key for Snowflake
+	// The private key for the Snowflake account
 	PrivateKey *string `pulumi:"privateKey"`
-	// Private key passphrase for Snowflake
+	// The passphrase for the private key
 	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
 	// Project ID to create the Snowflake credential in
 	ProjectId int `pulumi:"projectId"`
-	// Role to assume
+	// The role to assume
 	Role *string `pulumi:"role"`
-	// Default schema name
-	Schema string `pulumi:"schema"`
-	// Username for Snowflake
-	User string `pulumi:"user"`
-	// Warehouse to use
+	// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+	Schema *string `pulumi:"schema"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
+	// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+	User *string `pulumi:"user"`
+	// The warehouse to use
 	Warehouse *string `pulumi:"warehouse"`
 }
 
@@ -255,27 +259,29 @@ type snowflakeCredentialArgs struct {
 type SnowflakeCredentialArgs struct {
 	// The type of Snowflake credential ('password' or 'keypair')
 	AuthType pulumi.StringInput
-	// Database to connect to
+	// The catalog to connect use
 	Database pulumi.StringPtrInput
 	// Whether the Snowflake credential is active
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use
 	NumThreads pulumi.IntInput
-	// Password for Snowflake
+	// The password for the Snowflake account
 	Password pulumi.StringPtrInput
-	// Private key for Snowflake
+	// The private key for the Snowflake account
 	PrivateKey pulumi.StringPtrInput
-	// Private key passphrase for Snowflake
+	// The passphrase for the private key
 	PrivateKeyPassphrase pulumi.StringPtrInput
 	// Project ID to create the Snowflake credential in
 	ProjectId pulumi.IntInput
-	// Role to assume
+	// The role to assume
 	Role pulumi.StringPtrInput
-	// Default schema name
-	Schema pulumi.StringInput
-	// Username for Snowflake
-	User pulumi.StringInput
-	// Warehouse to use
+	// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+	Schema pulumi.StringPtrInput
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput
+	// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+	User pulumi.StringPtrInput
+	// The warehouse to use
 	Warehouse pulumi.StringPtrInput
 }
 
@@ -371,19 +377,19 @@ func (o SnowflakeCredentialOutput) AuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
 }
 
-// The system Snowflake credential ID
+// The internal credential ID
 func (o SnowflakeCredentialOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// Database to connect to
+// The catalog to connect use
 func (o SnowflakeCredentialOutput) Database() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.Database }).(pulumi.StringPtrOutput)
 }
 
 // Whether the Snowflake credential is active
-func (o SnowflakeCredentialOutput) IsActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SnowflakeCredential) pulumi.BoolPtrOutput { return v.IsActive }).(pulumi.BoolPtrOutput)
+func (o SnowflakeCredentialOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.BoolOutput { return v.IsActive }).(pulumi.BoolOutput)
 }
 
 // Number of threads to use
@@ -391,19 +397,19 @@ func (o SnowflakeCredentialOutput) NumThreads() pulumi.IntOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.IntOutput { return v.NumThreads }).(pulumi.IntOutput)
 }
 
-// Password for Snowflake
-func (o SnowflakeCredentialOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+// The password for the Snowflake account
+func (o SnowflakeCredentialOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// Private key for Snowflake
-func (o SnowflakeCredentialOutput) PrivateKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
+// The private key for the Snowflake account
+func (o SnowflakeCredentialOutput) PrivateKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// Private key passphrase for Snowflake
-func (o SnowflakeCredentialOutput) PrivateKeyPassphrase() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.PrivateKeyPassphrase }).(pulumi.StringPtrOutput)
+// The passphrase for the private key
+func (o SnowflakeCredentialOutput) PrivateKeyPassphrase() pulumi.StringOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.PrivateKeyPassphrase }).(pulumi.StringOutput)
 }
 
 // Project ID to create the Snowflake credential in
@@ -411,22 +417,27 @@ func (o SnowflakeCredentialOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// Role to assume
+// The role to assume
 func (o SnowflakeCredentialOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// Default schema name
+// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
 func (o SnowflakeCredentialOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.Schema }).(pulumi.StringOutput)
 }
 
-// Username for Snowflake
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+func (o SnowflakeCredentialOutput) SemanticLayerCredential() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.BoolOutput { return v.SemanticLayerCredential }).(pulumi.BoolOutput)
+}
+
+// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
 func (o SnowflakeCredentialOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
 }
 
-// Warehouse to use
+// The warehouse to use
 func (o SnowflakeCredentialOutput) Warehouse() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.Warehouse }).(pulumi.StringPtrOutput)
 }

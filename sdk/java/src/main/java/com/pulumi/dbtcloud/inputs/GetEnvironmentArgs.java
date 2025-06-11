@@ -30,14 +30,14 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The project ID to which the environment belong
+     * The project ID to which the environment belongs
      * 
      */
     @Import(name="projectId", required=true)
     private Output<Integer> projectId;
 
     /**
-     * @return The project ID to which the environment belong
+     * @return The project ID to which the environment belongs
      * 
      */
     public Output<Integer> projectId() {
@@ -91,7 +91,7 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId The project ID to which the environment belong
+         * @param projectId The project ID to which the environment belongs
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class GetEnvironmentArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId The project ID to which the environment belong
+         * @param projectId The project ID to which the environment belongs
          * 
          * @return builder
          * 

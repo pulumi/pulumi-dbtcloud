@@ -12,11 +12,10 @@ import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.ExtendedAttributesState;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes)).&lt;br/&gt;&lt;br/&gt;In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
+ * Extended attributes resource
  * 
  * ## Example Usage
  * 
@@ -118,14 +117,14 @@ public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
         return this.extendedAttributes;
     }
     /**
-     * Extended Attributes ID
+     * Extended attributes ID
      * 
      */
     @Export(name="extendedAttributesId", refs={Integer.class}, tree="[0]")
     private Output<Integer> extendedAttributesId;
 
     /**
-     * @return Extended Attributes ID
+     * @return Extended attributes ID
      * 
      */
     public Output<Integer> extendedAttributesId() {
@@ -146,22 +145,18 @@ public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Extended Attributes state (1 is active, 2 is inactive)
-     * 
-     * @deprecated
-     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     * The state of the extended attributes (1 = active, 2 = inactive)
      * 
      */
-    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     @Export(name="state", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> state;
+    private Output<Integer> state;
 
     /**
-     * @return Extended Attributes state (1 is active, 2 is inactive)
+     * @return The state of the extended attributes (1 = active, 2 = inactive)
      * 
      */
-    public Output<Optional<Integer>> state() {
-        return Codegen.optional(this.state);
+    public Output<Integer> state() {
+        return this.state;
     }
 
     /**

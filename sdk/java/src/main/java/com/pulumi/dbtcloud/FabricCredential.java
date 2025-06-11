@@ -13,10 +13,11 @@ import com.pulumi.dbtcloud.inputs.FabricCredentialState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Fabric credential resource
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -45,7 +46,6 @@ import javax.annotation.Nullable;
  *         // when using AD authentication
  *         var myFabricCredAd = new FabricCredential("myFabricCredAd", FabricCredentialArgs.builder()
  *             .projectId(dbtProject.id())
- *             .adapterId(myFabricConnection.adapterId())
  *             .schema("my_schema")
  *             .user("my_user")
  *             .password("my_password")
@@ -55,7 +55,6 @@ import javax.annotation.Nullable;
  *         // when using service principal authentication
  *         var myFabricCredServPrinc = new FabricCredential("myFabricCredServPrinc", FabricCredentialArgs.builder()
  *             .projectId(dbtProject.id())
- *             .adapterId(myFabricConnection.adapterId())
  *             .schema("my_schema")
  *             .clientId("my_client_id")
  *             .tenantId("my_tenant_id")
@@ -103,56 +102,56 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/fabricCredential:FabricCredential")
 public class FabricCredential extends com.pulumi.resources.CustomResource {
     /**
-     * Fabric adapter ID for the credential
+     * The type of the adapter (fabric)
      * 
      */
-    @Export(name="adapterId", refs={Integer.class}, tree="[0]")
-    private Output<Integer> adapterId;
+    @Export(name="adapterType", refs={String.class}, tree="[0]")
+    private Output<String> adapterType;
 
     /**
-     * @return Fabric adapter ID for the credential
+     * @return The type of the adapter (fabric)
      * 
      */
-    public Output<Integer> adapterId() {
-        return this.adapterId;
+    public Output<String> adapterType() {
+        return this.adapterType;
     }
     /**
      * The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> clientId;
+    private Output<String> clientId;
 
     /**
      * @return The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      * 
      */
-    public Output<Optional<String>> clientId() {
-        return Codegen.optional(this.clientId);
+    public Output<String> clientId() {
+        return this.clientId;
     }
     /**
      * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> clientSecret;
+    private Output<String> clientSecret;
 
     /**
      * @return The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      * 
      */
-    public Output<Optional<String>> clientSecret() {
-        return Codegen.optional(this.clientSecret);
+    public Output<String> clientSecret() {
+        return this.clientSecret;
     }
     /**
-     * The system Fabric credential ID
+     * The internal credential ID
      * 
      */
     @Export(name="credentialId", refs={Integer.class}, tree="[0]")
     private Output<Integer> credentialId;
 
     /**
-     * @return The system Fabric credential ID
+     * @return The internal credential ID
      * 
      */
     public Output<Integer> credentialId() {
@@ -163,14 +162,14 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> password;
+    private Output<String> password;
 
     /**
      * @return The password for the account to connect to. Only used when connection with AD user/pass
      * 
      */
-    public Output<Optional<String>> password() {
-        return Codegen.optional(this.password);
+    public Output<String> password() {
+        return this.password;
     }
     /**
      * Project ID to create the Fabric credential in
@@ -205,42 +204,42 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="schemaAuthorization", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> schemaAuthorization;
+    private Output<String> schemaAuthorization;
 
     /**
      * @return Optionally set this to the principal who should own the schemas created by dbt
      * 
      */
-    public Output<Optional<String>> schemaAuthorization() {
-        return Codegen.optional(this.schemaAuthorization);
+    public Output<String> schemaAuthorization() {
+        return this.schemaAuthorization;
     }
     /**
      * The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
      * 
      */
     @Export(name="tenantId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> tenantId;
+    private Output<String> tenantId;
 
     /**
      * @return The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
      * 
      */
-    public Output<Optional<String>> tenantId() {
-        return Codegen.optional(this.tenantId);
+    public Output<String> tenantId() {
+        return this.tenantId;
     }
     /**
      * The username of the Fabric account to connect to. Only used when connection with AD user/pass
      * 
      */
     @Export(name="user", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> user;
+    private Output<String> user;
 
     /**
      * @return The username of the Fabric account to connect to. Only used when connection with AD user/pass
      * 
      */
-    public Output<Optional<String>> user() {
-        return Codegen.optional(this.user);
+    public Output<String> user() {
+        return this.user;
     }
 
     /**

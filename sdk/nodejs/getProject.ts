@@ -2,33 +2,49 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Retrieve a specific project from dbt Cloud.
+ *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
- * const testProject = dbtcloud.getProject({
- *     projectId: dbtCloudProjectId,
- * });
- * // or they can use project names
- * // the provider will raise an error if more than one project is found with the same name
- * const anotherTestProject = dbtcloud.getProject({
- *     name: "My other project name",
- * });
+ * export = async () => {
+ *     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+ *     const projectById = await dbtcloud.getProject({
+ *         id: 0,
+ *     });
+ *     // or they can use project names
+ *     // the provider will raise an error if more than one project is found with the same name
+ *     const projectByName = await dbtcloud.getProject({
+ *         name: "Project name",
+ *     });
+ *     const filteredProjects = await dbtcloud.getProjects({
+ *         nameContains: "Project",
+ *     });
+ *     const allProjects = await dbtcloud.getProjects({});
+ *     return {
+ *         projectIdDetails: projectById,
+ *         projectNameDetails: projectByName,
+ *         filteredProjectsCount: filteredProjects.projects.length,
+ *         filteredProjects: filteredProjects.projects,
+ *         projectNames: .map(project => (project.name)),
+ *     };
+ * }
  * ```
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getProject:getProject", {
-        "description": args.description,
+        "id": args.id,
         "name": args.name,
-        "projectId": args.projectId,
     }, opts);
 }
 
@@ -37,17 +53,13 @@ export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): 
  */
 export interface GetProjectArgs {
     /**
-     * The description of the project
+     * Project ID
      */
-    description?: string;
+    id?: number;
     /**
-     * Given name for project
+     * Project name
      */
     name?: string;
-    /**
-     * ID of the project to represent
-     */
-    projectId?: number;
 }
 
 /**
@@ -55,11 +67,15 @@ export interface GetProjectArgs {
  */
 export interface GetProjectResult {
     /**
-     * ID of the connection associated with the project
+     * When the project was created
      */
-    readonly connectionId: number;
+    readonly createdAt: string;
     /**
-     * The description of the project
+     * Subdirectory for the dbt project inside the git repo
+     */
+    readonly dbtProjectSubdirectory: string;
+    /**
+     * Project description
      */
     readonly description: string;
     /**
@@ -71,53 +87,77 @@ export interface GetProjectResult {
      */
     readonly freshnessJobId: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Project ID
      */
-    readonly id: string;
+    readonly id?: number;
     /**
-     * Given name for project
+     * Project name
      */
     readonly name: string;
     /**
-     * ID of the project to represent
+     * Details for the connection linked to the project
      */
-    readonly projectId?: number;
+    readonly projectConnection: outputs.GetProjectProjectConnection;
     /**
-     * ID of the repository associated with the project
+     * Details for the repository linked to the project
      */
-    readonly repositoryId: number;
+    readonly repository: outputs.GetProjectRepository;
+    /**
+     * Semantic layer config ID
+     */
+    readonly semanticLayerConfigId: number;
     /**
      * Project state should be 1 = active, as 2 = deleted
-     *
-     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
      */
     readonly state: number;
+    /**
+     * The type of dbt project (default or hybrid)
+     */
+    readonly type: number;
+    /**
+     * When the project was last updated
+     */
+    readonly updatedAt: string;
 }
 /**
+ * Retrieve a specific project from dbt Cloud.
+ *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
- * const testProject = dbtcloud.getProject({
- *     projectId: dbtCloudProjectId,
- * });
- * // or they can use project names
- * // the provider will raise an error if more than one project is found with the same name
- * const anotherTestProject = dbtcloud.getProject({
- *     name: "My other project name",
- * });
+ * export = async () => {
+ *     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+ *     const projectById = await dbtcloud.getProject({
+ *         id: 0,
+ *     });
+ *     // or they can use project names
+ *     // the provider will raise an error if more than one project is found with the same name
+ *     const projectByName = await dbtcloud.getProject({
+ *         name: "Project name",
+ *     });
+ *     const filteredProjects = await dbtcloud.getProjects({
+ *         nameContains: "Project",
+ *     });
+ *     const allProjects = await dbtcloud.getProjects({});
+ *     return {
+ *         projectIdDetails: projectById,
+ *         projectNameDetails: projectByName,
+ *         filteredProjectsCount: filteredProjects.projects.length,
+ *         filteredProjects: filteredProjects.projects,
+ *         projectNames: .map(project => (project.name)),
+ *     };
+ * }
  * ```
  */
 export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getProject:getProject", {
-        "description": args.description,
+        "id": args.id,
         "name": args.name,
-        "projectId": args.projectId,
     }, opts);
 }
 
@@ -126,15 +166,11 @@ export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.Invo
  */
 export interface GetProjectOutputArgs {
     /**
-     * The description of the project
+     * Project ID
      */
-    description?: pulumi.Input<string>;
+    id?: pulumi.Input<number>;
     /**
-     * Given name for project
+     * Project name
      */
     name?: pulumi.Input<string>;
-    /**
-     * ID of the project to represent
-     */
-    projectId?: pulumi.Input<number>;
 }

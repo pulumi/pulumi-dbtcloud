@@ -18,6 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -106,28 +108,28 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
         return this.authType;
     }
     /**
-     * The system Snowflake credential ID
+     * The internal credential ID
      * 
      */
     @Export(name="credentialId", refs={Integer.class}, tree="[0]")
     private Output<Integer> credentialId;
 
     /**
-     * @return The system Snowflake credential ID
+     * @return The internal credential ID
      * 
      */
     public Output<Integer> credentialId() {
         return this.credentialId;
     }
     /**
-     * Database to connect to
+     * The catalog to connect use
      * 
      */
     @Export(name="database", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> database;
 
     /**
-     * @return Database to connect to
+     * @return The catalog to connect use
      * 
      */
     public Output<Optional<String>> database() {
@@ -138,14 +140,14 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="isActive", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> isActive;
+    private Output<Boolean> isActive;
 
     /**
      * @return Whether the Snowflake credential is active
      * 
      */
-    public Output<Optional<Boolean>> isActive() {
-        return Codegen.optional(this.isActive);
+    public Output<Boolean> isActive() {
+        return this.isActive;
     }
     /**
      * Number of threads to use
@@ -162,46 +164,46 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
         return this.numThreads;
     }
     /**
-     * Password for Snowflake
+     * The password for the Snowflake account
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> password;
+    private Output<String> password;
 
     /**
-     * @return Password for Snowflake
+     * @return The password for the Snowflake account
      * 
      */
-    public Output<Optional<String>> password() {
-        return Codegen.optional(this.password);
+    public Output<String> password() {
+        return this.password;
     }
     /**
-     * Private key for Snowflake
+     * The private key for the Snowflake account
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> privateKey;
+    private Output<String> privateKey;
 
     /**
-     * @return Private key for Snowflake
+     * @return The private key for the Snowflake account
      * 
      */
-    public Output<Optional<String>> privateKey() {
-        return Codegen.optional(this.privateKey);
+    public Output<String> privateKey() {
+        return this.privateKey;
     }
     /**
-     * Private key passphrase for Snowflake
+     * The passphrase for the private key
      * 
      */
     @Export(name="privateKeyPassphrase", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> privateKeyPassphrase;
+    private Output<String> privateKeyPassphrase;
 
     /**
-     * @return Private key passphrase for Snowflake
+     * @return The passphrase for the private key
      * 
      */
-    public Output<Optional<String>> privateKeyPassphrase() {
-        return Codegen.optional(this.privateKeyPassphrase);
+    public Output<String> privateKeyPassphrase() {
+        return this.privateKeyPassphrase;
     }
     /**
      * Project ID to create the Snowflake credential in
@@ -218,56 +220,70 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Role to assume
+     * The role to assume
      * 
      */
     @Export(name="role", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> role;
 
     /**
-     * @return Role to assume
+     * @return The role to assume
      * 
      */
     public Output<Optional<String>> role() {
         return Codegen.optional(this.role);
     }
     /**
-     * Default schema name
+     * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      * 
      */
     @Export(name="schema", refs={String.class}, tree="[0]")
     private Output<String> schema;
 
     /**
-     * @return Default schema name
+     * @return The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      * 
      */
     public Output<String> schema() {
         return this.schema;
     }
     /**
-     * Username for Snowflake
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+     * 
+     */
+    @Export(name="semanticLayerCredential", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> semanticLayerCredential;
+
+    /**
+     * @return This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+     * 
+     */
+    public Output<Boolean> semanticLayerCredential() {
+        return this.semanticLayerCredential;
+    }
+    /**
+     * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      * 
      */
     @Export(name="user", refs={String.class}, tree="[0]")
     private Output<String> user;
 
     /**
-     * @return Username for Snowflake
+     * @return The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      * 
      */
     public Output<String> user() {
         return this.user;
     }
     /**
-     * Warehouse to use
+     * The warehouse to use
      * 
      */
     @Export(name="warehouse", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> warehouse;
 
     /**
-     * @return Warehouse to use
+     * @return The warehouse to use
      * 
      */
     public Output<Optional<String>> warehouse() {

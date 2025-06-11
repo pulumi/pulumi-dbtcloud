@@ -24,7 +24,7 @@ export interface GetEnvironmentArgs {
      */
     environmentId: number;
     /**
-     * The project ID to which the environment belong
+     * The project ID to which the environment belongs
      */
     projectId: number;
 }
@@ -33,12 +33,9 @@ export interface GetEnvironmentArgs {
  * A collection of values returned by getEnvironment.
  */
 export interface GetEnvironmentResult {
-    /**
-     * A connection ID (used with Global Connections)
-     */
     readonly connectionId: number;
     /**
-     * The project ID to which the environment belong
+     * Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
      */
     readonly credentialsId: number;
     /**
@@ -74,7 +71,7 @@ export interface GetEnvironmentResult {
      */
     readonly name: string;
     /**
-     * The project ID to which the environment belong
+     * The project ID to which the environment belongs
      */
     readonly projectId: number;
     /**
@@ -106,7 +103,7 @@ export interface GetEnvironmentOutputArgs {
      */
     environmentId: pulumi.Input<number>;
     /**
-     * The project ID to which the environment belong
+     * The project ID to which the environment belongs
      */
     projectId: pulumi.Input<number>;
 }

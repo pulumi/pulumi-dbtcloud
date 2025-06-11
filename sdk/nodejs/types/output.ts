@@ -5,13 +5,55 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface BigquerySemanticLayerCredentialConfiguration {
+    /**
+     * The adapter version
+     */
+    adapterVersion: string;
+    /**
+     * The name of the configuration
+     */
+    name: string;
+    /**
+     * The ID of the project
+     */
+    projectId: number;
+}
+
+export interface BigquerySemanticLayerCredentialCredential {
+    /**
+     * The internal credential ID
+     */
+    credentialId: number;
+    /**
+     * Default dataset name
+     */
+    dataset: string;
+    /**
+     * The ID of this resource. Contains the project ID and the credential ID.
+     */
+    id: string;
+    /**
+     * Whether the BigQuery credential is active
+     */
+    isActive: boolean;
+    /**
+     * Number of threads to use
+     */
+    numThreads: number;
+    /**
+     * Project ID to create the BigQuery credential in
+     */
+    projectId: number;
+}
+
 export interface GetEnvironmentsEnvironment {
     /**
      * A connection ID (used with Global Connections)
      */
     connectionId: number;
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
      */
     credentialsId: number;
     /**
@@ -456,6 +498,29 @@ export interface GetGlobalConnectionSynapse {
     retries: number;
 }
 
+export interface GetGlobalConnectionTeradata {
+    /**
+     * The hostname of the database.
+     */
+    host: string;
+    /**
+     * The port to connect to for this connection. Default=1025
+     */
+    port: string;
+    /**
+     * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    requestTimeout: number;
+    /**
+     * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+     */
+    retries: number;
+    /**
+     * The transaction mode to use for the connection.
+     */
+    tmode: string;
+}
+
 export interface GetGlobalConnectionsConnection {
     /**
      * Type of adapter used for the connection
@@ -509,8 +574,41 @@ export interface GetGroupGroupPermission {
 }
 
 export interface GetGroupUsersUser {
+    /**
+     * Email of the user
+     */
     email: string;
+    /**
+     * ID of the user
+     */
     id: number;
+}
+
+export interface GetJobEnvironment {
+    /**
+     * Type of deployment environment: staging, production
+     */
+    deploymentType: string;
+    /**
+     * ID of the environment
+     */
+    id: number;
+    /**
+     * Name of the environment
+     */
+    name: string;
+    projectId: number;
+    /**
+     * Environment type: development or deployment
+     */
+    type: string;
+}
+
+export interface GetJobExecution {
+    /**
+     * The number of seconds before the job times out
+     */
+    timeoutSeconds: number;
 }
 
 export interface GetJobJobCompletionTriggerCondition {
@@ -528,6 +626,43 @@ export interface GetJobJobCompletionTriggerCondition {
     statuses: string[];
 }
 
+export interface GetJobSchedule {
+    /**
+     * The cron schedule for the job. Only used if triggers.schedule is true
+     */
+    cron: string;
+}
+
+export interface GetJobSettings {
+    /**
+     * Value for `target.name` in the Jinja context
+     */
+    targetName: string;
+    /**
+     * Number of threads to run dbt with
+     */
+    threads: number;
+}
+
+export interface GetJobTriggers {
+    /**
+     * Whether the job runs automatically on PR creation
+     */
+    gitProviderWebhook: boolean;
+    /**
+     * Whether the job runs automatically on PR creation
+     */
+    githubWebhook: boolean;
+    /**
+     * Whether the job runs automatically once a PR is merged
+     */
+    onMerge: boolean;
+    /**
+     * Whether the job runs on a schedule
+     */
+    schedule: boolean;
+}
+
 export interface GetJobsJob {
     /**
      * The version of dbt used for the job. If not set, the environment version will be used.
@@ -538,7 +673,9 @@ export interface GetJobsJob {
      */
     deferringEnvironmentId: number;
     /**
-     * [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+     * [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+     *
+     * @deprecated Deferral is now set at the environment level
      */
     deferringJobDefinitionId: number;
     /**
@@ -571,6 +708,10 @@ export interface GetJobsJob {
      */
     jobCompletionTriggerCondition: outputs.GetJobsJobJobCompletionTriggerCondition;
     /**
+     * The ID of the job
+     */
+    jobId: number;
+    /**
      * The type of job (e.g. CI, scheduled)
      */
     jobType: string;
@@ -592,6 +733,12 @@ export interface GetJobsJob {
     runGenerateSources: boolean;
     schedule: outputs.GetJobsJobSchedule;
     settings: outputs.GetJobsJobSettings;
+    /**
+     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+     *
+     * @deprecated Moved to execution.timeout_seconds
+     */
+    timeoutSeconds: number;
     triggers: outputs.GetJobsJobTriggers;
     /**
      * Whether the CI job should be automatically triggered on draft PRs
@@ -673,11 +820,37 @@ export interface GetJobsJobTriggers {
     schedule: boolean;
 }
 
-export interface GetProjectsProject {
+export interface GetProjectProjectConnection {
     /**
-     * Details for the connection linked to the project
+     * Version of the adapter for the connection. Will tell what connection type it is
      */
-    connection: outputs.GetProjectsProjectConnection;
+    adapterVersion: string;
+    /**
+     * Connection ID
+     */
+    id: number;
+    /**
+     * Connection name
+     */
+    name: string;
+}
+
+export interface GetProjectRepository {
+    /**
+     * Repository ID
+     */
+    id: number;
+    /**
+     * URL template for PRs
+     */
+    pullRequestUrlTemplate: string;
+    /**
+     * URL of the git repo remote
+     */
+    remoteUrl: string;
+}
+
+export interface GetProjectsProject {
     /**
      * When the project was created
      */
@@ -699,6 +872,10 @@ export interface GetProjectsProject {
      */
     name: string;
     /**
+     * Details for the connection linked to the project
+     */
+    projectConnection: outputs.GetProjectsProjectProjectConnection;
+    /**
      * Details for the repository linked to the project
      */
     repository: outputs.GetProjectsProjectRepository;
@@ -707,12 +884,16 @@ export interface GetProjectsProject {
      */
     semanticLayerConfigId: number;
     /**
+     * The type of dbt project (default or hybrid)
+     */
+    type: number;
+    /**
      * When the project was last updated
      */
     updatedAt: string;
 }
 
-export interface GetProjectsProjectConnection {
+export interface GetProjectsProjectProjectConnection {
     /**
      * Version of the adapter for the connection. Will tell what connection type it is
      */
@@ -740,6 +921,76 @@ export interface GetProjectsProjectRepository {
      * URL of the git repo remote
      */
     remoteUrl: string;
+}
+
+export interface GetRunsFilter {
+    /**
+     * The ID of the environment
+     */
+    environmentId?: number;
+    /**
+     * The ID of the job definition
+     */
+    jobDefinitionId?: number;
+    /**
+     * The limit of the runs
+     */
+    limit?: number;
+    /**
+     * The ID of the project
+     */
+    projectId?: number;
+    /**
+     * The ID of the pull request
+     */
+    pullRequestId?: number;
+    /**
+     * The status of the run
+     */
+    status?: number;
+    /**
+     * The status of the run
+     */
+    statusIn?: string;
+    /**
+     * The ID of the trigger
+     */
+    triggerId?: number;
+}
+
+export interface GetRunsRun {
+    /**
+     * The ID of the account
+     */
+    accountId: number;
+    /**
+     * The cause of the run
+     */
+    cause: string;
+    /**
+     * The branch of the commit
+     */
+    gitBranch: string;
+    /**
+     * The SHA of the commit
+     */
+    gitSha: string;
+    /**
+     * The ID of the pull request
+     */
+    githubPullRequestId: string;
+    /**
+     * The ID of the run
+     */
+    id: number;
+    /**
+     * The ID of the job
+     */
+    jobId: number;
+    /**
+     * The schema override
+     */
+    schemaOverride: string;
 }
 
 export interface GetServiceTokenServiceTokenPermission {
@@ -1176,6 +1427,29 @@ export interface GlobalConnectionSynapse {
     retries: number;
 }
 
+export interface GlobalConnectionTeradata {
+    /**
+     * The hostname of the database.
+     */
+    host: string;
+    /**
+     * The port to connect to for this connection. Default=1025
+     */
+    port: string;
+    /**
+     * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+     */
+    requestTimeout: number;
+    /**
+     * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+     */
+    retries: number;
+    /**
+     * The transaction mode to use for the connection.
+     */
+    tmode: string;
+}
+
 export interface GroupGroupPermission {
     /**
      * Whether access should be provided for all projects or not.
@@ -1256,6 +1530,75 @@ export interface JobJobCompletionTriggerCondition {
     statuses: string[];
 }
 
+export interface JobTriggers {
+    /**
+     * Whether the job runs automatically on PR creation
+     */
+    gitProviderWebhook: boolean;
+    /**
+     * Whether the job runs automatically on PR creation
+     */
+    githubWebhook: boolean;
+    /**
+     * Whether the job runs automatically once a PR is merged
+     */
+    onMerge: boolean;
+    /**
+     * Whether the job runs on a schedule
+     */
+    schedule: boolean;
+}
+
+export interface RedshiftSemanticLayerCredentialConfiguration {
+    /**
+     * The adapter version
+     */
+    adapterVersion: string;
+    /**
+     * The name of the configuration
+     */
+    name: string;
+    /**
+     * The ID of the project
+     */
+    projectId: number;
+}
+
+export interface RedshiftSemanticLayerCredentialCredential {
+    /**
+     * The internal credential ID
+     */
+    credentialId: number;
+    /**
+     * Default schema name
+     */
+    defaultSchema: string;
+    /**
+     * The ID of this resource. Contains the project ID and the credential ID.
+     */
+    id: string;
+    /**
+     * Whether the Redshift credential is active
+     */
+    isActive: boolean;
+    /**
+     * Number of threads to use
+     */
+    numThreads: number;
+    /**
+     * The password for the Redshift account
+     */
+    password: string;
+    /**
+     * Project ID to create the Redshift credential in
+     */
+    projectId: number;
+    /**
+     * The username for the Redshift account.
+     */
+    username: string;
+}
+
 export interface ServiceTokenServiceTokenPermission {
     /**
      * Whether or not to apply this permission to all projects for this service token
@@ -1277,5 +1620,83 @@ export interface ServiceTokenServiceTokenPermission {
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories: string[];
+}
+
+export interface SnowflakeSemanticLayerCredentialConfiguration {
+    /**
+     * The adapter version
+     */
+    adapterVersion: string;
+    /**
+     * The name of the configuration
+     */
+    name: string;
+    /**
+     * The ID of the project
+     */
+    projectId: number;
+}
+
+export interface SnowflakeSemanticLayerCredentialCredential {
+    /**
+     * The type of Snowflake credential ('password' or 'keypair')
+     */
+    authType: string;
+    /**
+     * The internal credential ID
+     */
+    credentialId: number;
+    /**
+     * The catalog to connect use
+     */
+    database?: string;
+    /**
+     * The ID of this resource. Contains the project ID and the credential ID.
+     */
+    id: string;
+    /**
+     * Whether the Snowflake credential is active
+     */
+    isActive: boolean;
+    /**
+     * Number of threads to use
+     */
+    numThreads: number;
+    /**
+     * The password for the Snowflake account
+     */
+    password: string;
+    /**
+     * The private key for the Snowflake account
+     */
+    privateKey: string;
+    /**
+     * The passphrase for the private key
+     */
+    privateKeyPassphrase: string;
+    /**
+     * Project ID to create the Snowflake credential in
+     */
+    projectId: number;
+    /**
+     * The role to assume
+     */
+    role?: string;
+    /**
+     * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+     */
+    schema: string;
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+     */
+    semanticLayerCredential: boolean;
+    /**
+     * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+     */
+    user: string;
+    /**
+     * The warehouse to use
+     */
+    warehouse?: string;
 }
 

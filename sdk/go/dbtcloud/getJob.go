@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get detailed information for a specific dbt Cloud job.
 func LookupJob(ctx *pulumi.Context, args *LookupJobArgs, opts ...pulumi.InvokeOption) (*LookupJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupJobResult
@@ -23,40 +24,58 @@ func LookupJob(ctx *pulumi.Context, args *LookupJobArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getJob.
 type LookupJobArgs struct {
-	// ID of the job
+	// Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+	JobCompletionTriggerConditions []GetJobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerConditions"`
+	// The ID of the job
 	JobId int `pulumi:"jobId"`
-	// ID of the project the job is in
-	ProjectId int `pulumi:"projectId"`
 }
 
 // A collection of values returned by getJob.
 type LookupJobResult struct {
-	// ID of the environment this job defers to
+	// The version of dbt used for the job. If not set, the environment version will be used.
+	DbtVersion string `pulumi:"dbtVersion"`
+	// The ID of the environment this job defers to
 	DeferringEnvironmentId int `pulumi:"deferringEnvironmentId"`
-	// ID of the job this job defers to
+	// [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+	//
+	// Deprecated: Deferral is now set at the environment level
 	DeferringJobId int `pulumi:"deferringJobId"`
-	// Long description for the job
+	// The description of the job
 	Description string `pulumi:"description"`
-	// ID of the environment the job is in
+	// Details of the environment the job is running in
+	Environment GetJobEnvironment `pulumi:"environment"`
+	// The ID of environment
 	EnvironmentId int `pulumi:"environmentId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Which other job should trigger this job when it finishes, and on which conditions.
+	// The list of steps to run in the job
+	ExecuteSteps []string        `pulumi:"executeSteps"`
+	Execution    GetJobExecution `pulumi:"execution"`
+	// Whether the job generate docs
+	GenerateDocs bool `pulumi:"generateDocs"`
+	// The ID of the job
+	Id int `pulumi:"id"`
+	// Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
 	JobCompletionTriggerConditions []GetJobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerConditions"`
-	// ID of the job
+	// The ID of the job
 	JobId int `pulumi:"jobId"`
-	// Given name for the job
+	// The type of job (e.g. CI, scheduled)
+	JobType string `pulumi:"jobType"`
+	// The name of the job
 	Name string `pulumi:"name"`
-	// ID of the project the job is in
+	// The ID of the project
 	ProjectId int `pulumi:"projectId"`
-	// Whether the CI job should compare data changes introduced by the code change in the PR.
+	// Whether the job should compare data changes introduced by the code change in the PR
 	RunCompareChanges bool `pulumi:"runCompareChanges"`
+	// Whether the job test source freshness
+	RunGenerateSources bool           `pulumi:"runGenerateSources"`
+	Schedule           GetJobSchedule `pulumi:"schedule"`
 	// Whether this job defers on a previous run of itself (overrides value in deferring*job*id)
-	SelfDeferring bool `pulumi:"selfDeferring"`
-	// Number of seconds before the job times out
-	TimeoutSeconds int `pulumi:"timeoutSeconds"`
-	// Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
-	Triggers map[string]bool `pulumi:"triggers"`
+	SelfDeferring bool           `pulumi:"selfDeferring"`
+	Settings      GetJobSettings `pulumi:"settings"`
+	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+	//
+	// Deprecated: Moved to execution.timeout_seconds
+	TimeoutSeconds int            `pulumi:"timeoutSeconds"`
+	Triggers       GetJobTriggers `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr bool `pulumi:"triggersOnDraftPr"`
 }
@@ -72,10 +91,10 @@ func LookupJobOutput(ctx *pulumi.Context, args LookupJobOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getJob.
 type LookupJobOutputArgs struct {
-	// ID of the job
+	// Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+	JobCompletionTriggerConditions GetJobJobCompletionTriggerConditionArrayInput `pulumi:"jobCompletionTriggerConditions"`
+	// The ID of the job
 	JobId pulumi.IntInput `pulumi:"jobId"`
-	// ID of the project the job is in
-	ProjectId pulumi.IntInput `pulumi:"projectId"`
 }
 
 func (LookupJobOutputArgs) ElementType() reflect.Type {
@@ -97,54 +116,94 @@ func (o LookupJobResultOutput) ToLookupJobResultOutputWithContext(ctx context.Co
 	return o
 }
 
-// ID of the environment this job defers to
+// The version of dbt used for the job. If not set, the environment version will be used.
+func (o LookupJobResultOutput) DbtVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.DbtVersion }).(pulumi.StringOutput)
+}
+
+// The ID of the environment this job defers to
 func (o LookupJobResultOutput) DeferringEnvironmentId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.DeferringEnvironmentId }).(pulumi.IntOutput)
 }
 
-// ID of the job this job defers to
+// [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+//
+// Deprecated: Deferral is now set at the environment level
 func (o LookupJobResultOutput) DeferringJobId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.DeferringJobId }).(pulumi.IntOutput)
 }
 
-// Long description for the job
+// The description of the job
 func (o LookupJobResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJobResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// ID of the environment the job is in
+// Details of the environment the job is running in
+func (o LookupJobResultOutput) Environment() GetJobEnvironmentOutput {
+	return o.ApplyT(func(v LookupJobResult) GetJobEnvironment { return v.Environment }).(GetJobEnvironmentOutput)
+}
+
+// The ID of environment
 func (o LookupJobResultOutput) EnvironmentId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.EnvironmentId }).(pulumi.IntOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
-func (o LookupJobResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupJobResult) string { return v.Id }).(pulumi.StringOutput)
+// The list of steps to run in the job
+func (o LookupJobResultOutput) ExecuteSteps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupJobResult) []string { return v.ExecuteSteps }).(pulumi.StringArrayOutput)
 }
 
-// Which other job should trigger this job when it finishes, and on which conditions.
+func (o LookupJobResultOutput) Execution() GetJobExecutionOutput {
+	return o.ApplyT(func(v LookupJobResult) GetJobExecution { return v.Execution }).(GetJobExecutionOutput)
+}
+
+// Whether the job generate docs
+func (o LookupJobResultOutput) GenerateDocs() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupJobResult) bool { return v.GenerateDocs }).(pulumi.BoolOutput)
+}
+
+// The ID of the job
+func (o LookupJobResultOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupJobResult) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
 func (o LookupJobResultOutput) JobCompletionTriggerConditions() GetJobJobCompletionTriggerConditionArrayOutput {
 	return o.ApplyT(func(v LookupJobResult) []GetJobJobCompletionTriggerCondition { return v.JobCompletionTriggerConditions }).(GetJobJobCompletionTriggerConditionArrayOutput)
 }
 
-// ID of the job
+// The ID of the job
 func (o LookupJobResultOutput) JobId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.JobId }).(pulumi.IntOutput)
 }
 
-// Given name for the job
+// The type of job (e.g. CI, scheduled)
+func (o LookupJobResultOutput) JobType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.JobType }).(pulumi.StringOutput)
+}
+
+// The name of the job
 func (o LookupJobResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJobResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// ID of the project the job is in
+// The ID of the project
 func (o LookupJobResultOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// Whether the CI job should compare data changes introduced by the code change in the PR.
+// Whether the job should compare data changes introduced by the code change in the PR
 func (o LookupJobResultOutput) RunCompareChanges() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupJobResult) bool { return v.RunCompareChanges }).(pulumi.BoolOutput)
+}
+
+// Whether the job test source freshness
+func (o LookupJobResultOutput) RunGenerateSources() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupJobResult) bool { return v.RunGenerateSources }).(pulumi.BoolOutput)
+}
+
+func (o LookupJobResultOutput) Schedule() GetJobScheduleOutput {
+	return o.ApplyT(func(v LookupJobResult) GetJobSchedule { return v.Schedule }).(GetJobScheduleOutput)
 }
 
 // Whether this job defers on a previous run of itself (overrides value in deferring*job*id)
@@ -152,14 +211,19 @@ func (o LookupJobResultOutput) SelfDeferring() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupJobResult) bool { return v.SelfDeferring }).(pulumi.BoolOutput)
 }
 
-// Number of seconds before the job times out
+func (o LookupJobResultOutput) Settings() GetJobSettingsOutput {
+	return o.ApplyT(func(v LookupJobResult) GetJobSettings { return v.Settings }).(GetJobSettingsOutput)
+}
+
+// [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+//
+// Deprecated: Moved to execution.timeout_seconds
 func (o LookupJobResultOutput) TimeoutSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.TimeoutSeconds }).(pulumi.IntOutput)
 }
 
-// Flags for which types of triggers to use, keys of github*webhook, git*provider*webhook, schedule, on*merge
-func (o LookupJobResultOutput) Triggers() pulumi.BoolMapOutput {
-	return o.ApplyT(func(v LookupJobResult) map[string]bool { return v.Triggers }).(pulumi.BoolMapOutput)
+func (o LookupJobResultOutput) Triggers() GetJobTriggersOutput {
+	return o.ApplyT(func(v LookupJobResult) GetJobTriggers { return v.Triggers }).(GetJobTriggersOutput)
 }
 
 // Whether the CI job should be automatically triggered on draft PRs

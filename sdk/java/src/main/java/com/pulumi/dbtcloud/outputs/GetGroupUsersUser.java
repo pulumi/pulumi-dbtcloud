@@ -11,13 +11,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetGroupUsersUser {
+    /**
+     * @return Email of the user
+     * 
+     */
     private String email;
+    /**
+     * @return ID of the user
+     * 
+     */
     private Integer id;
 
     private GetGroupUsersUser() {}
+    /**
+     * @return Email of the user
+     * 
+     */
     public String email() {
         return this.email;
     }
+    /**
+     * @return ID of the user
+     * 
+     */
     public Integer id() {
         return this.id;
     }

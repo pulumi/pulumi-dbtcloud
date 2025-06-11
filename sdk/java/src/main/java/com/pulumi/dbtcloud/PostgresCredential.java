@@ -18,6 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Postgres credential resource.
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -93,14 +95,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/postgresCredential:PostgresCredential")
 public class PostgresCredential extends com.pulumi.resources.CustomResource {
     /**
-     * The system Postgres/Redshift/AlloyDB credential ID
+     * The system Postgres/Redshift/AlloyDB credential ID.
      * 
      */
     @Export(name="credentialId", refs={Integer.class}, tree="[0]")
     private Output<Integer> credentialId;
 
     /**
-     * @return The system Postgres/Redshift/AlloyDB credential ID
+     * @return The system Postgres/Redshift/AlloyDB credential ID.
      * 
      */
     public Output<Integer> credentialId() {
@@ -125,28 +127,28 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="isActive", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> isActive;
+    private Output<Boolean> isActive;
 
     /**
      * @return Whether the Postgres/Redshift/AlloyDB credential is active
      * 
      */
-    public Output<Optional<Boolean>> isActive() {
-        return Codegen.optional(this.isActive);
+    public Output<Boolean> isActive() {
+        return this.isActive;
     }
     /**
-     * Number of threads to use
+     * Number of threads to use (required for Redshift)
      * 
      */
     @Export(name="numThreads", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> numThreads;
+    private Output<Integer> numThreads;
 
     /**
-     * @return Number of threads to use
+     * @return Number of threads to use (required for Redshift)
      * 
      */
-    public Output<Optional<Integer>> numThreads() {
-        return Codegen.optional(this.numThreads);
+    public Output<Integer> numThreads() {
+        return this.numThreads;
     }
     /**
      * Password for Postgres/Redshift/AlloyDB
@@ -163,14 +165,14 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.password);
     }
     /**
-     * Project ID to create the Postgres/Redshift/AlloyDB credential in
+     * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      * 
      */
     @Export(name="projectId", refs={Integer.class}, tree="[0]")
     private Output<Integer> projectId;
 
     /**
-     * @return Project ID to create the Postgres/Redshift/AlloyDB credential in
+     * @return Project ID to create the Postgres/Redshift/AlloyDB credential in.
      * 
      */
     public Output<Integer> projectId() {
@@ -181,14 +183,14 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="targetName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> targetName;
+    private Output<String> targetName;
 
     /**
      * @return Default schema name
      * 
      */
-    public Output<Optional<String>> targetName() {
-        return Codegen.optional(this.targetName);
+    public Output<String> targetName() {
+        return this.targetName;
     }
     /**
      * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections

@@ -26,13 +26,10 @@ class ExtendedAttributesArgs:
         """
         The set of arguments for constructing a ExtendedAttributes resource.
         :param pulumi.Input[builtins.int] project_id: Project ID to create the extended attributes in
-        :param pulumi.Input[builtins.int] state: Extended Attributes state (1 is active, 2 is inactive)
+        :param pulumi.Input[builtins.int] state: The state of the extended attributes (1 = active, 2 = inactive)
         """
         pulumi.set(__self__, "extended_attributes", extended_attributes)
         pulumi.set(__self__, "project_id", project_id)
-        if state is not None:
-            warnings.warn("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""", DeprecationWarning)
-            pulumi.log.warn("""state is deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
         if state is not None:
             pulumi.set(__self__, "state", state)
 
@@ -59,10 +56,9 @@ class ExtendedAttributesArgs:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
     def state(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Extended Attributes state (1 is active, 2 is inactive)
+        The state of the extended attributes (1 = active, 2 = inactive)
         """
         return pulumi.get(self, "state")
 
@@ -80,9 +76,9 @@ class _ExtendedAttributesState:
                  state: Optional[pulumi.Input[builtins.int]] = None):
         """
         Input properties used for looking up and filtering ExtendedAttributes resources.
-        :param pulumi.Input[builtins.int] extended_attributes_id: Extended Attributes ID
+        :param pulumi.Input[builtins.int] extended_attributes_id: Extended attributes ID
         :param pulumi.Input[builtins.int] project_id: Project ID to create the extended attributes in
-        :param pulumi.Input[builtins.int] state: Extended Attributes state (1 is active, 2 is inactive)
+        :param pulumi.Input[builtins.int] state: The state of the extended attributes (1 = active, 2 = inactive)
         """
         if extended_attributes is not None:
             pulumi.set(__self__, "extended_attributes", extended_attributes)
@@ -90,9 +86,6 @@ class _ExtendedAttributesState:
             pulumi.set(__self__, "extended_attributes_id", extended_attributes_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
-        if state is not None:
-            warnings.warn("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""", DeprecationWarning)
-            pulumi.log.warn("""state is deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
         if state is not None:
             pulumi.set(__self__, "state", state)
 
@@ -109,7 +102,7 @@ class _ExtendedAttributesState:
     @pulumi.getter(name="extendedAttributesId")
     def extended_attributes_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Extended Attributes ID
+        Extended attributes ID
         """
         return pulumi.get(self, "extended_attributes_id")
 
@@ -131,10 +124,9 @@ class _ExtendedAttributesState:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
     def state(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Extended Attributes state (1 is active, 2 is inactive)
+        The state of the extended attributes (1 = active, 2 = inactive)
         """
         return pulumi.get(self, "state")
 
@@ -154,7 +146,7 @@ class ExtendedAttributes(pulumi.CustomResource):
                  state: Optional[pulumi.Input[builtins.int]] = None,
                  __props__=None):
         """
-        This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes)).<br/><br/>In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
+        Extended attributes resource
 
         ## Example Usage
 
@@ -219,7 +211,7 @@ class ExtendedAttributes(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.int] project_id: Project ID to create the extended attributes in
-        :param pulumi.Input[builtins.int] state: Extended Attributes state (1 is active, 2 is inactive)
+        :param pulumi.Input[builtins.int] state: The state of the extended attributes (1 = active, 2 = inactive)
         """
         ...
     @overload
@@ -228,7 +220,7 @@ class ExtendedAttributes(pulumi.CustomResource):
                  args: ExtendedAttributesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes)).<br/><br/>In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
+        Extended attributes resource
 
         ## Example Usage
 
@@ -346,9 +338,9 @@ class ExtendedAttributes(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] extended_attributes_id: Extended Attributes ID
+        :param pulumi.Input[builtins.int] extended_attributes_id: Extended attributes ID
         :param pulumi.Input[builtins.int] project_id: Project ID to create the extended attributes in
-        :param pulumi.Input[builtins.int] state: Extended Attributes state (1 is active, 2 is inactive)
+        :param pulumi.Input[builtins.int] state: The state of the extended attributes (1 = active, 2 = inactive)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -369,7 +361,7 @@ class ExtendedAttributes(pulumi.CustomResource):
     @pulumi.getter(name="extendedAttributesId")
     def extended_attributes_id(self) -> pulumi.Output[builtins.int]:
         """
-        Extended Attributes ID
+        Extended attributes ID
         """
         return pulumi.get(self, "extended_attributes_id")
 
@@ -383,10 +375,9 @@ class ExtendedAttributes(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
-    def state(self) -> pulumi.Output[Optional[builtins.int]]:
+    def state(self) -> pulumi.Output[builtins.int]:
         """
-        Extended Attributes state (1 is active, 2 is inactive)
+        The state of the extended attributes (1 = active, 2 = inactive)
         """
         return pulumi.get(self, "state")
 

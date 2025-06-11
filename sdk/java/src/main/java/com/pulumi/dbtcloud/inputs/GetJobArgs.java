@@ -5,9 +5,13 @@ package com.pulumi.dbtcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.dbtcloud.inputs.GetJobJobCompletionTriggerConditionArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetJobArgs extends com.pulumi.resources.InvokeArgs {
@@ -15,40 +19,40 @@ public final class GetJobArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetJobArgs Empty = new GetJobArgs();
 
     /**
-     * ID of the job
+     * Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+     * 
+     */
+    @Import(name="jobCompletionTriggerConditions")
+    private @Nullable Output<List<GetJobJobCompletionTriggerConditionArgs>> jobCompletionTriggerConditions;
+
+    /**
+     * @return Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+     * 
+     */
+    public Optional<Output<List<GetJobJobCompletionTriggerConditionArgs>>> jobCompletionTriggerConditions() {
+        return Optional.ofNullable(this.jobCompletionTriggerConditions);
+    }
+
+    /**
+     * The ID of the job
      * 
      */
     @Import(name="jobId", required=true)
     private Output<Integer> jobId;
 
     /**
-     * @return ID of the job
+     * @return The ID of the job
      * 
      */
     public Output<Integer> jobId() {
         return this.jobId;
     }
 
-    /**
-     * ID of the project the job is in
-     * 
-     */
-    @Import(name="projectId", required=true)
-    private Output<Integer> projectId;
-
-    /**
-     * @return ID of the project the job is in
-     * 
-     */
-    public Output<Integer> projectId() {
-        return this.projectId;
-    }
-
     private GetJobArgs() {}
 
     private GetJobArgs(GetJobArgs $) {
+        this.jobCompletionTriggerConditions = $.jobCompletionTriggerConditions;
         this.jobId = $.jobId;
-        this.projectId = $.projectId;
     }
 
     public static Builder builder() {
@@ -70,7 +74,38 @@ public final class GetJobArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param jobId ID of the job
+         * @param jobCompletionTriggerConditions Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobCompletionTriggerConditions(@Nullable Output<List<GetJobJobCompletionTriggerConditionArgs>> jobCompletionTriggerConditions) {
+            $.jobCompletionTriggerConditions = jobCompletionTriggerConditions;
+            return this;
+        }
+
+        /**
+         * @param jobCompletionTriggerConditions Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobCompletionTriggerConditions(List<GetJobJobCompletionTriggerConditionArgs> jobCompletionTriggerConditions) {
+            return jobCompletionTriggerConditions(Output.of(jobCompletionTriggerConditions));
+        }
+
+        /**
+         * @param jobCompletionTriggerConditions Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobCompletionTriggerConditions(GetJobJobCompletionTriggerConditionArgs... jobCompletionTriggerConditions) {
+            return jobCompletionTriggerConditions(List.of(jobCompletionTriggerConditions));
+        }
+
+        /**
+         * @param jobId The ID of the job
          * 
          * @return builder
          * 
@@ -81,7 +116,7 @@ public final class GetJobArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param jobId ID of the job
+         * @param jobId The ID of the job
          * 
          * @return builder
          * 
@@ -90,33 +125,9 @@ public final class GetJobArgs extends com.pulumi.resources.InvokeArgs {
             return jobId(Output.of(jobId));
         }
 
-        /**
-         * @param projectId ID of the project the job is in
-         * 
-         * @return builder
-         * 
-         */
-        public Builder projectId(Output<Integer> projectId) {
-            $.projectId = projectId;
-            return this;
-        }
-
-        /**
-         * @param projectId ID of the project the job is in
-         * 
-         * @return builder
-         * 
-         */
-        public Builder projectId(Integer projectId) {
-            return projectId(Output.of(projectId));
-        }
-
         public GetJobArgs build() {
             if ($.jobId == null) {
                 throw new MissingRequiredPropertyException("GetJobArgs", "jobId");
-            }
-            if ($.projectId == null) {
-                throw new MissingRequiredPropertyException("GetJobArgs", "projectId");
             }
             return $;
         }

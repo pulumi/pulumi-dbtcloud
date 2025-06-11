@@ -31,11 +31,11 @@ class PostgresCredentialArgs:
         """
         The set of arguments for constructing a PostgresCredential resource.
         :param pulumi.Input[builtins.str] default_schema: Default schema name
-        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
         :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
         :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
-        :param pulumi.Input[builtins.int] num_threads: Number of threads to use
+        :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
         :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
         :param pulumi.Input[builtins.str] target_name: Default schema name
         """
@@ -68,7 +68,7 @@ class PostgresCredentialArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[builtins.int]:
         """
-        Project ID to create the Postgres/Redshift/AlloyDB credential in
+        Project ID to create the Postgres/Redshift/AlloyDB credential in.
         """
         return pulumi.get(self, "project_id")
 
@@ -116,7 +116,7 @@ class PostgresCredentialArgs:
     @pulumi.getter(name="numThreads")
     def num_threads(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Number of threads to use
+        Number of threads to use (required for Redshift)
         """
         return pulumi.get(self, "num_threads")
 
@@ -163,12 +163,12 @@ class _PostgresCredentialState:
                  username: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering PostgresCredential resources.
-        :param pulumi.Input[builtins.int] credential_id: The system Postgres/Redshift/AlloyDB credential ID
+        :param pulumi.Input[builtins.int] credential_id: The system Postgres/Redshift/AlloyDB credential ID.
         :param pulumi.Input[builtins.str] default_schema: Default schema name
         :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
-        :param pulumi.Input[builtins.int] num_threads: Number of threads to use
+        :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
         :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
-        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[builtins.str] target_name: Default schema name
         :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
         :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
@@ -196,7 +196,7 @@ class _PostgresCredentialState:
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The system Postgres/Redshift/AlloyDB credential ID
+        The system Postgres/Redshift/AlloyDB credential ID.
         """
         return pulumi.get(self, "credential_id")
 
@@ -232,7 +232,7 @@ class _PostgresCredentialState:
     @pulumi.getter(name="numThreads")
     def num_threads(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Number of threads to use
+        Number of threads to use (required for Redshift)
         """
         return pulumi.get(self, "num_threads")
 
@@ -256,7 +256,7 @@ class _PostgresCredentialState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Project ID to create the Postgres/Redshift/AlloyDB credential in
+        Project ID to create the Postgres/Redshift/AlloyDB credential in.
         """
         return pulumi.get(self, "project_id")
 
@@ -317,6 +317,8 @@ class PostgresCredential(pulumi.CustomResource):
                  username: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
+        Postgres credential resource.
+
         ## Example Usage
 
         ```python
@@ -367,9 +369,9 @@ class PostgresCredential(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] default_schema: Default schema name
         :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
-        :param pulumi.Input[builtins.int] num_threads: Number of threads to use
+        :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
         :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
-        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[builtins.str] target_name: Default schema name
         :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
         :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
@@ -381,6 +383,8 @@ class PostgresCredential(pulumi.CustomResource):
                  args: PostgresCredentialArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Postgres credential resource.
+
         ## Example Usage
 
         ```python
@@ -504,12 +508,12 @@ class PostgresCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] credential_id: The system Postgres/Redshift/AlloyDB credential ID
+        :param pulumi.Input[builtins.int] credential_id: The system Postgres/Redshift/AlloyDB credential ID.
         :param pulumi.Input[builtins.str] default_schema: Default schema name
         :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
-        :param pulumi.Input[builtins.int] num_threads: Number of threads to use
+        :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
         :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
-        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[builtins.str] target_name: Default schema name
         :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
         :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
@@ -533,7 +537,7 @@ class PostgresCredential(pulumi.CustomResource):
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> pulumi.Output[builtins.int]:
         """
-        The system Postgres/Redshift/AlloyDB credential ID
+        The system Postgres/Redshift/AlloyDB credential ID.
         """
         return pulumi.get(self, "credential_id")
 
@@ -547,7 +551,7 @@ class PostgresCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def is_active(self) -> pulumi.Output[builtins.bool]:
         """
         Whether the Postgres/Redshift/AlloyDB credential is active
         """
@@ -555,9 +559,9 @@ class PostgresCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> pulumi.Output[Optional[builtins.int]]:
+    def num_threads(self) -> pulumi.Output[builtins.int]:
         """
-        Number of threads to use
+        Number of threads to use (required for Redshift)
         """
         return pulumi.get(self, "num_threads")
 
@@ -573,13 +577,13 @@ class PostgresCredential(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[builtins.int]:
         """
-        Project ID to create the Postgres/Redshift/AlloyDB credential in
+        Project ID to create the Postgres/Redshift/AlloyDB credential in.
         """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="targetName")
-    def target_name(self) -> pulumi.Output[Optional[builtins.str]]:
+    def target_name(self) -> pulumi.Output[builtins.str]:
         """
         Default schema name
         """

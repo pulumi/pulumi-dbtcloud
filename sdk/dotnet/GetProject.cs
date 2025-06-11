@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     public static class GetProject
     {
         /// <summary>
+        /// Retrieve a specific project from dbt Cloud.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -23,18 +25,36 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-        ///     var testProject = DbtCloud.GetProject.Invoke(new()
+        ///     var projectById = DbtCloud.GetProject.Invoke(new()
         ///     {
-        ///         ProjectId = dbtCloudProjectId,
+        ///         Id = 0,
         ///     });
         /// 
         ///     // or they can use project names
         ///     // the provider will raise an error if more than one project is found with the same name
-        ///     var anotherTestProject = DbtCloud.GetProject.Invoke(new()
+        ///     var projectByName = DbtCloud.GetProject.Invoke(new()
         ///     {
-        ///         Name = "My other project name",
+        ///         Name = "Project name",
         ///     });
         /// 
+        ///     var filteredProjects = DbtCloud.GetProjects.Invoke(new()
+        ///     {
+        ///         NameContains = "Project",
+        ///     });
+        /// 
+        ///     var allProjects = DbtCloud.GetProjects.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["projectIdDetails"] = projectById,
+        ///         ["projectNameDetails"] = projectByName,
+        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length,
+        ///         ["filteredProjects"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects),
+        ///         ["projectNames"] = .Select(project =&gt; 
+        ///         {
+        ///             return project.Name;
+        ///         }).ToList(),
+        ///     };
         /// });
         /// ```
         /// </summary>
@@ -42,6 +62,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("dbtcloud:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Retrieve a specific project from dbt Cloud.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -53,18 +75,36 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-        ///     var testProject = DbtCloud.GetProject.Invoke(new()
+        ///     var projectById = DbtCloud.GetProject.Invoke(new()
         ///     {
-        ///         ProjectId = dbtCloudProjectId,
+        ///         Id = 0,
         ///     });
         /// 
         ///     // or they can use project names
         ///     // the provider will raise an error if more than one project is found with the same name
-        ///     var anotherTestProject = DbtCloud.GetProject.Invoke(new()
+        ///     var projectByName = DbtCloud.GetProject.Invoke(new()
         ///     {
-        ///         Name = "My other project name",
+        ///         Name = "Project name",
         ///     });
         /// 
+        ///     var filteredProjects = DbtCloud.GetProjects.Invoke(new()
+        ///     {
+        ///         NameContains = "Project",
+        ///     });
+        /// 
+        ///     var allProjects = DbtCloud.GetProjects.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["projectIdDetails"] = projectById,
+        ///         ["projectNameDetails"] = projectByName,
+        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length,
+        ///         ["filteredProjects"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects),
+        ///         ["projectNames"] = .Select(project =&gt; 
+        ///         {
+        ///             return project.Name;
+        ///         }).ToList(),
+        ///     };
         /// });
         /// ```
         /// </summary>
@@ -72,6 +112,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectResult>("dbtcloud:index/getProject:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Retrieve a specific project from dbt Cloud.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -83,18 +125,36 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-        ///     var testProject = DbtCloud.GetProject.Invoke(new()
+        ///     var projectById = DbtCloud.GetProject.Invoke(new()
         ///     {
-        ///         ProjectId = dbtCloudProjectId,
+        ///         Id = 0,
         ///     });
         /// 
         ///     // or they can use project names
         ///     // the provider will raise an error if more than one project is found with the same name
-        ///     var anotherTestProject = DbtCloud.GetProject.Invoke(new()
+        ///     var projectByName = DbtCloud.GetProject.Invoke(new()
         ///     {
-        ///         Name = "My other project name",
+        ///         Name = "Project name",
         ///     });
         /// 
+        ///     var filteredProjects = DbtCloud.GetProjects.Invoke(new()
+        ///     {
+        ///         NameContains = "Project",
+        ///     });
+        /// 
+        ///     var allProjects = DbtCloud.GetProjects.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["projectIdDetails"] = projectById,
+        ///         ["projectNameDetails"] = projectByName,
+        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length,
+        ///         ["filteredProjects"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects),
+        ///         ["projectNames"] = .Select(project =&gt; 
+        ///         {
+        ///             return project.Name;
+        ///         }).ToList(),
+        ///     };
         /// });
         /// ```
         /// </summary>
@@ -106,22 +166,16 @@ namespace Pulumi.DbtCloud
     public sealed class GetProjectArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The description of the project
+        /// Project ID
         /// </summary>
-        [Input("description")]
-        public string? Description { get; set; }
+        [Input("id")]
+        public int? Id { get; set; }
 
         /// <summary>
-        /// Given name for project
+        /// Project name
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
-
-        /// <summary>
-        /// ID of the project to represent
-        /// </summary>
-        [Input("projectId")]
-        public int? ProjectId { get; set; }
 
         public GetProjectArgs()
         {
@@ -132,22 +186,16 @@ namespace Pulumi.DbtCloud
     public sealed class GetProjectInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The description of the project
+        /// Project ID
         /// </summary>
-        [Input("description")]
-        public Input<string>? Description { get; set; }
+        [Input("id")]
+        public Input<int>? Id { get; set; }
 
         /// <summary>
-        /// Given name for project
+        /// Project name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// ID of the project to represent
-        /// </summary>
-        [Input("projectId")]
-        public Input<int>? ProjectId { get; set; }
 
         public GetProjectInvokeArgs()
         {
@@ -160,11 +208,15 @@ namespace Pulumi.DbtCloud
     public sealed class GetProjectResult
     {
         /// <summary>
-        /// ID of the connection associated with the project
+        /// When the project was created
         /// </summary>
-        public readonly int ConnectionId;
+        public readonly string CreatedAt;
         /// <summary>
-        /// The description of the project
+        /// Subdirectory for the dbt project inside the git repo
+        /// </summary>
+        public readonly string DbtProjectSubdirectory;
+        /// <summary>
+        /// Project description
         /// </summary>
         public readonly string Description;
         /// <summary>
@@ -176,29 +228,43 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int FreshnessJobId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Project ID
         /// </summary>
-        public readonly string Id;
+        public readonly int? Id;
         /// <summary>
-        /// Given name for project
+        /// Project name
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// ID of the project to represent
+        /// Details for the connection linked to the project
         /// </summary>
-        public readonly int? ProjectId;
+        public readonly Outputs.GetProjectProjectConnectionResult ProjectConnection;
         /// <summary>
-        /// ID of the repository associated with the project
+        /// Details for the repository linked to the project
         /// </summary>
-        public readonly int RepositoryId;
+        public readonly Outputs.GetProjectRepositoryResult Repository;
+        /// <summary>
+        /// Semantic layer config ID
+        /// </summary>
+        public readonly int SemanticLayerConfigId;
         /// <summary>
         /// Project state should be 1 = active, as 2 = deleted
         /// </summary>
         public readonly int State;
+        /// <summary>
+        /// The type of dbt project (default or hybrid)
+        /// </summary>
+        public readonly int Type;
+        /// <summary>
+        /// When the project was last updated
+        /// </summary>
+        public readonly string UpdatedAt;
 
         [OutputConstructor]
         private GetProjectResult(
-            int connectionId,
+            string createdAt,
+
+            string dbtProjectSubdirectory,
 
             string description,
 
@@ -206,25 +272,35 @@ namespace Pulumi.DbtCloud
 
             int freshnessJobId,
 
-            string id,
+            int? id,
 
             string name,
 
-            int? projectId,
+            Outputs.GetProjectProjectConnectionResult projectConnection,
 
-            int repositoryId,
+            Outputs.GetProjectRepositoryResult repository,
 
-            int state)
+            int semanticLayerConfigId,
+
+            int state,
+
+            int type,
+
+            string updatedAt)
         {
-            ConnectionId = connectionId;
+            CreatedAt = createdAt;
+            DbtProjectSubdirectory = dbtProjectSubdirectory;
             Description = description;
             DocsJobId = docsJobId;
             FreshnessJobId = freshnessJobId;
             Id = id;
             Name = name;
-            ProjectId = projectId;
-            RepositoryId = repositoryId;
+            ProjectConnection = projectConnection;
+            Repository = repository;
+            SemanticLayerConfigId = semanticLayerConfigId;
             State = state;
+            Type = type;
+            UpdatedAt = updatedAt;
         }
     }
 }

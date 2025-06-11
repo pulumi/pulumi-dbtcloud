@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Environment variable job override resource
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -65,7 +67,13 @@ namespace Pulumi.DbtCloud
     public partial class EnvironmentVariableJobOverride : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the environment variable job override
+        /// The account id
+        /// </summary>
+        [Output("accountId")]
+        public Output<int> AccountId { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal ID of this resource. Contains the project ID and the environment variable job override ID.
         /// </summary>
         [Output("environmentVariableJobOverrideId")]
         public Output<int> EnvironmentVariableJobOverrideId { get; private set; } = null!;
@@ -83,7 +91,7 @@ namespace Pulumi.DbtCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The project ID for which the environment variable is being overridden
+        /// Project ID to create the environment variable job override in
         /// </summary>
         [Output("projectId")]
         public Output<int> ProjectId { get; private set; } = null!;
@@ -154,7 +162,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The project ID for which the environment variable is being overridden
+        /// Project ID to create the environment variable job override in
         /// </summary>
         [Input("projectId", required: true)]
         public Input<int> ProjectId { get; set; } = null!;
@@ -174,7 +182,13 @@ namespace Pulumi.DbtCloud
     public sealed class EnvironmentVariableJobOverrideState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the environment variable job override
+        /// The account id
+        /// </summary>
+        [Input("accountId")]
+        public Input<int>? AccountId { get; set; }
+
+        /// <summary>
+        /// The internal ID of this resource. Contains the project ID and the environment variable job override ID.
         /// </summary>
         [Input("environmentVariableJobOverrideId")]
         public Input<int>? EnvironmentVariableJobOverrideId { get; set; }
@@ -192,7 +206,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The project ID for which the environment variable is being overridden
+        /// Project ID to create the environment variable job override in
         /// </summary>
         [Input("projectId")]
         public Input<int>? ProjectId { get; set; }

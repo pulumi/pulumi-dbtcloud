@@ -18,21 +18,6 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
     public static final DatabricksCredentialArgs Empty = new DatabricksCredentialArgs();
 
     /**
-     * Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     * 
-     */
-    @Import(name="adapterId")
-    private @Nullable Output<Integer> adapterId;
-
-    /**
-     * @return Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     * 
-     */
-    public Optional<Output<Integer>> adapterId() {
-        return Optional.ofNullable(this.adapterId);
-    }
-
-    /**
      * The type of the adapter (databricks or spark)
      * 
      */
@@ -133,7 +118,6 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
     private DatabricksCredentialArgs() {}
 
     private DatabricksCredentialArgs(DatabricksCredentialArgs $) {
-        this.adapterId = $.adapterId;
         this.adapterType = $.adapterType;
         this.catalog = $.catalog;
         this.projectId = $.projectId;
@@ -158,27 +142,6 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
 
         public Builder(DatabricksCredentialArgs defaults) {
             $ = new DatabricksCredentialArgs(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @param adapterId Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder adapterId(@Nullable Output<Integer> adapterId) {
-            $.adapterId = adapterId;
-            return this;
-        }
-
-        /**
-         * @param adapterId Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder adapterId(Integer adapterId) {
-            return adapterId(Output.of(adapterId));
         }
 
         /**

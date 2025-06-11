@@ -96,7 +96,7 @@ class _BigQueryCredentialState:
                  project_id: Optional[pulumi.Input[builtins.int]] = None):
         """
         Input properties used for looking up and filtering BigQueryCredential resources.
-        :param pulumi.Input[builtins.int] credential_id: The system BigQuery credential ID
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[builtins.str] dataset: Default dataset name
         :param pulumi.Input[builtins.bool] is_active: Whether the BigQuery credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use
@@ -117,7 +117,7 @@ class _BigQueryCredentialState:
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The system BigQuery credential ID
+        The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
@@ -186,6 +186,8 @@ class BigQueryCredential(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  __props__=None):
         """
+        Bigquery credential resource
+
         ## Example Usage
 
         ```python
@@ -242,6 +244,8 @@ class BigQueryCredential(pulumi.CustomResource):
                  args: BigQueryCredentialArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Bigquery credential resource
+
         ## Example Usage
 
         ```python
@@ -345,7 +349,7 @@ class BigQueryCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] credential_id: The system BigQuery credential ID
+        :param pulumi.Input[builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[builtins.str] dataset: Default dataset name
         :param pulumi.Input[builtins.bool] is_active: Whether the BigQuery credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use
@@ -366,7 +370,7 @@ class BigQueryCredential(pulumi.CustomResource):
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> pulumi.Output[builtins.int]:
         """
-        The system BigQuery credential ID
+        The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
@@ -380,7 +384,7 @@ class BigQueryCredential(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def is_active(self) -> pulumi.Output[builtins.bool]:
         """
         Whether the BigQuery credential is active
         """

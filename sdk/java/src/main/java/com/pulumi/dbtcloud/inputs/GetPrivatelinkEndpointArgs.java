@@ -31,18 +31,33 @@ public final class GetPrivatelinkEndpointArgs extends com.pulumi.resources.Invok
     }
 
     /**
-     * The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      * 
      */
     @Import(name="privateLinkEndpointUrl")
     private @Nullable Output<String> privateLinkEndpointUrl;
 
     /**
-     * @return The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      * 
      */
     public Optional<Output<String>> privateLinkEndpointUrl() {
         return Optional.ofNullable(this.privateLinkEndpointUrl);
+    }
+
+    /**
+     * Type of the PrivateLink Endpoint
+     * 
+     */
+    @Import(name="type")
+    private @Nullable Output<String> type;
+
+    /**
+     * @return Type of the PrivateLink Endpoint
+     * 
+     */
+    public Optional<Output<String>> type() {
+        return Optional.ofNullable(this.type);
     }
 
     private GetPrivatelinkEndpointArgs() {}
@@ -50,6 +65,7 @@ public final class GetPrivatelinkEndpointArgs extends com.pulumi.resources.Invok
     private GetPrivatelinkEndpointArgs(GetPrivatelinkEndpointArgs $) {
         this.name = $.name;
         this.privateLinkEndpointUrl = $.privateLinkEndpointUrl;
+        this.type = $.type;
     }
 
     public static Builder builder() {
@@ -92,7 +108,7 @@ public final class GetPrivatelinkEndpointArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param privateLinkEndpointUrl The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+         * @param privateLinkEndpointUrl URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
          * 
          * @return builder
          * 
@@ -103,13 +119,34 @@ public final class GetPrivatelinkEndpointArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param privateLinkEndpointUrl The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+         * @param privateLinkEndpointUrl URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
          * 
          * @return builder
          * 
          */
         public Builder privateLinkEndpointUrl(String privateLinkEndpointUrl) {
             return privateLinkEndpointUrl(Output.of(privateLinkEndpointUrl));
+        }
+
+        /**
+         * @param type Type of the PrivateLink Endpoint
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(@Nullable Output<String> type) {
+            $.type = type;
+            return this;
+        }
+
+        /**
+         * @param type Type of the PrivateLink Endpoint
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(String type) {
+            return type(Output.of(type));
         }
 
         public GetPrivatelinkEndpointArgs build() {

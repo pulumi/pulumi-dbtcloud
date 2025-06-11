@@ -45,7 +45,7 @@ class GetEnvironmentVariableResult:
     @pulumi.getter(name="environmentValues")
     def environment_values(self) -> Mapping[str, builtins.str]:
         """
-        Map containing the environment variables
+        Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         """
         return pulumi.get(self, "environment_values")
 
@@ -53,7 +53,7 @@ class GetEnvironmentVariableResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource. Contains the project ID and the environment variable ID.
         """
         return pulumi.get(self, "id")
 
@@ -61,7 +61,7 @@ class GetEnvironmentVariableResult:
     @pulumi.getter
     def name(self) -> builtins.str:
         """
-        Name for the variable
+        Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
         """
         return pulumi.get(self, "name")
 
@@ -69,7 +69,7 @@ class GetEnvironmentVariableResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> builtins.int:
         """
-        Project ID the variable exists in
+        Project ID to create the environment variable in
         """
         return pulumi.get(self, "project_id")
 
@@ -90,10 +90,21 @@ def get_environment_variable(name: Optional[builtins.str] = None,
                              project_id: Optional[builtins.int] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvironmentVariableResult:
     """
-    Use this data source to access information about an existing resource.
+    Environment variable credential data source
 
-    :param builtins.str name: Name for the variable
-    :param builtins.int project_id: Project ID the variable exists in
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_dbtcloud as dbtcloud
+
+    my_var = dbtcloud.get_environment_variable(project_id=70403103985068,
+        name="DBT_MY_PARTIAL_VAR")
+    ```
+
+
+    :param builtins.str name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
+    :param builtins.int project_id: Project ID to create the environment variable in
     """
     __args__ = dict()
     __args__['name'] = name
@@ -110,10 +121,21 @@ def get_environment_variable_output(name: Optional[pulumi.Input[builtins.str]] =
                                     project_id: Optional[pulumi.Input[builtins.int]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvironmentVariableResult]:
     """
-    Use this data source to access information about an existing resource.
+    Environment variable credential data source
 
-    :param builtins.str name: Name for the variable
-    :param builtins.int project_id: Project ID the variable exists in
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_dbtcloud as dbtcloud
+
+    my_var = dbtcloud.get_environment_variable(project_id=70403103985068,
+        name="DBT_MY_PARTIAL_VAR")
+    ```
+
+
+    :param builtins.str name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
+    :param builtins.int project_id: Project ID to create the environment variable in
     """
     __args__ = dict()
     __args__['name'] = name

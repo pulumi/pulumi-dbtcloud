@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Bigquery credential resource
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -64,7 +66,7 @@ namespace Pulumi.DbtCloud
     public partial class BigQueryCredential : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The system BigQuery credential ID
+        /// The internal credential ID
         /// </summary>
         [Output("credentialId")]
         public Output<int> CredentialId { get; private set; } = null!;
@@ -79,7 +81,7 @@ namespace Pulumi.DbtCloud
         /// Whether the BigQuery credential is active
         /// </summary>
         [Output("isActive")]
-        public Output<bool?> IsActive { get; private set; } = null!;
+        public Output<bool> IsActive { get; private set; } = null!;
 
         /// <summary>
         /// Number of threads to use
@@ -173,7 +175,7 @@ namespace Pulumi.DbtCloud
     public sealed class BigQueryCredentialState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The system BigQuery credential ID
+        /// The internal credential ID
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }

@@ -11,150 +11,15 @@ import com.pulumi.dbtcloud.JobArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.JobState;
 import com.pulumi.dbtcloud.outputs.JobJobCompletionTriggerCondition;
+import com.pulumi.dbtcloud.outputs.JobTriggers;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * &gt; In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
- * &lt;br/&gt;
- * &lt;br/&gt;
- * Those improvements include modifications to deferral which was historically set at the job level and will now be set at the environment level.
- * Deferral can still be set to &#34;self&#34; by setting `self_deferring` to `true` but with the new approach, deferral to other runs need to be done with `deferring_environment_id` instead of `deferring_job_id`.
- * 
- * &gt; New with 0.3.1, `triggers` now accepts a `on_merge` value to trigger jobs when code is merged in git. If `on_merge` is `true` all other triggers need to be `false`.
- * &lt;br/&gt;
- * &lt;br/&gt;
- * For now, it is not a mandatory field, but it will be in a future version. Please add `on_merge` in your config or modules.
- * 
- * ## Example Usage
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.Job;
- * import com.pulumi.dbtcloud.JobArgs;
- * import com.pulumi.dbtcloud.inputs.JobJobCompletionTriggerConditionArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // a job that has github_webhook and git_provider_webhook 
- *         // set to false will be categorized as a "Deploy Job"
- *         var dailyJob = new Job("dailyJob", JobArgs.builder()
- *             .environmentId(prodEnvironment.environmentId())
- *             .executeSteps("dbt build")
- *             .generateDocs(true)
- *             .isActive(true)
- *             .name("Daily job")
- *             .numThreads(64)
- *             .projectId(dbtProject.id())
- *             .runGenerateSources(true)
- *             .targetName("default")
- *             .triggers(Map.ofEntries(
- *                 Map.entry("github_webhook", false),
- *                 Map.entry("git_provider_webhook", false),
- *                 Map.entry("schedule", true),
- *                 Map.entry("on_merge", false)
- *             ))
- *             .scheduleDays(            
- *                 0,
- *                 1,
- *                 2,
- *                 3,
- *                 4,
- *                 5,
- *                 6)
- *             .scheduleType("days_of_week")
- *             .scheduleHours(0)
- *             .build());
- * 
- *         // a job that has github_webhook and git_provider_webhook set 
- *         // to true will be categorized as a "Continuous Integration Job"
- *         var ciJob = new Job("ciJob", JobArgs.builder()
- *             .environmentId(ciEnvironment.environmentId())
- *             .executeSteps("dbt build -s state:modified+ --fail-fast")
- *             .generateDocs(false)
- *             .deferringEnvironmentId(prodEnvironment.environmentId())
- *             .name("CI Job")
- *             .numThreads(32)
- *             .projectId(dbtProject.id())
- *             .runGenerateSources(false)
- *             .runLint(true)
- *             .errorsOnLintFailure(true)
- *             .triggers(Map.ofEntries(
- *                 Map.entry("github_webhook", true),
- *                 Map.entry("git_provider_webhook", true),
- *                 Map.entry("schedule", false),
- *                 Map.entry("on_merge", false)
- *             ))
- *             .scheduleDays(            
- *                 0,
- *                 1,
- *                 2,
- *                 3,
- *                 4,
- *                 5,
- *                 6)
- *             .scheduleType("days_of_week")
- *             .build());
- * 
- *         // a job that is set to be triggered after another job finishes
- *         // this is sometimes referred as 'job chaining'
- *         var downstreamJob = new Job("downstreamJob", JobArgs.builder()
- *             .environmentId(project2ProdEnvironment.environmentId())
- *             .executeSteps("dbt build -s +my_model")
- *             .generateDocs(true)
- *             .name("Downstream job in project 2")
- *             .numThreads(32)
- *             .projectId(dbtProject2.id())
- *             .runGenerateSources(true)
- *             .triggers(Map.ofEntries(
- *                 Map.entry("github_webhook", false),
- *                 Map.entry("git_provider_webhook", false),
- *                 Map.entry("schedule", false),
- *                 Map.entry("on_merge", false)
- *             ))
- *             .scheduleDays(            
- *                 0,
- *                 1,
- *                 2,
- *                 3,
- *                 4,
- *                 5,
- *                 6)
- *             .scheduleType("days_of_week")
- *             .jobCompletionTriggerCondition(JobJobCompletionTriggerConditionArgs.builder()
- *                 .jobId(dailyJob.id())
- *                 .projectId(dbtProject.id())
- *                 .statuses("success")
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
@@ -193,14 +58,14 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="compareChangesFlags", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> compareChangesFlags;
+    private Output<String> compareChangesFlags;
 
     /**
      * @return The model selector for checking changes in the compare changes Advanced CI feature
      * 
      */
-    public Output<Optional<String>> compareChangesFlags() {
-        return Codegen.optional(this.compareChangesFlags);
+    public Output<String> compareChangesFlags() {
+        return this.compareChangesFlags;
     }
     /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
@@ -249,14 +114,14 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> description;
+    private Output<String> description;
 
     /**
      * @return Description for the job
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
     }
     /**
      * Environment ID to create the job in
@@ -277,14 +142,14 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="errorsOnLintFailure", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> errorsOnLintFailure;
+    private Output<Boolean> errorsOnLintFailure;
 
     /**
      * @return Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
      * 
      */
-    public Output<Optional<Boolean>> errorsOnLintFailure() {
-        return Codegen.optional(this.errorsOnLintFailure);
+    public Output<Boolean> errorsOnLintFailure() {
+        return this.errorsOnLintFailure;
     }
     /**
      * List of commands to execute for the job
@@ -305,42 +170,56 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="generateDocs", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> generateDocs;
+    private Output<Boolean> generateDocs;
 
     /**
      * @return Flag for whether the job should generate documentation
      * 
      */
-    public Output<Optional<Boolean>> generateDocs() {
-        return Codegen.optional(this.generateDocs);
+    public Output<Boolean> generateDocs() {
+        return this.generateDocs;
     }
     /**
      * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
      * 
      */
     @Export(name="isActive", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> isActive;
+    private Output<Boolean> isActive;
 
     /**
      * @return Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
      * 
      */
-    public Output<Optional<Boolean>> isActive() {
-        return Codegen.optional(this.isActive);
+    public Output<Boolean> isActive() {
+        return this.isActive;
     }
     /**
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
      * 
      */
-    @Export(name="jobCompletionTriggerCondition", refs={JobJobCompletionTriggerCondition.class}, tree="[0]")
-    private Output</* @Nullable */ JobJobCompletionTriggerCondition> jobCompletionTriggerCondition;
+    @Export(name="jobCompletionTriggerConditions", refs={List.class,JobJobCompletionTriggerCondition.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<JobJobCompletionTriggerCondition>> jobCompletionTriggerConditions;
 
     /**
      * @return Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
      * 
      */
-    public Output<Optional<JobJobCompletionTriggerCondition>> jobCompletionTriggerCondition() {
-        return Codegen.optional(this.jobCompletionTriggerCondition);
+    public Output<Optional<List<JobJobCompletionTriggerCondition>>> jobCompletionTriggerConditions() {
+        return Codegen.optional(this.jobCompletionTriggerConditions);
+    }
+    /**
+     * Job identifier
+     * 
+     */
+    @Export(name="jobId", refs={Integer.class}, tree="[0]")
+    private Output<Integer> jobId;
+
+    /**
+     * @return Job identifier
+     * 
+     */
+    public Output<Integer> jobId() {
+        return this.jobId;
     }
     /**
      * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
@@ -375,14 +254,14 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="numThreads", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> numThreads;
+    private Output<Integer> numThreads;
 
     /**
      * @return Number of threads to use in the job
      * 
      */
-    public Output<Optional<Integer>> numThreads() {
-        return Codegen.optional(this.numThreads);
+    public Output<Integer> numThreads() {
+        return this.numThreads;
     }
     /**
      * Project ID to create the job in
@@ -403,42 +282,42 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="runCompareChanges", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> runCompareChanges;
+    private Output<Boolean> runCompareChanges;
 
     /**
      * @return Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
      * 
      */
-    public Output<Optional<Boolean>> runCompareChanges() {
-        return Codegen.optional(this.runCompareChanges);
+    public Output<Boolean> runCompareChanges() {
+        return this.runCompareChanges;
     }
     /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      * 
      */
     @Export(name="runGenerateSources", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> runGenerateSources;
+    private Output<Boolean> runGenerateSources;
 
     /**
      * @return Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      * 
      */
-    public Output<Optional<Boolean>> runGenerateSources() {
-        return Codegen.optional(this.runGenerateSources);
+    public Output<Boolean> runGenerateSources() {
+        return this.runGenerateSources;
     }
     /**
      * Whether the CI job should lint SQL changes. Defaults to `false`.
      * 
      */
     @Export(name="runLint", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> runLint;
+    private Output<Boolean> runLint;
 
     /**
      * @return Whether the CI job should lint SQL changes. Defaults to `false`.
      * 
      */
-    public Output<Optional<Boolean>> runLint() {
-        return Codegen.optional(this.runLint);
+    public Output<Boolean> runLint() {
+        return this.runLint;
     }
     /**
      * Custom cron expression for schedule
@@ -487,83 +366,87 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="scheduleInterval", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> scheduleInterval;
+    private Output<Integer> scheduleInterval;
 
     /**
      * @return Number of hours between job executions if running on a schedule
      * 
      */
-    public Output<Optional<Integer>> scheduleInterval() {
-        return Codegen.optional(this.scheduleInterval);
+    public Output<Integer> scheduleInterval() {
+        return this.scheduleInterval;
     }
     /**
-     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      * 
      */
     @Export(name="scheduleType", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> scheduleType;
+    private Output<String> scheduleType;
 
     /**
-     * @return Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+     * @return Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      * 
      */
-    public Output<Optional<String>> scheduleType() {
-        return Codegen.optional(this.scheduleType);
+    public Output<String> scheduleType() {
+        return this.scheduleType;
     }
     /**
      * Whether this job defers on a previous run of itself
      * 
      */
     @Export(name="selfDeferring", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> selfDeferring;
+    private Output<Boolean> selfDeferring;
 
     /**
      * @return Whether this job defers on a previous run of itself
      * 
      */
-    public Output<Optional<Boolean>> selfDeferring() {
-        return Codegen.optional(this.selfDeferring);
+    public Output<Boolean> selfDeferring() {
+        return this.selfDeferring;
     }
     /**
      * Target name for the dbt profile
      * 
      */
     @Export(name="targetName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> targetName;
+    private Output<String> targetName;
 
     /**
      * @return Target name for the dbt profile
      * 
      */
-    public Output<Optional<String>> targetName() {
-        return Codegen.optional(this.targetName);
+    public Output<String> targetName() {
+        return this.targetName;
     }
     /**
-     * Number of seconds to allow the job to run before timing out
+     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * 
+     * @deprecated
+     * Moved to execution.timeout_seconds
      * 
      */
+    @Deprecated /* Moved to execution.timeout_seconds */
     @Export(name="timeoutSeconds", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> timeoutSeconds;
+    private Output<Integer> timeoutSeconds;
 
     /**
-     * @return Number of seconds to allow the job to run before timing out
+     * @return [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
      * 
      */
-    public Output<Optional<Integer>> timeoutSeconds() {
-        return Codegen.optional(this.timeoutSeconds);
+    public Output<Integer> timeoutSeconds() {
+        return this.timeoutSeconds;
     }
     /**
      * Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
-    @Export(name="triggers", refs={Map.class,String.class,Boolean.class}, tree="[0,1,2]")
-    private Output<Map<String,Boolean>> triggers;
+    @Export(name="triggers", refs={JobTriggers.class}, tree="[0]")
+    private Output<JobTriggers> triggers;
 
     /**
      * @return Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
-    public Output<Map<String,Boolean>> triggers() {
+    public Output<JobTriggers> triggers() {
         return this.triggers;
     }
     /**
@@ -571,14 +454,14 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="triggersOnDraftPr", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> triggersOnDraftPr;
+    private Output<Boolean> triggersOnDraftPr;
 
     /**
      * @return Whether the CI job should be automatically triggered on draft PRs
      * 
      */
-    public Output<Optional<Boolean>> triggersOnDraftPr() {
-        return Codegen.optional(this.triggersOnDraftPr);
+    public Output<Boolean> triggersOnDraftPr() {
+        return this.triggersOnDraftPr;
     }
 
     /**

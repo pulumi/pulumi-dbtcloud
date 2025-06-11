@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     public static class GetExtendedAttributes
     {
         /// <summary>
+        /// Extended attributes data source
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -35,6 +37,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetExtendedAttributesResult>("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", args ?? new GetExtendedAttributesArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Extended attributes data source
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -58,6 +62,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.Invoke<GetExtendedAttributesResult>("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", args ?? new GetExtendedAttributesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Extended attributes data source
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -85,13 +91,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetExtendedAttributesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the extended attributes
+        /// Extended attributes ID
         /// </summary>
         [Input("extendedAttributesId", required: true)]
         public int ExtendedAttributesId { get; set; }
 
         /// <summary>
-        /// Project ID the extended attributes refers to
+        /// Project ID
         /// </summary>
         [Input("projectId", required: true)]
         public int ProjectId { get; set; }
@@ -105,13 +111,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetExtendedAttributesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the extended attributes
+        /// Extended attributes ID
         /// </summary>
         [Input("extendedAttributesId", required: true)]
         public Input<int> ExtendedAttributesId { get; set; } = null!;
 
         /// <summary>
-        /// Project ID the extended attributes refers to
+        /// Project ID
         /// </summary>
         [Input("projectId", required: true)]
         public Input<int> ProjectId { get; set; } = null!;
@@ -127,19 +133,19 @@ namespace Pulumi.DbtCloud
     public sealed class GetExtendedAttributesResult
     {
         /// <summary>
-        /// A JSON string listing the extended attributes mapping
+        /// Extended attributes
         /// </summary>
         public readonly string ExtendedAttributes;
         /// <summary>
-        /// ID of the extended attributes
+        /// Extended attributes ID
         /// </summary>
         public readonly int ExtendedAttributesId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource. Contains the project ID and the credential ID.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Project ID the extended attributes refers to
+        /// Project ID
         /// </summary>
         public readonly int ProjectId;
         /// <summary>

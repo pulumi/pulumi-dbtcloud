@@ -11,12 +11,21 @@ namespace Pulumi.DbtCloud
 {
     public static class GetDatabricksCredential
     {
+        /// <summary>
+        /// Databricks credential data source
+        /// </summary>
         public static Task<GetDatabricksCredentialResult> InvokeAsync(GetDatabricksCredentialArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabricksCredentialResult>("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", args ?? new GetDatabricksCredentialArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Databricks credential data source
+        /// </summary>
         public static Output<GetDatabricksCredentialResult> Invoke(GetDatabricksCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabricksCredentialResult>("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", args ?? new GetDatabricksCredentialInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Databricks credential data source
+        /// </summary>
         public static Output<GetDatabricksCredentialResult> Invoke(GetDatabricksCredentialInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabricksCredentialResult>("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", args ?? new GetDatabricksCredentialInvokeArgs(), options.WithDefaults());
     }
@@ -67,9 +76,9 @@ namespace Pulumi.DbtCloud
     public sealed class GetDatabricksCredentialResult
     {
         /// <summary>
-        /// Databricks adapter ID for the credential
+        /// The type of the adapter (databricks or spark)
         /// </summary>
-        public readonly int AdapterId;
+        public readonly string AdapterType;
         /// <summary>
         /// The catalog where to create models
         /// </summary>
@@ -79,11 +88,11 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int CredentialId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource. Contains the project ID and the credential ID.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Number of threads to use
+        /// The number of threads to use
         /// </summary>
         public readonly int NumThreads;
         /// <summary>
@@ -101,7 +110,7 @@ namespace Pulumi.DbtCloud
 
         [OutputConstructor]
         private GetDatabricksCredentialResult(
-            int adapterId,
+            string adapterType,
 
             string catalog,
 
@@ -117,7 +126,7 @@ namespace Pulumi.DbtCloud
 
             string targetName)
         {
-            AdapterId = adapterId;
+            AdapterType = adapterType;
             Catalog = catalog;
             CredentialId = credentialId;
             Id = id;

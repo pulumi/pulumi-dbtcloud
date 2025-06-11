@@ -14,6 +14,7 @@ import com.pulumi.dbtcloud.outputs.GetGlobalConnectionRedshift;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionSnowflake;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionStarburst;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionSynapse;
+import com.pulumi.dbtcloud.outputs.GetGlobalConnectionTeradata;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -94,6 +95,11 @@ public final class GetGlobalConnectionResult {
      * 
      */
     private GetGlobalConnectionSynapse synapse;
+    /**
+     * @return Teradata connection configuration.
+     * 
+     */
+    private GetGlobalConnectionTeradata teradata;
 
     private GetGlobalConnectionResult() {}
     /**
@@ -200,6 +206,13 @@ public final class GetGlobalConnectionResult {
     public GetGlobalConnectionSynapse synapse() {
         return this.synapse;
     }
+    /**
+     * @return Teradata connection configuration.
+     * 
+     */
+    public GetGlobalConnectionTeradata teradata() {
+        return this.teradata;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -226,6 +239,7 @@ public final class GetGlobalConnectionResult {
         private GetGlobalConnectionSnowflake snowflake;
         private GetGlobalConnectionStarburst starburst;
         private GetGlobalConnectionSynapse synapse;
+        private GetGlobalConnectionTeradata teradata;
         public Builder() {}
         public Builder(GetGlobalConnectionResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -245,6 +259,7 @@ public final class GetGlobalConnectionResult {
     	      this.snowflake = defaults.snowflake;
     	      this.starburst = defaults.starburst;
     	      this.synapse = defaults.synapse;
+    	      this.teradata = defaults.teradata;
         }
 
         @CustomType.Setter
@@ -375,6 +390,14 @@ public final class GetGlobalConnectionResult {
             this.synapse = synapse;
             return this;
         }
+        @CustomType.Setter
+        public Builder teradata(GetGlobalConnectionTeradata teradata) {
+            if (teradata == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionResult", "teradata");
+            }
+            this.teradata = teradata;
+            return this;
+        }
         public GetGlobalConnectionResult build() {
             final var _resultValue = new GetGlobalConnectionResult();
             _resultValue.adapterVersion = adapterVersion;
@@ -393,6 +416,7 @@ public final class GetGlobalConnectionResult {
             _resultValue.snowflake = snowflake;
             _resultValue.starburst = starburst;
             _resultValue.synapse = synapse;
+            _resultValue.teradata = teradata;
             return _resultValue;
         }
     }

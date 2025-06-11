@@ -30,18 +30,33 @@ public final class GetPrivatelinkEndpointPlainArgs extends com.pulumi.resources.
     }
 
     /**
-     * The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      * 
      */
     @Import(name="privateLinkEndpointUrl")
     private @Nullable String privateLinkEndpointUrl;
 
     /**
-     * @return The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      * 
      */
     public Optional<String> privateLinkEndpointUrl() {
         return Optional.ofNullable(this.privateLinkEndpointUrl);
+    }
+
+    /**
+     * Type of the PrivateLink Endpoint
+     * 
+     */
+    @Import(name="type")
+    private @Nullable String type;
+
+    /**
+     * @return Type of the PrivateLink Endpoint
+     * 
+     */
+    public Optional<String> type() {
+        return Optional.ofNullable(this.type);
     }
 
     private GetPrivatelinkEndpointPlainArgs() {}
@@ -49,6 +64,7 @@ public final class GetPrivatelinkEndpointPlainArgs extends com.pulumi.resources.
     private GetPrivatelinkEndpointPlainArgs(GetPrivatelinkEndpointPlainArgs $) {
         this.name = $.name;
         this.privateLinkEndpointUrl = $.privateLinkEndpointUrl;
+        this.type = $.type;
     }
 
     public static Builder builder() {
@@ -81,13 +97,24 @@ public final class GetPrivatelinkEndpointPlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param privateLinkEndpointUrl The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+         * @param privateLinkEndpointUrl URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
          * 
          * @return builder
          * 
          */
         public Builder privateLinkEndpointUrl(@Nullable String privateLinkEndpointUrl) {
             $.privateLinkEndpointUrl = privateLinkEndpointUrl;
+            return this;
+        }
+
+        /**
+         * @param type Type of the PrivateLink Endpoint
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(@Nullable String type) {
+            $.type = type;
             return this;
         }
 

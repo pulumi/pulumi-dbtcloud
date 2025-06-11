@@ -19,10 +19,14 @@ type AccountFeatures struct {
 
 	// Whether advanced CI is enabled.
 	AdvancedCi pulumi.BoolOutput `pulumi:"advancedCi"`
+	// Whether AI features are enabled.
+	AiFeatures pulumi.BoolOutput `pulumi:"aiFeatures"`
 	// Whether partial parsing is enabled.
 	PartialParsing pulumi.BoolOutput `pulumi:"partialParsing"`
 	// Whether repository caching is enabled.
 	RepoCaching pulumi.BoolOutput `pulumi:"repoCaching"`
+	// Whether warehouse cost visibility is enabled.
+	WarehouseCostVisibility pulumi.BoolOutput `pulumi:"warehouseCostVisibility"`
 }
 
 // NewAccountFeatures registers a new resource with the given unique name, arguments, and options.
@@ -57,19 +61,27 @@ func GetAccountFeatures(ctx *pulumi.Context,
 type accountFeaturesState struct {
 	// Whether advanced CI is enabled.
 	AdvancedCi *bool `pulumi:"advancedCi"`
+	// Whether AI features are enabled.
+	AiFeatures *bool `pulumi:"aiFeatures"`
 	// Whether partial parsing is enabled.
 	PartialParsing *bool `pulumi:"partialParsing"`
 	// Whether repository caching is enabled.
 	RepoCaching *bool `pulumi:"repoCaching"`
+	// Whether warehouse cost visibility is enabled.
+	WarehouseCostVisibility *bool `pulumi:"warehouseCostVisibility"`
 }
 
 type AccountFeaturesState struct {
 	// Whether advanced CI is enabled.
 	AdvancedCi pulumi.BoolPtrInput
+	// Whether AI features are enabled.
+	AiFeatures pulumi.BoolPtrInput
 	// Whether partial parsing is enabled.
 	PartialParsing pulumi.BoolPtrInput
 	// Whether repository caching is enabled.
 	RepoCaching pulumi.BoolPtrInput
+	// Whether warehouse cost visibility is enabled.
+	WarehouseCostVisibility pulumi.BoolPtrInput
 }
 
 func (AccountFeaturesState) ElementType() reflect.Type {
@@ -79,20 +91,28 @@ func (AccountFeaturesState) ElementType() reflect.Type {
 type accountFeaturesArgs struct {
 	// Whether advanced CI is enabled.
 	AdvancedCi *bool `pulumi:"advancedCi"`
+	// Whether AI features are enabled.
+	AiFeatures *bool `pulumi:"aiFeatures"`
 	// Whether partial parsing is enabled.
 	PartialParsing *bool `pulumi:"partialParsing"`
 	// Whether repository caching is enabled.
 	RepoCaching *bool `pulumi:"repoCaching"`
+	// Whether warehouse cost visibility is enabled.
+	WarehouseCostVisibility *bool `pulumi:"warehouseCostVisibility"`
 }
 
 // The set of arguments for constructing a AccountFeatures resource.
 type AccountFeaturesArgs struct {
 	// Whether advanced CI is enabled.
 	AdvancedCi pulumi.BoolPtrInput
+	// Whether AI features are enabled.
+	AiFeatures pulumi.BoolPtrInput
 	// Whether partial parsing is enabled.
 	PartialParsing pulumi.BoolPtrInput
 	// Whether repository caching is enabled.
 	RepoCaching pulumi.BoolPtrInput
+	// Whether warehouse cost visibility is enabled.
+	WarehouseCostVisibility pulumi.BoolPtrInput
 }
 
 func (AccountFeaturesArgs) ElementType() reflect.Type {
@@ -187,6 +207,11 @@ func (o AccountFeaturesOutput) AdvancedCi() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.AdvancedCi }).(pulumi.BoolOutput)
 }
 
+// Whether AI features are enabled.
+func (o AccountFeaturesOutput) AiFeatures() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.AiFeatures }).(pulumi.BoolOutput)
+}
+
 // Whether partial parsing is enabled.
 func (o AccountFeaturesOutput) PartialParsing() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.PartialParsing }).(pulumi.BoolOutput)
@@ -195,6 +220,11 @@ func (o AccountFeaturesOutput) PartialParsing() pulumi.BoolOutput {
 // Whether repository caching is enabled.
 func (o AccountFeaturesOutput) RepoCaching() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.RepoCaching }).(pulumi.BoolOutput)
+}
+
+// Whether warehouse cost visibility is enabled.
+func (o AccountFeaturesOutput) WarehouseCostVisibility() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.WarehouseCostVisibility }).(pulumi.BoolOutput)
 }
 
 type AccountFeaturesArrayOutput struct{ *pulumi.OutputState }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows you to link a dbt Cloud project to a git repository.
+ * Manages a dbt Cloud project repository.
  *
  * ## Example Usage
  *

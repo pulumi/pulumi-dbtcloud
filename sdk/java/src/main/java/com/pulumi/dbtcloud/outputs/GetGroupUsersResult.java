@@ -19,7 +19,7 @@ public final class GetGroupUsersResult {
      */
     private Integer groupId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the credential ID.
      * 
      */
     private String id;
@@ -38,7 +38,7 @@ public final class GetGroupUsersResult {
         return this.groupId;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the credential ID.
      * 
      */
     public String id() {

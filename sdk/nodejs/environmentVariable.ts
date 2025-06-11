@@ -100,7 +100,7 @@ export class EnvironmentVariable extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Project for the variable to be created in
+     * Project ID to create the environment variable in
      */
     public readonly projectId!: pulumi.Output<number>;
 
@@ -150,7 +150,7 @@ export interface EnvironmentVariableState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Project for the variable to be created in
+     * Project ID to create the environment variable in
      */
     projectId?: pulumi.Input<number>;
 }
@@ -168,7 +168,7 @@ export interface EnvironmentVariableArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Project for the variable to be created in
+     * Project ID to create the environment variable in
      */
     projectId: pulumi.Input<number>;
 }

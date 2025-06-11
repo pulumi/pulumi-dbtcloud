@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Retrieve webhook details
+ */
 export function getWebhook(args: GetWebhookArgs, opts?: pulumi.InvokeOptions): Promise<GetWebhookResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getWebhook:getWebhook", {
@@ -16,7 +19,9 @@ export function getWebhook(args: GetWebhookArgs, opts?: pulumi.InvokeOptions): P
  */
 export interface GetWebhookArgs {
     /**
-     * Webhooks ID
+     * Webhook's ID
+     *
+     * @deprecated Use `id` instead
      */
     webhookId: string;
 }
@@ -50,7 +55,7 @@ export interface GetWebhookResult {
      */
     readonly httpStatusCode: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Webhook's ID
      */
     readonly id: string;
     /**
@@ -62,10 +67,15 @@ export interface GetWebhookResult {
      */
     readonly name: string;
     /**
-     * Webhooks ID
+     * Webhook's ID
+     *
+     * @deprecated Use `id` instead
      */
     readonly webhookId: string;
 }
+/**
+ * Retrieve webhook details
+ */
 export function getWebhookOutput(args: GetWebhookOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWebhookResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getWebhook:getWebhook", {
@@ -78,7 +88,9 @@ export function getWebhookOutput(args: GetWebhookOutputArgs, opts?: pulumi.Invok
  */
 export interface GetWebhookOutputArgs {
     /**
-     * Webhooks ID
+     * Webhook's ID
+     *
+     * @deprecated Use `id` instead
      */
     webhookId: pulumi.Input<string>;
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
-    /// This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes)).&lt;br/&gt;&lt;br/&gt;In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
+    /// Extended attributes resource
     /// 
     /// ## Example Usage
     /// 
@@ -92,7 +92,7 @@ namespace Pulumi.DbtCloud
         public Output<string> ExtendedAttributes { get; private set; } = null!;
 
         /// <summary>
-        /// Extended Attributes ID
+        /// Extended attributes ID
         /// </summary>
         [Output("extendedAttributesId")]
         public Output<int> ExtendedAttributesId { get; private set; } = null!;
@@ -104,10 +104,10 @@ namespace Pulumi.DbtCloud
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Extended Attributes state (1 is active, 2 is inactive)
+        /// The state of the extended attributes (1 = active, 2 = inactive)
         /// </summary>
         [Output("state")]
-        public Output<int?> State { get; private set; } = null!;
+        public Output<int> State { get; private set; } = null!;
 
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Pulumi.DbtCloud
         public Input<int> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Extended Attributes state (1 is active, 2 is inactive)
+        /// The state of the extended attributes (1 = active, 2 = inactive)
         /// </summary>
         [Input("state")]
         public Input<int>? State { get; set; }
@@ -183,7 +183,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? ExtendedAttributes { get; set; }
 
         /// <summary>
-        /// Extended Attributes ID
+        /// Extended attributes ID
         /// </summary>
         [Input("extendedAttributesId")]
         public Input<int>? ExtendedAttributesId { get; set; }
@@ -195,7 +195,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? ProjectId { get; set; }
 
         /// <summary>
-        /// Extended Attributes state (1 is active, 2 is inactive)
+        /// The state of the extended attributes (1 = active, 2 = inactive)
         /// </summary>
         [Input("state")]
         public Input<int>? State { get; set; }

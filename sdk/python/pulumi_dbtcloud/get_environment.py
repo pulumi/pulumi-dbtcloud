@@ -71,16 +71,13 @@ class GetEnvironmentResult:
     @property
     @pulumi.getter(name="connectionId")
     def connection_id(self) -> builtins.int:
-        """
-        A connection ID (used with Global Connections)
-        """
         return pulumi.get(self, "connection_id")
 
     @property
     @pulumi.getter(name="credentialsId")
     def credentials_id(self) -> builtins.int:
         """
-        The project ID to which the environment belong
+        Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
         """
         return pulumi.get(self, "credentials_id")
 
@@ -152,7 +149,7 @@ class GetEnvironmentResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> builtins.int:
         """
-        The project ID to which the environment belong
+        The project ID to which the environment belongs
         """
         return pulumi.get(self, "project_id")
 
@@ -202,7 +199,7 @@ def get_environment(environment_id: Optional[builtins.int] = None,
 
 
     :param builtins.int environment_id: The ID of the environment
-    :param builtins.int project_id: The project ID to which the environment belong
+    :param builtins.int project_id: The project ID to which the environment belongs
     """
     __args__ = dict()
     __args__['environmentId'] = environment_id
@@ -232,7 +229,7 @@ def get_environment_output(environment_id: Optional[pulumi.Input[builtins.int]] 
 
 
     :param builtins.int environment_id: The ID of the environment
-    :param builtins.int project_id: The project ID to which the environment belong
+    :param builtins.int project_id: The project ID to which the environment belongs
     """
     __args__ = dict()
     __args__['environmentId'] = environment_id

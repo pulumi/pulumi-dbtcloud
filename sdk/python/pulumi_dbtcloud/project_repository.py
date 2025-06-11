@@ -105,7 +105,7 @@ class ProjectRepository(pulumi.CustomResource):
                  repository_id: Optional[pulumi.Input[builtins.int]] = None,
                  __props__=None):
         """
-        This resource allows you to link a dbt Cloud project to a git repository.
+        Manages a dbt Cloud project repository.
 
         ## Example Usage
 
@@ -160,7 +160,7 @@ class ProjectRepository(pulumi.CustomResource):
                  args: ProjectRepositoryArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource allows you to link a dbt Cloud project to a git repository.
+        Manages a dbt Cloud project repository.
 
         ## Example Usage
 

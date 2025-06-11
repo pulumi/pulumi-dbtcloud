@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Returns a list of users assigned to a specific dbt Cloud group
+ * Databricks credential data source
  *
  * ## Example Usage
  *
@@ -46,7 +46,7 @@ export interface GetGroupUsersResult {
      */
     readonly groupId: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource. Contains the project ID and the credential ID.
      */
     readonly id: string;
     /**
@@ -55,7 +55,7 @@ export interface GetGroupUsersResult {
     readonly users: outputs.GetGroupUsersUser[];
 }
 /**
- * Returns a list of users assigned to a specific dbt Cloud group
+ * Databricks credential data source
  *
  * ## Example Usage
  *

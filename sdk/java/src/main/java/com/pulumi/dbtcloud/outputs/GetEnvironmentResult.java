@@ -12,13 +12,9 @@ import java.util.Objects;
 
 @CustomType
 public final class GetEnvironmentResult {
-    /**
-     * @return A connection ID (used with Global Connections)
-     * 
-     */
     private Integer connectionId;
     /**
-     * @return The project ID to which the environment belong
+     * @return Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user&#39;s credentials, but deployment environments will have this.
      * 
      */
     private Integer credentialsId;
@@ -63,7 +59,7 @@ public final class GetEnvironmentResult {
      */
     private String name;
     /**
-     * @return The project ID to which the environment belong
+     * @return The project ID to which the environment belongs
      * 
      */
     private Integer projectId;
@@ -79,15 +75,11 @@ public final class GetEnvironmentResult {
     private Boolean useCustomBranch;
 
     private GetEnvironmentResult() {}
-    /**
-     * @return A connection ID (used with Global Connections)
-     * 
-     */
     public Integer connectionId() {
         return this.connectionId;
     }
     /**
-     * @return The project ID to which the environment belong
+     * @return Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user&#39;s credentials, but deployment environments will have this.
      * 
      */
     public Integer credentialsId() {
@@ -150,7 +142,7 @@ public final class GetEnvironmentResult {
         return this.name;
     }
     /**
-     * @return The project ID to which the environment belong
+     * @return The project ID to which the environment belongs
      * 
      */
     public Integer projectId() {

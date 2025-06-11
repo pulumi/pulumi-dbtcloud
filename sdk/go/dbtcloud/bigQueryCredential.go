@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Bigquery credential resource
+//
 // ## Example Usage
 //
 // ```go
@@ -72,12 +74,12 @@ import (
 type BigQueryCredential struct {
 	pulumi.CustomResourceState
 
-	// The system BigQuery credential ID
+	// The internal credential ID
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// Default dataset name
 	Dataset pulumi.StringOutput `pulumi:"dataset"`
 	// Whether the BigQuery credential is active
-	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
+	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads pulumi.IntOutput `pulumi:"numThreads"`
 	// Project ID to create the BigQuery credential in
@@ -123,7 +125,7 @@ func GetBigQueryCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BigQueryCredential resources.
 type bigQueryCredentialState struct {
-	// The system BigQuery credential ID
+	// The internal credential ID
 	CredentialId *int `pulumi:"credentialId"`
 	// Default dataset name
 	Dataset *string `pulumi:"dataset"`
@@ -136,7 +138,7 @@ type bigQueryCredentialState struct {
 }
 
 type BigQueryCredentialState struct {
-	// The system BigQuery credential ID
+	// The internal credential ID
 	CredentialId pulumi.IntPtrInput
 	// Default dataset name
 	Dataset pulumi.StringPtrInput
@@ -262,7 +264,7 @@ func (o BigQueryCredentialOutput) ToBigQueryCredentialOutputWithContext(ctx cont
 	return o
 }
 
-// The system BigQuery credential ID
+// The internal credential ID
 func (o BigQueryCredentialOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v *BigQueryCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
@@ -273,8 +275,8 @@ func (o BigQueryCredentialOutput) Dataset() pulumi.StringOutput {
 }
 
 // Whether the BigQuery credential is active
-func (o BigQueryCredentialOutput) IsActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *BigQueryCredential) pulumi.BoolPtrOutput { return v.IsActive }).(pulumi.BoolPtrOutput)
+func (o BigQueryCredentialOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *BigQueryCredential) pulumi.BoolOutput { return v.IsActive }).(pulumi.BoolOutput)
 }
 
 // Number of threads to use

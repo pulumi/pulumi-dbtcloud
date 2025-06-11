@@ -42,6 +42,10 @@ export class AccountFeatures extends pulumi.CustomResource {
      */
     public readonly advancedCi!: pulumi.Output<boolean>;
     /**
+     * Whether AI features are enabled.
+     */
+    public readonly aiFeatures!: pulumi.Output<boolean>;
+    /**
      * Whether partial parsing is enabled.
      */
     public readonly partialParsing!: pulumi.Output<boolean>;
@@ -49,6 +53,10 @@ export class AccountFeatures extends pulumi.CustomResource {
      * Whether repository caching is enabled.
      */
     public readonly repoCaching!: pulumi.Output<boolean>;
+    /**
+     * Whether warehouse cost visibility is enabled.
+     */
+    public readonly warehouseCostVisibility!: pulumi.Output<boolean>;
 
     /**
      * Create a AccountFeatures resource with the given unique name, arguments, and options.
@@ -64,13 +72,17 @@ export class AccountFeatures extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AccountFeaturesState | undefined;
             resourceInputs["advancedCi"] = state ? state.advancedCi : undefined;
+            resourceInputs["aiFeatures"] = state ? state.aiFeatures : undefined;
             resourceInputs["partialParsing"] = state ? state.partialParsing : undefined;
             resourceInputs["repoCaching"] = state ? state.repoCaching : undefined;
+            resourceInputs["warehouseCostVisibility"] = state ? state.warehouseCostVisibility : undefined;
         } else {
             const args = argsOrState as AccountFeaturesArgs | undefined;
             resourceInputs["advancedCi"] = args ? args.advancedCi : undefined;
+            resourceInputs["aiFeatures"] = args ? args.aiFeatures : undefined;
             resourceInputs["partialParsing"] = args ? args.partialParsing : undefined;
             resourceInputs["repoCaching"] = args ? args.repoCaching : undefined;
+            resourceInputs["warehouseCostVisibility"] = args ? args.warehouseCostVisibility : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AccountFeatures.__pulumiType, name, resourceInputs, opts);
@@ -86,6 +98,10 @@ export interface AccountFeaturesState {
      */
     advancedCi?: pulumi.Input<boolean>;
     /**
+     * Whether AI features are enabled.
+     */
+    aiFeatures?: pulumi.Input<boolean>;
+    /**
      * Whether partial parsing is enabled.
      */
     partialParsing?: pulumi.Input<boolean>;
@@ -93,6 +109,10 @@ export interface AccountFeaturesState {
      * Whether repository caching is enabled.
      */
     repoCaching?: pulumi.Input<boolean>;
+    /**
+     * Whether warehouse cost visibility is enabled.
+     */
+    warehouseCostVisibility?: pulumi.Input<boolean>;
 }
 
 /**
@@ -104,6 +124,10 @@ export interface AccountFeaturesArgs {
      */
     advancedCi?: pulumi.Input<boolean>;
     /**
+     * Whether AI features are enabled.
+     */
+    aiFeatures?: pulumi.Input<boolean>;
+    /**
      * Whether partial parsing is enabled.
      */
     partialParsing?: pulumi.Input<boolean>;
@@ -111,4 +135,8 @@ export interface AccountFeaturesArgs {
      * Whether repository caching is enabled.
      */
     repoCaching?: pulumi.Input<boolean>;
+    /**
+     * Whether warehouse cost visibility is enabled.
+     */
+    warehouseCostVisibility?: pulumi.Input<boolean>;
 }

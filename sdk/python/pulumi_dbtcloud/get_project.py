@@ -14,6 +14,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetProjectResult',
@@ -27,10 +28,13 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, connection_id=None, description=None, docs_job_id=None, freshness_job_id=None, id=None, name=None, project_id=None, repository_id=None, state=None):
-        if connection_id and not isinstance(connection_id, int):
-            raise TypeError("Expected argument 'connection_id' to be a int")
-        pulumi.set(__self__, "connection_id", connection_id)
+    def __init__(__self__, created_at=None, dbt_project_subdirectory=None, description=None, docs_job_id=None, freshness_job_id=None, id=None, name=None, project_connection=None, repository=None, semantic_layer_config_id=None, state=None, type=None, updated_at=None):
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if dbt_project_subdirectory and not isinstance(dbt_project_subdirectory, str):
+            raise TypeError("Expected argument 'dbt_project_subdirectory' to be a str")
+        pulumi.set(__self__, "dbt_project_subdirectory", dbt_project_subdirectory)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -40,35 +44,52 @@ class GetProjectResult:
         if freshness_job_id and not isinstance(freshness_job_id, int):
             raise TypeError("Expected argument 'freshness_job_id' to be a int")
         pulumi.set(__self__, "freshness_job_id", freshness_job_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
+        if id and not isinstance(id, int):
+            raise TypeError("Expected argument 'id' to be a int")
         pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if project_id and not isinstance(project_id, int):
-            raise TypeError("Expected argument 'project_id' to be a int")
-        pulumi.set(__self__, "project_id", project_id)
-        if repository_id and not isinstance(repository_id, int):
-            raise TypeError("Expected argument 'repository_id' to be a int")
-        pulumi.set(__self__, "repository_id", repository_id)
+        if project_connection and not isinstance(project_connection, dict):
+            raise TypeError("Expected argument 'project_connection' to be a dict")
+        pulumi.set(__self__, "project_connection", project_connection)
+        if repository and not isinstance(repository, dict):
+            raise TypeError("Expected argument 'repository' to be a dict")
+        pulumi.set(__self__, "repository", repository)
+        if semantic_layer_config_id and not isinstance(semantic_layer_config_id, int):
+            raise TypeError("Expected argument 'semantic_layer_config_id' to be a int")
+        pulumi.set(__self__, "semantic_layer_config_id", semantic_layer_config_id)
         if state and not isinstance(state, int):
             raise TypeError("Expected argument 'state' to be a int")
         pulumi.set(__self__, "state", state)
+        if type and not isinstance(type, int):
+            raise TypeError("Expected argument 'type' to be a int")
+        pulumi.set(__self__, "type", type)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
 
     @property
-    @pulumi.getter(name="connectionId")
-    def connection_id(self) -> builtins.int:
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> builtins.str:
         """
-        ID of the connection associated with the project
+        When the project was created
         """
-        return pulumi.get(self, "connection_id")
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dbtProjectSubdirectory")
+    def dbt_project_subdirectory(self) -> builtins.str:
+        """
+        Subdirectory for the dbt project inside the git repo
+        """
+        return pulumi.get(self, "dbt_project_subdirectory")
 
     @property
     @pulumi.getter
     def description(self) -> builtins.str:
         """
-        The description of the project
+        Project description
         """
         return pulumi.get(self, "description")
 
@@ -90,9 +111,9 @@ class GetProjectResult:
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.str:
+    def id(self) -> Optional[builtins.int]:
         """
-        The provider-assigned unique ID for this managed resource.
+        Project ID
         """
         return pulumi.get(self, "id")
 
@@ -100,34 +121,57 @@ class GetProjectResult:
     @pulumi.getter
     def name(self) -> builtins.str:
         """
-        Given name for project
+        Project name
         """
         return pulumi.get(self, "name")
 
     @property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[builtins.int]:
+    @pulumi.getter(name="projectConnection")
+    def project_connection(self) -> 'outputs.GetProjectProjectConnectionResult':
         """
-        ID of the project to represent
+        Details for the connection linked to the project
         """
-        return pulumi.get(self, "project_id")
-
-    @property
-    @pulumi.getter(name="repositoryId")
-    def repository_id(self) -> builtins.int:
-        """
-        ID of the repository associated with the project
-        """
-        return pulumi.get(self, "repository_id")
+        return pulumi.get(self, "project_connection")
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.""")
+    def repository(self) -> 'outputs.GetProjectRepositoryResult':
+        """
+        Details for the repository linked to the project
+        """
+        return pulumi.get(self, "repository")
+
+    @property
+    @pulumi.getter(name="semanticLayerConfigId")
+    def semantic_layer_config_id(self) -> builtins.int:
+        """
+        Semantic layer config ID
+        """
+        return pulumi.get(self, "semantic_layer_config_id")
+
+    @property
+    @pulumi.getter
     def state(self) -> builtins.int:
         """
         Project state should be 1 = active, as 2 = deleted
         """
         return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def type(self) -> builtins.int:
+        """
+        The type of dbt project (default or hybrid)
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> builtins.str:
+        """
+        When the project was last updated
+        """
+        return pulumi.get(self, "updated_at")
 
 
 class AwaitableGetProjectResult(GetProjectResult):
@@ -136,22 +180,27 @@ class AwaitableGetProjectResult(GetProjectResult):
         if False:
             yield self
         return GetProjectResult(
-            connection_id=self.connection_id,
+            created_at=self.created_at,
+            dbt_project_subdirectory=self.dbt_project_subdirectory,
             description=self.description,
             docs_job_id=self.docs_job_id,
             freshness_job_id=self.freshness_job_id,
             id=self.id,
             name=self.name,
-            project_id=self.project_id,
-            repository_id=self.repository_id,
-            state=self.state)
+            project_connection=self.project_connection,
+            repository=self.repository,
+            semantic_layer_config_id=self.semantic_layer_config_id,
+            state=self.state,
+            type=self.type,
+            updated_at=self.updated_at)
 
 
-def get_project(description: Optional[builtins.str] = None,
+def get_project(id: Optional[builtins.int] = None,
                 name: Optional[builtins.str] = None,
-                project_id: Optional[builtins.int] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
+    Retrieve a specific project from dbt Cloud.
+
     ## Example Usage
 
     ```python
@@ -159,39 +208,49 @@ def get_project(description: Optional[builtins.str] = None,
     import pulumi_dbtcloud as dbtcloud
 
     # projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-    test_project = dbtcloud.get_project(project_id=dbt_cloud_project_id)
+    project_by_id = dbtcloud.get_project(id=0)
     # or they can use project names
     # the provider will raise an error if more than one project is found with the same name
-    another_test_project = dbtcloud.get_project(name="My other project name")
+    project_by_name = dbtcloud.get_project(name="Project name")
+    filtered_projects = dbtcloud.get_projects(name_contains="Project")
+    all_projects = dbtcloud.get_projects()
+    pulumi.export("projectIdDetails", project_by_id)
+    pulumi.export("projectNameDetails", project_by_name)
+    pulumi.export("filteredProjectsCount", len(filtered_projects.projects))
+    pulumi.export("filteredProjects", filtered_projects.projects)
+    pulumi.export("projectNames", [project.name for project in filtered_projects.projects])
     ```
 
 
-    :param builtins.str description: The description of the project
-    :param builtins.str name: Given name for project
-    :param builtins.int project_id: ID of the project to represent
+    :param builtins.int id: Project ID
+    :param builtins.str name: Project name
     """
     __args__ = dict()
-    __args__['description'] = description
+    __args__['id'] = id
     __args__['name'] = name
-    __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult).value
 
     return AwaitableGetProjectResult(
-        connection_id=pulumi.get(__ret__, 'connection_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        dbt_project_subdirectory=pulumi.get(__ret__, 'dbt_project_subdirectory'),
         description=pulumi.get(__ret__, 'description'),
         docs_job_id=pulumi.get(__ret__, 'docs_job_id'),
         freshness_job_id=pulumi.get(__ret__, 'freshness_job_id'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
-        project_id=pulumi.get(__ret__, 'project_id'),
-        repository_id=pulumi.get(__ret__, 'repository_id'),
-        state=pulumi.get(__ret__, 'state'))
-def get_project_output(description: Optional[pulumi.Input[Optional[builtins.str]]] = None,
+        project_connection=pulumi.get(__ret__, 'project_connection'),
+        repository=pulumi.get(__ret__, 'repository'),
+        semantic_layer_config_id=pulumi.get(__ret__, 'semantic_layer_config_id'),
+        state=pulumi.get(__ret__, 'state'),
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
+def get_project_output(id: Optional[pulumi.Input[Optional[builtins.int]]] = None,
                        name: Optional[pulumi.Input[Optional[builtins.str]]] = None,
-                       project_id: Optional[pulumi.Input[Optional[builtins.int]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectResult]:
     """
+    Retrieve a specific project from dbt Cloud.
+
     ## Example Usage
 
     ```python
@@ -199,30 +258,39 @@ def get_project_output(description: Optional[pulumi.Input[Optional[builtins.str]
     import pulumi_dbtcloud as dbtcloud
 
     # projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-    test_project = dbtcloud.get_project(project_id=dbt_cloud_project_id)
+    project_by_id = dbtcloud.get_project(id=0)
     # or they can use project names
     # the provider will raise an error if more than one project is found with the same name
-    another_test_project = dbtcloud.get_project(name="My other project name")
+    project_by_name = dbtcloud.get_project(name="Project name")
+    filtered_projects = dbtcloud.get_projects(name_contains="Project")
+    all_projects = dbtcloud.get_projects()
+    pulumi.export("projectIdDetails", project_by_id)
+    pulumi.export("projectNameDetails", project_by_name)
+    pulumi.export("filteredProjectsCount", len(filtered_projects.projects))
+    pulumi.export("filteredProjects", filtered_projects.projects)
+    pulumi.export("projectNames", [project.name for project in filtered_projects.projects])
     ```
 
 
-    :param builtins.str description: The description of the project
-    :param builtins.str name: Given name for project
-    :param builtins.int project_id: ID of the project to represent
+    :param builtins.int id: Project ID
+    :param builtins.str name: Project name
     """
     __args__ = dict()
-    __args__['description'] = description
+    __args__['id'] = id
     __args__['name'] = name
-    __args__['projectId'] = project_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult)
     return __ret__.apply(lambda __response__: GetProjectResult(
-        connection_id=pulumi.get(__response__, 'connection_id'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        dbt_project_subdirectory=pulumi.get(__response__, 'dbt_project_subdirectory'),
         description=pulumi.get(__response__, 'description'),
         docs_job_id=pulumi.get(__response__, 'docs_job_id'),
         freshness_job_id=pulumi.get(__response__, 'freshness_job_id'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
-        project_id=pulumi.get(__response__, 'project_id'),
-        repository_id=pulumi.get(__response__, 'repository_id'),
-        state=pulumi.get(__response__, 'state')))
+        project_connection=pulumi.get(__response__, 'project_connection'),
+        repository=pulumi.get(__response__, 'repository'),
+        semantic_layer_config_id=pulumi.get(__response__, 'semantic_layer_config_id'),
+        state=pulumi.get(__response__, 'state'),
+        type=pulumi.get(__response__, 'type'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

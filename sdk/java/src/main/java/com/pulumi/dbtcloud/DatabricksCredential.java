@@ -13,11 +13,48 @@ import com.pulumi.dbtcloud.inputs.DatabricksCredentialState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Databricks credential resource
+ * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.DatabricksCredential;
+ * import com.pulumi.dbtcloud.DatabricksCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myDatabricksCred = new DatabricksCredential("myDatabricksCred", DatabricksCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .token("abcdefgh")
+ *             .schema("my_schema")
+ *             .adapterType("databricks")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
@@ -53,20 +90,6 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/databricksCredential:DatabricksCredential")
 public class DatabricksCredential extends com.pulumi.resources.CustomResource {
     /**
-     * Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     * 
-     */
-    @Export(name="adapterId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> adapterId;
-
-    /**
-     * @return Databricks adapter ID for the credential (do not fill in when using global connections, only to be used for connections created with the legacy connection resource `dbtcloud.Connection`)
-     * 
-     */
-    public Output<Optional<Integer>> adapterId() {
-        return Codegen.optional(this.adapterId);
-    }
-    /**
      * The type of the adapter (databricks or spark)
      * 
      */
@@ -85,14 +108,14 @@ public class DatabricksCredential extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="catalog", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> catalog;
+    private Output<String> catalog;
 
     /**
      * @return The catalog where to create models (only for the databricks adapter)
      * 
      */
-    public Output<Optional<String>> catalog() {
-        return Codegen.optional(this.catalog);
+    public Output<String> catalog() {
+        return this.catalog;
     }
     /**
      * The system Databricks credential ID
@@ -145,14 +168,14 @@ public class DatabricksCredential extends com.pulumi.resources.CustomResource {
      */
     @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
     @Export(name="targetName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> targetName;
+    private Output<String> targetName;
 
     /**
      * @return Target name
      * 
      */
-    public Output<Optional<String>> targetName() {
-        return Codegen.optional(this.targetName);
+    public Output<String> targetName() {
+        return this.targetName;
     }
     /**
      * Token for Databricks user

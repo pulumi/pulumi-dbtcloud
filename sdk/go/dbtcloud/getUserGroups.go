@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a specific dbt Cloud user's groups.
+//
 // ## Example Usage
 //
 // ```go
@@ -48,17 +50,17 @@ func LookupUserGroups(ctx *pulumi.Context, args *LookupUserGroupsArgs, opts ...p
 
 // A collection of arguments for invoking getUserGroups.
 type LookupUserGroupsArgs struct {
-	// ID of the user
+	// The internal ID of a dbt Cloud user.
 	UserId int `pulumi:"userId"`
 }
 
 // A collection of values returned by getUserGroups.
 type LookupUserGroupsResult struct {
-	// IDs of the groups assigned to the user
+	// IDs of the groups assigned to the user.
 	GroupIds []int `pulumi:"groupIds"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource. It is the same as the user_id.
 	Id string `pulumi:"id"`
-	// ID of the user
+	// The internal ID of a dbt Cloud user.
 	UserId int `pulumi:"userId"`
 }
 
@@ -73,7 +75,7 @@ func LookupUserGroupsOutput(ctx *pulumi.Context, args LookupUserGroupsOutputArgs
 
 // A collection of arguments for invoking getUserGroups.
 type LookupUserGroupsOutputArgs struct {
-	// ID of the user
+	// The internal ID of a dbt Cloud user.
 	UserId pulumi.IntInput `pulumi:"userId"`
 }
 
@@ -96,17 +98,17 @@ func (o LookupUserGroupsResultOutput) ToLookupUserGroupsResultOutputWithContext(
 	return o
 }
 
-// IDs of the groups assigned to the user
+// IDs of the groups assigned to the user.
 func (o LookupUserGroupsResultOutput) GroupIds() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v LookupUserGroupsResult) []int { return v.GroupIds }).(pulumi.IntArrayOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource. It is the same as the user_id.
 func (o LookupUserGroupsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupUserGroupsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// ID of the user
+// The internal ID of a dbt Cloud user.
 func (o LookupUserGroupsResultOutput) UserId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupUserGroupsResult) int { return v.UserId }).(pulumi.IntOutput)
 }

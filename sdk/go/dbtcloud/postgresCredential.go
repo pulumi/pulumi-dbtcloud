@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Postgres credential resource.
+//
 // ## Example Usage
 //
 // ```go
@@ -76,20 +78,20 @@ import (
 type PostgresCredential struct {
 	pulumi.CustomResourceState
 
-	// The system Postgres/Redshift/AlloyDB credential ID
+	// The system Postgres/Redshift/AlloyDB credential ID.
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// Default schema name
 	DefaultSchema pulumi.StringOutput `pulumi:"defaultSchema"`
 	// Whether the Postgres/Redshift/AlloyDB credential is active
-	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
-	// Number of threads to use
-	NumThreads pulumi.IntPtrOutput `pulumi:"numThreads"`
+	IsActive pulumi.BoolOutput `pulumi:"isActive"`
+	// Number of threads to use (required for Redshift)
+	NumThreads pulumi.IntOutput `pulumi:"numThreads"`
 	// Password for Postgres/Redshift/AlloyDB
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// Project ID to create the Postgres/Redshift/AlloyDB credential in
+	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// Default schema name
-	TargetName pulumi.StringPtrOutput `pulumi:"targetName"`
+	TargetName pulumi.StringOutput `pulumi:"targetName"`
 	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Username for Postgres/Redshift/AlloyDB
@@ -145,17 +147,17 @@ func GetPostgresCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PostgresCredential resources.
 type postgresCredentialState struct {
-	// The system Postgres/Redshift/AlloyDB credential ID
+	// The system Postgres/Redshift/AlloyDB credential ID.
 	CredentialId *int `pulumi:"credentialId"`
 	// Default schema name
 	DefaultSchema *string `pulumi:"defaultSchema"`
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive *bool `pulumi:"isActive"`
-	// Number of threads to use
+	// Number of threads to use (required for Redshift)
 	NumThreads *int `pulumi:"numThreads"`
 	// Password for Postgres/Redshift/AlloyDB
 	Password *string `pulumi:"password"`
-	// Project ID to create the Postgres/Redshift/AlloyDB credential in
+	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId *int `pulumi:"projectId"`
 	// Default schema name
 	TargetName *string `pulumi:"targetName"`
@@ -166,17 +168,17 @@ type postgresCredentialState struct {
 }
 
 type PostgresCredentialState struct {
-	// The system Postgres/Redshift/AlloyDB credential ID
+	// The system Postgres/Redshift/AlloyDB credential ID.
 	CredentialId pulumi.IntPtrInput
 	// Default schema name
 	DefaultSchema pulumi.StringPtrInput
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive pulumi.BoolPtrInput
-	// Number of threads to use
+	// Number of threads to use (required for Redshift)
 	NumThreads pulumi.IntPtrInput
 	// Password for Postgres/Redshift/AlloyDB
 	Password pulumi.StringPtrInput
-	// Project ID to create the Postgres/Redshift/AlloyDB credential in
+	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntPtrInput
 	// Default schema name
 	TargetName pulumi.StringPtrInput
@@ -195,11 +197,11 @@ type postgresCredentialArgs struct {
 	DefaultSchema string `pulumi:"defaultSchema"`
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive *bool `pulumi:"isActive"`
-	// Number of threads to use
+	// Number of threads to use (required for Redshift)
 	NumThreads *int `pulumi:"numThreads"`
 	// Password for Postgres/Redshift/AlloyDB
 	Password *string `pulumi:"password"`
-	// Project ID to create the Postgres/Redshift/AlloyDB credential in
+	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId int `pulumi:"projectId"`
 	// Default schema name
 	TargetName *string `pulumi:"targetName"`
@@ -215,11 +217,11 @@ type PostgresCredentialArgs struct {
 	DefaultSchema pulumi.StringInput
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive pulumi.BoolPtrInput
-	// Number of threads to use
+	// Number of threads to use (required for Redshift)
 	NumThreads pulumi.IntPtrInput
 	// Password for Postgres/Redshift/AlloyDB
 	Password pulumi.StringPtrInput
-	// Project ID to create the Postgres/Redshift/AlloyDB credential in
+	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntInput
 	// Default schema name
 	TargetName pulumi.StringPtrInput
@@ -316,7 +318,7 @@ func (o PostgresCredentialOutput) ToPostgresCredentialOutputWithContext(ctx cont
 	return o
 }
 
-// The system Postgres/Redshift/AlloyDB credential ID
+// The system Postgres/Redshift/AlloyDB credential ID.
 func (o PostgresCredentialOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
@@ -327,13 +329,13 @@ func (o PostgresCredentialOutput) DefaultSchema() pulumi.StringOutput {
 }
 
 // Whether the Postgres/Redshift/AlloyDB credential is active
-func (o PostgresCredentialOutput) IsActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *PostgresCredential) pulumi.BoolPtrOutput { return v.IsActive }).(pulumi.BoolPtrOutput)
+func (o PostgresCredentialOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PostgresCredential) pulumi.BoolOutput { return v.IsActive }).(pulumi.BoolOutput)
 }
 
-// Number of threads to use
-func (o PostgresCredentialOutput) NumThreads() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *PostgresCredential) pulumi.IntPtrOutput { return v.NumThreads }).(pulumi.IntPtrOutput)
+// Number of threads to use (required for Redshift)
+func (o PostgresCredentialOutput) NumThreads() pulumi.IntOutput {
+	return o.ApplyT(func(v *PostgresCredential) pulumi.IntOutput { return v.NumThreads }).(pulumi.IntOutput)
 }
 
 // Password for Postgres/Redshift/AlloyDB
@@ -341,14 +343,14 @@ func (o PostgresCredentialOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Project ID to create the Postgres/Redshift/AlloyDB credential in
+// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 func (o PostgresCredentialOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }
 
 // Default schema name
-func (o PostgresCredentialOutput) TargetName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostgresCredential) pulumi.StringPtrOutput { return v.TargetName }).(pulumi.StringPtrOutput)
+func (o PostgresCredentialOutput) TargetName() pulumi.StringOutput {
+	return o.ApplyT(func(v *PostgresCredential) pulumi.StringOutput { return v.TargetName }).(pulumi.StringOutput)
 }
 
 // Type of connection. One of (postgres/redshift). Use postgres for alloydb connections

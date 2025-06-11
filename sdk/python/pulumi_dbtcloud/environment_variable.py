@@ -26,7 +26,7 @@ class EnvironmentVariableArgs:
         """
         The set of arguments for constructing a EnvironmentVariable resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] environment_values: Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
-        :param pulumi.Input[builtins.int] project_id: Project for the variable to be created in
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the environment variable in
         :param pulumi.Input[builtins.str] name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
         """
         pulumi.set(__self__, "environment_values", environment_values)
@@ -50,7 +50,7 @@ class EnvironmentVariableArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[builtins.int]:
         """
-        Project for the variable to be created in
+        Project ID to create the environment variable in
         """
         return pulumi.get(self, "project_id")
 
@@ -81,7 +81,7 @@ class _EnvironmentVariableState:
         Input properties used for looking up and filtering EnvironmentVariable resources.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] environment_values: Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         :param pulumi.Input[builtins.str] name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
-        :param pulumi.Input[builtins.int] project_id: Project for the variable to be created in
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the environment variable in
         """
         if environment_values is not None:
             pulumi.set(__self__, "environment_values", environment_values)
@@ -118,7 +118,7 @@ class _EnvironmentVariableState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Project for the variable to be created in
+        Project ID to create the environment variable in
         """
         return pulumi.get(self, "project_id")
 
@@ -198,7 +198,7 @@ class EnvironmentVariable(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] environment_values: Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         :param pulumi.Input[builtins.str] name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
-        :param pulumi.Input[builtins.int] project_id: Project for the variable to be created in
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the environment variable in
         """
         ...
     @overload
@@ -319,7 +319,7 @@ class EnvironmentVariable(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] environment_values: Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         :param pulumi.Input[builtins.str] name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
-        :param pulumi.Input[builtins.int] project_id: Project for the variable to be created in
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the environment variable in
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -350,7 +350,7 @@ class EnvironmentVariable(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[builtins.int]:
         """
-        Project for the variable to be created in
+        Project ID to create the environment variable in
         """
         return pulumi.get(self, "project_id")
 

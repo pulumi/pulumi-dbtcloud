@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Manages a dbt Cloud project.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -34,7 +36,7 @@ namespace Pulumi.DbtCloud
     ///     var dbtProjectWithSubdir = new DbtCloud.Project("dbt_project_with_subdir", new()
     ///     {
     ///         Name = "Analytics in Subdir",
-    ///         DbtProjectSubdirectory = "/path",
+    ///         DbtProjectSubdirectory = "path",
     ///     });
     /// 
     /// });
@@ -74,22 +76,28 @@ namespace Pulumi.DbtCloud
     public partial class Project : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// dbt project subdirectory path
+        /// DBT project subdirectory
         /// </summary>
         [Output("dbtProjectSubdirectory")]
-        public Output<string?> DbtProjectSubdirectory { get; private set; } = null!;
+        public Output<string> DbtProjectSubdirectory { get; private set; } = null!;
 
         /// <summary>
         /// Description for the project. Will show in dbt Explorer.
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// Project name
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of dbt project (0=default or 1=hybrid)
+        /// </summary>
+        [Output("type")]
+        public Output<int> Type { get; private set; } = null!;
 
 
         /// <summary>
@@ -139,7 +147,7 @@ namespace Pulumi.DbtCloud
     public sealed class ProjectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// dbt project subdirectory path
+        /// DBT project subdirectory
         /// </summary>
         [Input("dbtProjectSubdirectory")]
         public Input<string>? DbtProjectSubdirectory { get; set; }
@@ -155,6 +163,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The type of dbt project (0=default or 1=hybrid)
+        /// </summary>
+        [Input("type")]
+        public Input<int>? Type { get; set; }
 
         public ProjectArgs()
         {
@@ -165,7 +179,7 @@ namespace Pulumi.DbtCloud
     public sealed class ProjectState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// dbt project subdirectory path
+        /// DBT project subdirectory
         /// </summary>
         [Input("dbtProjectSubdirectory")]
         public Input<string>? DbtProjectSubdirectory { get; set; }
@@ -181,6 +195,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The type of dbt project (0=default or 1=hybrid)
+        /// </summary>
+        [Input("type")]
+        public Input<int>? Type { get; set; }
 
         public ProjectState()
         {

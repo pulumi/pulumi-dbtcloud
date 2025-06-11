@@ -11,40 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-//			_, err := dbtcloud.LookupProject(ctx, &dbtcloud.LookupProjectArgs{
-//				ProjectId: pulumi.IntRef(dbtCloudProjectId),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			// or they can use project names
-//			// the provider will raise an error if more than one project is found with the same name
-//			_, err = dbtcloud.LookupProject(ctx, &dbtcloud.LookupProjectArgs{
-//				Name: pulumi.StringRef("My other project name"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Retrieve a specific project from dbt Cloud.
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectResult
@@ -57,36 +24,40 @@ func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getProject.
 type LookupProjectArgs struct {
-	// The description of the project
-	Description *string `pulumi:"description"`
-	// Given name for project
+	// Project ID
+	Id *int `pulumi:"id"`
+	// Project name
 	Name *string `pulumi:"name"`
-	// ID of the project to represent
-	ProjectId *int `pulumi:"projectId"`
 }
 
 // A collection of values returned by getProject.
 type LookupProjectResult struct {
-	// ID of the connection associated with the project
-	ConnectionId int `pulumi:"connectionId"`
-	// The description of the project
+	// When the project was created
+	CreatedAt string `pulumi:"createdAt"`
+	// Subdirectory for the dbt project inside the git repo
+	DbtProjectSubdirectory string `pulumi:"dbtProjectSubdirectory"`
+	// Project description
 	Description string `pulumi:"description"`
 	// ID of Job for the documentation
 	DocsJobId int `pulumi:"docsJobId"`
 	// ID of Job for source freshness
 	FreshnessJobId int `pulumi:"freshnessJobId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Given name for project
+	// Project ID
+	Id *int `pulumi:"id"`
+	// Project name
 	Name string `pulumi:"name"`
-	// ID of the project to represent
-	ProjectId *int `pulumi:"projectId"`
-	// ID of the repository associated with the project
-	RepositoryId int `pulumi:"repositoryId"`
+	// Details for the connection linked to the project
+	ProjectConnection GetProjectProjectConnection `pulumi:"projectConnection"`
+	// Details for the repository linked to the project
+	Repository GetProjectRepositoryType `pulumi:"repository"`
+	// Semantic layer config ID
+	SemanticLayerConfigId int `pulumi:"semanticLayerConfigId"`
 	// Project state should be 1 = active, as 2 = deleted
-	//
-	// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 	State int `pulumi:"state"`
+	// The type of dbt project (default or hybrid)
+	Type int `pulumi:"type"`
+	// When the project was last updated
+	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts ...pulumi.InvokeOption) LookupProjectResultOutput {
@@ -100,12 +71,10 @@ func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts
 
 // A collection of arguments for invoking getProject.
 type LookupProjectOutputArgs struct {
-	// The description of the project
-	Description pulumi.StringPtrInput `pulumi:"description"`
-	// Given name for project
+	// Project ID
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Project name
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// ID of the project to represent
-	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
 }
 
 func (LookupProjectOutputArgs) ElementType() reflect.Type {
@@ -127,12 +96,17 @@ func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx co
 	return o
 }
 
-// ID of the connection associated with the project
-func (o LookupProjectResultOutput) ConnectionId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupProjectResult) int { return v.ConnectionId }).(pulumi.IntOutput)
+// When the project was created
+func (o LookupProjectResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The description of the project
+// Subdirectory for the dbt project inside the git repo
+func (o LookupProjectResultOutput) DbtProjectSubdirectory() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.DbtProjectSubdirectory }).(pulumi.StringOutput)
+}
+
+// Project description
 func (o LookupProjectResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -147,31 +121,44 @@ func (o LookupProjectResultOutput) FreshnessJobId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupProjectResult) int { return v.FreshnessJobId }).(pulumi.IntOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
-func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupProjectResult) string { return v.Id }).(pulumi.StringOutput)
+// Project ID
+func (o LookupProjectResultOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupProjectResult) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Given name for project
+// Project name
 func (o LookupProjectResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// ID of the project to represent
-func (o LookupProjectResultOutput) ProjectId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupProjectResult) *int { return v.ProjectId }).(pulumi.IntPtrOutput)
+// Details for the connection linked to the project
+func (o LookupProjectResultOutput) ProjectConnection() GetProjectProjectConnectionOutput {
+	return o.ApplyT(func(v LookupProjectResult) GetProjectProjectConnection { return v.ProjectConnection }).(GetProjectProjectConnectionOutput)
 }
 
-// ID of the repository associated with the project
-func (o LookupProjectResultOutput) RepositoryId() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupProjectResult) int { return v.RepositoryId }).(pulumi.IntOutput)
+// Details for the repository linked to the project
+func (o LookupProjectResultOutput) Repository() GetProjectRepositoryTypeOutput {
+	return o.ApplyT(func(v LookupProjectResult) GetProjectRepositoryType { return v.Repository }).(GetProjectRepositoryTypeOutput)
+}
+
+// Semantic layer config ID
+func (o LookupProjectResultOutput) SemanticLayerConfigId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupProjectResult) int { return v.SemanticLayerConfigId }).(pulumi.IntOutput)
 }
 
 // Project state should be 1 = active, as 2 = deleted
-//
-// Deprecated: Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
 func (o LookupProjectResultOutput) State() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupProjectResult) int { return v.State }).(pulumi.IntOutput)
+}
+
+// The type of dbt project (default or hybrid)
+func (o LookupProjectResultOutput) Type() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupProjectResult) int { return v.Type }).(pulumi.IntOutput)
+}
+
+// When the project was last updated
+func (o LookupProjectResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

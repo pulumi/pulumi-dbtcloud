@@ -34,7 +34,8 @@ class GlobalConnectionArgs:
                  redshift: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']] = None,
                  snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None,
                  starburst: Optional[pulumi.Input['GlobalConnectionStarburstArgs']] = None,
-                 synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None):
+                 synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None,
+                 teradata: Optional[pulumi.Input['GlobalConnectionTeradataArgs']] = None):
         """
         The set of arguments for constructing a GlobalConnection resource.
         :param pulumi.Input['GlobalConnectionApacheSparkArgs'] apache_spark: Apache Spark connection configuration.
@@ -49,6 +50,7 @@ class GlobalConnectionArgs:
         :param pulumi.Input['GlobalConnectionSnowflakeArgs'] snowflake: Snowflake connection configuration
         :param pulumi.Input['GlobalConnectionStarburstArgs'] starburst: Starburst/Trino connection configuration.
         :param pulumi.Input['GlobalConnectionSynapseArgs'] synapse: Azure Synapse Analytics connection configuration.
+        :param pulumi.Input['GlobalConnectionTeradataArgs'] teradata: Teradata connection configuration.
         """
         if apache_spark is not None:
             pulumi.set(__self__, "apache_spark", apache_spark)
@@ -76,6 +78,8 @@ class GlobalConnectionArgs:
             pulumi.set(__self__, "starburst", starburst)
         if synapse is not None:
             pulumi.set(__self__, "synapse", synapse)
+        if teradata is not None:
+            pulumi.set(__self__, "teradata", teradata)
 
     @property
     @pulumi.getter(name="apacheSpark")
@@ -230,6 +234,18 @@ class GlobalConnectionArgs:
     def synapse(self, value: Optional[pulumi.Input['GlobalConnectionSynapseArgs']]):
         pulumi.set(self, "synapse", value)
 
+    @property
+    @pulumi.getter
+    def teradata(self) -> Optional[pulumi.Input['GlobalConnectionTeradataArgs']]:
+        """
+        Teradata connection configuration.
+        """
+        return pulumi.get(self, "teradata")
+
+    @teradata.setter
+    def teradata(self, value: Optional[pulumi.Input['GlobalConnectionTeradataArgs']]):
+        pulumi.set(self, "teradata", value)
+
 
 @pulumi.input_type
 class _GlobalConnectionState:
@@ -248,7 +264,8 @@ class _GlobalConnectionState:
                  redshift: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']] = None,
                  snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None,
                  starburst: Optional[pulumi.Input['GlobalConnectionStarburstArgs']] = None,
-                 synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None):
+                 synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None,
+                 teradata: Optional[pulumi.Input['GlobalConnectionTeradataArgs']] = None):
         """
         Input properties used for looking up and filtering GlobalConnection resources.
         :param pulumi.Input[builtins.str] adapter_version: Version of the adapter
@@ -265,6 +282,7 @@ class _GlobalConnectionState:
         :param pulumi.Input['GlobalConnectionSnowflakeArgs'] snowflake: Snowflake connection configuration
         :param pulumi.Input['GlobalConnectionStarburstArgs'] starburst: Starburst/Trino connection configuration.
         :param pulumi.Input['GlobalConnectionSynapseArgs'] synapse: Azure Synapse Analytics connection configuration.
+        :param pulumi.Input['GlobalConnectionTeradataArgs'] teradata: Teradata connection configuration.
         """
         if adapter_version is not None:
             pulumi.set(__self__, "adapter_version", adapter_version)
@@ -296,6 +314,8 @@ class _GlobalConnectionState:
             pulumi.set(__self__, "starburst", starburst)
         if synapse is not None:
             pulumi.set(__self__, "synapse", synapse)
+        if teradata is not None:
+            pulumi.set(__self__, "teradata", teradata)
 
     @property
     @pulumi.getter(name="adapterVersion")
@@ -474,6 +494,18 @@ class _GlobalConnectionState:
     def synapse(self, value: Optional[pulumi.Input['GlobalConnectionSynapseArgs']]):
         pulumi.set(self, "synapse", value)
 
+    @property
+    @pulumi.getter
+    def teradata(self) -> Optional[pulumi.Input['GlobalConnectionTeradataArgs']]:
+        """
+        Teradata connection configuration.
+        """
+        return pulumi.get(self, "teradata")
+
+    @teradata.setter
+    def teradata(self, value: Optional[pulumi.Input['GlobalConnectionTeradataArgs']]):
+        pulumi.set(self, "teradata", value)
+
 
 @pulumi.type_token("dbtcloud:index/globalConnection:GlobalConnection")
 class GlobalConnection(pulumi.CustomResource):
@@ -494,13 +526,12 @@ class GlobalConnection(pulumi.CustomResource):
                  snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
                  starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
                  synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
+                 teradata: Optional[pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None,
                  __props__=None):
         """
         This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
 
         Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
-
-        All connections types are supported, and the old resources `Connection`, `BigQueryConnection` and `FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
 
         ## Import
 
@@ -556,6 +587,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
         :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']] starburst: Starburst/Trino connection configuration.
         :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']] synapse: Azure Synapse Analytics connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']] teradata: Teradata connection configuration.
         """
         ...
     @overload
@@ -567,8 +599,6 @@ class GlobalConnection(pulumi.CustomResource):
         This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
 
         Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
-
-        All connections types are supported, and the old resources `Connection`, `BigQueryConnection` and `FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
 
         ## Import
 
@@ -638,6 +668,7 @@ class GlobalConnection(pulumi.CustomResource):
                  snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
                  starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
                  synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
+                 teradata: Optional[pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -660,6 +691,7 @@ class GlobalConnection(pulumi.CustomResource):
             __props__.__dict__["snowflake"] = snowflake
             __props__.__dict__["starburst"] = starburst
             __props__.__dict__["synapse"] = synapse
+            __props__.__dict__["teradata"] = teradata
             __props__.__dict__["adapter_version"] = None
             __props__.__dict__["is_ssh_tunnel_enabled"] = None
         super(GlobalConnection, __self__).__init__(
@@ -686,7 +718,8 @@ class GlobalConnection(pulumi.CustomResource):
             redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
             snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
             starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
-            synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None) -> 'GlobalConnection':
+            synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
+            teradata: Optional[pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None) -> 'GlobalConnection':
         """
         Get an existing GlobalConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -708,6 +741,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
         :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']] starburst: Starburst/Trino connection configuration.
         :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']] synapse: Azure Synapse Analytics connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']] teradata: Teradata connection configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -728,6 +762,7 @@ class GlobalConnection(pulumi.CustomResource):
         __props__.__dict__["snowflake"] = snowflake
         __props__.__dict__["starburst"] = starburst
         __props__.__dict__["synapse"] = synapse
+        __props__.__dict__["teradata"] = teradata
         return GlobalConnection(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -846,4 +881,12 @@ class GlobalConnection(pulumi.CustomResource):
         Azure Synapse Analytics connection configuration.
         """
         return pulumi.get(self, "synapse")
+
+    @property
+    @pulumi.getter
+    def teradata(self) -> pulumi.Output[Optional['outputs.GlobalConnectionTeradata']]:
+        """
+        Teradata connection configuration.
+        """
+        return pulumi.get(self, "teradata")
 

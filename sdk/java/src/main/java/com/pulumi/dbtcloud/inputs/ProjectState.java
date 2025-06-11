@@ -5,6 +5,7 @@ package com.pulumi.dbtcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,14 +17,14 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     public static final ProjectState Empty = new ProjectState();
 
     /**
-     * dbt project subdirectory path
+     * DBT project subdirectory
      * 
      */
     @Import(name="dbtProjectSubdirectory")
     private @Nullable Output<String> dbtProjectSubdirectory;
 
     /**
-     * @return dbt project subdirectory path
+     * @return DBT project subdirectory
      * 
      */
     public Optional<Output<String>> dbtProjectSubdirectory() {
@@ -60,12 +61,28 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The type of dbt project (0=default or 1=hybrid)
+     * 
+     */
+    @Import(name="type")
+    private @Nullable Output<Integer> type;
+
+    /**
+     * @return The type of dbt project (0=default or 1=hybrid)
+     * 
+     */
+    public Optional<Output<Integer>> type() {
+        return Optional.ofNullable(this.type);
+    }
+
     private ProjectState() {}
 
     private ProjectState(ProjectState $) {
         this.dbtProjectSubdirectory = $.dbtProjectSubdirectory;
         this.description = $.description;
         this.name = $.name;
+        this.type = $.type;
     }
 
     public static Builder builder() {
@@ -87,7 +104,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dbtProjectSubdirectory dbt project subdirectory path
+         * @param dbtProjectSubdirectory DBT project subdirectory
          * 
          * @return builder
          * 
@@ -98,7 +115,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dbtProjectSubdirectory dbt project subdirectory path
+         * @param dbtProjectSubdirectory DBT project subdirectory
          * 
          * @return builder
          * 
@@ -147,6 +164,27 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param type The type of dbt project (0=default or 1=hybrid)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(@Nullable Output<Integer> type) {
+            $.type = type;
+            return this;
+        }
+
+        /**
+         * @param type The type of dbt project (0=default or 1=hybrid)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder type(Integer type) {
+            return type(Output.of(type));
         }
 
         public ProjectState build() {

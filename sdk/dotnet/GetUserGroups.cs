@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     public static class GetUserGroups
     {
         /// <summary>
+        /// Gets information about a specific dbt Cloud user's groups.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -34,6 +36,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserGroupsResult>("dbtcloud:index/getUserGroups:getUserGroups", args ?? new GetUserGroupsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Gets information about a specific dbt Cloud user's groups.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -56,6 +60,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.Invoke<GetUserGroupsResult>("dbtcloud:index/getUserGroups:getUserGroups", args ?? new GetUserGroupsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Gets information about a specific dbt Cloud user's groups.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -82,7 +88,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetUserGroupsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the user
+        /// The internal ID of a dbt Cloud user.
         /// </summary>
         [Input("userId", required: true)]
         public int UserId { get; set; }
@@ -96,7 +102,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetUserGroupsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// ID of the user
+        /// The internal ID of a dbt Cloud user.
         /// </summary>
         [Input("userId", required: true)]
         public Input<int> UserId { get; set; } = null!;
@@ -112,15 +118,15 @@ namespace Pulumi.DbtCloud
     public sealed class GetUserGroupsResult
     {
         /// <summary>
-        /// IDs of the groups assigned to the user
+        /// IDs of the groups assigned to the user.
         /// </summary>
         public readonly ImmutableArray<int> GroupIds;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource. It is the same as the user_id.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// ID of the user
+        /// The internal ID of a dbt Cloud user.
         /// </summary>
         public readonly int UserId;
 

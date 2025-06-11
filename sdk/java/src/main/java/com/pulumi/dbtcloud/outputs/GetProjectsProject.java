@@ -4,7 +4,7 @@
 package com.pulumi.dbtcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.dbtcloud.outputs.GetProjectsProjectConnection;
+import com.pulumi.dbtcloud.outputs.GetProjectsProjectProjectConnection;
 import com.pulumi.dbtcloud.outputs.GetProjectsProjectRepository;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
@@ -13,11 +13,6 @@ import java.util.Objects;
 
 @CustomType
 public final class GetProjectsProject {
-    /**
-     * @return Details for the connection linked to the project
-     * 
-     */
-    private GetProjectsProjectConnection connection;
     /**
      * @return When the project was created
      * 
@@ -44,6 +39,11 @@ public final class GetProjectsProject {
      */
     private String name;
     /**
+     * @return Details for the connection linked to the project
+     * 
+     */
+    private GetProjectsProjectProjectConnection projectConnection;
+    /**
      * @return Details for the repository linked to the project
      * 
      */
@@ -54,19 +54,17 @@ public final class GetProjectsProject {
      */
     private Integer semanticLayerConfigId;
     /**
+     * @return The type of dbt project (default or hybrid)
+     * 
+     */
+    private Integer type;
+    /**
      * @return When the project was last updated
      * 
      */
     private String updatedAt;
 
     private GetProjectsProject() {}
-    /**
-     * @return Details for the connection linked to the project
-     * 
-     */
-    public GetProjectsProjectConnection connection() {
-        return this.connection;
-    }
     /**
      * @return When the project was created
      * 
@@ -103,6 +101,13 @@ public final class GetProjectsProject {
         return this.name;
     }
     /**
+     * @return Details for the connection linked to the project
+     * 
+     */
+    public GetProjectsProjectProjectConnection projectConnection() {
+        return this.projectConnection;
+    }
+    /**
      * @return Details for the repository linked to the project
      * 
      */
@@ -115,6 +120,13 @@ public final class GetProjectsProject {
      */
     public Integer semanticLayerConfigId() {
         return this.semanticLayerConfigId;
+    }
+    /**
+     * @return The type of dbt project (default or hybrid)
+     * 
+     */
+    public Integer type() {
+        return this.type;
     }
     /**
      * @return When the project was last updated
@@ -133,37 +145,31 @@ public final class GetProjectsProject {
     }
     @CustomType.Builder
     public static final class Builder {
-        private GetProjectsProjectConnection connection;
         private String createdAt;
         private String dbtProjectSubdirectory;
         private String description;
         private Integer id;
         private String name;
+        private GetProjectsProjectProjectConnection projectConnection;
         private GetProjectsProjectRepository repository;
         private Integer semanticLayerConfigId;
+        private Integer type;
         private String updatedAt;
         public Builder() {}
         public Builder(GetProjectsProject defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.connection = defaults.connection;
     	      this.createdAt = defaults.createdAt;
     	      this.dbtProjectSubdirectory = defaults.dbtProjectSubdirectory;
     	      this.description = defaults.description;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
+    	      this.projectConnection = defaults.projectConnection;
     	      this.repository = defaults.repository;
     	      this.semanticLayerConfigId = defaults.semanticLayerConfigId;
+    	      this.type = defaults.type;
     	      this.updatedAt = defaults.updatedAt;
         }
 
-        @CustomType.Setter
-        public Builder connection(GetProjectsProjectConnection connection) {
-            if (connection == null) {
-              throw new MissingRequiredPropertyException("GetProjectsProject", "connection");
-            }
-            this.connection = connection;
-            return this;
-        }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
             if (createdAt == null) {
@@ -205,6 +211,14 @@ public final class GetProjectsProject {
             return this;
         }
         @CustomType.Setter
+        public Builder projectConnection(GetProjectsProjectProjectConnection projectConnection) {
+            if (projectConnection == null) {
+              throw new MissingRequiredPropertyException("GetProjectsProject", "projectConnection");
+            }
+            this.projectConnection = projectConnection;
+            return this;
+        }
+        @CustomType.Setter
         public Builder repository(GetProjectsProjectRepository repository) {
             if (repository == null) {
               throw new MissingRequiredPropertyException("GetProjectsProject", "repository");
@@ -221,6 +235,14 @@ public final class GetProjectsProject {
             return this;
         }
         @CustomType.Setter
+        public Builder type(Integer type) {
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetProjectsProject", "type");
+            }
+            this.type = type;
+            return this;
+        }
+        @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
             if (updatedAt == null) {
               throw new MissingRequiredPropertyException("GetProjectsProject", "updatedAt");
@@ -230,14 +252,15 @@ public final class GetProjectsProject {
         }
         public GetProjectsProject build() {
             final var _resultValue = new GetProjectsProject();
-            _resultValue.connection = connection;
             _resultValue.createdAt = createdAt;
             _resultValue.dbtProjectSubdirectory = dbtProjectSubdirectory;
             _resultValue.description = description;
             _resultValue.id = id;
             _resultValue.name = name;
+            _resultValue.projectConnection = projectConnection;
             _resultValue.repository = repository;
             _resultValue.semanticLayerConfigId = semanticLayerConfigId;
+            _resultValue.type = type;
             _resultValue.updatedAt = updatedAt;
             return _resultValue;
         }

@@ -686,7 +686,7 @@ class Repository(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="azureActiveDirectoryProjectId")
-    def azure_active_directory_project_id(self) -> pulumi.Output[Optional[builtins.str]]:
+    def azure_active_directory_project_id(self) -> pulumi.Output[builtins.str]:
         """
         The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (for ADO native integration only)
         """
@@ -694,7 +694,7 @@ class Repository(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="azureActiveDirectoryRepositoryId")
-    def azure_active_directory_repository_id(self) -> pulumi.Output[Optional[builtins.str]]:
+    def azure_active_directory_repository_id(self) -> pulumi.Output[builtins.str]:
         """
         The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (for ADO native integration only)
         """
@@ -702,7 +702,7 @@ class Repository(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="azureBypassWebhookRegistrationFailure")
-    def azure_bypass_webhook_registration_failure(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def azure_bypass_webhook_registration_failure(self) -> pulumi.Output[builtins.bool]:
         """
         If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
         """
@@ -719,7 +719,7 @@ class Repository(pulumi.CustomResource):
     @property
     @pulumi.getter(name="fetchDeployKey")
     @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
-    def fetch_deploy_key(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def fetch_deploy_key(self) -> pulumi.Output[builtins.bool]:
         """
         Whether we should return the public deploy key - (for the `deploy_key` strategy)
         """
@@ -727,7 +727,7 @@ class Repository(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="gitCloneStrategy")
-    def git_clone_strategy(self) -> pulumi.Output[Optional[builtins.str]]:
+    def git_clone_strategy(self) -> pulumi.Output[builtins.str]:
         """
         Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
         """
@@ -751,7 +751,7 @@ class Repository(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def is_active(self) -> pulumi.Output[builtins.bool]:
         """
         Whether the repository is active
         """

@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Webhook details
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -91,7 +93,7 @@ export class Webhook extends pulumi.CustomResource {
     /**
      * Webhooks active flag
      */
-    public readonly active!: pulumi.Output<boolean | undefined>;
+    public readonly active!: pulumi.Output<boolean>;
     /**
      * Webhooks Client URL
      */
@@ -99,7 +101,7 @@ export class Webhook extends pulumi.CustomResource {
     /**
      * Webhooks Description
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string>;
     /**
      * Webhooks Event Types
      */
@@ -113,7 +115,7 @@ export class Webhook extends pulumi.CustomResource {
      */
     public /*out*/ readonly httpStatusCode!: pulumi.Output<string>;
     /**
-     * List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+     * List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      */
     public readonly jobIds!: pulumi.Output<number[] | undefined>;
     /**
@@ -121,7 +123,9 @@ export class Webhook extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Webhooks ID
+     * Webhook's ID
+     *
+     * @deprecated Use `id` instead
      */
     public /*out*/ readonly webhookId!: pulumi.Output<string>;
 
@@ -207,7 +211,7 @@ export interface WebhookState {
      */
     httpStatusCode?: pulumi.Input<string>;
     /**
-     * List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+     * List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      */
     jobIds?: pulumi.Input<pulumi.Input<number>[]>;
     /**
@@ -215,7 +219,9 @@ export interface WebhookState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Webhooks ID
+     * Webhook's ID
+     *
+     * @deprecated Use `id` instead
      */
     webhookId?: pulumi.Input<string>;
 }
@@ -241,7 +247,7 @@ export interface WebhookArgs {
      */
     eventTypes: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+     * List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      */
     jobIds?: pulumi.Input<pulumi.Input<number>[]>;
     /**

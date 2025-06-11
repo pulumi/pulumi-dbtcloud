@@ -11,12 +11,21 @@ namespace Pulumi.DbtCloud
 {
     public static class GetSnowflakeCredential
     {
+        /// <summary>
+        /// Snowflake credential data source
+        /// </summary>
         public static Task<GetSnowflakeCredentialResult> InvokeAsync(GetSnowflakeCredentialArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSnowflakeCredentialResult>("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", args ?? new GetSnowflakeCredentialArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Snowflake credential data source
+        /// </summary>
         public static Output<GetSnowflakeCredentialResult> Invoke(GetSnowflakeCredentialInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSnowflakeCredentialResult>("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", args ?? new GetSnowflakeCredentialInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Snowflake credential data source
+        /// </summary>
         public static Output<GetSnowflakeCredentialResult> Invoke(GetSnowflakeCredentialInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSnowflakeCredentialResult>("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", args ?? new GetSnowflakeCredentialInvokeArgs(), options.WithDefaults());
     }
@@ -75,7 +84,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int CredentialId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource. Contains the project ID and the credential ID.
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -91,7 +100,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int ProjectId;
         /// <summary>
-        /// Default schema name
+        /// The schema where to create models
         /// </summary>
         public readonly string Schema;
         /// <summary>

@@ -6,12 +6,12 @@ package com.pulumi.dbtcloud;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.dbtcloud.inputs.JobJobCompletionTriggerConditionArgs;
+import com.pulumi.dbtcloud.inputs.JobTriggersArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -175,15 +175,15 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
      * 
      */
-    @Import(name="jobCompletionTriggerCondition")
-    private @Nullable Output<JobJobCompletionTriggerConditionArgs> jobCompletionTriggerCondition;
+    @Import(name="jobCompletionTriggerConditions")
+    private @Nullable Output<List<JobJobCompletionTriggerConditionArgs>> jobCompletionTriggerConditions;
 
     /**
      * @return Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
      * 
      */
-    public Optional<Output<JobJobCompletionTriggerConditionArgs>> jobCompletionTriggerCondition() {
-        return Optional.ofNullable(this.jobCompletionTriggerCondition);
+    public Optional<Output<List<JobJobCompletionTriggerConditionArgs>>> jobCompletionTriggerConditions() {
+        return Optional.ofNullable(this.jobCompletionTriggerConditions);
     }
 
     /**
@@ -352,14 +352,14 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+     * Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      * 
      */
     @Import(name="scheduleType")
     private @Nullable Output<String> scheduleType;
 
     /**
-     * @return Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+     * @return Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      * 
      */
     public Optional<Output<String>> scheduleType() {
@@ -397,16 +397,24 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of seconds to allow the job to run before timing out
+     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * 
+     * @deprecated
+     * Moved to execution.timeout_seconds
      * 
      */
+    @Deprecated /* Moved to execution.timeout_seconds */
     @Import(name="timeoutSeconds")
     private @Nullable Output<Integer> timeoutSeconds;
 
     /**
-     * @return Number of seconds to allow the job to run before timing out
+     * @return [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * 
+     * @deprecated
+     * Moved to execution.timeout_seconds
      * 
      */
+    @Deprecated /* Moved to execution.timeout_seconds */
     public Optional<Output<Integer>> timeoutSeconds() {
         return Optional.ofNullable(this.timeoutSeconds);
     }
@@ -416,13 +424,13 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="triggers", required=true)
-    private Output<Map<String,Boolean>> triggers;
+    private Output<JobTriggersArgs> triggers;
 
     /**
      * @return Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
-    public Output<Map<String,Boolean>> triggers() {
+    public Output<JobTriggersArgs> triggers() {
         return this.triggers;
     }
 
@@ -454,7 +462,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         this.executeSteps = $.executeSteps;
         this.generateDocs = $.generateDocs;
         this.isActive = $.isActive;
-        this.jobCompletionTriggerCondition = $.jobCompletionTriggerCondition;
+        this.jobCompletionTriggerConditions = $.jobCompletionTriggerConditions;
         this.jobType = $.jobType;
         this.name = $.name;
         this.numThreads = $.numThreads;
@@ -713,24 +721,34 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jobCompletionTriggerCondition Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
+         * @param jobCompletionTriggerConditions Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
          * 
          * @return builder
          * 
          */
-        public Builder jobCompletionTriggerCondition(@Nullable Output<JobJobCompletionTriggerConditionArgs> jobCompletionTriggerCondition) {
-            $.jobCompletionTriggerCondition = jobCompletionTriggerCondition;
+        public Builder jobCompletionTriggerConditions(@Nullable Output<List<JobJobCompletionTriggerConditionArgs>> jobCompletionTriggerConditions) {
+            $.jobCompletionTriggerConditions = jobCompletionTriggerConditions;
             return this;
         }
 
         /**
-         * @param jobCompletionTriggerCondition Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
+         * @param jobCompletionTriggerConditions Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
          * 
          * @return builder
          * 
          */
-        public Builder jobCompletionTriggerCondition(JobJobCompletionTriggerConditionArgs jobCompletionTriggerCondition) {
-            return jobCompletionTriggerCondition(Output.of(jobCompletionTriggerCondition));
+        public Builder jobCompletionTriggerConditions(List<JobJobCompletionTriggerConditionArgs> jobCompletionTriggerConditions) {
+            return jobCompletionTriggerConditions(Output.of(jobCompletionTriggerConditions));
+        }
+
+        /**
+         * @param jobCompletionTriggerConditions Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as &#39;job chaining&#39;).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobCompletionTriggerConditions(JobJobCompletionTriggerConditionArgs... jobCompletionTriggerConditions) {
+            return jobCompletionTriggerConditions(List.of(jobCompletionTriggerConditions));
         }
 
         /**
@@ -985,7 +1003,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scheduleType Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+         * @param scheduleType Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
          * 
          * @return builder
          * 
@@ -996,7 +1014,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scheduleType Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+         * @param scheduleType Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
          * 
          * @return builder
          * 
@@ -1048,22 +1066,30 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeoutSeconds Number of seconds to allow the job to run before timing out
+         * @param timeoutSeconds [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
          * 
          * @return builder
          * 
+         * @deprecated
+         * Moved to execution.timeout_seconds
+         * 
          */
+        @Deprecated /* Moved to execution.timeout_seconds */
         public Builder timeoutSeconds(@Nullable Output<Integer> timeoutSeconds) {
             $.timeoutSeconds = timeoutSeconds;
             return this;
         }
 
         /**
-         * @param timeoutSeconds Number of seconds to allow the job to run before timing out
+         * @param timeoutSeconds [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
          * 
          * @return builder
          * 
+         * @deprecated
+         * Moved to execution.timeout_seconds
+         * 
          */
+        @Deprecated /* Moved to execution.timeout_seconds */
         public Builder timeoutSeconds(Integer timeoutSeconds) {
             return timeoutSeconds(Output.of(timeoutSeconds));
         }
@@ -1074,7 +1100,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder triggers(Output<Map<String,Boolean>> triggers) {
+        public Builder triggers(Output<JobTriggersArgs> triggers) {
             $.triggers = triggers;
             return this;
         }
@@ -1085,7 +1111,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder triggers(Map<String,Boolean> triggers) {
+        public Builder triggers(JobTriggersArgs triggers) {
             return triggers(Output.of(triggers));
         }
 

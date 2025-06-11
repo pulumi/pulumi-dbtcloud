@@ -84,6 +84,8 @@ type LookupGlobalConnectionResult struct {
 	Starburst GetGlobalConnectionStarburst `pulumi:"starburst"`
 	// Azure Synapse Analytics connection configuration.
 	Synapse GetGlobalConnectionSynapse `pulumi:"synapse"`
+	// Teradata connection configuration.
+	Teradata GetGlobalConnectionTeradata `pulumi:"teradata"`
 }
 
 func LookupGlobalConnectionOutput(ctx *pulumi.Context, args LookupGlobalConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupGlobalConnectionResultOutput {
@@ -196,6 +198,11 @@ func (o LookupGlobalConnectionResultOutput) Starburst() GetGlobalConnectionStarb
 // Azure Synapse Analytics connection configuration.
 func (o LookupGlobalConnectionResultOutput) Synapse() GetGlobalConnectionSynapseOutput {
 	return o.ApplyT(func(v LookupGlobalConnectionResult) GetGlobalConnectionSynapse { return v.Synapse }).(GetGlobalConnectionSynapseOutput)
+}
+
+// Teradata connection configuration.
+func (o LookupGlobalConnectionResultOutput) Teradata() GetGlobalConnectionTeradataOutput {
+	return o.ApplyT(func(v LookupGlobalConnectionResult) GetGlobalConnectionTeradata { return v.Teradata }).(GetGlobalConnectionTeradataOutput)
 }
 
 func init() {

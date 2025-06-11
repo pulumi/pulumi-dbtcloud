@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Databricks credential data source
+ */
 export function getDatabricksCredential(args: GetDatabricksCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabricksCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", {
@@ -31,9 +34,9 @@ export interface GetDatabricksCredentialArgs {
  */
 export interface GetDatabricksCredentialResult {
     /**
-     * Databricks adapter ID for the credential
+     * The type of the adapter (databricks or spark)
      */
-    readonly adapterId: number;
+    readonly adapterType: string;
     /**
      * The catalog where to create models
      */
@@ -43,11 +46,11 @@ export interface GetDatabricksCredentialResult {
      */
     readonly credentialId: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource. Contains the project ID and the credential ID.
      */
     readonly id: string;
     /**
-     * Number of threads to use
+     * The number of threads to use
      */
     readonly numThreads: number;
     /**
@@ -63,6 +66,9 @@ export interface GetDatabricksCredentialResult {
      */
     readonly targetName: string;
 }
+/**
+ * Databricks credential data source
+ */
 export function getDatabricksCredentialOutput(args: GetDatabricksCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabricksCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", {

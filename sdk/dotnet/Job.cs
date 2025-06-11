@@ -10,150 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
-    /// &gt; In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
-    /// &lt;br/&gt;
-    /// &lt;br/&gt;
-    /// Those improvements include modifications to deferral which was historically set at the job level and will now be set at the environment level.
-    /// Deferral can still be set to "self" by setting `self_deferring` to `true` but with the new approach, deferral to other runs need to be done with `deferring_environment_id` instead of `deferring_job_id`.
-    /// 
-    /// &gt; New with 0.3.1, `triggers` now accepts a `on_merge` value to trigger jobs when code is merged in git. If `on_merge` is `true` all other triggers need to be `false`.
-    /// &lt;br/&gt;
-    /// &lt;br/&gt;
-    /// For now, it is not a mandatory field, but it will be in a future version. Please add `on_merge` in your config or modules.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // a job that has github_webhook and git_provider_webhook 
-    ///     // set to false will be categorized as a "Deploy Job"
-    ///     var dailyJob = new DbtCloud.Job("daily_job", new()
-    ///     {
-    ///         EnvironmentId = prodEnvironment.EnvironmentId,
-    ///         ExecuteSteps = new[]
-    ///         {
-    ///             "dbt build",
-    ///         },
-    ///         GenerateDocs = true,
-    ///         IsActive = true,
-    ///         Name = "Daily job",
-    ///         NumThreads = 64,
-    ///         ProjectId = dbtProject.Id,
-    ///         RunGenerateSources = true,
-    ///         TargetName = "default",
-    ///         Triggers = 
-    ///         {
-    ///             { "github_webhook", false },
-    ///             { "git_provider_webhook", false },
-    ///             { "schedule", true },
-    ///             { "on_merge", false },
-    ///         },
-    ///         ScheduleDays = new[]
-    ///         {
-    ///             0,
-    ///             1,
-    ///             2,
-    ///             3,
-    ///             4,
-    ///             5,
-    ///             6,
-    ///         },
-    ///         ScheduleType = "days_of_week",
-    ///         ScheduleHours = new[]
-    ///         {
-    ///             0,
-    ///         },
-    ///     });
-    /// 
-    ///     // a job that has github_webhook and git_provider_webhook set 
-    ///     // to true will be categorized as a "Continuous Integration Job"
-    ///     var ciJob = new DbtCloud.Job("ci_job", new()
-    ///     {
-    ///         EnvironmentId = ciEnvironment.EnvironmentId,
-    ///         ExecuteSteps = new[]
-    ///         {
-    ///             "dbt build -s state:modified+ --fail-fast",
-    ///         },
-    ///         GenerateDocs = false,
-    ///         DeferringEnvironmentId = prodEnvironment.EnvironmentId,
-    ///         Name = "CI Job",
-    ///         NumThreads = 32,
-    ///         ProjectId = dbtProject.Id,
-    ///         RunGenerateSources = false,
-    ///         RunLint = true,
-    ///         ErrorsOnLintFailure = true,
-    ///         Triggers = 
-    ///         {
-    ///             { "github_webhook", true },
-    ///             { "git_provider_webhook", true },
-    ///             { "schedule", false },
-    ///             { "on_merge", false },
-    ///         },
-    ///         ScheduleDays = new[]
-    ///         {
-    ///             0,
-    ///             1,
-    ///             2,
-    ///             3,
-    ///             4,
-    ///             5,
-    ///             6,
-    ///         },
-    ///         ScheduleType = "days_of_week",
-    ///     });
-    /// 
-    ///     // a job that is set to be triggered after another job finishes
-    ///     // this is sometimes referred as 'job chaining'
-    ///     var downstreamJob = new DbtCloud.Job("downstream_job", new()
-    ///     {
-    ///         EnvironmentId = project2ProdEnvironment.EnvironmentId,
-    ///         ExecuteSteps = new[]
-    ///         {
-    ///             "dbt build -s +my_model",
-    ///         },
-    ///         GenerateDocs = true,
-    ///         Name = "Downstream job in project 2",
-    ///         NumThreads = 32,
-    ///         ProjectId = dbtProject2.Id,
-    ///         RunGenerateSources = true,
-    ///         Triggers = 
-    ///         {
-    ///             { "github_webhook", false },
-    ///             { "git_provider_webhook", false },
-    ///             { "schedule", false },
-    ///             { "on_merge", false },
-    ///         },
-    ///         ScheduleDays = new[]
-    ///         {
-    ///             0,
-    ///             1,
-    ///             2,
-    ///             3,
-    ///             4,
-    ///             5,
-    ///             6,
-    ///         },
-    ///         ScheduleType = "days_of_week",
-    ///         CompletionTriggerCondition = new DbtCloud.Inputs.JobJobCompletionTriggerConditionArgs
-    ///         {
-    ///             JobId = dailyJob.Id,
-    ///             ProjectId = dbtProject.Id,
-    ///             Statuses = new[]
-    ///             {
-    ///                 "success",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
@@ -191,7 +47,7 @@ namespace Pulumi.DbtCloud
         /// The model selector for checking changes in the compare changes Advanced CI feature
         /// </summary>
         [Output("compareChangesFlags")]
-        public Output<string?> CompareChangesFlags { get; private set; } = null!;
+        public Output<string> CompareChangesFlags { get; private set; } = null!;
 
         /// <summary>
         /// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
@@ -215,7 +71,7 @@ namespace Pulumi.DbtCloud
         /// Description for the job
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// Environment ID to create the job in
@@ -227,7 +83,7 @@ namespace Pulumi.DbtCloud
         /// Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         /// </summary>
         [Output("errorsOnLintFailure")]
-        public Output<bool?> ErrorsOnLintFailure { get; private set; } = null!;
+        public Output<bool> ErrorsOnLintFailure { get; private set; } = null!;
 
         /// <summary>
         /// List of commands to execute for the job
@@ -239,19 +95,25 @@ namespace Pulumi.DbtCloud
         /// Flag for whether the job should generate documentation
         /// </summary>
         [Output("generateDocs")]
-        public Output<bool?> GenerateDocs { get; private set; } = null!;
+        public Output<bool> GenerateDocs { get; private set; } = null!;
 
         /// <summary>
         /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         /// </summary>
         [Output("isActive")]
-        public Output<bool?> IsActive { get; private set; } = null!;
+        public Output<bool> IsActive { get; private set; } = null!;
 
         /// <summary>
         /// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         /// </summary>
-        [Output("jobCompletionTriggerCondition")]
-        public Output<Outputs.JobJobCompletionTriggerCondition?> CompletionTriggerCondition { get; private set; } = null!;
+        [Output("jobCompletionTriggerConditions")]
+        public Output<ImmutableArray<Outputs.JobJobCompletionTriggerCondition>> CompletionTriggerCondition { get; private set; } = null!;
+
+        /// <summary>
+        /// Job identifier
+        /// </summary>
+        [Output("jobId")]
+        public Output<int> JobId { get; private set; } = null!;
 
         /// <summary>
         /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
@@ -269,7 +131,7 @@ namespace Pulumi.DbtCloud
         /// Number of threads to use in the job
         /// </summary>
         [Output("numThreads")]
-        public Output<int?> NumThreads { get; private set; } = null!;
+        public Output<int> NumThreads { get; private set; } = null!;
 
         /// <summary>
         /// Project ID to create the job in
@@ -281,19 +143,19 @@ namespace Pulumi.DbtCloud
         /// Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         /// </summary>
         [Output("runCompareChanges")]
-        public Output<bool?> RunCompareChanges { get; private set; } = null!;
+        public Output<bool> RunCompareChanges { get; private set; } = null!;
 
         /// <summary>
         /// Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         /// </summary>
         [Output("runGenerateSources")]
-        public Output<bool?> RunGenerateSources { get; private set; } = null!;
+        public Output<bool> RunGenerateSources { get; private set; } = null!;
 
         /// <summary>
         /// Whether the CI job should lint SQL changes. Defaults to `false`.
         /// </summary>
         [Output("runLint")]
-        public Output<bool?> RunLint { get; private set; } = null!;
+        public Output<bool> RunLint { get; private set; } = null!;
 
         /// <summary>
         /// Custom cron expression for schedule
@@ -317,43 +179,43 @@ namespace Pulumi.DbtCloud
         /// Number of hours between job executions if running on a schedule
         /// </summary>
         [Output("scheduleInterval")]
-        public Output<int?> ScheduleInterval { get; private set; } = null!;
+        public Output<int> ScheduleInterval { get; private set; } = null!;
 
         /// <summary>
-        /// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+        /// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         /// </summary>
         [Output("scheduleType")]
-        public Output<string?> ScheduleType { get; private set; } = null!;
+        public Output<string> ScheduleType { get; private set; } = null!;
 
         /// <summary>
         /// Whether this job defers on a previous run of itself
         /// </summary>
         [Output("selfDeferring")]
-        public Output<bool?> SelfDeferring { get; private set; } = null!;
+        public Output<bool> SelfDeferring { get; private set; } = null!;
 
         /// <summary>
         /// Target name for the dbt profile
         /// </summary>
         [Output("targetName")]
-        public Output<string?> TargetName { get; private set; } = null!;
+        public Output<string> TargetName { get; private set; } = null!;
 
         /// <summary>
-        /// Number of seconds to allow the job to run before timing out
+        /// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
         /// </summary>
         [Output("timeoutSeconds")]
-        public Output<int?> TimeoutSeconds { get; private set; } = null!;
+        public Output<int> TimeoutSeconds { get; private set; } = null!;
 
         /// <summary>
         /// Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
         /// </summary>
         [Output("triggers")]
-        public Output<ImmutableDictionary<string, bool>> Triggers { get; private set; } = null!;
+        public Output<Outputs.JobTriggers> Triggers { get; private set; } = null!;
 
         /// <summary>
         /// Whether the CI job should be automatically triggered on draft PRs
         /// </summary>
         [Output("triggersOnDraftPr")]
-        public Output<bool?> TriggersOnDraftPr { get; private set; } = null!;
+        public Output<bool> TriggersOnDraftPr { get; private set; } = null!;
 
 
         /// <summary>
@@ -468,11 +330,17 @@ namespace Pulumi.DbtCloud
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
 
+        [Input("jobCompletionTriggerConditions")]
+        private InputList<Inputs.JobJobCompletionTriggerConditionArgs>? _jobCompletionTriggerConditions;
+
         /// <summary>
         /// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         /// </summary>
-        [Input("jobCompletionTriggerCondition")]
-        public Input<Inputs.JobJobCompletionTriggerConditionArgs>? CompletionTriggerCondition { get; set; }
+        public InputList<Inputs.JobJobCompletionTriggerConditionArgs> CompletionTriggerCondition
+        {
+            get => _jobCompletionTriggerConditions ?? (_jobCompletionTriggerConditions = new InputList<Inputs.JobJobCompletionTriggerConditionArgs>());
+            set => _jobCompletionTriggerConditions = value;
+        }
 
         /// <summary>
         /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
@@ -553,7 +421,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? ScheduleInterval { get; set; }
 
         /// <summary>
-        /// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+        /// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         /// </summary>
         [Input("scheduleType")]
         public Input<string>? ScheduleType { get; set; }
@@ -571,22 +439,16 @@ namespace Pulumi.DbtCloud
         public Input<string>? TargetName { get; set; }
 
         /// <summary>
-        /// Number of seconds to allow the job to run before timing out
+        /// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
         /// </summary>
         [Input("timeoutSeconds")]
         public Input<int>? TimeoutSeconds { get; set; }
 
-        [Input("triggers", required: true)]
-        private InputMap<bool>? _triggers;
-
         /// <summary>
         /// Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
         /// </summary>
-        public InputMap<bool> Triggers
-        {
-            get => _triggers ?? (_triggers = new InputMap<bool>());
-            set => _triggers = value;
-        }
+        [Input("triggers", required: true)]
+        public Input<Inputs.JobTriggersArgs> Triggers { get; set; } = null!;
 
         /// <summary>
         /// Whether the CI job should be automatically triggered on draft PRs
@@ -668,11 +530,23 @@ namespace Pulumi.DbtCloud
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
 
+        [Input("jobCompletionTriggerConditions")]
+        private InputList<Inputs.JobJobCompletionTriggerConditionGetArgs>? _jobCompletionTriggerConditions;
+
         /// <summary>
         /// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         /// </summary>
-        [Input("jobCompletionTriggerCondition")]
-        public Input<Inputs.JobJobCompletionTriggerConditionGetArgs>? CompletionTriggerCondition { get; set; }
+        public InputList<Inputs.JobJobCompletionTriggerConditionGetArgs> CompletionTriggerCondition
+        {
+            get => _jobCompletionTriggerConditions ?? (_jobCompletionTriggerConditions = new InputList<Inputs.JobJobCompletionTriggerConditionGetArgs>());
+            set => _jobCompletionTriggerConditions = value;
+        }
+
+        /// <summary>
+        /// Job identifier
+        /// </summary>
+        [Input("jobId")]
+        public Input<int>? JobId { get; set; }
 
         /// <summary>
         /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
@@ -753,7 +627,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? ScheduleInterval { get; set; }
 
         /// <summary>
-        /// Type of schedule to use, one of every*day/ days*of*week/ custom*cron
+        /// Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         /// </summary>
         [Input("scheduleType")]
         public Input<string>? ScheduleType { get; set; }
@@ -771,22 +645,16 @@ namespace Pulumi.DbtCloud
         public Input<string>? TargetName { get; set; }
 
         /// <summary>
-        /// Number of seconds to allow the job to run before timing out
+        /// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
         /// </summary>
         [Input("timeoutSeconds")]
         public Input<int>? TimeoutSeconds { get; set; }
 
-        [Input("triggers")]
-        private InputMap<bool>? _triggers;
-
         /// <summary>
         /// Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
         /// </summary>
-        public InputMap<bool> Triggers
-        {
-            get => _triggers ?? (_triggers = new InputMap<bool>());
-            set => _triggers = value;
-        }
+        [Input("triggers")]
+        public Input<Inputs.JobTriggersGetArgs>? Triggers { get; set; }
 
         /// <summary>
         /// Whether the CI job should be automatically triggered on draft PRs

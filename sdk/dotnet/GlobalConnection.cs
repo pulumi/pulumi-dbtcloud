@@ -14,8 +14,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
     /// 
-    /// All connections types are supported, and the old resources `dbtcloud.Connection`, `dbtcloud.BigQueryConnection` and `dbtcloud.FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
-    /// 
     /// ## Import
     /// 
     /// A project-scoped connection can be imported as a global connection by specifying the connection ID
@@ -146,6 +144,12 @@ namespace Pulumi.DbtCloud
         [Output("synapse")]
         public Output<Outputs.GlobalConnectionSynapse?> Synapse { get; private set; } = null!;
 
+        /// <summary>
+        /// Teradata connection configuration.
+        /// </summary>
+        [Output("teradata")]
+        public Output<Outputs.GlobalConnectionTeradata?> Teradata { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a GlobalConnection resource with the given unique name, arguments, and options.
@@ -268,6 +272,12 @@ namespace Pulumi.DbtCloud
         [Input("synapse")]
         public Input<Inputs.GlobalConnectionSynapseArgs>? Synapse { get; set; }
 
+        /// <summary>
+        /// Teradata connection configuration.
+        /// </summary>
+        [Input("teradata")]
+        public Input<Inputs.GlobalConnectionTeradataArgs>? Teradata { get; set; }
+
         public GlobalConnectionArgs()
         {
         }
@@ -362,6 +372,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("synapse")]
         public Input<Inputs.GlobalConnectionSynapseGetArgs>? Synapse { get; set; }
+
+        /// <summary>
+        /// Teradata connection configuration.
+        /// </summary>
+        [Input("teradata")]
+        public Input<Inputs.GlobalConnectionTeradataGetArgs>? Teradata { get; set; }
 
         public GlobalConnectionState()
         {

@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Postgres credential data source.
+ */
 export function getPostgresCredential(args: GetPostgresCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetPostgresCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("dbtcloud:index/getPostgresCredential:getPostgresCredential", {
@@ -39,7 +42,7 @@ export interface GetPostgresCredentialResult {
      */
     readonly defaultSchema: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this data source. Contains the project ID and the credential ID.
      */
     readonly id: string;
     /**
@@ -59,6 +62,9 @@ export interface GetPostgresCredentialResult {
      */
     readonly username: string;
 }
+/**
+ * Postgres credential data source.
+ */
 export function getPostgresCredentialOutput(args: GetPostgresCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPostgresCredentialResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("dbtcloud:index/getPostgresCredential:getPostgresCredential", {

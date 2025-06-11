@@ -17,14 +17,29 @@ public final class EnvironmentVariableJobOverrideState extends com.pulumi.resour
     public static final EnvironmentVariableJobOverrideState Empty = new EnvironmentVariableJobOverrideState();
 
     /**
-     * The ID of the environment variable job override
+     * The account id
+     * 
+     */
+    @Import(name="accountId")
+    private @Nullable Output<Integer> accountId;
+
+    /**
+     * @return The account id
+     * 
+     */
+    public Optional<Output<Integer>> accountId() {
+        return Optional.ofNullable(this.accountId);
+    }
+
+    /**
+     * The internal ID of this resource. Contains the project ID and the environment variable job override ID.
      * 
      */
     @Import(name="environmentVariableJobOverrideId")
     private @Nullable Output<Integer> environmentVariableJobOverrideId;
 
     /**
-     * @return The ID of the environment variable job override
+     * @return The internal ID of this resource. Contains the project ID and the environment variable job override ID.
      * 
      */
     public Optional<Output<Integer>> environmentVariableJobOverrideId() {
@@ -62,14 +77,14 @@ public final class EnvironmentVariableJobOverrideState extends com.pulumi.resour
     }
 
     /**
-     * The project ID for which the environment variable is being overridden
+     * Project ID to create the environment variable job override in
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<Integer> projectId;
 
     /**
-     * @return The project ID for which the environment variable is being overridden
+     * @return Project ID to create the environment variable job override in
      * 
      */
     public Optional<Output<Integer>> projectId() {
@@ -94,6 +109,7 @@ public final class EnvironmentVariableJobOverrideState extends com.pulumi.resour
     private EnvironmentVariableJobOverrideState() {}
 
     private EnvironmentVariableJobOverrideState(EnvironmentVariableJobOverrideState $) {
+        this.accountId = $.accountId;
         this.environmentVariableJobOverrideId = $.environmentVariableJobOverrideId;
         this.jobDefinitionId = $.jobDefinitionId;
         this.name = $.name;
@@ -120,7 +136,28 @@ public final class EnvironmentVariableJobOverrideState extends com.pulumi.resour
         }
 
         /**
-         * @param environmentVariableJobOverrideId The ID of the environment variable job override
+         * @param accountId The account id
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accountId(@Nullable Output<Integer> accountId) {
+            $.accountId = accountId;
+            return this;
+        }
+
+        /**
+         * @param accountId The account id
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accountId(Integer accountId) {
+            return accountId(Output.of(accountId));
+        }
+
+        /**
+         * @param environmentVariableJobOverrideId The internal ID of this resource. Contains the project ID and the environment variable job override ID.
          * 
          * @return builder
          * 
@@ -131,7 +168,7 @@ public final class EnvironmentVariableJobOverrideState extends com.pulumi.resour
         }
 
         /**
-         * @param environmentVariableJobOverrideId The ID of the environment variable job override
+         * @param environmentVariableJobOverrideId The internal ID of this resource. Contains the project ID and the environment variable job override ID.
          * 
          * @return builder
          * 
@@ -183,7 +220,7 @@ public final class EnvironmentVariableJobOverrideState extends com.pulumi.resour
         }
 
         /**
-         * @param projectId The project ID for which the environment variable is being overridden
+         * @param projectId Project ID to create the environment variable job override in
          * 
          * @return builder
          * 
@@ -194,7 +231,7 @@ public final class EnvironmentVariableJobOverrideState extends com.pulumi.resour
         }
 
         /**
-         * @param projectId The project ID for which the environment variable is being overridden
+         * @param projectId Project ID to create the environment variable job override in
          * 
          * @return builder
          * 

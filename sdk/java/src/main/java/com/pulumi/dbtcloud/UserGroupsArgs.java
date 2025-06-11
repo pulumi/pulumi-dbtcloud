@@ -31,14 +31,14 @@ public final class UserGroupsArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The internal ID of a dbt Cloud user
+     * The internal ID of a dbt Cloud user.
      * 
      */
     @Import(name="userId", required=true)
     private Output<Integer> userId;
 
     /**
-     * @return The internal ID of a dbt Cloud user
+     * @return The internal ID of a dbt Cloud user.
      * 
      */
     public Output<Integer> userId() {
@@ -102,7 +102,7 @@ public final class UserGroupsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param userId The internal ID of a dbt Cloud user
+         * @param userId The internal ID of a dbt Cloud user.
          * 
          * @return builder
          * 
@@ -113,7 +113,7 @@ public final class UserGroupsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param userId The internal ID of a dbt Cloud user
+         * @param userId The internal ID of a dbt Cloud user.
          * 
          * @return builder
          * 

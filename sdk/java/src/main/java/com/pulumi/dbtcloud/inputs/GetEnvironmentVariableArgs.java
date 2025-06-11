@@ -16,14 +16,14 @@ public final class GetEnvironmentVariableArgs extends com.pulumi.resources.Invok
     public static final GetEnvironmentVariableArgs Empty = new GetEnvironmentVariableArgs();
 
     /**
-     * Name for the variable
+     * Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
      * 
      */
     @Import(name="name", required=true)
     private Output<String> name;
 
     /**
-     * @return Name for the variable
+     * @return Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
      * 
      */
     public Output<String> name() {
@@ -31,14 +31,14 @@ public final class GetEnvironmentVariableArgs extends com.pulumi.resources.Invok
     }
 
     /**
-     * Project ID the variable exists in
+     * Project ID to create the environment variable in
      * 
      */
     @Import(name="projectId", required=true)
     private Output<Integer> projectId;
 
     /**
-     * @return Project ID the variable exists in
+     * @return Project ID to create the environment variable in
      * 
      */
     public Output<Integer> projectId() {
@@ -71,7 +71,7 @@ public final class GetEnvironmentVariableArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param name Name for the variable
+         * @param name Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class GetEnvironmentVariableArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param name Name for the variable
+         * @param name Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class GetEnvironmentVariableArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param projectId Project ID the variable exists in
+         * @param projectId Project ID to create the environment variable in
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class GetEnvironmentVariableArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param projectId Project ID the variable exists in
+         * @param projectId Project ID to create the environment variable in
          * 
          * @return builder
          * 

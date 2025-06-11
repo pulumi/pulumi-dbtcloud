@@ -13,10 +13,11 @@ import com.pulumi.dbtcloud.inputs.BigQueryCredentialState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Bigquery credential resource
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -88,14 +89,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/bigQueryCredential:BigQueryCredential")
 public class BigQueryCredential extends com.pulumi.resources.CustomResource {
     /**
-     * The system BigQuery credential ID
+     * The internal credential ID
      * 
      */
     @Export(name="credentialId", refs={Integer.class}, tree="[0]")
     private Output<Integer> credentialId;
 
     /**
-     * @return The system BigQuery credential ID
+     * @return The internal credential ID
      * 
      */
     public Output<Integer> credentialId() {
@@ -120,14 +121,14 @@ public class BigQueryCredential extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="isActive", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> isActive;
+    private Output<Boolean> isActive;
 
     /**
      * @return Whether the BigQuery credential is active
      * 
      */
-    public Output<Optional<Boolean>> isActive() {
-        return Codegen.optional(this.isActive);
+    public Output<Boolean> isActive() {
+        return this.isActive;
     }
     /**
      * Number of threads to use

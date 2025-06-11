@@ -15,6 +15,8 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
+ * Environment variable job override resource
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -87,14 +89,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride")
 public class EnvironmentVariableJobOverride extends com.pulumi.resources.CustomResource {
     /**
-     * The ID of the environment variable job override
+     * The account id
+     * 
+     */
+    @Export(name="accountId", refs={Integer.class}, tree="[0]")
+    private Output<Integer> accountId;
+
+    /**
+     * @return The account id
+     * 
+     */
+    public Output<Integer> accountId() {
+        return this.accountId;
+    }
+    /**
+     * The internal ID of this resource. Contains the project ID and the environment variable job override ID.
      * 
      */
     @Export(name="environmentVariableJobOverrideId", refs={Integer.class}, tree="[0]")
     private Output<Integer> environmentVariableJobOverrideId;
 
     /**
-     * @return The ID of the environment variable job override
+     * @return The internal ID of this resource. Contains the project ID and the environment variable job override ID.
      * 
      */
     public Output<Integer> environmentVariableJobOverrideId() {
@@ -129,14 +145,14 @@ public class EnvironmentVariableJobOverride extends com.pulumi.resources.CustomR
         return this.name;
     }
     /**
-     * The project ID for which the environment variable is being overridden
+     * Project ID to create the environment variable job override in
      * 
      */
     @Export(name="projectId", refs={Integer.class}, tree="[0]")
     private Output<Integer> projectId;
 
     /**
-     * @return The project ID for which the environment variable is being overridden
+     * @return Project ID to create the environment variable job override in
      * 
      */
     public Output<Integer> projectId() {

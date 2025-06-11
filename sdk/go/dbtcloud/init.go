@@ -25,12 +25,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccountFeatures{}
 	case "dbtcloud:index/athenaCredential:AthenaCredential":
 		r = &AthenaCredential{}
-	case "dbtcloud:index/bigQueryConnection:BigQueryConnection":
-		r = &BigQueryConnection{}
 	case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
 		r = &BigQueryCredential{}
-	case "dbtcloud:index/connection:Connection":
-		r = &Connection{}
+	case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
+		r = &BigquerySemanticLayerCredential{}
 	case "dbtcloud:index/databricksCredential:DatabricksCredential":
 		r = &DatabricksCredential{}
 	case "dbtcloud:index/environment:Environment":
@@ -41,8 +39,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EnvironmentVariableJobOverride{}
 	case "dbtcloud:index/extendedAttributes:ExtendedAttributes":
 		r = &ExtendedAttributes{}
-	case "dbtcloud:index/fabricConnection:FabricConnection":
-		r = &FabricConnection{}
 	case "dbtcloud:index/fabricCredential:FabricCredential":
 		r = &FabricCredential{}
 	case "dbtcloud:index/globalConnection:GlobalConnection":
@@ -65,6 +61,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Notification{}
 	case "dbtcloud:index/oauthConfiguration:OauthConfiguration":
 		r = &OauthConfiguration{}
+	case "dbtcloud:index/partialEnvironmentVariable:PartialEnvironmentVariable":
+		r = &PartialEnvironmentVariable{}
 	case "dbtcloud:index/partialLicenseMap:PartialLicenseMap":
 		r = &PartialLicenseMap{}
 	case "dbtcloud:index/partialNotification:PartialNotification":
@@ -75,18 +73,28 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Project{}
 	case "dbtcloud:index/projectArtefacts:ProjectArtefacts":
 		r = &ProjectArtefacts{}
-	case "dbtcloud:index/projectConnection:ProjectConnection":
-		r = &ProjectConnection{}
 	case "dbtcloud:index/projectRepository:ProjectRepository":
 		r = &ProjectRepository{}
+	case "dbtcloud:index/redshiftCredential:RedshiftCredential":
+		r = &RedshiftCredential{}
+	case "dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential":
+		r = &RedshiftSemanticLayerCredential{}
 	case "dbtcloud:index/repository:Repository":
 		r = &Repository{}
+	case "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration":
+		r = &SemanticLayerConfiguration{}
 	case "dbtcloud:index/serviceToken:ServiceToken":
 		r = &ServiceToken{}
 	case "dbtcloud:index/snowflakeCredential:SnowflakeCredential":
 		r = &SnowflakeCredential{}
+	case "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential":
+		r = &SnowflakeSemanticLayerCredential{}
 	case "dbtcloud:index/starburstCredential:StarburstCredential":
 		r = &StarburstCredential{}
+	case "dbtcloud:index/synapseCredential:SynapseCredential":
+		r = &SynapseCredential{}
+	case "dbtcloud:index/teradataCredential:TeradataCredential":
+		r = &TeradataCredential{}
 	case "dbtcloud:index/userGroups:UserGroups":
 		r = &UserGroups{}
 	case "dbtcloud:index/webhook:Webhook":
@@ -134,17 +142,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
-		"index/bigQueryConnection",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"dbtcloud",
 		"index/bigQueryCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
-		"index/connection",
+		"index/bigquerySemanticLayerCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -170,11 +173,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/extendedAttributes",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"dbtcloud",
-		"index/fabricConnection",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -234,6 +232,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/partialEnvironmentVariable",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/partialLicenseMap",
 		&module{version},
 	)
@@ -259,17 +262,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
-		"index/projectConnection",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"dbtcloud",
 		"index/projectRepository",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/redshiftCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/redshiftSemanticLayerCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/repository",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/semanticLayerConfiguration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -284,7 +297,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/snowflakeSemanticLayerCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/starburstCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/synapseCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/teradataCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

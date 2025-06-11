@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Webhook details
+//
 // ## Example Usage
 //
 // ```go
@@ -83,22 +85,24 @@ type Webhook struct {
 	// Webhooks Account Identifier
 	AccountIdentifier pulumi.StringOutput `pulumi:"accountIdentifier"`
 	// Webhooks active flag
-	Active pulumi.BoolPtrOutput `pulumi:"active"`
+	Active pulumi.BoolOutput `pulumi:"active"`
 	// Webhooks Client URL
 	ClientUrl pulumi.StringOutput `pulumi:"clientUrl"`
 	// Webhooks Description
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringOutput `pulumi:"description"`
 	// Webhooks Event Types
 	EventTypes pulumi.StringArrayOutput `pulumi:"eventTypes"`
 	// Secret key for the webhook. Can be used to validate the authenticity of the webhook.
 	HmacSecret pulumi.StringOutput `pulumi:"hmacSecret"`
 	// Latest HTTP status of the webhook
 	HttpStatusCode pulumi.StringOutput `pulumi:"httpStatusCode"`
-	// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+	// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
 	JobIds pulumi.IntArrayOutput `pulumi:"jobIds"`
 	// Webhooks Name
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Webhooks ID
+	// Webhook's ID
+	//
+	// Deprecated: Use `id` instead
 	WebhookId pulumi.StringOutput `pulumi:"webhookId"`
 }
 
@@ -156,11 +160,13 @@ type webhookState struct {
 	HmacSecret *string `pulumi:"hmacSecret"`
 	// Latest HTTP status of the webhook
 	HttpStatusCode *string `pulumi:"httpStatusCode"`
-	// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+	// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
 	JobIds []int `pulumi:"jobIds"`
 	// Webhooks Name
 	Name *string `pulumi:"name"`
-	// Webhooks ID
+	// Webhook's ID
+	//
+	// Deprecated: Use `id` instead
 	WebhookId *string `pulumi:"webhookId"`
 }
 
@@ -179,11 +185,13 @@ type WebhookState struct {
 	HmacSecret pulumi.StringPtrInput
 	// Latest HTTP status of the webhook
 	HttpStatusCode pulumi.StringPtrInput
-	// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+	// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
 	JobIds pulumi.IntArrayInput
 	// Webhooks Name
 	Name pulumi.StringPtrInput
-	// Webhooks ID
+	// Webhook's ID
+	//
+	// Deprecated: Use `id` instead
 	WebhookId pulumi.StringPtrInput
 }
 
@@ -200,7 +208,7 @@ type webhookArgs struct {
 	Description *string `pulumi:"description"`
 	// Webhooks Event Types
 	EventTypes []string `pulumi:"eventTypes"`
-	// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+	// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
 	JobIds []int `pulumi:"jobIds"`
 	// Webhooks Name
 	Name *string `pulumi:"name"`
@@ -216,7 +224,7 @@ type WebhookArgs struct {
 	Description pulumi.StringPtrInput
 	// Webhooks Event Types
 	EventTypes pulumi.StringArrayInput
-	// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+	// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
 	JobIds pulumi.IntArrayInput
 	// Webhooks Name
 	Name pulumi.StringPtrInput
@@ -315,8 +323,8 @@ func (o WebhookOutput) AccountIdentifier() pulumi.StringOutput {
 }
 
 // Webhooks active flag
-func (o WebhookOutput) Active() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Webhook) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
+func (o WebhookOutput) Active() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.BoolOutput { return v.Active }).(pulumi.BoolOutput)
 }
 
 // Webhooks Client URL
@@ -325,8 +333,8 @@ func (o WebhookOutput) ClientUrl() pulumi.StringOutput {
 }
 
 // Webhooks Description
-func (o WebhookOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Webhook) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+func (o WebhookOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
 // Webhooks Event Types
@@ -344,7 +352,7 @@ func (o WebhookOutput) HttpStatusCode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.HttpStatusCode }).(pulumi.StringOutput)
 }
 
-// List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+// List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
 func (o WebhookOutput) JobIds() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.IntArrayOutput { return v.JobIds }).(pulumi.IntArrayOutput)
 }
@@ -354,7 +362,9 @@ func (o WebhookOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Webhooks ID
+// Webhook's ID
+//
+// Deprecated: Use `id` instead
 func (o WebhookOutput) WebhookId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.WebhookId }).(pulumi.StringOutput)
 }

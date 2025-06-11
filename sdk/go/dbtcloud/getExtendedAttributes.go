@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Extended attributes data source
+//
 // ## Example Usage
 //
 // ```go
@@ -49,21 +51,21 @@ func LookupExtendedAttributes(ctx *pulumi.Context, args *LookupExtendedAttribute
 
 // A collection of arguments for invoking getExtendedAttributes.
 type LookupExtendedAttributesArgs struct {
-	// ID of the extended attributes
+	// Extended attributes ID
 	ExtendedAttributesId int `pulumi:"extendedAttributesId"`
-	// Project ID the extended attributes refers to
+	// Project ID
 	ProjectId int `pulumi:"projectId"`
 }
 
 // A collection of values returned by getExtendedAttributes.
 type LookupExtendedAttributesResult struct {
-	// A JSON string listing the extended attributes mapping
+	// Extended attributes
 	ExtendedAttributes string `pulumi:"extendedAttributes"`
-	// ID of the extended attributes
+	// Extended attributes ID
 	ExtendedAttributesId int `pulumi:"extendedAttributesId"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource. Contains the project ID and the credential ID.
 	Id string `pulumi:"id"`
-	// Project ID the extended attributes refers to
+	// Project ID
 	ProjectId int `pulumi:"projectId"`
 	// The state of the extended attributes (1 = active, 2 = inactive)
 	State int `pulumi:"state"`
@@ -80,9 +82,9 @@ func LookupExtendedAttributesOutput(ctx *pulumi.Context, args LookupExtendedAttr
 
 // A collection of arguments for invoking getExtendedAttributes.
 type LookupExtendedAttributesOutputArgs struct {
-	// ID of the extended attributes
+	// Extended attributes ID
 	ExtendedAttributesId pulumi.IntInput `pulumi:"extendedAttributesId"`
-	// Project ID the extended attributes refers to
+	// Project ID
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
 }
 
@@ -105,22 +107,22 @@ func (o LookupExtendedAttributesResultOutput) ToLookupExtendedAttributesResultOu
 	return o
 }
 
-// A JSON string listing the extended attributes mapping
+// Extended attributes
 func (o LookupExtendedAttributesResultOutput) ExtendedAttributes() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupExtendedAttributesResult) string { return v.ExtendedAttributes }).(pulumi.StringOutput)
 }
 
-// ID of the extended attributes
+// Extended attributes ID
 func (o LookupExtendedAttributesResultOutput) ExtendedAttributesId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupExtendedAttributesResult) int { return v.ExtendedAttributesId }).(pulumi.IntOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource. Contains the project ID and the credential ID.
 func (o LookupExtendedAttributesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupExtendedAttributesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Project ID the extended attributes refers to
+// Project ID
 func (o LookupExtendedAttributesResultOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupExtendedAttributesResult) int { return v.ProjectId }).(pulumi.IntOutput)
 }

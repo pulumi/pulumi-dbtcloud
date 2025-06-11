@@ -11,12 +11,78 @@ namespace Pulumi.DbtCloud
 {
     public static class GetEnvironmentVariable
     {
+        /// <summary>
+        /// Environment variable credential data source
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myVar = DbtCloud.GetEnvironmentVariable.Invoke(new()
+        ///     {
+        ///         ProjectId = 70403103985068,
+        ///         Name = "DBT_MY_PARTIAL_VAR",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetEnvironmentVariableResult> InvokeAsync(GetEnvironmentVariableArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEnvironmentVariableResult>("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args ?? new GetEnvironmentVariableArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Environment variable credential data source
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myVar = DbtCloud.GetEnvironmentVariable.Invoke(new()
+        ///     {
+        ///         ProjectId = 70403103985068,
+        ///         Name = "DBT_MY_PARTIAL_VAR",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetEnvironmentVariableResult> Invoke(GetEnvironmentVariableInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEnvironmentVariableResult>("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args ?? new GetEnvironmentVariableInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Environment variable credential data source
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myVar = DbtCloud.GetEnvironmentVariable.Invoke(new()
+        ///     {
+        ///         ProjectId = 70403103985068,
+        ///         Name = "DBT_MY_PARTIAL_VAR",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetEnvironmentVariableResult> Invoke(GetEnvironmentVariableInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetEnvironmentVariableResult>("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args ?? new GetEnvironmentVariableInvokeArgs(), options.WithDefaults());
     }
@@ -25,13 +91,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetEnvironmentVariableArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Name for the variable
+        /// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// Project ID the variable exists in
+        /// Project ID to create the environment variable in
         /// </summary>
         [Input("projectId", required: true)]
         public int ProjectId { get; set; }
@@ -45,13 +111,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetEnvironmentVariableInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Name for the variable
+        /// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Project ID the variable exists in
+        /// Project ID to create the environment variable in
         /// </summary>
         [Input("projectId", required: true)]
         public Input<int> ProjectId { get; set; } = null!;
@@ -67,19 +133,19 @@ namespace Pulumi.DbtCloud
     public sealed class GetEnvironmentVariableResult
     {
         /// <summary>
-        /// Map containing the environment variables
+        /// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         /// </summary>
         public readonly ImmutableDictionary<string, string> EnvironmentValues;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource. Contains the project ID and the environment variable ID.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Name for the variable
+        /// Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Project ID the variable exists in
+        /// Project ID to create the environment variable in
         /// </summary>
         public readonly int ProjectId;
 

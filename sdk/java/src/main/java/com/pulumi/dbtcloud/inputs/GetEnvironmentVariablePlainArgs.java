@@ -15,14 +15,14 @@ public final class GetEnvironmentVariablePlainArgs extends com.pulumi.resources.
     public static final GetEnvironmentVariablePlainArgs Empty = new GetEnvironmentVariablePlainArgs();
 
     /**
-     * Name for the variable
+     * Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
      * 
      */
     @Import(name="name", required=true)
     private String name;
 
     /**
-     * @return Name for the variable
+     * @return Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
      * 
      */
     public String name() {
@@ -30,14 +30,14 @@ public final class GetEnvironmentVariablePlainArgs extends com.pulumi.resources.
     }
 
     /**
-     * Project ID the variable exists in
+     * Project ID to create the environment variable in
      * 
      */
     @Import(name="projectId", required=true)
     private Integer projectId;
 
     /**
-     * @return Project ID the variable exists in
+     * @return Project ID to create the environment variable in
      * 
      */
     public Integer projectId() {
@@ -70,7 +70,7 @@ public final class GetEnvironmentVariablePlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param name Name for the variable
+         * @param name Name for the variable, must be unique within a project, must be prefixed with &#39;DBT_&#39;
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetEnvironmentVariablePlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param projectId Project ID the variable exists in
+         * @param projectId Project ID to create the environment variable in
          * 
          * @return builder
          * 

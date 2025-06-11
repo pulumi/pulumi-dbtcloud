@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     public static class GetPrivatelinkEndpoint
     {
         /// <summary>
+        /// Privatelink endpoint data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -46,6 +48,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointResult>("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", args ?? new GetPrivatelinkEndpointArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Privatelink endpoint data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -80,6 +84,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointResult>("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", args ?? new GetPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Privatelink endpoint data source.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -124,10 +130,16 @@ namespace Pulumi.DbtCloud
         public string? Name { get; set; }
 
         /// <summary>
-        /// The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
         /// </summary>
         [Input("privateLinkEndpointUrl")]
         public string? PrivateLinkEndpointUrl { get; set; }
+
+        /// <summary>
+        /// Type of the PrivateLink Endpoint
+        /// </summary>
+        [Input("type")]
+        public string? Type { get; set; }
 
         public GetPrivatelinkEndpointArgs()
         {
@@ -144,10 +156,16 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
         /// </summary>
         [Input("privateLinkEndpointUrl")]
         public Input<string>? PrivateLinkEndpointUrl { get; set; }
+
+        /// <summary>
+        /// Type of the PrivateLink Endpoint
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         public GetPrivatelinkEndpointInvokeArgs()
         {
@@ -160,7 +178,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetPrivatelinkEndpointResult
     {
         /// <summary>
-        /// The CIDR range of the PrivateLink Endpoint
+        /// CIDR range of the PrivateLink Endpoint
         /// </summary>
         public readonly string CidrRange;
         /// <summary>
@@ -172,13 +190,9 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
         /// </summary>
         public readonly string? PrivateLinkEndpointUrl;
-        /// <summary>
-        /// PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
-        /// </summary>
-        public readonly int State;
         /// <summary>
         /// Type of the PrivateLink Endpoint
         /// </summary>
@@ -194,15 +208,12 @@ namespace Pulumi.DbtCloud
 
             string? privateLinkEndpointUrl,
 
-            int state,
-
             string type)
         {
             CidrRange = cidrRange;
             Id = id;
             Name = name;
             PrivateLinkEndpointUrl = privateLinkEndpointUrl;
-            State = state;
             Type = type;
         }
     }

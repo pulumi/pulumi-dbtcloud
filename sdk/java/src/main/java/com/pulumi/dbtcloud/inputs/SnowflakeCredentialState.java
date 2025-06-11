@@ -33,14 +33,14 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The system Snowflake credential ID
+     * The internal credential ID
      * 
      */
     @Import(name="credentialId")
     private @Nullable Output<Integer> credentialId;
 
     /**
-     * @return The system Snowflake credential ID
+     * @return The internal credential ID
      * 
      */
     public Optional<Output<Integer>> credentialId() {
@@ -48,14 +48,14 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Database to connect to
+     * The catalog to connect use
      * 
      */
     @Import(name="database")
     private @Nullable Output<String> database;
 
     /**
-     * @return Database to connect to
+     * @return The catalog to connect use
      * 
      */
     public Optional<Output<String>> database() {
@@ -93,14 +93,14 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Password for Snowflake
+     * The password for the Snowflake account
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return Password for Snowflake
+     * @return The password for the Snowflake account
      * 
      */
     public Optional<Output<String>> password() {
@@ -108,14 +108,14 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Private key for Snowflake
+     * The private key for the Snowflake account
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return Private key for Snowflake
+     * @return The private key for the Snowflake account
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -123,14 +123,14 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Private key passphrase for Snowflake
+     * The passphrase for the private key
      * 
      */
     @Import(name="privateKeyPassphrase")
     private @Nullable Output<String> privateKeyPassphrase;
 
     /**
-     * @return Private key passphrase for Snowflake
+     * @return The passphrase for the private key
      * 
      */
     public Optional<Output<String>> privateKeyPassphrase() {
@@ -153,14 +153,14 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Role to assume
+     * The role to assume
      * 
      */
     @Import(name="role")
     private @Nullable Output<String> role;
 
     /**
-     * @return Role to assume
+     * @return The role to assume
      * 
      */
     public Optional<Output<String>> role() {
@@ -168,14 +168,14 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Default schema name
+     * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      * 
      */
     @Import(name="schema")
     private @Nullable Output<String> schema;
 
     /**
-     * @return Default schema name
+     * @return The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      * 
      */
     public Optional<Output<String>> schema() {
@@ -183,14 +183,29 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Username for Snowflake
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+     * 
+     */
+    @Import(name="semanticLayerCredential")
+    private @Nullable Output<Boolean> semanticLayerCredential;
+
+    /**
+     * @return This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+     * 
+     */
+    public Optional<Output<Boolean>> semanticLayerCredential() {
+        return Optional.ofNullable(this.semanticLayerCredential);
+    }
+
+    /**
+     * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      * 
      */
     @Import(name="user")
     private @Nullable Output<String> user;
 
     /**
-     * @return Username for Snowflake
+     * @return The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      * 
      */
     public Optional<Output<String>> user() {
@@ -198,14 +213,14 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Warehouse to use
+     * The warehouse to use
      * 
      */
     @Import(name="warehouse")
     private @Nullable Output<String> warehouse;
 
     /**
-     * @return Warehouse to use
+     * @return The warehouse to use
      * 
      */
     public Optional<Output<String>> warehouse() {
@@ -226,6 +241,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         this.projectId = $.projectId;
         this.role = $.role;
         this.schema = $.schema;
+        this.semanticLayerCredential = $.semanticLayerCredential;
         this.user = $.user;
         this.warehouse = $.warehouse;
     }
@@ -270,7 +286,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param credentialId The system Snowflake credential ID
+         * @param credentialId The internal credential ID
          * 
          * @return builder
          * 
@@ -281,7 +297,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param credentialId The system Snowflake credential ID
+         * @param credentialId The internal credential ID
          * 
          * @return builder
          * 
@@ -291,7 +307,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param database Database to connect to
+         * @param database The catalog to connect use
          * 
          * @return builder
          * 
@@ -302,7 +318,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param database Database to connect to
+         * @param database The catalog to connect use
          * 
          * @return builder
          * 
@@ -354,7 +370,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param password Password for Snowflake
+         * @param password The password for the Snowflake account
          * 
          * @return builder
          * 
@@ -365,7 +381,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param password Password for Snowflake
+         * @param password The password for the Snowflake account
          * 
          * @return builder
          * 
@@ -375,7 +391,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param privateKey Private key for Snowflake
+         * @param privateKey The private key for the Snowflake account
          * 
          * @return builder
          * 
@@ -386,7 +402,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param privateKey Private key for Snowflake
+         * @param privateKey The private key for the Snowflake account
          * 
          * @return builder
          * 
@@ -396,7 +412,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param privateKeyPassphrase Private key passphrase for Snowflake
+         * @param privateKeyPassphrase The passphrase for the private key
          * 
          * @return builder
          * 
@@ -407,7 +423,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param privateKeyPassphrase Private key passphrase for Snowflake
+         * @param privateKeyPassphrase The passphrase for the private key
          * 
          * @return builder
          * 
@@ -438,7 +454,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param role Role to assume
+         * @param role The role to assume
          * 
          * @return builder
          * 
@@ -449,7 +465,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param role Role to assume
+         * @param role The role to assume
          * 
          * @return builder
          * 
@@ -459,7 +475,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param schema Default schema name
+         * @param schema The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
          * 
          * @return builder
          * 
@@ -470,7 +486,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param schema Default schema name
+         * @param schema The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
          * 
          * @return builder
          * 
@@ -480,7 +496,28 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param user Username for Snowflake
+         * @param semanticLayerCredential This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder semanticLayerCredential(@Nullable Output<Boolean> semanticLayerCredential) {
+            $.semanticLayerCredential = semanticLayerCredential;
+            return this;
+        }
+
+        /**
+         * @param semanticLayerCredential This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder semanticLayerCredential(Boolean semanticLayerCredential) {
+            return semanticLayerCredential(Output.of(semanticLayerCredential));
+        }
+
+        /**
+         * @param user The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
          * 
          * @return builder
          * 
@@ -491,7 +528,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param user Username for Snowflake
+         * @param user The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
          * 
          * @return builder
          * 
@@ -501,7 +538,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param warehouse Warehouse to use
+         * @param warehouse The warehouse to use
          * 
          * @return builder
          * 
@@ -512,7 +549,7 @@ public final class SnowflakeCredentialState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param warehouse Warehouse to use
+         * @param warehouse The warehouse to use
          * 
          * @return builder
          * 

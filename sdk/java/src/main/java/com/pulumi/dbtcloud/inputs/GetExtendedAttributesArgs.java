@@ -15,14 +15,14 @@ public final class GetExtendedAttributesArgs extends com.pulumi.resources.Invoke
     public static final GetExtendedAttributesArgs Empty = new GetExtendedAttributesArgs();
 
     /**
-     * ID of the extended attributes
+     * Extended attributes ID
      * 
      */
     @Import(name="extendedAttributesId", required=true)
     private Output<Integer> extendedAttributesId;
 
     /**
-     * @return ID of the extended attributes
+     * @return Extended attributes ID
      * 
      */
     public Output<Integer> extendedAttributesId() {
@@ -30,14 +30,14 @@ public final class GetExtendedAttributesArgs extends com.pulumi.resources.Invoke
     }
 
     /**
-     * Project ID the extended attributes refers to
+     * Project ID
      * 
      */
     @Import(name="projectId", required=true)
     private Output<Integer> projectId;
 
     /**
-     * @return Project ID the extended attributes refers to
+     * @return Project ID
      * 
      */
     public Output<Integer> projectId() {
@@ -70,7 +70,7 @@ public final class GetExtendedAttributesArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param extendedAttributesId ID of the extended attributes
+         * @param extendedAttributesId Extended attributes ID
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetExtendedAttributesArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param extendedAttributesId ID of the extended attributes
+         * @param extendedAttributesId Extended attributes ID
          * 
          * @return builder
          * 
@@ -91,7 +91,7 @@ public final class GetExtendedAttributesArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param projectId Project ID the extended attributes refers to
+         * @param projectId Project ID
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class GetExtendedAttributesArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param projectId Project ID the extended attributes refers to
+         * @param projectId Project ID
          * 
          * @return builder
          * 

@@ -111,7 +111,7 @@ class GetWebhookResult:
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        Webhook's ID
         """
         return pulumi.get(self, "id")
 
@@ -133,9 +133,10 @@ class GetWebhookResult:
 
     @property
     @pulumi.getter(name="webhookId")
+    @_utilities.deprecated("""Use `id` instead""")
     def webhook_id(self) -> builtins.str:
         """
-        Webhooks ID
+        Webhook's ID
         """
         return pulumi.get(self, "webhook_id")
 
@@ -161,9 +162,10 @@ class AwaitableGetWebhookResult(GetWebhookResult):
 def get_webhook(webhook_id: Optional[builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebhookResult:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve webhook details
 
-    :param builtins.str webhook_id: Webhooks ID
+
+    :param builtins.str webhook_id: Webhook's ID
     """
     __args__ = dict()
     __args__['webhookId'] = webhook_id
@@ -184,9 +186,10 @@ def get_webhook(webhook_id: Optional[builtins.str] = None,
 def get_webhook_output(webhook_id: Optional[pulumi.Input[builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWebhookResult]:
     """
-    Use this data source to access information about an existing resource.
+    Retrieve webhook details
 
-    :param builtins.str webhook_id: Webhooks ID
+
+    :param builtins.str webhook_id: Webhook's ID
     """
     __args__ = dict()
     __args__['webhookId'] = webhook_id

@@ -18,7 +18,7 @@ public final class GetEnvironmentsEnvironment {
      */
     private Integer connectionId;
     /**
-     * @return Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * @return Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user&#39;s credentials, but deployment environments will have this.
      * 
      */
     private Integer credentialsId;
@@ -82,7 +82,7 @@ public final class GetEnvironmentsEnvironment {
         return this.connectionId;
     }
     /**
-     * @return Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+     * @return Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user&#39;s credentials, but deployment environments will have this.
      * 
      */
     public Integer credentialsId() {

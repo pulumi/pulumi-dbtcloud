@@ -27,7 +27,7 @@ class EnvironmentVariableJobOverrideArgs:
         """
         The set of arguments for constructing a EnvironmentVariableJobOverride resource.
         :param pulumi.Input[builtins.int] job_definition_id: The job ID for which the environment variable is being overridden
-        :param pulumi.Input[builtins.int] project_id: The project ID for which the environment variable is being overridden
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the environment variable job override in
         :param pulumi.Input[builtins.str] raw_value: The value for the override of the environment variable
         :param pulumi.Input[builtins.str] name: The environment variable name to override
         """
@@ -53,7 +53,7 @@ class EnvironmentVariableJobOverrideArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[builtins.int]:
         """
-        The project ID for which the environment variable is being overridden
+        Project ID to create the environment variable job override in
         """
         return pulumi.get(self, "project_id")
 
@@ -89,6 +89,7 @@ class EnvironmentVariableJobOverrideArgs:
 @pulumi.input_type
 class _EnvironmentVariableJobOverrideState:
     def __init__(__self__, *,
+                 account_id: Optional[pulumi.Input[builtins.int]] = None,
                  environment_variable_job_override_id: Optional[pulumi.Input[builtins.int]] = None,
                  job_definition_id: Optional[pulumi.Input[builtins.int]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -96,12 +97,15 @@ class _EnvironmentVariableJobOverrideState:
                  raw_value: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering EnvironmentVariableJobOverride resources.
-        :param pulumi.Input[builtins.int] environment_variable_job_override_id: The ID of the environment variable job override
+        :param pulumi.Input[builtins.int] account_id: The account id
+        :param pulumi.Input[builtins.int] environment_variable_job_override_id: The internal ID of this resource. Contains the project ID and the environment variable job override ID.
         :param pulumi.Input[builtins.int] job_definition_id: The job ID for which the environment variable is being overridden
         :param pulumi.Input[builtins.str] name: The environment variable name to override
-        :param pulumi.Input[builtins.int] project_id: The project ID for which the environment variable is being overridden
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the environment variable job override in
         :param pulumi.Input[builtins.str] raw_value: The value for the override of the environment variable
         """
+        if account_id is not None:
+            pulumi.set(__self__, "account_id", account_id)
         if environment_variable_job_override_id is not None:
             pulumi.set(__self__, "environment_variable_job_override_id", environment_variable_job_override_id)
         if job_definition_id is not None:
@@ -114,10 +118,22 @@ class _EnvironmentVariableJobOverrideState:
             pulumi.set(__self__, "raw_value", raw_value)
 
     @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The account id
+        """
+        return pulumi.get(self, "account_id")
+
+    @account_id.setter
+    def account_id(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "account_id", value)
+
+    @property
     @pulumi.getter(name="environmentVariableJobOverrideId")
     def environment_variable_job_override_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The ID of the environment variable job override
+        The internal ID of this resource. Contains the project ID and the environment variable job override ID.
         """
         return pulumi.get(self, "environment_variable_job_override_id")
 
@@ -153,7 +169,7 @@ class _EnvironmentVariableJobOverrideState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The project ID for which the environment variable is being overridden
+        Project ID to create the environment variable job override in
         """
         return pulumi.get(self, "project_id")
 
@@ -186,6 +202,8 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
                  raw_value: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
+        Environment variable job override resource
+
         ## Example Usage
 
         ```python
@@ -233,7 +251,7 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.int] job_definition_id: The job ID for which the environment variable is being overridden
         :param pulumi.Input[builtins.str] name: The environment variable name to override
-        :param pulumi.Input[builtins.int] project_id: The project ID for which the environment variable is being overridden
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the environment variable job override in
         :param pulumi.Input[builtins.str] raw_value: The value for the override of the environment variable
         """
         ...
@@ -243,6 +261,8 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
                  args: EnvironmentVariableJobOverrideArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Environment variable job override resource
+
         ## Example Usage
 
         ```python
@@ -324,6 +344,7 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
             if raw_value is None and not opts.urn:
                 raise TypeError("Missing required property 'raw_value'")
             __props__.__dict__["raw_value"] = raw_value
+            __props__.__dict__["account_id"] = None
             __props__.__dict__["environment_variable_job_override_id"] = None
         super(EnvironmentVariableJobOverride, __self__).__init__(
             'dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride',
@@ -335,6 +356,7 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_id: Optional[pulumi.Input[builtins.int]] = None,
             environment_variable_job_override_id: Optional[pulumi.Input[builtins.int]] = None,
             job_definition_id: Optional[pulumi.Input[builtins.int]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
@@ -347,16 +369,18 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.int] environment_variable_job_override_id: The ID of the environment variable job override
+        :param pulumi.Input[builtins.int] account_id: The account id
+        :param pulumi.Input[builtins.int] environment_variable_job_override_id: The internal ID of this resource. Contains the project ID and the environment variable job override ID.
         :param pulumi.Input[builtins.int] job_definition_id: The job ID for which the environment variable is being overridden
         :param pulumi.Input[builtins.str] name: The environment variable name to override
-        :param pulumi.Input[builtins.int] project_id: The project ID for which the environment variable is being overridden
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the environment variable job override in
         :param pulumi.Input[builtins.str] raw_value: The value for the override of the environment variable
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _EnvironmentVariableJobOverrideState.__new__(_EnvironmentVariableJobOverrideState)
 
+        __props__.__dict__["account_id"] = account_id
         __props__.__dict__["environment_variable_job_override_id"] = environment_variable_job_override_id
         __props__.__dict__["job_definition_id"] = job_definition_id
         __props__.__dict__["name"] = name
@@ -365,10 +389,18 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
         return EnvironmentVariableJobOverride(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> pulumi.Output[builtins.int]:
+        """
+        The account id
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
     @pulumi.getter(name="environmentVariableJobOverrideId")
     def environment_variable_job_override_id(self) -> pulumi.Output[builtins.int]:
         """
-        The ID of the environment variable job override
+        The internal ID of this resource. Contains the project ID and the environment variable job override ID.
         """
         return pulumi.get(self, "environment_variable_job_override_id")
 
@@ -392,7 +424,7 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[builtins.int]:
         """
-        The project ID for which the environment variable is being overridden
+        Project ID to create the environment variable job override in
         """
         return pulumi.get(self, "project_id")
 

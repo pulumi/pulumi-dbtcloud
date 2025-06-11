@@ -12,12 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Resource to manage dbt Cloud environments for the different dbt Cloud projects.
-//
-// In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
-//
-// > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects.
-// This version of the provider has the `connectionId` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+// Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connectionId as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
 //
 // ## Example Usage
 //
@@ -106,35 +101,32 @@ import (
 type Environment struct {
 	pulumi.CustomResourceState
 
-	ConnectionId pulumi.IntPtrOutput `pulumi:"connectionId"`
-	// Credential ID to create the environment with. A credential is not required for development environments but is required
-	// for deployment environments
-	CredentialId pulumi.IntPtrOutput `pulumi:"credentialId"`
-	// Which custom branch to use in this environment
+	// A connection ID (used with Global Connections)
+	ConnectionId pulumi.IntOutput `pulumi:"connectionId"`
+	// The project ID to which the environment belongs.
+	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
+	// The custom branch name to use
 	CustomBranch pulumi.StringPtrOutput `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-	// is recommended. Defaults to `latest` if no version is provided
-	DbtVersion pulumi.StringPtrOutput `pulumi:"dbtVersion"`
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-	// 'staging' or left empty for generic environments
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+	DbtVersion pulumi.StringOutput `pulumi:"dbtVersion"`
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrOutput `pulumi:"deploymentType"`
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
-	EnableModelQueryHistory pulumi.BoolPtrOutput `pulumi:"enableModelQueryHistory"`
-	// Environment ID within the project
+	EnableModelQueryHistory pulumi.BoolOutput `pulumi:"enableModelQueryHistory"`
+	// The ID of the environment. Duplicated. Here for backward compatibility.
 	EnvironmentId pulumi.IntOutput `pulumi:"environmentId"`
-	// ID of the extended attributes for the environment
-	ExtendedAttributesId pulumi.IntPtrOutput `pulumi:"extendedAttributesId"`
+	// The ID of the extended attributes applied
+	ExtendedAttributesId pulumi.IntOutput `pulumi:"extendedAttributesId"`
 	// Whether the environment is active
-	IsActive pulumi.BoolPtrOutput `pulumi:"isActive"`
-	// Environment name
+	IsActive pulumi.BoolOutput `pulumi:"isActive"`
+	// The name of the environment
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Project ID to create the environment in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The type of environment (must be either development or deployment)
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Whether to use a custom git branch in this environment
-	UseCustomBranch pulumi.BoolPtrOutput `pulumi:"useCustomBranch"`
+	UseCustomBranch pulumi.BoolOutput `pulumi:"useCustomBranch"`
 }
 
 // NewEnvironment registers a new resource with the given unique name, arguments, and options.
@@ -173,28 +165,25 @@ func GetEnvironment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Environment resources.
 type environmentState struct {
+	// A connection ID (used with Global Connections)
 	ConnectionId *int `pulumi:"connectionId"`
-	// Credential ID to create the environment with. A credential is not required for development environments but is required
-	// for deployment environments
+	// The project ID to which the environment belongs.
 	CredentialId *int `pulumi:"credentialId"`
-	// Which custom branch to use in this environment
+	// The custom branch name to use
 	CustomBranch *string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-	// is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion *string `pulumi:"dbtVersion"`
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-	// 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory *bool `pulumi:"enableModelQueryHistory"`
-	// Environment ID within the project
+	// The ID of the environment. Duplicated. Here for backward compatibility.
 	EnvironmentId *int `pulumi:"environmentId"`
-	// ID of the extended attributes for the environment
+	// The ID of the extended attributes applied
 	ExtendedAttributesId *int `pulumi:"extendedAttributesId"`
 	// Whether the environment is active
 	IsActive *bool `pulumi:"isActive"`
-	// Environment name
+	// The name of the environment
 	Name *string `pulumi:"name"`
 	// Project ID to create the environment in
 	ProjectId *int `pulumi:"projectId"`
@@ -205,28 +194,25 @@ type environmentState struct {
 }
 
 type EnvironmentState struct {
+	// A connection ID (used with Global Connections)
 	ConnectionId pulumi.IntPtrInput
-	// Credential ID to create the environment with. A credential is not required for development environments but is required
-	// for deployment environments
+	// The project ID to which the environment belongs.
 	CredentialId pulumi.IntPtrInput
-	// Which custom branch to use in this environment
+	// The custom branch name to use
 	CustomBranch pulumi.StringPtrInput
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-	// is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion pulumi.StringPtrInput
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-	// 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory pulumi.BoolPtrInput
-	// Environment ID within the project
+	// The ID of the environment. Duplicated. Here for backward compatibility.
 	EnvironmentId pulumi.IntPtrInput
-	// ID of the extended attributes for the environment
+	// The ID of the extended attributes applied
 	ExtendedAttributesId pulumi.IntPtrInput
 	// Whether the environment is active
 	IsActive pulumi.BoolPtrInput
-	// Environment name
+	// The name of the environment
 	Name pulumi.StringPtrInput
 	// Project ID to create the environment in
 	ProjectId pulumi.IntPtrInput
@@ -241,26 +227,23 @@ func (EnvironmentState) ElementType() reflect.Type {
 }
 
 type environmentArgs struct {
+	// A connection ID (used with Global Connections)
 	ConnectionId *int `pulumi:"connectionId"`
-	// Credential ID to create the environment with. A credential is not required for development environments but is required
-	// for deployment environments
+	// The project ID to which the environment belongs.
 	CredentialId *int `pulumi:"credentialId"`
-	// Which custom branch to use in this environment
+	// The custom branch name to use
 	CustomBranch *string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-	// is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion *string `pulumi:"dbtVersion"`
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-	// 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory *bool `pulumi:"enableModelQueryHistory"`
-	// ID of the extended attributes for the environment
+	// The ID of the extended attributes applied
 	ExtendedAttributesId *int `pulumi:"extendedAttributesId"`
 	// Whether the environment is active
 	IsActive *bool `pulumi:"isActive"`
-	// Environment name
+	// The name of the environment
 	Name *string `pulumi:"name"`
 	// Project ID to create the environment in
 	ProjectId int `pulumi:"projectId"`
@@ -272,26 +255,23 @@ type environmentArgs struct {
 
 // The set of arguments for constructing a Environment resource.
 type EnvironmentArgs struct {
+	// A connection ID (used with Global Connections)
 	ConnectionId pulumi.IntPtrInput
-	// Credential ID to create the environment with. A credential is not required for development environments but is required
-	// for deployment environments
+	// The project ID to which the environment belongs.
 	CredentialId pulumi.IntPtrInput
-	// Which custom branch to use in this environment
+	// The custom branch name to use
 	CustomBranch pulumi.StringPtrInput
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-	// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-	// is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion pulumi.StringPtrInput
-	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-	// 'staging' or left empty for generic environments
+	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory pulumi.BoolPtrInput
-	// ID of the extended attributes for the environment
+	// The ID of the extended attributes applied
 	ExtendedAttributesId pulumi.IntPtrInput
 	// Whether the environment is active
 	IsActive pulumi.BoolPtrInput
-	// Environment name
+	// The name of the environment
 	Name pulumi.StringPtrInput
 	// Project ID to create the environment in
 	ProjectId pulumi.IntInput
@@ -388,55 +368,52 @@ func (o EnvironmentOutput) ToEnvironmentOutputWithContext(ctx context.Context) E
 	return o
 }
 
-func (o EnvironmentOutput) ConnectionId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Environment) pulumi.IntPtrOutput { return v.ConnectionId }).(pulumi.IntPtrOutput)
+// A connection ID (used with Global Connections)
+func (o EnvironmentOutput) ConnectionId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Environment) pulumi.IntOutput { return v.ConnectionId }).(pulumi.IntOutput)
 }
 
-// Credential ID to create the environment with. A credential is not required for development environments but is required
-// for deployment environments
-func (o EnvironmentOutput) CredentialId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Environment) pulumi.IntPtrOutput { return v.CredentialId }).(pulumi.IntPtrOutput)
+// The project ID to which the environment belongs.
+func (o EnvironmentOutput) CredentialId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Environment) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// Which custom branch to use in this environment
+// The custom branch name to use
 func (o EnvironmentOutput) CustomBranch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.CustomBranch }).(pulumi.StringPtrOutput)
 }
 
-// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-// is recommended. Defaults to `latest` if no version is provided
-func (o EnvironmentOutput) DbtVersion() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.DbtVersion }).(pulumi.StringPtrOutput)
+// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+func (o EnvironmentOutput) DbtVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.DbtVersion }).(pulumi.StringOutput)
 }
 
-// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-// 'staging' or left empty for generic environments
+// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 func (o EnvironmentOutput) DeploymentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.DeploymentType }).(pulumi.StringPtrOutput)
 }
 
 // Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
-func (o EnvironmentOutput) EnableModelQueryHistory() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Environment) pulumi.BoolPtrOutput { return v.EnableModelQueryHistory }).(pulumi.BoolPtrOutput)
+func (o EnvironmentOutput) EnableModelQueryHistory() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Environment) pulumi.BoolOutput { return v.EnableModelQueryHistory }).(pulumi.BoolOutput)
 }
 
-// Environment ID within the project
+// The ID of the environment. Duplicated. Here for backward compatibility.
 func (o EnvironmentOutput) EnvironmentId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Environment) pulumi.IntOutput { return v.EnvironmentId }).(pulumi.IntOutput)
 }
 
-// ID of the extended attributes for the environment
-func (o EnvironmentOutput) ExtendedAttributesId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Environment) pulumi.IntPtrOutput { return v.ExtendedAttributesId }).(pulumi.IntPtrOutput)
+// The ID of the extended attributes applied
+func (o EnvironmentOutput) ExtendedAttributesId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Environment) pulumi.IntOutput { return v.ExtendedAttributesId }).(pulumi.IntOutput)
 }
 
 // Whether the environment is active
-func (o EnvironmentOutput) IsActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Environment) pulumi.BoolPtrOutput { return v.IsActive }).(pulumi.BoolPtrOutput)
+func (o EnvironmentOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Environment) pulumi.BoolOutput { return v.IsActive }).(pulumi.BoolOutput)
 }
 
-// Environment name
+// The name of the environment
 func (o EnvironmentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -452,8 +429,8 @@ func (o EnvironmentOutput) Type() pulumi.StringOutput {
 }
 
 // Whether to use a custom git branch in this environment
-func (o EnvironmentOutput) UseCustomBranch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Environment) pulumi.BoolPtrOutput { return v.UseCustomBranch }).(pulumi.BoolPtrOutput)
+func (o EnvironmentOutput) UseCustomBranch() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Environment) pulumi.BoolOutput { return v.UseCustomBranch }).(pulumi.BoolOutput)
 }
 
 type EnvironmentArrayOutput struct{ *pulumi.OutputState }

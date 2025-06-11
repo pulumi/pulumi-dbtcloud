@@ -23,7 +23,7 @@ public final class GetSnowflakeCredentialResult {
      */
     private Integer credentialId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the credential ID.
      * 
      */
     private String id;
@@ -43,7 +43,7 @@ public final class GetSnowflakeCredentialResult {
      */
     private Integer projectId;
     /**
-     * @return Default schema name
+     * @return The schema where to create models
      * 
      */
     private String schema;
@@ -69,7 +69,7 @@ public final class GetSnowflakeCredentialResult {
         return this.credentialId;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource. Contains the project ID and the credential ID.
      * 
      */
     public String id() {
@@ -97,7 +97,7 @@ public final class GetSnowflakeCredentialResult {
         return this.projectId;
     }
     /**
-     * @return Default schema name
+     * @return The schema where to create models
      * 
      */
     public String schema() {

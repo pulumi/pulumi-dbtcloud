@@ -40,7 +40,7 @@ namespace Pulumi.DbtCloud
         public int EnvironmentId { get; set; }
 
         /// <summary>
-        /// The project ID to which the environment belong
+        /// The project ID to which the environment belongs
         /// </summary>
         [Input("projectId", required: true)]
         public int ProjectId { get; set; }
@@ -60,7 +60,7 @@ namespace Pulumi.DbtCloud
         public Input<int> EnvironmentId { get; set; } = null!;
 
         /// <summary>
-        /// The project ID to which the environment belong
+        /// The project ID to which the environment belongs
         /// </summary>
         [Input("projectId", required: true)]
         public Input<int> ProjectId { get; set; } = null!;
@@ -75,12 +75,9 @@ namespace Pulumi.DbtCloud
     [OutputType]
     public sealed class GetEnvironmentResult
     {
-        /// <summary>
-        /// A connection ID (used with Global Connections)
-        /// </summary>
         public readonly int ConnectionId;
         /// <summary>
-        /// The project ID to which the environment belong
+        /// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
         /// </summary>
         public readonly int CredentialsId;
         /// <summary>
@@ -116,7 +113,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The project ID to which the environment belong
+        /// The project ID to which the environment belongs
         /// </summary>
         public readonly int ProjectId;
         /// <summary>

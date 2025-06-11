@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages a dbt Cloud project.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -18,7 +20,7 @@ import * as utilities from "./utilities";
  * });
  * const dbtProjectWithSubdir = new dbtcloud.Project("dbt_project_with_subdir", {
  *     name: "Analytics in Subdir",
- *     dbtProjectSubdirectory: "/path",
+ *     dbtProjectSubdirectory: "path",
  * });
  * ```
  *
@@ -81,17 +83,21 @@ export class Project extends pulumi.CustomResource {
     }
 
     /**
-     * dbt project subdirectory path
+     * DBT project subdirectory
      */
-    public readonly dbtProjectSubdirectory!: pulumi.Output<string | undefined>;
+    public readonly dbtProjectSubdirectory!: pulumi.Output<string>;
     /**
      * Description for the project. Will show in dbt Explorer.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string>;
     /**
      * Project name
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The type of dbt project (0=default or 1=hybrid)
+     */
+    public readonly type!: pulumi.Output<number>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.
@@ -109,11 +115,13 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["dbtProjectSubdirectory"] = state ? state.dbtProjectSubdirectory : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
             resourceInputs["dbtProjectSubdirectory"] = args ? args.dbtProjectSubdirectory : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Project.__pulumiType, name, resourceInputs, opts);
@@ -125,7 +133,7 @@ export class Project extends pulumi.CustomResource {
  */
 export interface ProjectState {
     /**
-     * dbt project subdirectory path
+     * DBT project subdirectory
      */
     dbtProjectSubdirectory?: pulumi.Input<string>;
     /**
@@ -136,6 +144,10 @@ export interface ProjectState {
      * Project name
      */
     name?: pulumi.Input<string>;
+    /**
+     * The type of dbt project (0=default or 1=hybrid)
+     */
+    type?: pulumi.Input<number>;
 }
 
 /**
@@ -143,7 +155,7 @@ export interface ProjectState {
  */
 export interface ProjectArgs {
     /**
-     * dbt project subdirectory path
+     * DBT project subdirectory
      */
     dbtProjectSubdirectory?: pulumi.Input<string>;
     /**
@@ -154,4 +166,8 @@ export interface ProjectArgs {
      * Project name
      */
     name?: pulumi.Input<string>;
+    /**
+     * The type of dbt project (0=default or 1=hybrid)
+     */
+    type?: pulumi.Input<number>;
 }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * This resource allows setting extended attributes which can be assigned to a given environment ([see docs](https://docs.getdbt.com/docs/dbt-cloud-environments#extended-attributes)).<br/><br/>In dbt Cloud those values are provided as YML but in the provider they need to be provided as JSON (see example below).
+ * Extended attributes resource
  *
  * ## Example Usage
  *
@@ -98,7 +98,7 @@ export class ExtendedAttributes extends pulumi.CustomResource {
 
     public readonly extendedAttributes!: pulumi.Output<string>;
     /**
-     * Extended Attributes ID
+     * Extended attributes ID
      */
     public /*out*/ readonly extendedAttributesId!: pulumi.Output<number>;
     /**
@@ -106,11 +106,9 @@ export class ExtendedAttributes extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
-     * Extended Attributes state (1 is active, 2 is inactive)
-     *
-     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
+     * The state of the extended attributes (1 = active, 2 = inactive)
      */
-    public readonly state!: pulumi.Output<number | undefined>;
+    public readonly state!: pulumi.Output<number>;
 
     /**
      * Create a ExtendedAttributes resource with the given unique name, arguments, and options.
@@ -153,7 +151,7 @@ export class ExtendedAttributes extends pulumi.CustomResource {
 export interface ExtendedAttributesState {
     extendedAttributes?: pulumi.Input<string>;
     /**
-     * Extended Attributes ID
+     * Extended attributes ID
      */
     extendedAttributesId?: pulumi.Input<number>;
     /**
@@ -161,9 +159,7 @@ export interface ExtendedAttributesState {
      */
     projectId?: pulumi.Input<number>;
     /**
-     * Extended Attributes state (1 is active, 2 is inactive)
-     *
-     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
+     * The state of the extended attributes (1 = active, 2 = inactive)
      */
     state?: pulumi.Input<number>;
 }
@@ -178,9 +174,7 @@ export interface ExtendedAttributesArgs {
      */
     projectId: pulumi.Input<number>;
     /**
-     * Extended Attributes state (1 is active, 2 is inactive)
-     *
-     * @deprecated Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider.
+     * The state of the extended attributes (1 = active, 2 = inactive)
      */
     state?: pulumi.Input<number>;
 }

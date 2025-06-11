@@ -23,7 +23,7 @@ public final class GetBigQueryCredentialResult {
      */
     private String dataset;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this data source. Contains the project ID and the credential ID.
      * 
      */
     private String id;
@@ -59,7 +59,7 @@ public final class GetBigQueryCredentialResult {
         return this.dataset;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this data source. Contains the project ID and the credential ID.
      * 
      */
     public String id() {

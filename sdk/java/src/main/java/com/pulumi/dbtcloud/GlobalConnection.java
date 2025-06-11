@@ -20,6 +20,7 @@ import com.pulumi.dbtcloud.outputs.GlobalConnectionRedshift;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionSnowflake;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionStarburst;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionSynapse;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionTeradata;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -30,8 +31,6 @@ import javax.annotation.Nullable;
  * This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
  * 
  * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
- * 
- * All connections types are supported, and the old resources `dbtcloud.Connection`, `dbtcloud.BigQueryConnection` and `dbtcloud.FabricConnection` are now flagged as deprecated and will be removed from the next major version of the provider.
  * 
  * ## Example Usage
  * 
@@ -282,6 +281,20 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<GlobalConnectionSynapse>> synapse() {
         return Codegen.optional(this.synapse);
+    }
+    /**
+     * Teradata connection configuration.
+     * 
+     */
+    @Export(name="teradata", refs={GlobalConnectionTeradata.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionTeradata> teradata;
+
+    /**
+     * @return Teradata connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionTeradata>> teradata() {
+        return Codegen.optional(this.teradata);
     }
 
     /**

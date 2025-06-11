@@ -17,12 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Resource to manage dbt Cloud environments for the different dbt Cloud projects.
- * 
- * In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
- * 
- * &gt; In August 2024, dbt Cloud released the &#34;global connection&#34; feature, allowing connections to be defined at the account level and reused across environments and projects.
- * This version of the provider has the `connection_id` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+ * Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. &gt; In August 2024, dbt Cloud released the &#34;global connection&#34; feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connection_id as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
  * 
  * ## Example Usage
  * 
@@ -117,71 +112,71 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="dbtcloud:index/environment:Environment")
 public class Environment extends com.pulumi.resources.CustomResource {
+    /**
+     * A connection ID (used with Global Connections)
+     * 
+     */
     @Export(name="connectionId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> connectionId;
+    private Output<Integer> connectionId;
 
-    public Output<Optional<Integer>> connectionId() {
-        return Codegen.optional(this.connectionId);
+    /**
+     * @return A connection ID (used with Global Connections)
+     * 
+     */
+    public Output<Integer> connectionId() {
+        return this.connectionId;
     }
     /**
-     * Credential ID to create the environment with. A credential is not required for development environments but is required
-     * for deployment environments
+     * The project ID to which the environment belongs.
      * 
      */
     @Export(name="credentialId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> credentialId;
+    private Output<Integer> credentialId;
 
     /**
-     * @return Credential ID to create the environment with. A credential is not required for development environments but is required
-     * for deployment environments
+     * @return The project ID to which the environment belongs.
      * 
      */
-    public Output<Optional<Integer>> credentialId() {
-        return Codegen.optional(this.credentialId);
+    public Output<Integer> credentialId() {
+        return this.credentialId;
     }
     /**
-     * Which custom branch to use in this environment
+     * The custom branch name to use
      * 
      */
     @Export(name="customBranch", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> customBranch;
 
     /**
-     * @return Which custom branch to use in this environment
+     * @return The custom branch name to use
      * 
      */
     public Output<Optional<String>> customBranch() {
         return Codegen.optional(this.customBranch);
     }
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-     * is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> dbtVersion;
+    private Output<String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-     * `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-     * is recommended. Defaults to `latest` if no version is provided
+     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      * 
      */
-    public Output<Optional<String>> dbtVersion() {
-        return Codegen.optional(this.dbtVersion);
+    public Output<String> dbtVersion() {
+        return this.dbtVersion;
     }
     /**
-     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
-     * &#39;staging&#39; or left empty for generic environments
+     * The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
      * 
      */
     @Export(name="deploymentType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> deploymentType;
 
     /**
-     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;,
-     * &#39;staging&#39; or left empty for generic environments
+     * @return The type of environment. Only valid for environments of type &#39;deployment&#39; and for now can only be &#39;production&#39;, &#39;staging&#39; or left empty for generic environments
      * 
      */
     public Output<Optional<String>> deploymentType() {
@@ -192,66 +187,66 @@ public class Environment extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="enableModelQueryHistory", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> enableModelQueryHistory;
+    private Output<Boolean> enableModelQueryHistory;
 
     /**
      * @return Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      * 
      */
-    public Output<Optional<Boolean>> enableModelQueryHistory() {
-        return Codegen.optional(this.enableModelQueryHistory);
+    public Output<Boolean> enableModelQueryHistory() {
+        return this.enableModelQueryHistory;
     }
     /**
-     * Environment ID within the project
+     * The ID of the environment. Duplicated. Here for backward compatibility.
      * 
      */
     @Export(name="environmentId", refs={Integer.class}, tree="[0]")
     private Output<Integer> environmentId;
 
     /**
-     * @return Environment ID within the project
+     * @return The ID of the environment. Duplicated. Here for backward compatibility.
      * 
      */
     public Output<Integer> environmentId() {
         return this.environmentId;
     }
     /**
-     * ID of the extended attributes for the environment
+     * The ID of the extended attributes applied
      * 
      */
     @Export(name="extendedAttributesId", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> extendedAttributesId;
+    private Output<Integer> extendedAttributesId;
 
     /**
-     * @return ID of the extended attributes for the environment
+     * @return The ID of the extended attributes applied
      * 
      */
-    public Output<Optional<Integer>> extendedAttributesId() {
-        return Codegen.optional(this.extendedAttributesId);
+    public Output<Integer> extendedAttributesId() {
+        return this.extendedAttributesId;
     }
     /**
      * Whether the environment is active
      * 
      */
     @Export(name="isActive", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> isActive;
+    private Output<Boolean> isActive;
 
     /**
      * @return Whether the environment is active
      * 
      */
-    public Output<Optional<Boolean>> isActive() {
-        return Codegen.optional(this.isActive);
+    public Output<Boolean> isActive() {
+        return this.isActive;
     }
     /**
-     * Environment name
+     * The name of the environment
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Environment name
+     * @return The name of the environment
      * 
      */
     public Output<String> name() {
@@ -290,14 +285,14 @@ public class Environment extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="useCustomBranch", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> useCustomBranch;
+    private Output<Boolean> useCustomBranch;
 
     /**
      * @return Whether to use a custom git branch in this environment
      * 
      */
-    public Output<Optional<Boolean>> useCustomBranch() {
-        return Codegen.optional(this.useCustomBranch);
+    public Output<Boolean> useCustomBranch() {
+        return this.useCustomBranch;
     }
 
     /**

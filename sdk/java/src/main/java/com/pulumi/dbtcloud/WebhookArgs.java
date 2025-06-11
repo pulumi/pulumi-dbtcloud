@@ -80,14 +80,14 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+     * List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      * 
      */
     @Import(name="jobIds")
     private @Nullable Output<List<Integer>> jobIds;
 
     /**
-     * @return List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+     * @return List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      * 
      */
     public Optional<Output<List<Integer>>> jobIds() {
@@ -233,7 +233,7 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jobIds List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+         * @param jobIds List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
          * 
          * @return builder
          * 
@@ -244,7 +244,7 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jobIds List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+         * @param jobIds List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
          * 
          * @return builder
          * 
@@ -254,7 +254,7 @@ public final class WebhookArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jobIds List of job IDs to trigger the webhook, An empty list will trigger on all jobs
+         * @param jobIds List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
          * 
          * @return builder
          * 

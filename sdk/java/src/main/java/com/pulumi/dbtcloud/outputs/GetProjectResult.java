@@ -4,6 +4,8 @@
 package com.pulumi.dbtcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.dbtcloud.outputs.GetProjectProjectConnection;
+import com.pulumi.dbtcloud.outputs.GetProjectRepository;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
@@ -14,12 +16,17 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetProjectResult {
     /**
-     * @return ID of the connection associated with the project
+     * @return When the project was created
      * 
      */
-    private Integer connectionId;
+    private String createdAt;
     /**
-     * @return The description of the project
+     * @return Subdirectory for the dbt project inside the git repo
+     * 
+     */
+    private String dbtProjectSubdirectory;
+    /**
+     * @return Project description
      * 
      */
     private String description;
@@ -34,45 +41,63 @@ public final class GetProjectResult {
      */
     private Integer freshnessJobId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Project ID
      * 
      */
-    private String id;
+    private @Nullable Integer id;
     /**
-     * @return Given name for project
+     * @return Project name
      * 
      */
     private String name;
     /**
-     * @return ID of the project to represent
+     * @return Details for the connection linked to the project
      * 
      */
-    private @Nullable Integer projectId;
+    private GetProjectProjectConnection projectConnection;
     /**
-     * @return ID of the repository associated with the project
+     * @return Details for the repository linked to the project
      * 
      */
-    private Integer repositoryId;
+    private GetProjectRepository repository;
+    /**
+     * @return Semantic layer config ID
+     * 
+     */
+    private Integer semanticLayerConfigId;
     /**
      * @return Project state should be 1 = active, as 2 = deleted
      * 
-     * @deprecated
-     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     */
+    private Integer state;
+    /**
+     * @return The type of dbt project (default or hybrid)
      * 
      */
-    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
-    private Integer state;
+    private Integer type;
+    /**
+     * @return When the project was last updated
+     * 
+     */
+    private String updatedAt;
 
     private GetProjectResult() {}
     /**
-     * @return ID of the connection associated with the project
+     * @return When the project was created
      * 
      */
-    public Integer connectionId() {
-        return this.connectionId;
+    public String createdAt() {
+        return this.createdAt;
     }
     /**
-     * @return The description of the project
+     * @return Subdirectory for the dbt project inside the git repo
+     * 
+     */
+    public String dbtProjectSubdirectory() {
+        return this.dbtProjectSubdirectory;
+    }
+    /**
+     * @return Project description
      * 
      */
     public String description() {
@@ -93,43 +118,60 @@ public final class GetProjectResult {
         return this.freshnessJobId;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Project ID
      * 
      */
-    public String id() {
-        return this.id;
+    public Optional<Integer> id() {
+        return Optional.ofNullable(this.id);
     }
     /**
-     * @return Given name for project
+     * @return Project name
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return ID of the project to represent
+     * @return Details for the connection linked to the project
      * 
      */
-    public Optional<Integer> projectId() {
-        return Optional.ofNullable(this.projectId);
+    public GetProjectProjectConnection projectConnection() {
+        return this.projectConnection;
     }
     /**
-     * @return ID of the repository associated with the project
+     * @return Details for the repository linked to the project
      * 
      */
-    public Integer repositoryId() {
-        return this.repositoryId;
+    public GetProjectRepository repository() {
+        return this.repository;
+    }
+    /**
+     * @return Semantic layer config ID
+     * 
+     */
+    public Integer semanticLayerConfigId() {
+        return this.semanticLayerConfigId;
     }
     /**
      * @return Project state should be 1 = active, as 2 = deleted
      * 
-     * @deprecated
-     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
-     * 
      */
-    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     public Integer state() {
         return this.state;
+    }
+    /**
+     * @return The type of dbt project (default or hybrid)
+     * 
+     */
+    public Integer type() {
+        return this.type;
+    }
+    /**
+     * @return When the project was last updated
+     * 
+     */
+    public String updatedAt() {
+        return this.updatedAt;
     }
 
     public static Builder builder() {
@@ -141,35 +183,51 @@ public final class GetProjectResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Integer connectionId;
+        private String createdAt;
+        private String dbtProjectSubdirectory;
         private String description;
         private Integer docsJobId;
         private Integer freshnessJobId;
-        private String id;
+        private @Nullable Integer id;
         private String name;
-        private @Nullable Integer projectId;
-        private Integer repositoryId;
+        private GetProjectProjectConnection projectConnection;
+        private GetProjectRepository repository;
+        private Integer semanticLayerConfigId;
         private Integer state;
+        private Integer type;
+        private String updatedAt;
         public Builder() {}
         public Builder(GetProjectResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.connectionId = defaults.connectionId;
+    	      this.createdAt = defaults.createdAt;
+    	      this.dbtProjectSubdirectory = defaults.dbtProjectSubdirectory;
     	      this.description = defaults.description;
     	      this.docsJobId = defaults.docsJobId;
     	      this.freshnessJobId = defaults.freshnessJobId;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
-    	      this.projectId = defaults.projectId;
-    	      this.repositoryId = defaults.repositoryId;
+    	      this.projectConnection = defaults.projectConnection;
+    	      this.repository = defaults.repository;
+    	      this.semanticLayerConfigId = defaults.semanticLayerConfigId;
     	      this.state = defaults.state;
+    	      this.type = defaults.type;
+    	      this.updatedAt = defaults.updatedAt;
         }
 
         @CustomType.Setter
-        public Builder connectionId(Integer connectionId) {
-            if (connectionId == null) {
-              throw new MissingRequiredPropertyException("GetProjectResult", "connectionId");
+        public Builder createdAt(String createdAt) {
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "createdAt");
             }
-            this.connectionId = connectionId;
+            this.createdAt = createdAt;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder dbtProjectSubdirectory(String dbtProjectSubdirectory) {
+            if (dbtProjectSubdirectory == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "dbtProjectSubdirectory");
+            }
+            this.dbtProjectSubdirectory = dbtProjectSubdirectory;
             return this;
         }
         @CustomType.Setter
@@ -197,10 +255,8 @@ public final class GetProjectResult {
             return this;
         }
         @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetProjectResult", "id");
-            }
+        public Builder id(@Nullable Integer id) {
+
             this.id = id;
             return this;
         }
@@ -213,17 +269,27 @@ public final class GetProjectResult {
             return this;
         }
         @CustomType.Setter
-        public Builder projectId(@Nullable Integer projectId) {
-
-            this.projectId = projectId;
+        public Builder projectConnection(GetProjectProjectConnection projectConnection) {
+            if (projectConnection == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "projectConnection");
+            }
+            this.projectConnection = projectConnection;
             return this;
         }
         @CustomType.Setter
-        public Builder repositoryId(Integer repositoryId) {
-            if (repositoryId == null) {
-              throw new MissingRequiredPropertyException("GetProjectResult", "repositoryId");
+        public Builder repository(GetProjectRepository repository) {
+            if (repository == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "repository");
             }
-            this.repositoryId = repositoryId;
+            this.repository = repository;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder semanticLayerConfigId(Integer semanticLayerConfigId) {
+            if (semanticLayerConfigId == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "semanticLayerConfigId");
+            }
+            this.semanticLayerConfigId = semanticLayerConfigId;
             return this;
         }
         @CustomType.Setter
@@ -234,17 +300,37 @@ public final class GetProjectResult {
             this.state = state;
             return this;
         }
+        @CustomType.Setter
+        public Builder type(Integer type) {
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "type");
+            }
+            this.type = type;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder updatedAt(String updatedAt) {
+            if (updatedAt == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "updatedAt");
+            }
+            this.updatedAt = updatedAt;
+            return this;
+        }
         public GetProjectResult build() {
             final var _resultValue = new GetProjectResult();
-            _resultValue.connectionId = connectionId;
+            _resultValue.createdAt = createdAt;
+            _resultValue.dbtProjectSubdirectory = dbtProjectSubdirectory;
             _resultValue.description = description;
             _resultValue.docsJobId = docsJobId;
             _resultValue.freshnessJobId = freshnessJobId;
             _resultValue.id = id;
             _resultValue.name = name;
-            _resultValue.projectId = projectId;
-            _resultValue.repositoryId = repositoryId;
+            _resultValue.projectConnection = projectConnection;
+            _resultValue.repository = repository;
+            _resultValue.semanticLayerConfigId = semanticLayerConfigId;
             _resultValue.state = state;
+            _resultValue.type = type;
+            _resultValue.updatedAt = updatedAt;
             return _resultValue;
         }
     }

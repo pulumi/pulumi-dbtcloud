@@ -17,56 +17,40 @@ public final class GetProjectArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetProjectArgs Empty = new GetProjectArgs();
 
     /**
-     * The description of the project
+     * Project ID
      * 
      */
-    @Import(name="description")
-    private @Nullable Output<String> description;
+    @Import(name="id")
+    private @Nullable Output<Integer> id;
 
     /**
-     * @return The description of the project
+     * @return Project ID
      * 
      */
-    public Optional<Output<String>> description() {
-        return Optional.ofNullable(this.description);
+    public Optional<Output<Integer>> id() {
+        return Optional.ofNullable(this.id);
     }
 
     /**
-     * Given name for project
+     * Project name
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Given name for project
+     * @return Project name
      * 
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * ID of the project to represent
-     * 
-     */
-    @Import(name="projectId")
-    private @Nullable Output<Integer> projectId;
-
-    /**
-     * @return ID of the project to represent
-     * 
-     */
-    public Optional<Output<Integer>> projectId() {
-        return Optional.ofNullable(this.projectId);
-    }
-
     private GetProjectArgs() {}
 
     private GetProjectArgs(GetProjectArgs $) {
-        this.description = $.description;
+        this.id = $.id;
         this.name = $.name;
-        this.projectId = $.projectId;
     }
 
     public static Builder builder() {
@@ -88,28 +72,28 @@ public final class GetProjectArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param description The description of the project
+         * @param id Project ID
          * 
          * @return builder
          * 
          */
-        public Builder description(@Nullable Output<String> description) {
-            $.description = description;
+        public Builder id(@Nullable Output<Integer> id) {
+            $.id = id;
             return this;
         }
 
         /**
-         * @param description The description of the project
+         * @param id Project ID
          * 
          * @return builder
          * 
          */
-        public Builder description(String description) {
-            return description(Output.of(description));
+        public Builder id(Integer id) {
+            return id(Output.of(id));
         }
 
         /**
-         * @param name Given name for project
+         * @param name Project name
          * 
          * @return builder
          * 
@@ -120,34 +104,13 @@ public final class GetProjectArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name Given name for project
+         * @param name Project name
          * 
          * @return builder
          * 
          */
         public Builder name(String name) {
             return name(Output.of(name));
-        }
-
-        /**
-         * @param projectId ID of the project to represent
-         * 
-         * @return builder
-         * 
-         */
-        public Builder projectId(@Nullable Output<Integer> projectId) {
-            $.projectId = projectId;
-            return this;
-        }
-
-        /**
-         * @param projectId ID of the project to represent
-         * 
-         * @return builder
-         * 
-         */
-        public Builder projectId(Integer projectId) {
-            return projectId(Output.of(projectId));
         }
 
         public GetProjectArgs build() {

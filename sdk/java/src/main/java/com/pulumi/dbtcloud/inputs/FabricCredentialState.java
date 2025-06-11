@@ -17,18 +17,18 @@ public final class FabricCredentialState extends com.pulumi.resources.ResourceAr
     public static final FabricCredentialState Empty = new FabricCredentialState();
 
     /**
-     * Fabric adapter ID for the credential
+     * The type of the adapter (fabric)
      * 
      */
-    @Import(name="adapterId")
-    private @Nullable Output<Integer> adapterId;
+    @Import(name="adapterType")
+    private @Nullable Output<String> adapterType;
 
     /**
-     * @return Fabric adapter ID for the credential
+     * @return The type of the adapter (fabric)
      * 
      */
-    public Optional<Output<Integer>> adapterId() {
-        return Optional.ofNullable(this.adapterId);
+    public Optional<Output<String>> adapterType() {
+        return Optional.ofNullable(this.adapterType);
     }
 
     /**
@@ -62,14 +62,14 @@ public final class FabricCredentialState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The system Fabric credential ID
+     * The internal credential ID
      * 
      */
     @Import(name="credentialId")
     private @Nullable Output<Integer> credentialId;
 
     /**
-     * @return The system Fabric credential ID
+     * @return The internal credential ID
      * 
      */
     public Optional<Output<Integer>> credentialId() {
@@ -169,7 +169,7 @@ public final class FabricCredentialState extends com.pulumi.resources.ResourceAr
     private FabricCredentialState() {}
 
     private FabricCredentialState(FabricCredentialState $) {
-        this.adapterId = $.adapterId;
+        this.adapterType = $.adapterType;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
         this.credentialId = $.credentialId;
@@ -200,24 +200,24 @@ public final class FabricCredentialState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param adapterId Fabric adapter ID for the credential
+         * @param adapterType The type of the adapter (fabric)
          * 
          * @return builder
          * 
          */
-        public Builder adapterId(@Nullable Output<Integer> adapterId) {
-            $.adapterId = adapterId;
+        public Builder adapterType(@Nullable Output<String> adapterType) {
+            $.adapterType = adapterType;
             return this;
         }
 
         /**
-         * @param adapterId Fabric adapter ID for the credential
+         * @param adapterType The type of the adapter (fabric)
          * 
          * @return builder
          * 
          */
-        public Builder adapterId(Integer adapterId) {
-            return adapterId(Output.of(adapterId));
+        public Builder adapterType(String adapterType) {
+            return adapterType(Output.of(adapterType));
         }
 
         /**
@@ -263,7 +263,7 @@ public final class FabricCredentialState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param credentialId The system Fabric credential ID
+         * @param credentialId The internal credential ID
          * 
          * @return builder
          * 
@@ -274,7 +274,7 @@ public final class FabricCredentialState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param credentialId The system Fabric credential ID
+         * @param credentialId The internal credential ID
          * 
          * @return builder
          * 

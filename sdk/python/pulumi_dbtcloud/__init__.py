@@ -8,22 +8,18 @@ import typing
 # Export this package's modules as members:
 from .account_features import *
 from .athena_credential import *
-from .big_query_connection import *
 from .big_query_credential import *
-from .connection import *
+from .bigquery_semantic_layer_credential import *
 from .databricks_credential import *
 from .environment import *
 from .environment_variable import *
 from .environment_variable_job_override import *
 from .extended_attributes import *
-from .fabric_connection import *
 from .fabric_credential import *
 from .get_athena_credential import *
 from .get_azure_dev_ops_project import *
 from .get_azure_dev_ops_repository import *
-from .get_big_query_connection import *
 from .get_big_query_credential import *
-from .get_connection import *
 from .get_databricks_credential import *
 from .get_environment import *
 from .get_environment_variable import *
@@ -41,10 +37,14 @@ from .get_postgres_credential import *
 from .get_privatelink_endpoint import *
 from .get_project import *
 from .get_projects import *
+from .get_redshift_credential import *
 from .get_repository import *
+from .get_runs import *
 from .get_service_token import *
 from .get_snowflake_credential import *
 from .get_starburst_credential import *
+from .get_synapse_credential import *
+from .get_teradata_credential import *
 from .get_user import *
 from .get_user_groups import *
 from .get_users import *
@@ -59,18 +59,24 @@ from .lineage_integration import *
 from .model_notifications import *
 from .notification import *
 from .oauth_configuration import *
+from .partial_environment_variable import *
 from .partial_license_map import *
 from .partial_notification import *
 from .postgres_credential import *
 from .project import *
 from .project_artefacts import *
-from .project_connection import *
 from .project_repository import *
 from .provider import *
+from .redshift_credential import *
+from .redshift_semantic_layer_credential import *
 from .repository import *
+from .semantic_layer_configuration import *
 from .service_token import *
 from .snowflake_credential import *
+from .snowflake_semantic_layer_credential import *
 from .starburst_credential import *
+from .synapse_credential import *
+from .teradata_credential import *
 from .user_groups import *
 from .webhook import *
 from ._inputs import *
@@ -104,14 +110,6 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
-  "mod": "index/bigQueryConnection",
-  "fqn": "pulumi_dbtcloud",
-  "classes": {
-   "dbtcloud:index/bigQueryConnection:BigQueryConnection": "BigQueryConnection"
-  }
- },
- {
-  "pkg": "dbtcloud",
   "mod": "index/bigQueryCredential",
   "fqn": "pulumi_dbtcloud",
   "classes": {
@@ -120,10 +118,10 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
-  "mod": "index/connection",
+  "mod": "index/bigquerySemanticLayerCredential",
   "fqn": "pulumi_dbtcloud",
   "classes": {
-   "dbtcloud:index/connection:Connection": "Connection"
+   "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential": "BigquerySemanticLayerCredential"
   }
  },
  {
@@ -164,14 +162,6 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/extendedAttributes:ExtendedAttributes": "ExtendedAttributes"
-  }
- },
- {
-  "pkg": "dbtcloud",
-  "mod": "index/fabricConnection",
-  "fqn": "pulumi_dbtcloud",
-  "classes": {
-   "dbtcloud:index/fabricConnection:FabricConnection": "FabricConnection"
   }
  },
  {
@@ -264,6 +254,14 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/partialEnvironmentVariable",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/partialEnvironmentVariable:PartialEnvironmentVariable": "PartialEnvironmentVariable"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/partialLicenseMap",
   "fqn": "pulumi_dbtcloud",
   "classes": {
@@ -304,14 +302,6 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
-  "mod": "index/projectConnection",
-  "fqn": "pulumi_dbtcloud",
-  "classes": {
-   "dbtcloud:index/projectConnection:ProjectConnection": "ProjectConnection"
-  }
- },
- {
-  "pkg": "dbtcloud",
   "mod": "index/projectRepository",
   "fqn": "pulumi_dbtcloud",
   "classes": {
@@ -320,10 +310,34 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/redshiftCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/redshiftCredential:RedshiftCredential": "RedshiftCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/redshiftSemanticLayerCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential": "RedshiftSemanticLayerCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/repository",
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/repository:Repository": "Repository"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/semanticLayerConfiguration",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration": "SemanticLayerConfiguration"
   }
  },
  {
@@ -344,10 +358,34 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/snowflakeSemanticLayerCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential": "SnowflakeSemanticLayerCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/starburstCredential",
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/starburstCredential:StarburstCredential": "StarburstCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/synapseCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/synapseCredential:SynapseCredential": "SynapseCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/teradataCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/teradataCredential:TeradataCredential": "TeradataCredential"
   }
  },
  {

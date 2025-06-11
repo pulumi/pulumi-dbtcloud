@@ -28,7 +28,6 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 
 	"github.com/pulumi/pulumi-dbtcloud/provider/pkg/version"
@@ -50,11 +49,9 @@ const (
 // Provider returns additional overlaid schema and metadata associated with the provider
 func Provider(ctx context.Context) tfbridge.ProviderInfo {
 	// Create a Pulumi provider mapping
+
 	prov := tfbridge.ProviderInfo{
-		P: pfbridge.MuxShimWithPF(ctx,
-			shimv2.NewProvider(dbtcloud.SDKProvider("")()),
-			dbtcloud.New(),
-		),
+		P:                 pfbridge.ShimProviderWithContext(ctx, dbtcloud.New()),
 		Name:              "dbtcloud",
 		DisplayName:       "dbt Cloud",
 		PluginDownloadURL: "github://api.github.com/pulumi/pulumi-dbtcloud",
@@ -112,9 +109,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			"dbtcloud_bigquery_credential": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "BigQueryCredential"),
 			},
-			"dbtcloud_bigquery_connection": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "BigQueryConnection"),
-			},
 			"dbtcloud_extended_attributes": {
 				Tok:        tfbridge.MakeResource(mainPkg, mainMod, "ExtendedAttributes"),
 				CSharpName: "ExtendedAttributesDetails",
@@ -129,9 +123,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			},
 			"dbtcloud_project": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Project"),
-			},
-			"dbtcloud_project_connection": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ProjectConnection"),
 			},
 			"dbtcloud_project_repository": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "ProjectRepository"),
@@ -153,9 +144,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			},
 			"dbtcloud_postgres_credential": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "PostgresCredential"),
-			},
-			"dbtcloud_connection": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Connection"),
 			},
 			"dbtcloud_repository": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Repository"),
@@ -195,9 +183,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			"dbtcloud_environment_variable_job_override": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "EnvironmentVariableJobOverride"),
 			},
-			"dbtcloud_fabric_connection": {
-				Tok: tfbridge.MakeResource(mainPkg, mainMod, "FabricConnection"),
-			},
 			"dbtcloud_fabric_credential": {
 				Tok:  tfbridge.MakeResource(mainPkg, mainMod, "FabricCredential"),
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
@@ -214,9 +199,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"dbtcloud_bigquery_credential": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBigQueryCredential"),
-			},
-			"dbtcloud_bigquery_connection": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBigQueryConnection"),
 			},
 			"dbtcloud_group": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getGroup"),
@@ -246,9 +228,6 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			},
 			"dbtcloud_databricks_credential": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDatabricksCredential"),
-			},
-			"dbtcloud_connection": {
-				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getConnection"),
 			},
 			"dbtcloud_repository": {
 				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getRepository"),
@@ -331,6 +310,17 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 	)
 
 	prov.MustApplyAutoAliases()
+
+	prov.P.ResourcesMap().Range(func(key string, value shim.Resource) bool {
+		if value.Schema().Get("id").Type() != shim.TypeString {
+			r := prov.Resources[key]
+			if r.Fields == nil {
+				r.Fields = make(map[string]*tfbridge.SchemaInfo, 1)
+			}
+			r.Fields["id"] = &tfbridge.SchemaInfo{Type: "string"}
+		}
+		return true
+	})
 
 	prov.SetAutonaming(255, "-")
 

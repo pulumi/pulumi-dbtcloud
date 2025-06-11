@@ -44,7 +44,7 @@ public final class GetWebhookResult {
      */
     private String httpStatusCode;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Webhook&#39;s ID
      * 
      */
     private String id;
@@ -59,9 +59,13 @@ public final class GetWebhookResult {
      */
     private String name;
     /**
-     * @return Webhooks ID
+     * @return Webhook&#39;s ID
+     * 
+     * @deprecated
+     * Use `id` instead
      * 
      */
+    @Deprecated /* Use `id` instead */
     private String webhookId;
 
     private GetWebhookResult() {}
@@ -108,7 +112,7 @@ public final class GetWebhookResult {
         return this.httpStatusCode;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Webhook&#39;s ID
      * 
      */
     public String id() {
@@ -129,9 +133,13 @@ public final class GetWebhookResult {
         return this.name;
     }
     /**
-     * @return Webhooks ID
+     * @return Webhook&#39;s ID
+     * 
+     * @deprecated
+     * Use `id` instead
      * 
      */
+    @Deprecated /* Use `id` instead */
     public String webhookId() {
         return this.webhookId;
     }

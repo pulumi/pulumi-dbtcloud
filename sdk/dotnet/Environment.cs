@@ -10,12 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
-    /// Resource to manage dbt Cloud environments for the different dbt Cloud projects.
-    /// 
-    /// In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created.
-    /// 
-    /// &gt; In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects.
-    /// This version of the provider has the `connection_id` as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+    /// Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. &gt; In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connection_id as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
     /// 
     /// ## Example Usage
     /// 
@@ -95,33 +90,32 @@ namespace Pulumi.DbtCloud
     [DbtCloudResourceType("dbtcloud:index/environment:Environment")]
     public partial class Environment : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A connection ID (used with Global Connections)
+        /// </summary>
         [Output("connectionId")]
-        public Output<int?> ConnectionId { get; private set; } = null!;
+        public Output<int> ConnectionId { get; private set; } = null!;
 
         /// <summary>
-        /// Credential ID to create the environment with. A credential is not required for development environments but is required
-        /// for deployment environments
+        /// The project ID to which the environment belongs.
         /// </summary>
         [Output("credentialId")]
-        public Output<int?> CredentialId { get; private set; } = null!;
+        public Output<int> CredentialId { get; private set; } = null!;
 
         /// <summary>
-        /// Which custom branch to use in this environment
+        /// The custom branch name to use
         /// </summary>
         [Output("customBranch")]
         public Output<string?> CustomBranch { get; private set; } = null!;
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        /// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-        /// is recommended. Defaults to `latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         /// </summary>
         [Output("dbtVersion")]
-        public Output<string?> DbtVersion { get; private set; } = null!;
+        public Output<string> DbtVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-        /// 'staging' or left empty for generic environments
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         /// </summary>
         [Output("deploymentType")]
         public Output<string?> DeploymentType { get; private set; } = null!;
@@ -130,28 +124,28 @@ namespace Pulumi.DbtCloud
         /// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         /// </summary>
         [Output("enableModelQueryHistory")]
-        public Output<bool?> EnableModelQueryHistory { get; private set; } = null!;
+        public Output<bool> EnableModelQueryHistory { get; private set; } = null!;
 
         /// <summary>
-        /// Environment ID within the project
+        /// The ID of the environment. Duplicated. Here for backward compatibility.
         /// </summary>
         [Output("environmentId")]
         public Output<int> EnvironmentId { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the extended attributes for the environment
+        /// The ID of the extended attributes applied
         /// </summary>
         [Output("extendedAttributesId")]
-        public Output<int?> ExtendedAttributesId { get; private set; } = null!;
+        public Output<int> ExtendedAttributesId { get; private set; } = null!;
 
         /// <summary>
         /// Whether the environment is active
         /// </summary>
         [Output("isActive")]
-        public Output<bool?> IsActive { get; private set; } = null!;
+        public Output<bool> IsActive { get; private set; } = null!;
 
         /// <summary>
-        /// Environment name
+        /// The name of the environment
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -172,7 +166,7 @@ namespace Pulumi.DbtCloud
         /// Whether to use a custom git branch in this environment
         /// </summary>
         [Output("useCustomBranch")]
-        public Output<bool?> UseCustomBranch { get; private set; } = null!;
+        public Output<bool> UseCustomBranch { get; private set; } = null!;
 
 
         /// <summary>
@@ -221,33 +215,32 @@ namespace Pulumi.DbtCloud
 
     public sealed class EnvironmentArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A connection ID (used with Global Connections)
+        /// </summary>
         [Input("connectionId")]
         public Input<int>? ConnectionId { get; set; }
 
         /// <summary>
-        /// Credential ID to create the environment with. A credential is not required for development environments but is required
-        /// for deployment environments
+        /// The project ID to which the environment belongs.
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }
 
         /// <summary>
-        /// Which custom branch to use in this environment
+        /// The custom branch name to use
         /// </summary>
         [Input("customBranch")]
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        /// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-        /// is recommended. Defaults to `latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-        /// 'staging' or left empty for generic environments
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         /// </summary>
         [Input("deploymentType")]
         public Input<string>? DeploymentType { get; set; }
@@ -259,7 +252,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? EnableModelQueryHistory { get; set; }
 
         /// <summary>
-        /// ID of the extended attributes for the environment
+        /// The ID of the extended attributes applied
         /// </summary>
         [Input("extendedAttributesId")]
         public Input<int>? ExtendedAttributesId { get; set; }
@@ -271,7 +264,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
-        /// Environment name
+        /// The name of the environment
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -302,33 +295,32 @@ namespace Pulumi.DbtCloud
 
     public sealed class EnvironmentState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A connection ID (used with Global Connections)
+        /// </summary>
         [Input("connectionId")]
         public Input<int>? ConnectionId { get; set; }
 
         /// <summary>
-        /// Credential ID to create the environment with. A credential is not required for development environments but is required
-        /// for deployment environments
+        /// The project ID to which the environment belongs.
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }
 
         /// <summary>
-        /// Which custom branch to use in this environment
+        /// The custom branch name to use
         /// </summary>
         [Input("customBranch")]
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g.
-        /// `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest`
-        /// is recommended. Defaults to `latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }
 
         /// <summary>
-        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production',
-        /// 'staging' or left empty for generic environments
+        /// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         /// </summary>
         [Input("deploymentType")]
         public Input<string>? DeploymentType { get; set; }
@@ -340,13 +332,13 @@ namespace Pulumi.DbtCloud
         public Input<bool>? EnableModelQueryHistory { get; set; }
 
         /// <summary>
-        /// Environment ID within the project
+        /// The ID of the environment. Duplicated. Here for backward compatibility.
         /// </summary>
         [Input("environmentId")]
         public Input<int>? EnvironmentId { get; set; }
 
         /// <summary>
-        /// ID of the extended attributes for the environment
+        /// The ID of the extended attributes applied
         /// </summary>
         [Input("extendedAttributesId")]
         public Input<int>? ExtendedAttributesId { get; set; }
@@ -358,7 +350,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
-        /// Environment name
+        /// The name of the environment
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

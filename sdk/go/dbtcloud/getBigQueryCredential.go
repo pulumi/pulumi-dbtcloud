@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Bigquery credential data source
 func LookupBigQueryCredential(ctx *pulumi.Context, args *LookupBigQueryCredentialArgs, opts ...pulumi.InvokeOption) (*LookupBigQueryCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBigQueryCredentialResult
@@ -35,7 +36,7 @@ type LookupBigQueryCredentialResult struct {
 	CredentialId int `pulumi:"credentialId"`
 	// Default dataset name
 	Dataset string `pulumi:"dataset"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this data source. Contains the project ID and the credential ID.
 	Id string `pulumi:"id"`
 	// Whether the BigQuery credential is active
 	IsActive bool `pulumi:"isActive"`
@@ -91,7 +92,7 @@ func (o LookupBigQueryCredentialResultOutput) Dataset() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBigQueryCredentialResult) string { return v.Dataset }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this data source. Contains the project ID and the credential ID.
 func (o LookupBigQueryCredentialResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBigQueryCredentialResult) string { return v.Id }).(pulumi.StringOutput)
 }

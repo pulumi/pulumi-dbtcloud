@@ -24,14 +24,14 @@ public final class ExtendedAttributesState extends com.pulumi.resources.Resource
     }
 
     /**
-     * Extended Attributes ID
+     * Extended attributes ID
      * 
      */
     @Import(name="extendedAttributesId")
     private @Nullable Output<Integer> extendedAttributesId;
 
     /**
-     * @return Extended Attributes ID
+     * @return Extended attributes ID
      * 
      */
     public Optional<Output<Integer>> extendedAttributesId() {
@@ -54,24 +54,16 @@ public final class ExtendedAttributesState extends com.pulumi.resources.Resource
     }
 
     /**
-     * Extended Attributes state (1 is active, 2 is inactive)
-     * 
-     * @deprecated
-     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     * The state of the extended attributes (1 = active, 2 = inactive)
      * 
      */
-    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     @Import(name="state")
     private @Nullable Output<Integer> state;
 
     /**
-     * @return Extended Attributes state (1 is active, 2 is inactive)
-     * 
-     * @deprecated
-     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
+     * @return The state of the extended attributes (1 = active, 2 = inactive)
      * 
      */
-    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
     public Optional<Output<Integer>> state() {
         return Optional.ofNullable(this.state);
     }
@@ -113,7 +105,7 @@ public final class ExtendedAttributesState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param extendedAttributesId Extended Attributes ID
+         * @param extendedAttributesId Extended attributes ID
          * 
          * @return builder
          * 
@@ -124,7 +116,7 @@ public final class ExtendedAttributesState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param extendedAttributesId Extended Attributes ID
+         * @param extendedAttributesId Extended attributes ID
          * 
          * @return builder
          * 
@@ -155,30 +147,22 @@ public final class ExtendedAttributesState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param state Extended Attributes state (1 is active, 2 is inactive)
+         * @param state The state of the extended attributes (1 = active, 2 = inactive)
          * 
          * @return builder
          * 
-         * @deprecated
-         * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
-         * 
          */
-        @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
         public Builder state(@Nullable Output<Integer> state) {
             $.state = state;
             return this;
         }
 
         /**
-         * @param state Extended Attributes state (1 is active, 2 is inactive)
+         * @param state The state of the extended attributes (1 = active, 2 = inactive)
          * 
          * @return builder
          * 
-         * @deprecated
-         * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
-         * 
          */
-        @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
         public Builder state(Integer state) {
             return state(Output.of(state));
         }

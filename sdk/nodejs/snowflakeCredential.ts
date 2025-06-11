@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -84,51 +86,55 @@ export class SnowflakeCredential extends pulumi.CustomResource {
      */
     public readonly authType!: pulumi.Output<string>;
     /**
-     * The system Snowflake credential ID
+     * The internal credential ID
      */
     public /*out*/ readonly credentialId!: pulumi.Output<number>;
     /**
-     * Database to connect to
+     * The catalog to connect use
      */
     public readonly database!: pulumi.Output<string | undefined>;
     /**
      * Whether the Snowflake credential is active
      */
-    public readonly isActive!: pulumi.Output<boolean | undefined>;
+    public readonly isActive!: pulumi.Output<boolean>;
     /**
      * Number of threads to use
      */
     public readonly numThreads!: pulumi.Output<number>;
     /**
-     * Password for Snowflake
+     * The password for the Snowflake account
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    public readonly password!: pulumi.Output<string>;
     /**
-     * Private key for Snowflake
+     * The private key for the Snowflake account
      */
-    public readonly privateKey!: pulumi.Output<string | undefined>;
+    public readonly privateKey!: pulumi.Output<string>;
     /**
-     * Private key passphrase for Snowflake
+     * The passphrase for the private key
      */
-    public readonly privateKeyPassphrase!: pulumi.Output<string | undefined>;
+    public readonly privateKeyPassphrase!: pulumi.Output<string>;
     /**
      * Project ID to create the Snowflake credential in
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
-     * Role to assume
+     * The role to assume
      */
     public readonly role!: pulumi.Output<string | undefined>;
     /**
-     * Default schema name
+     * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
     public readonly schema!: pulumi.Output<string>;
     /**
-     * Username for Snowflake
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+     */
+    public readonly semanticLayerCredential!: pulumi.Output<boolean>;
+    /**
+     * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
     public readonly user!: pulumi.Output<string>;
     /**
-     * Warehouse to use
+     * The warehouse to use
      */
     public readonly warehouse!: pulumi.Output<string | undefined>;
 
@@ -156,6 +162,7 @@ export class SnowflakeCredential extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
             resourceInputs["schema"] = state ? state.schema : undefined;
+            resourceInputs["semanticLayerCredential"] = state ? state.semanticLayerCredential : undefined;
             resourceInputs["user"] = state ? state.user : undefined;
             resourceInputs["warehouse"] = state ? state.warehouse : undefined;
         } else {
@@ -169,12 +176,6 @@ export class SnowflakeCredential extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.schema === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'schema'");
-            }
-            if ((!args || args.user === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'user'");
-            }
             resourceInputs["authType"] = args ? args.authType : undefined;
             resourceInputs["database"] = args ? args.database : undefined;
             resourceInputs["isActive"] = args ? args.isActive : undefined;
@@ -185,6 +186,7 @@ export class SnowflakeCredential extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
             resourceInputs["schema"] = args ? args.schema : undefined;
+            resourceInputs["semanticLayerCredential"] = args ? args.semanticLayerCredential : undefined;
             resourceInputs["user"] = args ? args.user : undefined;
             resourceInputs["warehouse"] = args ? args.warehouse : undefined;
             resourceInputs["credentialId"] = undefined /*out*/;
@@ -205,11 +207,11 @@ export interface SnowflakeCredentialState {
      */
     authType?: pulumi.Input<string>;
     /**
-     * The system Snowflake credential ID
+     * The internal credential ID
      */
     credentialId?: pulumi.Input<number>;
     /**
-     * Database to connect to
+     * The catalog to connect use
      */
     database?: pulumi.Input<string>;
     /**
@@ -221,15 +223,15 @@ export interface SnowflakeCredentialState {
      */
     numThreads?: pulumi.Input<number>;
     /**
-     * Password for Snowflake
+     * The password for the Snowflake account
      */
     password?: pulumi.Input<string>;
     /**
-     * Private key for Snowflake
+     * The private key for the Snowflake account
      */
     privateKey?: pulumi.Input<string>;
     /**
-     * Private key passphrase for Snowflake
+     * The passphrase for the private key
      */
     privateKeyPassphrase?: pulumi.Input<string>;
     /**
@@ -237,19 +239,23 @@ export interface SnowflakeCredentialState {
      */
     projectId?: pulumi.Input<number>;
     /**
-     * Role to assume
+     * The role to assume
      */
     role?: pulumi.Input<string>;
     /**
-     * Default schema name
+     * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
     schema?: pulumi.Input<string>;
     /**
-     * Username for Snowflake
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+     */
+    semanticLayerCredential?: pulumi.Input<boolean>;
+    /**
+     * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
     user?: pulumi.Input<string>;
     /**
-     * Warehouse to use
+     * The warehouse to use
      */
     warehouse?: pulumi.Input<string>;
 }
@@ -263,7 +269,7 @@ export interface SnowflakeCredentialArgs {
      */
     authType: pulumi.Input<string>;
     /**
-     * Database to connect to
+     * The catalog to connect use
      */
     database?: pulumi.Input<string>;
     /**
@@ -275,15 +281,15 @@ export interface SnowflakeCredentialArgs {
      */
     numThreads: pulumi.Input<number>;
     /**
-     * Password for Snowflake
+     * The password for the Snowflake account
      */
     password?: pulumi.Input<string>;
     /**
-     * Private key for Snowflake
+     * The private key for the Snowflake account
      */
     privateKey?: pulumi.Input<string>;
     /**
-     * Private key passphrase for Snowflake
+     * The passphrase for the private key
      */
     privateKeyPassphrase?: pulumi.Input<string>;
     /**
@@ -291,19 +297,23 @@ export interface SnowflakeCredentialArgs {
      */
     projectId: pulumi.Input<number>;
     /**
-     * Role to assume
+     * The role to assume
      */
     role?: pulumi.Input<string>;
     /**
-     * Default schema name
+     * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    schema: pulumi.Input<string>;
+    schema?: pulumi.Input<string>;
     /**
-     * Username for Snowflake
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
      */
-    user: pulumi.Input<string>;
+    semanticLayerCredential?: pulumi.Input<boolean>;
     /**
-     * Warehouse to use
+     * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+     */
+    user?: pulumi.Input<string>;
+    /**
+     * The warehouse to use
      */
     warehouse?: pulumi.Input<string>;
 }

@@ -5,7 +5,6 @@ package com.pulumi.dbtcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetPrivatelinkEndpointResult {
     /**
-     * @return The CIDR range of the PrivateLink Endpoint
+     * @return CIDR range of the PrivateLink Endpoint
      * 
      */
     private String cidrRange;
@@ -29,19 +28,10 @@ public final class GetPrivatelinkEndpointResult {
      */
     private @Nullable String name;
     /**
-     * @return The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      * 
      */
     private @Nullable String privateLinkEndpointUrl;
-    /**
-     * @return PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
-     * 
-     * @deprecated
-     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
-     * 
-     */
-    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
-    private Integer state;
     /**
      * @return Type of the PrivateLink Endpoint
      * 
@@ -50,7 +40,7 @@ public final class GetPrivatelinkEndpointResult {
 
     private GetPrivatelinkEndpointResult() {}
     /**
-     * @return The CIDR range of the PrivateLink Endpoint
+     * @return CIDR range of the PrivateLink Endpoint
      * 
      */
     public String cidrRange() {
@@ -71,22 +61,11 @@ public final class GetPrivatelinkEndpointResult {
         return Optional.ofNullable(this.name);
     }
     /**
-     * @return The URL of the PrivateLink Endpoint (private*link*endpoint_url and/or name need to be provided to return data for the datasource)
+     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      * 
      */
     public Optional<String> privateLinkEndpointUrl() {
         return Optional.ofNullable(this.privateLinkEndpointUrl);
-    }
-    /**
-     * @return PrivatelinkEndpoint state should be 1 = active, as 2 = deleted
-     * 
-     * @deprecated
-     * Remove this attribute&#39;s configuration as it&#39;s no longer in use and the attribute will be removed in the next major version of the provider.
-     * 
-     */
-    @Deprecated /* Remove this attribute's configuration as it's no longer in use and the attribute will be removed in the next major version of the provider. */
-    public Integer state() {
-        return this.state;
     }
     /**
      * @return Type of the PrivateLink Endpoint
@@ -109,7 +88,6 @@ public final class GetPrivatelinkEndpointResult {
         private String id;
         private @Nullable String name;
         private @Nullable String privateLinkEndpointUrl;
-        private Integer state;
         private String type;
         public Builder() {}
         public Builder(GetPrivatelinkEndpointResult defaults) {
@@ -118,7 +96,6 @@ public final class GetPrivatelinkEndpointResult {
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.privateLinkEndpointUrl = defaults.privateLinkEndpointUrl;
-    	      this.state = defaults.state;
     	      this.type = defaults.type;
         }
 
@@ -151,14 +128,6 @@ public final class GetPrivatelinkEndpointResult {
             return this;
         }
         @CustomType.Setter
-        public Builder state(Integer state) {
-            if (state == null) {
-              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointResult", "state");
-            }
-            this.state = state;
-            return this;
-        }
-        @CustomType.Setter
         public Builder type(String type) {
             if (type == null) {
               throw new MissingRequiredPropertyException("GetPrivatelinkEndpointResult", "type");
@@ -172,7 +141,6 @@ public final class GetPrivatelinkEndpointResult {
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.privateLinkEndpointUrl = privateLinkEndpointUrl;
-            _resultValue.state = state;
             _resultValue.type = type;
             return _resultValue;
         }

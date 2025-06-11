@@ -13,6 +13,413 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type BigquerySemanticLayerCredentialConfiguration struct {
+	// The adapter version
+	AdapterVersion string `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name string `pulumi:"name"`
+	// The ID of the project
+	ProjectId int `pulumi:"projectId"`
+}
+
+// BigquerySemanticLayerCredentialConfigurationInput is an input type that accepts BigquerySemanticLayerCredentialConfigurationArgs and BigquerySemanticLayerCredentialConfigurationOutput values.
+// You can construct a concrete instance of `BigquerySemanticLayerCredentialConfigurationInput` via:
+//
+//	BigquerySemanticLayerCredentialConfigurationArgs{...}
+type BigquerySemanticLayerCredentialConfigurationInput interface {
+	pulumi.Input
+
+	ToBigquerySemanticLayerCredentialConfigurationOutput() BigquerySemanticLayerCredentialConfigurationOutput
+	ToBigquerySemanticLayerCredentialConfigurationOutputWithContext(context.Context) BigquerySemanticLayerCredentialConfigurationOutput
+}
+
+type BigquerySemanticLayerCredentialConfigurationArgs struct {
+	// The adapter version
+	AdapterVersion pulumi.StringInput `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+}
+
+func (BigquerySemanticLayerCredentialConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BigquerySemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i BigquerySemanticLayerCredentialConfigurationArgs) ToBigquerySemanticLayerCredentialConfigurationOutput() BigquerySemanticLayerCredentialConfigurationOutput {
+	return i.ToBigquerySemanticLayerCredentialConfigurationOutputWithContext(context.Background())
+}
+
+func (i BigquerySemanticLayerCredentialConfigurationArgs) ToBigquerySemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BigquerySemanticLayerCredentialConfigurationOutput)
+}
+
+func (i BigquerySemanticLayerCredentialConfigurationArgs) ToBigquerySemanticLayerCredentialConfigurationPtrOutput() BigquerySemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i BigquerySemanticLayerCredentialConfigurationArgs) ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BigquerySemanticLayerCredentialConfigurationOutput).ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(ctx)
+}
+
+// BigquerySemanticLayerCredentialConfigurationPtrInput is an input type that accepts BigquerySemanticLayerCredentialConfigurationArgs, BigquerySemanticLayerCredentialConfigurationPtr and BigquerySemanticLayerCredentialConfigurationPtrOutput values.
+// You can construct a concrete instance of `BigquerySemanticLayerCredentialConfigurationPtrInput` via:
+//
+//	        BigquerySemanticLayerCredentialConfigurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type BigquerySemanticLayerCredentialConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToBigquerySemanticLayerCredentialConfigurationPtrOutput() BigquerySemanticLayerCredentialConfigurationPtrOutput
+	ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(context.Context) BigquerySemanticLayerCredentialConfigurationPtrOutput
+}
+
+type bigquerySemanticLayerCredentialConfigurationPtrType BigquerySemanticLayerCredentialConfigurationArgs
+
+func BigquerySemanticLayerCredentialConfigurationPtr(v *BigquerySemanticLayerCredentialConfigurationArgs) BigquerySemanticLayerCredentialConfigurationPtrInput {
+	return (*bigquerySemanticLayerCredentialConfigurationPtrType)(v)
+}
+
+func (*bigquerySemanticLayerCredentialConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BigquerySemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i *bigquerySemanticLayerCredentialConfigurationPtrType) ToBigquerySemanticLayerCredentialConfigurationPtrOutput() BigquerySemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *bigquerySemanticLayerCredentialConfigurationPtrType) ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BigquerySemanticLayerCredentialConfigurationPtrOutput)
+}
+
+type BigquerySemanticLayerCredentialConfigurationOutput struct{ *pulumi.OutputState }
+
+func (BigquerySemanticLayerCredentialConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BigquerySemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o BigquerySemanticLayerCredentialConfigurationOutput) ToBigquerySemanticLayerCredentialConfigurationOutput() BigquerySemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o BigquerySemanticLayerCredentialConfigurationOutput) ToBigquerySemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o BigquerySemanticLayerCredentialConfigurationOutput) ToBigquerySemanticLayerCredentialConfigurationPtrOutput() BigquerySemanticLayerCredentialConfigurationPtrOutput {
+	return o.ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o BigquerySemanticLayerCredentialConfigurationOutput) ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialConfigurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BigquerySemanticLayerCredentialConfiguration) *BigquerySemanticLayerCredentialConfiguration {
+		return &v
+	}).(BigquerySemanticLayerCredentialConfigurationPtrOutput)
+}
+
+// The adapter version
+func (o BigquerySemanticLayerCredentialConfigurationOutput) AdapterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialConfiguration) string { return v.AdapterVersion }).(pulumi.StringOutput)
+}
+
+// The name of the configuration
+func (o BigquerySemanticLayerCredentialConfigurationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialConfiguration) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project
+func (o BigquerySemanticLayerCredentialConfigurationOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialConfiguration) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+type BigquerySemanticLayerCredentialConfigurationPtrOutput struct{ *pulumi.OutputState }
+
+func (BigquerySemanticLayerCredentialConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BigquerySemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o BigquerySemanticLayerCredentialConfigurationPtrOutput) ToBigquerySemanticLayerCredentialConfigurationPtrOutput() BigquerySemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o BigquerySemanticLayerCredentialConfigurationPtrOutput) ToBigquerySemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o BigquerySemanticLayerCredentialConfigurationPtrOutput) Elem() BigquerySemanticLayerCredentialConfigurationOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialConfiguration) BigquerySemanticLayerCredentialConfiguration {
+		if v != nil {
+			return *v
+		}
+		var ret BigquerySemanticLayerCredentialConfiguration
+		return ret
+	}).(BigquerySemanticLayerCredentialConfigurationOutput)
+}
+
+// The adapter version
+func (o BigquerySemanticLayerCredentialConfigurationPtrOutput) AdapterVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AdapterVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the configuration
+func (o BigquerySemanticLayerCredentialConfigurationPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project
+func (o BigquerySemanticLayerCredentialConfigurationPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+type BigquerySemanticLayerCredentialCredential struct {
+	// The internal credential ID
+	CredentialId *int `pulumi:"credentialId"`
+	// Default dataset name
+	Dataset string `pulumi:"dataset"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id *string `pulumi:"id"`
+	// Whether the BigQuery credential is active
+	IsActive *bool `pulumi:"isActive"`
+	// Number of threads to use
+	NumThreads int `pulumi:"numThreads"`
+	// Project ID to create the BigQuery credential in
+	ProjectId int `pulumi:"projectId"`
+}
+
+// BigquerySemanticLayerCredentialCredentialInput is an input type that accepts BigquerySemanticLayerCredentialCredentialArgs and BigquerySemanticLayerCredentialCredentialOutput values.
+// You can construct a concrete instance of `BigquerySemanticLayerCredentialCredentialInput` via:
+//
+//	BigquerySemanticLayerCredentialCredentialArgs{...}
+type BigquerySemanticLayerCredentialCredentialInput interface {
+	pulumi.Input
+
+	ToBigquerySemanticLayerCredentialCredentialOutput() BigquerySemanticLayerCredentialCredentialOutput
+	ToBigquerySemanticLayerCredentialCredentialOutputWithContext(context.Context) BigquerySemanticLayerCredentialCredentialOutput
+}
+
+type BigquerySemanticLayerCredentialCredentialArgs struct {
+	// The internal credential ID
+	CredentialId pulumi.IntPtrInput `pulumi:"credentialId"`
+	// Default dataset name
+	Dataset pulumi.StringInput `pulumi:"dataset"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Whether the BigQuery credential is active
+	IsActive pulumi.BoolPtrInput `pulumi:"isActive"`
+	// Number of threads to use
+	NumThreads pulumi.IntInput `pulumi:"numThreads"`
+	// Project ID to create the BigQuery credential in
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+}
+
+func (BigquerySemanticLayerCredentialCredentialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BigquerySemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i BigquerySemanticLayerCredentialCredentialArgs) ToBigquerySemanticLayerCredentialCredentialOutput() BigquerySemanticLayerCredentialCredentialOutput {
+	return i.ToBigquerySemanticLayerCredentialCredentialOutputWithContext(context.Background())
+}
+
+func (i BigquerySemanticLayerCredentialCredentialArgs) ToBigquerySemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialCredentialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BigquerySemanticLayerCredentialCredentialOutput)
+}
+
+func (i BigquerySemanticLayerCredentialCredentialArgs) ToBigquerySemanticLayerCredentialCredentialPtrOutput() BigquerySemanticLayerCredentialCredentialPtrOutput {
+	return i.ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i BigquerySemanticLayerCredentialCredentialArgs) ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BigquerySemanticLayerCredentialCredentialOutput).ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(ctx)
+}
+
+// BigquerySemanticLayerCredentialCredentialPtrInput is an input type that accepts BigquerySemanticLayerCredentialCredentialArgs, BigquerySemanticLayerCredentialCredentialPtr and BigquerySemanticLayerCredentialCredentialPtrOutput values.
+// You can construct a concrete instance of `BigquerySemanticLayerCredentialCredentialPtrInput` via:
+//
+//	        BigquerySemanticLayerCredentialCredentialArgs{...}
+//
+//	or:
+//
+//	        nil
+type BigquerySemanticLayerCredentialCredentialPtrInput interface {
+	pulumi.Input
+
+	ToBigquerySemanticLayerCredentialCredentialPtrOutput() BigquerySemanticLayerCredentialCredentialPtrOutput
+	ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(context.Context) BigquerySemanticLayerCredentialCredentialPtrOutput
+}
+
+type bigquerySemanticLayerCredentialCredentialPtrType BigquerySemanticLayerCredentialCredentialArgs
+
+func BigquerySemanticLayerCredentialCredentialPtr(v *BigquerySemanticLayerCredentialCredentialArgs) BigquerySemanticLayerCredentialCredentialPtrInput {
+	return (*bigquerySemanticLayerCredentialCredentialPtrType)(v)
+}
+
+func (*bigquerySemanticLayerCredentialCredentialPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BigquerySemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i *bigquerySemanticLayerCredentialCredentialPtrType) ToBigquerySemanticLayerCredentialCredentialPtrOutput() BigquerySemanticLayerCredentialCredentialPtrOutput {
+	return i.ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i *bigquerySemanticLayerCredentialCredentialPtrType) ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BigquerySemanticLayerCredentialCredentialPtrOutput)
+}
+
+type BigquerySemanticLayerCredentialCredentialOutput struct{ *pulumi.OutputState }
+
+func (BigquerySemanticLayerCredentialCredentialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BigquerySemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o BigquerySemanticLayerCredentialCredentialOutput) ToBigquerySemanticLayerCredentialCredentialOutput() BigquerySemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o BigquerySemanticLayerCredentialCredentialOutput) ToBigquerySemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o BigquerySemanticLayerCredentialCredentialOutput) ToBigquerySemanticLayerCredentialCredentialPtrOutput() BigquerySemanticLayerCredentialCredentialPtrOutput {
+	return o.ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (o BigquerySemanticLayerCredentialCredentialOutput) ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialCredentialPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BigquerySemanticLayerCredentialCredential) *BigquerySemanticLayerCredentialCredential {
+		return &v
+	}).(BigquerySemanticLayerCredentialCredentialPtrOutput)
+}
+
+// The internal credential ID
+func (o BigquerySemanticLayerCredentialCredentialOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialCredential) *int { return v.CredentialId }).(pulumi.IntPtrOutput)
+}
+
+// Default dataset name
+func (o BigquerySemanticLayerCredentialCredentialOutput) Dataset() pulumi.StringOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialCredential) string { return v.Dataset }).(pulumi.StringOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o BigquerySemanticLayerCredentialCredentialOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialCredential) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Whether the BigQuery credential is active
+func (o BigquerySemanticLayerCredentialCredentialOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialCredential) *bool { return v.IsActive }).(pulumi.BoolPtrOutput)
+}
+
+// Number of threads to use
+func (o BigquerySemanticLayerCredentialCredentialOutput) NumThreads() pulumi.IntOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialCredential) int { return v.NumThreads }).(pulumi.IntOutput)
+}
+
+// Project ID to create the BigQuery credential in
+func (o BigquerySemanticLayerCredentialCredentialOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialCredential) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+type BigquerySemanticLayerCredentialCredentialPtrOutput struct{ *pulumi.OutputState }
+
+func (BigquerySemanticLayerCredentialCredentialPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BigquerySemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) ToBigquerySemanticLayerCredentialCredentialPtrOutput() BigquerySemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) ToBigquerySemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) BigquerySemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) Elem() BigquerySemanticLayerCredentialCredentialOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialCredential) BigquerySemanticLayerCredentialCredential {
+		if v != nil {
+			return *v
+		}
+		var ret BigquerySemanticLayerCredentialCredential
+		return ret
+	}).(BigquerySemanticLayerCredentialCredentialOutput)
+}
+
+// The internal credential ID
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CredentialId
+	}).(pulumi.IntPtrOutput)
+}
+
+// Default dataset name
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) Dataset() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Dataset
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether the BigQuery credential is active
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialCredential) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsActive
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Number of threads to use
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) NumThreads() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.NumThreads
+	}).(pulumi.IntPtrOutput)
+}
+
+// Project ID to create the BigQuery credential in
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
 type GlobalConnectionApacheSpark struct {
 	// Auth
 	Auth *string `pulumi:"auth"`
@@ -3158,6 +3565,219 @@ func (o GlobalConnectionSynapsePtrOutput) Retries() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type GlobalConnectionTeradata struct {
+	// The hostname of the database.
+	Host string `pulumi:"host"`
+	// The port to connect to for this connection. Default=1025
+	Port *string `pulumi:"port"`
+	// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	RequestTimeout *int `pulumi:"requestTimeout"`
+	// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+	Retries *int `pulumi:"retries"`
+	// The transaction mode to use for the connection.
+	Tmode string `pulumi:"tmode"`
+}
+
+// GlobalConnectionTeradataInput is an input type that accepts GlobalConnectionTeradataArgs and GlobalConnectionTeradataOutput values.
+// You can construct a concrete instance of `GlobalConnectionTeradataInput` via:
+//
+//	GlobalConnectionTeradataArgs{...}
+type GlobalConnectionTeradataInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionTeradataOutput() GlobalConnectionTeradataOutput
+	ToGlobalConnectionTeradataOutputWithContext(context.Context) GlobalConnectionTeradataOutput
+}
+
+type GlobalConnectionTeradataArgs struct {
+	// The hostname of the database.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The port to connect to for this connection. Default=1025
+	Port pulumi.StringPtrInput `pulumi:"port"`
+	// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	RequestTimeout pulumi.IntPtrInput `pulumi:"requestTimeout"`
+	// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+	Retries pulumi.IntPtrInput `pulumi:"retries"`
+	// The transaction mode to use for the connection.
+	Tmode pulumi.StringInput `pulumi:"tmode"`
+}
+
+func (GlobalConnectionTeradataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionTeradata)(nil)).Elem()
+}
+
+func (i GlobalConnectionTeradataArgs) ToGlobalConnectionTeradataOutput() GlobalConnectionTeradataOutput {
+	return i.ToGlobalConnectionTeradataOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionTeradataArgs) ToGlobalConnectionTeradataOutputWithContext(ctx context.Context) GlobalConnectionTeradataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionTeradataOutput)
+}
+
+func (i GlobalConnectionTeradataArgs) ToGlobalConnectionTeradataPtrOutput() GlobalConnectionTeradataPtrOutput {
+	return i.ToGlobalConnectionTeradataPtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionTeradataArgs) ToGlobalConnectionTeradataPtrOutputWithContext(ctx context.Context) GlobalConnectionTeradataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionTeradataOutput).ToGlobalConnectionTeradataPtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionTeradataPtrInput is an input type that accepts GlobalConnectionTeradataArgs, GlobalConnectionTeradataPtr and GlobalConnectionTeradataPtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionTeradataPtrInput` via:
+//
+//	        GlobalConnectionTeradataArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionTeradataPtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionTeradataPtrOutput() GlobalConnectionTeradataPtrOutput
+	ToGlobalConnectionTeradataPtrOutputWithContext(context.Context) GlobalConnectionTeradataPtrOutput
+}
+
+type globalConnectionTeradataPtrType GlobalConnectionTeradataArgs
+
+func GlobalConnectionTeradataPtr(v *GlobalConnectionTeradataArgs) GlobalConnectionTeradataPtrInput {
+	return (*globalConnectionTeradataPtrType)(v)
+}
+
+func (*globalConnectionTeradataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionTeradata)(nil)).Elem()
+}
+
+func (i *globalConnectionTeradataPtrType) ToGlobalConnectionTeradataPtrOutput() GlobalConnectionTeradataPtrOutput {
+	return i.ToGlobalConnectionTeradataPtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionTeradataPtrType) ToGlobalConnectionTeradataPtrOutputWithContext(ctx context.Context) GlobalConnectionTeradataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionTeradataPtrOutput)
+}
+
+type GlobalConnectionTeradataOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionTeradataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionTeradata)(nil)).Elem()
+}
+
+func (o GlobalConnectionTeradataOutput) ToGlobalConnectionTeradataOutput() GlobalConnectionTeradataOutput {
+	return o
+}
+
+func (o GlobalConnectionTeradataOutput) ToGlobalConnectionTeradataOutputWithContext(ctx context.Context) GlobalConnectionTeradataOutput {
+	return o
+}
+
+func (o GlobalConnectionTeradataOutput) ToGlobalConnectionTeradataPtrOutput() GlobalConnectionTeradataPtrOutput {
+	return o.ToGlobalConnectionTeradataPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionTeradataOutput) ToGlobalConnectionTeradataPtrOutputWithContext(ctx context.Context) GlobalConnectionTeradataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionTeradata) *GlobalConnectionTeradata {
+		return &v
+	}).(GlobalConnectionTeradataPtrOutput)
+}
+
+// The hostname of the database.
+func (o GlobalConnectionTeradataOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionTeradata) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The port to connect to for this connection. Default=1025
+func (o GlobalConnectionTeradataOutput) Port() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionTeradata) *string { return v.Port }).(pulumi.StringPtrOutput)
+}
+
+// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionTeradataOutput) RequestTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionTeradata) *int { return v.RequestTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+func (o GlobalConnectionTeradataOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionTeradata) *int { return v.Retries }).(pulumi.IntPtrOutput)
+}
+
+// The transaction mode to use for the connection.
+func (o GlobalConnectionTeradataOutput) Tmode() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionTeradata) string { return v.Tmode }).(pulumi.StringOutput)
+}
+
+type GlobalConnectionTeradataPtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionTeradataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionTeradata)(nil)).Elem()
+}
+
+func (o GlobalConnectionTeradataPtrOutput) ToGlobalConnectionTeradataPtrOutput() GlobalConnectionTeradataPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionTeradataPtrOutput) ToGlobalConnectionTeradataPtrOutputWithContext(ctx context.Context) GlobalConnectionTeradataPtrOutput {
+	return o
+}
+
+func (o GlobalConnectionTeradataPtrOutput) Elem() GlobalConnectionTeradataOutput {
+	return o.ApplyT(func(v *GlobalConnectionTeradata) GlobalConnectionTeradata {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionTeradata
+		return ret
+	}).(GlobalConnectionTeradataOutput)
+}
+
+// The hostname of the database.
+func (o GlobalConnectionTeradataPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionTeradata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// The port to connect to for this connection. Default=1025
+func (o GlobalConnectionTeradataPtrOutput) Port() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionTeradata) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GlobalConnectionTeradataPtrOutput) RequestTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionTeradata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.RequestTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+func (o GlobalConnectionTeradataPtrOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionTeradata) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Retries
+	}).(pulumi.IntPtrOutput)
+}
+
+// The transaction mode to use for the connection.
+func (o GlobalConnectionTeradataPtrOutput) Tmode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionTeradata) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Tmode
+	}).(pulumi.StringPtrOutput)
+}
+
 type GroupGroupPermission struct {
 	// Whether access should be provided for all projects or not.
 	AllProjects bool `pulumi:"allProjects"`
@@ -3595,45 +4215,29 @@ func (i JobJobCompletionTriggerConditionArgs) ToJobJobCompletionTriggerCondition
 	return pulumi.ToOutputWithContext(ctx, i).(JobJobCompletionTriggerConditionOutput)
 }
 
-func (i JobJobCompletionTriggerConditionArgs) ToJobJobCompletionTriggerConditionPtrOutput() JobJobCompletionTriggerConditionPtrOutput {
-	return i.ToJobJobCompletionTriggerConditionPtrOutputWithContext(context.Background())
-}
-
-func (i JobJobCompletionTriggerConditionArgs) ToJobJobCompletionTriggerConditionPtrOutputWithContext(ctx context.Context) JobJobCompletionTriggerConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobJobCompletionTriggerConditionOutput).ToJobJobCompletionTriggerConditionPtrOutputWithContext(ctx)
-}
-
-// JobJobCompletionTriggerConditionPtrInput is an input type that accepts JobJobCompletionTriggerConditionArgs, JobJobCompletionTriggerConditionPtr and JobJobCompletionTriggerConditionPtrOutput values.
-// You can construct a concrete instance of `JobJobCompletionTriggerConditionPtrInput` via:
+// JobJobCompletionTriggerConditionArrayInput is an input type that accepts JobJobCompletionTriggerConditionArray and JobJobCompletionTriggerConditionArrayOutput values.
+// You can construct a concrete instance of `JobJobCompletionTriggerConditionArrayInput` via:
 //
-//	        JobJobCompletionTriggerConditionArgs{...}
-//
-//	or:
-//
-//	        nil
-type JobJobCompletionTriggerConditionPtrInput interface {
+//	JobJobCompletionTriggerConditionArray{ JobJobCompletionTriggerConditionArgs{...} }
+type JobJobCompletionTriggerConditionArrayInput interface {
 	pulumi.Input
 
-	ToJobJobCompletionTriggerConditionPtrOutput() JobJobCompletionTriggerConditionPtrOutput
-	ToJobJobCompletionTriggerConditionPtrOutputWithContext(context.Context) JobJobCompletionTriggerConditionPtrOutput
+	ToJobJobCompletionTriggerConditionArrayOutput() JobJobCompletionTriggerConditionArrayOutput
+	ToJobJobCompletionTriggerConditionArrayOutputWithContext(context.Context) JobJobCompletionTriggerConditionArrayOutput
 }
 
-type jobJobCompletionTriggerConditionPtrType JobJobCompletionTriggerConditionArgs
+type JobJobCompletionTriggerConditionArray []JobJobCompletionTriggerConditionInput
 
-func JobJobCompletionTriggerConditionPtr(v *JobJobCompletionTriggerConditionArgs) JobJobCompletionTriggerConditionPtrInput {
-	return (*jobJobCompletionTriggerConditionPtrType)(v)
+func (JobJobCompletionTriggerConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobJobCompletionTriggerCondition)(nil)).Elem()
 }
 
-func (*jobJobCompletionTriggerConditionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**JobJobCompletionTriggerCondition)(nil)).Elem()
+func (i JobJobCompletionTriggerConditionArray) ToJobJobCompletionTriggerConditionArrayOutput() JobJobCompletionTriggerConditionArrayOutput {
+	return i.ToJobJobCompletionTriggerConditionArrayOutputWithContext(context.Background())
 }
 
-func (i *jobJobCompletionTriggerConditionPtrType) ToJobJobCompletionTriggerConditionPtrOutput() JobJobCompletionTriggerConditionPtrOutput {
-	return i.ToJobJobCompletionTriggerConditionPtrOutputWithContext(context.Background())
-}
-
-func (i *jobJobCompletionTriggerConditionPtrType) ToJobJobCompletionTriggerConditionPtrOutputWithContext(ctx context.Context) JobJobCompletionTriggerConditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JobJobCompletionTriggerConditionPtrOutput)
+func (i JobJobCompletionTriggerConditionArray) ToJobJobCompletionTriggerConditionArrayOutputWithContext(ctx context.Context) JobJobCompletionTriggerConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobJobCompletionTriggerConditionArrayOutput)
 }
 
 type JobJobCompletionTriggerConditionOutput struct{ *pulumi.OutputState }
@@ -3648,16 +4252,6 @@ func (o JobJobCompletionTriggerConditionOutput) ToJobJobCompletionTriggerConditi
 
 func (o JobJobCompletionTriggerConditionOutput) ToJobJobCompletionTriggerConditionOutputWithContext(ctx context.Context) JobJobCompletionTriggerConditionOutput {
 	return o
-}
-
-func (o JobJobCompletionTriggerConditionOutput) ToJobJobCompletionTriggerConditionPtrOutput() JobJobCompletionTriggerConditionPtrOutput {
-	return o.ToJobJobCompletionTriggerConditionPtrOutputWithContext(context.Background())
-}
-
-func (o JobJobCompletionTriggerConditionOutput) ToJobJobCompletionTriggerConditionPtrOutputWithContext(ctx context.Context) JobJobCompletionTriggerConditionPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobJobCompletionTriggerCondition) *JobJobCompletionTriggerCondition {
-		return &v
-	}).(JobJobCompletionTriggerConditionPtrOutput)
 }
 
 // The ID of the job that would trigger this job after completion.
@@ -3675,43 +4269,388 @@ func (o JobJobCompletionTriggerConditionOutput) Statuses() pulumi.StringArrayOut
 	return o.ApplyT(func(v JobJobCompletionTriggerCondition) []string { return v.Statuses }).(pulumi.StringArrayOutput)
 }
 
-type JobJobCompletionTriggerConditionPtrOutput struct{ *pulumi.OutputState }
+type JobJobCompletionTriggerConditionArrayOutput struct{ *pulumi.OutputState }
 
-func (JobJobCompletionTriggerConditionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**JobJobCompletionTriggerCondition)(nil)).Elem()
+func (JobJobCompletionTriggerConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobJobCompletionTriggerCondition)(nil)).Elem()
 }
 
-func (o JobJobCompletionTriggerConditionPtrOutput) ToJobJobCompletionTriggerConditionPtrOutput() JobJobCompletionTriggerConditionPtrOutput {
+func (o JobJobCompletionTriggerConditionArrayOutput) ToJobJobCompletionTriggerConditionArrayOutput() JobJobCompletionTriggerConditionArrayOutput {
 	return o
 }
 
-func (o JobJobCompletionTriggerConditionPtrOutput) ToJobJobCompletionTriggerConditionPtrOutputWithContext(ctx context.Context) JobJobCompletionTriggerConditionPtrOutput {
+func (o JobJobCompletionTriggerConditionArrayOutput) ToJobJobCompletionTriggerConditionArrayOutputWithContext(ctx context.Context) JobJobCompletionTriggerConditionArrayOutput {
 	return o
 }
 
-func (o JobJobCompletionTriggerConditionPtrOutput) Elem() JobJobCompletionTriggerConditionOutput {
-	return o.ApplyT(func(v *JobJobCompletionTriggerCondition) JobJobCompletionTriggerCondition {
-		if v != nil {
-			return *v
-		}
-		var ret JobJobCompletionTriggerCondition
-		return ret
+func (o JobJobCompletionTriggerConditionArrayOutput) Index(i pulumi.IntInput) JobJobCompletionTriggerConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JobJobCompletionTriggerCondition {
+		return vs[0].([]JobJobCompletionTriggerCondition)[vs[1].(int)]
 	}).(JobJobCompletionTriggerConditionOutput)
 }
 
-// The ID of the job that would trigger this job after completion.
-func (o JobJobCompletionTriggerConditionPtrOutput) JobId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *JobJobCompletionTriggerCondition) *int {
+type JobTriggers struct {
+	// Whether the job runs automatically on PR creation
+	GitProviderWebhook *bool `pulumi:"gitProviderWebhook"`
+	// Whether the job runs automatically on PR creation
+	GithubWebhook *bool `pulumi:"githubWebhook"`
+	// Whether the job runs automatically once a PR is merged
+	OnMerge *bool `pulumi:"onMerge"`
+	// Whether the job runs on a schedule
+	Schedule *bool `pulumi:"schedule"`
+}
+
+// JobTriggersInput is an input type that accepts JobTriggersArgs and JobTriggersOutput values.
+// You can construct a concrete instance of `JobTriggersInput` via:
+//
+//	JobTriggersArgs{...}
+type JobTriggersInput interface {
+	pulumi.Input
+
+	ToJobTriggersOutput() JobTriggersOutput
+	ToJobTriggersOutputWithContext(context.Context) JobTriggersOutput
+}
+
+type JobTriggersArgs struct {
+	// Whether the job runs automatically on PR creation
+	GitProviderWebhook pulumi.BoolPtrInput `pulumi:"gitProviderWebhook"`
+	// Whether the job runs automatically on PR creation
+	GithubWebhook pulumi.BoolPtrInput `pulumi:"githubWebhook"`
+	// Whether the job runs automatically once a PR is merged
+	OnMerge pulumi.BoolPtrInput `pulumi:"onMerge"`
+	// Whether the job runs on a schedule
+	Schedule pulumi.BoolPtrInput `pulumi:"schedule"`
+}
+
+func (JobTriggersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobTriggers)(nil)).Elem()
+}
+
+func (i JobTriggersArgs) ToJobTriggersOutput() JobTriggersOutput {
+	return i.ToJobTriggersOutputWithContext(context.Background())
+}
+
+func (i JobTriggersArgs) ToJobTriggersOutputWithContext(ctx context.Context) JobTriggersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobTriggersOutput)
+}
+
+func (i JobTriggersArgs) ToJobTriggersPtrOutput() JobTriggersPtrOutput {
+	return i.ToJobTriggersPtrOutputWithContext(context.Background())
+}
+
+func (i JobTriggersArgs) ToJobTriggersPtrOutputWithContext(ctx context.Context) JobTriggersPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobTriggersOutput).ToJobTriggersPtrOutputWithContext(ctx)
+}
+
+// JobTriggersPtrInput is an input type that accepts JobTriggersArgs, JobTriggersPtr and JobTriggersPtrOutput values.
+// You can construct a concrete instance of `JobTriggersPtrInput` via:
+//
+//	        JobTriggersArgs{...}
+//
+//	or:
+//
+//	        nil
+type JobTriggersPtrInput interface {
+	pulumi.Input
+
+	ToJobTriggersPtrOutput() JobTriggersPtrOutput
+	ToJobTriggersPtrOutputWithContext(context.Context) JobTriggersPtrOutput
+}
+
+type jobTriggersPtrType JobTriggersArgs
+
+func JobTriggersPtr(v *JobTriggersArgs) JobTriggersPtrInput {
+	return (*jobTriggersPtrType)(v)
+}
+
+func (*jobTriggersPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobTriggers)(nil)).Elem()
+}
+
+func (i *jobTriggersPtrType) ToJobTriggersPtrOutput() JobTriggersPtrOutput {
+	return i.ToJobTriggersPtrOutputWithContext(context.Background())
+}
+
+func (i *jobTriggersPtrType) ToJobTriggersPtrOutputWithContext(ctx context.Context) JobTriggersPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobTriggersPtrOutput)
+}
+
+type JobTriggersOutput struct{ *pulumi.OutputState }
+
+func (JobTriggersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobTriggers)(nil)).Elem()
+}
+
+func (o JobTriggersOutput) ToJobTriggersOutput() JobTriggersOutput {
+	return o
+}
+
+func (o JobTriggersOutput) ToJobTriggersOutputWithContext(ctx context.Context) JobTriggersOutput {
+	return o
+}
+
+func (o JobTriggersOutput) ToJobTriggersPtrOutput() JobTriggersPtrOutput {
+	return o.ToJobTriggersPtrOutputWithContext(context.Background())
+}
+
+func (o JobTriggersOutput) ToJobTriggersPtrOutputWithContext(ctx context.Context) JobTriggersPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobTriggers) *JobTriggers {
+		return &v
+	}).(JobTriggersPtrOutput)
+}
+
+// Whether the job runs automatically on PR creation
+func (o JobTriggersOutput) GitProviderWebhook() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v JobTriggers) *bool { return v.GitProviderWebhook }).(pulumi.BoolPtrOutput)
+}
+
+// Whether the job runs automatically on PR creation
+func (o JobTriggersOutput) GithubWebhook() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v JobTriggers) *bool { return v.GithubWebhook }).(pulumi.BoolPtrOutput)
+}
+
+// Whether the job runs automatically once a PR is merged
+func (o JobTriggersOutput) OnMerge() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v JobTriggers) *bool { return v.OnMerge }).(pulumi.BoolPtrOutput)
+}
+
+// Whether the job runs on a schedule
+func (o JobTriggersOutput) Schedule() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v JobTriggers) *bool { return v.Schedule }).(pulumi.BoolPtrOutput)
+}
+
+type JobTriggersPtrOutput struct{ *pulumi.OutputState }
+
+func (JobTriggersPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobTriggers)(nil)).Elem()
+}
+
+func (o JobTriggersPtrOutput) ToJobTriggersPtrOutput() JobTriggersPtrOutput {
+	return o
+}
+
+func (o JobTriggersPtrOutput) ToJobTriggersPtrOutputWithContext(ctx context.Context) JobTriggersPtrOutput {
+	return o
+}
+
+func (o JobTriggersPtrOutput) Elem() JobTriggersOutput {
+	return o.ApplyT(func(v *JobTriggers) JobTriggers {
+		if v != nil {
+			return *v
+		}
+		var ret JobTriggers
+		return ret
+	}).(JobTriggersOutput)
+}
+
+// Whether the job runs automatically on PR creation
+func (o JobTriggersPtrOutput) GitProviderWebhook() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *JobTriggers) *bool {
 		if v == nil {
 			return nil
 		}
-		return &v.JobId
-	}).(pulumi.IntPtrOutput)
+		return v.GitProviderWebhook
+	}).(pulumi.BoolPtrOutput)
 }
 
-// The ID of the project where the trigger job is running in.
-func (o JobJobCompletionTriggerConditionPtrOutput) ProjectId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *JobJobCompletionTriggerCondition) *int {
+// Whether the job runs automatically on PR creation
+func (o JobTriggersPtrOutput) GithubWebhook() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *JobTriggers) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.GithubWebhook
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Whether the job runs automatically once a PR is merged
+func (o JobTriggersPtrOutput) OnMerge() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *JobTriggers) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.OnMerge
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Whether the job runs on a schedule
+func (o JobTriggersPtrOutput) Schedule() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *JobTriggers) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Schedule
+	}).(pulumi.BoolPtrOutput)
+}
+
+type RedshiftSemanticLayerCredentialConfiguration struct {
+	// The adapter version
+	AdapterVersion string `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name string `pulumi:"name"`
+	// The ID of the project
+	ProjectId int `pulumi:"projectId"`
+}
+
+// RedshiftSemanticLayerCredentialConfigurationInput is an input type that accepts RedshiftSemanticLayerCredentialConfigurationArgs and RedshiftSemanticLayerCredentialConfigurationOutput values.
+// You can construct a concrete instance of `RedshiftSemanticLayerCredentialConfigurationInput` via:
+//
+//	RedshiftSemanticLayerCredentialConfigurationArgs{...}
+type RedshiftSemanticLayerCredentialConfigurationInput interface {
+	pulumi.Input
+
+	ToRedshiftSemanticLayerCredentialConfigurationOutput() RedshiftSemanticLayerCredentialConfigurationOutput
+	ToRedshiftSemanticLayerCredentialConfigurationOutputWithContext(context.Context) RedshiftSemanticLayerCredentialConfigurationOutput
+}
+
+type RedshiftSemanticLayerCredentialConfigurationArgs struct {
+	// The adapter version
+	AdapterVersion pulumi.StringInput `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+}
+
+func (RedshiftSemanticLayerCredentialConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedshiftSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i RedshiftSemanticLayerCredentialConfigurationArgs) ToRedshiftSemanticLayerCredentialConfigurationOutput() RedshiftSemanticLayerCredentialConfigurationOutput {
+	return i.ToRedshiftSemanticLayerCredentialConfigurationOutputWithContext(context.Background())
+}
+
+func (i RedshiftSemanticLayerCredentialConfigurationArgs) ToRedshiftSemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedshiftSemanticLayerCredentialConfigurationOutput)
+}
+
+func (i RedshiftSemanticLayerCredentialConfigurationArgs) ToRedshiftSemanticLayerCredentialConfigurationPtrOutput() RedshiftSemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i RedshiftSemanticLayerCredentialConfigurationArgs) ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedshiftSemanticLayerCredentialConfigurationOutput).ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx)
+}
+
+// RedshiftSemanticLayerCredentialConfigurationPtrInput is an input type that accepts RedshiftSemanticLayerCredentialConfigurationArgs, RedshiftSemanticLayerCredentialConfigurationPtr and RedshiftSemanticLayerCredentialConfigurationPtrOutput values.
+// You can construct a concrete instance of `RedshiftSemanticLayerCredentialConfigurationPtrInput` via:
+//
+//	        RedshiftSemanticLayerCredentialConfigurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type RedshiftSemanticLayerCredentialConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToRedshiftSemanticLayerCredentialConfigurationPtrOutput() RedshiftSemanticLayerCredentialConfigurationPtrOutput
+	ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Context) RedshiftSemanticLayerCredentialConfigurationPtrOutput
+}
+
+type redshiftSemanticLayerCredentialConfigurationPtrType RedshiftSemanticLayerCredentialConfigurationArgs
+
+func RedshiftSemanticLayerCredentialConfigurationPtr(v *RedshiftSemanticLayerCredentialConfigurationArgs) RedshiftSemanticLayerCredentialConfigurationPtrInput {
+	return (*redshiftSemanticLayerCredentialConfigurationPtrType)(v)
+}
+
+func (*redshiftSemanticLayerCredentialConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedshiftSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i *redshiftSemanticLayerCredentialConfigurationPtrType) ToRedshiftSemanticLayerCredentialConfigurationPtrOutput() RedshiftSemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *redshiftSemanticLayerCredentialConfigurationPtrType) ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedshiftSemanticLayerCredentialConfigurationPtrOutput)
+}
+
+type RedshiftSemanticLayerCredentialConfigurationOutput struct{ *pulumi.OutputState }
+
+func (RedshiftSemanticLayerCredentialConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedshiftSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o RedshiftSemanticLayerCredentialConfigurationOutput) ToRedshiftSemanticLayerCredentialConfigurationOutput() RedshiftSemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o RedshiftSemanticLayerCredentialConfigurationOutput) ToRedshiftSemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o RedshiftSemanticLayerCredentialConfigurationOutput) ToRedshiftSemanticLayerCredentialConfigurationPtrOutput() RedshiftSemanticLayerCredentialConfigurationPtrOutput {
+	return o.ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o RedshiftSemanticLayerCredentialConfigurationOutput) ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialConfigurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RedshiftSemanticLayerCredentialConfiguration) *RedshiftSemanticLayerCredentialConfiguration {
+		return &v
+	}).(RedshiftSemanticLayerCredentialConfigurationPtrOutput)
+}
+
+// The adapter version
+func (o RedshiftSemanticLayerCredentialConfigurationOutput) AdapterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialConfiguration) string { return v.AdapterVersion }).(pulumi.StringOutput)
+}
+
+// The name of the configuration
+func (o RedshiftSemanticLayerCredentialConfigurationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialConfiguration) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project
+func (o RedshiftSemanticLayerCredentialConfigurationOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialConfiguration) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+type RedshiftSemanticLayerCredentialConfigurationPtrOutput struct{ *pulumi.OutputState }
+
+func (RedshiftSemanticLayerCredentialConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedshiftSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o RedshiftSemanticLayerCredentialConfigurationPtrOutput) ToRedshiftSemanticLayerCredentialConfigurationPtrOutput() RedshiftSemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o RedshiftSemanticLayerCredentialConfigurationPtrOutput) ToRedshiftSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o RedshiftSemanticLayerCredentialConfigurationPtrOutput) Elem() RedshiftSemanticLayerCredentialConfigurationOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialConfiguration) RedshiftSemanticLayerCredentialConfiguration {
+		if v != nil {
+			return *v
+		}
+		var ret RedshiftSemanticLayerCredentialConfiguration
+		return ret
+	}).(RedshiftSemanticLayerCredentialConfigurationOutput)
+}
+
+// The adapter version
+func (o RedshiftSemanticLayerCredentialConfigurationPtrOutput) AdapterVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AdapterVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the configuration
+func (o RedshiftSemanticLayerCredentialConfigurationPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project
+func (o RedshiftSemanticLayerCredentialConfigurationPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialConfiguration) *int {
 		if v == nil {
 			return nil
 		}
@@ -3719,14 +4658,274 @@ func (o JobJobCompletionTriggerConditionPtrOutput) ProjectId() pulumi.IntPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
-// List of statuses to trigger the job on. Possible values are `success`, `error` and `canceled`.
-func (o JobJobCompletionTriggerConditionPtrOutput) Statuses() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *JobJobCompletionTriggerCondition) []string {
+type RedshiftSemanticLayerCredentialCredential struct {
+	// The internal credential ID
+	CredentialId *int `pulumi:"credentialId"`
+	// Default schema name
+	DefaultSchema string `pulumi:"defaultSchema"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id *string `pulumi:"id"`
+	// Whether the Redshift credential is active
+	IsActive *bool `pulumi:"isActive"`
+	// Number of threads to use
+	NumThreads int `pulumi:"numThreads"`
+	// The password for the Redshift account
+	Password *string `pulumi:"password"`
+	// Project ID to create the Redshift credential in
+	ProjectId int `pulumi:"projectId"`
+	// The username for the Redshift account.
+	Username *string `pulumi:"username"`
+}
+
+// RedshiftSemanticLayerCredentialCredentialInput is an input type that accepts RedshiftSemanticLayerCredentialCredentialArgs and RedshiftSemanticLayerCredentialCredentialOutput values.
+// You can construct a concrete instance of `RedshiftSemanticLayerCredentialCredentialInput` via:
+//
+//	RedshiftSemanticLayerCredentialCredentialArgs{...}
+type RedshiftSemanticLayerCredentialCredentialInput interface {
+	pulumi.Input
+
+	ToRedshiftSemanticLayerCredentialCredentialOutput() RedshiftSemanticLayerCredentialCredentialOutput
+	ToRedshiftSemanticLayerCredentialCredentialOutputWithContext(context.Context) RedshiftSemanticLayerCredentialCredentialOutput
+}
+
+type RedshiftSemanticLayerCredentialCredentialArgs struct {
+	// The internal credential ID
+	CredentialId pulumi.IntPtrInput `pulumi:"credentialId"`
+	// Default schema name
+	DefaultSchema pulumi.StringInput `pulumi:"defaultSchema"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Whether the Redshift credential is active
+	IsActive pulumi.BoolPtrInput `pulumi:"isActive"`
+	// Number of threads to use
+	NumThreads pulumi.IntInput `pulumi:"numThreads"`
+	// The password for the Redshift account
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Project ID to create the Redshift credential in
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// The username for the Redshift account.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (RedshiftSemanticLayerCredentialCredentialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedshiftSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i RedshiftSemanticLayerCredentialCredentialArgs) ToRedshiftSemanticLayerCredentialCredentialOutput() RedshiftSemanticLayerCredentialCredentialOutput {
+	return i.ToRedshiftSemanticLayerCredentialCredentialOutputWithContext(context.Background())
+}
+
+func (i RedshiftSemanticLayerCredentialCredentialArgs) ToRedshiftSemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialCredentialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedshiftSemanticLayerCredentialCredentialOutput)
+}
+
+func (i RedshiftSemanticLayerCredentialCredentialArgs) ToRedshiftSemanticLayerCredentialCredentialPtrOutput() RedshiftSemanticLayerCredentialCredentialPtrOutput {
+	return i.ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i RedshiftSemanticLayerCredentialCredentialArgs) ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedshiftSemanticLayerCredentialCredentialOutput).ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(ctx)
+}
+
+// RedshiftSemanticLayerCredentialCredentialPtrInput is an input type that accepts RedshiftSemanticLayerCredentialCredentialArgs, RedshiftSemanticLayerCredentialCredentialPtr and RedshiftSemanticLayerCredentialCredentialPtrOutput values.
+// You can construct a concrete instance of `RedshiftSemanticLayerCredentialCredentialPtrInput` via:
+//
+//	        RedshiftSemanticLayerCredentialCredentialArgs{...}
+//
+//	or:
+//
+//	        nil
+type RedshiftSemanticLayerCredentialCredentialPtrInput interface {
+	pulumi.Input
+
+	ToRedshiftSemanticLayerCredentialCredentialPtrOutput() RedshiftSemanticLayerCredentialCredentialPtrOutput
+	ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(context.Context) RedshiftSemanticLayerCredentialCredentialPtrOutput
+}
+
+type redshiftSemanticLayerCredentialCredentialPtrType RedshiftSemanticLayerCredentialCredentialArgs
+
+func RedshiftSemanticLayerCredentialCredentialPtr(v *RedshiftSemanticLayerCredentialCredentialArgs) RedshiftSemanticLayerCredentialCredentialPtrInput {
+	return (*redshiftSemanticLayerCredentialCredentialPtrType)(v)
+}
+
+func (*redshiftSemanticLayerCredentialCredentialPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedshiftSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i *redshiftSemanticLayerCredentialCredentialPtrType) ToRedshiftSemanticLayerCredentialCredentialPtrOutput() RedshiftSemanticLayerCredentialCredentialPtrOutput {
+	return i.ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i *redshiftSemanticLayerCredentialCredentialPtrType) ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedshiftSemanticLayerCredentialCredentialPtrOutput)
+}
+
+type RedshiftSemanticLayerCredentialCredentialOutput struct{ *pulumi.OutputState }
+
+func (RedshiftSemanticLayerCredentialCredentialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedshiftSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o RedshiftSemanticLayerCredentialCredentialOutput) ToRedshiftSemanticLayerCredentialCredentialOutput() RedshiftSemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o RedshiftSemanticLayerCredentialCredentialOutput) ToRedshiftSemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o RedshiftSemanticLayerCredentialCredentialOutput) ToRedshiftSemanticLayerCredentialCredentialPtrOutput() RedshiftSemanticLayerCredentialCredentialPtrOutput {
+	return o.ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (o RedshiftSemanticLayerCredentialCredentialOutput) ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialCredentialPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RedshiftSemanticLayerCredentialCredential) *RedshiftSemanticLayerCredentialCredential {
+		return &v
+	}).(RedshiftSemanticLayerCredentialCredentialPtrOutput)
+}
+
+// The internal credential ID
+func (o RedshiftSemanticLayerCredentialCredentialOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) *int { return v.CredentialId }).(pulumi.IntPtrOutput)
+}
+
+// Default schema name
+func (o RedshiftSemanticLayerCredentialCredentialOutput) DefaultSchema() pulumi.StringOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) string { return v.DefaultSchema }).(pulumi.StringOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o RedshiftSemanticLayerCredentialCredentialOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Whether the Redshift credential is active
+func (o RedshiftSemanticLayerCredentialCredentialOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) *bool { return v.IsActive }).(pulumi.BoolPtrOutput)
+}
+
+// Number of threads to use
+func (o RedshiftSemanticLayerCredentialCredentialOutput) NumThreads() pulumi.IntOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) int { return v.NumThreads }).(pulumi.IntOutput)
+}
+
+// The password for the Redshift account
+func (o RedshiftSemanticLayerCredentialCredentialOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Project ID to create the Redshift credential in
+func (o RedshiftSemanticLayerCredentialCredentialOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// The username for the Redshift account.
+func (o RedshiftSemanticLayerCredentialCredentialOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type RedshiftSemanticLayerCredentialCredentialPtrOutput struct{ *pulumi.OutputState }
+
+func (RedshiftSemanticLayerCredentialCredentialPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedshiftSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) ToRedshiftSemanticLayerCredentialCredentialPtrOutput() RedshiftSemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) ToRedshiftSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) RedshiftSemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) Elem() RedshiftSemanticLayerCredentialCredentialOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) RedshiftSemanticLayerCredentialCredential {
+		if v != nil {
+			return *v
+		}
+		var ret RedshiftSemanticLayerCredentialCredential
+		return ret
+	}).(RedshiftSemanticLayerCredentialCredentialOutput)
+}
+
+// The internal credential ID
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *int {
 		if v == nil {
 			return nil
 		}
-		return v.Statuses
-	}).(pulumi.StringArrayOutput)
+		return v.CredentialId
+	}).(pulumi.IntPtrOutput)
+}
+
+// Default schema name
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) DefaultSchema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DefaultSchema
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether the Redshift credential is active
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsActive
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Number of threads to use
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) NumThreads() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.NumThreads
+	}).(pulumi.IntPtrOutput)
+}
+
+// The password for the Redshift account
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Project ID to create the Redshift credential in
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The username for the Redshift account.
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
 }
 
 type ServiceTokenServiceTokenPermission struct {
@@ -3865,10 +5064,588 @@ func (o ServiceTokenServiceTokenPermissionArrayOutput) Index(i pulumi.IntInput) 
 	}).(ServiceTokenServiceTokenPermissionOutput)
 }
 
+type SnowflakeSemanticLayerCredentialConfiguration struct {
+	// The adapter version
+	AdapterVersion string `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name string `pulumi:"name"`
+	// The ID of the project
+	ProjectId int `pulumi:"projectId"`
+}
+
+// SnowflakeSemanticLayerCredentialConfigurationInput is an input type that accepts SnowflakeSemanticLayerCredentialConfigurationArgs and SnowflakeSemanticLayerCredentialConfigurationOutput values.
+// You can construct a concrete instance of `SnowflakeSemanticLayerCredentialConfigurationInput` via:
+//
+//	SnowflakeSemanticLayerCredentialConfigurationArgs{...}
+type SnowflakeSemanticLayerCredentialConfigurationInput interface {
+	pulumi.Input
+
+	ToSnowflakeSemanticLayerCredentialConfigurationOutput() SnowflakeSemanticLayerCredentialConfigurationOutput
+	ToSnowflakeSemanticLayerCredentialConfigurationOutputWithContext(context.Context) SnowflakeSemanticLayerCredentialConfigurationOutput
+}
+
+type SnowflakeSemanticLayerCredentialConfigurationArgs struct {
+	// The adapter version
+	AdapterVersion pulumi.StringInput `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+}
+
+func (SnowflakeSemanticLayerCredentialConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnowflakeSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i SnowflakeSemanticLayerCredentialConfigurationArgs) ToSnowflakeSemanticLayerCredentialConfigurationOutput() SnowflakeSemanticLayerCredentialConfigurationOutput {
+	return i.ToSnowflakeSemanticLayerCredentialConfigurationOutputWithContext(context.Background())
+}
+
+func (i SnowflakeSemanticLayerCredentialConfigurationArgs) ToSnowflakeSemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnowflakeSemanticLayerCredentialConfigurationOutput)
+}
+
+func (i SnowflakeSemanticLayerCredentialConfigurationArgs) ToSnowflakeSemanticLayerCredentialConfigurationPtrOutput() SnowflakeSemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i SnowflakeSemanticLayerCredentialConfigurationArgs) ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnowflakeSemanticLayerCredentialConfigurationOutput).ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx)
+}
+
+// SnowflakeSemanticLayerCredentialConfigurationPtrInput is an input type that accepts SnowflakeSemanticLayerCredentialConfigurationArgs, SnowflakeSemanticLayerCredentialConfigurationPtr and SnowflakeSemanticLayerCredentialConfigurationPtrOutput values.
+// You can construct a concrete instance of `SnowflakeSemanticLayerCredentialConfigurationPtrInput` via:
+//
+//	        SnowflakeSemanticLayerCredentialConfigurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type SnowflakeSemanticLayerCredentialConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToSnowflakeSemanticLayerCredentialConfigurationPtrOutput() SnowflakeSemanticLayerCredentialConfigurationPtrOutput
+	ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Context) SnowflakeSemanticLayerCredentialConfigurationPtrOutput
+}
+
+type snowflakeSemanticLayerCredentialConfigurationPtrType SnowflakeSemanticLayerCredentialConfigurationArgs
+
+func SnowflakeSemanticLayerCredentialConfigurationPtr(v *SnowflakeSemanticLayerCredentialConfigurationArgs) SnowflakeSemanticLayerCredentialConfigurationPtrInput {
+	return (*snowflakeSemanticLayerCredentialConfigurationPtrType)(v)
+}
+
+func (*snowflakeSemanticLayerCredentialConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnowflakeSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i *snowflakeSemanticLayerCredentialConfigurationPtrType) ToSnowflakeSemanticLayerCredentialConfigurationPtrOutput() SnowflakeSemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *snowflakeSemanticLayerCredentialConfigurationPtrType) ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnowflakeSemanticLayerCredentialConfigurationPtrOutput)
+}
+
+type SnowflakeSemanticLayerCredentialConfigurationOutput struct{ *pulumi.OutputState }
+
+func (SnowflakeSemanticLayerCredentialConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnowflakeSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o SnowflakeSemanticLayerCredentialConfigurationOutput) ToSnowflakeSemanticLayerCredentialConfigurationOutput() SnowflakeSemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o SnowflakeSemanticLayerCredentialConfigurationOutput) ToSnowflakeSemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o SnowflakeSemanticLayerCredentialConfigurationOutput) ToSnowflakeSemanticLayerCredentialConfigurationPtrOutput() SnowflakeSemanticLayerCredentialConfigurationPtrOutput {
+	return o.ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o SnowflakeSemanticLayerCredentialConfigurationOutput) ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialConfigurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SnowflakeSemanticLayerCredentialConfiguration) *SnowflakeSemanticLayerCredentialConfiguration {
+		return &v
+	}).(SnowflakeSemanticLayerCredentialConfigurationPtrOutput)
+}
+
+// The adapter version
+func (o SnowflakeSemanticLayerCredentialConfigurationOutput) AdapterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialConfiguration) string { return v.AdapterVersion }).(pulumi.StringOutput)
+}
+
+// The name of the configuration
+func (o SnowflakeSemanticLayerCredentialConfigurationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialConfiguration) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project
+func (o SnowflakeSemanticLayerCredentialConfigurationOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialConfiguration) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+type SnowflakeSemanticLayerCredentialConfigurationPtrOutput struct{ *pulumi.OutputState }
+
+func (SnowflakeSemanticLayerCredentialConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnowflakeSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o SnowflakeSemanticLayerCredentialConfigurationPtrOutput) ToSnowflakeSemanticLayerCredentialConfigurationPtrOutput() SnowflakeSemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o SnowflakeSemanticLayerCredentialConfigurationPtrOutput) ToSnowflakeSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o SnowflakeSemanticLayerCredentialConfigurationPtrOutput) Elem() SnowflakeSemanticLayerCredentialConfigurationOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialConfiguration) SnowflakeSemanticLayerCredentialConfiguration {
+		if v != nil {
+			return *v
+		}
+		var ret SnowflakeSemanticLayerCredentialConfiguration
+		return ret
+	}).(SnowflakeSemanticLayerCredentialConfigurationOutput)
+}
+
+// The adapter version
+func (o SnowflakeSemanticLayerCredentialConfigurationPtrOutput) AdapterVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AdapterVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the configuration
+func (o SnowflakeSemanticLayerCredentialConfigurationPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project
+func (o SnowflakeSemanticLayerCredentialConfigurationPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+type SnowflakeSemanticLayerCredentialCredential struct {
+	// The type of Snowflake credential ('password' or 'keypair')
+	AuthType string `pulumi:"authType"`
+	// The internal credential ID
+	CredentialId *int `pulumi:"credentialId"`
+	// The catalog to connect use
+	Database *string `pulumi:"database"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id *string `pulumi:"id"`
+	// Whether the Snowflake credential is active
+	IsActive *bool `pulumi:"isActive"`
+	// Number of threads to use
+	NumThreads int `pulumi:"numThreads"`
+	// The password for the Snowflake account
+	Password *string `pulumi:"password"`
+	// The private key for the Snowflake account
+	PrivateKey *string `pulumi:"privateKey"`
+	// The passphrase for the private key
+	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
+	// Project ID to create the Snowflake credential in
+	ProjectId int `pulumi:"projectId"`
+	// The role to assume
+	Role *string `pulumi:"role"`
+	// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+	Schema *string `pulumi:"schema"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
+	// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+	User *string `pulumi:"user"`
+	// The warehouse to use
+	Warehouse *string `pulumi:"warehouse"`
+}
+
+// SnowflakeSemanticLayerCredentialCredentialInput is an input type that accepts SnowflakeSemanticLayerCredentialCredentialArgs and SnowflakeSemanticLayerCredentialCredentialOutput values.
+// You can construct a concrete instance of `SnowflakeSemanticLayerCredentialCredentialInput` via:
+//
+//	SnowflakeSemanticLayerCredentialCredentialArgs{...}
+type SnowflakeSemanticLayerCredentialCredentialInput interface {
+	pulumi.Input
+
+	ToSnowflakeSemanticLayerCredentialCredentialOutput() SnowflakeSemanticLayerCredentialCredentialOutput
+	ToSnowflakeSemanticLayerCredentialCredentialOutputWithContext(context.Context) SnowflakeSemanticLayerCredentialCredentialOutput
+}
+
+type SnowflakeSemanticLayerCredentialCredentialArgs struct {
+	// The type of Snowflake credential ('password' or 'keypair')
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	// The internal credential ID
+	CredentialId pulumi.IntPtrInput `pulumi:"credentialId"`
+	// The catalog to connect use
+	Database pulumi.StringPtrInput `pulumi:"database"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Whether the Snowflake credential is active
+	IsActive pulumi.BoolPtrInput `pulumi:"isActive"`
+	// Number of threads to use
+	NumThreads pulumi.IntInput `pulumi:"numThreads"`
+	// The password for the Snowflake account
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The private key for the Snowflake account
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// The passphrase for the private key
+	PrivateKeyPassphrase pulumi.StringPtrInput `pulumi:"privateKeyPassphrase"`
+	// Project ID to create the Snowflake credential in
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// The role to assume
+	Role pulumi.StringPtrInput `pulumi:"role"`
+	// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+	Schema pulumi.StringPtrInput `pulumi:"schema"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput `pulumi:"semanticLayerCredential"`
+	// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+	User pulumi.StringPtrInput `pulumi:"user"`
+	// The warehouse to use
+	Warehouse pulumi.StringPtrInput `pulumi:"warehouse"`
+}
+
+func (SnowflakeSemanticLayerCredentialCredentialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnowflakeSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i SnowflakeSemanticLayerCredentialCredentialArgs) ToSnowflakeSemanticLayerCredentialCredentialOutput() SnowflakeSemanticLayerCredentialCredentialOutput {
+	return i.ToSnowflakeSemanticLayerCredentialCredentialOutputWithContext(context.Background())
+}
+
+func (i SnowflakeSemanticLayerCredentialCredentialArgs) ToSnowflakeSemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialCredentialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnowflakeSemanticLayerCredentialCredentialOutput)
+}
+
+func (i SnowflakeSemanticLayerCredentialCredentialArgs) ToSnowflakeSemanticLayerCredentialCredentialPtrOutput() SnowflakeSemanticLayerCredentialCredentialPtrOutput {
+	return i.ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i SnowflakeSemanticLayerCredentialCredentialArgs) ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnowflakeSemanticLayerCredentialCredentialOutput).ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(ctx)
+}
+
+// SnowflakeSemanticLayerCredentialCredentialPtrInput is an input type that accepts SnowflakeSemanticLayerCredentialCredentialArgs, SnowflakeSemanticLayerCredentialCredentialPtr and SnowflakeSemanticLayerCredentialCredentialPtrOutput values.
+// You can construct a concrete instance of `SnowflakeSemanticLayerCredentialCredentialPtrInput` via:
+//
+//	        SnowflakeSemanticLayerCredentialCredentialArgs{...}
+//
+//	or:
+//
+//	        nil
+type SnowflakeSemanticLayerCredentialCredentialPtrInput interface {
+	pulumi.Input
+
+	ToSnowflakeSemanticLayerCredentialCredentialPtrOutput() SnowflakeSemanticLayerCredentialCredentialPtrOutput
+	ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(context.Context) SnowflakeSemanticLayerCredentialCredentialPtrOutput
+}
+
+type snowflakeSemanticLayerCredentialCredentialPtrType SnowflakeSemanticLayerCredentialCredentialArgs
+
+func SnowflakeSemanticLayerCredentialCredentialPtr(v *SnowflakeSemanticLayerCredentialCredentialArgs) SnowflakeSemanticLayerCredentialCredentialPtrInput {
+	return (*snowflakeSemanticLayerCredentialCredentialPtrType)(v)
+}
+
+func (*snowflakeSemanticLayerCredentialCredentialPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnowflakeSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i *snowflakeSemanticLayerCredentialCredentialPtrType) ToSnowflakeSemanticLayerCredentialCredentialPtrOutput() SnowflakeSemanticLayerCredentialCredentialPtrOutput {
+	return i.ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i *snowflakeSemanticLayerCredentialCredentialPtrType) ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnowflakeSemanticLayerCredentialCredentialPtrOutput)
+}
+
+type SnowflakeSemanticLayerCredentialCredentialOutput struct{ *pulumi.OutputState }
+
+func (SnowflakeSemanticLayerCredentialCredentialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnowflakeSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) ToSnowflakeSemanticLayerCredentialCredentialOutput() SnowflakeSemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) ToSnowflakeSemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) ToSnowflakeSemanticLayerCredentialCredentialPtrOutput() SnowflakeSemanticLayerCredentialCredentialPtrOutput {
+	return o.ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialCredentialPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SnowflakeSemanticLayerCredentialCredential) *SnowflakeSemanticLayerCredentialCredential {
+		return &v
+	}).(SnowflakeSemanticLayerCredentialCredentialPtrOutput)
+}
+
+// The type of Snowflake credential ('password' or 'keypair')
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// The internal credential ID
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *int { return v.CredentialId }).(pulumi.IntPtrOutput)
+}
+
+// The catalog to connect use
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.Database }).(pulumi.StringPtrOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Whether the Snowflake credential is active
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *bool { return v.IsActive }).(pulumi.BoolPtrOutput)
+}
+
+// Number of threads to use
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) NumThreads() pulumi.IntOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) int { return v.NumThreads }).(pulumi.IntOutput)
+}
+
+// The password for the Snowflake account
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The private key for the Snowflake account
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// The passphrase for the private key
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) PrivateKeyPassphrase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.PrivateKeyPassphrase }).(pulumi.StringPtrOutput)
+}
+
+// Project ID to create the Snowflake credential in
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// The role to assume
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.Role }).(pulumi.StringPtrOutput)
+}
+
+// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) Schema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.Schema }).(pulumi.StringPtrOutput)
+}
+
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) SemanticLayerCredential() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *bool { return v.SemanticLayerCredential }).(pulumi.BoolPtrOutput)
+}
+
+// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.User }).(pulumi.StringPtrOutput)
+}
+
+// The warehouse to use
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) Warehouse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.Warehouse }).(pulumi.StringPtrOutput)
+}
+
+type SnowflakeSemanticLayerCredentialCredentialPtrOutput struct{ *pulumi.OutputState }
+
+func (SnowflakeSemanticLayerCredentialCredentialPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnowflakeSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) ToSnowflakeSemanticLayerCredentialCredentialPtrOutput() SnowflakeSemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) ToSnowflakeSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) SnowflakeSemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Elem() SnowflakeSemanticLayerCredentialCredentialOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) SnowflakeSemanticLayerCredentialCredential {
+		if v != nil {
+			return *v
+		}
+		var ret SnowflakeSemanticLayerCredentialCredential
+		return ret
+	}).(SnowflakeSemanticLayerCredentialCredentialOutput)
+}
+
+// The type of Snowflake credential ('password' or 'keypair')
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AuthType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The internal credential ID
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CredentialId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The catalog to connect use
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether the Snowflake credential is active
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsActive
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Number of threads to use
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) NumThreads() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.NumThreads
+	}).(pulumi.IntPtrOutput)
+}
+
+// The password for the Snowflake account
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The private key for the Snowflake account
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The passphrase for the private key
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKeyPassphrase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyPassphrase
+	}).(pulumi.StringPtrOutput)
+}
+
+// Project ID to create the Snowflake credential in
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The role to assume
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+// The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Schema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Schema
+	}).(pulumi.StringPtrOutput)
+}
+
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) SemanticLayerCredential() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SemanticLayerCredential
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.User
+	}).(pulumi.StringPtrOutput)
+}
+
+// The warehouse to use
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Warehouse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Warehouse
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetEnvironmentsEnvironment struct {
 	// A connection ID (used with Global Connections)
 	ConnectionId int `pulumi:"connectionId"`
-	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+	// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
 	CredentialsId int `pulumi:"credentialsId"`
 	// The custom branch name to use
 	CustomBranch string `pulumi:"customBranch"`
@@ -3906,7 +5683,7 @@ type GetEnvironmentsEnvironmentInput interface {
 type GetEnvironmentsEnvironmentArgs struct {
 	// A connection ID (used with Global Connections)
 	ConnectionId pulumi.IntInput `pulumi:"connectionId"`
-	// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+	// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
 	CredentialsId pulumi.IntInput `pulumi:"credentialsId"`
 	// The custom branch name to use
 	CustomBranch pulumi.StringInput `pulumi:"customBranch"`
@@ -3986,7 +5763,7 @@ func (o GetEnvironmentsEnvironmentOutput) ConnectionId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.ConnectionId }).(pulumi.IntOutput)
 }
 
-// Credential ID to create the environment with. A credential is not required for development environments but is required for deployment environments
+// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
 func (o GetEnvironmentsEnvironmentOutput) CredentialsId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.CredentialsId }).(pulumi.IntOutput)
 }
@@ -5396,6 +7173,94 @@ func (o GetGlobalConnectionSynapseOutput) Retries() pulumi.IntOutput {
 	return o.ApplyT(func(v GetGlobalConnectionSynapse) int { return v.Retries }).(pulumi.IntOutput)
 }
 
+type GetGlobalConnectionTeradata struct {
+	// The hostname of the database.
+	Host string `pulumi:"host"`
+	// The port to connect to for this connection. Default=1025
+	Port string `pulumi:"port"`
+	// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	RequestTimeout int `pulumi:"requestTimeout"`
+	// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+	Retries int `pulumi:"retries"`
+	// The transaction mode to use for the connection.
+	Tmode string `pulumi:"tmode"`
+}
+
+// GetGlobalConnectionTeradataInput is an input type that accepts GetGlobalConnectionTeradataArgs and GetGlobalConnectionTeradataOutput values.
+// You can construct a concrete instance of `GetGlobalConnectionTeradataInput` via:
+//
+//	GetGlobalConnectionTeradataArgs{...}
+type GetGlobalConnectionTeradataInput interface {
+	pulumi.Input
+
+	ToGetGlobalConnectionTeradataOutput() GetGlobalConnectionTeradataOutput
+	ToGetGlobalConnectionTeradataOutputWithContext(context.Context) GetGlobalConnectionTeradataOutput
+}
+
+type GetGlobalConnectionTeradataArgs struct {
+	// The hostname of the database.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The port to connect to for this connection. Default=1025
+	Port pulumi.StringInput `pulumi:"port"`
+	// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+	RequestTimeout pulumi.IntInput `pulumi:"requestTimeout"`
+	// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+	Retries pulumi.IntInput `pulumi:"retries"`
+	// The transaction mode to use for the connection.
+	Tmode pulumi.StringInput `pulumi:"tmode"`
+}
+
+func (GetGlobalConnectionTeradataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGlobalConnectionTeradata)(nil)).Elem()
+}
+
+func (i GetGlobalConnectionTeradataArgs) ToGetGlobalConnectionTeradataOutput() GetGlobalConnectionTeradataOutput {
+	return i.ToGetGlobalConnectionTeradataOutputWithContext(context.Background())
+}
+
+func (i GetGlobalConnectionTeradataArgs) ToGetGlobalConnectionTeradataOutputWithContext(ctx context.Context) GetGlobalConnectionTeradataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGlobalConnectionTeradataOutput)
+}
+
+type GetGlobalConnectionTeradataOutput struct{ *pulumi.OutputState }
+
+func (GetGlobalConnectionTeradataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGlobalConnectionTeradata)(nil)).Elem()
+}
+
+func (o GetGlobalConnectionTeradataOutput) ToGetGlobalConnectionTeradataOutput() GetGlobalConnectionTeradataOutput {
+	return o
+}
+
+func (o GetGlobalConnectionTeradataOutput) ToGetGlobalConnectionTeradataOutputWithContext(ctx context.Context) GetGlobalConnectionTeradataOutput {
+	return o
+}
+
+// The hostname of the database.
+func (o GetGlobalConnectionTeradataOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionTeradata) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The port to connect to for this connection. Default=1025
+func (o GetGlobalConnectionTeradataOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionTeradata) string { return v.Port }).(pulumi.StringOutput)
+}
+
+// The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+func (o GetGlobalConnectionTeradataOutput) RequestTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGlobalConnectionTeradata) int { return v.RequestTimeout }).(pulumi.IntOutput)
+}
+
+// The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+func (o GetGlobalConnectionTeradataOutput) Retries() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGlobalConnectionTeradata) int { return v.Retries }).(pulumi.IntOutput)
+}
+
+// The transaction mode to use for the connection.
+func (o GetGlobalConnectionTeradataOutput) Tmode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionTeradata) string { return v.Tmode }).(pulumi.StringOutput)
+}
+
 type GetGlobalConnectionsConnection struct {
 	// Type of adapter used for the connection
 	AdapterVersion string `pulumi:"adapterVersion"`
@@ -5684,8 +7549,10 @@ func (o GetGroupGroupPermissionArrayOutput) Index(i pulumi.IntInput) GetGroupGro
 }
 
 type GetGroupUsersUser struct {
+	// Email of the user
 	Email string `pulumi:"email"`
-	Id    int    `pulumi:"id"`
+	// ID of the user
+	Id int `pulumi:"id"`
 }
 
 // GetGroupUsersUserInput is an input type that accepts GetGroupUsersUserArgs and GetGroupUsersUserOutput values.
@@ -5700,8 +7567,10 @@ type GetGroupUsersUserInput interface {
 }
 
 type GetGroupUsersUserArgs struct {
+	// Email of the user
 	Email pulumi.StringInput `pulumi:"email"`
-	Id    pulumi.IntInput    `pulumi:"id"`
+	// ID of the user
+	Id pulumi.IntInput `pulumi:"id"`
 }
 
 func (GetGroupUsersUserArgs) ElementType() reflect.Type {
@@ -5755,10 +7624,12 @@ func (o GetGroupUsersUserOutput) ToGetGroupUsersUserOutputWithContext(ctx contex
 	return o
 }
 
+// Email of the user
 func (o GetGroupUsersUserOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGroupUsersUser) string { return v.Email }).(pulumi.StringOutput)
 }
 
+// ID of the user
 func (o GetGroupUsersUserOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetGroupUsersUser) int { return v.Id }).(pulumi.IntOutput)
 }
@@ -5781,6 +7652,143 @@ func (o GetGroupUsersUserArrayOutput) Index(i pulumi.IntInput) GetGroupUsersUser
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupUsersUser {
 		return vs[0].([]GetGroupUsersUser)[vs[1].(int)]
 	}).(GetGroupUsersUserOutput)
+}
+
+type GetJobEnvironment struct {
+	// Type of deployment environment: staging, production
+	DeploymentType string `pulumi:"deploymentType"`
+	// ID of the environment
+	Id int `pulumi:"id"`
+	// Name of the environment
+	Name      string `pulumi:"name"`
+	ProjectId int    `pulumi:"projectId"`
+	// Environment type: development or deployment
+	Type string `pulumi:"type"`
+}
+
+// GetJobEnvironmentInput is an input type that accepts GetJobEnvironmentArgs and GetJobEnvironmentOutput values.
+// You can construct a concrete instance of `GetJobEnvironmentInput` via:
+//
+//	GetJobEnvironmentArgs{...}
+type GetJobEnvironmentInput interface {
+	pulumi.Input
+
+	ToGetJobEnvironmentOutput() GetJobEnvironmentOutput
+	ToGetJobEnvironmentOutputWithContext(context.Context) GetJobEnvironmentOutput
+}
+
+type GetJobEnvironmentArgs struct {
+	// Type of deployment environment: staging, production
+	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
+	// ID of the environment
+	Id pulumi.IntInput `pulumi:"id"`
+	// Name of the environment
+	Name      pulumi.StringInput `pulumi:"name"`
+	ProjectId pulumi.IntInput    `pulumi:"projectId"`
+	// Environment type: development or deployment
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetJobEnvironmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobEnvironment)(nil)).Elem()
+}
+
+func (i GetJobEnvironmentArgs) ToGetJobEnvironmentOutput() GetJobEnvironmentOutput {
+	return i.ToGetJobEnvironmentOutputWithContext(context.Background())
+}
+
+func (i GetJobEnvironmentArgs) ToGetJobEnvironmentOutputWithContext(ctx context.Context) GetJobEnvironmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobEnvironmentOutput)
+}
+
+type GetJobEnvironmentOutput struct{ *pulumi.OutputState }
+
+func (GetJobEnvironmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobEnvironment)(nil)).Elem()
+}
+
+func (o GetJobEnvironmentOutput) ToGetJobEnvironmentOutput() GetJobEnvironmentOutput {
+	return o
+}
+
+func (o GetJobEnvironmentOutput) ToGetJobEnvironmentOutputWithContext(ctx context.Context) GetJobEnvironmentOutput {
+	return o
+}
+
+// Type of deployment environment: staging, production
+func (o GetJobEnvironmentOutput) DeploymentType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobEnvironment) string { return v.DeploymentType }).(pulumi.StringOutput)
+}
+
+// ID of the environment
+func (o GetJobEnvironmentOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobEnvironment) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Name of the environment
+func (o GetJobEnvironmentOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobEnvironment) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetJobEnvironmentOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobEnvironment) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// Environment type: development or deployment
+func (o GetJobEnvironmentOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobEnvironment) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetJobExecution struct {
+	// The number of seconds before the job times out
+	TimeoutSeconds int `pulumi:"timeoutSeconds"`
+}
+
+// GetJobExecutionInput is an input type that accepts GetJobExecutionArgs and GetJobExecutionOutput values.
+// You can construct a concrete instance of `GetJobExecutionInput` via:
+//
+//	GetJobExecutionArgs{...}
+type GetJobExecutionInput interface {
+	pulumi.Input
+
+	ToGetJobExecutionOutput() GetJobExecutionOutput
+	ToGetJobExecutionOutputWithContext(context.Context) GetJobExecutionOutput
+}
+
+type GetJobExecutionArgs struct {
+	// The number of seconds before the job times out
+	TimeoutSeconds pulumi.IntInput `pulumi:"timeoutSeconds"`
+}
+
+func (GetJobExecutionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobExecution)(nil)).Elem()
+}
+
+func (i GetJobExecutionArgs) ToGetJobExecutionOutput() GetJobExecutionOutput {
+	return i.ToGetJobExecutionOutputWithContext(context.Background())
+}
+
+func (i GetJobExecutionArgs) ToGetJobExecutionOutputWithContext(ctx context.Context) GetJobExecutionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobExecutionOutput)
+}
+
+type GetJobExecutionOutput struct{ *pulumi.OutputState }
+
+func (GetJobExecutionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobExecution)(nil)).Elem()
+}
+
+func (o GetJobExecutionOutput) ToGetJobExecutionOutput() GetJobExecutionOutput {
+	return o
+}
+
+func (o GetJobExecutionOutput) ToGetJobExecutionOutputWithContext(ctx context.Context) GetJobExecutionOutput {
+	return o
+}
+
+// The number of seconds before the job times out
+func (o GetJobExecutionOutput) TimeoutSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobExecution) int { return v.TimeoutSeconds }).(pulumi.IntOutput)
 }
 
 type GetJobJobCompletionTriggerCondition struct {
@@ -5898,12 +7906,206 @@ func (o GetJobJobCompletionTriggerConditionArrayOutput) Index(i pulumi.IntInput)
 	}).(GetJobJobCompletionTriggerConditionOutput)
 }
 
+type GetJobSchedule struct {
+	// The cron schedule for the job. Only used if triggers.schedule is true
+	Cron string `pulumi:"cron"`
+}
+
+// GetJobScheduleInput is an input type that accepts GetJobScheduleArgs and GetJobScheduleOutput values.
+// You can construct a concrete instance of `GetJobScheduleInput` via:
+//
+//	GetJobScheduleArgs{...}
+type GetJobScheduleInput interface {
+	pulumi.Input
+
+	ToGetJobScheduleOutput() GetJobScheduleOutput
+	ToGetJobScheduleOutputWithContext(context.Context) GetJobScheduleOutput
+}
+
+type GetJobScheduleArgs struct {
+	// The cron schedule for the job. Only used if triggers.schedule is true
+	Cron pulumi.StringInput `pulumi:"cron"`
+}
+
+func (GetJobScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobSchedule)(nil)).Elem()
+}
+
+func (i GetJobScheduleArgs) ToGetJobScheduleOutput() GetJobScheduleOutput {
+	return i.ToGetJobScheduleOutputWithContext(context.Background())
+}
+
+func (i GetJobScheduleArgs) ToGetJobScheduleOutputWithContext(ctx context.Context) GetJobScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobScheduleOutput)
+}
+
+type GetJobScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetJobScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobSchedule)(nil)).Elem()
+}
+
+func (o GetJobScheduleOutput) ToGetJobScheduleOutput() GetJobScheduleOutput {
+	return o
+}
+
+func (o GetJobScheduleOutput) ToGetJobScheduleOutputWithContext(ctx context.Context) GetJobScheduleOutput {
+	return o
+}
+
+// The cron schedule for the job. Only used if triggers.schedule is true
+func (o GetJobScheduleOutput) Cron() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobSchedule) string { return v.Cron }).(pulumi.StringOutput)
+}
+
+type GetJobSettings struct {
+	// Value for `target.name` in the Jinja context
+	TargetName string `pulumi:"targetName"`
+	// Number of threads to run dbt with
+	Threads int `pulumi:"threads"`
+}
+
+// GetJobSettingsInput is an input type that accepts GetJobSettingsArgs and GetJobSettingsOutput values.
+// You can construct a concrete instance of `GetJobSettingsInput` via:
+//
+//	GetJobSettingsArgs{...}
+type GetJobSettingsInput interface {
+	pulumi.Input
+
+	ToGetJobSettingsOutput() GetJobSettingsOutput
+	ToGetJobSettingsOutputWithContext(context.Context) GetJobSettingsOutput
+}
+
+type GetJobSettingsArgs struct {
+	// Value for `target.name` in the Jinja context
+	TargetName pulumi.StringInput `pulumi:"targetName"`
+	// Number of threads to run dbt with
+	Threads pulumi.IntInput `pulumi:"threads"`
+}
+
+func (GetJobSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobSettings)(nil)).Elem()
+}
+
+func (i GetJobSettingsArgs) ToGetJobSettingsOutput() GetJobSettingsOutput {
+	return i.ToGetJobSettingsOutputWithContext(context.Background())
+}
+
+func (i GetJobSettingsArgs) ToGetJobSettingsOutputWithContext(ctx context.Context) GetJobSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobSettingsOutput)
+}
+
+type GetJobSettingsOutput struct{ *pulumi.OutputState }
+
+func (GetJobSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobSettings)(nil)).Elem()
+}
+
+func (o GetJobSettingsOutput) ToGetJobSettingsOutput() GetJobSettingsOutput {
+	return o
+}
+
+func (o GetJobSettingsOutput) ToGetJobSettingsOutputWithContext(ctx context.Context) GetJobSettingsOutput {
+	return o
+}
+
+// Value for `target.name` in the Jinja context
+func (o GetJobSettingsOutput) TargetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobSettings) string { return v.TargetName }).(pulumi.StringOutput)
+}
+
+// Number of threads to run dbt with
+func (o GetJobSettingsOutput) Threads() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobSettings) int { return v.Threads }).(pulumi.IntOutput)
+}
+
+type GetJobTriggers struct {
+	// Whether the job runs automatically on PR creation
+	GitProviderWebhook bool `pulumi:"gitProviderWebhook"`
+	// Whether the job runs automatically on PR creation
+	GithubWebhook bool `pulumi:"githubWebhook"`
+	// Whether the job runs automatically once a PR is merged
+	OnMerge bool `pulumi:"onMerge"`
+	// Whether the job runs on a schedule
+	Schedule bool `pulumi:"schedule"`
+}
+
+// GetJobTriggersInput is an input type that accepts GetJobTriggersArgs and GetJobTriggersOutput values.
+// You can construct a concrete instance of `GetJobTriggersInput` via:
+//
+//	GetJobTriggersArgs{...}
+type GetJobTriggersInput interface {
+	pulumi.Input
+
+	ToGetJobTriggersOutput() GetJobTriggersOutput
+	ToGetJobTriggersOutputWithContext(context.Context) GetJobTriggersOutput
+}
+
+type GetJobTriggersArgs struct {
+	// Whether the job runs automatically on PR creation
+	GitProviderWebhook pulumi.BoolInput `pulumi:"gitProviderWebhook"`
+	// Whether the job runs automatically on PR creation
+	GithubWebhook pulumi.BoolInput `pulumi:"githubWebhook"`
+	// Whether the job runs automatically once a PR is merged
+	OnMerge pulumi.BoolInput `pulumi:"onMerge"`
+	// Whether the job runs on a schedule
+	Schedule pulumi.BoolInput `pulumi:"schedule"`
+}
+
+func (GetJobTriggersArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobTriggers)(nil)).Elem()
+}
+
+func (i GetJobTriggersArgs) ToGetJobTriggersOutput() GetJobTriggersOutput {
+	return i.ToGetJobTriggersOutputWithContext(context.Background())
+}
+
+func (i GetJobTriggersArgs) ToGetJobTriggersOutputWithContext(ctx context.Context) GetJobTriggersOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobTriggersOutput)
+}
+
+type GetJobTriggersOutput struct{ *pulumi.OutputState }
+
+func (GetJobTriggersOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobTriggers)(nil)).Elem()
+}
+
+func (o GetJobTriggersOutput) ToGetJobTriggersOutput() GetJobTriggersOutput {
+	return o
+}
+
+func (o GetJobTriggersOutput) ToGetJobTriggersOutputWithContext(ctx context.Context) GetJobTriggersOutput {
+	return o
+}
+
+// Whether the job runs automatically on PR creation
+func (o GetJobTriggersOutput) GitProviderWebhook() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobTriggers) bool { return v.GitProviderWebhook }).(pulumi.BoolOutput)
+}
+
+// Whether the job runs automatically on PR creation
+func (o GetJobTriggersOutput) GithubWebhook() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobTriggers) bool { return v.GithubWebhook }).(pulumi.BoolOutput)
+}
+
+// Whether the job runs automatically once a PR is merged
+func (o GetJobTriggersOutput) OnMerge() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobTriggers) bool { return v.OnMerge }).(pulumi.BoolOutput)
+}
+
+// Whether the job runs on a schedule
+func (o GetJobTriggersOutput) Schedule() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobTriggers) bool { return v.Schedule }).(pulumi.BoolOutput)
+}
+
 type GetJobsJob struct {
 	// The version of dbt used for the job. If not set, the environment version will be used.
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The ID of the environment this job defers to
 	DeferringEnvironmentId int `pulumi:"deferringEnvironmentId"`
-	// [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+	// [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+	//
+	// Deprecated: Deferral is now set at the environment level
 	DeferringJobDefinitionId int `pulumi:"deferringJobDefinitionId"`
 	// The description of the job
 	Description string `pulumi:"description"`
@@ -5920,6 +8122,8 @@ type GetJobsJob struct {
 	Id int `pulumi:"id"`
 	// Whether the job is triggered by the completion of another job
 	JobCompletionTriggerCondition GetJobsJobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerCondition"`
+	// The ID of the job
+	JobId int `pulumi:"jobId"`
 	// The type of job (e.g. CI, scheduled)
 	JobType string `pulumi:"jobType"`
 	// The name of the job
@@ -5932,7 +8136,11 @@ type GetJobsJob struct {
 	RunGenerateSources bool               `pulumi:"runGenerateSources"`
 	Schedule           GetJobsJobSchedule `pulumi:"schedule"`
 	Settings           GetJobsJobSettings `pulumi:"settings"`
-	Triggers           GetJobsJobTriggers `pulumi:"triggers"`
+	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+	//
+	// Deprecated: Moved to execution.timeout_seconds
+	TimeoutSeconds int                `pulumi:"timeoutSeconds"`
+	Triggers       GetJobsJobTriggers `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr bool `pulumi:"triggersOnDraftPr"`
 }
@@ -5953,7 +8161,9 @@ type GetJobsJobArgs struct {
 	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
 	// The ID of the environment this job defers to
 	DeferringEnvironmentId pulumi.IntInput `pulumi:"deferringEnvironmentId"`
-	// [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+	// [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+	//
+	// Deprecated: Deferral is now set at the environment level
 	DeferringJobDefinitionId pulumi.IntInput `pulumi:"deferringJobDefinitionId"`
 	// The description of the job
 	Description pulumi.StringInput `pulumi:"description"`
@@ -5970,6 +8180,8 @@ type GetJobsJobArgs struct {
 	Id pulumi.IntInput `pulumi:"id"`
 	// Whether the job is triggered by the completion of another job
 	JobCompletionTriggerCondition GetJobsJobJobCompletionTriggerConditionInput `pulumi:"jobCompletionTriggerCondition"`
+	// The ID of the job
+	JobId pulumi.IntInput `pulumi:"jobId"`
 	// The type of job (e.g. CI, scheduled)
 	JobType pulumi.StringInput `pulumi:"jobType"`
 	// The name of the job
@@ -5982,7 +8194,11 @@ type GetJobsJobArgs struct {
 	RunGenerateSources pulumi.BoolInput        `pulumi:"runGenerateSources"`
 	Schedule           GetJobsJobScheduleInput `pulumi:"schedule"`
 	Settings           GetJobsJobSettingsInput `pulumi:"settings"`
-	Triggers           GetJobsJobTriggersInput `pulumi:"triggers"`
+	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+	//
+	// Deprecated: Moved to execution.timeout_seconds
+	TimeoutSeconds pulumi.IntInput         `pulumi:"timeoutSeconds"`
+	Triggers       GetJobsJobTriggersInput `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr pulumi.BoolInput `pulumi:"triggersOnDraftPr"`
 }
@@ -6048,7 +8264,9 @@ func (o GetJobsJobOutput) DeferringEnvironmentId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetJobsJob) int { return v.DeferringEnvironmentId }).(pulumi.IntOutput)
 }
 
-// [Deprecated - deferral is now set at the environment level] The ID of the job definition this job defers to
+// [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
+//
+// Deprecated: Deferral is now set at the environment level
 func (o GetJobsJobOutput) DeferringJobDefinitionId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetJobsJob) int { return v.DeferringJobDefinitionId }).(pulumi.IntOutput)
 }
@@ -6092,6 +8310,11 @@ func (o GetJobsJobOutput) JobCompletionTriggerCondition() GetJobsJobJobCompletio
 	return o.ApplyT(func(v GetJobsJob) GetJobsJobJobCompletionTriggerCondition { return v.JobCompletionTriggerCondition }).(GetJobsJobJobCompletionTriggerConditionOutput)
 }
 
+// The ID of the job
+func (o GetJobsJobOutput) JobId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJob) int { return v.JobId }).(pulumi.IntOutput)
+}
+
 // The type of job (e.g. CI, scheduled)
 func (o GetJobsJobOutput) JobType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobsJob) string { return v.JobType }).(pulumi.StringOutput)
@@ -6123,6 +8346,13 @@ func (o GetJobsJobOutput) Schedule() GetJobsJobScheduleOutput {
 
 func (o GetJobsJobOutput) Settings() GetJobsJobSettingsOutput {
 	return o.ApplyT(func(v GetJobsJob) GetJobsJobSettings { return v.Settings }).(GetJobsJobSettingsOutput)
+}
+
+// [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
+//
+// Deprecated: Moved to execution.timeout_seconds
+func (o GetJobsJobOutput) TimeoutSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobsJob) int { return v.TimeoutSeconds }).(pulumi.IntOutput)
 }
 
 func (o GetJobsJobOutput) Triggers() GetJobsJobTriggersOutput {
@@ -6595,9 +8825,147 @@ func (o GetJobsJobTriggersOutput) Schedule() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetJobsJobTriggers) bool { return v.Schedule }).(pulumi.BoolOutput)
 }
 
+type GetProjectProjectConnection struct {
+	// Version of the adapter for the connection. Will tell what connection type it is
+	AdapterVersion string `pulumi:"adapterVersion"`
+	// Connection ID
+	Id int `pulumi:"id"`
+	// Connection name
+	Name string `pulumi:"name"`
+}
+
+// GetProjectProjectConnectionInput is an input type that accepts GetProjectProjectConnectionArgs and GetProjectProjectConnectionOutput values.
+// You can construct a concrete instance of `GetProjectProjectConnectionInput` via:
+//
+//	GetProjectProjectConnectionArgs{...}
+type GetProjectProjectConnectionInput interface {
+	pulumi.Input
+
+	ToGetProjectProjectConnectionOutput() GetProjectProjectConnectionOutput
+	ToGetProjectProjectConnectionOutputWithContext(context.Context) GetProjectProjectConnectionOutput
+}
+
+type GetProjectProjectConnectionArgs struct {
+	// Version of the adapter for the connection. Will tell what connection type it is
+	AdapterVersion pulumi.StringInput `pulumi:"adapterVersion"`
+	// Connection ID
+	Id pulumi.IntInput `pulumi:"id"`
+	// Connection name
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetProjectProjectConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectProjectConnection)(nil)).Elem()
+}
+
+func (i GetProjectProjectConnectionArgs) ToGetProjectProjectConnectionOutput() GetProjectProjectConnectionOutput {
+	return i.ToGetProjectProjectConnectionOutputWithContext(context.Background())
+}
+
+func (i GetProjectProjectConnectionArgs) ToGetProjectProjectConnectionOutputWithContext(ctx context.Context) GetProjectProjectConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectProjectConnectionOutput)
+}
+
+type GetProjectProjectConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetProjectProjectConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectProjectConnection)(nil)).Elem()
+}
+
+func (o GetProjectProjectConnectionOutput) ToGetProjectProjectConnectionOutput() GetProjectProjectConnectionOutput {
+	return o
+}
+
+func (o GetProjectProjectConnectionOutput) ToGetProjectProjectConnectionOutputWithContext(ctx context.Context) GetProjectProjectConnectionOutput {
+	return o
+}
+
+// Version of the adapter for the connection. Will tell what connection type it is
+func (o GetProjectProjectConnectionOutput) AdapterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectProjectConnection) string { return v.AdapterVersion }).(pulumi.StringOutput)
+}
+
+// Connection ID
+func (o GetProjectProjectConnectionOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectProjectConnection) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Connection name
+func (o GetProjectProjectConnectionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectProjectConnection) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetProjectRepositoryType struct {
+	// Repository ID
+	Id int `pulumi:"id"`
+	// URL template for PRs
+	PullRequestUrlTemplate string `pulumi:"pullRequestUrlTemplate"`
+	// URL of the git repo remote
+	RemoteUrl string `pulumi:"remoteUrl"`
+}
+
+// GetProjectRepositoryTypeInput is an input type that accepts GetProjectRepositoryTypeArgs and GetProjectRepositoryTypeOutput values.
+// You can construct a concrete instance of `GetProjectRepositoryTypeInput` via:
+//
+//	GetProjectRepositoryTypeArgs{...}
+type GetProjectRepositoryTypeInput interface {
+	pulumi.Input
+
+	ToGetProjectRepositoryTypeOutput() GetProjectRepositoryTypeOutput
+	ToGetProjectRepositoryTypeOutputWithContext(context.Context) GetProjectRepositoryTypeOutput
+}
+
+type GetProjectRepositoryTypeArgs struct {
+	// Repository ID
+	Id pulumi.IntInput `pulumi:"id"`
+	// URL template for PRs
+	PullRequestUrlTemplate pulumi.StringInput `pulumi:"pullRequestUrlTemplate"`
+	// URL of the git repo remote
+	RemoteUrl pulumi.StringInput `pulumi:"remoteUrl"`
+}
+
+func (GetProjectRepositoryTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectRepositoryType)(nil)).Elem()
+}
+
+func (i GetProjectRepositoryTypeArgs) ToGetProjectRepositoryTypeOutput() GetProjectRepositoryTypeOutput {
+	return i.ToGetProjectRepositoryTypeOutputWithContext(context.Background())
+}
+
+func (i GetProjectRepositoryTypeArgs) ToGetProjectRepositoryTypeOutputWithContext(ctx context.Context) GetProjectRepositoryTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectRepositoryTypeOutput)
+}
+
+type GetProjectRepositoryTypeOutput struct{ *pulumi.OutputState }
+
+func (GetProjectRepositoryTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectRepositoryType)(nil)).Elem()
+}
+
+func (o GetProjectRepositoryTypeOutput) ToGetProjectRepositoryTypeOutput() GetProjectRepositoryTypeOutput {
+	return o
+}
+
+func (o GetProjectRepositoryTypeOutput) ToGetProjectRepositoryTypeOutputWithContext(ctx context.Context) GetProjectRepositoryTypeOutput {
+	return o
+}
+
+// Repository ID
+func (o GetProjectRepositoryTypeOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectRepositoryType) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// URL template for PRs
+func (o GetProjectRepositoryTypeOutput) PullRequestUrlTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectRepositoryType) string { return v.PullRequestUrlTemplate }).(pulumi.StringOutput)
+}
+
+// URL of the git repo remote
+func (o GetProjectRepositoryTypeOutput) RemoteUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectRepositoryType) string { return v.RemoteUrl }).(pulumi.StringOutput)
+}
+
 type GetProjectsProject struct {
-	// Details for the connection linked to the project
-	Connection GetProjectsProjectConnection `pulumi:"connection"`
 	// When the project was created
 	CreatedAt string `pulumi:"createdAt"`
 	// Subdirectory for the dbt project inside the git repo
@@ -6608,10 +8976,14 @@ type GetProjectsProject struct {
 	Id int `pulumi:"id"`
 	// Project name
 	Name string `pulumi:"name"`
+	// Details for the connection linked to the project
+	ProjectConnection GetProjectsProjectProjectConnection `pulumi:"projectConnection"`
 	// Details for the repository linked to the project
 	Repository GetProjectsProjectRepository `pulumi:"repository"`
 	// Semantic layer config ID
 	SemanticLayerConfigId int `pulumi:"semanticLayerConfigId"`
+	// The type of dbt project (default or hybrid)
+	Type int `pulumi:"type"`
 	// When the project was last updated
 	UpdatedAt string `pulumi:"updatedAt"`
 }
@@ -6628,8 +9000,6 @@ type GetProjectsProjectInput interface {
 }
 
 type GetProjectsProjectArgs struct {
-	// Details for the connection linked to the project
-	Connection GetProjectsProjectConnectionInput `pulumi:"connection"`
 	// When the project was created
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Subdirectory for the dbt project inside the git repo
@@ -6640,10 +9010,14 @@ type GetProjectsProjectArgs struct {
 	Id pulumi.IntInput `pulumi:"id"`
 	// Project name
 	Name pulumi.StringInput `pulumi:"name"`
+	// Details for the connection linked to the project
+	ProjectConnection GetProjectsProjectProjectConnectionInput `pulumi:"projectConnection"`
 	// Details for the repository linked to the project
 	Repository GetProjectsProjectRepositoryInput `pulumi:"repository"`
 	// Semantic layer config ID
 	SemanticLayerConfigId pulumi.IntInput `pulumi:"semanticLayerConfigId"`
+	// The type of dbt project (default or hybrid)
+	Type pulumi.IntInput `pulumi:"type"`
 	// When the project was last updated
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
@@ -6699,11 +9073,6 @@ func (o GetProjectsProjectOutput) ToGetProjectsProjectOutputWithContext(ctx cont
 	return o
 }
 
-// Details for the connection linked to the project
-func (o GetProjectsProjectOutput) Connection() GetProjectsProjectConnectionOutput {
-	return o.ApplyT(func(v GetProjectsProject) GetProjectsProjectConnection { return v.Connection }).(GetProjectsProjectConnectionOutput)
-}
-
 // When the project was created
 func (o GetProjectsProjectOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsProject) string { return v.CreatedAt }).(pulumi.StringOutput)
@@ -6729,6 +9098,11 @@ func (o GetProjectsProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsProject) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Details for the connection linked to the project
+func (o GetProjectsProjectOutput) ProjectConnection() GetProjectsProjectProjectConnectionOutput {
+	return o.ApplyT(func(v GetProjectsProject) GetProjectsProjectProjectConnection { return v.ProjectConnection }).(GetProjectsProjectProjectConnectionOutput)
+}
+
 // Details for the repository linked to the project
 func (o GetProjectsProjectOutput) Repository() GetProjectsProjectRepositoryOutput {
 	return o.ApplyT(func(v GetProjectsProject) GetProjectsProjectRepository { return v.Repository }).(GetProjectsProjectRepositoryOutput)
@@ -6737,6 +9111,11 @@ func (o GetProjectsProjectOutput) Repository() GetProjectsProjectRepositoryOutpu
 // Semantic layer config ID
 func (o GetProjectsProjectOutput) SemanticLayerConfigId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProjectsProject) int { return v.SemanticLayerConfigId }).(pulumi.IntOutput)
+}
+
+// The type of dbt project (default or hybrid)
+func (o GetProjectsProjectOutput) Type() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectsProject) int { return v.Type }).(pulumi.IntOutput)
 }
 
 // When the project was last updated
@@ -6764,7 +9143,7 @@ func (o GetProjectsProjectArrayOutput) Index(i pulumi.IntInput) GetProjectsProje
 	}).(GetProjectsProjectOutput)
 }
 
-type GetProjectsProjectConnection struct {
+type GetProjectsProjectProjectConnection struct {
 	// Version of the adapter for the connection. Will tell what connection type it is
 	AdapterVersion string `pulumi:"adapterVersion"`
 	// Connection ID
@@ -6773,18 +9152,18 @@ type GetProjectsProjectConnection struct {
 	Name string `pulumi:"name"`
 }
 
-// GetProjectsProjectConnectionInput is an input type that accepts GetProjectsProjectConnectionArgs and GetProjectsProjectConnectionOutput values.
-// You can construct a concrete instance of `GetProjectsProjectConnectionInput` via:
+// GetProjectsProjectProjectConnectionInput is an input type that accepts GetProjectsProjectProjectConnectionArgs and GetProjectsProjectProjectConnectionOutput values.
+// You can construct a concrete instance of `GetProjectsProjectProjectConnectionInput` via:
 //
-//	GetProjectsProjectConnectionArgs{...}
-type GetProjectsProjectConnectionInput interface {
+//	GetProjectsProjectProjectConnectionArgs{...}
+type GetProjectsProjectProjectConnectionInput interface {
 	pulumi.Input
 
-	ToGetProjectsProjectConnectionOutput() GetProjectsProjectConnectionOutput
-	ToGetProjectsProjectConnectionOutputWithContext(context.Context) GetProjectsProjectConnectionOutput
+	ToGetProjectsProjectProjectConnectionOutput() GetProjectsProjectProjectConnectionOutput
+	ToGetProjectsProjectProjectConnectionOutputWithContext(context.Context) GetProjectsProjectProjectConnectionOutput
 }
 
-type GetProjectsProjectConnectionArgs struct {
+type GetProjectsProjectProjectConnectionArgs struct {
 	// Version of the adapter for the connection. Will tell what connection type it is
 	AdapterVersion pulumi.StringInput `pulumi:"adapterVersion"`
 	// Connection ID
@@ -6793,45 +9172,45 @@ type GetProjectsProjectConnectionArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
-func (GetProjectsProjectConnectionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProjectsProjectConnection)(nil)).Elem()
+func (GetProjectsProjectProjectConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsProjectProjectConnection)(nil)).Elem()
 }
 
-func (i GetProjectsProjectConnectionArgs) ToGetProjectsProjectConnectionOutput() GetProjectsProjectConnectionOutput {
-	return i.ToGetProjectsProjectConnectionOutputWithContext(context.Background())
+func (i GetProjectsProjectProjectConnectionArgs) ToGetProjectsProjectProjectConnectionOutput() GetProjectsProjectProjectConnectionOutput {
+	return i.ToGetProjectsProjectProjectConnectionOutputWithContext(context.Background())
 }
 
-func (i GetProjectsProjectConnectionArgs) ToGetProjectsProjectConnectionOutputWithContext(ctx context.Context) GetProjectsProjectConnectionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsProjectConnectionOutput)
+func (i GetProjectsProjectProjectConnectionArgs) ToGetProjectsProjectProjectConnectionOutputWithContext(ctx context.Context) GetProjectsProjectProjectConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsProjectProjectConnectionOutput)
 }
 
-type GetProjectsProjectConnectionOutput struct{ *pulumi.OutputState }
+type GetProjectsProjectProjectConnectionOutput struct{ *pulumi.OutputState }
 
-func (GetProjectsProjectConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetProjectsProjectConnection)(nil)).Elem()
+func (GetProjectsProjectProjectConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsProjectProjectConnection)(nil)).Elem()
 }
 
-func (o GetProjectsProjectConnectionOutput) ToGetProjectsProjectConnectionOutput() GetProjectsProjectConnectionOutput {
+func (o GetProjectsProjectProjectConnectionOutput) ToGetProjectsProjectProjectConnectionOutput() GetProjectsProjectProjectConnectionOutput {
 	return o
 }
 
-func (o GetProjectsProjectConnectionOutput) ToGetProjectsProjectConnectionOutputWithContext(ctx context.Context) GetProjectsProjectConnectionOutput {
+func (o GetProjectsProjectProjectConnectionOutput) ToGetProjectsProjectProjectConnectionOutputWithContext(ctx context.Context) GetProjectsProjectProjectConnectionOutput {
 	return o
 }
 
 // Version of the adapter for the connection. Will tell what connection type it is
-func (o GetProjectsProjectConnectionOutput) AdapterVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProjectsProjectConnection) string { return v.AdapterVersion }).(pulumi.StringOutput)
+func (o GetProjectsProjectProjectConnectionOutput) AdapterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsProjectProjectConnection) string { return v.AdapterVersion }).(pulumi.StringOutput)
 }
 
 // Connection ID
-func (o GetProjectsProjectConnectionOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetProjectsProjectConnection) int { return v.Id }).(pulumi.IntOutput)
+func (o GetProjectsProjectProjectConnectionOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectsProjectProjectConnection) int { return v.Id }).(pulumi.IntOutput)
 }
 
 // Connection name
-func (o GetProjectsProjectConnectionOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProjectsProjectConnection) string { return v.Name }).(pulumi.StringOutput)
+func (o GetProjectsProjectProjectConnectionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsProjectProjectConnection) string { return v.Name }).(pulumi.StringOutput)
 }
 
 type GetProjectsProjectRepository struct {
@@ -6902,6 +9281,436 @@ func (o GetProjectsProjectRepositoryOutput) PullRequestUrlTemplate() pulumi.Stri
 // URL of the git repo remote
 func (o GetProjectsProjectRepositoryOutput) RemoteUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsProjectRepository) string { return v.RemoteUrl }).(pulumi.StringOutput)
+}
+
+type GetRunsFilter struct {
+	// The ID of the environment
+	EnvironmentId *int `pulumi:"environmentId"`
+	// The ID of the job definition
+	JobDefinitionId *int `pulumi:"jobDefinitionId"`
+	// The limit of the runs
+	Limit *int `pulumi:"limit"`
+	// The ID of the project
+	ProjectId *int `pulumi:"projectId"`
+	// The ID of the pull request
+	PullRequestId *int `pulumi:"pullRequestId"`
+	// The status of the run
+	Status *int `pulumi:"status"`
+	// The status of the run
+	StatusIn *string `pulumi:"statusIn"`
+	// The ID of the trigger
+	TriggerId *int `pulumi:"triggerId"`
+}
+
+// GetRunsFilterInput is an input type that accepts GetRunsFilterArgs and GetRunsFilterOutput values.
+// You can construct a concrete instance of `GetRunsFilterInput` via:
+//
+//	GetRunsFilterArgs{...}
+type GetRunsFilterInput interface {
+	pulumi.Input
+
+	ToGetRunsFilterOutput() GetRunsFilterOutput
+	ToGetRunsFilterOutputWithContext(context.Context) GetRunsFilterOutput
+}
+
+type GetRunsFilterArgs struct {
+	// The ID of the environment
+	EnvironmentId pulumi.IntPtrInput `pulumi:"environmentId"`
+	// The ID of the job definition
+	JobDefinitionId pulumi.IntPtrInput `pulumi:"jobDefinitionId"`
+	// The limit of the runs
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// The ID of the project
+	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
+	// The ID of the pull request
+	PullRequestId pulumi.IntPtrInput `pulumi:"pullRequestId"`
+	// The status of the run
+	Status pulumi.IntPtrInput `pulumi:"status"`
+	// The status of the run
+	StatusIn pulumi.StringPtrInput `pulumi:"statusIn"`
+	// The ID of the trigger
+	TriggerId pulumi.IntPtrInput `pulumi:"triggerId"`
+}
+
+func (GetRunsFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRunsFilter)(nil)).Elem()
+}
+
+func (i GetRunsFilterArgs) ToGetRunsFilterOutput() GetRunsFilterOutput {
+	return i.ToGetRunsFilterOutputWithContext(context.Background())
+}
+
+func (i GetRunsFilterArgs) ToGetRunsFilterOutputWithContext(ctx context.Context) GetRunsFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRunsFilterOutput)
+}
+
+func (i GetRunsFilterArgs) ToGetRunsFilterPtrOutput() GetRunsFilterPtrOutput {
+	return i.ToGetRunsFilterPtrOutputWithContext(context.Background())
+}
+
+func (i GetRunsFilterArgs) ToGetRunsFilterPtrOutputWithContext(ctx context.Context) GetRunsFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRunsFilterOutput).ToGetRunsFilterPtrOutputWithContext(ctx)
+}
+
+// GetRunsFilterPtrInput is an input type that accepts GetRunsFilterArgs, GetRunsFilterPtr and GetRunsFilterPtrOutput values.
+// You can construct a concrete instance of `GetRunsFilterPtrInput` via:
+//
+//	        GetRunsFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetRunsFilterPtrInput interface {
+	pulumi.Input
+
+	ToGetRunsFilterPtrOutput() GetRunsFilterPtrOutput
+	ToGetRunsFilterPtrOutputWithContext(context.Context) GetRunsFilterPtrOutput
+}
+
+type getRunsFilterPtrType GetRunsFilterArgs
+
+func GetRunsFilterPtr(v *GetRunsFilterArgs) GetRunsFilterPtrInput {
+	return (*getRunsFilterPtrType)(v)
+}
+
+func (*getRunsFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRunsFilter)(nil)).Elem()
+}
+
+func (i *getRunsFilterPtrType) ToGetRunsFilterPtrOutput() GetRunsFilterPtrOutput {
+	return i.ToGetRunsFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *getRunsFilterPtrType) ToGetRunsFilterPtrOutputWithContext(ctx context.Context) GetRunsFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRunsFilterPtrOutput)
+}
+
+type GetRunsFilterOutput struct{ *pulumi.OutputState }
+
+func (GetRunsFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRunsFilter)(nil)).Elem()
+}
+
+func (o GetRunsFilterOutput) ToGetRunsFilterOutput() GetRunsFilterOutput {
+	return o
+}
+
+func (o GetRunsFilterOutput) ToGetRunsFilterOutputWithContext(ctx context.Context) GetRunsFilterOutput {
+	return o
+}
+
+func (o GetRunsFilterOutput) ToGetRunsFilterPtrOutput() GetRunsFilterPtrOutput {
+	return o.ToGetRunsFilterPtrOutputWithContext(context.Background())
+}
+
+func (o GetRunsFilterOutput) ToGetRunsFilterPtrOutputWithContext(ctx context.Context) GetRunsFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRunsFilter) *GetRunsFilter {
+		return &v
+	}).(GetRunsFilterPtrOutput)
+}
+
+// The ID of the environment
+func (o GetRunsFilterOutput) EnvironmentId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetRunsFilter) *int { return v.EnvironmentId }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the job definition
+func (o GetRunsFilterOutput) JobDefinitionId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetRunsFilter) *int { return v.JobDefinitionId }).(pulumi.IntPtrOutput)
+}
+
+// The limit of the runs
+func (o GetRunsFilterOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetRunsFilter) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the project
+func (o GetRunsFilterOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetRunsFilter) *int { return v.ProjectId }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the pull request
+func (o GetRunsFilterOutput) PullRequestId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetRunsFilter) *int { return v.PullRequestId }).(pulumi.IntPtrOutput)
+}
+
+// The status of the run
+func (o GetRunsFilterOutput) Status() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetRunsFilter) *int { return v.Status }).(pulumi.IntPtrOutput)
+}
+
+// The status of the run
+func (o GetRunsFilterOutput) StatusIn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRunsFilter) *string { return v.StatusIn }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the trigger
+func (o GetRunsFilterOutput) TriggerId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetRunsFilter) *int { return v.TriggerId }).(pulumi.IntPtrOutput)
+}
+
+type GetRunsFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (GetRunsFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRunsFilter)(nil)).Elem()
+}
+
+func (o GetRunsFilterPtrOutput) ToGetRunsFilterPtrOutput() GetRunsFilterPtrOutput {
+	return o
+}
+
+func (o GetRunsFilterPtrOutput) ToGetRunsFilterPtrOutputWithContext(ctx context.Context) GetRunsFilterPtrOutput {
+	return o
+}
+
+func (o GetRunsFilterPtrOutput) Elem() GetRunsFilterOutput {
+	return o.ApplyT(func(v *GetRunsFilter) GetRunsFilter {
+		if v != nil {
+			return *v
+		}
+		var ret GetRunsFilter
+		return ret
+	}).(GetRunsFilterOutput)
+}
+
+// The ID of the environment
+func (o GetRunsFilterPtrOutput) EnvironmentId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRunsFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of the job definition
+func (o GetRunsFilterPtrOutput) JobDefinitionId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRunsFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.JobDefinitionId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The limit of the runs
+func (o GetRunsFilterPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRunsFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of the project
+func (o GetRunsFilterPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRunsFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of the pull request
+func (o GetRunsFilterPtrOutput) PullRequestId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRunsFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PullRequestId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The status of the run
+func (o GetRunsFilterPtrOutput) Status() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRunsFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.IntPtrOutput)
+}
+
+// The status of the run
+func (o GetRunsFilterPtrOutput) StatusIn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRunsFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StatusIn
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the trigger
+func (o GetRunsFilterPtrOutput) TriggerId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetRunsFilter) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TriggerId
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetRunsRun struct {
+	// The ID of the account
+	AccountId int `pulumi:"accountId"`
+	// The cause of the run
+	Cause string `pulumi:"cause"`
+	// The branch of the commit
+	GitBranch string `pulumi:"gitBranch"`
+	// The SHA of the commit
+	GitSha string `pulumi:"gitSha"`
+	// The ID of the pull request
+	GithubPullRequestId string `pulumi:"githubPullRequestId"`
+	// The ID of the run
+	Id int `pulumi:"id"`
+	// The ID of the job
+	JobId int `pulumi:"jobId"`
+	// The schema override
+	SchemaOverride string `pulumi:"schemaOverride"`
+}
+
+// GetRunsRunInput is an input type that accepts GetRunsRunArgs and GetRunsRunOutput values.
+// You can construct a concrete instance of `GetRunsRunInput` via:
+//
+//	GetRunsRunArgs{...}
+type GetRunsRunInput interface {
+	pulumi.Input
+
+	ToGetRunsRunOutput() GetRunsRunOutput
+	ToGetRunsRunOutputWithContext(context.Context) GetRunsRunOutput
+}
+
+type GetRunsRunArgs struct {
+	// The ID of the account
+	AccountId pulumi.IntInput `pulumi:"accountId"`
+	// The cause of the run
+	Cause pulumi.StringInput `pulumi:"cause"`
+	// The branch of the commit
+	GitBranch pulumi.StringInput `pulumi:"gitBranch"`
+	// The SHA of the commit
+	GitSha pulumi.StringInput `pulumi:"gitSha"`
+	// The ID of the pull request
+	GithubPullRequestId pulumi.StringInput `pulumi:"githubPullRequestId"`
+	// The ID of the run
+	Id pulumi.IntInput `pulumi:"id"`
+	// The ID of the job
+	JobId pulumi.IntInput `pulumi:"jobId"`
+	// The schema override
+	SchemaOverride pulumi.StringInput `pulumi:"schemaOverride"`
+}
+
+func (GetRunsRunArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRunsRun)(nil)).Elem()
+}
+
+func (i GetRunsRunArgs) ToGetRunsRunOutput() GetRunsRunOutput {
+	return i.ToGetRunsRunOutputWithContext(context.Background())
+}
+
+func (i GetRunsRunArgs) ToGetRunsRunOutputWithContext(ctx context.Context) GetRunsRunOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRunsRunOutput)
+}
+
+// GetRunsRunArrayInput is an input type that accepts GetRunsRunArray and GetRunsRunArrayOutput values.
+// You can construct a concrete instance of `GetRunsRunArrayInput` via:
+//
+//	GetRunsRunArray{ GetRunsRunArgs{...} }
+type GetRunsRunArrayInput interface {
+	pulumi.Input
+
+	ToGetRunsRunArrayOutput() GetRunsRunArrayOutput
+	ToGetRunsRunArrayOutputWithContext(context.Context) GetRunsRunArrayOutput
+}
+
+type GetRunsRunArray []GetRunsRunInput
+
+func (GetRunsRunArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRunsRun)(nil)).Elem()
+}
+
+func (i GetRunsRunArray) ToGetRunsRunArrayOutput() GetRunsRunArrayOutput {
+	return i.ToGetRunsRunArrayOutputWithContext(context.Background())
+}
+
+func (i GetRunsRunArray) ToGetRunsRunArrayOutputWithContext(ctx context.Context) GetRunsRunArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRunsRunArrayOutput)
+}
+
+type GetRunsRunOutput struct{ *pulumi.OutputState }
+
+func (GetRunsRunOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRunsRun)(nil)).Elem()
+}
+
+func (o GetRunsRunOutput) ToGetRunsRunOutput() GetRunsRunOutput {
+	return o
+}
+
+func (o GetRunsRunOutput) ToGetRunsRunOutputWithContext(ctx context.Context) GetRunsRunOutput {
+	return o
+}
+
+// The ID of the account
+func (o GetRunsRunOutput) AccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRunsRun) int { return v.AccountId }).(pulumi.IntOutput)
+}
+
+// The cause of the run
+func (o GetRunsRunOutput) Cause() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRunsRun) string { return v.Cause }).(pulumi.StringOutput)
+}
+
+// The branch of the commit
+func (o GetRunsRunOutput) GitBranch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRunsRun) string { return v.GitBranch }).(pulumi.StringOutput)
+}
+
+// The SHA of the commit
+func (o GetRunsRunOutput) GitSha() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRunsRun) string { return v.GitSha }).(pulumi.StringOutput)
+}
+
+// The ID of the pull request
+func (o GetRunsRunOutput) GithubPullRequestId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRunsRun) string { return v.GithubPullRequestId }).(pulumi.StringOutput)
+}
+
+// The ID of the run
+func (o GetRunsRunOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRunsRun) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The ID of the job
+func (o GetRunsRunOutput) JobId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRunsRun) int { return v.JobId }).(pulumi.IntOutput)
+}
+
+// The schema override
+func (o GetRunsRunOutput) SchemaOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRunsRun) string { return v.SchemaOverride }).(pulumi.StringOutput)
+}
+
+type GetRunsRunArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRunsRunArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRunsRun)(nil)).Elem()
+}
+
+func (o GetRunsRunArrayOutput) ToGetRunsRunArrayOutput() GetRunsRunArrayOutput {
+	return o
+}
+
+func (o GetRunsRunArrayOutput) ToGetRunsRunArrayOutputWithContext(ctx context.Context) GetRunsRunArrayOutput {
+	return o
+}
+
+func (o GetRunsRunArrayOutput) Index(i pulumi.IntInput) GetRunsRunOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRunsRun {
+		return vs[0].([]GetRunsRun)[vs[1].(int)]
+	}).(GetRunsRunOutput)
 }
 
 type GetServiceTokenServiceTokenPermission struct {
@@ -7147,6 +9956,10 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialConfigurationInput)(nil)).Elem(), BigquerySemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), BigquerySemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialCredentialInput)(nil)).Elem(), BigquerySemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), BigquerySemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionApacheSparkInput)(nil)).Elem(), GlobalConnectionApacheSparkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionApacheSparkPtrInput)(nil)).Elem(), GlobalConnectionApacheSparkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionAthenaInput)(nil)).Elem(), GlobalConnectionAthenaArgs{})
@@ -7171,6 +9984,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionStarburstPtrInput)(nil)).Elem(), GlobalConnectionStarburstArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSynapseInput)(nil)).Elem(), GlobalConnectionSynapseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSynapsePtrInput)(nil)).Elem(), GlobalConnectionSynapseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionTeradataInput)(nil)).Elem(), GlobalConnectionTeradataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionTeradataPtrInput)(nil)).Elem(), GlobalConnectionTeradataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionInput)(nil)).Elem(), GroupGroupPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupGroupPermissionArrayInput)(nil)).Elem(), GroupGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPartialPermissionsGroupPermissionInput)(nil)).Elem(), GroupPartialPermissionsGroupPermissionArgs{})
@@ -7178,9 +9993,19 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IpRestrictionsRuleCidrInput)(nil)).Elem(), IpRestrictionsRuleCidrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpRestrictionsRuleCidrArrayInput)(nil)).Elem(), IpRestrictionsRuleCidrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionInput)(nil)).Elem(), JobJobCompletionTriggerConditionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionPtrInput)(nil)).Elem(), JobJobCompletionTriggerConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionArrayInput)(nil)).Elem(), JobJobCompletionTriggerConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTriggersInput)(nil)).Elem(), JobTriggersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTriggersPtrInput)(nil)).Elem(), JobTriggersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialConfigurationInput)(nil)).Elem(), RedshiftSemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), RedshiftSemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialCredentialInput)(nil)).Elem(), RedshiftSemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), RedshiftSemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnowflakeSemanticLayerCredentialConfigurationInput)(nil)).Elem(), SnowflakeSemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnowflakeSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), SnowflakeSemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnowflakeSemanticLayerCredentialCredentialInput)(nil)).Elem(), SnowflakeSemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnowflakeSemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), SnowflakeSemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentsEnvironmentInput)(nil)).Elem(), GetEnvironmentsEnvironmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentsEnvironmentArrayInput)(nil)).Elem(), GetEnvironmentsEnvironmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionApacheSparkInput)(nil)).Elem(), GetGlobalConnectionApacheSparkArgs{})
@@ -7195,14 +10020,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionSnowflakeInput)(nil)).Elem(), GetGlobalConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionStarburstInput)(nil)).Elem(), GetGlobalConnectionStarburstArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionSynapseInput)(nil)).Elem(), GetGlobalConnectionSynapseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionTeradataInput)(nil)).Elem(), GetGlobalConnectionTeradataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionsConnectionInput)(nil)).Elem(), GetGlobalConnectionsConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionsConnectionArrayInput)(nil)).Elem(), GetGlobalConnectionsConnectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupGroupPermissionInput)(nil)).Elem(), GetGroupGroupPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupGroupPermissionArrayInput)(nil)).Elem(), GetGroupGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserInput)(nil)).Elem(), GetGroupUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserArrayInput)(nil)).Elem(), GetGroupUsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobEnvironmentInput)(nil)).Elem(), GetJobEnvironmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobExecutionInput)(nil)).Elem(), GetJobExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobJobCompletionTriggerConditionInput)(nil)).Elem(), GetJobJobCompletionTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobJobCompletionTriggerConditionArrayInput)(nil)).Elem(), GetJobJobCompletionTriggerConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobScheduleInput)(nil)).Elem(), GetJobScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobSettingsInput)(nil)).Elem(), GetJobSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTriggersInput)(nil)).Elem(), GetJobTriggersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobInput)(nil)).Elem(), GetJobsJobArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobArrayInput)(nil)).Elem(), GetJobsJobArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobEnvironmentInput)(nil)).Elem(), GetJobsJobEnvironmentArgs{})
@@ -7212,14 +10043,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobScheduleInput)(nil)).Elem(), GetJobsJobScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobSettingsInput)(nil)).Elem(), GetJobsJobSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobTriggersInput)(nil)).Elem(), GetJobsJobTriggersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectProjectConnectionInput)(nil)).Elem(), GetProjectProjectConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectRepositoryTypeInput)(nil)).Elem(), GetProjectRepositoryTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectInput)(nil)).Elem(), GetProjectsProjectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectArrayInput)(nil)).Elem(), GetProjectsProjectArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectConnectionInput)(nil)).Elem(), GetProjectsProjectConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectProjectConnectionInput)(nil)).Elem(), GetProjectsProjectProjectConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectRepositoryInput)(nil)).Elem(), GetProjectsProjectRepositoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRunsFilterInput)(nil)).Elem(), GetRunsFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRunsFilterPtrInput)(nil)).Elem(), GetRunsFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRunsRunInput)(nil)).Elem(), GetRunsRunArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRunsRunArrayInput)(nil)).Elem(), GetRunsRunArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceTokenServiceTokenPermissionInput)(nil)).Elem(), GetServiceTokenServiceTokenPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), GetServiceTokenServiceTokenPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialConfigurationOutput{})
+	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialCredentialOutput{})
+	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialCredentialPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionApacheSparkOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionApacheSparkPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionAthenaOutput{})
@@ -7244,6 +10085,8 @@ func init() {
 	pulumi.RegisterOutputType(GlobalConnectionStarburstPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionSynapseOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionSynapsePtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionTeradataOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionTeradataPtrOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionOutput{})
 	pulumi.RegisterOutputType(GroupGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionOutput{})
@@ -7251,9 +10094,19 @@ func init() {
 	pulumi.RegisterOutputType(IpRestrictionsRuleCidrOutput{})
 	pulumi.RegisterOutputType(IpRestrictionsRuleCidrArrayOutput{})
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionOutput{})
-	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionPtrOutput{})
+	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionArrayOutput{})
+	pulumi.RegisterOutputType(JobTriggersOutput{})
+	pulumi.RegisterOutputType(JobTriggersPtrOutput{})
+	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialConfigurationOutput{})
+	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialCredentialOutput{})
+	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialCredentialPtrOutput{})
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionOutput{})
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionArrayOutput{})
+	pulumi.RegisterOutputType(SnowflakeSemanticLayerCredentialConfigurationOutput{})
+	pulumi.RegisterOutputType(SnowflakeSemanticLayerCredentialConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(SnowflakeSemanticLayerCredentialCredentialOutput{})
+	pulumi.RegisterOutputType(SnowflakeSemanticLayerCredentialCredentialPtrOutput{})
 	pulumi.RegisterOutputType(GetEnvironmentsEnvironmentOutput{})
 	pulumi.RegisterOutputType(GetEnvironmentsEnvironmentArrayOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionApacheSparkOutput{})
@@ -7268,14 +10121,20 @@ func init() {
 	pulumi.RegisterOutputType(GetGlobalConnectionSnowflakeOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionStarburstOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionSynapseOutput{})
+	pulumi.RegisterOutputType(GetGlobalConnectionTeradataOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionsConnectionOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionsConnectionArrayOutput{})
 	pulumi.RegisterOutputType(GetGroupGroupPermissionOutput{})
 	pulumi.RegisterOutputType(GetGroupGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GetGroupUsersUserOutput{})
 	pulumi.RegisterOutputType(GetGroupUsersUserArrayOutput{})
+	pulumi.RegisterOutputType(GetJobEnvironmentOutput{})
+	pulumi.RegisterOutputType(GetJobExecutionOutput{})
 	pulumi.RegisterOutputType(GetJobJobCompletionTriggerConditionOutput{})
 	pulumi.RegisterOutputType(GetJobJobCompletionTriggerConditionArrayOutput{})
+	pulumi.RegisterOutputType(GetJobScheduleOutput{})
+	pulumi.RegisterOutputType(GetJobSettingsOutput{})
+	pulumi.RegisterOutputType(GetJobTriggersOutput{})
 	pulumi.RegisterOutputType(GetJobsJobOutput{})
 	pulumi.RegisterOutputType(GetJobsJobArrayOutput{})
 	pulumi.RegisterOutputType(GetJobsJobEnvironmentOutput{})
@@ -7285,10 +10144,16 @@ func init() {
 	pulumi.RegisterOutputType(GetJobsJobScheduleOutput{})
 	pulumi.RegisterOutputType(GetJobsJobSettingsOutput{})
 	pulumi.RegisterOutputType(GetJobsJobTriggersOutput{})
+	pulumi.RegisterOutputType(GetProjectProjectConnectionOutput{})
+	pulumi.RegisterOutputType(GetProjectRepositoryTypeOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectArrayOutput{})
-	pulumi.RegisterOutputType(GetProjectsProjectConnectionOutput{})
+	pulumi.RegisterOutputType(GetProjectsProjectProjectConnectionOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectRepositoryOutput{})
+	pulumi.RegisterOutputType(GetRunsFilterOutput{})
+	pulumi.RegisterOutputType(GetRunsFilterPtrOutput{})
+	pulumi.RegisterOutputType(GetRunsRunOutput{})
+	pulumi.RegisterOutputType(GetRunsRunArrayOutput{})
 	pulumi.RegisterOutputType(GetServiceTokenServiceTokenPermissionOutput{})
 	pulumi.RegisterOutputType(GetServiceTokenServiceTokenPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserOutput{})

@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Bigquery credential resource
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -77,7 +79,7 @@ export class BigQueryCredential extends pulumi.CustomResource {
     }
 
     /**
-     * The system BigQuery credential ID
+     * The internal credential ID
      */
     public /*out*/ readonly credentialId!: pulumi.Output<number>;
     /**
@@ -87,7 +89,7 @@ export class BigQueryCredential extends pulumi.CustomResource {
     /**
      * Whether the BigQuery credential is active
      */
-    public readonly isActive!: pulumi.Output<boolean | undefined>;
+    public readonly isActive!: pulumi.Output<boolean>;
     /**
      * Number of threads to use
      */
@@ -142,7 +144,7 @@ export class BigQueryCredential extends pulumi.CustomResource {
  */
 export interface BigQueryCredentialState {
     /**
-     * The system BigQuery credential ID
+     * The internal credential ID
      */
     credentialId?: pulumi.Input<number>;
     /**
