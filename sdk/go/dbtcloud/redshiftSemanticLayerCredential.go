@@ -13,12 +13,42 @@ import (
 )
 
 // Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
+//
+// ## Import
+//
+// using import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_redshift_semantic_layer_credential.example
+//
+//	id = "credential_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_redshift_semantic_layer_credential.example
+//
+//	id = "12345"
+//
+// }
+//
+// using the older import command
+//
+// ```sh
+// $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example "credential_id"
+// ```
+//
+// ```sh
+// $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
+// ```
 type RedshiftSemanticLayerCredential struct {
 	pulumi.CustomResourceState
 
 	// Semantic Layer credential configuration details.
 	Configuration RedshiftSemanticLayerCredentialConfigurationOutput `pulumi:"configuration"`
-	// Snowflake credential details, but used in the context of the Semantic Layer.
+	// Redshift credential details, but used in the context of the Semantic Layer.
 	Credential RedshiftSemanticLayerCredentialCredentialOutput `pulumi:"credential"`
 }
 
@@ -60,14 +90,14 @@ func GetRedshiftSemanticLayerCredential(ctx *pulumi.Context,
 type redshiftSemanticLayerCredentialState struct {
 	// Semantic Layer credential configuration details.
 	Configuration *RedshiftSemanticLayerCredentialConfiguration `pulumi:"configuration"`
-	// Snowflake credential details, but used in the context of the Semantic Layer.
+	// Redshift credential details, but used in the context of the Semantic Layer.
 	Credential *RedshiftSemanticLayerCredentialCredential `pulumi:"credential"`
 }
 
 type RedshiftSemanticLayerCredentialState struct {
 	// Semantic Layer credential configuration details.
 	Configuration RedshiftSemanticLayerCredentialConfigurationPtrInput
-	// Snowflake credential details, but used in the context of the Semantic Layer.
+	// Redshift credential details, but used in the context of the Semantic Layer.
 	Credential RedshiftSemanticLayerCredentialCredentialPtrInput
 }
 
@@ -78,7 +108,7 @@ func (RedshiftSemanticLayerCredentialState) ElementType() reflect.Type {
 type redshiftSemanticLayerCredentialArgs struct {
 	// Semantic Layer credential configuration details.
 	Configuration RedshiftSemanticLayerCredentialConfiguration `pulumi:"configuration"`
-	// Snowflake credential details, but used in the context of the Semantic Layer.
+	// Redshift credential details, but used in the context of the Semantic Layer.
 	Credential RedshiftSemanticLayerCredentialCredential `pulumi:"credential"`
 }
 
@@ -86,7 +116,7 @@ type redshiftSemanticLayerCredentialArgs struct {
 type RedshiftSemanticLayerCredentialArgs struct {
 	// Semantic Layer credential configuration details.
 	Configuration RedshiftSemanticLayerCredentialConfigurationInput
-	// Snowflake credential details, but used in the context of the Semantic Layer.
+	// Redshift credential details, but used in the context of the Semantic Layer.
 	Credential RedshiftSemanticLayerCredentialCredentialInput
 }
 
@@ -184,7 +214,7 @@ func (o RedshiftSemanticLayerCredentialOutput) Configuration() RedshiftSemanticL
 	}).(RedshiftSemanticLayerCredentialConfigurationOutput)
 }
 
-// Snowflake credential details, but used in the context of the Semantic Layer.
+// Redshift credential details, but used in the context of the Semantic Layer.
 func (o RedshiftSemanticLayerCredentialOutput) Credential() RedshiftSemanticLayerCredentialCredentialOutput {
 	return o.ApplyT(func(v *RedshiftSemanticLayerCredential) RedshiftSemanticLayerCredentialCredentialOutput {
 		return v.Credential

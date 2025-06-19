@@ -11,6 +11,7 @@ from .athena_credential import *
 from .big_query_credential import *
 from .bigquery_semantic_layer_credential import *
 from .databricks_credential import *
+from .databricks_semantic_layer_credential import *
 from .environment import *
 from .environment_variable import *
 from .environment_variable_job_override import *
@@ -63,6 +64,7 @@ from .partial_environment_variable import *
 from .partial_license_map import *
 from .partial_notification import *
 from .postgres_credential import *
+from .postgres_semantic_layer_credential import *
 from .project import *
 from .project_artefacts import *
 from .project_repository import *
@@ -71,6 +73,7 @@ from .redshift_credential import *
 from .redshift_semantic_layer_credential import *
 from .repository import *
 from .semantic_layer_configuration import *
+from .semantic_layer_credential_service_token_mapping import *
 from .service_token import *
 from .snowflake_credential import *
 from .snowflake_semantic_layer_credential import *
@@ -130,6 +133,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/databricksCredential:DatabricksCredential": "DatabricksCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/databricksSemanticLayerCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential": "DatabricksSemanticLayerCredential"
   }
  },
  {
@@ -286,6 +297,14 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/postgresSemanticLayerCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential": "PostgresSemanticLayerCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/project",
   "fqn": "pulumi_dbtcloud",
   "classes": {
@@ -338,6 +357,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration": "SemanticLayerConfiguration"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/semanticLayerCredentialServiceTokenMapping",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping": "SemanticLayerCredentialServiceTokenMapping"
   }
  },
  {

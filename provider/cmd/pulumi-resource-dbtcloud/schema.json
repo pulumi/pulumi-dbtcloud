@@ -160,6 +160,90 @@
                 }
             }
         },
+        "dbtcloud:index/DatabricksSemanticLayerCredentialConfiguration:DatabricksSemanticLayerCredentialConfiguration": {
+            "properties": {
+                "adapterVersion": {
+                    "type": "string",
+                    "description": "The adapter version\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the configuration\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The ID of the project\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "adapterVersion",
+                "name",
+                "projectId"
+            ]
+        },
+        "dbtcloud:index/DatabricksSemanticLayerCredentialCredential:DatabricksSemanticLayerCredentialCredential": {
+            "properties": {
+                "adapterType": {
+                    "type": "string",
+                    "description": "The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
+                },
+                "catalog": {
+                    "type": "string",
+                    "description": "The catalog where to create models (only for the databricks adapter)\n"
+                },
+                "credentialId": {
+                    "type": "integer",
+                    "description": "The system Databricks credential ID\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource. Contains the project ID and the credential ID.\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "Project ID to create the Databricks credential in\n"
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
+                },
+                "semanticLayerCredential": {
+                    "type": "boolean",
+                    "description": "This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.\n"
+                },
+                "targetName": {
+                    "type": "string",
+                    "description": "Target name\n",
+                    "deprecationMessage": "This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables."
+                },
+                "token": {
+                    "type": "string",
+                    "description": "Token for Databricks user\n",
+                    "secret": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "projectId",
+                "token"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "adapterType",
+                        "catalog",
+                        "credentialId",
+                        "id",
+                        "projectId",
+                        "schema",
+                        "semanticLayerCredential",
+                        "targetName",
+                        "token"
+                    ]
+                }
+            }
+        },
         "dbtcloud:index/GlobalConnectionApacheSpark:GlobalConnectionApacheSpark": {
             "properties": {
                 "auth": {
@@ -953,6 +1037,98 @@
                         "githubWebhook",
                         "onMerge",
                         "schedule"
+                    ]
+                }
+            }
+        },
+        "dbtcloud:index/PostgresSemanticLayerCredentialConfiguration:PostgresSemanticLayerCredentialConfiguration": {
+            "properties": {
+                "adapterVersion": {
+                    "type": "string",
+                    "description": "The adapter version\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the configuration\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The ID of the project\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "adapterVersion",
+                "name",
+                "projectId"
+            ]
+        },
+        "dbtcloud:index/PostgresSemanticLayerCredentialCredential:PostgresSemanticLayerCredentialCredential": {
+            "properties": {
+                "credentialId": {
+                    "type": "integer",
+                    "description": "The system Postgres/Redshift/AlloyDB credential ID.\n"
+                },
+                "defaultSchema": {
+                    "type": "string",
+                    "description": "Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource. Contains the project ID and the credential ID.\n"
+                },
+                "isActive": {
+                    "type": "boolean",
+                    "description": "Whether the Postgres/Redshift/AlloyDB credential is active\n"
+                },
+                "numThreads": {
+                    "type": "integer",
+                    "description": "Number of threads to use (required for Redshift)\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password for Postgres/Redshift/AlloyDB\n",
+                    "secret": true
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "Project ID to create the Postgres/Redshift/AlloyDB credential in.\n"
+                },
+                "semanticLayerCredential": {
+                    "type": "boolean",
+                    "description": "This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.\n"
+                },
+                "targetName": {
+                    "type": "string",
+                    "description": "Default schema name\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username for Postgres/Redshift/AlloyDB\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "projectId",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "credentialId",
+                        "defaultSchema",
+                        "id",
+                        "isActive",
+                        "numThreads",
+                        "projectId",
+                        "semanticLayerCredential",
+                        "targetName",
+                        "type",
+                        "username"
                     ]
                 }
             }
@@ -3078,7 +3254,7 @@
             }
         },
         "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential": {
-            "description": "BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.\n",
+            "description": "BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: dbtcloud:BigquerySemanticLayerCredential\n    properties:\n      configuration:\n        project_id: ${projectId}\n        name: BigQuery SL Credential\n        adapter_version: bigquery_v0\n      credential:\n        project_id: ${projectId}\n        is_active: true\n        num_threads: ${numThreads}\n        dataset: ${dataset}\n      privateKeyId: ${privateKeyId}\n      privateKey: ${privateKey}\n      clientEmail: ${clientEmail}\n      clientId: ${clientId}\n      authUri: ${authUri}\n      tokenUri: ${tokenUri}\n      authProviderX509CertUrl: ${authProviderX509CertUrl}\n      clientX509CertUrl: ${clientX509CertUrl}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_bigquery_semantic_layer_credential.example\n\n  id = \"credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_bigquery_semantic_layer_credential.example\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example \"credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example 12345\n```\n\n",
             "properties": {
                 "authProviderX509CertUrl": {
                     "type": "string",
@@ -3242,7 +3418,7 @@
             "properties": {
                 "adapterType": {
                     "type": "string",
-                    "description": "The type of the adapter (databricks or spark)\n"
+                    "description": "The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                 },
                 "catalog": {
                     "type": "string",
@@ -3258,7 +3434,11 @@
                 },
                 "schema": {
                     "type": "string",
-                    "description": "The schema where to create models\n"
+                    "description": "The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
+                },
+                "semanticLayerCredential": {
+                    "type": "boolean",
+                    "description": "This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.\n"
                 },
                 "targetName": {
                     "type": "string",
@@ -3277,13 +3457,14 @@
                 "credentialId",
                 "projectId",
                 "schema",
+                "semanticLayerCredential",
                 "targetName",
                 "token"
             ],
             "inputProperties": {
                 "adapterType": {
                     "type": "string",
-                    "description": "The type of the adapter (databricks or spark)\n"
+                    "description": "The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                 },
                 "catalog": {
                     "type": "string",
@@ -3295,7 +3476,11 @@
                 },
                 "schema": {
                     "type": "string",
-                    "description": "The schema where to create models\n"
+                    "description": "The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
+                },
+                "semanticLayerCredential": {
+                    "type": "boolean",
+                    "description": "This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.\n"
                 },
                 "targetName": {
                     "type": "string",
@@ -3309,9 +3494,7 @@
                 }
             },
             "requiredInputs": [
-                "adapterType",
                 "projectId",
-                "schema",
                 "token"
             ],
             "stateInputs": {
@@ -3319,7 +3502,7 @@
                 "properties": {
                     "adapterType": {
                         "type": "string",
-                        "description": "The type of the adapter (databricks or spark)\n"
+                        "description": "The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                     },
                     "catalog": {
                         "type": "string",
@@ -3335,7 +3518,11 @@
                     },
                     "schema": {
                         "type": "string",
-                        "description": "The schema where to create models\n"
+                        "description": "The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
+                    },
+                    "semanticLayerCredential": {
+                        "type": "boolean",
+                        "description": "This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.\n"
                     },
                     "targetName": {
                         "type": "string",
@@ -3346,6 +3533,51 @@
                         "type": "string",
                         "description": "Token for Databricks user\n",
                         "secret": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential": {
+            "description": "Databricks credential resource. This resource is composed of a Databricks credential and a Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  slCredDatabricksExample:\n    type: dbtcloud:DatabricksSemanticLayerCredential\n    name: sl_cred_databricks_example\n    properties:\n      configuration:\n        project_id: ${projectId}\n        name: Databricks SL Credential\n        adapter_version: databricks_v0\n      credential:\n        project_id: ${projectId}\n        catalog: ${catalog}\n        token: ${token}\n        semantic_layer_credential: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_databricks_semantic_layer_credential.example\n\n  id = \"credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_databricks_semantic_layer_credential.example\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential example \"credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential example 12345\n```\n\n",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/types/dbtcloud:index/DatabricksSemanticLayerCredentialConfiguration:DatabricksSemanticLayerCredentialConfiguration",
+                    "description": "Semantic Layer credential configuration details.\n"
+                },
+                "credential": {
+                    "$ref": "#/types/dbtcloud:index/DatabricksSemanticLayerCredentialCredential:DatabricksSemanticLayerCredentialCredential",
+                    "description": "Databricks credential details, but used in the context of the Semantic Layer.\n"
+                }
+            },
+            "required": [
+                "configuration",
+                "credential"
+            ],
+            "inputProperties": {
+                "configuration": {
+                    "$ref": "#/types/dbtcloud:index/DatabricksSemanticLayerCredentialConfiguration:DatabricksSemanticLayerCredentialConfiguration",
+                    "description": "Semantic Layer credential configuration details.\n"
+                },
+                "credential": {
+                    "$ref": "#/types/dbtcloud:index/DatabricksSemanticLayerCredentialCredential:DatabricksSemanticLayerCredentialCredential",
+                    "description": "Databricks credential details, but used in the context of the Semantic Layer.\n"
+                }
+            },
+            "requiredInputs": [
+                "configuration",
+                "credential"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DatabricksSemanticLayerCredential resources.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/dbtcloud:index/DatabricksSemanticLayerCredentialConfiguration:DatabricksSemanticLayerCredentialConfiguration",
+                        "description": "Semantic Layer credential configuration details.\n"
+                    },
+                    "credential": {
+                        "$ref": "#/types/dbtcloud:index/DatabricksSemanticLayerCredentialCredential:DatabricksSemanticLayerCredentialCredential",
+                        "description": "Databricks credential details, but used in the context of the Semantic Layer.\n"
                     }
                 },
                 "type": "object"
@@ -5690,7 +5922,7 @@
                 },
                 "defaultSchema": {
                     "type": "string",
-                    "description": "Default schema name\n"
+                    "description": "Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                 },
                 "isActive": {
                     "type": "boolean",
@@ -5709,13 +5941,17 @@
                     "type": "integer",
                     "description": "Project ID to create the Postgres/Redshift/AlloyDB credential in.\n"
                 },
+                "semanticLayerCredential": {
+                    "type": "boolean",
+                    "description": "This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.\n"
+                },
                 "targetName": {
                     "type": "string",
                     "description": "Default schema name\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of connection. One of (postgres/redshift). Use postgres for alloydb connections\n"
+                    "description": "Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                 },
                 "username": {
                     "type": "string",
@@ -5728,6 +5964,7 @@
                 "isActive",
                 "numThreads",
                 "projectId",
+                "semanticLayerCredential",
                 "targetName",
                 "type",
                 "username"
@@ -5735,7 +5972,7 @@
             "inputProperties": {
                 "defaultSchema": {
                     "type": "string",
-                    "description": "Default schema name\n"
+                    "description": "Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                 },
                 "isActive": {
                     "type": "boolean",
@@ -5754,13 +5991,17 @@
                     "type": "integer",
                     "description": "Project ID to create the Postgres/Redshift/AlloyDB credential in.\n"
                 },
+                "semanticLayerCredential": {
+                    "type": "boolean",
+                    "description": "This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.\n"
+                },
                 "targetName": {
                     "type": "string",
                     "description": "Default schema name\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of connection. One of (postgres/redshift). Use postgres for alloydb connections\n"
+                    "description": "Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                 },
                 "username": {
                     "type": "string",
@@ -5768,9 +6009,7 @@
                 }
             },
             "requiredInputs": [
-                "defaultSchema",
                 "projectId",
-                "type",
                 "username"
             ],
             "stateInputs": {
@@ -5782,7 +6021,7 @@
                     },
                     "defaultSchema": {
                         "type": "string",
-                        "description": "Default schema name\n"
+                        "description": "Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                     },
                     "isActive": {
                         "type": "boolean",
@@ -5801,17 +6040,66 @@
                         "type": "integer",
                         "description": "Project ID to create the Postgres/Redshift/AlloyDB credential in.\n"
                     },
+                    "semanticLayerCredential": {
+                        "type": "boolean",
+                        "description": "This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.\n"
+                    },
                     "targetName": {
                         "type": "string",
                         "description": "Default schema name\n"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Type of connection. One of (postgres/redshift). Use postgres for alloydb connections\n"
+                        "description": "Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.\n"
                     },
                     "username": {
                         "type": "string",
                         "description": "Username for Postgres/Redshift/AlloyDB\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential": {
+            "description": "Postgres credential resource. This resource is composed of a Postgres credential and a Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  testPostgresSemanticLayerCredential:\n    type: dbtcloud:PostgresSemanticLayerCredential\n    name: test_postgres_semantic_layer_credential\n    properties:\n      configuration:\n        project_id: ${projectId}\n        name: Postgres SL Credential\n        adapter_version: postgres_v0\n      credential:\n        project_id: ${projectId}\n        username: ${username}\n        password: ${password}\n        semantic_layer_credential: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_postgres_semantic_layer_credential.example\n\n  id = \"credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_postgres_semantic_layer_credential.example\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example \"credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example 12345\n```\n\n",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/types/dbtcloud:index/PostgresSemanticLayerCredentialConfiguration:PostgresSemanticLayerCredentialConfiguration",
+                    "description": "Semantic Layer credential configuration details.\n"
+                },
+                "credential": {
+                    "$ref": "#/types/dbtcloud:index/PostgresSemanticLayerCredentialCredential:PostgresSemanticLayerCredentialCredential",
+                    "description": "Postgres credential details, but used in the context of the Semantic Layer.\n"
+                }
+            },
+            "required": [
+                "configuration",
+                "credential"
+            ],
+            "inputProperties": {
+                "configuration": {
+                    "$ref": "#/types/dbtcloud:index/PostgresSemanticLayerCredentialConfiguration:PostgresSemanticLayerCredentialConfiguration",
+                    "description": "Semantic Layer credential configuration details.\n"
+                },
+                "credential": {
+                    "$ref": "#/types/dbtcloud:index/PostgresSemanticLayerCredentialCredential:PostgresSemanticLayerCredentialCredential",
+                    "description": "Postgres credential details, but used in the context of the Semantic Layer.\n"
+                }
+            },
+            "requiredInputs": [
+                "configuration",
+                "credential"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering PostgresSemanticLayerCredential resources.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/dbtcloud:index/PostgresSemanticLayerCredentialConfiguration:PostgresSemanticLayerCredentialConfiguration",
+                        "description": "Semantic Layer credential configuration details.\n"
+                    },
+                    "credential": {
+                        "$ref": "#/types/dbtcloud:index/PostgresSemanticLayerCredentialCredential:PostgresSemanticLayerCredentialCredential",
+                        "description": "Postgres credential details, but used in the context of the Semantic Layer.\n"
                     }
                 },
                 "type": "object"
@@ -6097,7 +6385,7 @@
             }
         },
         "dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential": {
-            "description": "Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.\n",
+            "description": "Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  testRedshiftSemanticLayerCredential:\n    type: dbtcloud:RedshiftSemanticLayerCredential\n    name: test_redshift_semantic_layer_credential\n    properties:\n      configuration:\n        project_id: ${projectId}\n        name: Redshift SL Credential\n        adapter_version: redshift_v0\n      credential:\n        project_id: ${projectId}\n        username: ${username}\n        is_active: true\n        password: ${password}\n        num_threads: ${numThreads}\n        default_schema: ${defaultSchema}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_redshift_semantic_layer_credential.example\n\n  id = \"credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_redshift_semantic_layer_credential.example\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example \"credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345\n```\n\n",
             "properties": {
                 "configuration": {
                     "$ref": "#/types/dbtcloud:index/RedshiftSemanticLayerCredentialConfiguration:RedshiftSemanticLayerCredentialConfiguration",
@@ -6105,7 +6393,7 @@
                 },
                 "credential": {
                     "$ref": "#/types/dbtcloud:index/RedshiftSemanticLayerCredentialCredential:RedshiftSemanticLayerCredentialCredential",
-                    "description": "Snowflake credential details, but used in the context of the Semantic Layer.\n"
+                    "description": "Redshift credential details, but used in the context of the Semantic Layer.\n"
                 }
             },
             "required": [
@@ -6119,7 +6407,7 @@
                 },
                 "credential": {
                     "$ref": "#/types/dbtcloud:index/RedshiftSemanticLayerCredentialCredential:RedshiftSemanticLayerCredentialCredential",
-                    "description": "Snowflake credential details, but used in the context of the Semantic Layer.\n"
+                    "description": "Redshift credential details, but used in the context of the Semantic Layer.\n"
                 }
             },
             "requiredInputs": [
@@ -6135,7 +6423,7 @@
                     },
                     "credential": {
                         "$ref": "#/types/dbtcloud:index/RedshiftSemanticLayerCredentialCredential:RedshiftSemanticLayerCredentialCredential",
-                        "description": "Snowflake credential details, but used in the context of the Semantic Layer.\n"
+                        "description": "Redshift credential details, but used in the context of the Semantic Layer.\n"
                     }
                 },
                 "type": "object"
@@ -6371,6 +6659,65 @@
                     "projectId": {
                         "type": "integer",
                         "description": "The ID of the project\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst testMapping = new dbtcloud.SemanticLayerCredentialServiceTokenMapping(\"test_mapping\", {\n    semanticLayerCredentialId: test.id,\n    serviceTokenId: testServiceToken.id,\n    projectId: testProject.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ntest_mapping = dbtcloud.SemanticLayerCredentialServiceTokenMapping(\"test_mapping\",\n    semantic_layer_credential_id=test[\"id\"],\n    service_token_id=test_service_token[\"id\"],\n    project_id=test_project[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testMapping = new DbtCloud.SemanticLayerCredentialServiceTokenMapping(\"test_mapping\", new()\n    {\n        SemanticLayerCredentialId = test.Id,\n        ServiceTokenId = testServiceToken.Id,\n        ProjectId = testProject.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewSemanticLayerCredentialServiceTokenMapping(ctx, \"test_mapping\", \u0026dbtcloud.SemanticLayerCredentialServiceTokenMappingArgs{\n\t\t\tSemanticLayerCredentialId: pulumi.Any(test.Id),\n\t\t\tServiceTokenId:            pulumi.Any(testServiceToken.Id),\n\t\t\tProjectId:                 pulumi.Any(testProject.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.SemanticLayerCredentialServiceTokenMapping;\nimport com.pulumi.dbtcloud.SemanticLayerCredentialServiceTokenMappingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testMapping = new SemanticLayerCredentialServiceTokenMapping(\"testMapping\", SemanticLayerCredentialServiceTokenMappingArgs.builder()\n            .semanticLayerCredentialId(test.id())\n            .serviceTokenId(testServiceToken.id())\n            .projectId(testProject.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testMapping:\n    type: dbtcloud:SemanticLayerCredentialServiceTokenMapping\n    name: test_mapping\n    properties:\n      semanticLayerCredentialId: ${test.id}\n      serviceTokenId: ${testServiceToken.id}\n      projectId: ${testProject.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_semantic_layer_credential_service_token_mapping.example\n\n  id = \"id\"\n\n}\n\nimport {\n\n  to = dbtcloud_semantic_layer_credential_service_token_mapping.example\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example \"id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example 12345\n```\n\n",
+            "properties": {
+                "projectId": {
+                    "type": "integer",
+                    "description": "The ID of the project to which the semantic layer credential is associated.\n"
+                },
+                "semanticLayerCredentialId": {
+                    "type": "integer",
+                    "description": "The ID of the semantic layer credential to map.\n"
+                },
+                "serviceTokenId": {
+                    "type": "integer",
+                    "description": "The ID of the service token to map to the semantic layer credential.\n"
+                }
+            },
+            "required": [
+                "projectId",
+                "semanticLayerCredentialId",
+                "serviceTokenId"
+            ],
+            "inputProperties": {
+                "projectId": {
+                    "type": "integer",
+                    "description": "The ID of the project to which the semantic layer credential is associated.\n"
+                },
+                "semanticLayerCredentialId": {
+                    "type": "integer",
+                    "description": "The ID of the semantic layer credential to map.\n"
+                },
+                "serviceTokenId": {
+                    "type": "integer",
+                    "description": "The ID of the service token to map to the semantic layer credential.\n"
+                }
+            },
+            "requiredInputs": [
+                "projectId",
+                "semanticLayerCredentialId",
+                "serviceTokenId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SemanticLayerCredentialServiceTokenMapping resources.\n",
+                "properties": {
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The ID of the project to which the semantic layer credential is associated.\n"
+                    },
+                    "semanticLayerCredentialId": {
+                        "type": "integer",
+                        "description": "The ID of the semantic layer credential to map.\n"
+                    },
+                    "serviceTokenId": {
+                        "type": "integer",
+                        "description": "The ID of the service token to map to the semantic layer credential.\n"
                     }
                 },
                 "type": "object"

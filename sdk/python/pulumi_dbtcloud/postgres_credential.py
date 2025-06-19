@@ -20,49 +20,43 @@ __all__ = ['PostgresCredentialArgs', 'PostgresCredential']
 @pulumi.input_type
 class PostgresCredentialArgs:
     def __init__(__self__, *,
-                 default_schema: pulumi.Input[builtins.str],
                  project_id: pulumi.Input[builtins.int],
-                 type: pulumi.Input[builtins.str],
                  username: pulumi.Input[builtins.str],
+                 default_schema: Optional[pulumi.Input[builtins.str]] = None,
                  is_active: Optional[pulumi.Input[builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[builtins.int]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
-                 target_name: Optional[pulumi.Input[builtins.str]] = None):
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
+                 target_name: Optional[pulumi.Input[builtins.str]] = None,
+                 type: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a PostgresCredential resource.
-        :param pulumi.Input[builtins.str] default_schema: Default schema name
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
-        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
         :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
+        :param pulumi.Input[builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
         :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param pulumi.Input[builtins.str] target_name: Default schema name
+        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
-        pulumi.set(__self__, "default_schema", default_schema)
         pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "username", username)
+        if default_schema is not None:
+            pulumi.set(__self__, "default_schema", default_schema)
         if is_active is not None:
             pulumi.set(__self__, "is_active", is_active)
         if num_threads is not None:
             pulumi.set(__self__, "num_threads", num_threads)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
         if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
-
-    @property
-    @pulumi.getter(name="defaultSchema")
-    def default_schema(self) -> pulumi.Input[builtins.str]:
-        """
-        Default schema name
-        """
-        return pulumi.get(self, "default_schema")
-
-    @default_schema.setter
-    def default_schema(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "default_schema", value)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="projectId")
@@ -78,18 +72,6 @@ class PostgresCredentialArgs:
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Input[builtins.str]:
-        """
-        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "type", value)
-
-    @property
-    @pulumi.getter
     def username(self) -> pulumi.Input[builtins.str]:
         """
         Username for Postgres/Redshift/AlloyDB
@@ -99,6 +81,18 @@ class PostgresCredentialArgs:
     @username.setter
     def username(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter(name="defaultSchema")
+    def default_schema(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        return pulumi.get(self, "default_schema")
+
+    @default_schema.setter
+    def default_schema(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "default_schema", value)
 
     @property
     @pulumi.getter(name="isActive")
@@ -137,6 +131,18 @@ class PostgresCredentialArgs:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
+
+    @property
     @pulumi.getter(name="targetName")
     def target_name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -148,6 +154,18 @@ class PostgresCredentialArgs:
     def target_name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "target_name", value)
 
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "type", value)
+
 
 @pulumi.input_type
 class _PostgresCredentialState:
@@ -158,19 +176,21 @@ class _PostgresCredentialState:
                  num_threads: Optional[pulumi.Input[builtins.int]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[builtins.str]] = None,
                  type: Optional[pulumi.Input[builtins.str]] = None,
                  username: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering PostgresCredential resources.
         :param pulumi.Input[builtins.int] credential_id: The system Postgres/Redshift/AlloyDB credential ID.
-        :param pulumi.Input[builtins.str] default_schema: Default schema name
+        :param pulumi.Input[builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
         :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param pulumi.Input[builtins.str] target_name: Default schema name
-        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
         """
         if credential_id is not None:
@@ -185,6 +205,8 @@ class _PostgresCredentialState:
             pulumi.set(__self__, "password", password)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
         if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
         if type is not None:
@@ -208,7 +230,7 @@ class _PostgresCredentialState:
     @pulumi.getter(name="defaultSchema")
     def default_schema(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Default schema name
+        Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "default_schema")
 
@@ -265,6 +287,18 @@ class _PostgresCredentialState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
+
+    @property
     @pulumi.getter(name="targetName")
     def target_name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -280,7 +314,7 @@ class _PostgresCredentialState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "type")
 
@@ -312,6 +346,7 @@ class PostgresCredential(pulumi.CustomResource):
                  num_threads: Optional[pulumi.Input[builtins.int]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[builtins.str]] = None,
                  type: Optional[pulumi.Input[builtins.str]] = None,
                  username: Optional[pulumi.Input[builtins.str]] = None,
@@ -367,13 +402,14 @@ class PostgresCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.str] default_schema: Default schema name
+        :param pulumi.Input[builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
         :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param pulumi.Input[builtins.str] target_name: Default schema name
-        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
         """
         ...
@@ -451,6 +487,7 @@ class PostgresCredential(pulumi.CustomResource):
                  num_threads: Optional[pulumi.Input[builtins.int]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[builtins.str]] = None,
                  type: Optional[pulumi.Input[builtins.str]] = None,
                  username: Optional[pulumi.Input[builtins.str]] = None,
@@ -463,8 +500,6 @@ class PostgresCredential(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PostgresCredentialArgs.__new__(PostgresCredentialArgs)
 
-            if default_schema is None and not opts.urn:
-                raise TypeError("Missing required property 'default_schema'")
             __props__.__dict__["default_schema"] = default_schema
             __props__.__dict__["is_active"] = is_active
             __props__.__dict__["num_threads"] = num_threads
@@ -472,9 +507,8 @@ class PostgresCredential(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
             __props__.__dict__["target_name"] = target_name
-            if type is None and not opts.urn:
-                raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
@@ -498,6 +532,7 @@ class PostgresCredential(pulumi.CustomResource):
             num_threads: Optional[pulumi.Input[builtins.int]] = None,
             password: Optional[pulumi.Input[builtins.str]] = None,
             project_id: Optional[pulumi.Input[builtins.int]] = None,
+            semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
             target_name: Optional[pulumi.Input[builtins.str]] = None,
             type: Optional[pulumi.Input[builtins.str]] = None,
             username: Optional[pulumi.Input[builtins.str]] = None) -> 'PostgresCredential':
@@ -509,13 +544,14 @@ class PostgresCredential(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.int] credential_id: The system Postgres/Redshift/AlloyDB credential ID.
-        :param pulumi.Input[builtins.str] default_schema: Default schema name
+        :param pulumi.Input[builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
         :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param pulumi.Input[builtins.str] target_name: Default schema name
-        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -528,6 +564,7 @@ class PostgresCredential(pulumi.CustomResource):
         __props__.__dict__["num_threads"] = num_threads
         __props__.__dict__["password"] = password
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
         __props__.__dict__["target_name"] = target_name
         __props__.__dict__["type"] = type
         __props__.__dict__["username"] = username
@@ -545,7 +582,7 @@ class PostgresCredential(pulumi.CustomResource):
     @pulumi.getter(name="defaultSchema")
     def default_schema(self) -> pulumi.Output[builtins.str]:
         """
-        Default schema name
+        Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "default_schema")
 
@@ -582,6 +619,14 @@ class PostgresCredential(pulumi.CustomResource):
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> pulumi.Output[builtins.bool]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @property
     @pulumi.getter(name="targetName")
     def target_name(self) -> pulumi.Output[builtins.str]:
         """
@@ -593,7 +638,7 @@ class PostgresCredential(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[builtins.str]:
         """
-        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "type")
 

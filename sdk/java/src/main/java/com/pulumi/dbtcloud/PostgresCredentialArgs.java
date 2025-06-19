@@ -19,18 +19,18 @@ public final class PostgresCredentialArgs extends com.pulumi.resources.ResourceA
     public static final PostgresCredentialArgs Empty = new PostgresCredentialArgs();
 
     /**
-     * Default schema name
+     * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
-    @Import(name="defaultSchema", required=true)
-    private Output<String> defaultSchema;
+    @Import(name="defaultSchema")
+    private @Nullable Output<String> defaultSchema;
 
     /**
-     * @return Default schema name
+     * @return Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
-    public Output<String> defaultSchema() {
-        return this.defaultSchema;
+    public Optional<Output<String>> defaultSchema() {
+        return Optional.ofNullable(this.defaultSchema);
     }
 
     /**
@@ -94,6 +94,21 @@ public final class PostgresCredentialArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     * 
+     */
+    @Import(name="semanticLayerCredential")
+    private @Nullable Output<Boolean> semanticLayerCredential;
+
+    /**
+     * @return This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     * 
+     */
+    public Optional<Output<Boolean>> semanticLayerCredential() {
+        return Optional.ofNullable(this.semanticLayerCredential);
+    }
+
+    /**
      * Default schema name
      * 
      */
@@ -109,18 +124,18 @@ public final class PostgresCredentialArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
-    @Import(name="type", required=true)
-    private Output<String> type;
+    @Import(name="type")
+    private @Nullable Output<String> type;
 
     /**
-     * @return Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * @return Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
-    public Output<String> type() {
-        return this.type;
+    public Optional<Output<String>> type() {
+        return Optional.ofNullable(this.type);
     }
 
     /**
@@ -146,6 +161,7 @@ public final class PostgresCredentialArgs extends com.pulumi.resources.ResourceA
         this.numThreads = $.numThreads;
         this.password = $.password;
         this.projectId = $.projectId;
+        this.semanticLayerCredential = $.semanticLayerCredential;
         this.targetName = $.targetName;
         this.type = $.type;
         this.username = $.username;
@@ -170,18 +186,18 @@ public final class PostgresCredentialArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param defaultSchema Default schema name
+         * @param defaultSchema Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
          */
-        public Builder defaultSchema(Output<String> defaultSchema) {
+        public Builder defaultSchema(@Nullable Output<String> defaultSchema) {
             $.defaultSchema = defaultSchema;
             return this;
         }
 
         /**
-         * @param defaultSchema Default schema name
+         * @param defaultSchema Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
@@ -275,6 +291,27 @@ public final class PostgresCredentialArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param semanticLayerCredential This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder semanticLayerCredential(@Nullable Output<Boolean> semanticLayerCredential) {
+            $.semanticLayerCredential = semanticLayerCredential;
+            return this;
+        }
+
+        /**
+         * @param semanticLayerCredential This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder semanticLayerCredential(Boolean semanticLayerCredential) {
+            return semanticLayerCredential(Output.of(semanticLayerCredential));
+        }
+
+        /**
          * @param targetName Default schema name
          * 
          * @return builder
@@ -296,18 +333,18 @@ public final class PostgresCredentialArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param type Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+         * @param type Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
          */
-        public Builder type(Output<String> type) {
+        public Builder type(@Nullable Output<String> type) {
             $.type = type;
             return this;
         }
 
         /**
-         * @param type Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+         * @param type Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
@@ -338,14 +375,8 @@ public final class PostgresCredentialArgs extends com.pulumi.resources.ResourceA
         }
 
         public PostgresCredentialArgs build() {
-            if ($.defaultSchema == null) {
-                throw new MissingRequiredPropertyException("PostgresCredentialArgs", "defaultSchema");
-            }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("PostgresCredentialArgs", "projectId");
-            }
-            if ($.type == null) {
-                throw new MissingRequiredPropertyException("PostgresCredentialArgs", "type");
             }
             if ($.username == null) {
                 throw new MissingRequiredPropertyException("PostgresCredentialArgs", "username");

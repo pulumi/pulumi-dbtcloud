@@ -21,6 +21,10 @@
                 "current": "dbtcloud:index/databricksCredential:DatabricksCredential",
                 "majorVersion": 1
             },
+            "dbtcloud_databricks_semantic_layer_credential": {
+                "current": "dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential",
+                "majorVersion": 1
+            },
             "dbtcloud_environment": {
                 "current": "dbtcloud:index/environment:Environment",
                 "majorVersion": 1
@@ -200,6 +204,10 @@
                 "current": "dbtcloud:index/postgresCredential:PostgresCredential",
                 "majorVersion": 1
             },
+            "dbtcloud_postgres_semantic_layer_credential": {
+                "current": "dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential",
+                "majorVersion": 1
+            },
             "dbtcloud_project": {
                 "current": "dbtcloud:index/project:Project",
                 "majorVersion": 1
@@ -226,6 +234,10 @@
             },
             "dbtcloud_semantic_layer_configuration": {
                 "current": "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration",
+                "majorVersion": 1
+            },
+            "dbtcloud_semantic_layer_credential_service_token_mapping": {
+                "current": "dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping",
                 "majorVersion": 1
             },
             "dbtcloud_service_token": {

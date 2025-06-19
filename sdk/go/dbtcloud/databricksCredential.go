@@ -75,7 +75,7 @@ import (
 type DatabricksCredential struct {
 	pulumi.CustomResourceState
 
-	// The type of the adapter (databricks or spark)
+	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	AdapterType pulumi.StringOutput `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog pulumi.StringOutput `pulumi:"catalog"`
@@ -83,8 +83,10 @@ type DatabricksCredential struct {
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// Project ID to create the Databricks credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
-	// The schema where to create models
+	// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	Schema pulumi.StringOutput `pulumi:"schema"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolOutput `pulumi:"semanticLayerCredential"`
 	// Target name
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
@@ -100,14 +102,8 @@ func NewDatabricksCredential(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.AdapterType == nil {
-		return nil, errors.New("invalid value for required argument 'AdapterType'")
-	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
-	}
-	if args.Schema == nil {
-		return nil, errors.New("invalid value for required argument 'Schema'")
 	}
 	if args.Token == nil {
 		return nil, errors.New("invalid value for required argument 'Token'")
@@ -142,7 +138,7 @@ func GetDatabricksCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabricksCredential resources.
 type databricksCredentialState struct {
-	// The type of the adapter (databricks or spark)
+	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	AdapterType *string `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog *string `pulumi:"catalog"`
@@ -150,8 +146,10 @@ type databricksCredentialState struct {
 	CredentialId *int `pulumi:"credentialId"`
 	// Project ID to create the Databricks credential in
 	ProjectId *int `pulumi:"projectId"`
-	// The schema where to create models
+	// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	Schema *string `pulumi:"schema"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
 	// Target name
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
@@ -161,7 +159,7 @@ type databricksCredentialState struct {
 }
 
 type DatabricksCredentialState struct {
-	// The type of the adapter (databricks or spark)
+	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	AdapterType pulumi.StringPtrInput
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog pulumi.StringPtrInput
@@ -169,8 +167,10 @@ type DatabricksCredentialState struct {
 	CredentialId pulumi.IntPtrInput
 	// Project ID to create the Databricks credential in
 	ProjectId pulumi.IntPtrInput
-	// The schema where to create models
+	// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	Schema pulumi.StringPtrInput
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput
 	// Target name
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
@@ -184,14 +184,16 @@ func (DatabricksCredentialState) ElementType() reflect.Type {
 }
 
 type databricksCredentialArgs struct {
-	// The type of the adapter (databricks or spark)
-	AdapterType string `pulumi:"adapterType"`
+	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	AdapterType *string `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog *string `pulumi:"catalog"`
 	// Project ID to create the Databricks credential in
 	ProjectId int `pulumi:"projectId"`
-	// The schema where to create models
-	Schema string `pulumi:"schema"`
+	// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	Schema *string `pulumi:"schema"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
 	// Target name
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
@@ -202,14 +204,16 @@ type databricksCredentialArgs struct {
 
 // The set of arguments for constructing a DatabricksCredential resource.
 type DatabricksCredentialArgs struct {
-	// The type of the adapter (databricks or spark)
-	AdapterType pulumi.StringInput
+	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	AdapterType pulumi.StringPtrInput
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog pulumi.StringPtrInput
 	// Project ID to create the Databricks credential in
 	ProjectId pulumi.IntInput
-	// The schema where to create models
-	Schema pulumi.StringInput
+	// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	Schema pulumi.StringPtrInput
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput
 	// Target name
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
@@ -305,7 +309,7 @@ func (o DatabricksCredentialOutput) ToDatabricksCredentialOutputWithContext(ctx 
 	return o
 }
 
-// The type of the adapter (databricks or spark)
+// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 func (o DatabricksCredentialOutput) AdapterType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabricksCredential) pulumi.StringOutput { return v.AdapterType }).(pulumi.StringOutput)
 }
@@ -325,9 +329,14 @@ func (o DatabricksCredentialOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabricksCredential) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// The schema where to create models
+// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 func (o DatabricksCredentialOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabricksCredential) pulumi.StringOutput { return v.Schema }).(pulumi.StringOutput)
+}
+
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+func (o DatabricksCredentialOutput) SemanticLayerCredential() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DatabricksCredential) pulumi.BoolOutput { return v.SemanticLayerCredential }).(pulumi.BoolOutput)
 }
 
 // Target name

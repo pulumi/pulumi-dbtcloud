@@ -47,6 +47,62 @@ export interface BigquerySemanticLayerCredentialCredential {
     projectId: pulumi.Input<number>;
 }
 
+export interface DatabricksSemanticLayerCredentialConfiguration {
+    /**
+     * The adapter version
+     */
+    adapterVersion: pulumi.Input<string>;
+    /**
+     * The name of the configuration
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project
+     */
+    projectId: pulumi.Input<number>;
+}
+
+export interface DatabricksSemanticLayerCredentialCredential {
+    /**
+     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     */
+    adapterType?: pulumi.Input<string>;
+    /**
+     * The catalog where to create models (only for the databricks adapter)
+     */
+    catalog?: pulumi.Input<string>;
+    /**
+     * The system Databricks credential ID
+     */
+    credentialId?: pulumi.Input<number>;
+    /**
+     * The ID of this resource. Contains the project ID and the credential ID.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Project ID to create the Databricks credential in
+     */
+    projectId: pulumi.Input<number>;
+    /**
+     * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     */
+    schema?: pulumi.Input<string>;
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+     */
+    semanticLayerCredential?: pulumi.Input<boolean>;
+    /**
+     * Target name
+     *
+     * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+     */
+    targetName?: pulumi.Input<string>;
+    /**
+     * Token for Databricks user
+     */
+    token: pulumi.Input<string>;
+}
+
 export interface GetJobJobCompletionTriggerCondition {
     /**
      * The ID of the job that would trigger this job after completion.
@@ -713,6 +769,68 @@ export interface JobTriggers {
      * Whether the job runs on a schedule
      */
     schedule?: pulumi.Input<boolean>;
+}
+
+export interface PostgresSemanticLayerCredentialConfiguration {
+    /**
+     * The adapter version
+     */
+    adapterVersion: pulumi.Input<string>;
+    /**
+     * The name of the configuration
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The ID of the project
+     */
+    projectId: pulumi.Input<number>;
+}
+
+export interface PostgresSemanticLayerCredentialCredential {
+    /**
+     * The system Postgres/Redshift/AlloyDB credential ID.
+     */
+    credentialId?: pulumi.Input<number>;
+    /**
+     * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     */
+    defaultSchema?: pulumi.Input<string>;
+    /**
+     * The ID of this resource. Contains the project ID and the credential ID.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Whether the Postgres/Redshift/AlloyDB credential is active
+     */
+    isActive?: pulumi.Input<boolean>;
+    /**
+     * Number of threads to use (required for Redshift)
+     */
+    numThreads?: pulumi.Input<number>;
+    /**
+     * Password for Postgres/Redshift/AlloyDB
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * Project ID to create the Postgres/Redshift/AlloyDB credential in.
+     */
+    projectId: pulumi.Input<number>;
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     */
+    semanticLayerCredential?: pulumi.Input<boolean>;
+    /**
+     * Default schema name
+     */
+    targetName?: pulumi.Input<string>;
+    /**
+     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Username for Postgres/Redshift/AlloyDB
+     */
+    username: pulumi.Input<string>;
 }
 
 export interface RedshiftSemanticLayerCredentialConfiguration {

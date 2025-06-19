@@ -33,14 +33,14 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
     }
 
     /**
-     * Default schema name
+     * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     @Import(name="defaultSchema")
     private @Nullable Output<String> defaultSchema;
 
     /**
-     * @return Default schema name
+     * @return Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     public Optional<Output<String>> defaultSchema() {
@@ -108,6 +108,21 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
     }
 
     /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     * 
+     */
+    @Import(name="semanticLayerCredential")
+    private @Nullable Output<Boolean> semanticLayerCredential;
+
+    /**
+     * @return This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     * 
+     */
+    public Optional<Output<Boolean>> semanticLayerCredential() {
+        return Optional.ofNullable(this.semanticLayerCredential);
+    }
+
+    /**
      * Default schema name
      * 
      */
@@ -123,14 +138,14 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
     }
 
     /**
-     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * @return Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     public Optional<Output<String>> type() {
@@ -161,6 +176,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         this.numThreads = $.numThreads;
         this.password = $.password;
         this.projectId = $.projectId;
+        this.semanticLayerCredential = $.semanticLayerCredential;
         this.targetName = $.targetName;
         this.type = $.type;
         this.username = $.username;
@@ -206,7 +222,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param defaultSchema Default schema name
+         * @param defaultSchema Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
@@ -217,7 +233,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param defaultSchema Default schema name
+         * @param defaultSchema Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
@@ -311,6 +327,27 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param semanticLayerCredential This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder semanticLayerCredential(@Nullable Output<Boolean> semanticLayerCredential) {
+            $.semanticLayerCredential = semanticLayerCredential;
+            return this;
+        }
+
+        /**
+         * @param semanticLayerCredential This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder semanticLayerCredential(Boolean semanticLayerCredential) {
+            return semanticLayerCredential(Output.of(semanticLayerCredential));
+        }
+
+        /**
          * @param targetName Default schema name
          * 
          * @return builder
@@ -332,7 +369,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param type Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+         * @param type Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
@@ -343,7 +380,7 @@ public final class PostgresCredentialState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param type Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+         * @param type Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 

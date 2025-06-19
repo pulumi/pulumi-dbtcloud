@@ -11,6 +11,36 @@ namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
+    /// 
+    /// ## Import
+    /// 
+    /// using import blocks (requires Terraform &gt;= 1.5)
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_redshift_semantic_layer_credential.example
+    /// 
+    ///   id = "credential_id"
+    /// 
+    /// }
+    /// 
+    /// import {
+    /// 
+    ///   to = dbtcloud_redshift_semantic_layer_credential.example
+    /// 
+    ///   id = "12345"
+    /// 
+    /// }
+    /// 
+    /// using the older import command
+    /// 
+    /// ```sh
+    /// $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example "credential_id"
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
+    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential")]
     public partial class RedshiftSemanticLayerCredential : global::Pulumi.CustomResource
@@ -22,7 +52,7 @@ namespace Pulumi.DbtCloud
         public Output<Outputs.RedshiftSemanticLayerCredentialConfiguration> Configuration { get; private set; } = null!;
 
         /// <summary>
-        /// Snowflake credential details, but used in the context of the Semantic Layer.
+        /// Redshift credential details, but used in the context of the Semantic Layer.
         /// </summary>
         [Output("credential")]
         public Output<Outputs.RedshiftSemanticLayerCredentialCredential> Credential { get; private set; } = null!;
@@ -81,7 +111,7 @@ namespace Pulumi.DbtCloud
         public Input<Inputs.RedshiftSemanticLayerCredentialConfigurationArgs> Configuration { get; set; } = null!;
 
         /// <summary>
-        /// Snowflake credential details, but used in the context of the Semantic Layer.
+        /// Redshift credential details, but used in the context of the Semantic Layer.
         /// </summary>
         [Input("credential", required: true)]
         public Input<Inputs.RedshiftSemanticLayerCredentialCredentialArgs> Credential { get; set; } = null!;
@@ -101,7 +131,7 @@ namespace Pulumi.DbtCloud
         public Input<Inputs.RedshiftSemanticLayerCredentialConfigurationGetArgs>? Configuration { get; set; }
 
         /// <summary>
-        /// Snowflake credential details, but used in the context of the Semantic Layer.
+        /// Redshift credential details, but used in the context of the Semantic Layer.
         /// </summary>
         [Input("credential")]
         public Input<Inputs.RedshiftSemanticLayerCredentialCredentialGetArgs>? Credential { get; set; }

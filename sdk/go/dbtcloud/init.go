@@ -31,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BigquerySemanticLayerCredential{}
 	case "dbtcloud:index/databricksCredential:DatabricksCredential":
 		r = &DatabricksCredential{}
+	case "dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential":
+		r = &DatabricksSemanticLayerCredential{}
 	case "dbtcloud:index/environment:Environment":
 		r = &Environment{}
 	case "dbtcloud:index/environmentVariable:EnvironmentVariable":
@@ -69,6 +71,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PartialNotification{}
 	case "dbtcloud:index/postgresCredential:PostgresCredential":
 		r = &PostgresCredential{}
+	case "dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential":
+		r = &PostgresSemanticLayerCredential{}
 	case "dbtcloud:index/project:Project":
 		r = &Project{}
 	case "dbtcloud:index/projectArtefacts:ProjectArtefacts":
@@ -83,6 +87,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Repository{}
 	case "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration":
 		r = &SemanticLayerConfiguration{}
+	case "dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping":
+		r = &SemanticLayerCredentialServiceTokenMapping{}
 	case "dbtcloud:index/serviceToken:ServiceToken":
 		r = &ServiceToken{}
 	case "dbtcloud:index/snowflakeCredential:SnowflakeCredential":
@@ -153,6 +159,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/databricksCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/databricksSemanticLayerCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -252,6 +263,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/postgresSemanticLayerCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/project",
 		&module{version},
 	)
@@ -283,6 +299,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/semanticLayerConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/semanticLayerCredentialServiceTokenMapping",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

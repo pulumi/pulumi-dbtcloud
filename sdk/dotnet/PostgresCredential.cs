@@ -76,7 +76,7 @@ namespace Pulumi.DbtCloud
         public Output<int> CredentialId { get; private set; } = null!;
 
         /// <summary>
-        /// Default schema name
+        /// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
         [Output("defaultSchema")]
         public Output<string> DefaultSchema { get; private set; } = null!;
@@ -106,13 +106,19 @@ namespace Pulumi.DbtCloud
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        /// </summary>
+        [Output("semanticLayerCredential")]
+        public Output<bool> SemanticLayerCredential { get; private set; } = null!;
+
+        /// <summary>
         /// Default schema name
         /// </summary>
         [Output("targetName")]
         public Output<string> TargetName { get; private set; } = null!;
 
         /// <summary>
-        /// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+        /// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -175,10 +181,10 @@ namespace Pulumi.DbtCloud
     public sealed class PostgresCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Default schema name
+        /// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
-        [Input("defaultSchema", required: true)]
-        public Input<string> DefaultSchema { get; set; } = null!;
+        [Input("defaultSchema")]
+        public Input<string>? DefaultSchema { get; set; }
 
         /// <summary>
         /// Whether the Postgres/Redshift/AlloyDB credential is active
@@ -215,16 +221,22 @@ namespace Pulumi.DbtCloud
         public Input<int> ProjectId { get; set; } = null!;
 
         /// <summary>
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        /// </summary>
+        [Input("semanticLayerCredential")]
+        public Input<bool>? SemanticLayerCredential { get; set; }
+
+        /// <summary>
         /// Default schema name
         /// </summary>
         [Input("targetName")]
         public Input<string>? TargetName { get; set; }
 
         /// <summary>
-        /// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+        /// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
         /// <summary>
         /// Username for Postgres/Redshift/AlloyDB
@@ -247,7 +259,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? CredentialId { get; set; }
 
         /// <summary>
-        /// Default schema name
+        /// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
         [Input("defaultSchema")]
         public Input<string>? DefaultSchema { get; set; }
@@ -287,13 +299,19 @@ namespace Pulumi.DbtCloud
         public Input<int>? ProjectId { get; set; }
 
         /// <summary>
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        /// </summary>
+        [Input("semanticLayerCredential")]
+        public Input<bool>? SemanticLayerCredential { get; set; }
+
+        /// <summary>
         /// Default schema name
         /// </summary>
         [Input("targetName")]
         public Input<string>? TargetName { get; set; }
 
         /// <summary>
-        /// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+        /// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
