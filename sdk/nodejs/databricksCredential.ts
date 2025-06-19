@@ -80,7 +80,7 @@ export class DatabricksCredential extends pulumi.CustomResource {
     }
 
     /**
-     * The type of the adapter (databricks or spark)
+     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
     public readonly adapterType!: pulumi.Output<string>;
     /**
@@ -96,9 +96,13 @@ export class DatabricksCredential extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
-     * The schema where to create models
+     * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
     public readonly schema!: pulumi.Output<string>;
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+     */
+    public readonly semanticLayerCredential!: pulumi.Output<boolean>;
     /**
      * Target name
      *
@@ -128,18 +132,13 @@ export class DatabricksCredential extends pulumi.CustomResource {
             resourceInputs["credentialId"] = state ? state.credentialId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["schema"] = state ? state.schema : undefined;
+            resourceInputs["semanticLayerCredential"] = state ? state.semanticLayerCredential : undefined;
             resourceInputs["targetName"] = state ? state.targetName : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
         } else {
             const args = argsOrState as DatabricksCredentialArgs | undefined;
-            if ((!args || args.adapterType === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'adapterType'");
-            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
-            }
-            if ((!args || args.schema === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'schema'");
             }
             if ((!args || args.token === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'token'");
@@ -148,6 +147,7 @@ export class DatabricksCredential extends pulumi.CustomResource {
             resourceInputs["catalog"] = args ? args.catalog : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["schema"] = args ? args.schema : undefined;
+            resourceInputs["semanticLayerCredential"] = args ? args.semanticLayerCredential : undefined;
             resourceInputs["targetName"] = args ? args.targetName : undefined;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["credentialId"] = undefined /*out*/;
@@ -164,7 +164,7 @@ export class DatabricksCredential extends pulumi.CustomResource {
  */
 export interface DatabricksCredentialState {
     /**
-     * The type of the adapter (databricks or spark)
+     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
     adapterType?: pulumi.Input<string>;
     /**
@@ -180,9 +180,13 @@ export interface DatabricksCredentialState {
      */
     projectId?: pulumi.Input<number>;
     /**
-     * The schema where to create models
+     * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
     schema?: pulumi.Input<string>;
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+     */
+    semanticLayerCredential?: pulumi.Input<boolean>;
     /**
      * Target name
      *
@@ -200,9 +204,9 @@ export interface DatabricksCredentialState {
  */
 export interface DatabricksCredentialArgs {
     /**
-     * The type of the adapter (databricks or spark)
+     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    adapterType: pulumi.Input<string>;
+    adapterType?: pulumi.Input<string>;
     /**
      * The catalog where to create models (only for the databricks adapter)
      */
@@ -212,9 +216,13 @@ export interface DatabricksCredentialArgs {
      */
     projectId: pulumi.Input<number>;
     /**
-     * The schema where to create models
+     * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    schema: pulumi.Input<string>;
+    schema?: pulumi.Input<string>;
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+     */
+    semanticLayerCredential?: pulumi.Input<boolean>;
     /**
      * Target name
      *

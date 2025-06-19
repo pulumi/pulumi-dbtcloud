@@ -80,7 +80,7 @@ type PostgresCredential struct {
 
 	// The system Postgres/Redshift/AlloyDB credential ID.
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
-	// Default schema name
+	// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	DefaultSchema pulumi.StringOutput `pulumi:"defaultSchema"`
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive pulumi.BoolOutput `pulumi:"isActive"`
@@ -90,9 +90,11 @@ type PostgresCredential struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolOutput `pulumi:"semanticLayerCredential"`
 	// Default schema name
 	TargetName pulumi.StringOutput `pulumi:"targetName"`
-	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Username for Postgres/Redshift/AlloyDB
 	Username pulumi.StringOutput `pulumi:"username"`
@@ -105,14 +107,8 @@ func NewPostgresCredential(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DefaultSchema == nil {
-		return nil, errors.New("invalid value for required argument 'DefaultSchema'")
-	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
-	}
-	if args.Type == nil {
-		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
@@ -149,7 +145,7 @@ func GetPostgresCredential(ctx *pulumi.Context,
 type postgresCredentialState struct {
 	// The system Postgres/Redshift/AlloyDB credential ID.
 	CredentialId *int `pulumi:"credentialId"`
-	// Default schema name
+	// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	DefaultSchema *string `pulumi:"defaultSchema"`
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive *bool `pulumi:"isActive"`
@@ -159,9 +155,11 @@ type postgresCredentialState struct {
 	Password *string `pulumi:"password"`
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId *int `pulumi:"projectId"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
 	// Default schema name
 	TargetName *string `pulumi:"targetName"`
-	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	Type *string `pulumi:"type"`
 	// Username for Postgres/Redshift/AlloyDB
 	Username *string `pulumi:"username"`
@@ -170,7 +168,7 @@ type postgresCredentialState struct {
 type PostgresCredentialState struct {
 	// The system Postgres/Redshift/AlloyDB credential ID.
 	CredentialId pulumi.IntPtrInput
-	// Default schema name
+	// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	DefaultSchema pulumi.StringPtrInput
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive pulumi.BoolPtrInput
@@ -180,9 +178,11 @@ type PostgresCredentialState struct {
 	Password pulumi.StringPtrInput
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntPtrInput
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput
 	// Default schema name
 	TargetName pulumi.StringPtrInput
-	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	Type pulumi.StringPtrInput
 	// Username for Postgres/Redshift/AlloyDB
 	Username pulumi.StringPtrInput
@@ -193,8 +193,8 @@ func (PostgresCredentialState) ElementType() reflect.Type {
 }
 
 type postgresCredentialArgs struct {
-	// Default schema name
-	DefaultSchema string `pulumi:"defaultSchema"`
+	// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	DefaultSchema *string `pulumi:"defaultSchema"`
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use (required for Redshift)
@@ -203,18 +203,20 @@ type postgresCredentialArgs struct {
 	Password *string `pulumi:"password"`
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId int `pulumi:"projectId"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
 	// Default schema name
 	TargetName *string `pulumi:"targetName"`
-	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
-	Type string `pulumi:"type"`
+	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	Type *string `pulumi:"type"`
 	// Username for Postgres/Redshift/AlloyDB
 	Username string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a PostgresCredential resource.
 type PostgresCredentialArgs struct {
-	// Default schema name
-	DefaultSchema pulumi.StringInput
+	// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	DefaultSchema pulumi.StringPtrInput
 	// Whether the Postgres/Redshift/AlloyDB credential is active
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use (required for Redshift)
@@ -223,10 +225,12 @@ type PostgresCredentialArgs struct {
 	Password pulumi.StringPtrInput
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntInput
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput
 	// Default schema name
 	TargetName pulumi.StringPtrInput
-	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
-	Type pulumi.StringInput
+	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	Type pulumi.StringPtrInput
 	// Username for Postgres/Redshift/AlloyDB
 	Username pulumi.StringInput
 }
@@ -323,7 +327,7 @@ func (o PostgresCredentialOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// Default schema name
+// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 func (o PostgresCredentialOutput) DefaultSchema() pulumi.StringOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.StringOutput { return v.DefaultSchema }).(pulumi.StringOutput)
 }
@@ -348,12 +352,17 @@ func (o PostgresCredentialOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }
 
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+func (o PostgresCredentialOutput) SemanticLayerCredential() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PostgresCredential) pulumi.BoolOutput { return v.SemanticLayerCredential }).(pulumi.BoolOutput)
+}
+
 // Default schema name
 func (o PostgresCredentialOutput) TargetName() pulumi.StringOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.StringOutput { return v.TargetName }).(pulumi.StringOutput)
 }
 
-// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 func (o PostgresCredentialOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

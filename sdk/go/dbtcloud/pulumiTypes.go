@@ -420,6 +420,478 @@ func (o BigquerySemanticLayerCredentialCredentialPtrOutput) ProjectId() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
+type DatabricksSemanticLayerCredentialConfiguration struct {
+	// The adapter version
+	AdapterVersion string `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name string `pulumi:"name"`
+	// The ID of the project
+	ProjectId int `pulumi:"projectId"`
+}
+
+// DatabricksSemanticLayerCredentialConfigurationInput is an input type that accepts DatabricksSemanticLayerCredentialConfigurationArgs and DatabricksSemanticLayerCredentialConfigurationOutput values.
+// You can construct a concrete instance of `DatabricksSemanticLayerCredentialConfigurationInput` via:
+//
+//	DatabricksSemanticLayerCredentialConfigurationArgs{...}
+type DatabricksSemanticLayerCredentialConfigurationInput interface {
+	pulumi.Input
+
+	ToDatabricksSemanticLayerCredentialConfigurationOutput() DatabricksSemanticLayerCredentialConfigurationOutput
+	ToDatabricksSemanticLayerCredentialConfigurationOutputWithContext(context.Context) DatabricksSemanticLayerCredentialConfigurationOutput
+}
+
+type DatabricksSemanticLayerCredentialConfigurationArgs struct {
+	// The adapter version
+	AdapterVersion pulumi.StringInput `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+}
+
+func (DatabricksSemanticLayerCredentialConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabricksSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i DatabricksSemanticLayerCredentialConfigurationArgs) ToDatabricksSemanticLayerCredentialConfigurationOutput() DatabricksSemanticLayerCredentialConfigurationOutput {
+	return i.ToDatabricksSemanticLayerCredentialConfigurationOutputWithContext(context.Background())
+}
+
+func (i DatabricksSemanticLayerCredentialConfigurationArgs) ToDatabricksSemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabricksSemanticLayerCredentialConfigurationOutput)
+}
+
+func (i DatabricksSemanticLayerCredentialConfigurationArgs) ToDatabricksSemanticLayerCredentialConfigurationPtrOutput() DatabricksSemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i DatabricksSemanticLayerCredentialConfigurationArgs) ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabricksSemanticLayerCredentialConfigurationOutput).ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx)
+}
+
+// DatabricksSemanticLayerCredentialConfigurationPtrInput is an input type that accepts DatabricksSemanticLayerCredentialConfigurationArgs, DatabricksSemanticLayerCredentialConfigurationPtr and DatabricksSemanticLayerCredentialConfigurationPtrOutput values.
+// You can construct a concrete instance of `DatabricksSemanticLayerCredentialConfigurationPtrInput` via:
+//
+//	        DatabricksSemanticLayerCredentialConfigurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatabricksSemanticLayerCredentialConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToDatabricksSemanticLayerCredentialConfigurationPtrOutput() DatabricksSemanticLayerCredentialConfigurationPtrOutput
+	ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Context) DatabricksSemanticLayerCredentialConfigurationPtrOutput
+}
+
+type databricksSemanticLayerCredentialConfigurationPtrType DatabricksSemanticLayerCredentialConfigurationArgs
+
+func DatabricksSemanticLayerCredentialConfigurationPtr(v *DatabricksSemanticLayerCredentialConfigurationArgs) DatabricksSemanticLayerCredentialConfigurationPtrInput {
+	return (*databricksSemanticLayerCredentialConfigurationPtrType)(v)
+}
+
+func (*databricksSemanticLayerCredentialConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabricksSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i *databricksSemanticLayerCredentialConfigurationPtrType) ToDatabricksSemanticLayerCredentialConfigurationPtrOutput() DatabricksSemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *databricksSemanticLayerCredentialConfigurationPtrType) ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabricksSemanticLayerCredentialConfigurationPtrOutput)
+}
+
+type DatabricksSemanticLayerCredentialConfigurationOutput struct{ *pulumi.OutputState }
+
+func (DatabricksSemanticLayerCredentialConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabricksSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o DatabricksSemanticLayerCredentialConfigurationOutput) ToDatabricksSemanticLayerCredentialConfigurationOutput() DatabricksSemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o DatabricksSemanticLayerCredentialConfigurationOutput) ToDatabricksSemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o DatabricksSemanticLayerCredentialConfigurationOutput) ToDatabricksSemanticLayerCredentialConfigurationPtrOutput() DatabricksSemanticLayerCredentialConfigurationPtrOutput {
+	return o.ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o DatabricksSemanticLayerCredentialConfigurationOutput) ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialConfigurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatabricksSemanticLayerCredentialConfiguration) *DatabricksSemanticLayerCredentialConfiguration {
+		return &v
+	}).(DatabricksSemanticLayerCredentialConfigurationPtrOutput)
+}
+
+// The adapter version
+func (o DatabricksSemanticLayerCredentialConfigurationOutput) AdapterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialConfiguration) string { return v.AdapterVersion }).(pulumi.StringOutput)
+}
+
+// The name of the configuration
+func (o DatabricksSemanticLayerCredentialConfigurationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialConfiguration) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project
+func (o DatabricksSemanticLayerCredentialConfigurationOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialConfiguration) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+type DatabricksSemanticLayerCredentialConfigurationPtrOutput struct{ *pulumi.OutputState }
+
+func (DatabricksSemanticLayerCredentialConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabricksSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o DatabricksSemanticLayerCredentialConfigurationPtrOutput) ToDatabricksSemanticLayerCredentialConfigurationPtrOutput() DatabricksSemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o DatabricksSemanticLayerCredentialConfigurationPtrOutput) ToDatabricksSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o DatabricksSemanticLayerCredentialConfigurationPtrOutput) Elem() DatabricksSemanticLayerCredentialConfigurationOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialConfiguration) DatabricksSemanticLayerCredentialConfiguration {
+		if v != nil {
+			return *v
+		}
+		var ret DatabricksSemanticLayerCredentialConfiguration
+		return ret
+	}).(DatabricksSemanticLayerCredentialConfigurationOutput)
+}
+
+// The adapter version
+func (o DatabricksSemanticLayerCredentialConfigurationPtrOutput) AdapterVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AdapterVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the configuration
+func (o DatabricksSemanticLayerCredentialConfigurationPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project
+func (o DatabricksSemanticLayerCredentialConfigurationPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+type DatabricksSemanticLayerCredentialCredential struct {
+	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	AdapterType *string `pulumi:"adapterType"`
+	// The catalog where to create models (only for the databricks adapter)
+	Catalog *string `pulumi:"catalog"`
+	// The system Databricks credential ID
+	CredentialId *int `pulumi:"credentialId"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id *string `pulumi:"id"`
+	// Project ID to create the Databricks credential in
+	ProjectId int `pulumi:"projectId"`
+	// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	Schema *string `pulumi:"schema"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
+	// Target name
+	//
+	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+	TargetName *string `pulumi:"targetName"`
+	// Token for Databricks user
+	Token string `pulumi:"token"`
+}
+
+// DatabricksSemanticLayerCredentialCredentialInput is an input type that accepts DatabricksSemanticLayerCredentialCredentialArgs and DatabricksSemanticLayerCredentialCredentialOutput values.
+// You can construct a concrete instance of `DatabricksSemanticLayerCredentialCredentialInput` via:
+//
+//	DatabricksSemanticLayerCredentialCredentialArgs{...}
+type DatabricksSemanticLayerCredentialCredentialInput interface {
+	pulumi.Input
+
+	ToDatabricksSemanticLayerCredentialCredentialOutput() DatabricksSemanticLayerCredentialCredentialOutput
+	ToDatabricksSemanticLayerCredentialCredentialOutputWithContext(context.Context) DatabricksSemanticLayerCredentialCredentialOutput
+}
+
+type DatabricksSemanticLayerCredentialCredentialArgs struct {
+	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	AdapterType pulumi.StringPtrInput `pulumi:"adapterType"`
+	// The catalog where to create models (only for the databricks adapter)
+	Catalog pulumi.StringPtrInput `pulumi:"catalog"`
+	// The system Databricks credential ID
+	CredentialId pulumi.IntPtrInput `pulumi:"credentialId"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Project ID to create the Databricks credential in
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	Schema pulumi.StringPtrInput `pulumi:"schema"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput `pulumi:"semanticLayerCredential"`
+	// Target name
+	//
+	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+	TargetName pulumi.StringPtrInput `pulumi:"targetName"`
+	// Token for Databricks user
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (DatabricksSemanticLayerCredentialCredentialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabricksSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i DatabricksSemanticLayerCredentialCredentialArgs) ToDatabricksSemanticLayerCredentialCredentialOutput() DatabricksSemanticLayerCredentialCredentialOutput {
+	return i.ToDatabricksSemanticLayerCredentialCredentialOutputWithContext(context.Background())
+}
+
+func (i DatabricksSemanticLayerCredentialCredentialArgs) ToDatabricksSemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialCredentialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabricksSemanticLayerCredentialCredentialOutput)
+}
+
+func (i DatabricksSemanticLayerCredentialCredentialArgs) ToDatabricksSemanticLayerCredentialCredentialPtrOutput() DatabricksSemanticLayerCredentialCredentialPtrOutput {
+	return i.ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i DatabricksSemanticLayerCredentialCredentialArgs) ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabricksSemanticLayerCredentialCredentialOutput).ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(ctx)
+}
+
+// DatabricksSemanticLayerCredentialCredentialPtrInput is an input type that accepts DatabricksSemanticLayerCredentialCredentialArgs, DatabricksSemanticLayerCredentialCredentialPtr and DatabricksSemanticLayerCredentialCredentialPtrOutput values.
+// You can construct a concrete instance of `DatabricksSemanticLayerCredentialCredentialPtrInput` via:
+//
+//	        DatabricksSemanticLayerCredentialCredentialArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatabricksSemanticLayerCredentialCredentialPtrInput interface {
+	pulumi.Input
+
+	ToDatabricksSemanticLayerCredentialCredentialPtrOutput() DatabricksSemanticLayerCredentialCredentialPtrOutput
+	ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(context.Context) DatabricksSemanticLayerCredentialCredentialPtrOutput
+}
+
+type databricksSemanticLayerCredentialCredentialPtrType DatabricksSemanticLayerCredentialCredentialArgs
+
+func DatabricksSemanticLayerCredentialCredentialPtr(v *DatabricksSemanticLayerCredentialCredentialArgs) DatabricksSemanticLayerCredentialCredentialPtrInput {
+	return (*databricksSemanticLayerCredentialCredentialPtrType)(v)
+}
+
+func (*databricksSemanticLayerCredentialCredentialPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabricksSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i *databricksSemanticLayerCredentialCredentialPtrType) ToDatabricksSemanticLayerCredentialCredentialPtrOutput() DatabricksSemanticLayerCredentialCredentialPtrOutput {
+	return i.ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i *databricksSemanticLayerCredentialCredentialPtrType) ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabricksSemanticLayerCredentialCredentialPtrOutput)
+}
+
+type DatabricksSemanticLayerCredentialCredentialOutput struct{ *pulumi.OutputState }
+
+func (DatabricksSemanticLayerCredentialCredentialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabricksSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o DatabricksSemanticLayerCredentialCredentialOutput) ToDatabricksSemanticLayerCredentialCredentialOutput() DatabricksSemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o DatabricksSemanticLayerCredentialCredentialOutput) ToDatabricksSemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o DatabricksSemanticLayerCredentialCredentialOutput) ToDatabricksSemanticLayerCredentialCredentialPtrOutput() DatabricksSemanticLayerCredentialCredentialPtrOutput {
+	return o.ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (o DatabricksSemanticLayerCredentialCredentialOutput) ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialCredentialPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatabricksSemanticLayerCredentialCredential) *DatabricksSemanticLayerCredentialCredential {
+		return &v
+	}).(DatabricksSemanticLayerCredentialCredentialPtrOutput)
+}
+
+// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+func (o DatabricksSemanticLayerCredentialCredentialOutput) AdapterType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.AdapterType }).(pulumi.StringPtrOutput)
+}
+
+// The catalog where to create models (only for the databricks adapter)
+func (o DatabricksSemanticLayerCredentialCredentialOutput) Catalog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.Catalog }).(pulumi.StringPtrOutput)
+}
+
+// The system Databricks credential ID
+func (o DatabricksSemanticLayerCredentialCredentialOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *int { return v.CredentialId }).(pulumi.IntPtrOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o DatabricksSemanticLayerCredentialCredentialOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Project ID to create the Databricks credential in
+func (o DatabricksSemanticLayerCredentialCredentialOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+func (o DatabricksSemanticLayerCredentialCredentialOutput) Schema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.Schema }).(pulumi.StringPtrOutput)
+}
+
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+func (o DatabricksSemanticLayerCredentialCredentialOutput) SemanticLayerCredential() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *bool { return v.SemanticLayerCredential }).(pulumi.BoolPtrOutput)
+}
+
+// Target name
+//
+// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+func (o DatabricksSemanticLayerCredentialCredentialOutput) TargetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.TargetName }).(pulumi.StringPtrOutput)
+}
+
+// Token for Databricks user
+func (o DatabricksSemanticLayerCredentialCredentialOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) string { return v.Token }).(pulumi.StringOutput)
+}
+
+type DatabricksSemanticLayerCredentialCredentialPtrOutput struct{ *pulumi.OutputState }
+
+func (DatabricksSemanticLayerCredentialCredentialPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabricksSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) ToDatabricksSemanticLayerCredentialCredentialPtrOutput() DatabricksSemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) ToDatabricksSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) DatabricksSemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) Elem() DatabricksSemanticLayerCredentialCredentialOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) DatabricksSemanticLayerCredentialCredential {
+		if v != nil {
+			return *v
+		}
+		var ret DatabricksSemanticLayerCredentialCredential
+		return ret
+	}).(DatabricksSemanticLayerCredentialCredentialOutput)
+}
+
+// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) AdapterType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AdapterType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The catalog where to create models (only for the databricks adapter)
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) Catalog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Catalog
+	}).(pulumi.StringPtrOutput)
+}
+
+// The system Databricks credential ID
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CredentialId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Project ID to create the Databricks credential in
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) Schema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Schema
+	}).(pulumi.StringPtrOutput)
+}
+
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) SemanticLayerCredential() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SemanticLayerCredential
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Target name
+//
+// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) TargetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TargetName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Token for Databricks user
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Token
+	}).(pulumi.StringPtrOutput)
+}
+
 type GlobalConnectionApacheSpark struct {
 	// Auth
 	Auth *string `pulumi:"auth"`
@@ -4481,6 +4953,508 @@ func (o JobTriggersPtrOutput) Schedule() pulumi.BoolPtrOutput {
 		}
 		return v.Schedule
 	}).(pulumi.BoolPtrOutput)
+}
+
+type PostgresSemanticLayerCredentialConfiguration struct {
+	// The adapter version
+	AdapterVersion string `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name string `pulumi:"name"`
+	// The ID of the project
+	ProjectId int `pulumi:"projectId"`
+}
+
+// PostgresSemanticLayerCredentialConfigurationInput is an input type that accepts PostgresSemanticLayerCredentialConfigurationArgs and PostgresSemanticLayerCredentialConfigurationOutput values.
+// You can construct a concrete instance of `PostgresSemanticLayerCredentialConfigurationInput` via:
+//
+//	PostgresSemanticLayerCredentialConfigurationArgs{...}
+type PostgresSemanticLayerCredentialConfigurationInput interface {
+	pulumi.Input
+
+	ToPostgresSemanticLayerCredentialConfigurationOutput() PostgresSemanticLayerCredentialConfigurationOutput
+	ToPostgresSemanticLayerCredentialConfigurationOutputWithContext(context.Context) PostgresSemanticLayerCredentialConfigurationOutput
+}
+
+type PostgresSemanticLayerCredentialConfigurationArgs struct {
+	// The adapter version
+	AdapterVersion pulumi.StringInput `pulumi:"adapterVersion"`
+	// The name of the configuration
+	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the project
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+}
+
+func (PostgresSemanticLayerCredentialConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i PostgresSemanticLayerCredentialConfigurationArgs) ToPostgresSemanticLayerCredentialConfigurationOutput() PostgresSemanticLayerCredentialConfigurationOutput {
+	return i.ToPostgresSemanticLayerCredentialConfigurationOutputWithContext(context.Background())
+}
+
+func (i PostgresSemanticLayerCredentialConfigurationArgs) ToPostgresSemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresSemanticLayerCredentialConfigurationOutput)
+}
+
+func (i PostgresSemanticLayerCredentialConfigurationArgs) ToPostgresSemanticLayerCredentialConfigurationPtrOutput() PostgresSemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresSemanticLayerCredentialConfigurationArgs) ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresSemanticLayerCredentialConfigurationOutput).ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx)
+}
+
+// PostgresSemanticLayerCredentialConfigurationPtrInput is an input type that accepts PostgresSemanticLayerCredentialConfigurationArgs, PostgresSemanticLayerCredentialConfigurationPtr and PostgresSemanticLayerCredentialConfigurationPtrOutput values.
+// You can construct a concrete instance of `PostgresSemanticLayerCredentialConfigurationPtrInput` via:
+//
+//	        PostgresSemanticLayerCredentialConfigurationArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresSemanticLayerCredentialConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToPostgresSemanticLayerCredentialConfigurationPtrOutput() PostgresSemanticLayerCredentialConfigurationPtrOutput
+	ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Context) PostgresSemanticLayerCredentialConfigurationPtrOutput
+}
+
+type postgresSemanticLayerCredentialConfigurationPtrType PostgresSemanticLayerCredentialConfigurationArgs
+
+func PostgresSemanticLayerCredentialConfigurationPtr(v *PostgresSemanticLayerCredentialConfigurationArgs) PostgresSemanticLayerCredentialConfigurationPtrInput {
+	return (*postgresSemanticLayerCredentialConfigurationPtrType)(v)
+}
+
+func (*postgresSemanticLayerCredentialConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (i *postgresSemanticLayerCredentialConfigurationPtrType) ToPostgresSemanticLayerCredentialConfigurationPtrOutput() PostgresSemanticLayerCredentialConfigurationPtrOutput {
+	return i.ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresSemanticLayerCredentialConfigurationPtrType) ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresSemanticLayerCredentialConfigurationPtrOutput)
+}
+
+type PostgresSemanticLayerCredentialConfigurationOutput struct{ *pulumi.OutputState }
+
+func (PostgresSemanticLayerCredentialConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o PostgresSemanticLayerCredentialConfigurationOutput) ToPostgresSemanticLayerCredentialConfigurationOutput() PostgresSemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o PostgresSemanticLayerCredentialConfigurationOutput) ToPostgresSemanticLayerCredentialConfigurationOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialConfigurationOutput {
+	return o
+}
+
+func (o PostgresSemanticLayerCredentialConfigurationOutput) ToPostgresSemanticLayerCredentialConfigurationPtrOutput() PostgresSemanticLayerCredentialConfigurationPtrOutput {
+	return o.ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresSemanticLayerCredentialConfigurationOutput) ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialConfigurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresSemanticLayerCredentialConfiguration) *PostgresSemanticLayerCredentialConfiguration {
+		return &v
+	}).(PostgresSemanticLayerCredentialConfigurationPtrOutput)
+}
+
+// The adapter version
+func (o PostgresSemanticLayerCredentialConfigurationOutput) AdapterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialConfiguration) string { return v.AdapterVersion }).(pulumi.StringOutput)
+}
+
+// The name of the configuration
+func (o PostgresSemanticLayerCredentialConfigurationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialConfiguration) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the project
+func (o PostgresSemanticLayerCredentialConfigurationOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialConfiguration) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+type PostgresSemanticLayerCredentialConfigurationPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresSemanticLayerCredentialConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresSemanticLayerCredentialConfiguration)(nil)).Elem()
+}
+
+func (o PostgresSemanticLayerCredentialConfigurationPtrOutput) ToPostgresSemanticLayerCredentialConfigurationPtrOutput() PostgresSemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o PostgresSemanticLayerCredentialConfigurationPtrOutput) ToPostgresSemanticLayerCredentialConfigurationPtrOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialConfigurationPtrOutput {
+	return o
+}
+
+func (o PostgresSemanticLayerCredentialConfigurationPtrOutput) Elem() PostgresSemanticLayerCredentialConfigurationOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialConfiguration) PostgresSemanticLayerCredentialConfiguration {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresSemanticLayerCredentialConfiguration
+		return ret
+	}).(PostgresSemanticLayerCredentialConfigurationOutput)
+}
+
+// The adapter version
+func (o PostgresSemanticLayerCredentialConfigurationPtrOutput) AdapterVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AdapterVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the configuration
+func (o PostgresSemanticLayerCredentialConfigurationPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the project
+func (o PostgresSemanticLayerCredentialConfigurationPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+type PostgresSemanticLayerCredentialCredential struct {
+	// The system Postgres/Redshift/AlloyDB credential ID.
+	CredentialId *int `pulumi:"credentialId"`
+	// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	DefaultSchema *string `pulumi:"defaultSchema"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id *string `pulumi:"id"`
+	// Whether the Postgres/Redshift/AlloyDB credential is active
+	IsActive *bool `pulumi:"isActive"`
+	// Number of threads to use (required for Redshift)
+	NumThreads *int `pulumi:"numThreads"`
+	// Password for Postgres/Redshift/AlloyDB
+	Password *string `pulumi:"password"`
+	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
+	ProjectId int `pulumi:"projectId"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+	SemanticLayerCredential *bool `pulumi:"semanticLayerCredential"`
+	// Default schema name
+	TargetName *string `pulumi:"targetName"`
+	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	Type *string `pulumi:"type"`
+	// Username for Postgres/Redshift/AlloyDB
+	Username string `pulumi:"username"`
+}
+
+// PostgresSemanticLayerCredentialCredentialInput is an input type that accepts PostgresSemanticLayerCredentialCredentialArgs and PostgresSemanticLayerCredentialCredentialOutput values.
+// You can construct a concrete instance of `PostgresSemanticLayerCredentialCredentialInput` via:
+//
+//	PostgresSemanticLayerCredentialCredentialArgs{...}
+type PostgresSemanticLayerCredentialCredentialInput interface {
+	pulumi.Input
+
+	ToPostgresSemanticLayerCredentialCredentialOutput() PostgresSemanticLayerCredentialCredentialOutput
+	ToPostgresSemanticLayerCredentialCredentialOutputWithContext(context.Context) PostgresSemanticLayerCredentialCredentialOutput
+}
+
+type PostgresSemanticLayerCredentialCredentialArgs struct {
+	// The system Postgres/Redshift/AlloyDB credential ID.
+	CredentialId pulumi.IntPtrInput `pulumi:"credentialId"`
+	// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	DefaultSchema pulumi.StringPtrInput `pulumi:"defaultSchema"`
+	// The ID of this resource. Contains the project ID and the credential ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Whether the Postgres/Redshift/AlloyDB credential is active
+	IsActive pulumi.BoolPtrInput `pulumi:"isActive"`
+	// Number of threads to use (required for Redshift)
+	NumThreads pulumi.IntPtrInput `pulumi:"numThreads"`
+	// Password for Postgres/Redshift/AlloyDB
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+	SemanticLayerCredential pulumi.BoolPtrInput `pulumi:"semanticLayerCredential"`
+	// Default schema name
+	TargetName pulumi.StringPtrInput `pulumi:"targetName"`
+	// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Username for Postgres/Redshift/AlloyDB
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (PostgresSemanticLayerCredentialCredentialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i PostgresSemanticLayerCredentialCredentialArgs) ToPostgresSemanticLayerCredentialCredentialOutput() PostgresSemanticLayerCredentialCredentialOutput {
+	return i.ToPostgresSemanticLayerCredentialCredentialOutputWithContext(context.Background())
+}
+
+func (i PostgresSemanticLayerCredentialCredentialArgs) ToPostgresSemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialCredentialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresSemanticLayerCredentialCredentialOutput)
+}
+
+func (i PostgresSemanticLayerCredentialCredentialArgs) ToPostgresSemanticLayerCredentialCredentialPtrOutput() PostgresSemanticLayerCredentialCredentialPtrOutput {
+	return i.ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresSemanticLayerCredentialCredentialArgs) ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresSemanticLayerCredentialCredentialOutput).ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(ctx)
+}
+
+// PostgresSemanticLayerCredentialCredentialPtrInput is an input type that accepts PostgresSemanticLayerCredentialCredentialArgs, PostgresSemanticLayerCredentialCredentialPtr and PostgresSemanticLayerCredentialCredentialPtrOutput values.
+// You can construct a concrete instance of `PostgresSemanticLayerCredentialCredentialPtrInput` via:
+//
+//	        PostgresSemanticLayerCredentialCredentialArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresSemanticLayerCredentialCredentialPtrInput interface {
+	pulumi.Input
+
+	ToPostgresSemanticLayerCredentialCredentialPtrOutput() PostgresSemanticLayerCredentialCredentialPtrOutput
+	ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(context.Context) PostgresSemanticLayerCredentialCredentialPtrOutput
+}
+
+type postgresSemanticLayerCredentialCredentialPtrType PostgresSemanticLayerCredentialCredentialArgs
+
+func PostgresSemanticLayerCredentialCredentialPtr(v *PostgresSemanticLayerCredentialCredentialArgs) PostgresSemanticLayerCredentialCredentialPtrInput {
+	return (*postgresSemanticLayerCredentialCredentialPtrType)(v)
+}
+
+func (*postgresSemanticLayerCredentialCredentialPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (i *postgresSemanticLayerCredentialCredentialPtrType) ToPostgresSemanticLayerCredentialCredentialPtrOutput() PostgresSemanticLayerCredentialCredentialPtrOutput {
+	return i.ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresSemanticLayerCredentialCredentialPtrType) ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialCredentialPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresSemanticLayerCredentialCredentialPtrOutput)
+}
+
+type PostgresSemanticLayerCredentialCredentialOutput struct{ *pulumi.OutputState }
+
+func (PostgresSemanticLayerCredentialCredentialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o PostgresSemanticLayerCredentialCredentialOutput) ToPostgresSemanticLayerCredentialCredentialOutput() PostgresSemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o PostgresSemanticLayerCredentialCredentialOutput) ToPostgresSemanticLayerCredentialCredentialOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialCredentialOutput {
+	return o
+}
+
+func (o PostgresSemanticLayerCredentialCredentialOutput) ToPostgresSemanticLayerCredentialCredentialPtrOutput() PostgresSemanticLayerCredentialCredentialPtrOutput {
+	return o.ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresSemanticLayerCredentialCredentialOutput) ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialCredentialPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresSemanticLayerCredentialCredential) *PostgresSemanticLayerCredentialCredential {
+		return &v
+	}).(PostgresSemanticLayerCredentialCredentialPtrOutput)
+}
+
+// The system Postgres/Redshift/AlloyDB credential ID.
+func (o PostgresSemanticLayerCredentialCredentialOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *int { return v.CredentialId }).(pulumi.IntPtrOutput)
+}
+
+// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+func (o PostgresSemanticLayerCredentialCredentialOutput) DefaultSchema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *string { return v.DefaultSchema }).(pulumi.StringPtrOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o PostgresSemanticLayerCredentialCredentialOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Whether the Postgres/Redshift/AlloyDB credential is active
+func (o PostgresSemanticLayerCredentialCredentialOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *bool { return v.IsActive }).(pulumi.BoolPtrOutput)
+}
+
+// Number of threads to use (required for Redshift)
+func (o PostgresSemanticLayerCredentialCredentialOutput) NumThreads() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *int { return v.NumThreads }).(pulumi.IntPtrOutput)
+}
+
+// Password for Postgres/Redshift/AlloyDB
+func (o PostgresSemanticLayerCredentialCredentialOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Project ID to create the Postgres/Redshift/AlloyDB credential in.
+func (o PostgresSemanticLayerCredentialCredentialOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+func (o PostgresSemanticLayerCredentialCredentialOutput) SemanticLayerCredential() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *bool { return v.SemanticLayerCredential }).(pulumi.BoolPtrOutput)
+}
+
+// Default schema name
+func (o PostgresSemanticLayerCredentialCredentialOutput) TargetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *string { return v.TargetName }).(pulumi.StringPtrOutput)
+}
+
+// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+func (o PostgresSemanticLayerCredentialCredentialOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// Username for Postgres/Redshift/AlloyDB
+func (o PostgresSemanticLayerCredentialCredentialOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type PostgresSemanticLayerCredentialCredentialPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresSemanticLayerCredentialCredentialPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresSemanticLayerCredentialCredential)(nil)).Elem()
+}
+
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) ToPostgresSemanticLayerCredentialCredentialPtrOutput() PostgresSemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) ToPostgresSemanticLayerCredentialCredentialPtrOutputWithContext(ctx context.Context) PostgresSemanticLayerCredentialCredentialPtrOutput {
+	return o
+}
+
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) Elem() PostgresSemanticLayerCredentialCredentialOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) PostgresSemanticLayerCredentialCredential {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresSemanticLayerCredentialCredential
+		return ret
+	}).(PostgresSemanticLayerCredentialCredentialOutput)
+}
+
+// The system Postgres/Redshift/AlloyDB credential ID.
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) CredentialId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CredentialId
+	}).(pulumi.IntPtrOutput)
+}
+
+// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) DefaultSchema() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultSchema
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of this resource. Contains the project ID and the credential ID.
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether the Postgres/Redshift/AlloyDB credential is active
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) IsActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsActive
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Number of threads to use (required for Redshift)
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) NumThreads() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NumThreads
+	}).(pulumi.IntPtrOutput)
+}
+
+// Password for Postgres/Redshift/AlloyDB
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Project ID to create the Postgres/Redshift/AlloyDB credential in.
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ProjectId
+	}).(pulumi.IntPtrOutput)
+}
+
+// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) SemanticLayerCredential() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SemanticLayerCredential
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Default schema name
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) TargetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TargetName
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username for Postgres/Redshift/AlloyDB
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
 }
 
 type RedshiftSemanticLayerCredentialConfiguration struct {
@@ -9960,6 +10934,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), BigquerySemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialCredentialInput)(nil)).Elem(), BigquerySemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), BigquerySemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabricksSemanticLayerCredentialConfigurationInput)(nil)).Elem(), DatabricksSemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabricksSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), DatabricksSemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabricksSemanticLayerCredentialCredentialInput)(nil)).Elem(), DatabricksSemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabricksSemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), DatabricksSemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionApacheSparkInput)(nil)).Elem(), GlobalConnectionApacheSparkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionApacheSparkPtrInput)(nil)).Elem(), GlobalConnectionApacheSparkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionAthenaInput)(nil)).Elem(), GlobalConnectionAthenaArgs{})
@@ -9996,6 +10974,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionArrayInput)(nil)).Elem(), JobJobCompletionTriggerConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTriggersInput)(nil)).Elem(), JobTriggersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTriggersPtrInput)(nil)).Elem(), JobTriggersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresSemanticLayerCredentialConfigurationInput)(nil)).Elem(), PostgresSemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), PostgresSemanticLayerCredentialConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresSemanticLayerCredentialCredentialInput)(nil)).Elem(), PostgresSemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresSemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), PostgresSemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialConfigurationInput)(nil)).Elem(), RedshiftSemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), RedshiftSemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialCredentialInput)(nil)).Elem(), RedshiftSemanticLayerCredentialCredentialArgs{})
@@ -10061,6 +11043,10 @@ func init() {
 	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialCredentialOutput{})
 	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialCredentialPtrOutput{})
+	pulumi.RegisterOutputType(DatabricksSemanticLayerCredentialConfigurationOutput{})
+	pulumi.RegisterOutputType(DatabricksSemanticLayerCredentialConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(DatabricksSemanticLayerCredentialCredentialOutput{})
+	pulumi.RegisterOutputType(DatabricksSemanticLayerCredentialCredentialPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionApacheSparkOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionApacheSparkPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionAthenaOutput{})
@@ -10097,6 +11083,10 @@ func init() {
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionArrayOutput{})
 	pulumi.RegisterOutputType(JobTriggersOutput{})
 	pulumi.RegisterOutputType(JobTriggersPtrOutput{})
+	pulumi.RegisterOutputType(PostgresSemanticLayerCredentialConfigurationOutput{})
+	pulumi.RegisterOutputType(PostgresSemanticLayerCredentialConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(PostgresSemanticLayerCredentialCredentialOutput{})
+	pulumi.RegisterOutputType(PostgresSemanticLayerCredentialCredentialPtrOutput{})
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialConfigurationOutput{})
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialCredentialOutput{})

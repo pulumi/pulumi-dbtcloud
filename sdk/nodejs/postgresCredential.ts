@@ -87,7 +87,7 @@ export class PostgresCredential extends pulumi.CustomResource {
      */
     public /*out*/ readonly credentialId!: pulumi.Output<number>;
     /**
-     * Default schema name
+     * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
     public readonly defaultSchema!: pulumi.Output<string>;
     /**
@@ -107,11 +107,15 @@ export class PostgresCredential extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<number>;
     /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     */
+    public readonly semanticLayerCredential!: pulumi.Output<boolean>;
+    /**
      * Default schema name
      */
     public readonly targetName!: pulumi.Output<string>;
     /**
-     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -138,19 +142,14 @@ export class PostgresCredential extends pulumi.CustomResource {
             resourceInputs["numThreads"] = state ? state.numThreads : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["semanticLayerCredential"] = state ? state.semanticLayerCredential : undefined;
             resourceInputs["targetName"] = state ? state.targetName : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as PostgresCredentialArgs | undefined;
-            if ((!args || args.defaultSchema === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'defaultSchema'");
-            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
-            }
-            if ((!args || args.type === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'type'");
             }
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
@@ -160,6 +159,7 @@ export class PostgresCredential extends pulumi.CustomResource {
             resourceInputs["numThreads"] = args ? args.numThreads : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["semanticLayerCredential"] = args ? args.semanticLayerCredential : undefined;
             resourceInputs["targetName"] = args ? args.targetName : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
@@ -181,7 +181,7 @@ export interface PostgresCredentialState {
      */
     credentialId?: pulumi.Input<number>;
     /**
-     * Default schema name
+     * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
     defaultSchema?: pulumi.Input<string>;
     /**
@@ -201,11 +201,15 @@ export interface PostgresCredentialState {
      */
     projectId?: pulumi.Input<number>;
     /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     */
+    semanticLayerCredential?: pulumi.Input<boolean>;
+    /**
      * Default schema name
      */
     targetName?: pulumi.Input<string>;
     /**
-     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
     type?: pulumi.Input<string>;
     /**
@@ -219,9 +223,9 @@ export interface PostgresCredentialState {
  */
 export interface PostgresCredentialArgs {
     /**
-     * Default schema name
+     * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    defaultSchema: pulumi.Input<string>;
+    defaultSchema?: pulumi.Input<string>;
     /**
      * Whether the Postgres/Redshift/AlloyDB credential is active
      */
@@ -239,13 +243,17 @@ export interface PostgresCredentialArgs {
      */
     projectId: pulumi.Input<number>;
     /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     */
+    semanticLayerCredential?: pulumi.Input<boolean>;
+    /**
      * Default schema name
      */
     targetName?: pulumi.Input<string>;
     /**
-     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    type: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
     /**
      * Username for Postgres/Redshift/AlloyDB
      */

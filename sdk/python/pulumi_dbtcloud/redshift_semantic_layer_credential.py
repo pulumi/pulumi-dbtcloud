@@ -27,7 +27,7 @@ class RedshiftSemanticLayerCredentialArgs:
         """
         The set of arguments for constructing a RedshiftSemanticLayerCredential resource.
         :param pulumi.Input['RedshiftSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
-        :param pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs'] credential: Snowflake credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs'] credential: Redshift credential details, but used in the context of the Semantic Layer.
         """
         pulumi.set(__self__, "configuration", configuration)
         pulumi.set(__self__, "credential", credential)
@@ -48,7 +48,7 @@ class RedshiftSemanticLayerCredentialArgs:
     @pulumi.getter
     def credential(self) -> pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs']:
         """
-        Snowflake credential details, but used in the context of the Semantic Layer.
+        Redshift credential details, but used in the context of the Semantic Layer.
         """
         return pulumi.get(self, "credential")
 
@@ -65,7 +65,7 @@ class _RedshiftSemanticLayerCredentialState:
         """
         Input properties used for looking up and filtering RedshiftSemanticLayerCredential resources.
         :param pulumi.Input['RedshiftSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
-        :param pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs'] credential: Snowflake credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs'] credential: Redshift credential details, but used in the context of the Semantic Layer.
         """
         if configuration is not None:
             pulumi.set(__self__, "configuration", configuration)
@@ -88,7 +88,7 @@ class _RedshiftSemanticLayerCredentialState:
     @pulumi.getter
     def credential(self) -> Optional[pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs']]:
         """
-        Snowflake credential details, but used in the context of the Semantic Layer.
+        Redshift credential details, but used in the context of the Semantic Layer.
         """
         return pulumi.get(self, "credential")
 
@@ -109,10 +109,40 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         """
         Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
 
+        ## Import
+
+        using import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_redshift_semantic_layer_credential.example
+
+          id = "credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_redshift_semantic_layer_credential.example
+
+          id = "12345"
+
+        }
+
+        using the older import command
+
+        ```sh
+        $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example "credential_id"
+        ```
+
+        ```sh
+        $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
-        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']] credential: Snowflake credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']] credential: Redshift credential details, but used in the context of the Semantic Layer.
         """
         ...
     @overload
@@ -122,6 +152,36 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
+
+        ## Import
+
+        using import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_redshift_semantic_layer_credential.example
+
+          id = "credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_redshift_semantic_layer_credential.example
+
+          id = "12345"
+
+        }
+
+        using the older import command
+
+        ```sh
+        $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example "credential_id"
+        ```
+
+        ```sh
+        $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
+        ```
 
         :param str resource_name: The name of the resource.
         :param RedshiftSemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.
@@ -175,7 +235,7 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
-        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']] credential: Snowflake credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']] credential: Redshift credential details, but used in the context of the Semantic Layer.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -197,7 +257,7 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
     @pulumi.getter
     def credential(self) -> pulumi.Output['outputs.RedshiftSemanticLayerCredentialCredential']:
         """
-        Snowflake credential details, but used in the context of the Semantic Layer.
+        Redshift credential details, but used in the context of the Semantic Layer.
         """
         return pulumi.get(self, "credential")
 

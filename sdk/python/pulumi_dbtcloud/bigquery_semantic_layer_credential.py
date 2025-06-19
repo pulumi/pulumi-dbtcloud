@@ -365,6 +365,36 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         """
         BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
 
+        ## Import
+
+        using import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_bigquery_semantic_layer_credential.example
+
+          id = "credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_bigquery_semantic_layer_credential.example
+
+          id = "12345"
+
+        }
+
+        using the older import command
+
+        ```sh
+        $ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example "credential_id"
+        ```
+
+        ```sh
+        $ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example 12345
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
@@ -386,6 +416,36 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
+
+        ## Import
+
+        using import blocks (requires Terraform >= 1.5)
+
+        import {
+
+          to = dbtcloud_bigquery_semantic_layer_credential.example
+
+          id = "credential_id"
+
+        }
+
+        import {
+
+          to = dbtcloud_bigquery_semantic_layer_credential.example
+
+          id = "12345"
+
+        }
+
+        using the older import command
+
+        ```sh
+        $ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example "credential_id"
+        ```
+
+        ```sh
+        $ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example 12345
+        ```
 
         :param str resource_name: The name of the resource.
         :param BigquerySemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.

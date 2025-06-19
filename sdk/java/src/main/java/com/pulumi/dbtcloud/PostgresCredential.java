@@ -109,14 +109,14 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
         return this.credentialId;
     }
     /**
-     * Default schema name
+     * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     @Export(name="defaultSchema", refs={String.class}, tree="[0]")
     private Output<String> defaultSchema;
 
     /**
-     * @return Default schema name
+     * @return Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     public Output<String> defaultSchema() {
@@ -179,6 +179,20 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     * 
+     */
+    @Export(name="semanticLayerCredential", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> semanticLayerCredential;
+
+    /**
+     * @return This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+     * 
+     */
+    public Output<Boolean> semanticLayerCredential() {
+        return this.semanticLayerCredential;
+    }
+    /**
      * Default schema name
      * 
      */
@@ -193,14 +207,14 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
         return this.targetName;
     }
     /**
-     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of connection. One of (postgres/redshift). Use postgres for alloydb connections
+     * @return Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     public Output<String> type() {

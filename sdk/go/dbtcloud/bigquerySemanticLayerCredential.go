@@ -13,6 +13,36 @@ import (
 )
 
 // BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
+//
+// ## Import
+//
+// using import blocks (requires Terraform >= 1.5)
+//
+// import {
+//
+//	to = dbtcloud_bigquery_semantic_layer_credential.example
+//
+//	id = "credential_id"
+//
+// }
+//
+// import {
+//
+//	to = dbtcloud_bigquery_semantic_layer_credential.example
+//
+//	id = "12345"
+//
+// }
+//
+// using the older import command
+//
+// ```sh
+// $ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example "credential_id"
+// ```
+//
+// ```sh
+// $ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example 12345
+// ```
 type BigquerySemanticLayerCredential struct {
 	pulumi.CustomResourceState
 

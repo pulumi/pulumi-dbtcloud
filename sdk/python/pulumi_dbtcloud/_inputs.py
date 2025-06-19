@@ -20,6 +20,10 @@ __all__ = [
     'BigquerySemanticLayerCredentialConfigurationArgsDict',
     'BigquerySemanticLayerCredentialCredentialArgs',
     'BigquerySemanticLayerCredentialCredentialArgsDict',
+    'DatabricksSemanticLayerCredentialConfigurationArgs',
+    'DatabricksSemanticLayerCredentialConfigurationArgsDict',
+    'DatabricksSemanticLayerCredentialCredentialArgs',
+    'DatabricksSemanticLayerCredentialCredentialArgsDict',
     'GlobalConnectionApacheSparkArgs',
     'GlobalConnectionApacheSparkArgsDict',
     'GlobalConnectionAthenaArgs',
@@ -56,6 +60,10 @@ __all__ = [
     'JobJobCompletionTriggerConditionArgsDict',
     'JobTriggersArgs',
     'JobTriggersArgsDict',
+    'PostgresSemanticLayerCredentialConfigurationArgs',
+    'PostgresSemanticLayerCredentialConfigurationArgsDict',
+    'PostgresSemanticLayerCredentialCredentialArgs',
+    'PostgresSemanticLayerCredentialCredentialArgsDict',
     'RedshiftSemanticLayerCredentialConfigurationArgs',
     'RedshiftSemanticLayerCredentialConfigurationArgsDict',
     'RedshiftSemanticLayerCredentialCredentialArgs',
@@ -272,6 +280,269 @@ class BigquerySemanticLayerCredentialCredentialArgs:
     @is_active.setter
     def is_active(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "is_active", value)
+
+
+if not MYPY:
+    class DatabricksSemanticLayerCredentialConfigurationArgsDict(TypedDict):
+        adapter_version: pulumi.Input[builtins.str]
+        """
+        The adapter version
+        """
+        name: pulumi.Input[builtins.str]
+        """
+        The name of the configuration
+        """
+        project_id: pulumi.Input[builtins.int]
+        """
+        The ID of the project
+        """
+elif False:
+    DatabricksSemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class DatabricksSemanticLayerCredentialConfigurationArgs:
+    def __init__(__self__, *,
+                 adapter_version: pulumi.Input[builtins.str],
+                 name: pulumi.Input[builtins.str],
+                 project_id: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.str] adapter_version: The adapter version
+        :param pulumi.Input[builtins.str] name: The name of the configuration
+        :param pulumi.Input[builtins.int] project_id: The ID of the project
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> pulumi.Input[builtins.str]:
+        """
+        The adapter version
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @adapter_version.setter
+    def adapter_version(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "adapter_version", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the configuration
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+
+if not MYPY:
+    class DatabricksSemanticLayerCredentialCredentialArgsDict(TypedDict):
+        project_id: pulumi.Input[builtins.int]
+        """
+        Project ID to create the Databricks credential in
+        """
+        token: pulumi.Input[builtins.str]
+        """
+        Token for Databricks user
+        """
+        adapter_type: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        catalog: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The catalog where to create models (only for the databricks adapter)
+        """
+        credential_id: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The system Databricks credential ID
+        """
+        id: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        schema: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        semantic_layer_credential: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        """
+        target_name: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Target name
+        """
+elif False:
+    DatabricksSemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class DatabricksSemanticLayerCredentialCredentialArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[builtins.int],
+                 token: pulumi.Input[builtins.str],
+                 adapter_type: Optional[pulumi.Input[builtins.str]] = None,
+                 catalog: Optional[pulumi.Input[builtins.str]] = None,
+                 credential_id: Optional[pulumi.Input[builtins.int]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
+                 target_name: Optional[pulumi.Input[builtins.str]] = None):
+        """
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the Databricks credential in
+        :param pulumi.Input[builtins.str] token: Token for Databricks user
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
+        :param pulumi.Input[builtins.int] credential_id: The system Databricks credential ID
+        :param pulumi.Input[builtins.str] id: The ID of this resource. Contains the project ID and the credential ID.
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        :param pulumi.Input[builtins.str] target_name: Target name
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "token", token)
+        if adapter_type is not None:
+            pulumi.set(__self__, "adapter_type", adapter_type)
+        if catalog is not None:
+            pulumi.set(__self__, "catalog", catalog)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
+        if target_name is not None:
+            warnings.warn("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""", DeprecationWarning)
+            pulumi.log.warn("""target_name is deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
+        if target_name is not None:
+            pulumi.set(__self__, "target_name", target_name)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        Project ID to create the Databricks credential in
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def token(self) -> pulumi.Input[builtins.str]:
+        """
+        Token for Databricks user
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter(name="adapterType")
+    def adapter_type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        return pulumi.get(self, "adapter_type")
+
+    @adapter_type.setter
+    def adapter_type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "adapter_type", value)
+
+    @property
+    @pulumi.getter
+    def catalog(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The catalog where to create models (only for the databricks adapter)
+        """
+        return pulumi.get(self, "catalog")
+
+    @catalog.setter
+    def catalog(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "catalog", value)
+
+    @property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The system Databricks credential ID
+        """
+        return pulumi.get(self, "credential_id")
+
+    @credential_id.setter
+    def credential_id(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "credential_id", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def schema(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        return pulumi.get(self, "schema")
+
+    @schema.setter
+    def schema(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "schema", value)
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
+
+    @property
+    @pulumi.getter(name="targetName")
+    @_utilities.deprecated("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
+    def target_name(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Target name
+        """
+        return pulumi.get(self, "target_name")
+
+    @target_name.setter
+    def target_name(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "target_name", value)
 
 
 if not MYPY:
@@ -2768,6 +3039,305 @@ class JobTriggersArgs:
     @schedule.setter
     def schedule(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "schedule", value)
+
+
+if not MYPY:
+    class PostgresSemanticLayerCredentialConfigurationArgsDict(TypedDict):
+        adapter_version: pulumi.Input[builtins.str]
+        """
+        The adapter version
+        """
+        name: pulumi.Input[builtins.str]
+        """
+        The name of the configuration
+        """
+        project_id: pulumi.Input[builtins.int]
+        """
+        The ID of the project
+        """
+elif False:
+    PostgresSemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PostgresSemanticLayerCredentialConfigurationArgs:
+    def __init__(__self__, *,
+                 adapter_version: pulumi.Input[builtins.str],
+                 name: pulumi.Input[builtins.str],
+                 project_id: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.str] adapter_version: The adapter version
+        :param pulumi.Input[builtins.str] name: The name of the configuration
+        :param pulumi.Input[builtins.int] project_id: The ID of the project
+        """
+        pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="adapterVersion")
+    def adapter_version(self) -> pulumi.Input[builtins.str]:
+        """
+        The adapter version
+        """
+        return pulumi.get(self, "adapter_version")
+
+    @adapter_version.setter
+    def adapter_version(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "adapter_version", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the configuration
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        The ID of the project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+
+if not MYPY:
+    class PostgresSemanticLayerCredentialCredentialArgsDict(TypedDict):
+        project_id: pulumi.Input[builtins.int]
+        """
+        Project ID to create the Postgres/Redshift/AlloyDB credential in.
+        """
+        username: pulumi.Input[builtins.str]
+        """
+        Username for Postgres/Redshift/AlloyDB
+        """
+        credential_id: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The system Postgres/Redshift/AlloyDB credential ID.
+        """
+        default_schema: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        id: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        is_active: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the Postgres/Redshift/AlloyDB credential is active
+        """
+        num_threads: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Number of threads to use (required for Redshift)
+        """
+        password: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Password for Postgres/Redshift/AlloyDB
+        """
+        semantic_layer_credential: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        """
+        target_name: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Default schema name
+        """
+        type: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+elif False:
+    PostgresSemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PostgresSemanticLayerCredentialCredentialArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[builtins.int],
+                 username: pulumi.Input[builtins.str],
+                 credential_id: Optional[pulumi.Input[builtins.int]] = None,
+                 default_schema: Optional[pulumi.Input[builtins.str]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 is_active: Optional[pulumi.Input[builtins.bool]] = None,
+                 num_threads: Optional[pulumi.Input[builtins.int]] = None,
+                 password: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
+                 target_name: Optional[pulumi.Input[builtins.str]] = None,
+                 type: Optional[pulumi.Input[builtins.str]] = None):
+        """
+        :param pulumi.Input[builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
+        :param pulumi.Input[builtins.str] username: Username for Postgres/Redshift/AlloyDB
+        :param pulumi.Input[builtins.int] credential_id: The system Postgres/Redshift/AlloyDB credential ID.
+        :param pulumi.Input[builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[builtins.str] id: The ID of this resource. Contains the project ID and the credential ID.
+        :param pulumi.Input[builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
+        :param pulumi.Input[builtins.int] num_threads: Number of threads to use (required for Redshift)
+        :param pulumi.Input[builtins.str] password: Password for Postgres/Redshift/AlloyDB
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        :param pulumi.Input[builtins.str] target_name: Default schema name
+        :param pulumi.Input[builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "username", username)
+        if credential_id is not None:
+            pulumi.set(__self__, "credential_id", credential_id)
+        if default_schema is not None:
+            pulumi.set(__self__, "default_schema", default_schema)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_active is not None:
+            pulumi.set(__self__, "is_active", is_active)
+        if num_threads is not None:
+            pulumi.set(__self__, "num_threads", num_threads)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
+        if target_name is not None:
+            pulumi.set(__self__, "target_name", target_name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[builtins.int]:
+        """
+        Project ID to create the Postgres/Redshift/AlloyDB credential in.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[builtins.str]:
+        """
+        Username for Postgres/Redshift/AlloyDB
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter(name="credentialId")
+    def credential_id(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The system Postgres/Redshift/AlloyDB credential ID.
+        """
+        return pulumi.get(self, "credential_id")
+
+    @credential_id.setter
+    def credential_id(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "credential_id", value)
+
+    @property
+    @pulumi.getter(name="defaultSchema")
+    def default_schema(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        return pulumi.get(self, "default_schema")
+
+    @default_schema.setter
+    def default_schema(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "default_schema", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of this resource. Contains the project ID and the credential ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the Postgres/Redshift/AlloyDB credential is active
+        """
+        return pulumi.get(self, "is_active")
+
+    @is_active.setter
+    def is_active(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "is_active", value)
+
+    @property
+    @pulumi.getter(name="numThreads")
+    def num_threads(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Number of threads to use (required for Redshift)
+        """
+        return pulumi.get(self, "num_threads")
+
+    @num_threads.setter
+    def num_threads(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "num_threads", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Password for Postgres/Redshift/AlloyDB
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
+
+    @property
+    @pulumi.getter(name="targetName")
+    def target_name(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Default schema name
+        """
+        return pulumi.get(self, "target_name")
+
+    @target_name.setter
+    def target_name(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "target_name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "type", value)
 
 
 if not MYPY:

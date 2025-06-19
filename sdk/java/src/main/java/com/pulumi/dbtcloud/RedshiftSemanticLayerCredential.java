@@ -17,6 +17,41 @@ import javax.annotation.Nullable;
 /**
  * Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
  * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Import
+ * 
+ * using import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_redshift_semantic_layer_credential.example
+ * 
+ *   id = &#34;credential_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_redshift_semantic_layer_credential.example
+ * 
+ *   id = &#34;12345&#34;
+ * 
+ * }
+ * 
+ * using the older import command
+ * 
+ * ```sh
+ * $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example &#34;credential_id&#34;
+ * ```
+ * 
+ * ```sh
+ * $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
+ * ```
+ * 
  */
 @ResourceType(type="dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential")
 public class RedshiftSemanticLayerCredential extends com.pulumi.resources.CustomResource {
@@ -35,14 +70,14 @@ public class RedshiftSemanticLayerCredential extends com.pulumi.resources.Custom
         return this.configuration;
     }
     /**
-     * Snowflake credential details, but used in the context of the Semantic Layer.
+     * Redshift credential details, but used in the context of the Semantic Layer.
      * 
      */
     @Export(name="credential", refs={RedshiftSemanticLayerCredentialCredential.class}, tree="[0]")
     private Output<RedshiftSemanticLayerCredentialCredential> credential;
 
     /**
-     * @return Snowflake credential details, but used in the context of the Semantic Layer.
+     * @return Redshift credential details, but used in the context of the Semantic Layer.
      * 
      */
     public Output<RedshiftSemanticLayerCredentialCredential> credential() {

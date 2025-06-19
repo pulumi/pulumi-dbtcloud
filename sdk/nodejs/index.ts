@@ -30,6 +30,11 @@ export type DatabricksCredential = import("./databricksCredential").DatabricksCr
 export const DatabricksCredential: typeof import("./databricksCredential").DatabricksCredential = null as any;
 utilities.lazyLoad(exports, ["DatabricksCredential"], () => require("./databricksCredential"));
 
+export { DatabricksSemanticLayerCredentialArgs, DatabricksSemanticLayerCredentialState } from "./databricksSemanticLayerCredential";
+export type DatabricksSemanticLayerCredential = import("./databricksSemanticLayerCredential").DatabricksSemanticLayerCredential;
+export const DatabricksSemanticLayerCredential: typeof import("./databricksSemanticLayerCredential").DatabricksSemanticLayerCredential = null as any;
+utilities.lazyLoad(exports, ["DatabricksSemanticLayerCredential"], () => require("./databricksSemanticLayerCredential"));
+
 export { EnvironmentArgs, EnvironmentState } from "./environment";
 export type Environment = import("./environment").Environment;
 export const Environment: typeof import("./environment").Environment = null as any;
@@ -290,6 +295,11 @@ export type PostgresCredential = import("./postgresCredential").PostgresCredenti
 export const PostgresCredential: typeof import("./postgresCredential").PostgresCredential = null as any;
 utilities.lazyLoad(exports, ["PostgresCredential"], () => require("./postgresCredential"));
 
+export { PostgresSemanticLayerCredentialArgs, PostgresSemanticLayerCredentialState } from "./postgresSemanticLayerCredential";
+export type PostgresSemanticLayerCredential = import("./postgresSemanticLayerCredential").PostgresSemanticLayerCredential;
+export const PostgresSemanticLayerCredential: typeof import("./postgresSemanticLayerCredential").PostgresSemanticLayerCredential = null as any;
+utilities.lazyLoad(exports, ["PostgresSemanticLayerCredential"], () => require("./postgresSemanticLayerCredential"));
+
 export { ProjectArgs, ProjectState } from "./project";
 export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
@@ -327,6 +337,11 @@ export { SemanticLayerConfigurationArgs, SemanticLayerConfigurationState } from 
 export type SemanticLayerConfiguration = import("./semanticLayerConfiguration").SemanticLayerConfiguration;
 export const SemanticLayerConfiguration: typeof import("./semanticLayerConfiguration").SemanticLayerConfiguration = null as any;
 utilities.lazyLoad(exports, ["SemanticLayerConfiguration"], () => require("./semanticLayerConfiguration"));
+
+export { SemanticLayerCredentialServiceTokenMappingArgs, SemanticLayerCredentialServiceTokenMappingState } from "./semanticLayerCredentialServiceTokenMapping";
+export type SemanticLayerCredentialServiceTokenMapping = import("./semanticLayerCredentialServiceTokenMapping").SemanticLayerCredentialServiceTokenMapping;
+export const SemanticLayerCredentialServiceTokenMapping: typeof import("./semanticLayerCredentialServiceTokenMapping").SemanticLayerCredentialServiceTokenMapping = null as any;
+utilities.lazyLoad(exports, ["SemanticLayerCredentialServiceTokenMapping"], () => require("./semanticLayerCredentialServiceTokenMapping"));
 
 export { ServiceTokenArgs, ServiceTokenState } from "./serviceToken";
 export type ServiceToken = import("./serviceToken").ServiceToken;
@@ -392,6 +407,8 @@ const _module = {
                 return new BigquerySemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/databricksCredential:DatabricksCredential":
                 return new DatabricksCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential":
+                return new DatabricksSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/environment:Environment":
                 return new Environment(name, <any>undefined, { urn })
             case "dbtcloud:index/environmentVariable:EnvironmentVariable":
@@ -430,6 +447,8 @@ const _module = {
                 return new PartialNotification(name, <any>undefined, { urn })
             case "dbtcloud:index/postgresCredential:PostgresCredential":
                 return new PostgresCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential":
+                return new PostgresSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
             case "dbtcloud:index/projectArtefacts:ProjectArtefacts":
@@ -444,6 +463,8 @@ const _module = {
                 return new Repository(name, <any>undefined, { urn })
             case "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration":
                 return new SemanticLayerConfiguration(name, <any>undefined, { urn })
+            case "dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping":
+                return new SemanticLayerCredentialServiceTokenMapping(name, <any>undefined, { urn })
             case "dbtcloud:index/serviceToken:ServiceToken":
                 return new ServiceToken(name, <any>undefined, { urn })
             case "dbtcloud:index/snowflakeCredential:SnowflakeCredential":
@@ -470,6 +491,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/athenaCredential", _mod
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigquerySemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/databricksCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/databricksSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/environment", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/environmentVariable", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/environmentVariableJobOverride", _module)
@@ -489,6 +511,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/partialEnvironmentVaria
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialLicenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialNotification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/postgresCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/postgresSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/project", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/projectArtefacts", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/projectRepository", _module)
@@ -496,6 +519,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftCredential", _m
 pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/repository", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerConfiguration", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerCredentialServiceTokenMapping", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/serviceToken", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeSemanticLayerCredential", _module)

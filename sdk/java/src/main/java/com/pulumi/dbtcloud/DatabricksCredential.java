@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.dbtcloud.DatabricksCredentialArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.DatabricksCredentialState;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -90,14 +91,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/databricksCredential:DatabricksCredential")
 public class DatabricksCredential extends com.pulumi.resources.CustomResource {
     /**
-     * The type of the adapter (databricks or spark)
+     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     @Export(name="adapterType", refs={String.class}, tree="[0]")
     private Output<String> adapterType;
 
     /**
-     * @return The type of the adapter (databricks or spark)
+     * @return The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     public Output<String> adapterType() {
@@ -146,18 +147,32 @@ public class DatabricksCredential extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * The schema where to create models
+     * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     @Export(name="schema", refs={String.class}, tree="[0]")
     private Output<String> schema;
 
     /**
-     * @return The schema where to create models
+     * @return The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     public Output<String> schema() {
         return this.schema;
+    }
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+     * 
+     */
+    @Export(name="semanticLayerCredential", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> semanticLayerCredential;
+
+    /**
+     * @return This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+     * 
+     */
+    public Output<Boolean> semanticLayerCredential() {
+        return this.semanticLayerCredential;
     }
     /**
      * Target name

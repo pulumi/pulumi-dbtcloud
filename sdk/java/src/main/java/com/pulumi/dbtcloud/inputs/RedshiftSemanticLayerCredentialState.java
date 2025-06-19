@@ -32,14 +32,14 @@ public final class RedshiftSemanticLayerCredentialState extends com.pulumi.resou
     }
 
     /**
-     * Snowflake credential details, but used in the context of the Semantic Layer.
+     * Redshift credential details, but used in the context of the Semantic Layer.
      * 
      */
     @Import(name="credential")
     private @Nullable Output<RedshiftSemanticLayerCredentialCredentialArgs> credential;
 
     /**
-     * @return Snowflake credential details, but used in the context of the Semantic Layer.
+     * @return Redshift credential details, but used in the context of the Semantic Layer.
      * 
      */
     public Optional<Output<RedshiftSemanticLayerCredentialCredentialArgs>> credential() {
@@ -93,7 +93,7 @@ public final class RedshiftSemanticLayerCredentialState extends com.pulumi.resou
         }
 
         /**
-         * @param credential Snowflake credential details, but used in the context of the Semantic Layer.
+         * @param credential Redshift credential details, but used in the context of the Semantic Layer.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class RedshiftSemanticLayerCredentialState extends com.pulumi.resou
         }
 
         /**
-         * @param credential Snowflake credential details, but used in the context of the Semantic Layer.
+         * @param credential Redshift credential details, but used in the context of the Semantic Layer.
          * 
          * @return builder
          * 

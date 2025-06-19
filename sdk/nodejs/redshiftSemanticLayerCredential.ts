@@ -8,6 +8,36 @@ import * as utilities from "./utilities";
 
 /**
  * Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
+ *
+ * ## Import
+ *
+ * using import blocks (requires Terraform >= 1.5)
+ *
+ * import {
+ *
+ *   to = dbtcloud_redshift_semantic_layer_credential.example
+ *
+ *   id = "credential_id"
+ *
+ * }
+ *
+ * import {
+ *
+ *   to = dbtcloud_redshift_semantic_layer_credential.example
+ *
+ *   id = "12345"
+ *
+ * }
+ *
+ * using the older import command
+ *
+ * ```sh
+ * $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example "credential_id"
+ * ```
+ *
+ * ```sh
+ * $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
+ * ```
  */
 export class RedshiftSemanticLayerCredential extends pulumi.CustomResource {
     /**
@@ -42,7 +72,7 @@ export class RedshiftSemanticLayerCredential extends pulumi.CustomResource {
      */
     public readonly configuration!: pulumi.Output<outputs.RedshiftSemanticLayerCredentialConfiguration>;
     /**
-     * Snowflake credential details, but used in the context of the Semantic Layer.
+     * Redshift credential details, but used in the context of the Semantic Layer.
      */
     public readonly credential!: pulumi.Output<outputs.RedshiftSemanticLayerCredentialCredential>;
 
@@ -86,7 +116,7 @@ export interface RedshiftSemanticLayerCredentialState {
      */
     configuration?: pulumi.Input<inputs.RedshiftSemanticLayerCredentialConfiguration>;
     /**
-     * Snowflake credential details, but used in the context of the Semantic Layer.
+     * Redshift credential details, but used in the context of the Semantic Layer.
      */
     credential?: pulumi.Input<inputs.RedshiftSemanticLayerCredentialCredential>;
 }
@@ -100,7 +130,7 @@ export interface RedshiftSemanticLayerCredentialArgs {
      */
     configuration: pulumi.Input<inputs.RedshiftSemanticLayerCredentialConfiguration>;
     /**
-     * Snowflake credential details, but used in the context of the Semantic Layer.
+     * Redshift credential details, but used in the context of the Semantic Layer.
      */
     credential: pulumi.Input<inputs.RedshiftSemanticLayerCredentialCredential>;
 }

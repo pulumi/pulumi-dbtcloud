@@ -19,6 +19,41 @@ import javax.annotation.Nullable;
 /**
  * BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
  * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Import
+ * 
+ * using import blocks (requires Terraform &gt;= 1.5)
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_bigquery_semantic_layer_credential.example
+ * 
+ *   id = &#34;credential_id&#34;
+ * 
+ * }
+ * 
+ * import {
+ * 
+ *   to = dbtcloud_bigquery_semantic_layer_credential.example
+ * 
+ *   id = &#34;12345&#34;
+ * 
+ * }
+ * 
+ * using the older import command
+ * 
+ * ```sh
+ * $ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example &#34;credential_id&#34;
+ * ```
+ * 
+ * ```sh
+ * $ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example 12345
+ * ```
+ * 
  */
 @ResourceType(type="dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential")
 public class BigquerySemanticLayerCredential extends com.pulumi.resources.CustomResource {

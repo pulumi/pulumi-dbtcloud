@@ -67,7 +67,7 @@ namespace Pulumi.DbtCloud
     public partial class DatabricksCredential : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The type of the adapter (databricks or spark)
+        /// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
         [Output("adapterType")]
         public Output<string> AdapterType { get; private set; } = null!;
@@ -91,10 +91,16 @@ namespace Pulumi.DbtCloud
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The schema where to create models
+        /// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
         [Output("schema")]
         public Output<string> Schema { get; private set; } = null!;
+
+        /// <summary>
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        /// </summary>
+        [Output("semanticLayerCredential")]
+        public Output<bool> SemanticLayerCredential { get; private set; } = null!;
 
         /// <summary>
         /// Target name
@@ -160,10 +166,10 @@ namespace Pulumi.DbtCloud
     public sealed class DatabricksCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The type of the adapter (databricks or spark)
+        /// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
-        [Input("adapterType", required: true)]
-        public Input<string> AdapterType { get; set; } = null!;
+        [Input("adapterType")]
+        public Input<string>? AdapterType { get; set; }
 
         /// <summary>
         /// The catalog where to create models (only for the databricks adapter)
@@ -178,10 +184,16 @@ namespace Pulumi.DbtCloud
         public Input<int> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The schema where to create models
+        /// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
-        [Input("schema", required: true)]
-        public Input<string> Schema { get; set; } = null!;
+        [Input("schema")]
+        public Input<string>? Schema { get; set; }
+
+        /// <summary>
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        /// </summary>
+        [Input("semanticLayerCredential")]
+        public Input<bool>? SemanticLayerCredential { get; set; }
 
         /// <summary>
         /// Target name
@@ -214,7 +226,7 @@ namespace Pulumi.DbtCloud
     public sealed class DatabricksCredentialState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The type of the adapter (databricks or spark)
+        /// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
         [Input("adapterType")]
         public Input<string>? AdapterType { get; set; }
@@ -238,10 +250,16 @@ namespace Pulumi.DbtCloud
         public Input<int>? ProjectId { get; set; }
 
         /// <summary>
-        /// The schema where to create models
+        /// The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         /// </summary>
         [Input("schema")]
         public Input<string>? Schema { get; set; }
+
+        /// <summary>
+        /// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        /// </summary>
+        [Input("semanticLayerCredential")]
+        public Input<bool>? SemanticLayerCredential { get; set; }
 
         /// <summary>
         /// Target name

@@ -5,6 +5,7 @@ package com.pulumi.dbtcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -17,14 +18,14 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
     public static final DatabricksCredentialState Empty = new DatabricksCredentialState();
 
     /**
-     * The type of the adapter (databricks or spark)
+     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     @Import(name="adapterType")
     private @Nullable Output<String> adapterType;
 
     /**
-     * @return The type of the adapter (databricks or spark)
+     * @return The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     public Optional<Output<String>> adapterType() {
@@ -77,18 +78,33 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
     }
 
     /**
-     * The schema where to create models
+     * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     @Import(name="schema")
     private @Nullable Output<String> schema;
 
     /**
-     * @return The schema where to create models
+     * @return The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      * 
      */
     public Optional<Output<String>> schema() {
         return Optional.ofNullable(this.schema);
+    }
+
+    /**
+     * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+     * 
+     */
+    @Import(name="semanticLayerCredential")
+    private @Nullable Output<Boolean> semanticLayerCredential;
+
+    /**
+     * @return This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+     * 
+     */
+    public Optional<Output<Boolean>> semanticLayerCredential() {
+        return Optional.ofNullable(this.semanticLayerCredential);
     }
 
     /**
@@ -137,6 +153,7 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
         this.credentialId = $.credentialId;
         this.projectId = $.projectId;
         this.schema = $.schema;
+        this.semanticLayerCredential = $.semanticLayerCredential;
         this.targetName = $.targetName;
         this.token = $.token;
     }
@@ -160,7 +177,7 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param adapterType The type of the adapter (databricks or spark)
+         * @param adapterType The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
@@ -171,7 +188,7 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param adapterType The type of the adapter (databricks or spark)
+         * @param adapterType The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
@@ -244,7 +261,7 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param schema The schema where to create models
+         * @param schema The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
@@ -255,13 +272,34 @@ public final class DatabricksCredentialState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param schema The schema where to create models
+         * @param schema The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
          */
         public Builder schema(String schema) {
             return schema(Output.of(schema));
+        }
+
+        /**
+         * @param semanticLayerCredential This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder semanticLayerCredential(@Nullable Output<Boolean> semanticLayerCredential) {
+            $.semanticLayerCredential = semanticLayerCredential;
+            return this;
+        }
+
+        /**
+         * @param semanticLayerCredential This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder semanticLayerCredential(Boolean semanticLayerCredential) {
+            return semanticLayerCredential(Output.of(semanticLayerCredential));
         }
 
         /**

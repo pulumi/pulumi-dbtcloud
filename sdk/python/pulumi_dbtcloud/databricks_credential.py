@@ -20,44 +20,38 @@ __all__ = ['DatabricksCredentialArgs', 'DatabricksCredential']
 @pulumi.input_type
 class DatabricksCredentialArgs:
     def __init__(__self__, *,
-                 adapter_type: pulumi.Input[builtins.str],
                  project_id: pulumi.Input[builtins.int],
-                 schema: pulumi.Input[builtins.str],
                  token: pulumi.Input[builtins.str],
+                 adapter_type: Optional[pulumi.Input[builtins.str]] = None,
                  catalog: Optional[pulumi.Input[builtins.str]] = None,
+                 schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a DatabricksCredential resource.
-        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark)
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Databricks credential in
-        :param pulumi.Input[builtins.str] schema: The schema where to create models
         :param pulumi.Input[builtins.str] token: Token for Databricks user
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param pulumi.Input[builtins.str] target_name: Target name
         """
-        pulumi.set(__self__, "adapter_type", adapter_type)
         pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "schema", schema)
         pulumi.set(__self__, "token", token)
+        if adapter_type is not None:
+            pulumi.set(__self__, "adapter_type", adapter_type)
         if catalog is not None:
             pulumi.set(__self__, "catalog", catalog)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
         if target_name is not None:
             warnings.warn("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""", DeprecationWarning)
             pulumi.log.warn("""target_name is deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
         if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
-
-    @property
-    @pulumi.getter(name="adapterType")
-    def adapter_type(self) -> pulumi.Input[builtins.str]:
-        """
-        The type of the adapter (databricks or spark)
-        """
-        return pulumi.get(self, "adapter_type")
-
-    @adapter_type.setter
-    def adapter_type(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "adapter_type", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -73,18 +67,6 @@ class DatabricksCredentialArgs:
 
     @property
     @pulumi.getter
-    def schema(self) -> pulumi.Input[builtins.str]:
-        """
-        The schema where to create models
-        """
-        return pulumi.get(self, "schema")
-
-    @schema.setter
-    def schema(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "schema", value)
-
-    @property
-    @pulumi.getter
     def token(self) -> pulumi.Input[builtins.str]:
         """
         Token for Databricks user
@@ -94,6 +76,18 @@ class DatabricksCredentialArgs:
     @token.setter
     def token(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter(name="adapterType")
+    def adapter_type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        return pulumi.get(self, "adapter_type")
+
+    @adapter_type.setter
+    def adapter_type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "adapter_type", value)
 
     @property
     @pulumi.getter
@@ -106,6 +100,30 @@ class DatabricksCredentialArgs:
     @catalog.setter
     def catalog(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "catalog", value)
+
+    @property
+    @pulumi.getter
+    def schema(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        """
+        return pulumi.get(self, "schema")
+
+    @schema.setter
+    def schema(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "schema", value)
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
 
     @property
     @pulumi.getter(name="targetName")
@@ -129,15 +147,17 @@ class _DatabricksCredentialState:
                  credential_id: Optional[pulumi.Input[builtins.int]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[builtins.str]] = None,
                  token: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabricksCredential resources.
-        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark)
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[builtins.int] credential_id: The system Databricks credential ID
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Databricks credential in
-        :param pulumi.Input[builtins.str] schema: The schema where to create models
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param pulumi.Input[builtins.str] target_name: Target name
         :param pulumi.Input[builtins.str] token: Token for Databricks user
         """
@@ -151,6 +171,8 @@ class _DatabricksCredentialState:
             pulumi.set(__self__, "project_id", project_id)
         if schema is not None:
             pulumi.set(__self__, "schema", schema)
+        if semantic_layer_credential is not None:
+            pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
         if target_name is not None:
             warnings.warn("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""", DeprecationWarning)
             pulumi.log.warn("""target_name is deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
@@ -163,7 +185,7 @@ class _DatabricksCredentialState:
     @pulumi.getter(name="adapterType")
     def adapter_type(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The type of the adapter (databricks or spark)
+        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "adapter_type")
 
@@ -211,13 +233,25 @@ class _DatabricksCredentialState:
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The schema where to create models
+        The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "schema")
 
     @schema.setter
     def schema(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "schema", value)
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
+
+    @semantic_layer_credential.setter
+    def semantic_layer_credential(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "semantic_layer_credential", value)
 
     @property
     @pulumi.getter(name="targetName")
@@ -255,6 +289,7 @@ class DatabricksCredential(pulumi.CustomResource):
                  catalog: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[builtins.str]] = None,
                  token: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -306,10 +341,11 @@ class DatabricksCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark)
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Databricks credential in
-        :param pulumi.Input[builtins.str] schema: The schema where to create models
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param pulumi.Input[builtins.str] target_name: Target name
         :param pulumi.Input[builtins.str] token: Token for Databricks user
         """
@@ -384,6 +420,7 @@ class DatabricksCredential(pulumi.CustomResource):
                  catalog: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  schema: Optional[pulumi.Input[builtins.str]] = None,
+                 semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[builtins.str]] = None,
                  token: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -395,16 +432,13 @@ class DatabricksCredential(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DatabricksCredentialArgs.__new__(DatabricksCredentialArgs)
 
-            if adapter_type is None and not opts.urn:
-                raise TypeError("Missing required property 'adapter_type'")
             __props__.__dict__["adapter_type"] = adapter_type
             __props__.__dict__["catalog"] = catalog
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            if schema is None and not opts.urn:
-                raise TypeError("Missing required property 'schema'")
             __props__.__dict__["schema"] = schema
+            __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
             __props__.__dict__["target_name"] = target_name
             if token is None and not opts.urn:
                 raise TypeError("Missing required property 'token'")
@@ -427,6 +461,7 @@ class DatabricksCredential(pulumi.CustomResource):
             credential_id: Optional[pulumi.Input[builtins.int]] = None,
             project_id: Optional[pulumi.Input[builtins.int]] = None,
             schema: Optional[pulumi.Input[builtins.str]] = None,
+            semantic_layer_credential: Optional[pulumi.Input[builtins.bool]] = None,
             target_name: Optional[pulumi.Input[builtins.str]] = None,
             token: Optional[pulumi.Input[builtins.str]] = None) -> 'DatabricksCredential':
         """
@@ -436,11 +471,12 @@ class DatabricksCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark)
+        :param pulumi.Input[builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[builtins.int] credential_id: The system Databricks credential ID
         :param pulumi.Input[builtins.int] project_id: Project ID to create the Databricks credential in
-        :param pulumi.Input[builtins.str] schema: The schema where to create models
+        :param pulumi.Input[builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param pulumi.Input[builtins.str] target_name: Target name
         :param pulumi.Input[builtins.str] token: Token for Databricks user
         """
@@ -453,6 +489,7 @@ class DatabricksCredential(pulumi.CustomResource):
         __props__.__dict__["credential_id"] = credential_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["schema"] = schema
+        __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
         __props__.__dict__["target_name"] = target_name
         __props__.__dict__["token"] = token
         return DatabricksCredential(resource_name, opts=opts, __props__=__props__)
@@ -461,7 +498,7 @@ class DatabricksCredential(pulumi.CustomResource):
     @pulumi.getter(name="adapterType")
     def adapter_type(self) -> pulumi.Output[builtins.str]:
         """
-        The type of the adapter (databricks or spark)
+        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "adapter_type")
 
@@ -493,9 +530,17 @@ class DatabricksCredential(pulumi.CustomResource):
     @pulumi.getter
     def schema(self) -> pulumi.Output[builtins.str]:
         """
-        The schema where to create models
+        The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "schema")
+
+    @property
+    @pulumi.getter(name="semanticLayerCredential")
+    def semantic_layer_credential(self) -> pulumi.Output[builtins.bool]:
+        """
+        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+        """
+        return pulumi.get(self, "semantic_layer_credential")
 
     @property
     @pulumi.getter(name="targetName")
