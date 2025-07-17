@@ -77,6 +77,8 @@ type Repository struct {
 	GitlabProjectId pulumi.IntPtrOutput `pulumi:"gitlabProjectId"`
 	// Whether the repository is active
 	IsActive pulumi.BoolOutput `pulumi:"isActive"`
+	// Identifier for the PrivateLink endpoint.
+	PrivateLinkEndpointId pulumi.StringPtrOutput `pulumi:"privateLinkEndpointId"`
 	// Project ID to create the repository in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
@@ -145,6 +147,8 @@ type repositoryState struct {
 	GitlabProjectId *int `pulumi:"gitlabProjectId"`
 	// Whether the repository is active
 	IsActive *bool `pulumi:"isActive"`
+	// Identifier for the PrivateLink endpoint.
+	PrivateLinkEndpointId *string `pulumi:"privateLinkEndpointId"`
 	// Project ID to create the repository in
 	ProjectId *int `pulumi:"projectId"`
 	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
@@ -178,6 +182,8 @@ type RepositoryState struct {
 	GitlabProjectId pulumi.IntPtrInput
 	// Whether the repository is active
 	IsActive pulumi.BoolPtrInput
+	// Identifier for the PrivateLink endpoint.
+	PrivateLinkEndpointId pulumi.StringPtrInput
 	// Project ID to create the repository in
 	ProjectId pulumi.IntPtrInput
 	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
@@ -213,6 +219,8 @@ type repositoryArgs struct {
 	GitlabProjectId *int `pulumi:"gitlabProjectId"`
 	// Whether the repository is active
 	IsActive *bool `pulumi:"isActive"`
+	// Identifier for the PrivateLink endpoint.
+	PrivateLinkEndpointId *string `pulumi:"privateLinkEndpointId"`
 	// Project ID to create the repository in
 	ProjectId int `pulumi:"projectId"`
 	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
@@ -241,6 +249,8 @@ type RepositoryArgs struct {
 	GitlabProjectId pulumi.IntPtrInput
 	// Whether the repository is active
 	IsActive pulumi.BoolPtrInput
+	// Identifier for the PrivateLink endpoint.
+	PrivateLinkEndpointId pulumi.StringPtrInput
 	// Project ID to create the repository in
 	ProjectId pulumi.IntInput
 	// URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
@@ -381,6 +391,11 @@ func (o RepositoryOutput) GitlabProjectId() pulumi.IntPtrOutput {
 // Whether the repository is active
 func (o RepositoryOutput) IsActive() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Repository) pulumi.BoolOutput { return v.IsActive }).(pulumi.BoolOutput)
+}
+
+// Identifier for the PrivateLink endpoint.
+func (o RepositoryOutput) PrivateLinkEndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Repository) pulumi.StringPtrOutput { return v.PrivateLinkEndpointId }).(pulumi.StringPtrOutput)
 }
 
 // Project ID to create the repository in

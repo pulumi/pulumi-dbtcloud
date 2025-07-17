@@ -30,6 +30,7 @@ class RepositoryArgs:
                  github_installation_id: Optional[pulumi.Input[builtins.int]] = None,
                  gitlab_project_id: Optional[pulumi.Input[builtins.int]] = None,
                  is_active: Optional[pulumi.Input[builtins.bool]] = None,
+                 private_link_endpoint_id: Optional[pulumi.Input[builtins.str]] = None,
                  pull_request_url_template: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Repository resource.
@@ -43,6 +44,7 @@ class RepositoryArgs:
         :param pulumi.Input[builtins.int] github_installation_id: Identifier for the GitHub App - (for GitHub native integration only)
         :param pulumi.Input[builtins.int] gitlab_project_id: Identifier for the Gitlab project -  (for GitLab native integration only)
         :param pulumi.Input[builtins.bool] is_active: Whether the repository is active
+        :param pulumi.Input[builtins.str] private_link_endpoint_id: Identifier for the PrivateLink endpoint.
         :param pulumi.Input[builtins.str] pull_request_url_template: URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -66,6 +68,8 @@ class RepositoryArgs:
             pulumi.set(__self__, "gitlab_project_id", gitlab_project_id)
         if is_active is not None:
             pulumi.set(__self__, "is_active", is_active)
+        if private_link_endpoint_id is not None:
+            pulumi.set(__self__, "private_link_endpoint_id", private_link_endpoint_id)
         if pull_request_url_template is not None:
             pulumi.set(__self__, "pull_request_url_template", pull_request_url_template)
 
@@ -191,6 +195,18 @@ class RepositoryArgs:
         pulumi.set(self, "is_active", value)
 
     @property
+    @pulumi.getter(name="privateLinkEndpointId")
+    def private_link_endpoint_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Identifier for the PrivateLink endpoint.
+        """
+        return pulumi.get(self, "private_link_endpoint_id")
+
+    @private_link_endpoint_id.setter
+    def private_link_endpoint_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "private_link_endpoint_id", value)
+
+    @property
     @pulumi.getter(name="pullRequestUrlTemplate")
     def pull_request_url_template(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -215,6 +231,7 @@ class _RepositoryState:
                  github_installation_id: Optional[pulumi.Input[builtins.int]] = None,
                  gitlab_project_id: Optional[pulumi.Input[builtins.int]] = None,
                  is_active: Optional[pulumi.Input[builtins.bool]] = None,
+                 private_link_endpoint_id: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  pull_request_url_template: Optional[pulumi.Input[builtins.str]] = None,
                  remote_url: Optional[pulumi.Input[builtins.str]] = None,
@@ -231,6 +248,7 @@ class _RepositoryState:
         :param pulumi.Input[builtins.int] github_installation_id: Identifier for the GitHub App - (for GitHub native integration only)
         :param pulumi.Input[builtins.int] gitlab_project_id: Identifier for the Gitlab project -  (for GitLab native integration only)
         :param pulumi.Input[builtins.bool] is_active: Whether the repository is active
+        :param pulumi.Input[builtins.str] private_link_endpoint_id: Identifier for the PrivateLink endpoint.
         :param pulumi.Input[builtins.int] project_id: Project ID to create the repository in
         :param pulumi.Input[builtins.str] pull_request_url_template: URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         :param pulumi.Input[builtins.str] remote_url: Git URL for the repository or <Group>/<Project> for Gitlab
@@ -258,6 +276,8 @@ class _RepositoryState:
             pulumi.set(__self__, "gitlab_project_id", gitlab_project_id)
         if is_active is not None:
             pulumi.set(__self__, "is_active", is_active)
+        if private_link_endpoint_id is not None:
+            pulumi.set(__self__, "private_link_endpoint_id", private_link_endpoint_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if pull_request_url_template is not None:
@@ -379,6 +399,18 @@ class _RepositoryState:
         pulumi.set(self, "is_active", value)
 
     @property
+    @pulumi.getter(name="privateLinkEndpointId")
+    def private_link_endpoint_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Identifier for the PrivateLink endpoint.
+        """
+        return pulumi.get(self, "private_link_endpoint_id")
+
+    @private_link_endpoint_id.setter
+    def private_link_endpoint_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "private_link_endpoint_id", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
@@ -453,6 +485,7 @@ class Repository(pulumi.CustomResource):
                  github_installation_id: Optional[pulumi.Input[builtins.int]] = None,
                  gitlab_project_id: Optional[pulumi.Input[builtins.int]] = None,
                  is_active: Optional[pulumi.Input[builtins.bool]] = None,
+                 private_link_endpoint_id: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  pull_request_url_template: Optional[pulumi.Input[builtins.str]] = None,
                  remote_url: Optional[pulumi.Input[builtins.str]] = None,
@@ -511,6 +544,7 @@ class Repository(pulumi.CustomResource):
         :param pulumi.Input[builtins.int] github_installation_id: Identifier for the GitHub App - (for GitHub native integration only)
         :param pulumi.Input[builtins.int] gitlab_project_id: Identifier for the Gitlab project -  (for GitLab native integration only)
         :param pulumi.Input[builtins.bool] is_active: Whether the repository is active
+        :param pulumi.Input[builtins.str] private_link_endpoint_id: Identifier for the PrivateLink endpoint.
         :param pulumi.Input[builtins.int] project_id: Project ID to create the repository in
         :param pulumi.Input[builtins.str] pull_request_url_template: URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         :param pulumi.Input[builtins.str] remote_url: Git URL for the repository or <Group>/<Project> for Gitlab
@@ -588,6 +622,7 @@ class Repository(pulumi.CustomResource):
                  github_installation_id: Optional[pulumi.Input[builtins.int]] = None,
                  gitlab_project_id: Optional[pulumi.Input[builtins.int]] = None,
                  is_active: Optional[pulumi.Input[builtins.bool]] = None,
+                 private_link_endpoint_id: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.int]] = None,
                  pull_request_url_template: Optional[pulumi.Input[builtins.str]] = None,
                  remote_url: Optional[pulumi.Input[builtins.str]] = None,
@@ -608,6 +643,7 @@ class Repository(pulumi.CustomResource):
             __props__.__dict__["github_installation_id"] = github_installation_id
             __props__.__dict__["gitlab_project_id"] = gitlab_project_id
             __props__.__dict__["is_active"] = is_active
+            __props__.__dict__["private_link_endpoint_id"] = private_link_endpoint_id
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -637,6 +673,7 @@ class Repository(pulumi.CustomResource):
             github_installation_id: Optional[pulumi.Input[builtins.int]] = None,
             gitlab_project_id: Optional[pulumi.Input[builtins.int]] = None,
             is_active: Optional[pulumi.Input[builtins.bool]] = None,
+            private_link_endpoint_id: Optional[pulumi.Input[builtins.str]] = None,
             project_id: Optional[pulumi.Input[builtins.int]] = None,
             pull_request_url_template: Optional[pulumi.Input[builtins.str]] = None,
             remote_url: Optional[pulumi.Input[builtins.str]] = None,
@@ -658,6 +695,7 @@ class Repository(pulumi.CustomResource):
         :param pulumi.Input[builtins.int] github_installation_id: Identifier for the GitHub App - (for GitHub native integration only)
         :param pulumi.Input[builtins.int] gitlab_project_id: Identifier for the Gitlab project -  (for GitLab native integration only)
         :param pulumi.Input[builtins.bool] is_active: Whether the repository is active
+        :param pulumi.Input[builtins.str] private_link_endpoint_id: Identifier for the PrivateLink endpoint.
         :param pulumi.Input[builtins.int] project_id: Project ID to create the repository in
         :param pulumi.Input[builtins.str] pull_request_url_template: URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         :param pulumi.Input[builtins.str] remote_url: Git URL for the repository or <Group>/<Project> for Gitlab
@@ -677,6 +715,7 @@ class Repository(pulumi.CustomResource):
         __props__.__dict__["github_installation_id"] = github_installation_id
         __props__.__dict__["gitlab_project_id"] = gitlab_project_id
         __props__.__dict__["is_active"] = is_active
+        __props__.__dict__["private_link_endpoint_id"] = private_link_endpoint_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["pull_request_url_template"] = pull_request_url_template
         __props__.__dict__["remote_url"] = remote_url
@@ -756,6 +795,14 @@ class Repository(pulumi.CustomResource):
         Whether the repository is active
         """
         return pulumi.get(self, "is_active")
+
+    @property
+    @pulumi.getter(name="privateLinkEndpointId")
+    def private_link_endpoint_id(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        Identifier for the PrivateLink endpoint.
+        """
+        return pulumi.get(self, "private_link_endpoint_id")
 
     @property
     @pulumi.getter(name="projectId")

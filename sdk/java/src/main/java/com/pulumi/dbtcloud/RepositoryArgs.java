@@ -147,6 +147,21 @@ public final class RepositoryArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Identifier for the PrivateLink endpoint.
+     * 
+     */
+    @Import(name="privateLinkEndpointId")
+    private @Nullable Output<String> privateLinkEndpointId;
+
+    /**
+     * @return Identifier for the PrivateLink endpoint.
+     * 
+     */
+    public Optional<Output<String>> privateLinkEndpointId() {
+        return Optional.ofNullable(this.privateLinkEndpointId);
+    }
+
+    /**
      * Project ID to create the repository in
      * 
      */
@@ -202,6 +217,7 @@ public final class RepositoryArgs extends com.pulumi.resources.ResourceArgs {
         this.githubInstallationId = $.githubInstallationId;
         this.gitlabProjectId = $.gitlabProjectId;
         this.isActive = $.isActive;
+        this.privateLinkEndpointId = $.privateLinkEndpointId;
         this.projectId = $.projectId;
         this.pullRequestUrlTemplate = $.pullRequestUrlTemplate;
         this.remoteUrl = $.remoteUrl;
@@ -399,6 +415,27 @@ public final class RepositoryArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder isActive(Boolean isActive) {
             return isActive(Output.of(isActive));
+        }
+
+        /**
+         * @param privateLinkEndpointId Identifier for the PrivateLink endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateLinkEndpointId(@Nullable Output<String> privateLinkEndpointId) {
+            $.privateLinkEndpointId = privateLinkEndpointId;
+            return this;
+        }
+
+        /**
+         * @param privateLinkEndpointId Identifier for the PrivateLink endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateLinkEndpointId(String privateLinkEndpointId) {
+            return privateLinkEndpointId(Output.of(privateLinkEndpointId));
         }
 
         /**

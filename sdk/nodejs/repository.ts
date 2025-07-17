@@ -115,6 +115,10 @@ export class Repository extends pulumi.CustomResource {
      */
     public readonly isActive!: pulumi.Output<boolean>;
     /**
+     * Identifier for the PrivateLink endpoint.
+     */
+    public readonly privateLinkEndpointId!: pulumi.Output<string | undefined>;
+    /**
      * Project ID to create the repository in
      */
     public readonly projectId!: pulumi.Output<number>;
@@ -157,6 +161,7 @@ export class Repository extends pulumi.CustomResource {
             resourceInputs["githubInstallationId"] = state ? state.githubInstallationId : undefined;
             resourceInputs["gitlabProjectId"] = state ? state.gitlabProjectId : undefined;
             resourceInputs["isActive"] = state ? state.isActive : undefined;
+            resourceInputs["privateLinkEndpointId"] = state ? state.privateLinkEndpointId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["pullRequestUrlTemplate"] = state ? state.pullRequestUrlTemplate : undefined;
             resourceInputs["remoteUrl"] = state ? state.remoteUrl : undefined;
@@ -178,6 +183,7 @@ export class Repository extends pulumi.CustomResource {
             resourceInputs["githubInstallationId"] = args ? args.githubInstallationId : undefined;
             resourceInputs["gitlabProjectId"] = args ? args.gitlabProjectId : undefined;
             resourceInputs["isActive"] = args ? args.isActive : undefined;
+            resourceInputs["privateLinkEndpointId"] = args ? args.privateLinkEndpointId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["pullRequestUrlTemplate"] = args ? args.pullRequestUrlTemplate : undefined;
             resourceInputs["remoteUrl"] = args ? args.remoteUrl : undefined;
@@ -232,6 +238,10 @@ export interface RepositoryState {
      * Whether the repository is active
      */
     isActive?: pulumi.Input<boolean>;
+    /**
+     * Identifier for the PrivateLink endpoint.
+     */
+    privateLinkEndpointId?: pulumi.Input<string>;
     /**
      * Project ID to create the repository in
      */
@@ -292,6 +302,10 @@ export interface RepositoryArgs {
      * Whether the repository is active
      */
     isActive?: pulumi.Input<boolean>;
+    /**
+     * Identifier for the PrivateLink endpoint.
+     */
+    privateLinkEndpointId?: pulumi.Input<string>;
     /**
      * Project ID to create the repository in
      */

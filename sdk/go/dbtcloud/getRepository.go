@@ -58,6 +58,8 @@ type LookupRepositoryResult struct {
 	Id string `pulumi:"id"`
 	// Whether the repository is active
 	IsActive bool `pulumi:"isActive"`
+	// Identifier for the PrivateLink endpoint.
+	PrivateLinkEndpointId string `pulumi:"privateLinkEndpointId"`
 	// Project ID to create the repository in
 	ProjectId int `pulumi:"projectId"`
 	// The pull request URL template to be used when opening a pull request from within dbt Cloud's IDE
@@ -160,6 +162,11 @@ func (o LookupRepositoryResultOutput) Id() pulumi.StringOutput {
 // Whether the repository is active
 func (o LookupRepositoryResultOutput) IsActive() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRepositoryResult) bool { return v.IsActive }).(pulumi.BoolOutput)
+}
+
+// Identifier for the PrivateLink endpoint.
+func (o LookupRepositoryResultOutput) PrivateLinkEndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRepositoryResult) string { return v.PrivateLinkEndpointId }).(pulumi.StringOutput)
 }
 
 // Project ID to create the repository in

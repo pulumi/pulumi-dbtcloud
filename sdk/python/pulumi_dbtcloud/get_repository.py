@@ -27,7 +27,7 @@ class GetRepositoryResult:
     """
     A collection of values returned by getRepository.
     """
-    def __init__(__self__, azure_active_directory_project_id=None, azure_active_directory_repository_id=None, azure_bypass_webhook_registration_failure=None, deploy_key=None, fetch_deploy_key=None, git_clone_strategy=None, github_installation_id=None, gitlab_project_id=None, id=None, is_active=None, project_id=None, pull_request_url_template=None, remote_url=None, repository_credentials_id=None, repository_id=None):
+    def __init__(__self__, azure_active_directory_project_id=None, azure_active_directory_repository_id=None, azure_bypass_webhook_registration_failure=None, deploy_key=None, fetch_deploy_key=None, git_clone_strategy=None, github_installation_id=None, gitlab_project_id=None, id=None, is_active=None, private_link_endpoint_id=None, project_id=None, pull_request_url_template=None, remote_url=None, repository_credentials_id=None, repository_id=None):
         if azure_active_directory_project_id and not isinstance(azure_active_directory_project_id, str):
             raise TypeError("Expected argument 'azure_active_directory_project_id' to be a str")
         pulumi.set(__self__, "azure_active_directory_project_id", azure_active_directory_project_id)
@@ -58,6 +58,9 @@ class GetRepositoryResult:
         if is_active and not isinstance(is_active, bool):
             raise TypeError("Expected argument 'is_active' to be a bool")
         pulumi.set(__self__, "is_active", is_active)
+        if private_link_endpoint_id and not isinstance(private_link_endpoint_id, str):
+            raise TypeError("Expected argument 'private_link_endpoint_id' to be a str")
+        pulumi.set(__self__, "private_link_endpoint_id", private_link_endpoint_id)
         if project_id and not isinstance(project_id, int):
             raise TypeError("Expected argument 'project_id' to be a int")
         pulumi.set(__self__, "project_id", project_id)
@@ -156,6 +159,14 @@ class GetRepositoryResult:
         return pulumi.get(self, "is_active")
 
     @property
+    @pulumi.getter(name="privateLinkEndpointId")
+    def private_link_endpoint_id(self) -> builtins.str:
+        """
+        Identifier for the PrivateLink endpoint.
+        """
+        return pulumi.get(self, "private_link_endpoint_id")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> builtins.int:
         """
@@ -212,6 +223,7 @@ class AwaitableGetRepositoryResult(GetRepositoryResult):
             gitlab_project_id=self.gitlab_project_id,
             id=self.id,
             is_active=self.is_active,
+            private_link_endpoint_id=self.private_link_endpoint_id,
             project_id=self.project_id,
             pull_request_url_template=self.pull_request_url_template,
             remote_url=self.remote_url,
@@ -249,6 +261,7 @@ def get_repository(fetch_deploy_key: Optional[builtins.bool] = None,
         gitlab_project_id=pulumi.get(__ret__, 'gitlab_project_id'),
         id=pulumi.get(__ret__, 'id'),
         is_active=pulumi.get(__ret__, 'is_active'),
+        private_link_endpoint_id=pulumi.get(__ret__, 'private_link_endpoint_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         pull_request_url_template=pulumi.get(__ret__, 'pull_request_url_template'),
         remote_url=pulumi.get(__ret__, 'remote_url'),
@@ -283,6 +296,7 @@ def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[built
         gitlab_project_id=pulumi.get(__response__, 'gitlab_project_id'),
         id=pulumi.get(__response__, 'id'),
         is_active=pulumi.get(__response__, 'is_active'),
+        private_link_endpoint_id=pulumi.get(__response__, 'private_link_endpoint_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         pull_request_url_template=pulumi.get(__response__, 'pull_request_url_template'),
         remote_url=pulumi.get(__response__, 'remote_url'),

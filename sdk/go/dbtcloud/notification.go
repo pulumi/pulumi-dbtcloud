@@ -68,7 +68,7 @@ import (
 //			}
 //			// and finally, we can set up Slack notifications
 //			_, err = dbtcloud.NewNotification(ctx, "prod_job_slack_notifications", &dbtcloud.NotificationArgs{
-//				UserId: pulumi.Int(100),
+//				UserId: pulumi.Int(200),
 //				OnFailures: pulumi.IntArray{
 //					pulumi.Int(23456),
 //					pulumi.Int(56788),
@@ -139,7 +139,7 @@ type Notification struct {
 	SlackChannelName pulumi.StringPtrOutput `pulumi:"slackChannelName"`
 	// State of the notification (1 = active (default), 2 = inactive)
 	State pulumi.IntOutput `pulumi:"state"`
-	// Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+	// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
 	UserId pulumi.IntOutput `pulumi:"userId"`
 }
 
@@ -194,7 +194,7 @@ type notificationState struct {
 	SlackChannelName *string `pulumi:"slackChannelName"`
 	// State of the notification (1 = active (default), 2 = inactive)
 	State *int `pulumi:"state"`
-	// Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+	// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
 	UserId *int `pulumi:"userId"`
 }
 
@@ -217,7 +217,7 @@ type NotificationState struct {
 	SlackChannelName pulumi.StringPtrInput
 	// State of the notification (1 = active (default), 2 = inactive)
 	State pulumi.IntPtrInput
-	// Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+	// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
 	UserId pulumi.IntPtrInput
 }
 
@@ -244,7 +244,7 @@ type notificationArgs struct {
 	SlackChannelName *string `pulumi:"slackChannelName"`
 	// State of the notification (1 = active (default), 2 = inactive)
 	State *int `pulumi:"state"`
-	// Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+	// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
 	UserId int `pulumi:"userId"`
 }
 
@@ -268,7 +268,7 @@ type NotificationArgs struct {
 	SlackChannelName pulumi.StringPtrInput
 	// State of the notification (1 = active (default), 2 = inactive)
 	State pulumi.IntPtrInput
-	// Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+	// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
 	UserId pulumi.IntInput
 }
 
@@ -404,7 +404,7 @@ func (o NotificationOutput) State() pulumi.IntOutput {
 	return o.ApplyT(func(v *Notification) pulumi.IntOutput { return v.State }).(pulumi.IntOutput)
 }
 
-// Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
 func (o NotificationOutput) UserId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Notification) pulumi.IntOutput { return v.UserId }).(pulumi.IntOutput)
 }

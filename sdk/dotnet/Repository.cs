@@ -111,6 +111,12 @@ namespace Pulumi.DbtCloud
         public Output<bool> IsActive { get; private set; } = null!;
 
         /// <summary>
+        /// Identifier for the PrivateLink endpoint.
+        /// </summary>
+        [Output("privateLinkEndpointId")]
+        public Output<string?> PrivateLinkEndpointId { get; private set; } = null!;
+
+        /// <summary>
         /// Project ID to create the repository in
         /// </summary>
         [Output("projectId")]
@@ -236,6 +242,12 @@ namespace Pulumi.DbtCloud
         public Input<bool>? IsActive { get; set; }
 
         /// <summary>
+        /// Identifier for the PrivateLink endpoint.
+        /// </summary>
+        [Input("privateLinkEndpointId")]
+        public Input<string>? PrivateLinkEndpointId { get; set; }
+
+        /// <summary>
         /// Project ID to create the repository in
         /// </summary>
         [Input("projectId", required: true)]
@@ -314,6 +326,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
+
+        /// <summary>
+        /// Identifier for the PrivateLink endpoint.
+        /// </summary>
+        [Input("privateLinkEndpointId")]
+        public Input<string>? PrivateLinkEndpointId { get; set; }
 
         /// <summary>
         /// Project ID to create the repository in

@@ -67,6 +67,11 @@ public final class GetRepositoryResult {
      */
     private Boolean isActive;
     /**
+     * @return Identifier for the PrivateLink endpoint.
+     * 
+     */
+    private String privateLinkEndpointId;
+    /**
      * @return Project ID to create the repository in
      * 
      */
@@ -168,6 +173,13 @@ public final class GetRepositoryResult {
         return this.isActive;
     }
     /**
+     * @return Identifier for the PrivateLink endpoint.
+     * 
+     */
+    public String privateLinkEndpointId() {
+        return this.privateLinkEndpointId;
+    }
+    /**
      * @return Project ID to create the repository in
      * 
      */
@@ -222,6 +234,7 @@ public final class GetRepositoryResult {
         private Integer gitlabProjectId;
         private String id;
         private Boolean isActive;
+        private String privateLinkEndpointId;
         private Integer projectId;
         private String pullRequestUrlTemplate;
         private String remoteUrl;
@@ -240,6 +253,7 @@ public final class GetRepositoryResult {
     	      this.gitlabProjectId = defaults.gitlabProjectId;
     	      this.id = defaults.id;
     	      this.isActive = defaults.isActive;
+    	      this.privateLinkEndpointId = defaults.privateLinkEndpointId;
     	      this.projectId = defaults.projectId;
     	      this.pullRequestUrlTemplate = defaults.pullRequestUrlTemplate;
     	      this.remoteUrl = defaults.remoteUrl;
@@ -328,6 +342,14 @@ public final class GetRepositoryResult {
             return this;
         }
         @CustomType.Setter
+        public Builder privateLinkEndpointId(String privateLinkEndpointId) {
+            if (privateLinkEndpointId == null) {
+              throw new MissingRequiredPropertyException("GetRepositoryResult", "privateLinkEndpointId");
+            }
+            this.privateLinkEndpointId = privateLinkEndpointId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(Integer projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetRepositoryResult", "projectId");
@@ -379,6 +401,7 @@ public final class GetRepositoryResult {
             _resultValue.gitlabProjectId = gitlabProjectId;
             _resultValue.id = id;
             _resultValue.isActive = isActive;
+            _resultValue.privateLinkEndpointId = privateLinkEndpointId;
             _resultValue.projectId = projectId;
             _resultValue.pullRequestUrlTemplate = pullRequestUrlTemplate;
             _resultValue.remoteUrl = remoteUrl;
