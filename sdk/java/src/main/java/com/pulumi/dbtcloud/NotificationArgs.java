@@ -154,14 +154,14 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+     * Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      * 
      */
     @Import(name="userId", required=true)
     private Output<Integer> userId;
 
     /**
-     * @return Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+     * @return Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      * 
      */
     public Output<Integer> userId() {
@@ -431,7 +431,7 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param userId Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+         * @param userId Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
          * 
          * @return builder
          * 
@@ -442,7 +442,7 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param userId Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+         * @param userId Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
          * 
          * @return builder
          * 

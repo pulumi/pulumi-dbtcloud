@@ -128,6 +128,10 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly bool IsActive;
         /// <summary>
+        /// Identifier for the PrivateLink endpoint.
+        /// </summary>
+        public readonly string PrivateLinkEndpointId;
+        /// <summary>
         /// Project ID to create the repository in
         /// </summary>
         public readonly int ProjectId;
@@ -170,6 +174,8 @@ namespace Pulumi.DbtCloud
 
             bool isActive,
 
+            string privateLinkEndpointId,
+
             int projectId,
 
             string pullRequestUrlTemplate,
@@ -190,6 +196,7 @@ namespace Pulumi.DbtCloud
             GitlabProjectId = gitlabProjectId;
             Id = id;
             IsActive = isActive;
+            PrivateLinkEndpointId = privateLinkEndpointId;
             ProjectId = projectId;
             PullRequestUrlTemplate = pullRequestUrlTemplate;
             RemoteUrl = remoteUrl;

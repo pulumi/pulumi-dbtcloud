@@ -194,6 +194,20 @@ public class Repository extends com.pulumi.resources.CustomResource {
         return this.isActive;
     }
     /**
+     * Identifier for the PrivateLink endpoint.
+     * 
+     */
+    @Export(name="privateLinkEndpointId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateLinkEndpointId;
+
+    /**
+     * @return Identifier for the PrivateLink endpoint.
+     * 
+     */
+    public Output<Optional<String>> privateLinkEndpointId() {
+        return Codegen.optional(this.privateLinkEndpointId);
+    }
+    /**
      * Project ID to create the repository in
      * 
      */

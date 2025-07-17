@@ -73,7 +73,7 @@ import javax.annotation.Nullable;
  * 
  *         // and finally, we can set up Slack notifications
  *         var prodJobSlackNotifications = new Notification("prodJobSlackNotifications", NotificationArgs.builder()
- *             .userId(100)
+ *             .userId(200)
  *             .onFailures(            
  *                 23456,
  *                 56788)
@@ -249,14 +249,14 @@ public class Notification extends com.pulumi.resources.CustomResource {
         return this.state;
     }
     /**
-     * Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+     * Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      * 
      */
     @Export(name="userId", refs={Integer.class}, tree="[0]")
     private Output<Integer> userId;
 
     /**
-     * @return Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+     * @return Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      * 
      */
     public Output<Integer> userId() {

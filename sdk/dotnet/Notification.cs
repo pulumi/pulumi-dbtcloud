@@ -65,7 +65,7 @@ namespace Pulumi.DbtCloud
     ///     // and finally, we can set up Slack notifications
     ///     var prodJobSlackNotifications = new DbtCloud.Notification("prod_job_slack_notifications", new()
     ///     {
-    ///         UserId = 100,
+    ///         UserId = 200,
     ///         OnFailures = new[]
     ///         {
     ///             23456,
@@ -171,7 +171,7 @@ namespace Pulumi.DbtCloud
         public Output<int> State { get; private set; } = null!;
 
         /// <summary>
-        /// Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        /// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         /// </summary>
         [Output("userId")]
         public Output<int> UserId { get; private set; } = null!;
@@ -302,7 +302,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? State { get; set; }
 
         /// <summary>
-        /// Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        /// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         /// </summary>
         [Input("userId", required: true)]
         public Input<int> UserId { get; set; } = null!;
@@ -394,7 +394,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? State { get; set; }
 
         /// <summary>
-        /// Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        /// Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         /// </summary>
         [Input("userId")]
         public Input<int>? UserId { get; set; }

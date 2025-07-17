@@ -83,6 +83,10 @@ export interface GetRepositoryResult {
      */
     readonly isActive: boolean;
     /**
+     * Identifier for the PrivateLink endpoint.
+     */
+    readonly privateLinkEndpointId: string;
+    /**
      * Project ID to create the repository in
      */
     readonly projectId: number;

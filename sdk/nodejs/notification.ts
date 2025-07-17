@@ -41,7 +41,7 @@ import * as utilities from "./utilities";
  * });
  * // and finally, we can set up Slack notifications
  * const prodJobSlackNotifications = new dbtcloud.Notification("prod_job_slack_notifications", {
- *     userId: 100,
+ *     userId: 200,
  *     onFailures: [
  *         23456,
  *         56788,
@@ -148,7 +148,7 @@ export class Notification extends pulumi.CustomResource {
      */
     public readonly state!: pulumi.Output<number>;
     /**
-     * Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+     * Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      */
     public readonly userId!: pulumi.Output<number>;
 
@@ -237,7 +237,7 @@ export interface NotificationState {
      */
     state?: pulumi.Input<number>;
     /**
-     * Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+     * Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      */
     userId?: pulumi.Input<number>;
 }
@@ -283,7 +283,7 @@ export interface NotificationArgs {
      */
     state?: pulumi.Input<number>;
     /**
-     * Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
+     * Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      */
     userId: pulumi.Input<number>;
 }

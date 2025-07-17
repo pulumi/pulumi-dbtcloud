@@ -32,7 +32,7 @@ class NotificationArgs:
                  state: Optional[pulumi.Input[builtins.int]] = None):
         """
         The set of arguments for constructing a Notification resource.
-        :param pulumi.Input[builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        :param pulumi.Input[builtins.int] user_id: Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         :param pulumi.Input[builtins.str] external_email: The external email to receive the notification
         :param pulumi.Input[builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
         :param pulumi.Input[Sequence[pulumi.Input[builtins.int]]] on_cancels: List of job IDs to trigger the webhook on cancel
@@ -67,7 +67,7 @@ class NotificationArgs:
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Input[builtins.int]:
         """
-        Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         """
         return pulumi.get(self, "user_id")
 
@@ -208,7 +208,7 @@ class _NotificationState:
         :param pulumi.Input[builtins.str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
         :param pulumi.Input[builtins.str] slack_channel_name: The name of the slack channel
         :param pulumi.Input[builtins.int] state: State of the notification (1 = active (default), 2 = inactive)
-        :param pulumi.Input[builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        :param pulumi.Input[builtins.int] user_id: Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         """
         if external_email is not None:
             pulumi.set(__self__, "external_email", external_email)
@@ -343,7 +343,7 @@ class _NotificationState:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         """
         return pulumi.get(self, "user_id")
 
@@ -404,7 +404,7 @@ class Notification(pulumi.CustomResource):
             external_email="my_email@mail.com")
         # and finally, we can set up Slack notifications
         prod_job_slack_notifications = dbtcloud.Notification("prod_job_slack_notifications",
-            user_id=100,
+            user_id=200,
             on_failures=[
                 23456,
                 56788,
@@ -456,7 +456,7 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
         :param pulumi.Input[builtins.str] slack_channel_name: The name of the slack channel
         :param pulumi.Input[builtins.int] state: State of the notification (1 = active (default), 2 = inactive)
-        :param pulumi.Input[builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        :param pulumi.Input[builtins.int] user_id: Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         """
         ...
     @overload
@@ -499,7 +499,7 @@ class Notification(pulumi.CustomResource):
             external_email="my_email@mail.com")
         # and finally, we can set up Slack notifications
         prod_job_slack_notifications = dbtcloud.Notification("prod_job_slack_notifications",
-            user_id=100,
+            user_id=200,
             on_failures=[
                 23456,
                 56788,
@@ -622,7 +622,7 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
         :param pulumi.Input[builtins.str] slack_channel_name: The name of the slack channel
         :param pulumi.Input[builtins.int] state: State of the notification (1 = active (default), 2 = inactive)
-        :param pulumi.Input[builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        :param pulumi.Input[builtins.int] user_id: Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -716,7 +716,7 @@ class Notification(pulumi.CustomResource):
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[builtins.int]:
         """
-        Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         """
         return pulumi.get(self, "user_id")
 

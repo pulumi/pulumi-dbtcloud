@@ -39,7 +39,7 @@ class EnvironmentArgs:
         :param pulumi.Input[builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[builtins.int] credential_id: The project ID to which the environment belongs.
         :param pulumi.Input[builtins.str] custom_branch: The custom branch name to use
-        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[builtins.int] extended_attributes_id: The ID of the extended attributes applied
@@ -134,7 +134,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -236,7 +236,7 @@ class _EnvironmentState:
         :param pulumi.Input[builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[builtins.int] credential_id: The project ID to which the environment belongs.
         :param pulumi.Input[builtins.str] custom_branch: The custom branch name to use
-        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[builtins.int] environment_id: The ID of the environment. Duplicated. Here for backward compatibility.
@@ -314,7 +314,7 @@ class _EnvironmentState:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -460,7 +460,7 @@ class Environment(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         ci_environment = dbtcloud.Environment("ci_environment",
-            dbt_version="latest",
+            dbt_version="latest-fusion",
             name="CI",
             project_id=dbt_project["id"],
             type="deployment",
@@ -519,7 +519,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[builtins.int] credential_id: The project ID to which the environment belongs.
         :param pulumi.Input[builtins.str] custom_branch: The custom branch name to use
-        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[builtins.int] extended_attributes_id: The ID of the extended attributes applied
@@ -545,7 +545,7 @@ class Environment(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         ci_environment = dbtcloud.Environment("ci_environment",
-            dbt_version="latest",
+            dbt_version="latest-fusion",
             name="CI",
             project_id=dbt_project["id"],
             type="deployment",
@@ -685,7 +685,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[builtins.int] credential_id: The project ID to which the environment belongs.
         :param pulumi.Input[builtins.str] custom_branch: The custom branch name to use
-        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[builtins.int] environment_id: The ID of the environment. Duplicated. Here for backward compatibility.
@@ -743,7 +743,7 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Output[builtins.str]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 

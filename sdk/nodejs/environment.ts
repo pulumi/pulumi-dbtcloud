@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const ciEnvironment = new dbtcloud.Environment("ci_environment", {
- *     dbtVersion: "latest",
+ *     dbtVersion: "latest-fusion",
  *     name: "CI",
  *     projectId: dbtProject.id,
  *     type: "deployment",
@@ -112,7 +112,7 @@ export class Environment extends pulumi.CustomResource {
      */
     public readonly customBranch!: pulumi.Output<string | undefined>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
      */
     public readonly dbtVersion!: pulumi.Output<string>;
     /**
@@ -222,7 +222,7 @@ export interface EnvironmentState {
      */
     customBranch?: pulumi.Input<string>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
      */
     dbtVersion?: pulumi.Input<string>;
     /**
@@ -280,7 +280,7 @@ export interface EnvironmentArgs {
      */
     customBranch?: pulumi.Input<string>;
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `versionless`, or `latest`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
      */
     dbtVersion?: pulumi.Input<string>;
     /**
