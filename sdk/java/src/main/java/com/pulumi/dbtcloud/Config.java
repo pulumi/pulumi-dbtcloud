@@ -3,9 +3,12 @@
 
 package com.pulumi.dbtcloud;
 
+import com.pulumi.core.TypeShape;
 import com.pulumi.core.internal.Codegen;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 
 public final class Config {
@@ -20,12 +23,40 @@ public final class Config {
         return Codegen.integerProp("accountId").config(config).env("DBT_CLOUD_ACCOUNT_ID").get();
     }
 /**
+ * If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+ * 
+ */
+    public Optional<Boolean> disableRetry() {
+        return Codegen.booleanProp("disableRetry").config(config).get();
+    }
+/**
  * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
  * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
  * 
  */
     public Optional<String> hostUrl() {
         return Codegen.stringProp("hostUrl").config(config).env("DBT_CLOUD_HOST_URL").def("https://cloud.getdbt.com/api").get();
+    }
+/**
+ * The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+ * 
+ */
+    public Optional<Integer> maxRetries() {
+        return Codegen.integerProp("maxRetries").config(config).get();
+    }
+/**
+ * List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+ * 
+ */
+    public Optional<List<String>> retriableStatusCodes() {
+        return Codegen.objectProp("retriableStatusCodes", TypeShape.<List<String>>builder(List.class).addParameter(String.class).build()).config(config).get();
+    }
+/**
+ * The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+ * 
+ */
+    public Optional<Integer> retryIntervalSeconds() {
+        return Codegen.integerProp("retryIntervalSeconds").config(config).get();
     }
 /**
  * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
