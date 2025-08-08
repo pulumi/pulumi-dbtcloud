@@ -69,6 +69,10 @@
                     ]
                 }
             },
+            "disableRetry": {
+                "type": "boolean",
+                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.\n"
+            },
             "hostUrl": {
                 "type": "string",
                 "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable\n`DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api\n",
@@ -78,6 +82,21 @@
                         "DBT_CLOUD_HOST_URL"
                     ]
                 }
+            },
+            "maxRetries": {
+                "type": "integer",
+                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.\n"
+            },
+            "retriableStatusCodes": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].\n"
+            },
+            "retryIntervalSeconds": {
+                "type": "integer",
+                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.\n"
             },
             "token": {
                 "type": "string",
@@ -2958,9 +2977,28 @@
                 "type": "integer",
                 "description": "Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment\nvariable `DBT_CLOUD_ACCOUNT_ID`\n"
             },
+            "disableRetry": {
+                "type": "boolean",
+                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.\n"
+            },
             "hostUrl": {
                 "type": "string",
                 "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable\n`DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api\n"
+            },
+            "maxRetries": {
+                "type": "integer",
+                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.\n"
+            },
+            "retriableStatusCodes": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].\n"
+            },
+            "retryIntervalSeconds": {
+                "type": "integer",
+                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.\n"
             },
             "token": {
                 "type": "string",
@@ -2978,6 +3016,10 @@
                     ]
                 }
             },
+            "disableRetry": {
+                "type": "boolean",
+                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.\n"
+            },
             "hostUrl": {
                 "type": "string",
                 "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable\n`DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api\n",
@@ -2987,6 +3029,21 @@
                         "DBT_CLOUD_HOST_URL"
                     ]
                 }
+            },
+            "maxRetries": {
+                "type": "integer",
+                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.\n"
+            },
+            "retriableStatusCodes": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].\n"
+            },
+            "retryIntervalSeconds": {
+                "type": "integer",
+                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.\n"
             },
             "token": {
                 "type": "string",
@@ -3254,7 +3311,7 @@
             }
         },
         "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential": {
-            "description": "BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: dbtcloud:BigquerySemanticLayerCredential\n    properties:\n      configuration:\n        project_id: ${projectId}\n        name: BigQuery SL Credential\n        adapter_version: bigquery_v0\n      credential:\n        project_id: ${projectId}\n        is_active: true\n        num_threads: ${numThreads}\n        dataset: ${dataset}\n      privateKeyId: ${privateKeyId}\n      privateKey: ${privateKey}\n      clientEmail: ${clientEmail}\n      clientId: ${clientId}\n      authUri: ${authUri}\n      tokenUri: ${tokenUri}\n      authProviderX509CertUrl: ${authProviderX509CertUrl}\n      clientX509CertUrl: ${clientX509CertUrl}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_bigquery_semantic_layer_credential.example\n\n  id = \"credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_bigquery_semantic_layer_credential.example\n\n  id = \"12345\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example \"credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential example 12345\n```\n\n",
+            "description": "BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  example:\n    type: dbtcloud:BigquerySemanticLayerCredential\n    properties:\n      configuration:\n        project_id: ${projectId}\n        name: BigQuery SL Credential\n        adapter_version: bigquery_v0\n      credential:\n        project_id: ${projectId}\n        is_active: true\n        num_threads: ${numThreads}\n        dataset: ${dataset}\n      privateKeyId: ${privateKeyId}\n      privateKey: ${privateKey}\n      clientEmail: ${clientEmail}\n      clientId: ${clientId}\n      authUri: ${authUri}\n      tokenUri: ${tokenUri}\n      authProviderX509CertUrl: ${authProviderX509CertUrl}\n      clientX509CertUrl: ${clientX509CertUrl}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "authProviderX509CertUrl": {
                     "type": "string",
