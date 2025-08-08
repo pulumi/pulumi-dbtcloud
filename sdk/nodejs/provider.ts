@@ -47,7 +47,11 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["accountId"] = pulumi.output((args ? args.accountId : undefined) ?? utilities.getEnvNumber("DBT_CLOUD_ACCOUNT_ID")).apply(JSON.stringify);
+            resourceInputs["disableRetry"] = pulumi.output(args ? args.disableRetry : undefined).apply(JSON.stringify);
             resourceInputs["hostUrl"] = (args ? args.hostUrl : undefined) ?? (utilities.getEnv("DBT_CLOUD_HOST_URL") || "https://cloud.getdbt.com/api");
+            resourceInputs["maxRetries"] = pulumi.output(args ? args.maxRetries : undefined).apply(JSON.stringify);
+            resourceInputs["retriableStatusCodes"] = pulumi.output(args ? args.retriableStatusCodes : undefined).apply(JSON.stringify);
+            resourceInputs["retryIntervalSeconds"] = pulumi.output(args ? args.retryIntervalSeconds : undefined).apply(JSON.stringify);
             resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("DBT_CLOUD_TOKEN");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -76,10 +80,26 @@ export interface ProviderArgs {
      */
     accountId?: pulumi.Input<number>;
     /**
+     * If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+     */
+    disableRetry?: pulumi.Input<boolean>;
+    /**
      * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
      * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      */
     hostUrl?: pulumi.Input<string>;
+    /**
+     * The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+     */
+    maxRetries?: pulumi.Input<number>;
+    /**
+     * List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+     */
+    retriableStatusCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+     */
+    retryIntervalSeconds?: pulumi.Input<number>;
     /**
      * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
      */

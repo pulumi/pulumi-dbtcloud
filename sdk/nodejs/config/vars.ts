@@ -20,6 +20,17 @@ Object.defineProperty(exports, "accountId", {
 });
 
 /**
+ * If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+ */
+export declare const disableRetry: boolean | undefined;
+Object.defineProperty(exports, "disableRetry", {
+    get() {
+        return __config.getObject<boolean>("disableRetry");
+    },
+    enumerable: true,
+});
+
+/**
  * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
  * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
  */
@@ -27,6 +38,39 @@ export declare const hostUrl: string;
 Object.defineProperty(exports, "hostUrl", {
     get() {
         return __config.get("hostUrl") ?? (utilities.getEnv("DBT_CLOUD_HOST_URL") || "https://cloud.getdbt.com/api");
+    },
+    enumerable: true,
+});
+
+/**
+ * The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+ */
+export declare const maxRetries: number | undefined;
+Object.defineProperty(exports, "maxRetries", {
+    get() {
+        return __config.getObject<number>("maxRetries");
+    },
+    enumerable: true,
+});
+
+/**
+ * List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+ */
+export declare const retriableStatusCodes: string[] | undefined;
+Object.defineProperty(exports, "retriableStatusCodes", {
+    get() {
+        return __config.getObject<string[]>("retriableStatusCodes");
+    },
+    enumerable: true,
+});
+
+/**
+ * The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+ */
+export declare const retryIntervalSeconds: number | undefined;
+Object.defineProperty(exports, "retryIntervalSeconds", {
+    get() {
+        return __config.getObject<number>("retryIntervalSeconds");
     },
     enumerable: true,
 });

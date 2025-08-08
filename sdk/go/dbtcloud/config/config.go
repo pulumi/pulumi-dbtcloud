@@ -25,6 +25,11 @@ func GetAccountId(ctx *pulumi.Context) int {
 	return value
 }
 
+// If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+func GetDisableRetry(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "dbtcloud:disableRetry")
+}
+
 // URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
 // `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
 func GetHostUrl(ctx *pulumi.Context) string {
@@ -37,6 +42,21 @@ func GetHostUrl(ctx *pulumi.Context) string {
 		value = d.(string)
 	}
 	return value
+}
+
+// The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+func GetMaxRetries(ctx *pulumi.Context) int {
+	return config.GetInt(ctx, "dbtcloud:maxRetries")
+}
+
+// List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+func GetRetriableStatusCodes(ctx *pulumi.Context) string {
+	return config.Get(ctx, "dbtcloud:retriableStatusCodes")
+}
+
+// The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+func GetRetryIntervalSeconds(ctx *pulumi.Context) int {
+	return config.GetInt(ctx, "dbtcloud:retryIntervalSeconds")
 }
 
 // API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`

@@ -43,6 +43,16 @@ namespace Pulumi.DbtCloud
             set => _accountId.Set(value);
         }
 
+        private static readonly __Value<bool?> _disableRetry = new __Value<bool?>(() => __config.GetBoolean("disableRetry"));
+        /// <summary>
+        /// If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+        /// </summary>
+        public static bool? DisableRetry
+        {
+            get => _disableRetry.Get();
+            set => _disableRetry.Set(value);
+        }
+
         private static readonly __Value<string?> _hostUrl = new __Value<string?>(() => __config.Get("hostUrl") ?? Utilities.GetEnv("DBT_CLOUD_HOST_URL") ?? "https://cloud.getdbt.com/api");
         /// <summary>
         /// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
@@ -52,6 +62,36 @@ namespace Pulumi.DbtCloud
         {
             get => _hostUrl.Get();
             set => _hostUrl.Set(value);
+        }
+
+        private static readonly __Value<int?> _maxRetries = new __Value<int?>(() => __config.GetInt32("maxRetries"));
+        /// <summary>
+        /// The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+        /// </summary>
+        public static int? MaxRetries
+        {
+            get => _maxRetries.Get();
+            set => _maxRetries.Set(value);
+        }
+
+        private static readonly __Value<ImmutableArray<string>> _retriableStatusCodes = new __Value<ImmutableArray<string>>(() => __config.GetObject<ImmutableArray<string>>("retriableStatusCodes"));
+        /// <summary>
+        /// List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+        /// </summary>
+        public static ImmutableArray<string> RetriableStatusCodes
+        {
+            get => _retriableStatusCodes.Get();
+            set => _retriableStatusCodes.Set(value);
+        }
+
+        private static readonly __Value<int?> _retryIntervalSeconds = new __Value<int?>(() => __config.GetInt32("retryIntervalSeconds"));
+        /// <summary>
+        /// The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+        /// </summary>
+        public static int? RetryIntervalSeconds
+        {
+            get => _retryIntervalSeconds.Get();
+            set => _retryIntervalSeconds.Set(value);
         }
 
         private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token") ?? Utilities.GetEnv("DBT_CLOUD_TOKEN"));

@@ -20,24 +20,40 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  account_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 disable_retry: Optional[pulumi.Input[_builtins.bool]] = None,
                  host_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
+                 retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[_builtins.int] account_id: Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
                variable `DBT_CLOUD_ACCOUNT_ID`
+        :param pulumi.Input[_builtins.bool] disable_retry: If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
         :param pulumi.Input[_builtins.str] host_url: URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
                `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        :param pulumi.Input[_builtins.int] max_retries: The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] retriable_status_codes: List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+        :param pulumi.Input[_builtins.int] retry_interval_seconds: The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
         :param pulumi.Input[_builtins.str] token: API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
         """
         if account_id is None:
             account_id = _utilities.get_env_int('DBT_CLOUD_ACCOUNT_ID')
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
+        if disable_retry is not None:
+            pulumi.set(__self__, "disable_retry", disable_retry)
         if host_url is None:
             host_url = (_utilities.get_env('DBT_CLOUD_HOST_URL') or 'https://cloud.getdbt.com/api')
         if host_url is not None:
             pulumi.set(__self__, "host_url", host_url)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
+        if retriable_status_codes is not None:
+            pulumi.set(__self__, "retriable_status_codes", retriable_status_codes)
+        if retry_interval_seconds is not None:
+            pulumi.set(__self__, "retry_interval_seconds", retry_interval_seconds)
         if token is None:
             token = _utilities.get_env('DBT_CLOUD_TOKEN')
         if token is not None:
@@ -57,6 +73,18 @@ class ProviderArgs:
         pulumi.set(self, "account_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="disableRetry")
+    def disable_retry(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+        """
+        return pulumi.get(self, "disable_retry")
+
+    @disable_retry.setter
+    def disable_retry(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_retry", value)
+
+    @_builtins.property
     @pulumi.getter(name="hostUrl")
     def host_url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -68,6 +96,42 @@ class ProviderArgs:
     @host_url.setter
     def host_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "host_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retriableStatusCodes")
+    def retriable_status_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+        """
+        return pulumi.get(self, "retriable_status_codes")
+
+    @retriable_status_codes.setter
+    def retriable_status_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "retriable_status_codes", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retryIntervalSeconds")
+    def retry_interval_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+        """
+        return pulumi.get(self, "retry_interval_seconds")
+
+    @retry_interval_seconds.setter
+    def retry_interval_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "retry_interval_seconds", value)
 
     @_builtins.property
     @pulumi.getter
@@ -89,7 +153,11 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 disable_retry: Optional[pulumi.Input[_builtins.bool]] = None,
                  host_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
+                 retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -102,8 +170,12 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] account_id: Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
                variable `DBT_CLOUD_ACCOUNT_ID`
+        :param pulumi.Input[_builtins.bool] disable_retry: If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
         :param pulumi.Input[_builtins.str] host_url: URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
                `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        :param pulumi.Input[_builtins.int] max_retries: The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] retriable_status_codes: List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+        :param pulumi.Input[_builtins.int] retry_interval_seconds: The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
         :param pulumi.Input[_builtins.str] token: API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
         """
         ...
@@ -134,7 +206,11 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 disable_retry: Optional[pulumi.Input[_builtins.bool]] = None,
                  host_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
+                 retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -148,9 +224,13 @@ class Provider(pulumi.ProviderResource):
             if account_id is None:
                 account_id = _utilities.get_env_int('DBT_CLOUD_ACCOUNT_ID')
             __props__.__dict__["account_id"] = pulumi.Output.from_input(account_id).apply(pulumi.runtime.to_json) if account_id is not None else None
+            __props__.__dict__["disable_retry"] = pulumi.Output.from_input(disable_retry).apply(pulumi.runtime.to_json) if disable_retry is not None else None
             if host_url is None:
                 host_url = (_utilities.get_env('DBT_CLOUD_HOST_URL') or 'https://cloud.getdbt.com/api')
             __props__.__dict__["host_url"] = host_url
+            __props__.__dict__["max_retries"] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None
+            __props__.__dict__["retriable_status_codes"] = pulumi.Output.from_input(retriable_status_codes).apply(pulumi.runtime.to_json) if retriable_status_codes is not None else None
+            __props__.__dict__["retry_interval_seconds"] = pulumi.Output.from_input(retry_interval_seconds).apply(pulumi.runtime.to_json) if retry_interval_seconds is not None else None
             if token is None:
                 token = _utilities.get_env('DBT_CLOUD_TOKEN')
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)

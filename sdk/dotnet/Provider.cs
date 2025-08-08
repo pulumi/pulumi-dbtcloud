@@ -78,11 +78,41 @@ namespace Pulumi.DbtCloud
         public Input<int>? AccountId { get; set; }
 
         /// <summary>
+        /// If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+        /// </summary>
+        [Input("disableRetry", json: true)]
+        public Input<bool>? DisableRetry { get; set; }
+
+        /// <summary>
         /// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
         /// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         /// </summary>
         [Input("hostUrl")]
         public Input<string>? HostUrl { get; set; }
+
+        /// <summary>
+        /// The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+        /// </summary>
+        [Input("maxRetries", json: true)]
+        public Input<int>? MaxRetries { get; set; }
+
+        [Input("retriableStatusCodes", json: true)]
+        private InputList<string>? _retriableStatusCodes;
+
+        /// <summary>
+        /// List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+        /// </summary>
+        public InputList<string> RetriableStatusCodes
+        {
+            get => _retriableStatusCodes ?? (_retriableStatusCodes = new InputList<string>());
+            set => _retriableStatusCodes = value;
+        }
+
+        /// <summary>
+        /// The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+        /// </summary>
+        [Input("retryIntervalSeconds", json: true)]
+        public Input<int>? RetryIntervalSeconds { get; set; }
 
         [Input("token")]
         private Input<string>? _token;

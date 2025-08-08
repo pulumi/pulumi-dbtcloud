@@ -6,8 +6,10 @@ package com.pulumi.dbtcloud;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.core.internal.Codegen;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -35,6 +37,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+     * 
+     */
+    @Import(name="disableRetry", json=true)
+    private @Nullable Output<Boolean> disableRetry;
+
+    /**
+     * @return If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+     * 
+     */
+    public Optional<Output<Boolean>> disableRetry() {
+        return Optional.ofNullable(this.disableRetry);
+    }
+
+    /**
      * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
      * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      * 
@@ -49,6 +66,51 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> hostUrl() {
         return Optional.ofNullable(this.hostUrl);
+    }
+
+    /**
+     * The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+     * 
+     */
+    @Import(name="maxRetries", json=true)
+    private @Nullable Output<Integer> maxRetries;
+
+    /**
+     * @return The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+     * 
+     */
+    public Optional<Output<Integer>> maxRetries() {
+        return Optional.ofNullable(this.maxRetries);
+    }
+
+    /**
+     * List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+     * 
+     */
+    @Import(name="retriableStatusCodes", json=true)
+    private @Nullable Output<List<String>> retriableStatusCodes;
+
+    /**
+     * @return List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+     * 
+     */
+    public Optional<Output<List<String>>> retriableStatusCodes() {
+        return Optional.ofNullable(this.retriableStatusCodes);
+    }
+
+    /**
+     * The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+     * 
+     */
+    @Import(name="retryIntervalSeconds", json=true)
+    private @Nullable Output<Integer> retryIntervalSeconds;
+
+    /**
+     * @return The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> retryIntervalSeconds() {
+        return Optional.ofNullable(this.retryIntervalSeconds);
     }
 
     /**
@@ -70,7 +132,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     private ProviderArgs(ProviderArgs $) {
         this.accountId = $.accountId;
+        this.disableRetry = $.disableRetry;
         this.hostUrl = $.hostUrl;
+        this.maxRetries = $.maxRetries;
+        this.retriableStatusCodes = $.retriableStatusCodes;
+        this.retryIntervalSeconds = $.retryIntervalSeconds;
         this.token = $.token;
     }
 
@@ -116,6 +182,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param disableRetry If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRetry(@Nullable Output<Boolean> disableRetry) {
+            $.disableRetry = disableRetry;
+            return this;
+        }
+
+        /**
+         * @param disableRetry If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableRetry(Boolean disableRetry) {
+            return disableRetry(Output.of(disableRetry));
+        }
+
+        /**
          * @param hostUrl URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
          * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
          * 
@@ -136,6 +223,79 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder hostUrl(String hostUrl) {
             return hostUrl(Output.of(hostUrl));
+        }
+
+        /**
+         * @param maxRetries The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(@Nullable Output<Integer> maxRetries) {
+            $.maxRetries = maxRetries;
+            return this;
+        }
+
+        /**
+         * @param maxRetries The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(Integer maxRetries) {
+            return maxRetries(Output.of(maxRetries));
+        }
+
+        /**
+         * @param retriableStatusCodes List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retriableStatusCodes(@Nullable Output<List<String>> retriableStatusCodes) {
+            $.retriableStatusCodes = retriableStatusCodes;
+            return this;
+        }
+
+        /**
+         * @param retriableStatusCodes List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retriableStatusCodes(List<String> retriableStatusCodes) {
+            return retriableStatusCodes(Output.of(retriableStatusCodes));
+        }
+
+        /**
+         * @param retriableStatusCodes List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retriableStatusCodes(String... retriableStatusCodes) {
+            return retriableStatusCodes(List.of(retriableStatusCodes));
+        }
+
+        /**
+         * @param retryIntervalSeconds The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retryIntervalSeconds(@Nullable Output<Integer> retryIntervalSeconds) {
+            $.retryIntervalSeconds = retryIntervalSeconds;
+            return this;
+        }
+
+        /**
+         * @param retryIntervalSeconds The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retryIntervalSeconds(Integer retryIntervalSeconds) {
+            return retryIntervalSeconds(Output.of(retryIntervalSeconds));
         }
 
         /**

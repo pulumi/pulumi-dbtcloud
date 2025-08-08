@@ -29,12 +29,40 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_int('accountId') or _utilities.get_env_int('DBT_CLOUD_ACCOUNT_ID')
 
     @_builtins.property
+    def disable_retry(self) -> Optional[bool]:
+        """
+        If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+        """
+        return __config__.get_bool('disableRetry')
+
+    @_builtins.property
     def host_url(self) -> str:
         """
         URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
         `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         """
         return __config__.get('hostUrl') or (_utilities.get_env('DBT_CLOUD_HOST_URL') or 'https://cloud.getdbt.com/api')
+
+    @_builtins.property
+    def max_retries(self) -> Optional[int]:
+        """
+        The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+        """
+        return __config__.get_int('maxRetries')
+
+    @_builtins.property
+    def retriable_status_codes(self) -> Optional[str]:
+        """
+        List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+        """
+        return __config__.get('retriableStatusCodes')
+
+    @_builtins.property
+    def retry_interval_seconds(self) -> Optional[int]:
+        """
+        The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+        """
+        return __config__.get_int('retryIntervalSeconds')
 
     @_builtins.property
     def token(self) -> Optional[str]:

@@ -20,10 +20,30 @@ Account identifier for your dbt Cloud implementation. Instead of setting the par
 variable `DBT_CLOUD_ACCOUNT_ID`
 """
 
+disableRetry: Optional[bool]
+"""
+If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
+"""
+
 hostUrl: str
 """
 URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
 `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+"""
+
+maxRetries: Optional[int]
+"""
+The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
+"""
+
+retriableStatusCodes: Optional[str]
+"""
+List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
+"""
+
+retryIntervalSeconds: Optional[int]
+"""
+The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
 """
 
 token: Optional[str]
