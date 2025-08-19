@@ -9780,7 +9780,7 @@
                 "properties": {
                     "__self__": {
                         "type": "ref",
-                        "$ref": "#/resources/pulumi:providers:dbtcloud"
+                        "$ref": "#/provider"
                     }
                 },
                 "type": "pulumi:providers:dbtcloud/terraformConfig",
