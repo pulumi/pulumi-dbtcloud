@@ -8,8 +8,7 @@ declare var exports: any;
 const __config = new pulumi.Config("dbtcloud");
 
 /**
- * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
- * variable `DBT_CLOUD_ACCOUNT_ID`
+ * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
  */
 export declare const accountId: number | undefined;
 Object.defineProperty(exports, "accountId", {
@@ -31,8 +30,7 @@ Object.defineProperty(exports, "disableRetry", {
 });
 
 /**
- * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
- * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+ * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
  */
 export declare const hostUrl: string;
 Object.defineProperty(exports, "hostUrl", {

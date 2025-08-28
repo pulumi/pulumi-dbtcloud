@@ -81,15 +81,15 @@ export class ProjectArtefacts extends pulumi.CustomResource {
     /**
      * Docs Job ID
      */
-    public readonly docsJobId!: pulumi.Output<number>;
+    declare public readonly docsJobId: pulumi.Output<number>;
     /**
      * Freshness Job ID
      */
-    public readonly freshnessJobId!: pulumi.Output<number>;
+    declare public readonly freshnessJobId: pulumi.Output<number>;
     /**
      * Project ID
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
 
     /**
      * Create a ProjectArtefacts resource with the given unique name, arguments, and options.
@@ -104,17 +104,17 @@ export class ProjectArtefacts extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectArtefactsState | undefined;
-            resourceInputs["docsJobId"] = state ? state.docsJobId : undefined;
-            resourceInputs["freshnessJobId"] = state ? state.freshnessJobId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["docsJobId"] = state?.docsJobId;
+            resourceInputs["freshnessJobId"] = state?.freshnessJobId;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as ProjectArtefactsArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["docsJobId"] = args ? args.docsJobId : undefined;
-            resourceInputs["freshnessJobId"] = args ? args.freshnessJobId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["docsJobId"] = args?.docsJobId;
+            resourceInputs["freshnessJobId"] = args?.freshnessJobId;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ProjectArtefacts.__pulumiType, name, resourceInputs, opts);

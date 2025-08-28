@@ -82,27 +82,27 @@ export class EnvironmentVariableJobOverride extends pulumi.CustomResource {
     /**
      * The account id
      */
-    public /*out*/ readonly accountId!: pulumi.Output<number>;
+    declare public /*out*/ readonly accountId: pulumi.Output<number>;
     /**
      * The internal ID of this resource. Contains the project ID and the environment variable job override ID.
      */
-    public /*out*/ readonly environmentVariableJobOverrideId!: pulumi.Output<number>;
+    declare public /*out*/ readonly environmentVariableJobOverrideId: pulumi.Output<number>;
     /**
      * The job ID for which the environment variable is being overridden
      */
-    public readonly jobDefinitionId!: pulumi.Output<number>;
+    declare public readonly jobDefinitionId: pulumi.Output<number>;
     /**
      * The environment variable name to override
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Project ID to create the environment variable job override in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The value for the override of the environment variable
      */
-    public readonly rawValue!: pulumi.Output<string>;
+    declare public readonly rawValue: pulumi.Output<string>;
 
     /**
      * Create a EnvironmentVariableJobOverride resource with the given unique name, arguments, and options.
@@ -117,27 +117,27 @@ export class EnvironmentVariableJobOverride extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EnvironmentVariableJobOverrideState | undefined;
-            resourceInputs["accountId"] = state ? state.accountId : undefined;
-            resourceInputs["environmentVariableJobOverrideId"] = state ? state.environmentVariableJobOverrideId : undefined;
-            resourceInputs["jobDefinitionId"] = state ? state.jobDefinitionId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["rawValue"] = state ? state.rawValue : undefined;
+            resourceInputs["accountId"] = state?.accountId;
+            resourceInputs["environmentVariableJobOverrideId"] = state?.environmentVariableJobOverrideId;
+            resourceInputs["jobDefinitionId"] = state?.jobDefinitionId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["rawValue"] = state?.rawValue;
         } else {
             const args = argsOrState as EnvironmentVariableJobOverrideArgs | undefined;
-            if ((!args || args.jobDefinitionId === undefined) && !opts.urn) {
+            if (args?.jobDefinitionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'jobDefinitionId'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.rawValue === undefined) && !opts.urn) {
+            if (args?.rawValue === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rawValue'");
             }
-            resourceInputs["jobDefinitionId"] = args ? args.jobDefinitionId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["rawValue"] = args ? args.rawValue : undefined;
+            resourceInputs["jobDefinitionId"] = args?.jobDefinitionId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["rawValue"] = args?.rawValue;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["environmentVariableJobOverrideId"] = undefined /*out*/;
         }

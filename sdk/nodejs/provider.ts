@@ -26,14 +26,13 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
-     * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-     * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+     * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      */
-    public readonly hostUrl!: pulumi.Output<string | undefined>;
+    declare public readonly hostUrl: pulumi.Output<string | undefined>;
     /**
      * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
      */
-    public readonly token!: pulumi.Output<string | undefined>;
+    declare public readonly token: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -46,12 +45,12 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["accountId"] = pulumi.output((args ? args.accountId : undefined) ?? utilities.getEnvNumber("DBT_CLOUD_ACCOUNT_ID")).apply(JSON.stringify);
-            resourceInputs["disableRetry"] = pulumi.output(args ? args.disableRetry : undefined).apply(JSON.stringify);
-            resourceInputs["hostUrl"] = (args ? args.hostUrl : undefined) ?? (utilities.getEnv("DBT_CLOUD_HOST_URL") || "https://cloud.getdbt.com/api");
-            resourceInputs["maxRetries"] = pulumi.output(args ? args.maxRetries : undefined).apply(JSON.stringify);
-            resourceInputs["retriableStatusCodes"] = pulumi.output(args ? args.retriableStatusCodes : undefined).apply(JSON.stringify);
-            resourceInputs["retryIntervalSeconds"] = pulumi.output(args ? args.retryIntervalSeconds : undefined).apply(JSON.stringify);
+            resourceInputs["accountId"] = pulumi.output((args?.accountId) ?? utilities.getEnvNumber("DBT_CLOUD_ACCOUNT_ID")).apply(JSON.stringify);
+            resourceInputs["disableRetry"] = pulumi.output(args?.disableRetry).apply(JSON.stringify);
+            resourceInputs["hostUrl"] = (args?.hostUrl) ?? (utilities.getEnv("DBT_CLOUD_HOST_URL") || "https://cloud.getdbt.com/api");
+            resourceInputs["maxRetries"] = pulumi.output(args?.maxRetries).apply(JSON.stringify);
+            resourceInputs["retriableStatusCodes"] = pulumi.output(args?.retriableStatusCodes).apply(JSON.stringify);
+            resourceInputs["retryIntervalSeconds"] = pulumi.output(args?.retryIntervalSeconds).apply(JSON.stringify);
             resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("DBT_CLOUD_TOKEN");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -75,8 +74,7 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-     * variable `DBT_CLOUD_ACCOUNT_ID`
+     * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
      */
     accountId?: pulumi.Input<number>;
     /**
@@ -84,8 +82,7 @@ export interface ProviderArgs {
      */
     disableRetry?: pulumi.Input<boolean>;
     /**
-     * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-     * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+     * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      */
     hostUrl?: pulumi.Input<string>;
     /**

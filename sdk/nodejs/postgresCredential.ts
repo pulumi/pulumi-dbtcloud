@@ -85,43 +85,43 @@ export class PostgresCredential extends pulumi.CustomResource {
     /**
      * The system Postgres/Redshift/AlloyDB credential ID.
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    public readonly defaultSchema!: pulumi.Output<string>;
+    declare public readonly defaultSchema: pulumi.Output<string>;
     /**
      * Whether the Postgres/Redshift/AlloyDB credential is active
      */
-    public readonly isActive!: pulumi.Output<boolean>;
+    declare public readonly isActive: pulumi.Output<boolean>;
     /**
      * Number of threads to use (required for Redshift)
      */
-    public readonly numThreads!: pulumi.Output<number>;
+    declare public readonly numThreads: pulumi.Output<number>;
     /**
      * Password for Postgres/Redshift/AlloyDB
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
      */
-    public readonly semanticLayerCredential!: pulumi.Output<boolean>;
+    declare public readonly semanticLayerCredential: pulumi.Output<boolean>;
     /**
      * Default schema name
      */
-    public readonly targetName!: pulumi.Output<string>;
+    declare public readonly targetName: pulumi.Output<string>;
     /**
      * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * Username for Postgres/Redshift/AlloyDB
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a PostgresCredential resource with the given unique name, arguments, and options.
@@ -136,33 +136,33 @@ export class PostgresCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PostgresCredentialState | undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["defaultSchema"] = state ? state.defaultSchema : undefined;
-            resourceInputs["isActive"] = state ? state.isActive : undefined;
-            resourceInputs["numThreads"] = state ? state.numThreads : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["semanticLayerCredential"] = state ? state.semanticLayerCredential : undefined;
-            resourceInputs["targetName"] = state ? state.targetName : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["defaultSchema"] = state?.defaultSchema;
+            resourceInputs["isActive"] = state?.isActive;
+            resourceInputs["numThreads"] = state?.numThreads;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["semanticLayerCredential"] = state?.semanticLayerCredential;
+            resourceInputs["targetName"] = state?.targetName;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as PostgresCredentialArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["defaultSchema"] = args ? args.defaultSchema : undefined;
-            resourceInputs["isActive"] = args ? args.isActive : undefined;
-            resourceInputs["numThreads"] = args ? args.numThreads : undefined;
+            resourceInputs["defaultSchema"] = args?.defaultSchema;
+            resourceInputs["isActive"] = args?.isActive;
+            resourceInputs["numThreads"] = args?.numThreads;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["semanticLayerCredential"] = args ? args.semanticLayerCredential : undefined;
-            resourceInputs["targetName"] = args ? args.targetName : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["semanticLayerCredential"] = args?.semanticLayerCredential;
+            resourceInputs["targetName"] = args?.targetName;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["username"] = args?.username;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

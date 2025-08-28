@@ -16,8 +16,7 @@ from .. import _utilities
 
 accountId: Optional[int]
 """
-Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-variable `DBT_CLOUD_ACCOUNT_ID`
+Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
 """
 
 disableRetry: Optional[bool]
@@ -27,8 +26,7 @@ If set to true, the provider will not retry requests that fail due to rate limit
 
 hostUrl: str
 """
-URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-`DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
 """
 
 maxRetries: Optional[int]

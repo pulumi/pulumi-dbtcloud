@@ -15,8 +15,7 @@ public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("dbtcloud");
 /**
- * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
- * variable `DBT_CLOUD_ACCOUNT_ID`
+ * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
  * 
  */
     public Optional<Integer> accountId() {
@@ -30,8 +29,7 @@ public final class Config {
         return Codegen.booleanProp("disableRetry").config(config).get();
     }
 /**
- * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
- * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+ * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
  * 
  */
     public Optional<String> hostUrl() {

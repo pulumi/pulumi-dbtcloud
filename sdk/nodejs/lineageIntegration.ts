@@ -89,31 +89,31 @@ export class LineageIntegration extends pulumi.CustomResource {
     /**
      * The URL of the BI server (see docs for more details)
      */
-    public readonly host!: pulumi.Output<string>;
+    declare public readonly host: pulumi.Output<string>;
     /**
      * The ID of the lineage integration
      */
-    public /*out*/ readonly lineageIntegrationId!: pulumi.Output<number>;
+    declare public /*out*/ readonly lineageIntegrationId: pulumi.Output<number>;
     /**
      * The integration type. Today only 'tableau' is supported
      */
-    public /*out*/ readonly name!: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
     /**
      * The dbt Cloud project ID for the integration
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The sitename for the collections of dashboards (see docs for more details)
      */
-    public readonly siteId!: pulumi.Output<string>;
+    declare public readonly siteId: pulumi.Output<string>;
     /**
      * The secret token value to use to authenticate to the BI server
      */
-    public readonly token!: pulumi.Output<string>;
+    declare public readonly token: pulumi.Output<string>;
     /**
      * The token to use to authenticate to the BI server
      */
-    public readonly tokenName!: pulumi.Output<string>;
+    declare public readonly tokenName: pulumi.Output<string>;
 
     /**
      * Create a LineageIntegration resource with the given unique name, arguments, and options.
@@ -128,35 +128,35 @@ export class LineageIntegration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LineageIntegrationState | undefined;
-            resourceInputs["host"] = state ? state.host : undefined;
-            resourceInputs["lineageIntegrationId"] = state ? state.lineageIntegrationId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["siteId"] = state ? state.siteId : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
-            resourceInputs["tokenName"] = state ? state.tokenName : undefined;
+            resourceInputs["host"] = state?.host;
+            resourceInputs["lineageIntegrationId"] = state?.lineageIntegrationId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["siteId"] = state?.siteId;
+            resourceInputs["token"] = state?.token;
+            resourceInputs["tokenName"] = state?.tokenName;
         } else {
             const args = argsOrState as LineageIntegrationArgs | undefined;
-            if ((!args || args.host === undefined) && !opts.urn) {
+            if (args?.host === undefined && !opts.urn) {
                 throw new Error("Missing required property 'host'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.siteId === undefined) && !opts.urn) {
+            if (args?.siteId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'siteId'");
             }
-            if ((!args || args.token === undefined) && !opts.urn) {
+            if (args?.token === undefined && !opts.urn) {
                 throw new Error("Missing required property 'token'");
             }
-            if ((!args || args.tokenName === undefined) && !opts.urn) {
+            if (args?.tokenName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tokenName'");
             }
-            resourceInputs["host"] = args ? args.host : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["siteId"] = args ? args.siteId : undefined;
+            resourceInputs["host"] = args?.host;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["siteId"] = args?.siteId;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
-            resourceInputs["tokenName"] = args ? args.tokenName : undefined;
+            resourceInputs["tokenName"] = args?.tokenName;
             resourceInputs["lineageIntegrationId"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
         }

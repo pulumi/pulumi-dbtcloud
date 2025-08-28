@@ -18,8 +18,7 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-	// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+	// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
 	HostUrl pulumi.StringPtrOutput `pulumi:"hostUrl"`
 	// API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
 	Token pulumi.StringPtrOutput `pulumi:"token"`
@@ -64,13 +63,11 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-	// variable `DBT_CLOUD_ACCOUNT_ID`
+	// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
 	AccountId *int `pulumi:"accountId"`
 	// If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
 	DisableRetry *bool `pulumi:"disableRetry"`
-	// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-	// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+	// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
 	HostUrl *string `pulumi:"hostUrl"`
 	// The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
 	MaxRetries *int `pulumi:"maxRetries"`
@@ -84,13 +81,11 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-	// variable `DBT_CLOUD_ACCOUNT_ID`
+	// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
 	AccountId pulumi.IntPtrInput
 	// If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
 	DisableRetry pulumi.BoolPtrInput
-	// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-	// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+	// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
 	HostUrl pulumi.StringPtrInput
 	// The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
 	MaxRetries pulumi.IntPtrInput
@@ -162,8 +157,7 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
 func (o ProviderOutput) HostUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.HostUrl }).(pulumi.StringPtrOutput)
 }

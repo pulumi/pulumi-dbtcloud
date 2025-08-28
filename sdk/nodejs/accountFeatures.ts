@@ -40,23 +40,23 @@ export class AccountFeatures extends pulumi.CustomResource {
     /**
      * Whether advanced CI is enabled.
      */
-    public readonly advancedCi!: pulumi.Output<boolean>;
+    declare public readonly advancedCi: pulumi.Output<boolean>;
     /**
      * Whether AI features are enabled.
      */
-    public readonly aiFeatures!: pulumi.Output<boolean>;
+    declare public readonly aiFeatures: pulumi.Output<boolean>;
     /**
      * Whether partial parsing is enabled.
      */
-    public readonly partialParsing!: pulumi.Output<boolean>;
+    declare public readonly partialParsing: pulumi.Output<boolean>;
     /**
      * Whether repository caching is enabled.
      */
-    public readonly repoCaching!: pulumi.Output<boolean>;
+    declare public readonly repoCaching: pulumi.Output<boolean>;
     /**
      * Whether warehouse cost visibility is enabled.
      */
-    public readonly warehouseCostVisibility!: pulumi.Output<boolean>;
+    declare public readonly warehouseCostVisibility: pulumi.Output<boolean>;
 
     /**
      * Create a AccountFeatures resource with the given unique name, arguments, and options.
@@ -71,18 +71,18 @@ export class AccountFeatures extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AccountFeaturesState | undefined;
-            resourceInputs["advancedCi"] = state ? state.advancedCi : undefined;
-            resourceInputs["aiFeatures"] = state ? state.aiFeatures : undefined;
-            resourceInputs["partialParsing"] = state ? state.partialParsing : undefined;
-            resourceInputs["repoCaching"] = state ? state.repoCaching : undefined;
-            resourceInputs["warehouseCostVisibility"] = state ? state.warehouseCostVisibility : undefined;
+            resourceInputs["advancedCi"] = state?.advancedCi;
+            resourceInputs["aiFeatures"] = state?.aiFeatures;
+            resourceInputs["partialParsing"] = state?.partialParsing;
+            resourceInputs["repoCaching"] = state?.repoCaching;
+            resourceInputs["warehouseCostVisibility"] = state?.warehouseCostVisibility;
         } else {
             const args = argsOrState as AccountFeaturesArgs | undefined;
-            resourceInputs["advancedCi"] = args ? args.advancedCi : undefined;
-            resourceInputs["aiFeatures"] = args ? args.aiFeatures : undefined;
-            resourceInputs["partialParsing"] = args ? args.partialParsing : undefined;
-            resourceInputs["repoCaching"] = args ? args.repoCaching : undefined;
-            resourceInputs["warehouseCostVisibility"] = args ? args.warehouseCostVisibility : undefined;
+            resourceInputs["advancedCi"] = args?.advancedCi;
+            resourceInputs["aiFeatures"] = args?.aiFeatures;
+            resourceInputs["partialParsing"] = args?.partialParsing;
+            resourceInputs["repoCaching"] = args?.repoCaching;
+            resourceInputs["warehouseCostVisibility"] = args?.warehouseCostVisibility;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AccountFeatures.__pulumiType, name, resourceInputs, opts);

@@ -23,8 +23,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def account_id(self) -> Optional[int]:
         """
-        Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-        variable `DBT_CLOUD_ACCOUNT_ID`
+        Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
         """
         return __config__.get_int('accountId') or _utilities.get_env_int('DBT_CLOUD_ACCOUNT_ID')
 
@@ -38,8 +37,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def host_url(self) -> str:
         """
-        URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-        `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         """
         return __config__.get('hostUrl') or (_utilities.get_env('DBT_CLOUD_HOST_URL') or 'https://cloud.getdbt.com/api')
 

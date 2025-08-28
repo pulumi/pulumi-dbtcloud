@@ -24,16 +24,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="pulumi:providers:dbtcloud")
 public class Provider extends com.pulumi.resources.ProviderResource {
     /**
-     * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-     * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+     * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      * 
      */
     @Export(name="hostUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> hostUrl;
 
     /**
-     * @return URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-     * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+     * @return URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      * 
      */
     public Output<Optional<String>> hostUrl() {

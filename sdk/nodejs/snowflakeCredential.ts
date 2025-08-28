@@ -84,59 +84,59 @@ export class SnowflakeCredential extends pulumi.CustomResource {
     /**
      * The type of Snowflake credential ('password' or 'keypair')
      */
-    public readonly authType!: pulumi.Output<string>;
+    declare public readonly authType: pulumi.Output<string>;
     /**
      * The internal credential ID
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * The catalog to connect use
      */
-    public readonly database!: pulumi.Output<string | undefined>;
+    declare public readonly database: pulumi.Output<string | undefined>;
     /**
      * Whether the Snowflake credential is active
      */
-    public readonly isActive!: pulumi.Output<boolean>;
+    declare public readonly isActive: pulumi.Output<boolean>;
     /**
      * Number of threads to use
      */
-    public readonly numThreads!: pulumi.Output<number>;
+    declare public readonly numThreads: pulumi.Output<number>;
     /**
      * The password for the Snowflake account
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * The private key for the Snowflake account
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string>;
     /**
      * The passphrase for the private key
      */
-    public readonly privateKeyPassphrase!: pulumi.Output<string>;
+    declare public readonly privateKeyPassphrase: pulumi.Output<string>;
     /**
      * Project ID to create the Snowflake credential in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The role to assume
      */
-    public readonly role!: pulumi.Output<string | undefined>;
+    declare public readonly role: pulumi.Output<string | undefined>;
     /**
      * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    public readonly schema!: pulumi.Output<string>;
+    declare public readonly schema: pulumi.Output<string>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
      */
-    public readonly semanticLayerCredential!: pulumi.Output<boolean>;
+    declare public readonly semanticLayerCredential: pulumi.Output<boolean>;
     /**
      * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    public readonly user!: pulumi.Output<string>;
+    declare public readonly user: pulumi.Output<string>;
     /**
      * The warehouse to use
      */
-    public readonly warehouse!: pulumi.Output<string | undefined>;
+    declare public readonly warehouse: pulumi.Output<string | undefined>;
 
     /**
      * Create a SnowflakeCredential resource with the given unique name, arguments, and options.
@@ -151,44 +151,44 @@ export class SnowflakeCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SnowflakeCredentialState | undefined;
-            resourceInputs["authType"] = state ? state.authType : undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["database"] = state ? state.database : undefined;
-            resourceInputs["isActive"] = state ? state.isActive : undefined;
-            resourceInputs["numThreads"] = state ? state.numThreads : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["privateKeyPassphrase"] = state ? state.privateKeyPassphrase : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["schema"] = state ? state.schema : undefined;
-            resourceInputs["semanticLayerCredential"] = state ? state.semanticLayerCredential : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
-            resourceInputs["warehouse"] = state ? state.warehouse : undefined;
+            resourceInputs["authType"] = state?.authType;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["database"] = state?.database;
+            resourceInputs["isActive"] = state?.isActive;
+            resourceInputs["numThreads"] = state?.numThreads;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["privateKeyPassphrase"] = state?.privateKeyPassphrase;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["schema"] = state?.schema;
+            resourceInputs["semanticLayerCredential"] = state?.semanticLayerCredential;
+            resourceInputs["user"] = state?.user;
+            resourceInputs["warehouse"] = state?.warehouse;
         } else {
             const args = argsOrState as SnowflakeCredentialArgs | undefined;
-            if ((!args || args.authType === undefined) && !opts.urn) {
+            if (args?.authType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authType'");
             }
-            if ((!args || args.numThreads === undefined) && !opts.urn) {
+            if (args?.numThreads === undefined && !opts.urn) {
                 throw new Error("Missing required property 'numThreads'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["authType"] = args ? args.authType : undefined;
-            resourceInputs["database"] = args ? args.database : undefined;
-            resourceInputs["isActive"] = args ? args.isActive : undefined;
-            resourceInputs["numThreads"] = args ? args.numThreads : undefined;
+            resourceInputs["authType"] = args?.authType;
+            resourceInputs["database"] = args?.database;
+            resourceInputs["isActive"] = args?.isActive;
+            resourceInputs["numThreads"] = args?.numThreads;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["privateKeyPassphrase"] = args?.privateKeyPassphrase ? pulumi.secret(args.privateKeyPassphrase) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["schema"] = args ? args.schema : undefined;
-            resourceInputs["semanticLayerCredential"] = args ? args.semanticLayerCredential : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
-            resourceInputs["warehouse"] = args ? args.warehouse : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["schema"] = args?.schema;
+            resourceInputs["semanticLayerCredential"] = args?.semanticLayerCredential;
+            resourceInputs["user"] = args?.user;
+            resourceInputs["warehouse"] = args?.warehouse;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

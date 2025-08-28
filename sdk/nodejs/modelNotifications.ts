@@ -85,27 +85,27 @@ export class ModelNotifications extends pulumi.CustomResource {
     /**
      * Whether model notifications are enabled for this environment
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The ID of the dbt Cloud environment
      */
-    public readonly environmentId!: pulumi.Output<string>;
+    declare public readonly environmentId: pulumi.Output<string>;
     /**
      * Whether to send notifications for failed model runs
      */
-    public readonly onFailure!: pulumi.Output<boolean>;
+    declare public readonly onFailure: pulumi.Output<boolean>;
     /**
      * Whether to send notifications for skipped model runs
      */
-    public readonly onSkipped!: pulumi.Output<boolean>;
+    declare public readonly onSkipped: pulumi.Output<boolean>;
     /**
      * Whether to send notifications for successful model runs
      */
-    public readonly onSuccess!: pulumi.Output<boolean>;
+    declare public readonly onSuccess: pulumi.Output<boolean>;
     /**
      * Whether to send notifications for model runs with warnings
      */
-    public readonly onWarning!: pulumi.Output<boolean>;
+    declare public readonly onWarning: pulumi.Output<boolean>;
 
     /**
      * Create a ModelNotifications resource with the given unique name, arguments, and options.
@@ -120,23 +120,23 @@ export class ModelNotifications extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ModelNotificationsState | undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["environmentId"] = state ? state.environmentId : undefined;
-            resourceInputs["onFailure"] = state ? state.onFailure : undefined;
-            resourceInputs["onSkipped"] = state ? state.onSkipped : undefined;
-            resourceInputs["onSuccess"] = state ? state.onSuccess : undefined;
-            resourceInputs["onWarning"] = state ? state.onWarning : undefined;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["environmentId"] = state?.environmentId;
+            resourceInputs["onFailure"] = state?.onFailure;
+            resourceInputs["onSkipped"] = state?.onSkipped;
+            resourceInputs["onSuccess"] = state?.onSuccess;
+            resourceInputs["onWarning"] = state?.onWarning;
         } else {
             const args = argsOrState as ModelNotificationsArgs | undefined;
-            if ((!args || args.environmentId === undefined) && !opts.urn) {
+            if (args?.environmentId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'environmentId'");
             }
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
-            resourceInputs["onFailure"] = args ? args.onFailure : undefined;
-            resourceInputs["onSkipped"] = args ? args.onSkipped : undefined;
-            resourceInputs["onSuccess"] = args ? args.onSuccess : undefined;
-            resourceInputs["onWarning"] = args ? args.onWarning : undefined;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["onFailure"] = args?.onFailure;
+            resourceInputs["onSkipped"] = args?.onSkipped;
+            resourceInputs["onSuccess"] = args?.onSuccess;
+            resourceInputs["onWarning"] = args?.onWarning;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ModelNotifications.__pulumiType, name, resourceInputs, opts);
