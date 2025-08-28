@@ -62,7 +62,7 @@
         "variables": {
             "accountId": {
                 "type": "integer",
-                "description": "Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment\nvariable `DBT_CLOUD_ACCOUNT_ID`\n",
+                "description": "Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`",
                 "defaultInfo": {
                     "environment": [
                         "DBT_CLOUD_ACCOUNT_ID"
@@ -71,11 +71,11 @@
             },
             "disableRetry": {
                 "type": "boolean",
-                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.\n"
+                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false."
             },
             "hostUrl": {
                 "type": "string",
-                "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable\n`DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api\n",
+                "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api",
                 "default": "https://cloud.getdbt.com/api",
                 "defaultInfo": {
                     "environment": [
@@ -85,22 +85,22 @@
             },
             "maxRetries": {
                 "type": "integer",
-                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.\n"
+                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries."
             },
             "retriableStatusCodes": {
                 "type": "array",
                 "items": {
                     "type": "string"
                 },
-                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].\n"
+                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504]."
             },
             "retryIntervalSeconds": {
                 "type": "integer",
-                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.\n"
+                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds."
             },
             "token": {
                 "type": "string",
-                "description": "API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`\n",
+                "description": "API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`",
                 "defaultInfo": {
                     "environment": [
                         "DBT_CLOUD_TOKEN"
@@ -2975,41 +2975,41 @@
         "properties": {
             "accountId": {
                 "type": "integer",
-                "description": "Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment\nvariable `DBT_CLOUD_ACCOUNT_ID`\n"
+                "description": "Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`"
             },
             "disableRetry": {
                 "type": "boolean",
-                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.\n"
+                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false."
             },
             "hostUrl": {
                 "type": "string",
-                "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable\n`DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api\n"
+                "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api"
             },
             "maxRetries": {
                 "type": "integer",
-                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.\n"
+                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries."
             },
             "retriableStatusCodes": {
                 "type": "array",
                 "items": {
                     "type": "string"
                 },
-                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].\n"
+                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504]."
             },
             "retryIntervalSeconds": {
                 "type": "integer",
-                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.\n"
+                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds."
             },
             "token": {
                 "type": "string",
-                "description": "API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`\n",
+                "description": "API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`",
                 "secret": true
             }
         },
         "inputProperties": {
             "accountId": {
                 "type": "integer",
-                "description": "Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment\nvariable `DBT_CLOUD_ACCOUNT_ID`\n",
+                "description": "Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`",
                 "defaultInfo": {
                     "environment": [
                         "DBT_CLOUD_ACCOUNT_ID"
@@ -3018,11 +3018,11 @@
             },
             "disableRetry": {
                 "type": "boolean",
-                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.\n"
+                "description": "If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false."
             },
             "hostUrl": {
                 "type": "string",
-                "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable\n`DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api\n",
+                "description": "URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api",
                 "default": "https://cloud.getdbt.com/api",
                 "defaultInfo": {
                     "environment": [
@@ -3032,22 +3032,22 @@
             },
             "maxRetries": {
                 "type": "integer",
-                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.\n"
+                "description": "The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries."
             },
             "retriableStatusCodes": {
                 "type": "array",
                 "items": {
                     "type": "string"
                 },
-                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].\n"
+                "description": "List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504]."
             },
             "retryIntervalSeconds": {
                 "type": "integer",
-                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.\n"
+                "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds."
             },
             "token": {
                 "type": "string",
-                "description": "API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`\n",
+                "description": "API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`",
                 "defaultInfo": {
                     "environment": [
                         "DBT_CLOUD_TOKEN"
@@ -8031,7 +8031,7 @@
                         "type": "integer"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -8144,7 +8144,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "projectId": {
@@ -8333,7 +8333,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     }
                 },
@@ -8630,7 +8630,7 @@
                         "type": "integer"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "jobs": {
@@ -8734,7 +8734,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "notificationId": {
@@ -9028,7 +9028,7 @@
                 "description": "A collection of values returned by getProjects.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "nameContains": {
@@ -9250,7 +9250,7 @@
                         "description": "Filter to apply to the runs\n"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "runs": {
@@ -9674,7 +9674,7 @@
                 "description": "A collection of values returned by getUsers.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "users": {
