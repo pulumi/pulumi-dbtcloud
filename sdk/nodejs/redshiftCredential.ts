@@ -84,31 +84,31 @@ export class RedshiftCredential extends pulumi.CustomResource {
     /**
      * The internal credential ID
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * Default schema name
      */
-    public readonly defaultSchema!: pulumi.Output<string>;
+    declare public readonly defaultSchema: pulumi.Output<string>;
     /**
      * Whether the Redshift credential is active
      */
-    public readonly isActive!: pulumi.Output<boolean>;
+    declare public readonly isActive: pulumi.Output<boolean>;
     /**
      * Number of threads to use
      */
-    public readonly numThreads!: pulumi.Output<number>;
+    declare public readonly numThreads: pulumi.Output<number>;
     /**
      * The password for the Redshift account
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * Project ID to create the Redshift credential in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The username for the Redshift account.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a RedshiftCredential resource with the given unique name, arguments, and options.
@@ -123,30 +123,30 @@ export class RedshiftCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RedshiftCredentialState | undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["defaultSchema"] = state ? state.defaultSchema : undefined;
-            resourceInputs["isActive"] = state ? state.isActive : undefined;
-            resourceInputs["numThreads"] = state ? state.numThreads : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["defaultSchema"] = state?.defaultSchema;
+            resourceInputs["isActive"] = state?.isActive;
+            resourceInputs["numThreads"] = state?.numThreads;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as RedshiftCredentialArgs | undefined;
-            if ((!args || args.defaultSchema === undefined) && !opts.urn) {
+            if (args?.defaultSchema === undefined && !opts.urn) {
                 throw new Error("Missing required property 'defaultSchema'");
             }
-            if ((!args || args.numThreads === undefined) && !opts.urn) {
+            if (args?.numThreads === undefined && !opts.urn) {
                 throw new Error("Missing required property 'numThreads'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["defaultSchema"] = args ? args.defaultSchema : undefined;
-            resourceInputs["isActive"] = args ? args.isActive : undefined;
-            resourceInputs["numThreads"] = args ? args.numThreads : undefined;
+            resourceInputs["defaultSchema"] = args?.defaultSchema;
+            resourceInputs["isActive"] = args?.isActive;
+            resourceInputs["numThreads"] = args?.numThreads;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["username"] = args?.username;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

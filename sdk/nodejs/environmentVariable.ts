@@ -94,15 +94,15 @@ export class EnvironmentVariable extends pulumi.CustomResource {
     /**
      * Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      */
-    public readonly environmentValues!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly environmentValues: pulumi.Output<{[key: string]: string}>;
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Project ID to create the environment variable in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
 
     /**
      * Create a EnvironmentVariable resource with the given unique name, arguments, and options.
@@ -117,20 +117,20 @@ export class EnvironmentVariable extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EnvironmentVariableState | undefined;
-            resourceInputs["environmentValues"] = state ? state.environmentValues : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["environmentValues"] = state?.environmentValues;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as EnvironmentVariableArgs | undefined;
-            if ((!args || args.environmentValues === undefined) && !opts.urn) {
+            if (args?.environmentValues === undefined && !opts.urn) {
                 throw new Error("Missing required property 'environmentValues'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["environmentValues"] = args ? args.environmentValues : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["environmentValues"] = args?.environmentValues;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EnvironmentVariable.__pulumiType, name, resourceInputs, opts);

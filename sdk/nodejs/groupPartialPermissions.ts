@@ -40,19 +40,19 @@ export class GroupPartialPermissions extends pulumi.CustomResource {
     /**
      * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      */
-    public readonly assignByDefault!: pulumi.Output<boolean>;
+    declare public readonly assignByDefault: pulumi.Output<boolean>;
     /**
      * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
      */
-    public readonly groupPermissions!: pulumi.Output<outputs.GroupPartialPermissionsGroupPermission[] | undefined>;
+    declare public readonly groupPermissions: pulumi.Output<outputs.GroupPartialPermissionsGroupPermission[] | undefined>;
     /**
      * The name of the group. This is used to identify an existing group
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      */
-    public readonly ssoMappingGroups!: pulumi.Output<string[]>;
+    declare public readonly ssoMappingGroups: pulumi.Output<string[]>;
 
     /**
      * Create a GroupPartialPermissions resource with the given unique name, arguments, and options.
@@ -67,16 +67,16 @@ export class GroupPartialPermissions extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupPartialPermissionsState | undefined;
-            resourceInputs["assignByDefault"] = state ? state.assignByDefault : undefined;
-            resourceInputs["groupPermissions"] = state ? state.groupPermissions : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["ssoMappingGroups"] = state ? state.ssoMappingGroups : undefined;
+            resourceInputs["assignByDefault"] = state?.assignByDefault;
+            resourceInputs["groupPermissions"] = state?.groupPermissions;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["ssoMappingGroups"] = state?.ssoMappingGroups;
         } else {
             const args = argsOrState as GroupPartialPermissionsArgs | undefined;
-            resourceInputs["assignByDefault"] = args ? args.assignByDefault : undefined;
-            resourceInputs["groupPermissions"] = args ? args.groupPermissions : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ssoMappingGroups"] = args ? args.ssoMappingGroups : undefined;
+            resourceInputs["assignByDefault"] = args?.assignByDefault;
+            resourceInputs["groupPermissions"] = args?.groupPermissions;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ssoMappingGroups"] = args?.ssoMappingGroups;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupPartialPermissions.__pulumiType, name, resourceInputs, opts);

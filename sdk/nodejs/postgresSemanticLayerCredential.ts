@@ -70,11 +70,11 @@ export class PostgresSemanticLayerCredential extends pulumi.CustomResource {
     /**
      * Semantic Layer credential configuration details.
      */
-    public readonly configuration!: pulumi.Output<outputs.PostgresSemanticLayerCredentialConfiguration>;
+    declare public readonly configuration: pulumi.Output<outputs.PostgresSemanticLayerCredentialConfiguration>;
     /**
      * Postgres credential details, but used in the context of the Semantic Layer.
      */
-    public readonly credential!: pulumi.Output<outputs.PostgresSemanticLayerCredentialCredential>;
+    declare public readonly credential: pulumi.Output<outputs.PostgresSemanticLayerCredentialCredential>;
 
     /**
      * Create a PostgresSemanticLayerCredential resource with the given unique name, arguments, and options.
@@ -89,18 +89,18 @@ export class PostgresSemanticLayerCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PostgresSemanticLayerCredentialState | undefined;
-            resourceInputs["configuration"] = state ? state.configuration : undefined;
-            resourceInputs["credential"] = state ? state.credential : undefined;
+            resourceInputs["configuration"] = state?.configuration;
+            resourceInputs["credential"] = state?.credential;
         } else {
             const args = argsOrState as PostgresSemanticLayerCredentialArgs | undefined;
-            if ((!args || args.configuration === undefined) && !opts.urn) {
+            if (args?.configuration === undefined && !opts.urn) {
                 throw new Error("Missing required property 'configuration'");
             }
-            if ((!args || args.credential === undefined) && !opts.urn) {
+            if (args?.credential === undefined && !opts.urn) {
                 throw new Error("Missing required property 'credential'");
             }
-            resourceInputs["configuration"] = args ? args.configuration : undefined;
-            resourceInputs["credential"] = args ? args.credential : undefined;
+            resourceInputs["configuration"] = args?.configuration;
+            resourceInputs["credential"] = args?.credential;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PostgresSemanticLayerCredential.__pulumiType, name, resourceInputs, opts);

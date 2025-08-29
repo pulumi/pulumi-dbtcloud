@@ -38,27 +38,27 @@ export class TeradataCredential extends pulumi.CustomResource {
     /**
      * The internal credential ID
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * The password for the Teradata account
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * Project ID to create the Teradata/Trino credential in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The schema where to create models
      */
-    public readonly schema!: pulumi.Output<string>;
+    declare public readonly schema: pulumi.Output<string>;
     /**
      * The number of threads to use. Default is 1
      */
-    public readonly threads!: pulumi.Output<number>;
+    declare public readonly threads: pulumi.Output<number>;
     /**
      * The username for the Teradata account
      */
-    public readonly user!: pulumi.Output<string>;
+    declare public readonly user: pulumi.Output<string>;
 
     /**
      * Create a TeradataCredential resource with the given unique name, arguments, and options.
@@ -73,31 +73,31 @@ export class TeradataCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeradataCredentialState | undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["schema"] = state ? state.schema : undefined;
-            resourceInputs["threads"] = state ? state.threads : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["schema"] = state?.schema;
+            resourceInputs["threads"] = state?.threads;
+            resourceInputs["user"] = state?.user;
         } else {
             const args = argsOrState as TeradataCredentialArgs | undefined;
-            if ((!args || args.password === undefined) && !opts.urn) {
+            if (args?.password === undefined && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.schema === undefined) && !opts.urn) {
+            if (args?.schema === undefined && !opts.urn) {
                 throw new Error("Missing required property 'schema'");
             }
-            if ((!args || args.user === undefined) && !opts.urn) {
+            if (args?.user === undefined && !opts.urn) {
                 throw new Error("Missing required property 'user'");
             }
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["schema"] = args ? args.schema : undefined;
-            resourceInputs["threads"] = args ? args.threads : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["schema"] = args?.schema;
+            resourceInputs["threads"] = args?.threads;
+            resourceInputs["user"] = args?.user;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

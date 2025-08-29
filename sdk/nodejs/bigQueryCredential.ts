@@ -81,23 +81,23 @@ export class BigQueryCredential extends pulumi.CustomResource {
     /**
      * The internal credential ID
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * Default dataset name
      */
-    public readonly dataset!: pulumi.Output<string>;
+    declare public readonly dataset: pulumi.Output<string>;
     /**
      * Whether the BigQuery credential is active
      */
-    public readonly isActive!: pulumi.Output<boolean>;
+    declare public readonly isActive: pulumi.Output<boolean>;
     /**
      * Number of threads to use
      */
-    public readonly numThreads!: pulumi.Output<number>;
+    declare public readonly numThreads: pulumi.Output<number>;
     /**
      * Project ID to create the BigQuery credential in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
 
     /**
      * Create a BigQueryCredential resource with the given unique name, arguments, and options.
@@ -112,26 +112,26 @@ export class BigQueryCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BigQueryCredentialState | undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["dataset"] = state ? state.dataset : undefined;
-            resourceInputs["isActive"] = state ? state.isActive : undefined;
-            resourceInputs["numThreads"] = state ? state.numThreads : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["dataset"] = state?.dataset;
+            resourceInputs["isActive"] = state?.isActive;
+            resourceInputs["numThreads"] = state?.numThreads;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as BigQueryCredentialArgs | undefined;
-            if ((!args || args.dataset === undefined) && !opts.urn) {
+            if (args?.dataset === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dataset'");
             }
-            if ((!args || args.numThreads === undefined) && !opts.urn) {
+            if (args?.numThreads === undefined && !opts.urn) {
                 throw new Error("Missing required property 'numThreads'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["dataset"] = args ? args.dataset : undefined;
-            resourceInputs["isActive"] = args ? args.isActive : undefined;
-            resourceInputs["numThreads"] = args ? args.numThreads : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["dataset"] = args?.dataset;
+            resourceInputs["isActive"] = args?.isActive;
+            resourceInputs["numThreads"] = args?.numThreads;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

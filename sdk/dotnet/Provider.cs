@@ -19,8 +19,7 @@ namespace Pulumi.DbtCloud
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-        /// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        /// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         /// </summary>
         [Output("hostUrl")]
         public Output<string?> HostUrl { get; private set; } = null!;
@@ -71,8 +70,7 @@ namespace Pulumi.DbtCloud
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-        /// variable `DBT_CLOUD_ACCOUNT_ID`
+        /// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
         /// </summary>
         [Input("accountId", json: true)]
         public Input<int>? AccountId { get; set; }
@@ -84,8 +82,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? DisableRetry { get; set; }
 
         /// <summary>
-        /// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-        /// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        /// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         /// </summary>
         [Input("hostUrl")]
         public Input<string>? HostUrl { get; set; }

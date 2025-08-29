@@ -82,37 +82,37 @@ export class DatabricksCredential extends pulumi.CustomResource {
     /**
      * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    public readonly adapterType!: pulumi.Output<string>;
+    declare public readonly adapterType: pulumi.Output<string>;
     /**
      * The catalog where to create models (only for the databricks adapter)
      */
-    public readonly catalog!: pulumi.Output<string>;
+    declare public readonly catalog: pulumi.Output<string>;
     /**
      * The system Databricks credential ID
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * Project ID to create the Databricks credential in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    public readonly schema!: pulumi.Output<string>;
+    declare public readonly schema: pulumi.Output<string>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
      */
-    public readonly semanticLayerCredential!: pulumi.Output<boolean>;
+    declare public readonly semanticLayerCredential: pulumi.Output<boolean>;
     /**
      * Target name
      *
      * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      */
-    public readonly targetName!: pulumi.Output<string>;
+    declare public readonly targetName: pulumi.Output<string>;
     /**
      * Token for Databricks user
      */
-    public readonly token!: pulumi.Output<string>;
+    declare public readonly token: pulumi.Output<string>;
 
     /**
      * Create a DatabricksCredential resource with the given unique name, arguments, and options.
@@ -127,28 +127,28 @@ export class DatabricksCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabricksCredentialState | undefined;
-            resourceInputs["adapterType"] = state ? state.adapterType : undefined;
-            resourceInputs["catalog"] = state ? state.catalog : undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["schema"] = state ? state.schema : undefined;
-            resourceInputs["semanticLayerCredential"] = state ? state.semanticLayerCredential : undefined;
-            resourceInputs["targetName"] = state ? state.targetName : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["adapterType"] = state?.adapterType;
+            resourceInputs["catalog"] = state?.catalog;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["schema"] = state?.schema;
+            resourceInputs["semanticLayerCredential"] = state?.semanticLayerCredential;
+            resourceInputs["targetName"] = state?.targetName;
+            resourceInputs["token"] = state?.token;
         } else {
             const args = argsOrState as DatabricksCredentialArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.token === undefined) && !opts.urn) {
+            if (args?.token === undefined && !opts.urn) {
                 throw new Error("Missing required property 'token'");
             }
-            resourceInputs["adapterType"] = args ? args.adapterType : undefined;
-            resourceInputs["catalog"] = args ? args.catalog : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["schema"] = args ? args.schema : undefined;
-            resourceInputs["semanticLayerCredential"] = args ? args.semanticLayerCredential : undefined;
-            resourceInputs["targetName"] = args ? args.targetName : undefined;
+            resourceInputs["adapterType"] = args?.adapterType;
+            resourceInputs["catalog"] = args?.catalog;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["schema"] = args?.schema;
+            resourceInputs["semanticLayerCredential"] = args?.semanticLayerCredential;
+            resourceInputs["targetName"] = args?.targetName;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["credentialId"] = undefined /*out*/;
         }

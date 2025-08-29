@@ -11,8 +11,7 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-// variable `DBT_CLOUD_ACCOUNT_ID`
+// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
 func GetAccountId(ctx *pulumi.Context) int {
 	v, err := config.TryInt(ctx, "dbtcloud:accountId")
 	if err == nil {
@@ -30,8 +29,7 @@ func GetDisableRetry(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "dbtcloud:disableRetry")
 }
 
-// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
 func GetHostUrl(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "dbtcloud:hostUrl")
 	if err == nil {

@@ -82,23 +82,23 @@ export class AthenaCredential extends pulumi.CustomResource {
     /**
      * AWS access key ID for Athena user
      */
-    public readonly awsAccessKeyId!: pulumi.Output<string>;
+    declare public readonly awsAccessKeyId: pulumi.Output<string>;
     /**
      * AWS secret access key for Athena user
      */
-    public readonly awsSecretAccessKey!: pulumi.Output<string>;
+    declare public readonly awsSecretAccessKey: pulumi.Output<string>;
     /**
      * The internal credential ID
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * Project ID to create the Athena credential in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The schema where to create models
      */
-    public readonly schema!: pulumi.Output<string>;
+    declare public readonly schema: pulumi.Output<string>;
 
     /**
      * Create a AthenaCredential resource with the given unique name, arguments, and options.
@@ -113,29 +113,29 @@ export class AthenaCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AthenaCredentialState | undefined;
-            resourceInputs["awsAccessKeyId"] = state ? state.awsAccessKeyId : undefined;
-            resourceInputs["awsSecretAccessKey"] = state ? state.awsSecretAccessKey : undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["schema"] = state ? state.schema : undefined;
+            resourceInputs["awsAccessKeyId"] = state?.awsAccessKeyId;
+            resourceInputs["awsSecretAccessKey"] = state?.awsSecretAccessKey;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["schema"] = state?.schema;
         } else {
             const args = argsOrState as AthenaCredentialArgs | undefined;
-            if ((!args || args.awsAccessKeyId === undefined) && !opts.urn) {
+            if (args?.awsAccessKeyId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'awsAccessKeyId'");
             }
-            if ((!args || args.awsSecretAccessKey === undefined) && !opts.urn) {
+            if (args?.awsSecretAccessKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'awsSecretAccessKey'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.schema === undefined) && !opts.urn) {
+            if (args?.schema === undefined && !opts.urn) {
                 throw new Error("Missing required property 'schema'");
             }
             resourceInputs["awsAccessKeyId"] = args?.awsAccessKeyId ? pulumi.secret(args.awsAccessKeyId) : undefined;
             resourceInputs["awsSecretAccessKey"] = args?.awsSecretAccessKey ? pulumi.secret(args.awsSecretAccessKey) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["schema"] = args ? args.schema : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["schema"] = args?.schema;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

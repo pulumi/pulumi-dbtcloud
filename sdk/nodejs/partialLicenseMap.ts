@@ -59,11 +59,11 @@ export class PartialLicenseMap extends pulumi.CustomResource {
     /**
      * The license type to update
      */
-    public readonly licenseType!: pulumi.Output<string>;
+    declare public readonly licenseType: pulumi.Output<string>;
     /**
      * List of SSO groups to map to the license type.
      */
-    public readonly ssoLicenseMappingGroups!: pulumi.Output<string[]>;
+    declare public readonly ssoLicenseMappingGroups: pulumi.Output<string[]>;
 
     /**
      * Create a PartialLicenseMap resource with the given unique name, arguments, and options.
@@ -78,18 +78,18 @@ export class PartialLicenseMap extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PartialLicenseMapState | undefined;
-            resourceInputs["licenseType"] = state ? state.licenseType : undefined;
-            resourceInputs["ssoLicenseMappingGroups"] = state ? state.ssoLicenseMappingGroups : undefined;
+            resourceInputs["licenseType"] = state?.licenseType;
+            resourceInputs["ssoLicenseMappingGroups"] = state?.ssoLicenseMappingGroups;
         } else {
             const args = argsOrState as PartialLicenseMapArgs | undefined;
-            if ((!args || args.licenseType === undefined) && !opts.urn) {
+            if (args?.licenseType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'licenseType'");
             }
-            if ((!args || args.ssoLicenseMappingGroups === undefined) && !opts.urn) {
+            if (args?.ssoLicenseMappingGroups === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ssoLicenseMappingGroups'");
             }
-            resourceInputs["licenseType"] = args ? args.licenseType : undefined;
-            resourceInputs["ssoLicenseMappingGroups"] = args ? args.ssoLicenseMappingGroups : undefined;
+            resourceInputs["licenseType"] = args?.licenseType;
+            resourceInputs["ssoLicenseMappingGroups"] = args?.ssoLicenseMappingGroups;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PartialLicenseMap.__pulumiType, name, resourceInputs, opts);
