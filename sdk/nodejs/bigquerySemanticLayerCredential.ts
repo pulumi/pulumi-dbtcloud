@@ -40,43 +40,43 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
     /**
      * Auth Provider X509 Cert URL for the Service Account
      */
-    public readonly authProviderX509CertUrl!: pulumi.Output<string>;
+    declare public readonly authProviderX509CertUrl: pulumi.Output<string>;
     /**
      * Auth URI for the Service Account
      */
-    public readonly authUri!: pulumi.Output<string>;
+    declare public readonly authUri: pulumi.Output<string>;
     /**
      * Service Account email
      */
-    public readonly clientEmail!: pulumi.Output<string>;
+    declare public readonly clientEmail: pulumi.Output<string>;
     /**
      * Client ID of the Service Account
      */
-    public readonly clientId!: pulumi.Output<string>;
+    declare public readonly clientId: pulumi.Output<string>;
     /**
      * Client X509 Cert URL for the Service Account
      */
-    public readonly clientX509CertUrl!: pulumi.Output<string>;
+    declare public readonly clientX509CertUrl: pulumi.Output<string>;
     /**
      * Semantic Layer credential configuration details.
      */
-    public readonly configuration!: pulumi.Output<outputs.BigquerySemanticLayerCredentialConfiguration>;
+    declare public readonly configuration: pulumi.Output<outputs.BigquerySemanticLayerCredentialConfiguration>;
     /**
      * BigQuery credential details, but used in the context of the Semantic Layer.
      */
-    public readonly credential!: pulumi.Output<outputs.BigquerySemanticLayerCredentialCredential>;
+    declare public readonly credential: pulumi.Output<outputs.BigquerySemanticLayerCredentialCredential>;
     /**
      * Private Key for the Service Account
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string>;
     /**
      * Private Key ID for the Service Account
      */
-    public readonly privateKeyId!: pulumi.Output<string>;
+    declare public readonly privateKeyId: pulumi.Output<string>;
     /**
      * Token URI for the Service Account
      */
-    public readonly tokenUri!: pulumi.Output<string>;
+    declare public readonly tokenUri: pulumi.Output<string>;
 
     /**
      * Create a BigquerySemanticLayerCredential resource with the given unique name, arguments, and options.
@@ -91,58 +91,58 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BigquerySemanticLayerCredentialState | undefined;
-            resourceInputs["authProviderX509CertUrl"] = state ? state.authProviderX509CertUrl : undefined;
-            resourceInputs["authUri"] = state ? state.authUri : undefined;
-            resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientX509CertUrl"] = state ? state.clientX509CertUrl : undefined;
-            resourceInputs["configuration"] = state ? state.configuration : undefined;
-            resourceInputs["credential"] = state ? state.credential : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
-            resourceInputs["tokenUri"] = state ? state.tokenUri : undefined;
+            resourceInputs["authProviderX509CertUrl"] = state?.authProviderX509CertUrl;
+            resourceInputs["authUri"] = state?.authUri;
+            resourceInputs["clientEmail"] = state?.clientEmail;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientX509CertUrl"] = state?.clientX509CertUrl;
+            resourceInputs["configuration"] = state?.configuration;
+            resourceInputs["credential"] = state?.credential;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["privateKeyId"] = state?.privateKeyId;
+            resourceInputs["tokenUri"] = state?.tokenUri;
         } else {
             const args = argsOrState as BigquerySemanticLayerCredentialArgs | undefined;
-            if ((!args || args.authProviderX509CertUrl === undefined) && !opts.urn) {
+            if (args?.authProviderX509CertUrl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authProviderX509CertUrl'");
             }
-            if ((!args || args.authUri === undefined) && !opts.urn) {
+            if (args?.authUri === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authUri'");
             }
-            if ((!args || args.clientEmail === undefined) && !opts.urn) {
+            if (args?.clientEmail === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientEmail'");
             }
-            if ((!args || args.clientId === undefined) && !opts.urn) {
+            if (args?.clientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.clientX509CertUrl === undefined) && !opts.urn) {
+            if (args?.clientX509CertUrl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientX509CertUrl'");
             }
-            if ((!args || args.configuration === undefined) && !opts.urn) {
+            if (args?.configuration === undefined && !opts.urn) {
                 throw new Error("Missing required property 'configuration'");
             }
-            if ((!args || args.credential === undefined) && !opts.urn) {
+            if (args?.credential === undefined && !opts.urn) {
                 throw new Error("Missing required property 'credential'");
             }
-            if ((!args || args.privateKey === undefined) && !opts.urn) {
+            if (args?.privateKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateKey'");
             }
-            if ((!args || args.privateKeyId === undefined) && !opts.urn) {
+            if (args?.privateKeyId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateKeyId'");
             }
-            if ((!args || args.tokenUri === undefined) && !opts.urn) {
+            if (args?.tokenUri === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tokenUri'");
             }
-            resourceInputs["authProviderX509CertUrl"] = args ? args.authProviderX509CertUrl : undefined;
-            resourceInputs["authUri"] = args ? args.authUri : undefined;
-            resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientX509CertUrl"] = args ? args.clientX509CertUrl : undefined;
-            resourceInputs["configuration"] = args ? args.configuration : undefined;
-            resourceInputs["credential"] = args ? args.credential : undefined;
+            resourceInputs["authProviderX509CertUrl"] = args?.authProviderX509CertUrl;
+            resourceInputs["authUri"] = args?.authUri;
+            resourceInputs["clientEmail"] = args?.clientEmail;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientX509CertUrl"] = args?.clientX509CertUrl;
+            resourceInputs["configuration"] = args?.configuration;
+            resourceInputs["credential"] = args?.credential;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
-            resourceInputs["privateKeyId"] = args ? args.privateKeyId : undefined;
-            resourceInputs["tokenUri"] = args ? args.tokenUri : undefined;
+            resourceInputs["privateKeyId"] = args?.privateKeyId;
+            resourceInputs["tokenUri"] = args?.tokenUri;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["privateKey"] };

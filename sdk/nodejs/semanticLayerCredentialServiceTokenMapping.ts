@@ -79,15 +79,15 @@ export class SemanticLayerCredentialServiceTokenMapping extends pulumi.CustomRes
     /**
      * The ID of the project to which the semantic layer credential is associated.
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The ID of the semantic layer credential to map.
      */
-    public readonly semanticLayerCredentialId!: pulumi.Output<number>;
+    declare public readonly semanticLayerCredentialId: pulumi.Output<number>;
     /**
      * The ID of the service token to map to the semantic layer credential.
      */
-    public readonly serviceTokenId!: pulumi.Output<number>;
+    declare public readonly serviceTokenId: pulumi.Output<number>;
 
     /**
      * Create a SemanticLayerCredentialServiceTokenMapping resource with the given unique name, arguments, and options.
@@ -102,23 +102,23 @@ export class SemanticLayerCredentialServiceTokenMapping extends pulumi.CustomRes
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SemanticLayerCredentialServiceTokenMappingState | undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["semanticLayerCredentialId"] = state ? state.semanticLayerCredentialId : undefined;
-            resourceInputs["serviceTokenId"] = state ? state.serviceTokenId : undefined;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["semanticLayerCredentialId"] = state?.semanticLayerCredentialId;
+            resourceInputs["serviceTokenId"] = state?.serviceTokenId;
         } else {
             const args = argsOrState as SemanticLayerCredentialServiceTokenMappingArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.semanticLayerCredentialId === undefined) && !opts.urn) {
+            if (args?.semanticLayerCredentialId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'semanticLayerCredentialId'");
             }
-            if ((!args || args.serviceTokenId === undefined) && !opts.urn) {
+            if (args?.serviceTokenId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceTokenId'");
             }
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["semanticLayerCredentialId"] = args ? args.semanticLayerCredentialId : undefined;
-            resourceInputs["serviceTokenId"] = args ? args.serviceTokenId : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["semanticLayerCredentialId"] = args?.semanticLayerCredentialId;
+            resourceInputs["serviceTokenId"] = args?.serviceTokenId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SemanticLayerCredentialServiceTokenMapping.__pulumiType, name, resourceInputs, opts);

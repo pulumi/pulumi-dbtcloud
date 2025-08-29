@@ -89,45 +89,45 @@ export class Webhook extends pulumi.CustomResource {
     /**
      * Webhooks Account Identifier
      */
-    public /*out*/ readonly accountIdentifier!: pulumi.Output<string>;
+    declare public /*out*/ readonly accountIdentifier: pulumi.Output<string>;
     /**
      * Webhooks active flag
      */
-    public readonly active!: pulumi.Output<boolean>;
+    declare public readonly active: pulumi.Output<boolean>;
     /**
      * Webhooks Client URL
      */
-    public readonly clientUrl!: pulumi.Output<string>;
+    declare public readonly clientUrl: pulumi.Output<string>;
     /**
      * Webhooks Description
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * Webhooks Event Types
      */
-    public readonly eventTypes!: pulumi.Output<string[]>;
+    declare public readonly eventTypes: pulumi.Output<string[]>;
     /**
      * Secret key for the webhook. Can be used to validate the authenticity of the webhook.
      */
-    public /*out*/ readonly hmacSecret!: pulumi.Output<string>;
+    declare public /*out*/ readonly hmacSecret: pulumi.Output<string>;
     /**
      * Latest HTTP status of the webhook
      */
-    public /*out*/ readonly httpStatusCode!: pulumi.Output<string>;
+    declare public /*out*/ readonly httpStatusCode: pulumi.Output<string>;
     /**
      * List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      */
-    public readonly jobIds!: pulumi.Output<number[] | undefined>;
+    declare public readonly jobIds: pulumi.Output<number[] | undefined>;
     /**
      * Webhooks Name
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Webhook's ID
      *
      * @deprecated Use `id` instead
      */
-    public /*out*/ readonly webhookId!: pulumi.Output<string>;
+    declare public /*out*/ readonly webhookId: pulumi.Output<string>;
 
     /**
      * Create a Webhook resource with the given unique name, arguments, and options.
@@ -142,30 +142,30 @@ export class Webhook extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebhookState | undefined;
-            resourceInputs["accountIdentifier"] = state ? state.accountIdentifier : undefined;
-            resourceInputs["active"] = state ? state.active : undefined;
-            resourceInputs["clientUrl"] = state ? state.clientUrl : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["eventTypes"] = state ? state.eventTypes : undefined;
-            resourceInputs["hmacSecret"] = state ? state.hmacSecret : undefined;
-            resourceInputs["httpStatusCode"] = state ? state.httpStatusCode : undefined;
-            resourceInputs["jobIds"] = state ? state.jobIds : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["webhookId"] = state ? state.webhookId : undefined;
+            resourceInputs["accountIdentifier"] = state?.accountIdentifier;
+            resourceInputs["active"] = state?.active;
+            resourceInputs["clientUrl"] = state?.clientUrl;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["eventTypes"] = state?.eventTypes;
+            resourceInputs["hmacSecret"] = state?.hmacSecret;
+            resourceInputs["httpStatusCode"] = state?.httpStatusCode;
+            resourceInputs["jobIds"] = state?.jobIds;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["webhookId"] = state?.webhookId;
         } else {
             const args = argsOrState as WebhookArgs | undefined;
-            if ((!args || args.clientUrl === undefined) && !opts.urn) {
+            if (args?.clientUrl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientUrl'");
             }
-            if ((!args || args.eventTypes === undefined) && !opts.urn) {
+            if (args?.eventTypes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'eventTypes'");
             }
-            resourceInputs["active"] = args ? args.active : undefined;
-            resourceInputs["clientUrl"] = args ? args.clientUrl : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["eventTypes"] = args ? args.eventTypes : undefined;
-            resourceInputs["jobIds"] = args ? args.jobIds : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["active"] = args?.active;
+            resourceInputs["clientUrl"] = args?.clientUrl;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["eventTypes"] = args?.eventTypes;
+            resourceInputs["jobIds"] = args?.jobIds;
+            resourceInputs["name"] = args?.name;
             resourceInputs["accountIdentifier"] = undefined /*out*/;
             resourceInputs["hmacSecret"] = undefined /*out*/;
             resourceInputs["httpStatusCode"] = undefined /*out*/;

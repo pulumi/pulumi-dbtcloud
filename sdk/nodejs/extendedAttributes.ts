@@ -96,19 +96,19 @@ export class ExtendedAttributes extends pulumi.CustomResource {
         return obj['__pulumiType'] === ExtendedAttributes.__pulumiType;
     }
 
-    public readonly extendedAttributes!: pulumi.Output<string>;
+    declare public readonly extendedAttributes: pulumi.Output<string>;
     /**
      * Extended attributes ID
      */
-    public /*out*/ readonly extendedAttributesId!: pulumi.Output<number>;
+    declare public /*out*/ readonly extendedAttributesId: pulumi.Output<number>;
     /**
      * Project ID to create the extended attributes in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The state of the extended attributes (1 = active, 2 = inactive)
      */
-    public readonly state!: pulumi.Output<number>;
+    declare public readonly state: pulumi.Output<number>;
 
     /**
      * Create a ExtendedAttributes resource with the given unique name, arguments, and options.
@@ -123,21 +123,21 @@ export class ExtendedAttributes extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExtendedAttributesState | undefined;
-            resourceInputs["extendedAttributes"] = state ? state.extendedAttributes : undefined;
-            resourceInputs["extendedAttributesId"] = state ? state.extendedAttributesId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["extendedAttributes"] = state?.extendedAttributes;
+            resourceInputs["extendedAttributesId"] = state?.extendedAttributesId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["state"] = state?.state;
         } else {
             const args = argsOrState as ExtendedAttributesArgs | undefined;
-            if ((!args || args.extendedAttributes === undefined) && !opts.urn) {
+            if (args?.extendedAttributes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'extendedAttributes'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["extendedAttributes"] = args ? args.extendedAttributes : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["state"] = args ? args.state : undefined;
+            resourceInputs["extendedAttributes"] = args?.extendedAttributes;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["state"] = args?.state;
             resourceInputs["extendedAttributesId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

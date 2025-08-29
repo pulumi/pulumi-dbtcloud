@@ -81,11 +81,11 @@ export class SemanticLayerConfiguration extends pulumi.CustomResource {
     /**
      * The ID of the environment
      */
-    public readonly environmentId!: pulumi.Output<number>;
+    declare public readonly environmentId: pulumi.Output<number>;
     /**
      * The ID of the project
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
 
     /**
      * Create a SemanticLayerConfiguration resource with the given unique name, arguments, and options.
@@ -100,18 +100,18 @@ export class SemanticLayerConfiguration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SemanticLayerConfigurationState | undefined;
-            resourceInputs["environmentId"] = state ? state.environmentId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["environmentId"] = state?.environmentId;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as SemanticLayerConfigurationArgs | undefined;
-            if ((!args || args.environmentId === undefined) && !opts.urn) {
+            if (args?.environmentId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'environmentId'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SemanticLayerConfiguration.__pulumiType, name, resourceInputs, opts);

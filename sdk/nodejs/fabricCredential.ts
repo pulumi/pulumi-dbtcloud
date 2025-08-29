@@ -93,43 +93,43 @@ export class FabricCredential extends pulumi.CustomResource {
     /**
      * The type of the adapter (fabric)
      */
-    public readonly adapterType!: pulumi.Output<string>;
+    declare public readonly adapterType: pulumi.Output<string>;
     /**
      * The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      */
-    public readonly clientId!: pulumi.Output<string>;
+    declare public readonly clientId: pulumi.Output<string>;
     /**
      * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      */
-    public readonly clientSecret!: pulumi.Output<string>;
+    declare public readonly clientSecret: pulumi.Output<string>;
     /**
      * The internal credential ID
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * The password for the account to connect to. Only used when connection with AD user/pass
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * Project ID to create the Fabric credential in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The schema where to create the dbt models
      */
-    public readonly schema!: pulumi.Output<string>;
+    declare public readonly schema: pulumi.Output<string>;
     /**
      * Optionally set this to the principal who should own the schemas created by dbt
      */
-    public readonly schemaAuthorization!: pulumi.Output<string>;
+    declare public readonly schemaAuthorization: pulumi.Output<string>;
     /**
      * The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
      */
-    public readonly tenantId!: pulumi.Output<string>;
+    declare public readonly tenantId: pulumi.Output<string>;
     /**
      * The username of the Fabric account to connect to. Only used when connection with AD user/pass
      */
-    public readonly user!: pulumi.Output<string>;
+    declare public readonly user: pulumi.Output<string>;
 
     /**
      * Create a FabricCredential resource with the given unique name, arguments, and options.
@@ -144,36 +144,36 @@ export class FabricCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FabricCredentialState | undefined;
-            resourceInputs["adapterType"] = state ? state.adapterType : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["schema"] = state ? state.schema : undefined;
-            resourceInputs["schemaAuthorization"] = state ? state.schemaAuthorization : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["adapterType"] = state?.adapterType;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["schema"] = state?.schema;
+            resourceInputs["schemaAuthorization"] = state?.schemaAuthorization;
+            resourceInputs["tenantId"] = state?.tenantId;
+            resourceInputs["user"] = state?.user;
         } else {
             const args = argsOrState as FabricCredentialArgs | undefined;
-            if ((!args || args.adapterType === undefined) && !opts.urn) {
+            if (args?.adapterType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'adapterType'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.schema === undefined) && !opts.urn) {
+            if (args?.schema === undefined && !opts.urn) {
                 throw new Error("Missing required property 'schema'");
             }
-            resourceInputs["adapterType"] = args ? args.adapterType : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["adapterType"] = args?.adapterType;
+            resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["schema"] = args ? args.schema : undefined;
-            resourceInputs["schemaAuthorization"] = args ? args.schemaAuthorization : undefined;
-            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["schema"] = args?.schema;
+            resourceInputs["schemaAuthorization"] = args?.schemaAuthorization;
+            resourceInputs["tenantId"] = args?.tenantId;
+            resourceInputs["user"] = args?.user;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

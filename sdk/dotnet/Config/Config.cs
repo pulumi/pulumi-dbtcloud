@@ -34,8 +34,7 @@ namespace Pulumi.DbtCloud
 
         private static readonly __Value<int?> _accountId = new __Value<int?>(() => __config.GetInt32("accountId") ?? Utilities.GetEnvInt32("DBT_CLOUD_ACCOUNT_ID"));
         /// <summary>
-        /// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-        /// variable `DBT_CLOUD_ACCOUNT_ID`
+        /// Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
         /// </summary>
         public static int? AccountId
         {
@@ -55,8 +54,7 @@ namespace Pulumi.DbtCloud
 
         private static readonly __Value<string?> _hostUrl = new __Value<string?>(() => __config.Get("hostUrl") ?? Utilities.GetEnv("DBT_CLOUD_HOST_URL") ?? "https://cloud.getdbt.com/api");
         /// <summary>
-        /// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-        /// `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        /// URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         /// </summary>
         public static string? HostUrl
         {

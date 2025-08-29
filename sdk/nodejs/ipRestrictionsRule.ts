@@ -92,23 +92,23 @@ export class IpRestrictionsRule extends pulumi.CustomResource {
     /**
      * Set of CIDR ranges for this rule
      */
-    public readonly cidrs!: pulumi.Output<outputs.IpRestrictionsRuleCidr[]>;
+    declare public readonly cidrs: pulumi.Output<outputs.IpRestrictionsRuleCidr[]>;
     /**
      * A description of the IP restriction rule
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The name of the IP restriction rule
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.
      */
-    public readonly ruleSetEnabled!: pulumi.Output<boolean>;
+    declare public readonly ruleSetEnabled: pulumi.Output<boolean>;
     /**
      * The type of the IP restriction rule (allow or deny)
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a IpRestrictionsRule resource with the given unique name, arguments, and options.
@@ -123,27 +123,27 @@ export class IpRestrictionsRule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpRestrictionsRuleState | undefined;
-            resourceInputs["cidrs"] = state ? state.cidrs : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["ruleSetEnabled"] = state ? state.ruleSetEnabled : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["cidrs"] = state?.cidrs;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["ruleSetEnabled"] = state?.ruleSetEnabled;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as IpRestrictionsRuleArgs | undefined;
-            if ((!args || args.cidrs === undefined) && !opts.urn) {
+            if (args?.cidrs === undefined && !opts.urn) {
                 throw new Error("Missing required property 'cidrs'");
             }
-            if ((!args || args.ruleSetEnabled === undefined) && !opts.urn) {
+            if (args?.ruleSetEnabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ruleSetEnabled'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["cidrs"] = args ? args.cidrs : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ruleSetEnabled"] = args ? args.ruleSetEnabled : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["cidrs"] = args?.cidrs;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ruleSetEnabled"] = args?.ruleSetEnabled;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(IpRestrictionsRule.__pulumiType, name, resourceInputs, opts);

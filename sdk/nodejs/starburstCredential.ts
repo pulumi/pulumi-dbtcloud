@@ -83,27 +83,27 @@ export class StarburstCredential extends pulumi.CustomResource {
     /**
      * The internal credential ID
      */
-    public /*out*/ readonly credentialId!: pulumi.Output<number>;
+    declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
      * The catalog to connect use
      */
-    public readonly database!: pulumi.Output<string>;
+    declare public readonly database: pulumi.Output<string>;
     /**
      * The password for the Starburst/Trino account
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * Project ID to create the Starburst/Trino credential in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The schema where to create models
      */
-    public readonly schema!: pulumi.Output<string>;
+    declare public readonly schema: pulumi.Output<string>;
     /**
      * The username for the Starburst/Trino account
      */
-    public readonly user!: pulumi.Output<string>;
+    declare public readonly user: pulumi.Output<string>;
 
     /**
      * Create a StarburstCredential resource with the given unique name, arguments, and options.
@@ -118,34 +118,34 @@ export class StarburstCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StarburstCredentialState | undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["database"] = state ? state.database : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["schema"] = state ? state.schema : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["database"] = state?.database;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["schema"] = state?.schema;
+            resourceInputs["user"] = state?.user;
         } else {
             const args = argsOrState as StarburstCredentialArgs | undefined;
-            if ((!args || args.database === undefined) && !opts.urn) {
+            if (args?.database === undefined && !opts.urn) {
                 throw new Error("Missing required property 'database'");
             }
-            if ((!args || args.password === undefined) && !opts.urn) {
+            if (args?.password === undefined && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.schema === undefined) && !opts.urn) {
+            if (args?.schema === undefined && !opts.urn) {
                 throw new Error("Missing required property 'schema'");
             }
-            if ((!args || args.user === undefined) && !opts.urn) {
+            if (args?.user === undefined && !opts.urn) {
                 throw new Error("Missing required property 'user'");
             }
-            resourceInputs["database"] = args ? args.database : undefined;
+            resourceInputs["database"] = args?.database;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["schema"] = args ? args.schema : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["schema"] = args?.schema;
+            resourceInputs["user"] = args?.user;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

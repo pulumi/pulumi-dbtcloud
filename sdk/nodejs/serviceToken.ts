@@ -98,23 +98,23 @@ export class ServiceToken extends pulumi.CustomResource {
     /**
      * Service token name
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Permissions set for the service token
      */
-    public readonly serviceTokenPermissions!: pulumi.Output<outputs.ServiceTokenServiceTokenPermission[] | undefined>;
+    declare public readonly serviceTokenPermissions: pulumi.Output<outputs.ServiceTokenServiceTokenPermission[] | undefined>;
     /**
      * Service token state (1 is active, 2 is inactive)
      */
-    public readonly state!: pulumi.Output<number>;
+    declare public readonly state: pulumi.Output<number>;
     /**
      * Service token secret value (only accessible on creation))
      */
-    public /*out*/ readonly tokenString!: pulumi.Output<string>;
+    declare public /*out*/ readonly tokenString: pulumi.Output<string>;
     /**
      * Service token UID (part of the token)
      */
-    public /*out*/ readonly uid!: pulumi.Output<string>;
+    declare public /*out*/ readonly uid: pulumi.Output<string>;
 
     /**
      * Create a ServiceToken resource with the given unique name, arguments, and options.
@@ -129,16 +129,16 @@ export class ServiceToken extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceTokenState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["serviceTokenPermissions"] = state ? state.serviceTokenPermissions : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["tokenString"] = state ? state.tokenString : undefined;
-            resourceInputs["uid"] = state ? state.uid : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["serviceTokenPermissions"] = state?.serviceTokenPermissions;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["tokenString"] = state?.tokenString;
+            resourceInputs["uid"] = state?.uid;
         } else {
             const args = argsOrState as ServiceTokenArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["serviceTokenPermissions"] = args ? args.serviceTokenPermissions : undefined;
-            resourceInputs["state"] = args ? args.state : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["serviceTokenPermissions"] = args?.serviceTokenPermissions;
+            resourceInputs["state"] = args?.state;
             resourceInputs["tokenString"] = undefined /*out*/;
             resourceInputs["uid"] = undefined /*out*/;
         }

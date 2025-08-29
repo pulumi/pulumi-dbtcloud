@@ -102,55 +102,55 @@ export class Environment extends pulumi.CustomResource {
     /**
      * A connection ID (used with Global Connections)
      */
-    public readonly connectionId!: pulumi.Output<number>;
+    declare public readonly connectionId: pulumi.Output<number>;
     /**
      * The project ID to which the environment belongs.
      */
-    public readonly credentialId!: pulumi.Output<number>;
+    declare public readonly credentialId: pulumi.Output<number>;
     /**
      * The custom branch name to use
      */
-    public readonly customBranch!: pulumi.Output<string | undefined>;
+    declare public readonly customBranch: pulumi.Output<string | undefined>;
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
      */
-    public readonly dbtVersion!: pulumi.Output<string>;
+    declare public readonly dbtVersion: pulumi.Output<string>;
     /**
      * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
-    public readonly deploymentType!: pulumi.Output<string | undefined>;
+    declare public readonly deploymentType: pulumi.Output<string | undefined>;
     /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      */
-    public readonly enableModelQueryHistory!: pulumi.Output<boolean>;
+    declare public readonly enableModelQueryHistory: pulumi.Output<boolean>;
     /**
      * The ID of the environment. Duplicated. Here for backward compatibility.
      */
-    public /*out*/ readonly environmentId!: pulumi.Output<number>;
+    declare public /*out*/ readonly environmentId: pulumi.Output<number>;
     /**
      * The ID of the extended attributes applied
      */
-    public readonly extendedAttributesId!: pulumi.Output<number>;
+    declare public readonly extendedAttributesId: pulumi.Output<number>;
     /**
      * Whether the environment is active
      */
-    public readonly isActive!: pulumi.Output<boolean>;
+    declare public readonly isActive: pulumi.Output<boolean>;
     /**
      * The name of the environment
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Project ID to create the environment in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * The type of environment (must be either development or deployment)
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * Whether to use a custom git branch in this environment
      */
-    public readonly useCustomBranch!: pulumi.Output<boolean>;
+    declare public readonly useCustomBranch: pulumi.Output<boolean>;
 
     /**
      * Create a Environment resource with the given unique name, arguments, and options.
@@ -165,39 +165,39 @@ export class Environment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EnvironmentState | undefined;
-            resourceInputs["connectionId"] = state ? state.connectionId : undefined;
-            resourceInputs["credentialId"] = state ? state.credentialId : undefined;
-            resourceInputs["customBranch"] = state ? state.customBranch : undefined;
-            resourceInputs["dbtVersion"] = state ? state.dbtVersion : undefined;
-            resourceInputs["deploymentType"] = state ? state.deploymentType : undefined;
-            resourceInputs["enableModelQueryHistory"] = state ? state.enableModelQueryHistory : undefined;
-            resourceInputs["environmentId"] = state ? state.environmentId : undefined;
-            resourceInputs["extendedAttributesId"] = state ? state.extendedAttributesId : undefined;
-            resourceInputs["isActive"] = state ? state.isActive : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["useCustomBranch"] = state ? state.useCustomBranch : undefined;
+            resourceInputs["connectionId"] = state?.connectionId;
+            resourceInputs["credentialId"] = state?.credentialId;
+            resourceInputs["customBranch"] = state?.customBranch;
+            resourceInputs["dbtVersion"] = state?.dbtVersion;
+            resourceInputs["deploymentType"] = state?.deploymentType;
+            resourceInputs["enableModelQueryHistory"] = state?.enableModelQueryHistory;
+            resourceInputs["environmentId"] = state?.environmentId;
+            resourceInputs["extendedAttributesId"] = state?.extendedAttributesId;
+            resourceInputs["isActive"] = state?.isActive;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["useCustomBranch"] = state?.useCustomBranch;
         } else {
             const args = argsOrState as EnvironmentArgs | undefined;
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["connectionId"] = args ? args.connectionId : undefined;
-            resourceInputs["credentialId"] = args ? args.credentialId : undefined;
-            resourceInputs["customBranch"] = args ? args.customBranch : undefined;
-            resourceInputs["dbtVersion"] = args ? args.dbtVersion : undefined;
-            resourceInputs["deploymentType"] = args ? args.deploymentType : undefined;
-            resourceInputs["enableModelQueryHistory"] = args ? args.enableModelQueryHistory : undefined;
-            resourceInputs["extendedAttributesId"] = args ? args.extendedAttributesId : undefined;
-            resourceInputs["isActive"] = args ? args.isActive : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["useCustomBranch"] = args ? args.useCustomBranch : undefined;
+            resourceInputs["connectionId"] = args?.connectionId;
+            resourceInputs["credentialId"] = args?.credentialId;
+            resourceInputs["customBranch"] = args?.customBranch;
+            resourceInputs["dbtVersion"] = args?.dbtVersion;
+            resourceInputs["deploymentType"] = args?.deploymentType;
+            resourceInputs["enableModelQueryHistory"] = args?.enableModelQueryHistory;
+            resourceInputs["extendedAttributesId"] = args?.extendedAttributesId;
+            resourceInputs["isActive"] = args?.isActive;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["useCustomBranch"] = args?.useCustomBranch;
             resourceInputs["environmentId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

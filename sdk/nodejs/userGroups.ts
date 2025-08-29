@@ -97,11 +97,11 @@ export class UserGroups extends pulumi.CustomResource {
     /**
      * IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
      */
-    public readonly groupIds!: pulumi.Output<number[]>;
+    declare public readonly groupIds: pulumi.Output<number[]>;
     /**
      * The internal ID of a dbt Cloud user.
      */
-    public readonly userId!: pulumi.Output<number>;
+    declare public readonly userId: pulumi.Output<number>;
 
     /**
      * Create a UserGroups resource with the given unique name, arguments, and options.
@@ -116,18 +116,18 @@ export class UserGroups extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserGroupsState | undefined;
-            resourceInputs["groupIds"] = state ? state.groupIds : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["groupIds"] = state?.groupIds;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as UserGroupsArgs | undefined;
-            if ((!args || args.groupIds === undefined) && !opts.urn) {
+            if (args?.groupIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupIds'");
             }
-            if ((!args || args.userId === undefined) && !opts.urn) {
+            if (args?.userId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
             }
-            resourceInputs["groupIds"] = args ? args.groupIds : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["groupIds"] = args?.groupIds;
+            resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserGroups.__pulumiType, name, resourceInputs, opts);

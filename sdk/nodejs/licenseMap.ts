@@ -91,11 +91,11 @@ export class LicenseMap extends pulumi.CustomResource {
     /**
      * License type
      */
-    public readonly licenseType!: pulumi.Output<string>;
+    declare public readonly licenseType: pulumi.Output<string>;
     /**
      * SSO license mapping group names for this group
      */
-    public readonly ssoLicenseMappingGroups!: pulumi.Output<string[] | undefined>;
+    declare public readonly ssoLicenseMappingGroups: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a LicenseMap resource with the given unique name, arguments, and options.
@@ -110,15 +110,15 @@ export class LicenseMap extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LicenseMapState | undefined;
-            resourceInputs["licenseType"] = state ? state.licenseType : undefined;
-            resourceInputs["ssoLicenseMappingGroups"] = state ? state.ssoLicenseMappingGroups : undefined;
+            resourceInputs["licenseType"] = state?.licenseType;
+            resourceInputs["ssoLicenseMappingGroups"] = state?.ssoLicenseMappingGroups;
         } else {
             const args = argsOrState as LicenseMapArgs | undefined;
-            if ((!args || args.licenseType === undefined) && !opts.urn) {
+            if (args?.licenseType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'licenseType'");
             }
-            resourceInputs["licenseType"] = args ? args.licenseType : undefined;
-            resourceInputs["ssoLicenseMappingGroups"] = args ? args.ssoLicenseMappingGroups : undefined;
+            resourceInputs["licenseType"] = args?.licenseType;
+            resourceInputs["ssoLicenseMappingGroups"] = args?.ssoLicenseMappingGroups;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(LicenseMap.__pulumiType, name, resourceInputs, opts);

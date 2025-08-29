@@ -82,64 +82,64 @@ export class GlobalConnection extends pulumi.CustomResource {
     /**
      * Version of the adapter
      */
-    public /*out*/ readonly adapterVersion!: pulumi.Output<string>;
+    declare public /*out*/ readonly adapterVersion: pulumi.Output<string>;
     /**
      * Apache Spark connection configuration.
      */
-    public readonly apacheSpark!: pulumi.Output<outputs.GlobalConnectionApacheSpark | undefined>;
+    declare public readonly apacheSpark: pulumi.Output<outputs.GlobalConnectionApacheSpark | undefined>;
     /**
      * Athena connection configuration.
      */
-    public readonly athena!: pulumi.Output<outputs.GlobalConnectionAthena | undefined>;
-    public readonly bigquery!: pulumi.Output<outputs.GlobalConnectionBigquery | undefined>;
+    declare public readonly athena: pulumi.Output<outputs.GlobalConnectionAthena | undefined>;
+    declare public readonly bigquery: pulumi.Output<outputs.GlobalConnectionBigquery | undefined>;
     /**
      * Databricks connection configuration
      */
-    public readonly databricks!: pulumi.Output<outputs.GlobalConnectionDatabricks | undefined>;
+    declare public readonly databricks: pulumi.Output<outputs.GlobalConnectionDatabricks | undefined>;
     /**
      * Microsoft Fabric connection configuration.
      */
-    public readonly fabric!: pulumi.Output<outputs.GlobalConnectionFabric | undefined>;
+    declare public readonly fabric: pulumi.Output<outputs.GlobalConnectionFabric | undefined>;
     /**
      * Whether the connection can use an SSH tunnel
      */
-    public /*out*/ readonly isSshTunnelEnabled!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly isSshTunnelEnabled: pulumi.Output<boolean>;
     /**
      * Connection name
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * External OAuth configuration ID (only Snowflake for now)
      */
-    public readonly oauthConfigurationId!: pulumi.Output<number | undefined>;
+    declare public readonly oauthConfigurationId: pulumi.Output<number | undefined>;
     /**
      * PostgreSQL connection configuration.
      */
-    public readonly postgres!: pulumi.Output<outputs.GlobalConnectionPostgres | undefined>;
+    declare public readonly postgres: pulumi.Output<outputs.GlobalConnectionPostgres | undefined>;
     /**
      * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      */
-    public readonly privateLinkEndpointId!: pulumi.Output<string | undefined>;
+    declare public readonly privateLinkEndpointId: pulumi.Output<string | undefined>;
     /**
      * Redshift connection configuration
      */
-    public readonly redshift!: pulumi.Output<outputs.GlobalConnectionRedshift | undefined>;
+    declare public readonly redshift: pulumi.Output<outputs.GlobalConnectionRedshift | undefined>;
     /**
      * Snowflake connection configuration
      */
-    public readonly snowflake!: pulumi.Output<outputs.GlobalConnectionSnowflake | undefined>;
+    declare public readonly snowflake: pulumi.Output<outputs.GlobalConnectionSnowflake | undefined>;
     /**
      * Starburst/Trino connection configuration.
      */
-    public readonly starburst!: pulumi.Output<outputs.GlobalConnectionStarburst | undefined>;
+    declare public readonly starburst: pulumi.Output<outputs.GlobalConnectionStarburst | undefined>;
     /**
      * Azure Synapse Analytics connection configuration.
      */
-    public readonly synapse!: pulumi.Output<outputs.GlobalConnectionSynapse | undefined>;
+    declare public readonly synapse: pulumi.Output<outputs.GlobalConnectionSynapse | undefined>;
     /**
      * Teradata connection configuration.
      */
-    public readonly teradata!: pulumi.Output<outputs.GlobalConnectionTeradata | undefined>;
+    declare public readonly teradata: pulumi.Output<outputs.GlobalConnectionTeradata | undefined>;
 
     /**
      * Create a GlobalConnection resource with the given unique name, arguments, and options.
@@ -154,38 +154,38 @@ export class GlobalConnection extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GlobalConnectionState | undefined;
-            resourceInputs["adapterVersion"] = state ? state.adapterVersion : undefined;
-            resourceInputs["apacheSpark"] = state ? state.apacheSpark : undefined;
-            resourceInputs["athena"] = state ? state.athena : undefined;
-            resourceInputs["bigquery"] = state ? state.bigquery : undefined;
-            resourceInputs["databricks"] = state ? state.databricks : undefined;
-            resourceInputs["fabric"] = state ? state.fabric : undefined;
-            resourceInputs["isSshTunnelEnabled"] = state ? state.isSshTunnelEnabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["oauthConfigurationId"] = state ? state.oauthConfigurationId : undefined;
-            resourceInputs["postgres"] = state ? state.postgres : undefined;
-            resourceInputs["privateLinkEndpointId"] = state ? state.privateLinkEndpointId : undefined;
-            resourceInputs["redshift"] = state ? state.redshift : undefined;
-            resourceInputs["snowflake"] = state ? state.snowflake : undefined;
-            resourceInputs["starburst"] = state ? state.starburst : undefined;
-            resourceInputs["synapse"] = state ? state.synapse : undefined;
-            resourceInputs["teradata"] = state ? state.teradata : undefined;
+            resourceInputs["adapterVersion"] = state?.adapterVersion;
+            resourceInputs["apacheSpark"] = state?.apacheSpark;
+            resourceInputs["athena"] = state?.athena;
+            resourceInputs["bigquery"] = state?.bigquery;
+            resourceInputs["databricks"] = state?.databricks;
+            resourceInputs["fabric"] = state?.fabric;
+            resourceInputs["isSshTunnelEnabled"] = state?.isSshTunnelEnabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["oauthConfigurationId"] = state?.oauthConfigurationId;
+            resourceInputs["postgres"] = state?.postgres;
+            resourceInputs["privateLinkEndpointId"] = state?.privateLinkEndpointId;
+            resourceInputs["redshift"] = state?.redshift;
+            resourceInputs["snowflake"] = state?.snowflake;
+            resourceInputs["starburst"] = state?.starburst;
+            resourceInputs["synapse"] = state?.synapse;
+            resourceInputs["teradata"] = state?.teradata;
         } else {
             const args = argsOrState as GlobalConnectionArgs | undefined;
-            resourceInputs["apacheSpark"] = args ? args.apacheSpark : undefined;
-            resourceInputs["athena"] = args ? args.athena : undefined;
-            resourceInputs["bigquery"] = args ? args.bigquery : undefined;
-            resourceInputs["databricks"] = args ? args.databricks : undefined;
-            resourceInputs["fabric"] = args ? args.fabric : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["oauthConfigurationId"] = args ? args.oauthConfigurationId : undefined;
-            resourceInputs["postgres"] = args ? args.postgres : undefined;
-            resourceInputs["privateLinkEndpointId"] = args ? args.privateLinkEndpointId : undefined;
-            resourceInputs["redshift"] = args ? args.redshift : undefined;
-            resourceInputs["snowflake"] = args ? args.snowflake : undefined;
-            resourceInputs["starburst"] = args ? args.starburst : undefined;
-            resourceInputs["synapse"] = args ? args.synapse : undefined;
-            resourceInputs["teradata"] = args ? args.teradata : undefined;
+            resourceInputs["apacheSpark"] = args?.apacheSpark;
+            resourceInputs["athena"] = args?.athena;
+            resourceInputs["bigquery"] = args?.bigquery;
+            resourceInputs["databricks"] = args?.databricks;
+            resourceInputs["fabric"] = args?.fabric;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["oauthConfigurationId"] = args?.oauthConfigurationId;
+            resourceInputs["postgres"] = args?.postgres;
+            resourceInputs["privateLinkEndpointId"] = args?.privateLinkEndpointId;
+            resourceInputs["redshift"] = args?.redshift;
+            resourceInputs["snowflake"] = args?.snowflake;
+            resourceInputs["starburst"] = args?.starburst;
+            resourceInputs["synapse"] = args?.synapse;
+            resourceInputs["teradata"] = args?.teradata;
             resourceInputs["adapterVersion"] = undefined /*out*/;
             resourceInputs["isSshTunnelEnabled"] = undefined /*out*/;
         }

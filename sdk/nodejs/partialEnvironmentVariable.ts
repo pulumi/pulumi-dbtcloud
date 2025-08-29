@@ -40,15 +40,15 @@ export class PartialEnvironmentVariable extends pulumi.CustomResource {
     /**
      * Map from environment names to respective variable value. This field is not set as sensitive so take precautions when using secret environment variables. Only the specified environment values will be managed by this resource.
      */
-    public readonly environmentValues!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly environmentValues: pulumi.Output<{[key: string]: string}>;
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Project ID to create or update the environment variable in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
 
     /**
      * Create a PartialEnvironmentVariable resource with the given unique name, arguments, and options.
@@ -63,20 +63,20 @@ export class PartialEnvironmentVariable extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PartialEnvironmentVariableState | undefined;
-            resourceInputs["environmentValues"] = state ? state.environmentValues : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["environmentValues"] = state?.environmentValues;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as PartialEnvironmentVariableArgs | undefined;
-            if ((!args || args.environmentValues === undefined) && !opts.urn) {
+            if (args?.environmentValues === undefined && !opts.urn) {
                 throw new Error("Missing required property 'environmentValues'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["environmentValues"] = args ? args.environmentValues : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["environmentValues"] = args?.environmentValues;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PartialEnvironmentVariable.__pulumiType, name, resourceInputs, opts);

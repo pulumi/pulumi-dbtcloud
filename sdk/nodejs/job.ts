@@ -68,121 +68,121 @@ export class Job extends pulumi.CustomResource {
     /**
      * The model selector for checking changes in the compare changes Advanced CI feature
      */
-    public readonly compareChangesFlags!: pulumi.Output<string>;
+    declare public readonly compareChangesFlags: pulumi.Output<string>;
     /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      */
-    public readonly dbtVersion!: pulumi.Output<string | undefined>;
+    declare public readonly dbtVersion: pulumi.Output<string | undefined>;
     /**
      * Environment identifier that this job defers to (new deferring approach)
      */
-    public readonly deferringEnvironmentId!: pulumi.Output<number | undefined>;
+    declare public readonly deferringEnvironmentId: pulumi.Output<number | undefined>;
     /**
      * Job identifier that this job defers to (legacy deferring approach)
      */
-    public readonly deferringJobId!: pulumi.Output<number | undefined>;
+    declare public readonly deferringJobId: pulumi.Output<number | undefined>;
     /**
      * Description for the job
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * Environment ID to create the job in
      */
-    public readonly environmentId!: pulumi.Output<number>;
+    declare public readonly environmentId: pulumi.Output<number>;
     /**
      * Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
      */
-    public readonly errorsOnLintFailure!: pulumi.Output<boolean>;
+    declare public readonly errorsOnLintFailure: pulumi.Output<boolean>;
     /**
      * List of commands to execute for the job
      */
-    public readonly executeSteps!: pulumi.Output<string[]>;
+    declare public readonly executeSteps: pulumi.Output<string[]>;
     /**
      * Flag for whether the job should generate documentation
      */
-    public readonly generateDocs!: pulumi.Output<boolean>;
+    declare public readonly generateDocs: pulumi.Output<boolean>;
     /**
      * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
      */
-    public readonly isActive!: pulumi.Output<boolean>;
+    declare public readonly isActive: pulumi.Output<boolean>;
     /**
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
-    public readonly jobCompletionTriggerConditions!: pulumi.Output<outputs.JobJobCompletionTriggerCondition[] | undefined>;
+    declare public readonly jobCompletionTriggerConditions: pulumi.Output<outputs.JobJobCompletionTriggerCondition[] | undefined>;
     /**
      * Job identifier
      */
-    public /*out*/ readonly jobId!: pulumi.Output<number>;
+    declare public /*out*/ readonly jobId: pulumi.Output<number>;
     /**
      * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
      */
-    public readonly jobType!: pulumi.Output<string>;
+    declare public readonly jobType: pulumi.Output<string>;
     /**
      * Job name
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Number of threads to use in the job
      */
-    public readonly numThreads!: pulumi.Output<number>;
+    declare public readonly numThreads: pulumi.Output<number>;
     /**
      * Project ID to create the job in
      */
-    public readonly projectId!: pulumi.Output<number>;
+    declare public readonly projectId: pulumi.Output<number>;
     /**
      * Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
      */
-    public readonly runCompareChanges!: pulumi.Output<boolean>;
+    declare public readonly runCompareChanges: pulumi.Output<boolean>;
     /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
-    public readonly runGenerateSources!: pulumi.Output<boolean>;
+    declare public readonly runGenerateSources: pulumi.Output<boolean>;
     /**
      * Whether the CI job should lint SQL changes. Defaults to `false`.
      */
-    public readonly runLint!: pulumi.Output<boolean>;
+    declare public readonly runLint: pulumi.Output<boolean>;
     /**
      * Custom cron expression for schedule
      */
-    public readonly scheduleCron!: pulumi.Output<string | undefined>;
+    declare public readonly scheduleCron: pulumi.Output<string | undefined>;
     /**
      * List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
      */
-    public readonly scheduleDays!: pulumi.Output<number[] | undefined>;
+    declare public readonly scheduleDays: pulumi.Output<number[] | undefined>;
     /**
      * List of hours to execute the job at if running on a schedule
      */
-    public readonly scheduleHours!: pulumi.Output<number[] | undefined>;
+    declare public readonly scheduleHours: pulumi.Output<number[] | undefined>;
     /**
      * Number of hours between job executions if running on a schedule
      */
-    public readonly scheduleInterval!: pulumi.Output<number>;
+    declare public readonly scheduleInterval: pulumi.Output<number>;
     /**
      * Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      */
-    public readonly scheduleType!: pulumi.Output<string>;
+    declare public readonly scheduleType: pulumi.Output<string>;
     /**
      * Whether this job defers on a previous run of itself
      */
-    public readonly selfDeferring!: pulumi.Output<boolean>;
+    declare public readonly selfDeferring: pulumi.Output<boolean>;
     /**
      * Target name for the dbt profile
      */
-    public readonly targetName!: pulumi.Output<string>;
+    declare public readonly targetName: pulumi.Output<string>;
     /**
      * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
      *
      * @deprecated Moved to execution.timeout_seconds
      */
-    public readonly timeoutSeconds!: pulumi.Output<number>;
+    declare public readonly timeoutSeconds: pulumi.Output<number>;
     /**
      * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
-    public readonly triggers!: pulumi.Output<outputs.JobTriggers>;
+    declare public readonly triggers: pulumi.Output<outputs.JobTriggers>;
     /**
      * Whether the CI job should be automatically triggered on draft PRs
      */
-    public readonly triggersOnDraftPr!: pulumi.Output<boolean>;
+    declare public readonly triggersOnDraftPr: pulumi.Output<boolean>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.
@@ -197,77 +197,77 @@ export class Job extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as JobState | undefined;
-            resourceInputs["compareChangesFlags"] = state ? state.compareChangesFlags : undefined;
-            resourceInputs["dbtVersion"] = state ? state.dbtVersion : undefined;
-            resourceInputs["deferringEnvironmentId"] = state ? state.deferringEnvironmentId : undefined;
-            resourceInputs["deferringJobId"] = state ? state.deferringJobId : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["environmentId"] = state ? state.environmentId : undefined;
-            resourceInputs["errorsOnLintFailure"] = state ? state.errorsOnLintFailure : undefined;
-            resourceInputs["executeSteps"] = state ? state.executeSteps : undefined;
-            resourceInputs["generateDocs"] = state ? state.generateDocs : undefined;
-            resourceInputs["isActive"] = state ? state.isActive : undefined;
-            resourceInputs["jobCompletionTriggerConditions"] = state ? state.jobCompletionTriggerConditions : undefined;
-            resourceInputs["jobId"] = state ? state.jobId : undefined;
-            resourceInputs["jobType"] = state ? state.jobType : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["numThreads"] = state ? state.numThreads : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["runCompareChanges"] = state ? state.runCompareChanges : undefined;
-            resourceInputs["runGenerateSources"] = state ? state.runGenerateSources : undefined;
-            resourceInputs["runLint"] = state ? state.runLint : undefined;
-            resourceInputs["scheduleCron"] = state ? state.scheduleCron : undefined;
-            resourceInputs["scheduleDays"] = state ? state.scheduleDays : undefined;
-            resourceInputs["scheduleHours"] = state ? state.scheduleHours : undefined;
-            resourceInputs["scheduleInterval"] = state ? state.scheduleInterval : undefined;
-            resourceInputs["scheduleType"] = state ? state.scheduleType : undefined;
-            resourceInputs["selfDeferring"] = state ? state.selfDeferring : undefined;
-            resourceInputs["targetName"] = state ? state.targetName : undefined;
-            resourceInputs["timeoutSeconds"] = state ? state.timeoutSeconds : undefined;
-            resourceInputs["triggers"] = state ? state.triggers : undefined;
-            resourceInputs["triggersOnDraftPr"] = state ? state.triggersOnDraftPr : undefined;
+            resourceInputs["compareChangesFlags"] = state?.compareChangesFlags;
+            resourceInputs["dbtVersion"] = state?.dbtVersion;
+            resourceInputs["deferringEnvironmentId"] = state?.deferringEnvironmentId;
+            resourceInputs["deferringJobId"] = state?.deferringJobId;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["environmentId"] = state?.environmentId;
+            resourceInputs["errorsOnLintFailure"] = state?.errorsOnLintFailure;
+            resourceInputs["executeSteps"] = state?.executeSteps;
+            resourceInputs["generateDocs"] = state?.generateDocs;
+            resourceInputs["isActive"] = state?.isActive;
+            resourceInputs["jobCompletionTriggerConditions"] = state?.jobCompletionTriggerConditions;
+            resourceInputs["jobId"] = state?.jobId;
+            resourceInputs["jobType"] = state?.jobType;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["numThreads"] = state?.numThreads;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["runCompareChanges"] = state?.runCompareChanges;
+            resourceInputs["runGenerateSources"] = state?.runGenerateSources;
+            resourceInputs["runLint"] = state?.runLint;
+            resourceInputs["scheduleCron"] = state?.scheduleCron;
+            resourceInputs["scheduleDays"] = state?.scheduleDays;
+            resourceInputs["scheduleHours"] = state?.scheduleHours;
+            resourceInputs["scheduleInterval"] = state?.scheduleInterval;
+            resourceInputs["scheduleType"] = state?.scheduleType;
+            resourceInputs["selfDeferring"] = state?.selfDeferring;
+            resourceInputs["targetName"] = state?.targetName;
+            resourceInputs["timeoutSeconds"] = state?.timeoutSeconds;
+            resourceInputs["triggers"] = state?.triggers;
+            resourceInputs["triggersOnDraftPr"] = state?.triggersOnDraftPr;
         } else {
             const args = argsOrState as JobArgs | undefined;
-            if ((!args || args.environmentId === undefined) && !opts.urn) {
+            if (args?.environmentId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'environmentId'");
             }
-            if ((!args || args.executeSteps === undefined) && !opts.urn) {
+            if (args?.executeSteps === undefined && !opts.urn) {
                 throw new Error("Missing required property 'executeSteps'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.triggers === undefined) && !opts.urn) {
+            if (args?.triggers === undefined && !opts.urn) {
                 throw new Error("Missing required property 'triggers'");
             }
-            resourceInputs["compareChangesFlags"] = args ? args.compareChangesFlags : undefined;
-            resourceInputs["dbtVersion"] = args ? args.dbtVersion : undefined;
-            resourceInputs["deferringEnvironmentId"] = args ? args.deferringEnvironmentId : undefined;
-            resourceInputs["deferringJobId"] = args ? args.deferringJobId : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["environmentId"] = args ? args.environmentId : undefined;
-            resourceInputs["errorsOnLintFailure"] = args ? args.errorsOnLintFailure : undefined;
-            resourceInputs["executeSteps"] = args ? args.executeSteps : undefined;
-            resourceInputs["generateDocs"] = args ? args.generateDocs : undefined;
-            resourceInputs["isActive"] = args ? args.isActive : undefined;
-            resourceInputs["jobCompletionTriggerConditions"] = args ? args.jobCompletionTriggerConditions : undefined;
-            resourceInputs["jobType"] = args ? args.jobType : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["numThreads"] = args ? args.numThreads : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["runCompareChanges"] = args ? args.runCompareChanges : undefined;
-            resourceInputs["runGenerateSources"] = args ? args.runGenerateSources : undefined;
-            resourceInputs["runLint"] = args ? args.runLint : undefined;
-            resourceInputs["scheduleCron"] = args ? args.scheduleCron : undefined;
-            resourceInputs["scheduleDays"] = args ? args.scheduleDays : undefined;
-            resourceInputs["scheduleHours"] = args ? args.scheduleHours : undefined;
-            resourceInputs["scheduleInterval"] = args ? args.scheduleInterval : undefined;
-            resourceInputs["scheduleType"] = args ? args.scheduleType : undefined;
-            resourceInputs["selfDeferring"] = args ? args.selfDeferring : undefined;
-            resourceInputs["targetName"] = args ? args.targetName : undefined;
-            resourceInputs["timeoutSeconds"] = args ? args.timeoutSeconds : undefined;
-            resourceInputs["triggers"] = args ? args.triggers : undefined;
-            resourceInputs["triggersOnDraftPr"] = args ? args.triggersOnDraftPr : undefined;
+            resourceInputs["compareChangesFlags"] = args?.compareChangesFlags;
+            resourceInputs["dbtVersion"] = args?.dbtVersion;
+            resourceInputs["deferringEnvironmentId"] = args?.deferringEnvironmentId;
+            resourceInputs["deferringJobId"] = args?.deferringJobId;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["errorsOnLintFailure"] = args?.errorsOnLintFailure;
+            resourceInputs["executeSteps"] = args?.executeSteps;
+            resourceInputs["generateDocs"] = args?.generateDocs;
+            resourceInputs["isActive"] = args?.isActive;
+            resourceInputs["jobCompletionTriggerConditions"] = args?.jobCompletionTriggerConditions;
+            resourceInputs["jobType"] = args?.jobType;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["numThreads"] = args?.numThreads;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["runCompareChanges"] = args?.runCompareChanges;
+            resourceInputs["runGenerateSources"] = args?.runGenerateSources;
+            resourceInputs["runLint"] = args?.runLint;
+            resourceInputs["scheduleCron"] = args?.scheduleCron;
+            resourceInputs["scheduleDays"] = args?.scheduleDays;
+            resourceInputs["scheduleHours"] = args?.scheduleHours;
+            resourceInputs["scheduleInterval"] = args?.scheduleInterval;
+            resourceInputs["scheduleType"] = args?.scheduleType;
+            resourceInputs["selfDeferring"] = args?.selfDeferring;
+            resourceInputs["targetName"] = args?.targetName;
+            resourceInputs["timeoutSeconds"] = args?.timeoutSeconds;
+            resourceInputs["triggers"] = args?.triggers;
+            resourceInputs["triggersOnDraftPr"] = args?.triggersOnDraftPr;
             resourceInputs["jobId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -28,11 +28,9 @@ class ProviderArgs:
                  token: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
-        :param pulumi.Input[_builtins.int] account_id: Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-               variable `DBT_CLOUD_ACCOUNT_ID`
+        :param pulumi.Input[_builtins.int] account_id: Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
         :param pulumi.Input[_builtins.bool] disable_retry: If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
-        :param pulumi.Input[_builtins.str] host_url: URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-               `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        :param pulumi.Input[_builtins.str] host_url: URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         :param pulumi.Input[_builtins.int] max_retries: The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] retriable_status_codes: List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
         :param pulumi.Input[_builtins.int] retry_interval_seconds: The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
@@ -63,8 +61,7 @@ class ProviderArgs:
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-        variable `DBT_CLOUD_ACCOUNT_ID`
+        Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
         """
         return pulumi.get(self, "account_id")
 
@@ -88,8 +85,7 @@ class ProviderArgs:
     @pulumi.getter(name="hostUrl")
     def host_url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-        `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         """
         return pulumi.get(self, "host_url")
 
@@ -168,11 +164,9 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.int] account_id: Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-               variable `DBT_CLOUD_ACCOUNT_ID`
+        :param pulumi.Input[_builtins.int] account_id: Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
         :param pulumi.Input[_builtins.bool] disable_retry: If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
-        :param pulumi.Input[_builtins.str] host_url: URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-               `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        :param pulumi.Input[_builtins.str] host_url: URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         :param pulumi.Input[_builtins.int] max_retries: The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] retriable_status_codes: List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
         :param pulumi.Input[_builtins.int] retry_interval_seconds: The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
@@ -246,8 +240,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="hostUrl")
     def host_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-        `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+        URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         """
         return pulumi.get(self, "host_url")
 

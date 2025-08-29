@@ -20,16 +20,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     public static final ProviderArgs Empty = new ProviderArgs();
 
     /**
-     * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-     * variable `DBT_CLOUD_ACCOUNT_ID`
+     * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
      * 
      */
     @Import(name="accountId", json=true)
     private @Nullable Output<Integer> accountId;
 
     /**
-     * @return Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-     * variable `DBT_CLOUD_ACCOUNT_ID`
+     * @return Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
      * 
      */
     public Optional<Output<Integer>> accountId() {
@@ -52,16 +50,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-     * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+     * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      * 
      */
     @Import(name="hostUrl")
     private @Nullable Output<String> hostUrl;
 
     /**
-     * @return URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-     * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+     * @return URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      * 
      */
     public Optional<Output<String>> hostUrl() {
@@ -159,8 +155,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accountId Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-         * variable `DBT_CLOUD_ACCOUNT_ID`
+         * @param accountId Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
          * 
          * @return builder
          * 
@@ -171,8 +166,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accountId Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment
-         * variable `DBT_CLOUD_ACCOUNT_ID`
+         * @param accountId Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
          * 
          * @return builder
          * 
@@ -203,8 +197,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param hostUrl URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-         * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+         * @param hostUrl URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
          * 
          * @return builder
          * 
@@ -215,8 +208,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param hostUrl URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable
-         * `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
+         * @param hostUrl URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
          * 
          * @return builder
          * 

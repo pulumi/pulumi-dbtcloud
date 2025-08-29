@@ -74,43 +74,43 @@ export class PartialNotification extends pulumi.CustomResource {
     /**
      * The external email to receive the notification [global, used as identifier]
      */
-    public readonly externalEmail!: pulumi.Output<string | undefined>;
+    declare public readonly externalEmail: pulumi.Output<string | undefined>;
     /**
      * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
      */
-    public readonly notificationType!: pulumi.Output<number>;
+    declare public readonly notificationType: pulumi.Output<number>;
     /**
      * List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
      */
-    public readonly onCancels!: pulumi.Output<number[]>;
+    declare public readonly onCancels: pulumi.Output<number[]>;
     /**
      * List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
      */
-    public readonly onFailures!: pulumi.Output<number[]>;
+    declare public readonly onFailures: pulumi.Output<number[]>;
     /**
      * List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
      */
-    public readonly onSuccesses!: pulumi.Output<number[]>;
+    declare public readonly onSuccesses: pulumi.Output<number[]>;
     /**
      * List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
      */
-    public readonly onWarnings!: pulumi.Output<number[]>;
+    declare public readonly onWarnings: pulumi.Output<number[]>;
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
      */
-    public readonly slackChannelId!: pulumi.Output<string | undefined>;
+    declare public readonly slackChannelId: pulumi.Output<string | undefined>;
     /**
      * The name of the slack channel [global, used as identifier]
      */
-    public readonly slackChannelName!: pulumi.Output<string | undefined>;
+    declare public readonly slackChannelName: pulumi.Output<string | undefined>;
     /**
      * State of the notification (1 = active (default), 2 = inactive) [global]
      */
-    public readonly state!: pulumi.Output<number>;
+    declare public readonly state: pulumi.Output<number>;
     /**
      * Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one [global]
      */
-    public readonly userId!: pulumi.Output<number>;
+    declare public readonly userId: pulumi.Output<number>;
 
     /**
      * Create a PartialNotification resource with the given unique name, arguments, and options.
@@ -125,31 +125,31 @@ export class PartialNotification extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PartialNotificationState | undefined;
-            resourceInputs["externalEmail"] = state ? state.externalEmail : undefined;
-            resourceInputs["notificationType"] = state ? state.notificationType : undefined;
-            resourceInputs["onCancels"] = state ? state.onCancels : undefined;
-            resourceInputs["onFailures"] = state ? state.onFailures : undefined;
-            resourceInputs["onSuccesses"] = state ? state.onSuccesses : undefined;
-            resourceInputs["onWarnings"] = state ? state.onWarnings : undefined;
-            resourceInputs["slackChannelId"] = state ? state.slackChannelId : undefined;
-            resourceInputs["slackChannelName"] = state ? state.slackChannelName : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["externalEmail"] = state?.externalEmail;
+            resourceInputs["notificationType"] = state?.notificationType;
+            resourceInputs["onCancels"] = state?.onCancels;
+            resourceInputs["onFailures"] = state?.onFailures;
+            resourceInputs["onSuccesses"] = state?.onSuccesses;
+            resourceInputs["onWarnings"] = state?.onWarnings;
+            resourceInputs["slackChannelId"] = state?.slackChannelId;
+            resourceInputs["slackChannelName"] = state?.slackChannelName;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as PartialNotificationArgs | undefined;
-            if ((!args || args.userId === undefined) && !opts.urn) {
+            if (args?.userId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
             }
-            resourceInputs["externalEmail"] = args ? args.externalEmail : undefined;
-            resourceInputs["notificationType"] = args ? args.notificationType : undefined;
-            resourceInputs["onCancels"] = args ? args.onCancels : undefined;
-            resourceInputs["onFailures"] = args ? args.onFailures : undefined;
-            resourceInputs["onSuccesses"] = args ? args.onSuccesses : undefined;
-            resourceInputs["onWarnings"] = args ? args.onWarnings : undefined;
-            resourceInputs["slackChannelId"] = args ? args.slackChannelId : undefined;
-            resourceInputs["slackChannelName"] = args ? args.slackChannelName : undefined;
-            resourceInputs["state"] = args ? args.state : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["externalEmail"] = args?.externalEmail;
+            resourceInputs["notificationType"] = args?.notificationType;
+            resourceInputs["onCancels"] = args?.onCancels;
+            resourceInputs["onFailures"] = args?.onFailures;
+            resourceInputs["onSuccesses"] = args?.onSuccesses;
+            resourceInputs["onWarnings"] = args?.onWarnings;
+            resourceInputs["slackChannelId"] = args?.slackChannelId;
+            resourceInputs["slackChannelName"] = args?.slackChannelName;
+            resourceInputs["state"] = args?.state;
+            resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PartialNotification.__pulumiType, name, resourceInputs, opts);
