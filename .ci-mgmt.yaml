@@ -19,3 +19,4 @@ registryDocs: true
 integrationTestProvider: true
 esc:
   enabled: true
+  environment: imports/github-secrets # No repo-specific secrets.
