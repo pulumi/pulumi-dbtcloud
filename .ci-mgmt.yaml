@@ -17,3 +17,5 @@ license:
 pulumiConvert: 1
 registryDocs: true
 integrationTestProvider: true
+esc:
+  enabled: true
