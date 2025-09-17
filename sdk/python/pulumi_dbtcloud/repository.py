@@ -35,8 +35,8 @@ class RepositoryArgs:
         The set of arguments for constructing a Repository resource.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the repository in
         :param pulumi.Input[_builtins.str] remote_url: Git URL for the repository or <Group>/<Project> for Gitlab
-        :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (for ADO native integration only)
-        :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
+        :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         :param pulumi.Input[_builtins.bool] azure_bypass_webhook_registration_failure: If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
         :param pulumi.Input[_builtins.bool] fetch_deploy_key: Whether we should return the public deploy key - (for the `deploy_key` strategy)
         :param pulumi.Input[_builtins.str] git_clone_strategy: Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
@@ -100,7 +100,7 @@ class RepositoryArgs:
     @pulumi.getter(name="azureActiveDirectoryProjectId")
     def azure_active_directory_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (for ADO native integration only)
+        The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_project_id")
 
@@ -112,7 +112,7 @@ class RepositoryArgs:
     @pulumi.getter(name="azureActiveDirectoryRepositoryId")
     def azure_active_directory_repository_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_repository_id")
 
@@ -238,8 +238,8 @@ class _RepositoryState:
                  repository_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Repository resources.
-        :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (for ADO native integration only)
-        :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
+        :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         :param pulumi.Input[_builtins.bool] azure_bypass_webhook_registration_failure: If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
         :param pulumi.Input[_builtins.str] deploy_key: Public key generated by dbt when using `deploy_key` clone strategy
         :param pulumi.Input[_builtins.bool] fetch_deploy_key: Whether we should return the public deploy key - (for the `deploy_key` strategy)
@@ -292,7 +292,7 @@ class _RepositoryState:
     @pulumi.getter(name="azureActiveDirectoryProjectId")
     def azure_active_directory_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (for ADO native integration only)
+        The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_project_id")
 
@@ -304,7 +304,7 @@ class _RepositoryState:
     @pulumi.getter(name="azureActiveDirectoryRepositoryId")
     def azure_active_directory_repository_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_repository_id")
 
@@ -535,8 +535,8 @@ class Repository(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (for ADO native integration only)
-        :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
+        :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         :param pulumi.Input[_builtins.bool] azure_bypass_webhook_registration_failure: If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
         :param pulumi.Input[_builtins.bool] fetch_deploy_key: Whether we should return the public deploy key - (for the `deploy_key` strategy)
         :param pulumi.Input[_builtins.str] git_clone_strategy: Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
@@ -685,8 +685,8 @@ class Repository(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (for ADO native integration only)
-        :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
+        :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         :param pulumi.Input[_builtins.bool] azure_bypass_webhook_registration_failure: If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
         :param pulumi.Input[_builtins.str] deploy_key: Public key generated by dbt when using `deploy_key` clone strategy
         :param pulumi.Input[_builtins.bool] fetch_deploy_key: Whether we should return the public deploy key - (for the `deploy_key` strategy)
@@ -726,7 +726,7 @@ class Repository(pulumi.CustomResource):
     @pulumi.getter(name="azureActiveDirectoryProjectId")
     def azure_active_directory_project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (for ADO native integration only)
+        The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_project_id")
 
@@ -734,7 +734,7 @@ class Repository(pulumi.CustomResource):
     @pulumi.getter(name="azureActiveDirectoryRepositoryId")
     def azure_active_directory_repository_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_repository_id")
 

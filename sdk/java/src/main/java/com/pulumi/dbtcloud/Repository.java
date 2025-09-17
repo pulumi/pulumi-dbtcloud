@@ -64,28 +64,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/repository:Repository")
 public class Repository extends com.pulumi.resources.CustomResource {
     /**
-     * The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)
+     * The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)
      * 
      */
     @Export(name="azureActiveDirectoryProjectId", refs={String.class}, tree="[0]")
     private Output<String> azureActiveDirectoryProjectId;
 
     /**
-     * @return The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)
+     * @return The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)
      * 
      */
     public Output<String> azureActiveDirectoryProjectId() {
         return this.azureActiveDirectoryProjectId;
     }
     /**
-     * The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+     * The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
      * 
      */
     @Export(name="azureActiveDirectoryRepositoryId", refs={String.class}, tree="[0]")
     private Output<String> azureActiveDirectoryRepositoryId;
 
     /**
-     * @return The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+     * @return The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
      * 
      */
     public Output<String> azureActiveDirectoryRepositoryId() {

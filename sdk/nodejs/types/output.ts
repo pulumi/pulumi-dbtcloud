@@ -640,6 +640,33 @@ export interface GetGroupUsersUser {
     id: number;
 }
 
+export interface GetGroupsGroup {
+    /**
+     * Whether the group will be assigned by default to users
+     */
+    assignByDefault: boolean;
+    /**
+     * The ID of the group
+     */
+    id: number;
+    /**
+     * Group name
+     */
+    name: string;
+    /**
+     * Whether the group is managed by SCIM
+     */
+    scimManaged: boolean;
+    /**
+     * SSO mapping group names for this group
+     */
+    ssoMappingGroups: string[];
+    /**
+     * The state of the group (1=active, 2=deleted)
+     */
+    state: number;
+}
+
 export interface GetJobEnvironment {
     /**
      * Type of deployment environment: staging, production
@@ -1715,6 +1742,29 @@ export interface RedshiftSemanticLayerCredentialCredential {
      * The username for the Redshift account.
      */
     username: string;
+}
+
+export interface ScimGroupPermissionsPermission {
+    /**
+     * Whether access should be provided for all projects or not.
+     */
+    allProjects: boolean;
+    /**
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+     */
+    permissionSet: string;
+    /**
+     * Project ID to apply this permission to for this group.
+     */
+    projectId?: number;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories?: string[];
 }
 
 export interface ServiceTokenServiceTokenPermission {

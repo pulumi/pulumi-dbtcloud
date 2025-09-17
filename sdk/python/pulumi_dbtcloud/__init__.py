@@ -30,12 +30,14 @@ from .get_global_connection import *
 from .get_global_connections import *
 from .get_group import *
 from .get_group_users import *
+from .get_groups import *
 from .get_job import *
 from .get_jobs import *
 from .get_model_notifications import *
 from .get_notification import *
 from .get_postgres_credential import *
 from .get_privatelink_endpoint import *
+from .get_privatelink_endpoints import *
 from .get_project import *
 from .get_projects import *
 from .get_redshift_credential import *
@@ -72,6 +74,7 @@ from .provider import *
 from .redshift_credential import *
 from .redshift_semantic_layer_credential import *
 from .repository import *
+from .scim_group_permissions import *
 from .semantic_layer_configuration import *
 from .semantic_layer_credential_service_token_mapping import *
 from .service_token import *
@@ -349,6 +352,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/repository:Repository": "Repository"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/scimGroupPermissions",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions": "ScimGroupPermissions"
   }
  },
  {

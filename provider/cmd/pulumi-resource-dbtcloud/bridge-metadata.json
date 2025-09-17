@@ -232,6 +232,22 @@
                 "current": "dbtcloud:index/repository:Repository",
                 "majorVersion": 1
             },
+            "dbtcloud_scim_group_permissions": {
+                "current": "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions",
+                "majorVersion": 1,
+                "fields": {
+                    "permissions": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "writable_environment_categories": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "dbtcloud_semantic_layer_configuration": {
                 "current": "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration",
                 "majorVersion": 1
@@ -390,6 +406,22 @@
                     }
                 }
             },
+            "dbtcloud_groups": {
+                "current": "dbtcloud:index/getGroups:getGroups",
+                "majorVersion": 1,
+                "fields": {
+                    "groups": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "sso_mapping_groups": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "dbtcloud_job": {
                 "current": "dbtcloud:index/getJob:getJob",
                 "majorVersion": 1,
@@ -464,6 +496,10 @@
             },
             "dbtcloud_privatelink_endpoint": {
                 "current": "dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint",
+                "majorVersion": 1
+            },
+            "dbtcloud_privatelink_endpoints": {
+                "current": "dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints",
                 "majorVersion": 1
             },
             "dbtcloud_project": {

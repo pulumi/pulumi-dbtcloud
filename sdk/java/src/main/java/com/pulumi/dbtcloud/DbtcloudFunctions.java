@@ -30,6 +30,8 @@ import com.pulumi.dbtcloud.inputs.GetGroupArgs;
 import com.pulumi.dbtcloud.inputs.GetGroupPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetGroupUsersArgs;
 import com.pulumi.dbtcloud.inputs.GetGroupUsersPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetGroupsArgs;
+import com.pulumi.dbtcloud.inputs.GetGroupsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetJobArgs;
 import com.pulumi.dbtcloud.inputs.GetJobPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetJobsArgs;
@@ -81,12 +83,14 @@ import com.pulumi.dbtcloud.outputs.GetGlobalConnectionResult;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionsResult;
 import com.pulumi.dbtcloud.outputs.GetGroupResult;
 import com.pulumi.dbtcloud.outputs.GetGroupUsersResult;
+import com.pulumi.dbtcloud.outputs.GetGroupsResult;
 import com.pulumi.dbtcloud.outputs.GetJobResult;
 import com.pulumi.dbtcloud.outputs.GetJobsResult;
 import com.pulumi.dbtcloud.outputs.GetModelNotificationsResult;
 import com.pulumi.dbtcloud.outputs.GetNotificationResult;
 import com.pulumi.dbtcloud.outputs.GetPostgresCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointResult;
+import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointsResult;
 import com.pulumi.dbtcloud.outputs.GetProjectResult;
 import com.pulumi.dbtcloud.outputs.GetProjectsResult;
 import com.pulumi.dbtcloud.outputs.GetRedshiftCredentialResult;
@@ -1997,6 +2001,55 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getGroupUsers:getGroupUsers", TypeShape.of(GetGroupUsersResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve all groups in the account with optional filtering
+     * 
+     */
+    public static Output<GetGroupsResult> getGroups() {
+        return getGroups(GetGroupsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all groups in the account with optional filtering
+     * 
+     */
+    public static CompletableFuture<GetGroupsResult> getGroupsPlain() {
+        return getGroupsPlain(GetGroupsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all groups in the account with optional filtering
+     * 
+     */
+    public static Output<GetGroupsResult> getGroups(GetGroupsArgs args) {
+        return getGroups(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all groups in the account with optional filtering
+     * 
+     */
+    public static CompletableFuture<GetGroupsResult> getGroupsPlain(GetGroupsPlainArgs args) {
+        return getGroupsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve all groups in the account with optional filtering
+     * 
+     */
+    public static Output<GetGroupsResult> getGroups(GetGroupsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getGroups:getGroups", TypeShape.of(GetGroupsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all groups in the account with optional filtering
+     * 
+     */
+    public static Output<GetGroupsResult> getGroups(GetGroupsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getGroups:getGroups", TypeShape.of(GetGroupsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve all groups in the account with optional filtering
+     * 
+     */
+    public static CompletableFuture<GetGroupsResult> getGroupsPlain(GetGroupsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getGroups:getGroups", TypeShape.of(GetGroupsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Get detailed information for a specific dbt Cloud job.
      * 
      */
@@ -2884,6 +2937,55 @@ public final class DbtcloudFunctions {
      */
     public static CompletableFuture<GetPrivatelinkEndpointResult> getPrivatelinkEndpointPlain(GetPrivatelinkEndpointPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", TypeShape.of(GetPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Privatelink endpoint data sources.
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsResult> getPrivatelinkEndpoints() {
+        return getPrivatelinkEndpoints(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Privatelink endpoint data sources.
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointsResult> getPrivatelinkEndpointsPlain() {
+        return getPrivatelinkEndpointsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Privatelink endpoint data sources.
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsResult> getPrivatelinkEndpoints(InvokeArgs args) {
+        return getPrivatelinkEndpoints(args, InvokeOptions.Empty);
+    }
+    /**
+     * Privatelink endpoint data sources.
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointsResult> getPrivatelinkEndpointsPlain(InvokeArgs args) {
+        return getPrivatelinkEndpointsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Privatelink endpoint data sources.
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsResult> getPrivatelinkEndpoints(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Privatelink endpoint data sources.
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsResult> getPrivatelinkEndpoints(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Privatelink endpoint data sources.
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointsResult> getPrivatelinkEndpointsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve a specific project from dbt Cloud.

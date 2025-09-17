@@ -85,6 +85,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RedshiftSemanticLayerCredential{}
 	case "dbtcloud:index/repository:Repository":
 		r = &Repository{}
+	case "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions":
+		r = &ScimGroupPermissions{}
 	case "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration":
 		r = &SemanticLayerConfiguration{}
 	case "dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping":
@@ -294,6 +296,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/repository",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/scimGroupPermissions",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

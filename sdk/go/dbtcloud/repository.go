@@ -57,9 +57,9 @@ import (
 type Repository struct {
 	pulumi.CustomResourceState
 
-	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (for ADO native integration only)
+	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (required for ADO native integration only)
 	AzureActiveDirectoryProjectId pulumi.StringOutput `pulumi:"azureActiveDirectoryProjectId"`
-	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
 	AzureActiveDirectoryRepositoryId pulumi.StringOutput `pulumi:"azureActiveDirectoryRepositoryId"`
 	// If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
 	AzureBypassWebhookRegistrationFailure pulumi.BoolOutput `pulumi:"azureBypassWebhookRegistrationFailure"`
@@ -127,9 +127,9 @@ func GetRepository(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Repository resources.
 type repositoryState struct {
-	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (for ADO native integration only)
+	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (required for ADO native integration only)
 	AzureActiveDirectoryProjectId *string `pulumi:"azureActiveDirectoryProjectId"`
-	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
 	AzureActiveDirectoryRepositoryId *string `pulumi:"azureActiveDirectoryRepositoryId"`
 	// If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
 	AzureBypassWebhookRegistrationFailure *bool `pulumi:"azureBypassWebhookRegistrationFailure"`
@@ -162,9 +162,9 @@ type repositoryState struct {
 }
 
 type RepositoryState struct {
-	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (for ADO native integration only)
+	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (required for ADO native integration only)
 	AzureActiveDirectoryProjectId pulumi.StringPtrInput
-	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
 	AzureActiveDirectoryRepositoryId pulumi.StringPtrInput
 	// If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
 	AzureBypassWebhookRegistrationFailure pulumi.BoolPtrInput
@@ -201,9 +201,9 @@ func (RepositoryState) ElementType() reflect.Type {
 }
 
 type repositoryArgs struct {
-	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (for ADO native integration only)
+	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (required for ADO native integration only)
 	AzureActiveDirectoryProjectId *string `pulumi:"azureActiveDirectoryProjectId"`
-	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
 	AzureActiveDirectoryRepositoryId *string `pulumi:"azureActiveDirectoryRepositoryId"`
 	// If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
 	AzureBypassWebhookRegistrationFailure *bool `pulumi:"azureBypassWebhookRegistrationFailure"`
@@ -231,9 +231,9 @@ type repositoryArgs struct {
 
 // The set of arguments for constructing a Repository resource.
 type RepositoryArgs struct {
-	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (for ADO native integration only)
+	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (required for ADO native integration only)
 	AzureActiveDirectoryProjectId pulumi.StringPtrInput
-	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+	// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
 	AzureActiveDirectoryRepositoryId pulumi.StringPtrInput
 	// If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
 	AzureBypassWebhookRegistrationFailure pulumi.BoolPtrInput
@@ -346,12 +346,12 @@ func (o RepositoryOutput) ToRepositoryOutputWithContext(ctx context.Context) Rep
 	return o
 }
 
-// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (for ADO native integration only)
+// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (required for ADO native integration only)
 func (o RepositoryOutput) AzureActiveDirectoryProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Repository) pulumi.StringOutput { return v.AzureActiveDirectoryProjectId }).(pulumi.StringOutput)
 }
 
-// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
 func (o RepositoryOutput) AzureActiveDirectoryRepositoryId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Repository) pulumi.StringOutput { return v.AzureActiveDirectoryRepositoryId }).(pulumi.StringOutput)
 }

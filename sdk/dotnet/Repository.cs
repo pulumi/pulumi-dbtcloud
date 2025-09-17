@@ -57,13 +57,13 @@ namespace Pulumi.DbtCloud
     public partial class Repository : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)
+        /// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)
         /// </summary>
         [Output("azureActiveDirectoryProjectId")]
         public Output<string> AzureActiveDirectoryProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        /// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         /// </summary>
         [Output("azureActiveDirectoryRepositoryId")]
         public Output<string> AzureActiveDirectoryRepositoryId { get; private set; } = null!;
@@ -194,13 +194,13 @@ namespace Pulumi.DbtCloud
     public sealed class RepositoryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)
+        /// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)
         /// </summary>
         [Input("azureActiveDirectoryProjectId")]
         public Input<string>? AzureActiveDirectoryProjectId { get; set; }
 
         /// <summary>
-        /// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        /// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         /// </summary>
         [Input("azureActiveDirectoryRepositoryId")]
         public Input<string>? AzureActiveDirectoryRepositoryId { get; set; }
@@ -274,13 +274,13 @@ namespace Pulumi.DbtCloud
     public sealed class RepositoryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)
+        /// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)
         /// </summary>
         [Input("azureActiveDirectoryProjectId")]
         public Input<string>? AzureActiveDirectoryProjectId { get; set; }
 
         /// <summary>
-        /// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+        /// The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         /// </summary>
         [Input("azureActiveDirectoryRepositoryId")]
         public Input<string>? AzureActiveDirectoryRepositoryId { get; set; }

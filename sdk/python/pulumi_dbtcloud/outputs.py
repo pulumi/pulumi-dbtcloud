@@ -42,6 +42,7 @@ __all__ = [
     'PostgresSemanticLayerCredentialCredential',
     'RedshiftSemanticLayerCredentialConfiguration',
     'RedshiftSemanticLayerCredentialCredential',
+    'ScimGroupPermissionsPermission',
     'ServiceTokenServiceTokenPermission',
     'SnowflakeSemanticLayerCredentialConfiguration',
     'SnowflakeSemanticLayerCredentialCredential',
@@ -62,6 +63,7 @@ __all__ = [
     'GetGlobalConnectionsConnectionResult',
     'GetGroupGroupPermissionResult',
     'GetGroupUsersUserResult',
+    'GetGroupsGroupResult',
     'GetJobEnvironmentResult',
     'GetJobExecutionResult',
     'GetJobJobCompletionTriggerConditionResult',
@@ -2714,6 +2716,90 @@ class RedshiftSemanticLayerCredentialCredential(dict):
 
 
 @pulumi.output_type
+class ScimGroupPermissionsPermission(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allProjects":
+            suggest = "all_projects"
+        elif key == "permissionSet":
+            suggest = "permission_set"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "writableEnvironmentCategories":
+            suggest = "writable_environment_categories"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScimGroupPermissionsPermission. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScimGroupPermissionsPermission.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScimGroupPermissionsPermission.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 all_projects: _builtins.bool,
+                 permission_set: _builtins.str,
+                 project_id: Optional[_builtins.int] = None,
+                 writable_environment_categories: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.bool all_projects: Whether access should be provided for all projects or not.
+        :param _builtins.str permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        :param _builtins.int project_id: Project ID to apply this permission to for this group.
+        :param Sequence[_builtins.str] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        pulumi.set(__self__, "all_projects", all_projects)
+        pulumi.set(__self__, "permission_set", permission_set)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if writable_environment_categories is not None:
+            pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
+
+    @_builtins.property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> _builtins.bool:
+        """
+        Whether access should be provided for all projects or not.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionSet")
+    def permission_set(self) -> _builtins.str:
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        return pulumi.get(self, "permission_set")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.int]:
+        """
+        Project ID to apply this permission to for this group.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
+
+
+@pulumi.output_type
 class ServiceTokenServiceTokenPermission(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -4533,6 +4619,79 @@ class GetGroupUsersUserResult(dict):
         ID of the user
         """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetGroupsGroupResult(dict):
+    def __init__(__self__, *,
+                 assign_by_default: _builtins.bool,
+                 id: _builtins.int,
+                 name: _builtins.str,
+                 scim_managed: _builtins.bool,
+                 sso_mapping_groups: Sequence[_builtins.str],
+                 state: _builtins.int):
+        """
+        :param _builtins.bool assign_by_default: Whether the group will be assigned by default to users
+        :param _builtins.int id: The ID of the group
+        :param _builtins.str name: Group name
+        :param _builtins.bool scim_managed: Whether the group is managed by SCIM
+        :param Sequence[_builtins.str] sso_mapping_groups: SSO mapping group names for this group
+        :param _builtins.int state: The state of the group (1=active, 2=deleted)
+        """
+        pulumi.set(__self__, "assign_by_default", assign_by_default)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "scim_managed", scim_managed)
+        pulumi.set(__self__, "sso_mapping_groups", sso_mapping_groups)
+        pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter(name="assignByDefault")
+    def assign_by_default(self) -> _builtins.bool:
+        """
+        Whether the group will be assigned by default to users
+        """
+        return pulumi.get(self, "assign_by_default")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.int:
+        """
+        The ID of the group
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Group name
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="scimManaged")
+    def scim_managed(self) -> _builtins.bool:
+        """
+        Whether the group is managed by SCIM
+        """
+        return pulumi.get(self, "scim_managed")
+
+    @_builtins.property
+    @pulumi.getter(name="ssoMappingGroups")
+    def sso_mapping_groups(self) -> Sequence[_builtins.str]:
+        """
+        SSO mapping group names for this group
+        """
+        return pulumi.get(self, "sso_mapping_groups")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.int:
+        """
+        The state of the group (1=active, 2=deleted)
+        """
+        return pulumi.get(self, "state")
 
 
 @pulumi.output_type

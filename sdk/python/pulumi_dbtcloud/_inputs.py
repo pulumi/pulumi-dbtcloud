@@ -67,6 +67,8 @@ __all__ = [
     'RedshiftSemanticLayerCredentialConfigurationArgsDict',
     'RedshiftSemanticLayerCredentialCredentialArgs',
     'RedshiftSemanticLayerCredentialCredentialArgsDict',
+    'ScimGroupPermissionsPermissionArgs',
+    'ScimGroupPermissionsPermissionArgsDict',
     'ServiceTokenServiceTokenPermissionArgs',
     'ServiceTokenServiceTokenPermissionArgsDict',
     'SnowflakeSemanticLayerCredentialConfigurationArgs',
@@ -3575,6 +3577,108 @@ class RedshiftSemanticLayerCredentialCredentialArgs:
     @username.setter
     def username(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+
+if not MYPY:
+    class ScimGroupPermissionsPermissionArgsDict(TypedDict):
+        all_projects: pulumi.Input[_builtins.bool]
+        """
+        Whether access should be provided for all projects or not.
+        """
+        permission_set: pulumi.Input[_builtins.str]
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        project_id: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Project ID to apply this permission to for this group.
+        """
+        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+elif False:
+    ScimGroupPermissionsPermissionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ScimGroupPermissionsPermissionArgs:
+    def __init__(__self__, *,
+                 all_projects: pulumi.Input[_builtins.bool],
+                 permission_set: pulumi.Input[_builtins.str],
+                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 writable_environment_categories: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] all_projects: Whether access should be provided for all projects or not.
+        :param pulumi.Input[_builtins.str] permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        :param pulumi.Input[_builtins.int] project_id: Project ID to apply this permission to for this group.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        pulumi.set(__self__, "all_projects", all_projects)
+        pulumi.set(__self__, "permission_set", permission_set)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if writable_environment_categories is not None:
+            pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
+
+    @_builtins.property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> pulumi.Input[_builtins.bool]:
+        """
+        Whether access should be provided for all projects or not.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @all_projects.setter
+    def all_projects(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "all_projects", value)
+
+    @_builtins.property
+    @pulumi.getter(name="permissionSet")
+    def permission_set(self) -> pulumi.Input[_builtins.str]:
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        return pulumi.get(self, "permission_set")
+
+    @permission_set.setter
+    def permission_set(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "permission_set", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Project ID to apply this permission to for this group.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
+
+    @writable_environment_categories.setter
+    def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "writable_environment_categories", value)
 
 
 if not MYPY:
