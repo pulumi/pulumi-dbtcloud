@@ -883,6 +883,29 @@ export interface RedshiftSemanticLayerCredentialCredential {
     username?: pulumi.Input<string>;
 }
 
+export interface ScimGroupPermissionsPermission {
+    /**
+     * Whether access should be provided for all projects or not.
+     */
+    allProjects: pulumi.Input<boolean>;
+    /**
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+     */
+    permissionSet: pulumi.Input<string>;
+    /**
+     * Project ID to apply this permission to for this group.
+     */
+    projectId?: pulumi.Input<number>;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface ServiceTokenServiceTokenPermission {
     /**
      * Whether or not to apply this permission to all projects for this service token

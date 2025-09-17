@@ -125,6 +125,11 @@ export const getGroupUsers: typeof import("./getGroupUsers").getGroupUsers = nul
 export const getGroupUsersOutput: typeof import("./getGroupUsers").getGroupUsersOutput = null as any;
 utilities.lazyLoad(exports, ["getGroupUsers","getGroupUsersOutput"], () => require("./getGroupUsers"));
 
+export { GetGroupsArgs, GetGroupsResult, GetGroupsOutputArgs } from "./getGroups";
+export const getGroups: typeof import("./getGroups").getGroups = null as any;
+export const getGroupsOutput: typeof import("./getGroups").getGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["getGroups","getGroupsOutput"], () => require("./getGroups"));
+
 export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
 export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
@@ -154,6 +159,11 @@ export { GetPrivatelinkEndpointArgs, GetPrivatelinkEndpointResult, GetPrivatelin
 export const getPrivatelinkEndpoint: typeof import("./getPrivatelinkEndpoint").getPrivatelinkEndpoint = null as any;
 export const getPrivatelinkEndpointOutput: typeof import("./getPrivatelinkEndpoint").getPrivatelinkEndpointOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivatelinkEndpoint","getPrivatelinkEndpointOutput"], () => require("./getPrivatelinkEndpoint"));
+
+export { GetPrivatelinkEndpointsResult } from "./getPrivatelinkEndpoints";
+export const getPrivatelinkEndpoints: typeof import("./getPrivatelinkEndpoints").getPrivatelinkEndpoints = null as any;
+export const getPrivatelinkEndpointsOutput: typeof import("./getPrivatelinkEndpoints").getPrivatelinkEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getPrivatelinkEndpoints","getPrivatelinkEndpointsOutput"], () => require("./getPrivatelinkEndpoints"));
 
 export { GetProjectArgs, GetProjectResult, GetProjectOutputArgs } from "./getProject";
 export const getProject: typeof import("./getProject").getProject = null as any;
@@ -333,6 +343,11 @@ export type Repository = import("./repository").Repository;
 export const Repository: typeof import("./repository").Repository = null as any;
 utilities.lazyLoad(exports, ["Repository"], () => require("./repository"));
 
+export { ScimGroupPermissionsArgs, ScimGroupPermissionsState } from "./scimGroupPermissions";
+export type ScimGroupPermissions = import("./scimGroupPermissions").ScimGroupPermissions;
+export const ScimGroupPermissions: typeof import("./scimGroupPermissions").ScimGroupPermissions = null as any;
+utilities.lazyLoad(exports, ["ScimGroupPermissions"], () => require("./scimGroupPermissions"));
+
 export { SemanticLayerConfigurationArgs, SemanticLayerConfigurationState } from "./semanticLayerConfiguration";
 export type SemanticLayerConfiguration = import("./semanticLayerConfiguration").SemanticLayerConfiguration;
 export const SemanticLayerConfiguration: typeof import("./semanticLayerConfiguration").SemanticLayerConfiguration = null as any;
@@ -461,6 +476,8 @@ const _module = {
                 return new RedshiftSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/repository:Repository":
                 return new Repository(name, <any>undefined, { urn })
+            case "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions":
+                return new ScimGroupPermissions(name, <any>undefined, { urn })
             case "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration":
                 return new SemanticLayerConfiguration(name, <any>undefined, { urn })
             case "dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping":
@@ -518,6 +535,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/projectRepository", _mo
 pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/repository", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/scimGroupPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerConfiguration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerCredentialServiceTokenMapping", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/serviceToken", _module)

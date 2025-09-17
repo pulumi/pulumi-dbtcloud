@@ -5902,6 +5902,142 @@ func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) Username() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+type ScimGroupPermissionsPermission struct {
+	// Whether access should be provided for all projects or not.
+	AllProjects bool `pulumi:"allProjects"`
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	PermissionSet string `pulumi:"permissionSet"`
+	// Project ID to apply this permission to for this group.
+	ProjectId *int `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
+}
+
+// ScimGroupPermissionsPermissionInput is an input type that accepts ScimGroupPermissionsPermissionArgs and ScimGroupPermissionsPermissionOutput values.
+// You can construct a concrete instance of `ScimGroupPermissionsPermissionInput` via:
+//
+//	ScimGroupPermissionsPermissionArgs{...}
+type ScimGroupPermissionsPermissionInput interface {
+	pulumi.Input
+
+	ToScimGroupPermissionsPermissionOutput() ScimGroupPermissionsPermissionOutput
+	ToScimGroupPermissionsPermissionOutputWithContext(context.Context) ScimGroupPermissionsPermissionOutput
+}
+
+type ScimGroupPermissionsPermissionArgs struct {
+	// Whether access should be provided for all projects or not.
+	AllProjects pulumi.BoolInput `pulumi:"allProjects"`
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
+	// Project ID to apply this permission to for this group.
+	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
+}
+
+func (ScimGroupPermissionsPermissionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScimGroupPermissionsPermission)(nil)).Elem()
+}
+
+func (i ScimGroupPermissionsPermissionArgs) ToScimGroupPermissionsPermissionOutput() ScimGroupPermissionsPermissionOutput {
+	return i.ToScimGroupPermissionsPermissionOutputWithContext(context.Background())
+}
+
+func (i ScimGroupPermissionsPermissionArgs) ToScimGroupPermissionsPermissionOutputWithContext(ctx context.Context) ScimGroupPermissionsPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScimGroupPermissionsPermissionOutput)
+}
+
+// ScimGroupPermissionsPermissionArrayInput is an input type that accepts ScimGroupPermissionsPermissionArray and ScimGroupPermissionsPermissionArrayOutput values.
+// You can construct a concrete instance of `ScimGroupPermissionsPermissionArrayInput` via:
+//
+//	ScimGroupPermissionsPermissionArray{ ScimGroupPermissionsPermissionArgs{...} }
+type ScimGroupPermissionsPermissionArrayInput interface {
+	pulumi.Input
+
+	ToScimGroupPermissionsPermissionArrayOutput() ScimGroupPermissionsPermissionArrayOutput
+	ToScimGroupPermissionsPermissionArrayOutputWithContext(context.Context) ScimGroupPermissionsPermissionArrayOutput
+}
+
+type ScimGroupPermissionsPermissionArray []ScimGroupPermissionsPermissionInput
+
+func (ScimGroupPermissionsPermissionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScimGroupPermissionsPermission)(nil)).Elem()
+}
+
+func (i ScimGroupPermissionsPermissionArray) ToScimGroupPermissionsPermissionArrayOutput() ScimGroupPermissionsPermissionArrayOutput {
+	return i.ToScimGroupPermissionsPermissionArrayOutputWithContext(context.Background())
+}
+
+func (i ScimGroupPermissionsPermissionArray) ToScimGroupPermissionsPermissionArrayOutputWithContext(ctx context.Context) ScimGroupPermissionsPermissionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScimGroupPermissionsPermissionArrayOutput)
+}
+
+type ScimGroupPermissionsPermissionOutput struct{ *pulumi.OutputState }
+
+func (ScimGroupPermissionsPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScimGroupPermissionsPermission)(nil)).Elem()
+}
+
+func (o ScimGroupPermissionsPermissionOutput) ToScimGroupPermissionsPermissionOutput() ScimGroupPermissionsPermissionOutput {
+	return o
+}
+
+func (o ScimGroupPermissionsPermissionOutput) ToScimGroupPermissionsPermissionOutputWithContext(ctx context.Context) ScimGroupPermissionsPermissionOutput {
+	return o
+}
+
+// Whether access should be provided for all projects or not.
+func (o ScimGroupPermissionsPermissionOutput) AllProjects() pulumi.BoolOutput {
+	return o.ApplyT(func(v ScimGroupPermissionsPermission) bool { return v.AllProjects }).(pulumi.BoolOutput)
+}
+
+// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+func (o ScimGroupPermissionsPermissionOutput) PermissionSet() pulumi.StringOutput {
+	return o.ApplyT(func(v ScimGroupPermissionsPermission) string { return v.PermissionSet }).(pulumi.StringOutput)
+}
+
+// Project ID to apply this permission to for this group.
+func (o ScimGroupPermissionsPermissionOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ScimGroupPermissionsPermission) *int { return v.ProjectId }).(pulumi.IntPtrOutput)
+}
+
+// What types of environments to apply Write permissions to.
+// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+// Not setting a value is the same as selecting `all`.
+// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+func (o ScimGroupPermissionsPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ScimGroupPermissionsPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
+}
+
+type ScimGroupPermissionsPermissionArrayOutput struct{ *pulumi.OutputState }
+
+func (ScimGroupPermissionsPermissionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScimGroupPermissionsPermission)(nil)).Elem()
+}
+
+func (o ScimGroupPermissionsPermissionArrayOutput) ToScimGroupPermissionsPermissionArrayOutput() ScimGroupPermissionsPermissionArrayOutput {
+	return o
+}
+
+func (o ScimGroupPermissionsPermissionArrayOutput) ToScimGroupPermissionsPermissionArrayOutputWithContext(ctx context.Context) ScimGroupPermissionsPermissionArrayOutput {
+	return o
+}
+
+func (o ScimGroupPermissionsPermissionArrayOutput) Index(i pulumi.IntInput) ScimGroupPermissionsPermissionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScimGroupPermissionsPermission {
+		return vs[0].([]ScimGroupPermissionsPermission)[vs[1].(int)]
+	}).(ScimGroupPermissionsPermissionOutput)
+}
+
 type ServiceTokenServiceTokenPermission struct {
 	// Whether or not to apply this permission to all projects for this service token
 	AllProjects bool `pulumi:"allProjects"`
@@ -8628,6 +8764,148 @@ func (o GetGroupUsersUserArrayOutput) Index(i pulumi.IntInput) GetGroupUsersUser
 	}).(GetGroupUsersUserOutput)
 }
 
+type GetGroupsGroup struct {
+	// Whether the group will be assigned by default to users
+	AssignByDefault bool `pulumi:"assignByDefault"`
+	// The ID of the group
+	Id int `pulumi:"id"`
+	// Group name
+	Name string `pulumi:"name"`
+	// Whether the group is managed by SCIM
+	ScimManaged bool `pulumi:"scimManaged"`
+	// SSO mapping group names for this group
+	SsoMappingGroups []string `pulumi:"ssoMappingGroups"`
+	// The state of the group (1=active, 2=deleted)
+	State int `pulumi:"state"`
+}
+
+// GetGroupsGroupInput is an input type that accepts GetGroupsGroupArgs and GetGroupsGroupOutput values.
+// You can construct a concrete instance of `GetGroupsGroupInput` via:
+//
+//	GetGroupsGroupArgs{...}
+type GetGroupsGroupInput interface {
+	pulumi.Input
+
+	ToGetGroupsGroupOutput() GetGroupsGroupOutput
+	ToGetGroupsGroupOutputWithContext(context.Context) GetGroupsGroupOutput
+}
+
+type GetGroupsGroupArgs struct {
+	// Whether the group will be assigned by default to users
+	AssignByDefault pulumi.BoolInput `pulumi:"assignByDefault"`
+	// The ID of the group
+	Id pulumi.IntInput `pulumi:"id"`
+	// Group name
+	Name pulumi.StringInput `pulumi:"name"`
+	// Whether the group is managed by SCIM
+	ScimManaged pulumi.BoolInput `pulumi:"scimManaged"`
+	// SSO mapping group names for this group
+	SsoMappingGroups pulumi.StringArrayInput `pulumi:"ssoMappingGroups"`
+	// The state of the group (1=active, 2=deleted)
+	State pulumi.IntInput `pulumi:"state"`
+}
+
+func (GetGroupsGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsGroup)(nil)).Elem()
+}
+
+func (i GetGroupsGroupArgs) ToGetGroupsGroupOutput() GetGroupsGroupOutput {
+	return i.ToGetGroupsGroupOutputWithContext(context.Background())
+}
+
+func (i GetGroupsGroupArgs) ToGetGroupsGroupOutputWithContext(ctx context.Context) GetGroupsGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsGroupOutput)
+}
+
+// GetGroupsGroupArrayInput is an input type that accepts GetGroupsGroupArray and GetGroupsGroupArrayOutput values.
+// You can construct a concrete instance of `GetGroupsGroupArrayInput` via:
+//
+//	GetGroupsGroupArray{ GetGroupsGroupArgs{...} }
+type GetGroupsGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput
+	ToGetGroupsGroupArrayOutputWithContext(context.Context) GetGroupsGroupArrayOutput
+}
+
+type GetGroupsGroupArray []GetGroupsGroupInput
+
+func (GetGroupsGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsGroup)(nil)).Elem()
+}
+
+func (i GetGroupsGroupArray) ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput {
+	return i.ToGetGroupsGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupsGroupArray) ToGetGroupsGroupArrayOutputWithContext(ctx context.Context) GetGroupsGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupsGroupArrayOutput)
+}
+
+type GetGroupsGroupOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupsGroup)(nil)).Elem()
+}
+
+func (o GetGroupsGroupOutput) ToGetGroupsGroupOutput() GetGroupsGroupOutput {
+	return o
+}
+
+func (o GetGroupsGroupOutput) ToGetGroupsGroupOutputWithContext(ctx context.Context) GetGroupsGroupOutput {
+	return o
+}
+
+// Whether the group will be assigned by default to users
+func (o GetGroupsGroupOutput) AssignByDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupsGroup) bool { return v.AssignByDefault }).(pulumi.BoolOutput)
+}
+
+// The ID of the group
+func (o GetGroupsGroupOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupsGroup) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// Group name
+func (o GetGroupsGroupOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupsGroup) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Whether the group is managed by SCIM
+func (o GetGroupsGroupOutput) ScimManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupsGroup) bool { return v.ScimManaged }).(pulumi.BoolOutput)
+}
+
+// SSO mapping group names for this group
+func (o GetGroupsGroupOutput) SsoMappingGroups() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGroupsGroup) []string { return v.SsoMappingGroups }).(pulumi.StringArrayOutput)
+}
+
+// The state of the group (1=active, 2=deleted)
+func (o GetGroupsGroupOutput) State() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupsGroup) int { return v.State }).(pulumi.IntOutput)
+}
+
+type GetGroupsGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupsGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupsGroup)(nil)).Elem()
+}
+
+func (o GetGroupsGroupArrayOutput) ToGetGroupsGroupArrayOutput() GetGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupsGroupArrayOutput) ToGetGroupsGroupArrayOutputWithContext(ctx context.Context) GetGroupsGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupsGroupArrayOutput) Index(i pulumi.IntInput) GetGroupsGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupsGroup {
+		return vs[0].([]GetGroupsGroup)[vs[1].(int)]
+	}).(GetGroupsGroupOutput)
+}
+
 type GetJobEnvironment struct {
 	// Type of deployment environment: staging, production
 	DeploymentType string `pulumi:"deploymentType"`
@@ -10982,6 +11260,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), RedshiftSemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialCredentialInput)(nil)).Elem(), RedshiftSemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), RedshiftSemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScimGroupPermissionsPermissionInput)(nil)).Elem(), ScimGroupPermissionsPermissionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScimGroupPermissionsPermissionArrayInput)(nil)).Elem(), ScimGroupPermissionsPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnowflakeSemanticLayerCredentialConfigurationInput)(nil)).Elem(), SnowflakeSemanticLayerCredentialConfigurationArgs{})
@@ -11009,6 +11289,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupGroupPermissionArrayInput)(nil)).Elem(), GetGroupGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserInput)(nil)).Elem(), GetGroupUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUsersUserArrayInput)(nil)).Elem(), GetGroupUsersUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupInput)(nil)).Elem(), GetGroupsGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupsGroupArrayInput)(nil)).Elem(), GetGroupsGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobEnvironmentInput)(nil)).Elem(), GetJobEnvironmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobExecutionInput)(nil)).Elem(), GetJobExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobJobCompletionTriggerConditionInput)(nil)).Elem(), GetJobJobCompletionTriggerConditionArgs{})
@@ -11091,6 +11373,8 @@ func init() {
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialCredentialOutput{})
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialCredentialPtrOutput{})
+	pulumi.RegisterOutputType(ScimGroupPermissionsPermissionOutput{})
+	pulumi.RegisterOutputType(ScimGroupPermissionsPermissionArrayOutput{})
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionOutput{})
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionArrayOutput{})
 	pulumi.RegisterOutputType(SnowflakeSemanticLayerCredentialConfigurationOutput{})
@@ -11118,6 +11402,8 @@ func init() {
 	pulumi.RegisterOutputType(GetGroupGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GetGroupUsersUserOutput{})
 	pulumi.RegisterOutputType(GetGroupUsersUserArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupsGroupOutput{})
+	pulumi.RegisterOutputType(GetGroupsGroupArrayOutput{})
 	pulumi.RegisterOutputType(GetJobEnvironmentOutput{})
 	pulumi.RegisterOutputType(GetJobExecutionOutput{})
 	pulumi.RegisterOutputType(GetJobJobCompletionTriggerConditionOutput{})

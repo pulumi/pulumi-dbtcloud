@@ -77,11 +77,11 @@ export class Repository extends pulumi.CustomResource {
     }
 
     /**
-     * The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)
+     * The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)
      */
     declare public readonly azureActiveDirectoryProjectId: pulumi.Output<string>;
     /**
-     * The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+     * The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
      */
     declare public readonly azureActiveDirectoryRepositoryId: pulumi.Output<string>;
     /**
@@ -201,11 +201,11 @@ export class Repository extends pulumi.CustomResource {
  */
 export interface RepositoryState {
     /**
-     * The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)
+     * The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)
      */
     azureActiveDirectoryProjectId?: pulumi.Input<string>;
     /**
-     * The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+     * The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
      */
     azureActiveDirectoryRepositoryId?: pulumi.Input<string>;
     /**
@@ -269,11 +269,11 @@ export interface RepositoryState {
  */
 export interface RepositoryArgs {
     /**
-     * The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)
+     * The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)
      */
     azureActiveDirectoryProjectId?: pulumi.Input<string>;
     /**
-     * The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)
+     * The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
      */
     azureActiveDirectoryRepositoryId?: pulumi.Input<string>;
     /**
