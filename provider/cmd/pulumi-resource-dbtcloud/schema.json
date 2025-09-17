@@ -1231,6 +1231,34 @@
                 }
             }
         },
+        "dbtcloud:index/ScimGroupPermissionsPermission:ScimGroupPermissionsPermission": {
+            "properties": {
+                "allProjects": {
+                    "type": "boolean",
+                    "description": "Whether access should be provided for all projects or not.\n"
+                },
+                "permissionSet": {
+                    "type": "string",
+                    "description": "Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "Project ID to apply this permission to for this group.\n"
+                },
+                "writableEnvironmentCategories": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "What types of environments to apply Write permissions to.\nEven if Write access is restricted to some environment types, the permission set will have Read access to all environments.\nThe values allowed are `all`, `development`, `staging`, `production` and `other`.\nNot setting a value is the same as selecting `all`.\nNot all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "allProjects",
+                "permissionSet"
+            ]
+        },
         "dbtcloud:index/ServiceTokenServiceTokenPermission:ServiceTokenServiceTokenPermission": {
             "properties": {
                 "allProjects": {
@@ -2202,6 +2230,51 @@
             "required": [
                 "email",
                 "id"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGroupsGroup:getGroupsGroup": {
+            "properties": {
+                "assignByDefault": {
+                    "type": "boolean",
+                    "description": "Whether the group will be assigned by default to users\n"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "The ID of the group\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Group name\n"
+                },
+                "scimManaged": {
+                    "type": "boolean",
+                    "description": "Whether the group is managed by SCIM\n"
+                },
+                "ssoMappingGroups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "SSO mapping group names for this group\n"
+                },
+                "state": {
+                    "type": "integer",
+                    "description": "The state of the group (1=active, 2=deleted)\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "assignByDefault",
+                "id",
+                "name",
+                "scimManaged",
+                "ssoMappingGroups",
+                "state"
             ],
             "language": {
                 "nodejs": {
@@ -6491,11 +6564,11 @@
             "properties": {
                 "azureActiveDirectoryProjectId": {
                     "type": "string",
-                    "description": "The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)\n"
+                    "description": "The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)\n"
                 },
                 "azureActiveDirectoryRepositoryId": {
                     "type": "string",
-                    "description": "The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)\n"
+                    "description": "The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)\n"
                 },
                 "azureBypassWebhookRegistrationFailure": {
                     "type": "boolean",
@@ -6568,11 +6641,11 @@
             "inputProperties": {
                 "azureActiveDirectoryProjectId": {
                     "type": "string",
-                    "description": "The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)\n"
+                    "description": "The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)\n"
                 },
                 "azureActiveDirectoryRepositoryId": {
                     "type": "string",
-                    "description": "The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)\n"
+                    "description": "The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)\n"
                 },
                 "azureBypassWebhookRegistrationFailure": {
                     "type": "boolean",
@@ -6625,11 +6698,11 @@
                 "properties": {
                     "azureActiveDirectoryProjectId": {
                         "type": "string",
-                        "description": "The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (for ADO native integration only)\n"
+                        "description": "The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsProject` and the project name - (required for ADO native integration only)\n"
                     },
                     "azureActiveDirectoryRepositoryId": {
                         "type": "string",
-                        "description": "The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (for ADO native integration only)\n"
+                        "description": "The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `dbtcloud.getAzureDevOpsRepository` along with the ADO Project ID and the repository name - (required for ADO native integration only)\n"
                     },
                     "azureBypassWebhookRegistrationFailure": {
                         "type": "boolean",
@@ -6683,6 +6756,57 @@
                     "repositoryId": {
                         "type": "integer",
                         "description": "Repository Identifier\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions": {
+            "properties": {
+                "groupId": {
+                    "type": "integer",
+                    "description": "The ID of the existing group to manage permissions for. This group must already exist.\n"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/dbtcloud:index/ScimGroupPermissionsPermission:ScimGroupPermissionsPermission"
+                    },
+                    "description": "Set of permissions to apply to the group. This will replace all existing permissions for the group.\n"
+                }
+            },
+            "required": [
+                "groupId"
+            ],
+            "inputProperties": {
+                "groupId": {
+                    "type": "integer",
+                    "description": "The ID of the existing group to manage permissions for. This group must already exist.\n"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/dbtcloud:index/ScimGroupPermissionsPermission:ScimGroupPermissionsPermission"
+                    },
+                    "description": "Set of permissions to apply to the group. This will replace all existing permissions for the group.\n"
+                }
+            },
+            "requiredInputs": [
+                "groupId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ScimGroupPermissions resources.\n",
+                "properties": {
+                    "groupId": {
+                        "type": "integer",
+                        "description": "The ID of the existing group to manage permissions for. This group must already exist.\n"
+                    },
+                    "permissions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/ScimGroupPermissionsPermission:ScimGroupPermissionsPermission"
+                        },
+                        "description": "Set of permissions to apply to the group. This will replace all existing permissions for the group.\n"
                     }
                 },
                 "type": "object"
@@ -8446,6 +8570,60 @@
                 "type": "object"
             }
         },
+        "dbtcloud:index/getGroups:getGroups": {
+            "description": "Retrieve all groups in the account with optional filtering\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getGroups.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Filter groups by exact name match\n"
+                    },
+                    "nameContains": {
+                        "type": "string",
+                        "description": "Filter groups by partial name match (case insensitive)\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "Filter groups by state. Accepts both string and integer formats: 'active'/'1' for active resources, 'deleted'/'2' for deleted resources, 'all' for all resources. Defaults to active groups only if not specified.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getGroups.\n",
+                "properties": {
+                    "groups": {
+                        "description": "Set of groups in the account\n",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/getGroupsGroup:getGroupsGroup"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Filter groups by exact name match\n",
+                        "type": "string"
+                    },
+                    "nameContains": {
+                        "description": "Filter groups by partial name match (case insensitive)\n",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "Filter groups by state. Accepts both string and integer formats: 'active'/'1' for active resources, 'deleted'/'2' for deleted resources, 'all' for all resources. Defaults to active groups only if not specified.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "groups",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "dbtcloud:index/getJob:getJob": {
             "description": "Get detailed information for a specific dbt Cloud job.\n",
             "inputs": {
@@ -8919,6 +9097,22 @@
                     "cidrRange",
                     "id",
                     "type"
+                ],
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints": {
+            "description": "Privatelink endpoint data sources.\n",
+            "outputs": {
+                "description": "A collection of values returned by getPrivatelinkEndpoints.\n",
+                "properties": {
+                    "id": {
+                        "description": "The internal ID of the PrivateLink Endpoint\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
                 ],
                 "type": "object"
             }
