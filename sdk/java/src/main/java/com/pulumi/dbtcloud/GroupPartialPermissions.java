@@ -20,6 +20,65 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.GroupPartialPermissions;
+ * import com.pulumi.dbtcloud.GroupPartialPermissionsArgs;
+ * import com.pulumi.dbtcloud.inputs.GroupPartialPermissionsGroupPermissionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // we add some permissions to the group "TF Group 1" (existing or not) to  a new project 
+ *         var tfGroup1 = new GroupPartialPermissions("tfGroup1", GroupPartialPermissionsArgs.builder()
+ *             .name("TF Group 1")
+ *             .groupPermissions(            
+ *                 GroupPartialPermissionsGroupPermissionArgs.builder()
+ *                     .permission_set("developer")
+ *                     .project_id(dbtProject.id())
+ *                     .all_projects(false)
+ *                     .writable_environment_categories(List.of(                    
+ *                         "development",
+ *                         "staging"))
+ *                     .build(),
+ *                 GroupPartialPermissionsGroupPermissionArgs.builder()
+ *                     .permission_set("git_admin")
+ *                     .project_id(dbtProject.id())
+ *                     .all_projects(false)
+ *                     .build())
+ *             .build());
+ * 
+ *         // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
+ *         // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+ *         var tfGroup2 = new GroupPartialPermissions("tfGroup2", GroupPartialPermissionsArgs.builder()
+ *             .name("TF Group 2")
+ *             .ssoMappingGroups("group2")
+ *             .groupPermissions(GroupPartialPermissionsGroupPermissionArgs.builder()
+ *                 .permission_set("admin")
+ *                 .project_id(dbtProject.id())
+ *                 .all_projects(false)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="dbtcloud:index/groupPartialPermissions:GroupPartialPermissions")
 public class GroupPartialPermissions extends com.pulumi.resources.CustomResource {

@@ -11,6 +11,127 @@ import * as utilities from "./utilities";
  *
  * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connectionId` field in the `dbtcloud.Environment` resource.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const apacheSpark = new dbtcloud.GlobalConnection("apache_spark", {
+ *     name: "My Apache Spark connection",
+ *     apacheSpark: {
+ *         method: "http",
+ *         host: "my-spark-host.com",
+ *         cluster: "my-cluster",
+ *         connect_timeout: 100,
+ *     },
+ * });
+ * const athena = new dbtcloud.GlobalConnection("athena", {
+ *     name: "My Athena connection",
+ *     athena: {
+ *         region_name: "us-east-1",
+ *         database: "mydatabase",
+ *         s3_staging_dir: "my_dir",
+ *         work_group: "my_work_group",
+ *     },
+ * });
+ * const bigquery = new dbtcloud.GlobalConnection("bigquery", {
+ *     name: "My BigQuery connection",
+ *     bigquery: {
+ *         gcp_project_id: "my-gcp-project-id",
+ *         timeout_seconds: 1000,
+ *         private_key_id: "my-private-key-id",
+ *         private_key: "ABCDEFGHIJKL",
+ *         client_email: "my_client_email",
+ *         client_id: "my_client_id",
+ *         auth_uri: "my_auth_uri",
+ *         token_uri: "my_token_uri",
+ *         auth_provider_x509_cert_url: "my_auth_provider_x509_cert_url",
+ *         client_x509_cert_url: "my_client_x509_cert_url",
+ *         application_id: "oauth_application_id",
+ *         application_secret: "oauth_secret_id",
+ *     },
+ * });
+ * const databricks = new dbtcloud.GlobalConnection("databricks", {
+ *     name: "My Databricks connection",
+ *     databricks: {
+ *         host: "my-databricks-host.cloud.databricks.com",
+ *         http_path: "/sql/my/http/path",
+ *         catalog: "dbt_catalog",
+ *         client_id: "yourclientid",
+ *         client_secret: "yourclientsecret",
+ *     },
+ * });
+ * const fabric = new dbtcloud.GlobalConnection("fabric", {
+ *     name: "My Fabric connection",
+ *     fabric: {
+ *         server: "my-fabric-server.com",
+ *         database: "mydb",
+ *         port: 1234,
+ *         retries: 3,
+ *         login_timeout: 60,
+ *         query_timeout: 3600,
+ *     },
+ * });
+ * const postgres = new dbtcloud.GlobalConnection("postgres", {
+ *     name: "My PostgreSQL connection",
+ *     postgres: {
+ *         hostname: "my-postgresql-server.com",
+ *         port: 5432,
+ *         dbname: "my_database",
+ *     },
+ * });
+ * const redshift = new dbtcloud.GlobalConnection("redshift", {
+ *     name: "My Redshift connection",
+ *     redshift: {
+ *         hostname: "my-redshift-connection.com",
+ *         port: 5432,
+ *         dbname: "my_database",
+ *     },
+ * });
+ * const snowflake = new dbtcloud.GlobalConnection("snowflake", {
+ *     name: "My Snowflake connection",
+ *     privateLinkEndpointId: myPrivateLink.id,
+ *     snowflake: {
+ *         account: "my-snowflake-account",
+ *         database: "MY_DATABASE",
+ *         warehouse: "MY_WAREHOUSE",
+ *         client_session_keep_alive: false,
+ *         allow_sso: true,
+ *         oauth_client_id: "yourclientid",
+ *         oauth_client_secret: "yourclientsecret",
+ *     },
+ * });
+ * const starburst = new dbtcloud.GlobalConnection("starburst", {
+ *     name: "My Starburst connection",
+ *     starburst: {
+ *         host: "my-starburst-host.com",
+ *         database: "mydb",
+ *     },
+ * });
+ * const synapse = new dbtcloud.GlobalConnection("synapse", {
+ *     name: "My Synapse connection",
+ *     synapse: {
+ *         host: "my-synapse-server.com",
+ *         database: "mydb",
+ *         port: 1234,
+ *         retries: 3,
+ *         login_timeout: 60,
+ *         query_timeout: 3600,
+ *     },
+ * });
+ * const teradata = new dbtcloud.GlobalConnection("teradata", {
+ *     name: "My Teradata connection",
+ *     teradata: {
+ *         host: "my-teradata-server.com",
+ *         tmode: "ANSI",
+ *         port: "1234",
+ *         request_timeout: 600,
+ *         retries: 3,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * A project-scoped connection can be imported as a global connection by specifying the connection ID

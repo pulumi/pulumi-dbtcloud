@@ -12,6 +12,69 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Snowflake credential resource. This resource is composed of a Snowflake credential and a Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Example of Snowflake Semantic Layer Credential with password authentication
+    ///     var passwordAuth = new DbtCloud.SnowflakeSemanticLayerCredential("password_auth", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Name = "Snowflake SL Credential - Password Auth",
+    ///             Adapter_version = "snowflake_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Is_active = true,
+    ///             Auth_type = "password",
+    ///             Database = database,
+    ///             Schema = schema,
+    ///             Warehouse = warehouse,
+    ///             Role = role,
+    ///             User = user,
+    ///             Password = password,
+    ///             Num_threads = 4,
+    ///             Semantic_layer_credential = true,
+    ///         },
+    ///     });
+    /// 
+    ///     // Example of Snowflake Semantic Layer Credential with key pair authentication
+    ///     var keypairAuth = new DbtCloud.SnowflakeSemanticLayerCredential("keypair_auth", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Name = "Snowflake SL Credential - Key Pair Auth",
+    ///             Adapter_version = "snowflake_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Is_active = true,
+    ///             Auth_type = "keypair",
+    ///             Database = database,
+    ///             Schema = schema,
+    ///             Warehouse = warehouse,
+    ///             Role = role,
+    ///             Private_key = privateKey,
+    ///             Private_key_passphrase = privateKeyPassphrase,
+    ///             Num_threads = 4,
+    ///             Semantic_layer_credential = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)

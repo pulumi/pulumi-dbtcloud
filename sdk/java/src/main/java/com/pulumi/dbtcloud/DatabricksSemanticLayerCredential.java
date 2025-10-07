@@ -17,6 +17,51 @@ import javax.annotation.Nullable;
 /**
  * Databricks credential resource. This resource is composed of a Databricks credential and a Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.DatabricksSemanticLayerCredential;
+ * import com.pulumi.dbtcloud.DatabricksSemanticLayerCredentialArgs;
+ * import com.pulumi.dbtcloud.inputs.DatabricksSemanticLayerCredentialConfigurationArgs;
+ * import com.pulumi.dbtcloud.inputs.DatabricksSemanticLayerCredentialCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var slCredDatabricksExample = new DatabricksSemanticLayerCredential("slCredDatabricksExample", DatabricksSemanticLayerCredentialArgs.builder()
+ *             .configuration(DatabricksSemanticLayerCredentialConfigurationArgs.builder()
+ *                 .project_id(projectId)
+ *                 .name("Databricks SL Credential")
+ *                 .adapter_version("databricks_v0")
+ *                 .build())
+ *             .credential(DatabricksSemanticLayerCredentialCredentialArgs.builder()
+ *                 .project_id(projectId)
+ *                 .catalog(catalog)
+ *                 .token(token)
+ *                 .semantic_layer_credential(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)

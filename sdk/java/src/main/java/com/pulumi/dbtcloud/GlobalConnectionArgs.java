@@ -140,14 +140,14 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+     * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      * 
      */
     @Import(name="privateLinkEndpointId")
     private @Nullable Output<String> privateLinkEndpointId;
 
     /**
-     * @return Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+     * @return Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      * 
      */
     public Optional<Output<String>> privateLinkEndpointId() {
@@ -423,7 +423,7 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateLinkEndpointId Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+         * @param privateLinkEndpointId Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
          * 
          * @return builder
          * 
@@ -434,7 +434,7 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateLinkEndpointId Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+         * @param privateLinkEndpointId Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
          * 
          * @return builder
          * 

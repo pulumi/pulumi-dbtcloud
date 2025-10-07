@@ -8,6 +8,43 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // we add some permissions to the group "TF Group 1" (existing or not) to  a new project 
+ * const tfGroup1 = new dbtcloud.GroupPartialPermissions("tf_group_1", {
+ *     name: "TF Group 1",
+ *     groupPermissions: [
+ *         {
+ *             permission_set: "developer",
+ *             project_id: dbtProject.id,
+ *             all_projects: false,
+ *             writable_environment_categories: [
+ *                 "development",
+ *                 "staging",
+ *             ],
+ *         },
+ *         {
+ *             permission_set: "git_admin",
+ *             project_id: dbtProject.id,
+ *             all_projects: false,
+ *         },
+ *     ],
+ * });
+ * // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
+ * // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+ * const tfGroup2 = new dbtcloud.GroupPartialPermissions("tf_group_2", {
+ *     name: "TF Group 2",
+ *     ssoMappingGroups: ["group2"],
+ *     groupPermissions: [{
+ *         permission_set: "admin",
+ *         project_id: dbtProject.id,
+ *         all_projects: false,
+ *     }],
+ * });
+ * ```
  */
 export class GroupPartialPermissions extends pulumi.CustomResource {
     /**

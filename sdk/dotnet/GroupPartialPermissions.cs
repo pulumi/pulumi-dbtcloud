@@ -11,6 +11,63 @@ namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // we add some permissions to the group "TF Group 1" (existing or not) to  a new project 
+    ///     var tfGroup1 = new DbtCloud.GroupPartialPermissions("tf_group_1", new()
+    ///     {
+    ///         Name = "TF Group 1",
+    ///         GroupPermissions = new[]
+    ///         {
+    ///             new DbtCloud.Inputs.GroupPartialPermissionsGroupPermissionArgs
+    ///             {
+    ///                 Permission_set = "developer",
+    ///                 Project_id = dbtProject.Id,
+    ///                 All_projects = false,
+    ///                 Writable_environment_categories = new[]
+    ///                 {
+    ///                     "development",
+    ///                     "staging",
+    ///                 },
+    ///             },
+    ///             new DbtCloud.Inputs.GroupPartialPermissionsGroupPermissionArgs
+    ///             {
+    ///                 Permission_set = "git_admin",
+    ///                 Project_id = dbtProject.Id,
+    ///                 All_projects = false,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
+    ///     // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+    ///     var tfGroup2 = new DbtCloud.GroupPartialPermissions("tf_group_2", new()
+    ///     {
+    ///         Name = "TF Group 2",
+    ///         SsoMappingGroups = new[]
+    ///         {
+    ///             "group2",
+    ///         },
+    ///         GroupPermissions = new[]
+    ///         {
+    ///             new DbtCloud.Inputs.GroupPartialPermissionsGroupPermissionArgs
+    ///             {
+    ///                 Permission_set = "admin",
+    ///                 Project_id = dbtProject.Id,
+    ///                 All_projects = false,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/groupPartialPermissions:GroupPartialPermissions")]
     public partial class GroupPartialPermissions : global::Pulumi.CustomResource

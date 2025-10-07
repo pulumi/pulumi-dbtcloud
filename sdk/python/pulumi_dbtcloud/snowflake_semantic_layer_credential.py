@@ -108,6 +108,54 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         """
         Snowflake credential resource. This resource is composed of a Snowflake credential and a Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Example of Snowflake Semantic Layer Credential with password authentication
+        password_auth = dbtcloud.SnowflakeSemanticLayerCredential("password_auth",
+            configuration={
+                "project_id": project_id,
+                "name": "Snowflake SL Credential - Password Auth",
+                "adapter_version": "snowflake_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "is_active": True,
+                "auth_type": "password",
+                "database": database,
+                "schema": schema,
+                "warehouse": warehouse,
+                "role": role,
+                "user": user,
+                "password": password,
+                "num_threads": 4,
+                "semantic_layer_credential": True,
+            })
+        # Example of Snowflake Semantic Layer Credential with key pair authentication
+        keypair_auth = dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth",
+            configuration={
+                "project_id": project_id,
+                "name": "Snowflake SL Credential - Key Pair Auth",
+                "adapter_version": "snowflake_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "is_active": True,
+                "auth_type": "keypair",
+                "database": database,
+                "schema": schema,
+                "warehouse": warehouse,
+                "role": role,
+                "private_key": private_key,
+                "private_key_passphrase": private_key_passphrase,
+                "num_threads": 4,
+                "semantic_layer_credential": True,
+            })
+        ```
+
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
@@ -151,6 +199,54 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Snowflake credential resource. This resource is composed of a Snowflake credential and a Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Example of Snowflake Semantic Layer Credential with password authentication
+        password_auth = dbtcloud.SnowflakeSemanticLayerCredential("password_auth",
+            configuration={
+                "project_id": project_id,
+                "name": "Snowflake SL Credential - Password Auth",
+                "adapter_version": "snowflake_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "is_active": True,
+                "auth_type": "password",
+                "database": database,
+                "schema": schema,
+                "warehouse": warehouse,
+                "role": role,
+                "user": user,
+                "password": password,
+                "num_threads": 4,
+                "semantic_layer_credential": True,
+            })
+        # Example of Snowflake Semantic Layer Credential with key pair authentication
+        keypair_auth = dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth",
+            configuration={
+                "project_id": project_id,
+                "name": "Snowflake SL Credential - Key Pair Auth",
+                "adapter_version": "snowflake_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "is_active": True,
+                "auth_type": "keypair",
+                "database": database,
+                "schema": schema,
+                "warehouse": warehouse,
+                "role": role,
+                "private_key": private_key,
+                "private_key_passphrase": private_key_passphrase,
+                "num_threads": 4,
+                "semantic_layer_credential": True,
+            })
+        ```
 
         ## Import
 

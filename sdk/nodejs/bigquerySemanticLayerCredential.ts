@@ -8,6 +8,35 @@ import * as utilities from "./utilities";
 
 /**
  * BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const example = new dbtcloud.BigquerySemanticLayerCredential("example", {
+ *     configuration: {
+ *         project_id: projectId,
+ *         name: "BigQuery SL Credential",
+ *         adapter_version: "bigquery_v0",
+ *     },
+ *     credential: {
+ *         project_id: projectId,
+ *         is_active: true,
+ *         num_threads: numThreads,
+ *         dataset: dataset,
+ *     },
+ *     privateKeyId: privateKeyId,
+ *     privateKey: privateKey,
+ *     clientEmail: clientEmail,
+ *     clientId: clientId,
+ *     authUri: authUri,
+ *     tokenUri: tokenUri,
+ *     authProviderX509CertUrl: authProviderX509CertUrl,
+ *     clientX509CertUrl: clientX509CertUrl,
+ * });
+ * ```
  */
 export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
     /**

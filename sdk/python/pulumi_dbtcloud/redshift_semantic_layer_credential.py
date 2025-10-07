@@ -108,6 +108,28 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         """
         Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        test_redshift_semantic_layer_credential = dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential",
+            configuration={
+                "project_id": project_id,
+                "name": "Redshift SL Credential",
+                "adapter_version": "redshift_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "username": username,
+                "is_active": True,
+                "password": password,
+                "num_threads": num_threads,
+                "default_schema": default_schema,
+            })
+        ```
+
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
@@ -151,6 +173,28 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        test_redshift_semantic_layer_credential = dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential",
+            configuration={
+                "project_id": project_id,
+                "name": "Redshift SL Credential",
+                "adapter_version": "redshift_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "username": username,
+                "is_active": True,
+                "password": password,
+                "num_threads": num_threads,
+                "default_schema": default_schema,
+            })
+        ```
 
         ## Import
 

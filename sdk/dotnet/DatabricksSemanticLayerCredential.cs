@@ -12,6 +12,36 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Databricks credential resource. This resource is composed of a Databricks credential and a Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var slCredDatabricksExample = new DbtCloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.DatabricksSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Name = "Databricks SL Credential",
+    ///             Adapter_version = "databricks_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.DatabricksSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Catalog = catalog,
+    ///             Token = token,
+    ///             Semantic_layer_credential = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)

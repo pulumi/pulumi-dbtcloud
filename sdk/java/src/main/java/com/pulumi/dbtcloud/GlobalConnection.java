@@ -30,7 +30,171 @@ import javax.annotation.Nullable;
 /**
  * This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
  * 
- * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
+ * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connectionId` field in the `dbtcloud.Environment` resource.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.GlobalConnection;
+ * import com.pulumi.dbtcloud.GlobalConnectionArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionApacheSparkArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionAthenaArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionFabricArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionPostgresArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionRedshiftArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionStarburstArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionSynapseArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionTeradataArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var apacheSpark = new GlobalConnection("apacheSpark", GlobalConnectionArgs.builder()
+ *             .name("My Apache Spark connection")
+ *             .apacheSpark(GlobalConnectionApacheSparkArgs.builder()
+ *                 .method("http")
+ *                 .host("my-spark-host.com")
+ *                 .cluster("my-cluster")
+ *                 .connect_timeout(100)
+ *                 .build())
+ *             .build());
+ * 
+ *         var athena = new GlobalConnection("athena", GlobalConnectionArgs.builder()
+ *             .name("My Athena connection")
+ *             .athena(GlobalConnectionAthenaArgs.builder()
+ *                 .region_name("us-east-1")
+ *                 .database("mydatabase")
+ *                 .s3_staging_dir("my_dir")
+ *                 .work_group("my_work_group")
+ *                 .build())
+ *             .build());
+ * 
+ *         var bigquery = new GlobalConnection("bigquery", GlobalConnectionArgs.builder()
+ *             .name("My BigQuery connection")
+ *             .bigquery(GlobalConnectionBigqueryArgs.builder()
+ *                 .gcp_project_id("my-gcp-project-id")
+ *                 .timeout_seconds(1000)
+ *                 .private_key_id("my-private-key-id")
+ *                 .private_key("ABCDEFGHIJKL")
+ *                 .client_email("my_client_email")
+ *                 .client_id("my_client_id")
+ *                 .auth_uri("my_auth_uri")
+ *                 .token_uri("my_token_uri")
+ *                 .auth_provider_x509_cert_url("my_auth_provider_x509_cert_url")
+ *                 .client_x509_cert_url("my_client_x509_cert_url")
+ *                 .application_id("oauth_application_id")
+ *                 .application_secret("oauth_secret_id")
+ *                 .build())
+ *             .build());
+ * 
+ *         var databricks = new GlobalConnection("databricks", GlobalConnectionArgs.builder()
+ *             .name("My Databricks connection")
+ *             .databricks(GlobalConnectionDatabricksArgs.builder()
+ *                 .host("my-databricks-host.cloud.databricks.com")
+ *                 .http_path("/sql/my/http/path")
+ *                 .catalog("dbt_catalog")
+ *                 .client_id("yourclientid")
+ *                 .client_secret("yourclientsecret")
+ *                 .build())
+ *             .build());
+ * 
+ *         var fabric = new GlobalConnection("fabric", GlobalConnectionArgs.builder()
+ *             .name("My Fabric connection")
+ *             .fabric(GlobalConnectionFabricArgs.builder()
+ *                 .server("my-fabric-server.com")
+ *                 .database("mydb")
+ *                 .port(1234)
+ *                 .retries(3)
+ *                 .login_timeout(60)
+ *                 .query_timeout(3600)
+ *                 .build())
+ *             .build());
+ * 
+ *         var postgres = new GlobalConnection("postgres", GlobalConnectionArgs.builder()
+ *             .name("My PostgreSQL connection")
+ *             .postgres(GlobalConnectionPostgresArgs.builder()
+ *                 .hostname("my-postgresql-server.com")
+ *                 .port(5432)
+ *                 .dbname("my_database")
+ *                 .build())
+ *             .build());
+ * 
+ *         var redshift = new GlobalConnection("redshift", GlobalConnectionArgs.builder()
+ *             .name("My Redshift connection")
+ *             .redshift(GlobalConnectionRedshiftArgs.builder()
+ *                 .hostname("my-redshift-connection.com")
+ *                 .port(5432)
+ *                 .dbname("my_database")
+ *                 .build())
+ *             .build());
+ * 
+ *         var snowflake = new GlobalConnection("snowflake", GlobalConnectionArgs.builder()
+ *             .name("My Snowflake connection")
+ *             .privateLinkEndpointId(myPrivateLink.id())
+ *             .snowflake(GlobalConnectionSnowflakeArgs.builder()
+ *                 .account("my-snowflake-account")
+ *                 .database("MY_DATABASE")
+ *                 .warehouse("MY_WAREHOUSE")
+ *                 .client_session_keep_alive(false)
+ *                 .allow_sso(true)
+ *                 .oauth_client_id("yourclientid")
+ *                 .oauth_client_secret("yourclientsecret")
+ *                 .build())
+ *             .build());
+ * 
+ *         var starburst = new GlobalConnection("starburst", GlobalConnectionArgs.builder()
+ *             .name("My Starburst connection")
+ *             .starburst(GlobalConnectionStarburstArgs.builder()
+ *                 .host("my-starburst-host.com")
+ *                 .database("mydb")
+ *                 .build())
+ *             .build());
+ * 
+ *         var synapse = new GlobalConnection("synapse", GlobalConnectionArgs.builder()
+ *             .name("My Synapse connection")
+ *             .synapse(GlobalConnectionSynapseArgs.builder()
+ *                 .host("my-synapse-server.com")
+ *                 .database("mydb")
+ *                 .port(1234)
+ *                 .retries(3)
+ *                 .login_timeout(60)
+ *                 .query_timeout(3600)
+ *                 .build())
+ *             .build());
+ * 
+ *         var teradata = new GlobalConnection("teradata", GlobalConnectionArgs.builder()
+ *             .name("My Teradata connection")
+ *             .teradata(GlobalConnectionTeradataArgs.builder()
+ *                 .host("my-teradata-server.com")
+ *                 .tmode("ANSI")
+ *                 .port("1234")
+ *                 .request_timeout(600)
+ *                 .retries(3)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * 
  * ## Import
  * 
@@ -208,14 +372,14 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.postgres);
     }
     /**
-     * Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+     * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      * 
      */
     @Export(name="privateLinkEndpointId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateLinkEndpointId;
 
     /**
-     * @return Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+     * @return Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      * 
      */
     public Output<Optional<String>> privateLinkEndpointId() {

@@ -14,6 +14,42 @@ import (
 
 // Postgres credential resource. This resource is composed of a Postgres credential and a Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbtcloud.NewPostgresSemanticLayerCredential(ctx, "test_postgres_semantic_layer_credential", &dbtcloud.PostgresSemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.PostgresSemanticLayerCredentialConfigurationArgs{
+//					Project_id:      projectId,
+//					Name:            pulumi.String("Postgres SL Credential"),
+//					Adapter_version: "postgres_v0",
+//				},
+//				Credential: &dbtcloud.PostgresSemanticLayerCredentialCredentialArgs{
+//					Project_id:                projectId,
+//					Username:                  pulumi.Any(username),
+//					Password:                  pulumi.Any(password),
+//					Semantic_layer_credential: true,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using import blocks (requires Terraform >= 1.5)

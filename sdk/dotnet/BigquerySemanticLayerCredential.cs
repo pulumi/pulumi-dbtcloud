@@ -11,6 +11,44 @@ namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new DbtCloud.BigquerySemanticLayerCredential("example", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.BigquerySemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Name = "BigQuery SL Credential",
+    ///             Adapter_version = "bigquery_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.BigquerySemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Is_active = true,
+    ///             Num_threads = numThreads,
+    ///             Dataset = dataset,
+    ///         },
+    ///         PrivateKeyId = privateKeyId,
+    ///         PrivateKey = privateKey,
+    ///         ClientEmail = clientEmail,
+    ///         ClientId = clientId,
+    ///         AuthUri = authUri,
+    ///         TokenUri = tokenUri,
+    ///         AuthProviderX509CertUrl = authProviderX509CertUrl,
+    ///         ClientX509CertUrl = clientX509CertUrl,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential")]
     public partial class BigquerySemanticLayerCredential : global::Pulumi.CustomResource

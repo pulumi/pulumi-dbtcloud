@@ -14,6 +14,74 @@ import (
 
 // Snowflake credential resource. This resource is composed of a Snowflake credential and a Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Example of Snowflake Semantic Layer Credential with password authentication
+//			_, err := dbtcloud.NewSnowflakeSemanticLayerCredential(ctx, "password_auth", &dbtcloud.SnowflakeSemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.SnowflakeSemanticLayerCredentialConfigurationArgs{
+//					Project_id:      projectId,
+//					Name:            pulumi.String("Snowflake SL Credential - Password Auth"),
+//					Adapter_version: "snowflake_v0",
+//				},
+//				Credential: &dbtcloud.SnowflakeSemanticLayerCredentialCredentialArgs{
+//					Project_id:                projectId,
+//					Is_active:                 true,
+//					Auth_type:                 "password",
+//					Database:                  pulumi.Any(database),
+//					Schema:                    pulumi.Any(schema),
+//					Warehouse:                 pulumi.Any(warehouse),
+//					Role:                      pulumi.Any(role),
+//					User:                      pulumi.Any(user),
+//					Password:                  pulumi.Any(password),
+//					Num_threads:               4,
+//					Semantic_layer_credential: true,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Example of Snowflake Semantic Layer Credential with key pair authentication
+//			_, err = dbtcloud.NewSnowflakeSemanticLayerCredential(ctx, "keypair_auth", &dbtcloud.SnowflakeSemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.SnowflakeSemanticLayerCredentialConfigurationArgs{
+//					Project_id:      projectId,
+//					Name:            pulumi.String("Snowflake SL Credential - Key Pair Auth"),
+//					Adapter_version: "snowflake_v0",
+//				},
+//				Credential: &dbtcloud.SnowflakeSemanticLayerCredentialCredentialArgs{
+//					Project_id:                projectId,
+//					Is_active:                 true,
+//					Auth_type:                 "keypair",
+//					Database:                  pulumi.Any(database),
+//					Schema:                    pulumi.Any(schema),
+//					Warehouse:                 pulumi.Any(warehouse),
+//					Role:                      pulumi.Any(role),
+//					Private_key:               privateKey,
+//					Private_key_passphrase:    privateKeyPassphrase,
+//					Num_threads:               4,
+//					Semantic_layer_credential: true,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using import blocks (requires Terraform >= 1.5)

@@ -19,6 +19,59 @@ import javax.annotation.Nullable;
 /**
  * BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.BigquerySemanticLayerCredential;
+ * import com.pulumi.dbtcloud.BigquerySemanticLayerCredentialArgs;
+ * import com.pulumi.dbtcloud.inputs.BigquerySemanticLayerCredentialConfigurationArgs;
+ * import com.pulumi.dbtcloud.inputs.BigquerySemanticLayerCredentialCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new BigquerySemanticLayerCredential("example", BigquerySemanticLayerCredentialArgs.builder()
+ *             .configuration(BigquerySemanticLayerCredentialConfigurationArgs.builder()
+ *                 .project_id(projectId)
+ *                 .name("BigQuery SL Credential")
+ *                 .adapter_version("bigquery_v0")
+ *                 .build())
+ *             .credential(BigquerySemanticLayerCredentialCredentialArgs.builder()
+ *                 .project_id(projectId)
+ *                 .is_active(true)
+ *                 .num_threads(numThreads)
+ *                 .dataset(dataset)
+ *                 .build())
+ *             .privateKeyId(privateKeyId)
+ *             .privateKey(privateKey)
+ *             .clientEmail(clientEmail)
+ *             .clientId(clientId)
+ *             .authUri(authUri)
+ *             .tokenUri(tokenUri)
+ *             .authProviderX509CertUrl(authProviderX509CertUrl)
+ *             .clientX509CertUrl(clientX509CertUrl)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential")
 public class BigquerySemanticLayerCredential extends com.pulumi.resources.CustomResource {
