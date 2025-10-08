@@ -118,13 +118,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetJobsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+        /// The ID of the environment for which we want to retrieve the jobs (one of `ProjectId` or `EnvironmentId` must be set)
         /// </summary>
         [Input("environmentId")]
         public int? EnvironmentId { get; set; }
 
         /// <summary>
-        /// The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+        /// The ID of the project for which we want to retrieve the jobs (one of `ProjectId` or `EnvironmentId` must be set)
         /// </summary>
         [Input("projectId")]
         public int? ProjectId { get; set; }
@@ -138,13 +138,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetJobsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+        /// The ID of the environment for which we want to retrieve the jobs (one of `ProjectId` or `EnvironmentId` must be set)
         /// </summary>
         [Input("environmentId")]
         public Input<int>? EnvironmentId { get; set; }
 
         /// <summary>
-        /// The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+        /// The ID of the project for which we want to retrieve the jobs (one of `ProjectId` or `EnvironmentId` must be set)
         /// </summary>
         [Input("projectId")]
         public Input<int>? ProjectId { get; set; }
@@ -160,7 +160,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetJobsResult
     {
         /// <summary>
-        /// The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+        /// The ID of the environment for which we want to retrieve the jobs (one of `ProjectId` or `EnvironmentId` must be set)
         /// </summary>
         public readonly int? EnvironmentId;
         /// <summary>
@@ -172,7 +172,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly ImmutableArray<Outputs.GetJobsJobResult> Jobs;
         /// <summary>
-        /// The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+        /// The ID of the project for which we want to retrieve the jobs (one of `ProjectId` or `EnvironmentId` must be set)
         /// </summary>
         public readonly int? ProjectId;
 

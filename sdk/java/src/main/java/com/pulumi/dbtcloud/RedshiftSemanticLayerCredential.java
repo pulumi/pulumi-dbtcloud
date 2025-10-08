@@ -17,6 +17,53 @@ import javax.annotation.Nullable;
 /**
  * Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.RedshiftSemanticLayerCredential;
+ * import com.pulumi.dbtcloud.RedshiftSemanticLayerCredentialArgs;
+ * import com.pulumi.dbtcloud.inputs.RedshiftSemanticLayerCredentialConfigurationArgs;
+ * import com.pulumi.dbtcloud.inputs.RedshiftSemanticLayerCredentialCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRedshiftSemanticLayerCredential = new RedshiftSemanticLayerCredential("testRedshiftSemanticLayerCredential", RedshiftSemanticLayerCredentialArgs.builder()
+ *             .configuration(RedshiftSemanticLayerCredentialConfigurationArgs.builder()
+ *                 .project_id(projectId)
+ *                 .name("Redshift SL Credential")
+ *                 .adapter_version("redshift_v0")
+ *                 .build())
+ *             .credential(RedshiftSemanticLayerCredentialCredentialArgs.builder()
+ *                 .project_id(projectId)
+ *                 .username(username)
+ *                 .is_active(true)
+ *                 .password(password)
+ *                 .num_threads(numThreads)
+ *                 .default_schema(defaultSchema)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)

@@ -12,6 +12,38 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRedshiftSemanticLayerCredential = new DbtCloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.RedshiftSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Name = "Redshift SL Credential",
+    ///             Adapter_version = "redshift_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.RedshiftSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Username = username,
+    ///             Is_active = true,
+    ///             Password = password,
+    ///             Num_threads = numThreads,
+    ///             Default_schema = defaultSchema,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)

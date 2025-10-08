@@ -12,6 +12,36 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Postgres credential resource. This resource is composed of a Postgres credential and a Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testPostgresSemanticLayerCredential = new DbtCloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.PostgresSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Name = "Postgres SL Credential",
+    ///             Adapter_version = "postgres_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.PostgresSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             Project_id = projectId,
+    ///             Username = username,
+    ///             Password = password,
+    ///             Semantic_layer_credential = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)

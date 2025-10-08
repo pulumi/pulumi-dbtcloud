@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * &gt; If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.
  * This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
  * This is intentional in order to prevent accidental deletion of all users groups assigned to a user.
- * If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set &#34;group_ids&#34; to the empty set &#34;[]&#34;.
+ * If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set &#34;groupIds&#34; to the empty set &#34;[]&#34;.
  * 
  * ## Example Usage
  * 

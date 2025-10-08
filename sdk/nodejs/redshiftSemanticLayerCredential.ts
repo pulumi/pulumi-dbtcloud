@@ -9,6 +9,29 @@ import * as utilities from "./utilities";
 /**
  * Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const testRedshiftSemanticLayerCredential = new dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential", {
+ *     configuration: {
+ *         project_id: projectId,
+ *         name: "Redshift SL Credential",
+ *         adapter_version: "redshift_v0",
+ *     },
+ *     credential: {
+ *         project_id: projectId,
+ *         username: username,
+ *         is_active: true,
+ *         password: password,
+ *         num_threads: numThreads,
+ *         default_schema: defaultSchema,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)

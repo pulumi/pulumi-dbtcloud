@@ -9,6 +9,27 @@ import * as utilities from "./utilities";
 /**
  * Databricks credential resource. This resource is composed of a Databricks credential and a Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const slCredDatabricksExample = new dbtcloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example", {
+ *     configuration: {
+ *         project_id: projectId,
+ *         name: "Databricks SL Credential",
+ *         adapter_version: "databricks_v0",
+ *     },
+ *     credential: {
+ *         project_id: projectId,
+ *         catalog: catalog,
+ *         token: token,
+ *         semantic_layer_credential: true,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)

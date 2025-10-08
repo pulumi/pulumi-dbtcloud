@@ -14,6 +14,44 @@ import (
 
 // Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbtcloud.NewRedshiftSemanticLayerCredential(ctx, "test_redshift_semantic_layer_credential", &dbtcloud.RedshiftSemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.RedshiftSemanticLayerCredentialConfigurationArgs{
+//					Project_id:      projectId,
+//					Name:            pulumi.String("Redshift SL Credential"),
+//					Adapter_version: "redshift_v0",
+//				},
+//				Credential: &dbtcloud.RedshiftSemanticLayerCredentialCredentialArgs{
+//					Project_id:     projectId,
+//					Username:       pulumi.Any(username),
+//					Is_active:      true,
+//					Password:       pulumi.Any(password),
+//					Num_threads:    numThreads,
+//					Default_schema: defaultSchema,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using import blocks (requires Terraform >= 1.5)

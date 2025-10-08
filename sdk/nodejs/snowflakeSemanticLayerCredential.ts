@@ -9,6 +9,56 @@ import * as utilities from "./utilities";
 /**
  * Snowflake credential resource. This resource is composed of a Snowflake credential and a Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Example of Snowflake Semantic Layer Credential with password authentication
+ * const passwordAuth = new dbtcloud.SnowflakeSemanticLayerCredential("password_auth", {
+ *     configuration: {
+ *         project_id: projectId,
+ *         name: "Snowflake SL Credential - Password Auth",
+ *         adapter_version: "snowflake_v0",
+ *     },
+ *     credential: {
+ *         project_id: projectId,
+ *         is_active: true,
+ *         auth_type: "password",
+ *         database: database,
+ *         schema: schema,
+ *         warehouse: warehouse,
+ *         role: role,
+ *         user: user,
+ *         password: password,
+ *         num_threads: 4,
+ *         semantic_layer_credential: true,
+ *     },
+ * });
+ * // Example of Snowflake Semantic Layer Credential with key pair authentication
+ * const keypairAuth = new dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth", {
+ *     configuration: {
+ *         project_id: projectId,
+ *         name: "Snowflake SL Credential - Key Pair Auth",
+ *         adapter_version: "snowflake_v0",
+ *     },
+ *     credential: {
+ *         project_id: projectId,
+ *         is_active: true,
+ *         auth_type: "keypair",
+ *         database: database,
+ *         schema: schema,
+ *         warehouse: warehouse,
+ *         role: role,
+ *         private_key: privateKey,
+ *         private_key_passphrase: privateKeyPassphrase,
+ *         num_threads: 4,
+ *         semantic_layer_credential: true,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)

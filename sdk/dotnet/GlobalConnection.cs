@@ -12,7 +12,166 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
     /// 
-    /// Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
+    /// Those connections are not linked to a specific project and can be linked to environments from different projects by using the `ConnectionId` field in the `dbtcloud.Environment` resource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var apacheSpark = new DbtCloud.GlobalConnection("apache_spark", new()
+    ///     {
+    ///         Name = "My Apache Spark connection",
+    ///         ApacheSpark = new DbtCloud.Inputs.GlobalConnectionApacheSparkArgs
+    ///         {
+    ///             Method = "http",
+    ///             Host = "my-spark-host.com",
+    ///             Cluster = "my-cluster",
+    ///             Connect_timeout = 100,
+    ///         },
+    ///     });
+    /// 
+    ///     var athena = new DbtCloud.GlobalConnection("athena", new()
+    ///     {
+    ///         Name = "My Athena connection",
+    ///         Athena = new DbtCloud.Inputs.GlobalConnectionAthenaArgs
+    ///         {
+    ///             Region_name = "us-east-1",
+    ///             Database = "mydatabase",
+    ///             S3_staging_dir = "my_dir",
+    ///             Work_group = "my_work_group",
+    ///         },
+    ///     });
+    /// 
+    ///     var bigquery = new DbtCloud.GlobalConnection("bigquery", new()
+    ///     {
+    ///         Name = "My BigQuery connection",
+    ///         Bigquery = new DbtCloud.Inputs.GlobalConnectionBigqueryArgs
+    ///         {
+    ///             Gcp_project_id = "my-gcp-project-id",
+    ///             Timeout_seconds = 1000,
+    ///             Private_key_id = "my-private-key-id",
+    ///             Private_key = "ABCDEFGHIJKL",
+    ///             Client_email = "my_client_email",
+    ///             Client_id = "my_client_id",
+    ///             Auth_uri = "my_auth_uri",
+    ///             Token_uri = "my_token_uri",
+    ///             Auth_provider_x509_cert_url = "my_auth_provider_x509_cert_url",
+    ///             Client_x509_cert_url = "my_client_x509_cert_url",
+    ///             Application_id = "oauth_application_id",
+    ///             Application_secret = "oauth_secret_id",
+    ///         },
+    ///     });
+    /// 
+    ///     var databricks = new DbtCloud.GlobalConnection("databricks", new()
+    ///     {
+    ///         Name = "My Databricks connection",
+    ///         Databricks = new DbtCloud.Inputs.GlobalConnectionDatabricksArgs
+    ///         {
+    ///             Host = "my-databricks-host.cloud.databricks.com",
+    ///             Http_path = "/sql/my/http/path",
+    ///             Catalog = "dbt_catalog",
+    ///             Client_id = "yourclientid",
+    ///             Client_secret = "yourclientsecret",
+    ///         },
+    ///     });
+    /// 
+    ///     var fabric = new DbtCloud.GlobalConnection("fabric", new()
+    ///     {
+    ///         Name = "My Fabric connection",
+    ///         Fabric = new DbtCloud.Inputs.GlobalConnectionFabricArgs
+    ///         {
+    ///             Server = "my-fabric-server.com",
+    ///             Database = "mydb",
+    ///             Port = 1234,
+    ///             Retries = 3,
+    ///             Login_timeout = 60,
+    ///             Query_timeout = 3600,
+    ///         },
+    ///     });
+    /// 
+    ///     var postgres = new DbtCloud.GlobalConnection("postgres", new()
+    ///     {
+    ///         Name = "My PostgreSQL connection",
+    ///         Postgres = new DbtCloud.Inputs.GlobalConnectionPostgresArgs
+    ///         {
+    ///             Hostname = "my-postgresql-server.com",
+    ///             Port = 5432,
+    ///             Dbname = "my_database",
+    ///         },
+    ///     });
+    /// 
+    ///     var redshift = new DbtCloud.GlobalConnection("redshift", new()
+    ///     {
+    ///         Name = "My Redshift connection",
+    ///         Redshift = new DbtCloud.Inputs.GlobalConnectionRedshiftArgs
+    ///         {
+    ///             Hostname = "my-redshift-connection.com",
+    ///             Port = 5432,
+    ///             Dbname = "my_database",
+    ///         },
+    ///     });
+    /// 
+    ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+    ///     {
+    ///         Name = "My Snowflake connection",
+    ///         PrivateLinkEndpointId = myPrivateLink.Id,
+    ///         Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+    ///         {
+    ///             Account = "my-snowflake-account",
+    ///             Database = "MY_DATABASE",
+    ///             Warehouse = "MY_WAREHOUSE",
+    ///             Client_session_keep_alive = false,
+    ///             Allow_sso = true,
+    ///             Oauth_client_id = "yourclientid",
+    ///             Oauth_client_secret = "yourclientsecret",
+    ///         },
+    ///     });
+    /// 
+    ///     var starburst = new DbtCloud.GlobalConnection("starburst", new()
+    ///     {
+    ///         Name = "My Starburst connection",
+    ///         Starburst = new DbtCloud.Inputs.GlobalConnectionStarburstArgs
+    ///         {
+    ///             Host = "my-starburst-host.com",
+    ///             Database = "mydb",
+    ///         },
+    ///     });
+    /// 
+    ///     var synapse = new DbtCloud.GlobalConnection("synapse", new()
+    ///     {
+    ///         Name = "My Synapse connection",
+    ///         Synapse = new DbtCloud.Inputs.GlobalConnectionSynapseArgs
+    ///         {
+    ///             Host = "my-synapse-server.com",
+    ///             Database = "mydb",
+    ///             Port = 1234,
+    ///             Retries = 3,
+    ///             Login_timeout = 60,
+    ///             Query_timeout = 3600,
+    ///         },
+    ///     });
+    /// 
+    ///     var teradata = new DbtCloud.GlobalConnection("teradata", new()
+    ///     {
+    ///         Name = "My Teradata connection",
+    ///         Teradata = new DbtCloud.Inputs.GlobalConnectionTeradataArgs
+    ///         {
+    ///             Host = "my-teradata-server.com",
+    ///             Tmode = "ANSI",
+    ///             Port = "1234",
+    ///             Request_timeout = 600,
+    ///             Retries = 3,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
@@ -115,7 +274,7 @@ namespace Pulumi.DbtCloud
         public Output<Outputs.GlobalConnectionPostgres?> Postgres { get; private set; } = null!;
 
         /// <summary>
-        /// Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+        /// Private Link Endpoint ID. This ID can be found using the `PrivatelinkEndpoint` data source
         /// </summary>
         [Output("privateLinkEndpointId")]
         public Output<string?> PrivateLinkEndpointId { get; private set; } = null!;
@@ -243,7 +402,7 @@ namespace Pulumi.DbtCloud
         public Input<Inputs.GlobalConnectionPostgresArgs>? Postgres { get; set; }
 
         /// <summary>
-        /// Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+        /// Private Link Endpoint ID. This ID can be found using the `PrivatelinkEndpoint` data source
         /// </summary>
         [Input("privateLinkEndpointId")]
         public Input<string>? PrivateLinkEndpointId { get; set; }
@@ -344,7 +503,7 @@ namespace Pulumi.DbtCloud
         public Input<Inputs.GlobalConnectionPostgresGetArgs>? Postgres { get; set; }
 
         /// <summary>
-        /// Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+        /// Private Link Endpoint ID. This ID can be found using the `PrivatelinkEndpoint` data source
         /// </summary>
         [Input("privateLinkEndpointId")]
         public Input<string>? PrivateLinkEndpointId { get; set; }
