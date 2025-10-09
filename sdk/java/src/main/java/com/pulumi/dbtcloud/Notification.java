@@ -135,14 +135,14 @@ public class Notification extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.externalEmail);
     }
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      * 
      */
     @Export(name="notificationType", refs={Integer.class}, tree="[0]")
     private Output<Integer> notificationType;
 
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      * 
      */
     public Output<Integer> notificationType() {

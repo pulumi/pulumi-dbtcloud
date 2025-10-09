@@ -64,37 +64,37 @@ public final class RepositoryArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Whether we should return the public deploy key - (for the `deploy_key` strategy)
+     * Whether we should return the public deploy key - (for the `deployKey` strategy)
      * 
      * @deprecated
-     * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`
+     * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key` */
+    @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey` */
     @Import(name="fetchDeployKey")
     private @Nullable Output<Boolean> fetchDeployKey;
 
     /**
-     * @return Whether we should return the public deploy key - (for the `deploy_key` strategy)
+     * @return Whether we should return the public deploy key - (for the `deployKey` strategy)
      * 
      * @deprecated
-     * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`
+     * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key` */
+    @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey` */
     public Optional<Output<Boolean>> fetchDeployKey() {
         return Optional.ofNullable(this.fetchDeployKey);
     }
 
     /**
-     * Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
+     * Git clone strategy for the repository. Can be `deployKey` (default) for cloning via SSH Deploy Key, `githubApp` for GitHub native integration, `deployToken` for the GitLab native integration and `azureActiveDirectoryApp` for ADO native integration
      * 
      */
     @Import(name="gitCloneStrategy")
     private @Nullable Output<String> gitCloneStrategy;
 
     /**
-     * @return Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
+     * @return Git clone strategy for the repository. Can be `deployKey` (default) for cloning via SSH Deploy Key, `githubApp` for GitHub native integration, `deployToken` for the GitLab native integration and `azureActiveDirectoryApp` for ADO native integration
      * 
      */
     public Optional<Output<String>> gitCloneStrategy() {
@@ -305,36 +305,36 @@ public final class RepositoryArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param fetchDeployKey Whether we should return the public deploy key - (for the `deploy_key` strategy)
+         * @param fetchDeployKey Whether we should return the public deploy key - (for the `deployKey` strategy)
          * 
          * @return builder
          * 
          * @deprecated
-         * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`
+         * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
          * 
          */
-        @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key` */
+        @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey` */
         public Builder fetchDeployKey(@Nullable Output<Boolean> fetchDeployKey) {
             $.fetchDeployKey = fetchDeployKey;
             return this;
         }
 
         /**
-         * @param fetchDeployKey Whether we should return the public deploy key - (for the `deploy_key` strategy)
+         * @param fetchDeployKey Whether we should return the public deploy key - (for the `deployKey` strategy)
          * 
          * @return builder
          * 
          * @deprecated
-         * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`
+         * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
          * 
          */
-        @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key` */
+        @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey` */
         public Builder fetchDeployKey(Boolean fetchDeployKey) {
             return fetchDeployKey(Output.of(fetchDeployKey));
         }
 
         /**
-         * @param gitCloneStrategy Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
+         * @param gitCloneStrategy Git clone strategy for the repository. Can be `deployKey` (default) for cloning via SSH Deploy Key, `githubApp` for GitHub native integration, `deployToken` for the GitLab native integration and `azureActiveDirectoryApp` for ADO native integration
          * 
          * @return builder
          * 
@@ -345,7 +345,7 @@ public final class RepositoryArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param gitCloneStrategy Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
+         * @param gitCloneStrategy Git clone strategy for the repository. Can be `deployKey` (default) for cloning via SSH Deploy Key, `githubApp` for GitHub native integration, `deployToken` for the GitLab native integration and `azureActiveDirectoryApp` for ADO native integration
          * 
          * @return builder
          * 

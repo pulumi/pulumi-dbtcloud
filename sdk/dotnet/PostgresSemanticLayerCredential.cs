@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Postgres credential resource. This resource is composed of a Postgres credential and a Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
     /// 
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)

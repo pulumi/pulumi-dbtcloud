@@ -90,7 +90,7 @@ namespace Pulumi.DbtCloud
         public Output<string> TokenUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The type of OAuth integration (`entra` or `okta`)
+        /// The type of OAuth integration (`Entra` or `Okta`)
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -199,7 +199,7 @@ namespace Pulumi.DbtCloud
         public Input<string> TokenUrl { get; set; } = null!;
 
         /// <summary>
-        /// The type of OAuth integration (`entra` or `okta`)
+        /// The type of OAuth integration (`Entra` or `Okta`)
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -265,7 +265,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? TokenUrl { get; set; }
 
         /// <summary>
-        /// The type of OAuth integration (`entra` or `okta`)
+        /// The type of OAuth integration (`Entra` or `Okta`)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
