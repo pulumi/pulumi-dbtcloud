@@ -34,14 +34,14 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      * 
      */
     @Import(name="notificationType")
     private @Nullable Output<Integer> notificationType;
 
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      * 
      */
     public Optional<Output<Integer>> notificationType() {
@@ -223,7 +223,7 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
          * 
          * @return builder
          * 
@@ -234,7 +234,7 @@ public final class NotificationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
          * 
          * @return builder
          * 

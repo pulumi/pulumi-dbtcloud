@@ -130,7 +130,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int NotificationId;
         /// <summary>
-        /// Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail`)
         /// </summary>
         public readonly int NotificationType;
         /// <summary>
@@ -162,7 +162,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int State;
         /// <summary>
-        /// Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+        /// Internal dbt Cloud User ID. Must be the UserId for an existing user even if the notification is an external one
         /// </summary>
         public readonly int UserId;
 

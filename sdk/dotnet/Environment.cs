@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
-    /// Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. &gt; In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connection_id as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+    /// Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. &gt; In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the ConnectionId as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
     /// 
     /// ## Example Usage
     /// 
@@ -109,7 +109,7 @@ namespace Pulumi.DbtCloud
         public Output<string?> CustomBranch { get; private set; } = null!;
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` or `latest-fusion` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Output("dbtVersion")]
         public Output<string> DbtVersion { get; private set; } = null!;
@@ -234,7 +234,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` or `latest-fusion` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }
@@ -314,7 +314,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` or `latest-fusion` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }

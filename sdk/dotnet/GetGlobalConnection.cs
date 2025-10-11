@@ -150,7 +150,7 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly Outputs.GetGlobalConnectionPostgresResult Postgres;
         /// <summary>
-        /// Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+        /// Private Link Endpoint ID. This ID can be found using the `PrivatelinkEndpoint` data source
         /// </summary>
         public readonly string PrivateLinkEndpointId;
         /// <summary>

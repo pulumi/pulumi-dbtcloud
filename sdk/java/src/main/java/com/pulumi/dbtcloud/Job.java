@@ -138,14 +138,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.environmentId;
     }
     /**
-     * Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+     * Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
      * 
      */
     @Export(name="errorsOnLintFailure", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> errorsOnLintFailure;
 
     /**
-     * @return Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+     * @return Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
      * 
      */
     public Output<Boolean> errorsOnLintFailure() {
@@ -278,14 +278,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     * Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
      * 
      */
     @Export(name="runCompareChanges", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> runCompareChanges;
 
     /**
-     * @return Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+     * @return Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
      * 
      */
     public Output<Boolean> runCompareChanges() {
@@ -436,14 +436,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.timeoutSeconds;
     }
     /**
-     * Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
+     * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
     @Export(name="triggers", refs={JobTriggers.class}, tree="[0]")
     private Output<JobTriggers> triggers;
 
     /**
-     * @return Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
+     * @return Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
     public Output<JobTriggers> triggers() {

@@ -17,7 +17,7 @@ public final class GetGlobalConnectionSnowflake {
      */
     private String account;
     /**
-     * @return Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+     * @return Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
      * 
      */
     private Boolean allowSso;
@@ -61,7 +61,7 @@ public final class GetGlobalConnectionSnowflake {
         return this.account;
     }
     /**
-     * @return Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+     * @return Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
      * 
      */
     public Boolean allowSso() {

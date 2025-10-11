@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 /**
  * BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
  * 
+ * ## Example Usage
+ * 
  */
 @ResourceType(type="dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential")
 public class BigquerySemanticLayerCredential extends com.pulumi.resources.CustomResource {

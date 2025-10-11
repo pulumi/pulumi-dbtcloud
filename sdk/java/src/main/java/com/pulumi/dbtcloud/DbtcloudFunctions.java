@@ -2990,12 +2990,16 @@ public final class DbtcloudFunctions {
     /**
      * Retrieve a specific project from dbt Cloud.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetProjectResult> getProject() {
         return getProject(GetProjectArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Retrieve a specific project from dbt Cloud.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetProjectResult> getProjectPlain() {
@@ -3004,12 +3008,16 @@ public final class DbtcloudFunctions {
     /**
      * Retrieve a specific project from dbt Cloud.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetProjectResult> getProject(GetProjectArgs args) {
         return getProject(args, InvokeOptions.Empty);
     }
     /**
      * Retrieve a specific project from dbt Cloud.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetProjectResult> getProjectPlain(GetProjectPlainArgs args) {
@@ -3018,6 +3026,8 @@ public final class DbtcloudFunctions {
     /**
      * Retrieve a specific project from dbt Cloud.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetProjectResult> getProject(GetProjectArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
@@ -3025,12 +3035,16 @@ public final class DbtcloudFunctions {
     /**
      * Retrieve a specific project from dbt Cloud.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetProjectResult> getProject(GetProjectArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve a specific project from dbt Cloud.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetProjectResult> getProjectPlain(GetProjectPlainArgs args, InvokeOptions options) {
@@ -3932,12 +3946,16 @@ public final class DbtcloudFunctions {
     /**
      * Retrieve all users
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUsersResult> getUsers() {
         return getUsers(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Retrieve all users
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUsersResult> getUsersPlain() {
@@ -3946,12 +3964,16 @@ public final class DbtcloudFunctions {
     /**
      * Retrieve all users
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUsersResult> getUsers(InvokeArgs args) {
         return getUsers(args, InvokeOptions.Empty);
     }
     /**
      * Retrieve all users
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUsersResult> getUsersPlain(InvokeArgs args) {
@@ -3960,6 +3982,8 @@ public final class DbtcloudFunctions {
     /**
      * Retrieve all users
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUsersResult> getUsers(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
@@ -3967,12 +3991,16 @@ public final class DbtcloudFunctions {
     /**
      * Retrieve all users
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUsersResult> getUsers(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve all users
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUsersResult> getUsersPlain(InvokeArgs args, InvokeOptions options) {

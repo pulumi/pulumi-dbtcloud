@@ -108,6 +108,8 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
         """
         Postgres credential resource. This resource is composed of a Postgres credential and a Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
 
+        ## Example Usage
+
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
@@ -151,6 +153,8 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Postgres credential resource. This resource is composed of a Postgres credential and a Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+
+        ## Example Usage
 
         ## Import
 

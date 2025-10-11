@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 /**
  * Snowflake credential resource. This resource is composed of a Snowflake credential and a Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
  * 
+ * ## Example Usage
+ * 
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)

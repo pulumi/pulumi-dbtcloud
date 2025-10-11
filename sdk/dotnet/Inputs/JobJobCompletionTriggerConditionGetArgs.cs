@@ -28,7 +28,7 @@ namespace Pulumi.DbtCloud.Inputs
         private InputList<string>? _statuses;
 
         /// <summary>
-        /// List of statuses to trigger the job on. Possible values are `success`, `error` and `canceled`.
+        /// List of statuses to trigger the job on. Possible values are `Success`, `Error` and `Canceled`.
         /// </summary>
         public InputList<string> Statuses
         {

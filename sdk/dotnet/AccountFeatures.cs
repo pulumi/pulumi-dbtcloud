@@ -12,7 +12,7 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.
     /// 
-    /// When destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to `false`.
+    /// When destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to `False`.
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/accountFeatures:AccountFeatures")]
     public partial class AccountFeatures : global::Pulumi.CustomResource

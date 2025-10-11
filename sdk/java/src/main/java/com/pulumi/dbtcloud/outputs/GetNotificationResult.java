@@ -28,7 +28,7 @@ public final class GetNotificationResult {
      */
     private Integer notificationId;
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      * 
      */
     private Integer notificationType;
@@ -68,7 +68,7 @@ public final class GetNotificationResult {
      */
     private Integer state;
     /**
-     * @return Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+     * @return Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
      * 
      */
     private Integer userId;
@@ -96,7 +96,7 @@ public final class GetNotificationResult {
         return this.notificationId;
     }
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      * 
      */
     public Integer notificationType() {
@@ -152,7 +152,7 @@ public final class GetNotificationResult {
         return this.state;
     }
     /**
-     * @return Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one
+     * @return Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one
      * 
      */
     public Integer userId() {

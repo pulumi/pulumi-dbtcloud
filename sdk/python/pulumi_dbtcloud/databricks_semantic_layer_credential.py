@@ -108,6 +108,8 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
         """
         Databricks credential resource. This resource is composed of a Databricks credential and a Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
 
+        ## Example Usage
+
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
@@ -151,6 +153,8 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Databricks credential resource. This resource is composed of a Databricks credential and a Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+
+        ## Example Usage
 
         ## Import
 

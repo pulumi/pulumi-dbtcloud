@@ -20,10 +20,10 @@ public final class GetRepositoryPlainArgs extends com.pulumi.resources.InvokeArg
      * Whether we should return the public deploy key
      * 
      * @deprecated
-     * This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key`
+     * This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey`
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key` */
+    @Deprecated /* This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey` */
     @Import(name="fetchDeployKey")
     private @Nullable Boolean fetchDeployKey;
 
@@ -31,10 +31,10 @@ public final class GetRepositoryPlainArgs extends com.pulumi.resources.InvokeArg
      * @return Whether we should return the public deploy key
      * 
      * @deprecated
-     * This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key`
+     * This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey`
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key` */
+    @Deprecated /* This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey` */
     public Optional<Boolean> fetchDeployKey() {
         return Optional.ofNullable(this.fetchDeployKey);
     }
@@ -101,10 +101,10 @@ public final class GetRepositoryPlainArgs extends com.pulumi.resources.InvokeArg
          * @return builder
          * 
          * @deprecated
-         * This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key`
+         * This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey`
          * 
          */
-        @Deprecated /* This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deploy_key` */
+        @Deprecated /* This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey` */
         public Builder fetchDeployKey(@Nullable Boolean fetchDeployKey) {
             $.fetchDeployKey = fetchDeployKey;
             return this;

@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetJobsResult {
     /**
-     * @return The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+     * @return The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      * 
      */
     private @Nullable Integer environmentId;
@@ -31,14 +31,14 @@ public final class GetJobsResult {
      */
     private List<GetJobsJob> jobs;
     /**
-     * @return The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+     * @return The ID of the project for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      * 
      */
     private @Nullable Integer projectId;
 
     private GetJobsResult() {}
     /**
-     * @return The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+     * @return The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      * 
      */
     public Optional<Integer> environmentId() {
@@ -59,7 +59,7 @@ public final class GetJobsResult {
         return this.jobs;
     }
     /**
-     * @return The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+     * @return The ID of the project for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      * 
      */
     public Optional<Integer> projectId() {

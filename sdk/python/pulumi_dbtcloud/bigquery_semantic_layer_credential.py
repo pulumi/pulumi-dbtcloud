@@ -364,6 +364,8 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         """
         BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
 
+        ## Example Usage
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
@@ -385,6 +387,8 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
+
+        ## Example Usage
 
         :param str resource_name: The name of the resource.
         :param BigquerySemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.

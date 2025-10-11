@@ -71,7 +71,7 @@ public final class GetGlobalConnectionResult {
      */
     private GetGlobalConnectionPostgres postgres;
     /**
-     * @return Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+     * @return Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      * 
      */
     private String privateLinkEndpointId;
@@ -172,7 +172,7 @@ public final class GetGlobalConnectionResult {
         return this.postgres;
     }
     /**
-     * @return Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+     * @return Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      * 
      */
     public String privateLinkEndpointId() {

@@ -33,14 +33,14 @@ public final class GlobalConnectionSnowflakeArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+     * Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
      * 
      */
     @Import(name="allowSso")
     private @Nullable Output<Boolean> allowSso;
 
     /**
-     * @return Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+     * @return Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
      * 
      */
     public Optional<Output<Boolean>> allowSso() {
@@ -190,7 +190,7 @@ public final class GlobalConnectionSnowflakeArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param allowSso Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+         * @param allowSso Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
          * 
          * @return builder
          * 
@@ -201,7 +201,7 @@ public final class GlobalConnectionSnowflakeArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param allowSso Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+         * @param allowSso Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
          * 
          * @return builder
          * 

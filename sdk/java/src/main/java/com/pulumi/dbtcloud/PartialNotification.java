@@ -95,14 +95,14 @@ public class PartialNotification extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.externalEmail);
     }
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
      * 
      */
     @Export(name="notificationType", refs={Integer.class}, tree="[0]")
     private Output<Integer> notificationType;
 
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
      * 
      */
     public Output<Integer> notificationType() {
@@ -207,14 +207,14 @@ public class PartialNotification extends com.pulumi.resources.CustomResource {
         return this.state;
     }
     /**
-     * Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
+     * Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one [global]
      * 
      */
     @Export(name="userId", refs={Integer.class}, tree="[0]")
     private Output<Integer> userId;
 
     /**
-     * @return Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
+     * @return Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one [global]
      * 
      */
     public Output<Integer> userId() {

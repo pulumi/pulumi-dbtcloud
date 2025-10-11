@@ -80,7 +80,7 @@ namespace Pulumi.DbtCloud
         public Output<int> EnvironmentId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        /// Whether the CI job should fail when a lint error is found. Only used when `RunLint` is set to `True`. Defaults to `True`.
         /// </summary>
         [Output("errorsOnLintFailure")]
         public Output<bool> ErrorsOnLintFailure { get; private set; } = null!;
@@ -98,7 +98,7 @@ namespace Pulumi.DbtCloud
         public Output<bool> GenerateDocs { get; private set; } = null!;
 
         /// <summary>
-        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config.
         /// </summary>
         [Output("isActive")]
         public Output<bool> IsActive { get; private set; } = null!;
@@ -116,7 +116,7 @@ namespace Pulumi.DbtCloud
         public Output<int> JobId { get; private set; } = null!;
 
         /// <summary>
-        /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        /// Can be used to enforce the job type betwen `Ci`, `Merge` and `Scheduled`. Without this value the job type is inferred from the triggers configured
         /// </summary>
         [Output("jobType")]
         public Output<string> JobType { get; private set; } = null!;
@@ -140,7 +140,7 @@ namespace Pulumi.DbtCloud
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        /// Whether the CI job should compare data changes introduced by the code changes. Requires `DeferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         /// </summary>
         [Output("runCompareChanges")]
         public Output<bool> RunCompareChanges { get; private set; } = null!;
@@ -152,7 +152,7 @@ namespace Pulumi.DbtCloud
         public Output<bool> RunGenerateSources { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the CI job should lint SQL changes. Defaults to `false`.
+        /// Whether the CI job should lint SQL changes. Defaults to `False`.
         /// </summary>
         [Output("runLint")]
         public Output<bool> RunLint { get; private set; } = null!;
@@ -206,7 +206,7 @@ namespace Pulumi.DbtCloud
         public Output<int> TimeoutSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
+        /// Flags for which types of triggers to use, the values are `GithubWebhook`, `GitProviderWebhook`, `Schedule` and `OnMerge`. All flags should be listed and set with `True` or `False`. When `OnMerge` is `True`, all the other values must be false.\n\n`CustomBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `CustomBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `False`.
         /// </summary>
         [Output("triggers")]
         public Output<Outputs.JobTriggers> Triggers { get; private set; } = null!;
@@ -301,7 +301,7 @@ namespace Pulumi.DbtCloud
         public Input<int> EnvironmentId { get; set; } = null!;
 
         /// <summary>
-        /// Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        /// Whether the CI job should fail when a lint error is found. Only used when `RunLint` is set to `True`. Defaults to `True`.
         /// </summary>
         [Input("errorsOnLintFailure")]
         public Input<bool>? ErrorsOnLintFailure { get; set; }
@@ -325,7 +325,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? GenerateDocs { get; set; }
 
         /// <summary>
-        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config.
         /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
@@ -343,7 +343,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        /// Can be used to enforce the job type betwen `Ci`, `Merge` and `Scheduled`. Without this value the job type is inferred from the triggers configured
         /// </summary>
         [Input("jobType")]
         public Input<string>? JobType { get; set; }
@@ -367,7 +367,7 @@ namespace Pulumi.DbtCloud
         public Input<int> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        /// Whether the CI job should compare data changes introduced by the code changes. Requires `DeferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         /// </summary>
         [Input("runCompareChanges")]
         public Input<bool>? RunCompareChanges { get; set; }
@@ -379,7 +379,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? RunGenerateSources { get; set; }
 
         /// <summary>
-        /// Whether the CI job should lint SQL changes. Defaults to `false`.
+        /// Whether the CI job should lint SQL changes. Defaults to `False`.
         /// </summary>
         [Input("runLint")]
         public Input<bool>? RunLint { get; set; }
@@ -445,7 +445,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? TimeoutSeconds { get; set; }
 
         /// <summary>
-        /// Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
+        /// Flags for which types of triggers to use, the values are `GithubWebhook`, `GitProviderWebhook`, `Schedule` and `OnMerge`. All flags should be listed and set with `True` or `False`. When `OnMerge` is `True`, all the other values must be false.\n\n`CustomBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `CustomBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `False`.
         /// </summary>
         [Input("triggers", required: true)]
         public Input<Inputs.JobTriggersArgs> Triggers { get; set; } = null!;
@@ -501,7 +501,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? EnvironmentId { get; set; }
 
         /// <summary>
-        /// Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        /// Whether the CI job should fail when a lint error is found. Only used when `RunLint` is set to `True`. Defaults to `True`.
         /// </summary>
         [Input("errorsOnLintFailure")]
         public Input<bool>? ErrorsOnLintFailure { get; set; }
@@ -525,7 +525,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? GenerateDocs { get; set; }
 
         /// <summary>
-        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config.
         /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
@@ -549,7 +549,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? JobId { get; set; }
 
         /// <summary>
-        /// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        /// Can be used to enforce the job type betwen `Ci`, `Merge` and `Scheduled`. Without this value the job type is inferred from the triggers configured
         /// </summary>
         [Input("jobType")]
         public Input<string>? JobType { get; set; }
@@ -573,7 +573,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? ProjectId { get; set; }
 
         /// <summary>
-        /// Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
+        /// Whether the CI job should compare data changes introduced by the code changes. Requires `DeferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         /// </summary>
         [Input("runCompareChanges")]
         public Input<bool>? RunCompareChanges { get; set; }
@@ -585,7 +585,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? RunGenerateSources { get; set; }
 
         /// <summary>
-        /// Whether the CI job should lint SQL changes. Defaults to `false`.
+        /// Whether the CI job should lint SQL changes. Defaults to `False`.
         /// </summary>
         [Input("runLint")]
         public Input<bool>? RunLint { get; set; }
@@ -651,7 +651,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? TimeoutSeconds { get; set; }
 
         /// <summary>
-        /// Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\n\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
+        /// Flags for which types of triggers to use, the values are `GithubWebhook`, `GitProviderWebhook`, `Schedule` and `OnMerge`. All flags should be listed and set with `True` or `False`. When `OnMerge` is `True`, all the other values must be false.\n\n`CustomBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `CustomBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `False`.
         /// </summary>
         [Input("triggers")]
         public Input<Inputs.JobTriggersGetArgs>? Triggers { get; set; }

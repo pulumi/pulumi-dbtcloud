@@ -19,7 +19,7 @@ namespace Pulumi.DbtCloud.Inputs
         public Input<string> Account { get; set; } = null!;
 
         /// <summary>
-        /// Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+        /// Whether to allow Snowflake OAuth for the connection. If true, the `OauthClientId` and `OauthClientSecret` fields must be set
         /// </summary>
         [Input("allowSso")]
         public Input<bool>? AllowSso { get; set; }

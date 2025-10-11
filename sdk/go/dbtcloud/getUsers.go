@@ -12,6 +12,8 @@ import (
 )
 
 // Retrieve all users
+//
+// ## Example Usage
 func GetUsers(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetUsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUsersResult

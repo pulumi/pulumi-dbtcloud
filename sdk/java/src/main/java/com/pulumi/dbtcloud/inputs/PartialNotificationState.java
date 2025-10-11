@@ -33,14 +33,14 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
      * 
      */
     @Import(name="notificationType")
     private @Nullable Output<Integer> notificationType;
 
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
      * 
      */
     public Optional<Output<Integer>> notificationType() {
@@ -153,14 +153,14 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
+     * Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one [global]
      * 
      */
     @Import(name="userId")
     private @Nullable Output<Integer> userId;
 
     /**
-     * @return Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
+     * @return Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one [global]
      * 
      */
     public Optional<Output<Integer>> userId() {
@@ -222,7 +222,7 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
          * 
          * @return builder
          * 
@@ -430,7 +430,7 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param userId Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
+         * @param userId Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one [global]
          * 
          * @return builder
          * 
@@ -441,7 +441,7 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param userId Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
+         * @param userId Internal dbt Cloud User ID. Must be the userId for an existing user even if the notification is an external one [global]
          * 
          * @return builder
          * 

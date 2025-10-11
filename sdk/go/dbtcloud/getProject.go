@@ -12,6 +12,8 @@ import (
 )
 
 // Retrieve a specific project from dbt Cloud.
+//
+// ## Example Usage
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectResult

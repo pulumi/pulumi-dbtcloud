@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 /**
  * *Note*: Some upstream resources can be slow to create, so if creating a project or environment at
- * the same time as the environment variables, it&#39;s recommended to use the `depends_on` meta argument.
+ * the same time as the environment variables, it&#39;s recommended to use the `dependsOn` meta argument.
  * 
  * ## Example Usage
  * 

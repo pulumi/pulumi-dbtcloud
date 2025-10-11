@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. &gt; In August 2024, dbt Cloud released the &#34;global connection&#34; feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connection_id as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
+ * Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. &gt; In August 2024, dbt Cloud released the &#34;global connection&#34; feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connectionId as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
  * 
  * ## Example Usage
  * 
