@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connectionId` field in the `dbtcloud.Environment` resource.
  *
+ * ## Example Usage
+ *
  * ## Import
  *
  * A project-scoped connection can be imported as a global connection by specifying the connection ID

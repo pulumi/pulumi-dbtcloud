@@ -11,6 +11,8 @@ namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
+    /// 
+    /// ## Example Usage
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential")]
     public partial class BigquerySemanticLayerCredential : global::Pulumi.CustomResource

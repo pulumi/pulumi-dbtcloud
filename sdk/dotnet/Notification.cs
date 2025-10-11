@@ -123,7 +123,7 @@ namespace Pulumi.DbtCloud
         public Output<string?> ExternalEmail { get; private set; } = null!;
 
         /// <summary>
-        /// Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail`)
         /// </summary>
         [Output("notificationType")]
         public Output<int> NotificationType { get; private set; } = null!;
@@ -230,7 +230,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? ExternalEmail { get; set; }
 
         /// <summary>
-        /// Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail`)
         /// </summary>
         [Input("notificationType")]
         public Input<int>? NotificationType { get; set; }
@@ -322,7 +322,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? ExternalEmail { get; set; }
 
         /// <summary>
-        /// Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
+        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail`)
         /// </summary>
         [Input("notificationType")]
         public Input<int>? NotificationType { get; set; }

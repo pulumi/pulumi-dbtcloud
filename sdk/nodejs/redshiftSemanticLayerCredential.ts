@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
  *
+ * ## Example Usage
+ *
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)

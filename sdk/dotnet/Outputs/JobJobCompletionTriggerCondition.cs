@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int ProjectId;
         /// <summary>
-        /// List of statuses to trigger the job on. Possible values are `success`, `error` and `canceled`.
+        /// List of statuses to trigger the job on. Possible values are `Success`, `Error` and `Canceled`.
         /// </summary>
         public readonly ImmutableArray<string> Statuses;
 
