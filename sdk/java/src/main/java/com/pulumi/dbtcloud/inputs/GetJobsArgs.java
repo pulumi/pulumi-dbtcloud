@@ -16,14 +16,14 @@ public final class GetJobsArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetJobsArgs Empty = new GetJobsArgs();
 
     /**
-     * The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+     * The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      * 
      */
     @Import(name="environmentId")
     private @Nullable Output<Integer> environmentId;
 
     /**
-     * @return The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+     * @return The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      * 
      */
     public Optional<Output<Integer>> environmentId() {
@@ -31,14 +31,14 @@ public final class GetJobsArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+     * The ID of the project for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<Integer> projectId;
 
     /**
-     * @return The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+     * @return The ID of the project for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      * 
      */
     public Optional<Output<Integer>> projectId() {
@@ -71,7 +71,7 @@ public final class GetJobsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param environmentId The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+         * @param environmentId The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class GetJobsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param environmentId The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+         * @param environmentId The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class GetJobsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+         * @param projectId The ID of the project for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class GetJobsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId The ID of the project for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
+         * @param projectId The ID of the project for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
          * 
          * @return builder
          * 

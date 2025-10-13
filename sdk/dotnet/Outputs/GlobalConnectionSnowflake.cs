@@ -18,7 +18,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string Account;
         /// <summary>
-        /// Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+        /// Whether to allow Snowflake OAuth for the connection. If true, the `OauthClientId` and `OauthClientSecret` fields must be set
         /// </summary>
         public readonly bool? AllowSso;
         /// <summary>

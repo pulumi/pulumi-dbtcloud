@@ -11,7 +11,7 @@ namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// *Note*: Some upstream resources can be slow to create, so if creating a project or environment at
-    /// the same time as the environment variables, it's recommended to use the `depends_on` meta argument.
+    /// the same time as the environment variables, it's recommended to use the `DependsOn` meta argument.
     /// 
     /// ## Example Usage
     /// 
@@ -82,7 +82,7 @@ namespace Pulumi.DbtCloud
     public partial class EnvironmentVariable : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
+        /// Map from environment names to respective variable value, a special key `Project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         /// </summary>
         [Output("environmentValues")]
         public Output<ImmutableDictionary<string, string>> EnvironmentValues { get; private set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumi.DbtCloud
         private InputMap<string>? _environmentValues;
 
         /// <summary>
-        /// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
+        /// Map from environment names to respective variable value, a special key `Project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         /// </summary>
         public InputMap<string> EnvironmentValues
         {
@@ -182,7 +182,7 @@ namespace Pulumi.DbtCloud
         private InputMap<string>? _environmentValues;
 
         /// <summary>
-        /// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
+        /// Map from environment names to respective variable value, a special key `Project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         /// </summary>
         public InputMap<string> EnvironmentValues
         {
