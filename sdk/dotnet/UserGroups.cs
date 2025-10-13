@@ -15,7 +15,7 @@ namespace Pulumi.DbtCloud
     /// &gt; If additional groups were assigned manually in dbt Cloud, they will be removed. The full list of groups need to be provided as config.
     /// This resource does not currently support deletion (e.g. a deleted resource will stay as-is in dbt Cloud).
     /// This is intentional in order to prevent accidental deletion of all users groups assigned to a user.
-    /// If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set "group_ids" to the empty set "[]".
+    /// If you would like a different behavior, please open an issue on GitHub. To remove all groups for a user, set "GroupIds" to the empty set "[]".
     /// 
     /// ## Example Usage
     /// 

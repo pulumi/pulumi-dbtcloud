@@ -30,7 +30,9 @@ import javax.annotation.Nullable;
 /**
  * This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
  * 
- * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `dbtcloud.Environment` resource.
+ * Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connectionId` field in the `dbtcloud.Environment` resource.
+ * 
+ * ## Example Usage
  * 
  * ## Import
  * 
@@ -208,14 +210,14 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.postgres);
     }
     /**
-     * Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+     * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      * 
      */
     @Export(name="privateLinkEndpointId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateLinkEndpointId;
 
     /**
-     * @return Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
+     * @return Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      * 
      */
     public Output<Optional<String>> privateLinkEndpointId() {

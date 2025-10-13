@@ -532,6 +532,8 @@ class GlobalConnection(pulumi.CustomResource):
 
         Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
 
+        ## Example Usage
+
         ## Import
 
         A project-scoped connection can be imported as a global connection by specifying the connection ID
@@ -598,6 +600,8 @@ class GlobalConnection(pulumi.CustomResource):
         This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
 
         Those connections are not linked to a specific project and can be linked to environments from different projects by using the `connection_id` field in the `Environment` resource.
+
+        ## Example Usage
 
         ## Import
 

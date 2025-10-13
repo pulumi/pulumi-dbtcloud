@@ -133,7 +133,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetEnvironmentVariableResult
     {
         /// <summary>
-        /// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
+        /// Map from environment names to respective variable value, a special key `Project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         /// </summary>
         public readonly ImmutableDictionary<string, string> EnvironmentValues;
         /// <summary>
