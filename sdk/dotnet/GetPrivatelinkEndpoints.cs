@@ -12,19 +12,166 @@ namespace Pulumi.DbtCloud
     public static class GetPrivatelinkEndpoints
     {
         /// <summary>
-        /// Privatelink endpoint data sources.
+        /// Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Threading.Tasks;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(async() =&gt; 
+        /// {
+        ///     var all = await DbtCloud.GetPrivatelinkEndpoints.InvokeAsync();
+        /// 
+        ///     var snowflakeEndpoint = [0];
+        /// 
+        ///     // Use the endpoint in a global connection
+        ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+        ///     {
+        ///         Name = "Snowflake via PrivateLink",
+        ///         PrivateLinkEndpointId = snowflakeEndpoint.Id,
+        ///         Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+        ///         {
+        ///             Account = "my-snowflake-account",
+        ///             Database = "ANALYTICS",
+        ///             Warehouse = "COMPUTE_WH",
+        ///         },
+        ///     });
+        /// 
+        ///     var snowflakeEndpoints = ;
+        /// 
+        ///     // Create connections for all Snowflake endpoints
+        ///     var snowflakeConnections = new List&lt;DbtCloud.GlobalConnection&gt;();
+        ///     foreach (var range in .Select(pair =&gt; new { pair.Key, pair.Value }))
+        ///     {
+        ///         snowflakeConnections.Add(new DbtCloud.GlobalConnection($"snowflake_connections-{range.Key}", new()
+        ///         {
+        ///             Name = $"Connection for {range.Value.Name}",
+        ///             PrivateLinkEndpointId = range.Value.Id,
+        ///             Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+        ///             {
+        ///                 Account = "my-account",
+        ///                 Database = "ANALYTICS",
+        ///                 Warehouse = "COMPUTE_WH",
+        ///             },
+        ///         }));
+        ///     }
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetPrivatelinkEndpointsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointsResult>("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Privatelink endpoint data sources.
+        /// Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Threading.Tasks;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(async() =&gt; 
+        /// {
+        ///     var all = await DbtCloud.GetPrivatelinkEndpoints.InvokeAsync();
+        /// 
+        ///     var snowflakeEndpoint = [0];
+        /// 
+        ///     // Use the endpoint in a global connection
+        ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+        ///     {
+        ///         Name = "Snowflake via PrivateLink",
+        ///         PrivateLinkEndpointId = snowflakeEndpoint.Id,
+        ///         Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+        ///         {
+        ///             Account = "my-snowflake-account",
+        ///             Database = "ANALYTICS",
+        ///             Warehouse = "COMPUTE_WH",
+        ///         },
+        ///     });
+        /// 
+        ///     var snowflakeEndpoints = ;
+        /// 
+        ///     // Create connections for all Snowflake endpoints
+        ///     var snowflakeConnections = new List&lt;DbtCloud.GlobalConnection&gt;();
+        ///     foreach (var range in .Select(pair =&gt; new { pair.Key, pair.Value }))
+        ///     {
+        ///         snowflakeConnections.Add(new DbtCloud.GlobalConnection($"snowflake_connections-{range.Key}", new()
+        ///         {
+        ///             Name = $"Connection for {range.Value.Name}",
+        ///             PrivateLinkEndpointId = range.Value.Id,
+        ///             Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+        ///             {
+        ///                 Account = "my-account",
+        ///                 Database = "ANALYTICS",
+        ///                 Warehouse = "COMPUTE_WH",
+        ///             },
+        ///         }));
+        ///     }
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetPrivatelinkEndpointsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointsResult>("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Privatelink endpoint data sources.
+        /// Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Threading.Tasks;
+        /// using Pulumi;
+        /// using DbtCloud = Pulumi.DbtCloud;
+        /// 
+        /// return await Deployment.RunAsync(async() =&gt; 
+        /// {
+        ///     var all = await DbtCloud.GetPrivatelinkEndpoints.InvokeAsync();
+        /// 
+        ///     var snowflakeEndpoint = [0];
+        /// 
+        ///     // Use the endpoint in a global connection
+        ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+        ///     {
+        ///         Name = "Snowflake via PrivateLink",
+        ///         PrivateLinkEndpointId = snowflakeEndpoint.Id,
+        ///         Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+        ///         {
+        ///             Account = "my-snowflake-account",
+        ///             Database = "ANALYTICS",
+        ///             Warehouse = "COMPUTE_WH",
+        ///         },
+        ///     });
+        /// 
+        ///     var snowflakeEndpoints = ;
+        /// 
+        ///     // Create connections for all Snowflake endpoints
+        ///     var snowflakeConnections = new List&lt;DbtCloud.GlobalConnection&gt;();
+        ///     foreach (var range in .Select(pair =&gt; new { pair.Key, pair.Value }))
+        ///     {
+        ///         snowflakeConnections.Add(new DbtCloud.GlobalConnection($"snowflake_connections-{range.Key}", new()
+        ///         {
+        ///             Name = $"Connection for {range.Value.Name}",
+        ///             PrivateLinkEndpointId = range.Value.Id,
+        ///             Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+        ///             {
+        ///                 Account = "my-account",
+        ///                 Database = "ANALYTICS",
+        ///                 Warehouse = "COMPUTE_WH",
+        ///             },
+        ///         }));
+        ///     }
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetPrivatelinkEndpointsResult> Invoke(InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointsResult>("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", InvokeArgs.Empty, options.WithDefaults());
@@ -35,13 +182,21 @@ namespace Pulumi.DbtCloud
     public sealed class GetPrivatelinkEndpointsResult
     {
         /// <summary>
-        /// The internal ID of the PrivateLink Endpoint
+        /// A list of all PrivateLink endpoints in the account
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetPrivatelinkEndpointsEndpointResult> Endpoints;
+        /// <summary>
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
 
         [OutputConstructor]
-        private GetPrivatelinkEndpointsResult(string id)
+        private GetPrivatelinkEndpointsResult(
+            ImmutableArray<Outputs.GetPrivatelinkEndpointsEndpointResult> endpoints,
+
+            string id)
         {
+            Endpoints = endpoints;
             Id = id;
         }
     }

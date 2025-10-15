@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var ciEnvironment = new Environment("ciEnvironment", EnvironmentArgs.builder()
- *             .dbtVersion("latest-fusion")
+ *             .dbtVersion("latest")
  *             .name("CI")
  *             .projectId(dbtProject.id())
  *             .type("deployment")
@@ -153,14 +153,14 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customBranch);
     }
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
     private Output<String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` or `latest-fusion` is recommended. Defaults to `latest` if no version is provided
+     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      * 
      */
     public Output<String> dbtVersion() {

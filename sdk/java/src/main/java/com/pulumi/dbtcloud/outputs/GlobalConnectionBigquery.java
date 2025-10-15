@@ -5,6 +5,7 @@ package com.pulumi.dbtcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -85,6 +86,11 @@ public final class GlobalConnectionBigquery {
      */
     private @Nullable Integer jobCreationTimeoutSeconds;
     /**
+     * @return Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+     * 
+     */
+    private @Nullable Integer jobExecutionTimeoutSeconds;
+    /**
      * @return Total number of seconds to wait while retrying the same query
      * 
      */
@@ -125,7 +131,7 @@ public final class GlobalConnectionBigquery {
      */
     private @Nullable List<String> scopes;
     /**
-     * @return Timeout in seconds for queries
+     * @return Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
      * 
      */
     private @Nullable Integer timeoutSeconds;
@@ -134,6 +140,11 @@ public final class GlobalConnectionBigquery {
      * 
      */
     private String tokenUri;
+    /**
+     * @return Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+     * 
+     */
+    private @Nullable Boolean useLatestAdapter;
 
     private GlobalConnectionBigquery() {}
     /**
@@ -235,6 +246,13 @@ public final class GlobalConnectionBigquery {
         return Optional.ofNullable(this.jobCreationTimeoutSeconds);
     }
     /**
+     * @return Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+     * 
+     */
+    public Optional<Integer> jobExecutionTimeoutSeconds() {
+        return Optional.ofNullable(this.jobExecutionTimeoutSeconds);
+    }
+    /**
      * @return Total number of seconds to wait while retrying the same query
      * 
      */
@@ -291,7 +309,7 @@ public final class GlobalConnectionBigquery {
         return this.scopes == null ? List.of() : this.scopes;
     }
     /**
-     * @return Timeout in seconds for queries
+     * @return Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
      * 
      */
     public Optional<Integer> timeoutSeconds() {
@@ -303,6 +321,13 @@ public final class GlobalConnectionBigquery {
      */
     public String tokenUri() {
         return this.tokenUri;
+    }
+    /**
+     * @return Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+     * 
+     */
+    public Optional<Boolean> useLatestAdapter() {
+        return Optional.ofNullable(this.useLatestAdapter);
     }
 
     public static Builder builder() {
@@ -328,6 +353,7 @@ public final class GlobalConnectionBigquery {
         private @Nullable String gcsBucket;
         private @Nullable String impersonateServiceAccount;
         private @Nullable Integer jobCreationTimeoutSeconds;
+        private @Nullable Integer jobExecutionTimeoutSeconds;
         private @Nullable Integer jobRetryDeadlineSeconds;
         private @Nullable String location;
         private @Nullable Integer maximumBytesBilled;
@@ -338,6 +364,7 @@ public final class GlobalConnectionBigquery {
         private @Nullable List<String> scopes;
         private @Nullable Integer timeoutSeconds;
         private String tokenUri;
+        private @Nullable Boolean useLatestAdapter;
         public Builder() {}
         public Builder(GlobalConnectionBigquery defaults) {
     	      Objects.requireNonNull(defaults);
@@ -355,6 +382,7 @@ public final class GlobalConnectionBigquery {
     	      this.gcsBucket = defaults.gcsBucket;
     	      this.impersonateServiceAccount = defaults.impersonateServiceAccount;
     	      this.jobCreationTimeoutSeconds = defaults.jobCreationTimeoutSeconds;
+    	      this.jobExecutionTimeoutSeconds = defaults.jobExecutionTimeoutSeconds;
     	      this.jobRetryDeadlineSeconds = defaults.jobRetryDeadlineSeconds;
     	      this.location = defaults.location;
     	      this.maximumBytesBilled = defaults.maximumBytesBilled;
@@ -365,6 +393,7 @@ public final class GlobalConnectionBigquery {
     	      this.scopes = defaults.scopes;
     	      this.timeoutSeconds = defaults.timeoutSeconds;
     	      this.tokenUri = defaults.tokenUri;
+    	      this.useLatestAdapter = defaults.useLatestAdapter;
         }
 
         @CustomType.Setter
@@ -464,6 +493,12 @@ public final class GlobalConnectionBigquery {
             return this;
         }
         @CustomType.Setter
+        public Builder jobExecutionTimeoutSeconds(@Nullable Integer jobExecutionTimeoutSeconds) {
+
+            this.jobExecutionTimeoutSeconds = jobExecutionTimeoutSeconds;
+            return this;
+        }
+        @CustomType.Setter
         public Builder jobRetryDeadlineSeconds(@Nullable Integer jobRetryDeadlineSeconds) {
 
             this.jobRetryDeadlineSeconds = jobRetryDeadlineSeconds;
@@ -532,6 +567,12 @@ public final class GlobalConnectionBigquery {
             this.tokenUri = tokenUri;
             return this;
         }
+        @CustomType.Setter
+        public Builder useLatestAdapter(@Nullable Boolean useLatestAdapter) {
+
+            this.useLatestAdapter = useLatestAdapter;
+            return this;
+        }
         public GlobalConnectionBigquery build() {
             final var _resultValue = new GlobalConnectionBigquery();
             _resultValue.applicationId = applicationId;
@@ -548,6 +589,7 @@ public final class GlobalConnectionBigquery {
             _resultValue.gcsBucket = gcsBucket;
             _resultValue.impersonateServiceAccount = impersonateServiceAccount;
             _resultValue.jobCreationTimeoutSeconds = jobCreationTimeoutSeconds;
+            _resultValue.jobExecutionTimeoutSeconds = jobExecutionTimeoutSeconds;
             _resultValue.jobRetryDeadlineSeconds = jobRetryDeadlineSeconds;
             _resultValue.location = location;
             _resultValue.maximumBytesBilled = maximumBytesBilled;
@@ -558,6 +600,7 @@ public final class GlobalConnectionBigquery {
             _resultValue.scopes = scopes;
             _resultValue.timeoutSeconds = timeoutSeconds;
             _resultValue.tokenUri = tokenUri;
+            _resultValue.useLatestAdapter = useLatestAdapter;
             return _resultValue;
         }
     }

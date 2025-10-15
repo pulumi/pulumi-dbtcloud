@@ -2939,49 +2939,63 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getPrivatelinkEndpoint:getPrivatelinkEndpoint", TypeShape.of(GetPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Privatelink endpoint data sources.
+     * Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetPrivatelinkEndpointsResult> getPrivatelinkEndpoints() {
         return getPrivatelinkEndpoints(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Privatelink endpoint data sources.
+     * Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetPrivatelinkEndpointsResult> getPrivatelinkEndpointsPlain() {
         return getPrivatelinkEndpointsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Privatelink endpoint data sources.
+     * Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetPrivatelinkEndpointsResult> getPrivatelinkEndpoints(InvokeArgs args) {
         return getPrivatelinkEndpoints(args, InvokeOptions.Empty);
     }
     /**
-     * Privatelink endpoint data sources.
+     * Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetPrivatelinkEndpointsResult> getPrivatelinkEndpointsPlain(InvokeArgs args) {
         return getPrivatelinkEndpointsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Privatelink endpoint data sources.
+     * Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetPrivatelinkEndpointsResult> getPrivatelinkEndpoints(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Privatelink endpoint data sources.
+     * Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetPrivatelinkEndpointsResult> getPrivatelinkEndpoints(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Privatelink endpoint data sources.
+     * Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetPrivatelinkEndpointsResult> getPrivatelinkEndpointsPlain(InvokeArgs args, InvokeOptions options) {

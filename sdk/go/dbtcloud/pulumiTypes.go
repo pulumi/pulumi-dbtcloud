@@ -1556,6 +1556,8 @@ type GlobalConnectionBigquery struct {
 	ImpersonateServiceAccount *string `pulumi:"impersonateServiceAccount"`
 	// Maximum timeout for the job creation step
 	JobCreationTimeoutSeconds *int `pulumi:"jobCreationTimeoutSeconds"`
+	// Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+	JobExecutionTimeoutSeconds *int `pulumi:"jobExecutionTimeoutSeconds"`
 	// Total number of seconds to wait while retrying the same query
 	JobRetryDeadlineSeconds *int `pulumi:"jobRetryDeadlineSeconds"`
 	// Location to create new Datasets in
@@ -1572,10 +1574,12 @@ type GlobalConnectionBigquery struct {
 	Retries *int `pulumi:"retries"`
 	// OAuth scopes for the BigQuery connection
 	Scopes []string `pulumi:"scopes"`
-	// Timeout in seconds for queries
+	// Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
 	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
 	// Token URI for the Service Account
 	TokenUri string `pulumi:"tokenUri"`
+	// Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+	UseLatestAdapter *bool `pulumi:"useLatestAdapter"`
 }
 
 // GlobalConnectionBigqueryInput is an input type that accepts GlobalConnectionBigqueryArgs and GlobalConnectionBigqueryOutput values.
@@ -1618,6 +1622,8 @@ type GlobalConnectionBigqueryArgs struct {
 	ImpersonateServiceAccount pulumi.StringPtrInput `pulumi:"impersonateServiceAccount"`
 	// Maximum timeout for the job creation step
 	JobCreationTimeoutSeconds pulumi.IntPtrInput `pulumi:"jobCreationTimeoutSeconds"`
+	// Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+	JobExecutionTimeoutSeconds pulumi.IntPtrInput `pulumi:"jobExecutionTimeoutSeconds"`
 	// Total number of seconds to wait while retrying the same query
 	JobRetryDeadlineSeconds pulumi.IntPtrInput `pulumi:"jobRetryDeadlineSeconds"`
 	// Location to create new Datasets in
@@ -1634,10 +1640,12 @@ type GlobalConnectionBigqueryArgs struct {
 	Retries pulumi.IntPtrInput `pulumi:"retries"`
 	// OAuth scopes for the BigQuery connection
 	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
-	// Timeout in seconds for queries
+	// Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
 	TimeoutSeconds pulumi.IntPtrInput `pulumi:"timeoutSeconds"`
 	// Token URI for the Service Account
 	TokenUri pulumi.StringInput `pulumi:"tokenUri"`
+	// Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+	UseLatestAdapter pulumi.BoolPtrInput `pulumi:"useLatestAdapter"`
 }
 
 func (GlobalConnectionBigqueryArgs) ElementType() reflect.Type {
@@ -1787,6 +1795,11 @@ func (o GlobalConnectionBigqueryOutput) JobCreationTimeoutSeconds() pulumi.IntPt
 	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.JobCreationTimeoutSeconds }).(pulumi.IntPtrOutput)
 }
 
+// Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+func (o GlobalConnectionBigqueryOutput) JobExecutionTimeoutSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.JobExecutionTimeoutSeconds }).(pulumi.IntPtrOutput)
+}
+
 // Total number of seconds to wait while retrying the same query
 func (o GlobalConnectionBigqueryOutput) JobRetryDeadlineSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.JobRetryDeadlineSeconds }).(pulumi.IntPtrOutput)
@@ -1827,7 +1840,7 @@ func (o GlobalConnectionBigqueryOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) []string { return v.Scopes }).(pulumi.StringArrayOutput)
 }
 
-// Timeout in seconds for queries
+// Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
 func (o GlobalConnectionBigqueryOutput) TimeoutSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.TimeoutSeconds }).(pulumi.IntPtrOutput)
 }
@@ -1835,6 +1848,11 @@ func (o GlobalConnectionBigqueryOutput) TimeoutSeconds() pulumi.IntPtrOutput {
 // Token URI for the Service Account
 func (o GlobalConnectionBigqueryOutput) TokenUri() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.TokenUri }).(pulumi.StringOutput)
+}
+
+// Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+func (o GlobalConnectionBigqueryOutput) UseLatestAdapter() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *bool { return v.UseLatestAdapter }).(pulumi.BoolPtrOutput)
 }
 
 type GlobalConnectionBigqueryPtrOutput struct{ *pulumi.OutputState }
@@ -2001,6 +2019,16 @@ func (o GlobalConnectionBigqueryPtrOutput) JobCreationTimeoutSeconds() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
+// Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+func (o GlobalConnectionBigqueryPtrOutput) JobExecutionTimeoutSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.JobExecutionTimeoutSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
 // Total number of seconds to wait while retrying the same query
 func (o GlobalConnectionBigqueryPtrOutput) JobRetryDeadlineSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
@@ -2081,7 +2109,7 @@ func (o GlobalConnectionBigqueryPtrOutput) Scopes() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Timeout in seconds for queries
+// Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
 func (o GlobalConnectionBigqueryPtrOutput) TimeoutSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
 		if v == nil {
@@ -2099,6 +2127,16 @@ func (o GlobalConnectionBigqueryPtrOutput) TokenUri() pulumi.StringPtrOutput {
 		}
 		return &v.TokenUri
 	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+func (o GlobalConnectionBigqueryPtrOutput) UseLatestAdapter() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.UseLatestAdapter
+	}).(pulumi.BoolPtrOutput)
 }
 
 type GlobalConnectionDatabricks struct {
@@ -10077,6 +10115,139 @@ func (o GetJobsJobTriggersOutput) Schedule() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetJobsJobTriggers) bool { return v.Schedule }).(pulumi.BoolOutput)
 }
 
+type GetPrivatelinkEndpointsEndpoint struct {
+	// CIDR range of the PrivateLink Endpoint
+	CidrRange string `pulumi:"cidrRange"`
+	// The internal ID of the PrivateLink Endpoint
+	Id string `pulumi:"id"`
+	// Given descriptive name for the PrivateLink Endpoint
+	Name string `pulumi:"name"`
+	// URL of the PrivateLink Endpoint
+	PrivateLinkEndpointUrl string `pulumi:"privateLinkEndpointUrl"`
+	// Type of the PrivateLink Endpoint
+	Type string `pulumi:"type"`
+}
+
+// GetPrivatelinkEndpointsEndpointInput is an input type that accepts GetPrivatelinkEndpointsEndpointArgs and GetPrivatelinkEndpointsEndpointOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsEndpointInput` via:
+//
+//	GetPrivatelinkEndpointsEndpointArgs{...}
+type GetPrivatelinkEndpointsEndpointInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsEndpointOutput() GetPrivatelinkEndpointsEndpointOutput
+	ToGetPrivatelinkEndpointsEndpointOutputWithContext(context.Context) GetPrivatelinkEndpointsEndpointOutput
+}
+
+type GetPrivatelinkEndpointsEndpointArgs struct {
+	// CIDR range of the PrivateLink Endpoint
+	CidrRange pulumi.StringInput `pulumi:"cidrRange"`
+	// The internal ID of the PrivateLink Endpoint
+	Id pulumi.StringInput `pulumi:"id"`
+	// Given descriptive name for the PrivateLink Endpoint
+	Name pulumi.StringInput `pulumi:"name"`
+	// URL of the PrivateLink Endpoint
+	PrivateLinkEndpointUrl pulumi.StringInput `pulumi:"privateLinkEndpointUrl"`
+	// Type of the PrivateLink Endpoint
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetPrivatelinkEndpointsEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsEndpointArgs) ToGetPrivatelinkEndpointsEndpointOutput() GetPrivatelinkEndpointsEndpointOutput {
+	return i.ToGetPrivatelinkEndpointsEndpointOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsEndpointArgs) ToGetPrivatelinkEndpointsEndpointOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsEndpointOutput)
+}
+
+// GetPrivatelinkEndpointsEndpointArrayInput is an input type that accepts GetPrivatelinkEndpointsEndpointArray and GetPrivatelinkEndpointsEndpointArrayOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsEndpointArrayInput` via:
+//
+//	GetPrivatelinkEndpointsEndpointArray{ GetPrivatelinkEndpointsEndpointArgs{...} }
+type GetPrivatelinkEndpointsEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsEndpointArrayOutput() GetPrivatelinkEndpointsEndpointArrayOutput
+	ToGetPrivatelinkEndpointsEndpointArrayOutputWithContext(context.Context) GetPrivatelinkEndpointsEndpointArrayOutput
+}
+
+type GetPrivatelinkEndpointsEndpointArray []GetPrivatelinkEndpointsEndpointInput
+
+func (GetPrivatelinkEndpointsEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsEndpoint)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsEndpointArray) ToGetPrivatelinkEndpointsEndpointArrayOutput() GetPrivatelinkEndpointsEndpointArrayOutput {
+	return i.ToGetPrivatelinkEndpointsEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsEndpointArray) ToGetPrivatelinkEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsEndpointArrayOutput)
+}
+
+type GetPrivatelinkEndpointsEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsEndpointOutput) ToGetPrivatelinkEndpointsEndpointOutput() GetPrivatelinkEndpointsEndpointOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsEndpointOutput) ToGetPrivatelinkEndpointsEndpointOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsEndpointOutput {
+	return o
+}
+
+// CIDR range of the PrivateLink Endpoint
+func (o GetPrivatelinkEndpointsEndpointOutput) CidrRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsEndpoint) string { return v.CidrRange }).(pulumi.StringOutput)
+}
+
+// The internal ID of the PrivateLink Endpoint
+func (o GetPrivatelinkEndpointsEndpointOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsEndpoint) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Given descriptive name for the PrivateLink Endpoint
+func (o GetPrivatelinkEndpointsEndpointOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsEndpoint) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// URL of the PrivateLink Endpoint
+func (o GetPrivatelinkEndpointsEndpointOutput) PrivateLinkEndpointUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsEndpoint) string { return v.PrivateLinkEndpointUrl }).(pulumi.StringOutput)
+}
+
+// Type of the PrivateLink Endpoint
+func (o GetPrivatelinkEndpointsEndpointOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsEndpoint) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetPrivatelinkEndpointsEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsEndpoint)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsEndpointArrayOutput) ToGetPrivatelinkEndpointsEndpointArrayOutput() GetPrivatelinkEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsEndpointArrayOutput) ToGetPrivatelinkEndpointsEndpointArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsEndpointArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsEndpointArrayOutput) Index(i pulumi.IntInput) GetPrivatelinkEndpointsEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivatelinkEndpointsEndpoint {
+		return vs[0].([]GetPrivatelinkEndpointsEndpoint)[vs[1].(int)]
+	}).(GetPrivatelinkEndpointsEndpointOutput)
+}
+
 type GetProjectProjectConnection struct {
 	// Version of the adapter for the connection. Will tell what connection type it is
 	AdapterVersion string `pulumi:"adapterVersion"`
@@ -11307,6 +11478,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobScheduleInput)(nil)).Elem(), GetJobsJobScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobSettingsInput)(nil)).Elem(), GetJobsJobSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobTriggersInput)(nil)).Elem(), GetJobsJobTriggersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsEndpointInput)(nil)).Elem(), GetPrivatelinkEndpointsEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsEndpointArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectProjectConnectionInput)(nil)).Elem(), GetProjectProjectConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectRepositoryTypeInput)(nil)).Elem(), GetProjectRepositoryTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectInput)(nil)).Elem(), GetProjectsProjectArgs{})
@@ -11420,6 +11593,8 @@ func init() {
 	pulumi.RegisterOutputType(GetJobsJobScheduleOutput{})
 	pulumi.RegisterOutputType(GetJobsJobSettingsOutput{})
 	pulumi.RegisterOutputType(GetJobsJobTriggersOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsEndpointOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectProjectConnectionOutput{})
 	pulumi.RegisterOutputType(GetProjectRepositoryTypeOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectOutput{})

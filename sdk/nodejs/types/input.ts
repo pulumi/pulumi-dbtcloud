@@ -397,6 +397,10 @@ export interface GlobalConnectionBigquery {
      */
     jobCreationTimeoutSeconds?: pulumi.Input<number>;
     /**
+     * Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+     */
+    jobExecutionTimeoutSeconds?: pulumi.Input<number>;
+    /**
      * Total number of seconds to wait while retrying the same query
      */
     jobRetryDeadlineSeconds?: pulumi.Input<number>;
@@ -429,13 +433,17 @@ export interface GlobalConnectionBigquery {
      */
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Timeout in seconds for queries
+     * Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
      */
     timeoutSeconds?: pulumi.Input<number>;
     /**
      * Token URI for the Service Account
      */
     tokenUri: pulumi.Input<string>;
+    /**
+     * Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+     */
+    useLatestAdapter?: pulumi.Input<boolean>;
 }
 
 export interface GlobalConnectionDatabricks {

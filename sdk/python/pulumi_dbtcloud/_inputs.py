@@ -1054,6 +1054,10 @@ if not MYPY:
         """
         Maximum timeout for the job creation step
         """
+        job_execution_timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
+        """
         job_retry_deadline_seconds: NotRequired[pulumi.Input[_builtins.int]]
         """
         Total number of seconds to wait while retrying the same query
@@ -1080,7 +1084,11 @@ if not MYPY:
         """
         timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Timeout in seconds for queries
+        Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
+        """
+        use_latest_adapter: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
         """
 elif False:
     GlobalConnectionBigqueryArgsDict: TypeAlias = Mapping[str, Any]
@@ -1105,13 +1113,15 @@ class GlobalConnectionBigqueryArgs:
                  gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  impersonate_service_account: Optional[pulumi.Input[_builtins.str]] = None,
                  job_creation_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 job_execution_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  job_retry_deadline_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  location: Optional[pulumi.Input[_builtins.str]] = None,
                  maximum_bytes_billed: Optional[pulumi.Input[_builtins.int]] = None,
                  priority: Optional[pulumi.Input[_builtins.str]] = None,
                  retries: Optional[pulumi.Input[_builtins.int]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 use_latest_adapter: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
         :param pulumi.Input[_builtins.str] auth_uri: Auth URI for the Service Account
@@ -1130,13 +1140,15 @@ class GlobalConnectionBigqueryArgs:
         :param pulumi.Input[_builtins.str] gcs_bucket: URI for a Google Cloud Storage bucket to host Python code executed via Datapro
         :param pulumi.Input[_builtins.str] impersonate_service_account: Service Account to impersonate when running queries
         :param pulumi.Input[_builtins.int] job_creation_timeout_seconds: Maximum timeout for the job creation step
+        :param pulumi.Input[_builtins.int] job_execution_timeout_seconds: Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
         :param pulumi.Input[_builtins.int] job_retry_deadline_seconds: Total number of seconds to wait while retrying the same query
         :param pulumi.Input[_builtins.str] location: Location to create new Datasets in
         :param pulumi.Input[_builtins.int] maximum_bytes_billed: Max number of bytes that can be billed for a given BigQuery query
         :param pulumi.Input[_builtins.str] priority: The priority with which to execute BigQuery queries (batch or interactive)
         :param pulumi.Input[_builtins.int] retries: Number of retries for queries
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: OAuth scopes for the BigQuery connection
-        :param pulumi.Input[_builtins.int] timeout_seconds: Timeout in seconds for queries
+        :param pulumi.Input[_builtins.int] timeout_seconds: Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
+        :param pulumi.Input[_builtins.bool] use_latest_adapter: Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
         """
         pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
         pulumi.set(__self__, "auth_uri", auth_uri)
@@ -1163,6 +1175,8 @@ class GlobalConnectionBigqueryArgs:
             pulumi.set(__self__, "impersonate_service_account", impersonate_service_account)
         if job_creation_timeout_seconds is not None:
             pulumi.set(__self__, "job_creation_timeout_seconds", job_creation_timeout_seconds)
+        if job_execution_timeout_seconds is not None:
+            pulumi.set(__self__, "job_execution_timeout_seconds", job_execution_timeout_seconds)
         if job_retry_deadline_seconds is not None:
             pulumi.set(__self__, "job_retry_deadline_seconds", job_retry_deadline_seconds)
         if location is not None:
@@ -1177,6 +1191,8 @@ class GlobalConnectionBigqueryArgs:
             pulumi.set(__self__, "scopes", scopes)
         if timeout_seconds is not None:
             pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+        if use_latest_adapter is not None:
+            pulumi.set(__self__, "use_latest_adapter", use_latest_adapter)
 
     @_builtins.property
     @pulumi.getter(name="authProviderX509CertUrl")
@@ -1383,6 +1399,18 @@ class GlobalConnectionBigqueryArgs:
         pulumi.set(self, "job_creation_timeout_seconds", value)
 
     @_builtins.property
+    @pulumi.getter(name="jobExecutionTimeoutSeconds")
+    def job_execution_timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
+        """
+        return pulumi.get(self, "job_execution_timeout_seconds")
+
+    @job_execution_timeout_seconds.setter
+    def job_execution_timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "job_execution_timeout_seconds", value)
+
+    @_builtins.property
     @pulumi.getter(name="jobRetryDeadlineSeconds")
     def job_retry_deadline_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -1458,13 +1486,25 @@ class GlobalConnectionBigqueryArgs:
     @pulumi.getter(name="timeoutSeconds")
     def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Timeout in seconds for queries
+        Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
         """
         return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
     def timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "timeout_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="useLatestAdapter")
+    def use_latest_adapter(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+        """
+        return pulumi.get(self, "use_latest_adapter")
+
+    @use_latest_adapter.setter
+    def use_latest_adapter(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "use_latest_adapter", value)
 
 
 if not MYPY:
