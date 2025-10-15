@@ -500,7 +500,12 @@
             },
             "dbtcloud_privatelink_endpoints": {
                 "current": "dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints",
-                "majorVersion": 1
+                "majorVersion": 1,
+                "fields": {
+                    "endpoints": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "dbtcloud_project": {
                 "current": "dbtcloud:index/getProject:getProject",
