@@ -6,6 +6,7 @@ package com.pulumi.dbtcloud.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -229,6 +230,21 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     }
 
     /**
+     * Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+     * 
+     */
+    @Import(name="jobExecutionTimeoutSeconds")
+    private @Nullable Output<Integer> jobExecutionTimeoutSeconds;
+
+    /**
+     * @return Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+     * 
+     */
+    public Optional<Output<Integer>> jobExecutionTimeoutSeconds() {
+        return Optional.ofNullable(this.jobExecutionTimeoutSeconds);
+    }
+
+    /**
      * Total number of seconds to wait while retrying the same query
      * 
      */
@@ -349,14 +365,14 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Timeout in seconds for queries
+     * Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
      * 
      */
     @Import(name="timeoutSeconds")
     private @Nullable Output<Integer> timeoutSeconds;
 
     /**
-     * @return Timeout in seconds for queries
+     * @return Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
      * 
      */
     public Optional<Output<Integer>> timeoutSeconds() {
@@ -378,6 +394,21 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         return this.tokenUri;
     }
 
+    /**
+     * Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+     * 
+     */
+    @Import(name="useLatestAdapter")
+    private @Nullable Output<Boolean> useLatestAdapter;
+
+    /**
+     * @return Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+     * 
+     */
+    public Optional<Output<Boolean>> useLatestAdapter() {
+        return Optional.ofNullable(this.useLatestAdapter);
+    }
+
     private GlobalConnectionBigqueryArgs() {}
 
     private GlobalConnectionBigqueryArgs(GlobalConnectionBigqueryArgs $) {
@@ -395,6 +426,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         this.gcsBucket = $.gcsBucket;
         this.impersonateServiceAccount = $.impersonateServiceAccount;
         this.jobCreationTimeoutSeconds = $.jobCreationTimeoutSeconds;
+        this.jobExecutionTimeoutSeconds = $.jobExecutionTimeoutSeconds;
         this.jobRetryDeadlineSeconds = $.jobRetryDeadlineSeconds;
         this.location = $.location;
         this.maximumBytesBilled = $.maximumBytesBilled;
@@ -405,6 +437,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         this.scopes = $.scopes;
         this.timeoutSeconds = $.timeoutSeconds;
         this.tokenUri = $.tokenUri;
+        this.useLatestAdapter = $.useLatestAdapter;
     }
 
     public static Builder builder() {
@@ -720,6 +753,27 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
+         * @param jobExecutionTimeoutSeconds Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobExecutionTimeoutSeconds(@Nullable Output<Integer> jobExecutionTimeoutSeconds) {
+            $.jobExecutionTimeoutSeconds = jobExecutionTimeoutSeconds;
+            return this;
+        }
+
+        /**
+         * @param jobExecutionTimeoutSeconds Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobExecutionTimeoutSeconds(Integer jobExecutionTimeoutSeconds) {
+            return jobExecutionTimeoutSeconds(Output.of(jobExecutionTimeoutSeconds));
+        }
+
+        /**
          * @param jobRetryDeadlineSeconds Total number of seconds to wait while retrying the same query
          * 
          * @return builder
@@ -898,7 +952,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param timeoutSeconds Timeout in seconds for queries
+         * @param timeoutSeconds Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
          * 
          * @return builder
          * 
@@ -909,7 +963,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param timeoutSeconds Timeout in seconds for queries
+         * @param timeoutSeconds Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
          * 
          * @return builder
          * 
@@ -937,6 +991,27 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
          */
         public Builder tokenUri(String tokenUri) {
             return tokenUri(Output.of(tokenUri));
+        }
+
+        /**
+         * @param useLatestAdapter Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useLatestAdapter(@Nullable Output<Boolean> useLatestAdapter) {
+            $.useLatestAdapter = useLatestAdapter;
+            return this;
+        }
+
+        /**
+         * @param useLatestAdapter Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useLatestAdapter(Boolean useLatestAdapter) {
+            return useLatestAdapter(Output.of(useLatestAdapter));
         }
 
         public GlobalConnectionBigqueryArgs build() {

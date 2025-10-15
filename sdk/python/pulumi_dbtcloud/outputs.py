@@ -78,6 +78,7 @@ __all__ = [
     'GetJobsJobScheduleResult',
     'GetJobsJobSettingsResult',
     'GetJobsJobTriggersResult',
+    'GetPrivatelinkEndpointsEndpointResult',
     'GetProjectProjectConnectionResult',
     'GetProjectRepositoryResult',
     'GetProjectsProjectResult',
@@ -800,12 +801,16 @@ class GlobalConnectionBigquery(dict):
             suggest = "impersonate_service_account"
         elif key == "jobCreationTimeoutSeconds":
             suggest = "job_creation_timeout_seconds"
+        elif key == "jobExecutionTimeoutSeconds":
+            suggest = "job_execution_timeout_seconds"
         elif key == "jobRetryDeadlineSeconds":
             suggest = "job_retry_deadline_seconds"
         elif key == "maximumBytesBilled":
             suggest = "maximum_bytes_billed"
         elif key == "timeoutSeconds":
             suggest = "timeout_seconds"
+        elif key == "useLatestAdapter":
+            suggest = "use_latest_adapter"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in GlobalConnectionBigquery. Access the value via the '{suggest}' property getter instead.")
@@ -836,13 +841,15 @@ class GlobalConnectionBigquery(dict):
                  gcs_bucket: Optional[_builtins.str] = None,
                  impersonate_service_account: Optional[_builtins.str] = None,
                  job_creation_timeout_seconds: Optional[_builtins.int] = None,
+                 job_execution_timeout_seconds: Optional[_builtins.int] = None,
                  job_retry_deadline_seconds: Optional[_builtins.int] = None,
                  location: Optional[_builtins.str] = None,
                  maximum_bytes_billed: Optional[_builtins.int] = None,
                  priority: Optional[_builtins.str] = None,
                  retries: Optional[_builtins.int] = None,
                  scopes: Optional[Sequence[_builtins.str]] = None,
-                 timeout_seconds: Optional[_builtins.int] = None):
+                 timeout_seconds: Optional[_builtins.int] = None,
+                 use_latest_adapter: Optional[_builtins.bool] = None):
         """
         :param _builtins.str auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
         :param _builtins.str auth_uri: Auth URI for the Service Account
@@ -861,13 +868,15 @@ class GlobalConnectionBigquery(dict):
         :param _builtins.str gcs_bucket: URI for a Google Cloud Storage bucket to host Python code executed via Datapro
         :param _builtins.str impersonate_service_account: Service Account to impersonate when running queries
         :param _builtins.int job_creation_timeout_seconds: Maximum timeout for the job creation step
+        :param _builtins.int job_execution_timeout_seconds: Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
         :param _builtins.int job_retry_deadline_seconds: Total number of seconds to wait while retrying the same query
         :param _builtins.str location: Location to create new Datasets in
         :param _builtins.int maximum_bytes_billed: Max number of bytes that can be billed for a given BigQuery query
         :param _builtins.str priority: The priority with which to execute BigQuery queries (batch or interactive)
         :param _builtins.int retries: Number of retries for queries
         :param Sequence[_builtins.str] scopes: OAuth scopes for the BigQuery connection
-        :param _builtins.int timeout_seconds: Timeout in seconds for queries
+        :param _builtins.int timeout_seconds: Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
+        :param _builtins.bool use_latest_adapter: Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
         """
         pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
         pulumi.set(__self__, "auth_uri", auth_uri)
@@ -894,6 +903,8 @@ class GlobalConnectionBigquery(dict):
             pulumi.set(__self__, "impersonate_service_account", impersonate_service_account)
         if job_creation_timeout_seconds is not None:
             pulumi.set(__self__, "job_creation_timeout_seconds", job_creation_timeout_seconds)
+        if job_execution_timeout_seconds is not None:
+            pulumi.set(__self__, "job_execution_timeout_seconds", job_execution_timeout_seconds)
         if job_retry_deadline_seconds is not None:
             pulumi.set(__self__, "job_retry_deadline_seconds", job_retry_deadline_seconds)
         if location is not None:
@@ -908,6 +919,8 @@ class GlobalConnectionBigquery(dict):
             pulumi.set(__self__, "scopes", scopes)
         if timeout_seconds is not None:
             pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+        if use_latest_adapter is not None:
+            pulumi.set(__self__, "use_latest_adapter", use_latest_adapter)
 
     @_builtins.property
     @pulumi.getter(name="authProviderX509CertUrl")
@@ -1046,6 +1059,14 @@ class GlobalConnectionBigquery(dict):
         return pulumi.get(self, "job_creation_timeout_seconds")
 
     @_builtins.property
+    @pulumi.getter(name="jobExecutionTimeoutSeconds")
+    def job_execution_timeout_seconds(self) -> Optional[_builtins.int]:
+        """
+        Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
+        """
+        return pulumi.get(self, "job_execution_timeout_seconds")
+
+    @_builtins.property
     @pulumi.getter(name="jobRetryDeadlineSeconds")
     def job_retry_deadline_seconds(self) -> Optional[_builtins.int]:
         """
@@ -1097,9 +1118,17 @@ class GlobalConnectionBigquery(dict):
     @pulumi.getter(name="timeoutSeconds")
     def timeout_seconds(self) -> Optional[_builtins.int]:
         """
-        Timeout in seconds for queries
+        Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
         """
         return pulumi.get(self, "timeout_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="useLatestAdapter")
+    def use_latest_adapter(self) -> Optional[_builtins.bool]:
+        """
+        Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+        """
+        return pulumi.get(self, "use_latest_adapter")
 
 
 @pulumi.output_type
@@ -5353,6 +5382,68 @@ class GetJobsJobTriggersResult(dict):
         Whether the job runs on a schedule
         """
         return pulumi.get(self, "schedule")
+
+
+@pulumi.output_type
+class GetPrivatelinkEndpointsEndpointResult(dict):
+    def __init__(__self__, *,
+                 cidr_range: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 private_link_endpoint_url: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str cidr_range: CIDR range of the PrivateLink Endpoint
+        :param _builtins.str id: The internal ID of the PrivateLink Endpoint
+        :param _builtins.str name: Given descriptive name for the PrivateLink Endpoint
+        :param _builtins.str private_link_endpoint_url: URL of the PrivateLink Endpoint
+        :param _builtins.str type: Type of the PrivateLink Endpoint
+        """
+        pulumi.set(__self__, "cidr_range", cidr_range)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "private_link_endpoint_url", private_link_endpoint_url)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrRange")
+    def cidr_range(self) -> _builtins.str:
+        """
+        CIDR range of the PrivateLink Endpoint
+        """
+        return pulumi.get(self, "cidr_range")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The internal ID of the PrivateLink Endpoint
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Given descriptive name for the PrivateLink Endpoint
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateLinkEndpointUrl")
+    def private_link_endpoint_url(self) -> _builtins.str:
+        """
+        URL of the PrivateLink Endpoint
+        """
+        return pulumi.get(self, "private_link_endpoint_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the PrivateLink Endpoint
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type

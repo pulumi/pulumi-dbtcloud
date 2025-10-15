@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetPrivatelinkEndpointsResult',
@@ -26,16 +27,27 @@ class GetPrivatelinkEndpointsResult:
     """
     A collection of values returned by getPrivatelinkEndpoints.
     """
-    def __init__(__self__, id=None):
+    def __init__(__self__, endpoints=None, id=None):
+        if endpoints and not isinstance(endpoints, list):
+            raise TypeError("Expected argument 'endpoints' to be a list")
+        pulumi.set(__self__, "endpoints", endpoints)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
 
     @_builtins.property
     @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetPrivatelinkEndpointsEndpointResult']:
+        """
+        A list of all PrivateLink endpoints in the account
+        """
+        return pulumi.get(self, "endpoints")
+
+    @_builtins.property
+    @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The internal ID of the PrivateLink Endpoint
+        The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
 
@@ -46,25 +58,90 @@ class AwaitableGetPrivatelinkEndpointsResult(GetPrivatelinkEndpointsResult):
         if False:
             yield self
         return GetPrivatelinkEndpointsResult(
+            endpoints=self.endpoints,
             id=self.id)
 
 
 def get_privatelink_endpoints(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointsResult:
     """
-    Privatelink endpoint data sources.
+    Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_dbtcloud as dbtcloud
+
+    all = dbtcloud.get_privatelink_endpoints()
+    snowflake_endpoint = [endpoint for endpoint in all.endpoints if endpoint.name == "Snowflake Production Endpoint"][0]
+    # Use the endpoint in a global connection
+    snowflake = dbtcloud.GlobalConnection("snowflake",
+        name="Snowflake via PrivateLink",
+        private_link_endpoint_id=snowflake_endpoint.id,
+        snowflake={
+            "account": "my-snowflake-account",
+            "database": "ANALYTICS",
+            "warehouse": "COMPUTE_WH",
+        })
+    snowflake_endpoints = [endpoint for endpoint in all.endpoints if endpoint.type == "snowflake"]
+    # Create connections for all Snowflake endpoints
+    snowflake_connections = []
+    for range in [{"key": k, "value": v} for [k, v] in enumerate({ep.id: ep for ep in snowflake_endpoints})]:
+        snowflake_connections.append(dbtcloud.GlobalConnection(f"snowflake_connections-{range['key']}",
+            name=f"Connection for {range['value'].name}",
+            private_link_endpoint_id=%!v(PANIC=Format method: runtime error: index out of range [-1]),
+            snowflake={
+                "account": "my-account",
+                "database": "ANALYTICS",
+                "warehouse": "COMPUTE_WH",
+            }))
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints', __args__, opts=opts, typ=GetPrivatelinkEndpointsResult).value
 
     return AwaitableGetPrivatelinkEndpointsResult(
+        endpoints=pulumi.get(__ret__, 'endpoints'),
         id=pulumi.get(__ret__, 'id'))
 def get_privatelink_endpoints_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointsResult]:
     """
-    Privatelink endpoint data sources.
+    Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_dbtcloud as dbtcloud
+
+    all = dbtcloud.get_privatelink_endpoints()
+    snowflake_endpoint = [endpoint for endpoint in all.endpoints if endpoint.name == "Snowflake Production Endpoint"][0]
+    # Use the endpoint in a global connection
+    snowflake = dbtcloud.GlobalConnection("snowflake",
+        name="Snowflake via PrivateLink",
+        private_link_endpoint_id=snowflake_endpoint.id,
+        snowflake={
+            "account": "my-snowflake-account",
+            "database": "ANALYTICS",
+            "warehouse": "COMPUTE_WH",
+        })
+    snowflake_endpoints = [endpoint for endpoint in all.endpoints if endpoint.type == "snowflake"]
+    # Create connections for all Snowflake endpoints
+    snowflake_connections = []
+    for range in [{"key": k, "value": v} for [k, v] in enumerate({ep.id: ep for ep in snowflake_endpoints})]:
+        snowflake_connections.append(dbtcloud.GlobalConnection(f"snowflake_connections-{range['key']}",
+            name=f"Connection for {range['value'].name}",
+            private_link_endpoint_id=%!v(PANIC=Format method: runtime error: index out of range [-1]),
+            snowflake={
+                "account": "my-account",
+                "database": "ANALYTICS",
+                "warehouse": "COMPUTE_WH",
+            }))
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints', __args__, opts=opts, typ=GetPrivatelinkEndpointsResult)
     return __ret__.apply(lambda __response__: GetPrivatelinkEndpointsResult(
+        endpoints=pulumi.get(__response__, 'endpoints'),
         id=pulumi.get(__response__, 'id')))

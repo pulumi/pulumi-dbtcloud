@@ -117,6 +117,12 @@ namespace Pulumi.DbtCloud.Inputs
         public Input<int>? JobCreationTimeoutSeconds { get; set; }
 
         /// <summary>
+        /// Timeout in seconds for job execution, to be used for the BigqueryV1 adapter
+        /// </summary>
+        [Input("jobExecutionTimeoutSeconds")]
+        public Input<int>? JobExecutionTimeoutSeconds { get; set; }
+
+        /// <summary>
         /// Total number of seconds to wait while retrying the same query
         /// </summary>
         [Input("jobRetryDeadlineSeconds")]
@@ -181,7 +187,7 @@ namespace Pulumi.DbtCloud.Inputs
         }
 
         /// <summary>
-        /// Timeout in seconds for queries
+        /// Timeout in seconds for queries, to be used ONLY for the BigqueryV0 adapter
         /// </summary>
         [Input("timeoutSeconds")]
         public Input<int>? TimeoutSeconds { get; set; }
@@ -191,6 +197,12 @@ namespace Pulumi.DbtCloud.Inputs
         /// </summary>
         [Input("tokenUri", required: true)]
         public Input<string> TokenUri { get; set; } = null!;
+
+        /// <summary>
+        /// Whether to use the latest BigqueryV1 adapter (use this for BQ WIF). If true, the `JobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+        /// </summary>
+        [Input("useLatestAdapter")]
+        public Input<bool>? UseLatestAdapter { get; set; }
 
         public GlobalConnectionBigqueryArgs()
         {

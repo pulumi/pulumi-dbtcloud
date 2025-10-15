@@ -903,6 +903,29 @@ export interface GetJobsJobTriggers {
     schedule: boolean;
 }
 
+export interface GetPrivatelinkEndpointsEndpoint {
+    /**
+     * CIDR range of the PrivateLink Endpoint
+     */
+    cidrRange: string;
+    /**
+     * The internal ID of the PrivateLink Endpoint
+     */
+    id: string;
+    /**
+     * Given descriptive name for the PrivateLink Endpoint
+     */
+    name: string;
+    /**
+     * URL of the PrivateLink Endpoint
+     */
+    privateLinkEndpointUrl: string;
+    /**
+     * Type of the PrivateLink Endpoint
+     */
+    type: string;
+}
+
 export interface GetProjectProjectConnection {
     /**
      * Version of the adapter for the connection. Will tell what connection type it is
@@ -1258,6 +1281,10 @@ export interface GlobalConnectionBigquery {
      */
     jobCreationTimeoutSeconds?: number;
     /**
+     * Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
+     */
+    jobExecutionTimeoutSeconds?: number;
+    /**
      * Total number of seconds to wait while retrying the same query
      */
     jobRetryDeadlineSeconds?: number;
@@ -1290,13 +1317,17 @@ export interface GlobalConnectionBigquery {
      */
     scopes: string[];
     /**
-     * Timeout in seconds for queries
+     * Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
      */
     timeoutSeconds: number;
     /**
      * Token URI for the Service Account
      */
     tokenUri: string;
+    /**
+     * Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+     */
+    useLatestAdapter?: boolean;
 }
 
 export interface GlobalConnectionDatabricks {

@@ -70,6 +70,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int? JobCreationTimeoutSeconds;
         /// <summary>
+        /// Timeout in seconds for job execution, to be used for the BigqueryV1 adapter
+        /// </summary>
+        public readonly int? JobExecutionTimeoutSeconds;
+        /// <summary>
         /// Total number of seconds to wait while retrying the same query
         /// </summary>
         public readonly int? JobRetryDeadlineSeconds;
@@ -102,13 +106,17 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Scopes;
         /// <summary>
-        /// Timeout in seconds for queries
+        /// Timeout in seconds for queries, to be used ONLY for the BigqueryV0 adapter
         /// </summary>
         public readonly int? TimeoutSeconds;
         /// <summary>
         /// Token URI for the Service Account
         /// </summary>
         public readonly string TokenUri;
+        /// <summary>
+        /// Whether to use the latest BigqueryV1 adapter (use this for BQ WIF). If true, the `JobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+        /// </summary>
+        public readonly bool? UseLatestAdapter;
 
         [OutputConstructor]
         private GlobalConnectionBigquery(
@@ -140,6 +148,8 @@ namespace Pulumi.DbtCloud.Outputs
 
             int? jobCreationTimeoutSeconds,
 
+            int? jobExecutionTimeoutSeconds,
+
             int? jobRetryDeadlineSeconds,
 
             string? location,
@@ -158,7 +168,9 @@ namespace Pulumi.DbtCloud.Outputs
 
             int? timeoutSeconds,
 
-            string tokenUri)
+            string tokenUri,
+
+            bool? useLatestAdapter)
         {
             ApplicationId = applicationId;
             ApplicationSecret = applicationSecret;
@@ -174,6 +186,7 @@ namespace Pulumi.DbtCloud.Outputs
             GcsBucket = gcsBucket;
             ImpersonateServiceAccount = impersonateServiceAccount;
             JobCreationTimeoutSeconds = jobCreationTimeoutSeconds;
+            JobExecutionTimeoutSeconds = jobExecutionTimeoutSeconds;
             JobRetryDeadlineSeconds = jobRetryDeadlineSeconds;
             Location = location;
             MaximumBytesBilled = maximumBytesBilled;
@@ -184,6 +197,7 @@ namespace Pulumi.DbtCloud.Outputs
             Scopes = scopes;
             TimeoutSeconds = timeoutSeconds;
             TokenUri = tokenUri;
+            UseLatestAdapter = useLatestAdapter;
         }
     }
 }

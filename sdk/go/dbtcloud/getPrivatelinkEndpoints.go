@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Privatelink endpoint data sources.
+// Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
+//
+// ## Example Usage
 func GetPrivatelinkEndpoints(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetPrivatelinkEndpointsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPrivatelinkEndpointsResult
@@ -24,7 +26,9 @@ func GetPrivatelinkEndpoints(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (
 
 // A collection of values returned by getPrivatelinkEndpoints.
 type GetPrivatelinkEndpointsResult struct {
-	// The internal ID of the PrivateLink Endpoint
+	// A list of all PrivateLink endpoints in the account
+	Endpoints []GetPrivatelinkEndpointsEndpoint `pulumi:"endpoints"`
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 }
 
@@ -50,7 +54,12 @@ func (o GetPrivatelinkEndpointsResultOutput) ToGetPrivatelinkEndpointsResultOutp
 	return o
 }
 
-// The internal ID of the PrivateLink Endpoint
+// A list of all PrivateLink endpoints in the account
+func (o GetPrivatelinkEndpointsResultOutput) Endpoints() GetPrivatelinkEndpointsEndpointArrayOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) []GetPrivatelinkEndpointsEndpoint { return v.Endpoints }).(GetPrivatelinkEndpointsEndpointArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
 func (o GetPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
 }
