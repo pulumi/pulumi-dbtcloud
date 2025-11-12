@@ -14,6 +14,34 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var slCredDatabricksExample = new DbtCloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.DatabricksSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             Name = "Databricks SL Credential",
+    ///             AdapterVersion = "databricks_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.DatabricksSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             Catalog = catalog,
+    ///             Token = token,
+    ///             SemanticLayerCredential = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)

@@ -110,6 +110,24 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
 
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        sl_cred_databricks_example = dbtcloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example",
+            configuration={
+                "project_id": project_id,
+                "name": "Databricks SL Credential",
+                "adapter_version": "databricks_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "catalog": catalog,
+                "token": token,
+                "semantic_layer_credential": True,
+            })
+        ```
+
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
@@ -155,6 +173,24 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
         Databricks credential resource. This resource is composed of a Databricks credential and a Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        sl_cred_databricks_example = dbtcloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example",
+            configuration={
+                "project_id": project_id,
+                "name": "Databricks SL Credential",
+                "adapter_version": "databricks_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "catalog": catalog,
+                "token": token,
+                "semantic_layer_credential": True,
+            })
+        ```
 
         ## Import
 

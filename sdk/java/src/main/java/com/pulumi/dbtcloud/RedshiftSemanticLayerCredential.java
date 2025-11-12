@@ -19,6 +19,51 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.RedshiftSemanticLayerCredential;
+ * import com.pulumi.dbtcloud.RedshiftSemanticLayerCredentialArgs;
+ * import com.pulumi.dbtcloud.inputs.RedshiftSemanticLayerCredentialConfigurationArgs;
+ * import com.pulumi.dbtcloud.inputs.RedshiftSemanticLayerCredentialCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRedshiftSemanticLayerCredential = new RedshiftSemanticLayerCredential("testRedshiftSemanticLayerCredential", RedshiftSemanticLayerCredentialArgs.builder()
+ *             .configuration(RedshiftSemanticLayerCredentialConfigurationArgs.builder()
+ *                 .projectId(projectId)
+ *                 .name("Redshift SL Credential")
+ *                 .adapterVersion("redshift_v0")
+ *                 .build())
+ *             .credential(RedshiftSemanticLayerCredentialCredentialArgs.builder()
+ *                 .projectId(projectId)
+ *                 .username(username)
+ *                 .isActive(true)
+ *                 .password(password)
+ *                 .numThreads(numThreads)
+ *                 .defaultSchema(defaultSchema)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)

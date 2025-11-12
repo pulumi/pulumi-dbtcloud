@@ -14,6 +14,67 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Example of Snowflake Semantic Layer Credential with password authentication
+    ///     var passwordAuth = new DbtCloud.SnowflakeSemanticLayerCredential("password_auth", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             Name = "Snowflake SL Credential - Password Auth",
+    ///             AdapterVersion = "snowflake_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             IsActive = true,
+    ///             AuthType = "password",
+    ///             Database = database,
+    ///             Schema = schema,
+    ///             Warehouse = warehouse,
+    ///             Role = role,
+    ///             User = user,
+    ///             Password = password,
+    ///             NumThreads = 4,
+    ///             SemanticLayerCredential = true,
+    ///         },
+    ///     });
+    /// 
+    ///     // Example of Snowflake Semantic Layer Credential with key pair authentication
+    ///     var keypairAuth = new DbtCloud.SnowflakeSemanticLayerCredential("keypair_auth", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             Name = "Snowflake SL Credential - Key Pair Auth",
+    ///             AdapterVersion = "snowflake_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             IsActive = true,
+    ///             AuthType = "keypair",
+    ///             Database = database,
+    ///             Schema = schema,
+    ///             Warehouse = warehouse,
+    ///             Role = role,
+    ///             PrivateKey = privateKey,
+    ///             PrivateKeyPassphrase = privateKeyPassphrase,
+    ///             NumThreads = 4,
+    ///             SemanticLayerCredential = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)

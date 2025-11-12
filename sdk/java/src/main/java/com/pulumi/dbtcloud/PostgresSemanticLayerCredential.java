@@ -19,6 +19,49 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.PostgresSemanticLayerCredential;
+ * import com.pulumi.dbtcloud.PostgresSemanticLayerCredentialArgs;
+ * import com.pulumi.dbtcloud.inputs.PostgresSemanticLayerCredentialConfigurationArgs;
+ * import com.pulumi.dbtcloud.inputs.PostgresSemanticLayerCredentialCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testPostgresSemanticLayerCredential = new PostgresSemanticLayerCredential("testPostgresSemanticLayerCredential", PostgresSemanticLayerCredentialArgs.builder()
+ *             .configuration(PostgresSemanticLayerCredentialConfigurationArgs.builder()
+ *                 .projectId(projectId)
+ *                 .name("Postgres SL Credential")
+ *                 .adapterVersion("postgres_v0")
+ *                 .build())
+ *             .credential(PostgresSemanticLayerCredentialCredentialArgs.builder()
+ *                 .projectId(projectId)
+ *                 .username(username)
+ *                 .password(password)
+ *                 .semanticLayerCredential(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)

@@ -11,6 +11,27 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const testRedshiftSemanticLayerCredential = new dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential", {
+ *     configuration: {
+ *         projectId: projectId,
+ *         name: "Redshift SL Credential",
+ *         adapterVersion: "redshift_v0",
+ *     },
+ *     credential: {
+ *         projectId: projectId,
+ *         username: username,
+ *         isActive: true,
+ *         password: password,
+ *         numThreads: numThreads,
+ *         defaultSchema: defaultSchema,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)

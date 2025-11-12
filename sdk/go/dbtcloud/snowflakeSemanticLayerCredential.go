@@ -16,6 +16,72 @@ import (
 //
 // ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Example of Snowflake Semantic Layer Credential with password authentication
+//			_, err := dbtcloud.NewSnowflakeSemanticLayerCredential(ctx, "password_auth", &dbtcloud.SnowflakeSemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.SnowflakeSemanticLayerCredentialConfigurationArgs{
+//					ProjectId:      pulumi.Any(projectId),
+//					Name:           pulumi.String("Snowflake SL Credential - Password Auth"),
+//					AdapterVersion: pulumi.String("snowflake_v0"),
+//				},
+//				Credential: &dbtcloud.SnowflakeSemanticLayerCredentialCredentialArgs{
+//					ProjectId:               pulumi.Any(projectId),
+//					IsActive:                pulumi.Bool(true),
+//					AuthType:                pulumi.String("password"),
+//					Database:                pulumi.Any(database),
+//					Schema:                  pulumi.Any(schema),
+//					Warehouse:               pulumi.Any(warehouse),
+//					Role:                    pulumi.Any(role),
+//					User:                    pulumi.Any(user),
+//					Password:                pulumi.Any(password),
+//					NumThreads:              pulumi.Int(4),
+//					SemanticLayerCredential: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Example of Snowflake Semantic Layer Credential with key pair authentication
+//			_, err = dbtcloud.NewSnowflakeSemanticLayerCredential(ctx, "keypair_auth", &dbtcloud.SnowflakeSemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.SnowflakeSemanticLayerCredentialConfigurationArgs{
+//					ProjectId:      pulumi.Any(projectId),
+//					Name:           pulumi.String("Snowflake SL Credential - Key Pair Auth"),
+//					AdapterVersion: pulumi.String("snowflake_v0"),
+//				},
+//				Credential: &dbtcloud.SnowflakeSemanticLayerCredentialCredentialArgs{
+//					ProjectId:               pulumi.Any(projectId),
+//					IsActive:                pulumi.Bool(true),
+//					AuthType:                pulumi.String("keypair"),
+//					Database:                pulumi.Any(database),
+//					Schema:                  pulumi.Any(schema),
+//					Warehouse:               pulumi.Any(warehouse),
+//					Role:                    pulumi.Any(role),
+//					PrivateKey:              pulumi.Any(privateKey),
+//					PrivateKeyPassphrase:    pulumi.Any(privateKeyPassphrase),
+//					NumThreads:              pulumi.Int(4),
+//					SemanticLayerCredential: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using import blocks (requires Terraform >= 1.5)

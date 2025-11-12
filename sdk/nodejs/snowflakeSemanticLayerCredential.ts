@@ -11,6 +11,54 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Example of Snowflake Semantic Layer Credential with password authentication
+ * const passwordAuth = new dbtcloud.SnowflakeSemanticLayerCredential("password_auth", {
+ *     configuration: {
+ *         projectId: projectId,
+ *         name: "Snowflake SL Credential - Password Auth",
+ *         adapterVersion: "snowflake_v0",
+ *     },
+ *     credential: {
+ *         projectId: projectId,
+ *         isActive: true,
+ *         authType: "password",
+ *         database: database,
+ *         schema: schema,
+ *         warehouse: warehouse,
+ *         role: role,
+ *         user: user,
+ *         password: password,
+ *         numThreads: 4,
+ *         semanticLayerCredential: true,
+ *     },
+ * });
+ * // Example of Snowflake Semantic Layer Credential with key pair authentication
+ * const keypairAuth = new dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth", {
+ *     configuration: {
+ *         projectId: projectId,
+ *         name: "Snowflake SL Credential - Key Pair Auth",
+ *         adapterVersion: "snowflake_v0",
+ *     },
+ *     credential: {
+ *         projectId: projectId,
+ *         isActive: true,
+ *         authType: "keypair",
+ *         database: database,
+ *         schema: schema,
+ *         warehouse: warehouse,
+ *         role: role,
+ *         privateKey: privateKey,
+ *         privateKeyPassphrase: privateKeyPassphrase,
+ *         numThreads: 4,
+ *         semanticLayerCredential: true,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)

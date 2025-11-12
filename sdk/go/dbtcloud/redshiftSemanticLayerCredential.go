@@ -16,6 +16,42 @@ import (
 //
 // ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbtcloud.NewRedshiftSemanticLayerCredential(ctx, "test_redshift_semantic_layer_credential", &dbtcloud.RedshiftSemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.RedshiftSemanticLayerCredentialConfigurationArgs{
+//					ProjectId:      pulumi.Any(projectId),
+//					Name:           pulumi.String("Redshift SL Credential"),
+//					AdapterVersion: pulumi.String("redshift_v0"),
+//				},
+//				Credential: &dbtcloud.RedshiftSemanticLayerCredentialCredentialArgs{
+//					ProjectId:     pulumi.Any(projectId),
+//					Username:      pulumi.Any(username),
+//					IsActive:      pulumi.Bool(true),
+//					Password:      pulumi.Any(password),
+//					NumThreads:    pulumi.Any(numThreads),
+//					DefaultSchema: pulumi.Any(defaultSchema),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using import blocks (requires Terraform >= 1.5)

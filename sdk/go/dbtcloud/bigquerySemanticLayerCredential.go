@@ -15,6 +15,48 @@ import (
 // BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbtcloud.NewBigquerySemanticLayerCredential(ctx, "example", &dbtcloud.BigquerySemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.BigquerySemanticLayerCredentialConfigurationArgs{
+//					ProjectId:      pulumi.Any(projectId),
+//					Name:           pulumi.String("BigQuery SL Credential"),
+//					AdapterVersion: pulumi.String("bigquery_v0"),
+//				},
+//				Credential: &dbtcloud.BigquerySemanticLayerCredentialCredentialArgs{
+//					ProjectId:  pulumi.Any(projectId),
+//					IsActive:   pulumi.Bool(true),
+//					NumThreads: pulumi.Any(numThreads),
+//					Dataset:    pulumi.Any(dataset),
+//				},
+//				PrivateKeyId:            pulumi.Any(privateKeyId),
+//				PrivateKey:              pulumi.Any(privateKey),
+//				ClientEmail:             pulumi.Any(clientEmail),
+//				ClientId:                pulumi.Any(clientId),
+//				AuthUri:                 pulumi.Any(authUri),
+//				TokenUri:                pulumi.Any(tokenUri),
+//				AuthProviderX509CertUrl: pulumi.Any(authProviderX509CertUrl),
+//				ClientX509CertUrl:       pulumi.Any(clientX509CertUrl),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type BigquerySemanticLayerCredential struct {
 	pulumi.CustomResourceState
 

@@ -21,6 +21,57 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.BigquerySemanticLayerCredential;
+ * import com.pulumi.dbtcloud.BigquerySemanticLayerCredentialArgs;
+ * import com.pulumi.dbtcloud.inputs.BigquerySemanticLayerCredentialConfigurationArgs;
+ * import com.pulumi.dbtcloud.inputs.BigquerySemanticLayerCredentialCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new BigquerySemanticLayerCredential("example", BigquerySemanticLayerCredentialArgs.builder()
+ *             .configuration(BigquerySemanticLayerCredentialConfigurationArgs.builder()
+ *                 .projectId(projectId)
+ *                 .name("BigQuery SL Credential")
+ *                 .adapterVersion("bigquery_v0")
+ *                 .build())
+ *             .credential(BigquerySemanticLayerCredentialCredentialArgs.builder()
+ *                 .projectId(projectId)
+ *                 .isActive(true)
+ *                 .numThreads(numThreads)
+ *                 .dataset(dataset)
+ *                 .build())
+ *             .privateKeyId(privateKeyId)
+ *             .privateKey(privateKey)
+ *             .clientEmail(clientEmail)
+ *             .clientId(clientId)
+ *             .authUri(authUri)
+ *             .tokenUri(tokenUri)
+ *             .authProviderX509CertUrl(authProviderX509CertUrl)
+ *             .clientX509CertUrl(clientX509CertUrl)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential")
 public class BigquerySemanticLayerCredential extends com.pulumi.resources.CustomResource {

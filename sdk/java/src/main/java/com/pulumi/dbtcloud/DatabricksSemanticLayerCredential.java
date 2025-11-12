@@ -19,6 +19,49 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.DatabricksSemanticLayerCredential;
+ * import com.pulumi.dbtcloud.DatabricksSemanticLayerCredentialArgs;
+ * import com.pulumi.dbtcloud.inputs.DatabricksSemanticLayerCredentialConfigurationArgs;
+ * import com.pulumi.dbtcloud.inputs.DatabricksSemanticLayerCredentialCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var slCredDatabricksExample = new DatabricksSemanticLayerCredential("slCredDatabricksExample", DatabricksSemanticLayerCredentialArgs.builder()
+ *             .configuration(DatabricksSemanticLayerCredentialConfigurationArgs.builder()
+ *                 .projectId(projectId)
+ *                 .name("Databricks SL Credential")
+ *                 .adapterVersion("databricks_v0")
+ *                 .build())
+ *             .credential(DatabricksSemanticLayerCredentialCredentialArgs.builder()
+ *                 .projectId(projectId)
+ *                 .catalog(catalog)
+ *                 .token(token)
+ *                 .semanticLayerCredential(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)
