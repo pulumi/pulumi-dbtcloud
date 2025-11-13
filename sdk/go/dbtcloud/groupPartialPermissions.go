@@ -12,6 +12,65 @@ import (
 )
 
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// we add some permissions to the group "TF Group 1" (existing or not) to  a new project
+//			_, err := dbtcloud.NewGroupPartialPermissions(ctx, "tf_group_1", &dbtcloud.GroupPartialPermissionsArgs{
+//				Name: pulumi.String("TF Group 1"),
+//				GroupPermissions: dbtcloud.GroupPartialPermissionsGroupPermissionArray{
+//					&dbtcloud.GroupPartialPermissionsGroupPermissionArgs{
+//						PermissionSet: pulumi.String("developer"),
+//						ProjectId:     pulumi.Any(dbtProject.Id),
+//						AllProjects:   pulumi.Bool(false),
+//						WritableEnvironmentCategories: pulumi.StringArray{
+//							pulumi.String("development"),
+//							pulumi.String("staging"),
+//						},
+//					},
+//					&dbtcloud.GroupPartialPermissionsGroupPermissionArgs{
+//						PermissionSet: pulumi.String("git_admin"),
+//						ProjectId:     pulumi.Any(dbtProject.Id),
+//						AllProjects:   pulumi.Bool(false),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project
+//			// it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+//			_, err = dbtcloud.NewGroupPartialPermissions(ctx, "tf_group_2", &dbtcloud.GroupPartialPermissionsArgs{
+//				Name: pulumi.String("TF Group 2"),
+//				SsoMappingGroups: pulumi.StringArray{
+//					pulumi.String("group2"),
+//				},
+//				GroupPermissions: dbtcloud.GroupPartialPermissionsGroupPermissionArray{
+//					&dbtcloud.GroupPartialPermissionsGroupPermissionArgs{
+//						PermissionSet: pulumi.String("admin"),
+//						ProjectId:     pulumi.Any(dbtProject.Id),
+//						AllProjects:   pulumi.Bool(false),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type GroupPartialPermissions struct {
 	pulumi.CustomResourceState
 

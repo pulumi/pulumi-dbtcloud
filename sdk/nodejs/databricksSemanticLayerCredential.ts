@@ -11,6 +11,25 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const slCredDatabricksExample = new dbtcloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example", {
+ *     configuration: {
+ *         projectId: projectId,
+ *         name: "Databricks SL Credential",
+ *         adapterVersion: "databricks_v0",
+ *     },
+ *     credential: {
+ *         projectId: projectId,
+ *         catalog: catalog,
+ *         token: token,
+ *         semanticLayerCredential: true,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)

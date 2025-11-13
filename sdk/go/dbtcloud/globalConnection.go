@@ -17,6 +17,170 @@ import (
 //
 // ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbtcloud.NewGlobalConnection(ctx, "apache_spark", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My Apache Spark connection"),
+//				ApacheSpark: &dbtcloud.GlobalConnectionApacheSparkArgs{
+//					Method:         pulumi.String("http"),
+//					Host:           pulumi.String("my-spark-host.com"),
+//					Cluster:        pulumi.String("my-cluster"),
+//					ConnectTimeout: pulumi.Int(100),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "athena", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My Athena connection"),
+//				Athena: &dbtcloud.GlobalConnectionAthenaArgs{
+//					RegionName:   pulumi.String("us-east-1"),
+//					Database:     pulumi.String("mydatabase"),
+//					S3StagingDir: pulumi.String("my_dir"),
+//					WorkGroup:    pulumi.String("my_work_group"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "bigquery", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My BigQuery connection"),
+//				Bigquery: &dbtcloud.GlobalConnectionBigqueryArgs{
+//					GcpProjectId:            pulumi.String("my-gcp-project-id"),
+//					TimeoutSeconds:          pulumi.Int(1000),
+//					PrivateKeyId:            pulumi.String("my-private-key-id"),
+//					PrivateKey:              pulumi.String("ABCDEFGHIJKL"),
+//					ClientEmail:             pulumi.String("my_client_email"),
+//					ClientId:                pulumi.String("my_client_id"),
+//					AuthUri:                 pulumi.String("my_auth_uri"),
+//					TokenUri:                pulumi.String("my_token_uri"),
+//					AuthProviderX509CertUrl: pulumi.String("my_auth_provider_x509_cert_url"),
+//					ClientX509CertUrl:       pulumi.String("my_client_x509_cert_url"),
+//					ApplicationId:           pulumi.String("oauth_application_id"),
+//					ApplicationSecret:       pulumi.String("oauth_secret_id"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "databricks", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My Databricks connection"),
+//				Databricks: &dbtcloud.GlobalConnectionDatabricksArgs{
+//					Host:         pulumi.String("my-databricks-host.cloud.databricks.com"),
+//					HttpPath:     pulumi.String("/sql/my/http/path"),
+//					Catalog:      pulumi.String("dbt_catalog"),
+//					ClientId:     pulumi.String("yourclientid"),
+//					ClientSecret: pulumi.String("yourclientsecret"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "fabric", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My Fabric connection"),
+//				Fabric: &dbtcloud.GlobalConnectionFabricArgs{
+//					Server:       pulumi.String("my-fabric-server.com"),
+//					Database:     pulumi.String("mydb"),
+//					Port:         pulumi.Int(1234),
+//					Retries:      pulumi.Int(3),
+//					LoginTimeout: pulumi.Int(60),
+//					QueryTimeout: pulumi.Int(3600),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "postgres", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My PostgreSQL connection"),
+//				Postgres: &dbtcloud.GlobalConnectionPostgresArgs{
+//					Hostname: pulumi.String("my-postgresql-server.com"),
+//					Port:     pulumi.Int(5432),
+//					Dbname:   pulumi.String("my_database"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "redshift", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My Redshift connection"),
+//				Redshift: &dbtcloud.GlobalConnectionRedshiftArgs{
+//					Hostname: pulumi.String("my-redshift-connection.com"),
+//					Port:     pulumi.Int(5432),
+//					Dbname:   pulumi.String("my_database"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "snowflake", &dbtcloud.GlobalConnectionArgs{
+//				Name:                  pulumi.String("My Snowflake connection"),
+//				PrivateLinkEndpointId: pulumi.Any(myPrivateLink.Id),
+//				Snowflake: &dbtcloud.GlobalConnectionSnowflakeArgs{
+//					Account:                pulumi.String("my-snowflake-account"),
+//					Database:               pulumi.String("MY_DATABASE"),
+//					Warehouse:              pulumi.String("MY_WAREHOUSE"),
+//					ClientSessionKeepAlive: pulumi.Bool(false),
+//					AllowSso:               pulumi.Bool(true),
+//					OauthClientId:          pulumi.String("yourclientid"),
+//					OauthClientSecret:      pulumi.String("yourclientsecret"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "starburst", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My Starburst connection"),
+//				Starburst: &dbtcloud.GlobalConnectionStarburstArgs{
+//					Host:     pulumi.String("my-starburst-host.com"),
+//					Database: "mydb",
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "synapse", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My Synapse connection"),
+//				Synapse: &dbtcloud.GlobalConnectionSynapseArgs{
+//					Host:         pulumi.String("my-synapse-server.com"),
+//					Database:     pulumi.String("mydb"),
+//					Port:         pulumi.Int(1234),
+//					Retries:      pulumi.Int(3),
+//					LoginTimeout: pulumi.Int(60),
+//					QueryTimeout: pulumi.Int(3600),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "teradata", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My Teradata connection"),
+//				Teradata: &dbtcloud.GlobalConnectionTeradataArgs{
+//					Host:           pulumi.String("my-teradata-server.com"),
+//					Tmode:          pulumi.String("ANSI"),
+//					Port:           pulumi.String("1234"),
+//					RequestTimeout: pulumi.Int(600),
+//					Retries:        pulumi.Int(3),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // # A project-scoped connection can be imported as a global connection by specifying the connection ID

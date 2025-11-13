@@ -14,6 +14,34 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testPostgresSemanticLayerCredential = new DbtCloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.PostgresSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             Name = "Postgres SL Credential",
+    ///             AdapterVersion = "postgres_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.PostgresSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             Username = username,
+    ///             Password = password,
+    ///             SemanticLayerCredential = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)

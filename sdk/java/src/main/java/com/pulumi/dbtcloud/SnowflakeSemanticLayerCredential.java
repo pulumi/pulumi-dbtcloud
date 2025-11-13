@@ -19,6 +19,79 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.SnowflakeSemanticLayerCredential;
+ * import com.pulumi.dbtcloud.SnowflakeSemanticLayerCredentialArgs;
+ * import com.pulumi.dbtcloud.inputs.SnowflakeSemanticLayerCredentialConfigurationArgs;
+ * import com.pulumi.dbtcloud.inputs.SnowflakeSemanticLayerCredentialCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Example of Snowflake Semantic Layer Credential with password authentication
+ *         var passwordAuth = new SnowflakeSemanticLayerCredential("passwordAuth", SnowflakeSemanticLayerCredentialArgs.builder()
+ *             .configuration(SnowflakeSemanticLayerCredentialConfigurationArgs.builder()
+ *                 .projectId(projectId)
+ *                 .name("Snowflake SL Credential - Password Auth")
+ *                 .adapterVersion("snowflake_v0")
+ *                 .build())
+ *             .credential(SnowflakeSemanticLayerCredentialCredentialArgs.builder()
+ *                 .projectId(projectId)
+ *                 .isActive(true)
+ *                 .authType("password")
+ *                 .database(database)
+ *                 .schema(schema)
+ *                 .warehouse(warehouse)
+ *                 .role(role)
+ *                 .user(user)
+ *                 .password(password)
+ *                 .numThreads(4)
+ *                 .semanticLayerCredential(true)
+ *                 .build())
+ *             .build());
+ * 
+ *         // Example of Snowflake Semantic Layer Credential with key pair authentication
+ *         var keypairAuth = new SnowflakeSemanticLayerCredential("keypairAuth", SnowflakeSemanticLayerCredentialArgs.builder()
+ *             .configuration(SnowflakeSemanticLayerCredentialConfigurationArgs.builder()
+ *                 .projectId(projectId)
+ *                 .name("Snowflake SL Credential - Key Pair Auth")
+ *                 .adapterVersion("snowflake_v0")
+ *                 .build())
+ *             .credential(SnowflakeSemanticLayerCredentialCredentialArgs.builder()
+ *                 .projectId(projectId)
+ *                 .isActive(true)
+ *                 .authType("keypair")
+ *                 .database(database)
+ *                 .schema(schema)
+ *                 .warehouse(warehouse)
+ *                 .role(role)
+ *                 .privateKey(privateKey)
+ *                 .privateKeyPassphrase(privateKeyPassphrase)
+ *                 .numThreads(4)
+ *                 .semanticLayerCredential(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)

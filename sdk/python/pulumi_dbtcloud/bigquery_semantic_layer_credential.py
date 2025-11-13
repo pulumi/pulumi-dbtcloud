@@ -366,6 +366,32 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
 
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        example = dbtcloud.BigquerySemanticLayerCredential("example",
+            configuration={
+                "project_id": project_id,
+                "name": "BigQuery SL Credential",
+                "adapter_version": "bigquery_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "is_active": True,
+                "num_threads": num_threads,
+                "dataset": dataset,
+            },
+            private_key_id=private_key_id,
+            private_key=private_key,
+            client_email=client_email,
+            client_id=client_id,
+            auth_uri=auth_uri,
+            token_uri=token_uri,
+            auth_provider_x509_cert_url=auth_provider_x509_cert_url,
+            client_x509_cert_url=client_x509_cert_url)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
@@ -389,6 +415,32 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         BigQuery credential resource. This resource is composed of a BigQuery credential and a Semantic Layer configuration. It is used to create a BigQuery credential for the Semantic Layer.
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        example = dbtcloud.BigquerySemanticLayerCredential("example",
+            configuration={
+                "project_id": project_id,
+                "name": "BigQuery SL Credential",
+                "adapter_version": "bigquery_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "is_active": True,
+                "num_threads": num_threads,
+                "dataset": dataset,
+            },
+            private_key_id=private_key_id,
+            private_key=private_key,
+            client_email=client_email,
+            client_id=client_id,
+            auth_uri=auth_uri,
+            token_uri=token_uri,
+            auth_provider_x509_cert_url=auth_provider_x509_cert_url,
+            client_x509_cert_url=client_x509_cert_url)
+        ```
 
         :param str resource_name: The name of the resource.
         :param BigquerySemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.

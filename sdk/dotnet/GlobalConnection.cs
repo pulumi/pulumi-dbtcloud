@@ -16,6 +16,163 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var apacheSpark = new DbtCloud.GlobalConnection("apache_spark", new()
+    ///     {
+    ///         Name = "My Apache Spark connection",
+    ///         ApacheSpark = new DbtCloud.Inputs.GlobalConnectionApacheSparkArgs
+    ///         {
+    ///             Method = "http",
+    ///             Host = "my-spark-host.com",
+    ///             Cluster = "my-cluster",
+    ///             ConnectTimeout = 100,
+    ///         },
+    ///     });
+    /// 
+    ///     var athena = new DbtCloud.GlobalConnection("athena", new()
+    ///     {
+    ///         Name = "My Athena connection",
+    ///         Athena = new DbtCloud.Inputs.GlobalConnectionAthenaArgs
+    ///         {
+    ///             RegionName = "us-east-1",
+    ///             Database = "mydatabase",
+    ///             S3StagingDir = "my_dir",
+    ///             WorkGroup = "my_work_group",
+    ///         },
+    ///     });
+    /// 
+    ///     var bigquery = new DbtCloud.GlobalConnection("bigquery", new()
+    ///     {
+    ///         Name = "My BigQuery connection",
+    ///         Bigquery = new DbtCloud.Inputs.GlobalConnectionBigqueryArgs
+    ///         {
+    ///             GcpProjectId = "my-gcp-project-id",
+    ///             TimeoutSeconds = 1000,
+    ///             PrivateKeyId = "my-private-key-id",
+    ///             PrivateKey = "ABCDEFGHIJKL",
+    ///             ClientEmail = "my_client_email",
+    ///             ClientId = "my_client_id",
+    ///             AuthUri = "my_auth_uri",
+    ///             TokenUri = "my_token_uri",
+    ///             AuthProviderX509CertUrl = "my_auth_provider_x509_cert_url",
+    ///             ClientX509CertUrl = "my_client_x509_cert_url",
+    ///             ApplicationId = "oauth_application_id",
+    ///             ApplicationSecret = "oauth_secret_id",
+    ///         },
+    ///     });
+    /// 
+    ///     var databricks = new DbtCloud.GlobalConnection("databricks", new()
+    ///     {
+    ///         Name = "My Databricks connection",
+    ///         Databricks = new DbtCloud.Inputs.GlobalConnectionDatabricksArgs
+    ///         {
+    ///             Host = "my-databricks-host.cloud.databricks.com",
+    ///             HttpPath = "/sql/my/http/path",
+    ///             Catalog = "dbt_catalog",
+    ///             ClientId = "yourclientid",
+    ///             ClientSecret = "yourclientsecret",
+    ///         },
+    ///     });
+    /// 
+    ///     var fabric = new DbtCloud.GlobalConnection("fabric", new()
+    ///     {
+    ///         Name = "My Fabric connection",
+    ///         Fabric = new DbtCloud.Inputs.GlobalConnectionFabricArgs
+    ///         {
+    ///             Server = "my-fabric-server.com",
+    ///             Database = "mydb",
+    ///             Port = 1234,
+    ///             Retries = 3,
+    ///             LoginTimeout = 60,
+    ///             QueryTimeout = 3600,
+    ///         },
+    ///     });
+    /// 
+    ///     var postgres = new DbtCloud.GlobalConnection("postgres", new()
+    ///     {
+    ///         Name = "My PostgreSQL connection",
+    ///         Postgres = new DbtCloud.Inputs.GlobalConnectionPostgresArgs
+    ///         {
+    ///             Hostname = "my-postgresql-server.com",
+    ///             Port = 5432,
+    ///             Dbname = "my_database",
+    ///         },
+    ///     });
+    /// 
+    ///     var redshift = new DbtCloud.GlobalConnection("redshift", new()
+    ///     {
+    ///         Name = "My Redshift connection",
+    ///         Redshift = new DbtCloud.Inputs.GlobalConnectionRedshiftArgs
+    ///         {
+    ///             Hostname = "my-redshift-connection.com",
+    ///             Port = 5432,
+    ///             Dbname = "my_database",
+    ///         },
+    ///     });
+    /// 
+    ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+    ///     {
+    ///         Name = "My Snowflake connection",
+    ///         PrivateLinkEndpointId = myPrivateLink.Id,
+    ///         Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+    ///         {
+    ///             Account = "my-snowflake-account",
+    ///             Database = "MY_DATABASE",
+    ///             Warehouse = "MY_WAREHOUSE",
+    ///             ClientSessionKeepAlive = false,
+    ///             AllowSso = true,
+    ///             OauthClientId = "yourclientid",
+    ///             OauthClientSecret = "yourclientsecret",
+    ///         },
+    ///     });
+    /// 
+    ///     var starburst = new DbtCloud.GlobalConnection("starburst", new()
+    ///     {
+    ///         Name = "My Starburst connection",
+    ///         Starburst = new DbtCloud.Inputs.GlobalConnectionStarburstArgs
+    ///         {
+    ///             Host = "my-starburst-host.com",
+    ///             Database = "mydb",
+    ///         },
+    ///     });
+    /// 
+    ///     var synapse = new DbtCloud.GlobalConnection("synapse", new()
+    ///     {
+    ///         Name = "My Synapse connection",
+    ///         Synapse = new DbtCloud.Inputs.GlobalConnectionSynapseArgs
+    ///         {
+    ///             Host = "my-synapse-server.com",
+    ///             Database = "mydb",
+    ///             Port = 1234,
+    ///             Retries = 3,
+    ///             LoginTimeout = 60,
+    ///             QueryTimeout = 3600,
+    ///         },
+    ///     });
+    /// 
+    ///     var teradata = new DbtCloud.GlobalConnection("teradata", new()
+    ///     {
+    ///         Name = "My Teradata connection",
+    ///         Teradata = new DbtCloud.Inputs.GlobalConnectionTeradataArgs
+    ///         {
+    ///             Host = "my-teradata-server.com",
+    ///             Tmode = "ANSI",
+    ///             Port = "1234",
+    ///             RequestTimeout = 600,
+    ///             Retries = 3,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A project-scoped connection can be imported as a global connection by specifying the connection ID
