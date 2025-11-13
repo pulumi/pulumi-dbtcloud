@@ -110,6 +110,24 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
 
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        test_postgres_semantic_layer_credential = dbtcloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential",
+            configuration={
+                "project_id": project_id,
+                "name": "Postgres SL Credential",
+                "adapter_version": "postgres_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "username": username,
+                "password": password,
+                "semantic_layer_credential": True,
+            })
+        ```
+
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
@@ -155,6 +173,24 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
         Postgres credential resource. This resource is composed of a Postgres credential and a Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        test_postgres_semantic_layer_credential = dbtcloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential",
+            configuration={
+                "project_id": project_id,
+                "name": "Postgres SL Credential",
+                "adapter_version": "postgres_v0",
+            },
+            credential={
+                "project_id": project_id,
+                "username": username,
+                "password": password,
+                "semantic_layer_credential": True,
+            })
+        ```
 
         ## Import
 

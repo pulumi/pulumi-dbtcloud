@@ -16,6 +16,40 @@ import (
 //
 // ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbtcloud.NewDatabricksSemanticLayerCredential(ctx, "sl_cred_databricks_example", &dbtcloud.DatabricksSemanticLayerCredentialArgs{
+//				Configuration: &dbtcloud.DatabricksSemanticLayerCredentialConfigurationArgs{
+//					ProjectId:      pulumi.Any(projectId),
+//					Name:           pulumi.String("Databricks SL Credential"),
+//					AdapterVersion: pulumi.String("databricks_v0"),
+//				},
+//				Credential: &dbtcloud.DatabricksSemanticLayerCredentialCredentialArgs{
+//					ProjectId:               pulumi.Any(projectId),
+//					Catalog:                 pulumi.Any(catalog),
+//					Token:                   pulumi.Any(token),
+//					SemanticLayerCredential: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using import blocks (requires Terraform >= 1.5)

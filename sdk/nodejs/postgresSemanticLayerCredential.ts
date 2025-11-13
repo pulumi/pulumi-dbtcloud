@@ -11,6 +11,25 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const testPostgresSemanticLayerCredential = new dbtcloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential", {
+ *     configuration: {
+ *         projectId: projectId,
+ *         name: "Postgres SL Credential",
+ *         adapterVersion: "postgres_v0",
+ *     },
+ *     credential: {
+ *         projectId: projectId,
+ *         username: username,
+ *         password: password,
+ *         semanticLayerCredential: true,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)

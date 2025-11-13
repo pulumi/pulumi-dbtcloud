@@ -13,6 +13,125 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * const apacheSpark = new dbtcloud.GlobalConnection("apache_spark", {
+ *     name: "My Apache Spark connection",
+ *     apacheSpark: {
+ *         method: "http",
+ *         host: "my-spark-host.com",
+ *         cluster: "my-cluster",
+ *         connectTimeout: 100,
+ *     },
+ * });
+ * const athena = new dbtcloud.GlobalConnection("athena", {
+ *     name: "My Athena connection",
+ *     athena: {
+ *         regionName: "us-east-1",
+ *         database: "mydatabase",
+ *         s3StagingDir: "my_dir",
+ *         workGroup: "my_work_group",
+ *     },
+ * });
+ * const bigquery = new dbtcloud.GlobalConnection("bigquery", {
+ *     name: "My BigQuery connection",
+ *     bigquery: {
+ *         gcpProjectId: "my-gcp-project-id",
+ *         timeoutSeconds: 1000,
+ *         privateKeyId: "my-private-key-id",
+ *         privateKey: "ABCDEFGHIJKL",
+ *         clientEmail: "my_client_email",
+ *         clientId: "my_client_id",
+ *         authUri: "my_auth_uri",
+ *         tokenUri: "my_token_uri",
+ *         authProviderX509CertUrl: "my_auth_provider_x509_cert_url",
+ *         clientX509CertUrl: "my_client_x509_cert_url",
+ *         applicationId: "oauth_application_id",
+ *         applicationSecret: "oauth_secret_id",
+ *     },
+ * });
+ * const databricks = new dbtcloud.GlobalConnection("databricks", {
+ *     name: "My Databricks connection",
+ *     databricks: {
+ *         host: "my-databricks-host.cloud.databricks.com",
+ *         httpPath: "/sql/my/http/path",
+ *         catalog: "dbt_catalog",
+ *         clientId: "yourclientid",
+ *         clientSecret: "yourclientsecret",
+ *     },
+ * });
+ * const fabric = new dbtcloud.GlobalConnection("fabric", {
+ *     name: "My Fabric connection",
+ *     fabric: {
+ *         server: "my-fabric-server.com",
+ *         database: "mydb",
+ *         port: 1234,
+ *         retries: 3,
+ *         loginTimeout: 60,
+ *         queryTimeout: 3600,
+ *     },
+ * });
+ * const postgres = new dbtcloud.GlobalConnection("postgres", {
+ *     name: "My PostgreSQL connection",
+ *     postgres: {
+ *         hostname: "my-postgresql-server.com",
+ *         port: 5432,
+ *         dbname: "my_database",
+ *     },
+ * });
+ * const redshift = new dbtcloud.GlobalConnection("redshift", {
+ *     name: "My Redshift connection",
+ *     redshift: {
+ *         hostname: "my-redshift-connection.com",
+ *         port: 5432,
+ *         dbname: "my_database",
+ *     },
+ * });
+ * const snowflake = new dbtcloud.GlobalConnection("snowflake", {
+ *     name: "My Snowflake connection",
+ *     privateLinkEndpointId: myPrivateLink.id,
+ *     snowflake: {
+ *         account: "my-snowflake-account",
+ *         database: "MY_DATABASE",
+ *         warehouse: "MY_WAREHOUSE",
+ *         clientSessionKeepAlive: false,
+ *         allowSso: true,
+ *         oauthClientId: "yourclientid",
+ *         oauthClientSecret: "yourclientsecret",
+ *     },
+ * });
+ * const starburst = new dbtcloud.GlobalConnection("starburst", {
+ *     name: "My Starburst connection",
+ *     starburst: {
+ *         host: "my-starburst-host.com",
+ *         database: "mydb",
+ *     },
+ * });
+ * const synapse = new dbtcloud.GlobalConnection("synapse", {
+ *     name: "My Synapse connection",
+ *     synapse: {
+ *         host: "my-synapse-server.com",
+ *         database: "mydb",
+ *         port: 1234,
+ *         retries: 3,
+ *         loginTimeout: 60,
+ *         queryTimeout: 3600,
+ *     },
+ * });
+ * const teradata = new dbtcloud.GlobalConnection("teradata", {
+ *     name: "My Teradata connection",
+ *     teradata: {
+ *         host: "my-teradata-server.com",
+ *         tmode: "ANSI",
+ *         port: "1234",
+ *         requestTimeout: 600,
+ *         retries: 3,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * A project-scoped connection can be imported as a global connection by specifying the connection ID

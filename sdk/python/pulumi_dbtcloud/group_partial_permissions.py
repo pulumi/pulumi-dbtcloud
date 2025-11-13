@@ -176,6 +176,41 @@ class GroupPartialPermissions(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # we add some permissions to the group "TF Group 1" (existing or not) to  a new project 
+        tf_group1 = dbtcloud.GroupPartialPermissions("tf_group_1",
+            name="TF Group 1",
+            group_permissions=[
+                {
+                    "permission_set": "developer",
+                    "project_id": dbt_project["id"],
+                    "all_projects": False,
+                    "writable_environment_categories": [
+                        "development",
+                        "staging",
+                    ],
+                },
+                {
+                    "permission_set": "git_admin",
+                    "project_id": dbt_project["id"],
+                    "all_projects": False,
+                },
+            ])
+        # we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
+        # it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+        tf_group2 = dbtcloud.GroupPartialPermissions("tf_group_2",
+            name="TF Group 2",
+            sso_mapping_groups=["group2"],
+            group_permissions=[{
+                "permission_set": "admin",
+                "project_id": dbt_project["id"],
+                "all_projects": False,
+            }])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
@@ -191,6 +226,41 @@ class GroupPartialPermissions(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # we add some permissions to the group "TF Group 1" (existing or not) to  a new project 
+        tf_group1 = dbtcloud.GroupPartialPermissions("tf_group_1",
+            name="TF Group 1",
+            group_permissions=[
+                {
+                    "permission_set": "developer",
+                    "project_id": dbt_project["id"],
+                    "all_projects": False,
+                    "writable_environment_categories": [
+                        "development",
+                        "staging",
+                    ],
+                },
+                {
+                    "permission_set": "git_admin",
+                    "project_id": dbt_project["id"],
+                    "all_projects": False,
+                },
+            ])
+        # we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
+        # it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+        tf_group2 = dbtcloud.GroupPartialPermissions("tf_group_2",
+            name="TF Group 2",
+            sso_mapping_groups=["group2"],
+            group_permissions=[{
+                "permission_set": "admin",
+                "project_id": dbt_project["id"],
+                "all_projects": False,
+            }])
+        ```
 
         :param str resource_name: The name of the resource.
         :param GroupPartialPermissionsArgs args: The arguments to use to populate this resource's properties.

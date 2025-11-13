@@ -14,6 +14,36 @@ namespace Pulumi.DbtCloud
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRedshiftSemanticLayerCredential = new DbtCloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential", new()
+    ///     {
+    ///         Configuration = new DbtCloud.Inputs.RedshiftSemanticLayerCredentialConfigurationArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             Name = "Redshift SL Credential",
+    ///             AdapterVersion = "redshift_v0",
+    ///         },
+    ///         Credential = new DbtCloud.Inputs.RedshiftSemanticLayerCredentialCredentialArgs
+    ///         {
+    ///             ProjectId = projectId,
+    ///             Username = username,
+    ///             IsActive = true,
+    ///             Password = password,
+    ///             NumThreads = numThreads,
+    ///             DefaultSchema = defaultSchema,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using import blocks (requires Terraform &gt;= 1.5)
