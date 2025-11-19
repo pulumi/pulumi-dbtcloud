@@ -125,14 +125,14 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return this.connectionId;
     }
     /**
-     * The project ID to which the environment belongs.
+     * The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      * 
      */
     @Export(name="credentialId", refs={Integer.class}, tree="[0]")
     private Output<Integer> credentialId;
 
     /**
-     * @return The project ID to which the environment belongs.
+     * @return The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      * 
      */
     public Output<Integer> credentialId() {

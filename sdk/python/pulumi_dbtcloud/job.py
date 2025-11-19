@@ -31,6 +31,7 @@ class JobArgs:
                  deferring_job_id: Optional[pulumi.Input[_builtins.int]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
                  generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]] = None,
@@ -61,6 +62,7 @@ class JobArgs:
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -96,6 +98,8 @@ class JobArgs:
             pulumi.set(__self__, "description", description)
         if errors_on_lint_failure is not None:
             pulumi.set(__self__, "errors_on_lint_failure", errors_on_lint_failure)
+        if force_node_selection is not None:
+            pulumi.set(__self__, "force_node_selection", force_node_selection)
         if generate_docs is not None:
             pulumi.set(__self__, "generate_docs", generate_docs)
         if is_active is not None:
@@ -255,6 +259,18 @@ class JobArgs:
     @errors_on_lint_failure.setter
     def errors_on_lint_failure(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "errors_on_lint_failure", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNodeSelection")
+    def force_node_selection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        """
+        return pulumi.get(self, "force_node_selection")
+
+    @force_node_selection.setter
+    def force_node_selection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_node_selection", value)
 
     @_builtins.property
     @pulumi.getter(name="generateDocs")
@@ -485,6 +501,7 @@ class _JobState:
                  environment_id: Optional[pulumi.Input[_builtins.int]] = None,
                  errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
                  generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]] = None,
@@ -516,6 +533,7 @@ class _JobState:
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
+        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -554,6 +572,8 @@ class _JobState:
             pulumi.set(__self__, "errors_on_lint_failure", errors_on_lint_failure)
         if execute_steps is not None:
             pulumi.set(__self__, "execute_steps", execute_steps)
+        if force_node_selection is not None:
+            pulumi.set(__self__, "force_node_selection", force_node_selection)
         if generate_docs is not None:
             pulumi.set(__self__, "generate_docs", generate_docs)
         if is_active is not None:
@@ -695,6 +715,18 @@ class _JobState:
     @execute_steps.setter
     def execute_steps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "execute_steps", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNodeSelection")
+    def force_node_selection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        """
+        return pulumi.get(self, "force_node_selection")
+
+    @force_node_selection.setter
+    def force_node_selection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_node_selection", value)
 
     @_builtins.property
     @pulumi.getter(name="generateDocs")
@@ -964,6 +996,7 @@ class Job(pulumi.CustomResource):
                  environment_id: Optional[pulumi.Input[_builtins.int]] = None,
                  errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
                  generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
@@ -1026,6 +1059,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
+        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -1107,6 +1141,7 @@ class Job(pulumi.CustomResource):
                  environment_id: Optional[pulumi.Input[_builtins.int]] = None,
                  errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
                  generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
@@ -1148,6 +1183,7 @@ class Job(pulumi.CustomResource):
             if execute_steps is None and not opts.urn:
                 raise TypeError("Missing required property 'execute_steps'")
             __props__.__dict__["execute_steps"] = execute_steps
+            __props__.__dict__["force_node_selection"] = force_node_selection
             __props__.__dict__["generate_docs"] = generate_docs
             __props__.__dict__["is_active"] = is_active
             __props__.__dict__["job_completion_trigger_conditions"] = job_completion_trigger_conditions
@@ -1191,6 +1227,7 @@ class Job(pulumi.CustomResource):
             environment_id: Optional[pulumi.Input[_builtins.int]] = None,
             errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
             execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
             generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
             is_active: Optional[pulumi.Input[_builtins.bool]] = None,
             job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
@@ -1227,6 +1264,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
+        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -1261,6 +1299,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["errors_on_lint_failure"] = errors_on_lint_failure
         __props__.__dict__["execute_steps"] = execute_steps
+        __props__.__dict__["force_node_selection"] = force_node_selection
         __props__.__dict__["generate_docs"] = generate_docs
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["job_completion_trigger_conditions"] = job_completion_trigger_conditions
@@ -1347,6 +1386,14 @@ class Job(pulumi.CustomResource):
         List of commands to execute for the job
         """
         return pulumi.get(self, "execute_steps")
+
+    @_builtins.property
+    @pulumi.getter(name="forceNodeSelection")
+    def force_node_selection(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        """
+        return pulumi.get(self, "force_node_selection")
 
     @_builtins.property
     @pulumi.getter(name="generateDocs")

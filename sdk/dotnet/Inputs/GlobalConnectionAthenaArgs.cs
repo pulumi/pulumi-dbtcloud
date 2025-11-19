@@ -49,7 +49,7 @@ namespace Pulumi.DbtCloud.Inputs
         public Input<string> RegionName { get; set; } = null!;
 
         /// <summary>
-        /// Prefix for storing tables, if different from the connection's S3 staging directory.
+        /// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         /// </summary>
         [Input("s3DataDir")]
         public Input<string>? S3DataDir { get; set; }
@@ -61,13 +61,13 @@ namespace Pulumi.DbtCloud.Inputs
         public Input<string>? S3DataNaming { get; set; }
 
         /// <summary>
-        /// S3 location to store Athena query results and metadata.
+        /// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
         /// </summary>
         [Input("s3StagingDir", required: true)]
         public Input<string> S3StagingDir { get; set; } = null!;
 
         /// <summary>
-        /// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        /// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         /// </summary>
         [Input("s3TmpTableDir")]
         public Input<string>? S3TmpTableDir { get; set; }

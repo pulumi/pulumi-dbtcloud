@@ -92,6 +92,12 @@ namespace Pulumi.DbtCloud
         public Output<ImmutableArray<string>> ExecuteSteps { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to force node selection (SAO - Select All Optimizations) for the job. If `DbtVersion` is not set to `latest-fusion`, this must be set to `True` when specified.
+        /// </summary>
+        [Output("forceNodeSelection")]
+        public Output<bool> ForceNodeSelection { get; private set; } = null!;
+
+        /// <summary>
         /// Flag for whether the job should generate documentation
         /// </summary>
         [Output("generateDocs")]
@@ -319,6 +325,12 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
+        /// Whether to force node selection (SAO - Select All Optimizations) for the job. If `DbtVersion` is not set to `latest-fusion`, this must be set to `True` when specified.
+        /// </summary>
+        [Input("forceNodeSelection")]
+        public Input<bool>? ForceNodeSelection { get; set; }
+
+        /// <summary>
         /// Flag for whether the job should generate documentation
         /// </summary>
         [Input("generateDocs")]
@@ -517,6 +529,12 @@ namespace Pulumi.DbtCloud
             get => _executeSteps ?? (_executeSteps = new InputList<string>());
             set => _executeSteps = value;
         }
+
+        /// <summary>
+        /// Whether to force node selection (SAO - Select All Optimizations) for the job. If `DbtVersion` is not set to `latest-fusion`, this must be set to `True` when specified.
+        /// </summary>
+        [Input("forceNodeSelection")]
+        public Input<bool>? ForceNodeSelection { get; set; }
 
         /// <summary>
         /// Flag for whether the job should generate documentation

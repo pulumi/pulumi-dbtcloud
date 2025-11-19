@@ -60,6 +60,11 @@ public final class GetJobsJob {
     private List<String> executeSteps;
     private GetJobsJobExecution execution;
     /**
+     * @return Whether force node selection (SAO) is enabled for this job
+     * 
+     */
+    private Boolean forceNodeSelection;
+    /**
      * @return Whether the job generate docs
      * 
      */
@@ -180,6 +185,13 @@ public final class GetJobsJob {
         return this.execution;
     }
     /**
+     * @return Whether force node selection (SAO) is enabled for this job
+     * 
+     */
+    public Boolean forceNodeSelection() {
+        return this.forceNodeSelection;
+    }
+    /**
      * @return Whether the job generate docs
      * 
      */
@@ -287,6 +299,7 @@ public final class GetJobsJob {
         private Integer environmentId;
         private List<String> executeSteps;
         private GetJobsJobExecution execution;
+        private Boolean forceNodeSelection;
         private Boolean generateDocs;
         private Integer id;
         private GetJobsJobJobCompletionTriggerCondition jobCompletionTriggerCondition;
@@ -312,6 +325,7 @@ public final class GetJobsJob {
     	      this.environmentId = defaults.environmentId;
     	      this.executeSteps = defaults.executeSteps;
     	      this.execution = defaults.execution;
+    	      this.forceNodeSelection = defaults.forceNodeSelection;
     	      this.generateDocs = defaults.generateDocs;
     	      this.id = defaults.id;
     	      this.jobCompletionTriggerCondition = defaults.jobCompletionTriggerCondition;
@@ -393,6 +407,14 @@ public final class GetJobsJob {
               throw new MissingRequiredPropertyException("GetJobsJob", "execution");
             }
             this.execution = execution;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder forceNodeSelection(Boolean forceNodeSelection) {
+            if (forceNodeSelection == null) {
+              throw new MissingRequiredPropertyException("GetJobsJob", "forceNodeSelection");
+            }
+            this.forceNodeSelection = forceNodeSelection;
             return this;
         }
         @CustomType.Setter
@@ -517,6 +539,7 @@ public final class GetJobsJob {
             _resultValue.environmentId = environmentId;
             _resultValue.executeSteps = executeSteps;
             _resultValue.execution = execution;
+            _resultValue.forceNodeSelection = forceNodeSelection;
             _resultValue.generateDocs = generateDocs;
             _resultValue.id = id;
             _resultValue.jobCompletionTriggerCondition = jobCompletionTriggerCondition;

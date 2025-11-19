@@ -44,7 +44,7 @@ public final class GlobalConnectionAthena {
      */
     private String regionName;
     /**
-     * @return Prefix for storing tables, if different from the connection&#39;s S3 staging directory.
+     * @return Prefix for storing tables, if different from the connection&#39;s S3 staging directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     private @Nullable String s3DataDir;
@@ -54,12 +54,12 @@ public final class GlobalConnectionAthena {
      */
     private @Nullable String s3DataNaming;
     /**
-     * @return S3 location to store Athena query results and metadata.
+     * @return S3 location to store Athena query results and metadata. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     private String s3StagingDir;
     /**
-     * @return Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory.
+     * @return Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     private @Nullable String s3TmpTableDir;
@@ -118,7 +118,7 @@ public final class GlobalConnectionAthena {
         return this.regionName;
     }
     /**
-     * @return Prefix for storing tables, if different from the connection&#39;s S3 staging directory.
+     * @return Prefix for storing tables, if different from the connection&#39;s S3 staging directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     public Optional<String> s3DataDir() {
@@ -132,14 +132,14 @@ public final class GlobalConnectionAthena {
         return Optional.ofNullable(this.s3DataNaming);
     }
     /**
-     * @return S3 location to store Athena query results and metadata.
+     * @return S3 location to store Athena query results and metadata. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     public String s3StagingDir() {
         return this.s3StagingDir;
     }
     /**
-     * @return Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory.
+     * @return Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     public Optional<String> s3TmpTableDir() {

@@ -108,14 +108,14 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * Prefix for storing tables, if different from the connection&#39;s S3 staging directory.
+     * Prefix for storing tables, if different from the connection&#39;s S3 staging directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     @Import(name="s3DataDir")
     private @Nullable Output<String> s3DataDir;
 
     /**
-     * @return Prefix for storing tables, if different from the connection&#39;s S3 staging directory.
+     * @return Prefix for storing tables, if different from the connection&#39;s S3 staging directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     public Optional<Output<String>> s3DataDir() {
@@ -138,14 +138,14 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * S3 location to store Athena query results and metadata.
+     * S3 location to store Athena query results and metadata. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     @Import(name="s3StagingDir", required=true)
     private Output<String> s3StagingDir;
 
     /**
-     * @return S3 location to store Athena query results and metadata.
+     * @return S3 location to store Athena query results and metadata. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     public Output<String> s3StagingDir() {
@@ -153,14 +153,14 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory.
+     * Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     @Import(name="s3TmpTableDir")
     private @Nullable Output<String> s3TmpTableDir;
 
     /**
-     * @return Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory.
+     * @return Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
      * 
      */
     public Optional<Output<String>> s3TmpTableDir() {
@@ -359,7 +359,7 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param s3DataDir Prefix for storing tables, if different from the connection&#39;s S3 staging directory.
+         * @param s3DataDir Prefix for storing tables, if different from the connection&#39;s S3 staging directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
          * 
          * @return builder
          * 
@@ -370,7 +370,7 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param s3DataDir Prefix for storing tables, if different from the connection&#39;s S3 staging directory.
+         * @param s3DataDir Prefix for storing tables, if different from the connection&#39;s S3 staging directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
          * 
          * @return builder
          * 
@@ -401,7 +401,7 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param s3StagingDir S3 location to store Athena query results and metadata.
+         * @param s3StagingDir S3 location to store Athena query results and metadata. Must be in the format &#39;s3://bucket-name/path/&#39;.
          * 
          * @return builder
          * 
@@ -412,7 +412,7 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param s3StagingDir S3 location to store Athena query results and metadata.
+         * @param s3StagingDir S3 location to store Athena query results and metadata. Must be in the format &#39;s3://bucket-name/path/&#39;.
          * 
          * @return builder
          * 
@@ -422,7 +422,7 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param s3TmpTableDir Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory.
+         * @param s3TmpTableDir Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
          * 
          * @return builder
          * 
@@ -433,7 +433,7 @@ public final class GlobalConnectionAthenaArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param s3TmpTableDir Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory.
+         * @param s3TmpTableDir Prefix for storing temporary tables, if different from the connection&#39;s S3 data directory. Must be in the format &#39;s3://bucket-name/path/&#39;.
          * 
          * @return builder
          * 

@@ -14,7 +14,7 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class DatabricksSemanticLayerCredentialCredential
     {
         /// <summary>
-        /// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        /// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         /// </summary>
         public readonly string? AdapterType;
         /// <summary>

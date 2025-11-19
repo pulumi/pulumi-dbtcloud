@@ -67,6 +67,10 @@ export interface GetJobResult {
     readonly executeSteps: string[];
     readonly execution: outputs.GetJobExecution;
     /**
+     * Whether force node selection (SAO) is enabled for this job
+     */
+    readonly forceNodeSelection: boolean;
+    /**
      * Whether the job generate docs
      */
     readonly generateDocs: boolean;

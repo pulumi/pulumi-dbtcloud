@@ -80,7 +80,9 @@ export class DatabricksCredential extends pulumi.CustomResource {
     }
 
     /**
-     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     *
+     * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      */
     declare public readonly adapterType: pulumi.Output<string>;
     /**
@@ -164,7 +166,9 @@ export class DatabricksCredential extends pulumi.CustomResource {
  */
 export interface DatabricksCredentialState {
     /**
-     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     *
+     * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      */
     adapterType?: pulumi.Input<string>;
     /**
@@ -204,7 +208,9 @@ export interface DatabricksCredentialState {
  */
 export interface DatabricksCredentialArgs {
     /**
-     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     *
+     * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      */
     adapterType?: pulumi.Input<string>;
     /**

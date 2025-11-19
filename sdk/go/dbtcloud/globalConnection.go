@@ -46,8 +46,9 @@ import (
 //				Athena: &dbtcloud.GlobalConnectionAthenaArgs{
 //					RegionName:   pulumi.String("us-east-1"),
 //					Database:     pulumi.String("mydatabase"),
-//					S3StagingDir: pulumi.String("my_dir"),
+//					S3StagingDir: pulumi.String("s3://my-bucket/my-staging-dir/"),
 //					WorkGroup:    pulumi.String("my_work_group"),
+//					S3DataDir:    pulumi.String("s3://my-bucket/my-data-dir/"),
 //				},
 //			})
 //			if err != nil {

@@ -89,14 +89,18 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/databricksCredential:DatabricksCredential")
 public class DatabricksCredential extends com.pulumi.resources.CustomResource {
     /**
-     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
     @Export(name="adapterType", refs={String.class}, tree="[0]")
     private Output<String> adapterType;
 
     /**
-     * @return The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * @return The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
      * 
      */
     public Output<String> adapterType() {

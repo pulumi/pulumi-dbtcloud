@@ -67,6 +67,8 @@ __all__ = [
     'RedshiftSemanticLayerCredentialConfigurationArgsDict',
     'RedshiftSemanticLayerCredentialCredentialArgs',
     'RedshiftSemanticLayerCredentialCredentialArgsDict',
+    'ScimGroupPartialPermissionsPermissionArgs',
+    'ScimGroupPartialPermissionsPermissionArgsDict',
     'ScimGroupPermissionsPermissionArgs',
     'ScimGroupPermissionsPermissionArgsDict',
     'ServiceTokenServiceTokenPermissionArgs',
@@ -364,7 +366,7 @@ if not MYPY:
         """
         adapter_type: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         """
         catalog: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -408,7 +410,7 @@ class DatabricksSemanticLayerCredentialCredentialArgs:
         """
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Databricks credential in
         :param pulumi.Input[_builtins.str] token: Token for Databricks user
-        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[_builtins.int] credential_id: The system Databricks credential ID
         :param pulumi.Input[_builtins.str] id: The ID of this resource. Contains the project ID and the credential ID.
@@ -418,6 +420,9 @@ class DatabricksSemanticLayerCredentialCredentialArgs:
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "token", token)
+        if adapter_type is not None:
+            warnings.warn("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""", DeprecationWarning)
+            pulumi.log.warn("""adapter_type is deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
         if adapter_type is not None:
             pulumi.set(__self__, "adapter_type", adapter_type)
         if catalog is not None:
@@ -462,9 +467,10 @@ class DatabricksSemanticLayerCredentialCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="adapterType")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
     def adapter_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "adapter_type")
 
@@ -747,7 +753,7 @@ if not MYPY:
         """
         s3_staging_dir: pulumi.Input[_builtins.str]
         """
-        S3 location to store Athena query results and metadata.
+        S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
         """
         num_boto3_retries: NotRequired[pulumi.Input[_builtins.int]]
         """
@@ -767,7 +773,7 @@ if not MYPY:
         """
         s3_data_dir: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Prefix for storing tables, if different from the connection's S3 staging directory.
+        Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         """
         s3_data_naming: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -775,7 +781,7 @@ if not MYPY:
         """
         s3_tmp_table_dir: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         """
         spark_work_group: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -806,14 +812,14 @@ class GlobalConnectionAthenaArgs:
         """
         :param pulumi.Input[_builtins.str] database: Specify the database (data catalog) to build models into (lowercase only).
         :param pulumi.Input[_builtins.str] region_name: AWS region of your Athena instance.
-        :param pulumi.Input[_builtins.str] s3_staging_dir: S3 location to store Athena query results and metadata.
+        :param pulumi.Input[_builtins.str] s3_staging_dir: S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
         :param pulumi.Input[_builtins.int] num_boto3_retries: Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
         :param pulumi.Input[_builtins.int] num_iceberg_retries: Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
         :param pulumi.Input[_builtins.int] num_retries: Number of times to retry a failing query.
         :param pulumi.Input[_builtins.int] poll_interval: Interval in seconds to use for polling the status of query results in Athena.
-        :param pulumi.Input[_builtins.str] s3_data_dir: Prefix for storing tables, if different from the connection's S3 staging directory.
+        :param pulumi.Input[_builtins.str] s3_data_dir: Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         :param pulumi.Input[_builtins.str] s3_data_naming: How to generate table paths in the S3 data directory.
-        :param pulumi.Input[_builtins.str] s3_tmp_table_dir: Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        :param pulumi.Input[_builtins.str] s3_tmp_table_dir: Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         :param pulumi.Input[_builtins.str] spark_work_group: Identifier of Athena Spark workgroup for running Python models.
         :param pulumi.Input[_builtins.str] work_group: Identifier of Athena workgroup.
         """
@@ -867,7 +873,7 @@ class GlobalConnectionAthenaArgs:
     @pulumi.getter(name="s3StagingDir")
     def s3_staging_dir(self) -> pulumi.Input[_builtins.str]:
         """
-        S3 location to store Athena query results and metadata.
+        S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_staging_dir")
 
@@ -927,7 +933,7 @@ class GlobalConnectionAthenaArgs:
     @pulumi.getter(name="s3DataDir")
     def s3_data_dir(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Prefix for storing tables, if different from the connection's S3 staging directory.
+        Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_data_dir")
 
@@ -951,7 +957,7 @@ class GlobalConnectionAthenaArgs:
     @pulumi.getter(name="s3TmpTableDir")
     def s3_tmp_table_dir(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_tmp_table_dir")
 
@@ -3617,6 +3623,108 @@ class RedshiftSemanticLayerCredentialCredentialArgs:
     @username.setter
     def username(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+
+if not MYPY:
+    class ScimGroupPartialPermissionsPermissionArgsDict(TypedDict):
+        all_projects: pulumi.Input[_builtins.bool]
+        """
+        Whether access should be provided for all projects or not.
+        """
+        permission_set: pulumi.Input[_builtins.str]
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        project_id: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Project ID to apply this permission to for this group.
+        """
+        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+elif False:
+    ScimGroupPartialPermissionsPermissionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ScimGroupPartialPermissionsPermissionArgs:
+    def __init__(__self__, *,
+                 all_projects: pulumi.Input[_builtins.bool],
+                 permission_set: pulumi.Input[_builtins.str],
+                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 writable_environment_categories: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] all_projects: Whether access should be provided for all projects or not.
+        :param pulumi.Input[_builtins.str] permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        :param pulumi.Input[_builtins.int] project_id: Project ID to apply this permission to for this group.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        pulumi.set(__self__, "all_projects", all_projects)
+        pulumi.set(__self__, "permission_set", permission_set)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if writable_environment_categories is not None:
+            pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
+
+    @_builtins.property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> pulumi.Input[_builtins.bool]:
+        """
+        Whether access should be provided for all projects or not.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @all_projects.setter
+    def all_projects(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "all_projects", value)
+
+    @_builtins.property
+    @pulumi.getter(name="permissionSet")
+    def permission_set(self) -> pulumi.Input[_builtins.str]:
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        return pulumi.get(self, "permission_set")
+
+    @permission_set.setter
+    def permission_set(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "permission_set", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Project ID to apply this permission to for this group.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
+
+    @writable_environment_categories.setter
+    def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "writable_environment_categories", value)
 
 
 if not MYPY:

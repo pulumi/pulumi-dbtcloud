@@ -36,7 +36,7 @@ class EnvironmentArgs:
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[_builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
-        :param pulumi.Input[_builtins.int] credential_id: The project ID to which the environment belongs.
+        :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
@@ -109,7 +109,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The project ID to which the environment belongs.
+        The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         """
         return pulumi.get(self, "credential_id")
 
@@ -233,7 +233,7 @@ class _EnvironmentState:
         """
         Input properties used for looking up and filtering Environment resources.
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
-        :param pulumi.Input[_builtins.int] credential_id: The project ID to which the environment belongs.
+        :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
@@ -289,7 +289,7 @@ class _EnvironmentState:
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The project ID to which the environment belongs.
+        The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         """
         return pulumi.get(self, "credential_id")
 
@@ -516,7 +516,7 @@ class Environment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
-        :param pulumi.Input[_builtins.int] credential_id: The project ID to which the environment belongs.
+        :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
@@ -682,7 +682,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
-        :param pulumi.Input[_builtins.int] credential_id: The project ID to which the environment belongs.
+        :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
@@ -726,7 +726,7 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> pulumi.Output[_builtins.int]:
         """
-        The project ID to which the environment belongs.
+        The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         """
         return pulumi.get(self, "credential_id")
 

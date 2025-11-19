@@ -42,6 +42,7 @@ __all__ = [
     'PostgresSemanticLayerCredentialCredential',
     'RedshiftSemanticLayerCredentialConfiguration',
     'RedshiftSemanticLayerCredentialCredential',
+    'ScimGroupPartialPermissionsPermission',
     'ScimGroupPermissionsPermission',
     'ServiceTokenServiceTokenPermission',
     'SnowflakeSemanticLayerCredentialConfiguration',
@@ -347,7 +348,7 @@ class DatabricksSemanticLayerCredentialCredential(dict):
         """
         :param _builtins.int project_id: Project ID to create the Databricks credential in
         :param _builtins.str token: Token for Databricks user
-        :param _builtins.str adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param _builtins.str adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param _builtins.str catalog: The catalog where to create models (only for the databricks adapter)
         :param _builtins.int credential_id: The system Databricks credential ID
         :param _builtins.str id: The ID of this resource. Contains the project ID and the credential ID.
@@ -390,9 +391,10 @@ class DatabricksSemanticLayerCredentialCredential(dict):
 
     @_builtins.property
     @pulumi.getter(name="adapterType")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
     def adapter_type(self) -> Optional[_builtins.str]:
         """
-        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "adapter_type")
 
@@ -632,14 +634,14 @@ class GlobalConnectionAthena(dict):
         """
         :param _builtins.str database: Specify the database (data catalog) to build models into (lowercase only).
         :param _builtins.str region_name: AWS region of your Athena instance.
-        :param _builtins.str s3_staging_dir: S3 location to store Athena query results and metadata.
+        :param _builtins.str s3_staging_dir: S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
         :param _builtins.int num_boto3_retries: Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
         :param _builtins.int num_iceberg_retries: Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
         :param _builtins.int num_retries: Number of times to retry a failing query.
         :param _builtins.int poll_interval: Interval in seconds to use for polling the status of query results in Athena.
-        :param _builtins.str s3_data_dir: Prefix for storing tables, if different from the connection's S3 staging directory.
+        :param _builtins.str s3_data_dir: Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         :param _builtins.str s3_data_naming: How to generate table paths in the S3 data directory.
-        :param _builtins.str s3_tmp_table_dir: Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        :param _builtins.str s3_tmp_table_dir: Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         :param _builtins.str spark_work_group: Identifier of Athena Spark workgroup for running Python models.
         :param _builtins.str work_group: Identifier of Athena workgroup.
         """
@@ -685,7 +687,7 @@ class GlobalConnectionAthena(dict):
     @pulumi.getter(name="s3StagingDir")
     def s3_staging_dir(self) -> _builtins.str:
         """
-        S3 location to store Athena query results and metadata.
+        S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_staging_dir")
 
@@ -725,7 +727,7 @@ class GlobalConnectionAthena(dict):
     @pulumi.getter(name="s3DataDir")
     def s3_data_dir(self) -> Optional[_builtins.str]:
         """
-        Prefix for storing tables, if different from the connection's S3 staging directory.
+        Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_data_dir")
 
@@ -741,7 +743,7 @@ class GlobalConnectionAthena(dict):
     @pulumi.getter(name="s3TmpTableDir")
     def s3_tmp_table_dir(self) -> Optional[_builtins.str]:
         """
-        Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_tmp_table_dir")
 
@@ -2745,6 +2747,90 @@ class RedshiftSemanticLayerCredentialCredential(dict):
 
 
 @pulumi.output_type
+class ScimGroupPartialPermissionsPermission(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allProjects":
+            suggest = "all_projects"
+        elif key == "permissionSet":
+            suggest = "permission_set"
+        elif key == "projectId":
+            suggest = "project_id"
+        elif key == "writableEnvironmentCategories":
+            suggest = "writable_environment_categories"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScimGroupPartialPermissionsPermission. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScimGroupPartialPermissionsPermission.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScimGroupPartialPermissionsPermission.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 all_projects: _builtins.bool,
+                 permission_set: _builtins.str,
+                 project_id: Optional[_builtins.int] = None,
+                 writable_environment_categories: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.bool all_projects: Whether access should be provided for all projects or not.
+        :param _builtins.str permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        :param _builtins.int project_id: Project ID to apply this permission to for this group.
+        :param Sequence[_builtins.str] writable_environment_categories: What types of environments to apply Write permissions to.
+               Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+               The values allowed are `all`, `development`, `staging`, `production` and `other`.
+               Not setting a value is the same as selecting `all`.
+               Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        pulumi.set(__self__, "all_projects", all_projects)
+        pulumi.set(__self__, "permission_set", permission_set)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if writable_environment_categories is not None:
+            pulumi.set(__self__, "writable_environment_categories", writable_environment_categories)
+
+    @_builtins.property
+    @pulumi.getter(name="allProjects")
+    def all_projects(self) -> _builtins.bool:
+        """
+        Whether access should be provided for all projects or not.
+        """
+        return pulumi.get(self, "all_projects")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionSet")
+    def permission_set(self) -> _builtins.str:
+        """
+        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        """
+        return pulumi.get(self, "permission_set")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.int]:
+        """
+        Project ID to apply this permission to for this group.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="writableEnvironmentCategories")
+    def writable_environment_categories(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        What types of environments to apply Write permissions to.
+        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+        The values allowed are `all`, `development`, `staging`, `production` and `other`.
+        Not setting a value is the same as selecting `all`.
+        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+        """
+        return pulumi.get(self, "writable_environment_categories")
+
+
+@pulumi.output_type
 class ScimGroupPermissionsPermission(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3453,10 +3539,10 @@ class GetGlobalConnectionAthenaResult(dict):
         :param _builtins.int num_retries: Number of times to retry a failing query.
         :param _builtins.int poll_interval: Interval in seconds to use for polling the status of query results in Athena.
         :param _builtins.str region_name: AWS region of your Athena instance.
-        :param _builtins.str s3_data_dir: Prefix for storing tables, if different from the connection's S3 staging directory.
+        :param _builtins.str s3_data_dir: Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         :param _builtins.str s3_data_naming: How to generate table paths in the S3 data directory.
-        :param _builtins.str s3_staging_dir: S3 location to store Athena query results and metadata.
-        :param _builtins.str s3_tmp_table_dir: Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        :param _builtins.str s3_staging_dir: S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
+        :param _builtins.str s3_tmp_table_dir: Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         :param _builtins.str spark_work_group: Identifier of Athena Spark workgroup for running Python models.
         :param _builtins.str work_group: Identifier of Athena workgroup.
         """
@@ -3525,7 +3611,7 @@ class GetGlobalConnectionAthenaResult(dict):
     @pulumi.getter(name="s3DataDir")
     def s3_data_dir(self) -> _builtins.str:
         """
-        Prefix for storing tables, if different from the connection's S3 staging directory.
+        Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_data_dir")
 
@@ -3541,7 +3627,7 @@ class GetGlobalConnectionAthenaResult(dict):
     @pulumi.getter(name="s3StagingDir")
     def s3_staging_dir(self) -> _builtins.str:
         """
-        S3 location to store Athena query results and metadata.
+        S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_staging_dir")
 
@@ -3549,7 +3635,7 @@ class GetGlobalConnectionAthenaResult(dict):
     @pulumi.getter(name="s3TmpTableDir")
     def s3_tmp_table_dir(self) -> _builtins.str:
         """
-        Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_tmp_table_dir")
 
@@ -4948,6 +5034,7 @@ class GetJobsJobResult(dict):
                  environment_id: _builtins.int,
                  execute_steps: Sequence[_builtins.str],
                  execution: 'outputs.GetJobsJobExecutionResult',
+                 force_node_selection: _builtins.bool,
                  generate_docs: _builtins.bool,
                  id: _builtins.int,
                  job_completion_trigger_condition: 'outputs.GetJobsJobJobCompletionTriggerConditionResult',
@@ -4970,6 +5057,7 @@ class GetJobsJobResult(dict):
         :param 'GetJobsJobEnvironmentArgs' environment: Details of the environment the job is running in
         :param _builtins.int environment_id: The ID of environment
         :param Sequence[_builtins.str] execute_steps: The list of steps to run in the job
+        :param _builtins.bool force_node_selection: Whether force node selection (SAO) is enabled for this job
         :param _builtins.bool generate_docs: Whether the job generate docs
         :param _builtins.int id: The ID of the job
         :param 'GetJobsJobJobCompletionTriggerConditionArgs' job_completion_trigger_condition: Whether the job is triggered by the completion of another job
@@ -4990,6 +5078,7 @@ class GetJobsJobResult(dict):
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "execute_steps", execute_steps)
         pulumi.set(__self__, "execution", execution)
+        pulumi.set(__self__, "force_node_selection", force_node_selection)
         pulumi.set(__self__, "generate_docs", generate_docs)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "job_completion_trigger_condition", job_completion_trigger_condition)
@@ -5066,6 +5155,14 @@ class GetJobsJobResult(dict):
     @pulumi.getter
     def execution(self) -> 'outputs.GetJobsJobExecutionResult':
         return pulumi.get(self, "execution")
+
+    @_builtins.property
+    @pulumi.getter(name="forceNodeSelection")
+    def force_node_selection(self) -> _builtins.bool:
+        """
+        Whether force node selection (SAO) is enabled for this job
+        """
+        return pulumi.get(self, "force_node_selection")
 
     @_builtins.property
     @pulumi.getter(name="generateDocs")

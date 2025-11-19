@@ -104,7 +104,7 @@ export class Environment extends pulumi.CustomResource {
      */
     declare public readonly connectionId: pulumi.Output<number>;
     /**
-     * The project ID to which the environment belongs.
+     * The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      */
     declare public readonly credentialId: pulumi.Output<number>;
     /**
@@ -214,7 +214,7 @@ export interface EnvironmentState {
      */
     connectionId?: pulumi.Input<number>;
     /**
-     * The project ID to which the environment belongs.
+     * The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      */
     credentialId?: pulumi.Input<number>;
     /**
@@ -272,7 +272,7 @@ export interface EnvironmentArgs {
      */
     connectionId?: pulumi.Input<number>;
     /**
-     * The project ID to which the environment belongs.
+     * The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      */
     credentialId?: pulumi.Input<number>;
     /**

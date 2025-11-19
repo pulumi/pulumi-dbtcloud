@@ -103,7 +103,7 @@ type Environment struct {
 
 	// A connection ID (used with Global Connections)
 	ConnectionId pulumi.IntOutput `pulumi:"connectionId"`
-	// The project ID to which the environment belongs.
+	// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// The custom branch name to use
 	CustomBranch pulumi.StringPtrOutput `pulumi:"customBranch"`
@@ -167,7 +167,7 @@ func GetEnvironment(ctx *pulumi.Context,
 type environmentState struct {
 	// A connection ID (used with Global Connections)
 	ConnectionId *int `pulumi:"connectionId"`
-	// The project ID to which the environment belongs.
+	// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
 	CredentialId *int `pulumi:"credentialId"`
 	// The custom branch name to use
 	CustomBranch *string `pulumi:"customBranch"`
@@ -196,7 +196,7 @@ type environmentState struct {
 type EnvironmentState struct {
 	// A connection ID (used with Global Connections)
 	ConnectionId pulumi.IntPtrInput
-	// The project ID to which the environment belongs.
+	// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
 	CredentialId pulumi.IntPtrInput
 	// The custom branch name to use
 	CustomBranch pulumi.StringPtrInput
@@ -229,7 +229,7 @@ func (EnvironmentState) ElementType() reflect.Type {
 type environmentArgs struct {
 	// A connection ID (used with Global Connections)
 	ConnectionId *int `pulumi:"connectionId"`
-	// The project ID to which the environment belongs.
+	// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
 	CredentialId *int `pulumi:"credentialId"`
 	// The custom branch name to use
 	CustomBranch *string `pulumi:"customBranch"`
@@ -257,7 +257,7 @@ type environmentArgs struct {
 type EnvironmentArgs struct {
 	// A connection ID (used with Global Connections)
 	ConnectionId pulumi.IntPtrInput
-	// The project ID to which the environment belongs.
+	// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
 	CredentialId pulumi.IntPtrInput
 	// The custom branch name to use
 	CustomBranch pulumi.StringPtrInput
@@ -373,7 +373,7 @@ func (o EnvironmentOutput) ConnectionId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Environment) pulumi.IntOutput { return v.ConnectionId }).(pulumi.IntOutput)
 }
 
-// The project ID to which the environment belongs.
+// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
 func (o EnvironmentOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Environment) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }

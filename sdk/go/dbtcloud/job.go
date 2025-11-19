@@ -60,6 +60,8 @@ type Job struct {
 	ErrorsOnLintFailure pulumi.BoolOutput `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayOutput `pulumi:"executeSteps"`
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	ForceNodeSelection pulumi.BoolOutput `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolOutput `pulumi:"generateDocs"`
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
@@ -164,6 +166,8 @@ type jobState struct {
 	ErrorsOnLintFailure *bool `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps []string `pulumi:"executeSteps"`
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	ForceNodeSelection *bool `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs *bool `pulumi:"generateDocs"`
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
@@ -227,6 +231,8 @@ type JobState struct {
 	ErrorsOnLintFailure pulumi.BoolPtrInput
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayInput
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	ForceNodeSelection pulumi.BoolPtrInput
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolPtrInput
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
@@ -294,6 +300,8 @@ type jobArgs struct {
 	ErrorsOnLintFailure *bool `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps []string `pulumi:"executeSteps"`
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	ForceNodeSelection *bool `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs *bool `pulumi:"generateDocs"`
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
@@ -356,6 +364,8 @@ type JobArgs struct {
 	ErrorsOnLintFailure pulumi.BoolPtrInput
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayInput
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	ForceNodeSelection pulumi.BoolPtrInput
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolPtrInput
 	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
@@ -525,6 +535,11 @@ func (o JobOutput) ErrorsOnLintFailure() pulumi.BoolOutput {
 // List of commands to execute for the job
 func (o JobOutput) ExecuteSteps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.ExecuteSteps }).(pulumi.StringArrayOutput)
+}
+
+// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+func (o JobOutput) ForceNodeSelection() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.ForceNodeSelection }).(pulumi.BoolOutput)
 }
 
 // Flag for whether the job should generate documentation

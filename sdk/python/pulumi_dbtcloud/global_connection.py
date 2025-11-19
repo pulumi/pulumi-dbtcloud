@@ -551,8 +551,9 @@ class GlobalConnection(pulumi.CustomResource):
             athena={
                 "region_name": "us-east-1",
                 "database": "mydatabase",
-                "s3_staging_dir": "my_dir",
+                "s3_staging_dir": "s3://my-bucket/my-staging-dir/",
                 "work_group": "my_work_group",
+                "s3_data_dir": "s3://my-bucket/my-data-dir/",
             })
         bigquery = dbtcloud.GlobalConnection("bigquery",
             name="My BigQuery connection",
@@ -728,8 +729,9 @@ class GlobalConnection(pulumi.CustomResource):
             athena={
                 "region_name": "us-east-1",
                 "database": "mydatabase",
-                "s3_staging_dir": "my_dir",
+                "s3_staging_dir": "s3://my-bucket/my-staging-dir/",
                 "work_group": "my_work_group",
+                "s3_data_dir": "s3://my-bucket/my-data-dir/",
             })
         bigquery = dbtcloud.GlobalConnection("bigquery",
             name="My BigQuery connection",

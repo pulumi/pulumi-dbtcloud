@@ -58,6 +58,8 @@ import com.pulumi.dbtcloud.inputs.GetServiceTokenArgs;
 import com.pulumi.dbtcloud.inputs.GetServiceTokenPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetSnowflakeCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetSnowflakeCredentialPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
+import com.pulumi.dbtcloud.inputs.GetSparkCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetStarburstCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetSynapseCredentialArgs;
@@ -98,6 +100,7 @@ import com.pulumi.dbtcloud.outputs.GetRepositoryResult;
 import com.pulumi.dbtcloud.outputs.GetRunsResult;
 import com.pulumi.dbtcloud.outputs.GetServiceTokenResult;
 import com.pulumi.dbtcloud.outputs.GetSnowflakeCredentialResult;
+import com.pulumi.dbtcloud.outputs.GetSparkCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetStarburstCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetSynapseCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetTeradataCredentialResult;
@@ -3281,6 +3284,211 @@ public final class DbtcloudFunctions {
      */
     public static CompletableFuture<GetSnowflakeCredentialResult> getSnowflakeCredentialPlain(GetSnowflakeCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential", TypeShape.of(GetSnowflakeCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Apache Spark credential data source
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
+     *             .projectId(dbtProject.id())
+     *             .credentialId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetSparkCredentialResult> getSparkCredential(GetSparkCredentialArgs args) {
+        return getSparkCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * Apache Spark credential data source
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
+     *             .projectId(dbtProject.id())
+     *             .credentialId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetSparkCredentialResult> getSparkCredentialPlain(GetSparkCredentialPlainArgs args) {
+        return getSparkCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Apache Spark credential data source
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
+     *             .projectId(dbtProject.id())
+     *             .credentialId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetSparkCredentialResult> getSparkCredential(GetSparkCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getSparkCredential:getSparkCredential", TypeShape.of(GetSparkCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Apache Spark credential data source
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
+     *             .projectId(dbtProject.id())
+     *             .credentialId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetSparkCredentialResult> getSparkCredential(GetSparkCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getSparkCredential:getSparkCredential", TypeShape.of(GetSparkCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Apache Spark credential data source
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
+     *             .projectId(dbtProject.id())
+     *             .credentialId(12345)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetSparkCredentialResult> getSparkCredentialPlain(GetSparkCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getSparkCredential:getSparkCredential", TypeShape.of(GetSparkCredentialResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Starburst/Trino credential data source

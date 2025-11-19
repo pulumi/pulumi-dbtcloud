@@ -43,6 +43,10 @@ namespace Pulumi.DbtCloud.Outputs
         public readonly ImmutableArray<string> ExecuteSteps;
         public readonly Outputs.GetJobsJobExecutionResult Execution;
         /// <summary>
+        /// Whether force node selection (SAO) is enabled for this job
+        /// </summary>
+        public readonly bool ForceNodeSelection;
+        /// <summary>
         /// Whether the job generate docs
         /// </summary>
         public readonly bool GenerateDocs;
@@ -108,6 +112,8 @@ namespace Pulumi.DbtCloud.Outputs
 
             Outputs.GetJobsJobExecutionResult execution,
 
+            bool forceNodeSelection,
+
             bool generateDocs,
 
             int id,
@@ -144,6 +150,7 @@ namespace Pulumi.DbtCloud.Outputs
             EnvironmentId = environmentId;
             ExecuteSteps = executeSteps;
             Execution = execution;
+            ForceNodeSelection = forceNodeSelection;
             GenerateDocs = generateDocs;
             Id = id;
             JobCompletionTriggerCondition = jobCompletionTriggerCondition;

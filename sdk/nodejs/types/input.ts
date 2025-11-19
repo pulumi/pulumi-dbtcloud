@@ -64,7 +64,9 @@ export interface DatabricksSemanticLayerCredentialConfiguration {
 
 export interface DatabricksSemanticLayerCredentialCredential {
     /**
-     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     *
+     * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      */
     adapterType?: pulumi.Input<string>;
     /**
@@ -314,7 +316,7 @@ export interface GlobalConnectionAthena {
      */
     regionName: pulumi.Input<string>;
     /**
-     * Prefix for storing tables, if different from the connection's S3 staging directory.
+     * Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
      */
     s3DataDir?: pulumi.Input<string>;
     /**
@@ -322,11 +324,11 @@ export interface GlobalConnectionAthena {
      */
     s3DataNaming?: pulumi.Input<string>;
     /**
-     * S3 location to store Athena query results and metadata.
+     * S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
      */
     s3StagingDir: pulumi.Input<string>;
     /**
-     * Prefix for storing temporary tables, if different from the connection's S3 data directory.
+     * Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
      */
     s3TmpTableDir?: pulumi.Input<string>;
     /**
@@ -889,6 +891,29 @@ export interface RedshiftSemanticLayerCredentialCredential {
      * The username for the Redshift account.
      */
     username?: pulumi.Input<string>;
+}
+
+export interface ScimGroupPartialPermissionsPermission {
+    /**
+     * Whether access should be provided for all projects or not.
+     */
+    allProjects: pulumi.Input<boolean>;
+    /**
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+     */
+    permissionSet: pulumi.Input<string>;
+    /**
+     * Project ID to apply this permission to for this group.
+     */
+    projectId?: pulumi.Input<number>;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ScimGroupPermissionsPermission {

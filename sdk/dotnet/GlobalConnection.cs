@@ -43,8 +43,9 @@ namespace Pulumi.DbtCloud
     ///         {
     ///             RegionName = "us-east-1",
     ///             Database = "mydatabase",
-    ///             S3StagingDir = "my_dir",
+    ///             S3StagingDir = "s3://my-bucket/my-staging-dir/",
     ///             WorkGroup = "my_work_group",
+    ///             S3DataDir = "s3://my-bucket/my-data-dir/",
     ///         },
     ///     });
     /// 

@@ -64,7 +64,9 @@ export interface DatabricksSemanticLayerCredentialConfiguration {
 
 export interface DatabricksSemanticLayerCredentialCredential {
     /**
-     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     *
+     * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      */
     adapterType: string;
     /**
@@ -219,7 +221,7 @@ export interface GetGlobalConnectionAthena {
      */
     regionName: string;
     /**
-     * Prefix for storing tables, if different from the connection's S3 staging directory.
+     * Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
      */
     s3DataDir: string;
     /**
@@ -227,11 +229,11 @@ export interface GetGlobalConnectionAthena {
      */
     s3DataNaming: string;
     /**
-     * S3 location to store Athena query results and metadata.
+     * S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
      */
     s3StagingDir: string;
     /**
-     * Prefix for storing temporary tables, if different from the connection's S3 data directory.
+     * Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
      */
     s3TmpTableDir: string;
     /**
@@ -779,6 +781,10 @@ export interface GetJobsJob {
     executeSteps: string[];
     execution: outputs.GetJobsJobExecution;
     /**
+     * Whether force node selection (SAO) is enabled for this job
+     */
+    forceNodeSelection: boolean;
+    /**
      * Whether the job generate docs
      */
     generateDocs: boolean;
@@ -1198,7 +1204,7 @@ export interface GlobalConnectionAthena {
      */
     regionName: string;
     /**
-     * Prefix for storing tables, if different from the connection's S3 staging directory.
+     * Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
      */
     s3DataDir?: string;
     /**
@@ -1206,11 +1212,11 @@ export interface GlobalConnectionAthena {
      */
     s3DataNaming?: string;
     /**
-     * S3 location to store Athena query results and metadata.
+     * S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
      */
     s3StagingDir: string;
     /**
-     * Prefix for storing temporary tables, if different from the connection's S3 data directory.
+     * Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
      */
     s3TmpTableDir?: string;
     /**
@@ -1773,6 +1779,29 @@ export interface RedshiftSemanticLayerCredentialCredential {
      * The username for the Redshift account.
      */
     username: string;
+}
+
+export interface ScimGroupPartialPermissionsPermission {
+    /**
+     * Whether access should be provided for all projects or not.
+     */
+    allProjects: boolean;
+    /**
+     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+     */
+    permissionSet: string;
+    /**
+     * Project ID to apply this permission to for this group.
+     */
+    projectId?: number;
+    /**
+     * What types of environments to apply Write permissions to.
+     * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+     * The values allowed are `all`, `development`, `staging`, `production` and `other`.
+     * Not setting a value is the same as selecting `all`.
+     * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+     */
+    writableEnvironmentCategories?: string[];
 }
 
 export interface ScimGroupPermissionsPermission {
