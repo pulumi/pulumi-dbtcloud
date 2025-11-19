@@ -7,7 +7,7 @@ toolchain go1.24.10
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250923233607-7f1981c8674a
 
 require (
-	github.com/dbt-labs/terraform-provider-dbtcloud v1.3.0
+	github.com/dbt-labs/terraform-provider-dbtcloud v1.4.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.117.0
 	github.com/pulumi/pulumi/sdk/v3 v3.207.0
 )

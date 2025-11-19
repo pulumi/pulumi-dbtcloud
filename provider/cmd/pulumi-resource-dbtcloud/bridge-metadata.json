@@ -232,6 +232,22 @@
                 "current": "dbtcloud:index/repository:Repository",
                 "majorVersion": 1
             },
+            "dbtcloud_scim_group_partial_permissions": {
+                "current": "dbtcloud:index/scimGroupPartialPermissions:ScimGroupPartialPermissions",
+                "majorVersion": 1,
+                "fields": {
+                    "permissions": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "writable_environment_categories": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "dbtcloud_scim_group_permissions": {
                 "current": "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions",
                 "majorVersion": 1,
@@ -278,6 +294,10 @@
             },
             "dbtcloud_snowflake_semantic_layer_credential": {
                 "current": "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential",
+                "majorVersion": 1
+            },
+            "dbtcloud_spark_credential": {
+                "current": "dbtcloud:index/sparkCredential:SparkCredential",
                 "majorVersion": 1
             },
             "dbtcloud_starburst_credential": {
@@ -555,6 +575,10 @@
             },
             "dbtcloud_snowflake_credential": {
                 "current": "dbtcloud:index/getSnowflakeCredential:getSnowflakeCredential",
+                "majorVersion": 1
+            },
+            "dbtcloud_spark_credential": {
+                "current": "dbtcloud:index/getSparkCredential:getSparkCredential",
                 "majorVersion": 1
             },
             "dbtcloud_starburst_credential": {
