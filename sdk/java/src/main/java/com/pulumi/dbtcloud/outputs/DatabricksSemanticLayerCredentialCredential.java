@@ -15,9 +15,13 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DatabricksSemanticLayerCredentialCredential {
     /**
-     * @return The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * @return The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
     private @Nullable String adapterType;
     /**
      * @return The catalog where to create models (only for the databricks adapter)
@@ -66,9 +70,13 @@ public final class DatabricksSemanticLayerCredentialCredential {
 
     private DatabricksSemanticLayerCredentialCredential() {}
     /**
-     * @return The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * @return The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
     public Optional<String> adapterType() {
         return Optional.ofNullable(this.adapterType);
     }

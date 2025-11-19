@@ -82,8 +82,9 @@ import javax.annotation.Nullable;
  *             .athena(GlobalConnectionAthenaArgs.builder()
  *                 .regionName("us-east-1")
  *                 .database("mydatabase")
- *                 .s3StagingDir("my_dir")
+ *                 .s3StagingDir("s3://my-bucket/my-staging-dir/")
  *                 .workGroup("my_work_group")
+ *                 .s3DataDir("s3://my-bucket/my-data-dir/")
  *                 .build())
  *             .build());
  * 

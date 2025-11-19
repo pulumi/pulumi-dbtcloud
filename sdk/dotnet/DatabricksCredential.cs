@@ -67,7 +67,7 @@ namespace Pulumi.DbtCloud
     public partial class DatabricksCredential : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        /// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         /// </summary>
         [Output("adapterType")]
         public Output<string> AdapterType { get; private set; } = null!;
@@ -166,7 +166,7 @@ namespace Pulumi.DbtCloud
     public sealed class DatabricksCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        /// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         /// </summary>
         [Input("adapterType")]
         public Input<string>? AdapterType { get; set; }
@@ -226,7 +226,7 @@ namespace Pulumi.DbtCloud
     public sealed class DatabricksCredentialState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        /// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         /// </summary>
         [Input("adapterType")]
         public Input<string>? AdapterType { get; set; }

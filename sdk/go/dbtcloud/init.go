@@ -85,6 +85,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RedshiftSemanticLayerCredential{}
 	case "dbtcloud:index/repository:Repository":
 		r = &Repository{}
+	case "dbtcloud:index/scimGroupPartialPermissions:ScimGroupPartialPermissions":
+		r = &ScimGroupPartialPermissions{}
 	case "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions":
 		r = &ScimGroupPermissions{}
 	case "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration":
@@ -97,6 +99,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SnowflakeCredential{}
 	case "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential":
 		r = &SnowflakeSemanticLayerCredential{}
+	case "dbtcloud:index/sparkCredential:SparkCredential":
+		r = &SparkCredential{}
 	case "dbtcloud:index/starburstCredential:StarburstCredential":
 		r = &StarburstCredential{}
 	case "dbtcloud:index/synapseCredential:SynapseCredential":
@@ -300,6 +304,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/scimGroupPartialPermissions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/scimGroupPermissions",
 		&module{version},
 	)
@@ -326,6 +335,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/snowflakeSemanticLayerCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/sparkCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -28,7 +28,7 @@ class GetJobResult:
     """
     A collection of values returned by getJob.
     """
-    def __init__(__self__, dbt_version=None, deferring_environment_id=None, deferring_job_id=None, description=None, environment=None, environment_id=None, execute_steps=None, execution=None, generate_docs=None, id=None, job_completion_trigger_conditions=None, job_id=None, job_type=None, name=None, project_id=None, run_compare_changes=None, run_generate_sources=None, schedule=None, self_deferring=None, settings=None, timeout_seconds=None, triggers=None, triggers_on_draft_pr=None):
+    def __init__(__self__, dbt_version=None, deferring_environment_id=None, deferring_job_id=None, description=None, environment=None, environment_id=None, execute_steps=None, execution=None, force_node_selection=None, generate_docs=None, id=None, job_completion_trigger_conditions=None, job_id=None, job_type=None, name=None, project_id=None, run_compare_changes=None, run_generate_sources=None, schedule=None, self_deferring=None, settings=None, timeout_seconds=None, triggers=None, triggers_on_draft_pr=None):
         if dbt_version and not isinstance(dbt_version, str):
             raise TypeError("Expected argument 'dbt_version' to be a str")
         pulumi.set(__self__, "dbt_version", dbt_version)
@@ -53,6 +53,9 @@ class GetJobResult:
         if execution and not isinstance(execution, dict):
             raise TypeError("Expected argument 'execution' to be a dict")
         pulumi.set(__self__, "execution", execution)
+        if force_node_selection and not isinstance(force_node_selection, bool):
+            raise TypeError("Expected argument 'force_node_selection' to be a bool")
+        pulumi.set(__self__, "force_node_selection", force_node_selection)
         if generate_docs and not isinstance(generate_docs, bool):
             raise TypeError("Expected argument 'generate_docs' to be a bool")
         pulumi.set(__self__, "generate_docs", generate_docs)
@@ -160,6 +163,14 @@ class GetJobResult:
     @pulumi.getter
     def execution(self) -> 'outputs.GetJobExecutionResult':
         return pulumi.get(self, "execution")
+
+    @_builtins.property
+    @pulumi.getter(name="forceNodeSelection")
+    def force_node_selection(self) -> _builtins.bool:
+        """
+        Whether force node selection (SAO) is enabled for this job
+        """
+        return pulumi.get(self, "force_node_selection")
 
     @_builtins.property
     @pulumi.getter(name="generateDocs")
@@ -288,6 +299,7 @@ class AwaitableGetJobResult(GetJobResult):
             environment_id=self.environment_id,
             execute_steps=self.execute_steps,
             execution=self.execution,
+            force_node_selection=self.force_node_selection,
             generate_docs=self.generate_docs,
             id=self.id,
             job_completion_trigger_conditions=self.job_completion_trigger_conditions,
@@ -330,6 +342,7 @@ def get_job(job_completion_trigger_conditions: Optional[Sequence[Union['GetJobJo
         environment_id=pulumi.get(__ret__, 'environment_id'),
         execute_steps=pulumi.get(__ret__, 'execute_steps'),
         execution=pulumi.get(__ret__, 'execution'),
+        force_node_selection=pulumi.get(__ret__, 'force_node_selection'),
         generate_docs=pulumi.get(__ret__, 'generate_docs'),
         id=pulumi.get(__ret__, 'id'),
         job_completion_trigger_conditions=pulumi.get(__ret__, 'job_completion_trigger_conditions'),
@@ -369,6 +382,7 @@ def get_job_output(job_completion_trigger_conditions: Optional[pulumi.Input[Opti
         environment_id=pulumi.get(__response__, 'environment_id'),
         execute_steps=pulumi.get(__response__, 'execute_steps'),
         execution=pulumi.get(__response__, 'execution'),
+        force_node_selection=pulumi.get(__response__, 'force_node_selection'),
         generate_docs=pulumi.get(__response__, 'generate_docs'),
         id=pulumi.get(__response__, 'id'),
         job_completion_trigger_conditions=pulumi.get(__response__, 'job_completion_trigger_conditions'),

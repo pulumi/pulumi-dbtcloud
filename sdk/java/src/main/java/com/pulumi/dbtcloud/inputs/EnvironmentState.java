@@ -33,14 +33,14 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The project ID to which the environment belongs.
+     * The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      * 
      */
     @Import(name="credentialId")
     private @Nullable Output<Integer> credentialId;
 
     /**
-     * @return The project ID to which the environment belongs.
+     * @return The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      * 
      */
     public Optional<Output<Integer>> credentialId() {
@@ -270,7 +270,7 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param credentialId The project ID to which the environment belongs.
+         * @param credentialId The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
          * 
          * @return builder
          * 
@@ -281,7 +281,7 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param credentialId The project ID to which the environment belongs.
+         * @param credentialId The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
          * 
          * @return builder
          * 

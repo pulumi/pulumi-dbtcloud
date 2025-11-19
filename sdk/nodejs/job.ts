@@ -98,6 +98,10 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly executeSteps: pulumi.Output<string[]>;
     /**
+     * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     */
+    declare public readonly forceNodeSelection: pulumi.Output<boolean>;
+    /**
      * Flag for whether the job should generate documentation
      */
     declare public readonly generateDocs: pulumi.Output<boolean>;
@@ -205,6 +209,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["environmentId"] = state?.environmentId;
             resourceInputs["errorsOnLintFailure"] = state?.errorsOnLintFailure;
             resourceInputs["executeSteps"] = state?.executeSteps;
+            resourceInputs["forceNodeSelection"] = state?.forceNodeSelection;
             resourceInputs["generateDocs"] = state?.generateDocs;
             resourceInputs["isActive"] = state?.isActive;
             resourceInputs["jobCompletionTriggerConditions"] = state?.jobCompletionTriggerConditions;
@@ -248,6 +253,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["environmentId"] = args?.environmentId;
             resourceInputs["errorsOnLintFailure"] = args?.errorsOnLintFailure;
             resourceInputs["executeSteps"] = args?.executeSteps;
+            resourceInputs["forceNodeSelection"] = args?.forceNodeSelection;
             resourceInputs["generateDocs"] = args?.generateDocs;
             resourceInputs["isActive"] = args?.isActive;
             resourceInputs["jobCompletionTriggerConditions"] = args?.jobCompletionTriggerConditions;
@@ -311,6 +317,10 @@ export interface JobState {
      * List of commands to execute for the job
      */
     executeSteps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     */
+    forceNodeSelection?: pulumi.Input<boolean>;
     /**
      * Flag for whether the job should generate documentation
      */
@@ -435,6 +445,10 @@ export interface JobArgs {
      * List of commands to execute for the job
      */
     executeSteps: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     */
+    forceNodeSelection?: pulumi.Input<boolean>;
     /**
      * Flag for whether the job should generate documentation
      */

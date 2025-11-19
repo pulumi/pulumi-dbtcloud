@@ -13,7 +13,7 @@ namespace Pulumi.DbtCloud.Inputs
     public sealed class DatabricksSemanticLayerCredentialCredentialGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        /// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         /// </summary>
         [Input("adapterType")]
         public Input<string>? AdapterType { get; set; }

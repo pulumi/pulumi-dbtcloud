@@ -596,7 +596,9 @@ func (o DatabricksSemanticLayerCredentialConfigurationPtrOutput) ProjectId() pul
 }
 
 type DatabricksSemanticLayerCredentialCredential struct {
-	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+	//
+	// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 	AdapterType *string `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog *string `pulumi:"catalog"`
@@ -630,7 +632,9 @@ type DatabricksSemanticLayerCredentialCredentialInput interface {
 }
 
 type DatabricksSemanticLayerCredentialCredentialArgs struct {
-	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+	//
+	// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 	AdapterType pulumi.StringPtrInput `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog pulumi.StringPtrInput `pulumi:"catalog"`
@@ -729,7 +733,9 @@ func (o DatabricksSemanticLayerCredentialCredentialOutput) ToDatabricksSemanticL
 	}).(DatabricksSemanticLayerCredentialCredentialPtrOutput)
 }
 
-// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+//
+// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 func (o DatabricksSemanticLayerCredentialCredentialOutput) AdapterType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.AdapterType }).(pulumi.StringPtrOutput)
 }
@@ -800,7 +806,9 @@ func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) Elem() DatabricksS
 	}).(DatabricksSemanticLayerCredentialCredentialOutput)
 }
 
-// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+//
+// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) AdapterType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
 		if v == nil {
@@ -1194,13 +1202,13 @@ type GlobalConnectionAthena struct {
 	PollInterval *int `pulumi:"pollInterval"`
 	// AWS region of your Athena instance.
 	RegionName string `pulumi:"regionName"`
-	// Prefix for storing tables, if different from the connection's S3 staging directory.
+	// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
 	S3DataDir *string `pulumi:"s3DataDir"`
 	// How to generate table paths in the S3 data directory.
 	S3DataNaming *string `pulumi:"s3DataNaming"`
-	// S3 location to store Athena query results and metadata.
+	// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
 	S3StagingDir string `pulumi:"s3StagingDir"`
-	// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+	// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
 	S3TmpTableDir *string `pulumi:"s3TmpTableDir"`
 	// Identifier of Athena Spark workgroup for running Python models.
 	SparkWorkGroup *string `pulumi:"sparkWorkGroup"`
@@ -1232,13 +1240,13 @@ type GlobalConnectionAthenaArgs struct {
 	PollInterval pulumi.IntPtrInput `pulumi:"pollInterval"`
 	// AWS region of your Athena instance.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
-	// Prefix for storing tables, if different from the connection's S3 staging directory.
+	// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
 	S3DataDir pulumi.StringPtrInput `pulumi:"s3DataDir"`
 	// How to generate table paths in the S3 data directory.
 	S3DataNaming pulumi.StringPtrInput `pulumi:"s3DataNaming"`
-	// S3 location to store Athena query results and metadata.
+	// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
 	S3StagingDir pulumi.StringInput `pulumi:"s3StagingDir"`
-	// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+	// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
 	S3TmpTableDir pulumi.StringPtrInput `pulumi:"s3TmpTableDir"`
 	// Identifier of Athena Spark workgroup for running Python models.
 	SparkWorkGroup pulumi.StringPtrInput `pulumi:"sparkWorkGroup"`
@@ -1353,7 +1361,7 @@ func (o GlobalConnectionAthenaOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalConnectionAthena) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// Prefix for storing tables, if different from the connection's S3 staging directory.
+// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
 func (o GlobalConnectionAthenaOutput) S3DataDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionAthena) *string { return v.S3DataDir }).(pulumi.StringPtrOutput)
 }
@@ -1363,12 +1371,12 @@ func (o GlobalConnectionAthenaOutput) S3DataNaming() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionAthena) *string { return v.S3DataNaming }).(pulumi.StringPtrOutput)
 }
 
-// S3 location to store Athena query results and metadata.
+// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
 func (o GlobalConnectionAthenaOutput) S3StagingDir() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalConnectionAthena) string { return v.S3StagingDir }).(pulumi.StringOutput)
 }
 
-// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
 func (o GlobalConnectionAthenaOutput) S3TmpTableDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionAthena) *string { return v.S3TmpTableDir }).(pulumi.StringPtrOutput)
 }
@@ -1467,7 +1475,7 @@ func (o GlobalConnectionAthenaPtrOutput) RegionName() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Prefix for storing tables, if different from the connection's S3 staging directory.
+// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
 func (o GlobalConnectionAthenaPtrOutput) S3DataDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
 		if v == nil {
@@ -1487,7 +1495,7 @@ func (o GlobalConnectionAthenaPtrOutput) S3DataNaming() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// S3 location to store Athena query results and metadata.
+// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
 func (o GlobalConnectionAthenaPtrOutput) S3StagingDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
 		if v == nil {
@@ -1497,7 +1505,7 @@ func (o GlobalConnectionAthenaPtrOutput) S3StagingDir() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
 func (o GlobalConnectionAthenaPtrOutput) S3TmpTableDir() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionAthena) *string {
 		if v == nil {
@@ -5940,6 +5948,142 @@ func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) Username() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+type ScimGroupPartialPermissionsPermission struct {
+	// Whether access should be provided for all projects or not.
+	AllProjects bool `pulumi:"allProjects"`
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	PermissionSet string `pulumi:"permissionSet"`
+	// Project ID to apply this permission to for this group.
+	ProjectId *int `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
+}
+
+// ScimGroupPartialPermissionsPermissionInput is an input type that accepts ScimGroupPartialPermissionsPermissionArgs and ScimGroupPartialPermissionsPermissionOutput values.
+// You can construct a concrete instance of `ScimGroupPartialPermissionsPermissionInput` via:
+//
+//	ScimGroupPartialPermissionsPermissionArgs{...}
+type ScimGroupPartialPermissionsPermissionInput interface {
+	pulumi.Input
+
+	ToScimGroupPartialPermissionsPermissionOutput() ScimGroupPartialPermissionsPermissionOutput
+	ToScimGroupPartialPermissionsPermissionOutputWithContext(context.Context) ScimGroupPartialPermissionsPermissionOutput
+}
+
+type ScimGroupPartialPermissionsPermissionArgs struct {
+	// Whether access should be provided for all projects or not.
+	AllProjects pulumi.BoolInput `pulumi:"allProjects"`
+	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
+	// Project ID to apply this permission to for this group.
+	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
+	// What types of environments to apply Write permissions to.
+	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+	// Not setting a value is the same as selecting `all`.
+	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
+}
+
+func (ScimGroupPartialPermissionsPermissionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScimGroupPartialPermissionsPermission)(nil)).Elem()
+}
+
+func (i ScimGroupPartialPermissionsPermissionArgs) ToScimGroupPartialPermissionsPermissionOutput() ScimGroupPartialPermissionsPermissionOutput {
+	return i.ToScimGroupPartialPermissionsPermissionOutputWithContext(context.Background())
+}
+
+func (i ScimGroupPartialPermissionsPermissionArgs) ToScimGroupPartialPermissionsPermissionOutputWithContext(ctx context.Context) ScimGroupPartialPermissionsPermissionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScimGroupPartialPermissionsPermissionOutput)
+}
+
+// ScimGroupPartialPermissionsPermissionArrayInput is an input type that accepts ScimGroupPartialPermissionsPermissionArray and ScimGroupPartialPermissionsPermissionArrayOutput values.
+// You can construct a concrete instance of `ScimGroupPartialPermissionsPermissionArrayInput` via:
+//
+//	ScimGroupPartialPermissionsPermissionArray{ ScimGroupPartialPermissionsPermissionArgs{...} }
+type ScimGroupPartialPermissionsPermissionArrayInput interface {
+	pulumi.Input
+
+	ToScimGroupPartialPermissionsPermissionArrayOutput() ScimGroupPartialPermissionsPermissionArrayOutput
+	ToScimGroupPartialPermissionsPermissionArrayOutputWithContext(context.Context) ScimGroupPartialPermissionsPermissionArrayOutput
+}
+
+type ScimGroupPartialPermissionsPermissionArray []ScimGroupPartialPermissionsPermissionInput
+
+func (ScimGroupPartialPermissionsPermissionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScimGroupPartialPermissionsPermission)(nil)).Elem()
+}
+
+func (i ScimGroupPartialPermissionsPermissionArray) ToScimGroupPartialPermissionsPermissionArrayOutput() ScimGroupPartialPermissionsPermissionArrayOutput {
+	return i.ToScimGroupPartialPermissionsPermissionArrayOutputWithContext(context.Background())
+}
+
+func (i ScimGroupPartialPermissionsPermissionArray) ToScimGroupPartialPermissionsPermissionArrayOutputWithContext(ctx context.Context) ScimGroupPartialPermissionsPermissionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScimGroupPartialPermissionsPermissionArrayOutput)
+}
+
+type ScimGroupPartialPermissionsPermissionOutput struct{ *pulumi.OutputState }
+
+func (ScimGroupPartialPermissionsPermissionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScimGroupPartialPermissionsPermission)(nil)).Elem()
+}
+
+func (o ScimGroupPartialPermissionsPermissionOutput) ToScimGroupPartialPermissionsPermissionOutput() ScimGroupPartialPermissionsPermissionOutput {
+	return o
+}
+
+func (o ScimGroupPartialPermissionsPermissionOutput) ToScimGroupPartialPermissionsPermissionOutputWithContext(ctx context.Context) ScimGroupPartialPermissionsPermissionOutput {
+	return o
+}
+
+// Whether access should be provided for all projects or not.
+func (o ScimGroupPartialPermissionsPermissionOutput) AllProjects() pulumi.BoolOutput {
+	return o.ApplyT(func(v ScimGroupPartialPermissionsPermission) bool { return v.AllProjects }).(pulumi.BoolOutput)
+}
+
+// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+func (o ScimGroupPartialPermissionsPermissionOutput) PermissionSet() pulumi.StringOutput {
+	return o.ApplyT(func(v ScimGroupPartialPermissionsPermission) string { return v.PermissionSet }).(pulumi.StringOutput)
+}
+
+// Project ID to apply this permission to for this group.
+func (o ScimGroupPartialPermissionsPermissionOutput) ProjectId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ScimGroupPartialPermissionsPermission) *int { return v.ProjectId }).(pulumi.IntPtrOutput)
+}
+
+// What types of environments to apply Write permissions to.
+// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+// The values allowed are `all`, `development`, `staging`, `production` and `other`.
+// Not setting a value is the same as selecting `all`.
+// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
+func (o ScimGroupPartialPermissionsPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ScimGroupPartialPermissionsPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
+}
+
+type ScimGroupPartialPermissionsPermissionArrayOutput struct{ *pulumi.OutputState }
+
+func (ScimGroupPartialPermissionsPermissionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScimGroupPartialPermissionsPermission)(nil)).Elem()
+}
+
+func (o ScimGroupPartialPermissionsPermissionArrayOutput) ToScimGroupPartialPermissionsPermissionArrayOutput() ScimGroupPartialPermissionsPermissionArrayOutput {
+	return o
+}
+
+func (o ScimGroupPartialPermissionsPermissionArrayOutput) ToScimGroupPartialPermissionsPermissionArrayOutputWithContext(ctx context.Context) ScimGroupPartialPermissionsPermissionArrayOutput {
+	return o
+}
+
+func (o ScimGroupPartialPermissionsPermissionArrayOutput) Index(i pulumi.IntInput) ScimGroupPartialPermissionsPermissionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScimGroupPartialPermissionsPermission {
+		return vs[0].([]ScimGroupPartialPermissionsPermission)[vs[1].(int)]
+	}).(ScimGroupPartialPermissionsPermissionOutput)
+}
+
 type ScimGroupPermissionsPermission struct {
 	// Whether access should be provided for all projects or not.
 	AllProjects bool `pulumi:"allProjects"`
@@ -7123,13 +7267,13 @@ type GetGlobalConnectionAthena struct {
 	PollInterval int `pulumi:"pollInterval"`
 	// AWS region of your Athena instance.
 	RegionName string `pulumi:"regionName"`
-	// Prefix for storing tables, if different from the connection's S3 staging directory.
+	// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
 	S3DataDir string `pulumi:"s3DataDir"`
 	// How to generate table paths in the S3 data directory.
 	S3DataNaming string `pulumi:"s3DataNaming"`
-	// S3 location to store Athena query results and metadata.
+	// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
 	S3StagingDir string `pulumi:"s3StagingDir"`
-	// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+	// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
 	S3TmpTableDir string `pulumi:"s3TmpTableDir"`
 	// Identifier of Athena Spark workgroup for running Python models.
 	SparkWorkGroup string `pulumi:"sparkWorkGroup"`
@@ -7161,13 +7305,13 @@ type GetGlobalConnectionAthenaArgs struct {
 	PollInterval pulumi.IntInput `pulumi:"pollInterval"`
 	// AWS region of your Athena instance.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
-	// Prefix for storing tables, if different from the connection's S3 staging directory.
+	// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
 	S3DataDir pulumi.StringInput `pulumi:"s3DataDir"`
 	// How to generate table paths in the S3 data directory.
 	S3DataNaming pulumi.StringInput `pulumi:"s3DataNaming"`
-	// S3 location to store Athena query results and metadata.
+	// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
 	S3StagingDir pulumi.StringInput `pulumi:"s3StagingDir"`
-	// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+	// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
 	S3TmpTableDir pulumi.StringInput `pulumi:"s3TmpTableDir"`
 	// Identifier of Athena Spark workgroup for running Python models.
 	SparkWorkGroup pulumi.StringInput `pulumi:"sparkWorkGroup"`
@@ -7231,7 +7375,7 @@ func (o GetGlobalConnectionAthenaOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionAthena) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// Prefix for storing tables, if different from the connection's S3 staging directory.
+// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
 func (o GetGlobalConnectionAthenaOutput) S3DataDir() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionAthena) string { return v.S3DataDir }).(pulumi.StringOutput)
 }
@@ -7241,12 +7385,12 @@ func (o GetGlobalConnectionAthenaOutput) S3DataNaming() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionAthena) string { return v.S3DataNaming }).(pulumi.StringOutput)
 }
 
-// S3 location to store Athena query results and metadata.
+// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
 func (o GetGlobalConnectionAthenaOutput) S3StagingDir() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionAthena) string { return v.S3StagingDir }).(pulumi.StringOutput)
 }
 
-// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
 func (o GetGlobalConnectionAthenaOutput) S3TmpTableDir() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionAthena) string { return v.S3TmpTableDir }).(pulumi.StringOutput)
 }
@@ -9406,6 +9550,8 @@ type GetJobsJob struct {
 	// The list of steps to run in the job
 	ExecuteSteps []string            `pulumi:"executeSteps"`
 	Execution    GetJobsJobExecution `pulumi:"execution"`
+	// Whether force node selection (SAO) is enabled for this job
+	ForceNodeSelection bool `pulumi:"forceNodeSelection"`
 	// Whether the job generate docs
 	GenerateDocs bool `pulumi:"generateDocs"`
 	// The ID of the job
@@ -9464,6 +9610,8 @@ type GetJobsJobArgs struct {
 	// The list of steps to run in the job
 	ExecuteSteps pulumi.StringArrayInput  `pulumi:"executeSteps"`
 	Execution    GetJobsJobExecutionInput `pulumi:"execution"`
+	// Whether force node selection (SAO) is enabled for this job
+	ForceNodeSelection pulumi.BoolInput `pulumi:"forceNodeSelection"`
 	// Whether the job generate docs
 	GenerateDocs pulumi.BoolInput `pulumi:"generateDocs"`
 	// The ID of the job
@@ -9583,6 +9731,11 @@ func (o GetJobsJobOutput) ExecuteSteps() pulumi.StringArrayOutput {
 
 func (o GetJobsJobOutput) Execution() GetJobsJobExecutionOutput {
 	return o.ApplyT(func(v GetJobsJob) GetJobsJobExecution { return v.Execution }).(GetJobsJobExecutionOutput)
+}
+
+// Whether force node selection (SAO) is enabled for this job
+func (o GetJobsJobOutput) ForceNodeSelection() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobsJob) bool { return v.ForceNodeSelection }).(pulumi.BoolOutput)
 }
 
 // Whether the job generate docs
@@ -11431,6 +11584,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), RedshiftSemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialCredentialInput)(nil)).Elem(), RedshiftSemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedshiftSemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), RedshiftSemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScimGroupPartialPermissionsPermissionInput)(nil)).Elem(), ScimGroupPartialPermissionsPermissionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScimGroupPartialPermissionsPermissionArrayInput)(nil)).Elem(), ScimGroupPartialPermissionsPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScimGroupPermissionsPermissionInput)(nil)).Elem(), ScimGroupPermissionsPermissionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScimGroupPermissionsPermissionArrayInput)(nil)).Elem(), ScimGroupPermissionsPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceTokenServiceTokenPermissionInput)(nil)).Elem(), ServiceTokenServiceTokenPermissionArgs{})
@@ -11546,6 +11701,8 @@ func init() {
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialCredentialOutput{})
 	pulumi.RegisterOutputType(RedshiftSemanticLayerCredentialCredentialPtrOutput{})
+	pulumi.RegisterOutputType(ScimGroupPartialPermissionsPermissionOutput{})
+	pulumi.RegisterOutputType(ScimGroupPartialPermissionsPermissionArrayOutput{})
 	pulumi.RegisterOutputType(ScimGroupPermissionsPermissionOutput{})
 	pulumi.RegisterOutputType(ScimGroupPermissionsPermissionArrayOutput{})
 	pulumi.RegisterOutputType(ServiceTokenServiceTokenPermissionOutput{})

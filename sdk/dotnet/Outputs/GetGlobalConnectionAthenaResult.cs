@@ -38,7 +38,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string RegionName;
         /// <summary>
-        /// Prefix for storing tables, if different from the connection's S3 staging directory.
+        /// Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         /// </summary>
         public readonly string S3DataDir;
         /// <summary>
@@ -46,11 +46,11 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string S3DataNaming;
         /// <summary>
-        /// S3 location to store Athena query results and metadata.
+        /// S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
         /// </summary>
         public readonly string S3StagingDir;
         /// <summary>
-        /// Prefix for storing temporary tables, if different from the connection's S3 data directory.
+        /// Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         /// </summary>
         public readonly string S3TmpTableDir;
         /// <summary>

@@ -200,6 +200,11 @@ export const getSnowflakeCredential: typeof import("./getSnowflakeCredential").g
 export const getSnowflakeCredentialOutput: typeof import("./getSnowflakeCredential").getSnowflakeCredentialOutput = null as any;
 utilities.lazyLoad(exports, ["getSnowflakeCredential","getSnowflakeCredentialOutput"], () => require("./getSnowflakeCredential"));
 
+export { GetSparkCredentialArgs, GetSparkCredentialResult, GetSparkCredentialOutputArgs } from "./getSparkCredential";
+export const getSparkCredential: typeof import("./getSparkCredential").getSparkCredential = null as any;
+export const getSparkCredentialOutput: typeof import("./getSparkCredential").getSparkCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getSparkCredential","getSparkCredentialOutput"], () => require("./getSparkCredential"));
+
 export { GetStarburstCredentialArgs, GetStarburstCredentialResult, GetStarburstCredentialOutputArgs } from "./getStarburstCredential";
 export const getStarburstCredential: typeof import("./getStarburstCredential").getStarburstCredential = null as any;
 export const getStarburstCredentialOutput: typeof import("./getStarburstCredential").getStarburstCredentialOutput = null as any;
@@ -343,6 +348,11 @@ export type Repository = import("./repository").Repository;
 export const Repository: typeof import("./repository").Repository = null as any;
 utilities.lazyLoad(exports, ["Repository"], () => require("./repository"));
 
+export { ScimGroupPartialPermissionsArgs, ScimGroupPartialPermissionsState } from "./scimGroupPartialPermissions";
+export type ScimGroupPartialPermissions = import("./scimGroupPartialPermissions").ScimGroupPartialPermissions;
+export const ScimGroupPartialPermissions: typeof import("./scimGroupPartialPermissions").ScimGroupPartialPermissions = null as any;
+utilities.lazyLoad(exports, ["ScimGroupPartialPermissions"], () => require("./scimGroupPartialPermissions"));
+
 export { ScimGroupPermissionsArgs, ScimGroupPermissionsState } from "./scimGroupPermissions";
 export type ScimGroupPermissions = import("./scimGroupPermissions").ScimGroupPermissions;
 export const ScimGroupPermissions: typeof import("./scimGroupPermissions").ScimGroupPermissions = null as any;
@@ -372,6 +382,11 @@ export { SnowflakeSemanticLayerCredentialArgs, SnowflakeSemanticLayerCredentialS
 export type SnowflakeSemanticLayerCredential = import("./snowflakeSemanticLayerCredential").SnowflakeSemanticLayerCredential;
 export const SnowflakeSemanticLayerCredential: typeof import("./snowflakeSemanticLayerCredential").SnowflakeSemanticLayerCredential = null as any;
 utilities.lazyLoad(exports, ["SnowflakeSemanticLayerCredential"], () => require("./snowflakeSemanticLayerCredential"));
+
+export { SparkCredentialArgs, SparkCredentialState } from "./sparkCredential";
+export type SparkCredential = import("./sparkCredential").SparkCredential;
+export const SparkCredential: typeof import("./sparkCredential").SparkCredential = null as any;
+utilities.lazyLoad(exports, ["SparkCredential"], () => require("./sparkCredential"));
 
 export { StarburstCredentialArgs, StarburstCredentialState } from "./starburstCredential";
 export type StarburstCredential = import("./starburstCredential").StarburstCredential;
@@ -476,6 +491,8 @@ const _module = {
                 return new RedshiftSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/repository:Repository":
                 return new Repository(name, <any>undefined, { urn })
+            case "dbtcloud:index/scimGroupPartialPermissions:ScimGroupPartialPermissions":
+                return new ScimGroupPartialPermissions(name, <any>undefined, { urn })
             case "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions":
                 return new ScimGroupPermissions(name, <any>undefined, { urn })
             case "dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration":
@@ -488,6 +505,8 @@ const _module = {
                 return new SnowflakeCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential":
                 return new SnowflakeSemanticLayerCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/sparkCredential:SparkCredential":
+                return new SparkCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/starburstCredential:StarburstCredential":
                 return new StarburstCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/synapseCredential:SynapseCredential":
@@ -535,12 +554,14 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/projectRepository", _mo
 pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/repository", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/scimGroupPartialPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/scimGroupPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerConfiguration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerCredentialServiceTokenMapping", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/serviceToken", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeSemanticLayerCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/sparkCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/starburstCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/synapseCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/teradataCredential", _module)

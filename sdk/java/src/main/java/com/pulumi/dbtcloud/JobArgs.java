@@ -142,6 +142,21 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     * 
+     */
+    @Import(name="forceNodeSelection")
+    private @Nullable Output<Boolean> forceNodeSelection;
+
+    /**
+     * @return Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     * 
+     */
+    public Optional<Output<Boolean>> forceNodeSelection() {
+        return Optional.ofNullable(this.forceNodeSelection);
+    }
+
+    /**
      * Flag for whether the job should generate documentation
      * 
      */
@@ -460,6 +475,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         this.environmentId = $.environmentId;
         this.errorsOnLintFailure = $.errorsOnLintFailure;
         this.executeSteps = $.executeSteps;
+        this.forceNodeSelection = $.forceNodeSelection;
         this.generateDocs = $.generateDocs;
         this.isActive = $.isActive;
         this.jobCompletionTriggerConditions = $.jobCompletionTriggerConditions;
@@ -676,6 +692,27 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder executeSteps(String... executeSteps) {
             return executeSteps(List.of(executeSteps));
+        }
+
+        /**
+         * @param forceNodeSelection Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNodeSelection(@Nullable Output<Boolean> forceNodeSelection) {
+            $.forceNodeSelection = forceNodeSelection;
+            return this;
+        }
+
+        /**
+         * @param forceNodeSelection Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNodeSelection(Boolean forceNodeSelection) {
+            return forceNodeSelection(Output.of(forceNodeSelection));
         }
 
         /**

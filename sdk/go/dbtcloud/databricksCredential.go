@@ -75,7 +75,9 @@ import (
 type DatabricksCredential struct {
 	pulumi.CustomResourceState
 
-	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+	//
+	// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 	AdapterType pulumi.StringOutput `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog pulumi.StringOutput `pulumi:"catalog"`
@@ -138,7 +140,9 @@ func GetDatabricksCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabricksCredential resources.
 type databricksCredentialState struct {
-	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+	//
+	// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 	AdapterType *string `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog *string `pulumi:"catalog"`
@@ -159,7 +163,9 @@ type databricksCredentialState struct {
 }
 
 type DatabricksCredentialState struct {
-	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+	//
+	// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 	AdapterType pulumi.StringPtrInput
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog pulumi.StringPtrInput
@@ -184,7 +190,9 @@ func (DatabricksCredentialState) ElementType() reflect.Type {
 }
 
 type databricksCredentialArgs struct {
-	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+	//
+	// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 	AdapterType *string `pulumi:"adapterType"`
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog *string `pulumi:"catalog"`
@@ -204,7 +212,9 @@ type databricksCredentialArgs struct {
 
 // The set of arguments for constructing a DatabricksCredential resource.
 type DatabricksCredentialArgs struct {
-	// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+	// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+	//
+	// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 	AdapterType pulumi.StringPtrInput
 	// The catalog where to create models (only for the databricks adapter)
 	Catalog pulumi.StringPtrInput
@@ -309,7 +319,9 @@ func (o DatabricksCredentialOutput) ToDatabricksCredentialOutputWithContext(ctx 
 	return o
 }
 
-// The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+//
+// Deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
 func (o DatabricksCredentialOutput) AdapterType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabricksCredential) pulumi.StringOutput { return v.AdapterType }).(pulumi.StringOutput)
 }

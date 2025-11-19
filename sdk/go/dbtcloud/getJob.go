@@ -49,6 +49,8 @@ type LookupJobResult struct {
 	// The list of steps to run in the job
 	ExecuteSteps []string        `pulumi:"executeSteps"`
 	Execution    GetJobExecution `pulumi:"execution"`
+	// Whether force node selection (SAO) is enabled for this job
+	ForceNodeSelection bool `pulumi:"forceNodeSelection"`
 	// Whether the job generate docs
 	GenerateDocs bool `pulumi:"generateDocs"`
 	// The ID of the job
@@ -155,6 +157,11 @@ func (o LookupJobResultOutput) ExecuteSteps() pulumi.StringArrayOutput {
 
 func (o LookupJobResultOutput) Execution() GetJobExecutionOutput {
 	return o.ApplyT(func(v LookupJobResult) GetJobExecution { return v.Execution }).(GetJobExecutionOutput)
+}
+
+// Whether force node selection (SAO) is enabled for this job
+func (o LookupJobResultOutput) ForceNodeSelection() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupJobResult) bool { return v.ForceNodeSelection }).(pulumi.BoolOutput)
 }
 
 // Whether the job generate docs

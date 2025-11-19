@@ -166,6 +166,20 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.executeSteps;
     }
     /**
+     * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     * 
+     */
+    @Export(name="forceNodeSelection", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> forceNodeSelection;
+
+    /**
+     * @return Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     * 
+     */
+    public Output<Boolean> forceNodeSelection() {
+        return this.forceNodeSelection;
+    }
+    /**
      * Flag for whether the job should generate documentation
      * 
      */

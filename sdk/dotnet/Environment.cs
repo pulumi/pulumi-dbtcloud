@@ -97,7 +97,7 @@ namespace Pulumi.DbtCloud
         public Output<int> ConnectionId { get; private set; } = null!;
 
         /// <summary>
-        /// The project ID to which the environment belongs.
+        /// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         /// </summary>
         [Output("credentialId")]
         public Output<int> CredentialId { get; private set; } = null!;
@@ -222,7 +222,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? ConnectionId { get; set; }
 
         /// <summary>
-        /// The project ID to which the environment belongs.
+        /// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }
@@ -302,7 +302,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? ConnectionId { get; set; }
 
         /// <summary>
-        /// The project ID to which the environment belongs.
+        /// The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         /// </summary>
         [Input("credentialId")]
         public Input<int>? CredentialId { get; set; }

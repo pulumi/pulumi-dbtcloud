@@ -45,6 +45,7 @@ from .get_repository import *
 from .get_runs import *
 from .get_service_token import *
 from .get_snowflake_credential import *
+from .get_spark_credential import *
 from .get_starburst_credential import *
 from .get_synapse_credential import *
 from .get_teradata_credential import *
@@ -74,12 +75,14 @@ from .provider import *
 from .redshift_credential import *
 from .redshift_semantic_layer_credential import *
 from .repository import *
+from .scim_group_partial_permissions import *
 from .scim_group_permissions import *
 from .semantic_layer_configuration import *
 from .semantic_layer_credential_service_token_mapping import *
 from .service_token import *
 from .snowflake_credential import *
 from .snowflake_semantic_layer_credential import *
+from .spark_credential import *
 from .starburst_credential import *
 from .synapse_credential import *
 from .teradata_credential import *
@@ -356,6 +359,14 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/scimGroupPartialPermissions",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/scimGroupPartialPermissions:ScimGroupPartialPermissions": "ScimGroupPartialPermissions"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/scimGroupPermissions",
   "fqn": "pulumi_dbtcloud",
   "classes": {
@@ -400,6 +411,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential": "SnowflakeSemanticLayerCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/sparkCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/sparkCredential:SparkCredential": "SparkCredential"
   }
  },
  {

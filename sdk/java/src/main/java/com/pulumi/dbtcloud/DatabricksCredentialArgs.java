@@ -19,16 +19,24 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
     public static final DatabricksCredentialArgs Empty = new DatabricksCredentialArgs();
 
     /**
-     * The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
     @Import(name="adapterType")
     private @Nullable Output<String> adapterType;
 
     /**
-     * @return The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+     * @return The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+     * 
+     * @deprecated
+     * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      * 
      */
+    @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
     public Optional<Output<String>> adapterType() {
         return Optional.ofNullable(this.adapterType);
     }
@@ -162,22 +170,30 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param adapterType The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+         * @param adapterType The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
         public Builder adapterType(@Nullable Output<String> adapterType) {
             $.adapterType = adapterType;
             return this;
         }
 
         /**
-         * @param adapterType The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+         * @param adapterType The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
+         * 
          */
+        @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
         public Builder adapterType(String adapterType) {
             return adapterType(Output.of(adapterType));
         }

@@ -30,7 +30,7 @@ class DatabricksCredentialArgs:
         The set of arguments for constructing a DatabricksCredential resource.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Databricks credential in
         :param pulumi.Input[_builtins.str] token: Token for Databricks user
-        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
@@ -38,6 +38,9 @@ class DatabricksCredentialArgs:
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "token", token)
+        if adapter_type is not None:
+            warnings.warn("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""", DeprecationWarning)
+            pulumi.log.warn("""adapter_type is deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
         if adapter_type is not None:
             pulumi.set(__self__, "adapter_type", adapter_type)
         if catalog is not None:
@@ -78,9 +81,10 @@ class DatabricksCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="adapterType")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
     def adapter_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "adapter_type")
 
@@ -151,7 +155,7 @@ class _DatabricksCredentialState:
                  token: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabricksCredential resources.
-        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[_builtins.int] credential_id: The system Databricks credential ID
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Databricks credential in
@@ -160,6 +164,9 @@ class _DatabricksCredentialState:
         :param pulumi.Input[_builtins.str] target_name: Target name
         :param pulumi.Input[_builtins.str] token: Token for Databricks user
         """
+        if adapter_type is not None:
+            warnings.warn("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""", DeprecationWarning)
+            pulumi.log.warn("""adapter_type is deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
         if adapter_type is not None:
             pulumi.set(__self__, "adapter_type", adapter_type)
         if catalog is not None:
@@ -182,9 +189,10 @@ class _DatabricksCredentialState:
 
     @_builtins.property
     @pulumi.getter(name="adapterType")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
     def adapter_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "adapter_type")
 
@@ -340,7 +348,7 @@ class DatabricksCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Databricks credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
@@ -470,7 +478,7 @@ class DatabricksCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[_builtins.int] credential_id: The system Databricks credential ID
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Databricks credential in
@@ -495,9 +503,10 @@ class DatabricksCredential(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="adapterType")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
     def adapter_type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of the adapter (databricks or spark). Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+        The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "adapter_type")
 
