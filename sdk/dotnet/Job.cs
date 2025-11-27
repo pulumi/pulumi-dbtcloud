@@ -104,7 +104,7 @@ namespace Pulumi.DbtCloud
         public Output<bool> GenerateDocs { get; private set; } = null!;
 
         /// <summary>
-        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         /// </summary>
         [Output("isActive")]
         public Output<bool> IsActive { get; private set; } = null!;
@@ -337,7 +337,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? GenerateDocs { get; set; }
 
         /// <summary>
-        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }
@@ -543,7 +543,7 @@ namespace Pulumi.DbtCloud
         public Input<bool>? GenerateDocs { get; set; }
 
         /// <summary>
-        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config.
+        /// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `Triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         /// </summary>
         [Input("isActive")]
         public Input<bool>? IsActive { get; set; }

@@ -92,6 +92,16 @@ namespace Pulumi.DbtCloud
             set => _retryIntervalSeconds.Set(value);
         }
 
+        private static readonly __Value<bool?> _skipCredentialsValidation = new __Value<bool?>(() => __config.GetBoolean("skipCredentialsValidation"));
+        /// <summary>
+        /// If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+        /// </summary>
+        public static bool? SkipCredentialsValidation
+        {
+            get => _skipCredentialsValidation.Get();
+            set => _skipCredentialsValidation.Set(value);
+        }
+
         private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token") ?? Utilities.GetEnv("DBT_CLOUD_TOKEN"));
         /// <summary>
         /// API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`

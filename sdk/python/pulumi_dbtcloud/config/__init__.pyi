@@ -44,6 +44,11 @@ retryIntervalSeconds: Optional[int]
 The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
 """
 
+skipCredentialsValidation: Optional[bool]
+"""
+If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+"""
+
 token: Optional[str]
 """
 API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`

@@ -194,14 +194,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.generateDocs;
     }
     /**
-     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      * 
      */
     @Export(name="isActive", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isActive;
 
     /**
-     * @return Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+     * @return Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      * 
      */
     public Output<Boolean> isActive() {

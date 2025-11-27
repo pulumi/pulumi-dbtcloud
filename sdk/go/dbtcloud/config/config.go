@@ -57,6 +57,11 @@ func GetRetryIntervalSeconds(ctx *pulumi.Context) int {
 	return config.GetInt(ctx, "dbtcloud:retryIntervalSeconds")
 }
 
+// If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+func GetSkipCredentialsValidation(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "dbtcloud:skipCredentialsValidation")
+}
+
 // API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
 func GetToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "dbtcloud:token")

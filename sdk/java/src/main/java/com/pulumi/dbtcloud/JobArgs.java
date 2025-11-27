@@ -172,14 +172,14 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      * 
      */
     @Import(name="isActive")
     private @Nullable Output<Boolean> isActive;
 
     /**
-     * @return Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+     * @return Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      * 
      */
     public Optional<Output<Boolean>> isActive() {
@@ -737,7 +737,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isActive Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+         * @param isActive Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
          * 
          * @return builder
          * 
@@ -748,7 +748,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isActive Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config.
+         * @param isActive Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a &#39;deactivated&#39; state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
          * 
          * @return builder
          * 

@@ -64,7 +64,7 @@ class JobArgs:
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
-        :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[_builtins.str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
         :param pulumi.Input[_builtins.str] name: Job name
@@ -288,7 +288,7 @@ class JobArgs:
     @pulumi.getter(name="isActive")
     def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         """
         return pulumi.get(self, "is_active")
 
@@ -535,7 +535,7 @@ class _JobState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
-        :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[_builtins.int] job_id: Job identifier
         :param pulumi.Input[_builtins.str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
@@ -744,7 +744,7 @@ class _JobState:
     @pulumi.getter(name="isActive")
     def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         """
         return pulumi.get(self, "is_active")
 
@@ -1061,7 +1061,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
-        :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[_builtins.str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
         :param pulumi.Input[_builtins.str] name: Job name
@@ -1266,7 +1266,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
-        :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[_builtins.int] job_id: Job identifier
         :param pulumi.Input[_builtins.str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
@@ -1407,7 +1407,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="isActive")
     def is_active(self) -> pulumi.Output[_builtins.bool]:
         """
-        Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+        Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         """
         return pulumi.get(self, "is_active")
 
