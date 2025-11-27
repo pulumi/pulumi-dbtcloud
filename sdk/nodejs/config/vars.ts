@@ -74,6 +74,17 @@ Object.defineProperty(exports, "retryIntervalSeconds", {
 });
 
 /**
+ * If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+ */
+export declare const skipCredentialsValidation: boolean | undefined;
+Object.defineProperty(exports, "skipCredentialsValidation", {
+    get() {
+        return __config.getObject<boolean>("skipCredentialsValidation");
+    },
+    enumerable: true,
+});
+
+/**
  * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
  */
 export declare const token: string | undefined;

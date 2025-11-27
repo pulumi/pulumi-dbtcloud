@@ -25,6 +25,7 @@ class ProviderArgs:
                  max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_credentials_validation: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
@@ -34,6 +35,7 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.int] max_retries: The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] retriable_status_codes: List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
         :param pulumi.Input[_builtins.int] retry_interval_seconds: The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+        :param pulumi.Input[_builtins.bool] skip_credentials_validation: If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
         :param pulumi.Input[_builtins.str] token: API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
         """
         if account_id is None:
@@ -52,6 +54,8 @@ class ProviderArgs:
             pulumi.set(__self__, "retriable_status_codes", retriable_status_codes)
         if retry_interval_seconds is not None:
             pulumi.set(__self__, "retry_interval_seconds", retry_interval_seconds)
+        if skip_credentials_validation is not None:
+            pulumi.set(__self__, "skip_credentials_validation", skip_credentials_validation)
         if token is None:
             token = _utilities.get_env('DBT_CLOUD_TOKEN')
         if token is not None:
@@ -130,6 +134,18 @@ class ProviderArgs:
         pulumi.set(self, "retry_interval_seconds", value)
 
     @_builtins.property
+    @pulumi.getter(name="skipCredentialsValidation")
+    def skip_credentials_validation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+        """
+        return pulumi.get(self, "skip_credentials_validation")
+
+    @skip_credentials_validation.setter
+    def skip_credentials_validation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_credentials_validation", value)
+
+    @_builtins.property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -154,6 +170,7 @@ class Provider(pulumi.ProviderResource):
                  max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_credentials_validation: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -170,6 +187,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.int] max_retries: The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] retriable_status_codes: List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
         :param pulumi.Input[_builtins.int] retry_interval_seconds: The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
+        :param pulumi.Input[_builtins.bool] skip_credentials_validation: If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
         :param pulumi.Input[_builtins.str] token: API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
         """
         ...
@@ -205,6 +223,7 @@ class Provider(pulumi.ProviderResource):
                  max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_credentials_validation: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -225,6 +244,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["max_retries"] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None
             __props__.__dict__["retriable_status_codes"] = pulumi.Output.from_input(retriable_status_codes).apply(pulumi.runtime.to_json) if retriable_status_codes is not None else None
             __props__.__dict__["retry_interval_seconds"] = pulumi.Output.from_input(retry_interval_seconds).apply(pulumi.runtime.to_json) if retry_interval_seconds is not None else None
+            __props__.__dict__["skip_credentials_validation"] = pulumi.Output.from_input(skip_credentials_validation).apply(pulumi.runtime.to_json) if skip_credentials_validation is not None else None
             if token is None:
                 token = _utilities.get_env('DBT_CLOUD_TOKEN')
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)

@@ -110,6 +110,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+     * 
+     */
+    @Import(name="skipCredentialsValidation", json=true)
+    private @Nullable Output<Boolean> skipCredentialsValidation;
+
+    /**
+     * @return If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+     * 
+     */
+    public Optional<Output<Boolean>> skipCredentialsValidation() {
+        return Optional.ofNullable(this.skipCredentialsValidation);
+    }
+
+    /**
      * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
      * 
      */
@@ -133,6 +148,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.maxRetries = $.maxRetries;
         this.retriableStatusCodes = $.retriableStatusCodes;
         this.retryIntervalSeconds = $.retryIntervalSeconds;
+        this.skipCredentialsValidation = $.skipCredentialsValidation;
         this.token = $.token;
     }
 
@@ -288,6 +304,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder retryIntervalSeconds(Integer retryIntervalSeconds) {
             return retryIntervalSeconds(Output.of(retryIntervalSeconds));
+        }
+
+        /**
+         * @param skipCredentialsValidation If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipCredentialsValidation(@Nullable Output<Boolean> skipCredentialsValidation) {
+            $.skipCredentialsValidation = skipCredentialsValidation;
+            return this;
+        }
+
+        /**
+         * @param skipCredentialsValidation If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipCredentialsValidation(Boolean skipCredentialsValidation) {
+            return skipCredentialsValidation(Output.of(skipCredentialsValidation));
         }
 
         /**

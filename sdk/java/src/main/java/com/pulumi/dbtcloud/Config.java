@@ -57,6 +57,13 @@ public final class Config {
         return Codegen.integerProp("retryIntervalSeconds").config(config).get();
     }
 /**
+ * If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+ * 
+ */
+    public Optional<Boolean> skipCredentialsValidation() {
+        return Codegen.booleanProp("skipCredentialsValidation").config(config).get();
+    }
+/**
  * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
  * 
  */

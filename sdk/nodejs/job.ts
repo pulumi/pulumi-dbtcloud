@@ -106,7 +106,7 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly generateDocs: pulumi.Output<boolean>;
     /**
-     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      */
     declare public readonly isActive: pulumi.Output<boolean>;
     /**
@@ -326,7 +326,7 @@ export interface JobState {
      */
     generateDocs?: pulumi.Input<boolean>;
     /**
-     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      */
     isActive?: pulumi.Input<boolean>;
     /**
@@ -454,7 +454,7 @@ export interface JobArgs {
      */
     generateDocs?: pulumi.Input<boolean>;
     /**
-     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+     * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      */
     isActive?: pulumi.Input<boolean>;
     /**

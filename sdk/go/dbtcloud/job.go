@@ -64,7 +64,7 @@ type Job struct {
 	ForceNodeSelection pulumi.BoolOutput `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolOutput `pulumi:"generateDocs"`
-	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
 	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayOutput `pulumi:"jobCompletionTriggerConditions"`
@@ -170,7 +170,7 @@ type jobState struct {
 	ForceNodeSelection *bool `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs *bool `pulumi:"generateDocs"`
-	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
 	IsActive *bool `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerConditions []JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerConditions"`
@@ -235,7 +235,7 @@ type JobState struct {
 	ForceNodeSelection pulumi.BoolPtrInput
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolPtrInput
-	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
 	IsActive pulumi.BoolPtrInput
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayInput
@@ -304,7 +304,7 @@ type jobArgs struct {
 	ForceNodeSelection *bool `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs *bool `pulumi:"generateDocs"`
-	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
 	IsActive *bool `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerConditions []JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerConditions"`
@@ -368,7 +368,7 @@ type JobArgs struct {
 	ForceNodeSelection pulumi.BoolPtrInput
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolPtrInput
-	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+	// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
 	IsActive pulumi.BoolPtrInput
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayInput
@@ -547,7 +547,7 @@ func (o JobOutput) GenerateDocs() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.GenerateDocs }).(pulumi.BoolOutput)
 }
 
-// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config.
+// Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
 func (o JobOutput) IsActive() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.IsActive }).(pulumi.BoolOutput)
 }
