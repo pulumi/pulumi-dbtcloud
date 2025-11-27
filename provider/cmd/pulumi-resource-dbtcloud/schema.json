@@ -98,6 +98,10 @@
                 "type": "integer",
                 "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds."
             },
+            "skipCredentialsValidation": {
+                "type": "boolean",
+                "description": "If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false."
+            },
             "token": {
                 "type": "string",
                 "description": "API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`",
@@ -3152,6 +3156,10 @@
                 "type": "integer",
                 "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds."
             },
+            "skipCredentialsValidation": {
+                "type": "boolean",
+                "description": "If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false."
+            },
             "token": {
                 "type": "string",
                 "description": "API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`",
@@ -3196,6 +3204,10 @@
             "retryIntervalSeconds": {
                 "type": "integer",
                 "description": "The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds."
+            },
+            "skipCredentialsValidation": {
+                "type": "boolean",
+                "description": "If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false."
             },
             "token": {
                 "type": "string",
@@ -4863,7 +4875,7 @@
                 },
                 "isActive": {
                     "type": "boolean",
-                    "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the \u003cspan pulumi-lang-nodejs=\"`triggers`\" pulumi-lang-dotnet=\"`Triggers`\" pulumi-lang-go=\"`triggers`\" pulumi-lang-python=\"`triggers`\" pulumi-lang-yaml=\"`triggers`\" pulumi-lang-java=\"`triggers`\"\u003e`triggers`\u003c/span\u003e config.\n"
+                    "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the \u003cspan pulumi-lang-nodejs=\"`triggers`\" pulumi-lang-dotnet=\"`Triggers`\" pulumi-lang-go=\"`triggers`\" pulumi-lang-python=\"`triggers`\" pulumi-lang-yaml=\"`triggers`\" pulumi-lang-java=\"`triggers`\"\u003e`triggers`\u003c/span\u003e config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.\n"
                 },
                 "jobCompletionTriggerConditions": {
                     "type": "array",
@@ -5028,7 +5040,7 @@
                 },
                 "isActive": {
                     "type": "boolean",
-                    "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the \u003cspan pulumi-lang-nodejs=\"`triggers`\" pulumi-lang-dotnet=\"`Triggers`\" pulumi-lang-go=\"`triggers`\" pulumi-lang-python=\"`triggers`\" pulumi-lang-yaml=\"`triggers`\" pulumi-lang-java=\"`triggers`\"\u003e`triggers`\u003c/span\u003e config.\n"
+                    "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the \u003cspan pulumi-lang-nodejs=\"`triggers`\" pulumi-lang-dotnet=\"`Triggers`\" pulumi-lang-go=\"`triggers`\" pulumi-lang-python=\"`triggers`\" pulumi-lang-yaml=\"`triggers`\" pulumi-lang-java=\"`triggers`\"\u003e`triggers`\u003c/span\u003e config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.\n"
                 },
                 "jobCompletionTriggerConditions": {
                     "type": "array",
@@ -5172,7 +5184,7 @@
                     },
                     "isActive": {
                         "type": "boolean",
-                        "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the \u003cspan pulumi-lang-nodejs=\"`triggers`\" pulumi-lang-dotnet=\"`Triggers`\" pulumi-lang-go=\"`triggers`\" pulumi-lang-python=\"`triggers`\" pulumi-lang-yaml=\"`triggers`\" pulumi-lang-java=\"`triggers`\"\u003e`triggers`\u003c/span\u003e config.\n"
+                        "description": "Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the \u003cspan pulumi-lang-nodejs=\"`triggers`\" pulumi-lang-dotnet=\"`Triggers`\" pulumi-lang-go=\"`triggers`\" pulumi-lang-python=\"`triggers`\" pulumi-lang-yaml=\"`triggers`\" pulumi-lang-java=\"`triggers`\"\u003e`triggers`\u003c/span\u003e config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.\n"
                     },
                     "jobCompletionTriggerConditions": {
                         "type": "array",
