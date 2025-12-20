@@ -49,7 +49,8 @@ class JobArgs:
                  self_deferring: Optional[pulumi.Input[_builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None):
+                 triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
+                 validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Job resource.
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
@@ -81,6 +82,7 @@ class JobArgs:
         :param pulumi.Input[_builtins.str] target_name: Target name for the dbt profile
         :param pulumi.Input[_builtins.int] timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
+        :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "execute_steps", execute_steps)
@@ -139,6 +141,8 @@ class JobArgs:
             pulumi.set(__self__, "timeout_seconds", timeout_seconds)
         if triggers_on_draft_pr is not None:
             pulumi.set(__self__, "triggers_on_draft_pr", triggers_on_draft_pr)
+        if validate_execute_steps is not None:
+            pulumi.set(__self__, "validate_execute_steps", validate_execute_steps)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
@@ -489,6 +493,18 @@ class JobArgs:
     def triggers_on_draft_pr(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "triggers_on_draft_pr", value)
 
+    @_builtins.property
+    @pulumi.getter(name="validateExecuteSteps")
+    def validate_execute_steps(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+        """
+        return pulumi.get(self, "validate_execute_steps")
+
+    @validate_execute_steps.setter
+    def validate_execute_steps(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "validate_execute_steps", value)
+
 
 @pulumi.input_type
 class _JobState:
@@ -522,7 +538,8 @@ class _JobState:
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
                  timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  triggers: Optional[pulumi.Input['JobTriggersArgs']] = None,
-                 triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None):
+                 triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
+                 validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Job resources.
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
@@ -555,6 +572,7 @@ class _JobState:
         :param pulumi.Input[_builtins.int] timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
         :param pulumi.Input['JobTriggersArgs'] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
+        :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """
         if compare_changes_flags is not None:
             pulumi.set(__self__, "compare_changes_flags", compare_changes_flags)
@@ -619,6 +637,8 @@ class _JobState:
             pulumi.set(__self__, "triggers", triggers)
         if triggers_on_draft_pr is not None:
             pulumi.set(__self__, "triggers_on_draft_pr", triggers_on_draft_pr)
+        if validate_execute_steps is not None:
+            pulumi.set(__self__, "validate_execute_steps", validate_execute_steps)
 
     @_builtins.property
     @pulumi.getter(name="compareChangesFlags")
@@ -981,6 +1001,18 @@ class _JobState:
     def triggers_on_draft_pr(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "triggers_on_draft_pr", value)
 
+    @_builtins.property
+    @pulumi.getter(name="validateExecuteSteps")
+    def validate_execute_steps(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+        """
+        return pulumi.get(self, "validate_execute_steps")
+
+    @validate_execute_steps.setter
+    def validate_execute_steps(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "validate_execute_steps", value)
+
 
 @pulumi.type_token("dbtcloud:index/job:Job")
 class Job(pulumi.CustomResource):
@@ -1017,6 +1049,7 @@ class Job(pulumi.CustomResource):
                  timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  triggers: Optional[pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
                  triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
+                 validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
         ## Import
@@ -1080,6 +1113,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
         :param pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
+        :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """
         ...
     @overload
@@ -1162,6 +1196,7 @@ class Job(pulumi.CustomResource):
                  timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  triggers: Optional[pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
                  triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
+                 validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1208,6 +1243,7 @@ class Job(pulumi.CustomResource):
                 raise TypeError("Missing required property 'triggers'")
             __props__.__dict__["triggers"] = triggers
             __props__.__dict__["triggers_on_draft_pr"] = triggers_on_draft_pr
+            __props__.__dict__["validate_execute_steps"] = validate_execute_steps
             __props__.__dict__["job_id"] = None
         super(Job, __self__).__init__(
             'dbtcloud:index/job:Job',
@@ -1248,7 +1284,8 @@ class Job(pulumi.CustomResource):
             target_name: Optional[pulumi.Input[_builtins.str]] = None,
             timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             triggers: Optional[pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
-            triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Job':
+            triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
+            validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Job':
         """
         Get an existing Job resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1286,6 +1323,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
         :param pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
+        :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1321,6 +1359,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["timeout_seconds"] = timeout_seconds
         __props__.__dict__["triggers"] = triggers
         __props__.__dict__["triggers_on_draft_pr"] = triggers_on_draft_pr
+        __props__.__dict__["validate_execute_steps"] = validate_execute_steps
         return Job(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1563,4 +1602,12 @@ class Job(pulumi.CustomResource):
         Whether the CI job should be automatically triggered on draft PRs
         """
         return pulumi.get(self, "triggers_on_draft_pr")
+
+    @_builtins.property
+    @pulumi.getter(name="validateExecuteSteps")
+    def validate_execute_steps(self) -> pulumi.Output[_builtins.bool]:
+        """
+        When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+        """
+        return pulumi.get(self, "validate_execute_steps")
 

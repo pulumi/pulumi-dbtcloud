@@ -102,6 +102,16 @@ namespace Pulumi.DbtCloud
             set => _skipCredentialsValidation.Set(value);
         }
 
+        private static readonly __Value<int?> _timeoutSeconds = new __Value<int?>(() => __config.GetInt32("timeoutSeconds"));
+        /// <summary>
+        /// The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+        /// </summary>
+        public static int? TimeoutSeconds
+        {
+            get => _timeoutSeconds.Get();
+            set => _timeoutSeconds.Set(value);
+        }
+
         private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token") ?? Utilities.GetEnv("DBT_CLOUD_TOKEN"));
         /// <summary>
         /// API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`

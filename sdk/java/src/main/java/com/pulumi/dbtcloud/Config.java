@@ -64,6 +64,13 @@ public final class Config {
         return Codegen.booleanProp("skipCredentialsValidation").config(config).get();
     }
 /**
+ * The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+ * 
+ */
+    public Optional<Integer> timeoutSeconds() {
+        return Codegen.integerProp("timeoutSeconds").config(config).get();
+    }
+/**
  * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
  * 
  */

@@ -77,6 +77,8 @@ type providerArgs struct {
 	RetryIntervalSeconds *int `pulumi:"retryIntervalSeconds"`
 	// If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
 	SkipCredentialsValidation *bool `pulumi:"skipCredentialsValidation"`
+	// The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
 	// API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
 	Token *string `pulumi:"token"`
 }
@@ -97,6 +99,8 @@ type ProviderArgs struct {
 	RetryIntervalSeconds pulumi.IntPtrInput
 	// If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
 	SkipCredentialsValidation pulumi.BoolPtrInput
+	// The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+	TimeoutSeconds pulumi.IntPtrInput
 	// API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
 	Token pulumi.StringPtrInput
 }

@@ -49,6 +49,11 @@ skipCredentialsValidation: Optional[bool]
 If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
 """
 
+timeoutSeconds: Optional[int]
+"""
+The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+"""
+
 token: Optional[str]
 """
 API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`

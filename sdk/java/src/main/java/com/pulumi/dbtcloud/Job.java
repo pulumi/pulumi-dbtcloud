@@ -477,6 +477,20 @@ public class Job extends com.pulumi.resources.CustomResource {
     public Output<Boolean> triggersOnDraftPr() {
         return this.triggersOnDraftPr;
     }
+    /**
+     * When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+     * 
+     */
+    @Export(name="validateExecuteSteps", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> validateExecuteSteps;
+
+    /**
+     * @return When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+     * 
+     */
+    public Output<Boolean> validateExecuteSteps() {
+        return this.validateExecuteSteps;
+    }
 
     /**
      *

@@ -26,8 +26,25 @@ runtime: nodejs
 config:
     dbtcloud:accountId:
         value: 'TODO: var.dbt_cloud_account_id'
+    dbtcloud:disableRetry:
+        value: false
     dbtcloud:hostUrl:
         value: https://cloud.getdbt.com/api
+    dbtcloud:maxRetries:
+        value: 10
+    dbtcloud:retriableStatusCodes:
+        value:
+            - "429"
+            - "500"
+            - "502"
+            - "503"
+            - "504"
+    dbtcloud:retryIntervalSeconds:
+        value: 10
+    dbtcloud:skipCredentialsValidation:
+        value: false
+    dbtcloud:timeoutSeconds:
+        value: 60
     dbtcloud:token:
         value: 'TODO: var.dbt_cloud_token'
 
@@ -47,8 +64,25 @@ runtime: python
 config:
     dbtcloud:accountId:
         value: 'TODO: var.dbt_cloud_account_id'
+    dbtcloud:disableRetry:
+        value: false
     dbtcloud:hostUrl:
         value: https://cloud.getdbt.com/api
+    dbtcloud:maxRetries:
+        value: 10
+    dbtcloud:retriableStatusCodes:
+        value:
+            - "429"
+            - "500"
+            - "502"
+            - "503"
+            - "504"
+    dbtcloud:retryIntervalSeconds:
+        value: 10
+    dbtcloud:skipCredentialsValidation:
+        value: false
+    dbtcloud:timeoutSeconds:
+        value: 60
     dbtcloud:token:
         value: 'TODO: var.dbt_cloud_token'
 
@@ -68,8 +102,25 @@ runtime: dotnet
 config:
     dbtcloud:accountId:
         value: 'TODO: var.dbt_cloud_account_id'
+    dbtcloud:disableRetry:
+        value: false
     dbtcloud:hostUrl:
         value: https://cloud.getdbt.com/api
+    dbtcloud:maxRetries:
+        value: 10
+    dbtcloud:retriableStatusCodes:
+        value:
+            - "429"
+            - "500"
+            - "502"
+            - "503"
+            - "504"
+    dbtcloud:retryIntervalSeconds:
+        value: 10
+    dbtcloud:skipCredentialsValidation:
+        value: false
+    dbtcloud:timeoutSeconds:
+        value: 60
     dbtcloud:token:
         value: 'TODO: var.dbt_cloud_token'
 
@@ -95,8 +146,25 @@ runtime: go
 config:
     dbtcloud:accountId:
         value: 'TODO: var.dbt_cloud_account_id'
+    dbtcloud:disableRetry:
+        value: false
     dbtcloud:hostUrl:
         value: https://cloud.getdbt.com/api
+    dbtcloud:maxRetries:
+        value: 10
+    dbtcloud:retriableStatusCodes:
+        value:
+            - "429"
+            - "500"
+            - "502"
+            - "503"
+            - "504"
+    dbtcloud:retryIntervalSeconds:
+        value: 10
+    dbtcloud:skipCredentialsValidation:
+        value: false
+    dbtcloud:timeoutSeconds:
+        value: 60
     dbtcloud:token:
         value: 'TODO: var.dbt_cloud_token'
 
@@ -125,8 +193,25 @@ runtime: yaml
 config:
     dbtcloud:accountId:
         value: 'TODO: var.dbt_cloud_account_id'
+    dbtcloud:disableRetry:
+        value: false
     dbtcloud:hostUrl:
         value: https://cloud.getdbt.com/api
+    dbtcloud:maxRetries:
+        value: 10
+    dbtcloud:retriableStatusCodes:
+        value:
+            - "429"
+            - "500"
+            - "502"
+            - "503"
+            - "504"
+    dbtcloud:retryIntervalSeconds:
+        value: 10
+    dbtcloud:skipCredentialsValidation:
+        value: false
+    dbtcloud:timeoutSeconds:
+        value: 60
     dbtcloud:token:
         value: 'TODO: var.dbt_cloud_token'
 
@@ -145,8 +230,25 @@ runtime: java
 config:
     dbtcloud:accountId:
         value: 'TODO: var.dbt_cloud_account_id'
+    dbtcloud:disableRetry:
+        value: false
     dbtcloud:hostUrl:
         value: https://cloud.getdbt.com/api
+    dbtcloud:maxRetries:
+        value: 10
+    dbtcloud:retriableStatusCodes:
+        value:
+            - "429"
+            - "500"
+            - "502"
+            - "503"
+            - "504"
+    dbtcloud:retryIntervalSeconds:
+        value: 10
+    dbtcloud:skipCredentialsValidation:
+        value: false
+    dbtcloud:timeoutSeconds:
+        value: 60
     dbtcloud:token:
         value: 'TODO: var.dbt_cloud_token'
 
@@ -186,4 +288,5 @@ public class App {
 - `retriableStatusCodes` (List of String) List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
 - `retryIntervalSeconds` (Number) The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
 - `skipCredentialsValidation` (Boolean) If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
+- `timeoutSeconds` (Number) The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
 - `token` (String, Sensitive) API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`

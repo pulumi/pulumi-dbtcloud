@@ -187,6 +187,10 @@ export class Job extends pulumi.CustomResource {
      * Whether the CI job should be automatically triggered on draft PRs
      */
     declare public readonly triggersOnDraftPr: pulumi.Output<boolean>;
+    /**
+     * When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+     */
+    declare public readonly validateExecuteSteps: pulumi.Output<boolean>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.
@@ -231,6 +235,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["timeoutSeconds"] = state?.timeoutSeconds;
             resourceInputs["triggers"] = state?.triggers;
             resourceInputs["triggersOnDraftPr"] = state?.triggersOnDraftPr;
+            resourceInputs["validateExecuteSteps"] = state?.validateExecuteSteps;
         } else {
             const args = argsOrState as JobArgs | undefined;
             if (args?.environmentId === undefined && !opts.urn) {
@@ -274,6 +279,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["timeoutSeconds"] = args?.timeoutSeconds;
             resourceInputs["triggers"] = args?.triggers;
             resourceInputs["triggersOnDraftPr"] = args?.triggersOnDraftPr;
+            resourceInputs["validateExecuteSteps"] = args?.validateExecuteSteps;
             resourceInputs["jobId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -407,6 +413,10 @@ export interface JobState {
      * Whether the CI job should be automatically triggered on draft PRs
      */
     triggersOnDraftPr?: pulumi.Input<boolean>;
+    /**
+     * When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+     */
+    validateExecuteSteps?: pulumi.Input<boolean>;
 }
 
 /**
@@ -531,4 +541,8 @@ export interface JobArgs {
      * Whether the CI job should be automatically triggered on draft PRs
      */
     triggersOnDraftPr?: pulumi.Input<boolean>;
+    /**
+     * When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+     */
+    validateExecuteSteps?: pulumi.Input<boolean>;
 }

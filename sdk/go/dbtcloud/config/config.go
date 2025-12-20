@@ -62,6 +62,11 @@ func GetSkipCredentialsValidation(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "dbtcloud:skipCredentialsValidation")
 }
 
+// The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+func GetTimeoutSeconds(ctx *pulumi.Context) int {
+	return config.GetInt(ctx, "dbtcloud:timeoutSeconds")
+}
+
 // API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
 func GetToken(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "dbtcloud:token")

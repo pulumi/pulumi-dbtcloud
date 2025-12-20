@@ -70,6 +70,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('skipCredentialsValidation')
 
     @_builtins.property
+    def timeout_seconds(self) -> Optional[int]:
+        """
+        The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+        """
+        return __config__.get_int('timeoutSeconds')
+
+    @_builtins.property
     def token(self) -> Optional[str]:
         """
         API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`

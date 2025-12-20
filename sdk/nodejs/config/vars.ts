@@ -85,6 +85,17 @@ Object.defineProperty(exports, "skipCredentialsValidation", {
 });
 
 /**
+ * The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+ */
+export declare const timeoutSeconds: number | undefined;
+Object.defineProperty(exports, "timeoutSeconds", {
+    get() {
+        return __config.getObject<number>("timeoutSeconds");
+    },
+    enumerable: true,
+});
+
+/**
  * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
  */
 export declare const token: string | undefined;

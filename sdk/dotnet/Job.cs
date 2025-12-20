@@ -223,6 +223,12 @@ namespace Pulumi.DbtCloud
         [Output("triggersOnDraftPr")]
         public Output<bool> TriggersOnDraftPr { get; private set; } = null!;
 
+        /// <summary>
+        /// When set to `True`, the provider will validate the `ExecuteSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `False` to allow flexibility with newer dbt commands.
+        /// </summary>
+        [Output("validateExecuteSteps")]
+        public Output<bool> ValidateExecuteSteps { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Job resource with the given unique name, arguments, and options.
@@ -468,6 +474,12 @@ namespace Pulumi.DbtCloud
         [Input("triggersOnDraftPr")]
         public Input<bool>? TriggersOnDraftPr { get; set; }
 
+        /// <summary>
+        /// When set to `True`, the provider will validate the `ExecuteSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `False` to allow flexibility with newer dbt commands.
+        /// </summary>
+        [Input("validateExecuteSteps")]
+        public Input<bool>? ValidateExecuteSteps { get; set; }
+
         public JobArgs()
         {
         }
@@ -679,6 +691,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("triggersOnDraftPr")]
         public Input<bool>? TriggersOnDraftPr { get; set; }
+
+        /// <summary>
+        /// When set to `True`, the provider will validate the `ExecuteSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `False` to allow flexibility with newer dbt commands.
+        /// </summary>
+        [Input("validateExecuteSteps")]
+        public Input<bool>? ValidateExecuteSteps { get; set; }
 
         public JobState()
         {
