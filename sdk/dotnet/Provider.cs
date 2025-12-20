@@ -117,6 +117,12 @@ namespace Pulumi.DbtCloud
         [Input("skipCredentialsValidation", json: true)]
         public Input<bool>? SkipCredentialsValidation { get; set; }
 
+        /// <summary>
+        /// The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+        /// </summary>
+        [Input("timeoutSeconds", json: true)]
+        public Input<int>? TimeoutSeconds { get; set; }
+
         [Input("token")]
         private Input<string>? _token;
 

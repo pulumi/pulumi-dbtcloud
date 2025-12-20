@@ -52,6 +52,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["retriableStatusCodes"] = pulumi.output(args?.retriableStatusCodes).apply(JSON.stringify);
             resourceInputs["retryIntervalSeconds"] = pulumi.output(args?.retryIntervalSeconds).apply(JSON.stringify);
             resourceInputs["skipCredentialsValidation"] = pulumi.output(args?.skipCredentialsValidation).apply(JSON.stringify);
+            resourceInputs["timeoutSeconds"] = pulumi.output(args?.timeoutSeconds).apply(JSON.stringify);
             resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("DBT_CLOUD_TOKEN");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -102,6 +103,10 @@ export interface ProviderArgs {
      * If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
      */
     skipCredentialsValidation?: pulumi.Input<boolean>;
+    /**
+     * The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+     */
+    timeoutSeconds?: pulumi.Input<number>;
     /**
      * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
      */

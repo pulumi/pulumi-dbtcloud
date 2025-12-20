@@ -125,6 +125,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+     * 
+     */
+    @Import(name="timeoutSeconds", json=true)
+    private @Nullable Output<Integer> timeoutSeconds;
+
+    /**
+     * @return The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> timeoutSeconds() {
+        return Optional.ofNullable(this.timeoutSeconds);
+    }
+
+    /**
      * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
      * 
      */
@@ -149,6 +164,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.retriableStatusCodes = $.retriableStatusCodes;
         this.retryIntervalSeconds = $.retryIntervalSeconds;
         this.skipCredentialsValidation = $.skipCredentialsValidation;
+        this.timeoutSeconds = $.timeoutSeconds;
         this.token = $.token;
     }
 
@@ -325,6 +341,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder skipCredentialsValidation(Boolean skipCredentialsValidation) {
             return skipCredentialsValidation(Output.of(skipCredentialsValidation));
+        }
+
+        /**
+         * @param timeoutSeconds The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeoutSeconds(@Nullable Output<Integer> timeoutSeconds) {
+            $.timeoutSeconds = timeoutSeconds;
+            return this;
+        }
+
+        /**
+         * @param timeoutSeconds The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeoutSeconds(Integer timeoutSeconds) {
+            return timeoutSeconds(Output.of(timeoutSeconds));
         }
 
         /**

@@ -106,6 +106,8 @@ type Job struct {
 	Triggers JobTriggersOutput `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr pulumi.BoolOutput `pulumi:"triggersOnDraftPr"`
+	// When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+	ValidateExecuteSteps pulumi.BoolOutput `pulumi:"validateExecuteSteps"`
 }
 
 // NewJob registers a new resource with the given unique name, arguments, and options.
@@ -212,6 +214,8 @@ type jobState struct {
 	Triggers *JobTriggers `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr *bool `pulumi:"triggersOnDraftPr"`
+	// When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+	ValidateExecuteSteps *bool `pulumi:"validateExecuteSteps"`
 }
 
 type JobState struct {
@@ -277,6 +281,8 @@ type JobState struct {
 	Triggers JobTriggersPtrInput
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr pulumi.BoolPtrInput
+	// When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+	ValidateExecuteSteps pulumi.BoolPtrInput
 }
 
 func (JobState) ElementType() reflect.Type {
@@ -344,6 +350,8 @@ type jobArgs struct {
 	Triggers JobTriggers `pulumi:"triggers"`
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr *bool `pulumi:"triggersOnDraftPr"`
+	// When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+	ValidateExecuteSteps *bool `pulumi:"validateExecuteSteps"`
 }
 
 // The set of arguments for constructing a Job resource.
@@ -408,6 +416,8 @@ type JobArgs struct {
 	Triggers JobTriggersInput
 	// Whether the CI job should be automatically triggered on draft PRs
 	TriggersOnDraftPr pulumi.BoolPtrInput
+	// When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+	ValidateExecuteSteps pulumi.BoolPtrInput
 }
 
 func (JobArgs) ElementType() reflect.Type {
@@ -647,6 +657,11 @@ func (o JobOutput) Triggers() JobTriggersOutput {
 // Whether the CI job should be automatically triggered on draft PRs
 func (o JobOutput) TriggersOnDraftPr() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.TriggersOnDraftPr }).(pulumi.BoolOutput)
+}
+
+// When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+func (o JobOutput) ValidateExecuteSteps() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.ValidateExecuteSteps }).(pulumi.BoolOutput)
 }
 
 type JobArrayOutput struct{ *pulumi.OutputState }

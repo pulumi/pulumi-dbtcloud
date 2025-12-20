@@ -464,6 +464,21 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.triggersOnDraftPr);
     }
 
+    /**
+     * When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+     * 
+     */
+    @Import(name="validateExecuteSteps")
+    private @Nullable Output<Boolean> validateExecuteSteps;
+
+    /**
+     * @return When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+     * 
+     */
+    public Optional<Output<Boolean>> validateExecuteSteps() {
+        return Optional.ofNullable(this.validateExecuteSteps);
+    }
+
     private JobArgs() {}
 
     private JobArgs(JobArgs $) {
@@ -496,6 +511,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         this.timeoutSeconds = $.timeoutSeconds;
         this.triggers = $.triggers;
         this.triggersOnDraftPr = $.triggersOnDraftPr;
+        this.validateExecuteSteps = $.validateExecuteSteps;
     }
 
     public static Builder builder() {
@@ -1171,6 +1187,27 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder triggersOnDraftPr(Boolean triggersOnDraftPr) {
             return triggersOnDraftPr(Output.of(triggersOnDraftPr));
+        }
+
+        /**
+         * @param validateExecuteSteps When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validateExecuteSteps(@Nullable Output<Boolean> validateExecuteSteps) {
+            $.validateExecuteSteps = validateExecuteSteps;
+            return this;
+        }
+
+        /**
+         * @param validateExecuteSteps When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validateExecuteSteps(Boolean validateExecuteSteps) {
+            return validateExecuteSteps(Output.of(validateExecuteSteps));
         }
 
         public JobArgs build() {
