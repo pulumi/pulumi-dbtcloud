@@ -14,33 +14,33 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class GlobalConnectionBigquery
     {
         /// <summary>
-        /// OAuth Client ID
+        /// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
         /// </summary>
         public readonly string? ApplicationId;
         /// <summary>
-        /// OAuth Client Secret
+        /// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
         /// </summary>
         public readonly string? ApplicationSecret;
         /// <summary>
-        /// Auth Provider X509 Cert URL for the Service Account
+        /// Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        public readonly string AuthProviderX509CertUrl;
+        public readonly string? AuthProviderX509CertUrl;
         /// <summary>
-        /// Auth URI for the Service Account
+        /// Auth URI for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        public readonly string AuthUri;
+        public readonly string? AuthUri;
         /// <summary>
-        /// Service Account email
+        /// Service Account email. Required when using 'service-account-json' authentication.
         /// </summary>
-        public readonly string ClientEmail;
+        public readonly string? ClientEmail;
         /// <summary>
-        /// Client ID of the Service Account
+        /// Client ID of the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        public readonly string ClientId;
+        public readonly string? ClientId;
         /// <summary>
-        /// Client X509 Cert URL for the Service Account
+        /// Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        public readonly string ClientX509CertUrl;
+        public readonly string? ClientX509CertUrl;
         /// <summary>
         /// Dataproc cluster name for PySpark workloads
         /// </summary>
@@ -49,6 +49,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// Google Cloud region for PySpark workloads on Dataproc
         /// </summary>
         public readonly string? DataprocRegion;
+        /// <summary>
+        /// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+        /// </summary>
+        public readonly string? DeploymentEnvAuthType;
         /// <summary>
         /// Project to bill for query execution
         /// </summary>
@@ -90,13 +94,13 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string? Priority;
         /// <summary>
-        /// Private Key for the Service Account
+        /// Private Key for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        public readonly string PrivateKey;
+        public readonly string? PrivateKey;
         /// <summary>
-        /// Private Key ID for the Service Account
+        /// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        public readonly string PrivateKeyId;
+        public readonly string? PrivateKeyId;
         /// <summary>
         /// Number of retries for queries
         /// </summary>
@@ -110,9 +114,9 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int? TimeoutSeconds;
         /// <summary>
-        /// Token URI for the Service Account
+        /// Token URI for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        public readonly string TokenUri;
+        public readonly string? TokenUri;
         /// <summary>
         /// Whether to use the latest BigqueryV1 adapter (use this for BQ WIF). If true, the `JobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
         /// </summary>
@@ -124,19 +128,21 @@ namespace Pulumi.DbtCloud.Outputs
 
             string? applicationSecret,
 
-            string authProviderX509CertUrl,
+            string? authProviderX509CertUrl,
 
-            string authUri,
+            string? authUri,
 
-            string clientEmail,
+            string? clientEmail,
 
-            string clientId,
+            string? clientId,
 
-            string clientX509CertUrl,
+            string? clientX509CertUrl,
 
             string? dataprocClusterName,
 
             string? dataprocRegion,
+
+            string? deploymentEnvAuthType,
 
             string? executionProject,
 
@@ -158,9 +164,9 @@ namespace Pulumi.DbtCloud.Outputs
 
             string? priority,
 
-            string privateKey,
+            string? privateKey,
 
-            string privateKeyId,
+            string? privateKeyId,
 
             int? retries,
 
@@ -168,7 +174,7 @@ namespace Pulumi.DbtCloud.Outputs
 
             int? timeoutSeconds,
 
-            string tokenUri,
+            string? tokenUri,
 
             bool? useLatestAdapter)
         {
@@ -181,6 +187,7 @@ namespace Pulumi.DbtCloud.Outputs
             ClientX509CertUrl = clientX509CertUrl;
             DataprocClusterName = dataprocClusterName;
             DataprocRegion = dataprocRegion;
+            DeploymentEnvAuthType = deploymentEnvAuthType;
             ExecutionProject = executionProject;
             GcpProjectId = gcpProjectId;
             GcsBucket = gcsBucket;

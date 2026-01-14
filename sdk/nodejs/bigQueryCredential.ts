@@ -18,6 +18,14 @@ import * as utilities from "./utilities";
  *     dataset: "my_bq_dataset",
  *     numThreads: 16,
  * });
+ * // When using a global connection with use_latest_adapter = true,
+ * // provide the connection_id to automatically use the correct adapter version
+ * const myCredentialV1 = new dbtcloud.BigQueryCredential("my_credential_v1", {
+ *     projectId: dbtProject.id,
+ *     dataset: "my_bq_dataset",
+ *     numThreads: 16,
+ *     connectionId: myConnection.id,
+ * });
  * ```
  *
  * ## Import
@@ -79,6 +87,10 @@ export class BigQueryCredential extends pulumi.CustomResource {
     }
 
     /**
+     * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     */
+    declare public readonly connectionId: pulumi.Output<number | undefined>;
+    /**
      * The internal credential ID
      */
     declare public /*out*/ readonly credentialId: pulumi.Output<number>;
@@ -112,6 +124,7 @@ export class BigQueryCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BigQueryCredentialState | undefined;
+            resourceInputs["connectionId"] = state?.connectionId;
             resourceInputs["credentialId"] = state?.credentialId;
             resourceInputs["dataset"] = state?.dataset;
             resourceInputs["isActive"] = state?.isActive;
@@ -128,6 +141,7 @@ export class BigQueryCredential extends pulumi.CustomResource {
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
+            resourceInputs["connectionId"] = args?.connectionId;
             resourceInputs["dataset"] = args?.dataset;
             resourceInputs["isActive"] = args?.isActive;
             resourceInputs["numThreads"] = args?.numThreads;
@@ -143,6 +157,10 @@ export class BigQueryCredential extends pulumi.CustomResource {
  * Input properties used for looking up and filtering BigQueryCredential resources.
  */
 export interface BigQueryCredentialState {
+    /**
+     * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     */
+    connectionId?: pulumi.Input<number>;
     /**
      * The internal credential ID
      */
@@ -169,6 +187,10 @@ export interface BigQueryCredentialState {
  * The set of arguments for constructing a BigQueryCredential resource.
  */
 export interface BigQueryCredentialArgs {
+    /**
+     * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     */
+    connectionId?: pulumi.Input<number>;
     /**
      * Default dataset name
      */

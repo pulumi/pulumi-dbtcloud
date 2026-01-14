@@ -16,40 +16,40 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GlobalConnectionBigquery {
     /**
-     * @return OAuth Client ID
+     * @return OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
      * 
      */
     private @Nullable String applicationId;
     /**
-     * @return OAuth Client Secret
+     * @return OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
      * 
      */
     private @Nullable String applicationSecret;
     /**
-     * @return Auth Provider X509 Cert URL for the Service Account
+     * @return Auth Provider X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    private String authProviderX509CertUrl;
+    private @Nullable String authProviderX509CertUrl;
     /**
-     * @return Auth URI for the Service Account
+     * @return Auth URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    private String authUri;
+    private @Nullable String authUri;
     /**
-     * @return Service Account email
+     * @return Service Account email. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    private String clientEmail;
+    private @Nullable String clientEmail;
     /**
-     * @return Client ID of the Service Account
+     * @return Client ID of the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    private String clientId;
+    private @Nullable String clientId;
     /**
-     * @return Client X509 Cert URL for the Service Account
+     * @return Client X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    private String clientX509CertUrl;
+    private @Nullable String clientX509CertUrl;
     /**
      * @return Dataproc cluster name for PySpark workloads
      * 
@@ -60,6 +60,11 @@ public final class GlobalConnectionBigquery {
      * 
      */
     private @Nullable String dataprocRegion;
+    /**
+     * @return Authentication type for deployment environments. Can be &#39;service-account-json&#39; or &#39;external-oauth-wif&#39;. Defaults to &#39;service-account-json&#39;.
+     * 
+     */
+    private @Nullable String deploymentEnvAuthType;
     /**
      * @return Project to bill for query execution
      * 
@@ -111,15 +116,15 @@ public final class GlobalConnectionBigquery {
      */
     private @Nullable String priority;
     /**
-     * @return Private Key for the Service Account
+     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    private String privateKey;
+    private @Nullable String privateKey;
     /**
-     * @return Private Key ID for the Service Account
+     * @return Private Key ID for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    private String privateKeyId;
+    private @Nullable String privateKeyId;
     /**
      * @return Number of retries for queries
      * 
@@ -136,10 +141,10 @@ public final class GlobalConnectionBigquery {
      */
     private @Nullable Integer timeoutSeconds;
     /**
-     * @return Token URI for the Service Account
+     * @return Token URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    private String tokenUri;
+    private @Nullable String tokenUri;
     /**
      * @return Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
      * 
@@ -148,53 +153,53 @@ public final class GlobalConnectionBigquery {
 
     private GlobalConnectionBigquery() {}
     /**
-     * @return OAuth Client ID
+     * @return OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
      * 
      */
     public Optional<String> applicationId() {
         return Optional.ofNullable(this.applicationId);
     }
     /**
-     * @return OAuth Client Secret
+     * @return OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
      * 
      */
     public Optional<String> applicationSecret() {
         return Optional.ofNullable(this.applicationSecret);
     }
     /**
-     * @return Auth Provider X509 Cert URL for the Service Account
+     * @return Auth Provider X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public String authProviderX509CertUrl() {
-        return this.authProviderX509CertUrl;
+    public Optional<String> authProviderX509CertUrl() {
+        return Optional.ofNullable(this.authProviderX509CertUrl);
     }
     /**
-     * @return Auth URI for the Service Account
+     * @return Auth URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public String authUri() {
-        return this.authUri;
+    public Optional<String> authUri() {
+        return Optional.ofNullable(this.authUri);
     }
     /**
-     * @return Service Account email
+     * @return Service Account email. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public String clientEmail() {
-        return this.clientEmail;
+    public Optional<String> clientEmail() {
+        return Optional.ofNullable(this.clientEmail);
     }
     /**
-     * @return Client ID of the Service Account
+     * @return Client ID of the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public String clientId() {
-        return this.clientId;
+    public Optional<String> clientId() {
+        return Optional.ofNullable(this.clientId);
     }
     /**
-     * @return Client X509 Cert URL for the Service Account
+     * @return Client X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public String clientX509CertUrl() {
-        return this.clientX509CertUrl;
+    public Optional<String> clientX509CertUrl() {
+        return Optional.ofNullable(this.clientX509CertUrl);
     }
     /**
      * @return Dataproc cluster name for PySpark workloads
@@ -209,6 +214,13 @@ public final class GlobalConnectionBigquery {
      */
     public Optional<String> dataprocRegion() {
         return Optional.ofNullable(this.dataprocRegion);
+    }
+    /**
+     * @return Authentication type for deployment environments. Can be &#39;service-account-json&#39; or &#39;external-oauth-wif&#39;. Defaults to &#39;service-account-json&#39;.
+     * 
+     */
+    public Optional<String> deploymentEnvAuthType() {
+        return Optional.ofNullable(this.deploymentEnvAuthType);
     }
     /**
      * @return Project to bill for query execution
@@ -281,18 +293,18 @@ public final class GlobalConnectionBigquery {
         return Optional.ofNullable(this.priority);
     }
     /**
-     * @return Private Key for the Service Account
+     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public String privateKey() {
-        return this.privateKey;
+    public Optional<String> privateKey() {
+        return Optional.ofNullable(this.privateKey);
     }
     /**
-     * @return Private Key ID for the Service Account
+     * @return Private Key ID for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public String privateKeyId() {
-        return this.privateKeyId;
+    public Optional<String> privateKeyId() {
+        return Optional.ofNullable(this.privateKeyId);
     }
     /**
      * @return Number of retries for queries
@@ -316,11 +328,11 @@ public final class GlobalConnectionBigquery {
         return Optional.ofNullable(this.timeoutSeconds);
     }
     /**
-     * @return Token URI for the Service Account
+     * @return Token URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public String tokenUri() {
-        return this.tokenUri;
+    public Optional<String> tokenUri() {
+        return Optional.ofNullable(this.tokenUri);
     }
     /**
      * @return Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
@@ -341,13 +353,14 @@ public final class GlobalConnectionBigquery {
     public static final class Builder {
         private @Nullable String applicationId;
         private @Nullable String applicationSecret;
-        private String authProviderX509CertUrl;
-        private String authUri;
-        private String clientEmail;
-        private String clientId;
-        private String clientX509CertUrl;
+        private @Nullable String authProviderX509CertUrl;
+        private @Nullable String authUri;
+        private @Nullable String clientEmail;
+        private @Nullable String clientId;
+        private @Nullable String clientX509CertUrl;
         private @Nullable String dataprocClusterName;
         private @Nullable String dataprocRegion;
+        private @Nullable String deploymentEnvAuthType;
         private @Nullable String executionProject;
         private String gcpProjectId;
         private @Nullable String gcsBucket;
@@ -358,12 +371,12 @@ public final class GlobalConnectionBigquery {
         private @Nullable String location;
         private @Nullable Integer maximumBytesBilled;
         private @Nullable String priority;
-        private String privateKey;
-        private String privateKeyId;
+        private @Nullable String privateKey;
+        private @Nullable String privateKeyId;
         private @Nullable Integer retries;
         private @Nullable List<String> scopes;
         private @Nullable Integer timeoutSeconds;
-        private String tokenUri;
+        private @Nullable String tokenUri;
         private @Nullable Boolean useLatestAdapter;
         public Builder() {}
         public Builder(GlobalConnectionBigquery defaults) {
@@ -377,6 +390,7 @@ public final class GlobalConnectionBigquery {
     	      this.clientX509CertUrl = defaults.clientX509CertUrl;
     	      this.dataprocClusterName = defaults.dataprocClusterName;
     	      this.dataprocRegion = defaults.dataprocRegion;
+    	      this.deploymentEnvAuthType = defaults.deploymentEnvAuthType;
     	      this.executionProject = defaults.executionProject;
     	      this.gcpProjectId = defaults.gcpProjectId;
     	      this.gcsBucket = defaults.gcsBucket;
@@ -409,42 +423,32 @@ public final class GlobalConnectionBigquery {
             return this;
         }
         @CustomType.Setter
-        public Builder authProviderX509CertUrl(String authProviderX509CertUrl) {
-            if (authProviderX509CertUrl == null) {
-              throw new MissingRequiredPropertyException("GlobalConnectionBigquery", "authProviderX509CertUrl");
-            }
+        public Builder authProviderX509CertUrl(@Nullable String authProviderX509CertUrl) {
+
             this.authProviderX509CertUrl = authProviderX509CertUrl;
             return this;
         }
         @CustomType.Setter
-        public Builder authUri(String authUri) {
-            if (authUri == null) {
-              throw new MissingRequiredPropertyException("GlobalConnectionBigquery", "authUri");
-            }
+        public Builder authUri(@Nullable String authUri) {
+
             this.authUri = authUri;
             return this;
         }
         @CustomType.Setter
-        public Builder clientEmail(String clientEmail) {
-            if (clientEmail == null) {
-              throw new MissingRequiredPropertyException("GlobalConnectionBigquery", "clientEmail");
-            }
+        public Builder clientEmail(@Nullable String clientEmail) {
+
             this.clientEmail = clientEmail;
             return this;
         }
         @CustomType.Setter
-        public Builder clientId(String clientId) {
-            if (clientId == null) {
-              throw new MissingRequiredPropertyException("GlobalConnectionBigquery", "clientId");
-            }
+        public Builder clientId(@Nullable String clientId) {
+
             this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
-        public Builder clientX509CertUrl(String clientX509CertUrl) {
-            if (clientX509CertUrl == null) {
-              throw new MissingRequiredPropertyException("GlobalConnectionBigquery", "clientX509CertUrl");
-            }
+        public Builder clientX509CertUrl(@Nullable String clientX509CertUrl) {
+
             this.clientX509CertUrl = clientX509CertUrl;
             return this;
         }
@@ -458,6 +462,12 @@ public final class GlobalConnectionBigquery {
         public Builder dataprocRegion(@Nullable String dataprocRegion) {
 
             this.dataprocRegion = dataprocRegion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder deploymentEnvAuthType(@Nullable String deploymentEnvAuthType) {
+
+            this.deploymentEnvAuthType = deploymentEnvAuthType;
             return this;
         }
         @CustomType.Setter
@@ -523,18 +533,14 @@ public final class GlobalConnectionBigquery {
             return this;
         }
         @CustomType.Setter
-        public Builder privateKey(String privateKey) {
-            if (privateKey == null) {
-              throw new MissingRequiredPropertyException("GlobalConnectionBigquery", "privateKey");
-            }
+        public Builder privateKey(@Nullable String privateKey) {
+
             this.privateKey = privateKey;
             return this;
         }
         @CustomType.Setter
-        public Builder privateKeyId(String privateKeyId) {
-            if (privateKeyId == null) {
-              throw new MissingRequiredPropertyException("GlobalConnectionBigquery", "privateKeyId");
-            }
+        public Builder privateKeyId(@Nullable String privateKeyId) {
+
             this.privateKeyId = privateKeyId;
             return this;
         }
@@ -560,10 +566,8 @@ public final class GlobalConnectionBigquery {
             return this;
         }
         @CustomType.Setter
-        public Builder tokenUri(String tokenUri) {
-            if (tokenUri == null) {
-              throw new MissingRequiredPropertyException("GlobalConnectionBigquery", "tokenUri");
-            }
+        public Builder tokenUri(@Nullable String tokenUri) {
+
             this.tokenUri = tokenUri;
             return this;
         }
@@ -584,6 +588,7 @@ public final class GlobalConnectionBigquery {
             _resultValue.clientX509CertUrl = clientX509CertUrl;
             _resultValue.dataprocClusterName = dataprocClusterName;
             _resultValue.dataprocRegion = dataprocRegion;
+            _resultValue.deploymentEnvAuthType = deploymentEnvAuthType;
             _resultValue.executionProject = executionProject;
             _resultValue.gcpProjectId = gcpProjectId;
             _resultValue.gcsBucket = gcsBucket;

@@ -29,6 +29,16 @@ namespace Pulumi.DbtCloud
     ///         NumThreads = 16,
     ///     });
     /// 
+    ///     // When using a global connection with use_latest_adapter = true,
+    ///     // provide the connection_id to automatically use the correct adapter version
+    ///     var myCredentialV1 = new DbtCloud.BigQueryCredential("my_credential_v1", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Dataset = "my_bq_dataset",
+    ///         NumThreads = 16,
+    ///         ConnectionId = myConnection.Id,
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -65,6 +75,12 @@ namespace Pulumi.DbtCloud
     [DbtCloudResourceType("dbtcloud:index/bigQueryCredential:BigQueryCredential")]
     public partial class BigQueryCredential : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+        /// </summary>
+        [Output("connectionId")]
+        public Output<int?> ConnectionId { get; private set; } = null!;
+
         /// <summary>
         /// The internal credential ID
         /// </summary>
@@ -143,6 +159,12 @@ namespace Pulumi.DbtCloud
     public sealed class BigQueryCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+        /// </summary>
+        [Input("connectionId")]
+        public Input<int>? ConnectionId { get; set; }
+
+        /// <summary>
         /// Default dataset name
         /// </summary>
         [Input("dataset", required: true)]
@@ -174,6 +196,12 @@ namespace Pulumi.DbtCloud
 
     public sealed class BigQueryCredentialState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+        /// </summary>
+        [Input("connectionId")]
+        public Input<int>? ConnectionId { get; set; }
+
         /// <summary>
         /// The internal credential ID
         /// </summary>

@@ -13,6 +13,7 @@ import com.pulumi.dbtcloud.inputs.BigQueryCredentialState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -46,6 +47,15 @@ import javax.annotation.Nullable;
  *             .projectId(dbtProject.id())
  *             .dataset("my_bq_dataset")
  *             .numThreads(16)
+ *             .build());
+ * 
+ *         // When using a global connection with use_latest_adapter = true,
+ *         // provide the connection_id to automatically use the correct adapter version
+ *         var myCredentialV1 = new BigQueryCredential("myCredentialV1", BigQueryCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .dataset("my_bq_dataset")
+ *             .numThreads(16)
+ *             .connectionId(myConnection.id())
  *             .build());
  * 
  *     }
@@ -86,6 +96,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="dbtcloud:index/bigQueryCredential:BigQueryCredential")
 public class BigQueryCredential extends com.pulumi.resources.CustomResource {
+    /**
+     * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     * 
+     */
+    @Export(name="connectionId", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> connectionId;
+
+    /**
+     * @return The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     * 
+     */
+    public Output<Optional<Integer>> connectionId() {
+        return Codegen.optional(this.connectionId);
+    }
     /**
      * The internal credential ID
      * 

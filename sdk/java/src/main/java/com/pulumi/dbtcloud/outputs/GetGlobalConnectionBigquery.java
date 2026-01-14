@@ -58,6 +58,11 @@ public final class GetGlobalConnectionBigquery {
      */
     private String dataprocRegion;
     /**
+     * @return Authentication type for deployment environments. Can be &#39;service-account-json&#39; or &#39;external-oauth-wif&#39;.
+     * 
+     */
+    private String deploymentEnvAuthType;
+    /**
      * @return Project to bill for query execution
      * 
      */
@@ -198,6 +203,13 @@ public final class GetGlobalConnectionBigquery {
         return this.dataprocRegion;
     }
     /**
+     * @return Authentication type for deployment environments. Can be &#39;service-account-json&#39; or &#39;external-oauth-wif&#39;.
+     * 
+     */
+    public String deploymentEnvAuthType() {
+        return this.deploymentEnvAuthType;
+    }
+    /**
      * @return Project to bill for query execution
      * 
      */
@@ -321,6 +333,7 @@ public final class GetGlobalConnectionBigquery {
         private String clientX509CertUrl;
         private String dataprocClusterName;
         private String dataprocRegion;
+        private String deploymentEnvAuthType;
         private String executionProject;
         private String gcpProjectId;
         private String gcsBucket;
@@ -348,6 +361,7 @@ public final class GetGlobalConnectionBigquery {
     	      this.clientX509CertUrl = defaults.clientX509CertUrl;
     	      this.dataprocClusterName = defaults.dataprocClusterName;
     	      this.dataprocRegion = defaults.dataprocRegion;
+    	      this.deploymentEnvAuthType = defaults.deploymentEnvAuthType;
     	      this.executionProject = defaults.executionProject;
     	      this.gcpProjectId = defaults.gcpProjectId;
     	      this.gcsBucket = defaults.gcsBucket;
@@ -435,6 +449,14 @@ public final class GetGlobalConnectionBigquery {
               throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "dataprocRegion");
             }
             this.dataprocRegion = dataprocRegion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder deploymentEnvAuthType(String deploymentEnvAuthType) {
+            if (deploymentEnvAuthType == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "deploymentEnvAuthType");
+            }
+            this.deploymentEnvAuthType = deploymentEnvAuthType;
             return this;
         }
         @CustomType.Setter
@@ -571,6 +593,7 @@ public final class GetGlobalConnectionBigquery {
             _resultValue.clientX509CertUrl = clientX509CertUrl;
             _resultValue.dataprocClusterName = dataprocClusterName;
             _resultValue.dataprocRegion = dataprocRegion;
+            _resultValue.deploymentEnvAuthType = deploymentEnvAuthType;
             _resultValue.executionProject = executionProject;
             _resultValue.gcpProjectId = gcpProjectId;
             _resultValue.gcsBucket = gcsBucket;

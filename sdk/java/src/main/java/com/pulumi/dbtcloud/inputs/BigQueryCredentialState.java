@@ -18,6 +18,21 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
     public static final BigQueryCredentialState Empty = new BigQueryCredentialState();
 
     /**
+     * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     * 
+     */
+    @Import(name="connectionId")
+    private @Nullable Output<Integer> connectionId;
+
+    /**
+     * @return The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     * 
+     */
+    public Optional<Output<Integer>> connectionId() {
+        return Optional.ofNullable(this.connectionId);
+    }
+
+    /**
      * The internal credential ID
      * 
      */
@@ -95,6 +110,7 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
     private BigQueryCredentialState() {}
 
     private BigQueryCredentialState(BigQueryCredentialState $) {
+        this.connectionId = $.connectionId;
         this.credentialId = $.credentialId;
         this.dataset = $.dataset;
         this.isActive = $.isActive;
@@ -118,6 +134,27 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
 
         public Builder(BigQueryCredentialState defaults) {
             $ = new BigQueryCredentialState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param connectionId The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionId(@Nullable Output<Integer> connectionId) {
+            $.connectionId = connectionId;
+            return this;
+        }
+
+        /**
+         * @param connectionId The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionId(Integer connectionId) {
+            return connectionId(Output.of(connectionId));
         }
 
         /**

@@ -36,6 +36,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// When using a global connection with use_latest_adapter = true,
+//			// provide the connection_id to automatically use the correct adapter version
+//			_, err = dbtcloud.NewBigQueryCredential(ctx, "my_credential_v1", &dbtcloud.BigQueryCredentialArgs{
+//				ProjectId:    pulumi.Any(dbtProject.Id),
+//				Dataset:      pulumi.String("my_bq_dataset"),
+//				NumThreads:   pulumi.Int(16),
+//				ConnectionId: pulumi.Any(myConnection.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -74,6 +85,8 @@ import (
 type BigQueryCredential struct {
 	pulumi.CustomResourceState
 
+	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+	ConnectionId pulumi.IntPtrOutput `pulumi:"connectionId"`
 	// The internal credential ID
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// Default dataset name
@@ -125,6 +138,8 @@ func GetBigQueryCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BigQueryCredential resources.
 type bigQueryCredentialState struct {
+	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+	ConnectionId *int `pulumi:"connectionId"`
 	// The internal credential ID
 	CredentialId *int `pulumi:"credentialId"`
 	// Default dataset name
@@ -138,6 +153,8 @@ type bigQueryCredentialState struct {
 }
 
 type BigQueryCredentialState struct {
+	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+	ConnectionId pulumi.IntPtrInput
 	// The internal credential ID
 	CredentialId pulumi.IntPtrInput
 	// Default dataset name
@@ -155,6 +172,8 @@ func (BigQueryCredentialState) ElementType() reflect.Type {
 }
 
 type bigQueryCredentialArgs struct {
+	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+	ConnectionId *int `pulumi:"connectionId"`
 	// Default dataset name
 	Dataset string `pulumi:"dataset"`
 	// Whether the BigQuery credential is active
@@ -167,6 +186,8 @@ type bigQueryCredentialArgs struct {
 
 // The set of arguments for constructing a BigQueryCredential resource.
 type BigQueryCredentialArgs struct {
+	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+	ConnectionId pulumi.IntPtrInput
 	// Default dataset name
 	Dataset pulumi.StringInput
 	// Whether the BigQuery credential is active
@@ -262,6 +283,11 @@ func (o BigQueryCredentialOutput) ToBigQueryCredentialOutput() BigQueryCredentia
 
 func (o BigQueryCredentialOutput) ToBigQueryCredentialOutputWithContext(ctx context.Context) BigQueryCredentialOutput {
 	return o
+}
+
+// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+func (o BigQueryCredentialOutput) ConnectionId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BigQueryCredential) pulumi.IntPtrOutput { return v.ConnectionId }).(pulumi.IntPtrOutput)
 }
 
 // The internal credential ID

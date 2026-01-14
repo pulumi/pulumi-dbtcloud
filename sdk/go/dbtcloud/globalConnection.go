@@ -54,6 +54,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// BigQuery connection with Service Account JSON authentication
 //			_, err = dbtcloud.NewGlobalConnection(ctx, "bigquery", &dbtcloud.GlobalConnectionArgs{
 //				Name: pulumi.String("My BigQuery connection"),
 //				Bigquery: &dbtcloud.GlobalConnectionBigqueryArgs{
@@ -67,8 +68,29 @@ import (
 //					TokenUri:                pulumi.String("my_token_uri"),
 //					AuthProviderX509CertUrl: pulumi.String("my_auth_provider_x509_cert_url"),
 //					ClientX509CertUrl:       pulumi.String("my_client_x509_cert_url"),
+//					DeploymentEnvAuthType:   pulumi.String("service-account-json"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// BigQuery connection with External OAuth (Workload Identity Federation)
+//			// TODO: Currently the API still requires service account fields even with external-oauth-wif
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "bigquery_wif", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My BigQuery WIF connection"),
+//				Bigquery: &dbtcloud.GlobalConnectionBigqueryArgs{
+//					GcpProjectId:            pulumi.String("my-gcp-project-id"),
 //					ApplicationId:           pulumi.String("oauth_application_id"),
 //					ApplicationSecret:       pulumi.String("oauth_secret_id"),
+//					DeploymentEnvAuthType:   pulumi.String("external-oauth-wif"),
+//					PrivateKeyId:            pulumi.String("my-private-key-id"),
+//					PrivateKey:              pulumi.String("ABCDEFGHIJKL"),
+//					ClientEmail:             pulumi.String("my_client_email"),
+//					ClientId:                pulumi.String("my_client_id"),
+//					AuthUri:                 pulumi.String("my_auth_uri"),
+//					TokenUri:                pulumi.String("my_token_uri"),
+//					AuthProviderX509CertUrl: pulumi.String("my_auth_provider_x509_cert_url"),
+//					ClientX509CertUrl:       pulumi.String("my_client_x509_cert_url"),
 //				},
 //			})
 //			if err != nil {

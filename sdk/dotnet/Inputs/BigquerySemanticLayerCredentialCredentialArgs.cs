@@ -13,6 +13,12 @@ namespace Pulumi.DbtCloud.Inputs
     public sealed class BigquerySemanticLayerCredentialCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+        /// </summary>
+        [Input("connectionId")]
+        public Input<int>? ConnectionId { get; set; }
+
+        /// <summary>
         /// The internal credential ID
         /// </summary>
         [Input("credentialId")]
