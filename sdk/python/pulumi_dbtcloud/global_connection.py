@@ -555,6 +555,7 @@ class GlobalConnection(pulumi.CustomResource):
                 "work_group": "my_work_group",
                 "s3_data_dir": "s3://my-bucket/my-data-dir/",
             })
+        # BigQuery connection with Service Account JSON authentication
         bigquery = dbtcloud.GlobalConnection("bigquery",
             name="My BigQuery connection",
             bigquery={
@@ -568,8 +569,25 @@ class GlobalConnection(pulumi.CustomResource):
                 "token_uri": "my_token_uri",
                 "auth_provider_x509_cert_url": "my_auth_provider_x509_cert_url",
                 "client_x509_cert_url": "my_client_x509_cert_url",
+                "deployment_env_auth_type": "service-account-json",
+            })
+        # BigQuery connection with External OAuth (Workload Identity Federation)
+        # TODO: Currently the API still requires service account fields even with external-oauth-wif
+        bigquery_wif = dbtcloud.GlobalConnection("bigquery_wif",
+            name="My BigQuery WIF connection",
+            bigquery={
+                "gcp_project_id": "my-gcp-project-id",
                 "application_id": "oauth_application_id",
                 "application_secret": "oauth_secret_id",
+                "deployment_env_auth_type": "external-oauth-wif",
+                "private_key_id": "my-private-key-id",
+                "private_key": "ABCDEFGHIJKL",
+                "client_email": "my_client_email",
+                "client_id": "my_client_id",
+                "auth_uri": "my_auth_uri",
+                "token_uri": "my_token_uri",
+                "auth_provider_x509_cert_url": "my_auth_provider_x509_cert_url",
+                "client_x509_cert_url": "my_client_x509_cert_url",
             })
         databricks = dbtcloud.GlobalConnection("databricks",
             name="My Databricks connection",
@@ -733,6 +751,7 @@ class GlobalConnection(pulumi.CustomResource):
                 "work_group": "my_work_group",
                 "s3_data_dir": "s3://my-bucket/my-data-dir/",
             })
+        # BigQuery connection with Service Account JSON authentication
         bigquery = dbtcloud.GlobalConnection("bigquery",
             name="My BigQuery connection",
             bigquery={
@@ -746,8 +765,25 @@ class GlobalConnection(pulumi.CustomResource):
                 "token_uri": "my_token_uri",
                 "auth_provider_x509_cert_url": "my_auth_provider_x509_cert_url",
                 "client_x509_cert_url": "my_client_x509_cert_url",
+                "deployment_env_auth_type": "service-account-json",
+            })
+        # BigQuery connection with External OAuth (Workload Identity Federation)
+        # TODO: Currently the API still requires service account fields even with external-oauth-wif
+        bigquery_wif = dbtcloud.GlobalConnection("bigquery_wif",
+            name="My BigQuery WIF connection",
+            bigquery={
+                "gcp_project_id": "my-gcp-project-id",
                 "application_id": "oauth_application_id",
                 "application_secret": "oauth_secret_id",
+                "deployment_env_auth_type": "external-oauth-wif",
+                "private_key_id": "my-private-key-id",
+                "private_key": "ABCDEFGHIJKL",
+                "client_email": "my_client_email",
+                "client_id": "my_client_id",
+                "auth_uri": "my_auth_uri",
+                "token_uri": "my_token_uri",
+                "auth_provider_x509_cert_url": "my_auth_provider_x509_cert_url",
+                "client_x509_cert_url": "my_client_x509_cert_url",
             })
         databricks = dbtcloud.GlobalConnection("databricks",
             name="My Databricks connection",

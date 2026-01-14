@@ -189,6 +189,8 @@ func (o BigquerySemanticLayerCredentialConfigurationPtrOutput) ProjectId() pulum
 }
 
 type BigquerySemanticLayerCredentialCredential struct {
+	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+	ConnectionId *int `pulumi:"connectionId"`
 	// The internal credential ID
 	CredentialId *int `pulumi:"credentialId"`
 	// Default dataset name
@@ -215,6 +217,8 @@ type BigquerySemanticLayerCredentialCredentialInput interface {
 }
 
 type BigquerySemanticLayerCredentialCredentialArgs struct {
+	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+	ConnectionId pulumi.IntPtrInput `pulumi:"connectionId"`
 	// The internal credential ID
 	CredentialId pulumi.IntPtrInput `pulumi:"credentialId"`
 	// Default dataset name
@@ -306,6 +310,11 @@ func (o BigquerySemanticLayerCredentialCredentialOutput) ToBigquerySemanticLayer
 	}).(BigquerySemanticLayerCredentialCredentialPtrOutput)
 }
 
+// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+func (o BigquerySemanticLayerCredentialCredentialOutput) ConnectionId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v BigquerySemanticLayerCredentialCredential) *int { return v.ConnectionId }).(pulumi.IntPtrOutput)
+}
+
 // The internal credential ID
 func (o BigquerySemanticLayerCredentialCredentialOutput) CredentialId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BigquerySemanticLayerCredentialCredential) *int { return v.CredentialId }).(pulumi.IntPtrOutput)
@@ -358,6 +367,16 @@ func (o BigquerySemanticLayerCredentialCredentialPtrOutput) Elem() BigquerySeman
 		var ret BigquerySemanticLayerCredentialCredential
 		return ret
 	}).(BigquerySemanticLayerCredentialCredentialOutput)
+}
+
+// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+func (o BigquerySemanticLayerCredentialCredentialPtrOutput) ConnectionId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ConnectionId
+	}).(pulumi.IntPtrOutput)
 }
 
 // The internal credential ID
@@ -1536,24 +1555,26 @@ func (o GlobalConnectionAthenaPtrOutput) WorkGroup() pulumi.StringPtrOutput {
 }
 
 type GlobalConnectionBigquery struct {
-	// OAuth Client ID
+	// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
 	ApplicationId *string `pulumi:"applicationId"`
-	// OAuth Client Secret
+	// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
 	ApplicationSecret *string `pulumi:"applicationSecret"`
-	// Auth Provider X509 Cert URL for the Service Account
-	AuthProviderX509CertUrl string `pulumi:"authProviderX509CertUrl"`
-	// Auth URI for the Service Account
-	AuthUri string `pulumi:"authUri"`
-	// Service Account email
-	ClientEmail string `pulumi:"clientEmail"`
-	// Client ID of the Service Account
-	ClientId string `pulumi:"clientId"`
-	// Client X509 Cert URL for the Service Account
-	ClientX509CertUrl string `pulumi:"clientX509CertUrl"`
+	// Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+	AuthProviderX509CertUrl *string `pulumi:"authProviderX509CertUrl"`
+	// Auth URI for the Service Account. Required when using 'service-account-json' authentication.
+	AuthUri *string `pulumi:"authUri"`
+	// Service Account email. Required when using 'service-account-json' authentication.
+	ClientEmail *string `pulumi:"clientEmail"`
+	// Client ID of the Service Account. Required when using 'service-account-json' authentication.
+	ClientId *string `pulumi:"clientId"`
+	// Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+	ClientX509CertUrl *string `pulumi:"clientX509CertUrl"`
 	// Dataproc cluster name for PySpark workloads
 	DataprocClusterName *string `pulumi:"dataprocClusterName"`
 	// Google Cloud region for PySpark workloads on Dataproc
 	DataprocRegion *string `pulumi:"dataprocRegion"`
+	// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+	DeploymentEnvAuthType *string `pulumi:"deploymentEnvAuthType"`
 	// Project to bill for query execution
 	ExecutionProject *string `pulumi:"executionProject"`
 	// The GCP project ID to use for the connection
@@ -1574,18 +1595,18 @@ type GlobalConnectionBigquery struct {
 	MaximumBytesBilled *int `pulumi:"maximumBytesBilled"`
 	// The priority with which to execute BigQuery queries (batch or interactive)
 	Priority *string `pulumi:"priority"`
-	// Private Key for the Service Account
-	PrivateKey string `pulumi:"privateKey"`
-	// Private Key ID for the Service Account
-	PrivateKeyId string `pulumi:"privateKeyId"`
+	// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+	PrivateKey *string `pulumi:"privateKey"`
+	// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// Number of retries for queries
 	Retries *int `pulumi:"retries"`
 	// OAuth scopes for the BigQuery connection
 	Scopes []string `pulumi:"scopes"`
 	// Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
 	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
-	// Token URI for the Service Account
-	TokenUri string `pulumi:"tokenUri"`
+	// Token URI for the Service Account. Required when using 'service-account-json' authentication.
+	TokenUri *string `pulumi:"tokenUri"`
 	// Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
 	UseLatestAdapter *bool `pulumi:"useLatestAdapter"`
 }
@@ -1602,24 +1623,26 @@ type GlobalConnectionBigqueryInput interface {
 }
 
 type GlobalConnectionBigqueryArgs struct {
-	// OAuth Client ID
+	// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
 	ApplicationId pulumi.StringPtrInput `pulumi:"applicationId"`
-	// OAuth Client Secret
+	// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
 	ApplicationSecret pulumi.StringPtrInput `pulumi:"applicationSecret"`
-	// Auth Provider X509 Cert URL for the Service Account
-	AuthProviderX509CertUrl pulumi.StringInput `pulumi:"authProviderX509CertUrl"`
-	// Auth URI for the Service Account
-	AuthUri pulumi.StringInput `pulumi:"authUri"`
-	// Service Account email
-	ClientEmail pulumi.StringInput `pulumi:"clientEmail"`
-	// Client ID of the Service Account
-	ClientId pulumi.StringInput `pulumi:"clientId"`
-	// Client X509 Cert URL for the Service Account
-	ClientX509CertUrl pulumi.StringInput `pulumi:"clientX509CertUrl"`
+	// Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+	AuthProviderX509CertUrl pulumi.StringPtrInput `pulumi:"authProviderX509CertUrl"`
+	// Auth URI for the Service Account. Required when using 'service-account-json' authentication.
+	AuthUri pulumi.StringPtrInput `pulumi:"authUri"`
+	// Service Account email. Required when using 'service-account-json' authentication.
+	ClientEmail pulumi.StringPtrInput `pulumi:"clientEmail"`
+	// Client ID of the Service Account. Required when using 'service-account-json' authentication.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+	ClientX509CertUrl pulumi.StringPtrInput `pulumi:"clientX509CertUrl"`
 	// Dataproc cluster name for PySpark workloads
 	DataprocClusterName pulumi.StringPtrInput `pulumi:"dataprocClusterName"`
 	// Google Cloud region for PySpark workloads on Dataproc
 	DataprocRegion pulumi.StringPtrInput `pulumi:"dataprocRegion"`
+	// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+	DeploymentEnvAuthType pulumi.StringPtrInput `pulumi:"deploymentEnvAuthType"`
 	// Project to bill for query execution
 	ExecutionProject pulumi.StringPtrInput `pulumi:"executionProject"`
 	// The GCP project ID to use for the connection
@@ -1640,18 +1663,18 @@ type GlobalConnectionBigqueryArgs struct {
 	MaximumBytesBilled pulumi.IntPtrInput `pulumi:"maximumBytesBilled"`
 	// The priority with which to execute BigQuery queries (batch or interactive)
 	Priority pulumi.StringPtrInput `pulumi:"priority"`
-	// Private Key for the Service Account
-	PrivateKey pulumi.StringInput `pulumi:"privateKey"`
-	// Private Key ID for the Service Account
-	PrivateKeyId pulumi.StringInput `pulumi:"privateKeyId"`
+	// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+	PrivateKeyId pulumi.StringPtrInput `pulumi:"privateKeyId"`
 	// Number of retries for queries
 	Retries pulumi.IntPtrInput `pulumi:"retries"`
 	// OAuth scopes for the BigQuery connection
 	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
 	// Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
 	TimeoutSeconds pulumi.IntPtrInput `pulumi:"timeoutSeconds"`
-	// Token URI for the Service Account
-	TokenUri pulumi.StringInput `pulumi:"tokenUri"`
+	// Token URI for the Service Account. Required when using 'service-account-json' authentication.
+	TokenUri pulumi.StringPtrInput `pulumi:"tokenUri"`
 	// Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
 	UseLatestAdapter pulumi.BoolPtrInput `pulumi:"useLatestAdapter"`
 }
@@ -1733,39 +1756,39 @@ func (o GlobalConnectionBigqueryOutput) ToGlobalConnectionBigqueryPtrOutputWithC
 	}).(GlobalConnectionBigqueryPtrOutput)
 }
 
-// OAuth Client ID
+// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
 func (o GlobalConnectionBigqueryOutput) ApplicationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ApplicationId }).(pulumi.StringPtrOutput)
 }
 
-// OAuth Client Secret
+// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
 func (o GlobalConnectionBigqueryOutput) ApplicationSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ApplicationSecret }).(pulumi.StringPtrOutput)
 }
 
-// Auth Provider X509 Cert URL for the Service Account
-func (o GlobalConnectionBigqueryOutput) AuthProviderX509CertUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.AuthProviderX509CertUrl }).(pulumi.StringOutput)
+// Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+func (o GlobalConnectionBigqueryOutput) AuthProviderX509CertUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.AuthProviderX509CertUrl }).(pulumi.StringPtrOutput)
 }
 
-// Auth URI for the Service Account
-func (o GlobalConnectionBigqueryOutput) AuthUri() pulumi.StringOutput {
-	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.AuthUri }).(pulumi.StringOutput)
+// Auth URI for the Service Account. Required when using 'service-account-json' authentication.
+func (o GlobalConnectionBigqueryOutput) AuthUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.AuthUri }).(pulumi.StringPtrOutput)
 }
 
-// Service Account email
-func (o GlobalConnectionBigqueryOutput) ClientEmail() pulumi.StringOutput {
-	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.ClientEmail }).(pulumi.StringOutput)
+// Service Account email. Required when using 'service-account-json' authentication.
+func (o GlobalConnectionBigqueryOutput) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ClientEmail }).(pulumi.StringPtrOutput)
 }
 
-// Client ID of the Service Account
-func (o GlobalConnectionBigqueryOutput) ClientId() pulumi.StringOutput {
-	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.ClientId }).(pulumi.StringOutput)
+// Client ID of the Service Account. Required when using 'service-account-json' authentication.
+func (o GlobalConnectionBigqueryOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
-// Client X509 Cert URL for the Service Account
-func (o GlobalConnectionBigqueryOutput) ClientX509CertUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.ClientX509CertUrl }).(pulumi.StringOutput)
+// Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+func (o GlobalConnectionBigqueryOutput) ClientX509CertUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ClientX509CertUrl }).(pulumi.StringPtrOutput)
 }
 
 // Dataproc cluster name for PySpark workloads
@@ -1776,6 +1799,11 @@ func (o GlobalConnectionBigqueryOutput) DataprocClusterName() pulumi.StringPtrOu
 // Google Cloud region for PySpark workloads on Dataproc
 func (o GlobalConnectionBigqueryOutput) DataprocRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.DataprocRegion }).(pulumi.StringPtrOutput)
+}
+
+// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+func (o GlobalConnectionBigqueryOutput) DeploymentEnvAuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.DeploymentEnvAuthType }).(pulumi.StringPtrOutput)
 }
 
 // Project to bill for query execution
@@ -1828,14 +1856,14 @@ func (o GlobalConnectionBigqueryOutput) Priority() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.Priority }).(pulumi.StringPtrOutput)
 }
 
-// Private Key for the Service Account
-func (o GlobalConnectionBigqueryOutput) PrivateKey() pulumi.StringOutput {
-	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.PrivateKey }).(pulumi.StringOutput)
+// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+func (o GlobalConnectionBigqueryOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
 }
 
-// Private Key ID for the Service Account
-func (o GlobalConnectionBigqueryOutput) PrivateKeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.PrivateKeyId }).(pulumi.StringOutput)
+// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+func (o GlobalConnectionBigqueryOutput) PrivateKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.PrivateKeyId }).(pulumi.StringPtrOutput)
 }
 
 // Number of retries for queries
@@ -1853,9 +1881,9 @@ func (o GlobalConnectionBigqueryOutput) TimeoutSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.TimeoutSeconds }).(pulumi.IntPtrOutput)
 }
 
-// Token URI for the Service Account
-func (o GlobalConnectionBigqueryOutput) TokenUri() pulumi.StringOutput {
-	return o.ApplyT(func(v GlobalConnectionBigquery) string { return v.TokenUri }).(pulumi.StringOutput)
+// Token URI for the Service Account. Required when using 'service-account-json' authentication.
+func (o GlobalConnectionBigqueryOutput) TokenUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.TokenUri }).(pulumi.StringPtrOutput)
 }
 
 // Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
@@ -1887,7 +1915,7 @@ func (o GlobalConnectionBigqueryPtrOutput) Elem() GlobalConnectionBigqueryOutput
 	}).(GlobalConnectionBigqueryOutput)
 }
 
-// OAuth Client ID
+// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) ApplicationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
@@ -1897,7 +1925,7 @@ func (o GlobalConnectionBigqueryPtrOutput) ApplicationId() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// OAuth Client Secret
+// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) ApplicationSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
@@ -1907,53 +1935,53 @@ func (o GlobalConnectionBigqueryPtrOutput) ApplicationSecret() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// Auth Provider X509 Cert URL for the Service Account
+// Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) AuthProviderX509CertUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.AuthProviderX509CertUrl
+		return v.AuthProviderX509CertUrl
 	}).(pulumi.StringPtrOutput)
 }
 
-// Auth URI for the Service Account
+// Auth URI for the Service Account. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) AuthUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.AuthUri
+		return v.AuthUri
 	}).(pulumi.StringPtrOutput)
 }
 
-// Service Account email
+// Service Account email. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) ClientEmail() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.ClientEmail
+		return v.ClientEmail
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client ID of the Service Account
+// Client ID of the Service Account. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.ClientId
+		return v.ClientId
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client X509 Cert URL for the Service Account
+// Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) ClientX509CertUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.ClientX509CertUrl
+		return v.ClientX509CertUrl
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -1974,6 +2002,16 @@ func (o GlobalConnectionBigqueryPtrOutput) DataprocRegion() pulumi.StringPtrOutp
 			return nil
 		}
 		return v.DataprocRegion
+	}).(pulumi.StringPtrOutput)
+}
+
+// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+func (o GlobalConnectionBigqueryPtrOutput) DeploymentEnvAuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DeploymentEnvAuthType
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2077,23 +2115,23 @@ func (o GlobalConnectionBigqueryPtrOutput) Priority() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Private Key for the Service Account
+// Private Key for the Service Account. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.PrivateKey
+		return v.PrivateKey
 	}).(pulumi.StringPtrOutput)
 }
 
-// Private Key ID for the Service Account
+// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) PrivateKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.PrivateKeyId
+		return v.PrivateKeyId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2127,13 +2165,13 @@ func (o GlobalConnectionBigqueryPtrOutput) TimeoutSeconds() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
-// Token URI for the Service Account
+// Token URI for the Service Account. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryPtrOutput) TokenUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.TokenUri
+		return v.TokenUri
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -7424,6 +7462,8 @@ type GetGlobalConnectionBigquery struct {
 	DataprocClusterName string `pulumi:"dataprocClusterName"`
 	// Google Cloud region for PySpark workloads on Dataproc
 	DataprocRegion string `pulumi:"dataprocRegion"`
+	// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'.
+	DeploymentEnvAuthType string `pulumi:"deploymentEnvAuthType"`
 	// Project to bill for query execution
 	ExecutionProject string `pulumi:"executionProject"`
 	// The GCP project ID to use for the connection
@@ -7486,6 +7526,8 @@ type GetGlobalConnectionBigqueryArgs struct {
 	DataprocClusterName pulumi.StringInput `pulumi:"dataprocClusterName"`
 	// Google Cloud region for PySpark workloads on Dataproc
 	DataprocRegion pulumi.StringInput `pulumi:"dataprocRegion"`
+	// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'.
+	DeploymentEnvAuthType pulumi.StringInput `pulumi:"deploymentEnvAuthType"`
 	// Project to bill for query execution
 	ExecutionProject pulumi.StringInput `pulumi:"executionProject"`
 	// The GCP project ID to use for the connection
@@ -7587,6 +7629,11 @@ func (o GetGlobalConnectionBigqueryOutput) DataprocClusterName() pulumi.StringOu
 // Google Cloud region for PySpark workloads on Dataproc
 func (o GetGlobalConnectionBigqueryOutput) DataprocRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionBigquery) string { return v.DataprocRegion }).(pulumi.StringOutput)
+}
+
+// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'.
+func (o GetGlobalConnectionBigqueryOutput) DeploymentEnvAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionBigquery) string { return v.DeploymentEnvAuthType }).(pulumi.StringOutput)
 }
 
 // Project to bill for query execution

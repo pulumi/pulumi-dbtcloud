@@ -170,6 +170,10 @@ if not MYPY:
         """
         Project ID to create the BigQuery credential in
         """
+        connection_id: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+        """
         credential_id: NotRequired[pulumi.Input[_builtins.int]]
         """
         The internal credential ID
@@ -191,6 +195,7 @@ class BigquerySemanticLayerCredentialCredentialArgs:
                  dataset: pulumi.Input[_builtins.str],
                  num_threads: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.int],
+                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
                  credential_id: Optional[pulumi.Input[_builtins.int]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -198,6 +203,7 @@ class BigquerySemanticLayerCredentialCredentialArgs:
         :param pulumi.Input[_builtins.str] dataset: Default dataset name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the BigQuery credential in
+        :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] id: The ID of this resource. Contains the project ID and the credential ID.
         :param pulumi.Input[_builtins.bool] is_active: Whether the BigQuery credential is active
@@ -205,6 +211,8 @@ class BigquerySemanticLayerCredentialCredentialArgs:
         pulumi.set(__self__, "dataset", dataset)
         pulumi.set(__self__, "num_threads", num_threads)
         pulumi.set(__self__, "project_id", project_id)
+        if connection_id is not None:
+            pulumi.set(__self__, "connection_id", connection_id)
         if credential_id is not None:
             pulumi.set(__self__, "credential_id", credential_id)
         if id is not None:
@@ -247,6 +255,18 @@ class BigquerySemanticLayerCredentialCredentialArgs:
     @project_id.setter
     def project_id(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+        """
+        return pulumi.get(self, "connection_id")
+
+    @connection_id.setter
+    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
@@ -992,49 +1012,37 @@ class GlobalConnectionAthenaArgs:
 
 if not MYPY:
     class GlobalConnectionBigqueryArgsDict(TypedDict):
-        auth_provider_x509_cert_url: pulumi.Input[_builtins.str]
-        """
-        Auth Provider X509 Cert URL for the Service Account
-        """
-        auth_uri: pulumi.Input[_builtins.str]
-        """
-        Auth URI for the Service Account
-        """
-        client_email: pulumi.Input[_builtins.str]
-        """
-        Service Account email
-        """
-        client_id: pulumi.Input[_builtins.str]
-        """
-        Client ID of the Service Account
-        """
-        client_x509_cert_url: pulumi.Input[_builtins.str]
-        """
-        Client X509 Cert URL for the Service Account
-        """
         gcp_project_id: pulumi.Input[_builtins.str]
         """
         The GCP project ID to use for the connection
         """
-        private_key: pulumi.Input[_builtins.str]
-        """
-        Private Key for the Service Account
-        """
-        private_key_id: pulumi.Input[_builtins.str]
-        """
-        Private Key ID for the Service Account
-        """
-        token_uri: pulumi.Input[_builtins.str]
-        """
-        Token URI for the Service Account
-        """
         application_id: NotRequired[pulumi.Input[_builtins.str]]
         """
-        OAuth Client ID
+        OAuth Client ID. Required when using 'external-oauth-wif' authentication.
         """
         application_secret: NotRequired[pulumi.Input[_builtins.str]]
         """
-        OAuth Client Secret
+        OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+        """
+        auth_provider_x509_cert_url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        auth_uri: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Auth URI for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        client_email: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Service Account email. Required when using 'service-account-json' authentication.
+        """
+        client_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Client ID of the Service Account. Required when using 'service-account-json' authentication.
+        """
+        client_x509_cert_url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         """
         dataproc_cluster_name: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1043,6 +1051,10 @@ if not MYPY:
         dataproc_region: NotRequired[pulumi.Input[_builtins.str]]
         """
         Google Cloud region for PySpark workloads on Dataproc
+        """
+        deployment_env_auth_type: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
         """
         execution_project: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1080,6 +1092,14 @@ if not MYPY:
         """
         The priority with which to execute BigQuery queries (batch or interactive)
         """
+        private_key: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        private_key_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+        """
         retries: NotRequired[pulumi.Input[_builtins.int]]
         """
         Number of retries for queries
@@ -1092,6 +1112,10 @@ if not MYPY:
         """
         Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
         """
+        token_uri: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Token URI for the Service Account. Required when using 'service-account-json' authentication.
+        """
         use_latest_adapter: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
@@ -1102,19 +1126,17 @@ elif False:
 @pulumi.input_type
 class GlobalConnectionBigqueryArgs:
     def __init__(__self__, *,
-                 auth_provider_x509_cert_url: pulumi.Input[_builtins.str],
-                 auth_uri: pulumi.Input[_builtins.str],
-                 client_email: pulumi.Input[_builtins.str],
-                 client_id: pulumi.Input[_builtins.str],
-                 client_x509_cert_url: pulumi.Input[_builtins.str],
                  gcp_project_id: pulumi.Input[_builtins.str],
-                 private_key: pulumi.Input[_builtins.str],
-                 private_key_id: pulumi.Input[_builtins.str],
-                 token_uri: pulumi.Input[_builtins.str],
                  application_id: Optional[pulumi.Input[_builtins.str]] = None,
                  application_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_provider_x509_cert_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_uri: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_x509_cert_url: Optional[pulumi.Input[_builtins.str]] = None,
                  dataproc_cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
                  dataproc_region: Optional[pulumi.Input[_builtins.str]] = None,
+                 deployment_env_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
                  execution_project: Optional[pulumi.Input[_builtins.str]] = None,
                  gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  impersonate_service_account: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1124,24 +1146,25 @@ class GlobalConnectionBigqueryArgs:
                  location: Optional[pulumi.Input[_builtins.str]] = None,
                  maximum_bytes_billed: Optional[pulumi.Input[_builtins.int]] = None,
                  priority: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  retries: Optional[pulumi.Input[_builtins.int]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 token_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  use_latest_adapter: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
-        :param pulumi.Input[_builtins.str] auth_uri: Auth URI for the Service Account
-        :param pulumi.Input[_builtins.str] client_email: Service Account email
-        :param pulumi.Input[_builtins.str] client_id: Client ID of the Service Account
-        :param pulumi.Input[_builtins.str] client_x509_cert_url: Client X509 Cert URL for the Service Account
         :param pulumi.Input[_builtins.str] gcp_project_id: The GCP project ID to use for the connection
-        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
-        :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
-        :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
-        :param pulumi.Input[_builtins.str] application_id: OAuth Client ID
-        :param pulumi.Input[_builtins.str] application_secret: OAuth Client Secret
+        :param pulumi.Input[_builtins.str] application_id: OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+        :param pulumi.Input[_builtins.str] application_secret: OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+        :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+        :param pulumi.Input[_builtins.str] auth_uri: Auth URI for the Service Account. Required when using 'service-account-json' authentication.
+        :param pulumi.Input[_builtins.str] client_email: Service Account email. Required when using 'service-account-json' authentication.
+        :param pulumi.Input[_builtins.str] client_id: Client ID of the Service Account. Required when using 'service-account-json' authentication.
+        :param pulumi.Input[_builtins.str] client_x509_cert_url: Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         :param pulumi.Input[_builtins.str] dataproc_cluster_name: Dataproc cluster name for PySpark workloads
         :param pulumi.Input[_builtins.str] dataproc_region: Google Cloud region for PySpark workloads on Dataproc
+        :param pulumi.Input[_builtins.str] deployment_env_auth_type: Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
         :param pulumi.Input[_builtins.str] execution_project: Project to bill for query execution
         :param pulumi.Input[_builtins.str] gcs_bucket: URI for a Google Cloud Storage bucket to host Python code executed via Datapro
         :param pulumi.Input[_builtins.str] impersonate_service_account: Service Account to impersonate when running queries
@@ -1151,28 +1174,35 @@ class GlobalConnectionBigqueryArgs:
         :param pulumi.Input[_builtins.str] location: Location to create new Datasets in
         :param pulumi.Input[_builtins.int] maximum_bytes_billed: Max number of bytes that can be billed for a given BigQuery query
         :param pulumi.Input[_builtins.str] priority: The priority with which to execute BigQuery queries (batch or interactive)
+        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
         :param pulumi.Input[_builtins.int] retries: Number of retries for queries
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: OAuth scopes for the BigQuery connection
         :param pulumi.Input[_builtins.int] timeout_seconds: Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
+        :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account. Required when using 'service-account-json' authentication.
         :param pulumi.Input[_builtins.bool] use_latest_adapter: Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
         """
-        pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
-        pulumi.set(__self__, "auth_uri", auth_uri)
-        pulumi.set(__self__, "client_email", client_email)
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "client_x509_cert_url", client_x509_cert_url)
         pulumi.set(__self__, "gcp_project_id", gcp_project_id)
-        pulumi.set(__self__, "private_key", private_key)
-        pulumi.set(__self__, "private_key_id", private_key_id)
-        pulumi.set(__self__, "token_uri", token_uri)
         if application_id is not None:
             pulumi.set(__self__, "application_id", application_id)
         if application_secret is not None:
             pulumi.set(__self__, "application_secret", application_secret)
+        if auth_provider_x509_cert_url is not None:
+            pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
+        if auth_uri is not None:
+            pulumi.set(__self__, "auth_uri", auth_uri)
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_x509_cert_url is not None:
+            pulumi.set(__self__, "client_x509_cert_url", client_x509_cert_url)
         if dataproc_cluster_name is not None:
             pulumi.set(__self__, "dataproc_cluster_name", dataproc_cluster_name)
         if dataproc_region is not None:
             pulumi.set(__self__, "dataproc_region", dataproc_region)
+        if deployment_env_auth_type is not None:
+            pulumi.set(__self__, "deployment_env_auth_type", deployment_env_auth_type)
         if execution_project is not None:
             pulumi.set(__self__, "execution_project", execution_project)
         if gcs_bucket is not None:
@@ -1191,74 +1221,20 @@ class GlobalConnectionBigqueryArgs:
             pulumi.set(__self__, "maximum_bytes_billed", maximum_bytes_billed)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
         if retries is not None:
             pulumi.set(__self__, "retries", retries)
         if scopes is not None:
             pulumi.set(__self__, "scopes", scopes)
         if timeout_seconds is not None:
             pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+        if token_uri is not None:
+            pulumi.set(__self__, "token_uri", token_uri)
         if use_latest_adapter is not None:
             pulumi.set(__self__, "use_latest_adapter", use_latest_adapter)
-
-    @_builtins.property
-    @pulumi.getter(name="authProviderX509CertUrl")
-    def auth_provider_x509_cert_url(self) -> pulumi.Input[_builtins.str]:
-        """
-        Auth Provider X509 Cert URL for the Service Account
-        """
-        return pulumi.get(self, "auth_provider_x509_cert_url")
-
-    @auth_provider_x509_cert_url.setter
-    def auth_provider_x509_cert_url(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "auth_provider_x509_cert_url", value)
-
-    @_builtins.property
-    @pulumi.getter(name="authUri")
-    def auth_uri(self) -> pulumi.Input[_builtins.str]:
-        """
-        Auth URI for the Service Account
-        """
-        return pulumi.get(self, "auth_uri")
-
-    @auth_uri.setter
-    def auth_uri(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "auth_uri", value)
-
-    @_builtins.property
-    @pulumi.getter(name="clientEmail")
-    def client_email(self) -> pulumi.Input[_builtins.str]:
-        """
-        Service Account email
-        """
-        return pulumi.get(self, "client_email")
-
-    @client_email.setter
-    def client_email(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "client_email", value)
-
-    @_builtins.property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        Client ID of the Service Account
-        """
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="clientX509CertUrl")
-    def client_x509_cert_url(self) -> pulumi.Input[_builtins.str]:
-        """
-        Client X509 Cert URL for the Service Account
-        """
-        return pulumi.get(self, "client_x509_cert_url")
-
-    @client_x509_cert_url.setter
-    def client_x509_cert_url(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "client_x509_cert_url", value)
 
     @_builtins.property
     @pulumi.getter(name="gcpProjectId")
@@ -1273,46 +1249,10 @@ class GlobalConnectionBigqueryArgs:
         pulumi.set(self, "gcp_project_id", value)
 
     @_builtins.property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Input[_builtins.str]:
-        """
-        Private Key for the Service Account
-        """
-        return pulumi.get(self, "private_key")
-
-    @private_key.setter
-    def private_key(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "private_key", value)
-
-    @_builtins.property
-    @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        Private Key ID for the Service Account
-        """
-        return pulumi.get(self, "private_key_id")
-
-    @private_key_id.setter
-    def private_key_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "private_key_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="tokenUri")
-    def token_uri(self) -> pulumi.Input[_builtins.str]:
-        """
-        Token URI for the Service Account
-        """
-        return pulumi.get(self, "token_uri")
-
-    @token_uri.setter
-    def token_uri(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "token_uri", value)
-
-    @_builtins.property
     @pulumi.getter(name="applicationId")
     def application_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        OAuth Client ID
+        OAuth Client ID. Required when using 'external-oauth-wif' authentication.
         """
         return pulumi.get(self, "application_id")
 
@@ -1324,13 +1264,73 @@ class GlobalConnectionBigqueryArgs:
     @pulumi.getter(name="applicationSecret")
     def application_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        OAuth Client Secret
+        OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
         """
         return pulumi.get(self, "application_secret")
 
     @application_secret.setter
     def application_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "application_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authProviderX509CertUrl")
+    def auth_provider_x509_cert_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        return pulumi.get(self, "auth_provider_x509_cert_url")
+
+    @auth_provider_x509_cert_url.setter
+    def auth_provider_x509_cert_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "auth_provider_x509_cert_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authUri")
+    def auth_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Auth URI for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        return pulumi.get(self, "auth_uri")
+
+    @auth_uri.setter
+    def auth_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "auth_uri", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Service Account email. Required when using 'service-account-json' authentication.
+        """
+        return pulumi.get(self, "client_email")
+
+    @client_email.setter
+    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Client ID of the Service Account. Required when using 'service-account-json' authentication.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientX509CertUrl")
+    def client_x509_cert_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        return pulumi.get(self, "client_x509_cert_url")
+
+    @client_x509_cert_url.setter
+    def client_x509_cert_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_x509_cert_url", value)
 
     @_builtins.property
     @pulumi.getter(name="dataprocClusterName")
@@ -1355,6 +1355,18 @@ class GlobalConnectionBigqueryArgs:
     @dataproc_region.setter
     def dataproc_region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "dataproc_region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deploymentEnvAuthType")
+    def deployment_env_auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+        """
+        return pulumi.get(self, "deployment_env_auth_type")
+
+    @deployment_env_auth_type.setter
+    def deployment_env_auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deployment_env_auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="executionProject")
@@ -1465,6 +1477,30 @@ class GlobalConnectionBigqueryArgs:
         pulumi.set(self, "priority", value)
 
     @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def retries(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -1499,6 +1535,18 @@ class GlobalConnectionBigqueryArgs:
     @timeout_seconds.setter
     def timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "timeout_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenUri")
+    def token_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Token URI for the Service Account. Required when using 'service-account-json' authentication.
+        """
+        return pulumi.get(self, "token_uri")
+
+    @token_uri.setter
+    def token_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_uri", value)
 
     @_builtins.property
     @pulumi.getter(name="useLatestAdapter")

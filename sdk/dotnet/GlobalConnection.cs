@@ -49,6 +49,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
+    ///     // BigQuery connection with Service Account JSON authentication
     ///     var bigquery = new DbtCloud.GlobalConnection("bigquery", new()
     ///     {
     ///         Name = "My BigQuery connection",
@@ -64,8 +65,29 @@ namespace Pulumi.DbtCloud
     ///             TokenUri = "my_token_uri",
     ///             AuthProviderX509CertUrl = "my_auth_provider_x509_cert_url",
     ///             ClientX509CertUrl = "my_client_x509_cert_url",
+    ///             DeploymentEnvAuthType = "service-account-json",
+    ///         },
+    ///     });
+    /// 
+    ///     // BigQuery connection with External OAuth (Workload Identity Federation)
+    ///     // TODO: Currently the API still requires service account fields even with external-oauth-wif
+    ///     var bigqueryWif = new DbtCloud.GlobalConnection("bigquery_wif", new()
+    ///     {
+    ///         Name = "My BigQuery WIF connection",
+    ///         Bigquery = new DbtCloud.Inputs.GlobalConnectionBigqueryArgs
+    ///         {
+    ///             GcpProjectId = "my-gcp-project-id",
     ///             ApplicationId = "oauth_application_id",
     ///             ApplicationSecret = "oauth_secret_id",
+    ///             DeploymentEnvAuthType = "external-oauth-wif",
+    ///             PrivateKeyId = "my-private-key-id",
+    ///             PrivateKey = "ABCDEFGHIJKL",
+    ///             ClientEmail = "my_client_email",
+    ///             ClientId = "my_client_id",
+    ///             AuthUri = "my_auth_uri",
+    ///             TokenUri = "my_token_uri",
+    ///             AuthProviderX509CertUrl = "my_auth_provider_x509_cert_url",
+    ///             ClientX509CertUrl = "my_client_x509_cert_url",
     ///         },
     ///     });
     /// 

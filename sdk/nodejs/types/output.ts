@@ -22,6 +22,10 @@ export interface BigquerySemanticLayerCredentialConfiguration {
 
 export interface BigquerySemanticLayerCredentialCredential {
     /**
+     * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     */
+    connectionId?: number;
+    /**
      * The internal credential ID
      */
     credentialId: number;
@@ -283,6 +287,10 @@ export interface GetGlobalConnectionBigquery {
      * Google Cloud region for PySpark workloads on Dataproc
      */
     dataprocRegion: string;
+    /**
+     * Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'.
+     */
+    deploymentEnvAuthType: string;
     /**
      * Project to bill for query execution
      */
@@ -1231,33 +1239,33 @@ export interface GlobalConnectionAthena {
 
 export interface GlobalConnectionBigquery {
     /**
-     * OAuth Client ID
+     * OAuth Client ID. Required when using 'external-oauth-wif' authentication.
      */
     applicationId?: string;
     /**
-     * OAuth Client Secret
+     * OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
      */
     applicationSecret?: string;
     /**
-     * Auth Provider X509 Cert URL for the Service Account
+     * Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
      */
-    authProviderX509CertUrl: string;
+    authProviderX509CertUrl?: string;
     /**
-     * Auth URI for the Service Account
+     * Auth URI for the Service Account. Required when using 'service-account-json' authentication.
      */
-    authUri: string;
+    authUri?: string;
     /**
-     * Service Account email
+     * Service Account email. Required when using 'service-account-json' authentication.
      */
-    clientEmail: string;
+    clientEmail?: string;
     /**
-     * Client ID of the Service Account
+     * Client ID of the Service Account. Required when using 'service-account-json' authentication.
      */
-    clientId: string;
+    clientId?: string;
     /**
-     * Client X509 Cert URL for the Service Account
+     * Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
      */
-    clientX509CertUrl: string;
+    clientX509CertUrl?: string;
     /**
      * Dataproc cluster name for PySpark workloads
      */
@@ -1266,6 +1274,10 @@ export interface GlobalConnectionBigquery {
      * Google Cloud region for PySpark workloads on Dataproc
      */
     dataprocRegion?: string;
+    /**
+     * Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+     */
+    deploymentEnvAuthType: string;
     /**
      * Project to bill for query execution
      */
@@ -1307,13 +1319,13 @@ export interface GlobalConnectionBigquery {
      */
     priority?: string;
     /**
-     * Private Key for the Service Account
+     * Private Key for the Service Account. Required when using 'service-account-json' authentication.
      */
-    privateKey: string;
+    privateKey?: string;
     /**
-     * Private Key ID for the Service Account
+     * Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
      */
-    privateKeyId: string;
+    privateKeyId?: string;
     /**
      * Number of retries for queries
      */
@@ -1327,9 +1339,9 @@ export interface GlobalConnectionBigquery {
      */
     timeoutSeconds: number;
     /**
-     * Token URI for the Service Account
+     * Token URI for the Service Account. Required when using 'service-account-json' authentication.
      */
-    tokenUri: string;
+    tokenUri?: string;
     /**
      * Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
      */

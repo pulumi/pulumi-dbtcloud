@@ -20,14 +20,14 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     public static final GlobalConnectionBigqueryArgs Empty = new GlobalConnectionBigqueryArgs();
 
     /**
-     * OAuth Client ID
+     * OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
      * 
      */
     @Import(name="applicationId")
     private @Nullable Output<String> applicationId;
 
     /**
-     * @return OAuth Client ID
+     * @return OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
      * 
      */
     public Optional<Output<String>> applicationId() {
@@ -35,14 +35,14 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * OAuth Client Secret
+     * OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
      * 
      */
     @Import(name="applicationSecret")
     private @Nullable Output<String> applicationSecret;
 
     /**
-     * @return OAuth Client Secret
+     * @return OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
      * 
      */
     public Optional<Output<String>> applicationSecret() {
@@ -50,78 +50,78 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Auth Provider X509 Cert URL for the Service Account
+     * Auth Provider X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    @Import(name="authProviderX509CertUrl", required=true)
-    private Output<String> authProviderX509CertUrl;
+    @Import(name="authProviderX509CertUrl")
+    private @Nullable Output<String> authProviderX509CertUrl;
 
     /**
-     * @return Auth Provider X509 Cert URL for the Service Account
+     * @return Auth Provider X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public Output<String> authProviderX509CertUrl() {
-        return this.authProviderX509CertUrl;
+    public Optional<Output<String>> authProviderX509CertUrl() {
+        return Optional.ofNullable(this.authProviderX509CertUrl);
     }
 
     /**
-     * Auth URI for the Service Account
+     * Auth URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    @Import(name="authUri", required=true)
-    private Output<String> authUri;
+    @Import(name="authUri")
+    private @Nullable Output<String> authUri;
 
     /**
-     * @return Auth URI for the Service Account
+     * @return Auth URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public Output<String> authUri() {
-        return this.authUri;
+    public Optional<Output<String>> authUri() {
+        return Optional.ofNullable(this.authUri);
     }
 
     /**
-     * Service Account email
+     * Service Account email. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    @Import(name="clientEmail", required=true)
-    private Output<String> clientEmail;
+    @Import(name="clientEmail")
+    private @Nullable Output<String> clientEmail;
 
     /**
-     * @return Service Account email
+     * @return Service Account email. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public Output<String> clientEmail() {
-        return this.clientEmail;
+    public Optional<Output<String>> clientEmail() {
+        return Optional.ofNullable(this.clientEmail);
     }
 
     /**
-     * Client ID of the Service Account
+     * Client ID of the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    @Import(name="clientId", required=true)
-    private Output<String> clientId;
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
 
     /**
-     * @return Client ID of the Service Account
+     * @return Client ID of the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public Output<String> clientId() {
-        return this.clientId;
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
     }
 
     /**
-     * Client X509 Cert URL for the Service Account
+     * Client X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    @Import(name="clientX509CertUrl", required=true)
-    private Output<String> clientX509CertUrl;
+    @Import(name="clientX509CertUrl")
+    private @Nullable Output<String> clientX509CertUrl;
 
     /**
-     * @return Client X509 Cert URL for the Service Account
+     * @return Client X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public Output<String> clientX509CertUrl() {
-        return this.clientX509CertUrl;
+    public Optional<Output<String>> clientX509CertUrl() {
+        return Optional.ofNullable(this.clientX509CertUrl);
     }
 
     /**
@@ -152,6 +152,21 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
      */
     public Optional<Output<String>> dataprocRegion() {
         return Optional.ofNullable(this.dataprocRegion);
+    }
+
+    /**
+     * Authentication type for deployment environments. Can be &#39;service-account-json&#39; or &#39;external-oauth-wif&#39;. Defaults to &#39;service-account-json&#39;.
+     * 
+     */
+    @Import(name="deploymentEnvAuthType")
+    private @Nullable Output<String> deploymentEnvAuthType;
+
+    /**
+     * @return Authentication type for deployment environments. Can be &#39;service-account-json&#39; or &#39;external-oauth-wif&#39;. Defaults to &#39;service-account-json&#39;.
+     * 
+     */
+    public Optional<Output<String>> deploymentEnvAuthType() {
+        return Optional.ofNullable(this.deploymentEnvAuthType);
     }
 
     /**
@@ -305,33 +320,33 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Private Key for the Service Account
+     * Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    @Import(name="privateKey", required=true)
-    private Output<String> privateKey;
+    @Import(name="privateKey")
+    private @Nullable Output<String> privateKey;
 
     /**
-     * @return Private Key for the Service Account
+     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public Output<String> privateKey() {
-        return this.privateKey;
+    public Optional<Output<String>> privateKey() {
+        return Optional.ofNullable(this.privateKey);
     }
 
     /**
-     * Private Key ID for the Service Account
+     * Private Key ID for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    @Import(name="privateKeyId", required=true)
-    private Output<String> privateKeyId;
+    @Import(name="privateKeyId")
+    private @Nullable Output<String> privateKeyId;
 
     /**
-     * @return Private Key ID for the Service Account
+     * @return Private Key ID for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public Output<String> privateKeyId() {
-        return this.privateKeyId;
+    public Optional<Output<String>> privateKeyId() {
+        return Optional.ofNullable(this.privateKeyId);
     }
 
     /**
@@ -380,18 +395,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Token URI for the Service Account
+     * Token URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    @Import(name="tokenUri", required=true)
-    private Output<String> tokenUri;
+    @Import(name="tokenUri")
+    private @Nullable Output<String> tokenUri;
 
     /**
-     * @return Token URI for the Service Account
+     * @return Token URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
      * 
      */
-    public Output<String> tokenUri() {
-        return this.tokenUri;
+    public Optional<Output<String>> tokenUri() {
+        return Optional.ofNullable(this.tokenUri);
     }
 
     /**
@@ -421,6 +436,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         this.clientX509CertUrl = $.clientX509CertUrl;
         this.dataprocClusterName = $.dataprocClusterName;
         this.dataprocRegion = $.dataprocRegion;
+        this.deploymentEnvAuthType = $.deploymentEnvAuthType;
         this.executionProject = $.executionProject;
         this.gcpProjectId = $.gcpProjectId;
         this.gcsBucket = $.gcsBucket;
@@ -459,7 +475,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param applicationId OAuth Client ID
+         * @param applicationId OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
          * 
          * @return builder
          * 
@@ -470,7 +486,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param applicationId OAuth Client ID
+         * @param applicationId OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
          * 
          * @return builder
          * 
@@ -480,7 +496,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param applicationSecret OAuth Client Secret
+         * @param applicationSecret OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
          * 
          * @return builder
          * 
@@ -491,7 +507,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param applicationSecret OAuth Client Secret
+         * @param applicationSecret OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
          * 
          * @return builder
          * 
@@ -501,18 +517,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param authProviderX509CertUrl Auth Provider X509 Cert URL for the Service Account
+         * @param authProviderX509CertUrl Auth Provider X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
          */
-        public Builder authProviderX509CertUrl(Output<String> authProviderX509CertUrl) {
+        public Builder authProviderX509CertUrl(@Nullable Output<String> authProviderX509CertUrl) {
             $.authProviderX509CertUrl = authProviderX509CertUrl;
             return this;
         }
 
         /**
-         * @param authProviderX509CertUrl Auth Provider X509 Cert URL for the Service Account
+         * @param authProviderX509CertUrl Auth Provider X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
@@ -522,18 +538,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param authUri Auth URI for the Service Account
+         * @param authUri Auth URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
          */
-        public Builder authUri(Output<String> authUri) {
+        public Builder authUri(@Nullable Output<String> authUri) {
             $.authUri = authUri;
             return this;
         }
 
         /**
-         * @param authUri Auth URI for the Service Account
+         * @param authUri Auth URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
@@ -543,18 +559,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param clientEmail Service Account email
+         * @param clientEmail Service Account email. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
          */
-        public Builder clientEmail(Output<String> clientEmail) {
+        public Builder clientEmail(@Nullable Output<String> clientEmail) {
             $.clientEmail = clientEmail;
             return this;
         }
 
         /**
-         * @param clientEmail Service Account email
+         * @param clientEmail Service Account email. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
@@ -564,18 +580,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param clientId Client ID of the Service Account
+         * @param clientId Client ID of the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
          */
-        public Builder clientId(Output<String> clientId) {
+        public Builder clientId(@Nullable Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
 
         /**
-         * @param clientId Client ID of the Service Account
+         * @param clientId Client ID of the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
@@ -585,18 +601,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param clientX509CertUrl Client X509 Cert URL for the Service Account
+         * @param clientX509CertUrl Client X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
          */
-        public Builder clientX509CertUrl(Output<String> clientX509CertUrl) {
+        public Builder clientX509CertUrl(@Nullable Output<String> clientX509CertUrl) {
             $.clientX509CertUrl = clientX509CertUrl;
             return this;
         }
 
         /**
-         * @param clientX509CertUrl Client X509 Cert URL for the Service Account
+         * @param clientX509CertUrl Client X509 Cert URL for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
@@ -645,6 +661,27 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
          */
         public Builder dataprocRegion(String dataprocRegion) {
             return dataprocRegion(Output.of(dataprocRegion));
+        }
+
+        /**
+         * @param deploymentEnvAuthType Authentication type for deployment environments. Can be &#39;service-account-json&#39; or &#39;external-oauth-wif&#39;. Defaults to &#39;service-account-json&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deploymentEnvAuthType(@Nullable Output<String> deploymentEnvAuthType) {
+            $.deploymentEnvAuthType = deploymentEnvAuthType;
+            return this;
+        }
+
+        /**
+         * @param deploymentEnvAuthType Authentication type for deployment environments. Can be &#39;service-account-json&#39; or &#39;external-oauth-wif&#39;. Defaults to &#39;service-account-json&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deploymentEnvAuthType(String deploymentEnvAuthType) {
+            return deploymentEnvAuthType(Output.of(deploymentEnvAuthType));
         }
 
         /**
@@ -858,18 +895,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param privateKey Private Key for the Service Account
+         * @param privateKey Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
          */
-        public Builder privateKey(Output<String> privateKey) {
+        public Builder privateKey(@Nullable Output<String> privateKey) {
             $.privateKey = privateKey;
             return this;
         }
 
         /**
-         * @param privateKey Private Key for the Service Account
+         * @param privateKey Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
@@ -879,18 +916,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param privateKeyId Private Key ID for the Service Account
+         * @param privateKeyId Private Key ID for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
          */
-        public Builder privateKeyId(Output<String> privateKeyId) {
+        public Builder privateKeyId(@Nullable Output<String> privateKeyId) {
             $.privateKeyId = privateKeyId;
             return this;
         }
 
         /**
-         * @param privateKeyId Private Key ID for the Service Account
+         * @param privateKeyId Private Key ID for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
@@ -973,18 +1010,18 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param tokenUri Token URI for the Service Account
+         * @param tokenUri Token URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
          */
-        public Builder tokenUri(Output<String> tokenUri) {
+        public Builder tokenUri(@Nullable Output<String> tokenUri) {
             $.tokenUri = tokenUri;
             return this;
         }
 
         /**
-         * @param tokenUri Token URI for the Service Account
+         * @param tokenUri Token URI for the Service Account. Required when using &#39;service-account-json&#39; authentication.
          * 
          * @return builder
          * 
@@ -1015,32 +1052,8 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         public GlobalConnectionBigqueryArgs build() {
-            if ($.authProviderX509CertUrl == null) {
-                throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "authProviderX509CertUrl");
-            }
-            if ($.authUri == null) {
-                throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "authUri");
-            }
-            if ($.clientEmail == null) {
-                throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "clientEmail");
-            }
-            if ($.clientId == null) {
-                throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "clientId");
-            }
-            if ($.clientX509CertUrl == null) {
-                throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "clientX509CertUrl");
-            }
             if ($.gcpProjectId == null) {
                 throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "gcpProjectId");
-            }
-            if ($.privateKey == null) {
-                throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "privateKey");
-            }
-            if ($.privateKeyId == null) {
-                throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "privateKeyId");
-            }
-            if ($.tokenUri == null) {
-                throw new MissingRequiredPropertyException("GlobalConnectionBigqueryArgs", "tokenUri");
             }
             return $;
         }

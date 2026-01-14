@@ -15,6 +15,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class BigquerySemanticLayerCredentialCredential {
     /**
+     * @return The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     * 
+     */
+    private @Nullable Integer connectionId;
+    /**
      * @return The internal credential ID
      * 
      */
@@ -46,6 +51,13 @@ public final class BigquerySemanticLayerCredentialCredential {
     private Integer projectId;
 
     private BigquerySemanticLayerCredentialCredential() {}
+    /**
+     * @return The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     * 
+     */
+    public Optional<Integer> connectionId() {
+        return Optional.ofNullable(this.connectionId);
+    }
     /**
      * @return The internal credential ID
      * 
@@ -98,6 +110,7 @@ public final class BigquerySemanticLayerCredentialCredential {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Integer connectionId;
         private @Nullable Integer credentialId;
         private String dataset;
         private @Nullable String id;
@@ -107,6 +120,7 @@ public final class BigquerySemanticLayerCredentialCredential {
         public Builder() {}
         public Builder(BigquerySemanticLayerCredentialCredential defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.connectionId = defaults.connectionId;
     	      this.credentialId = defaults.credentialId;
     	      this.dataset = defaults.dataset;
     	      this.id = defaults.id;
@@ -115,6 +129,12 @@ public final class BigquerySemanticLayerCredentialCredential {
     	      this.projectId = defaults.projectId;
         }
 
+        @CustomType.Setter
+        public Builder connectionId(@Nullable Integer connectionId) {
+
+            this.connectionId = connectionId;
+            return this;
+        }
         @CustomType.Setter
         public Builder credentialId(@Nullable Integer credentialId) {
 
@@ -159,6 +179,7 @@ public final class BigquerySemanticLayerCredentialCredential {
         }
         public BigquerySemanticLayerCredentialCredential build() {
             final var _resultValue = new BigquerySemanticLayerCredentialCredential();
+            _resultValue.connectionId = connectionId;
             _resultValue.credentialId = credentialId;
             _resultValue.dataset = dataset;
             _resultValue.id = id;

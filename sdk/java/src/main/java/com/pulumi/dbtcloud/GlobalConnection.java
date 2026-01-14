@@ -88,6 +88,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // BigQuery connection with Service Account JSON authentication
  *         var bigquery = new GlobalConnection("bigquery", GlobalConnectionArgs.builder()
  *             .name("My BigQuery connection")
  *             .bigquery(GlobalConnectionBigqueryArgs.builder()
@@ -101,8 +102,27 @@ import javax.annotation.Nullable;
  *                 .tokenUri("my_token_uri")
  *                 .authProviderX509CertUrl("my_auth_provider_x509_cert_url")
  *                 .clientX509CertUrl("my_client_x509_cert_url")
+ *                 .deploymentEnvAuthType("service-account-json")
+ *                 .build())
+ *             .build());
+ * 
+ *         // BigQuery connection with External OAuth (Workload Identity Federation)
+ *         // TODO: Currently the API still requires service account fields even with external-oauth-wif
+ *         var bigqueryWif = new GlobalConnection("bigqueryWif", GlobalConnectionArgs.builder()
+ *             .name("My BigQuery WIF connection")
+ *             .bigquery(GlobalConnectionBigqueryArgs.builder()
+ *                 .gcpProjectId("my-gcp-project-id")
  *                 .applicationId("oauth_application_id")
  *                 .applicationSecret("oauth_secret_id")
+ *                 .deploymentEnvAuthType("external-oauth-wif")
+ *                 .privateKeyId("my-private-key-id")
+ *                 .privateKey("ABCDEFGHIJKL")
+ *                 .clientEmail("my_client_email")
+ *                 .clientId("my_client_id")
+ *                 .authUri("my_auth_uri")
+ *                 .tokenUri("my_token_uri")
+ *                 .authProviderX509CertUrl("my_auth_provider_x509_cert_url")
+ *                 .clientX509CertUrl("my_client_x509_cert_url")
  *                 .build())
  *             .build());
  * 

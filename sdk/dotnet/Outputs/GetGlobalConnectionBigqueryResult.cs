@@ -50,6 +50,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string DataprocRegion;
         /// <summary>
+        /// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'.
+        /// </summary>
+        public readonly string DeploymentEnvAuthType;
+        /// <summary>
         /// Project to bill for query execution
         /// </summary>
         public readonly string ExecutionProject;
@@ -130,6 +134,8 @@ namespace Pulumi.DbtCloud.Outputs
 
             string dataprocRegion,
 
+            string deploymentEnvAuthType,
+
             string executionProject,
 
             string gcpProjectId,
@@ -169,6 +175,7 @@ namespace Pulumi.DbtCloud.Outputs
             ClientX509CertUrl = clientX509CertUrl;
             DataprocClusterName = dataprocClusterName;
             DataprocRegion = dataprocRegion;
+            DeploymentEnvAuthType = deploymentEnvAuthType;
             ExecutionProject = executionProject;
             GcpProjectId = gcpProjectId;
             GcsBucket = gcsBucket;

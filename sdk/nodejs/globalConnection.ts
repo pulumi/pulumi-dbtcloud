@@ -36,6 +36,7 @@ import * as utilities from "./utilities";
  *         s3DataDir: "s3://my-bucket/my-data-dir/",
  *     },
  * });
+ * // BigQuery connection with Service Account JSON authentication
  * const bigquery = new dbtcloud.GlobalConnection("bigquery", {
  *     name: "My BigQuery connection",
  *     bigquery: {
@@ -49,8 +50,26 @@ import * as utilities from "./utilities";
  *         tokenUri: "my_token_uri",
  *         authProviderX509CertUrl: "my_auth_provider_x509_cert_url",
  *         clientX509CertUrl: "my_client_x509_cert_url",
+ *         deploymentEnvAuthType: "service-account-json",
+ *     },
+ * });
+ * // BigQuery connection with External OAuth (Workload Identity Federation)
+ * // TODO: Currently the API still requires service account fields even with external-oauth-wif
+ * const bigqueryWif = new dbtcloud.GlobalConnection("bigquery_wif", {
+ *     name: "My BigQuery WIF connection",
+ *     bigquery: {
+ *         gcpProjectId: "my-gcp-project-id",
  *         applicationId: "oauth_application_id",
  *         applicationSecret: "oauth_secret_id",
+ *         deploymentEnvAuthType: "external-oauth-wif",
+ *         privateKeyId: "my-private-key-id",
+ *         privateKey: "ABCDEFGHIJKL",
+ *         clientEmail: "my_client_email",
+ *         clientId: "my_client_id",
+ *         authUri: "my_auth_uri",
+ *         tokenUri: "my_token_uri",
+ *         authProviderX509CertUrl: "my_auth_provider_x509_cert_url",
+ *         clientX509CertUrl: "my_client_x509_cert_url",
  *     },
  * });
  * const databricks = new dbtcloud.GlobalConnection("databricks", {

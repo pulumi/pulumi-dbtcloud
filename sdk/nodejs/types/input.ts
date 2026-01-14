@@ -22,6 +22,10 @@ export interface BigquerySemanticLayerCredentialConfiguration {
 
 export interface BigquerySemanticLayerCredentialCredential {
     /**
+     * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+     */
+    connectionId?: pulumi.Input<number>;
+    /**
      * The internal credential ID
      */
     credentialId?: pulumi.Input<number>;
@@ -343,33 +347,33 @@ export interface GlobalConnectionAthena {
 
 export interface GlobalConnectionBigquery {
     /**
-     * OAuth Client ID
+     * OAuth Client ID. Required when using 'external-oauth-wif' authentication.
      */
     applicationId?: pulumi.Input<string>;
     /**
-     * OAuth Client Secret
+     * OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
      */
     applicationSecret?: pulumi.Input<string>;
     /**
-     * Auth Provider X509 Cert URL for the Service Account
+     * Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
      */
-    authProviderX509CertUrl: pulumi.Input<string>;
+    authProviderX509CertUrl?: pulumi.Input<string>;
     /**
-     * Auth URI for the Service Account
+     * Auth URI for the Service Account. Required when using 'service-account-json' authentication.
      */
-    authUri: pulumi.Input<string>;
+    authUri?: pulumi.Input<string>;
     /**
-     * Service Account email
+     * Service Account email. Required when using 'service-account-json' authentication.
      */
-    clientEmail: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string>;
     /**
-     * Client ID of the Service Account
+     * Client ID of the Service Account. Required when using 'service-account-json' authentication.
      */
-    clientId: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
-     * Client X509 Cert URL for the Service Account
+     * Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
      */
-    clientX509CertUrl: pulumi.Input<string>;
+    clientX509CertUrl?: pulumi.Input<string>;
     /**
      * Dataproc cluster name for PySpark workloads
      */
@@ -378,6 +382,10 @@ export interface GlobalConnectionBigquery {
      * Google Cloud region for PySpark workloads on Dataproc
      */
     dataprocRegion?: pulumi.Input<string>;
+    /**
+     * Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+     */
+    deploymentEnvAuthType?: pulumi.Input<string>;
     /**
      * Project to bill for query execution
      */
@@ -419,13 +427,13 @@ export interface GlobalConnectionBigquery {
      */
     priority?: pulumi.Input<string>;
     /**
-     * Private Key for the Service Account
+     * Private Key for the Service Account. Required when using 'service-account-json' authentication.
      */
-    privateKey: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
-     * Private Key ID for the Service Account
+     * Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
      */
-    privateKeyId: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string>;
     /**
      * Number of retries for queries
      */
@@ -439,9 +447,9 @@ export interface GlobalConnectionBigquery {
      */
     timeoutSeconds?: pulumi.Input<number>;
     /**
-     * Token URI for the Service Account
+     * Token URI for the Service Account. Required when using 'service-account-json' authentication.
      */
-    tokenUri: pulumi.Input<string>;
+    tokenUri?: pulumi.Input<string>;
     /**
      * Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
      */

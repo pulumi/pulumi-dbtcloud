@@ -14,6 +14,10 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class BigquerySemanticLayerCredentialCredential
     {
         /// <summary>
+        /// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+        /// </summary>
+        public readonly int? ConnectionId;
+        /// <summary>
         /// The internal credential ID
         /// </summary>
         public readonly int? CredentialId;
@@ -40,6 +44,8 @@ namespace Pulumi.DbtCloud.Outputs
 
         [OutputConstructor]
         private BigquerySemanticLayerCredentialCredential(
+            int? connectionId,
+
             int? credentialId,
 
             string dataset,
@@ -52,6 +58,7 @@ namespace Pulumi.DbtCloud.Outputs
 
             int projectId)
         {
+            ConnectionId = connectionId;
             CredentialId = credentialId;
             Dataset = dataset;
             Id = id;

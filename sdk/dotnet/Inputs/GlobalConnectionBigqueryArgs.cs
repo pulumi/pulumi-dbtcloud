@@ -16,7 +16,7 @@ namespace Pulumi.DbtCloud.Inputs
         private Input<string>? _applicationId;
 
         /// <summary>
-        /// OAuth Client ID
+        /// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
         /// </summary>
         public Input<string>? ApplicationId
         {
@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud.Inputs
         private Input<string>? _applicationSecret;
 
         /// <summary>
-        /// OAuth Client Secret
+        /// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
         /// </summary>
         public Input<string>? ApplicationSecret
         {
@@ -45,34 +45,34 @@ namespace Pulumi.DbtCloud.Inputs
         }
 
         /// <summary>
-        /// Auth Provider X509 Cert URL for the Service Account
+        /// Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        [Input("authProviderX509CertUrl", required: true)]
-        public Input<string> AuthProviderX509CertUrl { get; set; } = null!;
+        [Input("authProviderX509CertUrl")]
+        public Input<string>? AuthProviderX509CertUrl { get; set; }
 
         /// <summary>
-        /// Auth URI for the Service Account
+        /// Auth URI for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        [Input("authUri", required: true)]
-        public Input<string> AuthUri { get; set; } = null!;
+        [Input("authUri")]
+        public Input<string>? AuthUri { get; set; }
 
         /// <summary>
-        /// Service Account email
+        /// Service Account email. Required when using 'service-account-json' authentication.
         /// </summary>
-        [Input("clientEmail", required: true)]
-        public Input<string> ClientEmail { get; set; } = null!;
+        [Input("clientEmail")]
+        public Input<string>? ClientEmail { get; set; }
 
         /// <summary>
-        /// Client ID of the Service Account
+        /// Client ID of the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        [Input("clientId", required: true)]
-        public Input<string> ClientId { get; set; } = null!;
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// Client X509 Cert URL for the Service Account
+        /// Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        [Input("clientX509CertUrl", required: true)]
-        public Input<string> ClientX509CertUrl { get; set; } = null!;
+        [Input("clientX509CertUrl")]
+        public Input<string>? ClientX509CertUrl { get; set; }
 
         /// <summary>
         /// Dataproc cluster name for PySpark workloads
@@ -85,6 +85,12 @@ namespace Pulumi.DbtCloud.Inputs
         /// </summary>
         [Input("dataprocRegion")]
         public Input<string>? DataprocRegion { get; set; }
+
+        /// <summary>
+        /// Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+        /// </summary>
+        [Input("deploymentEnvAuthType")]
+        public Input<string>? DeploymentEnvAuthType { get; set; }
 
         /// <summary>
         /// Project to bill for query execution
@@ -146,11 +152,11 @@ namespace Pulumi.DbtCloud.Inputs
         [Input("priority")]
         public Input<string>? Priority { get; set; }
 
-        [Input("privateKey", required: true)]
+        [Input("privateKey")]
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private Key for the Service Account
+        /// Private Key for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -163,10 +169,10 @@ namespace Pulumi.DbtCloud.Inputs
         }
 
         /// <summary>
-        /// Private Key ID for the Service Account
+        /// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        [Input("privateKeyId", required: true)]
-        public Input<string> PrivateKeyId { get; set; } = null!;
+        [Input("privateKeyId")]
+        public Input<string>? PrivateKeyId { get; set; }
 
         /// <summary>
         /// Number of retries for queries
@@ -193,10 +199,10 @@ namespace Pulumi.DbtCloud.Inputs
         public Input<int>? TimeoutSeconds { get; set; }
 
         /// <summary>
-        /// Token URI for the Service Account
+        /// Token URI for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
-        [Input("tokenUri", required: true)]
-        public Input<string> TokenUri { get; set; } = null!;
+        [Input("tokenUri")]
+        public Input<string>? TokenUri { get; set; }
 
         /// <summary>
         /// Whether to use the latest BigqueryV1 adapter (use this for BQ WIF). If true, the `JobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
