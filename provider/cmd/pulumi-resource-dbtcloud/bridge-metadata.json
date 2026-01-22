@@ -17,8 +17,42 @@
                 "current": "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential",
                 "majorVersion": 1
             },
+            "dbtcloud_connection_catalog_config": {
+                "current": "dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig",
+                "majorVersion": 1,
+                "fields": {
+                    "database_allow": {
+                        "maxItemsOne": false
+                    },
+                    "database_deny": {
+                        "maxItemsOne": false
+                    },
+                    "schema_allow": {
+                        "maxItemsOne": false
+                    },
+                    "schema_deny": {
+                        "maxItemsOne": false
+                    },
+                    "table_allow": {
+                        "maxItemsOne": false
+                    },
+                    "table_deny": {
+                        "maxItemsOne": false
+                    },
+                    "view_allow": {
+                        "maxItemsOne": false
+                    },
+                    "view_deny": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "dbtcloud_databricks_credential": {
                 "current": "dbtcloud:index/databricksCredential:DatabricksCredential",
+                "majorVersion": 1
+            },
+            "dbtcloud_databricks_platform_metadata_credential": {
+                "current": "dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential",
                 "majorVersion": 1
             },
             "dbtcloud_databricks_semantic_layer_credential": {
@@ -290,6 +324,10 @@
             },
             "dbtcloud_snowflake_credential": {
                 "current": "dbtcloud:index/snowflakeCredential:SnowflakeCredential",
+                "majorVersion": 1
+            },
+            "dbtcloud_snowflake_platform_metadata_credential": {
+                "current": "dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential",
                 "majorVersion": 1
             },
             "dbtcloud_snowflake_semantic_layer_credential": {
