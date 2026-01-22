@@ -755,6 +755,13 @@ export interface IpRestrictionsRuleCidr {
     ipRestrictionRuleId?: pulumi.Input<number>;
 }
 
+export interface JobExecution {
+    /**
+     * The number of seconds before the job times out
+     */
+    timeoutSeconds?: pulumi.Input<number>;
+}
+
 export interface JobJobCompletionTriggerCondition {
     /**
      * The ID of the job that would trigger this job after completion.

@@ -18,6 +18,46 @@ import javax.annotation.Nullable;
  * 
  * When destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to `false`.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.AccountFeatures;
+ * import com.pulumi.dbtcloud.AccountFeaturesArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Manage account-level feature flags in dbt Cloud
+ *         var myFeatures = new AccountFeatures("myFeatures", AccountFeaturesArgs.builder()
+ *             .advancedCi(true)
+ *             .partialParsing(true)
+ *             .repoCaching(true)
+ *             .aiFeatures(true)
+ *             .catalogIngestion(true)
+ *             .explorerAccountUi(true)
+ *             .fusionMigrationPermissions(false)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="dbtcloud:index/accountFeatures:AccountFeatures")
 public class AccountFeatures extends com.pulumi.resources.CustomResource {
@@ -50,6 +90,48 @@ public class AccountFeatures extends com.pulumi.resources.CustomResource {
         return this.aiFeatures;
     }
     /**
+     * Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+     * 
+     */
+    @Export(name="catalogIngestion", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> catalogIngestion;
+
+    /**
+     * @return Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+     * 
+     */
+    public Output<Boolean> catalogIngestion() {
+        return this.catalogIngestion;
+    }
+    /**
+     * Whether the new Catalog navigation UI is enabled (default true for new accounts).
+     * 
+     */
+    @Export(name="explorerAccountUi", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> explorerAccountUi;
+
+    /**
+     * @return Whether the new Catalog navigation UI is enabled (default true for new accounts).
+     * 
+     */
+    public Output<Boolean> explorerAccountUi() {
+        return this.explorerAccountUi;
+    }
+    /**
+     * Whether permissions for accounts migrating to Fusion are enabled.
+     * 
+     */
+    @Export(name="fusionMigrationPermissions", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> fusionMigrationPermissions;
+
+    /**
+     * @return Whether permissions for accounts migrating to Fusion are enabled.
+     * 
+     */
+    public Output<Boolean> fusionMigrationPermissions() {
+        return this.fusionMigrationPermissions;
+    }
+    /**
      * Whether partial parsing is enabled.
      * 
      */
@@ -76,20 +158,6 @@ public class AccountFeatures extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> repoCaching() {
         return this.repoCaching;
-    }
-    /**
-     * Whether warehouse cost visibility is enabled.
-     * 
-     */
-    @Export(name="warehouseCostVisibility", refs={Boolean.class}, tree="[0]")
-    private Output<Boolean> warehouseCostVisibility;
-
-    /**
-     * @return Whether warehouse cost visibility is enabled.
-     * 
-     */
-    public Output<Boolean> warehouseCostVisibility() {
-        return this.warehouseCostVisibility;
     }
 
     /**

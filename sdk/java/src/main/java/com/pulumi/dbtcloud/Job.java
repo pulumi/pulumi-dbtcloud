@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.dbtcloud.JobArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.JobState;
+import com.pulumi.dbtcloud.outputs.JobExecution;
 import com.pulumi.dbtcloud.outputs.JobJobCompletionTriggerCondition;
 import com.pulumi.dbtcloud.outputs.JobTriggers;
 import java.lang.Boolean;
@@ -164,6 +165,20 @@ public class Job extends com.pulumi.resources.CustomResource {
      */
     public Output<List<String>> executeSteps() {
         return this.executeSteps;
+    }
+    /**
+     * Execution settings for the job
+     * 
+     */
+    @Export(name="execution", refs={JobExecution.class}, tree="[0]")
+    private Output</* @Nullable */ JobExecution> execution;
+
+    /**
+     * @return Execution settings for the job
+     * 
+     */
+    public Output<Optional<JobExecution>> execution() {
+        return Codegen.optional(this.execution);
     }
     /**
      * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
@@ -432,18 +447,18 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.targetName;
     }
     /**
-     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      * 
      * @deprecated
-     * Moved to execution.timeout_seconds
+     * Use execution.timeout_seconds instead
      * 
      */
-    @Deprecated /* Moved to execution.timeout_seconds */
+    @Deprecated /* Use execution.timeout_seconds instead */
     @Export(name="timeoutSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> timeoutSeconds;
 
     /**
-     * @return [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * @return Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      * 
      */
     public Output<Integer> timeoutSeconds() {

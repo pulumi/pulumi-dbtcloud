@@ -4730,6 +4730,143 @@ func (o IpRestrictionsRuleCidrArrayOutput) Index(i pulumi.IntInput) IpRestrictio
 	}).(IpRestrictionsRuleCidrOutput)
 }
 
+type JobExecution struct {
+	// The number of seconds before the job times out
+	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
+}
+
+// JobExecutionInput is an input type that accepts JobExecutionArgs and JobExecutionOutput values.
+// You can construct a concrete instance of `JobExecutionInput` via:
+//
+//	JobExecutionArgs{...}
+type JobExecutionInput interface {
+	pulumi.Input
+
+	ToJobExecutionOutput() JobExecutionOutput
+	ToJobExecutionOutputWithContext(context.Context) JobExecutionOutput
+}
+
+type JobExecutionArgs struct {
+	// The number of seconds before the job times out
+	TimeoutSeconds pulumi.IntPtrInput `pulumi:"timeoutSeconds"`
+}
+
+func (JobExecutionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobExecution)(nil)).Elem()
+}
+
+func (i JobExecutionArgs) ToJobExecutionOutput() JobExecutionOutput {
+	return i.ToJobExecutionOutputWithContext(context.Background())
+}
+
+func (i JobExecutionArgs) ToJobExecutionOutputWithContext(ctx context.Context) JobExecutionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobExecutionOutput)
+}
+
+func (i JobExecutionArgs) ToJobExecutionPtrOutput() JobExecutionPtrOutput {
+	return i.ToJobExecutionPtrOutputWithContext(context.Background())
+}
+
+func (i JobExecutionArgs) ToJobExecutionPtrOutputWithContext(ctx context.Context) JobExecutionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobExecutionOutput).ToJobExecutionPtrOutputWithContext(ctx)
+}
+
+// JobExecutionPtrInput is an input type that accepts JobExecutionArgs, JobExecutionPtr and JobExecutionPtrOutput values.
+// You can construct a concrete instance of `JobExecutionPtrInput` via:
+//
+//	        JobExecutionArgs{...}
+//
+//	or:
+//
+//	        nil
+type JobExecutionPtrInput interface {
+	pulumi.Input
+
+	ToJobExecutionPtrOutput() JobExecutionPtrOutput
+	ToJobExecutionPtrOutputWithContext(context.Context) JobExecutionPtrOutput
+}
+
+type jobExecutionPtrType JobExecutionArgs
+
+func JobExecutionPtr(v *JobExecutionArgs) JobExecutionPtrInput {
+	return (*jobExecutionPtrType)(v)
+}
+
+func (*jobExecutionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobExecution)(nil)).Elem()
+}
+
+func (i *jobExecutionPtrType) ToJobExecutionPtrOutput() JobExecutionPtrOutput {
+	return i.ToJobExecutionPtrOutputWithContext(context.Background())
+}
+
+func (i *jobExecutionPtrType) ToJobExecutionPtrOutputWithContext(ctx context.Context) JobExecutionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobExecutionPtrOutput)
+}
+
+type JobExecutionOutput struct{ *pulumi.OutputState }
+
+func (JobExecutionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobExecution)(nil)).Elem()
+}
+
+func (o JobExecutionOutput) ToJobExecutionOutput() JobExecutionOutput {
+	return o
+}
+
+func (o JobExecutionOutput) ToJobExecutionOutputWithContext(ctx context.Context) JobExecutionOutput {
+	return o
+}
+
+func (o JobExecutionOutput) ToJobExecutionPtrOutput() JobExecutionPtrOutput {
+	return o.ToJobExecutionPtrOutputWithContext(context.Background())
+}
+
+func (o JobExecutionOutput) ToJobExecutionPtrOutputWithContext(ctx context.Context) JobExecutionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobExecution) *JobExecution {
+		return &v
+	}).(JobExecutionPtrOutput)
+}
+
+// The number of seconds before the job times out
+func (o JobExecutionOutput) TimeoutSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v JobExecution) *int { return v.TimeoutSeconds }).(pulumi.IntPtrOutput)
+}
+
+type JobExecutionPtrOutput struct{ *pulumi.OutputState }
+
+func (JobExecutionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobExecution)(nil)).Elem()
+}
+
+func (o JobExecutionPtrOutput) ToJobExecutionPtrOutput() JobExecutionPtrOutput {
+	return o
+}
+
+func (o JobExecutionPtrOutput) ToJobExecutionPtrOutputWithContext(ctx context.Context) JobExecutionPtrOutput {
+	return o
+}
+
+func (o JobExecutionPtrOutput) Elem() JobExecutionOutput {
+	return o.ApplyT(func(v *JobExecution) JobExecution {
+		if v != nil {
+			return *v
+		}
+		var ret JobExecution
+		return ret
+	}).(JobExecutionOutput)
+}
+
+// The number of seconds before the job times out
+func (o JobExecutionPtrOutput) TimeoutSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *JobExecution) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TimeoutSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
 type JobJobCompletionTriggerCondition struct {
 	// The ID of the job that would trigger this job after completion.
 	JobId int `pulumi:"jobId"`
@@ -11619,6 +11756,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPartialPermissionsGroupPermissionArrayInput)(nil)).Elem(), GroupPartialPermissionsGroupPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpRestrictionsRuleCidrInput)(nil)).Elem(), IpRestrictionsRuleCidrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpRestrictionsRuleCidrArrayInput)(nil)).Elem(), IpRestrictionsRuleCidrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobExecutionInput)(nil)).Elem(), JobExecutionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobExecutionPtrInput)(nil)).Elem(), JobExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionInput)(nil)).Elem(), JobJobCompletionTriggerConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionArrayInput)(nil)).Elem(), JobJobCompletionTriggerConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTriggersInput)(nil)).Elem(), JobTriggersArgs{})
@@ -11736,6 +11875,8 @@ func init() {
 	pulumi.RegisterOutputType(GroupPartialPermissionsGroupPermissionArrayOutput{})
 	pulumi.RegisterOutputType(IpRestrictionsRuleCidrOutput{})
 	pulumi.RegisterOutputType(IpRestrictionsRuleCidrArrayOutput{})
+	pulumi.RegisterOutputType(JobExecutionOutput{})
+	pulumi.RegisterOutputType(JobExecutionPtrOutput{})
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionOutput{})
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionArrayOutput{})
 	pulumi.RegisterOutputType(JobTriggersOutput{})

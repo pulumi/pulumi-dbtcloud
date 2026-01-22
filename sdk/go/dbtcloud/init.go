@@ -29,8 +29,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BigQueryCredential{}
 	case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
 		r = &BigquerySemanticLayerCredential{}
+	case "dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig":
+		r = &ConnectionCatalogConfig{}
 	case "dbtcloud:index/databricksCredential:DatabricksCredential":
 		r = &DatabricksCredential{}
+	case "dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential":
+		r = &DatabricksPlatformMetadataCredential{}
 	case "dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential":
 		r = &DatabricksSemanticLayerCredential{}
 	case "dbtcloud:index/environment:Environment":
@@ -97,6 +101,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServiceToken{}
 	case "dbtcloud:index/snowflakeCredential:SnowflakeCredential":
 		r = &SnowflakeCredential{}
+	case "dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential":
+		r = &SnowflakePlatformMetadataCredential{}
 	case "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential":
 		r = &SnowflakeSemanticLayerCredential{}
 	case "dbtcloud:index/sparkCredential:SparkCredential":
@@ -164,7 +170,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/connectionCatalogConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/databricksCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/databricksPlatformMetadataCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -330,6 +346,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/snowflakeCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/snowflakePlatformMetadataCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

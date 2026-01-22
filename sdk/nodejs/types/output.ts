@@ -1647,6 +1647,13 @@ export interface IpRestrictionsRuleCidr {
     ipRestrictionRuleId: number;
 }
 
+export interface JobExecution {
+    /**
+     * The number of seconds before the job times out
+     */
+    timeoutSeconds: number;
+}
+
 export interface JobJobCompletionTriggerCondition {
     /**
      * The ID of the job that would trigger this job after completion.

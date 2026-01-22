@@ -60,6 +60,8 @@ type Job struct {
 	ErrorsOnLintFailure pulumi.BoolOutput `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayOutput `pulumi:"executeSteps"`
+	// Execution settings for the job
+	Execution JobExecutionPtrOutput `pulumi:"execution"`
 	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
 	ForceNodeSelection pulumi.BoolOutput `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
@@ -98,9 +100,9 @@ type Job struct {
 	SelfDeferring pulumi.BoolOutput `pulumi:"selfDeferring"`
 	// Target name for the dbt profile
 	TargetName pulumi.StringOutput `pulumi:"targetName"`
-	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
 	//
-	// Deprecated: Moved to execution.timeout_seconds
+	// Deprecated: Use execution.timeout_seconds instead
 	TimeoutSeconds pulumi.IntOutput `pulumi:"timeoutSeconds"`
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
 	Triggers JobTriggersOutput `pulumi:"triggers"`
@@ -168,6 +170,8 @@ type jobState struct {
 	ErrorsOnLintFailure *bool `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps []string `pulumi:"executeSteps"`
+	// Execution settings for the job
+	Execution *JobExecution `pulumi:"execution"`
 	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
 	ForceNodeSelection *bool `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
@@ -206,9 +210,9 @@ type jobState struct {
 	SelfDeferring *bool `pulumi:"selfDeferring"`
 	// Target name for the dbt profile
 	TargetName *string `pulumi:"targetName"`
-	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
 	//
-	// Deprecated: Moved to execution.timeout_seconds
+	// Deprecated: Use execution.timeout_seconds instead
 	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
 	Triggers *JobTriggers `pulumi:"triggers"`
@@ -235,6 +239,8 @@ type JobState struct {
 	ErrorsOnLintFailure pulumi.BoolPtrInput
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayInput
+	// Execution settings for the job
+	Execution JobExecutionPtrInput
 	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
 	ForceNodeSelection pulumi.BoolPtrInput
 	// Flag for whether the job should generate documentation
@@ -273,9 +279,9 @@ type JobState struct {
 	SelfDeferring pulumi.BoolPtrInput
 	// Target name for the dbt profile
 	TargetName pulumi.StringPtrInput
-	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
 	//
-	// Deprecated: Moved to execution.timeout_seconds
+	// Deprecated: Use execution.timeout_seconds instead
 	TimeoutSeconds pulumi.IntPtrInput
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
 	Triggers JobTriggersPtrInput
@@ -306,6 +312,8 @@ type jobArgs struct {
 	ErrorsOnLintFailure *bool `pulumi:"errorsOnLintFailure"`
 	// List of commands to execute for the job
 	ExecuteSteps []string `pulumi:"executeSteps"`
+	// Execution settings for the job
+	Execution *JobExecution `pulumi:"execution"`
 	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
 	ForceNodeSelection *bool `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
@@ -342,9 +350,9 @@ type jobArgs struct {
 	SelfDeferring *bool `pulumi:"selfDeferring"`
 	// Target name for the dbt profile
 	TargetName *string `pulumi:"targetName"`
-	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
 	//
-	// Deprecated: Moved to execution.timeout_seconds
+	// Deprecated: Use execution.timeout_seconds instead
 	TimeoutSeconds *int `pulumi:"timeoutSeconds"`
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
 	Triggers JobTriggers `pulumi:"triggers"`
@@ -372,6 +380,8 @@ type JobArgs struct {
 	ErrorsOnLintFailure pulumi.BoolPtrInput
 	// List of commands to execute for the job
 	ExecuteSteps pulumi.StringArrayInput
+	// Execution settings for the job
+	Execution JobExecutionPtrInput
 	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
 	ForceNodeSelection pulumi.BoolPtrInput
 	// Flag for whether the job should generate documentation
@@ -408,9 +418,9 @@ type JobArgs struct {
 	SelfDeferring pulumi.BoolPtrInput
 	// Target name for the dbt profile
 	TargetName pulumi.StringPtrInput
-	// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+	// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
 	//
-	// Deprecated: Moved to execution.timeout_seconds
+	// Deprecated: Use execution.timeout_seconds instead
 	TimeoutSeconds pulumi.IntPtrInput
 	// Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
 	Triggers JobTriggersInput
@@ -547,6 +557,11 @@ func (o JobOutput) ExecuteSteps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.ExecuteSteps }).(pulumi.StringArrayOutput)
 }
 
+// Execution settings for the job
+func (o JobOutput) Execution() JobExecutionPtrOutput {
+	return o.ApplyT(func(v *Job) JobExecutionPtrOutput { return v.Execution }).(JobExecutionPtrOutput)
+}
+
 // Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
 func (o JobOutput) ForceNodeSelection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.ForceNodeSelection }).(pulumi.BoolOutput)
@@ -642,9 +657,9 @@ func (o JobOutput) TargetName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.TargetName }).(pulumi.StringOutput)
 }
 
-// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
 //
-// Deprecated: Moved to execution.timeout_seconds
+// Deprecated: Use execution.timeout_seconds instead
 func (o JobOutput) TimeoutSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.TimeoutSeconds }).(pulumi.IntOutput)
 }

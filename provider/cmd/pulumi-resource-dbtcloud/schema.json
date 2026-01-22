@@ -1014,6 +1014,22 @@
                 }
             }
         },
+        "dbtcloud:index/JobExecution:JobExecution": {
+            "properties": {
+                "timeoutSeconds": {
+                    "type": "integer",
+                    "description": "The number of seconds before the job times out\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "timeoutSeconds"
+                    ]
+                }
+            }
+        },
         "dbtcloud:index/JobJobCompletionTriggerCondition:JobJobCompletionTriggerCondition": {
             "properties": {
                 "jobId": {
@@ -3236,7 +3252,7 @@
     },
     "resources": {
         "dbtcloud:index/accountFeatures:AccountFeatures": {
-            "description": "Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.\n\nWhen destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n",
+            "description": "Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.\n\nWhen destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// Manage account-level feature flags in dbt Cloud\nconst myFeatures = new dbtcloud.AccountFeatures(\"my_features\", {\n    advancedCi: true,\n    partialParsing: true,\n    repoCaching: true,\n    aiFeatures: true,\n    catalogIngestion: true,\n    explorerAccountUi: true,\n    fusionMigrationPermissions: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# Manage account-level feature flags in dbt Cloud\nmy_features = dbtcloud.AccountFeatures(\"my_features\",\n    advanced_ci=True,\n    partial_parsing=True,\n    repo_caching=True,\n    ai_features=True,\n    catalog_ingestion=True,\n    explorer_account_ui=True,\n    fusion_migration_permissions=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Manage account-level feature flags in dbt Cloud\n    var myFeatures = new DbtCloud.AccountFeatures(\"my_features\", new()\n    {\n        AdvancedCi = true,\n        PartialParsing = true,\n        RepoCaching = true,\n        AiFeatures = true,\n        CatalogIngestion = true,\n        ExplorerAccountUi = true,\n        FusionMigrationPermissions = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Manage account-level feature flags in dbt Cloud\n\t\t_, err := dbtcloud.NewAccountFeatures(ctx, \"my_features\", \u0026dbtcloud.AccountFeaturesArgs{\n\t\t\tAdvancedCi:                 pulumi.Bool(true),\n\t\t\tPartialParsing:             pulumi.Bool(true),\n\t\t\tRepoCaching:                pulumi.Bool(true),\n\t\t\tAiFeatures:                 pulumi.Bool(true),\n\t\t\tCatalogIngestion:           pulumi.Bool(true),\n\t\t\tExplorerAccountUi:          pulumi.Bool(true),\n\t\t\tFusionMigrationPermissions: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.AccountFeatures;\nimport com.pulumi.dbtcloud.AccountFeaturesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Manage account-level feature flags in dbt Cloud\n        var myFeatures = new AccountFeatures(\"myFeatures\", AccountFeaturesArgs.builder()\n            .advancedCi(true)\n            .partialParsing(true)\n            .repoCaching(true)\n            .aiFeatures(true)\n            .catalogIngestion(true)\n            .explorerAccountUi(true)\n            .fusionMigrationPermissions(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Manage account-level feature flags in dbt Cloud\n  myFeatures:\n    type: dbtcloud:AccountFeatures\n    name: my_features\n    properties:\n      advancedCi: true\n      partialParsing: true\n      repoCaching: true # AI features\n      aiFeatures: true # Catalog/Explorer features\n      catalogIngestion: true\n      explorerAccountUi: true # Migration features\n      fusionMigrationPermissions: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "advancedCi": {
                     "type": "boolean",
@@ -3246,6 +3262,18 @@
                     "type": "boolean",
                     "description": "Whether AI features are enabled.\n"
                 },
+                "catalogIngestion": {
+                    "type": "boolean",
+                    "description": "Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.\n"
+                },
+                "explorerAccountUi": {
+                    "type": "boolean",
+                    "description": "Whether the new Catalog navigation UI is enabled (default true for new accounts).\n"
+                },
+                "fusionMigrationPermissions": {
+                    "type": "boolean",
+                    "description": "Whether permissions for accounts migrating to Fusion are enabled.\n"
+                },
                 "partialParsing": {
                     "type": "boolean",
                     "description": "Whether partial parsing is enabled.\n"
@@ -3253,18 +3281,16 @@
                 "repoCaching": {
                     "type": "boolean",
                     "description": "Whether repository caching is enabled.\n"
-                },
-                "warehouseCostVisibility": {
-                    "type": "boolean",
-                    "description": "Whether warehouse cost visibility is enabled.\n"
                 }
             },
             "required": [
                 "advancedCi",
                 "aiFeatures",
+                "catalogIngestion",
+                "explorerAccountUi",
+                "fusionMigrationPermissions",
                 "partialParsing",
-                "repoCaching",
-                "warehouseCostVisibility"
+                "repoCaching"
             ],
             "inputProperties": {
                 "advancedCi": {
@@ -3275,6 +3301,18 @@
                     "type": "boolean",
                     "description": "Whether AI features are enabled.\n"
                 },
+                "catalogIngestion": {
+                    "type": "boolean",
+                    "description": "Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.\n"
+                },
+                "explorerAccountUi": {
+                    "type": "boolean",
+                    "description": "Whether the new Catalog navigation UI is enabled (default true for new accounts).\n"
+                },
+                "fusionMigrationPermissions": {
+                    "type": "boolean",
+                    "description": "Whether permissions for accounts migrating to Fusion are enabled.\n"
+                },
                 "partialParsing": {
                     "type": "boolean",
                     "description": "Whether partial parsing is enabled.\n"
@@ -3282,10 +3320,6 @@
                 "repoCaching": {
                     "type": "boolean",
                     "description": "Whether repository caching is enabled.\n"
-                },
-                "warehouseCostVisibility": {
-                    "type": "boolean",
-                    "description": "Whether warehouse cost visibility is enabled.\n"
                 }
             },
             "stateInputs": {
@@ -3299,6 +3333,18 @@
                         "type": "boolean",
                         "description": "Whether AI features are enabled.\n"
                     },
+                    "catalogIngestion": {
+                        "type": "boolean",
+                        "description": "Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.\n"
+                    },
+                    "explorerAccountUi": {
+                        "type": "boolean",
+                        "description": "Whether the new Catalog navigation UI is enabled (default true for new accounts).\n"
+                    },
+                    "fusionMigrationPermissions": {
+                        "type": "boolean",
+                        "description": "Whether permissions for accounts migrating to Fusion are enabled.\n"
+                    },
                     "partialParsing": {
                         "type": "boolean",
                         "description": "Whether partial parsing is enabled.\n"
@@ -3306,10 +3352,6 @@
                     "repoCaching": {
                         "type": "boolean",
                         "description": "Whether repository caching is enabled.\n"
-                    },
-                    "warehouseCostVisibility": {
-                        "type": "boolean",
-                        "description": "Whether warehouse cost visibility is enabled.\n"
                     }
                 },
                 "type": "object"
@@ -3656,6 +3698,205 @@
                 "type": "object"
             }
         },
+        "dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig": {
+            "description": "Manages catalog configuration filters for a dbt Cloud connection.\n\nThis resource configures what database objects (databases, schemas, tables, views) are included \nor excluded when ingesting metadata from your data warehouse. It works in conjunction with \nplatform metadata credentials to control what gets synchronized into dbt Cloud's catalog.\n\nEach filter type has an \"allow\" list (whitelist) and a \"deny\" list (blacklist):\n- If an allow list is set, only matching objects are included\n- If a deny list is set, matching objects are excluded\n- Deny takes precedence over allow\n- Patterns support wildcards (e.g., \"temp_*\")\n\n\u003e **Note:** The \u003cspan pulumi-lang-nodejs=\"`connectionId`\" pulumi-lang-dotnet=\"`ConnectionId`\" pulumi-lang-go=\"`connectionId`\" pulumi-lang-python=\"`connection_id`\" pulumi-lang-yaml=\"`connectionId`\" pulumi-lang-java=\"`connectionId`\"\u003e`connection_id`\u003c/span\u003e cannot be changed after creation. To use a different connection, \nyou must destroy and recreate the resource.\n\n\u003e **Note:** This resource requires a platform metadata credential to be configured for the connection.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// Example: Configure catalog filters for a Snowflake connection\nconst snowflakeFilters = new dbtcloud.ConnectionCatalogConfig(\"snowflake_filters\", {\n    connectionId: snowflake.id,\n    databaseAllows: [\n        \"analytics\",\n        \"reporting\",\n    ],\n    schemaDenies: [\n        \"staging\",\n        \"temp\",\n        \"scratch\",\n    ],\n    tableDenies: [\n        \"tmp_*\",\n        \"temp_*\",\n    ],\n    viewDenies: [\n        \"secret_*\",\n        \"internal_*\",\n    ],\n});\n// Example: Minimal configuration - just filter databases\nconst minimal = new dbtcloud.ConnectionCatalogConfig(\"minimal\", {\n    connectionId: snowflake.id,\n    databaseAllows: [\"production\"],\n});\n// Example: Full configuration with platform metadata credential\nconst creds = new dbtcloud.SnowflakePlatformMetadataCredential(\"creds\", {\n    connectionId: snowflake.id,\n    catalogIngestionEnabled: true,\n    authType: \"password\",\n    user: snowflakeUser,\n    password: snowflakePassword,\n    role: snowflakeRole,\n    warehouse: snowflakeWarehouse,\n});\nconst withCreds = new dbtcloud.ConnectionCatalogConfig(\"with_creds\", {\n    connectionId: snowflake.id,\n    databaseAllows: [\n        \"analytics\",\n        \"reporting\",\n    ],\n    databaseDenies: [\"sandbox\"],\n    schemaAllows: [\n        \"public\",\n        \"dbt_*\",\n    ],\n    schemaDenies: [\n        \"information_schema\",\n        \"pg_*\",\n    ],\n    tableDenies: [\n        \"_tmp_*\",\n        \"_staging_*\",\n    ],\n    viewDenies: [\"_internal_*\"],\n}, {\n    dependsOn: [creds],\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# Example: Configure catalog filters for a Snowflake connection\nsnowflake_filters = dbtcloud.ConnectionCatalogConfig(\"snowflake_filters\",\n    connection_id=snowflake[\"id\"],\n    database_allows=[\n        \"analytics\",\n        \"reporting\",\n    ],\n    schema_denies=[\n        \"staging\",\n        \"temp\",\n        \"scratch\",\n    ],\n    table_denies=[\n        \"tmp_*\",\n        \"temp_*\",\n    ],\n    view_denies=[\n        \"secret_*\",\n        \"internal_*\",\n    ])\n# Example: Minimal configuration - just filter databases\nminimal = dbtcloud.ConnectionCatalogConfig(\"minimal\",\n    connection_id=snowflake[\"id\"],\n    database_allows=[\"production\"])\n# Example: Full configuration with platform metadata credential\ncreds = dbtcloud.SnowflakePlatformMetadataCredential(\"creds\",\n    connection_id=snowflake[\"id\"],\n    catalog_ingestion_enabled=True,\n    auth_type=\"password\",\n    user=snowflake_user,\n    password=snowflake_password,\n    role=snowflake_role,\n    warehouse=snowflake_warehouse)\nwith_creds = dbtcloud.ConnectionCatalogConfig(\"with_creds\",\n    connection_id=snowflake[\"id\"],\n    database_allows=[\n        \"analytics\",\n        \"reporting\",\n    ],\n    database_denies=[\"sandbox\"],\n    schema_allows=[\n        \"public\",\n        \"dbt_*\",\n    ],\n    schema_denies=[\n        \"information_schema\",\n        \"pg_*\",\n    ],\n    table_denies=[\n        \"_tmp_*\",\n        \"_staging_*\",\n    ],\n    view_denies=[\"_internal_*\"],\n    opts = pulumi.ResourceOptions(depends_on=[creds]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Example: Configure catalog filters for a Snowflake connection\n    var snowflakeFilters = new DbtCloud.ConnectionCatalogConfig(\"snowflake_filters\", new()\n    {\n        ConnectionId = snowflake.Id,\n        DatabaseAllows = new[]\n        {\n            \"analytics\",\n            \"reporting\",\n        },\n        SchemaDenies = new[]\n        {\n            \"staging\",\n            \"temp\",\n            \"scratch\",\n        },\n        TableDenies = new[]\n        {\n            \"tmp_*\",\n            \"temp_*\",\n        },\n        ViewDenies = new[]\n        {\n            \"secret_*\",\n            \"internal_*\",\n        },\n    });\n\n    // Example: Minimal configuration - just filter databases\n    var minimal = new DbtCloud.ConnectionCatalogConfig(\"minimal\", new()\n    {\n        ConnectionId = snowflake.Id,\n        DatabaseAllows = new[]\n        {\n            \"production\",\n        },\n    });\n\n    // Example: Full configuration with platform metadata credential\n    var creds = new DbtCloud.SnowflakePlatformMetadataCredential(\"creds\", new()\n    {\n        ConnectionId = snowflake.Id,\n        CatalogIngestionEnabled = true,\n        AuthType = \"password\",\n        User = snowflakeUser,\n        Password = snowflakePassword,\n        Role = snowflakeRole,\n        Warehouse = snowflakeWarehouse,\n    });\n\n    var withCreds = new DbtCloud.ConnectionCatalogConfig(\"with_creds\", new()\n    {\n        ConnectionId = snowflake.Id,\n        DatabaseAllows = new[]\n        {\n            \"analytics\",\n            \"reporting\",\n        },\n        DatabaseDenies = new[]\n        {\n            \"sandbox\",\n        },\n        SchemaAllows = new[]\n        {\n            \"public\",\n            \"dbt_*\",\n        },\n        SchemaDenies = new[]\n        {\n            \"information_schema\",\n            \"pg_*\",\n        },\n        TableDenies = new[]\n        {\n            \"_tmp_*\",\n            \"_staging_*\",\n        },\n        ViewDenies = new[]\n        {\n            \"_internal_*\",\n        },\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            creds,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Example: Configure catalog filters for a Snowflake connection\n\t\t_, err := dbtcloud.NewConnectionCatalogConfig(ctx, \"snowflake_filters\", \u0026dbtcloud.ConnectionCatalogConfigArgs{\n\t\t\tConnectionId: pulumi.Any(snowflake.Id),\n\t\t\tDatabaseAllows: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"analytics\"),\n\t\t\t\tpulumi.String(\"reporting\"),\n\t\t\t},\n\t\t\tSchemaDenies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"staging\"),\n\t\t\t\tpulumi.String(\"temp\"),\n\t\t\t\tpulumi.String(\"scratch\"),\n\t\t\t},\n\t\t\tTableDenies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"tmp_*\"),\n\t\t\t\tpulumi.String(\"temp_*\"),\n\t\t\t},\n\t\t\tViewDenies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"secret_*\"),\n\t\t\t\tpulumi.String(\"internal_*\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example: Minimal configuration - just filter databases\n\t\t_, err = dbtcloud.NewConnectionCatalogConfig(ctx, \"minimal\", \u0026dbtcloud.ConnectionCatalogConfigArgs{\n\t\t\tConnectionId: pulumi.Any(snowflake.Id),\n\t\t\tDatabaseAllows: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"production\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example: Full configuration with platform metadata credential\n\t\tcreds, err := dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, \"creds\", \u0026dbtcloud.SnowflakePlatformMetadataCredentialArgs{\n\t\t\tConnectionId:            pulumi.Any(snowflake.Id),\n\t\t\tCatalogIngestionEnabled: pulumi.Bool(true),\n\t\t\tAuthType:                pulumi.String(\"password\"),\n\t\t\tUser:                    pulumi.Any(snowflakeUser),\n\t\t\tPassword:                pulumi.Any(snowflakePassword),\n\t\t\tRole:                    pulumi.Any(snowflakeRole),\n\t\t\tWarehouse:               pulumi.Any(snowflakeWarehouse),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewConnectionCatalogConfig(ctx, \"with_creds\", \u0026dbtcloud.ConnectionCatalogConfigArgs{\n\t\t\tConnectionId: pulumi.Any(snowflake.Id),\n\t\t\tDatabaseAllows: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"analytics\"),\n\t\t\t\tpulumi.String(\"reporting\"),\n\t\t\t},\n\t\t\tDatabaseDenies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sandbox\"),\n\t\t\t},\n\t\t\tSchemaAllows: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"public\"),\n\t\t\t\tpulumi.String(\"dbt_*\"),\n\t\t\t},\n\t\t\tSchemaDenies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"information_schema\"),\n\t\t\t\tpulumi.String(\"pg_*\"),\n\t\t\t},\n\t\t\tTableDenies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"_tmp_*\"),\n\t\t\t\tpulumi.String(\"_staging_*\"),\n\t\t\t},\n\t\t\tViewDenies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"_internal_*\"),\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tcreds,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.ConnectionCatalogConfig;\nimport com.pulumi.dbtcloud.ConnectionCatalogConfigArgs;\nimport com.pulumi.dbtcloud.SnowflakePlatformMetadataCredential;\nimport com.pulumi.dbtcloud.SnowflakePlatformMetadataCredentialArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Example: Configure catalog filters for a Snowflake connection\n        var snowflakeFilters = new ConnectionCatalogConfig(\"snowflakeFilters\", ConnectionCatalogConfigArgs.builder()\n            .connectionId(snowflake.id())\n            .databaseAllows(            \n                \"analytics\",\n                \"reporting\")\n            .schemaDenies(            \n                \"staging\",\n                \"temp\",\n                \"scratch\")\n            .tableDenies(            \n                \"tmp_*\",\n                \"temp_*\")\n            .viewDenies(            \n                \"secret_*\",\n                \"internal_*\")\n            .build());\n\n        // Example: Minimal configuration - just filter databases\n        var minimal = new ConnectionCatalogConfig(\"minimal\", ConnectionCatalogConfigArgs.builder()\n            .connectionId(snowflake.id())\n            .databaseAllows(\"production\")\n            .build());\n\n        // Example: Full configuration with platform metadata credential\n        var creds = new SnowflakePlatformMetadataCredential(\"creds\", SnowflakePlatformMetadataCredentialArgs.builder()\n            .connectionId(snowflake.id())\n            .catalogIngestionEnabled(true)\n            .authType(\"password\")\n            .user(snowflakeUser)\n            .password(snowflakePassword)\n            .role(snowflakeRole)\n            .warehouse(snowflakeWarehouse)\n            .build());\n\n        var withCreds = new ConnectionCatalogConfig(\"withCreds\", ConnectionCatalogConfigArgs.builder()\n            .connectionId(snowflake.id())\n            .databaseAllows(            \n                \"analytics\",\n                \"reporting\")\n            .databaseDenies(\"sandbox\")\n            .schemaAllows(            \n                \"public\",\n                \"dbt_*\")\n            .schemaDenies(            \n                \"information_schema\",\n                \"pg_*\")\n            .tableDenies(            \n                \"_tmp_*\",\n                \"_staging_*\")\n            .viewDenies(\"_internal_*\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(creds)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Example: Configure catalog filters for a Snowflake connection\n  snowflakeFilters:\n    type: dbtcloud:ConnectionCatalogConfig\n    name: snowflake_filters\n    properties:\n      connectionId: ${snowflake.id}\n      databaseAllows:\n        - analytics\n        - reporting\n      schemaDenies:\n        - staging\n        - temp\n        - scratch\n      tableDenies:\n        - tmp_*\n        - temp_*\n      viewDenies:\n        - secret_*\n        - internal_*\n  # Example: Minimal configuration - just filter databases\n  minimal:\n    type: dbtcloud:ConnectionCatalogConfig\n    properties:\n      connectionId: ${snowflake.id}\n      databaseAllows:\n        - production\n  # Example: Full configuration with platform metadata credential\n  creds:\n    type: dbtcloud:SnowflakePlatformMetadataCredential\n    properties:\n      connectionId: ${snowflake.id}\n      catalogIngestionEnabled: true\n      authType: password\n      user: ${snowflakeUser}\n      password: ${snowflakePassword}\n      role: ${snowflakeRole}\n      warehouse: ${snowflakeWarehouse}\n  withCreds:\n    type: dbtcloud:ConnectionCatalogConfig\n    name: with_creds\n    properties:\n      connectionId: ${snowflake.id}\n      databaseAllows:\n        - analytics\n        - reporting\n      databaseDenies:\n        - sandbox\n      schemaAllows:\n        - public\n        - dbt_*\n      schemaDenies:\n        - information_schema\n        - pg_*\n      tableDenies:\n        - _tmp_*\n        - _staging_*\n      viewDenies:\n        - _internal_*\n    options:\n      dependsOn:\n        - ${creds}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the global connection this catalog config is associated with. Cannot be changed after creation.\n"
+                },
+                "databaseAllows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.\n"
+                },
+                "databaseDenies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.\n"
+                },
+                "schemaAllows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of schema names to include. Supports wildcards (e.g., 'public_*'). If set, only these schemas are ingested.\n"
+                },
+                "schemaDenies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of schema names to exclude. Supports wildcards (e.g., 'temp_*'). Matching schemas are not ingested.\n"
+                },
+                "tableAllows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of table names to include. Supports wildcards (e.g., 'fact_*'). If set, only these tables are ingested.\n"
+                },
+                "tableDenies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of table names to exclude. Supports wildcards (e.g., 'tmp_*'). Matching tables are not ingested.\n"
+                },
+                "viewAllows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of view names to include. Supports wildcards (e.g., 'v_*'). If set, only these views are ingested.\n"
+                },
+                "viewDenies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of view names to exclude. Supports wildcards (e.g., 'secret_*'). Matching views are not ingested.\n"
+                }
+            },
+            "required": [
+                "connectionId"
+            ],
+            "inputProperties": {
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the global connection this catalog config is associated with. Cannot be changed after creation.\n"
+                },
+                "databaseAllows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.\n"
+                },
+                "databaseDenies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.\n"
+                },
+                "schemaAllows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of schema names to include. Supports wildcards (e.g., 'public_*'). If set, only these schemas are ingested.\n"
+                },
+                "schemaDenies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of schema names to exclude. Supports wildcards (e.g., 'temp_*'). Matching schemas are not ingested.\n"
+                },
+                "tableAllows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of table names to include. Supports wildcards (e.g., 'fact_*'). If set, only these tables are ingested.\n"
+                },
+                "tableDenies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of table names to exclude. Supports wildcards (e.g., 'tmp_*'). Matching tables are not ingested.\n"
+                },
+                "viewAllows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of view names to include. Supports wildcards (e.g., 'v_*'). If set, only these views are ingested.\n"
+                },
+                "viewDenies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of view names to exclude. Supports wildcards (e.g., 'secret_*'). Matching views are not ingested.\n"
+                }
+            },
+            "requiredInputs": [
+                "connectionId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ConnectionCatalogConfig resources.\n",
+                "properties": {
+                    "connectionId": {
+                        "type": "integer",
+                        "description": "The ID of the global connection this catalog config is associated with. Cannot be changed after creation.\n"
+                    },
+                    "databaseAllows": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.\n"
+                    },
+                    "databaseDenies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.\n"
+                    },
+                    "schemaAllows": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of schema names to include. Supports wildcards (e.g., 'public_*'). If set, only these schemas are ingested.\n"
+                    },
+                    "schemaDenies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of schema names to exclude. Supports wildcards (e.g., 'temp_*'). Matching schemas are not ingested.\n"
+                    },
+                    "tableAllows": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of table names to include. Supports wildcards (e.g., 'fact_*'). If set, only these tables are ingested.\n"
+                    },
+                    "tableDenies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of table names to exclude. Supports wildcards (e.g., 'tmp_*'). Matching tables are not ingested.\n"
+                    },
+                    "viewAllows": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of view names to include. Supports wildcards (e.g., 'v_*'). If set, only these views are ingested.\n"
+                    },
+                    "viewDenies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of view names to exclude. Supports wildcards (e.g., 'secret_*'). Matching views are not ingested.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "dbtcloud:index/databricksCredential:DatabricksCredential": {
             "description": "Databricks credential resource\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myDatabricksCred = new dbtcloud.DatabricksCredential(\"my_databricks_cred\", {\n    projectId: dbtProject.id,\n    token: \"abcdefgh\",\n    schema: \"my_schema\",\n    adapterType: \"databricks\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_databricks_cred = dbtcloud.DatabricksCredential(\"my_databricks_cred\",\n    project_id=dbt_project[\"id\"],\n    token=\"abcdefgh\",\n    schema=\"my_schema\",\n    adapter_type=\"databricks\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myDatabricksCred = new DbtCloud.DatabricksCredential(\"my_databricks_cred\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Token = \"abcdefgh\",\n        Schema = \"my_schema\",\n        AdapterType = \"databricks\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewDatabricksCredential(ctx, \"my_databricks_cred\", \u0026dbtcloud.DatabricksCredentialArgs{\n\t\t\tProjectId:   pulumi.Any(dbtProject.Id),\n\t\t\tToken:       pulumi.String(\"abcdefgh\"),\n\t\t\tSchema:      pulumi.String(\"my_schema\"),\n\t\t\tAdapterType: pulumi.String(\"databricks\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DatabricksCredential;\nimport com.pulumi.dbtcloud.DatabricksCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myDatabricksCred = new DatabricksCredential(\"myDatabricksCred\", DatabricksCredentialArgs.builder()\n            .projectId(dbtProject.id())\n            .token(\"abcdefgh\")\n            .schema(\"my_schema\")\n            .adapterType(\"databricks\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myDatabricksCred:\n    type: dbtcloud:DatabricksCredential\n    name: my_databricks_cred\n    properties:\n      projectId: ${dbtProject.id}\n      token: abcdefgh\n      schema: my_schema\n      adapterType: databricks\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\n\nimport {\n\n  to = dbtcloud_databricks_credential.my_databricks_credential\n\n  id = \"project_id:credential_id\"\n\n}\n\nimport {\n\n  to = dbtcloud_databricks_credential.my_databricks_credential\n\n  id = \"12345:6789\"\n\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential \"project_id:credential_id\"\n```\n\n```sh\n$ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential 12345:6789\n```\n\n",
             "properties": {
@@ -3778,6 +4019,125 @@
                     "token": {
                         "type": "string",
                         "description": "Token for Databricks user\n",
+                        "secret": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential": {
+            "description": "Manages Databricks platform metadata credentials for external metadata ingestion in dbt Cloud.\n\nThis resource configures credentials that allow dbt Cloud to connect directly to your Databricks workspace \nto ingest metadata outside of normal dbt project runs. This enables features like:\n\n- **Catalog Ingestion**: Ingest metadata about tables/views not defined in dbt\n- **Cost Optimization**: Query warehouse cost and performance data\n- **Cost Insights**: Enhanced cost visibility and analysis\n\n\u003e **Note:** At least one of \u003cspan pulumi-lang-nodejs=\"`catalogIngestionEnabled`\" pulumi-lang-dotnet=\"`CatalogIngestionEnabled`\" pulumi-lang-go=\"`catalogIngestionEnabled`\" pulumi-lang-python=\"`catalog_ingestion_enabled`\" pulumi-lang-yaml=\"`catalogIngestionEnabled`\" pulumi-lang-java=\"`catalogIngestionEnabled`\"\u003e`catalog_ingestion_enabled`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`costOptimizationEnabled`\" pulumi-lang-dotnet=\"`CostOptimizationEnabled`\" pulumi-lang-go=\"`costOptimizationEnabled`\" pulumi-lang-python=\"`cost_optimization_enabled`\" pulumi-lang-yaml=\"`costOptimizationEnabled`\" pulumi-lang-java=\"`costOptimizationEnabled`\"\u003e`cost_optimization_enabled`\u003c/span\u003e, or \n\u003cspan pulumi-lang-nodejs=\"`costInsightsEnabled`\" pulumi-lang-dotnet=\"`CostInsightsEnabled`\" pulumi-lang-go=\"`costInsightsEnabled`\" pulumi-lang-python=\"`cost_insights_enabled`\" pulumi-lang-yaml=\"`costInsightsEnabled`\" pulumi-lang-java=\"`costInsightsEnabled`\"\u003e`cost_insights_enabled`\u003c/span\u003e must be enabled for the credential to be usable.\n\n\u003e **Note:** The \u003cspan pulumi-lang-nodejs=\"`connectionId`\" pulumi-lang-dotnet=\"`ConnectionId`\" pulumi-lang-go=\"`connectionId`\" pulumi-lang-python=\"`connection_id`\" pulumi-lang-yaml=\"`connectionId`\" pulumi-lang-java=\"`connectionId`\"\u003e`connection_id`\u003c/span\u003e cannot be changed after creation. To use a different connection, \nyou must destroy and recreate the resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// Example: Databricks Platform Metadata Credential\nconst example = new dbtcloud.DatabricksPlatformMetadataCredential(\"example\", {\n    connectionId: databricks.id,\n    catalogIngestionEnabled: true,\n    costOptimizationEnabled: false,\n    costInsightsEnabled: false,\n    token: databricksToken,\n    catalog: \"main\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# Example: Databricks Platform Metadata Credential\nexample = dbtcloud.DatabricksPlatformMetadataCredential(\"example\",\n    connection_id=databricks[\"id\"],\n    catalog_ingestion_enabled=True,\n    cost_optimization_enabled=False,\n    cost_insights_enabled=False,\n    token=databricks_token,\n    catalog=\"main\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Example: Databricks Platform Metadata Credential\n    var example = new DbtCloud.DatabricksPlatformMetadataCredential(\"example\", new()\n    {\n        ConnectionId = databricks.Id,\n        CatalogIngestionEnabled = true,\n        CostOptimizationEnabled = false,\n        CostInsightsEnabled = false,\n        Token = databricksToken,\n        Catalog = \"main\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Example: Databricks Platform Metadata Credential\n\t\t_, err := dbtcloud.NewDatabricksPlatformMetadataCredential(ctx, \"example\", \u0026dbtcloud.DatabricksPlatformMetadataCredentialArgs{\n\t\t\tConnectionId:            pulumi.Any(databricks.Id),\n\t\t\tCatalogIngestionEnabled: pulumi.Bool(true),\n\t\t\tCostOptimizationEnabled: pulumi.Bool(false),\n\t\t\tCostInsightsEnabled:     pulumi.Bool(false),\n\t\t\tToken:                   pulumi.Any(databricksToken),\n\t\t\tCatalog:                 pulumi.String(\"main\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DatabricksPlatformMetadataCredential;\nimport com.pulumi.dbtcloud.DatabricksPlatformMetadataCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Example: Databricks Platform Metadata Credential\n        var example = new DatabricksPlatformMetadataCredential(\"example\", DatabricksPlatformMetadataCredentialArgs.builder()\n            .connectionId(databricks.id())\n            .catalogIngestionEnabled(true)\n            .costOptimizationEnabled(false)\n            .costInsightsEnabled(false)\n            .token(databricksToken)\n            .catalog(\"main\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Example: Databricks Platform Metadata Credential\n  example:\n    type: dbtcloud:DatabricksPlatformMetadataCredential\n    properties:\n      connectionId: ${databricks.id}\n      catalogIngestionEnabled: true\n      costOptimizationEnabled: false\n      costInsightsEnabled: false\n      token: ${databricksToken}\n      catalog: main\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "adapterVersion": {
+                    "type": "string",
+                    "description": "The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.\n"
+                },
+                "catalog": {
+                    "type": "string",
+                    "description": "The Unity Catalog name to use.\n"
+                },
+                "catalogIngestionEnabled": {
+                    "type": "boolean",
+                    "description": "Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.\n"
+                },
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the global connection this credential is associated with. Cannot be changed after creation.\n"
+                },
+                "costInsightsEnabled": {
+                    "type": "boolean",
+                    "description": "Whether cost insights is enabled for this credential.\n"
+                },
+                "costOptimizationEnabled": {
+                    "type": "boolean",
+                    "description": "Whether cost optimization data collection is enabled for this credential.\n"
+                },
+                "credentialId": {
+                    "type": "integer",
+                    "description": "The ID of the platform metadata credential.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The Databricks personal access token.\n",
+                    "secret": true
+                }
+            },
+            "required": [
+                "adapterVersion",
+                "catalog",
+                "catalogIngestionEnabled",
+                "connectionId",
+                "costInsightsEnabled",
+                "costOptimizationEnabled",
+                "credentialId",
+                "token"
+            ],
+            "inputProperties": {
+                "catalog": {
+                    "type": "string",
+                    "description": "The Unity Catalog name to use.\n"
+                },
+                "catalogIngestionEnabled": {
+                    "type": "boolean",
+                    "description": "Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.\n"
+                },
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the global connection this credential is associated with. Cannot be changed after creation.\n"
+                },
+                "costInsightsEnabled": {
+                    "type": "boolean",
+                    "description": "Whether cost insights is enabled for this credential.\n"
+                },
+                "costOptimizationEnabled": {
+                    "type": "boolean",
+                    "description": "Whether cost optimization data collection is enabled for this credential.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The Databricks personal access token.\n",
+                    "secret": true
+                }
+            },
+            "requiredInputs": [
+                "catalog",
+                "connectionId",
+                "token"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DatabricksPlatformMetadataCredential resources.\n",
+                "properties": {
+                    "adapterVersion": {
+                        "type": "string",
+                        "description": "The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.\n"
+                    },
+                    "catalog": {
+                        "type": "string",
+                        "description": "The Unity Catalog name to use.\n"
+                    },
+                    "catalogIngestionEnabled": {
+                        "type": "boolean",
+                        "description": "Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.\n"
+                    },
+                    "connectionId": {
+                        "type": "integer",
+                        "description": "The ID of the global connection this credential is associated with. Cannot be changed after creation.\n"
+                    },
+                    "costInsightsEnabled": {
+                        "type": "boolean",
+                        "description": "Whether cost insights is enabled for this credential.\n"
+                    },
+                    "costOptimizationEnabled": {
+                        "type": "boolean",
+                        "description": "Whether cost optimization data collection is enabled for this credential.\n"
+                    },
+                    "credentialId": {
+                        "type": "integer",
+                        "description": "The ID of the platform metadata credential.\n"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "The Databricks personal access token.\n",
                         "secret": true
                     }
                 },
@@ -4887,6 +5247,10 @@
                     },
                     "description": "List of commands to execute for the job\n"
                 },
+                "execution": {
+                    "$ref": "#/types/dbtcloud:index/JobExecution:JobExecution",
+                    "description": "Execution settings for the job\n"
+                },
                 "forceNodeSelection": {
                     "type": "boolean",
                     "description": "Whether to force node selection (SAO - Select All Optimizations) for the job. If \u003cspan pulumi-lang-nodejs=\"`dbtVersion`\" pulumi-lang-dotnet=\"`DbtVersion`\" pulumi-lang-go=\"`dbtVersion`\" pulumi-lang-python=\"`dbt_version`\" pulumi-lang-yaml=\"`dbtVersion`\" pulumi-lang-java=\"`dbtVersion`\"\u003e`dbt_version`\u003c/span\u003e is not set to `latest-fusion`, this must be set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e when specified.\n"
@@ -4979,8 +5343,8 @@
                 },
                 "timeoutSeconds": {
                     "type": "integer",
-                    "description": "[Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out\n",
-                    "deprecationMessage": "Moved to execution.timeout_seconds"
+                    "description": "Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.\n",
+                    "deprecationMessage": "Use execution.timeout_seconds instead"
                 },
                 "triggers": {
                     "$ref": "#/types/dbtcloud:index/JobTriggers:JobTriggers",
@@ -5056,6 +5420,10 @@
                         "type": "string"
                     },
                     "description": "List of commands to execute for the job\n"
+                },
+                "execution": {
+                    "$ref": "#/types/dbtcloud:index/JobExecution:JobExecution",
+                    "description": "Execution settings for the job\n"
                 },
                 "forceNodeSelection": {
                     "type": "boolean",
@@ -5145,8 +5513,8 @@
                 },
                 "timeoutSeconds": {
                     "type": "integer",
-                    "description": "[Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out\n",
-                    "deprecationMessage": "Moved to execution.timeout_seconds"
+                    "description": "Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.\n",
+                    "deprecationMessage": "Use execution.timeout_seconds instead"
                 },
                 "triggers": {
                     "$ref": "#/types/dbtcloud:index/JobTriggers:JobTriggers",
@@ -5204,6 +5572,10 @@
                             "type": "string"
                         },
                         "description": "List of commands to execute for the job\n"
+                    },
+                    "execution": {
+                        "$ref": "#/types/dbtcloud:index/JobExecution:JobExecution",
+                        "description": "Execution settings for the job\n"
                     },
                     "forceNodeSelection": {
                         "type": "boolean",
@@ -5297,8 +5669,8 @@
                     },
                     "timeoutSeconds": {
                         "type": "integer",
-                        "description": "[Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out\n",
-                        "deprecationMessage": "Moved to execution.timeout_seconds"
+                        "description": "Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.\n",
+                        "deprecationMessage": "Use execution.timeout_seconds instead"
                     },
                     "triggers": {
                         "$ref": "#/types/dbtcloud:index/JobTriggers:JobTriggers",
@@ -7391,6 +7763,195 @@
                     "warehouse": {
                         "type": "string",
                         "description": "The warehouse to use\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential": {
+            "description": "Manages Snowflake platform metadata credentials for external metadata ingestion in dbt Cloud.\n\nThis resource configures credentials that allow dbt Cloud to connect directly to your Snowflake warehouse \nto ingest metadata outside of normal dbt project runs. This enables features like:\n\n- **Catalog Ingestion**: Ingest metadata about tables/views not defined in dbt\n- **Cost Optimization**: Query warehouse cost and performance data\n- **Cost Insights**: Enhanced cost visibility and analysis\n\n\u003e **Note:** At least one of \u003cspan pulumi-lang-nodejs=\"`catalogIngestionEnabled`\" pulumi-lang-dotnet=\"`CatalogIngestionEnabled`\" pulumi-lang-go=\"`catalogIngestionEnabled`\" pulumi-lang-python=\"`catalog_ingestion_enabled`\" pulumi-lang-yaml=\"`catalogIngestionEnabled`\" pulumi-lang-java=\"`catalogIngestionEnabled`\"\u003e`catalog_ingestion_enabled`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`costOptimizationEnabled`\" pulumi-lang-dotnet=\"`CostOptimizationEnabled`\" pulumi-lang-go=\"`costOptimizationEnabled`\" pulumi-lang-python=\"`cost_optimization_enabled`\" pulumi-lang-yaml=\"`costOptimizationEnabled`\" pulumi-lang-java=\"`costOptimizationEnabled`\"\u003e`cost_optimization_enabled`\u003c/span\u003e, or \n\u003cspan pulumi-lang-nodejs=\"`costInsightsEnabled`\" pulumi-lang-dotnet=\"`CostInsightsEnabled`\" pulumi-lang-go=\"`costInsightsEnabled`\" pulumi-lang-python=\"`cost_insights_enabled`\" pulumi-lang-yaml=\"`costInsightsEnabled`\" pulumi-lang-java=\"`costInsightsEnabled`\"\u003e`cost_insights_enabled`\u003c/span\u003e must be enabled for the credential to be usable.\n\n\u003e **Note:** The \u003cspan pulumi-lang-nodejs=\"`connectionId`\" pulumi-lang-dotnet=\"`ConnectionId`\" pulumi-lang-go=\"`connectionId`\" pulumi-lang-python=\"`connection_id`\" pulumi-lang-yaml=\"`connectionId`\" pulumi-lang-java=\"`connectionId`\"\u003e`connection_id`\u003c/span\u003e cannot be changed after creation. To use a different connection, \nyou must destroy and recreate the resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// Example: Snowflake Platform Metadata Credential with password auth\nconst passwordAuth = new dbtcloud.SnowflakePlatformMetadataCredential(\"password_auth\", {\n    connectionId: snowflake.id,\n    catalogIngestionEnabled: true,\n    costOptimizationEnabled: true,\n    costInsightsEnabled: false,\n    authType: \"password\",\n    user: \"METADATA_READER\",\n    password: snowflakePassword,\n    role: \"METADATA_READER_ROLE\",\n    warehouse: \"METADATA_WH\",\n});\n// Example: Snowflake Platform Metadata Credential with keypair auth\nconst keypairAuth = new dbtcloud.SnowflakePlatformMetadataCredential(\"keypair_auth\", {\n    connectionId: snowflake.id,\n    catalogIngestionEnabled: true,\n    costOptimizationEnabled: false,\n    costInsightsEnabled: false,\n    authType: \"keypair\",\n    user: \"METADATA_READER\",\n    privateKey: snowflakePrivateKey,\n    privateKeyPassphrase: snowflakePrivateKeyPassphrase,\n    role: \"METADATA_READER_ROLE\",\n    warehouse: \"METADATA_WH\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# Example: Snowflake Platform Metadata Credential with password auth\npassword_auth = dbtcloud.SnowflakePlatformMetadataCredential(\"password_auth\",\n    connection_id=snowflake[\"id\"],\n    catalog_ingestion_enabled=True,\n    cost_optimization_enabled=True,\n    cost_insights_enabled=False,\n    auth_type=\"password\",\n    user=\"METADATA_READER\",\n    password=snowflake_password,\n    role=\"METADATA_READER_ROLE\",\n    warehouse=\"METADATA_WH\")\n# Example: Snowflake Platform Metadata Credential with keypair auth\nkeypair_auth = dbtcloud.SnowflakePlatformMetadataCredential(\"keypair_auth\",\n    connection_id=snowflake[\"id\"],\n    catalog_ingestion_enabled=True,\n    cost_optimization_enabled=False,\n    cost_insights_enabled=False,\n    auth_type=\"keypair\",\n    user=\"METADATA_READER\",\n    private_key=snowflake_private_key,\n    private_key_passphrase=snowflake_private_key_passphrase,\n    role=\"METADATA_READER_ROLE\",\n    warehouse=\"METADATA_WH\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Example: Snowflake Platform Metadata Credential with password auth\n    var passwordAuth = new DbtCloud.SnowflakePlatformMetadataCredential(\"password_auth\", new()\n    {\n        ConnectionId = snowflake.Id,\n        CatalogIngestionEnabled = true,\n        CostOptimizationEnabled = true,\n        CostInsightsEnabled = false,\n        AuthType = \"password\",\n        User = \"METADATA_READER\",\n        Password = snowflakePassword,\n        Role = \"METADATA_READER_ROLE\",\n        Warehouse = \"METADATA_WH\",\n    });\n\n    // Example: Snowflake Platform Metadata Credential with keypair auth\n    var keypairAuth = new DbtCloud.SnowflakePlatformMetadataCredential(\"keypair_auth\", new()\n    {\n        ConnectionId = snowflake.Id,\n        CatalogIngestionEnabled = true,\n        CostOptimizationEnabled = false,\n        CostInsightsEnabled = false,\n        AuthType = \"keypair\",\n        User = \"METADATA_READER\",\n        PrivateKey = snowflakePrivateKey,\n        PrivateKeyPassphrase = snowflakePrivateKeyPassphrase,\n        Role = \"METADATA_READER_ROLE\",\n        Warehouse = \"METADATA_WH\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Example: Snowflake Platform Metadata Credential with password auth\n\t\t_, err := dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, \"password_auth\", \u0026dbtcloud.SnowflakePlatformMetadataCredentialArgs{\n\t\t\tConnectionId:            pulumi.Any(snowflake.Id),\n\t\t\tCatalogIngestionEnabled: pulumi.Bool(true),\n\t\t\tCostOptimizationEnabled: pulumi.Bool(true),\n\t\t\tCostInsightsEnabled:     pulumi.Bool(false),\n\t\t\tAuthType:                pulumi.String(\"password\"),\n\t\t\tUser:                    pulumi.String(\"METADATA_READER\"),\n\t\t\tPassword:                pulumi.Any(snowflakePassword),\n\t\t\tRole:                    pulumi.String(\"METADATA_READER_ROLE\"),\n\t\t\tWarehouse:               pulumi.String(\"METADATA_WH\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example: Snowflake Platform Metadata Credential with keypair auth\n\t\t_, err = dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, \"keypair_auth\", \u0026dbtcloud.SnowflakePlatformMetadataCredentialArgs{\n\t\t\tConnectionId:            pulumi.Any(snowflake.Id),\n\t\t\tCatalogIngestionEnabled: pulumi.Bool(true),\n\t\t\tCostOptimizationEnabled: pulumi.Bool(false),\n\t\t\tCostInsightsEnabled:     pulumi.Bool(false),\n\t\t\tAuthType:                pulumi.String(\"keypair\"),\n\t\t\tUser:                    pulumi.String(\"METADATA_READER\"),\n\t\t\tPrivateKey:              pulumi.Any(snowflakePrivateKey),\n\t\t\tPrivateKeyPassphrase:    pulumi.Any(snowflakePrivateKeyPassphrase),\n\t\t\tRole:                    pulumi.String(\"METADATA_READER_ROLE\"),\n\t\t\tWarehouse:               pulumi.String(\"METADATA_WH\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.SnowflakePlatformMetadataCredential;\nimport com.pulumi.dbtcloud.SnowflakePlatformMetadataCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Example: Snowflake Platform Metadata Credential with password auth\n        var passwordAuth = new SnowflakePlatformMetadataCredential(\"passwordAuth\", SnowflakePlatformMetadataCredentialArgs.builder()\n            .connectionId(snowflake.id())\n            .catalogIngestionEnabled(true)\n            .costOptimizationEnabled(true)\n            .costInsightsEnabled(false)\n            .authType(\"password\")\n            .user(\"METADATA_READER\")\n            .password(snowflakePassword)\n            .role(\"METADATA_READER_ROLE\")\n            .warehouse(\"METADATA_WH\")\n            .build());\n\n        // Example: Snowflake Platform Metadata Credential with keypair auth\n        var keypairAuth = new SnowflakePlatformMetadataCredential(\"keypairAuth\", SnowflakePlatformMetadataCredentialArgs.builder()\n            .connectionId(snowflake.id())\n            .catalogIngestionEnabled(true)\n            .costOptimizationEnabled(false)\n            .costInsightsEnabled(false)\n            .authType(\"keypair\")\n            .user(\"METADATA_READER\")\n            .privateKey(snowflakePrivateKey)\n            .privateKeyPassphrase(snowflakePrivateKeyPassphrase)\n            .role(\"METADATA_READER_ROLE\")\n            .warehouse(\"METADATA_WH\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Example: Snowflake Platform Metadata Credential with password auth\n  passwordAuth:\n    type: dbtcloud:SnowflakePlatformMetadataCredential\n    name: password_auth\n    properties:\n      connectionId: ${snowflake.id}\n      catalogIngestionEnabled: true\n      costOptimizationEnabled: true\n      costInsightsEnabled: false\n      authType: password\n      user: METADATA_READER\n      password: ${snowflakePassword}\n      role: METADATA_READER_ROLE\n      warehouse: METADATA_WH\n  # Example: Snowflake Platform Metadata Credential with keypair auth\n  keypairAuth:\n    type: dbtcloud:SnowflakePlatformMetadataCredential\n    name: keypair_auth\n    properties:\n      connectionId: ${snowflake.id}\n      catalogIngestionEnabled: true\n      costOptimizationEnabled: false\n      costInsightsEnabled: false\n      authType: keypair\n      user: METADATA_READER\n      privateKey: ${snowflakePrivateKey}\n      privateKeyPassphrase: ${snowflakePrivateKeyPassphrase}\n      role: METADATA_READER_ROLE\n      warehouse: METADATA_WH\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "adapterVersion": {
+                    "type": "string",
+                    "description": "The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.\n"
+                },
+                "authType": {
+                    "type": "string",
+                    "description": "The authentication type. Must be 'password' or 'keypair'.\n"
+                },
+                "catalogIngestionEnabled": {
+                    "type": "boolean",
+                    "description": "Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.\n"
+                },
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the global connection this credential is associated with. Cannot be changed after creation.\n"
+                },
+                "costInsightsEnabled": {
+                    "type": "boolean",
+                    "description": "Whether cost insights is enabled for this credential.\n"
+                },
+                "costOptimizationEnabled": {
+                    "type": "boolean",
+                    "description": "Whether cost optimization data collection is enabled for this credential.\n"
+                },
+                "credentialId": {
+                    "type": "integer",
+                    "description": "The ID of the platform metadata credential.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.\n",
+                    "secret": true
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private key for keypair authentication. Required when\u003cspan pulumi-lang-nodejs=\" authType \" pulumi-lang-dotnet=\" AuthType \" pulumi-lang-go=\" authType \" pulumi-lang-python=\" auth_type \" pulumi-lang-yaml=\" authType \" pulumi-lang-java=\" authType \"\u003e auth_type \u003c/span\u003eis 'keypair'. Cannot be used with password.\n",
+                    "secret": true
+                },
+                "privateKeyPassphrase": {
+                    "type": "string",
+                    "description": "The passphrase for the private key, if encrypted. Optional when\u003cspan pulumi-lang-nodejs=\" authType \" pulumi-lang-dotnet=\" AuthType \" pulumi-lang-go=\" authType \" pulumi-lang-python=\" auth_type \" pulumi-lang-yaml=\" authType \" pulumi-lang-java=\" authType \"\u003e auth_type \u003c/span\u003eis 'keypair'. Cannot be used with password.\n",
+                    "secret": true
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The Snowflake role to use.\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The Snowflake user name.\n"
+                },
+                "warehouse": {
+                    "type": "string",
+                    "description": "The Snowflake warehouse to use.\n"
+                }
+            },
+            "required": [
+                "adapterVersion",
+                "authType",
+                "catalogIngestionEnabled",
+                "connectionId",
+                "costInsightsEnabled",
+                "costOptimizationEnabled",
+                "credentialId",
+                "role",
+                "user",
+                "warehouse"
+            ],
+            "inputProperties": {
+                "authType": {
+                    "type": "string",
+                    "description": "The authentication type. Must be 'password' or 'keypair'.\n"
+                },
+                "catalogIngestionEnabled": {
+                    "type": "boolean",
+                    "description": "Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.\n"
+                },
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the global connection this credential is associated with. Cannot be changed after creation.\n"
+                },
+                "costInsightsEnabled": {
+                    "type": "boolean",
+                    "description": "Whether cost insights is enabled for this credential.\n"
+                },
+                "costOptimizationEnabled": {
+                    "type": "boolean",
+                    "description": "Whether cost optimization data collection is enabled for this credential.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.\n",
+                    "secret": true
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private key for keypair authentication. Required when\u003cspan pulumi-lang-nodejs=\" authType \" pulumi-lang-dotnet=\" AuthType \" pulumi-lang-go=\" authType \" pulumi-lang-python=\" auth_type \" pulumi-lang-yaml=\" authType \" pulumi-lang-java=\" authType \"\u003e auth_type \u003c/span\u003eis 'keypair'. Cannot be used with password.\n",
+                    "secret": true
+                },
+                "privateKeyPassphrase": {
+                    "type": "string",
+                    "description": "The passphrase for the private key, if encrypted. Optional when\u003cspan pulumi-lang-nodejs=\" authType \" pulumi-lang-dotnet=\" AuthType \" pulumi-lang-go=\" authType \" pulumi-lang-python=\" auth_type \" pulumi-lang-yaml=\" authType \" pulumi-lang-java=\" authType \"\u003e auth_type \u003c/span\u003eis 'keypair'. Cannot be used with password.\n",
+                    "secret": true
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The Snowflake role to use.\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The Snowflake user name.\n"
+                },
+                "warehouse": {
+                    "type": "string",
+                    "description": "The Snowflake warehouse to use.\n"
+                }
+            },
+            "requiredInputs": [
+                "authType",
+                "connectionId",
+                "role",
+                "user",
+                "warehouse"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SnowflakePlatformMetadataCredential resources.\n",
+                "properties": {
+                    "adapterVersion": {
+                        "type": "string",
+                        "description": "The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.\n"
+                    },
+                    "authType": {
+                        "type": "string",
+                        "description": "The authentication type. Must be 'password' or 'keypair'.\n"
+                    },
+                    "catalogIngestionEnabled": {
+                        "type": "boolean",
+                        "description": "Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.\n"
+                    },
+                    "connectionId": {
+                        "type": "integer",
+                        "description": "The ID of the global connection this credential is associated with. Cannot be changed after creation.\n"
+                    },
+                    "costInsightsEnabled": {
+                        "type": "boolean",
+                        "description": "Whether cost insights is enabled for this credential.\n"
+                    },
+                    "costOptimizationEnabled": {
+                        "type": "boolean",
+                        "description": "Whether cost optimization data collection is enabled for this credential.\n"
+                    },
+                    "credentialId": {
+                        "type": "integer",
+                        "description": "The ID of the platform metadata credential.\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.\n",
+                        "secret": true
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "description": "The private key for keypair authentication. Required when\u003cspan pulumi-lang-nodejs=\" authType \" pulumi-lang-dotnet=\" AuthType \" pulumi-lang-go=\" authType \" pulumi-lang-python=\" auth_type \" pulumi-lang-yaml=\" authType \" pulumi-lang-java=\" authType \"\u003e auth_type \u003c/span\u003eis 'keypair'. Cannot be used with password.\n",
+                        "secret": true
+                    },
+                    "privateKeyPassphrase": {
+                        "type": "string",
+                        "description": "The passphrase for the private key, if encrypted. Optional when\u003cspan pulumi-lang-nodejs=\" authType \" pulumi-lang-dotnet=\" AuthType \" pulumi-lang-go=\" authType \" pulumi-lang-python=\" auth_type \" pulumi-lang-yaml=\" authType \" pulumi-lang-java=\" authType \"\u003e auth_type \u003c/span\u003eis 'keypair'. Cannot be used with password.\n",
+                        "secret": true
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "The Snowflake role to use.\n"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "The Snowflake user name.\n"
+                    },
+                    "warehouse": {
+                        "type": "string",
+                        "description": "The Snowflake warehouse to use.\n"
                     }
                 },
                 "type": "object"

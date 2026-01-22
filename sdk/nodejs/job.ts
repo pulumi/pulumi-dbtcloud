@@ -98,6 +98,10 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly executeSteps: pulumi.Output<string[]>;
     /**
+     * Execution settings for the job
+     */
+    declare public readonly execution: pulumi.Output<outputs.JobExecution | undefined>;
+    /**
      * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
      */
     declare public readonly forceNodeSelection: pulumi.Output<boolean>;
@@ -174,9 +178,9 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly targetName: pulumi.Output<string>;
     /**
-     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      *
-     * @deprecated Moved to execution.timeout_seconds
+     * @deprecated Use execution.timeout_seconds instead
      */
     declare public readonly timeoutSeconds: pulumi.Output<number>;
     /**
@@ -213,6 +217,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["environmentId"] = state?.environmentId;
             resourceInputs["errorsOnLintFailure"] = state?.errorsOnLintFailure;
             resourceInputs["executeSteps"] = state?.executeSteps;
+            resourceInputs["execution"] = state?.execution;
             resourceInputs["forceNodeSelection"] = state?.forceNodeSelection;
             resourceInputs["generateDocs"] = state?.generateDocs;
             resourceInputs["isActive"] = state?.isActive;
@@ -258,6 +263,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["environmentId"] = args?.environmentId;
             resourceInputs["errorsOnLintFailure"] = args?.errorsOnLintFailure;
             resourceInputs["executeSteps"] = args?.executeSteps;
+            resourceInputs["execution"] = args?.execution;
             resourceInputs["forceNodeSelection"] = args?.forceNodeSelection;
             resourceInputs["generateDocs"] = args?.generateDocs;
             resourceInputs["isActive"] = args?.isActive;
@@ -323,6 +329,10 @@ export interface JobState {
      * List of commands to execute for the job
      */
     executeSteps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Execution settings for the job
+     */
+    execution?: pulumi.Input<inputs.JobExecution>;
     /**
      * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
      */
@@ -400,9 +410,9 @@ export interface JobState {
      */
     targetName?: pulumi.Input<string>;
     /**
-     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      *
-     * @deprecated Moved to execution.timeout_seconds
+     * @deprecated Use execution.timeout_seconds instead
      */
     timeoutSeconds?: pulumi.Input<number>;
     /**
@@ -455,6 +465,10 @@ export interface JobArgs {
      * List of commands to execute for the job
      */
     executeSteps: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Execution settings for the job
+     */
+    execution?: pulumi.Input<inputs.JobExecution>;
     /**
      * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
      */
@@ -528,9 +542,9 @@ export interface JobArgs {
      */
     targetName?: pulumi.Input<string>;
     /**
-     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      *
-     * @deprecated Moved to execution.timeout_seconds
+     * @deprecated Use execution.timeout_seconds instead
      */
     timeoutSeconds?: pulumi.Input<number>;
     /**

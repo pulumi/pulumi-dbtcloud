@@ -13,6 +13,31 @@ namespace Pulumi.DbtCloud
     /// Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.
     /// 
     /// When destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to `False`.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Manage account-level feature flags in dbt Cloud
+    ///     var myFeatures = new DbtCloud.AccountFeatures("my_features", new()
+    ///     {
+    ///         AdvancedCi = true,
+    ///         PartialParsing = true,
+    ///         RepoCaching = true,
+    ///         AiFeatures = true,
+    ///         CatalogIngestion = true,
+    ///         ExplorerAccountUi = true,
+    ///         FusionMigrationPermissions = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/accountFeatures:AccountFeatures")]
     public partial class AccountFeatures : global::Pulumi.CustomResource
@@ -30,6 +55,24 @@ namespace Pulumi.DbtCloud
         public Output<bool> AiFeatures { get; private set; } = null!;
 
         /// <summary>
+        /// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+        /// </summary>
+        [Output("catalogIngestion")]
+        public Output<bool> CatalogIngestion { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+        /// </summary>
+        [Output("explorerAccountUi")]
+        public Output<bool> ExplorerAccountUi { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether permissions for accounts migrating to Fusion are enabled.
+        /// </summary>
+        [Output("fusionMigrationPermissions")]
+        public Output<bool> FusionMigrationPermissions { get; private set; } = null!;
+
+        /// <summary>
         /// Whether partial parsing is enabled.
         /// </summary>
         [Output("partialParsing")]
@@ -40,12 +83,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Output("repoCaching")]
         public Output<bool> RepoCaching { get; private set; } = null!;
-
-        /// <summary>
-        /// Whether warehouse cost visibility is enabled.
-        /// </summary>
-        [Output("warehouseCostVisibility")]
-        public Output<bool> WarehouseCostVisibility { get; private set; } = null!;
 
 
         /// <summary>
@@ -107,6 +144,24 @@ namespace Pulumi.DbtCloud
         public Input<bool>? AiFeatures { get; set; }
 
         /// <summary>
+        /// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+        /// </summary>
+        [Input("catalogIngestion")]
+        public Input<bool>? CatalogIngestion { get; set; }
+
+        /// <summary>
+        /// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+        /// </summary>
+        [Input("explorerAccountUi")]
+        public Input<bool>? ExplorerAccountUi { get; set; }
+
+        /// <summary>
+        /// Whether permissions for accounts migrating to Fusion are enabled.
+        /// </summary>
+        [Input("fusionMigrationPermissions")]
+        public Input<bool>? FusionMigrationPermissions { get; set; }
+
+        /// <summary>
         /// Whether partial parsing is enabled.
         /// </summary>
         [Input("partialParsing")]
@@ -117,12 +172,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("repoCaching")]
         public Input<bool>? RepoCaching { get; set; }
-
-        /// <summary>
-        /// Whether warehouse cost visibility is enabled.
-        /// </summary>
-        [Input("warehouseCostVisibility")]
-        public Input<bool>? WarehouseCostVisibility { get; set; }
 
         public AccountFeaturesArgs()
         {
@@ -145,6 +194,24 @@ namespace Pulumi.DbtCloud
         public Input<bool>? AiFeatures { get; set; }
 
         /// <summary>
+        /// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+        /// </summary>
+        [Input("catalogIngestion")]
+        public Input<bool>? CatalogIngestion { get; set; }
+
+        /// <summary>
+        /// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+        /// </summary>
+        [Input("explorerAccountUi")]
+        public Input<bool>? ExplorerAccountUi { get; set; }
+
+        /// <summary>
+        /// Whether permissions for accounts migrating to Fusion are enabled.
+        /// </summary>
+        [Input("fusionMigrationPermissions")]
+        public Input<bool>? FusionMigrationPermissions { get; set; }
+
+        /// <summary>
         /// Whether partial parsing is enabled.
         /// </summary>
         [Input("partialParsing")]
@@ -155,12 +222,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("repoCaching")]
         public Input<bool>? RepoCaching { get; set; }
-
-        /// <summary>
-        /// Whether warehouse cost visibility is enabled.
-        /// </summary>
-        [Input("warehouseCostVisibility")]
-        public Input<bool>? WarehouseCostVisibility { get; set; }
 
         public AccountFeaturesState()
         {

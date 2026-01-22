@@ -55,6 +55,8 @@ __all__ = [
     'GroupPartialPermissionsGroupPermissionArgsDict',
     'IpRestrictionsRuleCidrArgs',
     'IpRestrictionsRuleCidrArgsDict',
+    'JobExecutionArgs',
+    'JobExecutionArgsDict',
     'JobJobCompletionTriggerConditionArgs',
     'JobJobCompletionTriggerConditionArgsDict',
     'JobTriggersArgs',
@@ -2973,6 +2975,38 @@ class IpRestrictionsRuleCidrArgs:
     @ip_restriction_rule_id.setter
     def ip_restriction_rule_id(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "ip_restriction_rule_id", value)
+
+
+if not MYPY:
+    class JobExecutionArgsDict(TypedDict):
+        timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The number of seconds before the job times out
+        """
+elif False:
+    JobExecutionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class JobExecutionArgs:
+    def __init__(__self__, *,
+                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] timeout_seconds: The number of seconds before the job times out
+        """
+        if timeout_seconds is not None:
+            pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="timeoutSeconds")
+    def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The number of seconds before the job times out
+        """
+        return pulumi.get(self, "timeout_seconds")
+
+    @timeout_seconds.setter
+    def timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "timeout_seconds", value)
 
 
 if not MYPY:

@@ -92,6 +92,12 @@ namespace Pulumi.DbtCloud
         public Output<ImmutableArray<string>> ExecuteSteps { get; private set; } = null!;
 
         /// <summary>
+        /// Execution settings for the job
+        /// </summary>
+        [Output("execution")]
+        public Output<Outputs.JobExecution?> Execution { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to force node selection (SAO - Select All Optimizations) for the job. If `DbtVersion` is not set to `latest-fusion`, this must be set to `True` when specified.
         /// </summary>
         [Output("forceNodeSelection")]
@@ -206,7 +212,7 @@ namespace Pulumi.DbtCloud
         public Output<string> TargetName { get; private set; } = null!;
 
         /// <summary>
-        /// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        /// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         /// </summary>
         [Output("timeoutSeconds")]
         public Output<int> TimeoutSeconds { get; private set; } = null!;
@@ -329,6 +335,12 @@ namespace Pulumi.DbtCloud
             get => _executeSteps ?? (_executeSteps = new InputList<string>());
             set => _executeSteps = value;
         }
+
+        /// <summary>
+        /// Execution settings for the job
+        /// </summary>
+        [Input("execution")]
+        public Input<Inputs.JobExecutionArgs>? Execution { get; set; }
 
         /// <summary>
         /// Whether to force node selection (SAO - Select All Optimizations) for the job. If `DbtVersion` is not set to `latest-fusion`, this must be set to `True` when specified.
@@ -457,7 +469,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? TargetName { get; set; }
 
         /// <summary>
-        /// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        /// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         /// </summary>
         [Input("timeoutSeconds")]
         public Input<int>? TimeoutSeconds { get; set; }
@@ -541,6 +553,12 @@ namespace Pulumi.DbtCloud
             get => _executeSteps ?? (_executeSteps = new InputList<string>());
             set => _executeSteps = value;
         }
+
+        /// <summary>
+        /// Execution settings for the job
+        /// </summary>
+        [Input("execution")]
+        public Input<Inputs.JobExecutionGetArgs>? Execution { get; set; }
 
         /// <summary>
         /// Whether to force node selection (SAO - Select All Optimizations) for the job. If `DbtVersion` is not set to `latest-fusion`, this must be set to `True` when specified.
@@ -675,7 +693,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? TargetName { get; set; }
 
         /// <summary>
-        /// [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        /// Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         /// </summary>
         [Input("timeoutSeconds")]
         public Input<int>? TimeoutSeconds { get; set; }
