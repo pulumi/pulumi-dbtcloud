@@ -31,6 +31,7 @@ class JobArgs:
                  deferring_job_id: Optional[pulumi.Input[_builtins.int]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
+                 execution: Optional[pulumi.Input['JobExecutionArgs']] = None,
                  force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
                  generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -63,6 +64,7 @@ class JobArgs:
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
+        :param pulumi.Input['JobExecutionArgs'] execution: Execution settings for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
@@ -80,7 +82,7 @@ class JobArgs:
         :param pulumi.Input[_builtins.str] schedule_type: Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         :param pulumi.Input[_builtins.bool] self_deferring: Whether this job defers on a previous run of itself
         :param pulumi.Input[_builtins.str] target_name: Target name for the dbt profile
-        :param pulumi.Input[_builtins.int] timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        :param pulumi.Input[_builtins.int] timeout_seconds: Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """
@@ -100,6 +102,8 @@ class JobArgs:
             pulumi.set(__self__, "description", description)
         if errors_on_lint_failure is not None:
             pulumi.set(__self__, "errors_on_lint_failure", errors_on_lint_failure)
+        if execution is not None:
+            pulumi.set(__self__, "execution", execution)
         if force_node_selection is not None:
             pulumi.set(__self__, "force_node_selection", force_node_selection)
         if generate_docs is not None:
@@ -135,8 +139,8 @@ class JobArgs:
         if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
         if timeout_seconds is not None:
-            warnings.warn("""Moved to execution.timeout_seconds""", DeprecationWarning)
-            pulumi.log.warn("""timeout_seconds is deprecated: Moved to execution.timeout_seconds""")
+            warnings.warn("""Use execution.timeout_seconds instead""", DeprecationWarning)
+            pulumi.log.warn("""timeout_seconds is deprecated: Use execution.timeout_seconds instead""")
         if timeout_seconds is not None:
             pulumi.set(__self__, "timeout_seconds", timeout_seconds)
         if triggers_on_draft_pr is not None:
@@ -263,6 +267,18 @@ class JobArgs:
     @errors_on_lint_failure.setter
     def errors_on_lint_failure(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "errors_on_lint_failure", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def execution(self) -> Optional[pulumi.Input['JobExecutionArgs']]:
+        """
+        Execution settings for the job
+        """
+        return pulumi.get(self, "execution")
+
+    @execution.setter
+    def execution(self, value: Optional[pulumi.Input['JobExecutionArgs']]):
+        pulumi.set(self, "execution", value)
 
     @_builtins.property
     @pulumi.getter(name="forceNodeSelection")
@@ -470,10 +486,10 @@ class JobArgs:
 
     @_builtins.property
     @pulumi.getter(name="timeoutSeconds")
-    @_utilities.deprecated("""Moved to execution.timeout_seconds""")
+    @_utilities.deprecated("""Use execution.timeout_seconds instead""")
     def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         """
         return pulumi.get(self, "timeout_seconds")
 
@@ -517,6 +533,7 @@ class _JobState:
                  environment_id: Optional[pulumi.Input[_builtins.int]] = None,
                  errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution: Optional[pulumi.Input['JobExecutionArgs']] = None,
                  force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
                  generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -550,6 +567,7 @@ class _JobState:
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
+        :param pulumi.Input['JobExecutionArgs'] execution: Execution settings for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
@@ -569,7 +587,7 @@ class _JobState:
         :param pulumi.Input[_builtins.str] schedule_type: Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         :param pulumi.Input[_builtins.bool] self_deferring: Whether this job defers on a previous run of itself
         :param pulumi.Input[_builtins.str] target_name: Target name for the dbt profile
-        :param pulumi.Input[_builtins.int] timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        :param pulumi.Input[_builtins.int] timeout_seconds: Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         :param pulumi.Input['JobTriggersArgs'] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
@@ -590,6 +608,8 @@ class _JobState:
             pulumi.set(__self__, "errors_on_lint_failure", errors_on_lint_failure)
         if execute_steps is not None:
             pulumi.set(__self__, "execute_steps", execute_steps)
+        if execution is not None:
+            pulumi.set(__self__, "execution", execution)
         if force_node_selection is not None:
             pulumi.set(__self__, "force_node_selection", force_node_selection)
         if generate_docs is not None:
@@ -629,8 +649,8 @@ class _JobState:
         if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
         if timeout_seconds is not None:
-            warnings.warn("""Moved to execution.timeout_seconds""", DeprecationWarning)
-            pulumi.log.warn("""timeout_seconds is deprecated: Moved to execution.timeout_seconds""")
+            warnings.warn("""Use execution.timeout_seconds instead""", DeprecationWarning)
+            pulumi.log.warn("""timeout_seconds is deprecated: Use execution.timeout_seconds instead""")
         if timeout_seconds is not None:
             pulumi.set(__self__, "timeout_seconds", timeout_seconds)
         if triggers is not None:
@@ -735,6 +755,18 @@ class _JobState:
     @execute_steps.setter
     def execute_steps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "execute_steps", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def execution(self) -> Optional[pulumi.Input['JobExecutionArgs']]:
+        """
+        Execution settings for the job
+        """
+        return pulumi.get(self, "execution")
+
+    @execution.setter
+    def execution(self, value: Optional[pulumi.Input['JobExecutionArgs']]):
+        pulumi.set(self, "execution", value)
 
     @_builtins.property
     @pulumi.getter(name="forceNodeSelection")
@@ -966,10 +998,10 @@ class _JobState:
 
     @_builtins.property
     @pulumi.getter(name="timeoutSeconds")
-    @_utilities.deprecated("""Moved to execution.timeout_seconds""")
+    @_utilities.deprecated("""Use execution.timeout_seconds instead""")
     def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         """
         return pulumi.get(self, "timeout_seconds")
 
@@ -1028,6 +1060,7 @@ class Job(pulumi.CustomResource):
                  environment_id: Optional[pulumi.Input[_builtins.int]] = None,
                  errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution: Optional[pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
                  force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
                  generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1092,6 +1125,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
+        :param pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']] execution: Execution settings for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
@@ -1110,7 +1144,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] schedule_type: Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         :param pulumi.Input[_builtins.bool] self_deferring: Whether this job defers on a previous run of itself
         :param pulumi.Input[_builtins.str] target_name: Target name for the dbt profile
-        :param pulumi.Input[_builtins.int] timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        :param pulumi.Input[_builtins.int] timeout_seconds: Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         :param pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
@@ -1175,6 +1209,7 @@ class Job(pulumi.CustomResource):
                  environment_id: Optional[pulumi.Input[_builtins.int]] = None,
                  errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
                  execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution: Optional[pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
                  force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
                  generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1218,6 +1253,7 @@ class Job(pulumi.CustomResource):
             if execute_steps is None and not opts.urn:
                 raise TypeError("Missing required property 'execute_steps'")
             __props__.__dict__["execute_steps"] = execute_steps
+            __props__.__dict__["execution"] = execution
             __props__.__dict__["force_node_selection"] = force_node_selection
             __props__.__dict__["generate_docs"] = generate_docs
             __props__.__dict__["is_active"] = is_active
@@ -1263,6 +1299,7 @@ class Job(pulumi.CustomResource):
             environment_id: Optional[pulumi.Input[_builtins.int]] = None,
             errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
             execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            execution: Optional[pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
             force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
             generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
             is_active: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1301,6 +1338,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
+        :param pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']] execution: Execution settings for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
@@ -1320,7 +1358,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] schedule_type: Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         :param pulumi.Input[_builtins.bool] self_deferring: Whether this job defers on a previous run of itself
         :param pulumi.Input[_builtins.str] target_name: Target name for the dbt profile
-        :param pulumi.Input[_builtins.int] timeout_seconds: [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        :param pulumi.Input[_builtins.int] timeout_seconds: Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         :param pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
@@ -1337,6 +1375,7 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["errors_on_lint_failure"] = errors_on_lint_failure
         __props__.__dict__["execute_steps"] = execute_steps
+        __props__.__dict__["execution"] = execution
         __props__.__dict__["force_node_selection"] = force_node_selection
         __props__.__dict__["generate_docs"] = generate_docs
         __props__.__dict__["is_active"] = is_active
@@ -1425,6 +1464,14 @@ class Job(pulumi.CustomResource):
         List of commands to execute for the job
         """
         return pulumi.get(self, "execute_steps")
+
+    @_builtins.property
+    @pulumi.getter
+    def execution(self) -> pulumi.Output[Optional['outputs.JobExecution']]:
+        """
+        Execution settings for the job
+        """
+        return pulumi.get(self, "execution")
 
     @_builtins.property
     @pulumi.getter(name="forceNodeSelection")
@@ -1580,10 +1627,10 @@ class Job(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="timeoutSeconds")
-    @_utilities.deprecated("""Moved to execution.timeout_seconds""")
+    @_utilities.deprecated("""Use execution.timeout_seconds instead""")
     def timeout_seconds(self) -> pulumi.Output[_builtins.int]:
         """
-        [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+        Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         """
         return pulumi.get(self, "timeout_seconds")
 

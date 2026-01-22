@@ -14,6 +14,39 @@ import (
 // Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.
 //
 // When destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to `false`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Manage account-level feature flags in dbt Cloud
+//			_, err := dbtcloud.NewAccountFeatures(ctx, "my_features", &dbtcloud.AccountFeaturesArgs{
+//				AdvancedCi:                 pulumi.Bool(true),
+//				PartialParsing:             pulumi.Bool(true),
+//				RepoCaching:                pulumi.Bool(true),
+//				AiFeatures:                 pulumi.Bool(true),
+//				CatalogIngestion:           pulumi.Bool(true),
+//				ExplorerAccountUi:          pulumi.Bool(true),
+//				FusionMigrationPermissions: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AccountFeatures struct {
 	pulumi.CustomResourceState
 
@@ -21,12 +54,16 @@ type AccountFeatures struct {
 	AdvancedCi pulumi.BoolOutput `pulumi:"advancedCi"`
 	// Whether AI features are enabled.
 	AiFeatures pulumi.BoolOutput `pulumi:"aiFeatures"`
+	// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+	CatalogIngestion pulumi.BoolOutput `pulumi:"catalogIngestion"`
+	// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+	ExplorerAccountUi pulumi.BoolOutput `pulumi:"explorerAccountUi"`
+	// Whether permissions for accounts migrating to Fusion are enabled.
+	FusionMigrationPermissions pulumi.BoolOutput `pulumi:"fusionMigrationPermissions"`
 	// Whether partial parsing is enabled.
 	PartialParsing pulumi.BoolOutput `pulumi:"partialParsing"`
 	// Whether repository caching is enabled.
 	RepoCaching pulumi.BoolOutput `pulumi:"repoCaching"`
-	// Whether warehouse cost visibility is enabled.
-	WarehouseCostVisibility pulumi.BoolOutput `pulumi:"warehouseCostVisibility"`
 }
 
 // NewAccountFeatures registers a new resource with the given unique name, arguments, and options.
@@ -63,12 +100,16 @@ type accountFeaturesState struct {
 	AdvancedCi *bool `pulumi:"advancedCi"`
 	// Whether AI features are enabled.
 	AiFeatures *bool `pulumi:"aiFeatures"`
+	// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+	CatalogIngestion *bool `pulumi:"catalogIngestion"`
+	// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+	ExplorerAccountUi *bool `pulumi:"explorerAccountUi"`
+	// Whether permissions for accounts migrating to Fusion are enabled.
+	FusionMigrationPermissions *bool `pulumi:"fusionMigrationPermissions"`
 	// Whether partial parsing is enabled.
 	PartialParsing *bool `pulumi:"partialParsing"`
 	// Whether repository caching is enabled.
 	RepoCaching *bool `pulumi:"repoCaching"`
-	// Whether warehouse cost visibility is enabled.
-	WarehouseCostVisibility *bool `pulumi:"warehouseCostVisibility"`
 }
 
 type AccountFeaturesState struct {
@@ -76,12 +117,16 @@ type AccountFeaturesState struct {
 	AdvancedCi pulumi.BoolPtrInput
 	// Whether AI features are enabled.
 	AiFeatures pulumi.BoolPtrInput
+	// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+	CatalogIngestion pulumi.BoolPtrInput
+	// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+	ExplorerAccountUi pulumi.BoolPtrInput
+	// Whether permissions for accounts migrating to Fusion are enabled.
+	FusionMigrationPermissions pulumi.BoolPtrInput
 	// Whether partial parsing is enabled.
 	PartialParsing pulumi.BoolPtrInput
 	// Whether repository caching is enabled.
 	RepoCaching pulumi.BoolPtrInput
-	// Whether warehouse cost visibility is enabled.
-	WarehouseCostVisibility pulumi.BoolPtrInput
 }
 
 func (AccountFeaturesState) ElementType() reflect.Type {
@@ -93,12 +138,16 @@ type accountFeaturesArgs struct {
 	AdvancedCi *bool `pulumi:"advancedCi"`
 	// Whether AI features are enabled.
 	AiFeatures *bool `pulumi:"aiFeatures"`
+	// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+	CatalogIngestion *bool `pulumi:"catalogIngestion"`
+	// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+	ExplorerAccountUi *bool `pulumi:"explorerAccountUi"`
+	// Whether permissions for accounts migrating to Fusion are enabled.
+	FusionMigrationPermissions *bool `pulumi:"fusionMigrationPermissions"`
 	// Whether partial parsing is enabled.
 	PartialParsing *bool `pulumi:"partialParsing"`
 	// Whether repository caching is enabled.
 	RepoCaching *bool `pulumi:"repoCaching"`
-	// Whether warehouse cost visibility is enabled.
-	WarehouseCostVisibility *bool `pulumi:"warehouseCostVisibility"`
 }
 
 // The set of arguments for constructing a AccountFeatures resource.
@@ -107,12 +156,16 @@ type AccountFeaturesArgs struct {
 	AdvancedCi pulumi.BoolPtrInput
 	// Whether AI features are enabled.
 	AiFeatures pulumi.BoolPtrInput
+	// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+	CatalogIngestion pulumi.BoolPtrInput
+	// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+	ExplorerAccountUi pulumi.BoolPtrInput
+	// Whether permissions for accounts migrating to Fusion are enabled.
+	FusionMigrationPermissions pulumi.BoolPtrInput
 	// Whether partial parsing is enabled.
 	PartialParsing pulumi.BoolPtrInput
 	// Whether repository caching is enabled.
 	RepoCaching pulumi.BoolPtrInput
-	// Whether warehouse cost visibility is enabled.
-	WarehouseCostVisibility pulumi.BoolPtrInput
 }
 
 func (AccountFeaturesArgs) ElementType() reflect.Type {
@@ -212,6 +265,21 @@ func (o AccountFeaturesOutput) AiFeatures() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.AiFeatures }).(pulumi.BoolOutput)
 }
 
+// Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+func (o AccountFeaturesOutput) CatalogIngestion() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.CatalogIngestion }).(pulumi.BoolOutput)
+}
+
+// Whether the new Catalog navigation UI is enabled (default true for new accounts).
+func (o AccountFeaturesOutput) ExplorerAccountUi() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.ExplorerAccountUi }).(pulumi.BoolOutput)
+}
+
+// Whether permissions for accounts migrating to Fusion are enabled.
+func (o AccountFeaturesOutput) FusionMigrationPermissions() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.FusionMigrationPermissions }).(pulumi.BoolOutput)
+}
+
 // Whether partial parsing is enabled.
 func (o AccountFeaturesOutput) PartialParsing() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.PartialParsing }).(pulumi.BoolOutput)
@@ -220,11 +288,6 @@ func (o AccountFeaturesOutput) PartialParsing() pulumi.BoolOutput {
 // Whether repository caching is enabled.
 func (o AccountFeaturesOutput) RepoCaching() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.RepoCaching }).(pulumi.BoolOutput)
-}
-
-// Whether warehouse cost visibility is enabled.
-func (o AccountFeaturesOutput) WarehouseCostVisibility() pulumi.BoolOutput {
-	return o.ApplyT(func(v *AccountFeatures) pulumi.BoolOutput { return v.WarehouseCostVisibility }).(pulumi.BoolOutput)
 }
 
 type AccountFeaturesArrayOutput struct{ *pulumi.OutputState }

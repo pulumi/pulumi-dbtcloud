@@ -8,6 +8,24 @@ import * as utilities from "./utilities";
  * Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.
  *
  * When destroying the resource or removing the value for an attribute, the features status will not be changed. Deactivating features will require applying them wih the value set to `false`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Manage account-level feature flags in dbt Cloud
+ * const myFeatures = new dbtcloud.AccountFeatures("my_features", {
+ *     advancedCi: true,
+ *     partialParsing: true,
+ *     repoCaching: true,
+ *     aiFeatures: true,
+ *     catalogIngestion: true,
+ *     explorerAccountUi: true,
+ *     fusionMigrationPermissions: false,
+ * });
+ * ```
  */
 export class AccountFeatures extends pulumi.CustomResource {
     /**
@@ -46,6 +64,18 @@ export class AccountFeatures extends pulumi.CustomResource {
      */
     declare public readonly aiFeatures: pulumi.Output<boolean>;
     /**
+     * Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+     */
+    declare public readonly catalogIngestion: pulumi.Output<boolean>;
+    /**
+     * Whether the new Catalog navigation UI is enabled (default true for new accounts).
+     */
+    declare public readonly explorerAccountUi: pulumi.Output<boolean>;
+    /**
+     * Whether permissions for accounts migrating to Fusion are enabled.
+     */
+    declare public readonly fusionMigrationPermissions: pulumi.Output<boolean>;
+    /**
      * Whether partial parsing is enabled.
      */
     declare public readonly partialParsing: pulumi.Output<boolean>;
@@ -53,10 +83,6 @@ export class AccountFeatures extends pulumi.CustomResource {
      * Whether repository caching is enabled.
      */
     declare public readonly repoCaching: pulumi.Output<boolean>;
-    /**
-     * Whether warehouse cost visibility is enabled.
-     */
-    declare public readonly warehouseCostVisibility: pulumi.Output<boolean>;
 
     /**
      * Create a AccountFeatures resource with the given unique name, arguments, and options.
@@ -73,16 +99,20 @@ export class AccountFeatures extends pulumi.CustomResource {
             const state = argsOrState as AccountFeaturesState | undefined;
             resourceInputs["advancedCi"] = state?.advancedCi;
             resourceInputs["aiFeatures"] = state?.aiFeatures;
+            resourceInputs["catalogIngestion"] = state?.catalogIngestion;
+            resourceInputs["explorerAccountUi"] = state?.explorerAccountUi;
+            resourceInputs["fusionMigrationPermissions"] = state?.fusionMigrationPermissions;
             resourceInputs["partialParsing"] = state?.partialParsing;
             resourceInputs["repoCaching"] = state?.repoCaching;
-            resourceInputs["warehouseCostVisibility"] = state?.warehouseCostVisibility;
         } else {
             const args = argsOrState as AccountFeaturesArgs | undefined;
             resourceInputs["advancedCi"] = args?.advancedCi;
             resourceInputs["aiFeatures"] = args?.aiFeatures;
+            resourceInputs["catalogIngestion"] = args?.catalogIngestion;
+            resourceInputs["explorerAccountUi"] = args?.explorerAccountUi;
+            resourceInputs["fusionMigrationPermissions"] = args?.fusionMigrationPermissions;
             resourceInputs["partialParsing"] = args?.partialParsing;
             resourceInputs["repoCaching"] = args?.repoCaching;
-            resourceInputs["warehouseCostVisibility"] = args?.warehouseCostVisibility;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AccountFeatures.__pulumiType, name, resourceInputs, opts);
@@ -102,6 +132,18 @@ export interface AccountFeaturesState {
      */
     aiFeatures?: pulumi.Input<boolean>;
     /**
+     * Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+     */
+    catalogIngestion?: pulumi.Input<boolean>;
+    /**
+     * Whether the new Catalog navigation UI is enabled (default true for new accounts).
+     */
+    explorerAccountUi?: pulumi.Input<boolean>;
+    /**
+     * Whether permissions for accounts migrating to Fusion are enabled.
+     */
+    fusionMigrationPermissions?: pulumi.Input<boolean>;
+    /**
      * Whether partial parsing is enabled.
      */
     partialParsing?: pulumi.Input<boolean>;
@@ -109,10 +151,6 @@ export interface AccountFeaturesState {
      * Whether repository caching is enabled.
      */
     repoCaching?: pulumi.Input<boolean>;
-    /**
-     * Whether warehouse cost visibility is enabled.
-     */
-    warehouseCostVisibility?: pulumi.Input<boolean>;
 }
 
 /**
@@ -128,6 +166,18 @@ export interface AccountFeaturesArgs {
      */
     aiFeatures?: pulumi.Input<boolean>;
     /**
+     * Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+     */
+    catalogIngestion?: pulumi.Input<boolean>;
+    /**
+     * Whether the new Catalog navigation UI is enabled (default true for new accounts).
+     */
+    explorerAccountUi?: pulumi.Input<boolean>;
+    /**
+     * Whether permissions for accounts migrating to Fusion are enabled.
+     */
+    fusionMigrationPermissions?: pulumi.Input<boolean>;
+    /**
      * Whether partial parsing is enabled.
      */
     partialParsing?: pulumi.Input<boolean>;
@@ -135,8 +185,4 @@ export interface AccountFeaturesArgs {
      * Whether repository caching is enabled.
      */
     repoCaching?: pulumi.Input<boolean>;
-    /**
-     * Whether warehouse cost visibility is enabled.
-     */
-    warehouseCostVisibility?: pulumi.Input<boolean>;
 }

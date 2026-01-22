@@ -5,6 +5,7 @@ package com.pulumi.dbtcloud.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.dbtcloud.inputs.JobExecutionArgs;
 import com.pulumi.dbtcloud.inputs.JobJobCompletionTriggerConditionArgs;
 import com.pulumi.dbtcloud.inputs.JobTriggersArgs;
 import java.lang.Boolean;
@@ -138,6 +139,21 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<List<String>>> executeSteps() {
         return Optional.ofNullable(this.executeSteps);
+    }
+
+    /**
+     * Execution settings for the job
+     * 
+     */
+    @Import(name="execution")
+    private @Nullable Output<JobExecutionArgs> execution;
+
+    /**
+     * @return Execution settings for the job
+     * 
+     */
+    public Optional<Output<JobExecutionArgs>> execution() {
+        return Optional.ofNullable(this.execution);
     }
 
     /**
@@ -426,24 +442,24 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      * 
      * @deprecated
-     * Moved to execution.timeout_seconds
+     * Use execution.timeout_seconds instead
      * 
      */
-    @Deprecated /* Moved to execution.timeout_seconds */
+    @Deprecated /* Use execution.timeout_seconds instead */
     @Import(name="timeoutSeconds")
     private @Nullable Output<Integer> timeoutSeconds;
 
     /**
-     * @return [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+     * @return Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      * 
      * @deprecated
-     * Moved to execution.timeout_seconds
+     * Use execution.timeout_seconds instead
      * 
      */
-    @Deprecated /* Moved to execution.timeout_seconds */
+    @Deprecated /* Use execution.timeout_seconds instead */
     public Optional<Output<Integer>> timeoutSeconds() {
         return Optional.ofNullable(this.timeoutSeconds);
     }
@@ -504,6 +520,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         this.environmentId = $.environmentId;
         this.errorsOnLintFailure = $.errorsOnLintFailure;
         this.executeSteps = $.executeSteps;
+        this.execution = $.execution;
         this.forceNodeSelection = $.forceNodeSelection;
         this.generateDocs = $.generateDocs;
         this.isActive = $.isActive;
@@ -723,6 +740,27 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder executeSteps(String... executeSteps) {
             return executeSteps(List.of(executeSteps));
+        }
+
+        /**
+         * @param execution Execution settings for the job
+         * 
+         * @return builder
+         * 
+         */
+        public Builder execution(@Nullable Output<JobExecutionArgs> execution) {
+            $.execution = execution;
+            return this;
+        }
+
+        /**
+         * @param execution Execution settings for the job
+         * 
+         * @return builder
+         * 
+         */
+        public Builder execution(JobExecutionArgs execution) {
+            return execution(Output.of(execution));
         }
 
         /**
@@ -1155,30 +1193,30 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param timeoutSeconds [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+         * @param timeoutSeconds Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * Moved to execution.timeout_seconds
+         * Use execution.timeout_seconds instead
          * 
          */
-        @Deprecated /* Moved to execution.timeout_seconds */
+        @Deprecated /* Use execution.timeout_seconds instead */
         public Builder timeoutSeconds(@Nullable Output<Integer> timeoutSeconds) {
             $.timeoutSeconds = timeoutSeconds;
             return this;
         }
 
         /**
-         * @param timeoutSeconds [Deprectated - Moved to execution.timeout_seconds] Number of seconds to allow the job to run before timing out
+         * @param timeoutSeconds Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
          * 
          * @return builder
          * 
          * @deprecated
-         * Moved to execution.timeout_seconds
+         * Use execution.timeout_seconds instead
          * 
          */
-        @Deprecated /* Moved to execution.timeout_seconds */
+        @Deprecated /* Use execution.timeout_seconds instead */
         public Builder timeoutSeconds(Integer timeoutSeconds) {
             return timeoutSeconds(Output.of(timeoutSeconds));
         }

@@ -10,7 +10,9 @@ from .account_features import *
 from .athena_credential import *
 from .big_query_credential import *
 from .bigquery_semantic_layer_credential import *
+from .connection_catalog_config import *
 from .databricks_credential import *
+from .databricks_platform_metadata_credential import *
 from .databricks_semantic_layer_credential import *
 from .environment import *
 from .environment_variable import *
@@ -81,6 +83,7 @@ from .semantic_layer_configuration import *
 from .semantic_layer_credential_service_token_mapping import *
 from .service_token import *
 from .snowflake_credential import *
+from .snowflake_platform_metadata_credential import *
 from .snowflake_semantic_layer_credential import *
 from .spark_credential import *
 from .starburst_credential import *
@@ -135,10 +138,26 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/connectionCatalogConfig",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig": "ConnectionCatalogConfig"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/databricksCredential",
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/databricksCredential:DatabricksCredential": "DatabricksCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/databricksPlatformMetadataCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential": "DatabricksPlatformMetadataCredential"
   }
  },
  {
@@ -403,6 +422,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/snowflakeCredential:SnowflakeCredential": "SnowflakeCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/snowflakePlatformMetadataCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential": "SnowflakePlatformMetadataCredential"
   }
  },
  {

@@ -25,10 +25,20 @@ export type BigquerySemanticLayerCredential = import("./bigquerySemanticLayerCre
 export const BigquerySemanticLayerCredential: typeof import("./bigquerySemanticLayerCredential").BigquerySemanticLayerCredential = null as any;
 utilities.lazyLoad(exports, ["BigquerySemanticLayerCredential"], () => require("./bigquerySemanticLayerCredential"));
 
+export { ConnectionCatalogConfigArgs, ConnectionCatalogConfigState } from "./connectionCatalogConfig";
+export type ConnectionCatalogConfig = import("./connectionCatalogConfig").ConnectionCatalogConfig;
+export const ConnectionCatalogConfig: typeof import("./connectionCatalogConfig").ConnectionCatalogConfig = null as any;
+utilities.lazyLoad(exports, ["ConnectionCatalogConfig"], () => require("./connectionCatalogConfig"));
+
 export { DatabricksCredentialArgs, DatabricksCredentialState } from "./databricksCredential";
 export type DatabricksCredential = import("./databricksCredential").DatabricksCredential;
 export const DatabricksCredential: typeof import("./databricksCredential").DatabricksCredential = null as any;
 utilities.lazyLoad(exports, ["DatabricksCredential"], () => require("./databricksCredential"));
+
+export { DatabricksPlatformMetadataCredentialArgs, DatabricksPlatformMetadataCredentialState } from "./databricksPlatformMetadataCredential";
+export type DatabricksPlatformMetadataCredential = import("./databricksPlatformMetadataCredential").DatabricksPlatformMetadataCredential;
+export const DatabricksPlatformMetadataCredential: typeof import("./databricksPlatformMetadataCredential").DatabricksPlatformMetadataCredential = null as any;
+utilities.lazyLoad(exports, ["DatabricksPlatformMetadataCredential"], () => require("./databricksPlatformMetadataCredential"));
 
 export { DatabricksSemanticLayerCredentialArgs, DatabricksSemanticLayerCredentialState } from "./databricksSemanticLayerCredential";
 export type DatabricksSemanticLayerCredential = import("./databricksSemanticLayerCredential").DatabricksSemanticLayerCredential;
@@ -378,6 +388,11 @@ export type SnowflakeCredential = import("./snowflakeCredential").SnowflakeCrede
 export const SnowflakeCredential: typeof import("./snowflakeCredential").SnowflakeCredential = null as any;
 utilities.lazyLoad(exports, ["SnowflakeCredential"], () => require("./snowflakeCredential"));
 
+export { SnowflakePlatformMetadataCredentialArgs, SnowflakePlatformMetadataCredentialState } from "./snowflakePlatformMetadataCredential";
+export type SnowflakePlatformMetadataCredential = import("./snowflakePlatformMetadataCredential").SnowflakePlatformMetadataCredential;
+export const SnowflakePlatformMetadataCredential: typeof import("./snowflakePlatformMetadataCredential").SnowflakePlatformMetadataCredential = null as any;
+utilities.lazyLoad(exports, ["SnowflakePlatformMetadataCredential"], () => require("./snowflakePlatformMetadataCredential"));
+
 export { SnowflakeSemanticLayerCredentialArgs, SnowflakeSemanticLayerCredentialState } from "./snowflakeSemanticLayerCredential";
 export type SnowflakeSemanticLayerCredential = import("./snowflakeSemanticLayerCredential").SnowflakeSemanticLayerCredential;
 export const SnowflakeSemanticLayerCredential: typeof import("./snowflakeSemanticLayerCredential").SnowflakeSemanticLayerCredential = null as any;
@@ -435,8 +450,12 @@ const _module = {
                 return new BigQueryCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
                 return new BigquerySemanticLayerCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig":
+                return new ConnectionCatalogConfig(name, <any>undefined, { urn })
             case "dbtcloud:index/databricksCredential:DatabricksCredential":
                 return new DatabricksCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential":
+                return new DatabricksPlatformMetadataCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential":
                 return new DatabricksSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/environment:Environment":
@@ -503,6 +522,8 @@ const _module = {
                 return new ServiceToken(name, <any>undefined, { urn })
             case "dbtcloud:index/snowflakeCredential:SnowflakeCredential":
                 return new SnowflakeCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential":
+                return new SnowflakePlatformMetadataCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential":
                 return new SnowflakeSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/sparkCredential:SparkCredential":
@@ -526,7 +547,9 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/accountFeatures", _modu
 pulumi.runtime.registerResourceModule("dbtcloud", "index/athenaCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigquerySemanticLayerCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/connectionCatalogConfig", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/databricksCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/databricksPlatformMetadataCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/databricksSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/environment", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/environmentVariable", _module)
@@ -560,6 +583,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerConfigurat
 pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerCredentialServiceTokenMapping", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/serviceToken", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakePlatformMetadataCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/snowflakeSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/sparkCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/starburstCredential", _module)

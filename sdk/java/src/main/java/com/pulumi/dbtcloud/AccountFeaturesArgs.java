@@ -46,6 +46,51 @@ public final class AccountFeaturesArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+     * 
+     */
+    @Import(name="catalogIngestion")
+    private @Nullable Output<Boolean> catalogIngestion;
+
+    /**
+     * @return Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+     * 
+     */
+    public Optional<Output<Boolean>> catalogIngestion() {
+        return Optional.ofNullable(this.catalogIngestion);
+    }
+
+    /**
+     * Whether the new Catalog navigation UI is enabled (default true for new accounts).
+     * 
+     */
+    @Import(name="explorerAccountUi")
+    private @Nullable Output<Boolean> explorerAccountUi;
+
+    /**
+     * @return Whether the new Catalog navigation UI is enabled (default true for new accounts).
+     * 
+     */
+    public Optional<Output<Boolean>> explorerAccountUi() {
+        return Optional.ofNullable(this.explorerAccountUi);
+    }
+
+    /**
+     * Whether permissions for accounts migrating to Fusion are enabled.
+     * 
+     */
+    @Import(name="fusionMigrationPermissions")
+    private @Nullable Output<Boolean> fusionMigrationPermissions;
+
+    /**
+     * @return Whether permissions for accounts migrating to Fusion are enabled.
+     * 
+     */
+    public Optional<Output<Boolean>> fusionMigrationPermissions() {
+        return Optional.ofNullable(this.fusionMigrationPermissions);
+    }
+
+    /**
      * Whether partial parsing is enabled.
      * 
      */
@@ -75,29 +120,16 @@ public final class AccountFeaturesArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.repoCaching);
     }
 
-    /**
-     * Whether warehouse cost visibility is enabled.
-     * 
-     */
-    @Import(name="warehouseCostVisibility")
-    private @Nullable Output<Boolean> warehouseCostVisibility;
-
-    /**
-     * @return Whether warehouse cost visibility is enabled.
-     * 
-     */
-    public Optional<Output<Boolean>> warehouseCostVisibility() {
-        return Optional.ofNullable(this.warehouseCostVisibility);
-    }
-
     private AccountFeaturesArgs() {}
 
     private AccountFeaturesArgs(AccountFeaturesArgs $) {
         this.advancedCi = $.advancedCi;
         this.aiFeatures = $.aiFeatures;
+        this.catalogIngestion = $.catalogIngestion;
+        this.explorerAccountUi = $.explorerAccountUi;
+        this.fusionMigrationPermissions = $.fusionMigrationPermissions;
         this.partialParsing = $.partialParsing;
         this.repoCaching = $.repoCaching;
-        this.warehouseCostVisibility = $.warehouseCostVisibility;
     }
 
     public static Builder builder() {
@@ -161,6 +193,69 @@ public final class AccountFeaturesArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param catalogIngestion Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder catalogIngestion(@Nullable Output<Boolean> catalogIngestion) {
+            $.catalogIngestion = catalogIngestion;
+            return this;
+        }
+
+        /**
+         * @param catalogIngestion Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder catalogIngestion(Boolean catalogIngestion) {
+            return catalogIngestion(Output.of(catalogIngestion));
+        }
+
+        /**
+         * @param explorerAccountUi Whether the new Catalog navigation UI is enabled (default true for new accounts).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder explorerAccountUi(@Nullable Output<Boolean> explorerAccountUi) {
+            $.explorerAccountUi = explorerAccountUi;
+            return this;
+        }
+
+        /**
+         * @param explorerAccountUi Whether the new Catalog navigation UI is enabled (default true for new accounts).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder explorerAccountUi(Boolean explorerAccountUi) {
+            return explorerAccountUi(Output.of(explorerAccountUi));
+        }
+
+        /**
+         * @param fusionMigrationPermissions Whether permissions for accounts migrating to Fusion are enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fusionMigrationPermissions(@Nullable Output<Boolean> fusionMigrationPermissions) {
+            $.fusionMigrationPermissions = fusionMigrationPermissions;
+            return this;
+        }
+
+        /**
+         * @param fusionMigrationPermissions Whether permissions for accounts migrating to Fusion are enabled.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fusionMigrationPermissions(Boolean fusionMigrationPermissions) {
+            return fusionMigrationPermissions(Output.of(fusionMigrationPermissions));
+        }
+
+        /**
          * @param partialParsing Whether partial parsing is enabled.
          * 
          * @return builder
@@ -200,27 +295,6 @@ public final class AccountFeaturesArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder repoCaching(Boolean repoCaching) {
             return repoCaching(Output.of(repoCaching));
-        }
-
-        /**
-         * @param warehouseCostVisibility Whether warehouse cost visibility is enabled.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder warehouseCostVisibility(@Nullable Output<Boolean> warehouseCostVisibility) {
-            $.warehouseCostVisibility = warehouseCostVisibility;
-            return this;
-        }
-
-        /**
-         * @param warehouseCostVisibility Whether warehouse cost visibility is enabled.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder warehouseCostVisibility(Boolean warehouseCostVisibility) {
-            return warehouseCostVisibility(Output.of(warehouseCostVisibility));
         }
 
         public AccountFeaturesArgs build() {

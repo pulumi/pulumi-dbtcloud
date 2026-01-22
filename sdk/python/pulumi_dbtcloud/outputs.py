@@ -36,6 +36,7 @@ __all__ = [
     'GroupGroupPermission',
     'GroupPartialPermissionsGroupPermission',
     'IpRestrictionsRuleCidr',
+    'JobExecution',
     'JobJobCompletionTriggerCondition',
     'JobTriggers',
     'PostgresSemanticLayerCredentialConfiguration',
@@ -2236,6 +2237,42 @@ class IpRestrictionsRuleCidr(dict):
         ID of the IP restriction rule
         """
         return pulumi.get(self, "ip_restriction_rule_id")
+
+
+@pulumi.output_type
+class JobExecution(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "timeoutSeconds":
+            suggest = "timeout_seconds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobExecution. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobExecution.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobExecution.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 timeout_seconds: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int timeout_seconds: The number of seconds before the job times out
+        """
+        if timeout_seconds is not None:
+            pulumi.set(__self__, "timeout_seconds", timeout_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="timeoutSeconds")
+    def timeout_seconds(self) -> Optional[_builtins.int]:
+        """
+        The number of seconds before the job times out
+        """
+        return pulumi.get(self, "timeout_seconds")
 
 
 @pulumi.output_type
