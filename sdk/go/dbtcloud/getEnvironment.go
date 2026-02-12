@@ -32,6 +32,7 @@ type LookupEnvironmentArgs struct {
 
 // A collection of values returned by getEnvironment.
 type LookupEnvironmentResult struct {
+	// The ID of the connection to use (can be the `id` of a `GlobalConnection` or the `connectionId` of a legacy connection). At the moment, it is optional and the environment will use the connection set in `dbtcloudProjectConnection` if `connectionId` is not set in this resource. In future versions this field will become required, so it is recommended to set it from now on. When configuring this field, it needs to be configured for all the environments of the project. To avoid Terraform state issues, when using this field, the `dbtcloudProjectConnection` resource should be removed from the project or you need to make sure that the `connectionId` is the same in `dbtcloudProjectConnection` and in the `connectionId` of the Development environment of the project
 	ConnectionId int `pulumi:"connectionId"`
 	// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
 	CredentialsId int `pulumi:"credentialsId"`
@@ -95,6 +96,7 @@ func (o LookupEnvironmentResultOutput) ToLookupEnvironmentResultOutputWithContex
 	return o
 }
 
+// The ID of the connection to use (can be the `id` of a `GlobalConnection` or the `connectionId` of a legacy connection). At the moment, it is optional and the environment will use the connection set in `dbtcloudProjectConnection` if `connectionId` is not set in this resource. In future versions this field will become required, so it is recommended to set it from now on. When configuring this field, it needs to be configured for all the environments of the project. To avoid Terraform state issues, when using this field, the `dbtcloudProjectConnection` resource should be removed from the project or you need to make sure that the `connectionId` is the same in `dbtcloudProjectConnection` and in the `connectionId` of the Development environment of the project
 func (o LookupEnvironmentResultOutput) ConnectionId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.ConnectionId }).(pulumi.IntOutput)
 }

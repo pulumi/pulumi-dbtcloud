@@ -12,6 +12,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetEnvironmentResult {
+    /**
+     * @return The ID of the connection to use (can be the `id` of a `dbtcloud.GlobalConnection` or the `connectionId` of a legacy connection). At the moment, it is optional and the environment will use the connection set in `dbtcloudProjectConnection` if `connectionId` is not set in this resource. In future versions this field will become required, so it is recommended to set it from now on. When configuring this field, it needs to be configured for all the environments of the project. To avoid Terraform state issues, when using this field, the `dbtcloudProjectConnection` resource should be removed from the project or you need to make sure that the `connectionId` is the same in `dbtcloudProjectConnection` and in the `connectionId` of the Development environment of the project
+     * 
+     */
     private Integer connectionId;
     /**
      * @return Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user&#39;s credentials, but deployment environments will have this.
@@ -75,6 +79,10 @@ public final class GetEnvironmentResult {
     private Boolean useCustomBranch;
 
     private GetEnvironmentResult() {}
+    /**
+     * @return The ID of the connection to use (can be the `id` of a `dbtcloud.GlobalConnection` or the `connectionId` of a legacy connection). At the moment, it is optional and the environment will use the connection set in `dbtcloudProjectConnection` if `connectionId` is not set in this resource. In future versions this field will become required, so it is recommended to set it from now on. When configuring this field, it needs to be configured for all the environments of the project. To avoid Terraform state issues, when using this field, the `dbtcloudProjectConnection` resource should be removed from the project or you need to make sure that the `connectionId` is the same in `dbtcloudProjectConnection` and in the `connectionId` of the Development environment of the project
+     * 
+     */
     public Integer connectionId() {
         return this.connectionId;
     }

@@ -21,33 +21,124 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &gt; In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
+ * &lt;br/&gt;
+ * &lt;br/&gt;
+ * Those improvements include modifications to deferral which was historically set at the job level and will now be set at the environment level.
+ * Deferral can still be set to &#34;self&#34; by setting `selfDeferring` to `true` but with the new approach, deferral to other runs need to be done with `deferringEnvironmentId` instead of `deferringJobId`.
+ * 
+ * &gt; New with 0.3.1, `triggers` now accepts a `onMerge` value to trigger jobs when code is merged in git. If `onMerge` is `true` all other triggers need to be `false`.
+ * &lt;br/&gt;
+ * &lt;br/&gt;
+ * For now, it is not a mandatory field, but it will be in a future version. Please add `onMerge` in your config or modules.
+ * 
+ * ### For Continuous Integration
+ * 
+ * In the case of Continuous Integration, our CI job needs to defer to the Production environment.
+ * So, we need to have a successful run in the Production environment before the CI process can execute as expected.
+ * 
+ * The example below shows how the Terraform config can be updated to automatically trigger a run of the job in the Production environment, leveraging the `local-exec` provisioner and `curl` to trigger the run.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.Job;
+ * import com.pulumi.dbtcloud.JobArgs;
+ * import com.pulumi.dbtcloud.inputs.JobTriggersArgs;
+ * import com.pulumi.command.local.Command;
+ * import com.pulumi.command.local.CommandArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
+ *         // to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
+ *         var dailyJob = new Job("dailyJob", JobArgs.builder()
+ *             .environmentId(prodEnvironment.environmentId())
+ *             .executeSteps("dbt build")
+ *             .generateDocs(true)
+ *             .name("Daily job")
+ *             .numThreads(64)
+ *             .projectId(dbtProject.id())
+ *             .runGenerateSources(true)
+ *             .targetName("default")
+ *             .triggers(JobTriggersArgs.builder()
+ * %!v(PANIC=Format method: interface conversion: model.Expression is *model.TemplateExpression, not *model.LiteralValueExpression))
+ *                 .scheduleDays(                
+ *                     0,
+ *                     1,
+ *                     2,
+ *                     3,
+ *                     4,
+ *                     5,
+ *                     6)
+ *                 .scheduleType("days_of_week")
+ *                 .scheduleHours(0)
+ *                 .build());
+ * 
+ *             var dailyJobProvisioner0 = new Command("dailyJobProvisioner0", CommandArgs.builder()
+ *                 .create("""
+ * response=$(curl -s -L -o /dev/null -w \"%{http_code}\" -X POST \\
+ *   -H 'Authorization: Bearer %s' \\
+ *   -H 'Content-Type: application/json' \\
+ *   -d '{\"cause\": \"Generate manifest\", \"steps_override\": [\"dbt parse\"]}' \\
+ *   %s/v2/accounts/%s/jobs/%s/run/)
+ *       
+ * if [ \"$response\" -ge 200 ] && [ \"$response\" -lt 300 ]; then
+ *   echo \"Success: HTTP status $response\"
+ *   exit 0
+ * else
+ *   echo \"Failure: HTTP status $response\"
+ *   exit 1
+ * fi
+ * ", dbtToken,dbtHostUrl,dbtAccountId,id))
+ *                 .build(), CustomResourceOptions.builder()
+ *                     .dependsOn(List.of(dailyJob))
+ *                     .build());
+ * 
+ *         }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### For allowing source freshness deferral
+ * 
+ * In the case that deferral is required so that we can use [the `source_status:fresher+` selector](https://docs.getdbt.com/docs/build/sources#build-models-based-on-source-freshness),
+ * the process is more complicated as the job will be self deferring.
+ * 
+ * An example can be found in this GitHub issue.
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_job.my_job
- * 
- *   id = &#34;job_id&#34;
- * 
+ * to = dbtcloud_job.my_job
+ * id = &#34;jobId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_job.my_job
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_job.my_job
+ * id = &#34;12345&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/job:Job my_job &#34;job_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/job:Job my_job 12345
  * ```
  * 

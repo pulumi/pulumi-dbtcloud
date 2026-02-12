@@ -90,6 +90,8 @@ def get_jobs(environment_id: Optional[_builtins.int] = None,
              project_id: Optional[_builtins.int] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobsResult:
     """
+    Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+
     ## Example Usage
 
     ```python
@@ -122,6 +124,8 @@ def get_jobs_output(environment_id: Optional[pulumi.Input[Optional[_builtins.int
                     project_id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobsResult]:
     """
+    Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+
     ## Example Usage
 
     ```python

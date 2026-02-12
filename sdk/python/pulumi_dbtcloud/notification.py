@@ -417,30 +417,20 @@ class Notification(pulumi.CustomResource):
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_notification.my_notification
-
-          id = "notification_id"
-
+        to = dbtcloud_notification.my_notification
+        id = "notification_id"
         }
 
         import {
-
-          to = dbtcloud_notification.my_notification
-
-          id = "12345"
-
+        to = dbtcloud_notification.my_notification
+        id = "12345"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/notification:Notification my_notification "notification_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/notification:Notification my_notification 12345
         ```
 
@@ -512,30 +502,20 @@ class Notification(pulumi.CustomResource):
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_notification.my_notification
-
-          id = "notification_id"
-
+        to = dbtcloud_notification.my_notification
+        id = "notification_id"
         }
 
         import {
-
-          to = dbtcloud_notification.my_notification
-
-          id = "12345"
-
+        to = dbtcloud_notification.my_notification
+        id = "12345"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/notification:Notification my_notification "notification_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/notification:Notification my_notification 12345
         ```
 

@@ -46,30 +46,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_athena_credential.my_athena_credential
-//
-//	id = "project_id:credential_id"
-//
+// to = dbtcloud_athena_credential.my_athena_credential
+// id = "project_id:credential_id"
 // }
 //
 // import {
-//
-//	to = dbtcloud_athena_credential.my_athena_credential
-//
-//	id = "12345:6789"
-//
+// to = dbtcloud_athena_credential.my_athena_credential
+// id = "12345:6789"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/athenaCredential:AthenaCredential my_athena_credential "project_id:credential_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/athenaCredential:AthenaCredential my_athena_credential 12345:6789
 // ```
 type AthenaCredential struct {

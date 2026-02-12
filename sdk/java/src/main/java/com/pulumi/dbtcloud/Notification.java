@@ -90,30 +90,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_notification.my_notification
- * 
- *   id = &#34;notification_id&#34;
- * 
+ * to = dbtcloud_notification.my_notification
+ * id = &#34;notificationId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_notification.my_notification
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_notification.my_notification
+ * id = &#34;12345&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/notification:Notification my_notification &#34;notification_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/notification:Notification my_notification 12345
  * ```
  * 

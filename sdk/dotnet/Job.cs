@@ -10,33 +10,123 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// &gt; In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
+    /// &lt;br/&gt;
+    /// &lt;br/&gt;
+    /// Those improvements include modifications to deferral which was historically set at the job level and will now be set at the environment level.
+    /// Deferral can still be set to "self" by setting `SelfDeferring` to `True` but with the new approach, deferral to other runs need to be done with `DeferringEnvironmentId` instead of `DeferringJobId`.
+    /// 
+    /// &gt; New with 0.3.1, `Triggers` now accepts a `OnMerge` value to trigger jobs when code is merged in git. If `OnMerge` is `True` all other triggers need to be `False`.
+    /// &lt;br/&gt;
+    /// &lt;br/&gt;
+    /// For now, it is not a mandatory field, but it will be in a future version. Please add `OnMerge` in your config or modules.
+    /// 
+    /// ### For Continuous Integration
+    /// 
+    /// In the case of Continuous Integration, our CI job needs to defer to the Production environment.
+    /// So, we need to have a successful run in the Production environment before the CI process can execute as expected.
+    /// 
+    /// The example below shows how the Terraform config can be updated to automatically trigger a run of the job in the Production environment, leveraging the `local-exec` provisioner and `Curl` to trigger the run.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Command = Pulumi.Command;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
+    ///     // to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
+    ///     var dailyJob = new DbtCloud.Job("daily_job", new()
+    ///     {
+    ///         EnvironmentId = prodEnvironment.EnvironmentId,
+    ///         ExecuteSteps = new[]
+    ///         {
+    ///             "dbt build",
+    ///         },
+    ///         GenerateDocs = true,
+    ///         Name = "Daily job",
+    ///         NumThreads = 64,
+    ///         ProjectId = dbtProject.Id,
+    ///         RunGenerateSources = true,
+    ///         TargetName = "default",
+    ///         Triggers = new DbtCloud.Inputs.JobTriggersArgs
+    ///         {
+    ///             Github_webhook = false,
+    ///             Git_provider_webhook = false,
+    ///             Schedule = true,
+    ///             On_merge = false,
+    ///         },
+    ///         ScheduleDays = new[]
+    ///         {
+    ///             0,
+    ///             1,
+    ///             2,
+    ///             3,
+    ///             4,
+    ///             5,
+    ///             6,
+    ///         },
+    ///         ScheduleType = "days_of_week",
+    ///         ScheduleHours = new[]
+    ///         {
+    ///             0,
+    ///         },
+    ///     });
+    /// 
+    ///     var dailyJobProvisioner0 = new Command.Local.Command("dailyJobProvisioner0", new()
+    ///     {
+    ///         Create = @$"response=$(curl -s -L -o /dev/null -w \""%{{http_code}}\"" -X POST \\
+    ///   -H 'Authorization: Bearer {dbtToken}' \\
+    ///   -H 'Content-Type: application/json' \\
+    ///   -d '{{\""cause\"": \""Generate manifest\"", \""steps_override\"": [\""dbt parse\""]}}' \\
+    ///   {dbtHostUrl}/v2/accounts/{dbtAccountId}/jobs/{id}/run/)
+    ///       
+    /// if [ \""$response\"" -ge 200 ] &amp;&amp; [ \""$response\"" -lt 300 ]; then
+    ///   echo \""Success: HTTP status $response\""
+    ///   exit 0
+    /// else
+    ///   echo \""Failure: HTTP status $response\""
+    ///   exit 1
+    /// fi
+    /// ",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             dailyJob,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### For allowing source freshness deferral
+    /// 
+    /// In the case that deferral is required so that we can use [the `source_status:fresher+` selector](https://docs.getdbt.com/docs/build/sources#build-models-based-on-source-freshness),
+    /// the process is more complicated as the job will be self deferring.
+    /// 
+    /// An example can be found in this GitHub issue.
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_job.my_job
-    /// 
-    ///   id = "job_id"
-    /// 
+    /// to = dbtcloud_job.my_job
+    /// id = "JobId"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_job.my_job
-    /// 
-    ///   id = "12345"
-    /// 
+    /// to = dbtcloud_job.my_job
+    /// id = "12345"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/job:Job my_job "job_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/job:Job my_job 12345
     /// ```
     /// </summary>

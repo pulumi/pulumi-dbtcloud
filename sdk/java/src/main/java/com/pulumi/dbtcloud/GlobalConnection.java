@@ -220,40 +220,26 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * A project-scoped connection can be imported as a global connection by specifying the connection ID
- * 
  * Migrating from project-scoped connections to global connections could be done by:
- * 
  * 1. Adding the config for the global connection and importing it (see below)
- * 
  * 2. Removing the project-scoped connection from the config AND from the state
- *    
- *    - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply
+ * - CAREFUL: If the connection is removed from the config but not the state, it will be destroyed on the next apply
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_global_connection.my_connection
- * 
- *   id = &#34;connection_id&#34;
- * 
+ * to = dbtcloud_global_connection.my_connection
+ * id = &#34;connectionId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_global_connection.my_connection
- * 
- *   id = &#34;1234&#34;
- * 
+ * to = dbtcloud_global_connection.my_connection
+ * id = &#34;1234&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection &#34;connection_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
  * ```
  * 

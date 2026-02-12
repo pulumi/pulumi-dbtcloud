@@ -72,30 +72,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_service_token.my_service_token
- * 
- *   id = &#34;service_token_id&#34;
- * 
+ * to = dbtcloud_service_token.my_service_token
+ * id = &#34;serviceTokenId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_service_token.my_service_token
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_service_token.my_service_token
+ * id = &#34;12345&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token &#34;service_token_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345
  * ```
  * 

@@ -46,30 +46,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_databricks_credential.my_databricks_credential
-//
-//	id = "project_id:credential_id"
-//
+// to = dbtcloud_databricks_credential.my_databricks_credential
+// id = "project_id:credential_id"
 // }
 //
 // import {
-//
-//	to = dbtcloud_databricks_credential.my_databricks_credential
-//
-//	id = "12345:6789"
-//
+// to = dbtcloud_databricks_credential.my_databricks_credential
+// id = "12345:6789"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential "project_id:credential_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential 12345:6789
 // ```
 type DatabricksCredential struct {

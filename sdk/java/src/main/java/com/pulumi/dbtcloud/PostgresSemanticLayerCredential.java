@@ -65,30 +65,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_postgres_semantic_layer_credential.example
- * 
- *   id = &#34;credential_id&#34;
- * 
+ * to = dbtcloud_postgres_semantic_layer_credential.example
+ * id = &#34;credentialId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_postgres_semantic_layer_credential.example
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_postgres_semantic_layer_credential.example
+ * id = &#34;12345&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example &#34;credential_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example 12345
  * ```
  * 

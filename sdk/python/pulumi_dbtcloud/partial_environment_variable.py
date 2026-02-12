@@ -137,6 +137,16 @@ class PartialEnvironmentVariable(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        Set up partial environment variables with only a subset of environment values for a given environment variable.
+
+        This resource is different from `EnvironmentVariable` as it allows having different resources setting up different environment values for the same environment variable.
+
+        If a company uses only one Terraform project/workspace to manage all their dbt Cloud Account config, it is recommended to use `dbt_cloud_environment_variable` instead of `dbt_cloud_partial_environment_variable`.
+
+        > This resource allows provider users to update specific environment values without knowing or changing values for other environments.
+
+        **IMPORTANT** This resource can also manage other resources' fields. We strongly advise against overlapping scope (i.e. updating values managed by other resources) as this could lead to unexpected changes in the remote state.
+
         ## Example Usage
 
         ### 
@@ -154,6 +164,16 @@ class PartialEnvironmentVariable(pulumi.CustomResource):
                  args: PartialEnvironmentVariableArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Set up partial environment variables with only a subset of environment values for a given environment variable.
+
+        This resource is different from `EnvironmentVariable` as it allows having different resources setting up different environment values for the same environment variable.
+
+        If a company uses only one Terraform project/workspace to manage all their dbt Cloud Account config, it is recommended to use `dbt_cloud_environment_variable` instead of `dbt_cloud_partial_environment_variable`.
+
+        > This resource allows provider users to update specific environment values without knowing or changing values for other environments.
+
+        **IMPORTANT** This resource can also manage other resources' fields. We strongly advise against overlapping scope (i.e. updating values managed by other resources) as this could lead to unexpected changes in the remote state.
+
         ## Example Usage
 
         ### 

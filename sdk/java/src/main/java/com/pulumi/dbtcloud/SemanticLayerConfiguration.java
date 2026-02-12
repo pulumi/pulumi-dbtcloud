@@ -54,30 +54,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_semantic_layer_configuration.example
- * 
- *   id = &#34;project_id:id&#34;
- * 
+ * to = dbtcloud_semantic_layer_configuration.example
+ * id = &#34;project_id:id&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_semantic_layer_configuration.example
- * 
- *   id = &#34;12345:5678&#34;
- * 
+ * to = dbtcloud_semantic_layer_configuration.example
+ * id = &#34;12345:5678&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration example &#34;project_id:id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration example 12345:5678
  * ```
  * 

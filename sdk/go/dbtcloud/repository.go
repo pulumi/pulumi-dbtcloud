@@ -28,30 +28,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_repository.my_repository
-//
-//	id = "project_id:repository_id"
-//
+// to = dbtcloud_repository.my_repository
+// id = "project_id:repository_id"
 // }
 //
 // import {
-//
-//	to = dbtcloud_repository.my_repository
-//
-//	id = "12345:6789"
-//
+// to = dbtcloud_repository.my_repository
+// id = "12345:6789"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/repository:Repository my_repository "project_id:repository_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/repository:Repository my_repository 12345:6789
 // ```
 type Repository struct {

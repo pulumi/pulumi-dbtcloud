@@ -17,6 +17,173 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Provide a partial set of permissions for an externally managed group (e.g., SCIM, manually created).
+ * This resource ONLY manages a subset of permissions and never creates or deletes groups.
+ * 
+ * This is designed for federated permission management where a platform team sets global permissions
+ * and individual teams manage their own project-specific permissions for the same group.
+ * 
+ * ⚠️  **Important Differences:**
+ * - `dbtCloudGroup`: Creates group and fully manages ALL permissions (single Pulumi Stack)
+ * - `dbtCloudGroupPartialPermissions`: Creates group and manages PARTIAL permissions (multiple Pulumi Stacks)
+ * - `dbtCloudScimGroupPermissions`: Externally-managed group, fully manages ALL permissions (replaces all permissions)
+ * - `dbtCloudScimGroupPartialPermissions`: Externally-managed group, manages PARTIAL permissions (adds/removes only specified permissions)
+ * 
+ * **Use Case:**
+ * - Group exists in external identity provider (e.g., Okta, Azure AD) and syncs via SCIM
+ * - Platform team manages base permissions (e.g., account-level access)
+ * - Individual teams manage their own project-specific permissions
+ * - Multiple Pulumi Stacks can safely manage different permissions for the same group
+ * 
+ * ⚠️  Do not mix different resource types for the same group:
+ * - Don&#39;t use `dbtCloudScimGroupPermissions` (full permissions) with `dbtCloudScimGroupPartialPermissions` (partial permissions)
+ * - Don&#39;t use `dbtCloudGroup` or `dbtCloudGroupPartialPermissions` for externally managed groups
+ * 
+ * The resource currently requires a Service Token with Account Admin access.
+ * 
+ * **Behavior:**
+ * - When creating: Adds specified permissions to the existing group (if not already present)
+ * - When updating: Adds new permissions and removes old permissions from this resource
+ * - When deleting: Removes only the permissions managed by this resource (group and other permissions remain)
+ * 
+ * &gt; This resource is designed for **federated permission management** where multiple teams manage different permissions for the same externally-managed group (e.g., SCIM groups).
+ * 
+ * &gt; **Warning: Duplicate Permissions Across States** - If multiple Terraform states define the **exact same permission** (identical `permissionSet`, `projectId`, `allProjects`, and `writableEnvironmentCategories`), they will reference the same underlying permission object in dbt Cloud. This creates a conflict: when one state deletes its resource, it removes the permission from dbt Cloud, causing drift in other states that reference the same permission. **Best Practice:** Ensure each Terraform state manages **distinct** permissions. Coordinate with other teams to avoid defining identical permissions, or differentiate them using `writableEnvironmentCategories`.
+ * 
+ * ## Use Case Guidelines
+ * 
+ * Choose the right resource for your use case:
+ * 
+ * | Resource | Group Creation | Permission Management | Use When |
+ * |----------|---------------|----------------------|----------|
+ * | `dbtcloud.Group` | ✅ Terraform creates | Full (replaces all) | Single Pulumi Stack manages everything |
+ * | `dbtcloud.GroupPartialPermissions` | ✅ Terraform creates | Partial (adds/removes) | Multiple workspaces manage same Terraform-created group |
+ * | `dbtcloud.ScimGroupPermissions` | ❌ External (SCIM) | Full (replaces all) | External group, single workspace manages all permissions |
+ * | `dbtcloud.ScimGroupPartialPermissions` | ❌ External (SCIM) | Partial (adds/removes) | External group, multiple workspaces manage different permissions |
+ * 
+ * ### Duplicate Permissions Across States
+ * 
+ * **The Problem:** If multiple Terraform states define identical permissions, they will reference the same permission object in dbt Cloud&#39;s API. There is no reference counting or ownership tracking.
+ * 
+ * **What Happens:**
+ * 1. State A creates a permission (e.g., developer on project 100)
+ * 2. State B defines the same permission and references the existing one
+ * 3. State A destroys its resource → permission is deleted from dbt Cloud
+ * 4. State B still expects the permission to exist → **drift and conflicts**
+ * 
+ * **Example of Conflict (❌ Avoid):**
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.ScimGroupPartialPermissions;
+ * import com.pulumi.dbtcloud.ScimGroupPartialPermissionsArgs;
+ * import com.pulumi.dbtcloud.inputs.ScimGroupPartialPermissionsPermissionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Terraform State 1 (Platform Team)
+ *         var platform = new ScimGroupPartialPermissions("platform", ScimGroupPartialPermissionsArgs.builder()
+ *             .groupId(12345)
+ *             .permissions(ScimGroupPartialPermissionsPermissionArgs.builder()
+ *                 .permissionSet("developer")
+ *                 .projectId(100)
+ *                 .allProjects(false)
+ *                 .writableEnvironmentCategories("development")
+ *                 .build())
+ *             .build());
+ * 
+ *         // Terraform State 2 (Another Team) - IDENTICAL permission!
+ *         var otherTeam = new ScimGroupPartialPermissions("otherTeam", ScimGroupPartialPermissionsArgs.builder()
+ *             .groupId(12345)
+ *             .permissions(ScimGroupPartialPermissionsPermissionArgs.builder()
+ *                 .permissionSet("developer")
+ *                 .projectId(100)
+ *                 .allProjects(false)
+ *                 .writableEnvironmentCategories("development")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * **Example of Safe Usage (✅ Recommended):**
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.ScimGroupPartialPermissions;
+ * import com.pulumi.dbtcloud.ScimGroupPartialPermissionsArgs;
+ * import com.pulumi.dbtcloud.inputs.ScimGroupPartialPermissionsPermissionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Terraform State 1 (Platform Team) - Development environments
+ *         var platformDev = new ScimGroupPartialPermissions("platformDev", ScimGroupPartialPermissionsArgs.builder()
+ *             .groupId(12345)
+ *             .permissions(ScimGroupPartialPermissionsPermissionArgs.builder()
+ *                 .permissionSet("developer")
+ *                 .projectId(100)
+ *                 .allProjects(false)
+ *                 .writableEnvironmentCategories("development")
+ *                 .build())
+ *             .build());
+ * 
+ *         // Terraform State 2 (SRE Team) - Production environments
+ *         var sreProd = new ScimGroupPartialPermissions("sreProd", ScimGroupPartialPermissionsArgs.builder()
+ *             .groupId(12345)
+ *             .permissions(ScimGroupPartialPermissionsPermissionArgs.builder()
+ *                 .permissionSet("developer")
+ *                 .projectId(100)
+ *                 .allProjects(false)
+ *                 .writableEnvironmentCategories(                
+ *                     "staging",
+ *                     "production")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * **Coordination Strategies:**
+ * 
+ * 1. **Differentiate by writable environments** - Most common and recommended
+ * 2. **Assign permission ownership** - Document which team manages which permission
+ * 3. **Use single state for identical permissions** - If needed, manage from one place
+ * 4. **Consider full permissions resource** - Use `dbtcloud.ScimGroupPermissions` if one state should own all permissions
+ * 
  * ## Example Usage
  * 
  * <pre>
@@ -120,10 +287,8 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * ~&gt; **Import Not Supported:** This resource does not support `pulumi import` because it manages only a partial subset of permissions.
- * 
+ * &gt; **Import Not Supported:** This resource does not support `pulumi import` because it manages only a partial subset of permissions.
  * There is no way for Terraform to know which specific permissions this resource instance should manage versus permissions
- * 
  * managed by other resources or applied outside of Terraform. You must define the resource in your configuration from the start.
  * 
  */

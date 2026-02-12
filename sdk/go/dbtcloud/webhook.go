@@ -53,30 +53,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_webhook.my_webhook
-//
-//	id = "webhook_id"
-//
+// to = dbtcloud_webhook.my_webhook
+// id = "webhookId"
 // }
 //
 // import {
-//
-//	to = dbtcloud_webhook.my_webhook
-//
-//	id = "wsu_abcdefg"
-//
+// to = dbtcloud_webhook.my_webhook
+// id = "wsuAbcdefg"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/webhook:Webhook my_webhook "webhook_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
 // ```
 type Webhook struct {

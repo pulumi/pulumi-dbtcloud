@@ -133,30 +133,20 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_redshift_semantic_layer_credential.example
-
-          id = "credential_id"
-
+        to = dbtcloud_redshift_semantic_layer_credential.example
+        id = "credential_id"
         }
 
         import {
-
-          to = dbtcloud_redshift_semantic_layer_credential.example
-
-          id = "12345"
-
+        to = dbtcloud_redshift_semantic_layer_credential.example
+        id = "12345"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example "credential_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
         ```
 
@@ -199,30 +189,20 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_redshift_semantic_layer_credential.example
-
-          id = "credential_id"
-
+        to = dbtcloud_redshift_semantic_layer_credential.example
+        id = "credential_id"
         }
 
         import {
-
-          to = dbtcloud_redshift_semantic_layer_credential.example
-
-          id = "12345"
-
+        to = dbtcloud_redshift_semantic_layer_credential.example
+        id = "12345"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example "credential_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
         ```
 

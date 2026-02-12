@@ -52,30 +52,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_semantic_layer_credential_service_token_mapping.example
- * 
- *   id = &#34;id&#34;
- * 
+ * to = dbtcloud_semantic_layer_credential_service_token_mapping.example
+ * id = &#34;id&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_semantic_layer_credential_service_token_mapping.example
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_semantic_layer_credential_service_token_mapping.example
+ * id = &#34;12345&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example &#34;id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example 12345
  * ```
  * 

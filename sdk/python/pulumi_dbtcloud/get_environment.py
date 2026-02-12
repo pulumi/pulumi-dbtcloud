@@ -70,6 +70,9 @@ class GetEnvironmentResult:
     @_builtins.property
     @pulumi.getter(name="connectionId")
     def connection_id(self) -> _builtins.int:
+        """
+        The ID of the connection to use (can be the `id` of a `GlobalConnection` or the `connection_id` of a legacy connection). At the moment, it is optional and the environment will use the connection set in `dbtcloud_project_connection` if `connection_id` is not set in this resource. In future versions this field will become required, so it is recommended to set it from now on. When configuring this field, it needs to be configured for all the environments of the project. To avoid Terraform state issues, when using this field, the `dbtcloud_project_connection` resource should be removed from the project or you need to make sure that the `connection_id` is the same in `dbtcloud_project_connection` and in the `connection_id` of the Development environment of the project
+        """
         return pulumi.get(self, "connection_id")
 
     @_builtins.property

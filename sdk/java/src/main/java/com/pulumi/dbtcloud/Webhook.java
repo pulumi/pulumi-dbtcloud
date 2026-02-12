@@ -64,30 +64,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_webhook.my_webhook
- * 
- *   id = &#34;webhook_id&#34;
- * 
+ * to = dbtcloud_webhook.my_webhook
+ * id = &#34;webhookId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_webhook.my_webhook
- * 
- *   id = &#34;wsu_abcdefg&#34;
- * 
+ * to = dbtcloud_webhook.my_webhook
+ * id = &#34;wsuAbcdefg&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/webhook:Webhook my_webhook &#34;webhook_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
  * ```
  * 

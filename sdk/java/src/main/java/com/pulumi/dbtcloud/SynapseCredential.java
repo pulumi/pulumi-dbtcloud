@@ -81,30 +81,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_synapse_credential.my_synapse_credential
- * 
- *   id = &#34;project_id:credential_id&#34;
- * 
+ * to = dbtcloud_synapse_credential.my_synapse_credential
+ * id = &#34;project_id:credential_id&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_synapse_credential.my_synapse_credential
- * 
- *   id = &#34;12345:6789&#34;
- * 
+ * to = dbtcloud_synapse_credential.my_synapse_credential
+ * id = &#34;12345:6789&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/synapseCredential:SynapseCredential my_synapse_credential &#34;project_id:credential_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/synapseCredential:SynapseCredential my_synapse_credential 12345:6789
  * ```
  * 

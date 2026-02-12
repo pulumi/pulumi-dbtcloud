@@ -2088,6 +2088,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getJob:getJob", TypeShape.of(GetJobResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+     * 
      * ## Example Usage
      * 
      */
@@ -2095,6 +2097,8 @@ public final class DbtcloudFunctions {
         return getJobs(GetJobsArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+     * 
      * ## Example Usage
      * 
      */
@@ -2102,6 +2106,8 @@ public final class DbtcloudFunctions {
         return getJobsPlain(GetJobsPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+     * 
      * ## Example Usage
      * 
      */
@@ -2109,6 +2115,8 @@ public final class DbtcloudFunctions {
         return getJobs(args, InvokeOptions.Empty);
     }
     /**
+     * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+     * 
      * ## Example Usage
      * 
      */
@@ -2116,6 +2124,8 @@ public final class DbtcloudFunctions {
         return getJobsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+     * 
      * ## Example Usage
      * 
      */
@@ -2123,6 +2133,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getJobs:getJobs", TypeShape.of(GetJobsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+     * 
      * ## Example Usage
      * 
      */
@@ -2130,6 +2142,8 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invoke("dbtcloud:index/getJobs:getJobs", TypeShape.of(GetJobsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+     * 
      * ## Example Usage
      * 
      */

@@ -11,6 +11,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The mapping of permission names [from the docs](https://docs.getdbt.com/docs/cloud/manage-access/enterprise-permissions) to the permissions to set in Terraform is the following:
+//
+// |Permission name......... | Permission code|
+// |-- | --|
+// |Account Admin | account_admin|
+// |Account Viewer | account_viewer|
+// |Admin | admin|
+// |Analyst | analyst|
+// |Billing Admin | billing_admin|
+// |Cost Management viewer | cost_management_viewer|
+// |Cost Management admin | cost_management_admin|
+// |Database Admin | database_admin|
+// |Developer | developer|
+// |Fusion Admin | fusion_admin|
+// |Git Admin | git_admin|
+// |Job Admin | job_admin|
+// |Job Runner | job_runner|
+// |Job Viewer | job_viewer|
+// |Manage marketplace apps | manage_marketplace_apps|
+// |Member | member|
+// |Metadata Only | metadata_only|
+// |Owner | owner|
+// |Project Creator | project_creator|
+// |Read-Only | readonly|
+// |Security Admin | security_admin|
+// |Semantic Layer Only | semantic_layer_only|
+// |Stakeholder | stakeholder|
+// |Team Admin | team_admin|
+// |Webhooks Only | webhooks_only|
+//
+// Provide a complete set of permissions for a group. This is different from `dbtCloudPartialGroupPermissions`.
+//
+// With this resource type only one resource can be used to manage the permissions for a given group.
+//
 // ## Example Usage
 //
 // ```go
@@ -55,30 +89,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_group.my_group
-//
-//	id = "group_id"
-//
+// to = dbtcloud_group.my_group
+// id = "groupId"
 // }
 //
 // import {
-//
-//	to = dbtcloud_group.my_group
-//
-//	id = "12345"
-//
+// to = dbtcloud_group.my_group
+// id = "12345"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/group:Group my_group "group_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/group:Group my_group 12345
 // ```
 type Group struct {

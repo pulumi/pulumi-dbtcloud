@@ -69,32 +69,21 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * Import using the User ID
- * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_user_groups.my_user_groups
- * 
- *   id = &#34;user_id&#34;
- * 
+ * to = dbtcloud_user_groups.my_user_groups
+ * id = &#34;userId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_user_groups.my_user_groups
- * 
- *   id = &#34;123456&#34;
- * 
+ * to = dbtcloud_user_groups.my_user_groups
+ * id = &#34;123456&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/userGroups:UserGroups my_user_groups &#34;user_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/userGroups:UserGroups my_user_groups 123456
  * ```
  * 

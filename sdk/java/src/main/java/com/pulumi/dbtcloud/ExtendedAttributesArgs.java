@@ -17,9 +17,17 @@ public final class ExtendedAttributesArgs extends com.pulumi.resources.ResourceA
 
     public static final ExtendedAttributesArgs Empty = new ExtendedAttributesArgs();
 
+    /**
+     * A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
+     * 
+     */
     @Import(name="extendedAttributes", required=true)
     private Output<String> extendedAttributes;
 
+    /**
+     * @return A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
+     * 
+     */
     public Output<String> extendedAttributes() {
         return this.extendedAttributes;
     }
@@ -80,11 +88,23 @@ public final class ExtendedAttributesArgs extends com.pulumi.resources.ResourceA
             $ = new ExtendedAttributesArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param extendedAttributes A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
+         * 
+         * @return builder
+         * 
+         */
         public Builder extendedAttributes(Output<String> extendedAttributes) {
             $.extendedAttributes = extendedAttributes;
             return this;
         }
 
+        /**
+         * @param extendedAttributes A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
+         * 
+         * @return builder
+         * 
+         */
         public Builder extendedAttributes(String extendedAttributes) {
             return extendedAttributes(Output.of(extendedAttributes));
         }

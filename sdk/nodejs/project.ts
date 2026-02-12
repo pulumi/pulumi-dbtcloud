@@ -27,30 +27,20 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
- *
  * import {
- *
- *   to = dbtcloud_project.my_project
- *
- *   id = "project_id"
- *
+ * to = dbtcloud_project.my_project
+ * id = "projectId"
  * }
  *
  * import {
- *
- *   to = dbtcloud_project.my_project
- *
- *   id = "12345"
- *
+ * to = dbtcloud_project.my_project
+ * id = "12345"
  * }
  *
  * using the older import command
  *
  * ```sh
  * $ pulumi import dbtcloud:index/project:Project my_project "project_id"
- * ```
- *
- * ```sh
  * $ pulumi import dbtcloud:index/project:Project my_project 12345
  * ```
  */

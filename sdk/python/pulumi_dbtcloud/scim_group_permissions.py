@@ -107,7 +107,22 @@ class ScimGroupPermissions(pulumi.CustomResource):
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None,
                  __props__=None):
         """
-        Create a ScimGroupPermissions resource with the given unique name, props, and options.
+        Manage permissions for groups that are externally managed (e.g., SCIM, manually created).
+        This resource ONLY manages permissions and never creates or deletes groups.
+
+        ⚠️  Do not use this resource alongside `dbt_cloud_group` or `dbt_cloud_group_partial_permissions`
+        for the same group to avoid permission conflicts.
+
+        This resource is ideal for SCIM-managed environments where groups exist in your identity
+        provider and are synced to dbt Cloud, but you want to manage permissions via Terraform.
+
+        **Use Case Guidelines:**
+        - Use `dbt_cloud_group` when Terraform creates and fully manages the group
+        - Use `dbt_cloud_group_partial_permissions` when multiple Pulumi Stacks manage the same Terraform-created group
+        - Use `dbt_cloud_scim_group_permissions` when the group is externally managed (e.g., SCIM, manual creation) and you only want to manage permissions
+
+        The resource currently requires a Service Token with Account Admin access.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage permissions for. This group must already exist.
@@ -120,7 +135,22 @@ class ScimGroupPermissions(pulumi.CustomResource):
                  args: ScimGroupPermissionsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ScimGroupPermissions resource with the given unique name, props, and options.
+        Manage permissions for groups that are externally managed (e.g., SCIM, manually created).
+        This resource ONLY manages permissions and never creates or deletes groups.
+
+        ⚠️  Do not use this resource alongside `dbt_cloud_group` or `dbt_cloud_group_partial_permissions`
+        for the same group to avoid permission conflicts.
+
+        This resource is ideal for SCIM-managed environments where groups exist in your identity
+        provider and are synced to dbt Cloud, but you want to manage permissions via Terraform.
+
+        **Use Case Guidelines:**
+        - Use `dbt_cloud_group` when Terraform creates and fully manages the group
+        - Use `dbt_cloud_group_partial_permissions` when multiple Pulumi Stacks manage the same Terraform-created group
+        - Use `dbt_cloud_scim_group_permissions` when the group is externally managed (e.g., SCIM, manual creation) and you only want to manage permissions
+
+        The resource currently requires a Service Token with Account Admin access.
+
         :param str resource_name: The name of the resource.
         :param ScimGroupPermissionsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

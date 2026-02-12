@@ -16,6 +16,16 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 /**
+ * Set up partial environment variables with only a subset of environment values for a given environment variable.
+ * 
+ * This resource is different from `dbtcloud.EnvironmentVariable` as it allows having different resources setting up different environment values for the same environment variable.
+ * 
+ * If a company uses only one Terraform project/workspace to manage all their dbt Cloud Account config, it is recommended to use `dbtCloudEnvironmentVariable` instead of `dbtCloudPartialEnvironmentVariable`.
+ * 
+ * &gt; This resource allows provider users to update specific environment values without knowing or changing values for other environments.
+ * 
+ * **IMPORTANT** This resource can also manage other resources&#39; fields. We strongly advise against overlapping scope (i.e. updating values managed by other resources) as this could lead to unexpected changes in the remote state.
+ * 
  * ## Example Usage
  * 
  * ### 

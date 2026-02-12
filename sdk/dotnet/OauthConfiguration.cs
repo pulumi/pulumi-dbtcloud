@@ -17,30 +17,20 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_oauth_configuration.my_external_oauth
-    /// 
-    ///   id = "external_oauth_id"
-    /// 
+    /// to = dbtcloud_oauth_configuration.my_external_oauth
+    /// id = "ExternalOauthId"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_oauth_configuration.my_external_oauth
-    /// 
-    ///   id = "12345"
-    /// 
+    /// to = dbtcloud_oauth_configuration.my_external_oauth
+    /// id = "12345"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth "external_oauth_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth 12345
     /// ```
     /// </summary>

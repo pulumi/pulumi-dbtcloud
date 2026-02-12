@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -69,6 +71,8 @@ export interface GetJobsResult {
     readonly projectId?: number;
 }
 /**
+ * Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+ *
  * ## Example Usage
  *
  * ```typescript

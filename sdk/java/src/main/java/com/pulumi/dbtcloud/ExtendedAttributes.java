@@ -78,39 +78,37 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_extended_attributes.test_extended_attributes
- * 
- *   id = &#34;project_id_id:extended_attributes_id&#34;
- * 
+ * to = dbtcloud_extended_attributes.test_extended_attributes
+ * id = &#34;project_id_id:extended_attributes_id&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_extended_attributes.test_extended_attributes
- * 
- *   id = &#34;12345:6789&#34;
- * 
+ * to = dbtcloud_extended_attributes.test_extended_attributes
+ * id = &#34;12345:6789&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes &#34;project_id_id:extended_attributes_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes 12345:6789
  * ```
  * 
  */
 @ResourceType(type="dbtcloud:index/extendedAttributes:ExtendedAttributes")
 public class ExtendedAttributes extends com.pulumi.resources.CustomResource {
+    /**
+     * A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
+     * 
+     */
     @Export(name="extendedAttributes", refs={String.class}, tree="[0]")
     private Output<String> extendedAttributes;
 
+    /**
+     * @return A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
+     * 
+     */
     public Output<String> extendedAttributes() {
         return this.extendedAttributes;
     }
