@@ -73,35 +73,26 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_extended_attributes.test_extended_attributes
-//
-//	id = "project_id_id:extended_attributes_id"
-//
+// to = dbtcloud_extended_attributes.test_extended_attributes
+// id = "project_id_id:extended_attributes_id"
 // }
 //
 // import {
-//
-//	to = dbtcloud_extended_attributes.test_extended_attributes
-//
-//	id = "12345:6789"
-//
+// to = dbtcloud_extended_attributes.test_extended_attributes
+// id = "12345:6789"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes "project_id_id:extended_attributes_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes 12345:6789
 // ```
 type ExtendedAttributes struct {
 	pulumi.CustomResourceState
 
+	// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
 	ExtendedAttributes pulumi.StringOutput `pulumi:"extendedAttributes"`
 	// Extended attributes ID
 	ExtendedAttributesId pulumi.IntOutput `pulumi:"extendedAttributesId"`
@@ -147,6 +138,7 @@ func GetExtendedAttributes(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExtendedAttributes resources.
 type extendedAttributesState struct {
+	// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
 	ExtendedAttributes *string `pulumi:"extendedAttributes"`
 	// Extended attributes ID
 	ExtendedAttributesId *int `pulumi:"extendedAttributesId"`
@@ -157,6 +149,7 @@ type extendedAttributesState struct {
 }
 
 type ExtendedAttributesState struct {
+	// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
 	ExtendedAttributes pulumi.StringPtrInput
 	// Extended attributes ID
 	ExtendedAttributesId pulumi.IntPtrInput
@@ -171,6 +164,7 @@ func (ExtendedAttributesState) ElementType() reflect.Type {
 }
 
 type extendedAttributesArgs struct {
+	// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
 	ExtendedAttributes string `pulumi:"extendedAttributes"`
 	// Project ID to create the extended attributes in
 	ProjectId int `pulumi:"projectId"`
@@ -180,6 +174,7 @@ type extendedAttributesArgs struct {
 
 // The set of arguments for constructing a ExtendedAttributes resource.
 type ExtendedAttributesArgs struct {
+	// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
 	ExtendedAttributes pulumi.StringInput
 	// Project ID to create the extended attributes in
 	ProjectId pulumi.IntInput
@@ -274,6 +269,7 @@ func (o ExtendedAttributesOutput) ToExtendedAttributesOutputWithContext(ctx cont
 	return o
 }
 
+// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
 func (o ExtendedAttributesOutput) ExtendedAttributes() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExtendedAttributes) pulumi.StringOutput { return v.ExtendedAttributes }).(pulumi.StringOutput)
 }

@@ -35,30 +35,20 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_project_artefacts.my_artefacts
-    /// 
-    ///   id = "project_id"
-    /// 
+    /// to = dbtcloud_project_artefacts.my_artefacts
+    /// id = "ProjectId"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_project_artefacts.my_artefacts
-    /// 
-    ///   id = "12345"
-    /// 
+    /// to = dbtcloud_project_artefacts.my_artefacts
+    /// id = "12345"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts "project_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts 12345
     /// ```
     /// </summary>

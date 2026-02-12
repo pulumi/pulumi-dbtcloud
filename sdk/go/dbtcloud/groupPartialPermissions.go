@@ -11,6 +11,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provide a partial set of permissions for a group. This is different from `dbtCloudGroup` as it allows to have multiple resources updating the same dbt Cloud group and is useful for companies managing a single dbt Cloud Account configuration from different Terraform projects/workspaces.
+//
+// If a company uses only one Terraform project/workspace to manage all their dbt Cloud Account config, it is recommended to use `dbtCloudGroup` instead of `dbtCloudGroupPartialPermissions`.
+//
+// > This is currently an experimental resource and any feedback is welcome in the GitHub repository.
+//
+// The resource currently requires a Service Token with Account Admin access.
+//
+// The current behavior of the resource is the following:
+//
+// - when using `dbtCloudGroupPartialPermissions`, don't use `dbtCloudGroup` for the same group in any other project/workspace. Otherwise, the behavior is undefined and partial permissions might be removed.
+// - when defining a new `dbtCloudGroupPartialPermissions`
+//   - if the group doesn't exist with the given `name`, it will be created
+//   - if a group exists with the given `name`, permissions will be added in the dbt Cloud group if they are not present yet
+//
+// - in a given Terraform project/workspace, avoid having different `dbtCloudGroupPartialPermissions` for the same group name to prevent sync issues. Add all the permissions in the same resource.
+// - all resources for the same group name need to have the same values for `assignByDefault` and `ssoMappingGroups`. Those fields are not considered "partial". (Please raise feedback in GitHub if you think that `ssoMappingGroups` should be "partial" as well)
+// - when a resource is updated, the dbt Cloud group will be updated accordingly, removing and adding permissions
+// - when the resource is deleted/destroyed, if the resulting permission sets is empty, the group will be deleted ; otherwise, the group will be updated, removing the permissions from the deleted resource
+//
 // ## Example Usage
 //
 // ```go

@@ -62,30 +62,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_postgres_credential.my_credential
- * 
- *   id = &#34;project_id:credential_id&#34;
- * 
+ * to = dbtcloud_postgres_credential.my_credential
+ * id = &#34;project_id:credential_id&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_postgres_credential.my_credential
- * 
- *   id = &#34;12345:6789&#34;
- * 
+ * to = dbtcloud_postgres_credential.my_credential
+ * id = &#34;12345:6789&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential &#34;project_id:credential_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential 12345:6789
  * ```
  * 

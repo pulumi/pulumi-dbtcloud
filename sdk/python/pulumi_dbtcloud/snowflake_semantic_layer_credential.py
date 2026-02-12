@@ -159,30 +159,20 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_snowflake_semantic_layer_credential.example
-
-          id = "credential_id"
-
+        to = dbtcloud_snowflake_semantic_layer_credential.example
+        id = "credential_id"
         }
 
         import {
-
-          to = dbtcloud_snowflake_semantic_layer_credential.example
-
-          id = "12345"
-
+        to = dbtcloud_snowflake_semantic_layer_credential.example
+        id = "12345"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential example "credential_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential example 12345
         ```
 
@@ -251,30 +241,20 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_snowflake_semantic_layer_credential.example
-
-          id = "credential_id"
-
+        to = dbtcloud_snowflake_semantic_layer_credential.example
+        id = "credential_id"
         }
 
         import {
-
-          to = dbtcloud_snowflake_semantic_layer_credential.example
-
-          id = "12345"
-
+        to = dbtcloud_snowflake_semantic_layer_credential.example
+        id = "12345"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential example "credential_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential example 12345
         ```
 

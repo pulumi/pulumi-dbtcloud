@@ -23,30 +23,20 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * using import blocks (requires Terraform >= 1.5)
- *
  * import {
- *
- *   to = dbtcloud_semantic_layer_configuration.example
- *
- *   id = "project_id:id"
- *
+ * to = dbtcloud_semantic_layer_configuration.example
+ * id = "project_id:id"
  * }
  *
  * import {
- *
- *   to = dbtcloud_semantic_layer_configuration.example
- *
- *   id = "12345:5678"
- *
+ * to = dbtcloud_semantic_layer_configuration.example
+ * id = "12345:5678"
  * }
  *
  * using the older import command
  *
  * ```sh
  * $ pulumi import dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration example "project_id:id"
- * ```
- *
- * ```sh
  * $ pulumi import dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration example 12345:5678
  * ```
  */

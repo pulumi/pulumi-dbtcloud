@@ -54,30 +54,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_project_artefacts.my_artefacts
- * 
- *   id = &#34;project_id&#34;
- * 
+ * to = dbtcloud_project_artefacts.my_artefacts
+ * id = &#34;projectId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_project_artefacts.my_artefacts
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_project_artefacts.my_artefacts
+ * id = &#34;12345&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts &#34;project_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts 12345
  * ```
  * 

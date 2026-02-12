@@ -60,30 +60,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_fabric_credential.my_fabric_credential
-//
-//	id = "project_id:credential_id"
-//
+// to = dbtcloud_fabric_credential.my_fabric_credential
+// id = "project_id:credential_id"
 // }
 //
 // import {
-//
-//	to = dbtcloud_fabric_credential.my_fabric_credential
-//
-//	id = "12345:6789"
-//
+// to = dbtcloud_fabric_credential.my_fabric_credential
+// id = "12345:6789"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential "project_id:credential_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential 12345:6789
 // ```
 type FabricCredential struct {

@@ -131,30 +131,20 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_postgres_semantic_layer_credential.example
-
-          id = "credential_id"
-
+        to = dbtcloud_postgres_semantic_layer_credential.example
+        id = "credential_id"
         }
 
         import {
-
-          to = dbtcloud_postgres_semantic_layer_credential.example
-
-          id = "12345"
-
+        to = dbtcloud_postgres_semantic_layer_credential.example
+        id = "12345"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example "credential_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example 12345
         ```
 
@@ -195,30 +185,20 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
         ## Import
 
         using import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_postgres_semantic_layer_credential.example
-
-          id = "credential_id"
-
+        to = dbtcloud_postgres_semantic_layer_credential.example
+        id = "credential_id"
         }
 
         import {
-
-          to = dbtcloud_postgres_semantic_layer_credential.example
-
-          id = "12345"
-
+        to = dbtcloud_postgres_semantic_layer_credential.example
+        id = "12345"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example "credential_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example 12345
         ```
 

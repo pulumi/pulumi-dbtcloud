@@ -19,30 +19,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_oauth_configuration.my_external_oauth
-//
-//	id = "external_oauth_id"
-//
+// to = dbtcloud_oauth_configuration.my_external_oauth
+// id = "externalOauthId"
 // }
 //
 // import {
-//
-//	to = dbtcloud_oauth_configuration.my_external_oauth
-//
-//	id = "12345"
-//
+// to = dbtcloud_oauth_configuration.my_external_oauth
+// id = "12345"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth "external_oauth_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth 12345
 // ```
 type OauthConfiguration struct {

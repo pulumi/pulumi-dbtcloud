@@ -75,6 +75,9 @@ namespace Pulumi.DbtCloud
     [OutputType]
     public sealed class GetEnvironmentResult
     {
+        /// <summary>
+        /// The ID of the connection to use (can be the `Id` of a `dbtcloud.GlobalConnection` or the `ConnectionId` of a legacy connection). At the moment, it is optional and the environment will use the connection set in `DbtcloudProjectConnection` if `ConnectionId` is not set in this resource. In future versions this field will become required, so it is recommended to set it from now on. When configuring this field, it needs to be configured for all the environments of the project. To avoid Terraform state issues, when using this field, the `DbtcloudProjectConnection` resource should be removed from the project or you need to make sure that the `ConnectionId` is the same in `DbtcloudProjectConnection` and in the `ConnectionId` of the Development environment of the project
+        /// </summary>
         public readonly int ConnectionId;
         /// <summary>
         /// Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.

@@ -34,30 +34,20 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_project_repository.my_project
-    /// 
-    ///   id = "project_id:repository_id"
-    /// 
+    /// to = dbtcloud_project_repository.my_project
+    /// id = "project_id:repository_id"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_project_repository.my_project
-    /// 
-    ///   id = "12345:5678"
-    /// 
+    /// to = dbtcloud_project_repository.my_project
+    /// id = "12345:5678"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project "project_id:repository_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project 12345:5678
     /// ```
     /// </summary>

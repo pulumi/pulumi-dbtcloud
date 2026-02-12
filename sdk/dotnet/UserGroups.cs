@@ -52,32 +52,21 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// Import using the User ID
-    /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_user_groups.my_user_groups
-    /// 
-    ///   id = "user_id"
-    /// 
+    /// to = dbtcloud_user_groups.my_user_groups
+    /// id = "UserId"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_user_groups.my_user_groups
-    /// 
-    ///   id = "123456"
-    /// 
+    /// to = dbtcloud_user_groups.my_user_groups
+    /// id = "123456"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/userGroups:UserGroups my_user_groups "user_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/userGroups:UserGroups my_user_groups 123456
     /// ```
     /// </summary>

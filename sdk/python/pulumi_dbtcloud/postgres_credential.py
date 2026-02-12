@@ -372,30 +372,20 @@ class PostgresCredential(pulumi.CustomResource):
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_postgres_credential.my_credential
-
-          id = "project_id:credential_id"
-
+        to = dbtcloud_postgres_credential.my_credential
+        id = "project_id:credential_id"
         }
 
         import {
-
-          to = dbtcloud_postgres_credential.my_credential
-
-          id = "12345:6789"
-
+        to = dbtcloud_postgres_credential.my_credential
+        id = "12345:6789"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential "project_id:credential_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential 12345:6789
         ```
 
@@ -439,30 +429,20 @@ class PostgresCredential(pulumi.CustomResource):
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_postgres_credential.my_credential
-
-          id = "project_id:credential_id"
-
+        to = dbtcloud_postgres_credential.my_credential
+        id = "project_id:credential_id"
         }
 
         import {
-
-          to = dbtcloud_postgres_credential.my_credential
-
-          id = "12345:6789"
-
+        to = dbtcloud_postgres_credential.my_credential
+        id = "12345:6789"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential "project_id:credential_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential 12345:6789
         ```
 

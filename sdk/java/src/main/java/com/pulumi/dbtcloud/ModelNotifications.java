@@ -57,32 +57,21 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * Model notifications are imported using the environment ID where the notifications are enabled
- * 
  * Using import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_model_notifications.my_model_notifications
- * 
- *   id = &#34;environment_id&#34;
- * 
+ * to = dbtcloud_model_notifications.my_model_notifications
+ * id = &#34;environmentId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_model_notifications.my_model_notifications
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_model_notifications.my_model_notifications
+ * id = &#34;12345&#34;
  * }
  * 
  * Using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/modelNotifications:ModelNotifications my_model_notifications &#34;environment_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/modelNotifications:ModelNotifications my_model_notifications 12345
  * ```
  * 

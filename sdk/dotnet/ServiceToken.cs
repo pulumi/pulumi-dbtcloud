@@ -55,30 +55,20 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_service_token.my_service_token
-    /// 
-    ///   id = "service_token_id"
-    /// 
+    /// to = dbtcloud_service_token.my_service_token
+    /// id = "ServiceTokenId"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_service_token.my_service_token
-    /// 
-    ///   id = "12345"
-    /// 
+    /// to = dbtcloud_service_token.my_service_token
+    /// id = "12345"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token "service_token_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/serviceToken:ServiceToken my_service_token 12345
     /// ```
     /// </summary>

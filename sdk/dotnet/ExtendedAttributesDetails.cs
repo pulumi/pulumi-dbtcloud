@@ -58,36 +58,29 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_extended_attributes.test_extended_attributes
-    /// 
-    ///   id = "project_id_id:extended_attributes_id"
-    /// 
+    /// to = dbtcloud_extended_attributes.test_extended_attributes
+    /// id = "project_id_id:extended_attributes_id"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_extended_attributes.test_extended_attributes
-    /// 
-    ///   id = "12345:6789"
-    /// 
+    /// to = dbtcloud_extended_attributes.test_extended_attributes
+    /// id = "12345:6789"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes "project_id_id:extended_attributes_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes 12345:6789
     /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/extendedAttributes:ExtendedAttributes")]
     public partial class ExtendedAttributesDetails : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `Jsonencode` in your Terraform code. (see example)
+        /// </summary>
         [Output("extendedAttributes")]
         public Output<string> ExtendedAttributes { get; private set; } = null!;
 
@@ -156,6 +149,9 @@ namespace Pulumi.DbtCloud
 
     public sealed class ExtendedAttributesDetailsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `Jsonencode` in your Terraform code. (see example)
+        /// </summary>
         [Input("extendedAttributes", required: true)]
         public Input<string> ExtendedAttributes { get; set; } = null!;
 
@@ -179,6 +175,9 @@ namespace Pulumi.DbtCloud
 
     public sealed class ExtendedAttributesDetailsState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `Jsonencode` in your Terraform code. (see example)
+        /// </summary>
         [Input("extendedAttributes")]
         public Input<string>? ExtendedAttributes { get; set; }
 

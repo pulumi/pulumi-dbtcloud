@@ -22,30 +22,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_oauth_configuration.my_external_oauth
- * 
- *   id = &#34;external_oauth_id&#34;
- * 
+ * to = dbtcloud_oauth_configuration.my_external_oauth
+ * id = &#34;externalOauthId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_oauth_configuration.my_external_oauth
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_oauth_configuration.my_external_oauth
+ * id = &#34;12345&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth &#34;external_oauth_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth 12345
  * ```
  * 

@@ -43,30 +43,20 @@ import (
 // ## Import
 //
 // using import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_semantic_layer_credential_service_token_mapping.example
-//
-//	id = "id"
-//
+// to = dbtcloud_semantic_layer_credential_service_token_mapping.example
+// id = "id"
 // }
 //
 // import {
-//
-//	to = dbtcloud_semantic_layer_credential_service_token_mapping.example
-//
-//	id = "12345"
-//
+// to = dbtcloud_semantic_layer_credential_service_token_mapping.example
+// id = "12345"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example "id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example 12345
 // ```
 type SemanticLayerCredentialServiceTokenMapping struct {

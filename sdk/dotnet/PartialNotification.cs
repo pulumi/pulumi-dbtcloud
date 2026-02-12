@@ -10,6 +10,25 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
+    /// Setup partial notifications on jobs success/failure to internal users, external email addresses or Slack channels. This is different from `DbtCloudNotification` as it allows to have multiple resources updating the same notification recipient (email, user or Slack channel) and is useful for companies managing a single dbt Cloud Account configuration from different Terraform projects/workspaces.
+    /// 
+    /// If a company uses only one Terraform project/workspace to manage all their dbt Cloud Account config, it is recommended to use `DbtCloudNotification` instead of `DbtCloudPartialNotification`.
+    /// 
+    /// &gt; This is a new resource. Feedback is welcome.
+    /// 
+    /// The resource currently requires a Service Token with Account Admin access.
+    /// 
+    /// The current behavior of the resource is the following:
+    /// 
+    /// - when using `DbtCloudPartialNotification`, don't use `DbtCloudNotification` for the same notification recipient in any other project/workspace. Otherwise, the behavior is undefined and partial notifications might be removed.
+    /// - when defining a new `DbtCloudPartialNotification`
+    ///   - if the notification recipient doesn't exist, it will be created
+    ///   - if a notification config exists for the current recipient, Job IDs will be added in the list of jobs to trigger the notifications
+    /// - in a given Terraform project/workspace, avoid having different `DbtCloudPartialNotification` for the same recipient to prevent sync issues. Add all the jobs in the same resource.
+    /// - all resources for the same notification recipient need to have the same values for `State` and `UserId`. Those fields are not considered "partial".
+    /// - when a resource is updated, the dbt Cloud notification recipient will be updated accordingly, removing and adding job ids in the list of jobs triggering notifications
+    /// - when the resource is deleted/destroyed, if the resulting notification recipient list of jobs is empty, the notification will be deleted ; otherwise, the notification will be updated, removing the job ids from the deleted resource
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

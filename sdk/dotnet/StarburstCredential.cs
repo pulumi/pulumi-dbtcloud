@@ -37,30 +37,20 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_starburst_credential.my_starburst_credential
-    /// 
-    ///   id = "project_id:credential_id"
-    /// 
+    /// to = dbtcloud_starburst_credential.my_starburst_credential
+    /// id = "project_id:credential_id"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_starburst_credential.my_starburst_credential
-    /// 
-    ///   id = "12345:6789"
-    /// 
+    /// to = dbtcloud_starburst_credential.my_starburst_credential
+    /// id = "12345:6789"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/starburstCredential:StarburstCredential my_starburst_credential "project_id:credential_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/starburstCredential:StarburstCredential my_starburst_credential 12345:6789
     /// ```
     /// </summary>

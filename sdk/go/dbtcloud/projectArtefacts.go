@@ -45,30 +45,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_project_artefacts.my_artefacts
-//
-//	id = "project_id"
-//
+// to = dbtcloud_project_artefacts.my_artefacts
+// id = "projectId"
 // }
 //
 // import {
-//
-//	to = dbtcloud_project_artefacts.my_artefacts
-//
-//	id = "12345"
-//
+// to = dbtcloud_project_artefacts.my_artefacts
+// id = "12345"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts "project_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts 12345
 // ```
 type ProjectArtefacts struct {

@@ -67,30 +67,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_ip_restrictions_rule.my_rule
- * 
- *   id = &#34;ip_restriction_rule_id&#34;
- * 
+ * to = dbtcloud_ip_restrictions_rule.my_rule
+ * id = &#34;ipRestrictionRuleId&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_ip_restrictions_rule.my_rule
- * 
- *   id = &#34;12345&#34;
- * 
+ * to = dbtcloud_ip_restrictions_rule.my_rule
+ * id = &#34;12345&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule &#34;ip_restriction_rule_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule 12345
  * ```
  * 

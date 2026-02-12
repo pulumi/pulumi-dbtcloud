@@ -69,30 +69,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_environment_variable.test_environment_variable
- * 
- *   id = &#34;project_id:environment_variable_name&#34;
- * 
+ * to = dbtcloud_environment_variable.test_environment_variable
+ * id = &#34;project_id:environment_variable_name&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_environment_variable.test_environment_variable
- * 
- *   id = &#34;12345:DBT_ENV_VAR&#34;
- * 
+ * to = dbtcloud_environment_variable.test_environment_variable
+ * id = &#34;12345:DBT_ENV_VAR&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable &#34;project_id:environment_variable_name&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable 12345:DBT_ENV_VAR
  * ```
  * 

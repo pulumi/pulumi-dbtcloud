@@ -47,30 +47,20 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_ip_restrictions_rule.my_rule
-    /// 
-    ///   id = "ip_restriction_rule_id"
-    /// 
+    /// to = dbtcloud_ip_restrictions_rule.my_rule
+    /// id = "IpRestrictionRuleId"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_ip_restrictions_rule.my_rule
-    /// 
-    ///   id = "12345"
-    /// 
+    /// to = dbtcloud_ip_restrictions_rule.my_rule
+    /// id = "12345"
     /// }
     /// 
     /// using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule "ip_restriction_rule_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule 12345
     /// ```
     /// </summary>

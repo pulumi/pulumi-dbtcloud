@@ -166,30 +166,20 @@ class EnvironmentVariable(pulumi.CustomResource):
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_environment_variable.test_environment_variable
-
-          id = "project_id:environment_variable_name"
-
+        to = dbtcloud_environment_variable.test_environment_variable
+        id = "project_id:environment_variable_name"
         }
 
         import {
-
-          to = dbtcloud_environment_variable.test_environment_variable
-
-          id = "12345:DBT_ENV_VAR"
-
+        to = dbtcloud_environment_variable.test_environment_variable
+        id = "12345:DBT_ENV_VAR"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable "project_id:environment_variable_name"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable 12345:DBT_ENV_VAR
         ```
 
@@ -235,30 +225,20 @@ class EnvironmentVariable(pulumi.CustomResource):
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_environment_variable.test_environment_variable
-
-          id = "project_id:environment_variable_name"
-
+        to = dbtcloud_environment_variable.test_environment_variable
+        id = "project_id:environment_variable_name"
         }
 
         import {
-
-          to = dbtcloud_environment_variable.test_environment_variable
-
-          id = "12345:DBT_ENV_VAR"
-
+        to = dbtcloud_environment_variable.test_environment_variable
+        id = "12345:DBT_ENV_VAR"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable "project_id:environment_variable_name"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable 12345:DBT_ENV_VAR
         ```
 

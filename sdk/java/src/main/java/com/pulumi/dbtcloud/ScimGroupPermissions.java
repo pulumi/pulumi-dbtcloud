@@ -16,6 +16,24 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Manage permissions for groups that are externally managed (e.g., SCIM, manually created).
+ * This resource ONLY manages permissions and never creates or deletes groups.
+ * 
+ * ⚠️  Do not use this resource alongside `dbtCloudGroup` or `dbtCloudGroupPartialPermissions`
+ * for the same group to avoid permission conflicts.
+ * 
+ * This resource is ideal for SCIM-managed environments where groups exist in your identity
+ * provider and are synced to dbt Cloud, but you want to manage permissions via Terraform.
+ * 
+ * **Use Case Guidelines:**
+ * - Use `dbtCloudGroup` when Terraform creates and fully manages the group
+ * - Use `dbtCloudGroupPartialPermissions` when multiple Pulumi Stacks manage the same Terraform-created group
+ * - Use `dbtCloudScimGroupPermissions` when the group is externally managed (e.g., SCIM, manual creation) and you only want to manage permissions
+ * 
+ * The resource currently requires a Service Token with Account Admin access.
+ * 
+ */
 @ResourceType(type="dbtcloud:index/scimGroupPermissions:ScimGroupPermissions")
 public class ScimGroupPermissions extends com.pulumi.resources.CustomResource {
     /**

@@ -37,32 +37,21 @@ namespace Pulumi.DbtCloud
     /// ## Import
     /// 
     /// Model notifications are imported using the environment ID where the notifications are enabled
-    /// 
     /// Using import blocks (requires Terraform &gt;= 1.5)
-    /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_model_notifications.my_model_notifications
-    /// 
-    ///   id = "environment_id"
-    /// 
+    /// to = dbtcloud_model_notifications.my_model_notifications
+    /// id = "EnvironmentId"
     /// }
     /// 
     /// import {
-    /// 
-    ///   to = dbtcloud_model_notifications.my_model_notifications
-    /// 
-    ///   id = "12345"
-    /// 
+    /// to = dbtcloud_model_notifications.my_model_notifications
+    /// id = "12345"
     /// }
     /// 
     /// Using the older import command
     /// 
     /// ```sh
     /// $ pulumi import dbtcloud:index/modelNotifications:ModelNotifications my_model_notifications "environment_id"
-    /// ```
-    /// 
-    /// ```sh
     /// $ pulumi import dbtcloud:index/modelNotifications:ModelNotifications my_model_notifications 12345
     /// ```
     /// </summary>

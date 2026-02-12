@@ -104,6 +104,14 @@ class PartialLicenseMap(pulumi.CustomResource):
                  sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
+        Set up partial license maps with only a subset of SSO groups for a given license type.
+
+        This resource is different from `LicenseMap` as it allows having different resources setting up different groups for the same license type.
+
+        If a company uses only one Terraform project/workspace to manage all their dbt Cloud Account config, it is recommended to use `dbt_cloud_license_map` instead of `dbt_cloud_group_partial_license_map`.
+
+        > This is a new resource like other "partial" ones and any feedback is welcome in the GitHub repository.
+
         ## Example Usage
 
         ```python
@@ -136,6 +144,14 @@ class PartialLicenseMap(pulumi.CustomResource):
                  args: PartialLicenseMapArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Set up partial license maps with only a subset of SSO groups for a given license type.
+
+        This resource is different from `LicenseMap` as it allows having different resources setting up different groups for the same license type.
+
+        If a company uses only one Terraform project/workspace to manage all their dbt Cloud Account config, it is recommended to use `dbt_cloud_license_map` instead of `dbt_cloud_group_partial_license_map`.
+
+        > This is a new resource like other "partial" ones and any feedback is welcome in the GitHub repository.
+
         ## Example Usage
 
         ```python

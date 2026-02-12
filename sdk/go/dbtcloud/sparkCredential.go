@@ -45,30 +45,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_spark_credential.my_spark_credential
-//
-//	id = "project_id:credential_id"
-//
+// to = dbtcloud_spark_credential.my_spark_credential
+// id = "project_id:credential_id"
 // }
 //
 // import {
-//
-//	to = dbtcloud_spark_credential.my_spark_credential
-//
-//	id = "12345:6789"
-//
+// to = dbtcloud_spark_credential.my_spark_credential
+// id = "12345:6789"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/sparkCredential:SparkCredential my_spark_credential "project_id:credential_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/sparkCredential:SparkCredential my_spark_credential 12345:6789
 // ```
 type SparkCredential struct {

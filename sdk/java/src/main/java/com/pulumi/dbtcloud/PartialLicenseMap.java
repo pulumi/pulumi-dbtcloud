@@ -15,6 +15,14 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * Set up partial license maps with only a subset of SSO groups for a given license type.
+ * 
+ * This resource is different from `dbtcloud.LicenseMap` as it allows having different resources setting up different groups for the same license type.
+ * 
+ * If a company uses only one Terraform project/workspace to manage all their dbt Cloud Account config, it is recommended to use `dbtCloudLicenseMap` instead of `dbtCloudGroupPartialLicenseMap`.
+ * 
+ * &gt; This is a new resource like other &#34;partial&#34; ones and any feedback is welcome in the GitHub repository.
+ * 
  * ## Example Usage
  * 
  * <pre>

@@ -65,30 +65,20 @@ import javax.annotation.Nullable;
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
- * 
  * import {
- * 
- *   to = dbtcloud_lineage_integration.my_lineage_integration
- * 
- *   id = &#34;projet_id:lineage_integration_id&#34;
- * 
+ * to = dbtcloud_lineage_integration.my_lineage_integration
+ * id = &#34;projet_id:lineage_integration_id&#34;
  * }
  * 
  * import {
- * 
- *   to = dbtcloud_lineage_integration.my_lineage_integration
- * 
- *   id = &#34;123:4567&#34;
- * 
+ * to = dbtcloud_lineage_integration.my_lineage_integration
+ * id = &#34;123:4567&#34;
  * }
  * 
  * using the older import command
  * 
  * ```sh
  * $ pulumi import dbtcloud:index/lineageIntegration:LineageIntegration my_lineage_integration &#34;projet_id:lineage_integration_id&#34;
- * ```
- * 
- * ```sh
  * $ pulumi import dbtcloud:index/lineageIntegration:LineageIntegration my_lineage_integration 123:4567
  * ```
  * 

@@ -87,24 +87,19 @@ __all__ = [
     'GetServiceTokenServiceTokenPermissionArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BigquerySemanticLayerCredentialConfigurationArgsDict(TypedDict):
-        adapter_version: pulumi.Input[_builtins.str]
-        """
-        The adapter version
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the configuration
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        The ID of the project
-        """
-elif False:
-    BigquerySemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class BigquerySemanticLayerCredentialConfigurationArgsDict(TypedDict):
+    adapter_version: pulumi.Input[_builtins.str]
+    """
+    The adapter version
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the configuration
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    The ID of the project
+    """
 
 @pulumi.input_type
 class BigquerySemanticLayerCredentialConfigurationArgs:
@@ -158,38 +153,35 @@ class BigquerySemanticLayerCredentialConfigurationArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class BigquerySemanticLayerCredentialCredentialArgsDict(TypedDict):
-        dataset: pulumi.Input[_builtins.str]
-        """
-        Default dataset name
-        """
-        num_threads: pulumi.Input[_builtins.int]
-        """
-        Number of threads to use
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        Project ID to create the BigQuery credential in
-        """
-        connection_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
-        """
-        credential_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The internal credential ID
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of this resource. Contains the project ID and the credential ID.
-        """
-        is_active: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the BigQuery credential is active
-        """
-elif False:
-    BigquerySemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+class BigquerySemanticLayerCredentialCredentialArgsDict(TypedDict):
+    dataset: pulumi.Input[_builtins.str]
+    """
+    Default dataset name
+    """
+    num_threads: pulumi.Input[_builtins.int]
+    """
+    Number of threads to use
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    Project ID to create the BigQuery credential in
+    """
+    connection_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
+    """
+    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The internal credential ID
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of this resource. Contains the project ID and the credential ID.
+    """
+    is_active: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the BigQuery credential is active
+    """
 
 @pulumi.input_type
 class BigquerySemanticLayerCredentialCredentialArgs:
@@ -307,22 +299,19 @@ class BigquerySemanticLayerCredentialCredentialArgs:
         pulumi.set(self, "is_active", value)
 
 
-if not MYPY:
-    class DatabricksSemanticLayerCredentialConfigurationArgsDict(TypedDict):
-        adapter_version: pulumi.Input[_builtins.str]
-        """
-        The adapter version
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the configuration
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        The ID of the project
-        """
-elif False:
-    DatabricksSemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class DatabricksSemanticLayerCredentialConfigurationArgsDict(TypedDict):
+    adapter_version: pulumi.Input[_builtins.str]
+    """
+    The adapter version
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the configuration
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    The ID of the project
+    """
 
 @pulumi.input_type
 class DatabricksSemanticLayerCredentialConfigurationArgs:
@@ -376,46 +365,43 @@ class DatabricksSemanticLayerCredentialConfigurationArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class DatabricksSemanticLayerCredentialCredentialArgsDict(TypedDict):
-        project_id: pulumi.Input[_builtins.int]
-        """
-        Project ID to create the Databricks credential in
-        """
-        token: pulumi.Input[_builtins.str]
-        """
-        Token for Databricks user
-        """
-        adapter_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
-        """
-        catalog: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The catalog where to create models (only for the databricks adapter)
-        """
-        credential_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The system Databricks credential ID
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of this resource. Contains the project ID and the credential ID.
-        """
-        schema: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
-        """
-        semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
-        """
-        target_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Target name
-        """
-elif False:
-    DatabricksSemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+class DatabricksSemanticLayerCredentialCredentialArgsDict(TypedDict):
+    project_id: pulumi.Input[_builtins.int]
+    """
+    Project ID to create the Databricks credential in
+    """
+    token: pulumi.Input[_builtins.str]
+    """
+    Token for Databricks user
+    """
+    adapter_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
+    """
+    catalog: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The catalog where to create models (only for the databricks adapter)
+    """
+    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The system Databricks credential ID
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of this resource. Contains the project ID and the credential ID.
+    """
+    schema: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+    """
+    semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
+    """
+    target_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Target name
+    """
 
 @pulumi.input_type
 class DatabricksSemanticLayerCredentialCredentialArgs:
@@ -574,46 +560,43 @@ class DatabricksSemanticLayerCredentialCredentialArgs:
         pulumi.set(self, "target_name", value)
 
 
-if not MYPY:
-    class GlobalConnectionApacheSparkArgsDict(TypedDict):
-        cluster: pulumi.Input[_builtins.str]
-        """
-        Spark cluster for the connection
-        """
-        host: pulumi.Input[_builtins.str]
-        """
-        Hostname of the connection
-        """
-        method: pulumi.Input[_builtins.str]
-        """
-        Authentication method for the connection (http or thrift).
-        """
-        auth: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Auth
-        """
-        connect_retries: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Connection retries. Default=0
-        """
-        connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Connection time out in seconds. Default=10
-        """
-        organization: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Organization ID
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Port for the connection. Default=443
-        """
-        user: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        User
-        """
-elif False:
-    GlobalConnectionApacheSparkArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionApacheSparkArgsDict(TypedDict):
+    cluster: pulumi.Input[_builtins.str]
+    """
+    Spark cluster for the connection
+    """
+    host: pulumi.Input[_builtins.str]
+    """
+    Hostname of the connection
+    """
+    method: pulumi.Input[_builtins.str]
+    """
+    Authentication method for the connection (http or thrift).
+    """
+    auth: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Auth
+    """
+    connect_retries: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Connection retries. Default=0
+    """
+    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Connection time out in seconds. Default=10
+    """
+    organization: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Organization ID
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Port for the connection. Default=443
+    """
+    user: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    User
+    """
 
 @pulumi.input_type
 class GlobalConnectionApacheSparkArgs:
@@ -763,58 +746,55 @@ class GlobalConnectionApacheSparkArgs:
         pulumi.set(self, "user", value)
 
 
-if not MYPY:
-    class GlobalConnectionAthenaArgsDict(TypedDict):
-        database: pulumi.Input[_builtins.str]
-        """
-        Specify the database (data catalog) to build models into (lowercase only).
-        """
-        region_name: pulumi.Input[_builtins.str]
-        """
-        AWS region of your Athena instance.
-        """
-        s3_staging_dir: pulumi.Input[_builtins.str]
-        """
-        S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
-        """
-        num_boto3_retries: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
-        """
-        num_iceberg_retries: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
-        """
-        num_retries: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of times to retry a failing query.
-        """
-        poll_interval: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Interval in seconds to use for polling the status of query results in Athena.
-        """
-        s3_data_dir: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
-        """
-        s3_data_naming: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        How to generate table paths in the S3 data directory.
-        """
-        s3_tmp_table_dir: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
-        """
-        spark_work_group: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Identifier of Athena Spark workgroup for running Python models.
-        """
-        work_group: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Identifier of Athena workgroup.
-        """
-elif False:
-    GlobalConnectionAthenaArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionAthenaArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    Specify the database (data catalog) to build models into (lowercase only).
+    """
+    region_name: pulumi.Input[_builtins.str]
+    """
+    AWS region of your Athena instance.
+    """
+    s3_staging_dir: pulumi.Input[_builtins.str]
+    """
+    S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
+    """
+    num_boto3_retries: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
+    """
+    num_iceberg_retries: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
+    """
+    num_retries: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of times to retry a failing query.
+    """
+    poll_interval: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Interval in seconds to use for polling the status of query results in Athena.
+    """
+    s3_data_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
+    """
+    s3_data_naming: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    How to generate table paths in the S3 data directory.
+    """
+    s3_tmp_table_dir: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
+    """
+    spark_work_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Identifier of Athena Spark workgroup for running Python models.
+    """
+    work_group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Identifier of Athena workgroup.
+    """
 
 @pulumi.input_type
 class GlobalConnectionAthenaArgs:
@@ -1012,118 +992,115 @@ class GlobalConnectionAthenaArgs:
         pulumi.set(self, "work_group", value)
 
 
-if not MYPY:
-    class GlobalConnectionBigqueryArgsDict(TypedDict):
-        gcp_project_id: pulumi.Input[_builtins.str]
-        """
-        The GCP project ID to use for the connection
-        """
-        application_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OAuth Client ID. Required when using 'external-oauth-wif' authentication.
-        """
-        application_secret: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
-        """
-        auth_provider_x509_cert_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
-        """
-        auth_uri: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Auth URI for the Service Account. Required when using 'service-account-json' authentication.
-        """
-        client_email: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Service Account email. Required when using 'service-account-json' authentication.
-        """
-        client_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Client ID of the Service Account. Required when using 'service-account-json' authentication.
-        """
-        client_x509_cert_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
-        """
-        dataproc_cluster_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Dataproc cluster name for PySpark workloads
-        """
-        dataproc_region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Google Cloud region for PySpark workloads on Dataproc
-        """
-        deployment_env_auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
-        """
-        execution_project: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Project to bill for query execution
-        """
-        gcs_bucket: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        URI for a Google Cloud Storage bucket to host Python code executed via Datapro
-        """
-        impersonate_service_account: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Service Account to impersonate when running queries
-        """
-        job_creation_timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum timeout for the job creation step
-        """
-        job_execution_timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
-        """
-        job_retry_deadline_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Total number of seconds to wait while retrying the same query
-        """
-        location: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Location to create new Datasets in
-        """
-        maximum_bytes_billed: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Max number of bytes that can be billed for a given BigQuery query
-        """
-        priority: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The priority with which to execute BigQuery queries (batch or interactive)
-        """
-        private_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Private Key for the Service Account. Required when using 'service-account-json' authentication.
-        """
-        private_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
-        """
-        retries: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of retries for queries
-        """
-        scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        OAuth scopes for the BigQuery connection
-        """
-        timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
-        """
-        token_uri: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Token URI for the Service Account. Required when using 'service-account-json' authentication.
-        """
-        use_latest_adapter: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
-        """
-elif False:
-    GlobalConnectionBigqueryArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionBigqueryArgsDict(TypedDict):
+    gcp_project_id: pulumi.Input[_builtins.str]
+    """
+    The GCP project ID to use for the connection
+    """
+    application_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+    """
+    application_secret: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+    """
+    auth_provider_x509_cert_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+    """
+    auth_uri: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Auth URI for the Service Account. Required when using 'service-account-json' authentication.
+    """
+    client_email: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Service Account email. Required when using 'service-account-json' authentication.
+    """
+    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Client ID of the Service Account. Required when using 'service-account-json' authentication.
+    """
+    client_x509_cert_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
+    """
+    dataproc_cluster_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Dataproc cluster name for PySpark workloads
+    """
+    dataproc_region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Google Cloud region for PySpark workloads on Dataproc
+    """
+    deployment_env_auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
+    """
+    execution_project: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Project to bill for query execution
+    """
+    gcs_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    URI for a Google Cloud Storage bucket to host Python code executed via Datapro
+    """
+    impersonate_service_account: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Service Account to impersonate when running queries
+    """
+    job_creation_timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum timeout for the job creation step
+    """
+    job_execution_timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
+    """
+    job_retry_deadline_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Total number of seconds to wait while retrying the same query
+    """
+    location: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Location to create new Datasets in
+    """
+    maximum_bytes_billed: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Max number of bytes that can be billed for a given BigQuery query
+    """
+    priority: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The priority with which to execute BigQuery queries (batch or interactive)
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Private Key for the Service Account. Required when using 'service-account-json' authentication.
+    """
+    private_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+    """
+    retries: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of retries for queries
+    """
+    scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    OAuth scopes for the BigQuery connection
+    """
+    timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
+    """
+    token_uri: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Token URI for the Service Account. Required when using 'service-account-json' authentication.
+    """
+    use_latest_adapter: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
+    """
 
 @pulumi.input_type
 class GlobalConnectionBigqueryArgs:
@@ -1563,30 +1540,27 @@ class GlobalConnectionBigqueryArgs:
         pulumi.set(self, "use_latest_adapter", value)
 
 
-if not MYPY:
-    class GlobalConnectionDatabricksArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        The hostname of the Databricks cluster or SQL warehouse.
-        """
-        http_path: pulumi.Input[_builtins.str]
-        """
-        The HTTP path of the Databricks cluster or SQL warehouse.
-        """
-        catalog: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Catalog name if Unity Catalog is enabled in your Databricks workspace.
-        """
-        client_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Required to enable Databricks OAuth authentication for IDE developers.
-        """
-        client_secret: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Required to enable Databricks OAuth authentication for IDE developers.
-        """
-elif False:
-    GlobalConnectionDatabricksArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionDatabricksArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    The hostname of the Databricks cluster or SQL warehouse.
+    """
+    http_path: pulumi.Input[_builtins.str]
+    """
+    The HTTP path of the Databricks cluster or SQL warehouse.
+    """
+    catalog: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Catalog name if Unity Catalog is enabled in your Databricks workspace.
+    """
+    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Required to enable Databricks OAuth authentication for IDE developers.
+    """
+    client_secret: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Required to enable Databricks OAuth authentication for IDE developers.
+    """
 
 @pulumi.input_type
 class GlobalConnectionDatabricksArgs:
@@ -1673,34 +1647,31 @@ class GlobalConnectionDatabricksArgs:
         pulumi.set(self, "client_secret", value)
 
 
-if not MYPY:
-    class GlobalConnectionFabricArgsDict(TypedDict):
-        database: pulumi.Input[_builtins.str]
-        """
-        The database to connect to for this connection.
-        """
-        server: pulumi.Input[_builtins.str]
-        """
-        The server hostname.
-        """
-        login_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port to connect to for this connection. Default=1433
-        """
-        query_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
-        """
-        retries: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
-        """
-elif False:
-    GlobalConnectionFabricArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionFabricArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    The database to connect to for this connection.
+    """
+    server: pulumi.Input[_builtins.str]
+    """
+    The server hostname.
+    """
+    login_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port to connect to for this connection. Default=1433
+    """
+    query_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+    """
+    retries: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+    """
 
 @pulumi.input_type
 class GlobalConnectionFabricArgs:
@@ -1803,26 +1774,23 @@ class GlobalConnectionFabricArgs:
         pulumi.set(self, "retries", value)
 
 
-if not MYPY:
-    class GlobalConnectionPostgresArgsDict(TypedDict):
-        dbname: pulumi.Input[_builtins.str]
-        """
-        The database name for this connection.
-        """
-        hostname: pulumi.Input[_builtins.str]
-        """
-        The hostname of the database.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port to connect to for this connection. Default=5432
-        """
-        ssh_tunnel: NotRequired[pulumi.Input['GlobalConnectionPostgresSshTunnelArgsDict']]
-        """
-        PostgreSQL SSH Tunnel configuration
-        """
-elif False:
-    GlobalConnectionPostgresArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionPostgresArgsDict(TypedDict):
+    dbname: pulumi.Input[_builtins.str]
+    """
+    The database name for this connection.
+    """
+    hostname: pulumi.Input[_builtins.str]
+    """
+    The hostname of the database.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port to connect to for this connection. Default=5432
+    """
+    ssh_tunnel: NotRequired[pulumi.Input['GlobalConnectionPostgresSshTunnelArgsDict']]
+    """
+    PostgreSQL SSH Tunnel configuration
+    """
 
 @pulumi.input_type
 class GlobalConnectionPostgresArgs:
@@ -1893,30 +1861,27 @@ class GlobalConnectionPostgresArgs:
         pulumi.set(self, "ssh_tunnel", value)
 
 
-if not MYPY:
-    class GlobalConnectionPostgresSshTunnelArgsDict(TypedDict):
-        hostname: pulumi.Input[_builtins.str]
-        """
-        The hostname for the SSH tunnel.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        The HTTP port for the SSH tunnel.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        The username to use for the SSH tunnel.
-        """
-        id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ID of the SSH tunnel connection.
-        """
-        public_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The SSH public key generated to allow connecting via SSH tunnel.
-        """
-elif False:
-    GlobalConnectionPostgresSshTunnelArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionPostgresSshTunnelArgsDict(TypedDict):
+    hostname: pulumi.Input[_builtins.str]
+    """
+    The hostname for the SSH tunnel.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    The HTTP port for the SSH tunnel.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    The username to use for the SSH tunnel.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ID of the SSH tunnel connection.
+    """
+    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The SSH public key generated to allow connecting via SSH tunnel.
+    """
 
 @pulumi.input_type
 class GlobalConnectionPostgresSshTunnelArgs:
@@ -2002,26 +1967,23 @@ class GlobalConnectionPostgresSshTunnelArgs:
         pulumi.set(self, "public_key", value)
 
 
-if not MYPY:
-    class GlobalConnectionRedshiftArgsDict(TypedDict):
-        dbname: pulumi.Input[_builtins.str]
-        """
-        The database name for this connection.
-        """
-        hostname: pulumi.Input[_builtins.str]
-        """
-        The hostname of the data warehouse.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port to connect to for this connection. Default=5432
-        """
-        ssh_tunnel: NotRequired[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgsDict']]
-        """
-        Redshift SSH Tunnel configuration
-        """
-elif False:
-    GlobalConnectionRedshiftArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionRedshiftArgsDict(TypedDict):
+    dbname: pulumi.Input[_builtins.str]
+    """
+    The database name for this connection.
+    """
+    hostname: pulumi.Input[_builtins.str]
+    """
+    The hostname of the data warehouse.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port to connect to for this connection. Default=5432
+    """
+    ssh_tunnel: NotRequired[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgsDict']]
+    """
+    Redshift SSH Tunnel configuration
+    """
 
 @pulumi.input_type
 class GlobalConnectionRedshiftArgs:
@@ -2092,30 +2054,27 @@ class GlobalConnectionRedshiftArgs:
         pulumi.set(self, "ssh_tunnel", value)
 
 
-if not MYPY:
-    class GlobalConnectionRedshiftSshTunnelArgsDict(TypedDict):
-        hostname: pulumi.Input[_builtins.str]
-        """
-        The hostname for the SSH tunnel.
-        """
-        port: pulumi.Input[_builtins.int]
-        """
-        The HTTP port for the SSH tunnel.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        The username to use for the SSH tunnel.
-        """
-        id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The ID of the SSH tunnel connection.
-        """
-        public_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The SSH public key generated to allow connecting via SSH tunnel.
-        """
-elif False:
-    GlobalConnectionRedshiftSshTunnelArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionRedshiftSshTunnelArgsDict(TypedDict):
+    hostname: pulumi.Input[_builtins.str]
+    """
+    The hostname for the SSH tunnel.
+    """
+    port: pulumi.Input[_builtins.int]
+    """
+    The HTTP port for the SSH tunnel.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    The username to use for the SSH tunnel.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The ID of the SSH tunnel connection.
+    """
+    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The SSH public key generated to allow connecting via SSH tunnel.
+    """
 
 @pulumi.input_type
 class GlobalConnectionRedshiftSshTunnelArgs:
@@ -2201,42 +2160,39 @@ class GlobalConnectionRedshiftSshTunnelArgs:
         pulumi.set(self, "public_key", value)
 
 
-if not MYPY:
-    class GlobalConnectionSnowflakeArgsDict(TypedDict):
-        account: pulumi.Input[_builtins.str]
-        """
-        The Snowflake account name
-        """
-        database: pulumi.Input[_builtins.str]
-        """
-        The default database for the connection
-        """
-        warehouse: pulumi.Input[_builtins.str]
-        """
-        The default Snowflake Warehouse to use for the connection
-        """
-        allow_sso: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
-        """
-        client_session_keep_alive: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
-        """
-        oauth_client_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
-        """
-        oauth_client_secret: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Snowflake role to use when running queries on the connection
-        """
-elif False:
-    GlobalConnectionSnowflakeArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionSnowflakeArgsDict(TypedDict):
+    account: pulumi.Input[_builtins.str]
+    """
+    The Snowflake account name
+    """
+    database: pulumi.Input[_builtins.str]
+    """
+    The default database for the connection
+    """
+    warehouse: pulumi.Input[_builtins.str]
+    """
+    The default Snowflake Warehouse to use for the connection
+    """
+    allow_sso: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
+    """
+    client_session_keep_alive: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
+    """
+    oauth_client_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
+    """
+    oauth_client_secret: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Snowflake role to use when running queries on the connection
+    """
 
 @pulumi.input_type
 class GlobalConnectionSnowflakeArgs:
@@ -2370,22 +2326,19 @@ class GlobalConnectionSnowflakeArgs:
         pulumi.set(self, "role", value)
 
 
-if not MYPY:
-    class GlobalConnectionStarburstArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        The hostname of the account to connect to.
-        """
-        method: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication method. Only LDAP for now.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port to connect to for this connection. Default=443
-        """
-elif False:
-    GlobalConnectionStarburstArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionStarburstArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    The hostname of the account to connect to.
+    """
+    method: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication method. Only LDAP for now.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port to connect to for this connection. Default=443
+    """
 
 @pulumi.input_type
 class GlobalConnectionStarburstArgs:
@@ -2441,34 +2394,31 @@ class GlobalConnectionStarburstArgs:
         pulumi.set(self, "port", value)
 
 
-if not MYPY:
-    class GlobalConnectionSynapseArgsDict(TypedDict):
-        database: pulumi.Input[_builtins.str]
-        """
-        The database to connect to for this connection.
-        """
-        host: pulumi.Input[_builtins.str]
-        """
-        The server hostname.
-        """
-        login_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The port to connect to for this connection. Default=1433
-        """
-        query_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
-        """
-        retries: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
-        """
-elif False:
-    GlobalConnectionSynapseArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionSynapseArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    The database to connect to for this connection.
+    """
+    host: pulumi.Input[_builtins.str]
+    """
+    The server hostname.
+    """
+    login_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The port to connect to for this connection. Default=1433
+    """
+    query_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+    """
+    retries: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+    """
 
 @pulumi.input_type
 class GlobalConnectionSynapseArgs:
@@ -2571,30 +2521,27 @@ class GlobalConnectionSynapseArgs:
         pulumi.set(self, "retries", value)
 
 
-if not MYPY:
-    class GlobalConnectionTeradataArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        The hostname of the database.
-        """
-        tmode: pulumi.Input[_builtins.str]
-        """
-        The transaction mode to use for the connection.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port to connect to for this connection. Default=1025
-        """
-        request_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
-        """
-        retries: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
-        """
-elif False:
-    GlobalConnectionTeradataArgsDict: TypeAlias = Mapping[str, Any]
+class GlobalConnectionTeradataArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    The hostname of the database.
+    """
+    tmode: pulumi.Input[_builtins.str]
+    """
+    The transaction mode to use for the connection.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port to connect to for this connection. Default=1025
+    """
+    request_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
+    """
+    retries: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
+    """
 
 @pulumi.input_type
 class GlobalConnectionTeradataArgs:
@@ -2681,30 +2628,27 @@ class GlobalConnectionTeradataArgs:
         pulumi.set(self, "retries", value)
 
 
-if not MYPY:
-    class GroupGroupPermissionArgsDict(TypedDict):
-        all_projects: pulumi.Input[_builtins.bool]
-        """
-        Whether access should be provided for all projects or not.
-        """
-        permission_set: pulumi.Input[_builtins.str]
-        """
-        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Project ID to apply this permission to for this group.
-        """
-        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        What types of environments to apply Write permissions to.
-        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-        The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
-        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
-        """
-elif False:
-    GroupGroupPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class GroupGroupPermissionArgsDict(TypedDict):
+    all_projects: pulumi.Input[_builtins.bool]
+    """
+    Whether access should be provided for all projects or not.
+    """
+    permission_set: pulumi.Input[_builtins.str]
+    """
+    Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Project ID to apply this permission to for this group.
+    """
+    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    What types of environments to apply Write permissions to.
+    Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+    The values allowed are `all`, `development`, `staging`, `production` and `other`.
+    Not setting a value is the same as selecting `all`.
+    Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+    """
 
 @pulumi.input_type
 class GroupGroupPermissionArgs:
@@ -2783,30 +2727,27 @@ class GroupGroupPermissionArgs:
         pulumi.set(self, "writable_environment_categories", value)
 
 
-if not MYPY:
-    class GroupPartialPermissionsGroupPermissionArgsDict(TypedDict):
-        all_projects: pulumi.Input[_builtins.bool]
-        """
-        Whether access should be provided for all projects or not.
-        """
-        permission_set: pulumi.Input[_builtins.str]
-        """
-        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Project ID to apply this permission to for this group.
-        """
-        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        What types of environments to apply Write permissions to.
-        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-        The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
-        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
-        """
-elif False:
-    GroupPartialPermissionsGroupPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class GroupPartialPermissionsGroupPermissionArgsDict(TypedDict):
+    all_projects: pulumi.Input[_builtins.bool]
+    """
+    Whether access should be provided for all projects or not.
+    """
+    permission_set: pulumi.Input[_builtins.str]
+    """
+    Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Project ID to apply this permission to for this group.
+    """
+    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    What types of environments to apply Write permissions to.
+    Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+    The values allowed are `all`, `development`, `staging`, `production` and `other`.
+    Not setting a value is the same as selecting `all`.
+    Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+    """
 
 @pulumi.input_type
 class GroupPartialPermissionsGroupPermissionArgs:
@@ -2885,26 +2826,23 @@ class GroupPartialPermissionsGroupPermissionArgs:
         pulumi.set(self, "writable_environment_categories", value)
 
 
-if not MYPY:
-    class IpRestrictionsRuleCidrArgsDict(TypedDict):
-        cidr: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IP CIDR range (can be IPv4 or IPv6)
-        """
-        cidr_ipv6: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IPv6 CIDR range (read-only)
-        """
-        id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        ID of the CIDR range
-        """
-        ip_restriction_rule_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        ID of the IP restriction rule
-        """
-elif False:
-    IpRestrictionsRuleCidrArgsDict: TypeAlias = Mapping[str, Any]
+class IpRestrictionsRuleCidrArgsDict(TypedDict):
+    cidr: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IP CIDR range (can be IPv4 or IPv6)
+    """
+    cidr_ipv6: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IPv6 CIDR range (read-only)
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    ID of the CIDR range
+    """
+    ip_restriction_rule_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    ID of the IP restriction rule
+    """
 
 @pulumi.input_type
 class IpRestrictionsRuleCidrArgs:
@@ -2977,14 +2915,11 @@ class IpRestrictionsRuleCidrArgs:
         pulumi.set(self, "ip_restriction_rule_id", value)
 
 
-if not MYPY:
-    class JobExecutionArgsDict(TypedDict):
-        timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds before the job times out
-        """
-elif False:
-    JobExecutionArgsDict: TypeAlias = Mapping[str, Any]
+class JobExecutionArgsDict(TypedDict):
+    timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds before the job times out
+    """
 
 @pulumi.input_type
 class JobExecutionArgs:
@@ -3009,22 +2944,19 @@ class JobExecutionArgs:
         pulumi.set(self, "timeout_seconds", value)
 
 
-if not MYPY:
-    class JobJobCompletionTriggerConditionArgsDict(TypedDict):
-        job_id: pulumi.Input[_builtins.int]
-        """
-        The ID of the job that would trigger this job after completion.
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        The ID of the project where the trigger job is running in.
-        """
-        statuses: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        List of statuses to trigger the job on. Possible values are `success`, `error` and `canceled`.
-        """
-elif False:
-    JobJobCompletionTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+class JobJobCompletionTriggerConditionArgsDict(TypedDict):
+    job_id: pulumi.Input[_builtins.int]
+    """
+    The ID of the job that would trigger this job after completion.
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    The ID of the project where the trigger job is running in.
+    """
+    statuses: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    List of statuses to trigger the job on. Possible values are `success`, `error` and `canceled`.
+    """
 
 @pulumi.input_type
 class JobJobCompletionTriggerConditionArgs:
@@ -3078,26 +3010,23 @@ class JobJobCompletionTriggerConditionArgs:
         pulumi.set(self, "statuses", value)
 
 
-if not MYPY:
-    class JobTriggersArgsDict(TypedDict):
-        git_provider_webhook: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the job runs automatically on PR creation
-        """
-        github_webhook: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the job runs automatically on PR creation
-        """
-        on_merge: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the job runs automatically once a PR is merged
-        """
-        schedule: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the job runs on a schedule
-        """
-elif False:
-    JobTriggersArgsDict: TypeAlias = Mapping[str, Any]
+class JobTriggersArgsDict(TypedDict):
+    git_provider_webhook: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the job runs automatically on PR creation
+    """
+    github_webhook: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the job runs automatically on PR creation
+    """
+    on_merge: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the job runs automatically once a PR is merged
+    """
+    schedule: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the job runs on a schedule
+    """
 
 @pulumi.input_type
 class JobTriggersArgs:
@@ -3170,22 +3099,19 @@ class JobTriggersArgs:
         pulumi.set(self, "schedule", value)
 
 
-if not MYPY:
-    class PostgresSemanticLayerCredentialConfigurationArgsDict(TypedDict):
-        adapter_version: pulumi.Input[_builtins.str]
-        """
-        The adapter version
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the configuration
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        The ID of the project
-        """
-elif False:
-    PostgresSemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class PostgresSemanticLayerCredentialConfigurationArgsDict(TypedDict):
+    adapter_version: pulumi.Input[_builtins.str]
+    """
+    The adapter version
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the configuration
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    The ID of the project
+    """
 
 @pulumi.input_type
 class PostgresSemanticLayerCredentialConfigurationArgs:
@@ -3239,54 +3165,51 @@ class PostgresSemanticLayerCredentialConfigurationArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class PostgresSemanticLayerCredentialCredentialArgsDict(TypedDict):
-        project_id: pulumi.Input[_builtins.int]
-        """
-        Project ID to create the Postgres/Redshift/AlloyDB credential in.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        Username for Postgres/Redshift/AlloyDB
-        """
-        credential_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The system Postgres/Redshift/AlloyDB credential ID.
-        """
-        default_schema: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of this resource. Contains the project ID and the credential ID.
-        """
-        is_active: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the Postgres/Redshift/AlloyDB credential is active
-        """
-        num_threads: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Number of threads to use (required for Redshift)
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Password for Postgres/Redshift/AlloyDB
-        """
-        semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
-        """
-        target_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Default schema name
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
-        """
-elif False:
-    PostgresSemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+class PostgresSemanticLayerCredentialCredentialArgsDict(TypedDict):
+    project_id: pulumi.Input[_builtins.int]
+    """
+    Project ID to create the Postgres/Redshift/AlloyDB credential in.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    Username for Postgres/Redshift/AlloyDB
+    """
+    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The system Postgres/Redshift/AlloyDB credential ID.
+    """
+    default_schema: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of this resource. Contains the project ID and the credential ID.
+    """
+    is_active: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the Postgres/Redshift/AlloyDB credential is active
+    """
+    num_threads: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Number of threads to use (required for Redshift)
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Password for Postgres/Redshift/AlloyDB
+    """
+    semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
+    """
+    target_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Default schema name
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
+    """
 
 @pulumi.input_type
 class PostgresSemanticLayerCredentialCredentialArgs:
@@ -3469,22 +3392,19 @@ class PostgresSemanticLayerCredentialCredentialArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class RedshiftSemanticLayerCredentialConfigurationArgsDict(TypedDict):
-        adapter_version: pulumi.Input[_builtins.str]
-        """
-        The adapter version
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the configuration
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        The ID of the project
-        """
-elif False:
-    RedshiftSemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class RedshiftSemanticLayerCredentialConfigurationArgsDict(TypedDict):
+    adapter_version: pulumi.Input[_builtins.str]
+    """
+    The adapter version
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the configuration
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    The ID of the project
+    """
 
 @pulumi.input_type
 class RedshiftSemanticLayerCredentialConfigurationArgs:
@@ -3538,42 +3458,39 @@ class RedshiftSemanticLayerCredentialConfigurationArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class RedshiftSemanticLayerCredentialCredentialArgsDict(TypedDict):
-        default_schema: pulumi.Input[_builtins.str]
-        """
-        Default schema name
-        """
-        num_threads: pulumi.Input[_builtins.int]
-        """
-        Number of threads to use
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        Project ID to create the Redshift credential in
-        """
-        credential_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The internal credential ID
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of this resource. Contains the project ID and the credential ID.
-        """
-        is_active: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the Redshift credential is active
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The password for the Redshift account
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The username for the Redshift account.
-        """
-elif False:
-    RedshiftSemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+class RedshiftSemanticLayerCredentialCredentialArgsDict(TypedDict):
+    default_schema: pulumi.Input[_builtins.str]
+    """
+    Default schema name
+    """
+    num_threads: pulumi.Input[_builtins.int]
+    """
+    Number of threads to use
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    Project ID to create the Redshift credential in
+    """
+    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The internal credential ID
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of this resource. Contains the project ID and the credential ID.
+    """
+    is_active: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the Redshift credential is active
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The password for the Redshift account
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The username for the Redshift account.
+    """
 
 @pulumi.input_type
 class RedshiftSemanticLayerCredentialCredentialArgs:
@@ -3707,30 +3624,27 @@ class RedshiftSemanticLayerCredentialCredentialArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class ScimGroupPartialPermissionsPermissionArgsDict(TypedDict):
-        all_projects: pulumi.Input[_builtins.bool]
-        """
-        Whether access should be provided for all projects or not.
-        """
-        permission_set: pulumi.Input[_builtins.str]
-        """
-        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Project ID to apply this permission to for this group.
-        """
-        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        What types of environments to apply Write permissions to.
-        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-        The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
-        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
-        """
-elif False:
-    ScimGroupPartialPermissionsPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class ScimGroupPartialPermissionsPermissionArgsDict(TypedDict):
+    all_projects: pulumi.Input[_builtins.bool]
+    """
+    Whether access should be provided for all projects or not.
+    """
+    permission_set: pulumi.Input[_builtins.str]
+    """
+    Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Project ID to apply this permission to for this group.
+    """
+    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    What types of environments to apply Write permissions to.
+    Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+    The values allowed are `all`, `development`, `staging`, `production` and `other`.
+    Not setting a value is the same as selecting `all`.
+    Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+    """
 
 @pulumi.input_type
 class ScimGroupPartialPermissionsPermissionArgs:
@@ -3809,30 +3723,27 @@ class ScimGroupPartialPermissionsPermissionArgs:
         pulumi.set(self, "writable_environment_categories", value)
 
 
-if not MYPY:
-    class ScimGroupPermissionsPermissionArgsDict(TypedDict):
-        all_projects: pulumi.Input[_builtins.bool]
-        """
-        Whether access should be provided for all projects or not.
-        """
-        permission_set: pulumi.Input[_builtins.str]
-        """
-        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Project ID to apply this permission to for this group.
-        """
-        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        What types of environments to apply Write permissions to.
-        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-        The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
-        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
-        """
-elif False:
-    ScimGroupPermissionsPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class ScimGroupPermissionsPermissionArgsDict(TypedDict):
+    all_projects: pulumi.Input[_builtins.bool]
+    """
+    Whether access should be provided for all projects or not.
+    """
+    permission_set: pulumi.Input[_builtins.str]
+    """
+    Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Project ID to apply this permission to for this group.
+    """
+    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    What types of environments to apply Write permissions to.
+    Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+    The values allowed are `all`, `development`, `staging`, `production` and `other`.
+    Not setting a value is the same as selecting `all`.
+    Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+    """
 
 @pulumi.input_type
 class ScimGroupPermissionsPermissionArgs:
@@ -3911,30 +3822,27 @@ class ScimGroupPermissionsPermissionArgs:
         pulumi.set(self, "writable_environment_categories", value)
 
 
-if not MYPY:
-    class ServiceTokenServiceTokenPermissionArgsDict(TypedDict):
-        all_projects: pulumi.Input[_builtins.bool]
-        """
-        Whether or not to apply this permission to all projects for this service token
-        """
-        permission_set: pulumi.Input[_builtins.str]
-        """
-        Set of permissions to apply
-        """
-        project_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Project ID to apply this permission to for this service token
-        """
-        writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        What types of environments to apply Write permissions to.
-        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-        The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
-        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
-        """
-elif False:
-    ServiceTokenServiceTokenPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class ServiceTokenServiceTokenPermissionArgsDict(TypedDict):
+    all_projects: pulumi.Input[_builtins.bool]
+    """
+    Whether or not to apply this permission to all projects for this service token
+    """
+    permission_set: pulumi.Input[_builtins.str]
+    """
+    Set of permissions to apply
+    """
+    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Project ID to apply this permission to for this service token
+    """
+    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    What types of environments to apply Write permissions to.
+    Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+    The values allowed are `all`, `development`, `staging`, `production` and `other`.
+    Not setting a value is the same as selecting `all`.
+    Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+    """
 
 @pulumi.input_type
 class ServiceTokenServiceTokenPermissionArgs:
@@ -4013,22 +3921,19 @@ class ServiceTokenServiceTokenPermissionArgs:
         pulumi.set(self, "writable_environment_categories", value)
 
 
-if not MYPY:
-    class SnowflakeSemanticLayerCredentialConfigurationArgsDict(TypedDict):
-        adapter_version: pulumi.Input[_builtins.str]
-        """
-        The adapter version
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the configuration
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        The ID of the project
-        """
-elif False:
-    SnowflakeSemanticLayerCredentialConfigurationArgsDict: TypeAlias = Mapping[str, Any]
+class SnowflakeSemanticLayerCredentialConfigurationArgsDict(TypedDict):
+    adapter_version: pulumi.Input[_builtins.str]
+    """
+    The adapter version
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the configuration
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    The ID of the project
+    """
 
 @pulumi.input_type
 class SnowflakeSemanticLayerCredentialConfigurationArgs:
@@ -4082,70 +3987,67 @@ class SnowflakeSemanticLayerCredentialConfigurationArgs:
         pulumi.set(self, "project_id", value)
 
 
-if not MYPY:
-    class SnowflakeSemanticLayerCredentialCredentialArgsDict(TypedDict):
-        auth_type: pulumi.Input[_builtins.str]
-        """
-        The type of Snowflake credential ('password' or 'keypair')
-        """
-        num_threads: pulumi.Input[_builtins.int]
-        """
-        Number of threads to use
-        """
-        project_id: pulumi.Input[_builtins.int]
-        """
-        Project ID to create the Snowflake credential in
-        """
-        credential_id: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The internal credential ID
-        """
-        database: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The catalog to connect use
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ID of this resource. Contains the project ID and the credential ID.
-        """
-        is_active: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the Snowflake credential is active
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The password for the Snowflake account
-        """
-        private_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The private key for the Snowflake account
-        """
-        private_key_passphrase: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The passphrase for the private key
-        """
-        role: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The role to assume
-        """
-        schema: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
-        """
-        semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
-        """
-        user: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
-        """
-        warehouse: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The warehouse to use
-        """
-elif False:
-    SnowflakeSemanticLayerCredentialCredentialArgsDict: TypeAlias = Mapping[str, Any]
+class SnowflakeSemanticLayerCredentialCredentialArgsDict(TypedDict):
+    auth_type: pulumi.Input[_builtins.str]
+    """
+    The type of Snowflake credential ('password' or 'keypair')
+    """
+    num_threads: pulumi.Input[_builtins.int]
+    """
+    Number of threads to use
+    """
+    project_id: pulumi.Input[_builtins.int]
+    """
+    Project ID to create the Snowflake credential in
+    """
+    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The internal credential ID
+    """
+    database: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The catalog to connect use
+    """
+    id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ID of this resource. Contains the project ID and the credential ID.
+    """
+    is_active: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the Snowflake credential is active
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The password for the Snowflake account
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The private key for the Snowflake account
+    """
+    private_key_passphrase: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The passphrase for the private key
+    """
+    role: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The role to assume
+    """
+    schema: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+    """
+    semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
+    """
+    user: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
+    """
+    warehouse: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The warehouse to use
+    """
 
 @pulumi.input_type
 class SnowflakeSemanticLayerCredentialCredentialArgs:
@@ -4391,22 +4293,19 @@ class SnowflakeSemanticLayerCredentialCredentialArgs:
         pulumi.set(self, "warehouse", value)
 
 
-if not MYPY:
-    class GetJobJobCompletionTriggerConditionArgsDict(TypedDict):
-        job_id: _builtins.int
-        """
-        The ID of the job that would trigger this job after completion.
-        """
-        project_id: _builtins.int
-        """
-        The ID of the project where the trigger job is running in.
-        """
-        statuses: Sequence[_builtins.str]
-        """
-        List of statuses to trigger the job on.
-        """
-elif False:
-    GetJobJobCompletionTriggerConditionArgsDict: TypeAlias = Mapping[str, Any]
+class GetJobJobCompletionTriggerConditionArgsDict(TypedDict):
+    job_id: _builtins.int
+    """
+    The ID of the job that would trigger this job after completion.
+    """
+    project_id: _builtins.int
+    """
+    The ID of the project where the trigger job is running in.
+    """
+    statuses: Sequence[_builtins.str]
+    """
+    List of statuses to trigger the job on.
+    """
 
 @pulumi.input_type
 class GetJobJobCompletionTriggerConditionArgs:
@@ -4460,42 +4359,39 @@ class GetJobJobCompletionTriggerConditionArgs:
         pulumi.set(self, "statuses", value)
 
 
-if not MYPY:
-    class GetRunsFilterArgsDict(TypedDict):
-        environment_id: NotRequired[_builtins.int]
-        """
-        The ID of the environment
-        """
-        job_definition_id: NotRequired[_builtins.int]
-        """
-        The ID of the job definition
-        """
-        limit: NotRequired[_builtins.int]
-        """
-        The limit of the runs
-        """
-        project_id: NotRequired[_builtins.int]
-        """
-        The ID of the project
-        """
-        pull_request_id: NotRequired[_builtins.int]
-        """
-        The ID of the pull request
-        """
-        status: NotRequired[_builtins.int]
-        """
-        The status of the run
-        """
-        status_in: NotRequired[_builtins.str]
-        """
-        The status of the run
-        """
-        trigger_id: NotRequired[_builtins.int]
-        """
-        The ID of the trigger
-        """
-elif False:
-    GetRunsFilterArgsDict: TypeAlias = Mapping[str, Any]
+class GetRunsFilterArgsDict(TypedDict):
+    environment_id: NotRequired[_builtins.int]
+    """
+    The ID of the environment
+    """
+    job_definition_id: NotRequired[_builtins.int]
+    """
+    The ID of the job definition
+    """
+    limit: NotRequired[_builtins.int]
+    """
+    The limit of the runs
+    """
+    project_id: NotRequired[_builtins.int]
+    """
+    The ID of the project
+    """
+    pull_request_id: NotRequired[_builtins.int]
+    """
+    The ID of the pull request
+    """
+    status: NotRequired[_builtins.int]
+    """
+    The status of the run
+    """
+    status_in: NotRequired[_builtins.str]
+    """
+    The status of the run
+    """
+    trigger_id: NotRequired[_builtins.int]
+    """
+    The ID of the trigger
+    """
 
 @pulumi.input_type
 class GetRunsFilterArgs:
@@ -4632,30 +4528,27 @@ class GetRunsFilterArgs:
         pulumi.set(self, "trigger_id", value)
 
 
-if not MYPY:
-    class GetServiceTokenServiceTokenPermissionArgsDict(TypedDict):
-        all_projects: _builtins.bool
-        """
-        Whether or not to apply this permission to all projects for this service token
-        """
-        permission_set: _builtins.str
-        """
-        Set of permissions to apply
-        """
-        project_id: _builtins.int
-        """
-        Project ID to apply this permission to for this service token
-        """
-        writable_environment_categories: Sequence[_builtins.str]
-        """
-        What types of environments to apply Write permissions to.
-        Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
-        The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
-        Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
-        """
-elif False:
-    GetServiceTokenServiceTokenPermissionArgsDict: TypeAlias = Mapping[str, Any]
+class GetServiceTokenServiceTokenPermissionArgsDict(TypedDict):
+    all_projects: _builtins.bool
+    """
+    Whether or not to apply this permission to all projects for this service token
+    """
+    permission_set: _builtins.str
+    """
+    Set of permissions to apply
+    """
+    project_id: _builtins.int
+    """
+    Project ID to apply this permission to for this service token
+    """
+    writable_environment_categories: Sequence[_builtins.str]
+    """
+    What types of environments to apply Write permissions to.
+    Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
+    The values allowed are `all`, `development`, `staging`, `production` and `other`.
+    Not setting a value is the same as selecting `all`.
+    Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
+    """
 
 @pulumi.input_type
 class GetServiceTokenServiceTokenPermissionArgs:

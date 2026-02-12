@@ -72,30 +72,20 @@ import (
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
-//
 // import {
-//
-//	to = dbtcloud_environment.prod_environment
-//
-//	id = "project_id:environment_id"
-//
+// to = dbtcloud_environment.prod_environment
+// id = "project_id:environment_id"
 // }
 //
 // import {
-//
-//	to = dbtcloud_environment.prod_environment
-//
-//	id = "12345:6789"
-//
+// to = dbtcloud_environment.prod_environment
+// id = "12345:6789"
 // }
 //
 // using the older import command
 //
 // ```sh
 // $ pulumi import dbtcloud:index/environment:Environment prod_environment "project_id:environment_id"
-// ```
-//
-// ```sh
 // $ pulumi import dbtcloud:index/environment:Environment prod_environment 12345:6789
 // ```
 type Environment struct {

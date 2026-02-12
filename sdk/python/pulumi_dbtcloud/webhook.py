@@ -329,30 +329,20 @@ class Webhook(pulumi.CustomResource):
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_webhook.my_webhook
-
-          id = "webhook_id"
-
+        to = dbtcloud_webhook.my_webhook
+        id = "webhook_id"
         }
 
         import {
-
-          to = dbtcloud_webhook.my_webhook
-
-          id = "wsu_abcdefg"
-
+        to = dbtcloud_webhook.my_webhook
+        id = "wsu_abcdefg"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/webhook:Webhook my_webhook "webhook_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
         ```
 
@@ -397,30 +387,20 @@ class Webhook(pulumi.CustomResource):
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
-
         import {
-
-          to = dbtcloud_webhook.my_webhook
-
-          id = "webhook_id"
-
+        to = dbtcloud_webhook.my_webhook
+        id = "webhook_id"
         }
 
         import {
-
-          to = dbtcloud_webhook.my_webhook
-
-          id = "wsu_abcdefg"
-
+        to = dbtcloud_webhook.my_webhook
+        id = "wsu_abcdefg"
         }
 
         using the older import command
 
         ```sh
         $ pulumi import dbtcloud:index/webhook:Webhook my_webhook "webhook_id"
-        ```
-
-        ```sh
         $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
         ```
 

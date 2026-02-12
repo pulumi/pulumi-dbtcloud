@@ -12,6 +12,8 @@ namespace Pulumi.DbtCloud
     public static class GetJobs
     {
         /// <summary>
+        /// Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -46,6 +48,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetJobsResult>("dbtcloud:index/getJobs:getJobs", args ?? new GetJobsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -80,6 +84,8 @@ namespace Pulumi.DbtCloud
             => global::Pulumi.Deployment.Instance.Invoke<GetJobsResult>("dbtcloud:index/getJobs:getJobs", args ?? new GetJobsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
