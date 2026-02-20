@@ -295,6 +295,12 @@ namespace Pulumi.DbtCloud
         public Output<Outputs.GlobalConnectionRedshift?> Redshift { get; private set; } = null!;
 
         /// <summary>
+        /// Salesforce connection configuration.
+        /// </summary>
+        [Output("salesforce")]
+        public Output<Outputs.GlobalConnectionSalesforce?> Salesforce { get; private set; } = null!;
+
+        /// <summary>
         /// Snowflake connection configuration
         /// </summary>
         [Output("snowflake")]
@@ -423,6 +429,12 @@ namespace Pulumi.DbtCloud
         public Input<Inputs.GlobalConnectionRedshiftArgs>? Redshift { get; set; }
 
         /// <summary>
+        /// Salesforce connection configuration.
+        /// </summary>
+        [Input("salesforce")]
+        public Input<Inputs.GlobalConnectionSalesforceArgs>? Salesforce { get; set; }
+
+        /// <summary>
         /// Snowflake connection configuration
         /// </summary>
         [Input("snowflake")]
@@ -522,6 +534,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("redshift")]
         public Input<Inputs.GlobalConnectionRedshiftGetArgs>? Redshift { get; set; }
+
+        /// <summary>
+        /// Salesforce connection configuration.
+        /// </summary>
+        [Input("salesforce")]
+        public Input<Inputs.GlobalConnectionSalesforceGetArgs>? Salesforce { get; set; }
 
         /// <summary>
         /// Snowflake connection configuration

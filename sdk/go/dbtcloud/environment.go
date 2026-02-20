@@ -63,6 +63,21 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Deployment environment with a primary profile (binds connection + credentials via profile)
+//			// NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
+//			// primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
+//			// overwriting the profile's own settings and affecting other environments sharing that profile.
+//			_, err = dbtcloud.NewEnvironment(ctx, "profiled_environment", &dbtcloud.EnvironmentArgs{
+//				DbtVersion:       pulumi.String("latest"),
+//				Name:             pulumi.String("Staging"),
+//				ProjectId:        pulumi.Any(dbtProject.Id),
+//				Type:             pulumi.String("deployment"),
+//				DeploymentType:   pulumi.String("staging"),
+//				PrimaryProfileId: pulumi.Any(myProfile.ProfileId),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -111,6 +126,8 @@ type Environment struct {
 	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// The name of the environment
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	PrimaryProfileId pulumi.IntOutput `pulumi:"primaryProfileId"`
 	// Project ID to create the environment in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The type of environment (must be either development or deployment)
@@ -175,6 +192,8 @@ type environmentState struct {
 	IsActive *bool `pulumi:"isActive"`
 	// The name of the environment
 	Name *string `pulumi:"name"`
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	PrimaryProfileId *int `pulumi:"primaryProfileId"`
 	// Project ID to create the environment in
 	ProjectId *int `pulumi:"projectId"`
 	// The type of environment (must be either development or deployment)
@@ -204,6 +223,8 @@ type EnvironmentState struct {
 	IsActive pulumi.BoolPtrInput
 	// The name of the environment
 	Name pulumi.StringPtrInput
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	PrimaryProfileId pulumi.IntPtrInput
 	// Project ID to create the environment in
 	ProjectId pulumi.IntPtrInput
 	// The type of environment (must be either development or deployment)
@@ -235,6 +256,8 @@ type environmentArgs struct {
 	IsActive *bool `pulumi:"isActive"`
 	// The name of the environment
 	Name *string `pulumi:"name"`
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	PrimaryProfileId *int `pulumi:"primaryProfileId"`
 	// Project ID to create the environment in
 	ProjectId int `pulumi:"projectId"`
 	// The type of environment (must be either development or deployment)
@@ -263,6 +286,8 @@ type EnvironmentArgs struct {
 	IsActive pulumi.BoolPtrInput
 	// The name of the environment
 	Name pulumi.StringPtrInput
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	PrimaryProfileId pulumi.IntPtrInput
 	// Project ID to create the environment in
 	ProjectId pulumi.IntInput
 	// The type of environment (must be either development or deployment)
@@ -406,6 +431,11 @@ func (o EnvironmentOutput) IsActive() pulumi.BoolOutput {
 // The name of the environment
 func (o EnvironmentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+func (o EnvironmentOutput) PrimaryProfileId() pulumi.IntOutput {
+	return o.ApplyT(func(v *Environment) pulumi.IntOutput { return v.PrimaryProfileId }).(pulumi.IntOutput)
 }
 
 // Project ID to create the environment in

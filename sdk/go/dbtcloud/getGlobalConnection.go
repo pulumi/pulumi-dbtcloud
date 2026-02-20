@@ -78,6 +78,8 @@ type LookupGlobalConnectionResult struct {
 	PrivateLinkEndpointId string `pulumi:"privateLinkEndpointId"`
 	// Redshift connection configuration
 	Redshift GetGlobalConnectionRedshift `pulumi:"redshift"`
+	// Salesforce connection configuration.
+	Salesforce GetGlobalConnectionSalesforce `pulumi:"salesforce"`
 	// Snowflake connection configuration
 	Snowflake GetGlobalConnectionSnowflake `pulumi:"snowflake"`
 	// Starburst/Trino connection configuration.
@@ -183,6 +185,11 @@ func (o LookupGlobalConnectionResultOutput) PrivateLinkEndpointId() pulumi.Strin
 // Redshift connection configuration
 func (o LookupGlobalConnectionResultOutput) Redshift() GetGlobalConnectionRedshiftOutput {
 	return o.ApplyT(func(v LookupGlobalConnectionResult) GetGlobalConnectionRedshift { return v.Redshift }).(GetGlobalConnectionRedshiftOutput)
+}
+
+// Salesforce connection configuration.
+func (o LookupGlobalConnectionResultOutput) Salesforce() GetGlobalConnectionSalesforceOutput {
+	return o.ApplyT(func(v LookupGlobalConnectionResult) GetGlobalConnectionSalesforce { return v.Salesforce }).(GetGlobalConnectionSalesforceOutput)
 }
 
 // Snowflake connection configuration

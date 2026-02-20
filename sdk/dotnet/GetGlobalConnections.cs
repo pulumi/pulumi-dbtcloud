@@ -80,7 +80,7 @@ namespace Pulumi.DbtCloud
     public sealed class GetGlobalConnectionsResult
     {
         /// <summary>
-        /// A set of all the connections
+        /// A list of all the connections
         /// </summary>
         public readonly ImmutableArray<Outputs.GetGlobalConnectionsConnectionResult> Connections;
         /// <summary>

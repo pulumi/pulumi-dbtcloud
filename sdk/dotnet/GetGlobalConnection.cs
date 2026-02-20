@@ -158,6 +158,10 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly Outputs.GetGlobalConnectionRedshiftResult Redshift;
         /// <summary>
+        /// Salesforce connection configuration.
+        /// </summary>
+        public readonly Outputs.GetGlobalConnectionSalesforceResult Salesforce;
+        /// <summary>
         /// Snowflake connection configuration
         /// </summary>
         public readonly Outputs.GetGlobalConnectionSnowflakeResult Snowflake;
@@ -202,6 +206,8 @@ namespace Pulumi.DbtCloud
 
             Outputs.GetGlobalConnectionRedshiftResult redshift,
 
+            Outputs.GetGlobalConnectionSalesforceResult salesforce,
+
             Outputs.GetGlobalConnectionSnowflakeResult snowflake,
 
             Outputs.GetGlobalConnectionStarburstResult starburst,
@@ -223,6 +229,7 @@ namespace Pulumi.DbtCloud
             Postgres = postgres;
             PrivateLinkEndpointId = privateLinkEndpointId;
             Redshift = redshift;
+            Salesforce = salesforce;
             Snowflake = snowflake;
             Starburst = starburst;
             Synapse = synapse;

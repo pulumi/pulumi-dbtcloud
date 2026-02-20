@@ -255,6 +255,8 @@ type GlobalConnection struct {
 	PrivateLinkEndpointId pulumi.StringPtrOutput `pulumi:"privateLinkEndpointId"`
 	// Redshift connection configuration
 	Redshift GlobalConnectionRedshiftPtrOutput `pulumi:"redshift"`
+	// Salesforce connection configuration.
+	Salesforce GlobalConnectionSalesforcePtrOutput `pulumi:"salesforce"`
 	// Snowflake connection configuration
 	Snowflake GlobalConnectionSnowflakePtrOutput `pulumi:"snowflake"`
 	// Starburst/Trino connection configuration.
@@ -318,6 +320,8 @@ type globalConnectionState struct {
 	PrivateLinkEndpointId *string `pulumi:"privateLinkEndpointId"`
 	// Redshift connection configuration
 	Redshift *GlobalConnectionRedshift `pulumi:"redshift"`
+	// Salesforce connection configuration.
+	Salesforce *GlobalConnectionSalesforce `pulumi:"salesforce"`
 	// Snowflake connection configuration
 	Snowflake *GlobalConnectionSnowflake `pulumi:"snowflake"`
 	// Starburst/Trino connection configuration.
@@ -352,6 +356,8 @@ type GlobalConnectionState struct {
 	PrivateLinkEndpointId pulumi.StringPtrInput
 	// Redshift connection configuration
 	Redshift GlobalConnectionRedshiftPtrInput
+	// Salesforce connection configuration.
+	Salesforce GlobalConnectionSalesforcePtrInput
 	// Snowflake connection configuration
 	Snowflake GlobalConnectionSnowflakePtrInput
 	// Starburst/Trino connection configuration.
@@ -386,6 +392,8 @@ type globalConnectionArgs struct {
 	PrivateLinkEndpointId *string `pulumi:"privateLinkEndpointId"`
 	// Redshift connection configuration
 	Redshift *GlobalConnectionRedshift `pulumi:"redshift"`
+	// Salesforce connection configuration.
+	Salesforce *GlobalConnectionSalesforce `pulumi:"salesforce"`
 	// Snowflake connection configuration
 	Snowflake *GlobalConnectionSnowflake `pulumi:"snowflake"`
 	// Starburst/Trino connection configuration.
@@ -417,6 +425,8 @@ type GlobalConnectionArgs struct {
 	PrivateLinkEndpointId pulumi.StringPtrInput
 	// Redshift connection configuration
 	Redshift GlobalConnectionRedshiftPtrInput
+	// Salesforce connection configuration.
+	Salesforce GlobalConnectionSalesforcePtrInput
 	// Snowflake connection configuration
 	Snowflake GlobalConnectionSnowflakePtrInput
 	// Starburst/Trino connection configuration.
@@ -571,6 +581,11 @@ func (o GlobalConnectionOutput) PrivateLinkEndpointId() pulumi.StringPtrOutput {
 // Redshift connection configuration
 func (o GlobalConnectionOutput) Redshift() GlobalConnectionRedshiftPtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionRedshiftPtrOutput { return v.Redshift }).(GlobalConnectionRedshiftPtrOutput)
+}
+
+// Salesforce connection configuration.
+func (o GlobalConnectionOutput) Salesforce() GlobalConnectionSalesforcePtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionSalesforcePtrOutput { return v.Salesforce }).(GlobalConnectionSalesforcePtrOutput)
 }
 
 // Snowflake connection configuration

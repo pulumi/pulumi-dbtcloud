@@ -39,6 +39,18 @@ import * as utilities from "./utilities";
  *     type: "development",
  *     connectionId: myOtherGlobalConnection.id,
  * });
+ * // Deployment environment with a primary profile (binds connection + credentials via profile)
+ * // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
+ * // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
+ * // overwriting the profile's own settings and affecting other environments sharing that profile.
+ * const profiledEnvironment = new dbtcloud.Environment("profiled_environment", {
+ *     dbtVersion: "latest",
+ *     name: "Staging",
+ *     projectId: dbtProject.id,
+ *     type: "deployment",
+ *     deploymentType: "staging",
+ *     primaryProfileId: myProfile.profileId,
+ * });
  * ```
  *
  * ## Import
@@ -130,6 +142,10 @@ export class Environment extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     */
+    declare public readonly primaryProfileId: pulumi.Output<number>;
+    /**
      * Project ID to create the environment in
      */
     declare public readonly projectId: pulumi.Output<number>;
@@ -165,6 +181,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["extendedAttributesId"] = state?.extendedAttributesId;
             resourceInputs["isActive"] = state?.isActive;
             resourceInputs["name"] = state?.name;
+            resourceInputs["primaryProfileId"] = state?.primaryProfileId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["type"] = state?.type;
             resourceInputs["useCustomBranch"] = state?.useCustomBranch;
@@ -185,6 +202,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["extendedAttributesId"] = args?.extendedAttributesId;
             resourceInputs["isActive"] = args?.isActive;
             resourceInputs["name"] = args?.name;
+            resourceInputs["primaryProfileId"] = args?.primaryProfileId;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["type"] = args?.type;
             resourceInputs["useCustomBranch"] = args?.useCustomBranch;
@@ -240,6 +258,10 @@ export interface EnvironmentState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     */
+    primaryProfileId?: pulumi.Input<number>;
+    /**
      * Project ID to create the environment in
      */
     projectId?: pulumi.Input<number>;
@@ -293,6 +315,10 @@ export interface EnvironmentArgs {
      * The name of the environment
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     */
+    primaryProfileId?: pulumi.Input<number>;
     /**
      * Project ID to create the environment in
      */

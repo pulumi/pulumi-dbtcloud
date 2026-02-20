@@ -749,6 +749,35 @@
                 }
             }
         },
+        "dbtcloud:index/GlobalConnectionSalesforce:GlobalConnectionSalesforce": {
+            "properties": {
+                "dataTransformRunTimeout": {
+                    "type": "integer",
+                    "description": "Timeout in seconds for data transformation runs. Default=300\n"
+                },
+                "database": {
+                    "type": "string",
+                    "description": "The target database name. Default=default\n"
+                },
+                "loginUrl": {
+                    "type": "string",
+                    "description": "The Salesforce instance URL (e.g., https://login.salesforce.com)\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "loginUrl"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "dataTransformRunTimeout",
+                        "database",
+                        "loginUrl"
+                    ]
+                }
+            }
+        },
         "dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake": {
             "properties": {
                 "account": {
@@ -1501,6 +1530,10 @@
                     "type": "string",
                     "description": "The name of the environment\n"
                 },
+                "primaryProfileId": {
+                    "type": "integer",
+                    "description": "The ID of the primary profile for this environment\n"
+                },
                 "projectId": {
                     "type": "integer",
                     "description": "The project ID to which the environment belong\n"
@@ -1525,6 +1558,7 @@
                 "environmentId",
                 "extendedAttributesId",
                 "name",
+                "primaryProfileId",
                 "projectId",
                 "type",
                 "useCustomBranch"
@@ -2017,6 +2051,33 @@
                 "port",
                 "publicKey",
                 "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getGlobalConnectionSalesforce:getGlobalConnectionSalesforce": {
+            "properties": {
+                "dataTransformRunTimeout": {
+                    "type": "integer",
+                    "description": "Timeout in seconds for data transformation runs.\n"
+                },
+                "database": {
+                    "type": "string",
+                    "description": "The target database name.\n"
+                },
+                "loginUrl": {
+                    "type": "string",
+                    "description": "The Salesforce instance URL (e.g., https://login.salesforce.com)\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dataTransformRunTimeout",
+                "database",
+                "loginUrl"
             ],
             "language": {
                 "nodejs": {
@@ -2820,6 +2881,53 @@
                 "name",
                 "privateLinkEndpointUrl",
                 "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "dbtcloud:index/getProfilesProfile:getProfilesProfile": {
+            "properties": {
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the connection used by this profile\n"
+                },
+                "credentialsId": {
+                    "type": "integer",
+                    "description": "The ID of the credentials used by this profile\n"
+                },
+                "extendedAttributesId": {
+                    "type": "integer",
+                    "description": "The ID of the extended attributes for this profile\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource. Contains the project ID and the profile ID.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Unique identifier for the profile\n"
+                },
+                "profileId": {
+                    "type": "integer",
+                    "description": "The ID of the profile\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The project ID to which the profile belongs\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "connectionId",
+                "credentialsId",
+                "extendedAttributesId",
+                "id",
+                "key",
+                "profileId",
+                "projectId"
             ],
             "language": {
                 "nodejs": {
@@ -4190,7 +4298,7 @@
             }
         },
         "dbtcloud:index/environment:Environment": {
-            "description": "Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. \u003e In August 2024, dbt Cloud released the \"global connection\" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the\u003cspan pulumi-lang-nodejs=\" connectionId \" pulumi-lang-dotnet=\" ConnectionId \" pulumi-lang-go=\" connectionId \" pulumi-lang-python=\" connection_id \" pulumi-lang-yaml=\" connectionId \" pulumi-lang-java=\" connectionId \"\u003e connection_id \u003c/span\u003eas an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst ciEnvironment = new dbtcloud.Environment(\"ci_environment\", {\n    dbtVersion: \"latest\",\n    name: \"CI\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    credentialId: ciCredential.credentialId,\n    connectionId: myGlobalConnection.id,\n});\n// we can also set a deployment environment as being the production one\nconst prodEnvironment = new dbtcloud.Environment(\"prod_environment\", {\n    dbtVersion: \"1.7.0-latest\",\n    name: \"Prod\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    credentialId: prodCredential.credentialId,\n    deploymentType: \"production\",\n    connectionId: myLegacyConnection.connectionId,\n});\n// Creating a development environment\nconst devEnvironment = new dbtcloud.Environment(\"dev_environment\", {\n    dbtVersion: \"latest\",\n    name: \"Dev\",\n    projectId: dbtProject.id,\n    type: \"development\",\n    connectionId: myOtherGlobalConnection.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nci_environment = dbtcloud.Environment(\"ci_environment\",\n    dbt_version=\"latest\",\n    name=\"CI\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    credential_id=ci_credential[\"credentialId\"],\n    connection_id=my_global_connection[\"id\"])\n# we can also set a deployment environment as being the production one\nprod_environment = dbtcloud.Environment(\"prod_environment\",\n    dbt_version=\"1.7.0-latest\",\n    name=\"Prod\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    credential_id=prod_credential[\"credentialId\"],\n    deployment_type=\"production\",\n    connection_id=my_legacy_connection[\"connectionId\"])\n# Creating a development environment\ndev_environment = dbtcloud.Environment(\"dev_environment\",\n    dbt_version=\"latest\",\n    name=\"Dev\",\n    project_id=dbt_project[\"id\"],\n    type=\"development\",\n    connection_id=my_other_global_connection[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciEnvironment = new DbtCloud.Environment(\"ci_environment\", new()\n    {\n        DbtVersion = \"latest\",\n        Name = \"CI\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        CredentialId = ciCredential.CredentialId,\n        ConnectionId = myGlobalConnection.Id,\n    });\n\n    // we can also set a deployment environment as being the production one\n    var prodEnvironment = new DbtCloud.Environment(\"prod_environment\", new()\n    {\n        DbtVersion = \"1.7.0-latest\",\n        Name = \"Prod\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        CredentialId = prodCredential.CredentialId,\n        DeploymentType = \"production\",\n        ConnectionId = myLegacyConnection.ConnectionId,\n    });\n\n    // Creating a development environment\n    var devEnvironment = new DbtCloud.Environment(\"dev_environment\", new()\n    {\n        DbtVersion = \"latest\",\n        Name = \"Dev\",\n        ProjectId = dbtProject.Id,\n        Type = \"development\",\n        ConnectionId = myOtherGlobalConnection.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewEnvironment(ctx, \"ci_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:   pulumi.String(\"latest\"),\n\t\t\tName:         pulumi.String(\"CI\"),\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tType:         pulumi.String(\"deployment\"),\n\t\t\tCredentialId: pulumi.Any(ciCredential.CredentialId),\n\t\t\tConnectionId: pulumi.Any(myGlobalConnection.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// we can also set a deployment environment as being the production one\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"prod_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:     pulumi.String(\"1.7.0-latest\"),\n\t\t\tName:           pulumi.String(\"Prod\"),\n\t\t\tProjectId:      pulumi.Any(dbtProject.Id),\n\t\t\tType:           pulumi.String(\"deployment\"),\n\t\t\tCredentialId:   pulumi.Any(prodCredential.CredentialId),\n\t\t\tDeploymentType: pulumi.String(\"production\"),\n\t\t\tConnectionId:   pulumi.Any(myLegacyConnection.ConnectionId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Creating a development environment\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"dev_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:   pulumi.String(\"latest\"),\n\t\t\tName:         pulumi.String(\"Dev\"),\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tType:         pulumi.String(\"development\"),\n\t\t\tConnectionId: pulumi.Any(myOtherGlobalConnection.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Environment;\nimport com.pulumi.dbtcloud.EnvironmentArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciEnvironment = new Environment(\"ciEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"latest\")\n            .name(\"CI\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .credentialId(ciCredential.credentialId())\n            .connectionId(myGlobalConnection.id())\n            .build());\n\n        // we can also set a deployment environment as being the production one\n        var prodEnvironment = new Environment(\"prodEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"1.7.0-latest\")\n            .name(\"Prod\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .credentialId(prodCredential.credentialId())\n            .deploymentType(\"production\")\n            .connectionId(myLegacyConnection.connectionId())\n            .build());\n\n        // Creating a development environment\n        var devEnvironment = new Environment(\"devEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"latest\")\n            .name(\"Dev\")\n            .projectId(dbtProject.id())\n            .type(\"development\")\n            .connectionId(myOtherGlobalConnection.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciEnvironment:\n    type: dbtcloud:Environment\n    name: ci_environment\n    properties:\n      dbtVersion: latest\n      name: CI\n      projectId: ${dbtProject.id}\n      type: deployment\n      credentialId: ${ciCredential.credentialId}\n      connectionId: ${myGlobalConnection.id}\n  # we can also set a deployment environment as being the production one\n  prodEnvironment:\n    type: dbtcloud:Environment\n    name: prod_environment\n    properties:\n      dbtVersion: 1.7.0-latest\n      name: Prod\n      projectId: ${dbtProject.id}\n      type: deployment\n      credentialId: ${prodCredential.credentialId}\n      deploymentType: production\n      connectionId: ${myLegacyConnection.connectionId}\n  # Creating a development environment\n  devEnvironment:\n    type: dbtcloud:Environment\n    name: dev_environment\n    properties:\n      dbtVersion: latest\n      name: Dev\n      projectId: ${dbtProject.id}\n      type: development\n      connectionId: ${myOtherGlobalConnection.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\nimport {\nto = dbtcloud_environment.prod_environment\nid = \"project_id:environment_id\"\n}\n\nimport {\nto = dbtcloud_environment.prod_environment\nid = \"12345:6789\"\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/environment:Environment prod_environment \"project_id:environment_id\"\n$ pulumi import dbtcloud:index/environment:Environment prod_environment 12345:6789\n```\n\n",
+            "description": "Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. \u003e In August 2024, dbt Cloud released the \"global connection\" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the\u003cspan pulumi-lang-nodejs=\" connectionId \" pulumi-lang-dotnet=\" ConnectionId \" pulumi-lang-go=\" connectionId \" pulumi-lang-python=\" connection_id \" pulumi-lang-yaml=\" connectionId \" pulumi-lang-java=\" connectionId \"\u003e connection_id \u003c/span\u003eas an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst ciEnvironment = new dbtcloud.Environment(\"ci_environment\", {\n    dbtVersion: \"latest\",\n    name: \"CI\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    credentialId: ciCredential.credentialId,\n    connectionId: myGlobalConnection.id,\n});\n// we can also set a deployment environment as being the production one\nconst prodEnvironment = new dbtcloud.Environment(\"prod_environment\", {\n    dbtVersion: \"1.7.0-latest\",\n    name: \"Prod\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    credentialId: prodCredential.credentialId,\n    deploymentType: \"production\",\n    connectionId: myLegacyConnection.connectionId,\n});\n// Creating a development environment\nconst devEnvironment = new dbtcloud.Environment(\"dev_environment\", {\n    dbtVersion: \"latest\",\n    name: \"Dev\",\n    projectId: dbtProject.id,\n    type: \"development\",\n    connectionId: myOtherGlobalConnection.id,\n});\n// Deployment environment with a primary profile (binds connection + credentials via profile)\n// NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside\n// primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,\n// overwriting the profile's own settings and affecting other environments sharing that profile.\nconst profiledEnvironment = new dbtcloud.Environment(\"profiled_environment\", {\n    dbtVersion: \"latest\",\n    name: \"Staging\",\n    projectId: dbtProject.id,\n    type: \"deployment\",\n    deploymentType: \"staging\",\n    primaryProfileId: myProfile.profileId,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nci_environment = dbtcloud.Environment(\"ci_environment\",\n    dbt_version=\"latest\",\n    name=\"CI\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    credential_id=ci_credential[\"credentialId\"],\n    connection_id=my_global_connection[\"id\"])\n# we can also set a deployment environment as being the production one\nprod_environment = dbtcloud.Environment(\"prod_environment\",\n    dbt_version=\"1.7.0-latest\",\n    name=\"Prod\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    credential_id=prod_credential[\"credentialId\"],\n    deployment_type=\"production\",\n    connection_id=my_legacy_connection[\"connectionId\"])\n# Creating a development environment\ndev_environment = dbtcloud.Environment(\"dev_environment\",\n    dbt_version=\"latest\",\n    name=\"Dev\",\n    project_id=dbt_project[\"id\"],\n    type=\"development\",\n    connection_id=my_other_global_connection[\"id\"])\n# Deployment environment with a primary profile (binds connection + credentials via profile)\n# NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside\n# primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,\n# overwriting the profile's own settings and affecting other environments sharing that profile.\nprofiled_environment = dbtcloud.Environment(\"profiled_environment\",\n    dbt_version=\"latest\",\n    name=\"Staging\",\n    project_id=dbt_project[\"id\"],\n    type=\"deployment\",\n    deployment_type=\"staging\",\n    primary_profile_id=my_profile[\"profileId\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciEnvironment = new DbtCloud.Environment(\"ci_environment\", new()\n    {\n        DbtVersion = \"latest\",\n        Name = \"CI\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        CredentialId = ciCredential.CredentialId,\n        ConnectionId = myGlobalConnection.Id,\n    });\n\n    // we can also set a deployment environment as being the production one\n    var prodEnvironment = new DbtCloud.Environment(\"prod_environment\", new()\n    {\n        DbtVersion = \"1.7.0-latest\",\n        Name = \"Prod\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        CredentialId = prodCredential.CredentialId,\n        DeploymentType = \"production\",\n        ConnectionId = myLegacyConnection.ConnectionId,\n    });\n\n    // Creating a development environment\n    var devEnvironment = new DbtCloud.Environment(\"dev_environment\", new()\n    {\n        DbtVersion = \"latest\",\n        Name = \"Dev\",\n        ProjectId = dbtProject.Id,\n        Type = \"development\",\n        ConnectionId = myOtherGlobalConnection.Id,\n    });\n\n    // Deployment environment with a primary profile (binds connection + credentials via profile)\n    // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside\n    // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,\n    // overwriting the profile's own settings and affecting other environments sharing that profile.\n    var profiledEnvironment = new DbtCloud.Environment(\"profiled_environment\", new()\n    {\n        DbtVersion = \"latest\",\n        Name = \"Staging\",\n        ProjectId = dbtProject.Id,\n        Type = \"deployment\",\n        DeploymentType = \"staging\",\n        PrimaryProfileId = myProfile.ProfileId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewEnvironment(ctx, \"ci_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:   pulumi.String(\"latest\"),\n\t\t\tName:         pulumi.String(\"CI\"),\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tType:         pulumi.String(\"deployment\"),\n\t\t\tCredentialId: pulumi.Any(ciCredential.CredentialId),\n\t\t\tConnectionId: pulumi.Any(myGlobalConnection.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// we can also set a deployment environment as being the production one\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"prod_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:     pulumi.String(\"1.7.0-latest\"),\n\t\t\tName:           pulumi.String(\"Prod\"),\n\t\t\tProjectId:      pulumi.Any(dbtProject.Id),\n\t\t\tType:           pulumi.String(\"deployment\"),\n\t\t\tCredentialId:   pulumi.Any(prodCredential.CredentialId),\n\t\t\tDeploymentType: pulumi.String(\"production\"),\n\t\t\tConnectionId:   pulumi.Any(myLegacyConnection.ConnectionId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Creating a development environment\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"dev_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:   pulumi.String(\"latest\"),\n\t\t\tName:         pulumi.String(\"Dev\"),\n\t\t\tProjectId:    pulumi.Any(dbtProject.Id),\n\t\t\tType:         pulumi.String(\"development\"),\n\t\t\tConnectionId: pulumi.Any(myOtherGlobalConnection.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Deployment environment with a primary profile (binds connection + credentials via profile)\n\t\t// NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside\n\t\t// primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,\n\t\t// overwriting the profile's own settings and affecting other environments sharing that profile.\n\t\t_, err = dbtcloud.NewEnvironment(ctx, \"profiled_environment\", \u0026dbtcloud.EnvironmentArgs{\n\t\t\tDbtVersion:       pulumi.String(\"latest\"),\n\t\t\tName:             pulumi.String(\"Staging\"),\n\t\t\tProjectId:        pulumi.Any(dbtProject.Id),\n\t\t\tType:             pulumi.String(\"deployment\"),\n\t\t\tDeploymentType:   pulumi.String(\"staging\"),\n\t\t\tPrimaryProfileId: pulumi.Any(myProfile.ProfileId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Environment;\nimport com.pulumi.dbtcloud.EnvironmentArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciEnvironment = new Environment(\"ciEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"latest\")\n            .name(\"CI\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .credentialId(ciCredential.credentialId())\n            .connectionId(myGlobalConnection.id())\n            .build());\n\n        // we can also set a deployment environment as being the production one\n        var prodEnvironment = new Environment(\"prodEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"1.7.0-latest\")\n            .name(\"Prod\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .credentialId(prodCredential.credentialId())\n            .deploymentType(\"production\")\n            .connectionId(myLegacyConnection.connectionId())\n            .build());\n\n        // Creating a development environment\n        var devEnvironment = new Environment(\"devEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"latest\")\n            .name(\"Dev\")\n            .projectId(dbtProject.id())\n            .type(\"development\")\n            .connectionId(myOtherGlobalConnection.id())\n            .build());\n\n        // Deployment environment with a primary profile (binds connection + credentials via profile)\n        // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside\n        // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,\n        // overwriting the profile's own settings and affecting other environments sharing that profile.\n        var profiledEnvironment = new Environment(\"profiledEnvironment\", EnvironmentArgs.builder()\n            .dbtVersion(\"latest\")\n            .name(\"Staging\")\n            .projectId(dbtProject.id())\n            .type(\"deployment\")\n            .deploymentType(\"staging\")\n            .primaryProfileId(myProfile.profileId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciEnvironment:\n    type: dbtcloud:Environment\n    name: ci_environment\n    properties:\n      dbtVersion: latest\n      name: CI\n      projectId: ${dbtProject.id}\n      type: deployment\n      credentialId: ${ciCredential.credentialId}\n      connectionId: ${myGlobalConnection.id}\n  # we can also set a deployment environment as being the production one\n  prodEnvironment:\n    type: dbtcloud:Environment\n    name: prod_environment\n    properties:\n      dbtVersion: 1.7.0-latest\n      name: Prod\n      projectId: ${dbtProject.id}\n      type: deployment\n      credentialId: ${prodCredential.credentialId}\n      deploymentType: production\n      connectionId: ${myLegacyConnection.connectionId}\n  # Creating a development environment\n  devEnvironment:\n    type: dbtcloud:Environment\n    name: dev_environment\n    properties:\n      dbtVersion: latest\n      name: Dev\n      projectId: ${dbtProject.id}\n      type: development\n      connectionId: ${myOtherGlobalConnection.id}\n  # Deployment environment with a primary profile (binds connection + credentials via profile)\n  # // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside\n  # // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,\n  # // overwriting the profile's own settings and affecting other environments sharing that profile.\n  profiledEnvironment:\n    type: dbtcloud:Environment\n    name: profiled_environment\n    properties:\n      dbtVersion: latest\n      name: Staging\n      projectId: ${dbtProject.id}\n      type: deployment\n      deploymentType: staging\n      primaryProfileId: ${myProfile.profileId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\nimport {\nto = dbtcloud_environment.prod_environment\nid = \"project_id:environment_id\"\n}\n\nimport {\nto = dbtcloud_environment.prod_environment\nid = \"12345:6789\"\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/environment:Environment prod_environment \"project_id:environment_id\"\n$ pulumi import dbtcloud:index/environment:Environment prod_environment 12345:6789\n```\n\n",
             "properties": {
                 "connectionId": {
                     "type": "integer",
@@ -4232,6 +4340,10 @@
                     "type": "string",
                     "description": "The name of the environment\n"
                 },
+                "primaryProfileId": {
+                    "type": "integer",
+                    "description": "The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. \u003e Setting \u003cspan pulumi-lang-nodejs=\"`primaryProfileId`\" pulumi-lang-dotnet=\"`PrimaryProfileId`\" pulumi-lang-go=\"`primaryProfileId`\" pulumi-lang-python=\"`primary_profile_id`\" pulumi-lang-yaml=\"`primaryProfileId`\" pulumi-lang-java=\"`primaryProfileId`\"\u003e`primary_profile_id`\u003c/span\u003e alongside \u003cspan pulumi-lang-nodejs=\"`connectionId`\" pulumi-lang-dotnet=\"`ConnectionId`\" pulumi-lang-go=\"`connectionId`\" pulumi-lang-python=\"`connection_id`\" pulumi-lang-yaml=\"`connectionId`\" pulumi-lang-java=\"`connectionId`\"\u003e`connection_id`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`credentialId`\" pulumi-lang-dotnet=\"`CredentialId`\" pulumi-lang-go=\"`credentialId`\" pulumi-lang-python=\"`credential_id`\" pulumi-lang-yaml=\"`credentialId`\" pulumi-lang-java=\"`credentialId`\"\u003e`credential_id`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`extendedAttributesId`\" pulumi-lang-dotnet=\"`ExtendedAttributesId`\" pulumi-lang-go=\"`extendedAttributesId`\" pulumi-lang-python=\"`extended_attributes_id`\" pulumi-lang-yaml=\"`extendedAttributesId`\" pulumi-lang-java=\"`extendedAttributesId`\"\u003e`extended_attributes_id`\u003c/span\u003e will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the \u003cspan pulumi-lang-nodejs=\"`dbtcloud.Profile`\" pulumi-lang-dotnet=\"`dbtcloud.Profile`\" pulumi-lang-go=\"`Profile`\" pulumi-lang-python=\"`Profile`\" pulumi-lang-yaml=\"`dbtcloud.Profile`\" pulumi-lang-java=\"`dbtcloud.Profile`\"\u003e`dbtcloud.Profile`\u003c/span\u003e resource instead.\n"
+                },
                 "projectId": {
                     "type": "integer",
                     "description": "Project ID to create the environment in\n"
@@ -4254,6 +4366,7 @@
                 "extendedAttributesId",
                 "isActive",
                 "name",
+                "primaryProfileId",
                 "projectId",
                 "type",
                 "useCustomBranch"
@@ -4294,6 +4407,10 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the environment\n"
+                },
+                "primaryProfileId": {
+                    "type": "integer",
+                    "description": "The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. \u003e Setting \u003cspan pulumi-lang-nodejs=\"`primaryProfileId`\" pulumi-lang-dotnet=\"`PrimaryProfileId`\" pulumi-lang-go=\"`primaryProfileId`\" pulumi-lang-python=\"`primary_profile_id`\" pulumi-lang-yaml=\"`primaryProfileId`\" pulumi-lang-java=\"`primaryProfileId`\"\u003e`primary_profile_id`\u003c/span\u003e alongside \u003cspan pulumi-lang-nodejs=\"`connectionId`\" pulumi-lang-dotnet=\"`ConnectionId`\" pulumi-lang-go=\"`connectionId`\" pulumi-lang-python=\"`connection_id`\" pulumi-lang-yaml=\"`connectionId`\" pulumi-lang-java=\"`connectionId`\"\u003e`connection_id`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`credentialId`\" pulumi-lang-dotnet=\"`CredentialId`\" pulumi-lang-go=\"`credentialId`\" pulumi-lang-python=\"`credential_id`\" pulumi-lang-yaml=\"`credentialId`\" pulumi-lang-java=\"`credentialId`\"\u003e`credential_id`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`extendedAttributesId`\" pulumi-lang-dotnet=\"`ExtendedAttributesId`\" pulumi-lang-go=\"`extendedAttributesId`\" pulumi-lang-python=\"`extended_attributes_id`\" pulumi-lang-yaml=\"`extendedAttributesId`\" pulumi-lang-java=\"`extendedAttributesId`\"\u003e`extended_attributes_id`\u003c/span\u003e will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the \u003cspan pulumi-lang-nodejs=\"`dbtcloud.Profile`\" pulumi-lang-dotnet=\"`dbtcloud.Profile`\" pulumi-lang-go=\"`Profile`\" pulumi-lang-python=\"`Profile`\" pulumi-lang-yaml=\"`dbtcloud.Profile`\" pulumi-lang-java=\"`dbtcloud.Profile`\"\u003e`dbtcloud.Profile`\u003c/span\u003e resource instead.\n"
                 },
                 "projectId": {
                     "type": "integer",
@@ -4354,6 +4471,10 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the environment\n"
+                    },
+                    "primaryProfileId": {
+                        "type": "integer",
+                        "description": "The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. \u003e Setting \u003cspan pulumi-lang-nodejs=\"`primaryProfileId`\" pulumi-lang-dotnet=\"`PrimaryProfileId`\" pulumi-lang-go=\"`primaryProfileId`\" pulumi-lang-python=\"`primary_profile_id`\" pulumi-lang-yaml=\"`primaryProfileId`\" pulumi-lang-java=\"`primaryProfileId`\"\u003e`primary_profile_id`\u003c/span\u003e alongside \u003cspan pulumi-lang-nodejs=\"`connectionId`\" pulumi-lang-dotnet=\"`ConnectionId`\" pulumi-lang-go=\"`connectionId`\" pulumi-lang-python=\"`connection_id`\" pulumi-lang-yaml=\"`connectionId`\" pulumi-lang-java=\"`connectionId`\"\u003e`connection_id`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`credentialId`\" pulumi-lang-dotnet=\"`CredentialId`\" pulumi-lang-go=\"`credentialId`\" pulumi-lang-python=\"`credential_id`\" pulumi-lang-yaml=\"`credentialId`\" pulumi-lang-java=\"`credentialId`\"\u003e`credential_id`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`extendedAttributesId`\" pulumi-lang-dotnet=\"`ExtendedAttributesId`\" pulumi-lang-go=\"`extendedAttributesId`\" pulumi-lang-python=\"`extended_attributes_id`\" pulumi-lang-yaml=\"`extendedAttributesId`\" pulumi-lang-java=\"`extendedAttributesId`\"\u003e`extended_attributes_id`\u003c/span\u003e will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the \u003cspan pulumi-lang-nodejs=\"`dbtcloud.Profile`\" pulumi-lang-dotnet=\"`dbtcloud.Profile`\" pulumi-lang-go=\"`Profile`\" pulumi-lang-python=\"`Profile`\" pulumi-lang-yaml=\"`dbtcloud.Profile`\" pulumi-lang-java=\"`dbtcloud.Profile`\"\u003e`dbtcloud.Profile`\u003c/span\u003e resource instead.\n"
                     },
                     "projectId": {
                         "type": "integer",
@@ -4802,6 +4923,10 @@
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionRedshift:GlobalConnectionRedshift",
                     "description": "Redshift connection configuration\n"
                 },
+                "salesforce": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionSalesforce:GlobalConnectionSalesforce",
+                    "description": "Salesforce connection configuration.\n"
+                },
                 "snowflake": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake",
                     "description": "Snowflake connection configuration\n"
@@ -4863,6 +4988,10 @@
                 "redshift": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionRedshift:GlobalConnectionRedshift",
                     "description": "Redshift connection configuration\n"
+                },
+                "salesforce": {
+                    "$ref": "#/types/dbtcloud:index/GlobalConnectionSalesforce:GlobalConnectionSalesforce",
+                    "description": "Salesforce connection configuration.\n"
                 },
                 "snowflake": {
                     "$ref": "#/types/dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake",
@@ -4930,6 +5059,10 @@
                     "redshift": {
                         "$ref": "#/types/dbtcloud:index/GlobalConnectionRedshift:GlobalConnectionRedshift",
                         "description": "Redshift connection configuration\n"
+                    },
+                    "salesforce": {
+                        "$ref": "#/types/dbtcloud:index/GlobalConnectionSalesforce:GlobalConnectionSalesforce",
+                        "description": "Salesforce connection configuration.\n"
                     },
                     "snowflake": {
                         "$ref": "#/types/dbtcloud:index/GlobalConnectionSnowflake:GlobalConnectionSnowflake",
@@ -6752,6 +6885,100 @@
                 "type": "object"
             }
         },
+        "dbtcloud:index/profile:Profile": {
+            "description": "Manages a dbt Cloud profile. A profile ties together a connection and credentials for use within environments.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// A profile ties together a connection and credentials for use within environments.\nconst myProfile = new dbtcloud.Profile(\"my_profile\", {\n    projectId: myProject.id,\n    key: \"my-profile\",\n    connectionId: myConnection.id,\n    credentialsId: myCredential.credentialId,\n});\n// A profile with extended attributes\nconst myProfileWithAttrs = new dbtcloud.Profile(\"my_profile_with_attrs\", {\n    projectId: myProject.id,\n    key: \"my-profile-with-attrs\",\n    connectionId: myConnection.id,\n    credentialsId: myCredential.credentialId,\n    extendedAttributesId: myAttributes.extendedAttributesId,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# A profile ties together a connection and credentials for use within environments.\nmy_profile = dbtcloud.Profile(\"my_profile\",\n    project_id=my_project[\"id\"],\n    key=\"my-profile\",\n    connection_id=my_connection[\"id\"],\n    credentials_id=my_credential[\"credentialId\"])\n# A profile with extended attributes\nmy_profile_with_attrs = dbtcloud.Profile(\"my_profile_with_attrs\",\n    project_id=my_project[\"id\"],\n    key=\"my-profile-with-attrs\",\n    connection_id=my_connection[\"id\"],\n    credentials_id=my_credential[\"credentialId\"],\n    extended_attributes_id=my_attributes[\"extendedAttributesId\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // A profile ties together a connection and credentials for use within environments.\n    var myProfile = new DbtCloud.Profile(\"my_profile\", new()\n    {\n        ProjectId = myProject.Id,\n        Key = \"my-profile\",\n        ConnectionId = myConnection.Id,\n        CredentialsId = myCredential.CredentialId,\n    });\n\n    // A profile with extended attributes\n    var myProfileWithAttrs = new DbtCloud.Profile(\"my_profile_with_attrs\", new()\n    {\n        ProjectId = myProject.Id,\n        Key = \"my-profile-with-attrs\",\n        ConnectionId = myConnection.Id,\n        CredentialsId = myCredential.CredentialId,\n        ExtendedAttributesId = myAttributes.ExtendedAttributesId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// A profile ties together a connection and credentials for use within environments.\n\t\t_, err := dbtcloud.NewProfile(ctx, \"my_profile\", \u0026dbtcloud.ProfileArgs{\n\t\t\tProjectId:     pulumi.Any(myProject.Id),\n\t\t\tKey:           pulumi.String(\"my-profile\"),\n\t\t\tConnectionId:  pulumi.Any(myConnection.Id),\n\t\t\tCredentialsId: pulumi.Any(myCredential.CredentialId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// A profile with extended attributes\n\t\t_, err = dbtcloud.NewProfile(ctx, \"my_profile_with_attrs\", \u0026dbtcloud.ProfileArgs{\n\t\t\tProjectId:            pulumi.Any(myProject.Id),\n\t\t\tKey:                  pulumi.String(\"my-profile-with-attrs\"),\n\t\t\tConnectionId:         pulumi.Any(myConnection.Id),\n\t\t\tCredentialsId:        pulumi.Any(myCredential.CredentialId),\n\t\t\tExtendedAttributesId: pulumi.Any(myAttributes.ExtendedAttributesId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Profile;\nimport com.pulumi.dbtcloud.ProfileArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // A profile ties together a connection and credentials for use within environments.\n        var myProfile = new Profile(\"myProfile\", ProfileArgs.builder()\n            .projectId(myProject.id())\n            .key(\"my-profile\")\n            .connectionId(myConnection.id())\n            .credentialsId(myCredential.credentialId())\n            .build());\n\n        // A profile with extended attributes\n        var myProfileWithAttrs = new Profile(\"myProfileWithAttrs\", ProfileArgs.builder()\n            .projectId(myProject.id())\n            .key(\"my-profile-with-attrs\")\n            .connectionId(myConnection.id())\n            .credentialsId(myCredential.credentialId())\n            .extendedAttributesId(myAttributes.extendedAttributesId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # A profile ties together a connection and credentials for use within environments.\n  myProfile:\n    type: dbtcloud:Profile\n    name: my_profile\n    properties:\n      projectId: ${myProject.id}\n      key: my-profile\n      connectionId: ${myConnection.id}\n      credentialsId: ${myCredential.credentialId}\n  # A profile with extended attributes\n  myProfileWithAttrs:\n    type: dbtcloud:Profile\n    name: my_profile_with_attrs\n    properties:\n      projectId: ${myProject.id}\n      key: my-profile-with-attrs\n      connectionId: ${myConnection.id}\n      credentialsId: ${myCredential.credentialId}\n      extendedAttributesId: ${myAttributes.extendedAttributesId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\nimport {\nto = dbtcloud_profile.my_profile\nid = \"project_id:profile_id\"\n}\n\nimport {\nto = dbtcloud_profile.my_profile\nid = \"12345:6789\"\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/profile:Profile my_profile \"project_id:profile_id\"\n$ pulumi import dbtcloud:index/profile:Profile my_profile 12345:6789\n```\n\n",
+            "properties": {
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the connection to use for this profile\n"
+                },
+                "credentialsId": {
+                    "type": "integer",
+                    "description": "The ID of the credentials to use for this profile\n"
+                },
+                "extendedAttributesId": {
+                    "type": "integer",
+                    "description": "The ID of the extended attributes for this profile. Set to null to unset.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Unique identifier for the profile\n"
+                },
+                "profileId": {
+                    "type": "integer",
+                    "description": "The ID of the profile\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The ID of the project in which to create the profile\n"
+                }
+            },
+            "required": [
+                "connectionId",
+                "credentialsId",
+                "key",
+                "profileId",
+                "projectId"
+            ],
+            "inputProperties": {
+                "connectionId": {
+                    "type": "integer",
+                    "description": "The ID of the connection to use for this profile\n"
+                },
+                "credentialsId": {
+                    "type": "integer",
+                    "description": "The ID of the credentials to use for this profile\n"
+                },
+                "extendedAttributesId": {
+                    "type": "integer",
+                    "description": "The ID of the extended attributes for this profile. Set to null to unset.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Unique identifier for the profile\n"
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "The ID of the project in which to create the profile\n"
+                }
+            },
+            "requiredInputs": [
+                "connectionId",
+                "credentialsId",
+                "key",
+                "projectId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Profile resources.\n",
+                "properties": {
+                    "connectionId": {
+                        "type": "integer",
+                        "description": "The ID of the connection to use for this profile\n"
+                    },
+                    "credentialsId": {
+                        "type": "integer",
+                        "description": "The ID of the credentials to use for this profile\n"
+                    },
+                    "extendedAttributesId": {
+                        "type": "integer",
+                        "description": "The ID of the extended attributes for this profile. Set to null to unset.\n"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "Unique identifier for the profile\n"
+                    },
+                    "profileId": {
+                        "type": "integer",
+                        "description": "The ID of the profile\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The ID of the project in which to create the profile\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "dbtcloud:index/project:Project": {
             "description": "Manages a dbt Cloud project.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst dbtProject = new dbtcloud.Project(\"dbt_project\", {name: \"Analytics\"});\nconst dbtProjectWithDescription = new dbtcloud.Project(\"dbt_project_with_description\", {\n    name: \"Analytics with description\",\n    description: \"My awesome analytics project\",\n});\nconst dbtProjectWithSubdir = new dbtcloud.Project(\"dbt_project_with_subdir\", {\n    name: \"Analytics in Subdir\",\n    dbtProjectSubdirectory: \"path\",\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\ndbt_project = dbtcloud.Project(\"dbt_project\", name=\"Analytics\")\ndbt_project_with_description = dbtcloud.Project(\"dbt_project_with_description\",\n    name=\"Analytics with description\",\n    description=\"My awesome analytics project\")\ndbt_project_with_subdir = dbtcloud.Project(\"dbt_project_with_subdir\",\n    name=\"Analytics in Subdir\",\n    dbt_project_subdirectory=\"path\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dbtProject = new DbtCloud.Project(\"dbt_project\", new()\n    {\n        Name = \"Analytics\",\n    });\n\n    var dbtProjectWithDescription = new DbtCloud.Project(\"dbt_project_with_description\", new()\n    {\n        Name = \"Analytics with description\",\n        Description = \"My awesome analytics project\",\n    });\n\n    var dbtProjectWithSubdir = new DbtCloud.Project(\"dbt_project_with_subdir\", new()\n    {\n        Name = \"Analytics in Subdir\",\n        DbtProjectSubdirectory = \"path\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.NewProject(ctx, \"dbt_project\", \u0026dbtcloud.ProjectArgs{\n\t\t\tName: pulumi.String(\"Analytics\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewProject(ctx, \"dbt_project_with_description\", \u0026dbtcloud.ProjectArgs{\n\t\t\tName:        pulumi.String(\"Analytics with description\"),\n\t\t\tDescription: pulumi.String(\"My awesome analytics project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dbtcloud.NewProject(ctx, \"dbt_project_with_subdir\", \u0026dbtcloud.ProjectArgs{\n\t\t\tName:                   pulumi.String(\"Analytics in Subdir\"),\n\t\t\tDbtProjectSubdirectory: pulumi.String(\"path\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.Project;\nimport com.pulumi.dbtcloud.ProjectArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dbtProject = new Project(\"dbtProject\", ProjectArgs.builder()\n            .name(\"Analytics\")\n            .build());\n\n        var dbtProjectWithDescription = new Project(\"dbtProjectWithDescription\", ProjectArgs.builder()\n            .name(\"Analytics with description\")\n            .description(\"My awesome analytics project\")\n            .build());\n\n        var dbtProjectWithSubdir = new Project(\"dbtProjectWithSubdir\", ProjectArgs.builder()\n            .name(\"Analytics in Subdir\")\n            .dbtProjectSubdirectory(\"path\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dbtProject:\n    type: dbtcloud:Project\n    name: dbt_project\n    properties:\n      name: Analytics\n  dbtProjectWithDescription:\n    type: dbtcloud:Project\n    name: dbt_project_with_description\n    properties:\n      name: Analytics with description\n      description: My awesome analytics project\n  dbtProjectWithSubdir:\n    type: dbtcloud:Project\n    name: dbt_project_with_subdir\n    properties:\n      name: Analytics in Subdir\n      dbtProjectSubdirectory: path\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\nimport {\nto = dbtcloud_project.my_project\nid = \u003cspan pulumi-lang-nodejs=\"\"projectId\"\" pulumi-lang-dotnet=\"\"ProjectId\"\" pulumi-lang-go=\"\"projectId\"\" pulumi-lang-python=\"\"project_id\"\" pulumi-lang-yaml=\"\"projectId\"\" pulumi-lang-java=\"\"projectId\"\"\u003e\"project_id\"\u003c/span\u003e\n}\n\nimport {\nto = dbtcloud_project.my_project\nid = \"12345\"\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/project:Project my_project \"project_id\"\n$ pulumi import dbtcloud:index/project:Project my_project 12345\n```\n\n",
             "properties": {
@@ -7273,6 +7500,120 @@
                     "repositoryId": {
                         "type": "integer",
                         "description": "Repository Identifier\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/salesforceCredential:SalesforceCredential": {
+            "description": "Salesforce credential resource\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\n// Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication\nconst mySalesforceCred = new dbtcloud.SalesforceCredential(\"my_salesforce_cred\", {\n    projectId: dbtProject.id,\n    username: \"user@example.com\",\n    clientId: \"your-oauth-client-id\",\n    privateKey: \"private-key value\",\n    targetName: \"default\",\n    numThreads: 6,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication\nmy_salesforce_cred = dbtcloud.SalesforceCredential(\"my_salesforce_cred\",\n    project_id=dbt_project[\"id\"],\n    username=\"user@example.com\",\n    client_id=\"your-oauth-client-id\",\n    private_key=\"private-key value\",\n    target_name=\"default\",\n    num_threads=6)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication\n    var mySalesforceCred = new DbtCloud.SalesforceCredential(\"my_salesforce_cred\", new()\n    {\n        ProjectId = dbtProject.Id,\n        Username = \"user@example.com\",\n        ClientId = \"your-oauth-client-id\",\n        PrivateKey = \"private-key value\",\n        TargetName = \"default\",\n        NumThreads = 6,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication\n\t\t_, err := dbtcloud.NewSalesforceCredential(ctx, \"my_salesforce_cred\", \u0026dbtcloud.SalesforceCredentialArgs{\n\t\t\tProjectId:  pulumi.Any(dbtProject.Id),\n\t\t\tUsername:   pulumi.String(\"user@example.com\"),\n\t\t\tClientId:   pulumi.String(\"your-oauth-client-id\"),\n\t\t\tPrivateKey: pulumi.String(\"private-key value\"),\n\t\t\tTargetName: pulumi.String(\"default\"),\n\t\t\tNumThreads: pulumi.Int(6),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.SalesforceCredential;\nimport com.pulumi.dbtcloud.SalesforceCredentialArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication\n        var mySalesforceCred = new SalesforceCredential(\"mySalesforceCred\", SalesforceCredentialArgs.builder()\n            .projectId(dbtProject.id())\n            .username(\"user@example.com\")\n            .clientId(\"your-oauth-client-id\")\n            .privateKey(\"private-key value\")\n            .targetName(\"default\")\n            .numThreads(6)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication\n  mySalesforceCred:\n    type: dbtcloud:SalesforceCredential\n    name: my_salesforce_cred\n    properties:\n      projectId: ${dbtProject.id}\n      username: user@example.com\n      clientId: your-oauth-client-id\n      privateKey: private-key value\n      targetName: default\n      numThreads: 6\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing  import blocks (requires Terraform \u003e= 1.5)\nimport {\nto = dbtcloud_salesforce_credential.my_salesforce_credential\nid = \"project_id:credential_id\"\n}\n\nimport {\nto = dbtcloud_salesforce_credential.my_salesforce_credential\nid = \"12345:6789\"\n}\n\nusing the older import command\n\n```sh\n$ pulumi import dbtcloud:index/salesforceCredential:SalesforceCredential my_salesforce_credential \"project_id:credential_id\"\n$ pulumi import dbtcloud:index/salesforceCredential:SalesforceCredential my_salesforce_credential 12345:6789\n```\n\n",
+            "properties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "The OAuth connected app client/consumer ID\n",
+                    "secret": true
+                },
+                "credentialId": {
+                    "type": "integer",
+                    "description": "The system Salesforce credential ID\n"
+                },
+                "numThreads": {
+                    "type": "integer",
+                    "description": "The number of threads to use for dbt operations\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private key for JWT bearer flow authentication\n",
+                    "secret": true
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "Project ID to create the Salesforce credential in\n"
+                },
+                "targetName": {
+                    "type": "string",
+                    "description": "Target name\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The Salesforce username for OAuth JWT bearer flow authentication\n"
+                }
+            },
+            "required": [
+                "clientId",
+                "credentialId",
+                "numThreads",
+                "privateKey",
+                "projectId",
+                "targetName",
+                "username"
+            ],
+            "inputProperties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "The OAuth connected app client/consumer ID\n",
+                    "secret": true
+                },
+                "numThreads": {
+                    "type": "integer",
+                    "description": "The number of threads to use for dbt operations\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private key for JWT bearer flow authentication\n",
+                    "secret": true
+                },
+                "projectId": {
+                    "type": "integer",
+                    "description": "Project ID to create the Salesforce credential in\n"
+                },
+                "targetName": {
+                    "type": "string",
+                    "description": "Target name\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The Salesforce username for OAuth JWT bearer flow authentication\n"
+                }
+            },
+            "requiredInputs": [
+                "clientId",
+                "privateKey",
+                "projectId",
+                "username"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SalesforceCredential resources.\n",
+                "properties": {
+                    "clientId": {
+                        "type": "string",
+                        "description": "The OAuth connected app client/consumer ID\n",
+                        "secret": true
+                    },
+                    "credentialId": {
+                        "type": "integer",
+                        "description": "The system Salesforce credential ID\n"
+                    },
+                    "numThreads": {
+                        "type": "integer",
+                        "description": "The number of threads to use for dbt operations\n"
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "description": "The private key for JWT bearer flow authentication\n",
+                        "secret": true
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "Project ID to create the Salesforce credential in\n"
+                    },
+                    "targetName": {
+                        "type": "string",
+                        "description": "Target name\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The Salesforce username for OAuth JWT bearer flow authentication\n"
                     }
                 },
                 "type": "object"
@@ -9009,6 +9350,10 @@
                         "description": "The name of the environment\n",
                         "type": "string"
                     },
+                    "primaryProfileId": {
+                        "description": "The ID of the primary profile for this environment\n",
+                        "type": "integer"
+                    },
                     "projectId": {
                         "description": "The project ID to which the environment belongs\n",
                         "type": "integer"
@@ -9032,6 +9377,7 @@
                     "environmentId",
                     "extendedAttributesId",
                     "name",
+                    "primaryProfileId",
                     "projectId",
                     "type",
                     "useCustomBranch",
@@ -9252,6 +9598,10 @@
                         "$ref": "#/types/dbtcloud:index/getGlobalConnectionRedshift:getGlobalConnectionRedshift",
                         "description": "Redshift connection configuration\n"
                     },
+                    "salesforce": {
+                        "$ref": "#/types/dbtcloud:index/getGlobalConnectionSalesforce:getGlobalConnectionSalesforce",
+                        "description": "Salesforce connection configuration.\n"
+                    },
                     "snowflake": {
                         "$ref": "#/types/dbtcloud:index/getGlobalConnectionSnowflake:getGlobalConnectionSnowflake",
                         "description": "Snowflake connection configuration\n"
@@ -9283,6 +9633,7 @@
                     "postgres",
                     "privateLinkEndpointId",
                     "redshift",
+                    "salesforce",
                     "snowflake",
                     "starburst",
                     "synapse",
@@ -9297,7 +9648,7 @@
                 "description": "A collection of values returned by getGlobalConnections.\n",
                 "properties": {
                     "connections": {
-                        "description": "A set of all the connections\n",
+                        "description": "A list of all the connections\n",
                         "items": {
                             "$ref": "#/types/dbtcloud:index/getGlobalConnectionsConnection:getGlobalConnectionsConnection"
                         },
@@ -9977,6 +10328,112 @@
                 "type": "object"
             }
         },
+        "dbtcloud:index/getProfile:getProfile": {
+            "description": "Retrieve data for a single profile\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst myProfile = dbtcloud.getProfile({\n    profileId: 12345,\n    projectId: 6789,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nmy_profile = dbtcloud.get_profile(profile_id=12345,\n    project_id=6789)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myProfile = DbtCloud.GetProfile.Invoke(new()\n    {\n        ProfileId = 12345,\n        ProjectId = 6789,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.LookupProfile(ctx, \u0026dbtcloud.LookupProfileArgs{\n\t\t\tProfileId: 12345,\n\t\t\tProjectId: 6789,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DbtcloudFunctions;\nimport com.pulumi.dbtcloud.inputs.GetProfileArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myProfile = DbtcloudFunctions.getProfile(GetProfileArgs.builder()\n            .profileId(12345)\n            .projectId(6789)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myProfile:\n    fn::invoke:\n      function: dbtcloud:getProfile\n      arguments:\n        profileId: 12345\n        projectId: 6789\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getProfile.\n",
+                "properties": {
+                    "profileId": {
+                        "type": "integer",
+                        "description": "The ID of the profile\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The project ID to which the profile belongs\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "profileId",
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProfile.\n",
+                "properties": {
+                    "connectionId": {
+                        "description": "The ID of the connection used by this profile\n",
+                        "type": "integer"
+                    },
+                    "credentialsId": {
+                        "description": "The ID of the credentials used by this profile\n",
+                        "type": "integer"
+                    },
+                    "extendedAttributesId": {
+                        "description": "The ID of the extended attributes for this profile\n",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "The ID of this resource. Contains the project ID and the profile ID.\n",
+                        "type": "string"
+                    },
+                    "key": {
+                        "description": "Unique identifier for the profile\n",
+                        "type": "string"
+                    },
+                    "profileId": {
+                        "description": "The ID of the profile\n",
+                        "type": "integer"
+                    },
+                    "projectId": {
+                        "description": "The project ID to which the profile belongs\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "connectionId",
+                    "credentialsId",
+                    "extendedAttributesId",
+                    "id",
+                    "key",
+                    "profileId",
+                    "projectId"
+                ],
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/getProfiles:getProfiles": {
+            "description": "Retrieve data for multiple profiles\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nconst all = dbtcloud.getProfiles({\n    projectId: 6789,\n});\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\nall = dbtcloud.get_profiles(project_id=6789)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all = DbtCloud.GetProfiles.Invoke(new()\n    {\n        ProjectId = 6789,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbtcloud.GetProfiles(ctx, \u0026dbtcloud.GetProfilesArgs{\n\t\t\tProjectId: 6789,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.dbtcloud.DbtcloudFunctions;\nimport com.pulumi.dbtcloud.inputs.GetProfilesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all = DbtcloudFunctions.getProfiles(GetProfilesArgs.builder()\n            .projectId(6789)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  all:\n    fn::invoke:\n      function: dbtcloud:getProfiles\n      arguments:\n        projectId: 6789\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getProfiles.\n",
+                "properties": {
+                    "projectId": {
+                        "type": "integer",
+                        "description": "The project ID to filter profiles for\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProfiles.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "profiles": {
+                        "description": "The list of profiles\n",
+                        "items": {
+                            "$ref": "#/types/dbtcloud:index/getProfilesProfile:getProfilesProfile"
+                        },
+                        "type": "array"
+                    },
+                    "projectId": {
+                        "description": "The project ID to filter profiles for\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "profiles",
+                    "projectId",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "dbtcloud:index/getProject:getProject": {
             "description": "Retrieve a specific project from dbt Cloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as dbtcloud from \"@pulumi/dbtcloud\";\n\nexport = async () =\u003e {\n    // projects data sources can use the project_id parameter (preferred uniqueness is ensured)\n    const projectById = await dbtcloud.getProject({\n        id: 0,\n    });\n    // or they can use project names\n    // the provider will raise an error if more than one project is found with the same name\n    const projectByName = await dbtcloud.getProject({\n        name: \"Project name\",\n    });\n    const filteredProjects = await dbtcloud.getProjects({\n        nameContains: \"Project\",\n    });\n    const allProjects = await dbtcloud.getProjects({});\n    return {\n        projectIdDetails: projectById,\n        projectNameDetails: projectByName,\n        filteredProjectsCount: filteredProjects.projects.length,\n        filteredProjects: filteredProjects.projects,\n        projectNames: .map(project =\u003e (project.name)),\n    };\n}\n```\n```python\nimport pulumi\nimport pulumi_dbtcloud as dbtcloud\n\n# projects data sources can use the project_id parameter (preferred uniqueness is ensured)\nproject_by_id = dbtcloud.get_project(id=0)\n# or they can use project names\n# the provider will raise an error if more than one project is found with the same name\nproject_by_name = dbtcloud.get_project(name=\"Project name\")\nfiltered_projects = dbtcloud.get_projects(name_contains=\"Project\")\nall_projects = dbtcloud.get_projects()\npulumi.export(\"projectIdDetails\", project_by_id)\npulumi.export(\"projectNameDetails\", project_by_name)\npulumi.export(\"filteredProjectsCount\", len(filtered_projects.projects))\npulumi.export(\"filteredProjects\", filtered_projects.projects)\npulumi.export(\"projectNames\", [project.name for project in filtered_projects.projects])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing DbtCloud = Pulumi.DbtCloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // projects data sources can use the project_id parameter (preferred uniqueness is ensured)\n    var projectById = DbtCloud.GetProject.Invoke(new()\n    {\n        Id = 0,\n    });\n\n    // or they can use project names\n    // the provider will raise an error if more than one project is found with the same name\n    var projectByName = DbtCloud.GetProject.Invoke(new()\n    {\n        Name = \"Project name\",\n    });\n\n    var filteredProjects = DbtCloud.GetProjects.Invoke(new()\n    {\n        NameContains = \"Project\",\n    });\n\n    var allProjects = DbtCloud.GetProjects.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"projectIdDetails\"] = projectById,\n        [\"projectNameDetails\"] = projectByName,\n        [\"filteredProjectsCount\"] = filteredProjects.Apply(getProjectsResult =\u003e getProjectsResult.Projects).Length,\n        [\"filteredProjects\"] = filteredProjects.Apply(getProjectsResult =\u003e getProjectsResult.Projects),\n        [\"projectNames\"] = .Select(project =\u003e \n        {\n            return project.Name;\n        }).ToList(),\n    };\n});\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -10318,6 +10775,65 @@
                 "required": [
                     "runs",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "dbtcloud:index/getSalesforceCredential:getSalesforceCredential": {
+            "description": "Salesforce credential data source\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getSalesforceCredential.\n",
+                "properties": {
+                    "credentialId": {
+                        "type": "integer",
+                        "description": "Credential ID\n"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "description": "Project ID\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "credentialId",
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSalesforceCredential.\n",
+                "properties": {
+                    "credentialId": {
+                        "description": "Credential ID\n",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "The ID of this resource. Contains the project ID and the credential ID.\n",
+                        "type": "string"
+                    },
+                    "numThreads": {
+                        "description": "The number of threads to use for dbt operations\n",
+                        "type": "integer"
+                    },
+                    "projectId": {
+                        "description": "Project ID\n",
+                        "type": "integer"
+                    },
+                    "targetName": {
+                        "description": "Target name\n",
+                        "type": "string"
+                    },
+                    "username": {
+                        "description": "The Salesforce username for OAuth JWT bearer flow authentication\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "credentialId",
+                    "id",
+                    "numThreads",
+                    "projectId",
+                    "targetName",
+                    "username"
                 ],
                 "type": "object"
             }

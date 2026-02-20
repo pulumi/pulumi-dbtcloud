@@ -74,6 +74,10 @@ export interface GetEnvironmentResult {
      */
     readonly name: string;
     /**
+     * The ID of the primary profile for this environment
+     */
+    readonly primaryProfileId: number;
+    /**
      * The project ID to which the environment belongs
      */
     readonly projectId: number;

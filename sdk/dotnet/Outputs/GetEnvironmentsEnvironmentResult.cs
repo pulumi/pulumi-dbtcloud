@@ -50,6 +50,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The ID of the primary profile for this environment
+        /// </summary>
+        public readonly int PrimaryProfileId;
+        /// <summary>
         /// The project ID to which the environment belong
         /// </summary>
         public readonly int ProjectId;
@@ -82,6 +86,8 @@ namespace Pulumi.DbtCloud.Outputs
 
             string name,
 
+            int primaryProfileId,
+
             int projectId,
 
             string type,
@@ -97,6 +103,7 @@ namespace Pulumi.DbtCloud.Outputs
             EnvironmentId = environmentId;
             ExtendedAttributesId = extendedAttributesId;
             Name = name;
+            PrimaryProfileId = primaryProfileId;
             ProjectId = projectId;
             Type = type;
             UseCustomBranch = useCustomBranch;

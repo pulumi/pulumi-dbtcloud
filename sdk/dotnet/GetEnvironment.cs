@@ -116,6 +116,10 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The ID of the primary profile for this environment
+        /// </summary>
+        public readonly int PrimaryProfileId;
+        /// <summary>
         /// The project ID to which the environment belongs
         /// </summary>
         public readonly int ProjectId;
@@ -150,6 +154,8 @@ namespace Pulumi.DbtCloud
 
             string name,
 
+            int primaryProfileId,
+
             int projectId,
 
             string type,
@@ -166,6 +172,7 @@ namespace Pulumi.DbtCloud
             ExtendedAttributesId = extendedAttributesId;
             Id = id;
             Name = name;
+            PrimaryProfileId = primaryProfileId;
             ProjectId = projectId;
             Type = type;
             UseCustomBranch = useCustomBranch;

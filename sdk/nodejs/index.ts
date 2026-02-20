@@ -175,6 +175,16 @@ export const getPrivatelinkEndpoints: typeof import("./getPrivatelinkEndpoints")
 export const getPrivatelinkEndpointsOutput: typeof import("./getPrivatelinkEndpoints").getPrivatelinkEndpointsOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivatelinkEndpoints","getPrivatelinkEndpointsOutput"], () => require("./getPrivatelinkEndpoints"));
 
+export { GetProfileArgs, GetProfileResult, GetProfileOutputArgs } from "./getProfile";
+export const getProfile: typeof import("./getProfile").getProfile = null as any;
+export const getProfileOutput: typeof import("./getProfile").getProfileOutput = null as any;
+utilities.lazyLoad(exports, ["getProfile","getProfileOutput"], () => require("./getProfile"));
+
+export { GetProfilesArgs, GetProfilesResult, GetProfilesOutputArgs } from "./getProfiles";
+export const getProfiles: typeof import("./getProfiles").getProfiles = null as any;
+export const getProfilesOutput: typeof import("./getProfiles").getProfilesOutput = null as any;
+utilities.lazyLoad(exports, ["getProfiles","getProfilesOutput"], () => require("./getProfiles"));
+
 export { GetProjectArgs, GetProjectResult, GetProjectOutputArgs } from "./getProject";
 export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;
@@ -199,6 +209,11 @@ export { GetRunsArgs, GetRunsResult, GetRunsOutputArgs } from "./getRuns";
 export const getRuns: typeof import("./getRuns").getRuns = null as any;
 export const getRunsOutput: typeof import("./getRuns").getRunsOutput = null as any;
 utilities.lazyLoad(exports, ["getRuns","getRunsOutput"], () => require("./getRuns"));
+
+export { GetSalesforceCredentialArgs, GetSalesforceCredentialResult, GetSalesforceCredentialOutputArgs } from "./getSalesforceCredential";
+export const getSalesforceCredential: typeof import("./getSalesforceCredential").getSalesforceCredential = null as any;
+export const getSalesforceCredentialOutput: typeof import("./getSalesforceCredential").getSalesforceCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getSalesforceCredential","getSalesforceCredentialOutput"], () => require("./getSalesforceCredential"));
 
 export { GetServiceTokenArgs, GetServiceTokenResult, GetServiceTokenOutputArgs } from "./getServiceToken";
 export const getServiceToken: typeof import("./getServiceToken").getServiceToken = null as any;
@@ -325,6 +340,11 @@ export type PostgresSemanticLayerCredential = import("./postgresSemanticLayerCre
 export const PostgresSemanticLayerCredential: typeof import("./postgresSemanticLayerCredential").PostgresSemanticLayerCredential = null as any;
 utilities.lazyLoad(exports, ["PostgresSemanticLayerCredential"], () => require("./postgresSemanticLayerCredential"));
 
+export { ProfileArgs, ProfileState } from "./profile";
+export type Profile = import("./profile").Profile;
+export const Profile: typeof import("./profile").Profile = null as any;
+utilities.lazyLoad(exports, ["Profile"], () => require("./profile"));
+
 export { ProjectArgs, ProjectState } from "./project";
 export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
@@ -357,6 +377,11 @@ export { RepositoryArgs, RepositoryState } from "./repository";
 export type Repository = import("./repository").Repository;
 export const Repository: typeof import("./repository").Repository = null as any;
 utilities.lazyLoad(exports, ["Repository"], () => require("./repository"));
+
+export { SalesforceCredentialArgs, SalesforceCredentialState } from "./salesforceCredential";
+export type SalesforceCredential = import("./salesforceCredential").SalesforceCredential;
+export const SalesforceCredential: typeof import("./salesforceCredential").SalesforceCredential = null as any;
+utilities.lazyLoad(exports, ["SalesforceCredential"], () => require("./salesforceCredential"));
 
 export { ScimGroupPartialPermissionsArgs, ScimGroupPartialPermissionsState } from "./scimGroupPartialPermissions";
 export type ScimGroupPartialPermissions = import("./scimGroupPartialPermissions").ScimGroupPartialPermissions;
@@ -498,6 +523,8 @@ const _module = {
                 return new PostgresCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential":
                 return new PostgresSemanticLayerCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/profile:Profile":
+                return new Profile(name, <any>undefined, { urn })
             case "dbtcloud:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
             case "dbtcloud:index/projectArtefacts:ProjectArtefacts":
@@ -510,6 +537,8 @@ const _module = {
                 return new RedshiftSemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/repository:Repository":
                 return new Repository(name, <any>undefined, { urn })
+            case "dbtcloud:index/salesforceCredential:SalesforceCredential":
+                return new SalesforceCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/scimGroupPartialPermissions:ScimGroupPartialPermissions":
                 return new ScimGroupPartialPermissions(name, <any>undefined, { urn })
             case "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions":
@@ -571,12 +600,14 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/partialLicenseMap", _mo
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialNotification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/postgresCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/postgresSemanticLayerCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/profile", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/project", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/projectArtefacts", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/projectRepository", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/repository", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/salesforceCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/scimGroupPartialPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/scimGroupPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerConfiguration", _module)

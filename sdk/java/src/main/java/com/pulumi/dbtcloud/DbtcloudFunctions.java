@@ -44,6 +44,10 @@ import com.pulumi.dbtcloud.inputs.GetPostgresCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetPostgresCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
 import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetProfileArgs;
+import com.pulumi.dbtcloud.inputs.GetProfilePlainArgs;
+import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
+import com.pulumi.dbtcloud.inputs.GetProfilesPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetProjectArgs;
 import com.pulumi.dbtcloud.inputs.GetProjectPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetProjectsArgs;
@@ -54,6 +58,8 @@ import com.pulumi.dbtcloud.inputs.GetRepositoryArgs;
 import com.pulumi.dbtcloud.inputs.GetRepositoryPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetRunsArgs;
 import com.pulumi.dbtcloud.inputs.GetRunsPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetSalesforceCredentialArgs;
+import com.pulumi.dbtcloud.inputs.GetSalesforceCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetServiceTokenArgs;
 import com.pulumi.dbtcloud.inputs.GetServiceTokenPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetSnowflakeCredentialArgs;
@@ -93,11 +99,14 @@ import com.pulumi.dbtcloud.outputs.GetNotificationResult;
 import com.pulumi.dbtcloud.outputs.GetPostgresCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointResult;
 import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointsResult;
+import com.pulumi.dbtcloud.outputs.GetProfileResult;
+import com.pulumi.dbtcloud.outputs.GetProfilesResult;
 import com.pulumi.dbtcloud.outputs.GetProjectResult;
 import com.pulumi.dbtcloud.outputs.GetProjectsResult;
 import com.pulumi.dbtcloud.outputs.GetRedshiftCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetRepositoryResult;
 import com.pulumi.dbtcloud.outputs.GetRunsResult;
+import com.pulumi.dbtcloud.outputs.GetSalesforceCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetServiceTokenResult;
 import com.pulumi.dbtcloud.outputs.GetSnowflakeCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetSparkCredentialResult;
@@ -3019,6 +3028,411 @@ public final class DbtcloudFunctions {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieve data for a single profile
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myProfile = DbtcloudFunctions.getProfile(GetProfileArgs.builder()
+     *             .profileId(12345)
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProfileResult> getProfile(GetProfileArgs args) {
+        return getProfile(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve data for a single profile
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myProfile = DbtcloudFunctions.getProfile(GetProfileArgs.builder()
+     *             .profileId(12345)
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProfileResult> getProfilePlain(GetProfilePlainArgs args) {
+        return getProfilePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve data for a single profile
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myProfile = DbtcloudFunctions.getProfile(GetProfileArgs.builder()
+     *             .profileId(12345)
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProfileResult> getProfile(GetProfileArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getProfile:getProfile", TypeShape.of(GetProfileResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve data for a single profile
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myProfile = DbtcloudFunctions.getProfile(GetProfileArgs.builder()
+     *             .profileId(12345)
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProfileResult> getProfile(GetProfileArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getProfile:getProfile", TypeShape.of(GetProfileResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve data for a single profile
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myProfile = DbtcloudFunctions.getProfile(GetProfileArgs.builder()
+     *             .profileId(12345)
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProfileResult> getProfilePlain(GetProfilePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getProfile:getProfile", TypeShape.of(GetProfileResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve data for multiple profiles
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbtcloudFunctions.getProfiles(GetProfilesArgs.builder()
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProfilesResult> getProfiles(GetProfilesArgs args) {
+        return getProfiles(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve data for multiple profiles
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbtcloudFunctions.getProfiles(GetProfilesArgs.builder()
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProfilesResult> getProfilesPlain(GetProfilesPlainArgs args) {
+        return getProfilesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve data for multiple profiles
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbtcloudFunctions.getProfiles(GetProfilesArgs.builder()
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProfilesResult> getProfiles(GetProfilesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getProfiles:getProfiles", TypeShape.of(GetProfilesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve data for multiple profiles
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbtcloudFunctions.getProfiles(GetProfilesArgs.builder()
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProfilesResult> getProfiles(GetProfilesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getProfiles:getProfiles", TypeShape.of(GetProfilesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve data for multiple profiles
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbtcloudFunctions.getProfiles(GetProfilesArgs.builder()
+     *             .projectId(6789)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProfilesResult> getProfilesPlain(GetProfilesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getProfiles:getProfiles", TypeShape.of(GetProfilesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Retrieve a specific project from dbt Cloud.
      * 
      * ## Example Usage
@@ -3248,6 +3662,41 @@ public final class DbtcloudFunctions {
      */
     public static CompletableFuture<GetRunsResult> getRunsPlain(GetRunsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getRuns:getRuns", TypeShape.of(GetRunsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Salesforce credential data source
+     * 
+     */
+    public static Output<GetSalesforceCredentialResult> getSalesforceCredential(GetSalesforceCredentialArgs args) {
+        return getSalesforceCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * Salesforce credential data source
+     * 
+     */
+    public static CompletableFuture<GetSalesforceCredentialResult> getSalesforceCredentialPlain(GetSalesforceCredentialPlainArgs args) {
+        return getSalesforceCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Salesforce credential data source
+     * 
+     */
+    public static Output<GetSalesforceCredentialResult> getSalesforceCredential(GetSalesforceCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getSalesforceCredential:getSalesforceCredential", TypeShape.of(GetSalesforceCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Salesforce credential data source
+     * 
+     */
+    public static Output<GetSalesforceCredentialResult> getSalesforceCredential(GetSalesforceCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getSalesforceCredential:getSalesforceCredential", TypeShape.of(GetSalesforceCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Salesforce credential data source
+     * 
+     */
+    public static CompletableFuture<GetSalesforceCredentialResult> getSalesforceCredentialPlain(GetSalesforceCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getSalesforceCredential:getSalesforceCredential", TypeShape.of(GetSalesforceCredentialResult.class), args, Utilities.withVersion(options));
     }
     public static Output<GetServiceTokenResult> getServiceToken(GetServiceTokenArgs args) {
         return getServiceToken(args, InvokeOptions.Empty);

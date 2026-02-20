@@ -72,6 +72,19 @@ import javax.annotation.Nullable;
  *             .connectionId(myOtherGlobalConnection.id())
  *             .build());
  * 
+ *         // Deployment environment with a primary profile (binds connection + credentials via profile)
+ *         // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
+ *         // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
+ *         // overwriting the profile's own settings and affecting other environments sharing that profile.
+ *         var profiledEnvironment = new Environment("profiledEnvironment", EnvironmentArgs.builder()
+ *             .dbtVersion("latest")
+ *             .name("Staging")
+ *             .projectId(dbtProject.id())
+ *             .type("deployment")
+ *             .deploymentType("staging")
+ *             .primaryProfileId(myProfile.profileId())
+ *             .build());
+ * 
  *     }
  * }
  * }
@@ -239,6 +252,20 @@ public class Environment extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     * 
+     */
+    @Export(name="primaryProfileId", refs={Integer.class}, tree="[0]")
+    private Output<Integer> primaryProfileId;
+
+    /**
+     * @return The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     * 
+     */
+    public Output<Integer> primaryProfileId() {
+        return this.primaryProfileId;
     }
     /**
      * Project ID to create the environment in

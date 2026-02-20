@@ -31,6 +31,7 @@ class GlobalConnectionArgs:
                  postgres: Optional[pulumi.Input['GlobalConnectionPostgresArgs']] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  redshift: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']] = None,
+                 salesforce: Optional[pulumi.Input['GlobalConnectionSalesforceArgs']] = None,
                  snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None,
                  starburst: Optional[pulumi.Input['GlobalConnectionStarburstArgs']] = None,
                  synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None,
@@ -46,6 +47,7 @@ class GlobalConnectionArgs:
         :param pulumi.Input['GlobalConnectionPostgresArgs'] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input['GlobalConnectionRedshiftArgs'] redshift: Redshift connection configuration
+        :param pulumi.Input['GlobalConnectionSalesforceArgs'] salesforce: Salesforce connection configuration.
         :param pulumi.Input['GlobalConnectionSnowflakeArgs'] snowflake: Snowflake connection configuration
         :param pulumi.Input['GlobalConnectionStarburstArgs'] starburst: Starburst/Trino connection configuration.
         :param pulumi.Input['GlobalConnectionSynapseArgs'] synapse: Azure Synapse Analytics connection configuration.
@@ -71,6 +73,8 @@ class GlobalConnectionArgs:
             pulumi.set(__self__, "private_link_endpoint_id", private_link_endpoint_id)
         if redshift is not None:
             pulumi.set(__self__, "redshift", redshift)
+        if salesforce is not None:
+            pulumi.set(__self__, "salesforce", salesforce)
         if snowflake is not None:
             pulumi.set(__self__, "snowflake", snowflake)
         if starburst is not None:
@@ -199,6 +203,18 @@ class GlobalConnectionArgs:
 
     @_builtins.property
     @pulumi.getter
+    def salesforce(self) -> Optional[pulumi.Input['GlobalConnectionSalesforceArgs']]:
+        """
+        Salesforce connection configuration.
+        """
+        return pulumi.get(self, "salesforce")
+
+    @salesforce.setter
+    def salesforce(self, value: Optional[pulumi.Input['GlobalConnectionSalesforceArgs']]):
+        pulumi.set(self, "salesforce", value)
+
+    @_builtins.property
+    @pulumi.getter
     def snowflake(self) -> Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]:
         """
         Snowflake connection configuration
@@ -261,6 +277,7 @@ class _GlobalConnectionState:
                  postgres: Optional[pulumi.Input['GlobalConnectionPostgresArgs']] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  redshift: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']] = None,
+                 salesforce: Optional[pulumi.Input['GlobalConnectionSalesforceArgs']] = None,
                  snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None,
                  starburst: Optional[pulumi.Input['GlobalConnectionStarburstArgs']] = None,
                  synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None,
@@ -278,6 +295,7 @@ class _GlobalConnectionState:
         :param pulumi.Input['GlobalConnectionPostgresArgs'] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input['GlobalConnectionRedshiftArgs'] redshift: Redshift connection configuration
+        :param pulumi.Input['GlobalConnectionSalesforceArgs'] salesforce: Salesforce connection configuration.
         :param pulumi.Input['GlobalConnectionSnowflakeArgs'] snowflake: Snowflake connection configuration
         :param pulumi.Input['GlobalConnectionStarburstArgs'] starburst: Starburst/Trino connection configuration.
         :param pulumi.Input['GlobalConnectionSynapseArgs'] synapse: Azure Synapse Analytics connection configuration.
@@ -307,6 +325,8 @@ class _GlobalConnectionState:
             pulumi.set(__self__, "private_link_endpoint_id", private_link_endpoint_id)
         if redshift is not None:
             pulumi.set(__self__, "redshift", redshift)
+        if salesforce is not None:
+            pulumi.set(__self__, "salesforce", salesforce)
         if snowflake is not None:
             pulumi.set(__self__, "snowflake", snowflake)
         if starburst is not None:
@@ -459,6 +479,18 @@ class _GlobalConnectionState:
 
     @_builtins.property
     @pulumi.getter
+    def salesforce(self) -> Optional[pulumi.Input['GlobalConnectionSalesforceArgs']]:
+        """
+        Salesforce connection configuration.
+        """
+        return pulumi.get(self, "salesforce")
+
+    @salesforce.setter
+    def salesforce(self, value: Optional[pulumi.Input['GlobalConnectionSalesforceArgs']]):
+        pulumi.set(self, "salesforce", value)
+
+    @_builtins.property
+    @pulumi.getter
     def snowflake(self) -> Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]:
         """
         Snowflake connection configuration
@@ -522,6 +554,7 @@ class GlobalConnection(pulumi.CustomResource):
                  postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
+                 salesforce: Optional[pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
                  snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
                  starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
                  synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
@@ -698,6 +731,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']] redshift: Redshift connection configuration
+        :param pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']] salesforce: Salesforce connection configuration.
         :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
         :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']] starburst: Starburst/Trino connection configuration.
         :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']] synapse: Azure Synapse Analytics connection configuration.
@@ -894,6 +928,7 @@ class GlobalConnection(pulumi.CustomResource):
                  postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
                  private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
+                 salesforce: Optional[pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
                  snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
                  starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
                  synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
@@ -917,6 +952,7 @@ class GlobalConnection(pulumi.CustomResource):
             __props__.__dict__["postgres"] = postgres
             __props__.__dict__["private_link_endpoint_id"] = private_link_endpoint_id
             __props__.__dict__["redshift"] = redshift
+            __props__.__dict__["salesforce"] = salesforce
             __props__.__dict__["snowflake"] = snowflake
             __props__.__dict__["starburst"] = starburst
             __props__.__dict__["synapse"] = synapse
@@ -945,6 +981,7 @@ class GlobalConnection(pulumi.CustomResource):
             postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
             private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
             redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
+            salesforce: Optional[pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
             snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
             starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
             synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
@@ -967,6 +1004,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']] redshift: Redshift connection configuration
+        :param pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']] salesforce: Salesforce connection configuration.
         :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
         :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']] starburst: Starburst/Trino connection configuration.
         :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']] synapse: Azure Synapse Analytics connection configuration.
@@ -988,6 +1026,7 @@ class GlobalConnection(pulumi.CustomResource):
         __props__.__dict__["postgres"] = postgres
         __props__.__dict__["private_link_endpoint_id"] = private_link_endpoint_id
         __props__.__dict__["redshift"] = redshift
+        __props__.__dict__["salesforce"] = salesforce
         __props__.__dict__["snowflake"] = snowflake
         __props__.__dict__["starburst"] = starburst
         __props__.__dict__["synapse"] = synapse
@@ -1086,6 +1125,14 @@ class GlobalConnection(pulumi.CustomResource):
         Redshift connection configuration
         """
         return pulumi.get(self, "redshift")
+
+    @_builtins.property
+    @pulumi.getter
+    def salesforce(self) -> pulumi.Output[Optional['outputs.GlobalConnectionSalesforce']]:
+        """
+        Salesforce connection configuration.
+        """
+        return pulumi.get(self, "salesforce")
 
     @_builtins.property
     @pulumi.getter

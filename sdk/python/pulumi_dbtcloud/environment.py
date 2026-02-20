@@ -30,6 +30,7 @@ class EnvironmentArgs:
                  extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
                  use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Environment resource.
@@ -44,6 +45,7 @@ class EnvironmentArgs:
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
         :param pulumi.Input[_builtins.str] name: The name of the environment
+        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         :param pulumi.Input[_builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -66,6 +68,8 @@ class EnvironmentArgs:
             pulumi.set(__self__, "is_active", is_active)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if primary_profile_id is not None:
+            pulumi.set(__self__, "primary_profile_id", primary_profile_id)
         if use_custom_branch is not None:
             pulumi.set(__self__, "use_custom_branch", use_custom_branch)
 
@@ -202,6 +206,18 @@ class EnvironmentArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="primaryProfileId")
+    def primary_profile_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        """
+        return pulumi.get(self, "primary_profile_id")
+
+    @primary_profile_id.setter
+    def primary_profile_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "primary_profile_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="useCustomBranch")
     def use_custom_branch(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -227,6 +243,7 @@ class _EnvironmentState:
                  extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -242,6 +259,7 @@ class _EnvironmentState:
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
         :param pulumi.Input[_builtins.str] name: The name of the environment
+        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[_builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[_builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -266,6 +284,8 @@ class _EnvironmentState:
             pulumi.set(__self__, "is_active", is_active)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if primary_profile_id is not None:
+            pulumi.set(__self__, "primary_profile_id", primary_profile_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if type is not None:
@@ -394,6 +414,18 @@ class _EnvironmentState:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="primaryProfileId")
+    def primary_profile_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        """
+        return pulumi.get(self, "primary_profile_id")
+
+    @primary_profile_id.setter
+    def primary_profile_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "primary_profile_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -445,6 +477,7 @@ class Environment(pulumi.CustomResource):
                  extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -481,6 +514,17 @@ class Environment(pulumi.CustomResource):
             project_id=dbt_project["id"],
             type="development",
             connection_id=my_other_global_connection["id"])
+        # Deployment environment with a primary profile (binds connection + credentials via profile)
+        # NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
+        # primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
+        # overwriting the profile's own settings and affecting other environments sharing that profile.
+        profiled_environment = dbtcloud.Environment("profiled_environment",
+            dbt_version="latest",
+            name="Staging",
+            project_id=dbt_project["id"],
+            type="deployment",
+            deployment_type="staging",
+            primary_profile_id=my_profile["profileId"])
         ```
 
         ## Import
@@ -514,6 +558,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
         :param pulumi.Input[_builtins.str] name: The name of the environment
+        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[_builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[_builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -556,6 +601,17 @@ class Environment(pulumi.CustomResource):
             project_id=dbt_project["id"],
             type="development",
             connection_id=my_other_global_connection["id"])
+        # Deployment environment with a primary profile (binds connection + credentials via profile)
+        # NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
+        # primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
+        # overwriting the profile's own settings and affecting other environments sharing that profile.
+        profiled_environment = dbtcloud.Environment("profiled_environment",
+            dbt_version="latest",
+            name="Staging",
+            project_id=dbt_project["id"],
+            type="deployment",
+            deployment_type="staging",
+            primary_profile_id=my_profile["profileId"])
         ```
 
         ## Import
@@ -602,6 +658,7 @@ class Environment(pulumi.CustomResource):
                  extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -623,6 +680,7 @@ class Environment(pulumi.CustomResource):
             __props__.__dict__["extended_attributes_id"] = extended_attributes_id
             __props__.__dict__["is_active"] = is_active
             __props__.__dict__["name"] = name
+            __props__.__dict__["primary_profile_id"] = primary_profile_id
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -651,6 +709,7 @@ class Environment(pulumi.CustomResource):
             extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
             is_active: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
+            primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
             project_id: Optional[pulumi.Input[_builtins.int]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
             use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Environment':
@@ -671,6 +730,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
         :param pulumi.Input[_builtins.str] name: The name of the environment
+        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[_builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[_builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -689,6 +749,7 @@ class Environment(pulumi.CustomResource):
         __props__.__dict__["extended_attributes_id"] = extended_attributes_id
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["name"] = name
+        __props__.__dict__["primary_profile_id"] = primary_profile_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["type"] = type
         __props__.__dict__["use_custom_branch"] = use_custom_branch
@@ -773,6 +834,14 @@ class Environment(pulumi.CustomResource):
         The name of the environment
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryProfileId")
+    def primary_profile_id(self) -> pulumi.Output[_builtins.int]:
+        """
+        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        """
+        return pulumi.get(self, "primary_profile_id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

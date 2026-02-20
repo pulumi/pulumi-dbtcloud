@@ -41,6 +41,8 @@ __all__ = [
     'GlobalConnectionRedshiftArgsDict',
     'GlobalConnectionRedshiftSshTunnelArgs',
     'GlobalConnectionRedshiftSshTunnelArgsDict',
+    'GlobalConnectionSalesforceArgs',
+    'GlobalConnectionSalesforceArgsDict',
     'GlobalConnectionSnowflakeArgs',
     'GlobalConnectionSnowflakeArgsDict',
     'GlobalConnectionStarburstArgs',
@@ -2158,6 +2160,74 @@ class GlobalConnectionRedshiftSshTunnelArgs:
     @public_key.setter
     def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "public_key", value)
+
+
+class GlobalConnectionSalesforceArgsDict(TypedDict):
+    login_url: pulumi.Input[_builtins.str]
+    """
+    The Salesforce instance URL (e.g., https://login.salesforce.com)
+    """
+    data_transform_run_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Timeout in seconds for data transformation runs. Default=300
+    """
+    database: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The target database name. Default=default
+    """
+
+@pulumi.input_type
+class GlobalConnectionSalesforceArgs:
+    def __init__(__self__, *,
+                 login_url: pulumi.Input[_builtins.str],
+                 data_transform_run_timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 database: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] login_url: The Salesforce instance URL (e.g., https://login.salesforce.com)
+        :param pulumi.Input[_builtins.int] data_transform_run_timeout: Timeout in seconds for data transformation runs. Default=300
+        :param pulumi.Input[_builtins.str] database: The target database name. Default=default
+        """
+        pulumi.set(__self__, "login_url", login_url)
+        if data_transform_run_timeout is not None:
+            pulumi.set(__self__, "data_transform_run_timeout", data_transform_run_timeout)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+
+    @_builtins.property
+    @pulumi.getter(name="loginUrl")
+    def login_url(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Salesforce instance URL (e.g., https://login.salesforce.com)
+        """
+        return pulumi.get(self, "login_url")
+
+    @login_url.setter
+    def login_url(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "login_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataTransformRunTimeout")
+    def data_transform_run_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Timeout in seconds for data transformation runs. Default=300
+        """
+        return pulumi.get(self, "data_transform_run_timeout")
+
+    @data_transform_run_timeout.setter
+    def data_transform_run_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "data_transform_run_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The target database name. Default=default
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "database", value)
 
 
 class GlobalConnectionSnowflakeArgsDict(TypedDict):

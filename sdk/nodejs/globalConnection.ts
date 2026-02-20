@@ -252,6 +252,10 @@ export class GlobalConnection extends pulumi.CustomResource {
      */
     declare public readonly redshift: pulumi.Output<outputs.GlobalConnectionRedshift | undefined>;
     /**
+     * Salesforce connection configuration.
+     */
+    declare public readonly salesforce: pulumi.Output<outputs.GlobalConnectionSalesforce | undefined>;
+    /**
      * Snowflake connection configuration
      */
     declare public readonly snowflake: pulumi.Output<outputs.GlobalConnectionSnowflake | undefined>;
@@ -293,6 +297,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["postgres"] = state?.postgres;
             resourceInputs["privateLinkEndpointId"] = state?.privateLinkEndpointId;
             resourceInputs["redshift"] = state?.redshift;
+            resourceInputs["salesforce"] = state?.salesforce;
             resourceInputs["snowflake"] = state?.snowflake;
             resourceInputs["starburst"] = state?.starburst;
             resourceInputs["synapse"] = state?.synapse;
@@ -309,6 +314,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["postgres"] = args?.postgres;
             resourceInputs["privateLinkEndpointId"] = args?.privateLinkEndpointId;
             resourceInputs["redshift"] = args?.redshift;
+            resourceInputs["salesforce"] = args?.salesforce;
             resourceInputs["snowflake"] = args?.snowflake;
             resourceInputs["starburst"] = args?.starburst;
             resourceInputs["synapse"] = args?.synapse;
@@ -371,6 +377,10 @@ export interface GlobalConnectionState {
      */
     redshift?: pulumi.Input<inputs.GlobalConnectionRedshift>;
     /**
+     * Salesforce connection configuration.
+     */
+    salesforce?: pulumi.Input<inputs.GlobalConnectionSalesforce>;
+    /**
      * Snowflake connection configuration
      */
     snowflake?: pulumi.Input<inputs.GlobalConnectionSnowflake>;
@@ -429,6 +439,10 @@ export interface GlobalConnectionArgs {
      * Redshift connection configuration
      */
     redshift?: pulumi.Input<inputs.GlobalConnectionRedshift>;
+    /**
+     * Salesforce connection configuration.
+     */
+    salesforce?: pulumi.Input<inputs.GlobalConnectionSalesforce>;
     /**
      * Snowflake connection configuration
      */

@@ -52,6 +52,8 @@ type LookupEnvironmentResult struct {
 	Id string `pulumi:"id"`
 	// The name of the environment
 	Name string `pulumi:"name"`
+	// The ID of the primary profile for this environment
+	PrimaryProfileId int `pulumi:"primaryProfileId"`
 	// The project ID to which the environment belongs
 	ProjectId int `pulumi:"projectId"`
 	// The type of environment (must be either development or deployment)
@@ -144,6 +146,11 @@ func (o LookupEnvironmentResultOutput) Id() pulumi.StringOutput {
 // The name of the environment
 func (o LookupEnvironmentResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the primary profile for this environment
+func (o LookupEnvironmentResultOutput) PrimaryProfileId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.PrimaryProfileId }).(pulumi.IntOutput)
 }
 
 // The project ID to which the environment belongs

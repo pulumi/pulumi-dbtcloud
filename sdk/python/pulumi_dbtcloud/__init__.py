@@ -40,11 +40,14 @@ from .get_notification import *
 from .get_postgres_credential import *
 from .get_privatelink_endpoint import *
 from .get_privatelink_endpoints import *
+from .get_profile import *
+from .get_profiles import *
 from .get_project import *
 from .get_projects import *
 from .get_redshift_credential import *
 from .get_repository import *
 from .get_runs import *
+from .get_salesforce_credential import *
 from .get_service_token import *
 from .get_snowflake_credential import *
 from .get_spark_credential import *
@@ -70,6 +73,7 @@ from .partial_license_map import *
 from .partial_notification import *
 from .postgres_credential import *
 from .postgres_semantic_layer_credential import *
+from .profile import *
 from .project import *
 from .project_artefacts import *
 from .project_repository import *
@@ -77,6 +81,7 @@ from .provider import *
 from .redshift_credential import *
 from .redshift_semantic_layer_credential import *
 from .repository import *
+from .salesforce_credential import *
 from .scim_group_partial_permissions import *
 from .scim_group_permissions import *
 from .semantic_layer_configuration import *
@@ -330,6 +335,14 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/profile",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/profile:Profile": "Profile"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/project",
   "fqn": "pulumi_dbtcloud",
   "classes": {
@@ -374,6 +387,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/repository:Repository": "Repository"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/salesforceCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/salesforceCredential:SalesforceCredential": "SalesforceCredential"
   }
  },
  {

@@ -11,6 +11,7 @@ import com.pulumi.dbtcloud.outputs.GetGlobalConnectionDatabricks;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionFabric;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionPostgres;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionRedshift;
+import com.pulumi.dbtcloud.outputs.GetGlobalConnectionSalesforce;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionSnowflake;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionStarburst;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionSynapse;
@@ -80,6 +81,11 @@ public final class GetGlobalConnectionResult {
      * 
      */
     private GetGlobalConnectionRedshift redshift;
+    /**
+     * @return Salesforce connection configuration.
+     * 
+     */
+    private GetGlobalConnectionSalesforce salesforce;
     /**
      * @return Snowflake connection configuration
      * 
@@ -186,6 +192,13 @@ public final class GetGlobalConnectionResult {
         return this.redshift;
     }
     /**
+     * @return Salesforce connection configuration.
+     * 
+     */
+    public GetGlobalConnectionSalesforce salesforce() {
+        return this.salesforce;
+    }
+    /**
      * @return Snowflake connection configuration
      * 
      */
@@ -236,6 +249,7 @@ public final class GetGlobalConnectionResult {
         private GetGlobalConnectionPostgres postgres;
         private String privateLinkEndpointId;
         private GetGlobalConnectionRedshift redshift;
+        private GetGlobalConnectionSalesforce salesforce;
         private GetGlobalConnectionSnowflake snowflake;
         private GetGlobalConnectionStarburst starburst;
         private GetGlobalConnectionSynapse synapse;
@@ -256,6 +270,7 @@ public final class GetGlobalConnectionResult {
     	      this.postgres = defaults.postgres;
     	      this.privateLinkEndpointId = defaults.privateLinkEndpointId;
     	      this.redshift = defaults.redshift;
+    	      this.salesforce = defaults.salesforce;
     	      this.snowflake = defaults.snowflake;
     	      this.starburst = defaults.starburst;
     	      this.synapse = defaults.synapse;
@@ -367,6 +382,14 @@ public final class GetGlobalConnectionResult {
             return this;
         }
         @CustomType.Setter
+        public Builder salesforce(GetGlobalConnectionSalesforce salesforce) {
+            if (salesforce == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionResult", "salesforce");
+            }
+            this.salesforce = salesforce;
+            return this;
+        }
+        @CustomType.Setter
         public Builder snowflake(GetGlobalConnectionSnowflake snowflake) {
             if (snowflake == null) {
               throw new MissingRequiredPropertyException("GetGlobalConnectionResult", "snowflake");
@@ -413,6 +436,7 @@ public final class GetGlobalConnectionResult {
             _resultValue.postgres = postgres;
             _resultValue.privateLinkEndpointId = privateLinkEndpointId;
             _resultValue.redshift = redshift;
+            _resultValue.salesforce = salesforce;
             _resultValue.snowflake = snowflake;
             _resultValue.starburst = starburst;
             _resultValue.synapse = synapse;

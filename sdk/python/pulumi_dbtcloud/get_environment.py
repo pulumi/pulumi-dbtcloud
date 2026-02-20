@@ -26,7 +26,7 @@ class GetEnvironmentResult:
     """
     A collection of values returned by getEnvironment.
     """
-    def __init__(__self__, connection_id=None, credentials_id=None, custom_branch=None, dbt_version=None, deployment_type=None, enable_model_query_history=None, environment_id=None, extended_attributes_id=None, id=None, name=None, project_id=None, type=None, use_custom_branch=None):
+    def __init__(__self__, connection_id=None, credentials_id=None, custom_branch=None, dbt_version=None, deployment_type=None, enable_model_query_history=None, environment_id=None, extended_attributes_id=None, id=None, name=None, primary_profile_id=None, project_id=None, type=None, use_custom_branch=None):
         if connection_id and not isinstance(connection_id, int):
             raise TypeError("Expected argument 'connection_id' to be a int")
         pulumi.set(__self__, "connection_id", connection_id)
@@ -57,6 +57,9 @@ class GetEnvironmentResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if primary_profile_id and not isinstance(primary_profile_id, int):
+            raise TypeError("Expected argument 'primary_profile_id' to be a int")
+        pulumi.set(__self__, "primary_profile_id", primary_profile_id)
         if project_id and not isinstance(project_id, int):
             raise TypeError("Expected argument 'project_id' to be a int")
         pulumi.set(__self__, "project_id", project_id)
@@ -148,6 +151,14 @@ class GetEnvironmentResult:
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter(name="primaryProfileId")
+    def primary_profile_id(self) -> _builtins.int:
+        """
+        The ID of the primary profile for this environment
+        """
+        return pulumi.get(self, "primary_profile_id")
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.int:
         """
@@ -188,6 +199,7 @@ class AwaitableGetEnvironmentResult(GetEnvironmentResult):
             extended_attributes_id=self.extended_attributes_id,
             id=self.id,
             name=self.name,
+            primary_profile_id=self.primary_profile_id,
             project_id=self.project_id,
             type=self.type,
             use_custom_branch=self.use_custom_branch)
@@ -220,6 +232,7 @@ def get_environment(environment_id: Optional[_builtins.int] = None,
         extended_attributes_id=pulumi.get(__ret__, 'extended_attributes_id'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
+        primary_profile_id=pulumi.get(__ret__, 'primary_profile_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         type=pulumi.get(__ret__, 'type'),
         use_custom_branch=pulumi.get(__ret__, 'use_custom_branch'))
@@ -249,6 +262,7 @@ def get_environment_output(environment_id: Optional[pulumi.Input[_builtins.int]]
         extended_attributes_id=pulumi.get(__response__, 'extended_attributes_id'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
+        primary_profile_id=pulumi.get(__response__, 'primary_profile_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         type=pulumi.get(__response__, 'type'),
         use_custom_branch=pulumi.get(__response__, 'use_custom_branch')))
