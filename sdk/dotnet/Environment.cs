@@ -54,6 +54,20 @@ namespace Pulumi.DbtCloud
     ///         ConnectionId = myOtherGlobalConnection.Id,
     ///     });
     /// 
+    ///     // Deployment environment with a primary profile (binds connection + credentials via profile)
+    ///     // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
+    ///     // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
+    ///     // overwriting the profile's own settings and affecting other environments sharing that profile.
+    ///     var profiledEnvironment = new DbtCloud.Environment("profiled_environment", new()
+    ///     {
+    ///         DbtVersion = "latest",
+    ///         Name = "Staging",
+    ///         ProjectId = dbtProject.Id,
+    ///         Type = "deployment",
+    ///         DeploymentType = "staging",
+    ///         PrimaryProfileId = myProfile.ProfileId,
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -139,6 +153,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+        /// </summary>
+        [Output("primaryProfileId")]
+        public Output<int> PrimaryProfileId { get; private set; } = null!;
 
         /// <summary>
         /// Project ID to create the environment in
@@ -260,6 +280,12 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+        /// </summary>
+        [Input("primaryProfileId")]
+        public Input<int>? PrimaryProfileId { get; set; }
+
+        /// <summary>
         /// Project ID to create the environment in
         /// </summary>
         [Input("projectId", required: true)]
@@ -344,6 +370,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+        /// </summary>
+        [Input("primaryProfileId")]
+        public Input<int>? PrimaryProfileId { get; set; }
 
         /// <summary>
         /// Project ID to create the environment in

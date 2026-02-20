@@ -58,6 +58,11 @@ public final class GetEnvironmentsEnvironment {
      */
     private String name;
     /**
+     * @return The ID of the primary profile for this environment
+     * 
+     */
+    private Integer primaryProfileId;
+    /**
      * @return The project ID to which the environment belong
      * 
      */
@@ -138,6 +143,13 @@ public final class GetEnvironmentsEnvironment {
         return this.name;
     }
     /**
+     * @return The ID of the primary profile for this environment
+     * 
+     */
+    public Integer primaryProfileId() {
+        return this.primaryProfileId;
+    }
+    /**
      * @return The project ID to which the environment belong
      * 
      */
@@ -177,6 +189,7 @@ public final class GetEnvironmentsEnvironment {
         private Integer environmentId;
         private Integer extendedAttributesId;
         private String name;
+        private Integer primaryProfileId;
         private Integer projectId;
         private String type;
         private Boolean useCustomBranch;
@@ -192,6 +205,7 @@ public final class GetEnvironmentsEnvironment {
     	      this.environmentId = defaults.environmentId;
     	      this.extendedAttributesId = defaults.extendedAttributesId;
     	      this.name = defaults.name;
+    	      this.primaryProfileId = defaults.primaryProfileId;
     	      this.projectId = defaults.projectId;
     	      this.type = defaults.type;
     	      this.useCustomBranch = defaults.useCustomBranch;
@@ -270,6 +284,14 @@ public final class GetEnvironmentsEnvironment {
             return this;
         }
         @CustomType.Setter
+        public Builder primaryProfileId(Integer primaryProfileId) {
+            if (primaryProfileId == null) {
+              throw new MissingRequiredPropertyException("GetEnvironmentsEnvironment", "primaryProfileId");
+            }
+            this.primaryProfileId = primaryProfileId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(Integer projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetEnvironmentsEnvironment", "projectId");
@@ -304,6 +326,7 @@ public final class GetEnvironmentsEnvironment {
             _resultValue.environmentId = environmentId;
             _resultValue.extendedAttributesId = extendedAttributesId;
             _resultValue.name = name;
+            _resultValue.primaryProfileId = primaryProfileId;
             _resultValue.projectId = projectId;
             _resultValue.type = type;
             _resultValue.useCustomBranch = useCustomBranch;

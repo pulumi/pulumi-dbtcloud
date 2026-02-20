@@ -39,7 +39,7 @@ class GetGlobalConnectionsResult:
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetGlobalConnectionsConnectionResult']:
         """
-        A set of all the connections
+        A list of all the connections
         """
         return pulumi.get(self, "connections")
 

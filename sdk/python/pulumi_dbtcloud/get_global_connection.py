@@ -27,7 +27,7 @@ class GetGlobalConnectionResult:
     """
     A collection of values returned by getGlobalConnection.
     """
-    def __init__(__self__, adapter_version=None, apache_spark=None, athena=None, bigquery=None, databricks=None, fabric=None, id=None, is_ssh_tunnel_enabled=None, name=None, oauth_configuration_id=None, postgres=None, private_link_endpoint_id=None, redshift=None, snowflake=None, starburst=None, synapse=None, teradata=None):
+    def __init__(__self__, adapter_version=None, apache_spark=None, athena=None, bigquery=None, databricks=None, fabric=None, id=None, is_ssh_tunnel_enabled=None, name=None, oauth_configuration_id=None, postgres=None, private_link_endpoint_id=None, redshift=None, salesforce=None, snowflake=None, starburst=None, synapse=None, teradata=None):
         if adapter_version and not isinstance(adapter_version, str):
             raise TypeError("Expected argument 'adapter_version' to be a str")
         pulumi.set(__self__, "adapter_version", adapter_version)
@@ -67,6 +67,9 @@ class GetGlobalConnectionResult:
         if redshift and not isinstance(redshift, dict):
             raise TypeError("Expected argument 'redshift' to be a dict")
         pulumi.set(__self__, "redshift", redshift)
+        if salesforce and not isinstance(salesforce, dict):
+            raise TypeError("Expected argument 'salesforce' to be a dict")
+        pulumi.set(__self__, "salesforce", salesforce)
         if snowflake and not isinstance(snowflake, dict):
             raise TypeError("Expected argument 'snowflake' to be a dict")
         pulumi.set(__self__, "snowflake", snowflake)
@@ -180,6 +183,14 @@ class GetGlobalConnectionResult:
 
     @_builtins.property
     @pulumi.getter
+    def salesforce(self) -> 'outputs.GetGlobalConnectionSalesforceResult':
+        """
+        Salesforce connection configuration.
+        """
+        return pulumi.get(self, "salesforce")
+
+    @_builtins.property
+    @pulumi.getter
     def snowflake(self) -> 'outputs.GetGlobalConnectionSnowflakeResult':
         """
         Snowflake connection configuration
@@ -230,6 +241,7 @@ class AwaitableGetGlobalConnectionResult(GetGlobalConnectionResult):
             postgres=self.postgres,
             private_link_endpoint_id=self.private_link_endpoint_id,
             redshift=self.redshift,
+            salesforce=self.salesforce,
             snowflake=self.snowflake,
             starburst=self.starburst,
             synapse=self.synapse,
@@ -270,6 +282,7 @@ def get_global_connection(id: Optional[_builtins.int] = None,
         postgres=pulumi.get(__ret__, 'postgres'),
         private_link_endpoint_id=pulumi.get(__ret__, 'private_link_endpoint_id'),
         redshift=pulumi.get(__ret__, 'redshift'),
+        salesforce=pulumi.get(__ret__, 'salesforce'),
         snowflake=pulumi.get(__ret__, 'snowflake'),
         starburst=pulumi.get(__ret__, 'starburst'),
         synapse=pulumi.get(__ret__, 'synapse'),
@@ -307,6 +320,7 @@ def get_global_connection_output(id: Optional[pulumi.Input[_builtins.int]] = Non
         postgres=pulumi.get(__response__, 'postgres'),
         private_link_endpoint_id=pulumi.get(__response__, 'private_link_endpoint_id'),
         redshift=pulumi.get(__response__, 'redshift'),
+        salesforce=pulumi.get(__response__, 'salesforce'),
         snowflake=pulumi.get(__response__, 'snowflake'),
         starburst=pulumi.get(__response__, 'starburst'),
         synapse=pulumi.get(__response__, 'synapse'),

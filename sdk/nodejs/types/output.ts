@@ -147,6 +147,10 @@ export interface GetEnvironmentsEnvironment {
      */
     name: string;
     /**
+     * The ID of the primary profile for this environment
+     */
+    primaryProfileId: number;
+    /**
      * The project ID to which the environment belong
      */
     projectId: number;
@@ -485,6 +489,21 @@ export interface GetGlobalConnectionRedshiftSshTunnel {
      * The username to use for the SSH tunnel.
      */
     username: string;
+}
+
+export interface GetGlobalConnectionSalesforce {
+    /**
+     * Timeout in seconds for data transformation runs.
+     */
+    dataTransformRunTimeout: number;
+    /**
+     * The target database name.
+     */
+    database: string;
+    /**
+     * The Salesforce instance URL (e.g., https://login.salesforce.com)
+     */
+    loginUrl: string;
 }
 
 export interface GetGlobalConnectionSnowflake {
@@ -938,6 +957,37 @@ export interface GetPrivatelinkEndpointsEndpoint {
      * Type of the PrivateLink Endpoint
      */
     type: string;
+}
+
+export interface GetProfilesProfile {
+    /**
+     * The ID of the connection used by this profile
+     */
+    connectionId: number;
+    /**
+     * The ID of the credentials used by this profile
+     */
+    credentialsId: number;
+    /**
+     * The ID of the extended attributes for this profile
+     */
+    extendedAttributesId: number;
+    /**
+     * The ID of this resource. Contains the project ID and the profile ID.
+     */
+    id: string;
+    /**
+     * Unique identifier for the profile
+     */
+    key: string;
+    /**
+     * The ID of the profile
+     */
+    profileId: number;
+    /**
+     * The project ID to which the profile belongs
+     */
+    projectId: number;
 }
 
 export interface GetProjectProjectConnection {
@@ -1480,6 +1530,21 @@ export interface GlobalConnectionRedshiftSshTunnel {
      * The username to use for the SSH tunnel.
      */
     username: string;
+}
+
+export interface GlobalConnectionSalesforce {
+    /**
+     * Timeout in seconds for data transformation runs. Default=300
+     */
+    dataTransformRunTimeout: number;
+    /**
+     * The target database name. Default=default
+     */
+    database: string;
+    /**
+     * The Salesforce instance URL (e.g., https://login.salesforce.com)
+     */
+    loginUrl: string;
 }
 
 export interface GlobalConnectionSnowflake {

@@ -168,6 +168,21 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     * 
+     */
+    @Import(name="primaryProfileId")
+    private @Nullable Output<Integer> primaryProfileId;
+
+    /**
+     * @return The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     * 
+     */
+    public Optional<Output<Integer>> primaryProfileId() {
+        return Optional.ofNullable(this.primaryProfileId);
+    }
+
+    /**
      * Project ID to create the environment in
      * 
      */
@@ -225,6 +240,7 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
         this.extendedAttributesId = $.extendedAttributesId;
         this.isActive = $.isActive;
         this.name = $.name;
+        this.primaryProfileId = $.primaryProfileId;
         this.projectId = $.projectId;
         this.type = $.type;
         this.useCustomBranch = $.useCustomBranch;
@@ -456,6 +472,27 @@ public final class EnvironmentState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param primaryProfileId The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder primaryProfileId(@Nullable Output<Integer> primaryProfileId) {
+            $.primaryProfileId = primaryProfileId;
+            return this;
+        }
+
+        /**
+         * @param primaryProfileId The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder primaryProfileId(Integer primaryProfileId) {
+            return primaryProfileId(Output.of(primaryProfileId));
         }
 
         /**

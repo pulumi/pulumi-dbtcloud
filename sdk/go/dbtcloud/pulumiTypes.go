@@ -3444,6 +3444,181 @@ func (o GlobalConnectionRedshiftSshTunnelPtrOutput) Username() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+type GlobalConnectionSalesforce struct {
+	// Timeout in seconds for data transformation runs. Default=300
+	DataTransformRunTimeout *int `pulumi:"dataTransformRunTimeout"`
+	// The target database name. Default=default
+	Database *string `pulumi:"database"`
+	// The Salesforce instance URL (e.g., https://login.salesforce.com)
+	LoginUrl string `pulumi:"loginUrl"`
+}
+
+// GlobalConnectionSalesforceInput is an input type that accepts GlobalConnectionSalesforceArgs and GlobalConnectionSalesforceOutput values.
+// You can construct a concrete instance of `GlobalConnectionSalesforceInput` via:
+//
+//	GlobalConnectionSalesforceArgs{...}
+type GlobalConnectionSalesforceInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionSalesforceOutput() GlobalConnectionSalesforceOutput
+	ToGlobalConnectionSalesforceOutputWithContext(context.Context) GlobalConnectionSalesforceOutput
+}
+
+type GlobalConnectionSalesforceArgs struct {
+	// Timeout in seconds for data transformation runs. Default=300
+	DataTransformRunTimeout pulumi.IntPtrInput `pulumi:"dataTransformRunTimeout"`
+	// The target database name. Default=default
+	Database pulumi.StringPtrInput `pulumi:"database"`
+	// The Salesforce instance URL (e.g., https://login.salesforce.com)
+	LoginUrl pulumi.StringInput `pulumi:"loginUrl"`
+}
+
+func (GlobalConnectionSalesforceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionSalesforce)(nil)).Elem()
+}
+
+func (i GlobalConnectionSalesforceArgs) ToGlobalConnectionSalesforceOutput() GlobalConnectionSalesforceOutput {
+	return i.ToGlobalConnectionSalesforceOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionSalesforceArgs) ToGlobalConnectionSalesforceOutputWithContext(ctx context.Context) GlobalConnectionSalesforceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSalesforceOutput)
+}
+
+func (i GlobalConnectionSalesforceArgs) ToGlobalConnectionSalesforcePtrOutput() GlobalConnectionSalesforcePtrOutput {
+	return i.ToGlobalConnectionSalesforcePtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionSalesforceArgs) ToGlobalConnectionSalesforcePtrOutputWithContext(ctx context.Context) GlobalConnectionSalesforcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSalesforceOutput).ToGlobalConnectionSalesforcePtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionSalesforcePtrInput is an input type that accepts GlobalConnectionSalesforceArgs, GlobalConnectionSalesforcePtr and GlobalConnectionSalesforcePtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionSalesforcePtrInput` via:
+//
+//	        GlobalConnectionSalesforceArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionSalesforcePtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionSalesforcePtrOutput() GlobalConnectionSalesforcePtrOutput
+	ToGlobalConnectionSalesforcePtrOutputWithContext(context.Context) GlobalConnectionSalesforcePtrOutput
+}
+
+type globalConnectionSalesforcePtrType GlobalConnectionSalesforceArgs
+
+func GlobalConnectionSalesforcePtr(v *GlobalConnectionSalesforceArgs) GlobalConnectionSalesforcePtrInput {
+	return (*globalConnectionSalesforcePtrType)(v)
+}
+
+func (*globalConnectionSalesforcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionSalesforce)(nil)).Elem()
+}
+
+func (i *globalConnectionSalesforcePtrType) ToGlobalConnectionSalesforcePtrOutput() GlobalConnectionSalesforcePtrOutput {
+	return i.ToGlobalConnectionSalesforcePtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionSalesforcePtrType) ToGlobalConnectionSalesforcePtrOutputWithContext(ctx context.Context) GlobalConnectionSalesforcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionSalesforcePtrOutput)
+}
+
+type GlobalConnectionSalesforceOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionSalesforceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionSalesforce)(nil)).Elem()
+}
+
+func (o GlobalConnectionSalesforceOutput) ToGlobalConnectionSalesforceOutput() GlobalConnectionSalesforceOutput {
+	return o
+}
+
+func (o GlobalConnectionSalesforceOutput) ToGlobalConnectionSalesforceOutputWithContext(ctx context.Context) GlobalConnectionSalesforceOutput {
+	return o
+}
+
+func (o GlobalConnectionSalesforceOutput) ToGlobalConnectionSalesforcePtrOutput() GlobalConnectionSalesforcePtrOutput {
+	return o.ToGlobalConnectionSalesforcePtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionSalesforceOutput) ToGlobalConnectionSalesforcePtrOutputWithContext(ctx context.Context) GlobalConnectionSalesforcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionSalesforce) *GlobalConnectionSalesforce {
+		return &v
+	}).(GlobalConnectionSalesforcePtrOutput)
+}
+
+// Timeout in seconds for data transformation runs. Default=300
+func (o GlobalConnectionSalesforceOutput) DataTransformRunTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSalesforce) *int { return v.DataTransformRunTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The target database name. Default=default
+func (o GlobalConnectionSalesforceOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionSalesforce) *string { return v.Database }).(pulumi.StringPtrOutput)
+}
+
+// The Salesforce instance URL (e.g., https://login.salesforce.com)
+func (o GlobalConnectionSalesforceOutput) LoginUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionSalesforce) string { return v.LoginUrl }).(pulumi.StringOutput)
+}
+
+type GlobalConnectionSalesforcePtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionSalesforcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionSalesforce)(nil)).Elem()
+}
+
+func (o GlobalConnectionSalesforcePtrOutput) ToGlobalConnectionSalesforcePtrOutput() GlobalConnectionSalesforcePtrOutput {
+	return o
+}
+
+func (o GlobalConnectionSalesforcePtrOutput) ToGlobalConnectionSalesforcePtrOutputWithContext(ctx context.Context) GlobalConnectionSalesforcePtrOutput {
+	return o
+}
+
+func (o GlobalConnectionSalesforcePtrOutput) Elem() GlobalConnectionSalesforceOutput {
+	return o.ApplyT(func(v *GlobalConnectionSalesforce) GlobalConnectionSalesforce {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionSalesforce
+		return ret
+	}).(GlobalConnectionSalesforceOutput)
+}
+
+// Timeout in seconds for data transformation runs. Default=300
+func (o GlobalConnectionSalesforcePtrOutput) DataTransformRunTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSalesforce) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DataTransformRunTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// The target database name. Default=default
+func (o GlobalConnectionSalesforcePtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSalesforce) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Salesforce instance URL (e.g., https://login.salesforce.com)
+func (o GlobalConnectionSalesforcePtrOutput) LoginUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionSalesforce) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LoginUrl
+	}).(pulumi.StringPtrOutput)
+}
+
 type GlobalConnectionSnowflake struct {
 	// The Snowflake account name
 	Account string `pulumi:"account"`
@@ -7128,6 +7303,8 @@ type GetEnvironmentsEnvironment struct {
 	ExtendedAttributesId int `pulumi:"extendedAttributesId"`
 	// The name of the environment
 	Name string `pulumi:"name"`
+	// The ID of the primary profile for this environment
+	PrimaryProfileId int `pulumi:"primaryProfileId"`
 	// The project ID to which the environment belong
 	ProjectId int `pulumi:"projectId"`
 	// The type of environment (must be either development or deployment)
@@ -7166,6 +7343,8 @@ type GetEnvironmentsEnvironmentArgs struct {
 	ExtendedAttributesId pulumi.IntInput `pulumi:"extendedAttributesId"`
 	// The name of the environment
 	Name pulumi.StringInput `pulumi:"name"`
+	// The ID of the primary profile for this environment
+	PrimaryProfileId pulumi.IntInput `pulumi:"primaryProfileId"`
 	// The project ID to which the environment belong
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
 	// The type of environment (must be either development or deployment)
@@ -7268,6 +7447,11 @@ func (o GetEnvironmentsEnvironmentOutput) ExtendedAttributesId() pulumi.IntOutpu
 // The name of the environment
 func (o GetEnvironmentsEnvironmentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the primary profile for this environment
+func (o GetEnvironmentsEnvironmentOutput) PrimaryProfileId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) int { return v.PrimaryProfileId }).(pulumi.IntOutput)
 }
 
 // The project ID to which the environment belong
@@ -8365,6 +8549,76 @@ func (o GetGlobalConnectionRedshiftSshTunnelOutput) PublicKey() pulumi.StringOut
 // The username to use for the SSH tunnel.
 func (o GetGlobalConnectionRedshiftSshTunnelOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionRedshiftSshTunnel) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetGlobalConnectionSalesforce struct {
+	// Timeout in seconds for data transformation runs.
+	DataTransformRunTimeout int `pulumi:"dataTransformRunTimeout"`
+	// The target database name.
+	Database string `pulumi:"database"`
+	// The Salesforce instance URL (e.g., https://login.salesforce.com)
+	LoginUrl string `pulumi:"loginUrl"`
+}
+
+// GetGlobalConnectionSalesforceInput is an input type that accepts GetGlobalConnectionSalesforceArgs and GetGlobalConnectionSalesforceOutput values.
+// You can construct a concrete instance of `GetGlobalConnectionSalesforceInput` via:
+//
+//	GetGlobalConnectionSalesforceArgs{...}
+type GetGlobalConnectionSalesforceInput interface {
+	pulumi.Input
+
+	ToGetGlobalConnectionSalesforceOutput() GetGlobalConnectionSalesforceOutput
+	ToGetGlobalConnectionSalesforceOutputWithContext(context.Context) GetGlobalConnectionSalesforceOutput
+}
+
+type GetGlobalConnectionSalesforceArgs struct {
+	// Timeout in seconds for data transformation runs.
+	DataTransformRunTimeout pulumi.IntInput `pulumi:"dataTransformRunTimeout"`
+	// The target database name.
+	Database pulumi.StringInput `pulumi:"database"`
+	// The Salesforce instance URL (e.g., https://login.salesforce.com)
+	LoginUrl pulumi.StringInput `pulumi:"loginUrl"`
+}
+
+func (GetGlobalConnectionSalesforceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGlobalConnectionSalesforce)(nil)).Elem()
+}
+
+func (i GetGlobalConnectionSalesforceArgs) ToGetGlobalConnectionSalesforceOutput() GetGlobalConnectionSalesforceOutput {
+	return i.ToGetGlobalConnectionSalesforceOutputWithContext(context.Background())
+}
+
+func (i GetGlobalConnectionSalesforceArgs) ToGetGlobalConnectionSalesforceOutputWithContext(ctx context.Context) GetGlobalConnectionSalesforceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGlobalConnectionSalesforceOutput)
+}
+
+type GetGlobalConnectionSalesforceOutput struct{ *pulumi.OutputState }
+
+func (GetGlobalConnectionSalesforceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGlobalConnectionSalesforce)(nil)).Elem()
+}
+
+func (o GetGlobalConnectionSalesforceOutput) ToGetGlobalConnectionSalesforceOutput() GetGlobalConnectionSalesforceOutput {
+	return o
+}
+
+func (o GetGlobalConnectionSalesforceOutput) ToGetGlobalConnectionSalesforceOutputWithContext(ctx context.Context) GetGlobalConnectionSalesforceOutput {
+	return o
+}
+
+// Timeout in seconds for data transformation runs.
+func (o GetGlobalConnectionSalesforceOutput) DataTransformRunTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGlobalConnectionSalesforce) int { return v.DataTransformRunTimeout }).(pulumi.IntOutput)
+}
+
+// The target database name.
+func (o GetGlobalConnectionSalesforceOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionSalesforce) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// The Salesforce instance URL (e.g., https://login.salesforce.com)
+func (o GetGlobalConnectionSalesforceOutput) LoginUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionSalesforce) string { return v.LoginUrl }).(pulumi.StringOutput)
 }
 
 type GetGlobalConnectionSnowflake struct {
@@ -10585,6 +10839,157 @@ func (o GetPrivatelinkEndpointsEndpointArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetPrivatelinkEndpointsEndpointOutput)
 }
 
+type GetProfilesProfile struct {
+	// The ID of the connection used by this profile
+	ConnectionId int `pulumi:"connectionId"`
+	// The ID of the credentials used by this profile
+	CredentialsId int `pulumi:"credentialsId"`
+	// The ID of the extended attributes for this profile
+	ExtendedAttributesId int `pulumi:"extendedAttributesId"`
+	// The ID of this resource. Contains the project ID and the profile ID.
+	Id string `pulumi:"id"`
+	// Unique identifier for the profile
+	Key string `pulumi:"key"`
+	// The ID of the profile
+	ProfileId int `pulumi:"profileId"`
+	// The project ID to which the profile belongs
+	ProjectId int `pulumi:"projectId"`
+}
+
+// GetProfilesProfileInput is an input type that accepts GetProfilesProfileArgs and GetProfilesProfileOutput values.
+// You can construct a concrete instance of `GetProfilesProfileInput` via:
+//
+//	GetProfilesProfileArgs{...}
+type GetProfilesProfileInput interface {
+	pulumi.Input
+
+	ToGetProfilesProfileOutput() GetProfilesProfileOutput
+	ToGetProfilesProfileOutputWithContext(context.Context) GetProfilesProfileOutput
+}
+
+type GetProfilesProfileArgs struct {
+	// The ID of the connection used by this profile
+	ConnectionId pulumi.IntInput `pulumi:"connectionId"`
+	// The ID of the credentials used by this profile
+	CredentialsId pulumi.IntInput `pulumi:"credentialsId"`
+	// The ID of the extended attributes for this profile
+	ExtendedAttributesId pulumi.IntInput `pulumi:"extendedAttributesId"`
+	// The ID of this resource. Contains the project ID and the profile ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Unique identifier for the profile
+	Key pulumi.StringInput `pulumi:"key"`
+	// The ID of the profile
+	ProfileId pulumi.IntInput `pulumi:"profileId"`
+	// The project ID to which the profile belongs
+	ProjectId pulumi.IntInput `pulumi:"projectId"`
+}
+
+func (GetProfilesProfileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProfilesProfile)(nil)).Elem()
+}
+
+func (i GetProfilesProfileArgs) ToGetProfilesProfileOutput() GetProfilesProfileOutput {
+	return i.ToGetProfilesProfileOutputWithContext(context.Background())
+}
+
+func (i GetProfilesProfileArgs) ToGetProfilesProfileOutputWithContext(ctx context.Context) GetProfilesProfileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProfilesProfileOutput)
+}
+
+// GetProfilesProfileArrayInput is an input type that accepts GetProfilesProfileArray and GetProfilesProfileArrayOutput values.
+// You can construct a concrete instance of `GetProfilesProfileArrayInput` via:
+//
+//	GetProfilesProfileArray{ GetProfilesProfileArgs{...} }
+type GetProfilesProfileArrayInput interface {
+	pulumi.Input
+
+	ToGetProfilesProfileArrayOutput() GetProfilesProfileArrayOutput
+	ToGetProfilesProfileArrayOutputWithContext(context.Context) GetProfilesProfileArrayOutput
+}
+
+type GetProfilesProfileArray []GetProfilesProfileInput
+
+func (GetProfilesProfileArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProfilesProfile)(nil)).Elem()
+}
+
+func (i GetProfilesProfileArray) ToGetProfilesProfileArrayOutput() GetProfilesProfileArrayOutput {
+	return i.ToGetProfilesProfileArrayOutputWithContext(context.Background())
+}
+
+func (i GetProfilesProfileArray) ToGetProfilesProfileArrayOutputWithContext(ctx context.Context) GetProfilesProfileArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProfilesProfileArrayOutput)
+}
+
+type GetProfilesProfileOutput struct{ *pulumi.OutputState }
+
+func (GetProfilesProfileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProfilesProfile)(nil)).Elem()
+}
+
+func (o GetProfilesProfileOutput) ToGetProfilesProfileOutput() GetProfilesProfileOutput {
+	return o
+}
+
+func (o GetProfilesProfileOutput) ToGetProfilesProfileOutputWithContext(ctx context.Context) GetProfilesProfileOutput {
+	return o
+}
+
+// The ID of the connection used by this profile
+func (o GetProfilesProfileOutput) ConnectionId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProfilesProfile) int { return v.ConnectionId }).(pulumi.IntOutput)
+}
+
+// The ID of the credentials used by this profile
+func (o GetProfilesProfileOutput) CredentialsId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProfilesProfile) int { return v.CredentialsId }).(pulumi.IntOutput)
+}
+
+// The ID of the extended attributes for this profile
+func (o GetProfilesProfileOutput) ExtendedAttributesId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProfilesProfile) int { return v.ExtendedAttributesId }).(pulumi.IntOutput)
+}
+
+// The ID of this resource. Contains the project ID and the profile ID.
+func (o GetProfilesProfileOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProfilesProfile) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the profile
+func (o GetProfilesProfileOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProfilesProfile) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The ID of the profile
+func (o GetProfilesProfileOutput) ProfileId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProfilesProfile) int { return v.ProfileId }).(pulumi.IntOutput)
+}
+
+// The project ID to which the profile belongs
+func (o GetProfilesProfileOutput) ProjectId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProfilesProfile) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+type GetProfilesProfileArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProfilesProfileArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProfilesProfile)(nil)).Elem()
+}
+
+func (o GetProfilesProfileArrayOutput) ToGetProfilesProfileArrayOutput() GetProfilesProfileArrayOutput {
+	return o
+}
+
+func (o GetProfilesProfileArrayOutput) ToGetProfilesProfileArrayOutputWithContext(ctx context.Context) GetProfilesProfileArrayOutput {
+	return o
+}
+
+func (o GetProfilesProfileArrayOutput) Index(i pulumi.IntInput) GetProfilesProfileOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProfilesProfile {
+		return vs[0].([]GetProfilesProfile)[vs[1].(int)]
+	}).(GetProfilesProfileOutput)
+}
+
 type GetProjectProjectConnection struct {
 	// Version of the adapter for the connection. Will tell what connection type it is
 	AdapterVersion string `pulumi:"adapterVersion"`
@@ -11742,6 +12147,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionRedshiftPtrInput)(nil)).Elem(), GlobalConnectionRedshiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionRedshiftSshTunnelInput)(nil)).Elem(), GlobalConnectionRedshiftSshTunnelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionRedshiftSshTunnelPtrInput)(nil)).Elem(), GlobalConnectionRedshiftSshTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSalesforceInput)(nil)).Elem(), GlobalConnectionSalesforceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSalesforcePtrInput)(nil)).Elem(), GlobalConnectionSalesforceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSnowflakeInput)(nil)).Elem(), GlobalConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionSnowflakePtrInput)(nil)).Elem(), GlobalConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionStarburstInput)(nil)).Elem(), GlobalConnectionStarburstArgs{})
@@ -11791,6 +12198,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionPostgresSshTunnelInput)(nil)).Elem(), GetGlobalConnectionPostgresSshTunnelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionRedshiftInput)(nil)).Elem(), GetGlobalConnectionRedshiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionRedshiftSshTunnelInput)(nil)).Elem(), GetGlobalConnectionRedshiftSshTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionSalesforceInput)(nil)).Elem(), GetGlobalConnectionSalesforceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionSnowflakeInput)(nil)).Elem(), GetGlobalConnectionSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionStarburstInput)(nil)).Elem(), GetGlobalConnectionStarburstArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionSynapseInput)(nil)).Elem(), GetGlobalConnectionSynapseArgs{})
@@ -11821,6 +12229,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobsJobTriggersInput)(nil)).Elem(), GetJobsJobTriggersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsEndpointInput)(nil)).Elem(), GetPrivatelinkEndpointsEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsEndpointArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProfilesProfileInput)(nil)).Elem(), GetProfilesProfileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProfilesProfileArrayInput)(nil)).Elem(), GetProfilesProfileArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectProjectConnectionInput)(nil)).Elem(), GetProjectProjectConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectRepositoryTypeInput)(nil)).Elem(), GetProjectRepositoryTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectInput)(nil)).Elem(), GetProjectsProjectArgs{})
@@ -11861,6 +12271,8 @@ func init() {
 	pulumi.RegisterOutputType(GlobalConnectionRedshiftPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionRedshiftSshTunnelOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionRedshiftSshTunnelPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionSalesforceOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionSalesforcePtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionSnowflakeOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionSnowflakePtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionStarburstOutput{})
@@ -11910,6 +12322,7 @@ func init() {
 	pulumi.RegisterOutputType(GetGlobalConnectionPostgresSshTunnelOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionRedshiftOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionRedshiftSshTunnelOutput{})
+	pulumi.RegisterOutputType(GetGlobalConnectionSalesforceOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionSnowflakeOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionStarburstOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionSynapseOutput{})
@@ -11940,6 +12353,8 @@ func init() {
 	pulumi.RegisterOutputType(GetJobsJobTriggersOutput{})
 	pulumi.RegisterOutputType(GetPrivatelinkEndpointsEndpointOutput{})
 	pulumi.RegisterOutputType(GetPrivatelinkEndpointsEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetProfilesProfileOutput{})
+	pulumi.RegisterOutputType(GetProfilesProfileArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectProjectConnectionOutput{})
 	pulumi.RegisterOutputType(GetProjectRepositoryTypeOutput{})
 	pulumi.RegisterOutputType(GetProjectsProjectOutput{})

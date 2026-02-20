@@ -590,6 +590,21 @@ export interface GlobalConnectionRedshiftSshTunnel {
     username: pulumi.Input<string>;
 }
 
+export interface GlobalConnectionSalesforce {
+    /**
+     * Timeout in seconds for data transformation runs. Default=300
+     */
+    dataTransformRunTimeout?: pulumi.Input<number>;
+    /**
+     * The target database name. Default=default
+     */
+    database?: pulumi.Input<string>;
+    /**
+     * The Salesforce instance URL (e.g., https://login.salesforce.com)
+     */
+    loginUrl: pulumi.Input<string>;
+}
+
 export interface GlobalConnectionSnowflake {
     /**
      * The Snowflake account name

@@ -63,6 +63,11 @@ public final class GetEnvironmentResult {
      */
     private String name;
     /**
+     * @return The ID of the primary profile for this environment
+     * 
+     */
+    private Integer primaryProfileId;
+    /**
      * @return The project ID to which the environment belongs
      * 
      */
@@ -150,6 +155,13 @@ public final class GetEnvironmentResult {
         return this.name;
     }
     /**
+     * @return The ID of the primary profile for this environment
+     * 
+     */
+    public Integer primaryProfileId() {
+        return this.primaryProfileId;
+    }
+    /**
      * @return The project ID to which the environment belongs
      * 
      */
@@ -190,6 +202,7 @@ public final class GetEnvironmentResult {
         private Integer extendedAttributesId;
         private String id;
         private String name;
+        private Integer primaryProfileId;
         private Integer projectId;
         private String type;
         private Boolean useCustomBranch;
@@ -206,6 +219,7 @@ public final class GetEnvironmentResult {
     	      this.extendedAttributesId = defaults.extendedAttributesId;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
+    	      this.primaryProfileId = defaults.primaryProfileId;
     	      this.projectId = defaults.projectId;
     	      this.type = defaults.type;
     	      this.useCustomBranch = defaults.useCustomBranch;
@@ -292,6 +306,14 @@ public final class GetEnvironmentResult {
             return this;
         }
         @CustomType.Setter
+        public Builder primaryProfileId(Integer primaryProfileId) {
+            if (primaryProfileId == null) {
+              throw new MissingRequiredPropertyException("GetEnvironmentResult", "primaryProfileId");
+            }
+            this.primaryProfileId = primaryProfileId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(Integer projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetEnvironmentResult", "projectId");
@@ -327,6 +349,7 @@ public final class GetEnvironmentResult {
             _resultValue.extendedAttributesId = extendedAttributesId;
             _resultValue.id = id;
             _resultValue.name = name;
+            _resultValue.primaryProfileId = primaryProfileId;
             _resultValue.projectId = projectId;
             _resultValue.type = type;
             _resultValue.useCustomBranch = useCustomBranch;

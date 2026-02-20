@@ -29,6 +29,7 @@ __all__ = [
     'GlobalConnectionPostgresSshTunnel',
     'GlobalConnectionRedshift',
     'GlobalConnectionRedshiftSshTunnel',
+    'GlobalConnectionSalesforce',
     'GlobalConnectionSnowflake',
     'GlobalConnectionStarburst',
     'GlobalConnectionSynapse',
@@ -58,6 +59,7 @@ __all__ = [
     'GetGlobalConnectionPostgresSshTunnelResult',
     'GetGlobalConnectionRedshiftResult',
     'GetGlobalConnectionRedshiftSshTunnelResult',
+    'GetGlobalConnectionSalesforceResult',
     'GetGlobalConnectionSnowflakeResult',
     'GetGlobalConnectionStarburstResult',
     'GetGlobalConnectionSynapseResult',
@@ -81,6 +83,7 @@ __all__ = [
     'GetJobsJobSettingsResult',
     'GetJobsJobTriggersResult',
     'GetPrivatelinkEndpointsEndpointResult',
+    'GetProfilesProfileResult',
     'GetProjectProjectConnectionResult',
     'GetProjectRepositoryResult',
     'GetProjectsProjectResult',
@@ -1652,6 +1655,67 @@ class GlobalConnectionRedshiftSshTunnel(dict):
         The SSH public key generated to allow connecting via SSH tunnel.
         """
         return pulumi.get(self, "public_key")
+
+
+@pulumi.output_type
+class GlobalConnectionSalesforce(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "loginUrl":
+            suggest = "login_url"
+        elif key == "dataTransformRunTimeout":
+            suggest = "data_transform_run_timeout"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GlobalConnectionSalesforce. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GlobalConnectionSalesforce.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GlobalConnectionSalesforce.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 login_url: _builtins.str,
+                 data_transform_run_timeout: Optional[_builtins.int] = None,
+                 database: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str login_url: The Salesforce instance URL (e.g., https://login.salesforce.com)
+        :param _builtins.int data_transform_run_timeout: Timeout in seconds for data transformation runs. Default=300
+        :param _builtins.str database: The target database name. Default=default
+        """
+        pulumi.set(__self__, "login_url", login_url)
+        if data_transform_run_timeout is not None:
+            pulumi.set(__self__, "data_transform_run_timeout", data_transform_run_timeout)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+
+    @_builtins.property
+    @pulumi.getter(name="loginUrl")
+    def login_url(self) -> _builtins.str:
+        """
+        The Salesforce instance URL (e.g., https://login.salesforce.com)
+        """
+        return pulumi.get(self, "login_url")
+
+    @_builtins.property
+    @pulumi.getter(name="dataTransformRunTimeout")
+    def data_transform_run_timeout(self) -> Optional[_builtins.int]:
+        """
+        Timeout in seconds for data transformation runs. Default=300
+        """
+        return pulumi.get(self, "data_transform_run_timeout")
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> Optional[_builtins.str]:
+        """
+        The target database name. Default=default
+        """
+        return pulumi.get(self, "database")
 
 
 @pulumi.output_type
@@ -3357,6 +3421,7 @@ class GetEnvironmentsEnvironmentResult(dict):
                  environment_id: _builtins.int,
                  extended_attributes_id: _builtins.int,
                  name: _builtins.str,
+                 primary_profile_id: _builtins.int,
                  project_id: _builtins.int,
                  type: _builtins.str,
                  use_custom_branch: _builtins.bool):
@@ -3370,6 +3435,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         :param _builtins.int environment_id: The ID of the environment
         :param _builtins.int extended_attributes_id: The ID of the extended attributes applied
         :param _builtins.str name: The name of the environment
+        :param _builtins.int primary_profile_id: The ID of the primary profile for this environment
         :param _builtins.int project_id: The project ID to which the environment belong
         :param _builtins.str type: The type of environment (must be either development or deployment)
         :param _builtins.bool use_custom_branch: Whether to use a custom git branch in this environment
@@ -3383,6 +3449,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "extended_attributes_id", extended_attributes_id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "primary_profile_id", primary_profile_id)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "use_custom_branch", use_custom_branch)
@@ -3458,6 +3525,14 @@ class GetEnvironmentsEnvironmentResult(dict):
         The name of the environment
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryProfileId")
+    def primary_profile_id(self) -> _builtins.int:
+        """
+        The ID of the primary profile for this environment
+        """
+        return pulumi.get(self, "primary_profile_id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -4370,6 +4445,46 @@ class GetGlobalConnectionRedshiftSshTunnelResult(dict):
         The username to use for the SSH tunnel.
         """
         return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetGlobalConnectionSalesforceResult(dict):
+    def __init__(__self__, *,
+                 data_transform_run_timeout: _builtins.int,
+                 database: _builtins.str,
+                 login_url: _builtins.str):
+        """
+        :param _builtins.int data_transform_run_timeout: Timeout in seconds for data transformation runs.
+        :param _builtins.str database: The target database name.
+        :param _builtins.str login_url: The Salesforce instance URL (e.g., https://login.salesforce.com)
+        """
+        pulumi.set(__self__, "data_transform_run_timeout", data_transform_run_timeout)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "login_url", login_url)
+
+    @_builtins.property
+    @pulumi.getter(name="dataTransformRunTimeout")
+    def data_transform_run_timeout(self) -> _builtins.int:
+        """
+        Timeout in seconds for data transformation runs.
+        """
+        return pulumi.get(self, "data_transform_run_timeout")
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> _builtins.str:
+        """
+        The target database name.
+        """
+        return pulumi.get(self, "database")
+
+    @_builtins.property
+    @pulumi.getter(name="loginUrl")
+    def login_url(self) -> _builtins.str:
+        """
+        The Salesforce instance URL (e.g., https://login.salesforce.com)
+        """
+        return pulumi.get(self, "login_url")
 
 
 @pulumi.output_type
@@ -5625,6 +5740,90 @@ class GetPrivatelinkEndpointsEndpointResult(dict):
         Type of the PrivateLink Endpoint
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetProfilesProfileResult(dict):
+    def __init__(__self__, *,
+                 connection_id: _builtins.int,
+                 credentials_id: _builtins.int,
+                 extended_attributes_id: _builtins.int,
+                 id: _builtins.str,
+                 key: _builtins.str,
+                 profile_id: _builtins.int,
+                 project_id: _builtins.int):
+        """
+        :param _builtins.int connection_id: The ID of the connection used by this profile
+        :param _builtins.int credentials_id: The ID of the credentials used by this profile
+        :param _builtins.int extended_attributes_id: The ID of the extended attributes for this profile
+        :param _builtins.str id: The ID of this resource. Contains the project ID and the profile ID.
+        :param _builtins.str key: Unique identifier for the profile
+        :param _builtins.int profile_id: The ID of the profile
+        :param _builtins.int project_id: The project ID to which the profile belongs
+        """
+        pulumi.set(__self__, "connection_id", connection_id)
+        pulumi.set(__self__, "credentials_id", credentials_id)
+        pulumi.set(__self__, "extended_attributes_id", extended_attributes_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "profile_id", profile_id)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> _builtins.int:
+        """
+        The ID of the connection used by this profile
+        """
+        return pulumi.get(self, "connection_id")
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsId")
+    def credentials_id(self) -> _builtins.int:
+        """
+        The ID of the credentials used by this profile
+        """
+        return pulumi.get(self, "credentials_id")
+
+    @_builtins.property
+    @pulumi.getter(name="extendedAttributesId")
+    def extended_attributes_id(self) -> _builtins.int:
+        """
+        The ID of the extended attributes for this profile
+        """
+        return pulumi.get(self, "extended_attributes_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of this resource. Contains the project ID and the profile ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Unique identifier for the profile
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter(name="profileId")
+    def profile_id(self) -> _builtins.int:
+        """
+        The ID of the profile
+        """
+        return pulumi.get(self, "profile_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.int:
+        """
+        The project ID to which the profile belongs
+        """
+        return pulumi.get(self, "project_id")
 
 
 @pulumi.output_type

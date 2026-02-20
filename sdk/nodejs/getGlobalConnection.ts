@@ -86,6 +86,10 @@ export interface GetGlobalConnectionResult {
      */
     readonly redshift: outputs.GetGlobalConnectionRedshift;
     /**
+     * Salesforce connection configuration.
+     */
+    readonly salesforce: outputs.GetGlobalConnectionSalesforce;
+    /**
      * Snowflake connection configuration
      */
     readonly snowflake: outputs.GetGlobalConnectionSnowflake;

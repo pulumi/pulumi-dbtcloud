@@ -13,7 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetGlobalConnectionsResult {
     /**
-     * @return A set of all the connections
+     * @return A list of all the connections
      * 
      */
     private List<GetGlobalConnectionsConnection> connections;
@@ -25,7 +25,7 @@ public final class GetGlobalConnectionsResult {
 
     private GetGlobalConnectionsResult() {}
     /**
-     * @return A set of all the connections
+     * @return A list of all the connections
      * 
      */
     public List<GetGlobalConnectionsConnection> connections() {

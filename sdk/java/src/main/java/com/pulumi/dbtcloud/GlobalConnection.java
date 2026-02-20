@@ -17,6 +17,7 @@ import com.pulumi.dbtcloud.outputs.GlobalConnectionDatabricks;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionFabric;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionPostgres;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionRedshift;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionSalesforce;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionSnowflake;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionStarburst;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionSynapse;
@@ -405,6 +406,20 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<GlobalConnectionRedshift>> redshift() {
         return Codegen.optional(this.redshift);
+    }
+    /**
+     * Salesforce connection configuration.
+     * 
+     */
+    @Export(name="salesforce", refs={GlobalConnectionSalesforce.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionSalesforce> salesforce;
+
+    /**
+     * @return Salesforce connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionSalesforce>> salesforce() {
+        return Codegen.optional(this.salesforce);
     }
     /**
      * Snowflake connection configuration

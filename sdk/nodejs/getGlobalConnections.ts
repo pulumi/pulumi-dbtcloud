@@ -29,7 +29,7 @@ export function getGlobalConnections(opts?: pulumi.InvokeOptions): Promise<GetGl
  */
 export interface GetGlobalConnectionsResult {
     /**
-     * A set of all the connections
+     * A list of all the connections
      */
     readonly connections: outputs.GetGlobalConnectionsConnection[];
     /**

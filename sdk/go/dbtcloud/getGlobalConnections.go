@@ -48,7 +48,7 @@ func GetGlobalConnections(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*Ge
 
 // A collection of values returned by getGlobalConnections.
 type GetGlobalConnectionsResult struct {
-	// A set of all the connections
+	// A list of all the connections
 	Connections []GetGlobalConnectionsConnection `pulumi:"connections"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
@@ -76,7 +76,7 @@ func (o GetGlobalConnectionsResultOutput) ToGetGlobalConnectionsResultOutputWith
 	return o
 }
 
-// A set of all the connections
+// A list of all the connections
 func (o GetGlobalConnectionsResultOutput) Connections() GetGlobalConnectionsConnectionArrayOutput {
 	return o.ApplyT(func(v GetGlobalConnectionsResult) []GetGlobalConnectionsConnection { return v.Connections }).(GetGlobalConnectionsConnectionArrayOutput)
 }

@@ -12,6 +12,7 @@ import com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionFabricArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionPostgresArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionRedshiftArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionSalesforceArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionStarburstArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionSynapseArgs;
@@ -201,6 +202,21 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Salesforce connection configuration.
+     * 
+     */
+    @Import(name="salesforce")
+    private @Nullable Output<GlobalConnectionSalesforceArgs> salesforce;
+
+    /**
+     * @return Salesforce connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionSalesforceArgs>> salesforce() {
+        return Optional.ofNullable(this.salesforce);
+    }
+
+    /**
      * Snowflake connection configuration
      * 
      */
@@ -275,6 +291,7 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
         this.postgres = $.postgres;
         this.privateLinkEndpointId = $.privateLinkEndpointId;
         this.redshift = $.redshift;
+        this.salesforce = $.salesforce;
         this.snowflake = $.snowflake;
         this.starburst = $.starburst;
         this.synapse = $.synapse;
@@ -537,6 +554,27 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
          */
         public Builder redshift(GlobalConnectionRedshiftArgs redshift) {
             return redshift(Output.of(redshift));
+        }
+
+        /**
+         * @param salesforce Salesforce connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder salesforce(@Nullable Output<GlobalConnectionSalesforceArgs> salesforce) {
+            $.salesforce = salesforce;
+            return this;
+        }
+
+        /**
+         * @param salesforce Salesforce connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder salesforce(GlobalConnectionSalesforceArgs salesforce) {
+            return salesforce(Output.of(salesforce));
         }
 
         /**
