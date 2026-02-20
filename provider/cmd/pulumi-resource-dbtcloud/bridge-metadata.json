@@ -242,6 +242,10 @@
                 "current": "dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential",
                 "majorVersion": 1
             },
+            "dbtcloud_profile": {
+                "current": "dbtcloud:index/profile:Profile",
+                "majorVersion": 1
+            },
             "dbtcloud_project": {
                 "current": "dbtcloud:index/project:Project",
                 "majorVersion": 1
@@ -264,6 +268,10 @@
             },
             "dbtcloud_repository": {
                 "current": "dbtcloud:index/repository:Repository",
+                "majorVersion": 1
+            },
+            "dbtcloud_salesforce_credential": {
+                "current": "dbtcloud:index/salesforceCredential:SalesforceCredential",
                 "majorVersion": 1
             },
             "dbtcloud_scim_group_partial_permissions": {
@@ -565,6 +573,19 @@
                     }
                 }
             },
+            "dbtcloud_profile": {
+                "current": "dbtcloud:index/getProfile:getProfile",
+                "majorVersion": 1
+            },
+            "dbtcloud_profiles": {
+                "current": "dbtcloud:index/getProfiles:getProfiles",
+                "majorVersion": 1,
+                "fields": {
+                    "profiles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "dbtcloud_project": {
                 "current": "dbtcloud:index/getProject:getProject",
                 "majorVersion": 1
@@ -594,6 +615,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "dbtcloud_salesforce_credential": {
+                "current": "dbtcloud:index/getSalesforceCredential:getSalesforceCredential",
+                "majorVersion": 1
             },
             "dbtcloud_service_token": {
                 "current": "dbtcloud:index/getServiceToken:getServiceToken",
