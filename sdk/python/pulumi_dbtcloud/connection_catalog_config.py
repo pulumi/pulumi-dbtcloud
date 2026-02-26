@@ -30,6 +30,7 @@ class ConnectionCatalogConfigArgs:
                  view_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ConnectionCatalogConfig resource.
+
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection this catalog config is associated with. Cannot be changed after creation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] database_allows: List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] database_denies: List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.
@@ -181,6 +182,7 @@ class _ConnectionCatalogConfigState:
                  view_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ConnectionCatalogConfig resources.
+
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection this catalog config is associated with. Cannot be changed after creation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] database_allows: List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] database_denies: List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.
@@ -415,6 +417,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[creds]))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection this catalog config is associated with. Cannot be changed after creation.
@@ -512,6 +515,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             view_denies=["_internal_*"],
             opts = pulumi.ResourceOptions(depends_on=[creds]))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConnectionCatalogConfigArgs args: The arguments to use to populate this resource's properties.

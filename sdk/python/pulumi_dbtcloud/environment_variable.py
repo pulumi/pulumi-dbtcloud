@@ -24,6 +24,7 @@ class EnvironmentVariableArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvironmentVariable resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_values: Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment variable in
         :param pulumi.Input[_builtins.str] name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
@@ -78,6 +79,7 @@ class _EnvironmentVariableState:
                  project_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering EnvironmentVariable resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_values: Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
         :param pulumi.Input[_builtins.str] name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment variable in
@@ -183,6 +185,7 @@ class EnvironmentVariable(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable 12345:DBT_ENV_VAR
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_values: Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
@@ -241,6 +244,7 @@ class EnvironmentVariable(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable "project_id:environment_variable_name"
         $ pulumi import dbtcloud:index/environmentVariable:EnvironmentVariable test_environment_variable 12345:DBT_ENV_VAR
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentVariableArgs args: The arguments to use to populate this resource's properties.

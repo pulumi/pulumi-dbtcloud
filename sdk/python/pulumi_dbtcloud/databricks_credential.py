@@ -28,6 +28,7 @@ class DatabricksCredentialArgs:
                  target_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatabricksCredential resource.
+
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Databricks credential in
         :param pulumi.Input[_builtins.str] token: Token for Databricks user
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
@@ -155,6 +156,7 @@ class _DatabricksCredentialState:
                  token: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabricksCredential resources.
+
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[_builtins.int] credential_id: The system Databricks credential ID
@@ -336,6 +338,7 @@ class DatabricksCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
@@ -387,6 +390,7 @@ class DatabricksCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/databricksCredential:DatabricksCredential my_databricks_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabricksCredentialArgs args: The arguments to use to populate this resource's properties.

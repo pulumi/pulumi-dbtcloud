@@ -25,6 +25,7 @@ class ScimGroupPermissionsArgs:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a ScimGroupPermissions resource.
+
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage permissions for. This group must already exist.
         :param pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]] permissions: Set of permissions to apply to the group. This will replace all existing permissions for the group.
         """
@@ -64,6 +65,7 @@ class _ScimGroupPermissionsState:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering ScimGroupPermissions resources.
+
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage permissions for. This group must already exist.
         :param pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]] permissions: Set of permissions to apply to the group. This will replace all existing permissions for the group.
         """
@@ -123,6 +125,7 @@ class ScimGroupPermissions(pulumi.CustomResource):
 
         The resource currently requires a Service Token with Account Admin access.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage permissions for. This group must already exist.
@@ -150,6 +153,7 @@ class ScimGroupPermissions(pulumi.CustomResource):
         - Use `dbt_cloud_scim_group_permissions` when the group is externally managed (e.g., SCIM, manual creation) and you only want to manage permissions
 
         The resource currently requires a Service Token with Account Admin access.
+
 
         :param str resource_name: The name of the resource.
         :param ScimGroupPermissionsArgs args: The arguments to use to populate this resource's properties.

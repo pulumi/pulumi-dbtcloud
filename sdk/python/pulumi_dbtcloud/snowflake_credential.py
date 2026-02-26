@@ -34,6 +34,7 @@ class SnowflakeCredentialArgs:
                  warehouse: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnowflakeCredential resource.
+
         :param pulumi.Input[_builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Snowflake credential in
@@ -248,6 +249,7 @@ class _SnowflakeCredentialState:
                  warehouse: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnowflakeCredential resources.
+
         :param pulumi.Input[_builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
@@ -519,6 +521,7 @@ class SnowflakeCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/snowflakeCredential:SnowflakeCredential prod_snowflake_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
@@ -578,6 +581,7 @@ class SnowflakeCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/snowflakeCredential:SnowflakeCredential prod_snowflake_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/snowflakeCredential:SnowflakeCredential prod_snowflake_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnowflakeCredentialArgs args: The arguments to use to populate this resource's properties.

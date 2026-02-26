@@ -23,6 +23,7 @@ class SemanticLayerConfigurationArgs:
                  project_id: pulumi.Input[_builtins.int]):
         """
         The set of arguments for constructing a SemanticLayerConfiguration resource.
+
         :param pulumi.Input[_builtins.int] environment_id: The ID of the environment
         :param pulumi.Input[_builtins.int] project_id: The ID of the project
         """
@@ -61,6 +62,7 @@ class _SemanticLayerConfigurationState:
                  project_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SemanticLayerConfiguration resources.
+
         :param pulumi.Input[_builtins.int] environment_id: The ID of the environment
         :param pulumi.Input[_builtins.int] project_id: The ID of the project
         """
@@ -138,6 +140,7 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration example 12345:5678
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] environment_id: The ID of the environment
@@ -183,6 +186,7 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration example "project_id:id"
         $ pulumi import dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration example 12345:5678
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SemanticLayerConfigurationArgs args: The arguments to use to populate this resource's properties.

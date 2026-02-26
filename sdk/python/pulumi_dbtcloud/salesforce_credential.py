@@ -27,6 +27,7 @@ class SalesforceCredentialArgs:
                  target_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SalesforceCredential resource.
+
         :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID
         :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Salesforce credential in
@@ -128,6 +129,7 @@ class _SalesforceCredentialState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SalesforceCredential resources.
+
         :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID
         :param pulumi.Input[_builtins.int] credential_id: The system Salesforce credential ID
         :param pulumi.Input[_builtins.int] num_threads: The number of threads to use for dbt operations
@@ -288,6 +290,7 @@ class SalesforceCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/salesforceCredential:SalesforceCredential my_salesforce_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID
@@ -341,6 +344,7 @@ class SalesforceCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/salesforceCredential:SalesforceCredential my_salesforce_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/salesforceCredential:SalesforceCredential my_salesforce_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SalesforceCredentialArgs args: The arguments to use to populate this resource's properties.

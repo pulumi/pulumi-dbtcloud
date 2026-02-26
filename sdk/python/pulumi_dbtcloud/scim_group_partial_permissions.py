@@ -25,6 +25,7 @@ class ScimGroupPartialPermissionsArgs:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPartialPermissionsPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a ScimGroupPartialPermissions resource.
+
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage partial permissions for. This group must already exist and is typically from an external identity provider synced via SCIM.
         :param pulumi.Input[Sequence[pulumi.Input['ScimGroupPartialPermissionsPermissionArgs']]] permissions: Partial set of permissions to apply to the group. These permissions will be added to any existing permissions. Other permissions on the group will not be affected.
         """
@@ -64,6 +65,7 @@ class _ScimGroupPartialPermissionsState:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPartialPermissionsPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering ScimGroupPartialPermissions resources.
+
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage partial permissions for. This group must already exist and is typically from an external identity provider synced via SCIM.
         :param pulumi.Input[Sequence[pulumi.Input['ScimGroupPartialPermissionsPermissionArgs']]] permissions: Partial set of permissions to apply to the group. These permissions will be added to any existing permissions. Other permissions on the group will not be affected.
         """
@@ -287,6 +289,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
         There is no way for Terraform to know which specific permissions this resource instance should manage versus permissions
         managed by other resources or applied outside of Terraform. You must define the resource in your configuration from the start.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage partial permissions for. This group must already exist and is typically from an external identity provider synced via SCIM.
@@ -478,6 +481,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
         > **Import Not Supported:** This resource does not support `pulumi import` because it manages only a partial subset of permissions.
         There is no way for Terraform to know which specific permissions this resource instance should manage versus permissions
         managed by other resources or applied outside of Terraform. You must define the resource in your configuration from the start.
+
 
         :param str resource_name: The name of the resource.
         :param ScimGroupPartialPermissionsArgs args: The arguments to use to populate this resource's properties.

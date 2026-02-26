@@ -24,6 +24,7 @@ class SemanticLayerCredentialServiceTokenMappingArgs:
                  service_token_id: pulumi.Input[_builtins.int]):
         """
         The set of arguments for constructing a SemanticLayerCredentialServiceTokenMapping resource.
+
         :param pulumi.Input[_builtins.int] project_id: The ID of the project to which the semantic layer credential is associated.
         :param pulumi.Input[_builtins.int] semantic_layer_credential_id: The ID of the semantic layer credential to map.
         :param pulumi.Input[_builtins.int] service_token_id: The ID of the service token to map to the semantic layer credential.
@@ -77,6 +78,7 @@ class _SemanticLayerCredentialServiceTokenMappingState:
                  service_token_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SemanticLayerCredentialServiceTokenMapping resources.
+
         :param pulumi.Input[_builtins.int] project_id: The ID of the project to which the semantic layer credential is associated.
         :param pulumi.Input[_builtins.int] semantic_layer_credential_id: The ID of the semantic layer credential to map.
         :param pulumi.Input[_builtins.int] service_token_id: The ID of the service token to map to the semantic layer credential.
@@ -168,6 +170,7 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] project_id: The ID of the project to which the semantic layer credential is associated.
@@ -212,6 +215,7 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example "id"
         $ pulumi import dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping example 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SemanticLayerCredentialServiceTokenMappingArgs args: The arguments to use to populate this resource's properties.

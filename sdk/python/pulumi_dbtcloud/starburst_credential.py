@@ -26,6 +26,7 @@ class StarburstCredentialArgs:
                  user: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a StarburstCredential resource.
+
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
         :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Starburst/Trino credential in
@@ -110,6 +111,7 @@ class _StarburstCredentialState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StarburstCredential resources.
+
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
         :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account
@@ -252,6 +254,7 @@ class StarburstCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/starburstCredential:StarburstCredential my_starburst_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
@@ -302,6 +305,7 @@ class StarburstCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/starburstCredential:StarburstCredential my_starburst_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/starburstCredential:StarburstCredential my_starburst_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StarburstCredentialArgs args: The arguments to use to populate this resource's properties.

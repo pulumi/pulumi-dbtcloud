@@ -30,6 +30,7 @@ class PostgresCredentialArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PostgresCredential resource.
+
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[_builtins.str] username: Username for Postgres/Redshift/AlloyDB
         :param pulumi.Input[_builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
@@ -181,6 +182,7 @@ class _PostgresCredentialState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PostgresCredential resources.
+
         :param pulumi.Input[_builtins.int] credential_id: The system Postgres/Redshift/AlloyDB credential ID.
         :param pulumi.Input[_builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
@@ -389,6 +391,7 @@ class PostgresCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
@@ -445,6 +448,7 @@ class PostgresCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/postgresCredential:PostgresCredential my_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PostgresCredentialArgs args: The arguments to use to populate this resource's properties.

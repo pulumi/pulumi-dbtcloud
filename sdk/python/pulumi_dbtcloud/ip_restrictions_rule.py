@@ -28,6 +28,7 @@ class IpRestrictionsRuleArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IpRestrictionsRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]] cidrs: Set of CIDR ranges for this rule
         :param pulumi.Input[_builtins.bool] rule_set_enabled: Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.
         :param pulumi.Input[_builtins.str] type: The type of the IP restriction rule (allow or deny)
@@ -113,6 +114,7 @@ class _IpRestrictionsRuleState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IpRestrictionsRule resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]] cidrs: Set of CIDR ranges for this rule
         :param pulumi.Input[_builtins.str] description: A description of the IP restriction rule
         :param pulumi.Input[_builtins.str] name: The name of the IP restriction rule
@@ -247,6 +249,7 @@ class IpRestrictionsRule(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]] cidrs: Set of CIDR ranges for this rule
@@ -304,6 +307,7 @@ class IpRestrictionsRule(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule "ip_restriction_rule_id"
         $ pulumi import dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule my_rule 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IpRestrictionsRuleArgs args: The arguments to use to populate this resource's properties.

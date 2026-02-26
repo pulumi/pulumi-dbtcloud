@@ -24,6 +24,7 @@ class ExtendedAttributesArgs:
                  state: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ExtendedAttributes resource.
+
         :param pulumi.Input[_builtins.str] extended_attributes: A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the extended attributes in
         :param pulumi.Input[_builtins.int] state: The state of the extended attributes (1 = active, 2 = inactive)
@@ -79,6 +80,7 @@ class _ExtendedAttributesState:
                  state: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ExtendedAttributes resources.
+
         :param pulumi.Input[_builtins.str] extended_attributes: A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
         :param pulumi.Input[_builtins.int] extended_attributes_id: Extended attributes ID
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the extended attributes in
@@ -205,6 +207,7 @@ class ExtendedAttributes(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] extended_attributes: A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
@@ -269,6 +272,7 @@ class ExtendedAttributes(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes "project_id_id:extended_attributes_id"
         $ pulumi import dbtcloud:index/extendedAttributes:ExtendedAttributes test_extended_attributes 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ExtendedAttributesArgs args: The arguments to use to populate this resource's properties.

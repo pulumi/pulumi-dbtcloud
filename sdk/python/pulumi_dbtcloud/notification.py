@@ -31,6 +31,7 @@ class NotificationArgs:
                  state: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Notification resource.
+
         :param pulumi.Input[_builtins.int] user_id: Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification
         :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
@@ -198,6 +199,7 @@ class _NotificationState:
                  user_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Notification resources.
+
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification
         :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_cancels: List of job IDs to trigger the webhook on cancel
@@ -434,6 +436,7 @@ class Notification(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/notification:Notification my_notification 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification
@@ -518,6 +521,7 @@ class Notification(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/notification:Notification my_notification "notification_id"
         $ pulumi import dbtcloud:index/notification:Notification my_notification 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NotificationArgs args: The arguments to use to populate this resource's properties.

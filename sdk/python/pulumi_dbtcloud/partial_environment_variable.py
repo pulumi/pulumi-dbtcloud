@@ -24,6 +24,7 @@ class PartialEnvironmentVariableArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PartialEnvironmentVariable resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_values: Map from environment names to respective variable value. This field is not set as sensitive so take precautions when using secret environment variables. Only the specified environment values will be managed by this resource.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create or update the environment variable in
         :param pulumi.Input[_builtins.str] name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
@@ -78,6 +79,7 @@ class _PartialEnvironmentVariableState:
                  project_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PartialEnvironmentVariable resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_values: Map from environment names to respective variable value. This field is not set as sensitive so take precautions when using secret environment variables. Only the specified environment values will be managed by this resource.
         :param pulumi.Input[_builtins.str] name: Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
         :param pulumi.Input[_builtins.int] project_id: Project ID to create or update the environment variable in
@@ -151,6 +153,7 @@ class PartialEnvironmentVariable(pulumi.CustomResource):
 
         ### 
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] environment_values: Map from environment names to respective variable value. This field is not set as sensitive so take precautions when using secret environment variables. Only the specified environment values will be managed by this resource.
@@ -177,6 +180,7 @@ class PartialEnvironmentVariable(pulumi.CustomResource):
         ## Example Usage
 
         ### 
+
 
         :param str resource_name: The name of the resource.
         :param PartialEnvironmentVariableArgs args: The arguments to use to populate this resource's properties.
