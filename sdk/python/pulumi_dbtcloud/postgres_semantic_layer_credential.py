@@ -25,6 +25,7 @@ class PostgresSemanticLayerCredentialArgs:
                  credential: pulumi.Input['PostgresSemanticLayerCredentialCredentialArgs']):
         """
         The set of arguments for constructing a PostgresSemanticLayerCredential resource.
+
         :param pulumi.Input['PostgresSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['PostgresSemanticLayerCredentialCredentialArgs'] credential: Postgres credential details, but used in the context of the Semantic Layer.
         """
@@ -63,6 +64,7 @@ class _PostgresSemanticLayerCredentialState:
                  credential: Optional[pulumi.Input['PostgresSemanticLayerCredentialCredentialArgs']] = None):
         """
         Input properties used for looking up and filtering PostgresSemanticLayerCredential resources.
+
         :param pulumi.Input['PostgresSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['PostgresSemanticLayerCredentialCredentialArgs'] credential: Postgres credential details, but used in the context of the Semantic Layer.
         """
@@ -148,6 +150,7 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['PostgresSemanticLayerCredentialConfigurationArgs', 'PostgresSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
@@ -201,6 +204,7 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example "credential_id"
         $ pulumi import dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential example 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PostgresSemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.

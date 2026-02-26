@@ -25,6 +25,7 @@ class RedshiftSemanticLayerCredentialArgs:
                  credential: pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs']):
         """
         The set of arguments for constructing a RedshiftSemanticLayerCredential resource.
+
         :param pulumi.Input['RedshiftSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs'] credential: Redshift credential details, but used in the context of the Semantic Layer.
         """
@@ -63,6 +64,7 @@ class _RedshiftSemanticLayerCredentialState:
                  credential: Optional[pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs']] = None):
         """
         Input properties used for looking up and filtering RedshiftSemanticLayerCredential resources.
+
         :param pulumi.Input['RedshiftSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs'] credential: Redshift credential details, but used in the context of the Semantic Layer.
         """
@@ -150,6 +152,7 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
@@ -205,6 +208,7 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example "credential_id"
         $ pulumi import dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential example 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RedshiftSemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.

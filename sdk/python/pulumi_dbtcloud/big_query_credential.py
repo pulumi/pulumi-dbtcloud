@@ -26,6 +26,7 @@ class BigQueryCredentialArgs:
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a BigQueryCredential resource.
+
         :param pulumi.Input[_builtins.str] dataset: Default dataset name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the BigQuery credential in
@@ -112,6 +113,7 @@ class _BigQueryCredentialState:
                  project_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering BigQueryCredential resources.
+
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] dataset: Default dataset name
@@ -259,6 +261,7 @@ class BigQueryCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential 12345:5678
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
@@ -314,6 +317,7 @@ class BigQueryCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/bigQueryCredential:BigQueryCredential my_credential 12345:5678
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BigQueryCredentialArgs args: The arguments to use to populate this resource's properties.

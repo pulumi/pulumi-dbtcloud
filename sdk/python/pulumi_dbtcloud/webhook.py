@@ -27,6 +27,7 @@ class WebhookArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Webhook resource.
+
         :param pulumi.Input[_builtins.str] client_url: Webhooks Client URL
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] event_types: Webhooks Event Types
         :param pulumi.Input[_builtins.bool] active: Webhooks active flag
@@ -133,6 +134,7 @@ class _WebhookState:
                  webhook_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Webhook resources.
+
         :param pulumi.Input[_builtins.str] account_identifier: Webhooks Account Identifier
         :param pulumi.Input[_builtins.bool] active: Webhooks active flag
         :param pulumi.Input[_builtins.str] client_url: Webhooks Client URL
@@ -346,6 +348,7 @@ class Webhook(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: Webhooks active flag
@@ -403,6 +406,7 @@ class Webhook(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/webhook:Webhook my_webhook "webhook_id"
         $ pulumi import dbtcloud:index/webhook:Webhook my_webhook wsu_abcdefg
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WebhookArgs args: The arguments to use to populate this resource's properties.

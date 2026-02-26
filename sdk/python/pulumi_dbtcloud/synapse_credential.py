@@ -31,6 +31,7 @@ class SynapseCredentialArgs:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SynapseCredential resource.
+
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (synapse)
         :param pulumi.Input[_builtins.str] authentication: Authentication type (SQL, ActiveDirectoryPassword, ServicePrincipal)
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Synapse credential in
@@ -196,6 +197,7 @@ class _SynapseCredentialState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SynapseCredential resources.
+
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (synapse)
         :param pulumi.Input[_builtins.str] authentication: Authentication type (SQL, ActiveDirectoryPassword, ServicePrincipal)
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
@@ -437,6 +439,7 @@ class SynapseCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/synapseCredential:SynapseCredential my_synapse_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (synapse)
@@ -511,6 +514,7 @@ class SynapseCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/synapseCredential:SynapseCredential my_synapse_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/synapseCredential:SynapseCredential my_synapse_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SynapseCredentialArgs args: The arguments to use to populate this resource's properties.

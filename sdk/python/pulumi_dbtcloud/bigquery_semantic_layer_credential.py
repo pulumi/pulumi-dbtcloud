@@ -33,6 +33,7 @@ class BigquerySemanticLayerCredentialArgs:
                  token_uri: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a BigquerySemanticLayerCredential resource.
+
         :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
         :param pulumi.Input[_builtins.str] auth_uri: Auth URI for the Service Account
         :param pulumi.Input[_builtins.str] client_email: Service Account email
@@ -191,6 +192,7 @@ class _BigquerySemanticLayerCredentialState:
                  token_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BigquerySemanticLayerCredential resources.
+
         :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
         :param pulumi.Input[_builtins.str] auth_uri: Auth URI for the Service Account
         :param pulumi.Input[_builtins.str] client_email: Service Account email
@@ -392,6 +394,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
             client_x509_cert_url=client_x509_cert_url)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
@@ -441,6 +444,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
             auth_provider_x509_cert_url=auth_provider_x509_cert_url,
             client_x509_cert_url=client_x509_cert_url)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BigquerySemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.

@@ -30,6 +30,7 @@ class FabricCredentialArgs:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FabricCredential resource.
+
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (fabric)
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Fabric credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create the dbt models
@@ -180,6 +181,7 @@ class _FabricCredentialState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FabricCredential resources.
+
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (fabric)
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
         :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
@@ -395,6 +397,7 @@ class FabricCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (fabric)
@@ -458,6 +461,7 @@ class FabricCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/fabricCredential:FabricCredential my_fabric_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FabricCredentialArgs args: The arguments to use to populate this resource's properties.

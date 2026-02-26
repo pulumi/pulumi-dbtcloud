@@ -26,6 +26,7 @@ class LineageIntegrationArgs:
                  token_name: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a LineageIntegration resource.
+
         :param pulumi.Input[_builtins.str] host: The URL of the BI server (see docs for more details)
         :param pulumi.Input[_builtins.int] project_id: The dbt Cloud project ID for the integration
         :param pulumi.Input[_builtins.str] site_id: The sitename for the collections of dashboards (see docs for more details)
@@ -111,6 +112,7 @@ class _LineageIntegrationState:
                  token_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LineageIntegration resources.
+
         :param pulumi.Input[_builtins.str] host: The URL of the BI server (see docs for more details)
         :param pulumi.Input[_builtins.int] lineage_integration_id: The ID of the lineage integration
         :param pulumi.Input[_builtins.str] name: The integration type. Today only 'tableau' is supported
@@ -273,6 +275,7 @@ class LineageIntegration(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/lineageIntegration:LineageIntegration my_lineage_integration 123:4567
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] host: The URL of the BI server (see docs for more details)
@@ -328,6 +331,7 @@ class LineageIntegration(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/lineageIntegration:LineageIntegration my_lineage_integration "projet_id:lineage_integration_id"
         $ pulumi import dbtcloud:index/lineageIntegration:LineageIntegration my_lineage_integration 123:4567
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LineageIntegrationArgs args: The arguments to use to populate this resource's properties.

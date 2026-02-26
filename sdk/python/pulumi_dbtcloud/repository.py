@@ -33,6 +33,7 @@ class RepositoryArgs:
                  pull_request_url_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Repository resource.
+
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the repository in
         :param pulumi.Input[_builtins.str] remote_url: Git URL for the repository or <Group>/<Project> for Gitlab
         :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
@@ -238,6 +239,7 @@ class _RepositoryState:
                  repository_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Repository resources.
+
         :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
         :param pulumi.Input[_builtins.str] azure_active_directory_repository_id: The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         :param pulumi.Input[_builtins.bool] azure_bypass_webhook_registration_failure: If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
@@ -523,6 +525,7 @@ class Repository(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/repository:Repository my_repository 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
@@ -577,6 +580,7 @@ class Repository(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/repository:Repository my_repository "project_id:repository_id"
         $ pulumi import dbtcloud:index/repository:Repository my_repository 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RepositoryArgs args: The arguments to use to populate this resource's properties.

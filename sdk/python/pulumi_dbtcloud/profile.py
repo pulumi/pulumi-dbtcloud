@@ -26,6 +26,7 @@ class ProfileArgs:
                  extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Profile resource.
+
         :param pulumi.Input[_builtins.int] connection_id: The ID of the connection to use for this profile
         :param pulumi.Input[_builtins.int] credentials_id: The ID of the credentials to use for this profile
         :param pulumi.Input[_builtins.str] key: Unique identifier for the profile
@@ -111,6 +112,7 @@ class _ProfileState:
                  project_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Profile resources.
+
         :param pulumi.Input[_builtins.int] connection_id: The ID of the connection to use for this profile
         :param pulumi.Input[_builtins.int] credentials_id: The ID of the credentials to use for this profile
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes for this profile. Set to null to unset.
@@ -260,6 +262,7 @@ class Profile(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/profile:Profile my_profile 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] connection_id: The ID of the connection to use for this profile
@@ -317,6 +320,7 @@ class Profile(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/profile:Profile my_profile "project_id:profile_id"
         $ pulumi import dbtcloud:index/profile:Profile my_profile 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProfileArgs args: The arguments to use to populate this resource's properties.

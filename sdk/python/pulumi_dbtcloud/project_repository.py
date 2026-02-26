@@ -23,6 +23,7 @@ class ProjectRepositoryArgs:
                  repository_id: pulumi.Input[_builtins.int]):
         """
         The set of arguments for constructing a ProjectRepository resource.
+
         :param pulumi.Input[_builtins.int] project_id: Project ID
         :param pulumi.Input[_builtins.int] repository_id: Repository ID
         """
@@ -61,6 +62,7 @@ class _ProjectRepositoryState:
                  repository_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ProjectRepository resources.
+
         :param pulumi.Input[_builtins.int] project_id: Project ID
         :param pulumi.Input[_builtins.int] repository_id: Repository ID
         """
@@ -137,6 +139,7 @@ class ProjectRepository(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project 12345:5678
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] project_id: Project ID
@@ -181,6 +184,7 @@ class ProjectRepository(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project "project_id:repository_id"
         $ pulumi import dbtcloud:index/projectRepository:ProjectRepository my_project 12345:5678
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectRepositoryArgs args: The arguments to use to populate this resource's properties.

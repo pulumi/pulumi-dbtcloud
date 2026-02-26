@@ -25,6 +25,7 @@ class SnowflakeSemanticLayerCredentialArgs:
                  credential: pulumi.Input['SnowflakeSemanticLayerCredentialCredentialArgs']):
         """
         The set of arguments for constructing a SnowflakeSemanticLayerCredential resource.
+
         :param pulumi.Input['SnowflakeSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credenttial configuration details.
         :param pulumi.Input['SnowflakeSemanticLayerCredentialCredentialArgs'] credential: Snowflake credential details, but used in the context of the Semantic Layer.
         """
@@ -63,6 +64,7 @@ class _SnowflakeSemanticLayerCredentialState:
                  credential: Optional[pulumi.Input['SnowflakeSemanticLayerCredentialCredentialArgs']] = None):
         """
         Input properties used for looking up and filtering SnowflakeSemanticLayerCredential resources.
+
         :param pulumi.Input['SnowflakeSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credenttial configuration details.
         :param pulumi.Input['SnowflakeSemanticLayerCredentialCredentialArgs'] credential: Snowflake credential details, but used in the context of the Semantic Layer.
         """
@@ -176,6 +178,7 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential example 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credenttial configuration details.
@@ -257,6 +260,7 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential example "credential_id"
         $ pulumi import dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential example 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnowflakeSemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class TeradataCredentialArgs:
                  threads: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a TeradataCredential resource.
+
         :param pulumi.Input[_builtins.str] password: The password for the Teradata account
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Teradata/Trino credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create models
@@ -111,6 +112,7 @@ class _TeradataCredentialState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TeradataCredential resources.
+
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] password: The password for the Teradata account
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Teradata/Trino credential in
@@ -219,6 +221,7 @@ class TeradataCredential(pulumi.CustomResource):
         """
         Teradata credential resource
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] password: The password for the Teradata account
@@ -235,6 +238,7 @@ class TeradataCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Teradata credential resource
+
 
         :param str resource_name: The name of the resource.
         :param TeradataCredentialArgs args: The arguments to use to populate this resource's properties.

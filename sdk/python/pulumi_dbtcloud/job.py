@@ -54,6 +54,7 @@ class JobArgs:
                  validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Job resource.
+
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the job in
@@ -559,6 +560,7 @@ class _JobState:
                  validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Job resources.
+
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
@@ -1180,6 +1182,7 @@ class Job(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/job:Job my_job 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
@@ -1315,6 +1318,7 @@ class Job(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/job:Job my_job "job_id"
         $ pulumi import dbtcloud:index/job:Job my_job 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param JobArgs args: The arguments to use to populate this resource's properties.

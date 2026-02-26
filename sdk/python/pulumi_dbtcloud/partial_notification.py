@@ -31,6 +31,7 @@ class PartialNotificationArgs:
                  state: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a PartialNotification resource.
+
         :param pulumi.Input[_builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification [global, used as identifier]
         :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
@@ -198,6 +199,7 @@ class _PartialNotificationState:
                  user_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PartialNotification resources.
+
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification [global, used as identifier]
         :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
@@ -423,6 +425,7 @@ class PartialNotification(pulumi.CustomResource):
             slack_channel_name="#my-awesome-channel")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification [global, used as identifier]
@@ -496,6 +499,7 @@ class PartialNotification(pulumi.CustomResource):
             slack_channel_id="C12345ABCDE",
             slack_channel_name="#my-awesome-channel")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PartialNotificationArgs args: The arguments to use to populate this resource's properties.

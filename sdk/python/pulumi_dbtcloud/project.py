@@ -25,6 +25,7 @@ class ProjectArgs:
                  type: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Project resource.
+
         :param pulumi.Input[_builtins.str] dbt_project_subdirectory: DBT project subdirectory
         :param pulumi.Input[_builtins.str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[_builtins.str] name: Project name
@@ -97,6 +98,7 @@ class _ProjectState:
                  type: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Project resources.
+
         :param pulumi.Input[_builtins.str] dbt_project_subdirectory: DBT project subdirectory
         :param pulumi.Input[_builtins.str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[_builtins.str] name: Project name
@@ -209,6 +211,7 @@ class Project(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/project:Project my_project 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] dbt_project_subdirectory: DBT project subdirectory
@@ -259,6 +262,7 @@ class Project(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/project:Project my_project "project_id"
         $ pulumi import dbtcloud:index/project:Project my_project 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectArgs args: The arguments to use to populate this resource's properties.

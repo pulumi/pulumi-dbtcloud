@@ -25,6 +25,7 @@ class AthenaCredentialArgs:
                  schema: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a AthenaCredential resource.
+
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID for Athena user
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key for Athena user
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Athena credential in
@@ -94,6 +95,7 @@ class _AthenaCredentialState:
                  schema: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AthenaCredential resources.
+
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID for Athena user
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key for Athena user
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
@@ -219,6 +221,7 @@ class AthenaCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/athenaCredential:AthenaCredential my_athena_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID for Athena user
@@ -267,6 +270,7 @@ class AthenaCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/athenaCredential:AthenaCredential my_athena_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/athenaCredential:AthenaCredential my_athena_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AthenaCredentialArgs args: The arguments to use to populate this resource's properties.

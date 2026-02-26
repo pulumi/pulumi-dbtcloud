@@ -27,6 +27,7 @@ class DatabricksPlatformMetadataCredentialArgs:
                  cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a DatabricksPlatformMetadataCredential resource.
+
         :param pulumi.Input[_builtins.str] catalog: The Unity Catalog name to use.
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection this credential is associated with. Cannot be changed after creation.
         :param pulumi.Input[_builtins.str] token: The Databricks personal access token.
@@ -130,6 +131,7 @@ class _DatabricksPlatformMetadataCredentialState:
                  token: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabricksPlatformMetadataCredential resources.
+
         :param pulumi.Input[_builtins.str] adapter_version: The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.
         :param pulumi.Input[_builtins.str] catalog: The Unity Catalog name to use.
         :param pulumi.Input[_builtins.bool] catalog_ingestion_enabled: Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
@@ -298,6 +300,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
             catalog="main")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] catalog: The Unity Catalog name to use.
@@ -344,6 +347,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
             token=databricks_token,
             catalog="main")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabricksPlatformMetadataCredentialArgs args: The arguments to use to populate this resource's properties.

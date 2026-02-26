@@ -25,6 +25,7 @@ class EnvironmentVariableJobOverrideArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvironmentVariableJobOverride resource.
+
         :param pulumi.Input[_builtins.int] job_definition_id: The job ID for which the environment variable is being overridden
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment variable job override in
         :param pulumi.Input[_builtins.str] raw_value: The value for the override of the environment variable
@@ -96,6 +97,7 @@ class _EnvironmentVariableJobOverrideState:
                  raw_value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EnvironmentVariableJobOverride resources.
+
         :param pulumi.Input[_builtins.int] account_id: The account id
         :param pulumi.Input[_builtins.int] environment_variable_job_override_id: The internal ID of this resource. Contains the project ID and the environment variable job override ID.
         :param pulumi.Input[_builtins.int] job_definition_id: The job ID for which the environment variable is being overridden
@@ -236,6 +238,7 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride test_environment_variable_job_override 12345:678:123456
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] job_definition_id: The job ID for which the environment variable is being overridden
@@ -284,6 +287,7 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride test_environment_variable_job_override "project_id:job_id:environment_variable_override_id"
         $ pulumi import dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride test_environment_variable_job_override 12345:678:123456
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentVariableJobOverrideArgs args: The arguments to use to populate this resource's properties.

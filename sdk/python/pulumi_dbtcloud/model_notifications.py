@@ -27,6 +27,7 @@ class ModelNotificationsArgs:
                  on_warning: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ModelNotifications resource.
+
         :param pulumi.Input[_builtins.str] environment_id: The ID of the dbt Cloud environment
         :param pulumi.Input[_builtins.bool] enabled: Whether model notifications are enabled for this environment
         :param pulumi.Input[_builtins.bool] on_failure: Whether to send notifications for failed model runs
@@ -130,6 +131,7 @@ class _ModelNotificationsState:
                  on_warning: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ModelNotifications resources.
+
         :param pulumi.Input[_builtins.bool] enabled: Whether model notifications are enabled for this environment
         :param pulumi.Input[_builtins.str] environment_id: The ID of the dbt Cloud environment
         :param pulumi.Input[_builtins.bool] on_failure: Whether to send notifications for failed model runs
@@ -274,6 +276,7 @@ class ModelNotifications(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/modelNotifications:ModelNotifications my_model_notifications 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enabled: Whether model notifications are enabled for this environment
@@ -326,6 +329,7 @@ class ModelNotifications(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/modelNotifications:ModelNotifications my_model_notifications "environment_id"
         $ pulumi import dbtcloud:index/modelNotifications:ModelNotifications my_model_notifications 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ModelNotificationsArgs args: The arguments to use to populate this resource's properties.

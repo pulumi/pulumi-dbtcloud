@@ -32,6 +32,7 @@ class SnowflakePlatformMetadataCredentialArgs:
                  private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SnowflakePlatformMetadataCredential resource.
+
         :param pulumi.Input[_builtins.str] auth_type: The authentication type. Must be 'password' or 'keypair'.
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection this credential is associated with. Cannot be changed after creation.
         :param pulumi.Input[_builtins.str] role: The Snowflake role to use.
@@ -213,6 +214,7 @@ class _SnowflakePlatformMetadataCredentialState:
                  warehouse: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnowflakePlatformMetadataCredential resources.
+
         :param pulumi.Input[_builtins.str] adapter_version: The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.
         :param pulumi.Input[_builtins.str] auth_type: The authentication type. Must be 'password' or 'keypair'.
         :param pulumi.Input[_builtins.bool] catalog_ingestion_enabled: Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
@@ -476,6 +478,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             warehouse="METADATA_WH")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auth_type: The authentication type. Must be 'password' or 'keypair'.
@@ -542,6 +545,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SnowflakePlatformMetadataCredentialArgs args: The arguments to use to populate this resource's properties.

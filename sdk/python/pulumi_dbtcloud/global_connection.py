@@ -38,6 +38,7 @@ class GlobalConnectionArgs:
                  teradata: Optional[pulumi.Input['GlobalConnectionTeradataArgs']] = None):
         """
         The set of arguments for constructing a GlobalConnection resource.
+
         :param pulumi.Input['GlobalConnectionApacheSparkArgs'] apache_spark: Apache Spark connection configuration.
         :param pulumi.Input['GlobalConnectionAthenaArgs'] athena: Athena connection configuration.
         :param pulumi.Input['GlobalConnectionDatabricksArgs'] databricks: Databricks connection configuration
@@ -284,6 +285,7 @@ class _GlobalConnectionState:
                  teradata: Optional[pulumi.Input['GlobalConnectionTeradataArgs']] = None):
         """
         Input properties used for looking up and filtering GlobalConnection resources.
+
         :param pulumi.Input[_builtins.str] adapter_version: Version of the adapter
         :param pulumi.Input['GlobalConnectionApacheSparkArgs'] apache_spark: Apache Spark connection configuration.
         :param pulumi.Input['GlobalConnectionAthenaArgs'] athena: Athena connection configuration.
@@ -720,6 +722,7 @@ class GlobalConnection(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']] apache_spark: Apache Spark connection configuration.
@@ -902,6 +905,7 @@ class GlobalConnection(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection "connection_id"
         $ pulumi import dbtcloud:index/globalConnection:GlobalConnection my_connection 1234
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GlobalConnectionArgs args: The arguments to use to populate this resource's properties.

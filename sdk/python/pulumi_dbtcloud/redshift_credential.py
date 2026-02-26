@@ -27,6 +27,7 @@ class RedshiftCredentialArgs:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RedshiftCredential resource.
+
         :param pulumi.Input[_builtins.str] default_schema: Default schema name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Redshift credential in
@@ -129,6 +130,7 @@ class _RedshiftCredentialState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RedshiftCredential resources.
+
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] default_schema: Default schema name
         :param pulumi.Input[_builtins.bool] is_active: Whether the Redshift credential is active
@@ -288,6 +290,7 @@ class RedshiftCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/redshiftCredential:RedshiftCredential my_credential 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] default_schema: Default schema name
@@ -340,6 +343,7 @@ class RedshiftCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/redshiftCredential:RedshiftCredential my_credential "project_id:credential_id"
         $ pulumi import dbtcloud:index/redshiftCredential:RedshiftCredential my_credential 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RedshiftCredentialArgs args: The arguments to use to populate this resource's properties.

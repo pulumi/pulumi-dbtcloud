@@ -23,6 +23,7 @@ class LicenseMapArgs:
                  sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a LicenseMap resource.
+
         :param pulumi.Input[_builtins.str] license_type: License type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_license_mapping_groups: SSO license mapping group names for this group
         """
@@ -62,6 +63,7 @@ class _LicenseMapState:
                  sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering LicenseMap resources.
+
         :param pulumi.Input[_builtins.str] license_type: License type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_license_mapping_groups: SSO license mapping group names for this group
         """
@@ -147,6 +149,7 @@ class LicenseMap(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/licenseMap:LicenseMap my_license_map 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] license_type: License type
@@ -200,6 +203,7 @@ class LicenseMap(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/licenseMap:LicenseMap my_license_map "license_map_id"
         $ pulumi import dbtcloud:index/licenseMap:LicenseMap my_license_map 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LicenseMapArgs args: The arguments to use to populate this resource's properties.

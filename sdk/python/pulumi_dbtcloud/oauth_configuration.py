@@ -29,6 +29,7 @@ class OauthConfigurationArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OauthConfiguration resource.
+
         :param pulumi.Input[_builtins.str] authorize_url: The Authorize URL for the OAuth integration
         :param pulumi.Input[_builtins.str] client_id: The Client ID for the OAuth integration
         :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration
@@ -159,6 +160,7 @@ class _OauthConfigurationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OauthConfiguration resources.
+
         :param pulumi.Input[_builtins.str] application_id_uri: The Application ID URI for the OAuth integration. Only for Entra
         :param pulumi.Input[_builtins.str] authorize_url: The Authorize URL for the OAuth integration
         :param pulumi.Input[_builtins.str] client_id: The Client ID for the OAuth integration
@@ -322,6 +324,7 @@ class OauthConfiguration(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_id_uri: The Application ID URI for the OAuth integration. Only for Entra
@@ -363,6 +366,7 @@ class OauthConfiguration(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth "external_oauth_id"
         $ pulumi import dbtcloud:index/oauthConfiguration:OauthConfiguration my_external_oauth 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OauthConfigurationArgs args: The arguments to use to populate this resource's properties.

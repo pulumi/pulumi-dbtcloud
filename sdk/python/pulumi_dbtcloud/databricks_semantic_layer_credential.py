@@ -25,6 +25,7 @@ class DatabricksSemanticLayerCredentialArgs:
                  credential: pulumi.Input['DatabricksSemanticLayerCredentialCredentialArgs']):
         """
         The set of arguments for constructing a DatabricksSemanticLayerCredential resource.
+
         :param pulumi.Input['DatabricksSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['DatabricksSemanticLayerCredentialCredentialArgs'] credential: Databricks credential details, but used in the context of the Semantic Layer.
         """
@@ -63,6 +64,7 @@ class _DatabricksSemanticLayerCredentialState:
                  credential: Optional[pulumi.Input['DatabricksSemanticLayerCredentialCredentialArgs']] = None):
         """
         Input properties used for looking up and filtering DatabricksSemanticLayerCredential resources.
+
         :param pulumi.Input['DatabricksSemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['DatabricksSemanticLayerCredentialCredentialArgs'] credential: Databricks credential details, but used in the context of the Semantic Layer.
         """
@@ -148,6 +150,7 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential example 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
@@ -201,6 +204,7 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential example "credential_id"
         $ pulumi import dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential example 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DatabricksSemanticLayerCredentialArgs args: The arguments to use to populate this resource's properties.

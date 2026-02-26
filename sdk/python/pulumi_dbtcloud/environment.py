@@ -34,6 +34,7 @@ class EnvironmentArgs:
                  use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Environment resource.
+
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[_builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
@@ -249,6 +250,7 @@ class _EnvironmentState:
                  use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Environment resources.
+
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
@@ -547,6 +549,7 @@ class Environment(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/environment:Environment prod_environment 12345:6789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
@@ -633,6 +636,7 @@ class Environment(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/environment:Environment prod_environment "project_id:environment_id"
         $ pulumi import dbtcloud:index/environment:Environment prod_environment 12345:6789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EnvironmentArgs args: The arguments to use to populate this resource's properties.

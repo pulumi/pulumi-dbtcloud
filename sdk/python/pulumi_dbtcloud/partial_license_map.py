@@ -23,6 +23,7 @@ class PartialLicenseMapArgs:
                  sso_license_mapping_groups: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a PartialLicenseMap resource.
+
         :param pulumi.Input[_builtins.str] license_type: The license type to update
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_license_mapping_groups: List of SSO groups to map to the license type.
         """
@@ -61,6 +62,7 @@ class _PartialLicenseMapState:
                  sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering PartialLicenseMap resources.
+
         :param pulumi.Input[_builtins.str] license_type: The license type to update
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_license_mapping_groups: List of SSO groups to map to the license type.
         """
@@ -132,6 +134,7 @@ class PartialLicenseMap(pulumi.CustomResource):
             sso_license_mapping_groups=["IT-SSO-GROUP"])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] license_type: The license type to update
@@ -171,6 +174,7 @@ class PartialLicenseMap(pulumi.CustomResource):
             license_type="it",
             sso_license_mapping_groups=["IT-SSO-GROUP"])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PartialLicenseMapArgs args: The arguments to use to populate this resource's properties.

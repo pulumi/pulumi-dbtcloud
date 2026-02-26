@@ -24,6 +24,7 @@ class ProjectArtefactsArgs:
                  freshness_job_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ProjectArtefacts resource.
+
         :param pulumi.Input[_builtins.int] project_id: Project ID
         :param pulumi.Input[_builtins.int] docs_job_id: Docs Job ID
         :param pulumi.Input[_builtins.int] freshness_job_id: Freshness Job ID
@@ -79,6 +80,7 @@ class _ProjectArtefactsState:
                  project_id: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ProjectArtefacts resources.
+
         :param pulumi.Input[_builtins.int] docs_job_id: Docs Job ID
         :param pulumi.Input[_builtins.int] freshness_job_id: Freshness Job ID
         :param pulumi.Input[_builtins.int] project_id: Project ID
@@ -172,6 +174,7 @@ class ProjectArtefacts(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] docs_job_id: Docs Job ID
@@ -218,6 +221,7 @@ class ProjectArtefacts(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts "project_id"
         $ pulumi import dbtcloud:index/projectArtefacts:ProjectArtefacts my_artefacts 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectArtefactsArgs args: The arguments to use to populate this resource's properties.

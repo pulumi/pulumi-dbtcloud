@@ -27,6 +27,7 @@ class GroupArgs:
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         :param pulumi.Input[_builtins.str] name: The name of the group. This is used to identify an existing group
@@ -99,6 +100,7 @@ class _GroupState:
                  sso_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
         :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
         :param pulumi.Input[_builtins.str] name: The name of the group. This is used to identify an existing group
@@ -253,6 +255,7 @@ class Group(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/group:Group my_group 12345
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
@@ -345,6 +348,7 @@ class Group(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/group:Group my_group "group_id"
         $ pulumi import dbtcloud:index/group:Group my_group 12345
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

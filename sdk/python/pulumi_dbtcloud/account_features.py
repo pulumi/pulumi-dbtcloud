@@ -28,6 +28,7 @@ class AccountFeaturesArgs:
                  repo_caching: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AccountFeatures resource.
+
         :param pulumi.Input[_builtins.bool] advanced_ci: Whether advanced CI is enabled.
         :param pulumi.Input[_builtins.bool] ai_features: Whether AI features are enabled.
         :param pulumi.Input[_builtins.bool] catalog_ingestion: Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
@@ -148,6 +149,7 @@ class _AccountFeaturesState:
                  repo_caching: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AccountFeatures resources.
+
         :param pulumi.Input[_builtins.bool] advanced_ci: Whether advanced CI is enabled.
         :param pulumi.Input[_builtins.bool] ai_features: Whether AI features are enabled.
         :param pulumi.Input[_builtins.bool] catalog_ingestion: Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
@@ -292,6 +294,7 @@ class AccountFeatures(pulumi.CustomResource):
             fusion_migration_permissions=False)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] advanced_ci: Whether advanced CI is enabled.
@@ -329,6 +332,7 @@ class AccountFeatures(pulumi.CustomResource):
             explorer_account_ui=True,
             fusion_migration_permissions=False)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AccountFeaturesArgs args: The arguments to use to populate this resource's properties.
