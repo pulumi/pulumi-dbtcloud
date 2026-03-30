@@ -212,7 +212,7 @@ import (
 //			}
 //			// Platform team can manage base account permissions
 //			_, err = dbtcloud.NewScimGroupPartialPermissions(ctx, "base_access", &dbtcloud.ScimGroupPartialPermissionsArgs{
-//				GroupId: pulumi.Int(engineering.Groups[0].Id),
+//				GroupId: pulumi.Int(pulumi.Int(engineering.Groups[0].Id)),
 //				Permissions: dbtcloud.ScimGroupPartialPermissionsPermissionArray{
 //					&dbtcloud.ScimGroupPartialPermissionsPermissionArgs{
 //						PermissionSet: pulumi.String("member"),
@@ -225,7 +225,7 @@ import (
 //			}
 //			// Project team can manage project-specific permissions independently
 //			_, err = dbtcloud.NewScimGroupPartialPermissions(ctx, "project_access", &dbtcloud.ScimGroupPartialPermissionsArgs{
-//				GroupId: pulumi.Int(engineering.Groups[0].Id),
+//				GroupId: pulumi.Int(pulumi.Int(engineering.Groups[0].Id)),
 //				Permissions: dbtcloud.ScimGroupPartialPermissionsPermissionArray{
 //					&dbtcloud.ScimGroupPartialPermissionsPermissionArgs{
 //						PermissionSet: pulumi.String("developer"),
@@ -261,7 +261,7 @@ import (
 //			}
 //			// Analytics team manages their own project permissions
 //			_, err = dbtcloud.NewScimGroupPartialPermissions(ctx, "analytics", &dbtcloud.ScimGroupPartialPermissionsArgs{
-//				GroupId: pulumi.Int(engineering.Groups[0].Id),
+//				GroupId: pulumi.Int(pulumi.Int(engineering.Groups[0].Id)),
 //				Permissions: dbtcloud.ScimGroupPartialPermissionsPermissionArray{
 //					&dbtcloud.ScimGroupPartialPermissionsPermissionArgs{
 //						PermissionSet: pulumi.String("developer"),
@@ -278,7 +278,7 @@ import (
 //			}
 //			// Data Science team manages their own project permissions
 //			_, err = dbtcloud.NewScimGroupPartialPermissions(ctx, "data_science", &dbtcloud.ScimGroupPartialPermissionsArgs{
-//				GroupId: pulumi.Int(engineering.Groups[0].Id),
+//				GroupId: pulumi.Int(pulumi.Int(engineering.Groups[0].Id)),
 //				Permissions: dbtcloud.ScimGroupPartialPermissionsPermissionArray{
 //					&dbtcloud.ScimGroupPartialPermissionsPermissionArgs{
 //						PermissionSet: pulumi.String("analyst"),
