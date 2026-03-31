@@ -96,6 +96,12 @@ namespace Pulumi.DbtCloud
         public Output<Outputs.BigquerySemanticLayerCredentialCredential> Credential { get; private set; } = null!;
 
         /// <summary>
+        /// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+        /// </summary>
+        [Output("executionProject")]
+        public Output<string?> ExecutionProject { get; private set; } = null!;
+
+        /// <summary>
         /// Private Key for the Service Account
         /// </summary>
         [Output("privateKey")]
@@ -206,6 +212,12 @@ namespace Pulumi.DbtCloud
         [Input("credential", required: true)]
         public Input<Inputs.BigquerySemanticLayerCredentialCredentialArgs> Credential { get; set; } = null!;
 
+        /// <summary>
+        /// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+        /// </summary>
+        [Input("executionProject")]
+        public Input<string>? ExecutionProject { get; set; }
+
         [Input("privateKey", required: true)]
         private Input<string>? _privateKey;
 
@@ -283,6 +295,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("credential")]
         public Input<Inputs.BigquerySemanticLayerCredentialCredentialGetArgs>? Credential { get; set; }
+
+        /// <summary>
+        /// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+        /// </summary>
+        [Input("executionProject")]
+        public Input<string>? ExecutionProject { get; set; }
 
         [Input("privateKey")]
         private Input<string>? _privateKey;

@@ -95,6 +95,10 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
      */
     declare public readonly credential: pulumi.Output<outputs.BigquerySemanticLayerCredentialCredential>;
     /**
+     * The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+     */
+    declare public readonly executionProject: pulumi.Output<string | undefined>;
+    /**
      * Private Key for the Service Account
      */
     declare public readonly privateKey: pulumi.Output<string>;
@@ -127,6 +131,7 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
             resourceInputs["clientX509CertUrl"] = state?.clientX509CertUrl;
             resourceInputs["configuration"] = state?.configuration;
             resourceInputs["credential"] = state?.credential;
+            resourceInputs["executionProject"] = state?.executionProject;
             resourceInputs["privateKey"] = state?.privateKey;
             resourceInputs["privateKeyId"] = state?.privateKeyId;
             resourceInputs["tokenUri"] = state?.tokenUri;
@@ -169,6 +174,7 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
             resourceInputs["clientX509CertUrl"] = args?.clientX509CertUrl;
             resourceInputs["configuration"] = args?.configuration;
             resourceInputs["credential"] = args?.credential;
+            resourceInputs["executionProject"] = args?.executionProject;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["privateKeyId"] = args?.privateKeyId;
             resourceInputs["tokenUri"] = args?.tokenUri;
@@ -212,6 +218,10 @@ export interface BigquerySemanticLayerCredentialState {
      * BigQuery credential details, but used in the context of the Semantic Layer.
      */
     credential?: pulumi.Input<inputs.BigquerySemanticLayerCredentialCredential>;
+    /**
+     * The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+     */
+    executionProject?: pulumi.Input<string>;
     /**
      * Private Key for the Service Account
      */
@@ -258,6 +268,10 @@ export interface BigquerySemanticLayerCredentialArgs {
      * BigQuery credential details, but used in the context of the Semantic Layer.
      */
     credential: pulumi.Input<inputs.BigquerySemanticLayerCredentialCredential>;
+    /**
+     * The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+     */
+    executionProject?: pulumi.Input<string>;
     /**
      * Private Key for the Service Account
      */

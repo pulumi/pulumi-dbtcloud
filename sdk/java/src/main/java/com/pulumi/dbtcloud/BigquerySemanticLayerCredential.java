@@ -14,6 +14,7 @@ import com.pulumi.dbtcloud.outputs.BigquerySemanticLayerCredentialConfiguration;
 import com.pulumi.dbtcloud.outputs.BigquerySemanticLayerCredentialCredential;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -172,6 +173,20 @@ public class BigquerySemanticLayerCredential extends com.pulumi.resources.Custom
      */
     public Output<BigquerySemanticLayerCredentialCredential> credential() {
         return this.credential;
+    }
+    /**
+     * The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+     * 
+     */
+    @Export(name="executionProject", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> executionProject;
+
+    /**
+     * @return The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+     * 
+     */
+    public Output<Optional<String>> executionProject() {
+        return Codegen.optional(this.executionProject);
     }
     /**
      * Private Key for the Service Account

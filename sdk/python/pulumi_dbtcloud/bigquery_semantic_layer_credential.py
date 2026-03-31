@@ -30,7 +30,8 @@ class BigquerySemanticLayerCredentialArgs:
                  credential: pulumi.Input['BigquerySemanticLayerCredentialCredentialArgs'],
                  private_key: pulumi.Input[_builtins.str],
                  private_key_id: pulumi.Input[_builtins.str],
-                 token_uri: pulumi.Input[_builtins.str]):
+                 token_uri: pulumi.Input[_builtins.str],
+                 execution_project: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BigquerySemanticLayerCredential resource.
 
@@ -44,6 +45,7 @@ class BigquerySemanticLayerCredentialArgs:
         :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
         :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
+        :param pulumi.Input[_builtins.str] execution_project: The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
         """
         pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
         pulumi.set(__self__, "auth_uri", auth_uri)
@@ -55,6 +57,8 @@ class BigquerySemanticLayerCredentialArgs:
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "private_key_id", private_key_id)
         pulumi.set(__self__, "token_uri", token_uri)
+        if execution_project is not None:
+            pulumi.set(__self__, "execution_project", execution_project)
 
     @_builtins.property
     @pulumi.getter(name="authProviderX509CertUrl")
@@ -176,6 +180,18 @@ class BigquerySemanticLayerCredentialArgs:
     def token_uri(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "token_uri", value)
 
+    @_builtins.property
+    @pulumi.getter(name="executionProject")
+    def execution_project(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+        """
+        return pulumi.get(self, "execution_project")
+
+    @execution_project.setter
+    def execution_project(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "execution_project", value)
+
 
 @pulumi.input_type
 class _BigquerySemanticLayerCredentialState:
@@ -187,6 +203,7 @@ class _BigquerySemanticLayerCredentialState:
                  client_x509_cert_url: Optional[pulumi.Input[_builtins.str]] = None,
                  configuration: Optional[pulumi.Input['BigquerySemanticLayerCredentialConfigurationArgs']] = None,
                  credential: Optional[pulumi.Input['BigquerySemanticLayerCredentialCredentialArgs']] = None,
+                 execution_project: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  token_uri: Optional[pulumi.Input[_builtins.str]] = None):
@@ -200,6 +217,7 @@ class _BigquerySemanticLayerCredentialState:
         :param pulumi.Input[_builtins.str] client_x509_cert_url: Client X509 Cert URL for the Service Account
         :param pulumi.Input['BigquerySemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['BigquerySemanticLayerCredentialCredentialArgs'] credential: BigQuery credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[_builtins.str] execution_project: The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
         :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
         :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
@@ -218,6 +236,8 @@ class _BigquerySemanticLayerCredentialState:
             pulumi.set(__self__, "configuration", configuration)
         if credential is not None:
             pulumi.set(__self__, "credential", credential)
+        if execution_project is not None:
+            pulumi.set(__self__, "execution_project", execution_project)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if private_key_id is not None:
@@ -310,6 +330,18 @@ class _BigquerySemanticLayerCredentialState:
         pulumi.set(self, "credential", value)
 
     @_builtins.property
+    @pulumi.getter(name="executionProject")
+    def execution_project(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+        """
+        return pulumi.get(self, "execution_project")
+
+    @execution_project.setter
+    def execution_project(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "execution_project", value)
+
+    @_builtins.property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -359,6 +391,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
                  client_x509_cert_url: Optional[pulumi.Input[_builtins.str]] = None,
                  configuration: Optional[pulumi.Input[Union['BigquerySemanticLayerCredentialConfigurationArgs', 'BigquerySemanticLayerCredentialConfigurationArgsDict']]] = None,
                  credential: Optional[pulumi.Input[Union['BigquerySemanticLayerCredentialCredentialArgs', 'BigquerySemanticLayerCredentialCredentialArgsDict']]] = None,
+                 execution_project: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  token_uri: Optional[pulumi.Input[_builtins.str]] = None,
@@ -404,6 +437,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_x509_cert_url: Client X509 Cert URL for the Service Account
         :param pulumi.Input[Union['BigquerySemanticLayerCredentialConfigurationArgs', 'BigquerySemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input[Union['BigquerySemanticLayerCredentialCredentialArgs', 'BigquerySemanticLayerCredentialCredentialArgsDict']] credential: BigQuery credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[_builtins.str] execution_project: The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
         :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
         :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
@@ -468,6 +502,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
                  client_x509_cert_url: Optional[pulumi.Input[_builtins.str]] = None,
                  configuration: Optional[pulumi.Input[Union['BigquerySemanticLayerCredentialConfigurationArgs', 'BigquerySemanticLayerCredentialConfigurationArgsDict']]] = None,
                  credential: Optional[pulumi.Input[Union['BigquerySemanticLayerCredentialCredentialArgs', 'BigquerySemanticLayerCredentialCredentialArgsDict']]] = None,
+                 execution_project: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  token_uri: Optional[pulumi.Input[_builtins.str]] = None,
@@ -501,6 +536,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
             if credential is None and not opts.urn:
                 raise TypeError("Missing required property 'credential'")
             __props__.__dict__["credential"] = credential
+            __props__.__dict__["execution_project"] = execution_project
             if private_key is None and not opts.urn:
                 raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
@@ -529,6 +565,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
             client_x509_cert_url: Optional[pulumi.Input[_builtins.str]] = None,
             configuration: Optional[pulumi.Input[Union['BigquerySemanticLayerCredentialConfigurationArgs', 'BigquerySemanticLayerCredentialConfigurationArgsDict']]] = None,
             credential: Optional[pulumi.Input[Union['BigquerySemanticLayerCredentialCredentialArgs', 'BigquerySemanticLayerCredentialCredentialArgsDict']]] = None,
+            execution_project: Optional[pulumi.Input[_builtins.str]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
             private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
             token_uri: Optional[pulumi.Input[_builtins.str]] = None) -> 'BigquerySemanticLayerCredential':
@@ -546,6 +583,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_x509_cert_url: Client X509 Cert URL for the Service Account
         :param pulumi.Input[Union['BigquerySemanticLayerCredentialConfigurationArgs', 'BigquerySemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input[Union['BigquerySemanticLayerCredentialCredentialArgs', 'BigquerySemanticLayerCredentialCredentialArgsDict']] credential: BigQuery credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[_builtins.str] execution_project: The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
         :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
         :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
@@ -561,6 +599,7 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         __props__.__dict__["client_x509_cert_url"] = client_x509_cert_url
         __props__.__dict__["configuration"] = configuration
         __props__.__dict__["credential"] = credential
+        __props__.__dict__["execution_project"] = execution_project
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["private_key_id"] = private_key_id
         __props__.__dict__["token_uri"] = token_uri
@@ -621,6 +660,14 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         BigQuery credential details, but used in the context of the Semantic Layer.
         """
         return pulumi.get(self, "credential")
+
+    @_builtins.property
+    @pulumi.getter(name="executionProject")
+    def execution_project(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+        """
+        return pulumi.get(self, "execution_project")
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
