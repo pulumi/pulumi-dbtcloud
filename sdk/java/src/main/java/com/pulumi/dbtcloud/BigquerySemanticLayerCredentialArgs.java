@@ -10,6 +10,8 @@ import com.pulumi.dbtcloud.inputs.BigquerySemanticLayerCredentialCredentialArgs;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class BigquerySemanticLayerCredentialArgs extends com.pulumi.resources.ResourceArgs {
@@ -122,6 +124,21 @@ public final class BigquerySemanticLayerCredentialArgs extends com.pulumi.resour
     }
 
     /**
+     * The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+     * 
+     */
+    @Import(name="executionProject")
+    private @Nullable Output<String> executionProject;
+
+    /**
+     * @return The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+     * 
+     */
+    public Optional<Output<String>> executionProject() {
+        return Optional.ofNullable(this.executionProject);
+    }
+
+    /**
      * Private Key for the Service Account
      * 
      */
@@ -176,6 +193,7 @@ public final class BigquerySemanticLayerCredentialArgs extends com.pulumi.resour
         this.clientX509CertUrl = $.clientX509CertUrl;
         this.configuration = $.configuration;
         this.credential = $.credential;
+        this.executionProject = $.executionProject;
         this.privateKey = $.privateKey;
         this.privateKeyId = $.privateKeyId;
         this.tokenUri = $.tokenUri;
@@ -344,6 +362,27 @@ public final class BigquerySemanticLayerCredentialArgs extends com.pulumi.resour
          */
         public Builder credential(BigquerySemanticLayerCredentialCredentialArgs credential) {
             return credential(Output.of(credential));
+        }
+
+        /**
+         * @param executionProject The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder executionProject(@Nullable Output<String> executionProject) {
+            $.executionProject = executionProject;
+            return this;
+        }
+
+        /**
+         * @param executionProject The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder executionProject(String executionProject) {
+            return executionProject(Output.of(executionProject));
         }
 
         /**

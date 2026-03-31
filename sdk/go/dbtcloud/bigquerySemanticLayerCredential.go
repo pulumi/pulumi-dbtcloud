@@ -74,6 +74,8 @@ type BigquerySemanticLayerCredential struct {
 	Configuration BigquerySemanticLayerCredentialConfigurationOutput `pulumi:"configuration"`
 	// BigQuery credential details, but used in the context of the Semantic Layer.
 	Credential BigquerySemanticLayerCredentialCredentialOutput `pulumi:"credential"`
+	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+	ExecutionProject pulumi.StringPtrOutput `pulumi:"executionProject"`
 	// Private Key for the Service Account
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// Private Key ID for the Service Account
@@ -163,6 +165,8 @@ type bigquerySemanticLayerCredentialState struct {
 	Configuration *BigquerySemanticLayerCredentialConfiguration `pulumi:"configuration"`
 	// BigQuery credential details, but used in the context of the Semantic Layer.
 	Credential *BigquerySemanticLayerCredentialCredential `pulumi:"credential"`
+	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+	ExecutionProject *string `pulumi:"executionProject"`
 	// Private Key for the Service Account
 	PrivateKey *string `pulumi:"privateKey"`
 	// Private Key ID for the Service Account
@@ -186,6 +190,8 @@ type BigquerySemanticLayerCredentialState struct {
 	Configuration BigquerySemanticLayerCredentialConfigurationPtrInput
 	// BigQuery credential details, but used in the context of the Semantic Layer.
 	Credential BigquerySemanticLayerCredentialCredentialPtrInput
+	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+	ExecutionProject pulumi.StringPtrInput
 	// Private Key for the Service Account
 	PrivateKey pulumi.StringPtrInput
 	// Private Key ID for the Service Account
@@ -213,6 +219,8 @@ type bigquerySemanticLayerCredentialArgs struct {
 	Configuration BigquerySemanticLayerCredentialConfiguration `pulumi:"configuration"`
 	// BigQuery credential details, but used in the context of the Semantic Layer.
 	Credential BigquerySemanticLayerCredentialCredential `pulumi:"credential"`
+	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+	ExecutionProject *string `pulumi:"executionProject"`
 	// Private Key for the Service Account
 	PrivateKey string `pulumi:"privateKey"`
 	// Private Key ID for the Service Account
@@ -237,6 +245,8 @@ type BigquerySemanticLayerCredentialArgs struct {
 	Configuration BigquerySemanticLayerCredentialConfigurationInput
 	// BigQuery credential details, but used in the context of the Semantic Layer.
 	Credential BigquerySemanticLayerCredentialCredentialInput
+	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+	ExecutionProject pulumi.StringPtrInput
 	// Private Key for the Service Account
 	PrivateKey pulumi.StringInput
 	// Private Key ID for the Service Account
@@ -369,6 +379,11 @@ func (o BigquerySemanticLayerCredentialOutput) Credential() BigquerySemanticLaye
 	return o.ApplyT(func(v *BigquerySemanticLayerCredential) BigquerySemanticLayerCredentialCredentialOutput {
 		return v.Credential
 	}).(BigquerySemanticLayerCredentialCredentialOutput)
+}
+
+// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+func (o BigquerySemanticLayerCredentialOutput) ExecutionProject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredential) pulumi.StringPtrOutput { return v.ExecutionProject }).(pulumi.StringPtrOutput)
 }
 
 // Private Key for the Service Account
