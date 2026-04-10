@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Developer license group mapping
-    ///     var devLicenseMap = new DbtCloud.LicenseMap("dev_license_map", new()
+    ///     var devLicenseMap = new DbtCloud.Index.LicenseMap("dev_license_map", new()
     ///     {
     ///         LicenseType = "developer",
     ///         SsoLicenseMappingGroups = new[]
@@ -33,7 +33,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Read-only license mapping
-    ///     var readOnlyLicenseMap = new DbtCloud.LicenseMap("read_only_license_map", new()
+    ///     var readOnlyLicenseMap = new DbtCloud.Index.LicenseMap("read_only_license_map", new()
     ///     {
     ///         LicenseType = "read_only",
     ///         SsoLicenseMappingGroups = new[]
@@ -43,7 +43,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // IT license mapping
-    ///     var itLicenseMap = new DbtCloud.LicenseMap("it_license_map", new()
+    ///     var itLicenseMap = new DbtCloud.Index.LicenseMap("it_license_map", new()
     ///     {
     ///         LicenseType = "it",
     ///         SsoLicenseMappingGroups = new[]

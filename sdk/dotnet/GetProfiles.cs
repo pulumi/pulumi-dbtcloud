@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = DbtCloud.GetProfiles.Invoke(new()
+        ///     var all = DbtCloud.Index.GetProfiles.Invoke(new()
         ///     {
         ///         ProjectId = 6789,
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = DbtCloud.GetProfiles.Invoke(new()
+        ///     var all = DbtCloud.Index.GetProfiles.Invoke(new()
         ///     {
         ///         ProjectId = 6789,
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = DbtCloud.GetProfiles.Invoke(new()
+        ///     var all = DbtCloud.Index.GetProfiles.Invoke(new()
         ///     {
         ///         ProjectId = 6789,
         ///     });

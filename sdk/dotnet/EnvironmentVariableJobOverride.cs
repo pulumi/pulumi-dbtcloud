@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myEnvVarJobOverride = new DbtCloud.EnvironmentVariableJobOverride("my_env_var_job_override", new()
+    ///     var myEnvVarJobOverride = new DbtCloud.Index.EnvironmentVariableJobOverride("my_env_var_job_override", new()
     ///     {
     ///         Name = dbtMyEnvVar.Name,
     ///         ProjectId = dbtProject.Id,

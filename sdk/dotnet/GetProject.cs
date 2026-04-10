@@ -25,24 +25,24 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-        ///     var projectById = DbtCloud.GetProject.Invoke(new()
+        ///     var projectById = DbtCloud.Index.GetProject.Invoke(new()
         ///     {
         ///         Id = 0,
         ///     });
         /// 
         ///     // or they can use project names
         ///     // the provider will raise an error if more than one project is found with the same name
-        ///     var projectByName = DbtCloud.GetProject.Invoke(new()
+        ///     var projectByName = DbtCloud.Index.GetProject.Invoke(new()
         ///     {
         ///         Name = "Project name",
         ///     });
         /// 
-        ///     var filteredProjects = DbtCloud.GetProjects.Invoke(new()
+        ///     var filteredProjects = DbtCloud.Index.GetProjects.Invoke(new()
         ///     {
         ///         NameContains = "Project",
         ///     });
         /// 
-        ///     var allProjects = DbtCloud.GetProjects.Invoke();
+        ///     var allProjects = DbtCloud.Index.GetProjects.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -75,24 +75,24 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-        ///     var projectById = DbtCloud.GetProject.Invoke(new()
+        ///     var projectById = DbtCloud.Index.GetProject.Invoke(new()
         ///     {
         ///         Id = 0,
         ///     });
         /// 
         ///     // or they can use project names
         ///     // the provider will raise an error if more than one project is found with the same name
-        ///     var projectByName = DbtCloud.GetProject.Invoke(new()
+        ///     var projectByName = DbtCloud.Index.GetProject.Invoke(new()
         ///     {
         ///         Name = "Project name",
         ///     });
         /// 
-        ///     var filteredProjects = DbtCloud.GetProjects.Invoke(new()
+        ///     var filteredProjects = DbtCloud.Index.GetProjects.Invoke(new()
         ///     {
         ///         NameContains = "Project",
         ///     });
         /// 
-        ///     var allProjects = DbtCloud.GetProjects.Invoke();
+        ///     var allProjects = DbtCloud.Index.GetProjects.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -125,24 +125,24 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
-        ///     var projectById = DbtCloud.GetProject.Invoke(new()
+        ///     var projectById = DbtCloud.Index.GetProject.Invoke(new()
         ///     {
         ///         Id = 0,
         ///     });
         /// 
         ///     // or they can use project names
         ///     // the provider will raise an error if more than one project is found with the same name
-        ///     var projectByName = DbtCloud.GetProject.Invoke(new()
+        ///     var projectByName = DbtCloud.Index.GetProject.Invoke(new()
         ///     {
         ///         Name = "Project name",
         ///     });
         /// 
-        ///     var filteredProjects = DbtCloud.GetProjects.Invoke(new()
+        ///     var filteredProjects = DbtCloud.Index.GetProjects.Invoke(new()
         ///     {
         ///         NameContains = "Project",
         ///     });
         /// 
-        ///     var allProjects = DbtCloud.GetProjects.Invoke();
+        ///     var allProjects = DbtCloud.Index.GetProjects.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {

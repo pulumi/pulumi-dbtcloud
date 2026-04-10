@@ -20,7 +20,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testServiceToken = new DbtCloud.ServiceToken("test_service_token", new()
+    ///     var testServiceToken = new DbtCloud.Index.ServiceToken("test_service_token", new()
     ///     {
     ///         Name = "Test Service Token",
     ///         ServiceTokenPermissions = new[]

@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // A profile ties together a connection and credentials for use within environments.
-    ///     var myProfile = new DbtCloud.Profile("my_profile", new()
+    ///     var myProfile = new DbtCloud.Index.Profile("my_profile", new()
     ///     {
     ///         ProjectId = myProject.Id,
     ///         Key = "my-profile",
@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // A profile with extended attributes
-    ///     var myProfileWithAttrs = new DbtCloud.Profile("my_profile_with_attrs", new()
+    ///     var myProfileWithAttrs = new DbtCloud.Index.Profile("my_profile_with_attrs", new()
     ///     {
     ///         ProjectId = myProject.Id,
     ///         Key = "my-profile-with-attrs",

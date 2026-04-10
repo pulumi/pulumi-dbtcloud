@@ -75,7 +75,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Terraform State 1 (Platform Team)
-    ///     var platform = new DbtCloud.ScimGroupPartialPermissions("platform", new()
+    ///     var platform = new DbtCloud.Index.ScimGroupPartialPermissions("platform", new()
     ///     {
     ///         GroupId = 12345,
     ///         Permissions = new[]
@@ -94,7 +94,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Terraform State 2 (Another Team) - IDENTICAL permission!
-    ///     var otherTeam = new DbtCloud.ScimGroupPartialPermissions("other_team", new()
+    ///     var otherTeam = new DbtCloud.Index.ScimGroupPartialPermissions("other_team", new()
     ///     {
     ///         GroupId = 12345,
     ///         Permissions = new[]
@@ -126,7 +126,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Terraform State 1 (Platform Team) - Development environments
-    ///     var platformDev = new DbtCloud.ScimGroupPartialPermissions("platform_dev", new()
+    ///     var platformDev = new DbtCloud.Index.ScimGroupPartialPermissions("platform_dev", new()
     ///     {
     ///         GroupId = 12345,
     ///         Permissions = new[]
@@ -145,7 +145,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Terraform State 2 (SRE Team) - Production environments
-    ///     var sreProd = new DbtCloud.ScimGroupPartialPermissions("sre_prod", new()
+    ///     var sreProd = new DbtCloud.Index.ScimGroupPartialPermissions("sre_prod", new()
     ///     {
     ///         GroupId = 12345,
     ///         Permissions = new[]
@@ -185,19 +185,19 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Retrieve the SCIM-managed group
-    ///     var engineering = DbtCloud.GetGroups.Invoke(new()
+    ///     var engineering = DbtCloud.Index.GetGroups.Invoke(new()
     ///     {
     ///         Name = "Engineering Team",
     ///     });
     /// 
     ///     // Get the project to apply permissions to
-    ///     var myProject = DbtCloud.GetProject.Invoke(new()
+    ///     var myProject = DbtCloud.Index.GetProject.Invoke(new()
     ///     {
     ///         Name = "My Analytics Project",
     ///     });
     /// 
     ///     // Platform team can manage base account permissions
-    ///     var baseAccess = new DbtCloud.ScimGroupPartialPermissions("base_access", new()
+    ///     var baseAccess = new DbtCloud.Index.ScimGroupPartialPermissions("base_access", new()
     ///     {
     ///         GroupId = engineering.Apply(getGroupsResult =&gt; getGroupsResult.Groups[0]?.Id),
     ///         Permissions = new[]
@@ -211,7 +211,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Project team can manage project-specific permissions independently
-    ///     var projectAccess = new DbtCloud.ScimGroupPartialPermissions("project_access", new()
+    ///     var projectAccess = new DbtCloud.Index.ScimGroupPartialPermissions("project_access", new()
     ///     {
     ///         GroupId = engineering.Apply(getGroupsResult =&gt; getGroupsResult.Groups[0]?.Id),
     ///         Permissions = new[]
@@ -237,18 +237,18 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Example: Multiple projects managed by different teams
-    ///     var analytics = DbtCloud.GetProject.Invoke(new()
+    ///     var analytics = DbtCloud.Index.GetProject.Invoke(new()
     ///     {
     ///         Name = "Analytics",
     ///     });
     /// 
-    ///     var dataScience = DbtCloud.GetProject.Invoke(new()
+    ///     var dataScience = DbtCloud.Index.GetProject.Invoke(new()
     ///     {
     ///         Name = "Data Science",
     ///     });
     /// 
     ///     // Analytics team manages their own project permissions
-    ///     var analyticsScimGroupPartialPermissions = new DbtCloud.ScimGroupPartialPermissions("analytics", new()
+    ///     var analyticsScimGroupPartialPermissions = new DbtCloud.Index.ScimGroupPartialPermissions("analytics", new()
     ///     {
     ///         GroupId = engineering.Apply(getGroupsResult =&gt; getGroupsResult.Groups[0]?.Id),
     ///         Permissions = new[]
@@ -267,7 +267,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Data Science team manages their own project permissions
-    ///     var dataScienceScimGroupPartialPermissions = new DbtCloud.ScimGroupPartialPermissions("data_science", new()
+    ///     var dataScienceScimGroupPartialPermissions = new DbtCloud.Index.ScimGroupPartialPermissions("data_science", new()
     ///     {
     ///         GroupId = engineering.Apply(getGroupsResult =&gt; getGroupsResult.Groups[0]?.Id),
     ///         Permissions = new[]

@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new DbtCloud.IpRestrictionsRule("test", new()
+    ///     var test = new DbtCloud.Index.IpRestrictionsRule("test", new()
     ///     {
     ///         Name = "My restriction rule",
     ///         Description = "Important description",

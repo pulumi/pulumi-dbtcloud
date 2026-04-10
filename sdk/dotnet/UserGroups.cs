@@ -28,7 +28,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // we can assign groups to users
-    ///     var myUserGroups = new DbtCloud.UserGroups("my_user_groups", new()
+    ///     var myUserGroups = new DbtCloud.Index.UserGroups("my_user_groups", new()
     ///     {
     ///         UserId = myUser.Id,
     ///         GroupIds = new[]
@@ -40,7 +40,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // as Delete is not handled currently, by design, removing all groups from a user can be done with
-    ///     var myOtherUserGroups = new DbtCloud.UserGroups("my_other_user_groups", new()
+    ///     var myOtherUserGroups = new DbtCloud.Index.UserGroups("my_other_user_groups", new()
     ///     {
     ///         UserId = 123456,
     ///         GroupIds = new[] {},

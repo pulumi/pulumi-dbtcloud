@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  *     const snowflakeEndpoints = .filter(endpoint => endpoint.type == "snowflake").map(endpoint => (endpoint));
  *     // Create connections for all Snowflake endpoints
  *     const snowflakeConnections: dbtcloud.GlobalConnection[] = [];
- *     for (const range of Object.entries(.reduce((__obj, ep) => ({ ...__obj, [ep.id]: ep }))).map(([k, v]) => ({key: k, value: v}))) {
+ *     for (const range of Object.entries(.reduce((__obj, ep) => ({ ...__obj, [ep.id]: ep }), {})).map(([k, v]) => ({key: k, value: v}))) {
  *         snowflakeConnections.push(new dbtcloud.GlobalConnection(`snowflake_connections-${range.key}`, {
  *             name: `Connection for ${range.value.name}`,
  *             privateLinkEndpointId: range.value.id,
@@ -89,7 +89,7 @@ export interface GetPrivatelinkEndpointsResult {
  *     const snowflakeEndpoints = .filter(endpoint => endpoint.type == "snowflake").map(endpoint => (endpoint));
  *     // Create connections for all Snowflake endpoints
  *     const snowflakeConnections: dbtcloud.GlobalConnection[] = [];
- *     for (const range of Object.entries(.reduce((__obj, ep) => ({ ...__obj, [ep.id]: ep }))).map(([k, v]) => ({key: k, value: v}))) {
+ *     for (const range of Object.entries(.reduce((__obj, ep) => ({ ...__obj, [ep.id]: ep }), {})).map(([k, v]) => ({key: k, value: v}))) {
  *         snowflakeConnections.push(new dbtcloud.GlobalConnection(`snowflake_connections-${range.key}`, {
  *             name: `Connection for ${range.value.name}`,
  *             privateLinkEndpointId: range.value.id,

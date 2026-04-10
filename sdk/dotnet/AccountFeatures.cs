@@ -25,7 +25,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Manage account-level feature flags in dbt Cloud
-    ///     var myFeatures = new DbtCloud.AccountFeatures("my_features", new()
+    ///     var myFeatures = new DbtCloud.Index.AccountFeatures("my_features", new()
     ///     {
     ///         AdvancedCi = true,
     ///         PartialParsing = true,

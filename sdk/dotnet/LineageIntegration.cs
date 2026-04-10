@@ -26,7 +26,7 @@ namespace Pulumi.DbtCloud
     /// {
     ///     // the resource can only be configured when a Prod environment has been set
     ///     // so, you might want to explicitly set the dependency on your Prod environment resource
-    ///     var myLineage = new DbtCloud.LineageIntegration("my_lineage", new()
+    ///     var myLineage = new DbtCloud.Index.LineageIntegration("my_lineage", new()
     ///     {
     ///         ProjectId = myProject.Id,
     ///         Host = "my.host.com",

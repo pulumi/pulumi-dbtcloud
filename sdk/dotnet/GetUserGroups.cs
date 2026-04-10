@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUserGroups = DbtCloud.GetUserGroups.Invoke(new()
+        ///     var myUserGroups = DbtCloud.Index.GetUserGroups.Invoke(new()
         ///     {
         ///         UserId = 12345,
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUserGroups = DbtCloud.GetUserGroups.Invoke(new()
+        ///     var myUserGroups = DbtCloud.Index.GetUserGroups.Invoke(new()
         ///     {
         ///         UserId = 12345,
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUserGroups = DbtCloud.GetUserGroups.Invoke(new()
+        ///     var myUserGroups = DbtCloud.Index.GetUserGroups.Invoke(new()
         ///     {
         ///         UserId = 12345,
         ///     });

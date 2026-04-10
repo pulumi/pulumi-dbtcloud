@@ -25,13 +25,13 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // we can search all jobs by project
-        ///     var testAllJobsInProject = DbtCloud.GetJobs.Invoke(new()
+        ///     var testAllJobsInProject = DbtCloud.Index.GetJobs.Invoke(new()
         ///     {
         ///         ProjectId = 1234,
         ///     });
         /// 
         ///     // or by environment
-        ///     var testAllJobsInEnvironment = DbtCloud.GetJobs.Invoke(new()
+        ///     var testAllJobsInEnvironment = DbtCloud.Index.GetJobs.Invoke(new()
         ///     {
         ///         EnvironmentId = 1234,
         ///     });
@@ -61,13 +61,13 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // we can search all jobs by project
-        ///     var testAllJobsInProject = DbtCloud.GetJobs.Invoke(new()
+        ///     var testAllJobsInProject = DbtCloud.Index.GetJobs.Invoke(new()
         ///     {
         ///         ProjectId = 1234,
         ///     });
         /// 
         ///     // or by environment
-        ///     var testAllJobsInEnvironment = DbtCloud.GetJobs.Invoke(new()
+        ///     var testAllJobsInEnvironment = DbtCloud.Index.GetJobs.Invoke(new()
         ///     {
         ///         EnvironmentId = 1234,
         ///     });
@@ -97,13 +97,13 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // we can search all jobs by project
-        ///     var testAllJobsInProject = DbtCloud.GetJobs.Invoke(new()
+        ///     var testAllJobsInProject = DbtCloud.Index.GetJobs.Invoke(new()
         ///     {
         ///         ProjectId = 1234,
         ///     });
         /// 
         ///     // or by environment
-        ///     var testAllJobsInEnvironment = DbtCloud.GetJobs.Invoke(new()
+        ///     var testAllJobsInEnvironment = DbtCloud.Index.GetJobs.Invoke(new()
         ///     {
         ///         EnvironmentId = 1234,
         ///     });

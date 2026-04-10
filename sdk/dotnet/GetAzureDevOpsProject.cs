@@ -27,7 +27,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoProject = DbtCloud.GetAzureDevOpsProject.Invoke(new()
+        ///     var myAdoProject = DbtCloud.Index.GetAzureDevOpsProject.Invoke(new()
         ///     {
         ///         Name = "my-project-name",
         ///     });
@@ -54,7 +54,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoProject = DbtCloud.GetAzureDevOpsProject.Invoke(new()
+        ///     var myAdoProject = DbtCloud.Index.GetAzureDevOpsProject.Invoke(new()
         ///     {
         ///         Name = "my-project-name",
         ///     });
@@ -81,7 +81,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoProject = DbtCloud.GetAzureDevOpsProject.Invoke(new()
+        ///     var myAdoProject = DbtCloud.Index.GetAzureDevOpsProject.Invoke(new()
         ///     {
         ///         Name = "my-project-name",
         ///     });

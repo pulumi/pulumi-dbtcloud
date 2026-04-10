@@ -204,7 +204,7 @@ import (
 //				return err
 //			}
 //			// Get the project to apply permissions to
-//			myProject, err := dbtcloud.LookupProject(ctx, &dbtcloud.LookupProjectArgs{
+//			myProject, err := dbtcloud.GetProject(ctx, &dbtcloud.LookupProjectArgs{
 //				Name: pulumi.StringRef("My Analytics Project"),
 //			}, nil)
 //			if err != nil {
@@ -247,13 +247,13 @@ import (
 //				return err
 //			}
 //			// Example: Multiple projects managed by different teams
-//			analytics, err := dbtcloud.LookupProject(ctx, &dbtcloud.LookupProjectArgs{
+//			analytics, err := dbtcloud.GetProject(ctx, &dbtcloud.LookupProjectArgs{
 //				Name: pulumi.StringRef("Analytics"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			dataScience, err := dbtcloud.LookupProject(ctx, &dbtcloud.LookupProjectArgs{
+//			dataScience, err := dbtcloud.GetProject(ctx, &dbtcloud.LookupProjectArgs{
 //				Name: pulumi.StringRef("Data Science"),
 //			}, nil)
 //			if err != nil {

@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mySparkCred = DbtCloud.GetSparkCredential.Invoke(new()
+        ///     var mySparkCred = DbtCloud.Index.GetSparkCredential.Invoke(new()
         ///     {
         ///         ProjectId = dbtProject.Id,
         ///         CredentialId = 12345,
@@ -49,7 +49,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mySparkCred = DbtCloud.GetSparkCredential.Invoke(new()
+        ///     var mySparkCred = DbtCloud.Index.GetSparkCredential.Invoke(new()
         ///     {
         ///         ProjectId = dbtProject.Id,
         ///         CredentialId = 12345,
@@ -74,7 +74,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mySparkCred = DbtCloud.GetSparkCredential.Invoke(new()
+        ///     var mySparkCred = DbtCloud.Index.GetSparkCredential.Invoke(new()
         ///     {
         ///         ProjectId = dbtProject.Id,
         ///         CredentialId = 12345,

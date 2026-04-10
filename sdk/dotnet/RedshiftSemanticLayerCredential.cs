@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRedshiftSemanticLayerCredential = new DbtCloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential", new()
+    ///     var testRedshiftSemanticLayerCredential = new DbtCloud.Index.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential", new()
     ///     {
     ///         Configuration = new DbtCloud.Inputs.RedshiftSemanticLayerCredentialConfigurationArgs
     ///         {

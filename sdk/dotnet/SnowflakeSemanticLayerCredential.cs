@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Example of Snowflake Semantic Layer Credential with password authentication
-    ///     var passwordAuth = new DbtCloud.SnowflakeSemanticLayerCredential("password_auth", new()
+    ///     var passwordAuth = new DbtCloud.Index.SnowflakeSemanticLayerCredential("password_auth", new()
     ///     {
     ///         Configuration = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialConfigurationArgs
     ///         {
@@ -48,7 +48,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Example of Snowflake Semantic Layer Credential with key pair authentication
-    ///     var keypairAuth = new DbtCloud.SnowflakeSemanticLayerCredential("keypair_auth", new()
+    ///     var keypairAuth = new DbtCloud.Index.SnowflakeSemanticLayerCredential("keypair_auth", new()
     ///     {
     ///         Configuration = new DbtCloud.Inputs.SnowflakeSemanticLayerCredentialConfigurationArgs
     ///         {

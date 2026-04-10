@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new DbtCloud.SemanticLayerConfiguration("example", new()
+    ///     var example = new DbtCloud.Index.SemanticLayerConfiguration("example", new()
     ///     {
     ///         ProjectId = projectId,
     ///         EnvironmentId = environmentId,

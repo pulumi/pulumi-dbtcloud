@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new DbtCloud.AthenaCredential("example", new()
+    ///     var example = new DbtCloud.Index.AthenaCredential("example", new()
     ///     {
     ///         ProjectId = exampleDbtcloudProject.Id,
     ///         AwsAccessKeyId = "your-access-key-id",

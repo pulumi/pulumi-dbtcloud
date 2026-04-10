@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testWebhook = new DbtCloud.Webhook("test_webhook", new()
+    ///     var testWebhook = new DbtCloud.Index.Webhook("test_webhook", new()
     ///     {
     ///         Name = "test-webhook",
     ///         Description = "Test webhook",

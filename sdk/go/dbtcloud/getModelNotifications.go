@@ -27,13 +27,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupModelNotifications(ctx, &dbtcloud.LookupModelNotificationsArgs{
+//			_, err := dbtcloud.GetModelNotifications(ctx, &dbtcloud.LookupModelNotificationsArgs{
 //				EnvironmentId: prodEnvironment.EnvironmentId,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbtcloud.LookupModelNotifications(ctx, &dbtcloud.LookupModelNotificationsArgs{
+//			_, err = dbtcloud.GetModelNotifications(ctx, &dbtcloud.LookupModelNotificationsArgs{
 //				EnvironmentId: "12345",
 //			}, nil)
 //			if err != nil {

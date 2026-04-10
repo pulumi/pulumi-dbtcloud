@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myDatabricksCred = new DbtCloud.DatabricksCredential("my_databricks_cred", new()
+    ///     var myDatabricksCred = new DbtCloud.Index.DatabricksCredential("my_databricks_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Token = "abcdefgh",

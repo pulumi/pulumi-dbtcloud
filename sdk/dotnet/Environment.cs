@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ciEnvironment = new DbtCloud.Environment("ci_environment", new()
+    ///     var ciEnvironment = new DbtCloud.Index.Environment("ci_environment", new()
     ///     {
     ///         DbtVersion = "latest",
     ///         Name = "CI",
@@ -33,7 +33,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // we can also set a deployment environment as being the production one
-    ///     var prodEnvironment = new DbtCloud.Environment("prod_environment", new()
+    ///     var prodEnvironment = new DbtCloud.Index.Environment("prod_environment", new()
     ///     {
     ///         DbtVersion = "1.7.0-latest",
     ///         Name = "Prod",
@@ -45,7 +45,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Creating a development environment
-    ///     var devEnvironment = new DbtCloud.Environment("dev_environment", new()
+    ///     var devEnvironment = new DbtCloud.Index.Environment("dev_environment", new()
     ///     {
     ///         DbtVersion = "latest",
     ///         Name = "Dev",
@@ -58,7 +58,7 @@ namespace Pulumi.DbtCloud
     ///     // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
     ///     // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
     ///     // overwriting the profile's own settings and affecting other environments sharing that profile.
-    ///     var profiledEnvironment = new DbtCloud.Environment("profiled_environment", new()
+    ///     var profiledEnvironment = new DbtCloud.Index.Environment("profiled_environment", new()
     ///     {
     ///         DbtVersion = "latest",
     ///         Name = "Staging",

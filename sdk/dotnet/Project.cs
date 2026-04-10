@@ -22,18 +22,18 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dbtProject = new DbtCloud.Project("dbt_project", new()
+    ///     var dbtProject = new DbtCloud.Index.Project("dbt_project", new()
     ///     {
     ///         Name = "Analytics",
     ///     });
     /// 
-    ///     var dbtProjectWithDescription = new DbtCloud.Project("dbt_project_with_description", new()
+    ///     var dbtProjectWithDescription = new DbtCloud.Index.Project("dbt_project_with_description", new()
     ///     {
     ///         Name = "Analytics with description",
     ///         Description = "My awesome analytics project",
     ///     });
     /// 
-    ///     var dbtProjectWithSubdir = new DbtCloud.Project("dbt_project_with_subdir", new()
+    ///     var dbtProjectWithSubdir = new DbtCloud.Index.Project("dbt_project_with_subdir", new()
     ///     {
     ///         Name = "Analytics in Subdir",
     ///         DbtProjectSubdirectory = "path",

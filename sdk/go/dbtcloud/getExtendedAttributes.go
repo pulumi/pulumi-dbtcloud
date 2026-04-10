@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupExtendedAttributes(ctx, &dbtcloud.LookupExtendedAttributesArgs{
+//			_, err := dbtcloud.GetExtendedAttributes(ctx, &dbtcloud.LookupExtendedAttributesArgs{
 //				ExtendedAttributesId: 12345,
 //				ProjectId:            6789,
 //			}, nil)

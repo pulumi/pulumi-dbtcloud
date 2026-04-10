@@ -38,7 +38,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Example: Configure catalog filters for a Snowflake connection
-    ///     var snowflakeFilters = new DbtCloud.ConnectionCatalogConfig("snowflake_filters", new()
+    ///     var snowflakeFilters = new DbtCloud.Index.ConnectionCatalogConfig("snowflake_filters", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         DatabaseAllows = new[]
@@ -65,7 +65,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Example: Minimal configuration - just filter databases
-    ///     var minimal = new DbtCloud.ConnectionCatalogConfig("minimal", new()
+    ///     var minimal = new DbtCloud.Index.ConnectionCatalogConfig("minimal", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         DatabaseAllows = new[]
@@ -75,7 +75,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Example: Full configuration with platform metadata credential
-    ///     var creds = new DbtCloud.SnowflakePlatformMetadataCredential("creds", new()
+    ///     var creds = new DbtCloud.Index.SnowflakePlatformMetadataCredential("creds", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         CatalogIngestionEnabled = true,
@@ -86,7 +86,7 @@ namespace Pulumi.DbtCloud
     ///         Warehouse = snowflakeWarehouse,
     ///     });
     /// 
-    ///     var withCreds = new DbtCloud.ConnectionCatalogConfig("with_creds", new()
+    ///     var withCreds = new DbtCloud.Index.ConnectionCatalogConfig("with_creds", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         DatabaseAllows = new[]

@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myVar = DbtCloud.GetEnvironmentVariable.Invoke(new()
+        ///     var myVar = DbtCloud.Index.GetEnvironmentVariable.Invoke(new()
         ///     {
         ///         ProjectId = 70403103985068,
         ///         Name = "DBT_MY_PARTIAL_VAR",
@@ -49,7 +49,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myVar = DbtCloud.GetEnvironmentVariable.Invoke(new()
+        ///     var myVar = DbtCloud.Index.GetEnvironmentVariable.Invoke(new()
         ///     {
         ///         ProjectId = 70403103985068,
         ///         Name = "DBT_MY_PARTIAL_VAR",
@@ -74,7 +74,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myVar = DbtCloud.GetEnvironmentVariable.Invoke(new()
+        ///     var myVar = DbtCloud.Index.GetEnvironmentVariable.Invoke(new()
         ///     {
         ///         ProjectId = 70403103985068,
         ///         Name = "DBT_MY_PARTIAL_VAR",

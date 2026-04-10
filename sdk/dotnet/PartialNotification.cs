@@ -40,7 +40,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // the config is the same as for `dbtcloud_notification`
-    ///     var prodJobInternalNotification = new DbtCloud.PartialNotification("prod_job_internal_notification", new()
+    ///     var prodJobInternalNotification = new DbtCloud.Index.PartialNotification("prod_job_internal_notification", new()
     ///     {
     ///         UserId = 100,
     ///         OnSuccesses = new[]
@@ -55,7 +55,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // we can also send "external" email notifications to emails to related to dbt Cloud users
-    ///     var prodJobExternalNotification = new DbtCloud.PartialNotification("prod_job_external_notification", new()
+    ///     var prodJobExternalNotification = new DbtCloud.Index.PartialNotification("prod_job_external_notification", new()
     ///     {
     ///         UserId = 100,
     ///         OnFailures = new[]
@@ -72,7 +72,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // and finally, we can set up Slack notifications
-    ///     var prodJobSlackNotifications = new DbtCloud.PartialNotification("prod_job_slack_notifications", new()
+    ///     var prodJobSlackNotifications = new DbtCloud.Index.PartialNotification("prod_job_slack_notifications", new()
     ///     {
     ///         UserId = 100,
     ///         OnFailures = new[]

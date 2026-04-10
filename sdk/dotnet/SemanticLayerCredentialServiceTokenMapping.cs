@@ -20,7 +20,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testMapping = new DbtCloud.SemanticLayerCredentialServiceTokenMapping("test_mapping", new()
+    ///     var testMapping = new DbtCloud.Index.SemanticLayerCredentialServiceTokenMapping("test_mapping", new()
     ///     {
     ///         SemanticLayerCredentialId = test.Id,
     ///         ServiceTokenId = testServiceToken.Id,

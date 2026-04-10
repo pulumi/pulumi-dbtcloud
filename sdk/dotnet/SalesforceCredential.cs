@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication
-    ///     var mySalesforceCred = new DbtCloud.SalesforceCredential("my_salesforce_cred", new()
+    ///     var mySalesforceCred = new DbtCloud.Index.SalesforceCredential("my_salesforce_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Username = "user@example.com",

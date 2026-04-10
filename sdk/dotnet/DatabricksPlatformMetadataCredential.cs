@@ -36,7 +36,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Example: Databricks Platform Metadata Credential
-    ///     var example = new DbtCloud.DatabricksPlatformMetadataCredential("example", new()
+    ///     var example = new DbtCloud.Index.DatabricksPlatformMetadataCredential("example", new()
     ///     {
     ///         ConnectionId = databricks.Id,
     ///         CatalogIngestionEnabled = true,
