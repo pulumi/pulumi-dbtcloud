@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupNotification(ctx, &dbtcloud.LookupNotificationArgs{
+//			_, err := dbtcloud.GetNotification(ctx, &dbtcloud.LookupNotificationArgs{
 //				NotificationId: 12345,
 //			}, nil)
 //			if err != nil {

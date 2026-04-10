@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = DbtCloud.GetStarburstCredential.Invoke(new()
+        ///     var example = DbtCloud.Index.GetStarburstCredential.Invoke(new()
         ///     {
         ///         ProjectId = 123,
         ///         CredentialId = 456,
@@ -49,7 +49,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = DbtCloud.GetStarburstCredential.Invoke(new()
+        ///     var example = DbtCloud.Index.GetStarburstCredential.Invoke(new()
         ///     {
         ///         ProjectId = 123,
         ///         CredentialId = 456,
@@ -74,7 +74,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = DbtCloud.GetStarburstCredential.Invoke(new()
+        ///     var example = DbtCloud.Index.GetStarburstCredential.Invoke(new()
         ///     {
         ///         ProjectId = 123,
         ///         CredentialId = 456,

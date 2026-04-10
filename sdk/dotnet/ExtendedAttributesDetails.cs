@@ -25,7 +25,7 @@ namespace Pulumi.DbtCloud
     /// {
     ///     // extended_attributes can be set as a raw JSON string or encoded with Terraform's `jsonencode()` function
     ///     // we recommend using `jsonencode()` to avoid Terraform reporting changes due to whitespaces or keys ordering
-    ///     var myAttributes = new DbtCloud.ExtendedAttributesDetails("my_attributes", new()
+    ///     var myAttributes = new DbtCloud.Index.ExtendedAttributesDetails("my_attributes", new()
     ///     {
     ///         ExtendedAttributes = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
@@ -40,7 +40,7 @@ namespace Pulumi.DbtCloud
     ///         ProjectId = dbtProject.Id,
     ///     });
     /// 
-    ///     var issueDepl = new DbtCloud.Environment("issue_depl", new()
+    ///     var issueDepl = new DbtCloud.Index.Environment("issue_depl", new()
     ///     {
     ///         DbtVersion = "latest",
     ///         Name = "My environment",

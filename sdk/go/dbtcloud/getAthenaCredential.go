@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupAthenaCredential(ctx, &dbtcloud.LookupAthenaCredentialArgs{
+//			_, err := dbtcloud.GetAthenaCredential(ctx, &dbtcloud.LookupAthenaCredentialArgs{
 //				ProjectId:    123,
 //				CredentialId: 456,
 //			}, nil)

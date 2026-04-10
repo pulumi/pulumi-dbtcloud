@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUser = DbtCloud.GetUser.Invoke(new()
+        ///     var myUser = DbtCloud.Index.GetUser.Invoke(new()
         ///     {
         ///         Email = "my_user@email.com",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUser = DbtCloud.GetUser.Invoke(new()
+        ///     var myUser = DbtCloud.Index.GetUser.Invoke(new()
         ///     {
         ///         Email = "my_user@email.com",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myUser = DbtCloud.GetUser.Invoke(new()
+        ///     var myUser = DbtCloud.Index.GetUser.Invoke(new()
         ///     {
         ///         Email = "my_user@email.com",
         ///     });

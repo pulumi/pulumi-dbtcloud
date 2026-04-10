@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var slCredDatabricksExample = new DbtCloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example", new()
+    ///     var slCredDatabricksExample = new DbtCloud.Index.DatabricksSemanticLayerCredential("sl_cred_databricks_example", new()
     ///     {
     ///         Configuration = new DbtCloud.Inputs.DatabricksSemanticLayerCredentialConfigurationArgs
     ///         {

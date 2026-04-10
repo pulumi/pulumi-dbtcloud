@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new DbtCloud.BigquerySemanticLayerCredential("example", new()
+    ///     var example = new DbtCloud.Index.BigquerySemanticLayerCredential("example", new()
     ///     {
     ///         Configuration = new DbtCloud.Inputs.BigquerySemanticLayerCredentialConfigurationArgs
     ///         {

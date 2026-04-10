@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new DbtCloud.StarburstCredential("example", new()
+    ///     var example = new DbtCloud.Index.StarburstCredential("example", new()
     ///     {
     ///         ProjectId = exampleDbtcloudProject.Id,
     ///         Database = "your_catalog",

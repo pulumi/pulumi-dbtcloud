@@ -54,7 +54,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var tfGroup1 = new DbtCloud.Group("tf_group_1", new()
+    ///     var tfGroup1 = new DbtCloud.Index.Group("tf_group_1", new()
     ///     {
     ///         Name = "TF Group 1",
     ///         GroupPermissions = new[]

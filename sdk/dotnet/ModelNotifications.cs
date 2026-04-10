@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var prodModelNotifications = new DbtCloud.ModelNotifications("prod_model_notifications", new()
+    ///     var prodModelNotifications = new DbtCloud.Index.ModelNotifications("prod_model_notifications", new()
     ///     {
     ///         EnvironmentId = prodEnvironment.EnvironmentId,
     ///         Enabled = true,

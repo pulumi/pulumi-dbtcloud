@@ -36,7 +36,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Example: Snowflake Platform Metadata Credential with password auth
-    ///     var passwordAuth = new DbtCloud.SnowflakePlatformMetadataCredential("password_auth", new()
+    ///     var passwordAuth = new DbtCloud.Index.SnowflakePlatformMetadataCredential("password_auth", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         CatalogIngestionEnabled = true,
@@ -50,7 +50,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Example: Snowflake Platform Metadata Credential with keypair auth
-    ///     var keypairAuth = new DbtCloud.SnowflakePlatformMetadataCredential("keypair_auth", new()
+    ///     var keypairAuth = new DbtCloud.Index.SnowflakePlatformMetadataCredential("keypair_auth", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         CatalogIngestionEnabled = true,

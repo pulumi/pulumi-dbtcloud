@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupEnvironmentVariable(ctx, &dbtcloud.LookupEnvironmentVariableArgs{
+//			_, err := dbtcloud.GetEnvironmentVariable(ctx, &dbtcloud.LookupEnvironmentVariableArgs{
 //				ProjectId: 70403103985068,
 //				Name:      "DBT_MY_PARTIAL_VAR",
 //			}, nil)

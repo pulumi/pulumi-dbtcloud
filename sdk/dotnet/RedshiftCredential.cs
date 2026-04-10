@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var redshift = new DbtCloud.RedshiftCredential("redshift", new()
+    ///     var redshift = new DbtCloud.Index.RedshiftCredential("redshift", new()
     ///     {
     ///         NumThreads = 16,
     ///         ProjectId = testProject.Id,

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupSparkCredential(ctx, &dbtcloud.LookupSparkCredentialArgs{
+//			_, err := dbtcloud.GetSparkCredential(ctx, &dbtcloud.LookupSparkCredentialArgs{
 //				ProjectId:    dbtProject.Id,
 //				CredentialId: 12345,
 //			}, nil)

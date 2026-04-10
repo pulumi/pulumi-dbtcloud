@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dbtProjectRepository = new DbtCloud.ProjectRepository("dbt_project_repository", new()
+    ///     var dbtProjectRepository = new DbtCloud.Index.ProjectRepository("dbt_project_repository", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         RepositoryId = dbtRepository.RepositoryId,

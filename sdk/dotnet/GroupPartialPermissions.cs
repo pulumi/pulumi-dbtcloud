@@ -40,7 +40,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // we add some permissions to the group "TF Group 1" (existing or not) to  a new project 
-    ///     var tfGroup1 = new DbtCloud.GroupPartialPermissions("tf_group_1", new()
+    ///     var tfGroup1 = new DbtCloud.Index.GroupPartialPermissions("tf_group_1", new()
     ///     {
     ///         Name = "TF Group 1",
     ///         GroupPermissions = new[]
@@ -67,7 +67,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
     ///     // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
-    ///     var tfGroup2 = new DbtCloud.GroupPartialPermissions("tf_group_2", new()
+    ///     var tfGroup2 = new DbtCloud.Index.GroupPartialPermissions("tf_group_2", new()
     ///     {
     ///         Name = "TF Group 2",
     ///         SsoMappingGroups = new[]

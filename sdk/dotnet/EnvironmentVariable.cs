@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dbtMyEnvVar = new DbtCloud.EnvironmentVariable("dbt_my_env_var", new()
+    ///     var dbtMyEnvVar = new DbtCloud.Index.EnvironmentVariable("dbt_my_env_var", new()
     ///     {
     ///         Name = "DBT_MY_ENV_VAR",
     ///         ProjectId = dbtProject.Id,

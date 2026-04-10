@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myConnections = DbtCloud.GetGlobalConnections.Invoke();
+        ///     var myConnections = DbtCloud.Index.GetGlobalConnections.Invoke();
         /// 
         /// });
         /// ```
@@ -45,7 +45,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myConnections = DbtCloud.GetGlobalConnections.Invoke();
+        ///     var myConnections = DbtCloud.Index.GetGlobalConnections.Invoke();
         /// 
         /// });
         /// ```
@@ -66,7 +66,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myConnections = DbtCloud.GetGlobalConnections.Invoke();
+        ///     var myConnections = DbtCloud.Index.GetGlobalConnections.Invoke();
         /// 
         /// });
         /// ```

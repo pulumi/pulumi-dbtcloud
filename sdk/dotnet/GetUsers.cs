@@ -25,7 +25,7 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // return all users in the dbt Cloud account
-        ///     var all = DbtCloud.GetUsers.Invoke();
+        ///     var all = DbtCloud.Index.GetUsers.Invoke();
         /// 
         ///     var userDetails = .Where(user =&gt; user.Email == "example@amail.com").Select(user =&gt; 
         ///     {
@@ -54,7 +54,7 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // return all users in the dbt Cloud account
-        ///     var all = DbtCloud.GetUsers.Invoke();
+        ///     var all = DbtCloud.Index.GetUsers.Invoke();
         /// 
         ///     var userDetails = .Where(user =&gt; user.Email == "example@amail.com").Select(user =&gt; 
         ///     {
@@ -83,7 +83,7 @@ namespace Pulumi.DbtCloud
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // return all users in the dbt Cloud account
-        ///     var all = DbtCloud.GetUsers.Invoke();
+        ///     var all = DbtCloud.Index.GetUsers.Invoke();
         /// 
         ///     var userDetails = .Where(user =&gt; user.Email == "example@amail.com").Select(user =&gt; 
         ///     {

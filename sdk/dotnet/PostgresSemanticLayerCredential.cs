@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testPostgresSemanticLayerCredential = new DbtCloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential", new()
+    ///     var testPostgresSemanticLayerCredential = new DbtCloud.Index.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential", new()
     ///     {
     ///         Configuration = new DbtCloud.Inputs.PostgresSemanticLayerCredentialConfigurationArgs
     ///         {

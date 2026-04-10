@@ -39,7 +39,7 @@ namespace Pulumi.DbtCloud
     /// {
     ///     // a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
     ///     // to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
-    ///     var dailyJob = new DbtCloud.Job("daily_job", new()
+    ///     var dailyJob = new DbtCloud.Index.Job("daily_job", new()
     ///     {
     ///         EnvironmentId = prodEnvironment.EnvironmentId,
     ///         ExecuteSteps = new[]

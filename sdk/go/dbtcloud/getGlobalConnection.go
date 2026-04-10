@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupGlobalConnection(ctx, &dbtcloud.LookupGlobalConnectionArgs{
+//			_, err := dbtcloud.GetGlobalConnection(ctx, &dbtcloud.LookupGlobalConnectionArgs{
 //				Id: 1234,
 //			}, nil)
 //			if err != nil {

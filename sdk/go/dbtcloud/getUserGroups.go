@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupUserGroups(ctx, &dbtcloud.LookupUserGroupsArgs{
+//			_, err := dbtcloud.GetUserGroups(ctx, &dbtcloud.LookupUserGroupsArgs{
 //				UserId: 12345,
 //			}, nil)
 //			if err != nil {

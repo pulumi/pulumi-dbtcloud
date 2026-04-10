@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var apacheSpark = new DbtCloud.GlobalConnection("apache_spark", new()
+    ///     var apacheSpark = new DbtCloud.Index.GlobalConnection("apache_spark", new()
     ///     {
     ///         Name = "My Apache Spark connection",
     ///         ApacheSpark = new DbtCloud.Inputs.GlobalConnectionApacheSparkArgs
@@ -36,7 +36,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var athena = new DbtCloud.GlobalConnection("athena", new()
+    ///     var athena = new DbtCloud.Index.GlobalConnection("athena", new()
     ///     {
     ///         Name = "My Athena connection",
     ///         Athena = new DbtCloud.Inputs.GlobalConnectionAthenaArgs
@@ -50,7 +50,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // BigQuery connection with Service Account JSON authentication
-    ///     var bigquery = new DbtCloud.GlobalConnection("bigquery", new()
+    ///     var bigquery = new DbtCloud.Index.GlobalConnection("bigquery", new()
     ///     {
     ///         Name = "My BigQuery connection",
     ///         Bigquery = new DbtCloud.Inputs.GlobalConnectionBigqueryArgs
@@ -71,7 +71,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     // BigQuery connection with External OAuth (Workload Identity Federation)
     ///     // TODO: Currently the API still requires service account fields even with external-oauth-wif
-    ///     var bigqueryWif = new DbtCloud.GlobalConnection("bigquery_wif", new()
+    ///     var bigqueryWif = new DbtCloud.Index.GlobalConnection("bigquery_wif", new()
     ///     {
     ///         Name = "My BigQuery WIF connection",
     ///         Bigquery = new DbtCloud.Inputs.GlobalConnectionBigqueryArgs
@@ -91,7 +91,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var databricks = new DbtCloud.GlobalConnection("databricks", new()
+    ///     var databricks = new DbtCloud.Index.GlobalConnection("databricks", new()
     ///     {
     ///         Name = "My Databricks connection",
     ///         Databricks = new DbtCloud.Inputs.GlobalConnectionDatabricksArgs
@@ -104,7 +104,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var fabric = new DbtCloud.GlobalConnection("fabric", new()
+    ///     var fabric = new DbtCloud.Index.GlobalConnection("fabric", new()
     ///     {
     ///         Name = "My Fabric connection",
     ///         Fabric = new DbtCloud.Inputs.GlobalConnectionFabricArgs
@@ -118,7 +118,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var postgres = new DbtCloud.GlobalConnection("postgres", new()
+    ///     var postgres = new DbtCloud.Index.GlobalConnection("postgres", new()
     ///     {
     ///         Name = "My PostgreSQL connection",
     ///         Postgres = new DbtCloud.Inputs.GlobalConnectionPostgresArgs
@@ -129,7 +129,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var redshift = new DbtCloud.GlobalConnection("redshift", new()
+    ///     var redshift = new DbtCloud.Index.GlobalConnection("redshift", new()
     ///     {
     ///         Name = "My Redshift connection",
     ///         Redshift = new DbtCloud.Inputs.GlobalConnectionRedshiftArgs
@@ -140,7 +140,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+    ///     var snowflake = new DbtCloud.Index.GlobalConnection("snowflake", new()
     ///     {
     ///         Name = "My Snowflake connection",
     ///         PrivateLinkEndpointId = myPrivateLink.Id,
@@ -156,7 +156,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var starburst = new DbtCloud.GlobalConnection("starburst", new()
+    ///     var starburst = new DbtCloud.Index.GlobalConnection("starburst", new()
     ///     {
     ///         Name = "My Starburst connection",
     ///         Starburst = new DbtCloud.Inputs.GlobalConnectionStarburstArgs
@@ -166,7 +166,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var synapse = new DbtCloud.GlobalConnection("synapse", new()
+    ///     var synapse = new DbtCloud.Index.GlobalConnection("synapse", new()
     ///     {
     ///         Name = "My Synapse connection",
     ///         Synapse = new DbtCloud.Inputs.GlobalConnectionSynapseArgs
@@ -180,7 +180,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     var teradata = new DbtCloud.GlobalConnection("teradata", new()
+    ///     var teradata = new DbtCloud.Index.GlobalConnection("teradata", new()
     ///     {
     ///         Name = "My Teradata connection",
     ///         Teradata = new DbtCloud.Inputs.GlobalConnectionTeradataArgs

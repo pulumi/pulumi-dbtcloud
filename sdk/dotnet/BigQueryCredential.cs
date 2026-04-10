@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCredential = new DbtCloud.BigQueryCredential("my_credential", new()
+    ///     var myCredential = new DbtCloud.Index.BigQueryCredential("my_credential", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Dataset = "my_bq_dataset",
@@ -31,7 +31,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     // When using a global connection with use_latest_adapter = true,
     ///     // provide the connection_id to automatically use the correct adapter version
-    ///     var myCredentialV1 = new DbtCloud.BigQueryCredential("my_credential_v1", new()
+    ///     var myCredentialV1 = new DbtCloud.Index.BigQueryCredential("my_credential_v1", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Dataset = "my_bq_dataset",

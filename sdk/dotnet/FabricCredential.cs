@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // when using AD authentication
-    ///     var myFabricCredAd = new DbtCloud.FabricCredential("my_fabric_cred_ad", new()
+    ///     var myFabricCredAd = new DbtCloud.Index.FabricCredential("my_fabric_cred_ad", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Schema = "my_schema",
@@ -33,7 +33,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // when using service principal authentication
-    ///     var myFabricCredServPrinc = new DbtCloud.FabricCredential("my_fabric_cred_serv_princ", new()
+    ///     var myFabricCredServPrinc = new DbtCloud.Index.FabricCredential("my_fabric_cred_serv_princ", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Schema = "my_schema",

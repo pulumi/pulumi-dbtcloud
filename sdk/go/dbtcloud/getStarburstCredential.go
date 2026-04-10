@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.LookupStarburstCredential(ctx, &dbtcloud.LookupStarburstCredentialArgs{
+//			_, err := dbtcloud.GetStarburstCredential(ctx, &dbtcloud.LookupStarburstCredentialArgs{
 //				ProjectId:    123,
 //				CredentialId: 456,
 //			}, nil)

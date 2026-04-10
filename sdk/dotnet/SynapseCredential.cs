@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // when using sql authentication
-    ///     var mySynapseCredSql = new DbtCloud.SynapseCredential("my_synapse_cred_sql", new()
+    ///     var mySynapseCredSql = new DbtCloud.Index.SynapseCredential("my_synapse_cred_sql", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Authentication = "sql",
@@ -34,7 +34,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // when using AD authentication
-    ///     var mySynapseCredAd = new DbtCloud.SynapseCredential("my_synapse_cred_ad", new()
+    ///     var mySynapseCredAd = new DbtCloud.Index.SynapseCredential("my_synapse_cred_ad", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Authentication = "ActiveDirectoryPassword",
@@ -45,7 +45,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // when using service principal authentication
-    ///     var mySynapseCredServPrinc = new DbtCloud.SynapseCredential("my_synapse_cred_serv_princ", new()
+    ///     var mySynapseCredServPrinc = new DbtCloud.Index.SynapseCredential("my_synapse_cred_serv_princ", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Authentication = "ServicePrincipal",

@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myProjectArtefacts = new DbtCloud.ProjectArtefacts("my_project_artefacts", new()
+    ///     var myProjectArtefacts = new DbtCloud.Index.ProjectArtefacts("my_project_artefacts", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         DocsJobId = prodJob.Id,

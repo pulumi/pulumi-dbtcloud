@@ -27,7 +27,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoRepository = DbtCloud.GetAzureDevOpsRepository.Invoke(new()
+        ///     var myAdoRepository = DbtCloud.Index.GetAzureDevOpsRepository.Invoke(new()
         ///     {
         ///         Name = "my-repo-name",
         ///         AzureDevOpsProjectId = myAdoProject.Id,
@@ -55,7 +55,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoRepository = DbtCloud.GetAzureDevOpsRepository.Invoke(new()
+        ///     var myAdoRepository = DbtCloud.Index.GetAzureDevOpsRepository.Invoke(new()
         ///     {
         ///         Name = "my-repo-name",
         ///         AzureDevOpsProjectId = myAdoProject.Id,
@@ -83,7 +83,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myAdoRepository = DbtCloud.GetAzureDevOpsRepository.Invoke(new()
+        ///     var myAdoRepository = DbtCloud.Index.GetAzureDevOpsRepository.Invoke(new()
         ///     {
         ///         Name = "my-repo-name",
         ///         AzureDevOpsProjectId = myAdoProject.Id,

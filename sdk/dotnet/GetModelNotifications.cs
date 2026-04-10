@@ -24,12 +24,12 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var prodModelNotifications = DbtCloud.GetModelNotifications.Invoke(new()
+        ///     var prodModelNotifications = DbtCloud.Index.GetModelNotifications.Invoke(new()
         ///     {
         ///         EnvironmentId = prodEnvironment.EnvironmentId,
         ///     });
         /// 
-        ///     var qaModelNotifications = DbtCloud.GetModelNotifications.Invoke(new()
+        ///     var qaModelNotifications = DbtCloud.Index.GetModelNotifications.Invoke(new()
         ///     {
         ///         EnvironmentId = "12345",
         ///     });
@@ -53,12 +53,12 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var prodModelNotifications = DbtCloud.GetModelNotifications.Invoke(new()
+        ///     var prodModelNotifications = DbtCloud.Index.GetModelNotifications.Invoke(new()
         ///     {
         ///         EnvironmentId = prodEnvironment.EnvironmentId,
         ///     });
         /// 
-        ///     var qaModelNotifications = DbtCloud.GetModelNotifications.Invoke(new()
+        ///     var qaModelNotifications = DbtCloud.Index.GetModelNotifications.Invoke(new()
         ///     {
         ///         EnvironmentId = "12345",
         ///     });
@@ -82,12 +82,12 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var prodModelNotifications = DbtCloud.GetModelNotifications.Invoke(new()
+        ///     var prodModelNotifications = DbtCloud.Index.GetModelNotifications.Invoke(new()
         ///     {
         ///         EnvironmentId = prodEnvironment.EnvironmentId,
         ///     });
         /// 
-        ///     var qaModelNotifications = DbtCloud.GetModelNotifications.Invoke(new()
+        ///     var qaModelNotifications = DbtCloud.Index.GetModelNotifications.Invoke(new()
         ///     {
         ///         EnvironmentId = "12345",
         ///     });

@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myExtendedAttributes = DbtCloud.GetExtendedAttributes.Invoke(new()
+        ///     var myExtendedAttributes = DbtCloud.Index.GetExtendedAttributes.Invoke(new()
         ///     {
         ///         ExtendedAttributesId = 12345,
         ///         ProjectId = 6789,
@@ -49,7 +49,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myExtendedAttributes = DbtCloud.GetExtendedAttributes.Invoke(new()
+        ///     var myExtendedAttributes = DbtCloud.Index.GetExtendedAttributes.Invoke(new()
         ///     {
         ///         ExtendedAttributesId = 12345,
         ///         ProjectId = 6789,
@@ -74,7 +74,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myExtendedAttributes = DbtCloud.GetExtendedAttributes.Invoke(new()
+        ///     var myExtendedAttributes = DbtCloud.Index.GetExtendedAttributes.Invoke(new()
         ///     {
         ///         ExtendedAttributesId = 12345,
         ///         ProjectId = 6789,

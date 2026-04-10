@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var prodCredential = new DbtCloud.SnowflakeCredential("prod_credential", new()
+    ///     var prodCredential = new DbtCloud.Index.SnowflakeCredential("prod_credential", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AuthType = "password",

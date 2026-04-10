@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myNotification = DbtCloud.GetNotification.Invoke(new()
+        ///     var myNotification = DbtCloud.Index.GetNotification.Invoke(new()
         ///     {
         ///         NotificationId = 12345,
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myNotification = DbtCloud.GetNotification.Invoke(new()
+        ///     var myNotification = DbtCloud.Index.GetNotification.Invoke(new()
         ///     {
         ///         NotificationId = 12345,
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myNotification = DbtCloud.GetNotification.Invoke(new()
+        ///     var myNotification = DbtCloud.Index.GetNotification.Invoke(new()
         ///     {
         ///         NotificationId = 12345,
         ///     });

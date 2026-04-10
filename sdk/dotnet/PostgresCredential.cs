@@ -22,7 +22,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var postgresProdCredential = new DbtCloud.PostgresCredential("postgres_prod_credential", new()
+    ///     var postgresProdCredential = new DbtCloud.Index.PostgresCredential("postgres_prod_credential", new()
     ///     {
     ///         IsActive = true,
     ///         ProjectId = dbtProject.Id,

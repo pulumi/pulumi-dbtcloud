@@ -25,12 +25,12 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var all = await DbtCloud.GetPrivatelinkEndpoints.InvokeAsync();
+        ///     var all = await DbtCloud.Index.GetPrivatelinkEndpoints.InvokeAsync();
         /// 
         ///     var snowflakeEndpoint = [0];
         /// 
         ///     // Use the endpoint in a global connection
-        ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+        ///     var snowflake = new DbtCloud.Index.GlobalConnection("snowflake", new()
         ///     {
         ///         Name = "Snowflake via PrivateLink",
         ///         PrivateLinkEndpointId = snowflakeEndpoint.Id,
@@ -45,10 +45,10 @@ namespace Pulumi.DbtCloud
         ///     var snowflakeEndpoints = ;
         /// 
         ///     // Create connections for all Snowflake endpoints
-        ///     var snowflakeConnections = new List&lt;DbtCloud.GlobalConnection&gt;();
+        ///     var snowflakeConnections = new List&lt;DbtCloud.Index.GlobalConnection&gt;();
         ///     foreach (var range in .Select(pair =&gt; new { pair.Key, pair.Value }))
         ///     {
-        ///         snowflakeConnections.Add(new DbtCloud.GlobalConnection($"snowflake_connections-{range.Key}", new()
+        ///         snowflakeConnections.Add(new DbtCloud.Index.GlobalConnection($"snowflake_connections-{range.Key}", new()
         ///         {
         ///             Name = $"Connection for {range.Value.Name}",
         ///             PrivateLinkEndpointId = range.Value.Id,
@@ -80,12 +80,12 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var all = await DbtCloud.GetPrivatelinkEndpoints.InvokeAsync();
+        ///     var all = await DbtCloud.Index.GetPrivatelinkEndpoints.InvokeAsync();
         /// 
         ///     var snowflakeEndpoint = [0];
         /// 
         ///     // Use the endpoint in a global connection
-        ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+        ///     var snowflake = new DbtCloud.Index.GlobalConnection("snowflake", new()
         ///     {
         ///         Name = "Snowflake via PrivateLink",
         ///         PrivateLinkEndpointId = snowflakeEndpoint.Id,
@@ -100,10 +100,10 @@ namespace Pulumi.DbtCloud
         ///     var snowflakeEndpoints = ;
         /// 
         ///     // Create connections for all Snowflake endpoints
-        ///     var snowflakeConnections = new List&lt;DbtCloud.GlobalConnection&gt;();
+        ///     var snowflakeConnections = new List&lt;DbtCloud.Index.GlobalConnection&gt;();
         ///     foreach (var range in .Select(pair =&gt; new { pair.Key, pair.Value }))
         ///     {
-        ///         snowflakeConnections.Add(new DbtCloud.GlobalConnection($"snowflake_connections-{range.Key}", new()
+        ///         snowflakeConnections.Add(new DbtCloud.Index.GlobalConnection($"snowflake_connections-{range.Key}", new()
         ///         {
         ///             Name = $"Connection for {range.Value.Name}",
         ///             PrivateLinkEndpointId = range.Value.Id,
@@ -135,12 +135,12 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var all = await DbtCloud.GetPrivatelinkEndpoints.InvokeAsync();
+        ///     var all = await DbtCloud.Index.GetPrivatelinkEndpoints.InvokeAsync();
         /// 
         ///     var snowflakeEndpoint = [0];
         /// 
         ///     // Use the endpoint in a global connection
-        ///     var snowflake = new DbtCloud.GlobalConnection("snowflake", new()
+        ///     var snowflake = new DbtCloud.Index.GlobalConnection("snowflake", new()
         ///     {
         ///         Name = "Snowflake via PrivateLink",
         ///         PrivateLinkEndpointId = snowflakeEndpoint.Id,
@@ -155,10 +155,10 @@ namespace Pulumi.DbtCloud
         ///     var snowflakeEndpoints = ;
         /// 
         ///     // Create connections for all Snowflake endpoints
-        ///     var snowflakeConnections = new List&lt;DbtCloud.GlobalConnection&gt;();
+        ///     var snowflakeConnections = new List&lt;DbtCloud.Index.GlobalConnection&gt;();
         ///     foreach (var range in .Select(pair =&gt; new { pair.Key, pair.Value }))
         ///     {
-        ///         snowflakeConnections.Add(new DbtCloud.GlobalConnection($"snowflake_connections-{range.Key}", new()
+        ///         snowflakeConnections.Add(new DbtCloud.Index.GlobalConnection($"snowflake_connections-{range.Key}", new()
         ///         {
         ///             Name = $"Connection for {range.Value.Name}",
         ///             PrivateLinkEndpointId = range.Value.Id,
