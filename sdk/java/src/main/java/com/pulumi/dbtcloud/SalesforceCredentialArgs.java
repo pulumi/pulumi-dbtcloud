@@ -18,18 +18,50 @@ public final class SalesforceCredentialArgs extends com.pulumi.resources.Resourc
     public static final SalesforceCredentialArgs Empty = new SalesforceCredentialArgs();
 
     /**
-     * The OAuth connected app client/consumer ID
+     * The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      * 
      */
-    @Import(name="clientId", required=true)
-    private Output<String> clientId;
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
 
     /**
-     * @return The OAuth connected app client/consumer ID
+     * @return The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> clientId() {
-        return this.clientId;
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="clientIdWo")
+    private @Nullable Output<String> clientIdWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> clientIdWo() {
+        return Optional.ofNullable(this.clientIdWo);
+    }
+
+    /**
+     * Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+     * 
+     */
+    @Import(name="clientIdWoVersion")
+    private @Nullable Output<Integer> clientIdWoVersion;
+
+    /**
+     * @return Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+     * 
+     */
+    public Optional<Output<Integer>> clientIdWoVersion() {
+        return Optional.ofNullable(this.clientIdWoVersion);
     }
 
     /**
@@ -48,18 +80,50 @@ public final class SalesforceCredentialArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The private key for JWT bearer flow authentication
+     * The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
-    @Import(name="privateKey", required=true)
-    private Output<String> privateKey;
+    @Import(name="privateKey")
+    private @Nullable Output<String> privateKey;
 
     /**
-     * @return The private key for JWT bearer flow authentication
+     * @return The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> privateKey() {
-        return this.privateKey;
+    public Optional<Output<String>> privateKey() {
+        return Optional.ofNullable(this.privateKey);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="privateKeyWo")
+    private @Nullable Output<String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
+    }
+
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    @Import(name="privateKeyWoVersion")
+    private @Nullable Output<Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Optional<Output<Integer>> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
 
     /**
@@ -111,8 +175,12 @@ public final class SalesforceCredentialArgs extends com.pulumi.resources.Resourc
 
     private SalesforceCredentialArgs(SalesforceCredentialArgs $) {
         this.clientId = $.clientId;
+        this.clientIdWo = $.clientIdWo;
+        this.clientIdWoVersion = $.clientIdWoVersion;
         this.numThreads = $.numThreads;
         this.privateKey = $.privateKey;
+        this.privateKeyWo = $.privateKeyWo;
+        this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.projectId = $.projectId;
         this.targetName = $.targetName;
         this.username = $.username;
@@ -137,24 +205,68 @@ public final class SalesforceCredentialArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param clientId The OAuth connected app client/consumer ID
+         * @param clientId The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
-        public Builder clientId(Output<String> clientId) {
+        public Builder clientId(@Nullable Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
 
         /**
-         * @param clientId The OAuth connected app client/consumer ID
+         * @param clientId The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder clientId(String clientId) {
             return clientId(Output.of(clientId));
+        }
+
+        /**
+         * @param clientIdWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientIdWo(@Nullable Output<String> clientIdWo) {
+            $.clientIdWo = clientIdWo;
+            return this;
+        }
+
+        /**
+         * @param clientIdWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientIdWo(String clientIdWo) {
+            return clientIdWo(Output.of(clientIdWo));
+        }
+
+        /**
+         * @param clientIdWoVersion Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientIdWoVersion(@Nullable Output<Integer> clientIdWoVersion) {
+            $.clientIdWoVersion = clientIdWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientIdWoVersion Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientIdWoVersion(Integer clientIdWoVersion) {
+            return clientIdWoVersion(Output.of(clientIdWoVersion));
         }
 
         /**
@@ -179,24 +291,68 @@ public final class SalesforceCredentialArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param privateKey The private key for JWT bearer flow authentication
+         * @param privateKey The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
-        public Builder privateKey(Output<String> privateKey) {
+        public Builder privateKey(@Nullable Output<String> privateKey) {
             $.privateKey = privateKey;
             return this;
         }
 
         /**
-         * @param privateKey The private key for JWT bearer flow authentication
+         * @param privateKey The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder privateKey(String privateKey) {
             return privateKey(Output.of(privateKey));
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(@Nullable Output<String> privateKeyWo) {
+            $.privateKeyWo = privateKeyWo;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(String privateKeyWo) {
+            return privateKeyWo(Output.of(privateKeyWo));
+        }
+
+        /**
+         * @param privateKeyWoVersion Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(@Nullable Output<Integer> privateKeyWoVersion) {
+            $.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWoVersion Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(Integer privateKeyWoVersion) {
+            return privateKeyWoVersion(Output.of(privateKeyWoVersion));
         }
 
         /**
@@ -263,12 +419,6 @@ public final class SalesforceCredentialArgs extends com.pulumi.resources.Resourc
         }
 
         public SalesforceCredentialArgs build() {
-            if ($.clientId == null) {
-                throw new MissingRequiredPropertyException("SalesforceCredentialArgs", "clientId");
-            }
-            if ($.privateKey == null) {
-                throw new MissingRequiredPropertyException("SalesforceCredentialArgs", "privateKey");
-            }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("SalesforceCredentialArgs", "projectId");
             }

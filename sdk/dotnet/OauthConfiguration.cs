@@ -56,10 +56,23 @@ namespace Pulumi.DbtCloud
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The Client secret for the OAuth integration
+        /// The Client secret for the OAuth integration. Consider using `ClientSecretWo` instead, which is not stored in state.
         /// </summary>
         [Output("clientSecret")]
-        public Output<string> ClientSecret { get; private set; } = null!;
+        public Output<string?> ClientSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientSecret`. The value is not stored in state. Requires `ClientSecretWoVersion` to trigger updates.
+        /// </summary>
+        [Output("clientSecretWo")]
+        public Output<string?> ClientSecretWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `ClientSecretWo`. Increment this value to trigger an update of the client secret when using `ClientSecretWo`.
+        /// </summary>
+        [Output("clientSecretWoVersion")]
+        public Output<int?> ClientSecretWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The name of OAuth integration
@@ -112,6 +125,7 @@ namespace Pulumi.DbtCloud
                 AdditionalSecretOutputs =
                 {
                     "clientSecret",
+                    "clientSecretWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -154,11 +168,11 @@ namespace Pulumi.DbtCloud
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
-        [Input("clientSecret", required: true)]
+        [Input("clientSecret")]
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The Client secret for the OAuth integration
+        /// The Client secret for the OAuth integration. Consider using `ClientSecretWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -169,6 +183,29 @@ namespace Pulumi.DbtCloud
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientSecret`. The value is not stored in state. Requires `ClientSecretWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `ClientSecretWo`. Increment this value to trigger an update of the client secret when using `ClientSecretWo`.
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// The name of OAuth integration
@@ -224,7 +261,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The Client secret for the OAuth integration
+        /// The Client secret for the OAuth integration. Consider using `ClientSecretWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -235,6 +272,29 @@ namespace Pulumi.DbtCloud
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientSecret`. The value is not stored in state. Requires `ClientSecretWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `ClientSecretWo`. Increment this value to trigger an update of the client secret when using `ClientSecretWo`.
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// The name of OAuth integration

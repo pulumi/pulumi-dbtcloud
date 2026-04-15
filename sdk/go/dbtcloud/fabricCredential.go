@@ -14,49 +14,6 @@ import (
 
 // Fabric credential resource
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// when using AD authentication
-//			_, err := dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_ad", &dbtcloud.FabricCredentialArgs{
-//				ProjectId:           pulumi.Any(dbtProject.Id),
-//				Schema:              pulumi.String("my_schema"),
-//				User:                pulumi.String("my_user"),
-//				Password:            pulumi.String("my_password"),
-//				SchemaAuthorization: pulumi.String("abcd"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// when using service principal authentication
-//			_, err = dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_serv_princ", &dbtcloud.FabricCredentialArgs{
-//				ProjectId:           pulumi.Any(dbtProject.Id),
-//				Schema:              pulumi.String("my_schema"),
-//				ClientId:            pulumi.String("my_client_id"),
-//				TenantId:            pulumi.String("my_tenant_id"),
-//				ClientSecret:        pulumi.String("my_secret"),
-//				SchemaAuthorization: pulumi.String("abcd"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -83,12 +40,22 @@ type FabricCredential struct {
 	AdapterType pulumi.StringOutput `pulumi:"adapterType"`
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
 	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
 	// The internal credential ID
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
-	// The password for the account to connect to. Only used when connection with AD user/pass
+	// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// Project ID to create the Fabric credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The schema where to create the dbt models
@@ -120,12 +87,20 @@ func NewFabricCredential(ctx *pulumi.Context,
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
+	if args.ClientSecretWo != nil {
+		args.ClientSecretWo = pulumi.ToSecret(args.ClientSecretWo).(pulumi.StringPtrInput)
+	}
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientSecret",
+		"clientSecretWo",
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -155,12 +130,22 @@ type fabricCredentialState struct {
 	AdapterType *string `pulumi:"adapterType"`
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId *string `pulumi:"clientId"`
-	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// The internal credential ID
 	CredentialId *int `pulumi:"credentialId"`
-	// The password for the account to connect to. Only used when connection with AD user/pass
+	// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Fabric credential in
 	ProjectId *int `pulumi:"projectId"`
 	// The schema where to create the dbt models
@@ -178,12 +163,22 @@ type FabricCredentialState struct {
 	AdapterType pulumi.StringPtrInput
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId pulumi.StringPtrInput
-	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
 	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo pulumi.StringPtrInput
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// The internal credential ID
 	CredentialId pulumi.IntPtrInput
-	// The password for the account to connect to. Only used when connection with AD user/pass
+	// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Fabric credential in
 	ProjectId pulumi.IntPtrInput
 	// The schema where to create the dbt models
@@ -205,10 +200,20 @@ type fabricCredentialArgs struct {
 	AdapterType string `pulumi:"adapterType"`
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId *string `pulumi:"clientId"`
-	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
 	ClientSecret *string `pulumi:"clientSecret"`
-	// The password for the account to connect to. Only used when connection with AD user/pass
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
+	// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Fabric credential in
 	ProjectId int `pulumi:"projectId"`
 	// The schema where to create the dbt models
@@ -227,10 +232,20 @@ type FabricCredentialArgs struct {
 	AdapterType pulumi.StringInput
 	// The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
 	ClientId pulumi.StringPtrInput
-	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+	// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
 	ClientSecret pulumi.StringPtrInput
-	// The password for the account to connect to. Only used when connection with AD user/pass
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo pulumi.StringPtrInput
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrInput
+	// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Fabric credential in
 	ProjectId pulumi.IntInput
 	// The schema where to create the dbt models
@@ -340,9 +355,20 @@ func (o FabricCredentialOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
 }
 
-// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
 func (o FabricCredentialOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+func (o FabricCredentialOutput) ClientSecretWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringPtrOutput { return v.ClientSecretWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+func (o FabricCredentialOutput) ClientSecretWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.IntPtrOutput { return v.ClientSecretWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The internal credential ID
@@ -350,9 +376,20 @@ func (o FabricCredentialOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v *FabricCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// The password for the account to connect to. Only used when connection with AD user/pass
+// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
 func (o FabricCredentialOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *FabricCredential) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o FabricCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o FabricCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FabricCredential) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Fabric credential in

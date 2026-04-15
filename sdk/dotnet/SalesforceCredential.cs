@@ -12,30 +12,6 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Salesforce credential resource
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication
-    ///     var mySalesforceCred = new DbtCloud.Index.SalesforceCredential("my_salesforce_cred", new()
-    ///     {
-    ///         ProjectId = dbtProject.Id,
-    ///         Username = "user@example.com",
-    ///         ClientId = "your-oauth-client-id",
-    ///         PrivateKey = "private-key value",
-    ///         TargetName = "default",
-    ///         NumThreads = 6,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
@@ -60,10 +36,23 @@ namespace Pulumi.DbtCloud
     public partial class SalesforceCredential : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The OAuth connected app client/consumer ID
+        /// The OAuth connected app client/consumer ID. Consider using `ClientIdWo` instead, which is not stored in state.
         /// </summary>
         [Output("clientId")]
-        public Output<string> ClientId { get; private set; } = null!;
+        public Output<string?> ClientId { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientId`. The value is not stored in state. Requires `ClientIdWoVersion` to trigger updates.
+        /// </summary>
+        [Output("clientIdWo")]
+        public Output<string?> ClientIdWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `ClientIdWo`. Increment this value to trigger an update of the client ID when using `ClientIdWo`.
+        /// </summary>
+        [Output("clientIdWoVersion")]
+        public Output<int?> ClientIdWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The system Salesforce credential ID
@@ -78,10 +67,23 @@ namespace Pulumi.DbtCloud
         public Output<int> NumThreads { get; private set; } = null!;
 
         /// <summary>
-        /// The private key for JWT bearer flow authentication
+        /// The private key for JWT bearer flow authentication. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         [Output("privateKey")]
-        public Output<string> PrivateKey { get; private set; } = null!;
+        public Output<string?> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        [Output("privateKeyWo")]
+        public Output<string?> PrivateKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Output("privateKeyWoVersion")]
+        public Output<int?> PrivateKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Project ID to create the Salesforce credential in
@@ -128,7 +130,9 @@ namespace Pulumi.DbtCloud
                 AdditionalSecretOutputs =
                 {
                     "clientId",
+                    "clientIdWo",
                     "privateKey",
+                    "privateKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -153,11 +157,11 @@ namespace Pulumi.DbtCloud
 
     public sealed class SalesforceCredentialArgs : global::Pulumi.ResourceArgs
     {
-        [Input("clientId", required: true)]
+        [Input("clientId")]
         private Input<string>? _clientId;
 
         /// <summary>
-        /// The OAuth connected app client/consumer ID
+        /// The OAuth connected app client/consumer ID. Consider using `ClientIdWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? ClientId
         {
@@ -169,17 +173,40 @@ namespace Pulumi.DbtCloud
             }
         }
 
+        [Input("clientIdWo")]
+        private Input<string>? _clientIdWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientId`. The value is not stored in state. Requires `ClientIdWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? ClientIdWo
+        {
+            get => _clientIdWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientIdWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `ClientIdWo`. Increment this value to trigger an update of the client ID when using `ClientIdWo`.
+        /// </summary>
+        [Input("clientIdWoVersion")]
+        public Input<int>? ClientIdWoVersion { get; set; }
+
         /// <summary>
         /// The number of threads to use for dbt operations
         /// </summary>
         [Input("numThreads")]
         public Input<int>? NumThreads { get; set; }
 
-        [Input("privateKey", required: true)]
+        [Input("privateKey")]
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key for JWT bearer flow authentication
+        /// The private key for JWT bearer flow authentication. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -190,6 +217,29 @@ namespace Pulumi.DbtCloud
                 _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Salesforce credential in
@@ -221,7 +271,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _clientId;
 
         /// <summary>
-        /// The OAuth connected app client/consumer ID
+        /// The OAuth connected app client/consumer ID. Consider using `ClientIdWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? ClientId
         {
@@ -232,6 +282,29 @@ namespace Pulumi.DbtCloud
                 _clientId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientIdWo")]
+        private Input<string>? _clientIdWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientId`. The value is not stored in state. Requires `ClientIdWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? ClientIdWo
+        {
+            get => _clientIdWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientIdWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `ClientIdWo`. Increment this value to trigger an update of the client ID when using `ClientIdWo`.
+        /// </summary>
+        [Input("clientIdWoVersion")]
+        public Input<int>? ClientIdWoVersion { get; set; }
 
         /// <summary>
         /// The system Salesforce credential ID
@@ -249,7 +322,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key for JWT bearer flow authentication
+        /// The private key for JWT bearer flow authentication. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -260,6 +333,29 @@ namespace Pulumi.DbtCloud
                 _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Salesforce credential in

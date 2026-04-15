@@ -7,23 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Salesforce credential resource
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * // Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication
- * const mySalesforceCred = new dbtcloud.SalesforceCredential("my_salesforce_cred", {
- *     projectId: dbtProject.id,
- *     username: "user@example.com",
- *     clientId: "your-oauth-client-id",
- *     privateKey: "private-key value",
- *     targetName: "default",
- *     numThreads: 6,
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -73,9 +56,18 @@ export class SalesforceCredential extends pulumi.CustomResource {
     }
 
     /**
-     * The OAuth connected app client/consumer ID
+     * The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      */
-    declare public readonly clientId: pulumi.Output<string>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+     */
+    declare public readonly clientIdWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+     */
+    declare public readonly clientIdWoVersion: pulumi.Output<number | undefined>;
     /**
      * The system Salesforce credential ID
      */
@@ -85,9 +77,18 @@ export class SalesforceCredential extends pulumi.CustomResource {
      */
     declare public readonly numThreads: pulumi.Output<number>;
     /**
-     * The private key for JWT bearer flow authentication
+     * The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    declare public readonly privateKey: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    declare public readonly privateKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    declare public readonly privateKeyWoVersion: pulumi.Output<number | undefined>;
     /**
      * Project ID to create the Salesforce credential in
      */
@@ -115,20 +116,18 @@ export class SalesforceCredential extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SalesforceCredentialState | undefined;
             resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientIdWo"] = state?.clientIdWo;
+            resourceInputs["clientIdWoVersion"] = state?.clientIdWoVersion;
             resourceInputs["credentialId"] = state?.credentialId;
             resourceInputs["numThreads"] = state?.numThreads;
             resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["privateKeyWo"] = state?.privateKeyWo;
+            resourceInputs["privateKeyWoVersion"] = state?.privateKeyWoVersion;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["targetName"] = state?.targetName;
             resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as SalesforceCredentialArgs | undefined;
-            if (args?.clientId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'clientId'");
-            }
-            if (args?.privateKey === undefined && !opts.urn) {
-                throw new Error("Missing required property 'privateKey'");
-            }
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -136,15 +135,19 @@ export class SalesforceCredential extends pulumi.CustomResource {
                 throw new Error("Missing required property 'username'");
             }
             resourceInputs["clientId"] = args?.clientId ? pulumi.secret(args.clientId) : undefined;
+            resourceInputs["clientIdWo"] = args?.clientIdWo ? pulumi.secret(args.clientIdWo) : undefined;
+            resourceInputs["clientIdWoVersion"] = args?.clientIdWoVersion;
             resourceInputs["numThreads"] = args?.numThreads;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["privateKeyWo"] = args?.privateKeyWo ? pulumi.secret(args.privateKeyWo) : undefined;
+            resourceInputs["privateKeyWoVersion"] = args?.privateKeyWoVersion;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["targetName"] = args?.targetName;
             resourceInputs["username"] = args?.username;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientId", "privateKey"] };
+        const secretOpts = { additionalSecretOutputs: ["clientId", "clientIdWo", "privateKey", "privateKeyWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SalesforceCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -155,9 +158,18 @@ export class SalesforceCredential extends pulumi.CustomResource {
  */
 export interface SalesforceCredentialState {
     /**
-     * The OAuth connected app client/consumer ID
+     * The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      */
     clientId?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+     */
+    clientIdWo?: pulumi.Input<string>;
+    /**
+     * Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+     */
+    clientIdWoVersion?: pulumi.Input<number>;
     /**
      * The system Salesforce credential ID
      */
@@ -167,9 +179,18 @@ export interface SalesforceCredentialState {
      */
     numThreads?: pulumi.Input<number>;
     /**
-     * The private key for JWT bearer flow authentication
+     * The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      */
     privateKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    privateKeyWo?: pulumi.Input<string>;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Salesforce credential in
      */
@@ -189,17 +210,35 @@ export interface SalesforceCredentialState {
  */
 export interface SalesforceCredentialArgs {
     /**
-     * The OAuth connected app client/consumer ID
+     * The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      */
-    clientId: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+     */
+    clientIdWo?: pulumi.Input<string>;
+    /**
+     * Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+     */
+    clientIdWoVersion?: pulumi.Input<number>;
     /**
      * The number of threads to use for dbt operations
      */
     numThreads?: pulumi.Input<number>;
     /**
-     * The private key for JWT bearer flow authentication
+     * The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    privateKeyWo?: pulumi.Input<string>;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Salesforce credential in
      */

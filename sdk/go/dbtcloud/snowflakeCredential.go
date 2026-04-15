@@ -14,37 +14,6 @@ import (
 
 // Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.NewSnowflakeCredential(ctx, "prod_credential", &dbtcloud.SnowflakeCredentialArgs{
-//				ProjectId:  pulumi.Any(dbtProject.Id),
-//				AuthType:   pulumi.String("password"),
-//				NumThreads: pulumi.Int(16),
-//				Schema:     pulumi.String("SCHEMA"),
-//				User:       pulumi.String("user"),
-//				Password:   pulumi.String("password"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -77,12 +46,27 @@ type SnowflakeCredential struct {
 	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads pulumi.IntOutput `pulumi:"numThreads"`
-	// The password for the Snowflake account
+	// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringOutput `pulumi:"password"`
-	// The private key for the Snowflake account
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
+	// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
-	// The passphrase for the private key
+	// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase pulumi.StringOutput `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo pulumi.StringPtrOutput `pulumi:"privateKeyPassphraseWo"`
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion pulumi.IntPtrOutput `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrOutput `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrOutput `pulumi:"privateKeyWoVersion"`
 	// Project ID to create the Snowflake credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The role to assume
@@ -116,16 +100,28 @@ func NewSnowflakeCredential(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	if args.PrivateKey != nil {
 		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
 	}
 	if args.PrivateKeyPassphrase != nil {
 		args.PrivateKeyPassphrase = pulumi.ToSecret(args.PrivateKeyPassphrase).(pulumi.StringPtrInput)
 	}
+	if args.PrivateKeyPassphraseWo != nil {
+		args.PrivateKeyPassphraseWo = pulumi.ToSecret(args.PrivateKeyPassphraseWo).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKeyWo != nil {
+		args.PrivateKeyWo = pulumi.ToSecret(args.PrivateKeyWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 		"privateKey",
 		"privateKeyPassphrase",
+		"privateKeyPassphraseWo",
+		"privateKeyWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -161,12 +157,27 @@ type snowflakeCredentialState struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads *int `pulumi:"numThreads"`
-	// The password for the Snowflake account
+	// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
-	// The private key for the Snowflake account
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey *string `pulumi:"privateKey"`
-	// The passphrase for the private key
+	// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo *string `pulumi:"privateKeyPassphraseWo"`
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion *int `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// Project ID to create the Snowflake credential in
 	ProjectId *int `pulumi:"projectId"`
 	// The role to assume
@@ -192,12 +203,27 @@ type SnowflakeCredentialState struct {
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use
 	NumThreads pulumi.IntPtrInput
-	// The password for the Snowflake account
+	// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
-	// The private key for the Snowflake account
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
+	// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringPtrInput
-	// The passphrase for the private key
+	// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo pulumi.StringPtrInput
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrInput
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput
 	// Project ID to create the Snowflake credential in
 	ProjectId pulumi.IntPtrInput
 	// The role to assume
@@ -225,12 +251,27 @@ type snowflakeCredentialArgs struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads int `pulumi:"numThreads"`
-	// The password for the Snowflake account
+	// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
-	// The private key for the Snowflake account
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey *string `pulumi:"privateKey"`
-	// The passphrase for the private key
+	// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo *string `pulumi:"privateKeyPassphraseWo"`
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion *int `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// Project ID to create the Snowflake credential in
 	ProjectId int `pulumi:"projectId"`
 	// The role to assume
@@ -255,12 +296,27 @@ type SnowflakeCredentialArgs struct {
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use
 	NumThreads pulumi.IntInput
-	// The password for the Snowflake account
+	// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
-	// The private key for the Snowflake account
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
+	// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringPtrInput
-	// The passphrase for the private key
+	// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo pulumi.StringPtrInput
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrInput
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput
 	// Project ID to create the Snowflake credential in
 	ProjectId pulumi.IntInput
 	// The role to assume
@@ -387,19 +443,52 @@ func (o SnowflakeCredentialOutput) NumThreads() pulumi.IntOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.IntOutput { return v.NumThreads }).(pulumi.IntOutput)
 }
 
-// The password for the Snowflake account
+// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 func (o SnowflakeCredentialOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// The private key for the Snowflake account
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o SnowflakeCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o SnowflakeCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 func (o SnowflakeCredentialOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// The passphrase for the private key
+// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 func (o SnowflakeCredentialOutput) PrivateKeyPassphrase() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringOutput { return v.PrivateKeyPassphrase }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+func (o SnowflakeCredentialOutput) PrivateKeyPassphraseWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.PrivateKeyPassphraseWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+func (o SnowflakeCredentialOutput) PrivateKeyPassphraseWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.IntPtrOutput { return v.PrivateKeyPassphraseWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+func (o SnowflakeCredentialOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.StringPtrOutput { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+func (o SnowflakeCredentialOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeCredential) pulumi.IntPtrOutput { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Snowflake credential in

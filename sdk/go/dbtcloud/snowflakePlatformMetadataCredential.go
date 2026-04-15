@@ -26,57 +26,6 @@ import (
 //
 // > **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
 // you must destroy and recreate the resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Example: Snowflake Platform Metadata Credential with password auth
-//			_, err := dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, "password_auth", &dbtcloud.SnowflakePlatformMetadataCredentialArgs{
-//				ConnectionId:            pulumi.Any(snowflake.Id),
-//				CatalogIngestionEnabled: pulumi.Bool(true),
-//				CostOptimizationEnabled: pulumi.Bool(true),
-//				CostInsightsEnabled:     pulumi.Bool(false),
-//				AuthType:                pulumi.String("password"),
-//				User:                    pulumi.String("METADATA_READER"),
-//				Password:                pulumi.Any(snowflakePassword),
-//				Role:                    pulumi.String("METADATA_READER_ROLE"),
-//				Warehouse:               pulumi.String("METADATA_WH"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Example: Snowflake Platform Metadata Credential with keypair auth
-//			_, err = dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, "keypair_auth", &dbtcloud.SnowflakePlatformMetadataCredentialArgs{
-//				ConnectionId:            pulumi.Any(snowflake.Id),
-//				CatalogIngestionEnabled: pulumi.Bool(true),
-//				CostOptimizationEnabled: pulumi.Bool(false),
-//				CostInsightsEnabled:     pulumi.Bool(false),
-//				AuthType:                pulumi.String("keypair"),
-//				User:                    pulumi.String("METADATA_READER"),
-//				PrivateKey:              pulumi.Any(snowflakePrivateKey),
-//				PrivateKeyPassphrase:    pulumi.Any(snowflakePrivateKeyPassphrase),
-//				Role:                    pulumi.String("METADATA_READER_ROLE"),
-//				Warehouse:               pulumi.String("METADATA_WH"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type SnowflakePlatformMetadataCredential struct {
 	pulumi.CustomResourceState
 
@@ -94,12 +43,27 @@ type SnowflakePlatformMetadataCredential struct {
 	CostOptimizationEnabled pulumi.BoolOutput `pulumi:"costOptimizationEnabled"`
 	// The ID of the platform metadata credential.
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
-	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
+	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
-	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password.
+	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase pulumi.StringPtrOutput `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo pulumi.StringPtrOutput `pulumi:"privateKeyPassphraseWo"`
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion pulumi.IntPtrOutput `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrOutput `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrOutput `pulumi:"privateKeyWoVersion"`
 	// The Snowflake role to use.
 	Role pulumi.StringOutput `pulumi:"role"`
 	// The Snowflake user name.
@@ -133,16 +97,28 @@ func NewSnowflakePlatformMetadataCredential(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	if args.PrivateKey != nil {
 		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
 	}
 	if args.PrivateKeyPassphrase != nil {
 		args.PrivateKeyPassphrase = pulumi.ToSecret(args.PrivateKeyPassphrase).(pulumi.StringPtrInput)
 	}
+	if args.PrivateKeyPassphraseWo != nil {
+		args.PrivateKeyPassphraseWo = pulumi.ToSecret(args.PrivateKeyPassphraseWo).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKeyWo != nil {
+		args.PrivateKeyWo = pulumi.ToSecret(args.PrivateKeyWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 		"privateKey",
 		"privateKeyPassphrase",
+		"privateKeyPassphraseWo",
+		"privateKeyWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -182,12 +158,27 @@ type snowflakePlatformMetadataCredentialState struct {
 	CostOptimizationEnabled *bool `pulumi:"costOptimizationEnabled"`
 	// The ID of the platform metadata credential.
 	CredentialId *int `pulumi:"credentialId"`
-	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
-	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey *string `pulumi:"privateKey"`
-	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password.
+	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo *string `pulumi:"privateKeyPassphraseWo"`
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion *int `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// The Snowflake role to use.
 	Role *string `pulumi:"role"`
 	// The Snowflake user name.
@@ -211,12 +202,27 @@ type SnowflakePlatformMetadataCredentialState struct {
 	CostOptimizationEnabled pulumi.BoolPtrInput
 	// The ID of the platform metadata credential.
 	CredentialId pulumi.IntPtrInput
-	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
-	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
+	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringPtrInput
-	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password.
+	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo pulumi.StringPtrInput
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrInput
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput
 	// The Snowflake role to use.
 	Role pulumi.StringPtrInput
 	// The Snowflake user name.
@@ -240,12 +246,27 @@ type snowflakePlatformMetadataCredentialArgs struct {
 	CostInsightsEnabled *bool `pulumi:"costInsightsEnabled"`
 	// Whether cost optimization data collection is enabled for this credential.
 	CostOptimizationEnabled *bool `pulumi:"costOptimizationEnabled"`
-	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
-	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey *string `pulumi:"privateKey"`
-	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password.
+	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo *string `pulumi:"privateKeyPassphraseWo"`
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion *int `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// The Snowflake role to use.
 	Role string `pulumi:"role"`
 	// The Snowflake user name.
@@ -266,12 +287,27 @@ type SnowflakePlatformMetadataCredentialArgs struct {
 	CostInsightsEnabled pulumi.BoolPtrInput
 	// Whether cost optimization data collection is enabled for this credential.
 	CostOptimizationEnabled pulumi.BoolPtrInput
-	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+	// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
-	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
+	// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringPtrInput
-	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password.
+	// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo pulumi.StringPtrInput
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrInput
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput
 	// The Snowflake role to use.
 	Role pulumi.StringInput
 	// The Snowflake user name.
@@ -402,19 +438,54 @@ func (o SnowflakePlatformMetadataCredentialOutput) CredentialId() pulumi.IntOutp
 	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
 func (o SnowflakePlatformMetadataCredentialOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password.
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o SnowflakePlatformMetadataCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o SnowflakePlatformMetadataCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
 func (o SnowflakePlatformMetadataCredentialOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
 }
 
-// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password.
+// The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 func (o SnowflakePlatformMetadataCredentialOutput) PrivateKeyPassphrase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.StringPtrOutput { return v.PrivateKeyPassphrase }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+func (o SnowflakePlatformMetadataCredentialOutput) PrivateKeyPassphraseWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.StringPtrOutput { return v.PrivateKeyPassphraseWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+func (o SnowflakePlatformMetadataCredentialOutput) PrivateKeyPassphraseWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.IntPtrOutput {
+		return v.PrivateKeyPassphraseWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+func (o SnowflakePlatformMetadataCredentialOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.StringPtrOutput { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+func (o SnowflakePlatformMetadataCredentialOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakePlatformMetadataCredential) pulumi.IntPtrOutput { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The Snowflake role to use.

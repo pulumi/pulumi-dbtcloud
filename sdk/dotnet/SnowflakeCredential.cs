@@ -12,29 +12,6 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var prodCredential = new DbtCloud.Index.SnowflakeCredential("prod_credential", new()
-    ///     {
-    ///         ProjectId = dbtProject.Id,
-    ///         AuthType = "password",
-    ///         NumThreads = 16,
-    ///         Schema = "SCHEMA",
-    ///         User = "user",
-    ///         Password = "password",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
@@ -89,22 +66,61 @@ namespace Pulumi.DbtCloud
         public Output<int> NumThreads { get; private set; } = null!;
 
         /// <summary>
-        /// The password for the Snowflake account
+        /// The password for the Snowflake account. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The private key for the Snowflake account
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The private key for the Snowflake account. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
         /// <summary>
-        /// The passphrase for the private key
+        /// The passphrase for the private key. Consider using `PrivateKeyPassphraseWo` instead, which is not stored in state.
         /// </summary>
         [Output("privateKeyPassphrase")]
         public Output<string> PrivateKeyPassphrase { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKeyPassphrase`. The value is not stored in state. Requires `PrivateKeyPassphraseWoVersion` to trigger updates.
+        /// </summary>
+        [Output("privateKeyPassphraseWo")]
+        public Output<string?> PrivateKeyPassphraseWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PrivateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `PrivateKeyPassphraseWo`.
+        /// </summary>
+        [Output("privateKeyPassphraseWoVersion")]
+        public Output<int?> PrivateKeyPassphraseWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        [Output("privateKeyWo")]
+        public Output<string?> PrivateKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Output("privateKeyWoVersion")]
+        public Output<int?> PrivateKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Project ID to create the Snowflake credential in
@@ -169,8 +185,11 @@ namespace Pulumi.DbtCloud
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                     "privateKey",
                     "privateKeyPassphrase",
+                    "privateKeyPassphraseWo",
+                    "privateKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -223,7 +242,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for the Snowflake account
+        /// The password for the Snowflake account. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -235,11 +254,34 @@ namespace Pulumi.DbtCloud
             }
         }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         [Input("privateKey")]
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key for the Snowflake account
+        /// The private key for the Snowflake account. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -255,7 +297,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKeyPassphrase;
 
         /// <summary>
-        /// The passphrase for the private key
+        /// The passphrase for the private key. Consider using `PrivateKeyPassphraseWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKeyPassphrase
         {
@@ -266,6 +308,52 @@ namespace Pulumi.DbtCloud
                 _privateKeyPassphrase = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("privateKeyPassphraseWo")]
+        private Input<string>? _privateKeyPassphraseWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKeyPassphrase`. The value is not stored in state. Requires `PrivateKeyPassphraseWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyPassphraseWo
+        {
+            get => _privateKeyPassphraseWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyPassphraseWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `PrivateKeyPassphraseWo`.
+        /// </summary>
+        [Input("privateKeyPassphraseWoVersion")]
+        public Input<int>? PrivateKeyPassphraseWoVersion { get; set; }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Snowflake credential in
@@ -345,7 +433,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for the Snowflake account
+        /// The password for the Snowflake account. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -357,11 +445,34 @@ namespace Pulumi.DbtCloud
             }
         }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         [Input("privateKey")]
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key for the Snowflake account
+        /// The private key for the Snowflake account. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -377,7 +488,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKeyPassphrase;
 
         /// <summary>
-        /// The passphrase for the private key
+        /// The passphrase for the private key. Consider using `PrivateKeyPassphraseWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKeyPassphrase
         {
@@ -388,6 +499,52 @@ namespace Pulumi.DbtCloud
                 _privateKeyPassphrase = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("privateKeyPassphraseWo")]
+        private Input<string>? _privateKeyPassphraseWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKeyPassphrase`. The value is not stored in state. Requires `PrivateKeyPassphraseWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyPassphraseWo
+        {
+            get => _privateKeyPassphraseWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyPassphraseWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `PrivateKeyPassphraseWo`.
+        /// </summary>
+        [Input("privateKeyPassphraseWoVersion")]
+        public Input<int>? PrivateKeyPassphraseWoVersion { get; set; }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Snowflake credential in

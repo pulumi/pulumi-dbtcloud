@@ -635,8 +635,13 @@ type DatabricksSemanticLayerCredentialCredential struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName *string `pulumi:"targetName"`
-	// Token for Databricks user
-	Token string `pulumi:"token"`
+	// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
+	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 // DatabricksSemanticLayerCredentialCredentialInput is an input type that accepts DatabricksSemanticLayerCredentialCredentialArgs and DatabricksSemanticLayerCredentialCredentialOutput values.
@@ -671,8 +676,13 @@ type DatabricksSemanticLayerCredentialCredentialArgs struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringPtrInput `pulumi:"targetName"`
-	// Token for Databricks user
-	Token pulumi.StringInput `pulumi:"token"`
+	// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrInput `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput `pulumi:"tokenWoVersion"`
 }
 
 func (DatabricksSemanticLayerCredentialCredentialArgs) ElementType() reflect.Type {
@@ -796,9 +806,20 @@ func (o DatabricksSemanticLayerCredentialCredentialOutput) TargetName() pulumi.S
 	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.TargetName }).(pulumi.StringPtrOutput)
 }
 
-// Token for Databricks user
-func (o DatabricksSemanticLayerCredentialCredentialOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) string { return v.Token }).(pulumi.StringOutput)
+// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
+func (o DatabricksSemanticLayerCredentialCredentialOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+func (o DatabricksSemanticLayerCredentialCredentialOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *string { return v.TokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+func (o DatabricksSemanticLayerCredentialCredentialOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatabricksSemanticLayerCredentialCredential) *int { return v.TokenWoVersion }).(pulumi.IntPtrOutput)
 }
 
 type DatabricksSemanticLayerCredentialCredentialPtrOutput struct{ *pulumi.OutputState }
@@ -909,14 +930,35 @@ func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) TargetName() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// Token for Databricks user
+// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
 func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Token
+		return v.Token
 	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+func (o DatabricksSemanticLayerCredentialCredentialPtrOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabricksSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TokenWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 type GlobalConnectionApacheSpark struct {
@@ -5537,8 +5579,13 @@ type PostgresSemanticLayerCredentialCredential struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use (required for Redshift)
 	NumThreads *int `pulumi:"numThreads"`
-	// Password for Postgres/Redshift/AlloyDB
+	// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId int `pulumi:"projectId"`
 	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
@@ -5573,8 +5620,13 @@ type PostgresSemanticLayerCredentialCredentialArgs struct {
 	IsActive pulumi.BoolPtrInput `pulumi:"isActive"`
 	// Number of threads to use (required for Redshift)
 	NumThreads pulumi.IntPtrInput `pulumi:"numThreads"`
-	// Password for Postgres/Redshift/AlloyDB
+	// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
 	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
@@ -5689,9 +5741,20 @@ func (o PostgresSemanticLayerCredentialCredentialOutput) NumThreads() pulumi.Int
 	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *int { return v.NumThreads }).(pulumi.IntPtrOutput)
 }
 
-// Password for Postgres/Redshift/AlloyDB
+// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 func (o PostgresSemanticLayerCredentialCredentialOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o PostgresSemanticLayerCredentialCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o PostgresSemanticLayerCredentialCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v PostgresSemanticLayerCredentialCredential) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Postgres/Redshift/AlloyDB credential in.
@@ -5793,7 +5856,7 @@ func (o PostgresSemanticLayerCredentialCredentialPtrOutput) NumThreads() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
-// Password for Postgres/Redshift/AlloyDB
+// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 func (o PostgresSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *string {
 		if v == nil {
@@ -5801,6 +5864,27 @@ func (o PostgresSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.St
 		}
 		return v.Password
 	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o PostgresSemanticLayerCredentialCredentialPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PostgresSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Postgres/Redshift/AlloyDB credential in.
@@ -6039,8 +6123,13 @@ type RedshiftSemanticLayerCredentialCredential struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads int `pulumi:"numThreads"`
-	// The password for the Redshift account
+	// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Redshift credential in
 	ProjectId int `pulumi:"projectId"`
 	// The username for the Redshift account.
@@ -6069,8 +6158,13 @@ type RedshiftSemanticLayerCredentialCredentialArgs struct {
 	IsActive pulumi.BoolPtrInput `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads pulumi.IntInput `pulumi:"numThreads"`
-	// The password for the Redshift account
+	// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Project ID to create the Redshift credential in
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
 	// The username for the Redshift account.
@@ -6179,9 +6273,20 @@ func (o RedshiftSemanticLayerCredentialCredentialOutput) NumThreads() pulumi.Int
 	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) int { return v.NumThreads }).(pulumi.IntOutput)
 }
 
-// The password for the Redshift account
+// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 func (o RedshiftSemanticLayerCredentialCredentialOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o RedshiftSemanticLayerCredentialCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o RedshiftSemanticLayerCredentialCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RedshiftSemanticLayerCredentialCredential) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Redshift credential in
@@ -6268,7 +6373,7 @@ func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) NumThreads() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password for the Redshift account
+// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *string {
 		if v == nil {
@@ -6276,6 +6381,27 @@ func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.St
 		}
 		return v.Password
 	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o RedshiftSemanticLayerCredentialCredentialPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RedshiftSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Redshift credential in
@@ -6894,12 +7020,27 @@ type SnowflakeSemanticLayerCredentialCredential struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads int `pulumi:"numThreads"`
-	// The password for the Snowflake account
+	// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
-	// The private key for the Snowflake account
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey *string `pulumi:"privateKey"`
-	// The passphrase for the private key
+	// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo *string `pulumi:"privateKeyPassphraseWo"`
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion *int `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// Project ID to create the Snowflake credential in
 	ProjectId int `pulumi:"projectId"`
 	// The role to assume
@@ -6938,12 +7079,27 @@ type SnowflakeSemanticLayerCredentialCredentialArgs struct {
 	IsActive pulumi.BoolPtrInput `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads pulumi.IntInput `pulumi:"numThreads"`
-	// The password for the Snowflake account
+	// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The private key for the Snowflake account
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
+	// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
-	// The passphrase for the private key
+	// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 	PrivateKeyPassphrase pulumi.StringPtrInput `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+	PrivateKeyPassphraseWo pulumi.StringPtrInput `pulumi:"privateKeyPassphraseWo"`
+	// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+	PrivateKeyPassphraseWoVersion pulumi.IntPtrInput `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrInput `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput `pulumi:"privateKeyWoVersion"`
 	// Project ID to create the Snowflake credential in
 	ProjectId pulumi.IntInput `pulumi:"projectId"`
 	// The role to assume
@@ -7065,19 +7221,52 @@ func (o SnowflakeSemanticLayerCredentialCredentialOutput) NumThreads() pulumi.In
 	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) int { return v.NumThreads }).(pulumi.IntOutput)
 }
 
-// The password for the Snowflake account
+// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 func (o SnowflakeSemanticLayerCredentialCredentialOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The private key for the Snowflake account
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 func (o SnowflakeSemanticLayerCredentialCredentialOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
 }
 
-// The passphrase for the private key
+// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 func (o SnowflakeSemanticLayerCredentialCredentialOutput) PrivateKeyPassphrase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.PrivateKeyPassphrase }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) PrivateKeyPassphraseWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.PrivateKeyPassphraseWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) PrivateKeyPassphraseWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *int { return v.PrivateKeyPassphraseWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *string { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+func (o SnowflakeSemanticLayerCredentialCredentialOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SnowflakeSemanticLayerCredentialCredential) *int { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Snowflake credential in
@@ -7194,7 +7383,7 @@ func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) NumThreads() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password for the Snowflake account
+// The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
 func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
 		if v == nil {
@@ -7204,7 +7393,28 @@ func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Password() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// The private key for the Snowflake account
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
 func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
 		if v == nil {
@@ -7214,7 +7424,7 @@ func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKey() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
-// The passphrase for the private key
+// The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
 func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKeyPassphrase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
 		if v == nil {
@@ -7222,6 +7432,48 @@ func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKeyPassphras
 		}
 		return v.PrivateKeyPassphrase
 	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKeyPassphraseWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyPassphraseWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKeyPassphraseWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyPassphraseWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SnowflakeSemanticLayerCredentialCredential) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Snowflake credential in

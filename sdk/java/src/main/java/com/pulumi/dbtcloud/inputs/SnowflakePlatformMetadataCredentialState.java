@@ -123,14 +123,14 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
     }
 
     /**
-     * The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase.
+     * The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase.
+     * @return The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> password() {
@@ -138,14 +138,46 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
     }
 
     /**
-     * The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+
+    /**
+     * The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password.
+     * @return The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -153,18 +185,82 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
     }
 
     /**
-     * The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password.
+     * The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      * 
      */
     @Import(name="privateKeyPassphrase")
     private @Nullable Output<String> privateKeyPassphrase;
 
     /**
-     * @return The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password.
+     * @return The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> privateKeyPassphrase() {
         return Optional.ofNullable(this.privateKeyPassphrase);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="privateKeyPassphraseWo")
+    private @Nullable Output<String> privateKeyPassphraseWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> privateKeyPassphraseWo() {
+        return Optional.ofNullable(this.privateKeyPassphraseWo);
+    }
+
+    /**
+     * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     * 
+     */
+    @Import(name="privateKeyPassphraseWoVersion")
+    private @Nullable Output<Integer> privateKeyPassphraseWoVersion;
+
+    /**
+     * @return Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     * 
+     */
+    public Optional<Output<Integer>> privateKeyPassphraseWoVersion() {
+        return Optional.ofNullable(this.privateKeyPassphraseWoVersion);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="privateKeyWo")
+    private @Nullable Output<String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
+    }
+
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    @Import(name="privateKeyWoVersion")
+    private @Nullable Output<Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Optional<Output<Integer>> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
 
     /**
@@ -223,8 +319,14 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
         this.costOptimizationEnabled = $.costOptimizationEnabled;
         this.credentialId = $.credentialId;
         this.password = $.password;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.privateKey = $.privateKey;
         this.privateKeyPassphrase = $.privateKeyPassphrase;
+        this.privateKeyPassphraseWo = $.privateKeyPassphraseWo;
+        this.privateKeyPassphraseWoVersion = $.privateKeyPassphraseWoVersion;
+        this.privateKeyWo = $.privateKeyWo;
+        this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.role = $.role;
         this.user = $.user;
         this.warehouse = $.warehouse;
@@ -396,7 +498,7 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
         }
 
         /**
-         * @param password The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase.
+         * @param password The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -407,7 +509,7 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
         }
 
         /**
-         * @param password The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase.
+         * @param password The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -417,7 +519,51 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
         }
 
         /**
-         * @param privateKey The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password.
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
+        }
+
+        /**
+         * @param privateKey The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -428,7 +574,7 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
         }
 
         /**
-         * @param privateKey The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password.
+         * @param privateKey The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -438,7 +584,7 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
         }
 
         /**
-         * @param privateKeyPassphrase The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password.
+         * @param privateKeyPassphrase The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -449,13 +595,101 @@ public final class SnowflakePlatformMetadataCredentialState extends com.pulumi.r
         }
 
         /**
-         * @param privateKeyPassphrase The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password.
+         * @param privateKeyPassphrase The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder privateKeyPassphrase(String privateKeyPassphrase) {
             return privateKeyPassphrase(Output.of(privateKeyPassphrase));
+        }
+
+        /**
+         * @param privateKeyPassphraseWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyPassphraseWo(@Nullable Output<String> privateKeyPassphraseWo) {
+            $.privateKeyPassphraseWo = privateKeyPassphraseWo;
+            return this;
+        }
+
+        /**
+         * @param privateKeyPassphraseWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyPassphraseWo(String privateKeyPassphraseWo) {
+            return privateKeyPassphraseWo(Output.of(privateKeyPassphraseWo));
+        }
+
+        /**
+         * @param privateKeyPassphraseWoVersion Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyPassphraseWoVersion(@Nullable Output<Integer> privateKeyPassphraseWoVersion) {
+            $.privateKeyPassphraseWoVersion = privateKeyPassphraseWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyPassphraseWoVersion Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyPassphraseWoVersion(Integer privateKeyPassphraseWoVersion) {
+            return privateKeyPassphraseWoVersion(Output.of(privateKeyPassphraseWoVersion));
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(@Nullable Output<String> privateKeyWo) {
+            $.privateKeyWo = privateKeyWo;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(String privateKeyWo) {
+            return privateKeyWo(Output.of(privateKeyWo));
+        }
+
+        /**
+         * @param privateKeyWoVersion Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(@Nullable Output<Integer> privateKeyWoVersion) {
+            $.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWoVersion Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(Integer privateKeyWoVersion) {
+            return privateKeyWoVersion(Output.of(privateKeyWoVersion));
         }
 
         /**

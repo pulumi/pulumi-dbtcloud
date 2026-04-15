@@ -33,62 +33,6 @@ import javax.annotation.Nullable;
  * &gt; **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
  * you must destroy and recreate the resource.
  * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.SnowflakePlatformMetadataCredential;
- * import com.pulumi.dbtcloud.SnowflakePlatformMetadataCredentialArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Example: Snowflake Platform Metadata Credential with password auth
- *         var passwordAuth = new SnowflakePlatformMetadataCredential("passwordAuth", SnowflakePlatformMetadataCredentialArgs.builder()
- *             .connectionId(snowflake.id())
- *             .catalogIngestionEnabled(true)
- *             .costOptimizationEnabled(true)
- *             .costInsightsEnabled(false)
- *             .authType("password")
- *             .user("METADATA_READER")
- *             .password(snowflakePassword)
- *             .role("METADATA_READER_ROLE")
- *             .warehouse("METADATA_WH")
- *             .build());
- * 
- *         // Example: Snowflake Platform Metadata Credential with keypair auth
- *         var keypairAuth = new SnowflakePlatformMetadataCredential("keypairAuth", SnowflakePlatformMetadataCredentialArgs.builder()
- *             .connectionId(snowflake.id())
- *             .catalogIngestionEnabled(true)
- *             .costOptimizationEnabled(false)
- *             .costInsightsEnabled(false)
- *             .authType("keypair")
- *             .user("METADATA_READER")
- *             .privateKey(snowflakePrivateKey)
- *             .privateKeyPassphrase(snowflakePrivateKeyPassphrase)
- *             .role("METADATA_READER_ROLE")
- *             .warehouse("METADATA_WH")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  */
 @ResourceType(type="dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential")
 public class SnowflakePlatformMetadataCredential extends com.pulumi.resources.CustomResource {
@@ -191,46 +135,136 @@ public class SnowflakePlatformMetadataCredential extends com.pulumi.resources.Cu
         return this.credentialId;
     }
     /**
-     * The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase.
+     * The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
-     * @return The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase.
+     * @return The password for password authentication. Required when auth*type is &#39;password&#39;. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Output<Optional<String>> password() {
         return Codegen.optional(this.password);
     }
     /**
-     * The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="passwordWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> passwordWo() {
+        return Codegen.optional(this.passwordWo);
+    }
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    @Export(name="passwordWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> passwordWoVersion;
+
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Output<Optional<Integer>> passwordWoVersion() {
+        return Codegen.optional(this.passwordWoVersion);
+    }
+    /**
+     * The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateKey;
 
     /**
-     * @return The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password.
+     * @return The private key for keypair authentication. Required when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     public Output<Optional<String>> privateKey() {
         return Codegen.optional(this.privateKey);
     }
     /**
-     * The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password.
+     * The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      * 
      */
     @Export(name="privateKeyPassphrase", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateKeyPassphrase;
 
     /**
-     * @return The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password.
+     * @return The passphrase for the private key, if encrypted. Optional when authType is &#39;keypair&#39;. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      * 
      */
     public Output<Optional<String>> privateKeyPassphrase() {
         return Codegen.optional(this.privateKeyPassphrase);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="privateKeyPassphraseWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyPassphraseWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> privateKeyPassphraseWo() {
+        return Codegen.optional(this.privateKeyPassphraseWo);
+    }
+    /**
+     * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     * 
+     */
+    @Export(name="privateKeyPassphraseWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> privateKeyPassphraseWoVersion;
+
+    /**
+     * @return Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     * 
+     */
+    public Output<Optional<Integer>> privateKeyPassphraseWoVersion() {
+        return Codegen.optional(this.privateKeyPassphraseWoVersion);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="privateKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> privateKeyWo() {
+        return Codegen.optional(this.privateKeyWo);
+    }
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    @Export(name="privateKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Output<Optional<Integer>> privateKeyWoVersion() {
+        return Codegen.optional(this.privateKeyWoVersion);
     }
     /**
      * The Snowflake role to use.
@@ -317,8 +351,11 @@ public class SnowflakePlatformMetadataCredential extends com.pulumi.resources.Cu
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
                 "password",
+                "passwordWo",
                 "privateKey",
-                "privateKeyPassphrase"
+                "privateKeyPassphrase",
+                "privateKeyPassphraseWo",
+                "privateKeyWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

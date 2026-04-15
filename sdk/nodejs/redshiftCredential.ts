@@ -7,22 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Redshift credential resource
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * const redshift = new dbtcloud.RedshiftCredential("redshift", {
- *     numThreads: 16,
- *     projectId: testProject.id,
- *     defaultSchema: "my_schema",
- *     username: "my_username",
- *     password: "my_sensitive_password",
- *     isActive: true,
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -88,9 +72,18 @@ export class RedshiftCredential extends pulumi.CustomResource {
      */
     declare public readonly numThreads: pulumi.Output<number>;
     /**
-     * The password for the Redshift account
+     * The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      */
     declare public readonly password: pulumi.Output<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * Project ID to create the Redshift credential in
      */
@@ -118,6 +111,8 @@ export class RedshiftCredential extends pulumi.CustomResource {
             resourceInputs["isActive"] = state?.isActive;
             resourceInputs["numThreads"] = state?.numThreads;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["username"] = state?.username;
         } else {
@@ -135,12 +130,14 @@ export class RedshiftCredential extends pulumi.CustomResource {
             resourceInputs["isActive"] = args?.isActive;
             resourceInputs["numThreads"] = args?.numThreads;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["username"] = args?.username;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(RedshiftCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -167,9 +164,18 @@ export interface RedshiftCredentialState {
      */
     numThreads?: pulumi.Input<number>;
     /**
-     * The password for the Redshift account
+     * The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Redshift credential in
      */
@@ -197,9 +203,18 @@ export interface RedshiftCredentialArgs {
      */
     numThreads: pulumi.Input<number>;
     /**
-     * The password for the Redshift account
+     * The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Redshift credential in
      */

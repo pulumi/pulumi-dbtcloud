@@ -63,10 +63,21 @@ public final class DatabricksSemanticLayerCredentialCredential {
     @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
     private @Nullable String targetName;
     /**
-     * @return Token for Databricks user
+     * @return Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
-    private String token;
+    private @Nullable String token;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    private @Nullable String tokenWo;
+    /**
+     * @return Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    private @Nullable Integer tokenWoVersion;
 
     private DatabricksSemanticLayerCredentialCredential() {}
     /**
@@ -134,11 +145,26 @@ public final class DatabricksSemanticLayerCredentialCredential {
         return Optional.ofNullable(this.targetName);
     }
     /**
-     * @return Token for Databricks user
+     * @return Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
-    public String token() {
-        return this.token;
+    public Optional<String> token() {
+        return Optional.ofNullable(this.token);
+    }
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<String> tokenWo() {
+        return Optional.ofNullable(this.tokenWo);
+    }
+    /**
+     * @return Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    public Optional<Integer> tokenWoVersion() {
+        return Optional.ofNullable(this.tokenWoVersion);
     }
 
     public static Builder builder() {
@@ -158,7 +184,9 @@ public final class DatabricksSemanticLayerCredentialCredential {
         private @Nullable String schema;
         private @Nullable Boolean semanticLayerCredential;
         private @Nullable String targetName;
-        private String token;
+        private @Nullable String token;
+        private @Nullable String tokenWo;
+        private @Nullable Integer tokenWoVersion;
         public Builder() {}
         public Builder(DatabricksSemanticLayerCredentialCredential defaults) {
     	      Objects.requireNonNull(defaults);
@@ -171,6 +199,8 @@ public final class DatabricksSemanticLayerCredentialCredential {
     	      this.semanticLayerCredential = defaults.semanticLayerCredential;
     	      this.targetName = defaults.targetName;
     	      this.token = defaults.token;
+    	      this.tokenWo = defaults.tokenWo;
+    	      this.tokenWoVersion = defaults.tokenWoVersion;
         }
 
         @CustomType.Setter
@@ -224,11 +254,21 @@ public final class DatabricksSemanticLayerCredentialCredential {
             return this;
         }
         @CustomType.Setter
-        public Builder token(String token) {
-            if (token == null) {
-              throw new MissingRequiredPropertyException("DatabricksSemanticLayerCredentialCredential", "token");
-            }
+        public Builder token(@Nullable String token) {
+
             this.token = token;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tokenWo(@Nullable String tokenWo) {
+
+            this.tokenWo = tokenWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tokenWoVersion(@Nullable Integer tokenWoVersion) {
+
+            this.tokenWoVersion = tokenWoVersion;
             return this;
         }
         public DatabricksSemanticLayerCredentialCredential build() {
@@ -242,6 +282,8 @@ public final class DatabricksSemanticLayerCredentialCredential {
             _resultValue.semanticLayerCredential = semanticLayerCredential;
             _resultValue.targetName = targetName;
             _resultValue.token = token;
+            _resultValue.tokenWo = tokenWo;
+            _resultValue.tokenWoVersion = tokenWoVersion;
             return _resultValue;
         }
     }

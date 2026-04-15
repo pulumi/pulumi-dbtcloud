@@ -14,35 +14,6 @@ import (
 
 // Athena credential resource
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.NewAthenaCredential(ctx, "example", &dbtcloud.AthenaCredentialArgs{
-//				ProjectId:          pulumi.Any(exampleDbtcloudProject.Id),
-//				AwsAccessKeyId:     pulumi.String("your-access-key-id"),
-//				AwsSecretAccessKey: pulumi.String("your-secret-access-key"),
-//				Schema:             pulumi.String("your_schema"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -65,10 +36,20 @@ import (
 type AthenaCredential struct {
 	pulumi.CustomResourceState
 
-	// AWS access key ID for Athena user
-	AwsAccessKeyId pulumi.StringOutput `pulumi:"awsAccessKeyId"`
-	// AWS secret access key for Athena user
-	AwsSecretAccessKey pulumi.StringOutput `pulumi:"awsSecretAccessKey"`
+	// AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
+	AwsAccessKeyId pulumi.StringPtrOutput `pulumi:"awsAccessKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+	AwsAccessKeyIdWo pulumi.StringPtrOutput `pulumi:"awsAccessKeyIdWo"`
+	// Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+	AwsAccessKeyIdWoVersion pulumi.IntPtrOutput `pulumi:"awsAccessKeyIdWoVersion"`
+	// AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
+	AwsSecretAccessKey pulumi.StringPtrOutput `pulumi:"awsSecretAccessKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+	AwsSecretAccessKeyWo pulumi.StringPtrOutput `pulumi:"awsSecretAccessKeyWo"`
+	// Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+	AwsSecretAccessKeyWoVersion pulumi.IntPtrOutput `pulumi:"awsSecretAccessKeyWoVersion"`
 	// The internal credential ID
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// Project ID to create the Athena credential in
@@ -84,12 +65,6 @@ func NewAthenaCredential(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.AwsAccessKeyId == nil {
-		return nil, errors.New("invalid value for required argument 'AwsAccessKeyId'")
-	}
-	if args.AwsSecretAccessKey == nil {
-		return nil, errors.New("invalid value for required argument 'AwsSecretAccessKey'")
-	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
@@ -97,14 +72,22 @@ func NewAthenaCredential(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Schema'")
 	}
 	if args.AwsAccessKeyId != nil {
-		args.AwsAccessKeyId = pulumi.ToSecret(args.AwsAccessKeyId).(pulumi.StringInput)
+		args.AwsAccessKeyId = pulumi.ToSecret(args.AwsAccessKeyId).(pulumi.StringPtrInput)
+	}
+	if args.AwsAccessKeyIdWo != nil {
+		args.AwsAccessKeyIdWo = pulumi.ToSecret(args.AwsAccessKeyIdWo).(pulumi.StringPtrInput)
 	}
 	if args.AwsSecretAccessKey != nil {
-		args.AwsSecretAccessKey = pulumi.ToSecret(args.AwsSecretAccessKey).(pulumi.StringInput)
+		args.AwsSecretAccessKey = pulumi.ToSecret(args.AwsSecretAccessKey).(pulumi.StringPtrInput)
+	}
+	if args.AwsSecretAccessKeyWo != nil {
+		args.AwsSecretAccessKeyWo = pulumi.ToSecret(args.AwsSecretAccessKeyWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"awsAccessKeyId",
+		"awsAccessKeyIdWo",
 		"awsSecretAccessKey",
+		"awsSecretAccessKeyWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -130,10 +113,20 @@ func GetAthenaCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AthenaCredential resources.
 type athenaCredentialState struct {
-	// AWS access key ID for Athena user
+	// AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
 	AwsAccessKeyId *string `pulumi:"awsAccessKeyId"`
-	// AWS secret access key for Athena user
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+	AwsAccessKeyIdWo *string `pulumi:"awsAccessKeyIdWo"`
+	// Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+	AwsAccessKeyIdWoVersion *int `pulumi:"awsAccessKeyIdWoVersion"`
+	// AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
 	AwsSecretAccessKey *string `pulumi:"awsSecretAccessKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+	AwsSecretAccessKeyWo *string `pulumi:"awsSecretAccessKeyWo"`
+	// Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+	AwsSecretAccessKeyWoVersion *int `pulumi:"awsSecretAccessKeyWoVersion"`
 	// The internal credential ID
 	CredentialId *int `pulumi:"credentialId"`
 	// Project ID to create the Athena credential in
@@ -143,10 +136,20 @@ type athenaCredentialState struct {
 }
 
 type AthenaCredentialState struct {
-	// AWS access key ID for Athena user
+	// AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
 	AwsAccessKeyId pulumi.StringPtrInput
-	// AWS secret access key for Athena user
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+	AwsAccessKeyIdWo pulumi.StringPtrInput
+	// Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+	AwsAccessKeyIdWoVersion pulumi.IntPtrInput
+	// AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
 	AwsSecretAccessKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+	AwsSecretAccessKeyWo pulumi.StringPtrInput
+	// Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+	AwsSecretAccessKeyWoVersion pulumi.IntPtrInput
 	// The internal credential ID
 	CredentialId pulumi.IntPtrInput
 	// Project ID to create the Athena credential in
@@ -160,10 +163,20 @@ func (AthenaCredentialState) ElementType() reflect.Type {
 }
 
 type athenaCredentialArgs struct {
-	// AWS access key ID for Athena user
-	AwsAccessKeyId string `pulumi:"awsAccessKeyId"`
-	// AWS secret access key for Athena user
-	AwsSecretAccessKey string `pulumi:"awsSecretAccessKey"`
+	// AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
+	AwsAccessKeyId *string `pulumi:"awsAccessKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+	AwsAccessKeyIdWo *string `pulumi:"awsAccessKeyIdWo"`
+	// Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+	AwsAccessKeyIdWoVersion *int `pulumi:"awsAccessKeyIdWoVersion"`
+	// AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
+	AwsSecretAccessKey *string `pulumi:"awsSecretAccessKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+	AwsSecretAccessKeyWo *string `pulumi:"awsSecretAccessKeyWo"`
+	// Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+	AwsSecretAccessKeyWoVersion *int `pulumi:"awsSecretAccessKeyWoVersion"`
 	// Project ID to create the Athena credential in
 	ProjectId int `pulumi:"projectId"`
 	// The schema where to create models
@@ -172,10 +185,20 @@ type athenaCredentialArgs struct {
 
 // The set of arguments for constructing a AthenaCredential resource.
 type AthenaCredentialArgs struct {
-	// AWS access key ID for Athena user
-	AwsAccessKeyId pulumi.StringInput
-	// AWS secret access key for Athena user
-	AwsSecretAccessKey pulumi.StringInput
+	// AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
+	AwsAccessKeyId pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+	AwsAccessKeyIdWo pulumi.StringPtrInput
+	// Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+	AwsAccessKeyIdWoVersion pulumi.IntPtrInput
+	// AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
+	AwsSecretAccessKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+	AwsSecretAccessKeyWo pulumi.StringPtrInput
+	// Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+	AwsSecretAccessKeyWoVersion pulumi.IntPtrInput
 	// Project ID to create the Athena credential in
 	ProjectId pulumi.IntInput
 	// The schema where to create models
@@ -269,14 +292,36 @@ func (o AthenaCredentialOutput) ToAthenaCredentialOutputWithContext(ctx context.
 	return o
 }
 
-// AWS access key ID for Athena user
-func (o AthenaCredentialOutput) AwsAccessKeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v *AthenaCredential) pulumi.StringOutput { return v.AwsAccessKeyId }).(pulumi.StringOutput)
+// AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
+func (o AthenaCredentialOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AthenaCredential) pulumi.StringPtrOutput { return v.AwsAccessKeyId }).(pulumi.StringPtrOutput)
 }
 
-// AWS secret access key for Athena user
-func (o AthenaCredentialOutput) AwsSecretAccessKey() pulumi.StringOutput {
-	return o.ApplyT(func(v *AthenaCredential) pulumi.StringOutput { return v.AwsSecretAccessKey }).(pulumi.StringOutput)
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+func (o AthenaCredentialOutput) AwsAccessKeyIdWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AthenaCredential) pulumi.StringPtrOutput { return v.AwsAccessKeyIdWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+func (o AthenaCredentialOutput) AwsAccessKeyIdWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AthenaCredential) pulumi.IntPtrOutput { return v.AwsAccessKeyIdWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
+func (o AthenaCredentialOutput) AwsSecretAccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AthenaCredential) pulumi.StringPtrOutput { return v.AwsSecretAccessKey }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+func (o AthenaCredentialOutput) AwsSecretAccessKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AthenaCredential) pulumi.StringPtrOutput { return v.AwsSecretAccessKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+func (o AthenaCredentialOutput) AwsSecretAccessKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AthenaCredential) pulumi.IntPtrOutput { return v.AwsSecretAccessKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The internal credential ID

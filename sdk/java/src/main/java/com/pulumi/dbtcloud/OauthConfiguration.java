@@ -10,8 +10,10 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.dbtcloud.OauthConfigurationArgs;
 import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.OauthConfigurationState;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -85,18 +87,48 @@ public class OauthConfiguration extends com.pulumi.resources.CustomResource {
         return this.clientId;
     }
     /**
-     * The Client secret for the OAuth integration
+     * The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
-    private Output<String> clientSecret;
+    private Output</* @Nullable */ String> clientSecret;
 
     /**
-     * @return The Client secret for the OAuth integration
+     * @return The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> clientSecret() {
-        return this.clientSecret;
+    public Output<Optional<String>> clientSecret() {
+        return Codegen.optional(this.clientSecret);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="clientSecretWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> clientSecretWo() {
+        return Codegen.optional(this.clientSecretWo);
+    }
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     * 
+     */
+    @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     * 
+     */
+    public Output<Optional<Integer>> clientSecretWoVersion() {
+        return Codegen.optional(this.clientSecretWoVersion);
     }
     /**
      * The name of OAuth integration
@@ -196,7 +228,8 @@ public class OauthConfiguration extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
-                "clientSecret"
+                "clientSecret",
+                "clientSecretWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

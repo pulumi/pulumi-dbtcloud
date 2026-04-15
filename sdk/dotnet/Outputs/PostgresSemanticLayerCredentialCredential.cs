@@ -34,9 +34,18 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int? NumThreads;
         /// <summary>
-        /// Password for Postgres/Redshift/AlloyDB
+        /// Password for Postgres/Redshift/AlloyDB. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public readonly string? Password;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public readonly string? PasswordWo;
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        public readonly int? PasswordWoVersion;
         /// <summary>
         /// Project ID to create the Postgres/Redshift/AlloyDB credential in.
         /// </summary>
@@ -72,6 +81,10 @@ namespace Pulumi.DbtCloud.Outputs
 
             string? password,
 
+            string? passwordWo,
+
+            int? passwordWoVersion,
+
             int projectId,
 
             bool? semanticLayerCredential,
@@ -88,6 +101,8 @@ namespace Pulumi.DbtCloud.Outputs
             IsActive = isActive;
             NumThreads = numThreads;
             Password = password;
+            PasswordWo = passwordWo;
+            PasswordWoVersion = passwordWoVersion;
             ProjectId = projectId;
             SemanticLayerCredential = semanticLayerCredential;
             TargetName = targetName;

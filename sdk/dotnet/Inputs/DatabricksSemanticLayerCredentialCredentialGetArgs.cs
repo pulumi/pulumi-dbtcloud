@@ -60,11 +60,11 @@ namespace Pulumi.DbtCloud.Inputs
         [Input("targetName")]
         public Input<string>? TargetName { get; set; }
 
-        [Input("token", required: true)]
+        [Input("token")]
         private Input<string>? _token;
 
         /// <summary>
-        /// Token for Databricks user
+        /// Token for Databricks user. Consider using `TokenWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Token
         {
@@ -75,6 +75,29 @@ namespace Pulumi.DbtCloud.Inputs
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenWo")]
+        private Input<string>? _tokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Token`. The value is not stored in state. Requires `TokenWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? TokenWo
+        {
+            get => _tokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `TokenWo`. Increment this value to trigger an update of the token when using `TokenWo`.
+        /// </summary>
+        [Input("tokenWoVersion")]
+        public Input<int>? TokenWoVersion { get; set; }
 
         public DatabricksSemanticLayerCredentialCredentialGetArgs()
         {

@@ -85,18 +85,50 @@ public final class SparkCredentialState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Token for Apache Spark user
+     * Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return Token for Apache Spark user
+     * @return Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> token() {
         return Optional.ofNullable(this.token);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="tokenWo")
+    private @Nullable Output<String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> tokenWo() {
+        return Optional.ofNullable(this.tokenWo);
+    }
+
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    @Import(name="tokenWoVersion")
+    private @Nullable Output<Integer> tokenWoVersion;
+
+    /**
+     * @return Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    public Optional<Output<Integer>> tokenWoVersion() {
+        return Optional.ofNullable(this.tokenWoVersion);
     }
 
     private SparkCredentialState() {}
@@ -107,6 +139,8 @@ public final class SparkCredentialState extends com.pulumi.resources.ResourceArg
         this.schema = $.schema;
         this.targetName = $.targetName;
         this.token = $.token;
+        this.tokenWo = $.tokenWo;
+        this.tokenWoVersion = $.tokenWoVersion;
     }
 
     public static Builder builder() {
@@ -220,7 +254,7 @@ public final class SparkCredentialState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param token Token for Apache Spark user
+         * @param token Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -231,13 +265,57 @@ public final class SparkCredentialState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param token Token for Apache Spark user
+         * @param token Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder token(String token) {
             return token(Output.of(token));
+        }
+
+        /**
+         * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWo(@Nullable Output<String> tokenWo) {
+            $.tokenWo = tokenWo;
+            return this;
+        }
+
+        /**
+         * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWo(String tokenWo) {
+            return tokenWo(Output.of(tokenWo));
+        }
+
+        /**
+         * @param tokenWoVersion Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWoVersion(@Nullable Output<Integer> tokenWoVersion) {
+            $.tokenWoVersion = tokenWoVersion;
+            return this;
+        }
+
+        /**
+         * @param tokenWoVersion Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWoVersion(Integer tokenWoVersion) {
+            return tokenWoVersion(Output.of(tokenWoVersion));
         }
 
         public SparkCredentialState build() {

@@ -14,36 +14,6 @@ import (
 
 // Starburst/Trino credential resource
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.NewStarburstCredential(ctx, "example", &dbtcloud.StarburstCredentialArgs{
-//				ProjectId: pulumi.Any(exampleDbtcloudProject.Id),
-//				Database:  pulumi.String("your_catalog"),
-//				Schema:    pulumi.String("your_schema"),
-//				User:      pulumi.String("your_user"),
-//				Password:  pulumi.String("your_password"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -70,8 +40,13 @@ type StarburstCredential struct {
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// The catalog to connect use
 	Database pulumi.StringOutput `pulumi:"database"`
-	// The password for the Starburst/Trino account
-	Password pulumi.StringOutput `pulumi:"password"`
+	// The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// Project ID to create the Starburst/Trino credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The schema where to create models
@@ -90,9 +65,6 @@ func NewStarburstCredential(ctx *pulumi.Context,
 	if args.Database == nil {
 		return nil, errors.New("invalid value for required argument 'Database'")
 	}
-	if args.Password == nil {
-		return nil, errors.New("invalid value for required argument 'Password'")
-	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
@@ -103,10 +75,14 @@ func NewStarburstCredential(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'User'")
 	}
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringInput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -136,8 +112,13 @@ type starburstCredentialState struct {
 	CredentialId *int `pulumi:"credentialId"`
 	// The catalog to connect use
 	Database *string `pulumi:"database"`
-	// The password for the Starburst/Trino account
+	// The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Starburst/Trino credential in
 	ProjectId *int `pulumi:"projectId"`
 	// The schema where to create models
@@ -151,8 +132,13 @@ type StarburstCredentialState struct {
 	CredentialId pulumi.IntPtrInput
 	// The catalog to connect use
 	Database pulumi.StringPtrInput
-	// The password for the Starburst/Trino account
+	// The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Starburst/Trino credential in
 	ProjectId pulumi.IntPtrInput
 	// The schema where to create models
@@ -168,8 +154,13 @@ func (StarburstCredentialState) ElementType() reflect.Type {
 type starburstCredentialArgs struct {
 	// The catalog to connect use
 	Database string `pulumi:"database"`
-	// The password for the Starburst/Trino account
-	Password string `pulumi:"password"`
+	// The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
+	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Starburst/Trino credential in
 	ProjectId int `pulumi:"projectId"`
 	// The schema where to create models
@@ -182,8 +173,13 @@ type starburstCredentialArgs struct {
 type StarburstCredentialArgs struct {
 	// The catalog to connect use
 	Database pulumi.StringInput
-	// The password for the Starburst/Trino account
-	Password pulumi.StringInput
+	// The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
+	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Starburst/Trino credential in
 	ProjectId pulumi.IntInput
 	// The schema where to create models
@@ -289,9 +285,20 @@ func (o StarburstCredentialOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v *StarburstCredential) pulumi.StringOutput { return v.Database }).(pulumi.StringOutput)
 }
 
-// The password for the Starburst/Trino account
-func (o StarburstCredentialOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v *StarburstCredential) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+// The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
+func (o StarburstCredentialOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StarburstCredential) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o StarburstCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StarburstCredential) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o StarburstCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *StarburstCredential) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Starburst/Trino credential in

@@ -13,54 +13,13 @@ import com.pulumi.dbtcloud.inputs.LineageIntegrationState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * Setup lineage integration for dbt Cloud to automatically fetch lineage from external BI tools in dbt Explorer. Currently supports Tableau.
  * 
  * This resource requires having an environment tagged as production already created for you project.
- * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.LineageIntegration;
- * import com.pulumi.dbtcloud.LineageIntegrationArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // the resource can only be configured when a Prod environment has been set
- *         // so, you might want to explicitly set the dependency on your Prod environment resource
- *         var myLineage = new LineageIntegration("myLineage", LineageIntegrationArgs.builder()
- *             .projectId(myProject.id())
- *             .host("my.host.com")
- *             .siteId("mysiteid")
- *             .tokenName("my-token-name")
- *             .token("my-sensitive-token")
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(myProdEnv)
- *                 .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * 
  * ## Import
  * 
@@ -156,18 +115,18 @@ public class LineageIntegration extends com.pulumi.resources.CustomResource {
         return this.siteId;
     }
     /**
-     * The secret token value to use to authenticate to the BI server
+     * The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
     @Export(name="token", refs={String.class}, tree="[0]")
-    private Output<String> token;
+    private Output</* @Nullable */ String> token;
 
     /**
-     * @return The secret token value to use to authenticate to the BI server
+     * @return The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> token() {
-        return this.token;
+    public Output<Optional<String>> token() {
+        return Codegen.optional(this.token);
     }
     /**
      * The token to use to authenticate to the BI server
@@ -182,6 +141,36 @@ public class LineageIntegration extends com.pulumi.resources.CustomResource {
      */
     public Output<String> tokenName() {
         return this.tokenName;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="tokenWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> tokenWo() {
+        return Codegen.optional(this.tokenWo);
+    }
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    @Export(name="tokenWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenWoVersion;
+
+    /**
+     * @return Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    public Output<Optional<Integer>> tokenWoVersion() {
+        return Codegen.optional(this.tokenWoVersion);
     }
 
     /**
@@ -225,7 +214,8 @@ public class LineageIntegration extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
-                "token"
+                "token",
+                "tokenWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

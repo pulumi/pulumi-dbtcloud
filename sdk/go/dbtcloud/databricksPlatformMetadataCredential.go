@@ -26,38 +26,6 @@ import (
 //
 // > **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
 // you must destroy and recreate the resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Example: Databricks Platform Metadata Credential
-//			_, err := dbtcloud.NewDatabricksPlatformMetadataCredential(ctx, "example", &dbtcloud.DatabricksPlatformMetadataCredentialArgs{
-//				ConnectionId:            pulumi.Any(databricks.Id),
-//				CatalogIngestionEnabled: pulumi.Bool(true),
-//				CostOptimizationEnabled: pulumi.Bool(false),
-//				CostInsightsEnabled:     pulumi.Bool(false),
-//				Token:                   pulumi.Any(databricksToken),
-//				Catalog:                 pulumi.String("main"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type DatabricksPlatformMetadataCredential struct {
 	pulumi.CustomResourceState
 
@@ -75,8 +43,13 @@ type DatabricksPlatformMetadataCredential struct {
 	CostOptimizationEnabled pulumi.BoolOutput `pulumi:"costOptimizationEnabled"`
 	// The ID of the platform metadata credential.
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
-	// The Databricks personal access token.
-	Token pulumi.StringOutput `pulumi:"token"`
+	// The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrOutput `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrOutput `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrOutput `pulumi:"tokenWoVersion"`
 }
 
 // NewDatabricksPlatformMetadataCredential registers a new resource with the given unique name, arguments, and options.
@@ -92,14 +65,15 @@ func NewDatabricksPlatformMetadataCredential(ctx *pulumi.Context,
 	if args.ConnectionId == nil {
 		return nil, errors.New("invalid value for required argument 'ConnectionId'")
 	}
-	if args.Token == nil {
-		return nil, errors.New("invalid value for required argument 'Token'")
-	}
 	if args.Token != nil {
-		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringInput)
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	if args.TokenWo != nil {
+		args.TokenWo = pulumi.ToSecret(args.TokenWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"token",
+		"tokenWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -139,8 +113,13 @@ type databricksPlatformMetadataCredentialState struct {
 	CostOptimizationEnabled *bool `pulumi:"costOptimizationEnabled"`
 	// The ID of the platform metadata credential.
 	CredentialId *int `pulumi:"credentialId"`
-	// The Databricks personal access token.
+	// The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
 	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 type DatabricksPlatformMetadataCredentialState struct {
@@ -158,8 +137,13 @@ type DatabricksPlatformMetadataCredentialState struct {
 	CostOptimizationEnabled pulumi.BoolPtrInput
 	// The ID of the platform metadata credential.
 	CredentialId pulumi.IntPtrInput
-	// The Databricks personal access token.
+	// The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
 	Token pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (DatabricksPlatformMetadataCredentialState) ElementType() reflect.Type {
@@ -177,8 +161,13 @@ type databricksPlatformMetadataCredentialArgs struct {
 	CostInsightsEnabled *bool `pulumi:"costInsightsEnabled"`
 	// Whether cost optimization data collection is enabled for this credential.
 	CostOptimizationEnabled *bool `pulumi:"costOptimizationEnabled"`
-	// The Databricks personal access token.
-	Token string `pulumi:"token"`
+	// The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
+	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 // The set of arguments for constructing a DatabricksPlatformMetadataCredential resource.
@@ -193,8 +182,13 @@ type DatabricksPlatformMetadataCredentialArgs struct {
 	CostInsightsEnabled pulumi.BoolPtrInput
 	// Whether cost optimization data collection is enabled for this credential.
 	CostOptimizationEnabled pulumi.BoolPtrInput
-	// The Databricks personal access token.
-	Token pulumi.StringInput
+	// The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (DatabricksPlatformMetadataCredentialArgs) ElementType() reflect.Type {
@@ -319,9 +313,20 @@ func (o DatabricksPlatformMetadataCredentialOutput) CredentialId() pulumi.IntOut
 	return o.ApplyT(func(v *DatabricksPlatformMetadataCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// The Databricks personal access token.
-func (o DatabricksPlatformMetadataCredentialOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *DatabricksPlatformMetadataCredential) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+// The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
+func (o DatabricksPlatformMetadataCredentialOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksPlatformMetadataCredential) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+func (o DatabricksPlatformMetadataCredentialOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksPlatformMetadataCredential) pulumi.StringPtrOutput { return v.TokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+func (o DatabricksPlatformMetadataCredentialOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabricksPlatformMetadataCredential) pulumi.IntPtrOutput { return v.TokenWoVersion }).(pulumi.IntPtrOutput)
 }
 
 type DatabricksPlatformMetadataCredentialArrayOutput struct{ *pulumi.OutputState }

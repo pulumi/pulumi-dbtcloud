@@ -12,53 +12,6 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Synapse credential resource
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // when using sql authentication
-    ///     var mySynapseCredSql = new DbtCloud.Index.SynapseCredential("my_synapse_cred_sql", new()
-    ///     {
-    ///         ProjectId = dbtProject.Id,
-    ///         Authentication = "sql",
-    ///         Schema = "my_schema",
-    ///         User = "my_user",
-    ///         Password = "my_password",
-    ///         SchemaAuthorization = "abcd",
-    ///     });
-    /// 
-    ///     // when using AD authentication
-    ///     var mySynapseCredAd = new DbtCloud.Index.SynapseCredential("my_synapse_cred_ad", new()
-    ///     {
-    ///         ProjectId = dbtProject.Id,
-    ///         Authentication = "ActiveDirectoryPassword",
-    ///         Schema = "my_schema",
-    ///         User = "my_user",
-    ///         Password = "my_password",
-    ///         SchemaAuthorization = "abcd",
-    ///     });
-    /// 
-    ///     // when using service principal authentication
-    ///     var mySynapseCredServPrinc = new DbtCloud.Index.SynapseCredential("my_synapse_cred_serv_princ", new()
-    ///     {
-    ///         ProjectId = dbtProject.Id,
-    ///         Authentication = "ServicePrincipal",
-    ///         Schema = "my_schema",
-    ///         ClientId = "my_client_id",
-    ///         TenantId = "my_tenant_id",
-    ///         ClientSecret = "my_secret",
-    ///         SchemaAuthorization = "abcd",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
@@ -101,10 +54,23 @@ namespace Pulumi.DbtCloud
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+        /// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `ClientSecretWo` instead, which is not stored in state.
         /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientSecret`. The value is not stored in state. Requires `ClientSecretWoVersion` to trigger updates.
+        /// </summary>
+        [Output("clientSecretWo")]
+        public Output<string?> ClientSecretWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `ClientSecretWo`. Increment this value to trigger an update of the client secret when using `ClientSecretWo`.
+        /// </summary>
+        [Output("clientSecretWoVersion")]
+        public Output<int?> ClientSecretWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The internal credential ID
@@ -113,10 +79,23 @@ namespace Pulumi.DbtCloud
         public Output<int> CredentialId { get; private set; } = null!;
 
         /// <summary>
-        /// The password for the account to connect to. Only used when connection with AD user/pass
+        /// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Project ID to create the Synapse credential in
@@ -175,7 +154,9 @@ namespace Pulumi.DbtCloud
                 AdditionalSecretOutputs =
                 {
                     "clientSecret",
+                    "clientSecretWo",
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -222,7 +203,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+        /// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `ClientSecretWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -234,11 +215,34 @@ namespace Pulumi.DbtCloud
             }
         }
 
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientSecret`. The value is not stored in state. Requires `ClientSecretWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `ClientSecretWo`. Increment this value to trigger an update of the client secret when using `ClientSecretWo`.
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
+
         [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for the account to connect to. Only used when connection with AD user/pass
+        /// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -249,6 +253,29 @@ namespace Pulumi.DbtCloud
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Synapse credential in
@@ -310,7 +337,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+        /// The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `ClientSecretWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -322,6 +349,29 @@ namespace Pulumi.DbtCloud
             }
         }
 
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `ClientSecret`. The value is not stored in state. Requires `ClientSecretWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `ClientSecretWo`. Increment this value to trigger an update of the client secret when using `ClientSecretWo`.
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
+
         /// <summary>
         /// The internal credential ID
         /// </summary>
@@ -332,7 +382,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for the account to connect to. Only used when connection with AD user/pass
+        /// The password for the account to connect to. Only used when connection with AD user/pass. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -343,6 +393,29 @@ namespace Pulumi.DbtCloud
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Synapse credential in

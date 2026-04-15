@@ -15,6 +15,16 @@ export type AthenaCredential = import("./athenaCredential").AthenaCredential;
 export const AthenaCredential: typeof import("./athenaCredential").AthenaCredential = null as any;
 utilities.lazyLoad(exports, ["AthenaCredential"], () => require("./athenaCredential"));
 
+export { AuthProviderArgs, AuthProviderState } from "./authProvider";
+export type AuthProvider = import("./authProvider").AuthProvider;
+export const AuthProvider: typeof import("./authProvider").AuthProvider = null as any;
+utilities.lazyLoad(exports, ["AuthProvider"], () => require("./authProvider"));
+
+export { AzureAdApplicationArgs, AzureAdApplicationState } from "./azureAdApplication";
+export type AzureAdApplication = import("./azureAdApplication").AzureAdApplication;
+export const AzureAdApplication: typeof import("./azureAdApplication").AzureAdApplication = null as any;
+utilities.lazyLoad(exports, ["AzureAdApplication"], () => require("./azureAdApplication"));
+
 export { BigQueryCredentialArgs, BigQueryCredentialState } from "./bigQueryCredential";
 export type BigQueryCredential = import("./bigQueryCredential").BigQueryCredential;
 export const BigQueryCredential: typeof import("./bigQueryCredential").BigQueryCredential = null as any;
@@ -315,6 +325,11 @@ export type OauthConfiguration = import("./oauthConfiguration").OauthConfigurati
 export const OauthConfiguration: typeof import("./oauthConfiguration").OauthConfiguration = null as any;
 utilities.lazyLoad(exports, ["OauthConfiguration"], () => require("./oauthConfiguration"));
 
+export { OpenaiIntegrationArgs, OpenaiIntegrationState } from "./openaiIntegration";
+export type OpenaiIntegration = import("./openaiIntegration").OpenaiIntegration;
+export const OpenaiIntegration: typeof import("./openaiIntegration").OpenaiIntegration = null as any;
+utilities.lazyLoad(exports, ["OpenaiIntegration"], () => require("./openaiIntegration"));
+
 export { PartialEnvironmentVariableArgs, PartialEnvironmentVariableState } from "./partialEnvironmentVariable";
 export type PartialEnvironmentVariable = import("./partialEnvironmentVariable").PartialEnvironmentVariable;
 export const PartialEnvironmentVariable: typeof import("./partialEnvironmentVariable").PartialEnvironmentVariable = null as any;
@@ -382,6 +397,16 @@ export { SalesforceCredentialArgs, SalesforceCredentialState } from "./salesforc
 export type SalesforceCredential = import("./salesforceCredential").SalesforceCredential;
 export const SalesforceCredential: typeof import("./salesforceCredential").SalesforceCredential = null as any;
 utilities.lazyLoad(exports, ["SalesforceCredential"], () => require("./salesforceCredential"));
+
+export { ScimConfigArgs, ScimConfigState } from "./scimConfig";
+export type ScimConfig = import("./scimConfig").ScimConfig;
+export const ScimConfig: typeof import("./scimConfig").ScimConfig = null as any;
+utilities.lazyLoad(exports, ["ScimConfig"], () => require("./scimConfig"));
+
+export { ScimConfigTokenArgs, ScimConfigTokenState } from "./scimConfigToken";
+export type ScimConfigToken = import("./scimConfigToken").ScimConfigToken;
+export const ScimConfigToken: typeof import("./scimConfigToken").ScimConfigToken = null as any;
+utilities.lazyLoad(exports, ["ScimConfigToken"], () => require("./scimConfigToken"));
 
 export { ScimGroupPartialPermissionsArgs, ScimGroupPartialPermissionsState } from "./scimGroupPartialPermissions";
 export type ScimGroupPartialPermissions = import("./scimGroupPartialPermissions").ScimGroupPartialPermissions;
@@ -471,6 +496,10 @@ const _module = {
                 return new AccountFeatures(name, <any>undefined, { urn })
             case "dbtcloud:index/athenaCredential:AthenaCredential":
                 return new AthenaCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/authProvider:AuthProvider":
+                return new AuthProvider(name, <any>undefined, { urn })
+            case "dbtcloud:index/azureAdApplication:AzureAdApplication":
+                return new AzureAdApplication(name, <any>undefined, { urn })
             case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
                 return new BigQueryCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
@@ -513,6 +542,8 @@ const _module = {
                 return new Notification(name, <any>undefined, { urn })
             case "dbtcloud:index/oauthConfiguration:OauthConfiguration":
                 return new OauthConfiguration(name, <any>undefined, { urn })
+            case "dbtcloud:index/openaiIntegration:OpenaiIntegration":
+                return new OpenaiIntegration(name, <any>undefined, { urn })
             case "dbtcloud:index/partialEnvironmentVariable:PartialEnvironmentVariable":
                 return new PartialEnvironmentVariable(name, <any>undefined, { urn })
             case "dbtcloud:index/partialLicenseMap:PartialLicenseMap":
@@ -539,6 +570,10 @@ const _module = {
                 return new Repository(name, <any>undefined, { urn })
             case "dbtcloud:index/salesforceCredential:SalesforceCredential":
                 return new SalesforceCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/scimConfig:ScimConfig":
+                return new ScimConfig(name, <any>undefined, { urn })
+            case "dbtcloud:index/scimConfigToken:ScimConfigToken":
+                return new ScimConfigToken(name, <any>undefined, { urn })
             case "dbtcloud:index/scimGroupPartialPermissions:ScimGroupPartialPermissions":
                 return new ScimGroupPartialPermissions(name, <any>undefined, { urn })
             case "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions":
@@ -574,6 +609,8 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("dbtcloud", "index/accountFeatures", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/athenaCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/authProvider", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/azureAdApplication", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigquerySemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/connectionCatalogConfig", _module)
@@ -595,6 +632,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/lineageIntegration", _m
 pulumi.runtime.registerResourceModule("dbtcloud", "index/modelNotifications", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/notification", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/oauthConfiguration", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/openaiIntegration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialEnvironmentVariable", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialLicenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialNotification", _module)
@@ -608,6 +646,8 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftCredential", _m
 pulumi.runtime.registerResourceModule("dbtcloud", "index/redshiftSemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/repository", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/salesforceCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/scimConfig", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/scimConfigToken", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/scimGroupPartialPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/scimGroupPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/semanticLayerConfiguration", _module)

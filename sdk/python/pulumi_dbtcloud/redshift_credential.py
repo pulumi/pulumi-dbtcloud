@@ -24,6 +24,8 @@ class RedshiftCredentialArgs:
                  project_id: pulumi.Input[_builtins.int],
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RedshiftCredential resource.
@@ -32,7 +34,10 @@ class RedshiftCredentialArgs:
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Redshift credential in
         :param pulumi.Input[_builtins.bool] is_active: Whether the Redshift credential is active
-        :param pulumi.Input[_builtins.str] password: The password for the Redshift account
+        :param pulumi.Input[_builtins.str] password: The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.str] username: The username for the Redshift account.
         """
         pulumi.set(__self__, "default_schema", default_schema)
@@ -42,6 +47,10 @@ class RedshiftCredentialArgs:
             pulumi.set(__self__, "is_active", is_active)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -97,13 +106,38 @@ class RedshiftCredentialArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for the Redshift account
+        The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -126,6 +160,8 @@ class _RedshiftCredentialState:
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -135,7 +171,10 @@ class _RedshiftCredentialState:
         :param pulumi.Input[_builtins.str] default_schema: Default schema name
         :param pulumi.Input[_builtins.bool] is_active: Whether the Redshift credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[_builtins.str] password: The password for the Redshift account
+        :param pulumi.Input[_builtins.str] password: The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Redshift credential in
         :param pulumi.Input[_builtins.str] username: The username for the Redshift account.
         """
@@ -149,6 +188,10 @@ class _RedshiftCredentialState:
             pulumi.set(__self__, "num_threads", num_threads)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if username is not None:
@@ -206,13 +249,38 @@ class _RedshiftCredentialState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for the Redshift account
+        The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -249,26 +317,13 @@ class RedshiftCredential(pulumi.CustomResource):
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Redshift credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        redshift = dbtcloud.RedshiftCredential("redshift",
-            num_threads=16,
-            project_id=test_project["id"],
-            default_schema="my_schema",
-            username="my_username",
-            password="my_sensitive_password",
-            is_active=True)
-        ```
 
         ## Import
 
@@ -296,7 +351,10 @@ class RedshiftCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_schema: Default schema name
         :param pulumi.Input[_builtins.bool] is_active: Whether the Redshift credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[_builtins.str] password: The password for the Redshift account
+        :param pulumi.Input[_builtins.str] password: The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Redshift credential in
         :param pulumi.Input[_builtins.str] username: The username for the Redshift account.
         """
@@ -308,21 +366,6 @@ class RedshiftCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Redshift credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        redshift = dbtcloud.RedshiftCredential("redshift",
-            num_threads=16,
-            project_id=test_project["id"],
-            default_schema="my_schema",
-            username="my_username",
-            password="my_sensitive_password",
-            is_active=True)
-        ```
 
         ## Import
 
@@ -364,6 +407,8 @@ class RedshiftCredential(pulumi.CustomResource):
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -383,12 +428,14 @@ class RedshiftCredential(pulumi.CustomResource):
                 raise TypeError("Missing required property 'num_threads'")
             __props__.__dict__["num_threads"] = num_threads
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["username"] = username
             __props__.__dict__["credential_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(RedshiftCredential, __self__).__init__(
             'dbtcloud:index/redshiftCredential:RedshiftCredential',
@@ -405,6 +452,8 @@ class RedshiftCredential(pulumi.CustomResource):
             is_active: Optional[pulumi.Input[_builtins.bool]] = None,
             num_threads: Optional[pulumi.Input[_builtins.int]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             project_id: Optional[pulumi.Input[_builtins.int]] = None,
             username: Optional[pulumi.Input[_builtins.str]] = None) -> 'RedshiftCredential':
         """
@@ -418,7 +467,10 @@ class RedshiftCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_schema: Default schema name
         :param pulumi.Input[_builtins.bool] is_active: Whether the Redshift credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[_builtins.str] password: The password for the Redshift account
+        :param pulumi.Input[_builtins.str] password: The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Redshift credential in
         :param pulumi.Input[_builtins.str] username: The username for the Redshift account.
         """
@@ -431,6 +483,8 @@ class RedshiftCredential(pulumi.CustomResource):
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["num_threads"] = num_threads
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["username"] = username
         return RedshiftCredential(resource_name, opts=opts, __props__=__props__)
@@ -471,9 +525,26 @@ class RedshiftCredential(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[_builtins.str]:
         """
-        The password for the Redshift account
+        The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

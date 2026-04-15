@@ -24,48 +24,6 @@ namespace Pulumi.DbtCloud
     /// 
     /// &gt; **Note:** The `ConnectionId` cannot be changed after creation. To use a different connection,
     /// you must destroy and recreate the resource.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Example: Snowflake Platform Metadata Credential with password auth
-    ///     var passwordAuth = new DbtCloud.Index.SnowflakePlatformMetadataCredential("password_auth", new()
-    ///     {
-    ///         ConnectionId = snowflake.Id,
-    ///         CatalogIngestionEnabled = true,
-    ///         CostOptimizationEnabled = true,
-    ///         CostInsightsEnabled = false,
-    ///         AuthType = "password",
-    ///         User = "METADATA_READER",
-    ///         Password = snowflakePassword,
-    ///         Role = "METADATA_READER_ROLE",
-    ///         Warehouse = "METADATA_WH",
-    ///     });
-    /// 
-    ///     // Example: Snowflake Platform Metadata Credential with keypair auth
-    ///     var keypairAuth = new DbtCloud.Index.SnowflakePlatformMetadataCredential("keypair_auth", new()
-    ///     {
-    ///         ConnectionId = snowflake.Id,
-    ///         CatalogIngestionEnabled = true,
-    ///         CostOptimizationEnabled = false,
-    ///         CostInsightsEnabled = false,
-    ///         AuthType = "keypair",
-    ///         User = "METADATA_READER",
-    ///         PrivateKey = snowflakePrivateKey,
-    ///         PrivateKeyPassphrase = snowflakePrivateKeyPassphrase,
-    ///         Role = "METADATA_READER_ROLE",
-    ///         Warehouse = "METADATA_WH",
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential")]
     public partial class SnowflakePlatformMetadataCredential : global::Pulumi.CustomResource
@@ -113,22 +71,61 @@ namespace Pulumi.DbtCloud
         public Output<int> CredentialId { get; private set; } = null!;
 
         /// <summary>
-        /// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+        /// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The private key for keypair authentication. Required when AuthType is 'keypair'. Cannot be used with password.
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The private key for keypair authentication. Required when AuthType is 'keypair'. Cannot be used with password. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         [Output("privateKey")]
         public Output<string?> PrivateKey { get; private set; } = null!;
 
         /// <summary>
-        /// The passphrase for the private key, if encrypted. Optional when AuthType is 'keypair'. Cannot be used with password.
+        /// The passphrase for the private key, if encrypted. Optional when AuthType is 'keypair'. Cannot be used with password. Consider using `PrivateKeyPassphraseWo` instead, which is not stored in state.
         /// </summary>
         [Output("privateKeyPassphrase")]
         public Output<string?> PrivateKeyPassphrase { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKeyPassphrase`. The value is not stored in state. Requires `PrivateKeyPassphraseWoVersion` to trigger updates.
+        /// </summary>
+        [Output("privateKeyPassphraseWo")]
+        public Output<string?> PrivateKeyPassphraseWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PrivateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `PrivateKeyPassphraseWo`.
+        /// </summary>
+        [Output("privateKeyPassphraseWoVersion")]
+        public Output<int?> PrivateKeyPassphraseWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        [Output("privateKeyWo")]
+        public Output<string?> PrivateKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Output("privateKeyWoVersion")]
+        public Output<int?> PrivateKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The Snowflake role to use.
@@ -175,8 +172,11 @@ namespace Pulumi.DbtCloud
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                     "privateKey",
                     "privateKeyPassphrase",
+                    "privateKeyPassphraseWo",
+                    "privateKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -235,7 +235,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+        /// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -247,11 +247,34 @@ namespace Pulumi.DbtCloud
             }
         }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         [Input("privateKey")]
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key for keypair authentication. Required when AuthType is 'keypair'. Cannot be used with password.
+        /// The private key for keypair authentication. Required when AuthType is 'keypair'. Cannot be used with password. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -267,7 +290,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKeyPassphrase;
 
         /// <summary>
-        /// The passphrase for the private key, if encrypted. Optional when AuthType is 'keypair'. Cannot be used with password.
+        /// The passphrase for the private key, if encrypted. Optional when AuthType is 'keypair'. Cannot be used with password. Consider using `PrivateKeyPassphraseWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKeyPassphrase
         {
@@ -278,6 +301,52 @@ namespace Pulumi.DbtCloud
                 _privateKeyPassphrase = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("privateKeyPassphraseWo")]
+        private Input<string>? _privateKeyPassphraseWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKeyPassphrase`. The value is not stored in state. Requires `PrivateKeyPassphraseWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyPassphraseWo
+        {
+            get => _privateKeyPassphraseWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyPassphraseWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `PrivateKeyPassphraseWo`.
+        /// </summary>
+        [Input("privateKeyPassphraseWoVersion")]
+        public Input<int>? PrivateKeyPassphraseWoVersion { get; set; }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// The Snowflake role to use.
@@ -351,7 +420,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase.
+        /// The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -363,11 +432,34 @@ namespace Pulumi.DbtCloud
             }
         }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         [Input("privateKey")]
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key for keypair authentication. Required when AuthType is 'keypair'. Cannot be used with password.
+        /// The private key for keypair authentication. Required when AuthType is 'keypair'. Cannot be used with password. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -383,7 +475,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKeyPassphrase;
 
         /// <summary>
-        /// The passphrase for the private key, if encrypted. Optional when AuthType is 'keypair'. Cannot be used with password.
+        /// The passphrase for the private key, if encrypted. Optional when AuthType is 'keypair'. Cannot be used with password. Consider using `PrivateKeyPassphraseWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKeyPassphrase
         {
@@ -394,6 +486,52 @@ namespace Pulumi.DbtCloud
                 _privateKeyPassphrase = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("privateKeyPassphraseWo")]
+        private Input<string>? _privateKeyPassphraseWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKeyPassphrase`. The value is not stored in state. Requires `PrivateKeyPassphraseWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyPassphraseWo
+        {
+            get => _privateKeyPassphraseWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyPassphraseWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `PrivateKeyPassphraseWo`.
+        /// </summary>
+        [Input("privateKeyPassphraseWoVersion")]
+        public Input<int>? PrivateKeyPassphraseWoVersion { get; set; }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// The Snowflake role to use.

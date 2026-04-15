@@ -25,8 +25,14 @@ class SnowflakeCredentialArgs:
                  database: Optional[pulumi.Input[_builtins.str]] = None,
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -40,9 +46,18 @@ class SnowflakeCredentialArgs:
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Snowflake credential in
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
         :param pulumi.Input[_builtins.bool] is_active: Whether the Snowflake credential is active
-        :param pulumi.Input[_builtins.str] password: The password for the Snowflake account
-        :param pulumi.Input[_builtins.str] private_key: The private key for the Snowflake account
-        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase for the private key
+        :param pulumi.Input[_builtins.str] password: The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        :param pulumi.Input[_builtins.str] private_key: The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_passphrase_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_passphrase_wo_version: Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] role: The role to assume
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
@@ -58,10 +73,22 @@ class SnowflakeCredentialArgs:
             pulumi.set(__self__, "is_active", is_active)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if private_key_passphrase is not None:
             pulumi.set(__self__, "private_key_passphrase", private_key_passphrase)
+        if private_key_passphrase_wo is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo", private_key_passphrase_wo)
+        if private_key_passphrase_wo_version is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo_version", private_key_passphrase_wo_version)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if schema is not None:
@@ -137,7 +164,7 @@ class SnowflakeCredentialArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for the Snowflake account
+        The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
@@ -146,10 +173,35 @@ class SnowflakeCredentialArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The private key for the Snowflake account
+        The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
@@ -161,13 +213,63 @@ class SnowflakeCredentialArgs:
     @pulumi.getter(name="privateKeyPassphrase")
     def private_key_passphrase(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The passphrase for the private key
+        The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key_passphrase")
 
     @private_key_passphrase.setter
     def private_key_passphrase(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "private_key_passphrase", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWo")
+    def private_key_passphrase_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo")
+
+    @private_key_passphrase_wo.setter
+    def private_key_passphrase_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_passphrase_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWoVersion")
+    def private_key_passphrase_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo_version")
+
+    @private_key_passphrase_wo_version.setter
+    def private_key_passphrase_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_passphrase_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -239,8 +341,14 @@ class _SnowflakeCredentialState:
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
@@ -255,9 +363,18 @@ class _SnowflakeCredentialState:
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
         :param pulumi.Input[_builtins.bool] is_active: Whether the Snowflake credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[_builtins.str] password: The password for the Snowflake account
-        :param pulumi.Input[_builtins.str] private_key: The private key for the Snowflake account
-        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase for the private key
+        :param pulumi.Input[_builtins.str] password: The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        :param pulumi.Input[_builtins.str] private_key: The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_passphrase_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_passphrase_wo_version: Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Snowflake credential in
         :param pulumi.Input[_builtins.str] role: The role to assume
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
@@ -277,10 +394,22 @@ class _SnowflakeCredentialState:
             pulumi.set(__self__, "num_threads", num_threads)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if private_key_passphrase is not None:
             pulumi.set(__self__, "private_key_passphrase", private_key_passphrase)
+        if private_key_passphrase_wo is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo", private_key_passphrase_wo)
+        if private_key_passphrase_wo_version is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo_version", private_key_passphrase_wo_version)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if role is not None:
@@ -358,7 +487,7 @@ class _SnowflakeCredentialState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for the Snowflake account
+        The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
@@ -367,10 +496,35 @@ class _SnowflakeCredentialState:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The private key for the Snowflake account
+        The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
@@ -382,13 +536,63 @@ class _SnowflakeCredentialState:
     @pulumi.getter(name="privateKeyPassphrase")
     def private_key_passphrase(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The passphrase for the private key
+        The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key_passphrase")
 
     @private_key_passphrase.setter
     def private_key_passphrase(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "private_key_passphrase", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWo")
+    def private_key_passphrase_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo")
+
+    @private_key_passphrase_wo.setter
+    def private_key_passphrase_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_passphrase_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWoVersion")
+    def private_key_passphrase_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo_version")
+
+    @private_key_passphrase_wo_version.setter
+    def private_key_passphrase_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_passphrase_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -474,8 +678,14 @@ class SnowflakeCredential(pulumi.CustomResource):
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
@@ -485,21 +695,6 @@ class SnowflakeCredential(pulumi.CustomResource):
                  __props__=None):
         """
         Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        prod_credential = dbtcloud.SnowflakeCredential("prod_credential",
-            project_id=dbt_project["id"],
-            auth_type="password",
-            num_threads=16,
-            schema="SCHEMA",
-            user="user",
-            password="password")
-        ```
 
         ## Import
 
@@ -528,9 +723,18 @@ class SnowflakeCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
         :param pulumi.Input[_builtins.bool] is_active: Whether the Snowflake credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[_builtins.str] password: The password for the Snowflake account
-        :param pulumi.Input[_builtins.str] private_key: The private key for the Snowflake account
-        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase for the private key
+        :param pulumi.Input[_builtins.str] password: The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        :param pulumi.Input[_builtins.str] private_key: The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_passphrase_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_passphrase_wo_version: Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Snowflake credential in
         :param pulumi.Input[_builtins.str] role: The role to assume
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
@@ -546,21 +750,6 @@ class SnowflakeCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        prod_credential = dbtcloud.SnowflakeCredential("prod_credential",
-            project_id=dbt_project["id"],
-            auth_type="password",
-            num_threads=16,
-            schema="SCHEMA",
-            user="user",
-            password="password")
-        ```
 
         ## Import
 
@@ -603,8 +792,14 @@ class SnowflakeCredential(pulumi.CustomResource):
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
@@ -629,8 +824,14 @@ class SnowflakeCredential(pulumi.CustomResource):
                 raise TypeError("Missing required property 'num_threads'")
             __props__.__dict__["num_threads"] = num_threads
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             __props__.__dict__["private_key_passphrase"] = None if private_key_passphrase is None else pulumi.Output.secret(private_key_passphrase)
+            __props__.__dict__["private_key_passphrase_wo"] = None if private_key_passphrase_wo is None else pulumi.Output.secret(private_key_passphrase_wo)
+            __props__.__dict__["private_key_passphrase_wo_version"] = private_key_passphrase_wo_version
+            __props__.__dict__["private_key_wo"] = None if private_key_wo is None else pulumi.Output.secret(private_key_wo)
+            __props__.__dict__["private_key_wo_version"] = private_key_wo_version
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -640,7 +841,7 @@ class SnowflakeCredential(pulumi.CustomResource):
             __props__.__dict__["user"] = user
             __props__.__dict__["warehouse"] = warehouse
             __props__.__dict__["credential_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "privateKey", "privateKeyPassphrase"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo", "privateKey", "privateKeyPassphrase", "privateKeyPassphraseWo", "privateKeyWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SnowflakeCredential, __self__).__init__(
             'dbtcloud:index/snowflakeCredential:SnowflakeCredential',
@@ -658,8 +859,14 @@ class SnowflakeCredential(pulumi.CustomResource):
             is_active: Optional[pulumi.Input[_builtins.bool]] = None,
             num_threads: Optional[pulumi.Input[_builtins.int]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
             private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+            private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             project_id: Optional[pulumi.Input[_builtins.int]] = None,
             role: Optional[pulumi.Input[_builtins.str]] = None,
             schema: Optional[pulumi.Input[_builtins.str]] = None,
@@ -678,9 +885,18 @@ class SnowflakeCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
         :param pulumi.Input[_builtins.bool] is_active: Whether the Snowflake credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
-        :param pulumi.Input[_builtins.str] password: The password for the Snowflake account
-        :param pulumi.Input[_builtins.str] private_key: The private key for the Snowflake account
-        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase for the private key
+        :param pulumi.Input[_builtins.str] password: The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        :param pulumi.Input[_builtins.str] private_key: The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_passphrase_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_passphrase_wo_version: Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Snowflake credential in
         :param pulumi.Input[_builtins.str] role: The role to assume
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
@@ -698,8 +914,14 @@ class SnowflakeCredential(pulumi.CustomResource):
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["num_threads"] = num_threads
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["private_key_passphrase"] = private_key_passphrase
+        __props__.__dict__["private_key_passphrase_wo"] = private_key_passphrase_wo
+        __props__.__dict__["private_key_passphrase_wo_version"] = private_key_passphrase_wo_version
+        __props__.__dict__["private_key_wo"] = private_key_wo
+        __props__.__dict__["private_key_wo_version"] = private_key_wo_version
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["role"] = role
         __props__.__dict__["schema"] = schema
@@ -752,15 +974,32 @@ class SnowflakeCredential(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[_builtins.str]:
         """
-        The password for the Snowflake account
+        The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[_builtins.str]:
         """
-        The private key for the Snowflake account
+        The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
@@ -768,9 +1007,43 @@ class SnowflakeCredential(pulumi.CustomResource):
     @pulumi.getter(name="privateKeyPassphrase")
     def private_key_passphrase(self) -> pulumi.Output[_builtins.str]:
         """
-        The passphrase for the private key
+        The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key_passphrase")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWo")
+    def private_key_passphrase_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWoVersion")
+    def private_key_passphrase_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

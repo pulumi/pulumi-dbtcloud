@@ -40,9 +40,18 @@ export class TeradataCredential extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
-     * The password for the Teradata account
+     * The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    declare public readonly password: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * Project ID to create the Teradata/Trino credential in
      */
@@ -75,15 +84,14 @@ export class TeradataCredential extends pulumi.CustomResource {
             const state = argsOrState as TeradataCredentialState | undefined;
             resourceInputs["credentialId"] = state?.credentialId;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["schema"] = state?.schema;
             resourceInputs["threads"] = state?.threads;
             resourceInputs["user"] = state?.user;
         } else {
             const args = argsOrState as TeradataCredentialArgs | undefined;
-            if (args?.password === undefined && !opts.urn) {
-                throw new Error("Missing required property 'password'");
-            }
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -94,6 +102,8 @@ export class TeradataCredential extends pulumi.CustomResource {
                 throw new Error("Missing required property 'user'");
             }
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["schema"] = args?.schema;
             resourceInputs["threads"] = args?.threads;
@@ -101,7 +111,7 @@ export class TeradataCredential extends pulumi.CustomResource {
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(TeradataCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -116,9 +126,18 @@ export interface TeradataCredentialState {
      */
     credentialId?: pulumi.Input<number>;
     /**
-     * The password for the Teradata account
+     * The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Teradata/Trino credential in
      */
@@ -142,9 +161,18 @@ export interface TeradataCredentialState {
  */
 export interface TeradataCredentialArgs {
     /**
-     * The password for the Teradata account
+     * The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Teradata/Trino credential in
      */

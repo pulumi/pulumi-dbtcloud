@@ -14,34 +14,6 @@ import (
 
 // Apache Spark credential resource
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.NewSparkCredential(ctx, "my_spark_cred", &dbtcloud.SparkCredentialArgs{
-//				ProjectId: pulumi.Any(dbtProject.Id),
-//				Token:     pulumi.String("abcdefgh"),
-//				Schema:    pulumi.String("my_schema"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -74,8 +46,13 @@ type SparkCredential struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringOutput `pulumi:"targetName"`
-	// Token for Apache Spark user
-	Token pulumi.StringOutput `pulumi:"token"`
+	// Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrOutput `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrOutput `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrOutput `pulumi:"tokenWoVersion"`
 }
 
 // NewSparkCredential registers a new resource with the given unique name, arguments, and options.
@@ -91,14 +68,15 @@ func NewSparkCredential(ctx *pulumi.Context,
 	if args.Schema == nil {
 		return nil, errors.New("invalid value for required argument 'Schema'")
 	}
-	if args.Token == nil {
-		return nil, errors.New("invalid value for required argument 'Token'")
-	}
 	if args.Token != nil {
-		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringInput)
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	if args.TokenWo != nil {
+		args.TokenWo = pulumi.ToSecret(args.TokenWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"token",
+		"tokenWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -134,8 +112,13 @@ type sparkCredentialState struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName *string `pulumi:"targetName"`
-	// Token for Apache Spark user
+	// Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
 	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 type SparkCredentialState struct {
@@ -149,8 +132,13 @@ type SparkCredentialState struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringPtrInput
-	// Token for Apache Spark user
+	// Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
 	Token pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (SparkCredentialState) ElementType() reflect.Type {
@@ -166,8 +154,13 @@ type sparkCredentialArgs struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName *string `pulumi:"targetName"`
-	// Token for Apache Spark user
-	Token string `pulumi:"token"`
+	// Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
+	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 // The set of arguments for constructing a SparkCredential resource.
@@ -180,8 +173,13 @@ type SparkCredentialArgs struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringPtrInput
-	// Token for Apache Spark user
-	Token pulumi.StringInput
+	// Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (SparkCredentialArgs) ElementType() reflect.Type {
@@ -293,9 +291,20 @@ func (o SparkCredentialOutput) TargetName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SparkCredential) pulumi.StringOutput { return v.TargetName }).(pulumi.StringOutput)
 }
 
-// Token for Apache Spark user
-func (o SparkCredentialOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *SparkCredential) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+// Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
+func (o SparkCredentialOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SparkCredential) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+func (o SparkCredentialOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SparkCredential) pulumi.StringPtrOutput { return v.TokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+func (o SparkCredentialOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SparkCredential) pulumi.IntPtrOutput { return v.TokenWoVersion }).(pulumi.IntPtrOutput)
 }
 
 type SparkCredentialArrayOutput struct{ *pulumi.OutputState }

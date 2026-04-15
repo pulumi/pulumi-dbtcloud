@@ -18,18 +18,50 @@ public final class TeradataCredentialArgs extends com.pulumi.resources.ResourceA
     public static final TeradataCredentialArgs Empty = new TeradataCredentialArgs();
 
     /**
-     * The password for the Teradata account
+     * The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
-    @Import(name="password", required=true)
-    private Output<String> password;
+    @Import(name="password")
+    private @Nullable Output<String> password;
 
     /**
-     * @return The password for the Teradata account
+     * @return The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> password() {
-        return this.password;
+    public Optional<Output<String>> password() {
+        return Optional.ofNullable(this.password);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
     }
 
     /**
@@ -96,6 +128,8 @@ public final class TeradataCredentialArgs extends com.pulumi.resources.ResourceA
 
     private TeradataCredentialArgs(TeradataCredentialArgs $) {
         this.password = $.password;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.projectId = $.projectId;
         this.schema = $.schema;
         this.threads = $.threads;
@@ -121,24 +155,68 @@ public final class TeradataCredentialArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param password The password for the Teradata account
+         * @param password The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
-        public Builder password(Output<String> password) {
+        public Builder password(@Nullable Output<String> password) {
             $.password = password;
             return this;
         }
 
         /**
-         * @param password The password for the Teradata account
+         * @param password The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**
@@ -226,9 +304,6 @@ public final class TeradataCredentialArgs extends com.pulumi.resources.ResourceA
         }
 
         public TeradataCredentialArgs build() {
-            if ($.password == null) {
-                throw new MissingRequiredPropertyException("TeradataCredentialArgs", "password");
-            }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("TeradataCredentialArgs", "projectId");
             }

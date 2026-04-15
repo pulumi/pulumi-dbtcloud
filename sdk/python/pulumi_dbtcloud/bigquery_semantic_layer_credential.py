@@ -28,10 +28,12 @@ class BigquerySemanticLayerCredentialArgs:
                  client_x509_cert_url: pulumi.Input[_builtins.str],
                  configuration: pulumi.Input['BigquerySemanticLayerCredentialConfigurationArgs'],
                  credential: pulumi.Input['BigquerySemanticLayerCredentialCredentialArgs'],
-                 private_key: pulumi.Input[_builtins.str],
                  private_key_id: pulumi.Input[_builtins.str],
                  token_uri: pulumi.Input[_builtins.str],
-                 execution_project: Optional[pulumi.Input[_builtins.str]] = None):
+                 execution_project: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a BigquerySemanticLayerCredential resource.
 
@@ -42,10 +44,13 @@ class BigquerySemanticLayerCredentialArgs:
         :param pulumi.Input[_builtins.str] client_x509_cert_url: Client X509 Cert URL for the Service Account
         :param pulumi.Input['BigquerySemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['BigquerySemanticLayerCredentialCredentialArgs'] credential: BigQuery credential details, but used in the context of the Semantic Layer.
-        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
         :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
         :param pulumi.Input[_builtins.str] execution_project: The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
+        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         """
         pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
         pulumi.set(__self__, "auth_uri", auth_uri)
@@ -54,11 +59,16 @@ class BigquerySemanticLayerCredentialArgs:
         pulumi.set(__self__, "client_x509_cert_url", client_x509_cert_url)
         pulumi.set(__self__, "configuration", configuration)
         pulumi.set(__self__, "credential", credential)
-        pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "private_key_id", private_key_id)
         pulumi.set(__self__, "token_uri", token_uri)
         if execution_project is not None:
             pulumi.set(__self__, "execution_project", execution_project)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
 
     @_builtins.property
     @pulumi.getter(name="authProviderX509CertUrl")
@@ -145,18 +155,6 @@ class BigquerySemanticLayerCredentialArgs:
         pulumi.set(self, "credential", value)
 
     @_builtins.property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Input[_builtins.str]:
-        """
-        Private Key for the Service Account
-        """
-        return pulumi.get(self, "private_key")
-
-    @private_key.setter
-    def private_key(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "private_key", value)
-
-    @_builtins.property
     @pulumi.getter(name="privateKeyId")
     def private_key_id(self) -> pulumi.Input[_builtins.str]:
         """
@@ -192,6 +190,43 @@ class BigquerySemanticLayerCredentialArgs:
     def execution_project(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "execution_project", value)
 
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Private Key for the Service Account. Consider using `private_key_wo` instead, which is not stored in state.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
+
 
 @pulumi.input_type
 class _BigquerySemanticLayerCredentialState:
@@ -206,6 +241,8 @@ class _BigquerySemanticLayerCredentialState:
                  execution_project: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  token_uri: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BigquerySemanticLayerCredential resources.
@@ -218,8 +255,11 @@ class _BigquerySemanticLayerCredentialState:
         :param pulumi.Input['BigquerySemanticLayerCredentialConfigurationArgs'] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input['BigquerySemanticLayerCredentialCredentialArgs'] credential: BigQuery credential details, but used in the context of the Semantic Layer.
         :param pulumi.Input[_builtins.str] execution_project: The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
-        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
+        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account. Consider using `private_key_wo` instead, which is not stored in state.
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
         """
         if auth_provider_x509_cert_url is not None:
@@ -242,6 +282,10 @@ class _BigquerySemanticLayerCredentialState:
             pulumi.set(__self__, "private_key", private_key)
         if private_key_id is not None:
             pulumi.set(__self__, "private_key_id", private_key_id)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if token_uri is not None:
             pulumi.set(__self__, "token_uri", token_uri)
 
@@ -345,7 +389,7 @@ class _BigquerySemanticLayerCredentialState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Private Key for the Service Account
+        Private Key for the Service Account. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
@@ -364,6 +408,31 @@ class _BigquerySemanticLayerCredentialState:
     @private_key_id.setter
     def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenUri")
@@ -394,6 +463,8 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
                  execution_project: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  token_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -438,8 +509,11 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         :param pulumi.Input[Union['BigquerySemanticLayerCredentialConfigurationArgs', 'BigquerySemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input[Union['BigquerySemanticLayerCredentialCredentialArgs', 'BigquerySemanticLayerCredentialCredentialArgsDict']] credential: BigQuery credential details, but used in the context of the Semantic Layer.
         :param pulumi.Input[_builtins.str] execution_project: The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
-        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
+        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account. Consider using `private_key_wo` instead, which is not stored in state.
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
         """
         ...
@@ -505,6 +579,8 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
                  execution_project: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  token_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -537,16 +613,16 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
                 raise TypeError("Missing required property 'credential'")
             __props__.__dict__["credential"] = credential
             __props__.__dict__["execution_project"] = execution_project
-            if private_key is None and not opts.urn:
-                raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             if private_key_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_key_id'")
             __props__.__dict__["private_key_id"] = private_key_id
+            __props__.__dict__["private_key_wo"] = None if private_key_wo is None else pulumi.Output.secret(private_key_wo)
+            __props__.__dict__["private_key_wo_version"] = private_key_wo_version
             if token_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'token_uri'")
             __props__.__dict__["token_uri"] = token_uri
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey", "privateKeyWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(BigquerySemanticLayerCredential, __self__).__init__(
             'dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential',
@@ -568,6 +644,8 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
             execution_project: Optional[pulumi.Input[_builtins.str]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
             private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             token_uri: Optional[pulumi.Input[_builtins.str]] = None) -> 'BigquerySemanticLayerCredential':
         """
         Get an existing BigquerySemanticLayerCredential resource's state with the given name, id, and optional extra
@@ -584,8 +662,11 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         :param pulumi.Input[Union['BigquerySemanticLayerCredentialConfigurationArgs', 'BigquerySemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
         :param pulumi.Input[Union['BigquerySemanticLayerCredentialCredentialArgs', 'BigquerySemanticLayerCredentialCredentialArgsDict']] credential: BigQuery credential details, but used in the context of the Semantic Layer.
         :param pulumi.Input[_builtins.str] execution_project: The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
-        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account
+        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account. Consider using `private_key_wo` instead, which is not stored in state.
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] token_uri: Token URI for the Service Account
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -602,6 +683,8 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         __props__.__dict__["execution_project"] = execution_project
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["private_key_id"] = private_key_id
+        __props__.__dict__["private_key_wo"] = private_key_wo
+        __props__.__dict__["private_key_wo_version"] = private_key_wo_version
         __props__.__dict__["token_uri"] = token_uri
         return BigquerySemanticLayerCredential(resource_name, opts=opts, __props__=__props__)
 
@@ -671,9 +754,9 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Output[_builtins.str]:
+    def private_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Private Key for the Service Account
+        Private Key for the Service Account. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
@@ -684,6 +767,23 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         Private Key ID for the Service Account
         """
         return pulumi.get(self, "private_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="tokenUri")

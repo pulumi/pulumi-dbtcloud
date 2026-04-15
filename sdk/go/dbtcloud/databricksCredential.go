@@ -14,35 +14,6 @@ import (
 
 // Databricks credential resource
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.NewDatabricksCredential(ctx, "my_databricks_cred", &dbtcloud.DatabricksCredentialArgs{
-//				ProjectId:   pulumi.Any(dbtProject.Id),
-//				Token:       pulumi.String("abcdefgh"),
-//				Schema:      pulumi.String("my_schema"),
-//				AdapterType: pulumi.String("databricks"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -83,8 +54,13 @@ type DatabricksCredential struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringOutput `pulumi:"targetName"`
-	// Token for Databricks user
-	Token pulumi.StringOutput `pulumi:"token"`
+	// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrOutput `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrOutput `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrOutput `pulumi:"tokenWoVersion"`
 }
 
 // NewDatabricksCredential registers a new resource with the given unique name, arguments, and options.
@@ -97,14 +73,15 @@ func NewDatabricksCredential(ctx *pulumi.Context,
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
-	if args.Token == nil {
-		return nil, errors.New("invalid value for required argument 'Token'")
-	}
 	if args.Token != nil {
-		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringInput)
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	if args.TokenWo != nil {
+		args.TokenWo = pulumi.ToSecret(args.TokenWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"token",
+		"tokenWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -148,8 +125,13 @@ type databricksCredentialState struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName *string `pulumi:"targetName"`
-	// Token for Databricks user
+	// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
 	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 type DatabricksCredentialState struct {
@@ -171,8 +153,13 @@ type DatabricksCredentialState struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringPtrInput
-	// Token for Databricks user
+	// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
 	Token pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (DatabricksCredentialState) ElementType() reflect.Type {
@@ -196,8 +183,13 @@ type databricksCredentialArgs struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName *string `pulumi:"targetName"`
-	// Token for Databricks user
-	Token string `pulumi:"token"`
+	// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
+	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 // The set of arguments for constructing a DatabricksCredential resource.
@@ -218,8 +210,13 @@ type DatabricksCredentialArgs struct {
 	//
 	// Deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
 	TargetName pulumi.StringPtrInput
-	// Token for Databricks user
-	Token pulumi.StringInput
+	// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (DatabricksCredentialArgs) ElementType() reflect.Type {
@@ -348,9 +345,20 @@ func (o DatabricksCredentialOutput) TargetName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabricksCredential) pulumi.StringOutput { return v.TargetName }).(pulumi.StringOutput)
 }
 
-// Token for Databricks user
-func (o DatabricksCredentialOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *DatabricksCredential) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+// Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
+func (o DatabricksCredentialOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksCredential) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+func (o DatabricksCredentialOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabricksCredential) pulumi.StringPtrOutput { return v.TokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+func (o DatabricksCredentialOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabricksCredential) pulumi.IntPtrOutput { return v.TokenWoVersion }).(pulumi.IntPtrOutput)
 }
 
 type DatabricksCredentialArrayOutput struct{ *pulumi.OutputState }

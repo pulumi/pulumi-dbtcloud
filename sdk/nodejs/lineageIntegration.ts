@@ -9,25 +9,6 @@ import * as utilities from "./utilities";
  *
  * This resource requires having an environment tagged as production already created for you project.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * // the resource can only be configured when a Prod environment has been set
- * // so, you might want to explicitly set the dependency on your Prod environment resource
- * const myLineage = new dbtcloud.LineageIntegration("my_lineage", {
- *     projectId: myProject.id,
- *     host: "my.host.com",
- *     siteId: "mysiteid",
- *     tokenName: "my-token-name",
- *     token: "my-sensitive-token",
- * }, {
- *     dependsOn: [myProdEnv],
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -97,13 +78,22 @@ export class LineageIntegration extends pulumi.CustomResource {
      */
     declare public readonly siteId: pulumi.Output<string>;
     /**
-     * The secret token value to use to authenticate to the BI server
+     * The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      */
-    declare public readonly token: pulumi.Output<string>;
+    declare public readonly token: pulumi.Output<string | undefined>;
     /**
      * The token to use to authenticate to the BI server
      */
     declare public readonly tokenName: pulumi.Output<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    declare public readonly tokenWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    declare public readonly tokenWoVersion: pulumi.Output<number | undefined>;
 
     /**
      * Create a LineageIntegration resource with the given unique name, arguments, and options.
@@ -125,6 +115,8 @@ export class LineageIntegration extends pulumi.CustomResource {
             resourceInputs["siteId"] = state?.siteId;
             resourceInputs["token"] = state?.token;
             resourceInputs["tokenName"] = state?.tokenName;
+            resourceInputs["tokenWo"] = state?.tokenWo;
+            resourceInputs["tokenWoVersion"] = state?.tokenWoVersion;
         } else {
             const args = argsOrState as LineageIntegrationArgs | undefined;
             if (args?.host === undefined && !opts.urn) {
@@ -136,9 +128,6 @@ export class LineageIntegration extends pulumi.CustomResource {
             if (args?.siteId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'siteId'");
             }
-            if (args?.token === undefined && !opts.urn) {
-                throw new Error("Missing required property 'token'");
-            }
             if (args?.tokenName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tokenName'");
             }
@@ -147,11 +136,13 @@ export class LineageIntegration extends pulumi.CustomResource {
             resourceInputs["siteId"] = args?.siteId;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["tokenName"] = args?.tokenName;
+            resourceInputs["tokenWo"] = args?.tokenWo ? pulumi.secret(args.tokenWo) : undefined;
+            resourceInputs["tokenWoVersion"] = args?.tokenWoVersion;
             resourceInputs["lineageIntegrationId"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["token"] };
+        const secretOpts = { additionalSecretOutputs: ["token", "tokenWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(LineageIntegration.__pulumiType, name, resourceInputs, opts);
     }
@@ -182,13 +173,22 @@ export interface LineageIntegrationState {
      */
     siteId?: pulumi.Input<string>;
     /**
-     * The secret token value to use to authenticate to the BI server
+     * The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      */
     token?: pulumi.Input<string>;
     /**
      * The token to use to authenticate to the BI server
      */
     tokenName?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }
 
 /**
@@ -208,11 +208,20 @@ export interface LineageIntegrationArgs {
      */
     siteId: pulumi.Input<string>;
     /**
-     * The secret token value to use to authenticate to the BI server
+     * The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * The token to use to authenticate to the BI server
      */
     tokenName: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }

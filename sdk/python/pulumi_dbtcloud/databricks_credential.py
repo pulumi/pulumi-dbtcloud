@@ -20,25 +20,29 @@ __all__ = ['DatabricksCredentialArgs', 'DatabricksCredential']
 class DatabricksCredentialArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
-                 token: pulumi.Input[_builtins.str],
                  adapter_type: Optional[pulumi.Input[_builtins.str]] = None,
                  catalog: Optional[pulumi.Input[_builtins.str]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a DatabricksCredential resource.
 
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Databricks credential in
-        :param pulumi.Input[_builtins.str] token: Token for Databricks user
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.str] catalog: The catalog where to create models (only for the databricks adapter)
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param pulumi.Input[_builtins.str] target_name: Target name
+        :param pulumi.Input[_builtins.str] token: Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "token", token)
         if adapter_type is not None:
             warnings.warn("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""", DeprecationWarning)
             pulumi.log.warn("""adapter_type is deprecated: This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
@@ -55,6 +59,12 @@ class DatabricksCredentialArgs:
             pulumi.log.warn("""target_name is deprecated: This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
         if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -67,18 +77,6 @@ class DatabricksCredentialArgs:
     @project_id.setter
     def project_id(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "project_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def token(self) -> pulumi.Input[_builtins.str]:
-        """
-        Token for Databricks user
-        """
-        return pulumi.get(self, "token")
-
-    @token.setter
-    def token(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="adapterType")
@@ -142,6 +140,43 @@ class DatabricksCredentialArgs:
     def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
+
 
 @pulumi.input_type
 class _DatabricksCredentialState:
@@ -153,7 +188,9 @@ class _DatabricksCredentialState:
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None):
+                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering DatabricksCredential resources.
 
@@ -164,7 +201,10 @@ class _DatabricksCredentialState:
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param pulumi.Input[_builtins.str] target_name: Target name
-        :param pulumi.Input[_builtins.str] token: Token for Databricks user
+        :param pulumi.Input[_builtins.str] token: Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         if adapter_type is not None:
             warnings.warn("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""", DeprecationWarning)
@@ -188,6 +228,10 @@ class _DatabricksCredentialState:
             pulumi.set(__self__, "target_name", target_name)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
 
     @_builtins.property
     @pulumi.getter(name="adapterType")
@@ -279,13 +323,38 @@ class _DatabricksCredentialState:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Token for Databricks user
+        Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "token")
 
     @token.setter
     def token(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
 
 
 @pulumi.type_token("dbtcloud:index/databricksCredential:DatabricksCredential")
@@ -301,22 +370,11 @@ class DatabricksCredential(pulumi.CustomResource):
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
         Databricks credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
-            project_id=dbt_project["id"],
-            token="abcdefgh",
-            schema="my_schema",
-            adapter_type="databricks")
-        ```
 
         ## Import
 
@@ -347,7 +405,10 @@ class DatabricksCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param pulumi.Input[_builtins.str] target_name: Target name
-        :param pulumi.Input[_builtins.str] token: Token for Databricks user
+        :param pulumi.Input[_builtins.str] token: Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         ...
     @overload
@@ -357,19 +418,6 @@ class DatabricksCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Databricks credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
-            project_id=dbt_project["id"],
-            token="abcdefgh",
-            schema="my_schema",
-            adapter_type="databricks")
-        ```
 
         ## Import
 
@@ -414,6 +462,8 @@ class DatabricksCredential(pulumi.CustomResource):
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -431,11 +481,11 @@ class DatabricksCredential(pulumi.CustomResource):
             __props__.__dict__["schema"] = schema
             __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
             __props__.__dict__["target_name"] = target_name
-            if token is None and not opts.urn:
-                raise TypeError("Missing required property 'token'")
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+            __props__.__dict__["token_wo"] = None if token_wo is None else pulumi.Output.secret(token_wo)
+            __props__.__dict__["token_wo_version"] = token_wo_version
             __props__.__dict__["credential_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token", "tokenWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DatabricksCredential, __self__).__init__(
             'dbtcloud:index/databricksCredential:DatabricksCredential',
@@ -454,7 +504,9 @@ class DatabricksCredential(pulumi.CustomResource):
             schema: Optional[pulumi.Input[_builtins.str]] = None,
             semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
             target_name: Optional[pulumi.Input[_builtins.str]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None) -> 'DatabricksCredential':
+            token: Optional[pulumi.Input[_builtins.str]] = None,
+            token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            token_wo_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'DatabricksCredential':
         """
         Get an existing DatabricksCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -469,7 +521,10 @@ class DatabricksCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param pulumi.Input[_builtins.str] target_name: Target name
-        :param pulumi.Input[_builtins.str] token: Token for Databricks user
+        :param pulumi.Input[_builtins.str] token: Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -483,6 +538,8 @@ class DatabricksCredential(pulumi.CustomResource):
         __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
         __props__.__dict__["target_name"] = target_name
         __props__.__dict__["token"] = token
+        __props__.__dict__["token_wo"] = token_wo
+        __props__.__dict__["token_wo_version"] = token_wo_version
         return DatabricksCredential(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -545,9 +602,26 @@ class DatabricksCredential(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> pulumi.Output[_builtins.str]:
+    def token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Token for Databricks user
+        Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
 

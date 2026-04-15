@@ -25,7 +25,11 @@ class SynapseCredentialArgs:
                  schema: pulumi.Input[_builtins.str],
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  schema_authorization: Optional[pulumi.Input[_builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  user: Optional[pulumi.Input[_builtins.str]] = None):
@@ -37,8 +41,14 @@ class SynapseCredentialArgs:
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Synapse credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create the dbt models
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-        :param pulumi.Input[_builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass
+        :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `client_secret_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.str] schema_authorization: Optionally set this to the principal who should own the schemas created by dbt
         :param pulumi.Input[_builtins.str] tenant_id: The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
         :param pulumi.Input[_builtins.str] user: The username of the Synapse account to connect to. Only used when connection with AD user/pass
@@ -51,8 +61,16 @@ class SynapseCredentialArgs:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if schema_authorization is not None:
             pulumi.set(__self__, "schema_authorization", schema_authorization)
         if tenant_id is not None:
@@ -124,7 +142,7 @@ class SynapseCredentialArgs:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+        The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `client_secret_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_secret")
 
@@ -133,16 +151,66 @@ class SynapseCredentialArgs:
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for the account to connect to. Only used when connection with AD user/pass
+        The password for the account to connect to. Only used when connection with AD user/pass. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaAuthorization")
@@ -188,8 +256,12 @@ class _SynapseCredentialState:
                  authentication: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  credential_id: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  schema_authorization: Optional[pulumi.Input[_builtins.str]] = None,
@@ -201,9 +273,15 @@ class _SynapseCredentialState:
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (synapse)
         :param pulumi.Input[_builtins.str] authentication: Authentication type (SQL, ActiveDirectoryPassword, ServicePrincipal)
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `client_secret_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
-        :param pulumi.Input[_builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass
+        :param pulumi.Input[_builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Synapse credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create the dbt models
         :param pulumi.Input[_builtins.str] schema_authorization: Optionally set this to the principal who should own the schemas created by dbt
@@ -218,10 +296,18 @@ class _SynapseCredentialState:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if credential_id is not None:
             pulumi.set(__self__, "credential_id", credential_id)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if schema is not None:
@@ -273,13 +359,38 @@ class _SynapseCredentialState:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+        The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `client_secret_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
@@ -297,13 +408,38 @@ class _SynapseCredentialState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for the account to connect to. Only used when connection with AD user/pass
+        The password for the account to connect to. Only used when connection with AD user/pass. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -376,7 +512,11 @@ class SynapseCredential(pulumi.CustomResource):
                  authentication: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  schema_authorization: Optional[pulumi.Input[_builtins.str]] = None,
@@ -385,39 +525,6 @@ class SynapseCredential(pulumi.CustomResource):
                  __props__=None):
         """
         Synapse credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        # when using sql authentication
-        my_synapse_cred_sql = dbtcloud.SynapseCredential("my_synapse_cred_sql",
-            project_id=dbt_project["id"],
-            authentication="sql",
-            schema="my_schema",
-            user="my_user",
-            password="my_password",
-            schema_authorization="abcd")
-        # when using AD authentication
-        my_synapse_cred_ad = dbtcloud.SynapseCredential("my_synapse_cred_ad",
-            project_id=dbt_project["id"],
-            authentication="ActiveDirectoryPassword",
-            schema="my_schema",
-            user="my_user",
-            password="my_password",
-            schema_authorization="abcd")
-        # when using service principal authentication
-        my_synapse_cred_serv_princ = dbtcloud.SynapseCredential("my_synapse_cred_serv_princ",
-            project_id=dbt_project["id"],
-            authentication="ServicePrincipal",
-            schema="my_schema",
-            client_id="my_client_id",
-            tenant_id="my_tenant_id",
-            client_secret="my_secret",
-            schema_authorization="abcd")
-        ```
 
         ## Import
 
@@ -445,8 +552,14 @@ class SynapseCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (synapse)
         :param pulumi.Input[_builtins.str] authentication: Authentication type (SQL, ActiveDirectoryPassword, ServicePrincipal)
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-        :param pulumi.Input[_builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass
+        :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `client_secret_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Synapse credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create the dbt models
         :param pulumi.Input[_builtins.str] schema_authorization: Optionally set this to the principal who should own the schemas created by dbt
@@ -461,39 +574,6 @@ class SynapseCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Synapse credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        # when using sql authentication
-        my_synapse_cred_sql = dbtcloud.SynapseCredential("my_synapse_cred_sql",
-            project_id=dbt_project["id"],
-            authentication="sql",
-            schema="my_schema",
-            user="my_user",
-            password="my_password",
-            schema_authorization="abcd")
-        # when using AD authentication
-        my_synapse_cred_ad = dbtcloud.SynapseCredential("my_synapse_cred_ad",
-            project_id=dbt_project["id"],
-            authentication="ActiveDirectoryPassword",
-            schema="my_schema",
-            user="my_user",
-            password="my_password",
-            schema_authorization="abcd")
-        # when using service principal authentication
-        my_synapse_cred_serv_princ = dbtcloud.SynapseCredential("my_synapse_cred_serv_princ",
-            project_id=dbt_project["id"],
-            authentication="ServicePrincipal",
-            schema="my_schema",
-            client_id="my_client_id",
-            tenant_id="my_tenant_id",
-            client_secret="my_secret",
-            schema_authorization="abcd")
-        ```
 
         ## Import
 
@@ -535,7 +615,11 @@ class SynapseCredential(pulumi.CustomResource):
                  authentication: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  schema_authorization: Optional[pulumi.Input[_builtins.str]] = None,
@@ -558,7 +642,11 @@ class SynapseCredential(pulumi.CustomResource):
             __props__.__dict__["authentication"] = authentication
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+            __props__.__dict__["client_secret_wo"] = None if client_secret_wo is None else pulumi.Output.secret(client_secret_wo)
+            __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -569,7 +657,7 @@ class SynapseCredential(pulumi.CustomResource):
             __props__.__dict__["tenant_id"] = tenant_id
             __props__.__dict__["user"] = user
             __props__.__dict__["credential_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret", "password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret", "clientSecretWo", "password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SynapseCredential, __self__).__init__(
             'dbtcloud:index/synapseCredential:SynapseCredential',
@@ -585,8 +673,12 @@ class SynapseCredential(pulumi.CustomResource):
             authentication: Optional[pulumi.Input[_builtins.str]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             credential_id: Optional[pulumi.Input[_builtins.int]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             project_id: Optional[pulumi.Input[_builtins.int]] = None,
             schema: Optional[pulumi.Input[_builtins.str]] = None,
             schema_authorization: Optional[pulumi.Input[_builtins.str]] = None,
@@ -602,9 +694,15 @@ class SynapseCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter (synapse)
         :param pulumi.Input[_builtins.str] authentication: Authentication type (SQL, ActiveDirectoryPassword, ServicePrincipal)
         :param pulumi.Input[_builtins.str] client_id: The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `client_secret_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
-        :param pulumi.Input[_builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass
+        :param pulumi.Input[_builtins.str] password: The password for the account to connect to. Only used when connection with AD user/pass. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Synapse credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create the dbt models
         :param pulumi.Input[_builtins.str] schema_authorization: Optionally set this to the principal who should own the schemas created by dbt
@@ -619,8 +717,12 @@ class SynapseCredential(pulumi.CustomResource):
         __props__.__dict__["authentication"] = authentication
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
+        __props__.__dict__["client_secret_wo"] = client_secret_wo
+        __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
         __props__.__dict__["credential_id"] = credential_id
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["schema"] = schema
         __props__.__dict__["schema_authorization"] = schema_authorization
@@ -656,9 +758,26 @@ class SynapseCredential(pulumi.CustomResource):
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Output[_builtins.str]:
         """
-        The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+        The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `client_secret_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
@@ -672,9 +791,26 @@ class SynapseCredential(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[_builtins.str]:
         """
-        The password for the account to connect to. Only used when connection with AD user/pass
+        The password for the account to connect to. Only used when connection with AD user/pass. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

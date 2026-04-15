@@ -341,6 +341,10 @@ class DatabricksSemanticLayerCredentialCredential(dict):
             suggest = "semantic_layer_credential"
         elif key == "targetName":
             suggest = "target_name"
+        elif key == "tokenWo":
+            suggest = "token_wo"
+        elif key == "tokenWoVersion":
+            suggest = "token_wo_version"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DatabricksSemanticLayerCredentialCredential. Access the value via the '{suggest}' property getter instead.")
@@ -355,17 +359,18 @@ class DatabricksSemanticLayerCredentialCredential(dict):
 
     def __init__(__self__, *,
                  project_id: _builtins.int,
-                 token: _builtins.str,
                  adapter_type: Optional[_builtins.str] = None,
                  catalog: Optional[_builtins.str] = None,
                  credential_id: Optional[_builtins.int] = None,
                  id: Optional[_builtins.str] = None,
                  schema: Optional[_builtins.str] = None,
                  semantic_layer_credential: Optional[_builtins.bool] = None,
-                 target_name: Optional[_builtins.str] = None):
+                 target_name: Optional[_builtins.str] = None,
+                 token: Optional[_builtins.str] = None,
+                 token_wo: Optional[_builtins.str] = None,
+                 token_wo_version: Optional[_builtins.int] = None):
         """
         :param _builtins.int project_id: Project ID to create the Databricks credential in
-        :param _builtins.str token: Token for Databricks user
         :param _builtins.str adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         :param _builtins.str catalog: The catalog where to create models (only for the databricks adapter)
         :param _builtins.int credential_id: The system Databricks credential ID
@@ -373,9 +378,12 @@ class DatabricksSemanticLayerCredentialCredential(dict):
         :param _builtins.str schema: The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param _builtins.bool semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         :param _builtins.str target_name: Target name
+        :param _builtins.str token: Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
+        :param _builtins.str token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        :param _builtins.int token_wo_version: Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "token", token)
         if adapter_type is not None:
             pulumi.set(__self__, "adapter_type", adapter_type)
         if catalog is not None:
@@ -390,6 +398,12 @@ class DatabricksSemanticLayerCredentialCredential(dict):
             pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
         if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -398,14 +412,6 @@ class DatabricksSemanticLayerCredentialCredential(dict):
         Project ID to create the Databricks credential in
         """
         return pulumi.get(self, "project_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def token(self) -> _builtins.str:
-        """
-        Token for Databricks user
-        """
-        return pulumi.get(self, "token")
 
     @_builtins.property
     @pulumi.getter(name="adapterType")
@@ -464,6 +470,31 @@ class DatabricksSemanticLayerCredentialCredential(dict):
         Target name
         """
         return pulumi.get(self, "target_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> Optional[_builtins.str]:
+        """
+        Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
+        """
+        return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
 
 
 @pulumi.output_type
@@ -2548,6 +2579,10 @@ class PostgresSemanticLayerCredentialCredential(dict):
             suggest = "is_active"
         elif key == "numThreads":
             suggest = "num_threads"
+        elif key == "passwordWo":
+            suggest = "password_wo"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "semanticLayerCredential":
             suggest = "semantic_layer_credential"
         elif key == "targetName":
@@ -2573,6 +2608,8 @@ class PostgresSemanticLayerCredentialCredential(dict):
                  is_active: Optional[_builtins.bool] = None,
                  num_threads: Optional[_builtins.int] = None,
                  password: Optional[_builtins.str] = None,
+                 password_wo: Optional[_builtins.str] = None,
+                 password_wo_version: Optional[_builtins.int] = None,
                  semantic_layer_credential: Optional[_builtins.bool] = None,
                  target_name: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
@@ -2584,7 +2621,10 @@ class PostgresSemanticLayerCredentialCredential(dict):
         :param _builtins.str id: The ID of this resource. Contains the project ID and the credential ID.
         :param _builtins.bool is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param _builtins.int num_threads: Number of threads to use (required for Redshift)
-        :param _builtins.str password: Password for Postgres/Redshift/AlloyDB
+        :param _builtins.str password: Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
+        :param _builtins.str password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param _builtins.int password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param _builtins.bool semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param _builtins.str target_name: Default schema name
         :param _builtins.str type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
@@ -2603,6 +2643,10 @@ class PostgresSemanticLayerCredentialCredential(dict):
             pulumi.set(__self__, "num_threads", num_threads)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if semantic_layer_credential is not None:
             pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
         if target_name is not None:
@@ -2670,9 +2714,26 @@ class PostgresSemanticLayerCredentialCredential(dict):
     @pulumi.getter
     def password(self) -> Optional[_builtins.str]:
         """
-        Password for Postgres/Redshift/AlloyDB
+        Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="semanticLayerCredential")
@@ -2773,6 +2834,10 @@ class RedshiftSemanticLayerCredentialCredential(dict):
             suggest = "credential_id"
         elif key == "isActive":
             suggest = "is_active"
+        elif key == "passwordWo":
+            suggest = "password_wo"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in RedshiftSemanticLayerCredentialCredential. Access the value via the '{suggest}' property getter instead.")
@@ -2793,6 +2858,8 @@ class RedshiftSemanticLayerCredentialCredential(dict):
                  id: Optional[_builtins.str] = None,
                  is_active: Optional[_builtins.bool] = None,
                  password: Optional[_builtins.str] = None,
+                 password_wo: Optional[_builtins.str] = None,
+                 password_wo_version: Optional[_builtins.int] = None,
                  username: Optional[_builtins.str] = None):
         """
         :param _builtins.str default_schema: Default schema name
@@ -2801,7 +2868,10 @@ class RedshiftSemanticLayerCredentialCredential(dict):
         :param _builtins.int credential_id: The internal credential ID
         :param _builtins.str id: The ID of this resource. Contains the project ID and the credential ID.
         :param _builtins.bool is_active: Whether the Redshift credential is active
-        :param _builtins.str password: The password for the Redshift account
+        :param _builtins.str password: The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
+        :param _builtins.str password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param _builtins.int password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param _builtins.str username: The username for the Redshift account.
         """
         pulumi.set(__self__, "default_schema", default_schema)
@@ -2815,6 +2885,10 @@ class RedshiftSemanticLayerCredentialCredential(dict):
             pulumi.set(__self__, "is_active", is_active)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -2870,9 +2944,26 @@ class RedshiftSemanticLayerCredentialCredential(dict):
     @pulumi.getter
     def password(self) -> Optional[_builtins.str]:
         """
-        The password for the Redshift account
+        The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter
@@ -3209,10 +3300,22 @@ class SnowflakeSemanticLayerCredentialCredential(dict):
             suggest = "credential_id"
         elif key == "isActive":
             suggest = "is_active"
+        elif key == "passwordWo":
+            suggest = "password_wo"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "privateKey":
             suggest = "private_key"
         elif key == "privateKeyPassphrase":
             suggest = "private_key_passphrase"
+        elif key == "privateKeyPassphraseWo":
+            suggest = "private_key_passphrase_wo"
+        elif key == "privateKeyPassphraseWoVersion":
+            suggest = "private_key_passphrase_wo_version"
+        elif key == "privateKeyWo":
+            suggest = "private_key_wo"
+        elif key == "privateKeyWoVersion":
+            suggest = "private_key_wo_version"
         elif key == "semanticLayerCredential":
             suggest = "semantic_layer_credential"
 
@@ -3236,8 +3339,14 @@ class SnowflakeSemanticLayerCredentialCredential(dict):
                  id: Optional[_builtins.str] = None,
                  is_active: Optional[_builtins.bool] = None,
                  password: Optional[_builtins.str] = None,
+                 password_wo: Optional[_builtins.str] = None,
+                 password_wo_version: Optional[_builtins.int] = None,
                  private_key: Optional[_builtins.str] = None,
                  private_key_passphrase: Optional[_builtins.str] = None,
+                 private_key_passphrase_wo: Optional[_builtins.str] = None,
+                 private_key_passphrase_wo_version: Optional[_builtins.int] = None,
+                 private_key_wo: Optional[_builtins.str] = None,
+                 private_key_wo_version: Optional[_builtins.int] = None,
                  role: Optional[_builtins.str] = None,
                  schema: Optional[_builtins.str] = None,
                  semantic_layer_credential: Optional[_builtins.bool] = None,
@@ -3251,9 +3360,18 @@ class SnowflakeSemanticLayerCredentialCredential(dict):
         :param _builtins.str database: The catalog to connect use
         :param _builtins.str id: The ID of this resource. Contains the project ID and the credential ID.
         :param _builtins.bool is_active: Whether the Snowflake credential is active
-        :param _builtins.str password: The password for the Snowflake account
-        :param _builtins.str private_key: The private key for the Snowflake account
-        :param _builtins.str private_key_passphrase: The passphrase for the private key
+        :param _builtins.str password: The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
+        :param _builtins.str password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param _builtins.int password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        :param _builtins.str private_key: The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
+        :param _builtins.str private_key_passphrase: The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
+        :param _builtins.str private_key_passphrase_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        :param _builtins.int private_key_passphrase_wo_version: Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        :param _builtins.str private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param _builtins.int private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param _builtins.str role: The role to assume
         :param _builtins.str schema: The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         :param _builtins.bool semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
@@ -3273,10 +3391,22 @@ class SnowflakeSemanticLayerCredentialCredential(dict):
             pulumi.set(__self__, "is_active", is_active)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if private_key_passphrase is not None:
             pulumi.set(__self__, "private_key_passphrase", private_key_passphrase)
+        if private_key_passphrase_wo is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo", private_key_passphrase_wo)
+        if private_key_passphrase_wo_version is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo_version", private_key_passphrase_wo_version)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if schema is not None:
@@ -3348,15 +3478,32 @@ class SnowflakeSemanticLayerCredentialCredential(dict):
     @pulumi.getter
     def password(self) -> Optional[_builtins.str]:
         """
-        The password for the Snowflake account
+        The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[_builtins.str]:
         """
-        The private key for the Snowflake account
+        The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
@@ -3364,9 +3511,43 @@ class SnowflakeSemanticLayerCredentialCredential(dict):
     @pulumi.getter(name="privateKeyPassphrase")
     def private_key_passphrase(self) -> Optional[_builtins.str]:
         """
-        The passphrase for the private key
+        The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key_passphrase")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWo")
+    def private_key_passphrase_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWoVersion")
+    def private_key_passphrase_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @_builtins.property
     @pulumi.getter

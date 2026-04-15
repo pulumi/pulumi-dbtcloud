@@ -7,42 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Synapse credential resource
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * // when using sql authentication
- * const mySynapseCredSql = new dbtcloud.SynapseCredential("my_synapse_cred_sql", {
- *     projectId: dbtProject.id,
- *     authentication: "sql",
- *     schema: "my_schema",
- *     user: "my_user",
- *     password: "my_password",
- *     schemaAuthorization: "abcd",
- * });
- * // when using AD authentication
- * const mySynapseCredAd = new dbtcloud.SynapseCredential("my_synapse_cred_ad", {
- *     projectId: dbtProject.id,
- *     authentication: "ActiveDirectoryPassword",
- *     schema: "my_schema",
- *     user: "my_user",
- *     password: "my_password",
- *     schemaAuthorization: "abcd",
- * });
- * // when using service principal authentication
- * const mySynapseCredServPrinc = new dbtcloud.SynapseCredential("my_synapse_cred_serv_princ", {
- *     projectId: dbtProject.id,
- *     authentication: "ServicePrincipal",
- *     schema: "my_schema",
- *     clientId: "my_client_id",
- *     tenantId: "my_tenant_id",
- *     clientSecret: "my_secret",
- *     schemaAuthorization: "abcd",
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -104,17 +68,35 @@ export class SynapseCredential extends pulumi.CustomResource {
      */
     declare public readonly clientId: pulumi.Output<string>;
     /**
-     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      */
     declare public readonly clientSecret: pulumi.Output<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     */
+    declare public readonly clientSecretWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     */
+    declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
     /**
      * The internal credential ID
      */
     declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
-     * The password for the account to connect to. Only used when connection with AD user/pass
+     * The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      */
     declare public readonly password: pulumi.Output<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * Project ID to create the Synapse credential in
      */
@@ -153,8 +135,12 @@ export class SynapseCredential extends pulumi.CustomResource {
             resourceInputs["authentication"] = state?.authentication;
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["clientSecretWo"] = state?.clientSecretWo;
+            resourceInputs["clientSecretWoVersion"] = state?.clientSecretWoVersion;
             resourceInputs["credentialId"] = state?.credentialId;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["schema"] = state?.schema;
             resourceInputs["schemaAuthorization"] = state?.schemaAuthorization;
@@ -178,7 +164,11 @@ export class SynapseCredential extends pulumi.CustomResource {
             resourceInputs["authentication"] = args?.authentication;
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
+            resourceInputs["clientSecretWo"] = args?.clientSecretWo ? pulumi.secret(args.clientSecretWo) : undefined;
+            resourceInputs["clientSecretWoVersion"] = args?.clientSecretWoVersion;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["schema"] = args?.schema;
             resourceInputs["schemaAuthorization"] = args?.schemaAuthorization;
@@ -187,7 +177,7 @@ export class SynapseCredential extends pulumi.CustomResource {
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientSecret", "password"] };
+        const secretOpts = { additionalSecretOutputs: ["clientSecret", "clientSecretWo", "password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SynapseCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -210,17 +200,35 @@ export interface SynapseCredentialState {
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     */
+    clientSecretWo?: pulumi.Input<string>;
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     */
+    clientSecretWoVersion?: pulumi.Input<number>;
     /**
      * The internal credential ID
      */
     credentialId?: pulumi.Input<number>;
     /**
-     * The password for the account to connect to. Only used when connection with AD user/pass
+     * The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Synapse credential in
      */
@@ -260,13 +268,31 @@ export interface SynapseCredentialArgs {
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      */
     clientSecret?: pulumi.Input<string>;
     /**
-     * The password for the account to connect to. Only used when connection with AD user/pass
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     */
+    clientSecretWo?: pulumi.Input<string>;
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     */
+    clientSecretWoVersion?: pulumi.Input<number>;
+    /**
+     * The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Synapse credential in
      */
