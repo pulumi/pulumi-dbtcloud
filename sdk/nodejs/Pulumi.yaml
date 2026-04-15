@@ -1,3 +1,0 @@
-name: dbtcloud
-description: A Pulumi resource provider for dbtcloud.
-language: nodejs
