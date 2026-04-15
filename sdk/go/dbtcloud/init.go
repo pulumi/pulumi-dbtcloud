@@ -25,6 +25,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccountFeatures{}
 	case "dbtcloud:index/athenaCredential:AthenaCredential":
 		r = &AthenaCredential{}
+	case "dbtcloud:index/authProvider:AuthProvider":
+		r = &AuthProvider{}
+	case "dbtcloud:index/azureAdApplication:AzureAdApplication":
+		r = &AzureAdApplication{}
 	case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
 		r = &BigQueryCredential{}
 	case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
@@ -67,6 +71,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Notification{}
 	case "dbtcloud:index/oauthConfiguration:OauthConfiguration":
 		r = &OauthConfiguration{}
+	case "dbtcloud:index/openaiIntegration:OpenaiIntegration":
+		r = &OpenaiIntegration{}
 	case "dbtcloud:index/partialEnvironmentVariable:PartialEnvironmentVariable":
 		r = &PartialEnvironmentVariable{}
 	case "dbtcloud:index/partialLicenseMap:PartialLicenseMap":
@@ -93,6 +99,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Repository{}
 	case "dbtcloud:index/salesforceCredential:SalesforceCredential":
 		r = &SalesforceCredential{}
+	case "dbtcloud:index/scimConfig:ScimConfig":
+		r = &ScimConfig{}
+	case "dbtcloud:index/scimConfigToken:ScimConfigToken":
+		r = &ScimConfigToken{}
 	case "dbtcloud:index/scimGroupPartialPermissions:ScimGroupPartialPermissions":
 		r = &ScimGroupPartialPermissions{}
 	case "dbtcloud:index/scimGroupPermissions:ScimGroupPermissions":
@@ -160,6 +170,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/athenaCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/authProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/azureAdApplication",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -269,6 +289,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
+		"index/openaiIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
 		"index/partialEnvironmentVariable",
 		&module{version},
 	)
@@ -330,6 +355,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/salesforceCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/scimConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/scimConfigToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

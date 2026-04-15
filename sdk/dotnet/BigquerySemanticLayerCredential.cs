@@ -102,16 +102,29 @@ namespace Pulumi.DbtCloud
         public Output<string?> ExecutionProject { get; private set; } = null!;
 
         /// <summary>
-        /// Private Key for the Service Account
+        /// Private Key for the Service Account. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         [Output("privateKey")]
-        public Output<string> PrivateKey { get; private set; } = null!;
+        public Output<string?> PrivateKey { get; private set; } = null!;
 
         /// <summary>
         /// Private Key ID for the Service Account
         /// </summary>
         [Output("privateKeyId")]
         public Output<string> PrivateKeyId { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        [Output("privateKeyWo")]
+        public Output<string?> PrivateKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Output("privateKeyWoVersion")]
+        public Output<int?> PrivateKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Token URI for the Service Account
@@ -146,6 +159,7 @@ namespace Pulumi.DbtCloud
                 AdditionalSecretOutputs =
                 {
                     "privateKey",
+                    "privateKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -218,11 +232,11 @@ namespace Pulumi.DbtCloud
         [Input("executionProject")]
         public Input<string>? ExecutionProject { get; set; }
 
-        [Input("privateKey", required: true)]
+        [Input("privateKey")]
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private Key for the Service Account
+        /// Private Key for the Service Account. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -239,6 +253,29 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("privateKeyId", required: true)]
         public Input<string> PrivateKeyId { get; set; } = null!;
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Token URI for the Service Account
@@ -306,7 +343,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private Key for the Service Account
+        /// Private Key for the Service Account. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -323,6 +360,29 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("privateKeyId")]
         public Input<string>? PrivateKeyId { get; set; }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Token URI for the Service Account

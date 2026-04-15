@@ -13,46 +13,11 @@ import com.pulumi.dbtcloud.inputs.AthenaCredentialState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * Athena credential resource
- * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.AthenaCredential;
- * import com.pulumi.dbtcloud.AthenaCredentialArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new AthenaCredential("example", AthenaCredentialArgs.builder()
- *             .projectId(exampleDbtcloudProject.id())
- *             .awsAccessKeyId("your-access-key-id")
- *             .awsSecretAccessKey("your-secret-access-key")
- *             .schema("your_schema")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * 
  * ## Import
  * 
@@ -78,32 +43,92 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/athenaCredential:AthenaCredential")
 public class AthenaCredential extends com.pulumi.resources.CustomResource {
     /**
-     * AWS access key ID for Athena user
+     * AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
      * 
      */
     @Export(name="awsAccessKeyId", refs={String.class}, tree="[0]")
-    private Output<String> awsAccessKeyId;
+    private Output</* @Nullable */ String> awsAccessKeyId;
 
     /**
-     * @return AWS access key ID for Athena user
+     * @return AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> awsAccessKeyId() {
-        return this.awsAccessKeyId;
+    public Output<Optional<String>> awsAccessKeyId() {
+        return Codegen.optional(this.awsAccessKeyId);
     }
     /**
-     * AWS secret access key for Athena user
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="awsAccessKeyIdWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> awsAccessKeyIdWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> awsAccessKeyIdWo() {
+        return Codegen.optional(this.awsAccessKeyIdWo);
+    }
+    /**
+     * Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+     * 
+     */
+    @Export(name="awsAccessKeyIdWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> awsAccessKeyIdWoVersion;
+
+    /**
+     * @return Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+     * 
+     */
+    public Output<Optional<Integer>> awsAccessKeyIdWoVersion() {
+        return Codegen.optional(this.awsAccessKeyIdWoVersion);
+    }
+    /**
+     * AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
      * 
      */
     @Export(name="awsSecretAccessKey", refs={String.class}, tree="[0]")
-    private Output<String> awsSecretAccessKey;
+    private Output</* @Nullable */ String> awsSecretAccessKey;
 
     /**
-     * @return AWS secret access key for Athena user
+     * @return AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> awsSecretAccessKey() {
-        return this.awsSecretAccessKey;
+    public Output<Optional<String>> awsSecretAccessKey() {
+        return Codegen.optional(this.awsSecretAccessKey);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="awsSecretAccessKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> awsSecretAccessKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> awsSecretAccessKeyWo() {
+        return Codegen.optional(this.awsSecretAccessKeyWo);
+    }
+    /**
+     * Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+     * 
+     */
+    @Export(name="awsSecretAccessKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> awsSecretAccessKeyWoVersion;
+
+    /**
+     * @return Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+     * 
+     */
+    public Output<Optional<Integer>> awsSecretAccessKeyWoVersion() {
+        return Codegen.optional(this.awsSecretAccessKeyWoVersion);
     }
     /**
      * The internal credential ID
@@ -190,7 +215,9 @@ public class AthenaCredential extends com.pulumi.resources.CustomResource {
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
                 "awsAccessKeyId",
-                "awsSecretAccessKey"
+                "awsAccessKeyIdWo",
+                "awsSecretAccessKey",
+                "awsSecretAccessKeyWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

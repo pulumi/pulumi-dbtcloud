@@ -17,14 +17,14 @@ public final class AthenaCredentialState extends com.pulumi.resources.ResourceAr
     public static final AthenaCredentialState Empty = new AthenaCredentialState();
 
     /**
-     * AWS access key ID for Athena user
+     * AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
      * 
      */
     @Import(name="awsAccessKeyId")
     private @Nullable Output<String> awsAccessKeyId;
 
     /**
-     * @return AWS access key ID for Athena user
+     * @return AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> awsAccessKeyId() {
@@ -32,18 +32,82 @@ public final class AthenaCredentialState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * AWS secret access key for Athena user
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="awsAccessKeyIdWo")
+    private @Nullable Output<String> awsAccessKeyIdWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> awsAccessKeyIdWo() {
+        return Optional.ofNullable(this.awsAccessKeyIdWo);
+    }
+
+    /**
+     * Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+     * 
+     */
+    @Import(name="awsAccessKeyIdWoVersion")
+    private @Nullable Output<Integer> awsAccessKeyIdWoVersion;
+
+    /**
+     * @return Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+     * 
+     */
+    public Optional<Output<Integer>> awsAccessKeyIdWoVersion() {
+        return Optional.ofNullable(this.awsAccessKeyIdWoVersion);
+    }
+
+    /**
+     * AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
      * 
      */
     @Import(name="awsSecretAccessKey")
     private @Nullable Output<String> awsSecretAccessKey;
 
     /**
-     * @return AWS secret access key for Athena user
+     * @return AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> awsSecretAccessKey() {
         return Optional.ofNullable(this.awsSecretAccessKey);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="awsSecretAccessKeyWo")
+    private @Nullable Output<String> awsSecretAccessKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> awsSecretAccessKeyWo() {
+        return Optional.ofNullable(this.awsSecretAccessKeyWo);
+    }
+
+    /**
+     * Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+     * 
+     */
+    @Import(name="awsSecretAccessKeyWoVersion")
+    private @Nullable Output<Integer> awsSecretAccessKeyWoVersion;
+
+    /**
+     * @return Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+     * 
+     */
+    public Optional<Output<Integer>> awsSecretAccessKeyWoVersion() {
+        return Optional.ofNullable(this.awsSecretAccessKeyWoVersion);
     }
 
     /**
@@ -95,7 +159,11 @@ public final class AthenaCredentialState extends com.pulumi.resources.ResourceAr
 
     private AthenaCredentialState(AthenaCredentialState $) {
         this.awsAccessKeyId = $.awsAccessKeyId;
+        this.awsAccessKeyIdWo = $.awsAccessKeyIdWo;
+        this.awsAccessKeyIdWoVersion = $.awsAccessKeyIdWoVersion;
         this.awsSecretAccessKey = $.awsSecretAccessKey;
+        this.awsSecretAccessKeyWo = $.awsSecretAccessKeyWo;
+        this.awsSecretAccessKeyWoVersion = $.awsSecretAccessKeyWoVersion;
         this.credentialId = $.credentialId;
         this.projectId = $.projectId;
         this.schema = $.schema;
@@ -120,7 +188,7 @@ public final class AthenaCredentialState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param awsAccessKeyId AWS access key ID for Athena user
+         * @param awsAccessKeyId AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -131,7 +199,7 @@ public final class AthenaCredentialState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param awsAccessKeyId AWS access key ID for Athena user
+         * @param awsAccessKeyId AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -141,7 +209,51 @@ public final class AthenaCredentialState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param awsSecretAccessKey AWS secret access key for Athena user
+         * @param awsAccessKeyIdWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsAccessKeyIdWo(@Nullable Output<String> awsAccessKeyIdWo) {
+            $.awsAccessKeyIdWo = awsAccessKeyIdWo;
+            return this;
+        }
+
+        /**
+         * @param awsAccessKeyIdWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsAccessKeyIdWo(String awsAccessKeyIdWo) {
+            return awsAccessKeyIdWo(Output.of(awsAccessKeyIdWo));
+        }
+
+        /**
+         * @param awsAccessKeyIdWoVersion Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsAccessKeyIdWoVersion(@Nullable Output<Integer> awsAccessKeyIdWoVersion) {
+            $.awsAccessKeyIdWoVersion = awsAccessKeyIdWoVersion;
+            return this;
+        }
+
+        /**
+         * @param awsAccessKeyIdWoVersion Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsAccessKeyIdWoVersion(Integer awsAccessKeyIdWoVersion) {
+            return awsAccessKeyIdWoVersion(Output.of(awsAccessKeyIdWoVersion));
+        }
+
+        /**
+         * @param awsSecretAccessKey AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -152,13 +264,57 @@ public final class AthenaCredentialState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param awsSecretAccessKey AWS secret access key for Athena user
+         * @param awsSecretAccessKey AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder awsSecretAccessKey(String awsSecretAccessKey) {
             return awsSecretAccessKey(Output.of(awsSecretAccessKey));
+        }
+
+        /**
+         * @param awsSecretAccessKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsSecretAccessKeyWo(@Nullable Output<String> awsSecretAccessKeyWo) {
+            $.awsSecretAccessKeyWo = awsSecretAccessKeyWo;
+            return this;
+        }
+
+        /**
+         * @param awsSecretAccessKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsSecretAccessKeyWo(String awsSecretAccessKeyWo) {
+            return awsSecretAccessKeyWo(Output.of(awsSecretAccessKeyWo));
+        }
+
+        /**
+         * @param awsSecretAccessKeyWoVersion Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsSecretAccessKeyWoVersion(@Nullable Output<Integer> awsSecretAccessKeyWoVersion) {
+            $.awsSecretAccessKeyWoVersion = awsSecretAccessKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param awsSecretAccessKeyWoVersion Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsSecretAccessKeyWoVersion(Integer awsSecretAccessKeyWoVersion) {
+            return awsSecretAccessKeyWoVersion(Output.of(awsSecretAccessKeyWoVersion));
         }
 
         /**

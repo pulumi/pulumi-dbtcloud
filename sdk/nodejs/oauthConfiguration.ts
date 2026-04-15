@@ -70,9 +70,18 @@ export class OauthConfiguration extends pulumi.CustomResource {
      */
     declare public readonly clientId: pulumi.Output<string>;
     /**
-     * The Client secret for the OAuth integration
+     * The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      */
-    declare public readonly clientSecret: pulumi.Output<string>;
+    declare public readonly clientSecret: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     */
+    declare public readonly clientSecretWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     */
+    declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
     /**
      * The name of OAuth integration
      */
@@ -107,6 +116,8 @@ export class OauthConfiguration extends pulumi.CustomResource {
             resourceInputs["authorizeUrl"] = state?.authorizeUrl;
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["clientSecretWo"] = state?.clientSecretWo;
+            resourceInputs["clientSecretWoVersion"] = state?.clientSecretWoVersion;
             resourceInputs["name"] = state?.name;
             resourceInputs["redirectUri"] = state?.redirectUri;
             resourceInputs["tokenUrl"] = state?.tokenUrl;
@@ -118,9 +129,6 @@ export class OauthConfiguration extends pulumi.CustomResource {
             }
             if (args?.clientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
-            }
-            if (args?.clientSecret === undefined && !opts.urn) {
-                throw new Error("Missing required property 'clientSecret'");
             }
             if (args?.redirectUri === undefined && !opts.urn) {
                 throw new Error("Missing required property 'redirectUri'");
@@ -135,13 +143,15 @@ export class OauthConfiguration extends pulumi.CustomResource {
             resourceInputs["authorizeUrl"] = args?.authorizeUrl;
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
+            resourceInputs["clientSecretWo"] = args?.clientSecretWo ? pulumi.secret(args.clientSecretWo) : undefined;
+            resourceInputs["clientSecretWoVersion"] = args?.clientSecretWoVersion;
             resourceInputs["name"] = args?.name;
             resourceInputs["redirectUri"] = args?.redirectUri;
             resourceInputs["tokenUrl"] = args?.tokenUrl;
             resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientSecret"] };
+        const secretOpts = { additionalSecretOutputs: ["clientSecret", "clientSecretWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(OauthConfiguration.__pulumiType, name, resourceInputs, opts);
     }
@@ -164,9 +174,18 @@ export interface OauthConfigurationState {
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The Client secret for the OAuth integration
+     * The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     */
+    clientSecretWo?: pulumi.Input<string>;
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     */
+    clientSecretWoVersion?: pulumi.Input<number>;
     /**
      * The name of OAuth integration
      */
@@ -202,9 +221,18 @@ export interface OauthConfigurationArgs {
      */
     clientId: pulumi.Input<string>;
     /**
-     * The Client secret for the OAuth integration
+     * The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      */
-    clientSecret: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     */
+    clientSecretWo?: pulumi.Input<string>;
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     */
+    clientSecretWoVersion?: pulumi.Input<number>;
     /**
      * The name of OAuth integration
      */

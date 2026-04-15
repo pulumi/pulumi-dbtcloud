@@ -19,54 +19,50 @@ __all__ = ['SalesforceCredentialArgs', 'SalesforceCredential']
 @pulumi.input_type
 class SalesforceCredentialArgs:
     def __init__(__self__, *,
-                 client_id: pulumi.Input[_builtins.str],
-                 private_key: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.int],
                  username: pulumi.Input[_builtins.str],
+                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SalesforceCredential resource.
 
-        :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID
-        :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Salesforce credential in
         :param pulumi.Input[_builtins.str] username: The Salesforce username for OAuth JWT bearer flow authentication
+        :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_id_wo_version: Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
         :param pulumi.Input[_builtins.int] num_threads: The number of threads to use for dbt operations
+        :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] target_name: Target name
         """
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "username", username)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_id_wo is not None:
+            pulumi.set(__self__, "client_id_wo", client_id_wo)
+        if client_id_wo_version is not None:
+            pulumi.set(__self__, "client_id_wo_version", client_id_wo_version)
         if num_threads is not None:
             pulumi.set(__self__, "num_threads", num_threads)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if target_name is not None:
             pulumi.set(__self__, "target_name", target_name)
-
-    @_builtins.property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The OAuth connected app client/consumer ID
-        """
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Input[_builtins.str]:
-        """
-        The private key for JWT bearer flow authentication
-        """
-        return pulumi.get(self, "private_key")
-
-    @private_key.setter
-    def private_key(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -93,6 +89,43 @@ class SalesforceCredentialArgs:
         pulumi.set(self, "username", value)
 
     @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdWo")
+    def client_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_id_wo")
+
+    @client_id_wo.setter
+    def client_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_id_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdWoVersion")
+    def client_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
+        """
+        return pulumi.get(self, "client_id_wo_version")
+
+    @client_id_wo_version.setter
+    def client_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_id_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="numThreads")
     def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -103,6 +136,43 @@ class SalesforceCredentialArgs:
     @num_threads.setter
     def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
@@ -121,31 +191,49 @@ class SalesforceCredentialArgs:
 class _SalesforceCredentialState:
     def __init__(__self__, *,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  credential_id: Optional[pulumi.Input[_builtins.int]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SalesforceCredential resources.
 
-        :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID
+        :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_id_wo_version: Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
         :param pulumi.Input[_builtins.int] credential_id: The system Salesforce credential ID
         :param pulumi.Input[_builtins.int] num_threads: The number of threads to use for dbt operations
-        :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication
+        :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Salesforce credential in
         :param pulumi.Input[_builtins.str] target_name: Target name
         :param pulumi.Input[_builtins.str] username: The Salesforce username for OAuth JWT bearer flow authentication
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
+        if client_id_wo is not None:
+            pulumi.set(__self__, "client_id_wo", client_id_wo)
+        if client_id_wo_version is not None:
+            pulumi.set(__self__, "client_id_wo_version", client_id_wo_version)
         if credential_id is not None:
             pulumi.set(__self__, "credential_id", credential_id)
         if num_threads is not None:
             pulumi.set(__self__, "num_threads", num_threads)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if target_name is not None:
@@ -157,13 +245,38 @@ class _SalesforceCredentialState:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The OAuth connected app client/consumer ID
+        The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
     def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdWo")
+    def client_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_id_wo")
+
+    @client_id_wo.setter
+    def client_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_id_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdWoVersion")
+    def client_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
+        """
+        return pulumi.get(self, "client_id_wo_version")
+
+    @client_id_wo_version.setter
+    def client_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_id_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
@@ -193,13 +306,38 @@ class _SalesforceCredentialState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The private key for JWT bearer flow authentication
+        The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -245,30 +383,18 @@ class SalesforceCredential(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Salesforce credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        # Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication
-        my_salesforce_cred = dbtcloud.SalesforceCredential("my_salesforce_cred",
-            project_id=dbt_project["id"],
-            username="user@example.com",
-            client_id="your-oauth-client-id",
-            private_key="private-key value",
-            target_name="default",
-            num_threads=6)
-        ```
 
         ## Import
 
@@ -293,9 +419,15 @@ class SalesforceCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID
+        :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_id_wo_version: Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
         :param pulumi.Input[_builtins.int] num_threads: The number of threads to use for dbt operations
-        :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication
+        :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Salesforce credential in
         :param pulumi.Input[_builtins.str] target_name: Target name
         :param pulumi.Input[_builtins.str] username: The Salesforce username for OAuth JWT bearer flow authentication
@@ -308,22 +440,6 @@ class SalesforceCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Salesforce credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        # Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication
-        my_salesforce_cred = dbtcloud.SalesforceCredential("my_salesforce_cred",
-            project_id=dbt_project["id"],
-            username="user@example.com",
-            client_id="your-oauth-client-id",
-            private_key="private-key value",
-            target_name="default",
-            num_threads=6)
-        ```
 
         ## Import
 
@@ -362,8 +478,12 @@ class SalesforceCredential(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -376,13 +496,13 @@ class SalesforceCredential(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SalesforceCredentialArgs.__new__(SalesforceCredentialArgs)
 
-            if client_id is None and not opts.urn:
-                raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = None if client_id is None else pulumi.Output.secret(client_id)
+            __props__.__dict__["client_id_wo"] = None if client_id_wo is None else pulumi.Output.secret(client_id_wo)
+            __props__.__dict__["client_id_wo_version"] = client_id_wo_version
             __props__.__dict__["num_threads"] = num_threads
-            if private_key is None and not opts.urn:
-                raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
+            __props__.__dict__["private_key_wo"] = None if private_key_wo is None else pulumi.Output.secret(private_key_wo)
+            __props__.__dict__["private_key_wo_version"] = private_key_wo_version
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -391,7 +511,7 @@ class SalesforceCredential(pulumi.CustomResource):
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
             __props__.__dict__["credential_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "privateKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "clientIdWo", "privateKey", "privateKeyWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SalesforceCredential, __self__).__init__(
             'dbtcloud:index/salesforceCredential:SalesforceCredential',
@@ -404,9 +524,13 @@ class SalesforceCredential(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
+            client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             credential_id: Optional[pulumi.Input[_builtins.int]] = None,
             num_threads: Optional[pulumi.Input[_builtins.int]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             project_id: Optional[pulumi.Input[_builtins.int]] = None,
             target_name: Optional[pulumi.Input[_builtins.str]] = None,
             username: Optional[pulumi.Input[_builtins.str]] = None) -> 'SalesforceCredential':
@@ -417,10 +541,16 @@ class SalesforceCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID
+        :param pulumi.Input[_builtins.str] client_id: The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_id_wo_version: Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
         :param pulumi.Input[_builtins.int] credential_id: The system Salesforce credential ID
         :param pulumi.Input[_builtins.int] num_threads: The number of threads to use for dbt operations
-        :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication
+        :param pulumi.Input[_builtins.str] private_key: The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Salesforce credential in
         :param pulumi.Input[_builtins.str] target_name: Target name
         :param pulumi.Input[_builtins.str] username: The Salesforce username for OAuth JWT bearer flow authentication
@@ -430,9 +560,13 @@ class SalesforceCredential(pulumi.CustomResource):
         __props__ = _SalesforceCredentialState.__new__(_SalesforceCredentialState)
 
         __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["client_id_wo"] = client_id_wo
+        __props__.__dict__["client_id_wo_version"] = client_id_wo_version
         __props__.__dict__["credential_id"] = credential_id
         __props__.__dict__["num_threads"] = num_threads
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["private_key_wo"] = private_key_wo
+        __props__.__dict__["private_key_wo_version"] = private_key_wo_version
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["target_name"] = target_name
         __props__.__dict__["username"] = username
@@ -440,11 +574,28 @@ class SalesforceCredential(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Output[_builtins.str]:
+    def client_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The OAuth connected app client/consumer ID
+        The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdWo")
+    def client_id_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_id_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdWoVersion")
+    def client_id_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
+        """
+        return pulumi.get(self, "client_id_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
@@ -464,11 +615,28 @@ class SalesforceCredential(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Output[_builtins.str]:
+    def private_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The private key for JWT bearer flow authentication
+        The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

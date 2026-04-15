@@ -38,17 +38,44 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int NumThreads;
         /// <summary>
-        /// The password for the Snowflake account
+        /// The password for the Snowflake account. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// The private key for the Snowflake account
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public readonly string? PasswordWo;
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        public readonly int? PasswordWoVersion;
+        /// <summary>
+        /// The private key for the Snowflake account. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public readonly string? PrivateKey;
         /// <summary>
-        /// The passphrase for the private key
+        /// The passphrase for the private key. Consider using `PrivateKeyPassphraseWo` instead, which is not stored in state.
         /// </summary>
         public readonly string? PrivateKeyPassphrase;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKeyPassphrase`. The value is not stored in state. Requires `PrivateKeyPassphraseWoVersion` to trigger updates.
+        /// </summary>
+        public readonly string? PrivateKeyPassphraseWo;
+        /// <summary>
+        /// Version number for `PrivateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `PrivateKeyPassphraseWo`.
+        /// </summary>
+        public readonly int? PrivateKeyPassphraseWoVersion;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public readonly string? PrivateKeyWo;
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        public readonly int? PrivateKeyWoVersion;
         /// <summary>
         /// Project ID to create the Snowflake credential in
         /// </summary>
@@ -90,9 +117,21 @@ namespace Pulumi.DbtCloud.Outputs
 
             string? password,
 
+            string? passwordWo,
+
+            int? passwordWoVersion,
+
             string? privateKey,
 
             string? privateKeyPassphrase,
+
+            string? privateKeyPassphraseWo,
+
+            int? privateKeyPassphraseWoVersion,
+
+            string? privateKeyWo,
+
+            int? privateKeyWoVersion,
 
             int projectId,
 
@@ -113,8 +152,14 @@ namespace Pulumi.DbtCloud.Outputs
             IsActive = isActive;
             NumThreads = numThreads;
             Password = password;
+            PasswordWo = passwordWo;
+            PasswordWoVersion = passwordWoVersion;
             PrivateKey = privateKey;
             PrivateKeyPassphrase = privateKeyPassphrase;
+            PrivateKeyPassphraseWo = privateKeyPassphraseWo;
+            PrivateKeyPassphraseWoVersion = privateKeyPassphraseWoVersion;
+            PrivateKeyWo = privateKeyWo;
+            PrivateKeyWoVersion = privateKeyWoVersion;
             ProjectId = projectId;
             Role = role;
             Schema = schema;

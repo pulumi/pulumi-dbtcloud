@@ -22,10 +22,23 @@ namespace Pulumi.DbtCloud
         public Output<int> CredentialId { get; private set; } = null!;
 
         /// <summary>
-        /// The password for the Teradata account
+        /// The password for the Teradata account. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         [Output("password")]
-        public Output<string> Password { get; private set; } = null!;
+        public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Project ID to create the Teradata/Trino credential in
@@ -78,6 +91,7 @@ namespace Pulumi.DbtCloud
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -102,11 +116,11 @@ namespace Pulumi.DbtCloud
 
     public sealed class TeradataCredentialArgs : global::Pulumi.ResourceArgs
     {
-        [Input("password", required: true)]
+        [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for the Teradata account
+        /// The password for the Teradata account. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -117,6 +131,29 @@ namespace Pulumi.DbtCloud
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Teradata/Trino credential in
@@ -160,7 +197,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for the Teradata account
+        /// The password for the Teradata account. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -171,6 +208,29 @@ namespace Pulumi.DbtCloud
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Teradata/Trino credential in

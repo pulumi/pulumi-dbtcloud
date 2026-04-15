@@ -9,6 +9,14 @@
                 "current": "dbtcloud:index/athenaCredential:AthenaCredential",
                 "majorVersion": 1
             },
+            "dbtcloud_auth_provider": {
+                "current": "dbtcloud:index/authProvider:AuthProvider",
+                "majorVersion": 1
+            },
+            "dbtcloud_azure_ad_application": {
+                "current": "dbtcloud:index/azureAdApplication:AzureAdApplication",
+                "majorVersion": 1
+            },
             "dbtcloud_bigquery_credential": {
                 "current": "dbtcloud:index/bigQueryCredential:BigQueryCredential",
                 "majorVersion": 1
@@ -203,6 +211,10 @@
                 "current": "dbtcloud:index/oauthConfiguration:OauthConfiguration",
                 "majorVersion": 1
             },
+            "dbtcloud_openai_integration": {
+                "current": "dbtcloud:index/openaiIntegration:OpenaiIntegration",
+                "majorVersion": 1
+            },
             "dbtcloud_partial_environment_variable": {
                 "current": "dbtcloud:index/partialEnvironmentVariable:PartialEnvironmentVariable",
                 "majorVersion": 1
@@ -272,6 +284,14 @@
             },
             "dbtcloud_salesforce_credential": {
                 "current": "dbtcloud:index/salesforceCredential:SalesforceCredential",
+                "majorVersion": 1
+            },
+            "dbtcloud_scim_config": {
+                "current": "dbtcloud:index/scimConfig:ScimConfig",
+                "majorVersion": 1
+            },
+            "dbtcloud_scim_config_token": {
+                "current": "dbtcloud:index/scimConfigToken:ScimConfigToken",
                 "majorVersion": 1
             },
             "dbtcloud_scim_group_partial_permissions": {

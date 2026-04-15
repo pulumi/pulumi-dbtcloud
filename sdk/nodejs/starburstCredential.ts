@@ -7,21 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Starburst/Trino credential resource
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * const example = new dbtcloud.StarburstCredential("example", {
- *     projectId: exampleDbtcloudProject.id,
- *     database: "your_catalog",
- *     schema: "your_schema",
- *     user: "your_user",
- *     password: "your_password",
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -79,9 +64,18 @@ export class StarburstCredential extends pulumi.CustomResource {
      */
     declare public readonly database: pulumi.Output<string>;
     /**
-     * The password for the Starburst/Trino account
+     * The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    declare public readonly password: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * Project ID to create the Starburst/Trino credential in
      */
@@ -111,6 +105,8 @@ export class StarburstCredential extends pulumi.CustomResource {
             resourceInputs["credentialId"] = state?.credentialId;
             resourceInputs["database"] = state?.database;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["schema"] = state?.schema;
             resourceInputs["user"] = state?.user;
@@ -118,9 +114,6 @@ export class StarburstCredential extends pulumi.CustomResource {
             const args = argsOrState as StarburstCredentialArgs | undefined;
             if (args?.database === undefined && !opts.urn) {
                 throw new Error("Missing required property 'database'");
-            }
-            if (args?.password === undefined && !opts.urn) {
-                throw new Error("Missing required property 'password'");
             }
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
@@ -133,13 +126,15 @@ export class StarburstCredential extends pulumi.CustomResource {
             }
             resourceInputs["database"] = args?.database;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["schema"] = args?.schema;
             resourceInputs["user"] = args?.user;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(StarburstCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -158,9 +153,18 @@ export interface StarburstCredentialState {
      */
     database?: pulumi.Input<string>;
     /**
-     * The password for the Starburst/Trino account
+     * The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Starburst/Trino credential in
      */
@@ -184,9 +188,18 @@ export interface StarburstCredentialArgs {
      */
     database: pulumi.Input<string>;
     /**
-     * The password for the Starburst/Trino account
+     * The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Starburst/Trino credential in
      */

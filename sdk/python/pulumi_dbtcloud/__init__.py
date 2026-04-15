@@ -8,6 +8,8 @@ import typing
 # Export this package's modules as members:
 from .account_features import *
 from .athena_credential import *
+from .auth_provider import *
+from .azure_ad_application import *
 from .big_query_credential import *
 from .bigquery_semantic_layer_credential import *
 from .connection_catalog_config import *
@@ -68,6 +70,7 @@ from .lineage_integration import *
 from .model_notifications import *
 from .notification import *
 from .oauth_configuration import *
+from .openai_integration import *
 from .partial_environment_variable import *
 from .partial_license_map import *
 from .partial_notification import *
@@ -82,6 +85,8 @@ from .redshift_credential import *
 from .redshift_semantic_layer_credential import *
 from .repository import *
 from .salesforce_credential import *
+from .scim_config import *
+from .scim_config_token import *
 from .scim_group_partial_permissions import *
 from .scim_group_permissions import *
 from .semantic_layer_configuration import *
@@ -123,6 +128,22 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/athenaCredential:AthenaCredential": "AthenaCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/authProvider",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/authProvider:AuthProvider": "AuthProvider"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/azureAdApplication",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/azureAdApplication:AzureAdApplication": "AzureAdApplication"
   }
  },
  {
@@ -295,6 +316,14 @@ _utilities.register(
  },
  {
   "pkg": "dbtcloud",
+  "mod": "index/openaiIntegration",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/openaiIntegration:OpenaiIntegration": "OpenaiIntegration"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
   "mod": "index/partialEnvironmentVariable",
   "fqn": "pulumi_dbtcloud",
   "classes": {
@@ -395,6 +424,22 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/salesforceCredential:SalesforceCredential": "SalesforceCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/scimConfig",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/scimConfig:ScimConfig": "ScimConfig"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/scimConfigToken",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/scimConfigToken:ScimConfigToken": "ScimConfigToken"
   }
  },
  {

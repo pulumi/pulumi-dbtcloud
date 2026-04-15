@@ -16,40 +16,6 @@ import (
 //
 // This resource requires having an environment tagged as production already created for you project.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// the resource can only be configured when a Prod environment has been set
-//			// so, you might want to explicitly set the dependency on your Prod environment resource
-//			_, err := dbtcloud.NewLineageIntegration(ctx, "my_lineage", &dbtcloud.LineageIntegrationArgs{
-//				ProjectId: pulumi.Any(myProject.Id),
-//				Host:      pulumi.String("my.host.com"),
-//				SiteId:    pulumi.String("mysiteid"),
-//				TokenName: pulumi.String("my-token-name"),
-//				Token:     pulumi.String("my-sensitive-token"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				myProdEnv,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -82,10 +48,15 @@ type LineageIntegration struct {
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The sitename for the collections of dashboards (see docs for more details)
 	SiteId pulumi.StringOutput `pulumi:"siteId"`
-	// The secret token value to use to authenticate to the BI server
-	Token pulumi.StringOutput `pulumi:"token"`
+	// The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// The token to use to authenticate to the BI server
 	TokenName pulumi.StringOutput `pulumi:"tokenName"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrOutput `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrOutput `pulumi:"tokenWoVersion"`
 }
 
 // NewLineageIntegration registers a new resource with the given unique name, arguments, and options.
@@ -104,17 +75,18 @@ func NewLineageIntegration(ctx *pulumi.Context,
 	if args.SiteId == nil {
 		return nil, errors.New("invalid value for required argument 'SiteId'")
 	}
-	if args.Token == nil {
-		return nil, errors.New("invalid value for required argument 'Token'")
-	}
 	if args.TokenName == nil {
 		return nil, errors.New("invalid value for required argument 'TokenName'")
 	}
 	if args.Token != nil {
-		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringInput)
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	if args.TokenWo != nil {
+		args.TokenWo = pulumi.ToSecret(args.TokenWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"token",
+		"tokenWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -150,10 +122,15 @@ type lineageIntegrationState struct {
 	ProjectId *int `pulumi:"projectId"`
 	// The sitename for the collections of dashboards (see docs for more details)
 	SiteId *string `pulumi:"siteId"`
-	// The secret token value to use to authenticate to the BI server
+	// The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
 	Token *string `pulumi:"token"`
 	// The token to use to authenticate to the BI server
 	TokenName *string `pulumi:"tokenName"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 type LineageIntegrationState struct {
@@ -167,10 +144,15 @@ type LineageIntegrationState struct {
 	ProjectId pulumi.IntPtrInput
 	// The sitename for the collections of dashboards (see docs for more details)
 	SiteId pulumi.StringPtrInput
-	// The secret token value to use to authenticate to the BI server
+	// The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
 	Token pulumi.StringPtrInput
 	// The token to use to authenticate to the BI server
 	TokenName pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (LineageIntegrationState) ElementType() reflect.Type {
@@ -184,10 +166,15 @@ type lineageIntegrationArgs struct {
 	ProjectId int `pulumi:"projectId"`
 	// The sitename for the collections of dashboards (see docs for more details)
 	SiteId string `pulumi:"siteId"`
-	// The secret token value to use to authenticate to the BI server
-	Token string `pulumi:"token"`
+	// The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
+	Token *string `pulumi:"token"`
 	// The token to use to authenticate to the BI server
 	TokenName string `pulumi:"tokenName"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 // The set of arguments for constructing a LineageIntegration resource.
@@ -198,10 +185,15 @@ type LineageIntegrationArgs struct {
 	ProjectId pulumi.IntInput
 	// The sitename for the collections of dashboards (see docs for more details)
 	SiteId pulumi.StringInput
-	// The secret token value to use to authenticate to the BI server
-	Token pulumi.StringInput
+	// The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
+	Token pulumi.StringPtrInput
 	// The token to use to authenticate to the BI server
 	TokenName pulumi.StringInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+	TokenWo pulumi.StringPtrInput
+	// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (LineageIntegrationArgs) ElementType() reflect.Type {
@@ -316,14 +308,25 @@ func (o LineageIntegrationOutput) SiteId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LineageIntegration) pulumi.StringOutput { return v.SiteId }).(pulumi.StringOutput)
 }
 
-// The secret token value to use to authenticate to the BI server
-func (o LineageIntegrationOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *LineageIntegration) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+// The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
+func (o LineageIntegrationOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LineageIntegration) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }
 
 // The token to use to authenticate to the BI server
 func (o LineageIntegrationOutput) TokenName() pulumi.StringOutput {
 	return o.ApplyT(func(v *LineageIntegration) pulumi.StringOutput { return v.TokenName }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+func (o LineageIntegrationOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LineageIntegration) pulumi.StringPtrOutput { return v.TokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+func (o LineageIntegrationOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LineageIntegration) pulumi.IntPtrOutput { return v.TokenWoVersion }).(pulumi.IntPtrOutput)
 }
 
 type LineageIntegrationArrayOutput struct{ *pulumi.OutputState }

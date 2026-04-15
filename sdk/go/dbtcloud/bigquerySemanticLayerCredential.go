@@ -76,10 +76,15 @@ type BigquerySemanticLayerCredential struct {
 	Credential BigquerySemanticLayerCredentialCredentialOutput `pulumi:"credential"`
 	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
 	ExecutionProject pulumi.StringPtrOutput `pulumi:"executionProject"`
-	// Private Key for the Service Account
-	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
+	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
 	// Private Key ID for the Service Account
 	PrivateKeyId pulumi.StringOutput `pulumi:"privateKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrOutput `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrOutput `pulumi:"privateKeyWoVersion"`
 	// Token URI for the Service Account
 	TokenUri pulumi.StringOutput `pulumi:"tokenUri"`
 }
@@ -112,9 +117,6 @@ func NewBigquerySemanticLayerCredential(ctx *pulumi.Context,
 	if args.Credential == nil {
 		return nil, errors.New("invalid value for required argument 'Credential'")
 	}
-	if args.PrivateKey == nil {
-		return nil, errors.New("invalid value for required argument 'PrivateKey'")
-	}
 	if args.PrivateKeyId == nil {
 		return nil, errors.New("invalid value for required argument 'PrivateKeyId'")
 	}
@@ -122,10 +124,14 @@ func NewBigquerySemanticLayerCredential(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'TokenUri'")
 	}
 	if args.PrivateKey != nil {
-		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringInput)
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKeyWo != nil {
+		args.PrivateKeyWo = pulumi.ToSecret(args.PrivateKeyWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"privateKey",
+		"privateKeyWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -167,10 +173,15 @@ type bigquerySemanticLayerCredentialState struct {
 	Credential *BigquerySemanticLayerCredentialCredential `pulumi:"credential"`
 	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
 	ExecutionProject *string `pulumi:"executionProject"`
-	// Private Key for the Service Account
+	// Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey *string `pulumi:"privateKey"`
 	// Private Key ID for the Service Account
 	PrivateKeyId *string `pulumi:"privateKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// Token URI for the Service Account
 	TokenUri *string `pulumi:"tokenUri"`
 }
@@ -192,10 +203,15 @@ type BigquerySemanticLayerCredentialState struct {
 	Credential BigquerySemanticLayerCredentialCredentialPtrInput
 	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
 	ExecutionProject pulumi.StringPtrInput
-	// Private Key for the Service Account
+	// Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringPtrInput
 	// Private Key ID for the Service Account
 	PrivateKeyId pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrInput
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput
 	// Token URI for the Service Account
 	TokenUri pulumi.StringPtrInput
 }
@@ -221,10 +237,15 @@ type bigquerySemanticLayerCredentialArgs struct {
 	Credential BigquerySemanticLayerCredentialCredential `pulumi:"credential"`
 	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
 	ExecutionProject *string `pulumi:"executionProject"`
-	// Private Key for the Service Account
-	PrivateKey string `pulumi:"privateKey"`
+	// Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
+	PrivateKey *string `pulumi:"privateKey"`
 	// Private Key ID for the Service Account
 	PrivateKeyId string `pulumi:"privateKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// Token URI for the Service Account
 	TokenUri string `pulumi:"tokenUri"`
 }
@@ -247,10 +268,15 @@ type BigquerySemanticLayerCredentialArgs struct {
 	Credential BigquerySemanticLayerCredentialCredentialInput
 	// The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
 	ExecutionProject pulumi.StringPtrInput
-	// Private Key for the Service Account
-	PrivateKey pulumi.StringInput
+	// Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
+	PrivateKey pulumi.StringPtrInput
 	// Private Key ID for the Service Account
 	PrivateKeyId pulumi.StringInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrInput
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput
 	// Token URI for the Service Account
 	TokenUri pulumi.StringInput
 }
@@ -386,14 +412,25 @@ func (o BigquerySemanticLayerCredentialOutput) ExecutionProject() pulumi.StringP
 	return o.ApplyT(func(v *BigquerySemanticLayerCredential) pulumi.StringPtrOutput { return v.ExecutionProject }).(pulumi.StringPtrOutput)
 }
 
-// Private Key for the Service Account
-func (o BigquerySemanticLayerCredentialOutput) PrivateKey() pulumi.StringOutput {
-	return o.ApplyT(func(v *BigquerySemanticLayerCredential) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+// Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
+func (o BigquerySemanticLayerCredentialOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredential) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
 }
 
 // Private Key ID for the Service Account
 func (o BigquerySemanticLayerCredentialOutput) PrivateKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BigquerySemanticLayerCredential) pulumi.StringOutput { return v.PrivateKeyId }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+func (o BigquerySemanticLayerCredentialOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredential) pulumi.StringPtrOutput { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+func (o BigquerySemanticLayerCredentialOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BigquerySemanticLayerCredential) pulumi.IntPtrOutput { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Token URI for the Service Account

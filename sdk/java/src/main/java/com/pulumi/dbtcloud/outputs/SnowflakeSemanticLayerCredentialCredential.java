@@ -45,20 +45,53 @@ public final class SnowflakeSemanticLayerCredentialCredential {
      */
     private Integer numThreads;
     /**
-     * @return The password for the Snowflake account
+     * @return The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     private @Nullable String password;
     /**
-     * @return The private key for the Snowflake account
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    private @Nullable String passwordWo;
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    private @Nullable Integer passwordWoVersion;
+    /**
+     * @return The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     private @Nullable String privateKey;
     /**
-     * @return The passphrase for the private key
+     * @return The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      * 
      */
     private @Nullable String privateKeyPassphrase;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     * 
+     */
+    private @Nullable String privateKeyPassphraseWo;
+    /**
+     * @return Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     * 
+     */
+    private @Nullable Integer privateKeyPassphraseWoVersion;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    private @Nullable String privateKeyWo;
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    private @Nullable Integer privateKeyWoVersion;
     /**
      * @return Project ID to create the Snowflake credential in
      * 
@@ -134,25 +167,70 @@ public final class SnowflakeSemanticLayerCredentialCredential {
         return this.numThreads;
     }
     /**
-     * @return The password for the Snowflake account
+     * @return The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }
     /**
-     * @return The private key for the Snowflake account
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<String> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Optional<Integer> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+    /**
+     * @return The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     public Optional<String> privateKey() {
         return Optional.ofNullable(this.privateKey);
     }
     /**
-     * @return The passphrase for the private key
+     * @return The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      * 
      */
     public Optional<String> privateKeyPassphrase() {
         return Optional.ofNullable(this.privateKeyPassphrase);
+    }
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<String> privateKeyPassphraseWo() {
+        return Optional.ofNullable(this.privateKeyPassphraseWo);
+    }
+    /**
+     * @return Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     * 
+     */
+    public Optional<Integer> privateKeyPassphraseWoVersion() {
+        return Optional.ofNullable(this.privateKeyPassphraseWoVersion);
+    }
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<String> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
+    }
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Optional<Integer> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
     /**
      * @return Project ID to create the Snowflake credential in
@@ -213,8 +291,14 @@ public final class SnowflakeSemanticLayerCredentialCredential {
         private @Nullable Boolean isActive;
         private Integer numThreads;
         private @Nullable String password;
+        private @Nullable String passwordWo;
+        private @Nullable Integer passwordWoVersion;
         private @Nullable String privateKey;
         private @Nullable String privateKeyPassphrase;
+        private @Nullable String privateKeyPassphraseWo;
+        private @Nullable Integer privateKeyPassphraseWoVersion;
+        private @Nullable String privateKeyWo;
+        private @Nullable Integer privateKeyWoVersion;
         private Integer projectId;
         private @Nullable String role;
         private @Nullable String schema;
@@ -231,8 +315,14 @@ public final class SnowflakeSemanticLayerCredentialCredential {
     	      this.isActive = defaults.isActive;
     	      this.numThreads = defaults.numThreads;
     	      this.password = defaults.password;
+    	      this.passwordWo = defaults.passwordWo;
+    	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.privateKey = defaults.privateKey;
     	      this.privateKeyPassphrase = defaults.privateKeyPassphrase;
+    	      this.privateKeyPassphraseWo = defaults.privateKeyPassphraseWo;
+    	      this.privateKeyPassphraseWoVersion = defaults.privateKeyPassphraseWoVersion;
+    	      this.privateKeyWo = defaults.privateKeyWo;
+    	      this.privateKeyWoVersion = defaults.privateKeyWoVersion;
     	      this.projectId = defaults.projectId;
     	      this.role = defaults.role;
     	      this.schema = defaults.schema;
@@ -288,6 +378,18 @@ public final class SnowflakeSemanticLayerCredentialCredential {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWo(@Nullable String passwordWo) {
+
+            this.passwordWo = passwordWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
+
+            this.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder privateKey(@Nullable String privateKey) {
 
             this.privateKey = privateKey;
@@ -297,6 +399,30 @@ public final class SnowflakeSemanticLayerCredentialCredential {
         public Builder privateKeyPassphrase(@Nullable String privateKeyPassphrase) {
 
             this.privateKeyPassphrase = privateKeyPassphrase;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder privateKeyPassphraseWo(@Nullable String privateKeyPassphraseWo) {
+
+            this.privateKeyPassphraseWo = privateKeyPassphraseWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder privateKeyPassphraseWoVersion(@Nullable Integer privateKeyPassphraseWoVersion) {
+
+            this.privateKeyPassphraseWoVersion = privateKeyPassphraseWoVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder privateKeyWo(@Nullable String privateKeyWo) {
+
+            this.privateKeyWo = privateKeyWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder privateKeyWoVersion(@Nullable Integer privateKeyWoVersion) {
+
+            this.privateKeyWoVersion = privateKeyWoVersion;
             return this;
         }
         @CustomType.Setter
@@ -346,8 +472,14 @@ public final class SnowflakeSemanticLayerCredentialCredential {
             _resultValue.isActive = isActive;
             _resultValue.numThreads = numThreads;
             _resultValue.password = password;
+            _resultValue.passwordWo = passwordWo;
+            _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.privateKey = privateKey;
             _resultValue.privateKeyPassphrase = privateKeyPassphrase;
+            _resultValue.privateKeyPassphraseWo = privateKeyPassphraseWo;
+            _resultValue.privateKeyPassphraseWoVersion = privateKeyPassphraseWoVersion;
+            _resultValue.privateKeyWo = privateKeyWo;
+            _resultValue.privateKeyWoVersion = privateKeyWoVersion;
             _resultValue.projectId = projectId;
             _resultValue.role = role;
             _resultValue.schema = schema;

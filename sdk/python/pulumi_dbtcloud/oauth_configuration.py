@@ -21,32 +21,42 @@ class OauthConfigurationArgs:
     def __init__(__self__, *,
                  authorize_url: pulumi.Input[_builtins.str],
                  client_id: pulumi.Input[_builtins.str],
-                 client_secret: pulumi.Input[_builtins.str],
                  redirect_uri: pulumi.Input[_builtins.str],
                  token_url: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
                  application_id_uri: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OauthConfiguration resource.
 
         :param pulumi.Input[_builtins.str] authorize_url: The Authorize URL for the OAuth integration
         :param pulumi.Input[_builtins.str] client_id: The Client ID for the OAuth integration
-        :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration
         :param pulumi.Input[_builtins.str] redirect_uri: The redirect URL for the OAuth integration
         :param pulumi.Input[_builtins.str] token_url: The Token URL for the OAuth integration
         :param pulumi.Input[_builtins.str] type: The type of OAuth integration (`entra` or `okta`)
         :param pulumi.Input[_builtins.str] application_id_uri: The Application ID URI for the OAuth integration. Only for Entra
+        :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration. Consider using `client_secret_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] name: The name of OAuth integration
         """
         pulumi.set(__self__, "authorize_url", authorize_url)
         pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "redirect_uri", redirect_uri)
         pulumi.set(__self__, "token_url", token_url)
         pulumi.set(__self__, "type", type)
         if application_id_uri is not None:
             pulumi.set(__self__, "application_id_uri", application_id_uri)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -73,18 +83,6 @@ class OauthConfigurationArgs:
     @client_id.setter
     def client_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> pulumi.Input[_builtins.str]:
-        """
-        The Client secret for the OAuth integration
-        """
-        return pulumi.get(self, "client_secret")
-
-    @client_secret.setter
-    def client_secret(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="redirectUri")
@@ -135,6 +133,43 @@ class OauthConfigurationArgs:
         pulumi.set(self, "application_id_uri", value)
 
     @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Client secret for the OAuth integration. Consider using `client_secret_wo` instead, which is not stored in state.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -154,6 +189,8 @@ class _OauthConfigurationState:
                  authorize_url: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  redirect_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  token_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -164,7 +201,10 @@ class _OauthConfigurationState:
         :param pulumi.Input[_builtins.str] application_id_uri: The Application ID URI for the OAuth integration. Only for Entra
         :param pulumi.Input[_builtins.str] authorize_url: The Authorize URL for the OAuth integration
         :param pulumi.Input[_builtins.str] client_id: The Client ID for the OAuth integration
-        :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration
+        :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration. Consider using `client_secret_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] name: The name of OAuth integration
         :param pulumi.Input[_builtins.str] redirect_uri: The redirect URL for the OAuth integration
         :param pulumi.Input[_builtins.str] token_url: The Token URL for the OAuth integration
@@ -178,6 +218,10 @@ class _OauthConfigurationState:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if redirect_uri is not None:
@@ -227,13 +271,38 @@ class _OauthConfigurationState:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Client secret for the OAuth integration
+        The Client secret for the OAuth integration. Consider using `client_secret_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -294,6 +363,8 @@ class OauthConfiguration(pulumi.CustomResource):
                  authorize_url: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  redirect_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  token_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -330,7 +401,10 @@ class OauthConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] application_id_uri: The Application ID URI for the OAuth integration. Only for Entra
         :param pulumi.Input[_builtins.str] authorize_url: The Authorize URL for the OAuth integration
         :param pulumi.Input[_builtins.str] client_id: The Client ID for the OAuth integration
-        :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration
+        :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration. Consider using `client_secret_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] name: The name of OAuth integration
         :param pulumi.Input[_builtins.str] redirect_uri: The redirect URL for the OAuth integration
         :param pulumi.Input[_builtins.str] token_url: The Token URL for the OAuth integration
@@ -387,6 +461,8 @@ class OauthConfiguration(pulumi.CustomResource):
                  authorize_url: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  redirect_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  token_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -407,9 +483,9 @@ class OauthConfiguration(pulumi.CustomResource):
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
-            if client_secret is None and not opts.urn:
-                raise TypeError("Missing required property 'client_secret'")
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+            __props__.__dict__["client_secret_wo"] = None if client_secret_wo is None else pulumi.Output.secret(client_secret_wo)
+            __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
             __props__.__dict__["name"] = name
             if redirect_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'redirect_uri'")
@@ -420,7 +496,7 @@ class OauthConfiguration(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret", "clientSecretWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(OauthConfiguration, __self__).__init__(
             'dbtcloud:index/oauthConfiguration:OauthConfiguration',
@@ -436,6 +512,8 @@ class OauthConfiguration(pulumi.CustomResource):
             authorize_url: Optional[pulumi.Input[_builtins.str]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             redirect_uri: Optional[pulumi.Input[_builtins.str]] = None,
             token_url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -450,7 +528,10 @@ class OauthConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] application_id_uri: The Application ID URI for the OAuth integration. Only for Entra
         :param pulumi.Input[_builtins.str] authorize_url: The Authorize URL for the OAuth integration
         :param pulumi.Input[_builtins.str] client_id: The Client ID for the OAuth integration
-        :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration
+        :param pulumi.Input[_builtins.str] client_secret: The Client secret for the OAuth integration. Consider using `client_secret_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] name: The name of OAuth integration
         :param pulumi.Input[_builtins.str] redirect_uri: The redirect URL for the OAuth integration
         :param pulumi.Input[_builtins.str] token_url: The Token URL for the OAuth integration
@@ -464,6 +545,8 @@ class OauthConfiguration(pulumi.CustomResource):
         __props__.__dict__["authorize_url"] = authorize_url
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
+        __props__.__dict__["client_secret_wo"] = client_secret_wo
+        __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
         __props__.__dict__["name"] = name
         __props__.__dict__["redirect_uri"] = redirect_uri
         __props__.__dict__["token_url"] = token_url
@@ -496,11 +579,28 @@ class OauthConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> pulumi.Output[_builtins.str]:
+    def client_secret(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The Client secret for the OAuth integration
+        The Client secret for the OAuth integration. Consider using `client_secret_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `client_secret`. The value is not stored in state. Requires `client_secret_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `client_secret_wo`. Increment this value to trigger an update of the client secret when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
 
     @_builtins.property
     @pulumi.getter

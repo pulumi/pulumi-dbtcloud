@@ -25,6 +25,8 @@ class PostgresCredentialArgs:
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
@@ -36,7 +38,10 @@ class PostgresCredentialArgs:
         :param pulumi.Input[_builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use (required for Redshift)
-        :param pulumi.Input[_builtins.str] password: Password for Postgres/Redshift/AlloyDB
+        :param pulumi.Input[_builtins.str] password: Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param pulumi.Input[_builtins.str] target_name: Default schema name
         :param pulumi.Input[_builtins.str] type: Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
@@ -51,6 +56,10 @@ class PostgresCredentialArgs:
             pulumi.set(__self__, "num_threads", num_threads)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if semantic_layer_credential is not None:
             pulumi.set(__self__, "semantic_layer_credential", semantic_layer_credential)
         if target_name is not None:
@@ -122,13 +131,38 @@ class PostgresCredentialArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password for Postgres/Redshift/AlloyDB
+        Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="semanticLayerCredential")
@@ -175,6 +209,8 @@ class _PostgresCredentialState:
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -187,7 +223,10 @@ class _PostgresCredentialState:
         :param pulumi.Input[_builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use (required for Redshift)
-        :param pulumi.Input[_builtins.str] password: Password for Postgres/Redshift/AlloyDB
+        :param pulumi.Input[_builtins.str] password: Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param pulumi.Input[_builtins.str] target_name: Default schema name
@@ -204,6 +243,10 @@ class _PostgresCredentialState:
             pulumi.set(__self__, "num_threads", num_threads)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if semantic_layer_credential is not None:
@@ -267,13 +310,38 @@ class _PostgresCredentialState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password for Postgres/Redshift/AlloyDB
+        Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -346,6 +414,8 @@ class PostgresCredential(pulumi.CustomResource):
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -354,22 +424,6 @@ class PostgresCredential(pulumi.CustomResource):
                  __props__=None):
         """
         Postgres credential resource.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        postgres_prod_credential = dbtcloud.PostgresCredential("postgres_prod_credential",
-            is_active=True,
-            project_id=dbt_project["id"],
-            type="postgres",
-            default_schema="my_schema",
-            username="my_username",
-            password="my_password",
-            num_threads=16)
-        ```
 
         ## Import
 
@@ -397,7 +451,10 @@ class PostgresCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use (required for Redshift)
-        :param pulumi.Input[_builtins.str] password: Password for Postgres/Redshift/AlloyDB
+        :param pulumi.Input[_builtins.str] password: Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param pulumi.Input[_builtins.str] target_name: Default schema name
@@ -412,22 +469,6 @@ class PostgresCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Postgres credential resource.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        postgres_prod_credential = dbtcloud.PostgresCredential("postgres_prod_credential",
-            is_active=True,
-            project_id=dbt_project["id"],
-            type="postgres",
-            default_schema="my_schema",
-            username="my_username",
-            password="my_password",
-            num_threads=16)
-        ```
 
         ## Import
 
@@ -469,6 +510,8 @@ class PostgresCredential(pulumi.CustomResource):
                  is_active: Optional[pulumi.Input[_builtins.bool]] = None,
                  num_threads: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
                  target_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -487,6 +530,8 @@ class PostgresCredential(pulumi.CustomResource):
             __props__.__dict__["is_active"] = is_active
             __props__.__dict__["num_threads"] = num_threads
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -497,7 +542,7 @@ class PostgresCredential(pulumi.CustomResource):
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
             __props__.__dict__["credential_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(PostgresCredential, __self__).__init__(
             'dbtcloud:index/postgresCredential:PostgresCredential',
@@ -514,6 +559,8 @@ class PostgresCredential(pulumi.CustomResource):
             is_active: Optional[pulumi.Input[_builtins.bool]] = None,
             num_threads: Optional[pulumi.Input[_builtins.int]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             project_id: Optional[pulumi.Input[_builtins.int]] = None,
             semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
             target_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -530,7 +577,10 @@ class PostgresCredential(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_schema: Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         :param pulumi.Input[_builtins.bool] is_active: Whether the Postgres/Redshift/AlloyDB credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use (required for Redshift)
-        :param pulumi.Input[_builtins.str] password: Password for Postgres/Redshift/AlloyDB
+        :param pulumi.Input[_builtins.str] password: Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[_builtins.bool] semantic_layer_credential: This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         :param pulumi.Input[_builtins.str] target_name: Default schema name
@@ -546,6 +596,8 @@ class PostgresCredential(pulumi.CustomResource):
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["num_threads"] = num_threads
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["semantic_layer_credential"] = semantic_layer_credential
         __props__.__dict__["target_name"] = target_name
@@ -589,9 +641,26 @@ class PostgresCredential(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password for Postgres/Redshift/AlloyDB
+        Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

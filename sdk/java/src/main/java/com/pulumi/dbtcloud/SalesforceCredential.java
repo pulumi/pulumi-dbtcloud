@@ -13,49 +13,11 @@ import com.pulumi.dbtcloud.inputs.SalesforceCredentialState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * Salesforce credential resource
- * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.SalesforceCredential;
- * import com.pulumi.dbtcloud.SalesforceCredentialArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App }{{@code
- *     public static void main(String[] args) }{{@code
- *         Pulumi.run(App::stack);
- *     }}{@code
- * 
- *     public static void stack(Context ctx) }{{@code
- *         // Create a Salesforce credential for dbt Cloud using JWT Bearer Flow authentication
- *         var mySalesforceCred = new SalesforceCredential("mySalesforceCred", SalesforceCredentialArgs.builder()
- *             .projectId(dbtProject.id())
- *             .username("user}{@literal @}{@code example.com")
- *             .clientId("your-oauth-client-id")
- *             .privateKey("private-key value")
- *             .targetName("default")
- *             .numThreads(6)
- *             .build());
- * 
- *     }}{@code
- * }}{@code
- * }
- * </pre>
  * 
  * ## Import
  * 
@@ -81,18 +43,48 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/salesforceCredential:SalesforceCredential")
 public class SalesforceCredential extends com.pulumi.resources.CustomResource {
     /**
-     * The OAuth connected app client/consumer ID
+     * The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
-    private Output<String> clientId;
+    private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The OAuth connected app client/consumer ID
+     * @return The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> clientId() {
-        return this.clientId;
+    public Output<Optional<String>> clientId() {
+        return Codegen.optional(this.clientId);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="clientIdWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientIdWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> clientIdWo() {
+        return Codegen.optional(this.clientIdWo);
+    }
+    /**
+     * Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+     * 
+     */
+    @Export(name="clientIdWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientIdWoVersion;
+
+    /**
+     * @return Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
+     * 
+     */
+    public Output<Optional<Integer>> clientIdWoVersion() {
+        return Codegen.optional(this.clientIdWoVersion);
     }
     /**
      * The system Salesforce credential ID
@@ -123,18 +115,48 @@ public class SalesforceCredential extends com.pulumi.resources.CustomResource {
         return this.numThreads;
     }
     /**
-     * The private key for JWT bearer flow authentication
+     * The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
-    private Output<String> privateKey;
+    private Output</* @Nullable */ String> privateKey;
 
     /**
-     * @return The private key for JWT bearer flow authentication
+     * @return The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> privateKey() {
-        return this.privateKey;
+    public Output<Optional<String>> privateKey() {
+        return Codegen.optional(this.privateKey);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="privateKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> privateKeyWo() {
+        return Codegen.optional(this.privateKeyWo);
+    }
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    @Export(name="privateKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Output<Optional<Integer>> privateKeyWoVersion() {
+        return Codegen.optional(this.privateKeyWoVersion);
     }
     /**
      * Project ID to create the Salesforce credential in
@@ -221,7 +243,9 @@ public class SalesforceCredential extends com.pulumi.resources.CustomResource {
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
                 "clientId",
-                "privateKey"
+                "clientIdWo",
+                "privateKey",
+                "privateKeyWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

@@ -5,7 +5,7 @@ go 1.25.8
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
 
 require (
-	github.com/dbt-labs/terraform-provider-dbtcloud v1.9.1
+	github.com/dbt-labs/terraform-provider-dbtcloud v1.10.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.126.0
 	github.com/pulumi/pulumi/sdk/v3 v3.228.0
 )
@@ -104,10 +104,10 @@ require (
 	github.com/hashicorp/hil v0.0.0-20231024160542-43d11d37940c // indirect
 	github.com/hashicorp/logutils v1.0.0 // indirect
 	github.com/hashicorp/terraform-plugin-framework v1.19.0 // indirect
-	github.com/hashicorp/terraform-plugin-framework-validators v0.17.0 // indirect
+	github.com/hashicorp/terraform-plugin-framework-validators v0.19.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.31.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.10.0 // indirect
-	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0 // indirect
+	github.com/hashicorp/terraform-plugin-sdk/v2 v2.40.0 // indirect
 	github.com/hashicorp/terraform-registry-address v0.4.0 // indirect
 	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
 	github.com/hashicorp/yamux v0.1.2 // indirect

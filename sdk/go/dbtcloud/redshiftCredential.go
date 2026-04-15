@@ -14,37 +14,6 @@ import (
 
 // Redshift credential resource
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.NewRedshiftCredential(ctx, "redshift", &dbtcloud.RedshiftCredentialArgs{
-//				NumThreads:    pulumi.Int(16),
-//				ProjectId:     pulumi.Any(testProject.Id),
-//				DefaultSchema: pulumi.String("my_schema"),
-//				Username:      pulumi.String("my_username"),
-//				Password:      pulumi.String("my_sensitive_password"),
-//				IsActive:      pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -75,8 +44,13 @@ type RedshiftCredential struct {
 	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads pulumi.IntOutput `pulumi:"numThreads"`
-	// The password for the Redshift account
+	// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// Project ID to create the Redshift credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The username for the Redshift account.
@@ -102,8 +76,12 @@ func NewRedshiftCredential(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -137,8 +115,13 @@ type redshiftCredentialState struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads *int `pulumi:"numThreads"`
-	// The password for the Redshift account
+	// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Redshift credential in
 	ProjectId *int `pulumi:"projectId"`
 	// The username for the Redshift account.
@@ -154,8 +137,13 @@ type RedshiftCredentialState struct {
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use
 	NumThreads pulumi.IntPtrInput
-	// The password for the Redshift account
+	// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Redshift credential in
 	ProjectId pulumi.IntPtrInput
 	// The username for the Redshift account.
@@ -173,8 +161,13 @@ type redshiftCredentialArgs struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use
 	NumThreads int `pulumi:"numThreads"`
-	// The password for the Redshift account
+	// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Redshift credential in
 	ProjectId int `pulumi:"projectId"`
 	// The username for the Redshift account.
@@ -189,8 +182,13 @@ type RedshiftCredentialArgs struct {
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use
 	NumThreads pulumi.IntInput
-	// The password for the Redshift account
+	// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Redshift credential in
 	ProjectId pulumi.IntInput
 	// The username for the Redshift account.
@@ -304,9 +302,20 @@ func (o RedshiftCredentialOutput) NumThreads() pulumi.IntOutput {
 	return o.ApplyT(func(v *RedshiftCredential) pulumi.IntOutput { return v.NumThreads }).(pulumi.IntOutput)
 }
 
-// The password for the Redshift account
+// The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
 func (o RedshiftCredentialOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedshiftCredential) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o RedshiftCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RedshiftCredential) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o RedshiftCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RedshiftCredential) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Redshift credential in

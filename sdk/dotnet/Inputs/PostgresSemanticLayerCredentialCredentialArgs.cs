@@ -46,7 +46,7 @@ namespace Pulumi.DbtCloud.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for Postgres/Redshift/AlloyDB
+        /// Password for Postgres/Redshift/AlloyDB. Consider using `PasswordWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? Password
         {
@@ -57,6 +57,29 @@ namespace Pulumi.DbtCloud.Inputs
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Password`. The value is not stored in state. Requires `PasswordWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PasswordWo`. Increment this value to trigger an update of the password when using `PasswordWo`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Postgres/Redshift/AlloyDB credential in.

@@ -20,45 +20,6 @@ import javax.annotation.Nullable;
 /**
  * Postgres credential resource.
  * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.PostgresCredential;
- * import com.pulumi.dbtcloud.PostgresCredentialArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var postgresProdCredential = new PostgresCredential("postgresProdCredential", PostgresCredentialArgs.builder()
- *             .isActive(true)
- *             .projectId(dbtProject.id())
- *             .type("postgres")
- *             .defaultSchema("my_schema")
- *             .username("my_username")
- *             .password("my_password")
- *             .numThreads(16)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
@@ -139,18 +100,48 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
         return this.numThreads;
     }
     /**
-     * Password for Postgres/Redshift/AlloyDB
+     * Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
-     * @return Password for Postgres/Redshift/AlloyDB
+     * @return Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Output<Optional<String>> password() {
         return Codegen.optional(this.password);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="passwordWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> passwordWo() {
+        return Codegen.optional(this.passwordWo);
+    }
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    @Export(name="passwordWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> passwordWoVersion;
+
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Output<Optional<Integer>> passwordWoVersion() {
+        return Codegen.optional(this.passwordWoVersion);
     }
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
@@ -264,7 +255,8 @@ public class PostgresCredential extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
-                "password"
+                "password",
+                "passwordWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

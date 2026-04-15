@@ -104,9 +104,18 @@ export interface DatabricksSemanticLayerCredentialCredential {
      */
     targetName: string;
     /**
-     * Token for Databricks user
+     * Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token: string;
+    token?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    tokenWo?: string;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    tokenWoVersion?: number;
 }
 
 export interface GetEnvironmentsEnvironment {
@@ -1790,9 +1799,18 @@ export interface PostgresSemanticLayerCredentialCredential {
      */
     numThreads: number;
     /**
-     * Password for Postgres/Redshift/AlloyDB
+     * Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: string;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: number;
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
@@ -1852,9 +1870,18 @@ export interface RedshiftSemanticLayerCredentialCredential {
      */
     numThreads: number;
     /**
-     * The password for the Redshift account
+     * The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      */
     password: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: string;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: number;
     /**
      * Project ID to create the Redshift credential in
      */
@@ -1975,17 +2002,44 @@ export interface SnowflakeSemanticLayerCredentialCredential {
      */
     numThreads: number;
     /**
-     * The password for the Snowflake account
+     * The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
      */
     password: string;
     /**
-     * The private key for the Snowflake account
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: string;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: number;
+    /**
+     * The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
     privateKey: string;
     /**
-     * The passphrase for the private key
+     * The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      */
     privateKeyPassphrase: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     */
+    privateKeyPassphraseWo?: string;
+    /**
+     * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     */
+    privateKeyPassphraseWoVersion?: number;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    privateKeyWo?: string;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: number;
     /**
      * Project ID to create the Snowflake credential in
      */

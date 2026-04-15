@@ -20,44 +20,6 @@ import javax.annotation.Nullable;
 /**
  * Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
  * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.SnowflakeCredential;
- * import com.pulumi.dbtcloud.SnowflakeCredentialArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var prodCredential = new SnowflakeCredential("prodCredential", SnowflakeCredentialArgs.builder()
- *             .projectId(dbtProject.id())
- *             .authType("password")
- *             .numThreads(16)
- *             .schema("SCHEMA")
- *             .user("user")
- *             .password("password")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)
@@ -152,46 +114,136 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
         return this.numThreads;
     }
     /**
-     * The password for the Snowflake account
+     * The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
-     * @return The password for the Snowflake account
+     * @return The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Output<String> password() {
         return this.password;
     }
     /**
-     * The private key for the Snowflake account
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="passwordWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> passwordWo() {
+        return Codegen.optional(this.passwordWo);
+    }
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    @Export(name="passwordWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> passwordWoVersion;
+
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Output<Optional<Integer>> passwordWoVersion() {
+        return Codegen.optional(this.passwordWoVersion);
+    }
+    /**
+     * The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
-     * @return The private key for the Snowflake account
+     * @return The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     public Output<String> privateKey() {
         return this.privateKey;
     }
     /**
-     * The passphrase for the private key
+     * The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      * 
      */
     @Export(name="privateKeyPassphrase", refs={String.class}, tree="[0]")
     private Output<String> privateKeyPassphrase;
 
     /**
-     * @return The passphrase for the private key
+     * @return The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      * 
      */
     public Output<String> privateKeyPassphrase() {
         return this.privateKeyPassphrase;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="privateKeyPassphraseWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyPassphraseWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> privateKeyPassphraseWo() {
+        return Codegen.optional(this.privateKeyPassphraseWo);
+    }
+    /**
+     * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     * 
+     */
+    @Export(name="privateKeyPassphraseWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> privateKeyPassphraseWoVersion;
+
+    /**
+     * @return Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
+     * 
+     */
+    public Output<Optional<Integer>> privateKeyPassphraseWoVersion() {
+        return Codegen.optional(this.privateKeyPassphraseWoVersion);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="privateKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> privateKeyWo() {
+        return Codegen.optional(this.privateKeyWo);
+    }
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    @Export(name="privateKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Output<Optional<Integer>> privateKeyWoVersion() {
+        return Codegen.optional(this.privateKeyWoVersion);
     }
     /**
      * Project ID to create the Snowflake credential in
@@ -320,8 +372,11 @@ public class SnowflakeCredential extends com.pulumi.resources.CustomResource {
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
                 "password",
+                "passwordWo",
                 "privateKey",
-                "privateKeyPassphrase"
+                "privateKeyPassphrase",
+                "privateKeyPassphraseWo",
+                "privateKeyWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

@@ -14,6 +14,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -31,45 +32,6 @@ import javax.annotation.Nullable;
  * 
  * &gt; **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
  * you must destroy and recreate the resource.
- * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.DatabricksPlatformMetadataCredential;
- * import com.pulumi.dbtcloud.DatabricksPlatformMetadataCredentialArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Example: Databricks Platform Metadata Credential
- *         var example = new DatabricksPlatformMetadataCredential("example", DatabricksPlatformMetadataCredentialArgs.builder()
- *             .connectionId(databricks.id())
- *             .catalogIngestionEnabled(true)
- *             .costOptimizationEnabled(false)
- *             .costInsightsEnabled(false)
- *             .token(databricksToken)
- *             .catalog("main")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * 
  */
 @ResourceType(type="dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential")
@@ -173,18 +135,48 @@ public class DatabricksPlatformMetadataCredential extends com.pulumi.resources.C
         return this.credentialId;
     }
     /**
-     * The Databricks personal access token.
+     * The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
     @Export(name="token", refs={String.class}, tree="[0]")
-    private Output<String> token;
+    private Output</* @Nullable */ String> token;
 
     /**
-     * @return The Databricks personal access token.
+     * @return The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> token() {
-        return this.token;
+    public Output<Optional<String>> token() {
+        return Codegen.optional(this.token);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="tokenWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> tokenWo() {
+        return Codegen.optional(this.tokenWo);
+    }
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    @Export(name="tokenWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenWoVersion;
+
+    /**
+     * @return Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    public Output<Optional<Integer>> tokenWoVersion() {
+        return Codegen.optional(this.tokenWoVersion);
     }
 
     /**
@@ -228,7 +220,8 @@ public class DatabricksPlatformMetadataCredential extends com.pulumi.resources.C
             .version(Utilities.getVersion())
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
-                "token"
+                "token",
+                "tokenWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

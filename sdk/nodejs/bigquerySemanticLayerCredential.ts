@@ -99,13 +99,22 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
      */
     declare public readonly executionProject: pulumi.Output<string | undefined>;
     /**
-     * Private Key for the Service Account
+     * Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    declare public readonly privateKey: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string | undefined>;
     /**
      * Private Key ID for the Service Account
      */
     declare public readonly privateKeyId: pulumi.Output<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    declare public readonly privateKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    declare public readonly privateKeyWoVersion: pulumi.Output<number | undefined>;
     /**
      * Token URI for the Service Account
      */
@@ -134,6 +143,8 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
             resourceInputs["executionProject"] = state?.executionProject;
             resourceInputs["privateKey"] = state?.privateKey;
             resourceInputs["privateKeyId"] = state?.privateKeyId;
+            resourceInputs["privateKeyWo"] = state?.privateKeyWo;
+            resourceInputs["privateKeyWoVersion"] = state?.privateKeyWoVersion;
             resourceInputs["tokenUri"] = state?.tokenUri;
         } else {
             const args = argsOrState as BigquerySemanticLayerCredentialArgs | undefined;
@@ -158,9 +169,6 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
             if (args?.credential === undefined && !opts.urn) {
                 throw new Error("Missing required property 'credential'");
             }
-            if (args?.privateKey === undefined && !opts.urn) {
-                throw new Error("Missing required property 'privateKey'");
-            }
             if (args?.privateKeyId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateKeyId'");
             }
@@ -177,10 +185,12 @@ export class BigquerySemanticLayerCredential extends pulumi.CustomResource {
             resourceInputs["executionProject"] = args?.executionProject;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["privateKeyId"] = args?.privateKeyId;
+            resourceInputs["privateKeyWo"] = args?.privateKeyWo ? pulumi.secret(args.privateKeyWo) : undefined;
+            resourceInputs["privateKeyWoVersion"] = args?.privateKeyWoVersion;
             resourceInputs["tokenUri"] = args?.tokenUri;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["privateKey"] };
+        const secretOpts = { additionalSecretOutputs: ["privateKey", "privateKeyWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(BigquerySemanticLayerCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -223,13 +233,22 @@ export interface BigquerySemanticLayerCredentialState {
      */
     executionProject?: pulumi.Input<string>;
     /**
-     * Private Key for the Service Account
+     * Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
     privateKey?: pulumi.Input<string>;
     /**
      * Private Key ID for the Service Account
      */
     privateKeyId?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    privateKeyWo?: pulumi.Input<string>;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: pulumi.Input<number>;
     /**
      * Token URI for the Service Account
      */
@@ -273,13 +292,22 @@ export interface BigquerySemanticLayerCredentialArgs {
      */
     executionProject?: pulumi.Input<string>;
     /**
-     * Private Key for the Service Account
+     * Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * Private Key ID for the Service Account
      */
     privateKeyId: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    privateKeyWo?: pulumi.Input<string>;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: pulumi.Input<number>;
     /**
      * Token URI for the Service Account
      */

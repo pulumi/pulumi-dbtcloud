@@ -62,18 +62,50 @@ public final class SynapseCredentialState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      * 
      */
     @Import(name="clientSecret")
     private @Nullable Output<String> clientSecret;
 
     /**
-     * @return The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+     * @return The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> clientSecret() {
         return Optional.ofNullable(this.clientSecret);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="clientSecretWo")
+    private @Nullable Output<String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> clientSecretWo() {
+        return Optional.ofNullable(this.clientSecretWo);
+    }
+
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     * 
+     */
+    @Import(name="clientSecretWoVersion")
+    private @Nullable Output<Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     * 
+     */
+    public Optional<Output<Integer>> clientSecretWoVersion() {
+        return Optional.ofNullable(this.clientSecretWoVersion);
     }
 
     /**
@@ -92,18 +124,50 @@ public final class SynapseCredentialState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The password for the account to connect to. Only used when connection with AD user/pass
+     * The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password for the account to connect to. Only used when connection with AD user/pass
+     * @return The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> password() {
         return Optional.ofNullable(this.password);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
     }
 
     /**
@@ -188,8 +252,12 @@ public final class SynapseCredentialState extends com.pulumi.resources.ResourceA
         this.authentication = $.authentication;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
+        this.clientSecretWo = $.clientSecretWo;
+        this.clientSecretWoVersion = $.clientSecretWoVersion;
         this.credentialId = $.credentialId;
         this.password = $.password;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.projectId = $.projectId;
         this.schema = $.schema;
         this.schemaAuthorization = $.schemaAuthorization;
@@ -279,7 +347,7 @@ public final class SynapseCredentialState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param clientSecret The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+         * @param clientSecret The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -290,13 +358,57 @@ public final class SynapseCredentialState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param clientSecret The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+         * @param clientSecret The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(@Nullable Output<String> clientSecretWo) {
+            $.clientSecretWo = clientSecretWo;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(String clientSecretWo) {
+            return clientSecretWo(Output.of(clientSecretWo));
+        }
+
+        /**
+         * @param clientSecretWoVersion Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(@Nullable Output<Integer> clientSecretWoVersion) {
+            $.clientSecretWoVersion = clientSecretWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWoVersion Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(Integer clientSecretWoVersion) {
+            return clientSecretWoVersion(Output.of(clientSecretWoVersion));
         }
 
         /**
@@ -321,7 +433,7 @@ public final class SynapseCredentialState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param password The password for the account to connect to. Only used when connection with AD user/pass
+         * @param password The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -332,13 +444,57 @@ public final class SynapseCredentialState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param password The password for the account to connect to. Only used when connection with AD user/pass
+         * @param password The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**

@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.dbtcloud.inputs.BigquerySemanticLayerCredentialConfigurationArgs;
 import com.pulumi.dbtcloud.inputs.BigquerySemanticLayerCredentialCredentialArgs;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -138,14 +139,14 @@ public final class BigquerySemanticLayerCredentialState extends com.pulumi.resou
     }
 
     /**
-     * Private Key for the Service Account
+     * Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return Private Key for the Service Account
+     * @return Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -165,6 +166,38 @@ public final class BigquerySemanticLayerCredentialState extends com.pulumi.resou
      */
     public Optional<Output<String>> privateKeyId() {
         return Optional.ofNullable(this.privateKeyId);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="privateKeyWo")
+    private @Nullable Output<String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
+    }
+
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    @Import(name="privateKeyWoVersion")
+    private @Nullable Output<Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Optional<Output<Integer>> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
 
     /**
@@ -195,6 +228,8 @@ public final class BigquerySemanticLayerCredentialState extends com.pulumi.resou
         this.executionProject = $.executionProject;
         this.privateKey = $.privateKey;
         this.privateKeyId = $.privateKeyId;
+        this.privateKeyWo = $.privateKeyWo;
+        this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.tokenUri = $.tokenUri;
     }
 
@@ -385,7 +420,7 @@ public final class BigquerySemanticLayerCredentialState extends com.pulumi.resou
         }
 
         /**
-         * @param privateKey Private Key for the Service Account
+         * @param privateKey Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -396,7 +431,7 @@ public final class BigquerySemanticLayerCredentialState extends com.pulumi.resou
         }
 
         /**
-         * @param privateKey Private Key for the Service Account
+         * @param privateKey Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -424,6 +459,50 @@ public final class BigquerySemanticLayerCredentialState extends com.pulumi.resou
          */
         public Builder privateKeyId(String privateKeyId) {
             return privateKeyId(Output.of(privateKeyId));
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(@Nullable Output<String> privateKeyWo) {
+            $.privateKeyWo = privateKeyWo;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(String privateKeyWo) {
+            return privateKeyWo(Output.of(privateKeyWo));
+        }
+
+        /**
+         * @param privateKeyWoVersion Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(@Nullable Output<Integer> privateKeyWoVersion) {
+            $.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWoVersion Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(Integer privateKeyWoVersion) {
+            return privateKeyWoVersion(Output.of(privateKeyWoVersion));
         }
 
         /**

@@ -19,23 +19,6 @@ import * as utilities from "./utilities";
  *
  * > **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
  * you must destroy and recreate the resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * // Example: Databricks Platform Metadata Credential
- * const example = new dbtcloud.DatabricksPlatformMetadataCredential("example", {
- *     connectionId: databricks.id,
- *     catalogIngestionEnabled: true,
- *     costOptimizationEnabled: false,
- *     costInsightsEnabled: false,
- *     token: databricksToken,
- *     catalog: "main",
- * });
- * ```
  */
 export class DatabricksPlatformMetadataCredential extends pulumi.CustomResource {
     /**
@@ -94,9 +77,18 @@ export class DatabricksPlatformMetadataCredential extends pulumi.CustomResource 
      */
     declare public /*out*/ readonly credentialId: pulumi.Output<number>;
     /**
-     * The Databricks personal access token.
+     * The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
      */
-    declare public readonly token: pulumi.Output<string>;
+    declare public readonly token: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    declare public readonly tokenWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    declare public readonly tokenWoVersion: pulumi.Output<number | undefined>;
 
     /**
      * Create a DatabricksPlatformMetadataCredential resource with the given unique name, arguments, and options.
@@ -119,6 +111,8 @@ export class DatabricksPlatformMetadataCredential extends pulumi.CustomResource 
             resourceInputs["costOptimizationEnabled"] = state?.costOptimizationEnabled;
             resourceInputs["credentialId"] = state?.credentialId;
             resourceInputs["token"] = state?.token;
+            resourceInputs["tokenWo"] = state?.tokenWo;
+            resourceInputs["tokenWoVersion"] = state?.tokenWoVersion;
         } else {
             const args = argsOrState as DatabricksPlatformMetadataCredentialArgs | undefined;
             if (args?.catalog === undefined && !opts.urn) {
@@ -127,20 +121,19 @@ export class DatabricksPlatformMetadataCredential extends pulumi.CustomResource 
             if (args?.connectionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'connectionId'");
             }
-            if (args?.token === undefined && !opts.urn) {
-                throw new Error("Missing required property 'token'");
-            }
             resourceInputs["catalog"] = args?.catalog;
             resourceInputs["catalogIngestionEnabled"] = args?.catalogIngestionEnabled;
             resourceInputs["connectionId"] = args?.connectionId;
             resourceInputs["costInsightsEnabled"] = args?.costInsightsEnabled;
             resourceInputs["costOptimizationEnabled"] = args?.costOptimizationEnabled;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
+            resourceInputs["tokenWo"] = args?.tokenWo ? pulumi.secret(args.tokenWo) : undefined;
+            resourceInputs["tokenWoVersion"] = args?.tokenWoVersion;
             resourceInputs["adapterVersion"] = undefined /*out*/;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["token"] };
+        const secretOpts = { additionalSecretOutputs: ["token", "tokenWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(DatabricksPlatformMetadataCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -179,9 +172,18 @@ export interface DatabricksPlatformMetadataCredentialState {
      */
     credentialId?: pulumi.Input<number>;
     /**
-     * The Databricks personal access token.
+     * The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
      */
     token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }
 
 /**
@@ -209,7 +211,16 @@ export interface DatabricksPlatformMetadataCredentialArgs {
      */
     costOptimizationEnabled?: pulumi.Input<boolean>;
     /**
-     * The Databricks personal access token.
+     * The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }

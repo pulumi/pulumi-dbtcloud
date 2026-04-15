@@ -13,58 +13,11 @@ import com.pulumi.dbtcloud.inputs.FabricCredentialState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * Fabric credential resource
- * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.dbtcloud.FabricCredential;
- * import com.pulumi.dbtcloud.FabricCredentialArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // when using AD authentication
- *         var myFabricCredAd = new FabricCredential("myFabricCredAd", FabricCredentialArgs.builder()
- *             .projectId(dbtProject.id())
- *             .schema("my_schema")
- *             .user("my_user")
- *             .password("my_password")
- *             .schemaAuthorization("abcd")
- *             .build());
- * 
- *         // when using service principal authentication
- *         var myFabricCredServPrinc = new FabricCredential("myFabricCredServPrinc", FabricCredentialArgs.builder()
- *             .projectId(dbtProject.id())
- *             .schema("my_schema")
- *             .clientId("my_client_id")
- *             .tenantId("my_tenant_id")
- *             .clientSecret("my_secret")
- *             .schemaAuthorization("abcd")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * 
  * ## Import
  * 
@@ -118,18 +71,48 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
         return this.clientId;
     }
     /**
-     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+     * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output<String> clientSecret;
 
     /**
-     * @return The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
+     * @return The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      * 
      */
     public Output<String> clientSecret() {
         return this.clientSecret;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="clientSecretWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> clientSecretWo() {
+        return Codegen.optional(this.clientSecretWo);
+    }
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     * 
+     */
+    @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     * 
+     */
+    public Output<Optional<Integer>> clientSecretWoVersion() {
+        return Codegen.optional(this.clientSecretWoVersion);
     }
     /**
      * The internal credential ID
@@ -146,18 +129,48 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
         return this.credentialId;
     }
     /**
-     * The password for the account to connect to. Only used when connection with AD user/pass
+     * The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
-     * @return The password for the account to connect to. Only used when connection with AD user/pass
+     * @return The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Output<String> password() {
         return this.password;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="passwordWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> passwordWo() {
+        return Codegen.optional(this.passwordWo);
+    }
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    @Export(name="passwordWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> passwordWoVersion;
+
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Output<Optional<Integer>> passwordWoVersion() {
+        return Codegen.optional(this.passwordWoVersion);
     }
     /**
      * Project ID to create the Fabric credential in
@@ -272,7 +285,9 @@ public class FabricCredential extends com.pulumi.resources.CustomResource {
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
                 "clientSecret",
-                "password"
+                "clientSecretWo",
+                "password",
+                "passwordWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

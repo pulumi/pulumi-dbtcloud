@@ -12,27 +12,6 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Athena credential resource
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using DbtCloud = Pulumi.DbtCloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new DbtCloud.Index.AthenaCredential("example", new()
-    ///     {
-    ///         ProjectId = exampleDbtcloudProject.Id,
-    ///         AwsAccessKeyId = "your-access-key-id",
-    ///         AwsSecretAccessKey = "your-secret-access-key",
-    ///         Schema = "your_schema",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)
@@ -57,16 +36,42 @@ namespace Pulumi.DbtCloud
     public partial class AthenaCredential : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// AWS access key ID for Athena user
+        /// AWS access key ID for Athena user. Consider using `AwsAccessKeyIdWo` instead, which is not stored in state.
         /// </summary>
         [Output("awsAccessKeyId")]
-        public Output<string> AwsAccessKeyId { get; private set; } = null!;
+        public Output<string?> AwsAccessKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// AWS secret access key for Athena user
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `AwsAccessKeyId`. The value is not stored in state. Requires `AwsAccessKeyIdWoVersion` to trigger updates.
+        /// </summary>
+        [Output("awsAccessKeyIdWo")]
+        public Output<string?> AwsAccessKeyIdWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `AwsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `AwsAccessKeyIdWo`.
+        /// </summary>
+        [Output("awsAccessKeyIdWoVersion")]
+        public Output<int?> AwsAccessKeyIdWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// AWS secret access key for Athena user. Consider using `AwsSecretAccessKeyWo` instead, which is not stored in state.
         /// </summary>
         [Output("awsSecretAccessKey")]
-        public Output<string> AwsSecretAccessKey { get; private set; } = null!;
+        public Output<string?> AwsSecretAccessKey { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `AwsSecretAccessKey`. The value is not stored in state. Requires `AwsSecretAccessKeyWoVersion` to trigger updates.
+        /// </summary>
+        [Output("awsSecretAccessKeyWo")]
+        public Output<string?> AwsSecretAccessKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version number for `AwsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `AwsSecretAccessKeyWo`.
+        /// </summary>
+        [Output("awsSecretAccessKeyWoVersion")]
+        public Output<int?> AwsSecretAccessKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The internal credential ID
@@ -113,7 +118,9 @@ namespace Pulumi.DbtCloud
                 AdditionalSecretOutputs =
                 {
                     "awsAccessKeyId",
+                    "awsAccessKeyIdWo",
                     "awsSecretAccessKey",
+                    "awsSecretAccessKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -138,11 +145,11 @@ namespace Pulumi.DbtCloud
 
     public sealed class AthenaCredentialArgs : global::Pulumi.ResourceArgs
     {
-        [Input("awsAccessKeyId", required: true)]
+        [Input("awsAccessKeyId")]
         private Input<string>? _awsAccessKeyId;
 
         /// <summary>
-        /// AWS access key ID for Athena user
+        /// AWS access key ID for Athena user. Consider using `AwsAccessKeyIdWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? AwsAccessKeyId
         {
@@ -154,11 +161,34 @@ namespace Pulumi.DbtCloud
             }
         }
 
-        [Input("awsSecretAccessKey", required: true)]
+        [Input("awsAccessKeyIdWo")]
+        private Input<string>? _awsAccessKeyIdWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `AwsAccessKeyId`. The value is not stored in state. Requires `AwsAccessKeyIdWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? AwsAccessKeyIdWo
+        {
+            get => _awsAccessKeyIdWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _awsAccessKeyIdWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `AwsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `AwsAccessKeyIdWo`.
+        /// </summary>
+        [Input("awsAccessKeyIdWoVersion")]
+        public Input<int>? AwsAccessKeyIdWoVersion { get; set; }
+
+        [Input("awsSecretAccessKey")]
         private Input<string>? _awsSecretAccessKey;
 
         /// <summary>
-        /// AWS secret access key for Athena user
+        /// AWS secret access key for Athena user. Consider using `AwsSecretAccessKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? AwsSecretAccessKey
         {
@@ -169,6 +199,29 @@ namespace Pulumi.DbtCloud
                 _awsSecretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("awsSecretAccessKeyWo")]
+        private Input<string>? _awsSecretAccessKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `AwsSecretAccessKey`. The value is not stored in state. Requires `AwsSecretAccessKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? AwsSecretAccessKeyWo
+        {
+            get => _awsSecretAccessKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _awsSecretAccessKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `AwsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `AwsSecretAccessKeyWo`.
+        /// </summary>
+        [Input("awsSecretAccessKeyWoVersion")]
+        public Input<int>? AwsSecretAccessKeyWoVersion { get; set; }
 
         /// <summary>
         /// Project ID to create the Athena credential in
@@ -194,7 +247,7 @@ namespace Pulumi.DbtCloud
         private Input<string>? _awsAccessKeyId;
 
         /// <summary>
-        /// AWS access key ID for Athena user
+        /// AWS access key ID for Athena user. Consider using `AwsAccessKeyIdWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? AwsAccessKeyId
         {
@@ -206,11 +259,34 @@ namespace Pulumi.DbtCloud
             }
         }
 
+        [Input("awsAccessKeyIdWo")]
+        private Input<string>? _awsAccessKeyIdWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `AwsAccessKeyId`. The value is not stored in state. Requires `AwsAccessKeyIdWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? AwsAccessKeyIdWo
+        {
+            get => _awsAccessKeyIdWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _awsAccessKeyIdWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `AwsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `AwsAccessKeyIdWo`.
+        /// </summary>
+        [Input("awsAccessKeyIdWoVersion")]
+        public Input<int>? AwsAccessKeyIdWoVersion { get; set; }
+
         [Input("awsSecretAccessKey")]
         private Input<string>? _awsSecretAccessKey;
 
         /// <summary>
-        /// AWS secret access key for Athena user
+        /// AWS secret access key for Athena user. Consider using `AwsSecretAccessKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? AwsSecretAccessKey
         {
@@ -221,6 +297,29 @@ namespace Pulumi.DbtCloud
                 _awsSecretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("awsSecretAccessKeyWo")]
+        private Input<string>? _awsSecretAccessKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `AwsSecretAccessKey`. The value is not stored in state. Requires `AwsSecretAccessKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? AwsSecretAccessKeyWo
+        {
+            get => _awsSecretAccessKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _awsSecretAccessKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `AwsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `AwsSecretAccessKeyWo`.
+        /// </summary>
+        [Input("awsSecretAccessKeyWoVersion")]
+        public Input<int>? AwsSecretAccessKeyWoVersion { get; set; }
 
         /// <summary>
         /// The internal credential ID

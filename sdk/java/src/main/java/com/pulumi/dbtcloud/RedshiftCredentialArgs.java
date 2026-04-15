@@ -64,18 +64,50 @@ public final class RedshiftCredentialArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The password for the Redshift account
+     * The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password for the Redshift account
+     * @return The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> password() {
         return Optional.ofNullable(this.password);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
     }
 
     /**
@@ -115,6 +147,8 @@ public final class RedshiftCredentialArgs extends com.pulumi.resources.ResourceA
         this.isActive = $.isActive;
         this.numThreads = $.numThreads;
         this.password = $.password;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.projectId = $.projectId;
         this.username = $.username;
     }
@@ -201,7 +235,7 @@ public final class RedshiftCredentialArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param password The password for the Redshift account
+         * @param password The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -212,13 +246,57 @@ public final class RedshiftCredentialArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param password The password for the Redshift account
+         * @param password The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**

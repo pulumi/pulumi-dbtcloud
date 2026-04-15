@@ -12,6 +12,7 @@ import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.BigquerySemanticLayerCredentialState;
 import com.pulumi.dbtcloud.outputs.BigquerySemanticLayerCredentialConfiguration;
 import com.pulumi.dbtcloud.outputs.BigquerySemanticLayerCredentialCredential;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -189,18 +190,18 @@ public class BigquerySemanticLayerCredential extends com.pulumi.resources.Custom
         return Codegen.optional(this.executionProject);
     }
     /**
-     * Private Key for the Service Account
+     * Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
-    private Output<String> privateKey;
+    private Output</* @Nullable */ String> privateKey;
 
     /**
-     * @return Private Key for the Service Account
+     * @return Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> privateKey() {
-        return this.privateKey;
+    public Output<Optional<String>> privateKey() {
+        return Codegen.optional(this.privateKey);
     }
     /**
      * Private Key ID for the Service Account
@@ -215,6 +216,36 @@ public class BigquerySemanticLayerCredential extends com.pulumi.resources.Custom
      */
     public Output<String> privateKeyId() {
         return this.privateKeyId;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Export(name="privateKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> privateKeyWo() {
+        return Codegen.optional(this.privateKeyWo);
+    }
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    @Export(name="privateKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Output<Optional<Integer>> privateKeyWoVersion() {
+        return Codegen.optional(this.privateKeyWoVersion);
     }
     /**
      * Token URI for the Service Account
@@ -272,7 +303,8 @@ public class BigquerySemanticLayerCredential extends com.pulumi.resources.Custom
             .version(Utilities.getVersion())
             .pluginDownloadURL("github://api.github.com/pulumi/pulumi-dbtcloud")
             .additionalSecretOutputs(List.of(
-                "privateKey"
+                "privateKey",
+                "privateKeyWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

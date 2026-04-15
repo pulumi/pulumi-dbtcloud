@@ -7,23 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Postgres credential resource.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * const postgresProdCredential = new dbtcloud.PostgresCredential("postgres_prod_credential", {
- *     isActive: true,
- *     projectId: dbtProject.id,
- *     type: "postgres",
- *     defaultSchema: "my_schema",
- *     username: "my_username",
- *     password: "my_password",
- *     numThreads: 16,
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -89,9 +72,18 @@ export class PostgresCredential extends pulumi.CustomResource {
      */
     declare public readonly numThreads: pulumi.Output<number>;
     /**
-     * Password for Postgres/Redshift/AlloyDB
+     * Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
@@ -131,6 +123,8 @@ export class PostgresCredential extends pulumi.CustomResource {
             resourceInputs["isActive"] = state?.isActive;
             resourceInputs["numThreads"] = state?.numThreads;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["semanticLayerCredential"] = state?.semanticLayerCredential;
             resourceInputs["targetName"] = state?.targetName;
@@ -148,6 +142,8 @@ export class PostgresCredential extends pulumi.CustomResource {
             resourceInputs["isActive"] = args?.isActive;
             resourceInputs["numThreads"] = args?.numThreads;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["semanticLayerCredential"] = args?.semanticLayerCredential;
             resourceInputs["targetName"] = args?.targetName;
@@ -156,7 +152,7 @@ export class PostgresCredential extends pulumi.CustomResource {
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(PostgresCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -183,9 +179,18 @@ export interface PostgresCredentialState {
      */
     numThreads?: pulumi.Input<number>;
     /**
-     * Password for Postgres/Redshift/AlloyDB
+     * Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
@@ -225,9 +230,18 @@ export interface PostgresCredentialArgs {
      */
     numThreads?: pulumi.Input<number>;
     /**
-     * Password for Postgres/Redshift/AlloyDB
+     * Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */

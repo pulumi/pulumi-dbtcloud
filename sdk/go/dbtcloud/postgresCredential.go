@@ -14,38 +14,6 @@ import (
 
 // Postgres credential resource.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbtcloud.NewPostgresCredential(ctx, "postgres_prod_credential", &dbtcloud.PostgresCredentialArgs{
-//				IsActive:      pulumi.Bool(true),
-//				ProjectId:     pulumi.Any(dbtProject.Id),
-//				Type:          pulumi.String("postgres"),
-//				DefaultSchema: pulumi.String("my_schema"),
-//				Username:      pulumi.String("my_username"),
-//				Password:      pulumi.String("my_password"),
-//				NumThreads:    pulumi.Int(16),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
@@ -76,8 +44,13 @@ type PostgresCredential struct {
 	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// Number of threads to use (required for Redshift)
 	NumThreads pulumi.IntOutput `pulumi:"numThreads"`
-	// Password for Postgres/Redshift/AlloyDB
+	// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
@@ -106,8 +79,12 @@ func NewPostgresCredential(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -141,8 +118,13 @@ type postgresCredentialState struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use (required for Redshift)
 	NumThreads *int `pulumi:"numThreads"`
-	// Password for Postgres/Redshift/AlloyDB
+	// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId *int `pulumi:"projectId"`
 	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
@@ -164,8 +146,13 @@ type PostgresCredentialState struct {
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use (required for Redshift)
 	NumThreads pulumi.IntPtrInput
-	// Password for Postgres/Redshift/AlloyDB
+	// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntPtrInput
 	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
@@ -189,8 +176,13 @@ type postgresCredentialArgs struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Number of threads to use (required for Redshift)
 	NumThreads *int `pulumi:"numThreads"`
-	// Password for Postgres/Redshift/AlloyDB
+	// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId int `pulumi:"projectId"`
 	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
@@ -211,8 +203,13 @@ type PostgresCredentialArgs struct {
 	IsActive pulumi.BoolPtrInput
 	// Number of threads to use (required for Redshift)
 	NumThreads pulumi.IntPtrInput
-	// Password for Postgres/Redshift/AlloyDB
+	// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Postgres/Redshift/AlloyDB credential in.
 	ProjectId pulumi.IntInput
 	// This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
@@ -332,9 +329,20 @@ func (o PostgresCredentialOutput) NumThreads() pulumi.IntOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.IntOutput { return v.NumThreads }).(pulumi.IntOutput)
 }
 
-// Password for Postgres/Redshift/AlloyDB
+// Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
 func (o PostgresCredentialOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PostgresCredential) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o PostgresCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PostgresCredential) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o PostgresCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *PostgresCredential) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Postgres/Redshift/AlloyDB credential in.

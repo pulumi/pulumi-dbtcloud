@@ -7,20 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Databricks credential resource
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * const myDatabricksCred = new dbtcloud.DatabricksCredential("my_databricks_cred", {
- *     projectId: dbtProject.id,
- *     token: "abcdefgh",
- *     schema: "my_schema",
- *     adapterType: "databricks",
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -102,9 +88,18 @@ export class DatabricksCredential extends pulumi.CustomResource {
      */
     declare public readonly targetName: pulumi.Output<string>;
     /**
-     * Token for Databricks user
+     * Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      */
-    declare public readonly token: pulumi.Output<string>;
+    declare public readonly token: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    declare public readonly tokenWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    declare public readonly tokenWoVersion: pulumi.Output<number | undefined>;
 
     /**
      * Create a DatabricksCredential resource with the given unique name, arguments, and options.
@@ -127,13 +122,12 @@ export class DatabricksCredential extends pulumi.CustomResource {
             resourceInputs["semanticLayerCredential"] = state?.semanticLayerCredential;
             resourceInputs["targetName"] = state?.targetName;
             resourceInputs["token"] = state?.token;
+            resourceInputs["tokenWo"] = state?.tokenWo;
+            resourceInputs["tokenWoVersion"] = state?.tokenWoVersion;
         } else {
             const args = argsOrState as DatabricksCredentialArgs | undefined;
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
-            }
-            if (args?.token === undefined && !opts.urn) {
-                throw new Error("Missing required property 'token'");
             }
             resourceInputs["adapterType"] = args?.adapterType;
             resourceInputs["catalog"] = args?.catalog;
@@ -142,10 +136,12 @@ export class DatabricksCredential extends pulumi.CustomResource {
             resourceInputs["semanticLayerCredential"] = args?.semanticLayerCredential;
             resourceInputs["targetName"] = args?.targetName;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
+            resourceInputs["tokenWo"] = args?.tokenWo ? pulumi.secret(args.tokenWo) : undefined;
+            resourceInputs["tokenWoVersion"] = args?.tokenWoVersion;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["token"] };
+        const secretOpts = { additionalSecretOutputs: ["token", "tokenWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(DatabricksCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -188,9 +184,18 @@ export interface DatabricksCredentialState {
      */
     targetName?: pulumi.Input<string>;
     /**
-     * Token for Databricks user
+     * Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      */
     token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }
 
 /**
@@ -226,7 +231,16 @@ export interface DatabricksCredentialArgs {
      */
     targetName?: pulumi.Input<string>;
     /**
-     * Token for Databricks user
+     * Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }

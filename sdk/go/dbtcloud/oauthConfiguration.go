@@ -44,8 +44,13 @@ type OauthConfiguration struct {
 	AuthorizeUrl pulumi.StringOutput `pulumi:"authorizeUrl"`
 	// The Client ID for the OAuth integration
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	// The Client secret for the OAuth integration
-	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
+	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
 	// The name of OAuth integration
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The redirect URL for the OAuth integration
@@ -69,9 +74,6 @@ func NewOauthConfiguration(ctx *pulumi.Context,
 	if args.ClientId == nil {
 		return nil, errors.New("invalid value for required argument 'ClientId'")
 	}
-	if args.ClientSecret == nil {
-		return nil, errors.New("invalid value for required argument 'ClientSecret'")
-	}
 	if args.RedirectUri == nil {
 		return nil, errors.New("invalid value for required argument 'RedirectUri'")
 	}
@@ -82,10 +84,14 @@ func NewOauthConfiguration(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	if args.ClientSecret != nil {
-		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringInput)
+		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
+	}
+	if args.ClientSecretWo != nil {
+		args.ClientSecretWo = pulumi.ToSecret(args.ClientSecretWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientSecret",
+		"clientSecretWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -117,8 +123,13 @@ type oauthConfigurationState struct {
 	AuthorizeUrl *string `pulumi:"authorizeUrl"`
 	// The Client ID for the OAuth integration
 	ClientId *string `pulumi:"clientId"`
-	// The Client secret for the OAuth integration
+	// The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// The name of OAuth integration
 	Name *string `pulumi:"name"`
 	// The redirect URL for the OAuth integration
@@ -136,8 +147,13 @@ type OauthConfigurationState struct {
 	AuthorizeUrl pulumi.StringPtrInput
 	// The Client ID for the OAuth integration
 	ClientId pulumi.StringPtrInput
-	// The Client secret for the OAuth integration
+	// The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
 	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo pulumi.StringPtrInput
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// The name of OAuth integration
 	Name pulumi.StringPtrInput
 	// The redirect URL for the OAuth integration
@@ -159,8 +175,13 @@ type oauthConfigurationArgs struct {
 	AuthorizeUrl string `pulumi:"authorizeUrl"`
 	// The Client ID for the OAuth integration
 	ClientId string `pulumi:"clientId"`
-	// The Client secret for the OAuth integration
-	ClientSecret string `pulumi:"clientSecret"`
+	// The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// The name of OAuth integration
 	Name *string `pulumi:"name"`
 	// The redirect URL for the OAuth integration
@@ -179,8 +200,13 @@ type OauthConfigurationArgs struct {
 	AuthorizeUrl pulumi.StringInput
 	// The Client ID for the OAuth integration
 	ClientId pulumi.StringInput
-	// The Client secret for the OAuth integration
-	ClientSecret pulumi.StringInput
+	// The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
+	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+	ClientSecretWo pulumi.StringPtrInput
+	// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// The name of OAuth integration
 	Name pulumi.StringPtrInput
 	// The redirect URL for the OAuth integration
@@ -293,9 +319,20 @@ func (o OauthConfigurationOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OauthConfiguration) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
 }
 
-// The Client secret for the OAuth integration
-func (o OauthConfigurationOutput) ClientSecret() pulumi.StringOutput {
-	return o.ApplyT(func(v *OauthConfiguration) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
+// The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
+func (o OauthConfigurationOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OauthConfiguration) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+func (o OauthConfigurationOutput) ClientSecretWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OauthConfiguration) pulumi.StringPtrOutput { return v.ClientSecretWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+func (o OauthConfigurationOutput) ClientSecretWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OauthConfiguration) pulumi.IntPtrOutput { return v.ClientSecretWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The name of OAuth integration

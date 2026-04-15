@@ -20,24 +20,34 @@ __all__ = ['StarburstCredentialArgs', 'StarburstCredential']
 class StarburstCredentialArgs:
     def __init__(__self__, *,
                  database: pulumi.Input[_builtins.str],
-                 password: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.int],
                  schema: pulumi.Input[_builtins.str],
-                 user: pulumi.Input[_builtins.str]):
+                 user: pulumi.Input[_builtins.str],
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a StarburstCredential resource.
 
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
-        :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Starburst/Trino credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create models
         :param pulumi.Input[_builtins.str] user: The username for the Starburst/Trino account
+        :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         """
         pulumi.set(__self__, "database", database)
-        pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "schema", schema)
         pulumi.set(__self__, "user", user)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -50,18 +60,6 @@ class StarburstCredentialArgs:
     @database.setter
     def database(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "database", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[_builtins.str]:
-        """
-        The password for the Starburst/Trino account
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -99,6 +97,43 @@ class StarburstCredentialArgs:
     def user(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "user", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The password for the Starburst/Trino account. Consider using `password_wo` instead, which is not stored in state.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
 
 @pulumi.input_type
 class _StarburstCredentialState:
@@ -106,6 +141,8 @@ class _StarburstCredentialState:
                  credential_id: Optional[pulumi.Input[_builtins.int]] = None,
                  database: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  user: Optional[pulumi.Input[_builtins.str]] = None):
@@ -114,7 +151,10 @@ class _StarburstCredentialState:
 
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
-        :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account
+        :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Starburst/Trino credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create models
         :param pulumi.Input[_builtins.str] user: The username for the Starburst/Trino account
@@ -125,6 +165,10 @@ class _StarburstCredentialState:
             pulumi.set(__self__, "database", database)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if schema is not None:
@@ -160,13 +204,38 @@ class _StarburstCredentialState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for the Starburst/Trino account
+        The password for the Starburst/Trino account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -213,26 +282,14 @@ class StarburstCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  database: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  user: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Starburst/Trino credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        example = dbtcloud.StarburstCredential("example",
-            project_id=example_dbtcloud_project["id"],
-            database="your_catalog",
-            schema="your_schema",
-            user="your_user",
-            password="your_password")
-        ```
 
         ## Import
 
@@ -258,7 +315,10 @@ class StarburstCredential(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
-        :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account
+        :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Starburst/Trino credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create models
         :param pulumi.Input[_builtins.str] user: The username for the Starburst/Trino account
@@ -271,20 +331,6 @@ class StarburstCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Starburst/Trino credential resource
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_dbtcloud as dbtcloud
-
-        example = dbtcloud.StarburstCredential("example",
-            project_id=example_dbtcloud_project["id"],
-            database="your_catalog",
-            schema="your_schema",
-            user="your_user",
-            password="your_password")
-        ```
 
         ## Import
 
@@ -324,6 +370,8 @@ class StarburstCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  database: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
                  schema: Optional[pulumi.Input[_builtins.str]] = None,
                  user: Optional[pulumi.Input[_builtins.str]] = None,
@@ -339,9 +387,9 @@ class StarburstCredential(pulumi.CustomResource):
             if database is None and not opts.urn:
                 raise TypeError("Missing required property 'database'")
             __props__.__dict__["database"] = database
-            if password is None and not opts.urn:
-                raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -352,7 +400,7 @@ class StarburstCredential(pulumi.CustomResource):
                 raise TypeError("Missing required property 'user'")
             __props__.__dict__["user"] = user
             __props__.__dict__["credential_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(StarburstCredential, __self__).__init__(
             'dbtcloud:index/starburstCredential:StarburstCredential',
@@ -367,6 +415,8 @@ class StarburstCredential(pulumi.CustomResource):
             credential_id: Optional[pulumi.Input[_builtins.int]] = None,
             database: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             project_id: Optional[pulumi.Input[_builtins.int]] = None,
             schema: Optional[pulumi.Input[_builtins.str]] = None,
             user: Optional[pulumi.Input[_builtins.str]] = None) -> 'StarburstCredential':
@@ -379,7 +429,10 @@ class StarburstCredential(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] database: The catalog to connect use
-        :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account
+        :param pulumi.Input[_builtins.str] password: The password for the Starburst/Trino account. Consider using `password_wo` instead, which is not stored in state.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Starburst/Trino credential in
         :param pulumi.Input[_builtins.str] schema: The schema where to create models
         :param pulumi.Input[_builtins.str] user: The username for the Starburst/Trino account
@@ -391,6 +444,8 @@ class StarburstCredential(pulumi.CustomResource):
         __props__.__dict__["credential_id"] = credential_id
         __props__.__dict__["database"] = database
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["schema"] = schema
         __props__.__dict__["user"] = user
@@ -414,11 +469,28 @@ class StarburstCredential(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> pulumi.Output[_builtins.str]:
+    def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The password for the Starburst/Trino account
+        The password for the Starburst/Trino account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

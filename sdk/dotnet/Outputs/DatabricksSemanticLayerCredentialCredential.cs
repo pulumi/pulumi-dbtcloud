@@ -46,9 +46,18 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string? TargetName;
         /// <summary>
-        /// Token for Databricks user
+        /// Token for Databricks user. Consider using `TokenWo` instead, which is not stored in state.
         /// </summary>
-        public readonly string Token;
+        public readonly string? Token;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `Token`. The value is not stored in state. Requires `TokenWoVersion` to trigger updates.
+        /// </summary>
+        public readonly string? TokenWo;
+        /// <summary>
+        /// Version number for `TokenWo`. Increment this value to trigger an update of the token when using `TokenWo`.
+        /// </summary>
+        public readonly int? TokenWoVersion;
 
         [OutputConstructor]
         private DatabricksSemanticLayerCredentialCredential(
@@ -68,7 +77,11 @@ namespace Pulumi.DbtCloud.Outputs
 
             string? targetName,
 
-            string token)
+            string? token,
+
+            string? tokenWo,
+
+            int? tokenWoVersion)
         {
             AdapterType = adapterType;
             Catalog = catalog;
@@ -79,6 +92,8 @@ namespace Pulumi.DbtCloud.Outputs
             SemanticLayerCredential = semanticLayerCredential;
             TargetName = targetName;
             Token = token;
+            TokenWo = tokenWo;
+            TokenWoVersion = tokenWoVersion;
         }
     }
 }

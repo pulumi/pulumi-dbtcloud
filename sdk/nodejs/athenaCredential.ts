@@ -7,20 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Athena credential resource
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as dbtcloud from "@pulumi/dbtcloud";
- *
- * const example = new dbtcloud.AthenaCredential("example", {
- *     projectId: exampleDbtcloudProject.id,
- *     awsAccessKeyId: "your-access-key-id",
- *     awsSecretAccessKey: "your-secret-access-key",
- *     schema: "your_schema",
- * });
- * ```
- *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)
@@ -70,13 +56,31 @@ export class AthenaCredential extends pulumi.CustomResource {
     }
 
     /**
-     * AWS access key ID for Athena user
+     * AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
      */
-    declare public readonly awsAccessKeyId: pulumi.Output<string>;
+    declare public readonly awsAccessKeyId: pulumi.Output<string | undefined>;
     /**
-     * AWS secret access key for Athena user
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
      */
-    declare public readonly awsSecretAccessKey: pulumi.Output<string>;
+    declare public readonly awsAccessKeyIdWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+     */
+    declare public readonly awsAccessKeyIdWoVersion: pulumi.Output<number | undefined>;
+    /**
+     * AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
+     */
+    declare public readonly awsSecretAccessKey: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+     */
+    declare public readonly awsSecretAccessKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+     */
+    declare public readonly awsSecretAccessKeyWoVersion: pulumi.Output<number | undefined>;
     /**
      * The internal credential ID
      */
@@ -104,18 +108,16 @@ export class AthenaCredential extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AthenaCredentialState | undefined;
             resourceInputs["awsAccessKeyId"] = state?.awsAccessKeyId;
+            resourceInputs["awsAccessKeyIdWo"] = state?.awsAccessKeyIdWo;
+            resourceInputs["awsAccessKeyIdWoVersion"] = state?.awsAccessKeyIdWoVersion;
             resourceInputs["awsSecretAccessKey"] = state?.awsSecretAccessKey;
+            resourceInputs["awsSecretAccessKeyWo"] = state?.awsSecretAccessKeyWo;
+            resourceInputs["awsSecretAccessKeyWoVersion"] = state?.awsSecretAccessKeyWoVersion;
             resourceInputs["credentialId"] = state?.credentialId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["schema"] = state?.schema;
         } else {
             const args = argsOrState as AthenaCredentialArgs | undefined;
-            if (args?.awsAccessKeyId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'awsAccessKeyId'");
-            }
-            if (args?.awsSecretAccessKey === undefined && !opts.urn) {
-                throw new Error("Missing required property 'awsSecretAccessKey'");
-            }
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -123,13 +125,17 @@ export class AthenaCredential extends pulumi.CustomResource {
                 throw new Error("Missing required property 'schema'");
             }
             resourceInputs["awsAccessKeyId"] = args?.awsAccessKeyId ? pulumi.secret(args.awsAccessKeyId) : undefined;
+            resourceInputs["awsAccessKeyIdWo"] = args?.awsAccessKeyIdWo ? pulumi.secret(args.awsAccessKeyIdWo) : undefined;
+            resourceInputs["awsAccessKeyIdWoVersion"] = args?.awsAccessKeyIdWoVersion;
             resourceInputs["awsSecretAccessKey"] = args?.awsSecretAccessKey ? pulumi.secret(args.awsSecretAccessKey) : undefined;
+            resourceInputs["awsSecretAccessKeyWo"] = args?.awsSecretAccessKeyWo ? pulumi.secret(args.awsSecretAccessKeyWo) : undefined;
+            resourceInputs["awsSecretAccessKeyWoVersion"] = args?.awsSecretAccessKeyWoVersion;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["schema"] = args?.schema;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["awsAccessKeyId", "awsSecretAccessKey"] };
+        const secretOpts = { additionalSecretOutputs: ["awsAccessKeyId", "awsAccessKeyIdWo", "awsSecretAccessKey", "awsSecretAccessKeyWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AthenaCredential.__pulumiType, name, resourceInputs, opts);
     }
@@ -140,13 +146,31 @@ export class AthenaCredential extends pulumi.CustomResource {
  */
 export interface AthenaCredentialState {
     /**
-     * AWS access key ID for Athena user
+     * AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
      */
     awsAccessKeyId?: pulumi.Input<string>;
     /**
-     * AWS secret access key for Athena user
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
+     */
+    awsAccessKeyIdWo?: pulumi.Input<string>;
+    /**
+     * Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+     */
+    awsAccessKeyIdWoVersion?: pulumi.Input<number>;
+    /**
+     * AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
      */
     awsSecretAccessKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+     */
+    awsSecretAccessKeyWo?: pulumi.Input<string>;
+    /**
+     * Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+     */
+    awsSecretAccessKeyWoVersion?: pulumi.Input<number>;
     /**
      * The internal credential ID
      */
@@ -166,13 +190,31 @@ export interface AthenaCredentialState {
  */
 export interface AthenaCredentialArgs {
     /**
-     * AWS access key ID for Athena user
+     * AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
      */
-    awsAccessKeyId: pulumi.Input<string>;
+    awsAccessKeyId?: pulumi.Input<string>;
     /**
-     * AWS secret access key for Athena user
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsAccessKeyId`. The value is not stored in state. Requires `awsAccessKeyIdWoVersion` to trigger updates.
      */
-    awsSecretAccessKey: pulumi.Input<string>;
+    awsAccessKeyIdWo?: pulumi.Input<string>;
+    /**
+     * Version number for `awsAccessKeyIdWo`. Increment this value to trigger an update of the AWS access key ID when using `awsAccessKeyIdWo`.
+     */
+    awsAccessKeyIdWoVersion?: pulumi.Input<number>;
+    /**
+     * AWS secret access key for Athena user. Consider using `awsSecretAccessKeyWo` instead, which is not stored in state.
+     */
+    awsSecretAccessKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `awsSecretAccessKey`. The value is not stored in state. Requires `awsSecretAccessKeyWoVersion` to trigger updates.
+     */
+    awsSecretAccessKeyWo?: pulumi.Input<string>;
+    /**
+     * Version number for `awsSecretAccessKeyWo`. Increment this value to trigger an update of the AWS secret access key when using `awsSecretAccessKeyWo`.
+     */
+    awsSecretAccessKeyWoVersion?: pulumi.Input<number>;
     /**
      * Project ID to create the Athena credential in
      */

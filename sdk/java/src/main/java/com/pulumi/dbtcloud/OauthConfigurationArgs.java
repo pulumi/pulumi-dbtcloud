@@ -6,6 +6,7 @@ package com.pulumi.dbtcloud;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -62,18 +63,50 @@ public final class OauthConfigurationArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The Client secret for the OAuth integration
+     * The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      * 
      */
-    @Import(name="clientSecret", required=true)
-    private Output<String> clientSecret;
+    @Import(name="clientSecret")
+    private @Nullable Output<String> clientSecret;
 
     /**
-     * @return The Client secret for the OAuth integration
+     * @return The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> clientSecret() {
-        return this.clientSecret;
+    public Optional<Output<String>> clientSecret() {
+        return Optional.ofNullable(this.clientSecret);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="clientSecretWo")
+    private @Nullable Output<String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> clientSecretWo() {
+        return Optional.ofNullable(this.clientSecretWo);
+    }
+
+    /**
+     * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     * 
+     */
+    @Import(name="clientSecretWoVersion")
+    private @Nullable Output<Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+     * 
+     */
+    public Optional<Output<Integer>> clientSecretWoVersion() {
+        return Optional.ofNullable(this.clientSecretWoVersion);
     }
 
     /**
@@ -143,6 +176,8 @@ public final class OauthConfigurationArgs extends com.pulumi.resources.ResourceA
         this.authorizeUrl = $.authorizeUrl;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
+        this.clientSecretWo = $.clientSecretWo;
+        this.clientSecretWoVersion = $.clientSecretWoVersion;
         this.name = $.name;
         this.redirectUri = $.redirectUri;
         this.tokenUrl = $.tokenUrl;
@@ -231,24 +266,68 @@ public final class OauthConfigurationArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param clientSecret The Client secret for the OAuth integration
+         * @param clientSecret The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
-        public Builder clientSecret(Output<String> clientSecret) {
+        public Builder clientSecret(@Nullable Output<String> clientSecret) {
             $.clientSecret = clientSecret;
             return this;
         }
 
         /**
-         * @param clientSecret The Client secret for the OAuth integration
+         * @param clientSecret The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(@Nullable Output<String> clientSecretWo) {
+            $.clientSecretWo = clientSecretWo;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(String clientSecretWo) {
+            return clientSecretWo(Output.of(clientSecretWo));
+        }
+
+        /**
+         * @param clientSecretWoVersion Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(@Nullable Output<Integer> clientSecretWoVersion) {
+            $.clientSecretWoVersion = clientSecretWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWoVersion Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(Integer clientSecretWoVersion) {
+            return clientSecretWoVersion(Output.of(clientSecretWoVersion));
         }
 
         /**
@@ -341,9 +420,6 @@ public final class OauthConfigurationArgs extends com.pulumi.resources.ResourceA
             }
             if ($.clientId == null) {
                 throw new MissingRequiredPropertyException("OauthConfigurationArgs", "clientId");
-            }
-            if ($.clientSecret == null) {
-                throw new MissingRequiredPropertyException("OauthConfigurationArgs", "clientSecret");
             }
             if ($.redirectUri == null) {
                 throw new MissingRequiredPropertyException("OauthConfigurationArgs", "redirectUri");

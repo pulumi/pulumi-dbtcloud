@@ -18,8 +18,13 @@ type TeradataCredential struct {
 
 	// The internal credential ID
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
-	// The password for the Teradata account
-	Password pulumi.StringOutput `pulumi:"password"`
+	// The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// Project ID to create the Teradata/Trino credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
 	// The schema where to create models
@@ -37,9 +42,6 @@ func NewTeradataCredential(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Password == nil {
-		return nil, errors.New("invalid value for required argument 'Password'")
-	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
@@ -50,10 +52,14 @@ func NewTeradataCredential(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'User'")
 	}
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringInput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -81,8 +87,13 @@ func GetTeradataCredential(ctx *pulumi.Context,
 type teradataCredentialState struct {
 	// The internal credential ID
 	CredentialId *int `pulumi:"credentialId"`
-	// The password for the Teradata account
+	// The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Teradata/Trino credential in
 	ProjectId *int `pulumi:"projectId"`
 	// The schema where to create models
@@ -96,8 +107,13 @@ type teradataCredentialState struct {
 type TeradataCredentialState struct {
 	// The internal credential ID
 	CredentialId pulumi.IntPtrInput
-	// The password for the Teradata account
+	// The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Teradata/Trino credential in
 	ProjectId pulumi.IntPtrInput
 	// The schema where to create models
@@ -113,8 +129,13 @@ func (TeradataCredentialState) ElementType() reflect.Type {
 }
 
 type teradataCredentialArgs struct {
-	// The password for the Teradata account
-	Password string `pulumi:"password"`
+	// The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
+	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Project ID to create the Teradata/Trino credential in
 	ProjectId int `pulumi:"projectId"`
 	// The schema where to create models
@@ -127,8 +148,13 @@ type teradataCredentialArgs struct {
 
 // The set of arguments for constructing a TeradataCredential resource.
 type TeradataCredentialArgs struct {
-	// The password for the Teradata account
-	Password pulumi.StringInput
+	// The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
+	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+	PasswordWo pulumi.StringPtrInput
+	// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Project ID to create the Teradata/Trino credential in
 	ProjectId pulumi.IntInput
 	// The schema where to create models
@@ -231,9 +257,20 @@ func (o TeradataCredentialOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v *TeradataCredential) pulumi.IntOutput { return v.CredentialId }).(pulumi.IntOutput)
 }
 
-// The password for the Teradata account
-func (o TeradataCredentialOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v *TeradataCredential) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+// The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
+func (o TeradataCredentialOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeradataCredential) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+func (o TeradataCredentialOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TeradataCredential) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+func (o TeradataCredentialOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TeradataCredential) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Project ID to create the Teradata/Trino credential in

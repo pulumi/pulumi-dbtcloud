@@ -40,10 +40,21 @@ public final class RedshiftSemanticLayerCredentialCredential {
      */
     private Integer numThreads;
     /**
-     * @return The password for the Redshift account
+     * @return The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     private @Nullable String password;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    private @Nullable String passwordWo;
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    private @Nullable Integer passwordWoVersion;
     /**
      * @return Project ID to create the Redshift credential in
      * 
@@ -92,11 +103,26 @@ public final class RedshiftSemanticLayerCredentialCredential {
         return this.numThreads;
     }
     /**
-     * @return The password for the Redshift account
+     * @return The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      * 
      */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
+    }
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<String> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+    /**
+     * @return Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
+     * 
+     */
+    public Optional<Integer> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
     }
     /**
      * @return Project ID to create the Redshift credential in
@@ -128,6 +154,8 @@ public final class RedshiftSemanticLayerCredentialCredential {
         private @Nullable Boolean isActive;
         private Integer numThreads;
         private @Nullable String password;
+        private @Nullable String passwordWo;
+        private @Nullable Integer passwordWoVersion;
         private Integer projectId;
         private @Nullable String username;
         public Builder() {}
@@ -139,6 +167,8 @@ public final class RedshiftSemanticLayerCredentialCredential {
     	      this.isActive = defaults.isActive;
     	      this.numThreads = defaults.numThreads;
     	      this.password = defaults.password;
+    	      this.passwordWo = defaults.passwordWo;
+    	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.projectId = defaults.projectId;
     	      this.username = defaults.username;
         }
@@ -184,6 +214,18 @@ public final class RedshiftSemanticLayerCredentialCredential {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWo(@Nullable String passwordWo) {
+
+            this.passwordWo = passwordWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
+
+            this.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(Integer projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("RedshiftSemanticLayerCredentialCredential", "projectId");
@@ -205,6 +247,8 @@ public final class RedshiftSemanticLayerCredentialCredential {
             _resultValue.isActive = isActive;
             _resultValue.numThreads = numThreads;
             _resultValue.password = password;
+            _resultValue.passwordWo = passwordWo;
+            _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.projectId = projectId;
             _resultValue.username = username;
             return _resultValue;

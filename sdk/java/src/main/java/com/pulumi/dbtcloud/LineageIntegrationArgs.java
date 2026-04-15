@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class LineageIntegrationArgs extends com.pulumi.resources.ResourceArgs {
@@ -61,18 +63,18 @@ public final class LineageIntegrationArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The secret token value to use to authenticate to the BI server
+     * The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
-    @Import(name="token", required=true)
-    private Output<String> token;
+    @Import(name="token")
+    private @Nullable Output<String> token;
 
     /**
-     * @return The secret token value to use to authenticate to the BI server
+     * @return The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      * 
      */
-    public Output<String> token() {
-        return this.token;
+    public Optional<Output<String>> token() {
+        return Optional.ofNullable(this.token);
     }
 
     /**
@@ -90,6 +92,38 @@ public final class LineageIntegrationArgs extends com.pulumi.resources.ResourceA
         return this.tokenName;
     }
 
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="tokenWo")
+    private @Nullable Output<String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> tokenWo() {
+        return Optional.ofNullable(this.tokenWo);
+    }
+
+    /**
+     * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    @Import(name="tokenWoVersion")
+    private @Nullable Output<Integer> tokenWoVersion;
+
+    /**
+     * @return Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+     * 
+     */
+    public Optional<Output<Integer>> tokenWoVersion() {
+        return Optional.ofNullable(this.tokenWoVersion);
+    }
+
     private LineageIntegrationArgs() {}
 
     private LineageIntegrationArgs(LineageIntegrationArgs $) {
@@ -98,6 +132,8 @@ public final class LineageIntegrationArgs extends com.pulumi.resources.ResourceA
         this.siteId = $.siteId;
         this.token = $.token;
         this.tokenName = $.tokenName;
+        this.tokenWo = $.tokenWo;
+        this.tokenWoVersion = $.tokenWoVersion;
     }
 
     public static Builder builder() {
@@ -182,18 +218,18 @@ public final class LineageIntegrationArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param token The secret token value to use to authenticate to the BI server
+         * @param token The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
          */
-        public Builder token(Output<String> token) {
+        public Builder token(@Nullable Output<String> token) {
             $.token = token;
             return this;
         }
 
         /**
-         * @param token The secret token value to use to authenticate to the BI server
+         * @param token The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -223,6 +259,50 @@ public final class LineageIntegrationArgs extends com.pulumi.resources.ResourceA
             return tokenName(Output.of(tokenName));
         }
 
+        /**
+         * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWo(@Nullable Output<String> tokenWo) {
+            $.tokenWo = tokenWo;
+            return this;
+        }
+
+        /**
+         * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWo(String tokenWo) {
+            return tokenWo(Output.of(tokenWo));
+        }
+
+        /**
+         * @param tokenWoVersion Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWoVersion(@Nullable Output<Integer> tokenWoVersion) {
+            $.tokenWoVersion = tokenWoVersion;
+            return this;
+        }
+
+        /**
+         * @param tokenWoVersion Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWoVersion(Integer tokenWoVersion) {
+            return tokenWoVersion(Output.of(tokenWoVersion));
+        }
+
         public LineageIntegrationArgs build() {
             if ($.host == null) {
                 throw new MissingRequiredPropertyException("LineageIntegrationArgs", "host");
@@ -232,9 +312,6 @@ public final class LineageIntegrationArgs extends com.pulumi.resources.ResourceA
             }
             if ($.siteId == null) {
                 throw new MissingRequiredPropertyException("LineageIntegrationArgs", "siteId");
-            }
-            if ($.token == null) {
-                throw new MissingRequiredPropertyException("LineageIntegrationArgs", "token");
             }
             if ($.tokenName == null) {
                 throw new MissingRequiredPropertyException("LineageIntegrationArgs", "tokenName");
