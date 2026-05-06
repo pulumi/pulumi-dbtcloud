@@ -309,6 +309,34 @@ class LineageIntegration(pulumi.CustomResource):
 
         This resource requires having an environment tagged as production already created for you project.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # the resource can only be configured when a Prod environment has been set
+        # so, you might want to explicitly set the dependency on your Prod environment resource
+        # Using the classic sensitive attribute (stored in state)
+        my_lineage = dbtcloud.LineageIntegration("my_lineage",
+            project_id=int(my_project["id"]),
+            host="my.host.com",
+            site_id="mysiteid",
+            token_name="my-token-name",
+            token="my-sensitive-token",
+            opts = pulumi.ResourceOptions(depends_on=[my_prod_env]))
+        config = pulumi.Config()
+        lineage_token = config.require("lineageToken")
+        my_lineage_wo = dbtcloud.LineageIntegration("my_lineage_wo",
+            project_id=int(my_project["id"]),
+            host="my.host.com",
+            site_id="mysiteid",
+            token_name="my-token-name",
+            token_wo=lineage_token,
+            token_wo_version=1,
+            opts = pulumi.ResourceOptions(depends_on=[my_prod_env]))
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -351,6 +379,34 @@ class LineageIntegration(pulumi.CustomResource):
         Setup lineage integration for dbt Cloud to automatically fetch lineage from external BI tools in dbt Explorer. Currently supports Tableau.
 
         This resource requires having an environment tagged as production already created for you project.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # the resource can only be configured when a Prod environment has been set
+        # so, you might want to explicitly set the dependency on your Prod environment resource
+        # Using the classic sensitive attribute (stored in state)
+        my_lineage = dbtcloud.LineageIntegration("my_lineage",
+            project_id=int(my_project["id"]),
+            host="my.host.com",
+            site_id="mysiteid",
+            token_name="my-token-name",
+            token="my-sensitive-token",
+            opts = pulumi.ResourceOptions(depends_on=[my_prod_env]))
+        config = pulumi.Config()
+        lineage_token = config.require("lineageToken")
+        my_lineage_wo = dbtcloud.LineageIntegration("my_lineage_wo",
+            project_id=int(my_project["id"]),
+            host="my.host.com",
+            site_id="mysiteid",
+            token_name="my-token-name",
+            token_wo=lineage_token,
+            token_wo_version=1,
+            opts = pulumi.ResourceOptions(depends_on=[my_prod_env]))
+        ```
 
         ## Import
 

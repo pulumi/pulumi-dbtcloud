@@ -7,6 +7,36 @@ import * as utilities from "./utilities";
 /**
  * Postgres credential resource.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const postgresProdCredential = new dbtcloud.PostgresCredential("postgres_prod_credential", {
+ *     isActive: true,
+ *     projectId: Number(dbtProject.id),
+ *     type: "postgres",
+ *     defaultSchema: "my_schema",
+ *     username: "my_username",
+ *     password: "my_password",
+ *     numThreads: 16,
+ * });
+ * const config = new pulumi.Config();
+ * const postgresPassword = config.require("postgresPassword");
+ * const postgresProdCredentialWo = new dbtcloud.PostgresCredential("postgres_prod_credential_wo", {
+ *     isActive: true,
+ *     projectId: Number(dbtProject.id),
+ *     type: "postgres",
+ *     defaultSchema: "my_schema",
+ *     username: "my_username",
+ *     passwordWo: postgresPassword,
+ *     passwordWoVersion: 1,
+ *     numThreads: 16,
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

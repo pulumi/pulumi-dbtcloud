@@ -28,7 +28,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new DbtCloud.Index.AzureAdApplication("this", new()
+    ///     var @this = new DbtCloud.AzureAdApplication("this", new()
     ///     {
     ///         OrganizationName = "my-azure-devops-org",
     ///         ClientId = "00000000-0000-0000-0000-000000000000",

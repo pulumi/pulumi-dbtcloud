@@ -12,6 +12,45 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Postgres credential resource.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var postgresProdCredential = new DbtCloud.PostgresCredential("postgres_prod_credential", new()
+    ///     {
+    ///         IsActive = true,
+    ///         ProjectId = dbtProject.Id,
+    ///         Type = "postgres",
+    ///         DefaultSchema = "my_schema",
+    ///         Username = "my_username",
+    ///         Password = "my_password",
+    ///         NumThreads = 16,
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var postgresPassword = config.Require("postgresPassword");
+    ///     var postgresProdCredentialWo = new DbtCloud.PostgresCredential("postgres_prod_credential_wo", new()
+    ///     {
+    ///         IsActive = true,
+    ///         ProjectId = dbtProject.Id,
+    ///         Type = "postgres",
+    ///         DefaultSchema = "my_schema",
+    ///         Username = "my_username",
+    ///         PasswordWo = postgresPassword,
+    ///         PasswordWoVersion = 1,
+    ///         NumThreads = 16,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

@@ -145,9 +145,9 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         test_mapping = dbtcloud.SemanticLayerCredentialServiceTokenMapping("test_mapping",
-            semantic_layer_credential_id=test["id"],
-            service_token_id=test_service_token["id"],
-            project_id=test_project["id"])
+            semantic_layer_credential_id=int(test["id"]),
+            service_token_id=int(test_service_token["id"]),
+            project_id=int(test_project["id"]))
         ```
 
         ## Import
@@ -191,9 +191,9 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         test_mapping = dbtcloud.SemanticLayerCredentialServiceTokenMapping("test_mapping",
-            semantic_layer_credential_id=test["id"],
-            service_token_id=test_service_token["id"],
-            project_id=test_project["id"])
+            semantic_layer_credential_id=int(test["id"]),
+            service_token_id=int(test_service_token["id"]),
+            project_id=int(test_project["id"]))
         ```
 
         ## Import

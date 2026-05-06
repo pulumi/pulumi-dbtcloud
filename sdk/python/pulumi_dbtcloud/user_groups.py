@@ -121,7 +121,7 @@ class UserGroups(pulumi.CustomResource):
 
         # we can assign groups to users
         my_user_groups = dbtcloud.UserGroups("my_user_groups",
-            user_id=my_user["id"],
+            user_id=int(my_user["id"]),
             group_ids=[
                 1234,
                 my_group["id"],
@@ -182,7 +182,7 @@ class UserGroups(pulumi.CustomResource):
 
         # we can assign groups to users
         my_user_groups = dbtcloud.UserGroups("my_user_groups",
-            user_id=my_user["id"],
+            user_id=int(my_user["id"]),
             group_ids=[
                 1234,
                 my_group["id"],

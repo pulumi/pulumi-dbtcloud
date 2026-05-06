@@ -12,6 +12,39 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Databricks credential resource
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var myDatabricksCred = new DbtCloud.DatabricksCredential("my_databricks_cred", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Token = "abcdefgh",
+    ///         Schema = "my_schema",
+    ///         AdapterType = "databricks",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var databricksToken = config.Require("databricksToken");
+    ///     var myDatabricksCredWo = new DbtCloud.DatabricksCredential("my_databricks_cred_wo", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         TokenWo = databricksToken,
+    ///         TokenWoVersion = 1,
+    ///         Schema = "my_schema",
+    ///         AdapterType = "databricks",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

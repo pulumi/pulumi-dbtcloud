@@ -14,6 +14,55 @@ namespace Pulumi.DbtCloud
     /// 
     /// This resource requires having an environment tagged as production already created for you project.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // the resource can only be configured when a Prod environment has been set
+    ///     // so, you might want to explicitly set the dependency on your Prod environment resource
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var myLineage = new DbtCloud.LineageIntegration("my_lineage", new()
+    ///     {
+    ///         ProjectId = myProject.Id,
+    ///         Host = "my.host.com",
+    ///         SiteId = "mysiteid",
+    ///         TokenName = "my-token-name",
+    ///         Token = "my-sensitive-token",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             myProdEnv,
+    ///         },
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var lineageToken = config.Require("lineageToken");
+    ///     var myLineageWo = new DbtCloud.LineageIntegration("my_lineage_wo", new()
+    ///     {
+    ///         ProjectId = myProject.Id,
+    ///         Host = "my.host.com",
+    ///         SiteId = "mysiteid",
+    ///         TokenName = "my-token-name",
+    ///         TokenWo = lineageToken,
+    ///         TokenWoVersion = 1,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             myProdEnv,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

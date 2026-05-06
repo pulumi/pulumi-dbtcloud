@@ -14,6 +14,51 @@ import (
 
 // Athena credential resource
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attributes (stored in state)
+//			_, err := dbtcloud.NewAthenaCredential(ctx, "example", &dbtcloud.AthenaCredentialArgs{
+//				ProjectId:          pulumi.Any(exampleDbtcloudProject.Id),
+//				AwsAccessKeyId:     pulumi.String("your-access-key-id"),
+//				AwsSecretAccessKey: pulumi.String("your-secret-access-key"),
+//				Schema:             pulumi.String("your_schema"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			athenaAwsAccessKeyId := cfg.Require("athenaAwsAccessKeyId")
+//			athenaAwsSecretAccessKey := cfg.Require("athenaAwsSecretAccessKey")
+//			_, err = dbtcloud.NewAthenaCredential(ctx, "example_wo", &dbtcloud.AthenaCredentialArgs{
+//				ProjectId:                   pulumi.Any(exampleDbtcloudProject.Id),
+//				AwsAccessKeyIdWo:            pulumi.String(pulumi.String(athenaAwsAccessKeyId)),
+//				AwsAccessKeyIdWoVersion:     pulumi.Int(1),
+//				AwsSecretAccessKeyWo:        pulumi.String(pulumi.String(athenaAwsSecretAccessKey)),
+//				AwsSecretAccessKeyWoVersion: pulumi.Int(1),
+//				Schema:                      pulumi.String("your_schema"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

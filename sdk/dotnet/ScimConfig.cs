@@ -29,7 +29,7 @@ namespace Pulumi.DbtCloud
     ///     // Enable SCIM with strict IdP control — no manual updates, license type managed by SCIM.
     ///     // This is the recommended configuration when using an identity provider such as
     ///     // Okta or Azure AD as the single source of truth for user provisioning.
-    ///     var main = new DbtCloud.Index.ScimConfig("main", new()
+    ///     var main = new DbtCloud.ScimConfig("main", new()
     ///     {
     ///         Enabled = true,
     ///         ManualUpdatesAllowed = false,

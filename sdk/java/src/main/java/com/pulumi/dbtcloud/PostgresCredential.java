@@ -20,6 +20,59 @@ import javax.annotation.Nullable;
 /**
  * Postgres credential resource.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.PostgresCredential;
+ * import com.pulumi.dbtcloud.PostgresCredentialArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attribute (stored in state)
+ *         var postgresProdCredential = new PostgresCredential("postgresProdCredential", PostgresCredentialArgs.builder()
+ *             .isActive(true)
+ *             .projectId(dbtProject.id())
+ *             .type("postgres")
+ *             .defaultSchema("my_schema")
+ *             .username("my_username")
+ *             .password("my_password")
+ *             .numThreads(16)
+ *             .build());
+ * 
+ *         final var postgresPassword = config.require("postgresPassword");
+ *         var postgresProdCredentialWo = new PostgresCredential("postgresProdCredentialWo", PostgresCredentialArgs.builder()
+ *             .isActive(true)
+ *             .projectId(dbtProject.id())
+ *             .type("postgres")
+ *             .defaultSchema("my_schema")
+ *             .username("my_username")
+ *             .passwordWo(postgresPassword)
+ *             .passwordWoVersion(1)
+ *             .numThreads(16)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

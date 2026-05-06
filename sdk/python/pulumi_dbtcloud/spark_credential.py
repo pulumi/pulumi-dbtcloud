@@ -268,6 +268,26 @@ class SparkCredential(pulumi.CustomResource):
         """
         Apache Spark credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        my_spark_cred = dbtcloud.SparkCredential("my_spark_cred",
+            project_id=int(dbt_project["id"]),
+            token="abcdefgh",
+            schema="my_schema")
+        config = pulumi.Config()
+        spark_token = config.require("sparkToken")
+        my_spark_cred_wo = dbtcloud.SparkCredential("my_spark_cred_wo",
+            project_id=int(dbt_project["id"]),
+            token_wo=spark_token,
+            token_wo_version=1,
+            schema="my_schema")
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -307,6 +327,26 @@ class SparkCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Apache Spark credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        my_spark_cred = dbtcloud.SparkCredential("my_spark_cred",
+            project_id=int(dbt_project["id"]),
+            token="abcdefgh",
+            schema="my_schema")
+        config = pulumi.Config()
+        spark_token = config.require("sparkToken")
+        my_spark_cred_wo = dbtcloud.SparkCredential("my_spark_cred_wo",
+            project_id=int(dbt_project["id"]),
+            token_wo=spark_token,
+            token_wo_version=1,
+            schema="my_schema")
+        ```
 
         ## Import
 

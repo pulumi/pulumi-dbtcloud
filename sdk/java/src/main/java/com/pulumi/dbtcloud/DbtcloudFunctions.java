@@ -138,8 +138,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -179,8 +179,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -220,8 +220,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -261,8 +261,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -302,8 +302,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -346,8 +346,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -389,8 +389,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -432,8 +432,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -475,8 +475,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -518,8 +518,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -561,8 +561,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -605,8 +605,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -649,8 +649,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -693,8 +693,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -737,8 +737,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -883,8 +883,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -924,8 +924,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -965,8 +965,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1006,8 +1006,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1047,8 +1047,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetEnvironmentVariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1137,8 +1137,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetExtendedAttributesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1178,8 +1178,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetExtendedAttributesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1219,8 +1219,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetExtendedAttributesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1260,8 +1260,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetExtendedAttributesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1301,8 +1301,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetExtendedAttributesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1340,8 +1340,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1378,8 +1378,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1416,8 +1416,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1454,8 +1454,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1492,8 +1492,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGlobalConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1531,8 +1531,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1568,8 +1568,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1605,8 +1605,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1642,8 +1642,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1679,8 +1679,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1716,8 +1716,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1753,8 +1753,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1826,8 +1826,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGroupUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1866,8 +1866,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGroupUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1906,8 +1906,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGroupUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1946,8 +1946,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGroupUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1986,8 +1986,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetGroupUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2173,8 +2173,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2217,8 +2217,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2261,8 +2261,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2305,8 +2305,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2349,8 +2349,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetModelNotificationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2393,8 +2393,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2433,8 +2433,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2473,8 +2473,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2513,8 +2513,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2553,8 +2553,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetNotificationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2628,8 +2628,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2678,8 +2678,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2728,8 +2728,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2778,8 +2778,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2828,8 +2828,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2878,8 +2878,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2928,8 +2928,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3041,8 +3041,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3082,8 +3082,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3123,8 +3123,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3164,8 +3164,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3205,8 +3205,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfileArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3246,8 +3246,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3286,8 +3286,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3326,8 +3326,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3366,8 +3366,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3406,8 +3406,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetProfilesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3762,8 +3762,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3803,8 +3803,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3844,8 +3844,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3885,8 +3885,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3926,8 +3926,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetSparkCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3967,8 +3967,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4008,8 +4008,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4049,8 +4049,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4090,8 +4090,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4131,8 +4131,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetStarburstCredentialArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4242,8 +4242,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4282,8 +4282,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4322,8 +4322,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4362,8 +4362,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4402,8 +4402,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4442,8 +4442,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserGroupsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4482,8 +4482,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserGroupsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4522,8 +4522,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserGroupsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4562,8 +4562,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserGroupsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4602,8 +4602,8 @@ public final class DbtcloudFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.dbtcloud.DbtcloudFunctions;
      * import com.pulumi.dbtcloud.inputs.GetUserGroupsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

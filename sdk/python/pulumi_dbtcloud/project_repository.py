@@ -115,8 +115,8 @@ class ProjectRepository(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         dbt_project_repository = dbtcloud.ProjectRepository("dbt_project_repository",
-            project_id=dbt_project["id"],
-            repository_id=dbt_repository["repositoryId"])
+            project_id=int(dbt_project["id"]),
+            repository_id=int(dbt_repository["repositoryId"]))
         ```
 
         ## Import
@@ -161,8 +161,8 @@ class ProjectRepository(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         dbt_project_repository = dbtcloud.ProjectRepository("dbt_project_repository",
-            project_id=dbt_project["id"],
-            repository_id=dbt_repository["repositoryId"])
+            project_id=int(dbt_project["id"]),
+            repository_id=int(dbt_repository["repositoryId"]))
         ```
 
         ## Import

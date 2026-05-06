@@ -20,6 +20,57 @@ import javax.annotation.Nullable;
 /**
  * Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.SnowflakeCredential;
+ * import com.pulumi.dbtcloud.SnowflakeCredentialArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attribute (stored in state)
+ *         var prodCredential = new SnowflakeCredential("prodCredential", SnowflakeCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .authType("password")
+ *             .numThreads(16)
+ *             .schema("SCHEMA")
+ *             .user("user")
+ *             .password("password")
+ *             .build());
+ * 
+ *         final var snowflakePassword = config.require("snowflakePassword");
+ *         var prodCredentialWo = new SnowflakeCredential("prodCredentialWo", SnowflakeCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .authType("password")
+ *             .numThreads(16)
+ *             .schema("SCHEMA")
+ *             .user("user")
+ *             .passwordWo(snowflakePassword)
+ *             .passwordWoVersion(1)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

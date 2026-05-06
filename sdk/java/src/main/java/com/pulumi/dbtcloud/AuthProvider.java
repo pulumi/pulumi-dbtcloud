@@ -24,6 +24,117 @@ import javax.annotation.Nullable;
  * 
  * See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/sso-overview) for more information.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.AuthProvider;
+ * import com.pulumi.dbtcloud.AuthProviderArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         final var config = ctx.config();
+ *         final var samlCert = config.require("samlCert");
+ *         var saml = new AuthProvider("saml", AuthProviderArgs.builder()
+ *             .type("saml")
+ *             .entityId("https://your-idp.example.com/metadata")
+ *             .ssoUrl("https://your-idp.example.com/sso/saml")
+ *             .certWo(samlCert)
+ *             .certWoVersion(1)
+ *             .build());
+ * 
+ *         ctx.export("loginUrl", saml.loginUrl());
+ *         // SAML — all optional fields
+ *         var samlFull = new AuthProvider("samlFull", AuthProviderArgs.builder()
+ *             .type("saml")
+ *             .entityId("https://your-idp.example.com/metadata")
+ *             .ssoUrl("https://your-idp.example.com/sso/saml")
+ *             .cert(StdFunctions.file(FileArgs.builder()
+ *                 .input("idp-cert.pem")
+ *                 .build()).result())
+ *             .signRequest(true)
+ *             .attributeMap(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty("email", "nameID"),
+ *                     jsonProperty("first_name", "firstName"),
+ *                     jsonProperty("last_name", "lastName")
+ *                 )))
+ *             .allowPasswordBackdoor(false)
+ *             .build());
+ * 
+ *         // Okta (identical to SAML, different type value)
+ *         var okta = new AuthProvider("okta", AuthProviderArgs.builder()
+ *             .type("okta")
+ *             .entityId("http://www.okta.com/<okta_app_id>")
+ *             .ssoUrl("https://<your-org>.okta.com/app/<app_path>/sso/saml")
+ *             .certWo(samlCert)
+ *             .certWoVersion(1)
+ *             .build());
+ * 
+ *         final var azureClientSecret = config.require("azureClientSecret");
+ *         var azureSingleTenant = new AuthProvider("azureSingleTenant", AuthProviderArgs.builder()
+ *             .type("azure_single_tenant")
+ *             .clientId("00000000-0000-0000-0000-000000000000")
+ *             .tenantId("11111111-1111-1111-1111-111111111111")
+ *             .clientSecretWo(azureClientSecret)
+ *             .clientSecretWoVersion(1)
+ *             .domain("acme.com")
+ *             .includeIndirectGroups(true)
+ *             .maxGroupsToRetrieve(500)
+ *             .build());
+ * 
+ *         // Azure AD — multi tenant (no tenant_id required)
+ *         var azureMultiTenant = new AuthProvider("azureMultiTenant", AuthProviderArgs.builder()
+ *             .type("azure_multi_tenant")
+ *             .clientId("00000000-0000-0000-0000-000000000000")
+ *             .clientSecretWo(azureClientSecret)
+ *             .clientSecretWoVersion(1)
+ *             .build());
+ * 
+ *         // Azure Active Directory
+ *         var azureActiveDirectory = new AuthProvider("azureActiveDirectory", AuthProviderArgs.builder()
+ *             .type("azure_active_directory")
+ *             .clientId("00000000-0000-0000-0000-000000000000")
+ *             .tenantId("11111111-1111-1111-1111-111111111111")
+ *             .clientSecretWo(azureClientSecret)
+ *             .clientSecretWoVersion(1)
+ *             .domain("acme.com")
+ *             .build());
+ * 
+ *         final var gsuiteClientSecret = config.require("gsuiteClientSecret");
+ *         var gsuite = new AuthProvider("gsuite", AuthProviderArgs.builder()
+ *             .type("gsuite")
+ *             .clientId("000000000000-xxxx.apps.googleusercontent.com")
+ *             .clientSecretWo(gsuiteClientSecret)
+ *             .clientSecretWoVersion(1)
+ *             .adminRefreshToken("<oauth-refresh-token>")
+ *             .domain("acme.com")
+ *             .gsuiteAdminId("admin}{@literal @}{@code acme.com")
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Import an existing auth provider by its numeric ID.

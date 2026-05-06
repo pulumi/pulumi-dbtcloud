@@ -35,8 +35,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-command/sdk/go/command/local"
 //	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -82,7 +80,7 @@ import (
 //				return err
 //			}
 //			_, err = local.NewCommand(ctx, "dailyJobProvisioner0", &local.CommandArgs{
-//				Create: fmt.Sprintf(`%v%v' \\
+//				Create: pulumi.Sprintf(`%v%v' \\
 //	  -H 'Content-Type: application/json' \\
 //	  -d '{\"cause\": \"Generate manifest\", \"steps_override\": [\"dbt parse\"]}' \\
 //	  %v/v2/accounts/%v/jobs/%v/run/)
@@ -98,7 +96,7 @@ import (
 //	exit 1
 //
 // fi
-// `, "response=$(curl -s -L -o /dev/null -w \\\"%{http_code}\\\" -X POST \\\\\n  -H 'Authorization: Bearer ", dbtToken, dbtHostUrl, dbtAccountId, id),
+// `, "response=$(curl -s -L -o /dev/null -w \\\"%{http_code}\\\" -X POST \\\\\n  -H 'Authorization: Bearer ", dbtToken, dbtHostUrl, dbtAccountId, dailyJob.ID()),
 //
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				dailyJob,

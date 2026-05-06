@@ -19,6 +19,51 @@ import javax.annotation.Nullable;
 /**
  * Apache Spark credential resource
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.SparkCredential;
+ * import com.pulumi.dbtcloud.SparkCredentialArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attribute (stored in state)
+ *         var mySparkCred = new SparkCredential("mySparkCred", SparkCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .token("abcdefgh")
+ *             .schema("my_schema")
+ *             .build());
+ * 
+ *         final var sparkToken = config.require("sparkToken");
+ *         var mySparkCredWo = new SparkCredential("mySparkCredWo", SparkCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .tokenWo(sparkToken)
+ *             .tokenWoVersion(1)
+ *             .schema("my_schema")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

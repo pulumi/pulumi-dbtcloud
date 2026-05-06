@@ -116,8 +116,8 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         example = dbtcloud.SemanticLayerConfiguration("example",
-            project_id=project_id,
-            environment_id=environment_id)
+            project_id=int(project_id),
+            environment_id=int(environment_id))
         ```
 
         ## Import
@@ -163,8 +163,8 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         example = dbtcloud.SemanticLayerConfiguration("example",
-            project_id=project_id,
-            environment_id=environment_id)
+            project_id=int(project_id),
+            environment_id=int(environment_id))
         ```
 
         ## Import

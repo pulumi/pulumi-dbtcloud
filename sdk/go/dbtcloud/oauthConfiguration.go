@@ -16,6 +16,69 @@ import (
 //
 // See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/external-oauth) for more information on how to configure it.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewOauthConfiguration(ctx, "entra", &dbtcloud.OauthConfigurationArgs{
+//				Type:             pulumi.String("entra"),
+//				Name:             pulumi.String("My Entra ID Oauth integration"),
+//				ClientId:         pulumi.String("client-id"),
+//				ClientSecret:     pulumi.String("client-secret"),
+//				RedirectUri:      pulumi.String("http://example.com"),
+//				TokenUrl:         pulumi.String("http://example.com"),
+//				AuthorizeUrl:     pulumi.String("http://example.com"),
+//				ApplicationIdUri: pulumi.String("uri"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewOauthConfiguration(ctx, "okta", &dbtcloud.OauthConfigurationArgs{
+//				Type:         pulumi.String("okta"),
+//				Name:         pulumi.String("My Okta Oauth integration"),
+//				ClientId:     pulumi.String("client-id"),
+//				ClientSecret: pulumi.String("client-secret"),
+//				RedirectUri:  pulumi.String("http://example.com"),
+//				TokenUrl:     pulumi.String("http://example.com"),
+//				AuthorizeUrl: pulumi.String("http://example.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			oauthClientSecret := cfg.Require("oauthClientSecret")
+//			_, err = dbtcloud.NewOauthConfiguration(ctx, "entra_wo", &dbtcloud.OauthConfigurationArgs{
+//				Type:                  pulumi.String("entra"),
+//				Name:                  pulumi.String("My Entra ID Oauth integration"),
+//				ClientId:              pulumi.String("client-id"),
+//				ClientSecretWo:        pulumi.String(pulumi.String(oauthClientSecret)),
+//				ClientSecretWoVersion: pulumi.Int(1),
+//				RedirectUri:           pulumi.String("http://example.com"),
+//				TokenUrl:              pulumi.String("http://example.com"),
+//				AuthorizeUrl:          pulumi.String("http://example.com"),
+//				ApplicationIdUri:      pulumi.String("uri"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

@@ -7,6 +7,54 @@ import * as utilities from "./utilities";
 /**
  * Fabric credential resource
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attributes (stored in state)
+ * // when using AD authentication
+ * const myFabricCredAd = new dbtcloud.FabricCredential("my_fabric_cred_ad", {
+ *     projectId: Number(dbtProject.id),
+ *     schema: "my_schema",
+ *     user: "my_user",
+ *     password: "my_password",
+ *     schemaAuthorization: "abcd",
+ * });
+ * // when using service principal authentication
+ * const myFabricCredServPrinc = new dbtcloud.FabricCredential("my_fabric_cred_serv_princ", {
+ *     projectId: Number(dbtProject.id),
+ *     schema: "my_schema",
+ *     clientId: "my_client_id",
+ *     tenantId: "my_tenant_id",
+ *     clientSecret: "my_secret",
+ *     schemaAuthorization: "abcd",
+ * });
+ * const config = new pulumi.Config();
+ * const fabricPassword = config.require("fabricPassword");
+ * const fabricClientSecret = config.require("fabricClientSecret");
+ * // when using AD authentication with write-only password
+ * const myFabricCredAdWo = new dbtcloud.FabricCredential("my_fabric_cred_ad_wo", {
+ *     projectId: Number(dbtProject.id),
+ *     schema: "my_schema",
+ *     user: "my_user",
+ *     passwordWo: fabricPassword,
+ *     passwordWoVersion: 1,
+ *     schemaAuthorization: "abcd",
+ * });
+ * // when using service principal authentication with write-only client secret
+ * const myFabricCredServPrincWo = new dbtcloud.FabricCredential("my_fabric_cred_serv_princ_wo", {
+ *     projectId: Number(dbtProject.id),
+ *     schema: "my_schema",
+ *     clientId: "my_client_id",
+ *     tenantId: "my_tenant_id",
+ *     clientSecretWo: fabricClientSecret,
+ *     clientSecretWoVersion: 1,
+ *     schemaAuthorization: "abcd",
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

@@ -292,6 +292,28 @@ class TeradataCredential(pulumi.CustomResource):
         """
         Teradata credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        example = dbtcloud.TeradataCredential("example",
+            project_id=int(example_dbtcloud_project["id"]),
+            schema="your_schema",
+            user="your_user",
+            password="your_password")
+        config = pulumi.Config()
+        teradata_password = config.require("teradataPassword")
+        example_wo = dbtcloud.TeradataCredential("example_wo",
+            project_id=int(example_dbtcloud_project["id"]),
+            schema="your_schema",
+            user="your_user",
+            password_wo=teradata_password,
+            password_wo_version=1)
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -312,6 +334,28 @@ class TeradataCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Teradata credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        example = dbtcloud.TeradataCredential("example",
+            project_id=int(example_dbtcloud_project["id"]),
+            schema="your_schema",
+            user="your_user",
+            password="your_password")
+        config = pulumi.Config()
+        teradata_password = config.require("teradataPassword")
+        example_wo = dbtcloud.TeradataCredential("example_wo",
+            project_id=int(example_dbtcloud_project["id"]),
+            schema="your_schema",
+            user="your_user",
+            password_wo=teradata_password,
+            password_wo_version=1)
+        ```
 
 
         :param str resource_name: The name of the resource.

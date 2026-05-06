@@ -229,16 +229,16 @@ class BigQueryCredential(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         my_credential = dbtcloud.BigQueryCredential("my_credential",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             dataset="my_bq_dataset",
             num_threads=16)
         # When using a global connection with use_latest_adapter = true,
         # provide the connection_id to automatically use the correct adapter version
         my_credential_v1 = dbtcloud.BigQueryCredential("my_credential_v1",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             dataset="my_bq_dataset",
             num_threads=16,
-            connection_id=my_connection["id"])
+            connection_id=int(my_connection["id"]))
         ```
 
         ## Import
@@ -286,16 +286,16 @@ class BigQueryCredential(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         my_credential = dbtcloud.BigQueryCredential("my_credential",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             dataset="my_bq_dataset",
             num_threads=16)
         # When using a global connection with use_latest_adapter = true,
         # provide the connection_id to automatically use the correct adapter version
         my_credential_v1 = dbtcloud.BigQueryCredential("my_credential_v1",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             dataset="my_bq_dataset",
             num_threads=16,
-            connection_id=my_connection["id"])
+            connection_id=int(my_connection["id"]))
         ```
 
         ## Import

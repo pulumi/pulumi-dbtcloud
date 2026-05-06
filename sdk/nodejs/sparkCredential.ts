@@ -7,6 +7,28 @@ import * as utilities from "./utilities";
 /**
  * Apache Spark credential resource
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const mySparkCred = new dbtcloud.SparkCredential("my_spark_cred", {
+ *     projectId: Number(dbtProject.id),
+ *     token: "abcdefgh",
+ *     schema: "my_schema",
+ * });
+ * const config = new pulumi.Config();
+ * const sparkToken = config.require("sparkToken");
+ * const mySparkCredWo = new dbtcloud.SparkCredential("my_spark_cred_wo", {
+ *     projectId: Number(dbtProject.id),
+ *     tokenWo: sparkToken,
+ *     tokenWoVersion: 1,
+ *     schema: "my_schema",
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

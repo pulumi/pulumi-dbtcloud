@@ -12,6 +12,41 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Athena credential resource
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attributes (stored in state)
+    ///     var example = new DbtCloud.AthenaCredential("example", new()
+    ///     {
+    ///         ProjectId = exampleDbtcloudProject.Id,
+    ///         AwsAccessKeyId = "your-access-key-id",
+    ///         AwsSecretAccessKey = "your-secret-access-key",
+    ///         Schema = "your_schema",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var athenaAwsAccessKeyId = config.Require("athenaAwsAccessKeyId");
+    ///     var athenaAwsSecretAccessKey = config.Require("athenaAwsSecretAccessKey");
+    ///     var exampleWo = new DbtCloud.AthenaCredential("example_wo", new()
+    ///     {
+    ///         ProjectId = exampleDbtcloudProject.Id,
+    ///         AwsAccessKeyIdWo = athenaAwsAccessKeyId,
+    ///         AwsAccessKeyIdWoVersion = 1,
+    ///         AwsSecretAccessKeyWo = athenaAwsSecretAccessKey,
+    ///         AwsSecretAccessKeyWoVersion = 1,
+    ///         Schema = "your_schema",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

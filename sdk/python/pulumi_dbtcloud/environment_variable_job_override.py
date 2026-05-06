@@ -213,8 +213,8 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
 
         my_env_var_job_override = dbtcloud.EnvironmentVariableJobOverride("my_env_var_job_override",
             name=dbt_my_env_var["name"],
-            project_id=dbt_project["id"],
-            job_definition_id=daily_job["id"],
+            project_id=int(dbt_project["id"]),
+            job_definition_id=int(daily_job["id"]),
             raw_value="my_override_value")
         ```
 
@@ -263,8 +263,8 @@ class EnvironmentVariableJobOverride(pulumi.CustomResource):
 
         my_env_var_job_override = dbtcloud.EnvironmentVariableJobOverride("my_env_var_job_override",
             name=dbt_my_env_var["name"],
-            project_id=dbt_project["id"],
-            job_definition_id=daily_job["id"],
+            project_id=int(dbt_project["id"]),
+            job_definition_id=int(daily_job["id"]),
             raw_value="my_override_value")
         ```
 

@@ -33,6 +33,57 @@ import javax.annotation.Nullable;
  * &gt; **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
  * you must destroy and recreate the resource.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.DatabricksPlatformMetadataCredential;
+ * import com.pulumi.dbtcloud.DatabricksPlatformMetadataCredentialArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attribute (stored in state)
+ *         var example = new DatabricksPlatformMetadataCredential("example", DatabricksPlatformMetadataCredentialArgs.builder()
+ *             .connectionId(databricks.id())
+ *             .catalogIngestionEnabled(true)
+ *             .costOptimizationEnabled(false)
+ *             .costInsightsEnabled(false)
+ *             .token(databricksToken)
+ *             .catalog("main")
+ *             .build());
+ * 
+ *         final var databricksMetadataToken = config.require("databricksMetadataToken");
+ *         var exampleWo = new DatabricksPlatformMetadataCredential("exampleWo", DatabricksPlatformMetadataCredentialArgs.builder()
+ *             .connectionId(databricks.id())
+ *             .catalogIngestionEnabled(true)
+ *             .costOptimizationEnabled(false)
+ *             .costInsightsEnabled(false)
+ *             .tokenWo(databricksMetadataToken)
+ *             .tokenWoVersion(1)
+ *             .catalog("main")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential")
 public class DatabricksPlatformMetadataCredential extends com.pulumi.resources.CustomResource {

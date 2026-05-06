@@ -496,26 +496,26 @@ class Environment(pulumi.CustomResource):
         ci_environment = dbtcloud.Environment("ci_environment",
             dbt_version="latest",
             name="CI",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
-            credential_id=ci_credential["credentialId"],
-            connection_id=my_global_connection["id"])
+            credential_id=int(ci_credential["credentialId"]),
+            connection_id=int(my_global_connection["id"]))
         # we can also set a deployment environment as being the production one
         prod_environment = dbtcloud.Environment("prod_environment",
             dbt_version="1.7.0-latest",
             name="Prod",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
-            credential_id=prod_credential["credentialId"],
+            credential_id=int(prod_credential["credentialId"]),
             deployment_type="production",
-            connection_id=my_legacy_connection["connectionId"])
+            connection_id=int(my_legacy_connection["connectionId"]))
         # Creating a development environment
         dev_environment = dbtcloud.Environment("dev_environment",
             dbt_version="latest",
             name="Dev",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="development",
-            connection_id=my_other_global_connection["id"])
+            connection_id=int(my_other_global_connection["id"]))
         # Deployment environment with a primary profile (binds connection + credentials via profile)
         # NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
         # primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
@@ -523,10 +523,10 @@ class Environment(pulumi.CustomResource):
         profiled_environment = dbtcloud.Environment("profiled_environment",
             dbt_version="latest",
             name="Staging",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
             deployment_type="staging",
-            primary_profile_id=my_profile["profileId"])
+            primary_profile_id=int(my_profile["profileId"]))
         ```
 
         ## Import
@@ -584,26 +584,26 @@ class Environment(pulumi.CustomResource):
         ci_environment = dbtcloud.Environment("ci_environment",
             dbt_version="latest",
             name="CI",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
-            credential_id=ci_credential["credentialId"],
-            connection_id=my_global_connection["id"])
+            credential_id=int(ci_credential["credentialId"]),
+            connection_id=int(my_global_connection["id"]))
         # we can also set a deployment environment as being the production one
         prod_environment = dbtcloud.Environment("prod_environment",
             dbt_version="1.7.0-latest",
             name="Prod",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
-            credential_id=prod_credential["credentialId"],
+            credential_id=int(prod_credential["credentialId"]),
             deployment_type="production",
-            connection_id=my_legacy_connection["connectionId"])
+            connection_id=int(my_legacy_connection["connectionId"]))
         # Creating a development environment
         dev_environment = dbtcloud.Environment("dev_environment",
             dbt_version="latest",
             name="Dev",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="development",
-            connection_id=my_other_global_connection["id"])
+            connection_id=int(my_other_global_connection["id"]))
         # Deployment environment with a primary profile (binds connection + credentials via profile)
         # NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
         # primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
@@ -611,10 +611,10 @@ class Environment(pulumi.CustomResource):
         profiled_environment = dbtcloud.Environment("profiled_environment",
             dbt_version="latest",
             name="Staging",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
             deployment_type="staging",
-            primary_profile_id=my_profile["profileId"])
+            primary_profile_id=int(my_profile["profileId"]))
         ```
 
         ## Import

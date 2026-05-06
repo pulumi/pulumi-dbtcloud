@@ -376,6 +376,28 @@ class DatabricksCredential(pulumi.CustomResource):
         """
         Databricks credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
+            project_id=int(dbt_project["id"]),
+            token="abcdefgh",
+            schema="my_schema",
+            adapter_type="databricks")
+        config = pulumi.Config()
+        databricks_token = config.require("databricksToken")
+        my_databricks_cred_wo = dbtcloud.DatabricksCredential("my_databricks_cred_wo",
+            project_id=int(dbt_project["id"]),
+            token_wo=databricks_token,
+            token_wo_version=1,
+            schema="my_schema",
+            adapter_type="databricks")
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -418,6 +440,28 @@ class DatabricksCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Databricks credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
+            project_id=int(dbt_project["id"]),
+            token="abcdefgh",
+            schema="my_schema",
+            adapter_type="databricks")
+        config = pulumi.Config()
+        databricks_token = config.require("databricksToken")
+        my_databricks_cred_wo = dbtcloud.DatabricksCredential("my_databricks_cred_wo",
+            project_id=int(dbt_project["id"]),
+            token_wo=databricks_token,
+            token_wo_version=1,
+            schema="my_schema",
+            adapter_type="databricks")
+        ```
 
         ## Import
 

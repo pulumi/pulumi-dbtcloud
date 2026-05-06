@@ -229,17 +229,17 @@ class Profile(pulumi.CustomResource):
 
         # A profile ties together a connection and credentials for use within environments.
         my_profile = dbtcloud.Profile("my_profile",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             key="my-profile",
-            connection_id=my_connection["id"],
-            credentials_id=my_credential["credentialId"])
+            connection_id=int(my_connection["id"]),
+            credentials_id=int(my_credential["credentialId"]))
         # A profile with extended attributes
         my_profile_with_attrs = dbtcloud.Profile("my_profile_with_attrs",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             key="my-profile-with-attrs",
-            connection_id=my_connection["id"],
-            credentials_id=my_credential["credentialId"],
-            extended_attributes_id=my_attributes["extendedAttributesId"])
+            connection_id=int(my_connection["id"]),
+            credentials_id=int(my_credential["credentialId"]),
+            extended_attributes_id=int(my_attributes["extendedAttributesId"]))
         ```
 
         ## Import
@@ -288,17 +288,17 @@ class Profile(pulumi.CustomResource):
 
         # A profile ties together a connection and credentials for use within environments.
         my_profile = dbtcloud.Profile("my_profile",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             key="my-profile",
-            connection_id=my_connection["id"],
-            credentials_id=my_credential["credentialId"])
+            connection_id=int(my_connection["id"]),
+            credentials_id=int(my_credential["credentialId"]))
         # A profile with extended attributes
         my_profile_with_attrs = dbtcloud.Profile("my_profile_with_attrs",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             key="my-profile-with-attrs",
-            connection_id=my_connection["id"],
-            credentials_id=my_credential["credentialId"],
-            extended_attributes_id=my_attributes["extendedAttributesId"])
+            connection_id=int(my_connection["id"]),
+            credentials_id=int(my_credential["credentialId"]),
+            extended_attributes_id=int(my_attributes["extendedAttributesId"]))
         ```
 
         ## Import

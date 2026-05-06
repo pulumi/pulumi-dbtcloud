@@ -291,6 +291,30 @@ class StarburstCredential(pulumi.CustomResource):
         """
         Starburst/Trino credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        example = dbtcloud.StarburstCredential("example",
+            project_id=int(example_dbtcloud_project["id"]),
+            database="your_catalog",
+            schema="your_schema",
+            user="your_user",
+            password="your_password")
+        config = pulumi.Config()
+        starburst_password = config.require("starburstPassword")
+        example_wo = dbtcloud.StarburstCredential("example_wo",
+            project_id=int(example_dbtcloud_project["id"]),
+            database="your_catalog",
+            schema="your_schema",
+            user="your_user",
+            password_wo=starburst_password,
+            password_wo_version=1)
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -331,6 +355,30 @@ class StarburstCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Starburst/Trino credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        example = dbtcloud.StarburstCredential("example",
+            project_id=int(example_dbtcloud_project["id"]),
+            database="your_catalog",
+            schema="your_schema",
+            user="your_user",
+            password="your_password")
+        config = pulumi.Config()
+        starburst_password = config.require("starburstPassword")
+        example_wo = dbtcloud.StarburstCredential("example_wo",
+            project_id=int(example_dbtcloud_project["id"]),
+            database="your_catalog",
+            schema="your_schema",
+            user="your_user",
+            password_wo=starburst_password,
+            password_wo_version=1)
+        ```
 
         ## Import
 

@@ -14,6 +14,58 @@ namespace Pulumi.DbtCloud
     /// 
     /// See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/external-oauth) for more information on how to configure it.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var entra = new DbtCloud.OauthConfiguration("entra", new()
+    ///     {
+    ///         Type = "entra",
+    ///         Name = "My Entra ID Oauth integration",
+    ///         ClientId = "client-id",
+    ///         ClientSecret = "client-secret",
+    ///         RedirectUri = "http://example.com",
+    ///         TokenUrl = "http://example.com",
+    ///         AuthorizeUrl = "http://example.com",
+    ///         ApplicationIdUri = "uri",
+    ///     });
+    /// 
+    ///     var okta = new DbtCloud.OauthConfiguration("okta", new()
+    ///     {
+    ///         Type = "okta",
+    ///         Name = "My Okta Oauth integration",
+    ///         ClientId = "client-id",
+    ///         ClientSecret = "client-secret",
+    ///         RedirectUri = "http://example.com",
+    ///         TokenUrl = "http://example.com",
+    ///         AuthorizeUrl = "http://example.com",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var oauthClientSecret = config.Require("oauthClientSecret");
+    ///     var entraWo = new DbtCloud.OauthConfiguration("entra_wo", new()
+    ///     {
+    ///         Type = "entra",
+    ///         Name = "My Entra ID Oauth integration",
+    ///         ClientId = "client-id",
+    ///         ClientSecretWo = oauthClientSecret,
+    ///         ClientSecretWoVersion = 1,
+    ///         RedirectUri = "http://example.com",
+    ///         TokenUrl = "http://example.com",
+    ///         AuthorizeUrl = "http://example.com",
+    ///         ApplicationIdUri = "uri",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

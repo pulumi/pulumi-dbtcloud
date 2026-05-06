@@ -11,6 +11,86 @@ import * as utilities from "./utilities";
  *
  * See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/sso-overview) for more information.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ * import * as std from "@pulumi/std";
+ *
+ * const config = new pulumi.Config();
+ * const samlCert = config.require("samlCert");
+ * const saml = new dbtcloud.AuthProvider("saml", {
+ *     type: "saml",
+ *     entityId: "https://your-idp.example.com/metadata",
+ *     ssoUrl: "https://your-idp.example.com/sso/saml",
+ *     certWo: samlCert,
+ *     certWoVersion: 1,
+ * });
+ * export const loginUrl = saml.loginUrl;
+ * // SAML — all optional fields
+ * const samlFull = new dbtcloud.AuthProvider("saml_full", {
+ *     type: "saml",
+ *     entityId: "https://your-idp.example.com/metadata",
+ *     ssoUrl: "https://your-idp.example.com/sso/saml",
+ *     cert: std.file({
+ *         input: "idp-cert.pem",
+ *     }).then(invoke => invoke.result),
+ *     signRequest: true,
+ *     attributeMap: JSON.stringify({
+ *         email: "nameID",
+ *         first_name: "firstName",
+ *         last_name: "lastName",
+ *     }),
+ *     allowPasswordBackdoor: false,
+ * });
+ * // Okta (identical to SAML, different type value)
+ * const okta = new dbtcloud.AuthProvider("okta", {
+ *     type: "okta",
+ *     entityId: "http://www.okta.com/<okta_app_id>",
+ *     ssoUrl: "https://<your-org>.okta.com/app/<app_path>/sso/saml",
+ *     certWo: samlCert,
+ *     certWoVersion: 1,
+ * });
+ * const azureClientSecret = config.require("azureClientSecret");
+ * const azureSingleTenant = new dbtcloud.AuthProvider("azure_single_tenant", {
+ *     type: "azure_single_tenant",
+ *     clientId: "00000000-0000-0000-0000-000000000000",
+ *     tenantId: "11111111-1111-1111-1111-111111111111",
+ *     clientSecretWo: azureClientSecret,
+ *     clientSecretWoVersion: 1,
+ *     domain: "acme.com",
+ *     includeIndirectGroups: true,
+ *     maxGroupsToRetrieve: 500,
+ * });
+ * // Azure AD — multi tenant (no tenant_id required)
+ * const azureMultiTenant = new dbtcloud.AuthProvider("azure_multi_tenant", {
+ *     type: "azure_multi_tenant",
+ *     clientId: "00000000-0000-0000-0000-000000000000",
+ *     clientSecretWo: azureClientSecret,
+ *     clientSecretWoVersion: 1,
+ * });
+ * // Azure Active Directory
+ * const azureActiveDirectory = new dbtcloud.AuthProvider("azure_active_directory", {
+ *     type: "azure_active_directory",
+ *     clientId: "00000000-0000-0000-0000-000000000000",
+ *     tenantId: "11111111-1111-1111-1111-111111111111",
+ *     clientSecretWo: azureClientSecret,
+ *     clientSecretWoVersion: 1,
+ *     domain: "acme.com",
+ * });
+ * const gsuiteClientSecret = config.require("gsuiteClientSecret");
+ * const gsuite = new dbtcloud.AuthProvider("gsuite", {
+ *     type: "gsuite",
+ *     clientId: "000000000000-xxxx.apps.googleusercontent.com",
+ *     clientSecretWo: gsuiteClientSecret,
+ *     clientSecretWoVersion: 1,
+ *     adminRefreshToken: "<oauth-refresh-token>",
+ *     domain: "acme.com",
+ *     gsuiteAdminId: "admin@acme.com",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Import an existing auth provider by its numeric ID.

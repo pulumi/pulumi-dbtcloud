@@ -9,6 +9,47 @@ import * as utilities from "./utilities";
  *
  * See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/external-oauth) for more information on how to configure it.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const entra = new dbtcloud.OauthConfiguration("entra", {
+ *     type: "entra",
+ *     name: "My Entra ID Oauth integration",
+ *     clientId: "client-id",
+ *     clientSecret: "client-secret",
+ *     redirectUri: "http://example.com",
+ *     tokenUrl: "http://example.com",
+ *     authorizeUrl: "http://example.com",
+ *     applicationIdUri: "uri",
+ * });
+ * const okta = new dbtcloud.OauthConfiguration("okta", {
+ *     type: "okta",
+ *     name: "My Okta Oauth integration",
+ *     clientId: "client-id",
+ *     clientSecret: "client-secret",
+ *     redirectUri: "http://example.com",
+ *     tokenUrl: "http://example.com",
+ *     authorizeUrl: "http://example.com",
+ * });
+ * const config = new pulumi.Config();
+ * const oauthClientSecret = config.require("oauthClientSecret");
+ * const entraWo = new dbtcloud.OauthConfiguration("entra_wo", {
+ *     type: "entra",
+ *     name: "My Entra ID Oauth integration",
+ *     clientId: "client-id",
+ *     clientSecretWo: oauthClientSecret,
+ *     clientSecretWoVersion: 1,
+ *     redirectUri: "http://example.com",
+ *     tokenUrl: "http://example.com",
+ *     authorizeUrl: "http://example.com",
+ *     applicationIdUri: "uri",
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

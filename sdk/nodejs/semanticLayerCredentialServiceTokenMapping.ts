@@ -12,9 +12,9 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const testMapping = new dbtcloud.SemanticLayerCredentialServiceTokenMapping("test_mapping", {
- *     semanticLayerCredentialId: test.id,
- *     serviceTokenId: testServiceToken.id,
- *     projectId: testProject.id,
+ *     semanticLayerCredentialId: Number(test.id),
+ *     serviceTokenId: Number(testServiceToken.id),
+ *     projectId: Number(testProject.id),
  * });
  * ```
  *

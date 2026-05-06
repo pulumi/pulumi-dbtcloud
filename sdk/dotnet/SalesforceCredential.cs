@@ -12,6 +12,45 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Salesforce credential resource
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attributes (stored in state)
+    ///     var mySalesforceCred = new DbtCloud.SalesforceCredential("my_salesforce_cred", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Username = "user@example.com",
+    ///         ClientId = "your-oauth-client-id",
+    ///         PrivateKey = "private-key value",
+    ///         TargetName = "default",
+    ///         NumThreads = 6,
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var salesforceClientId = config.Require("salesforceClientId");
+    ///     var salesforcePrivateKey = config.Require("salesforcePrivateKey");
+    ///     var mySalesforceCredWo = new DbtCloud.SalesforceCredential("my_salesforce_cred_wo", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Username = "user@example.com",
+    ///         ClientIdWo = salesforceClientId,
+    ///         ClientIdWoVersion = 1,
+    ///         PrivateKeyWo = salesforcePrivateKey,
+    ///         PrivateKeyWoVersion = 1,
+    ///         TargetName = "default",
+    ///         NumThreads = 6,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

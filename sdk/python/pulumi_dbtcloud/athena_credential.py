@@ -330,6 +330,30 @@ class AthenaCredential(pulumi.CustomResource):
         """
         Athena credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        example = dbtcloud.AthenaCredential("example",
+            project_id=int(example_dbtcloud_project["id"]),
+            aws_access_key_id="your-access-key-id",
+            aws_secret_access_key="your-secret-access-key",
+            schema="your_schema")
+        config = pulumi.Config()
+        athena_aws_access_key_id = config.require("athenaAwsAccessKeyId")
+        athena_aws_secret_access_key = config.require("athenaAwsSecretAccessKey")
+        example_wo = dbtcloud.AthenaCredential("example_wo",
+            project_id=int(example_dbtcloud_project["id"]),
+            aws_access_key_id_wo=athena_aws_access_key_id,
+            aws_access_key_id_wo_version=1,
+            aws_secret_access_key_wo=athena_aws_secret_access_key,
+            aws_secret_access_key_wo_version=1,
+            schema="your_schema")
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -372,6 +396,30 @@ class AthenaCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Athena credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        example = dbtcloud.AthenaCredential("example",
+            project_id=int(example_dbtcloud_project["id"]),
+            aws_access_key_id="your-access-key-id",
+            aws_secret_access_key="your-secret-access-key",
+            schema="your_schema")
+        config = pulumi.Config()
+        athena_aws_access_key_id = config.require("athenaAwsAccessKeyId")
+        athena_aws_secret_access_key = config.require("athenaAwsSecretAccessKey")
+        example_wo = dbtcloud.AthenaCredential("example_wo",
+            project_id=int(example_dbtcloud_project["id"]),
+            aws_access_key_id_wo=athena_aws_access_key_id,
+            aws_access_key_id_wo_version=1,
+            aws_secret_access_key_wo=athena_aws_secret_access_key,
+            aws_secret_access_key_wo_version=1,
+            schema="your_schema")
+        ```
 
         ## Import
 

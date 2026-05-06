@@ -7,6 +7,30 @@ import * as utilities from "./utilities";
 /**
  * Databricks credential resource
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const myDatabricksCred = new dbtcloud.DatabricksCredential("my_databricks_cred", {
+ *     projectId: Number(dbtProject.id),
+ *     token: "abcdefgh",
+ *     schema: "my_schema",
+ *     adapterType: "databricks",
+ * });
+ * const config = new pulumi.Config();
+ * const databricksToken = config.require("databricksToken");
+ * const myDatabricksCredWo = new dbtcloud.DatabricksCredential("my_databricks_cred_wo", {
+ *     projectId: Number(dbtProject.id),
+ *     tokenWo: databricksToken,
+ *     tokenWoVersion: 1,
+ *     schema: "my_schema",
+ *     adapterType: "databricks",
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

@@ -820,6 +820,78 @@ class AuthProvider(pulumi.CustomResource):
 
         See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/sso-overview) for more information.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_dbtcloud as dbtcloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        saml_cert = config.require("samlCert")
+        saml = dbtcloud.AuthProvider("saml",
+            type="saml",
+            entity_id="https://your-idp.example.com/metadata",
+            sso_url="https://your-idp.example.com/sso/saml",
+            cert_wo=saml_cert,
+            cert_wo_version=1)
+        pulumi.export("loginUrl", saml.login_url)
+        # SAML — all optional fields
+        saml_full = dbtcloud.AuthProvider("saml_full",
+            type="saml",
+            entity_id="https://your-idp.example.com/metadata",
+            sso_url="https://your-idp.example.com/sso/saml",
+            cert=std.file(input="idp-cert.pem").result,
+            sign_request=True,
+            attribute_map=json.dumps({
+                "email": "nameID",
+                "first_name": "firstName",
+                "last_name": "lastName",
+            }),
+            allow_password_backdoor=False)
+        # Okta (identical to SAML, different type value)
+        okta = dbtcloud.AuthProvider("okta",
+            type="okta",
+            entity_id="http://www.okta.com/<okta_app_id>",
+            sso_url="https://<your-org>.okta.com/app/<app_path>/sso/saml",
+            cert_wo=saml_cert,
+            cert_wo_version=1)
+        azure_client_secret = config.require("azureClientSecret")
+        azure_single_tenant = dbtcloud.AuthProvider("azure_single_tenant",
+            type="azure_single_tenant",
+            client_id="00000000-0000-0000-0000-000000000000",
+            tenant_id="11111111-1111-1111-1111-111111111111",
+            client_secret_wo=azure_client_secret,
+            client_secret_wo_version=1,
+            domain="acme.com",
+            include_indirect_groups=True,
+            max_groups_to_retrieve=500)
+        # Azure AD — multi tenant (no tenant_id required)
+        azure_multi_tenant = dbtcloud.AuthProvider("azure_multi_tenant",
+            type="azure_multi_tenant",
+            client_id="00000000-0000-0000-0000-000000000000",
+            client_secret_wo=azure_client_secret,
+            client_secret_wo_version=1)
+        # Azure Active Directory
+        azure_active_directory = dbtcloud.AuthProvider("azure_active_directory",
+            type="azure_active_directory",
+            client_id="00000000-0000-0000-0000-000000000000",
+            tenant_id="11111111-1111-1111-1111-111111111111",
+            client_secret_wo=azure_client_secret,
+            client_secret_wo_version=1,
+            domain="acme.com")
+        gsuite_client_secret = config.require("gsuiteClientSecret")
+        gsuite = dbtcloud.AuthProvider("gsuite",
+            type="gsuite",
+            client_id="000000000000-xxxx.apps.googleusercontent.com",
+            client_secret_wo=gsuite_client_secret,
+            client_secret_wo_version=1,
+            admin_refresh_token="<oauth-refresh-token>",
+            domain="acme.com",
+            gsuite_admin_id="admin@acme.com")
+        ```
+
         ## Import
 
         Import an existing auth provider by its numeric ID.
@@ -869,6 +941,78 @@ class AuthProvider(pulumi.CustomResource):
         Only one auth provider may exist per account. Requires the SSO feature enabled on the account (enterprise plans only).
 
         See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/sso-overview) for more information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_dbtcloud as dbtcloud
+        import pulumi_std as std
+
+        config = pulumi.Config()
+        saml_cert = config.require("samlCert")
+        saml = dbtcloud.AuthProvider("saml",
+            type="saml",
+            entity_id="https://your-idp.example.com/metadata",
+            sso_url="https://your-idp.example.com/sso/saml",
+            cert_wo=saml_cert,
+            cert_wo_version=1)
+        pulumi.export("loginUrl", saml.login_url)
+        # SAML — all optional fields
+        saml_full = dbtcloud.AuthProvider("saml_full",
+            type="saml",
+            entity_id="https://your-idp.example.com/metadata",
+            sso_url="https://your-idp.example.com/sso/saml",
+            cert=std.file(input="idp-cert.pem").result,
+            sign_request=True,
+            attribute_map=json.dumps({
+                "email": "nameID",
+                "first_name": "firstName",
+                "last_name": "lastName",
+            }),
+            allow_password_backdoor=False)
+        # Okta (identical to SAML, different type value)
+        okta = dbtcloud.AuthProvider("okta",
+            type="okta",
+            entity_id="http://www.okta.com/<okta_app_id>",
+            sso_url="https://<your-org>.okta.com/app/<app_path>/sso/saml",
+            cert_wo=saml_cert,
+            cert_wo_version=1)
+        azure_client_secret = config.require("azureClientSecret")
+        azure_single_tenant = dbtcloud.AuthProvider("azure_single_tenant",
+            type="azure_single_tenant",
+            client_id="00000000-0000-0000-0000-000000000000",
+            tenant_id="11111111-1111-1111-1111-111111111111",
+            client_secret_wo=azure_client_secret,
+            client_secret_wo_version=1,
+            domain="acme.com",
+            include_indirect_groups=True,
+            max_groups_to_retrieve=500)
+        # Azure AD — multi tenant (no tenant_id required)
+        azure_multi_tenant = dbtcloud.AuthProvider("azure_multi_tenant",
+            type="azure_multi_tenant",
+            client_id="00000000-0000-0000-0000-000000000000",
+            client_secret_wo=azure_client_secret,
+            client_secret_wo_version=1)
+        # Azure Active Directory
+        azure_active_directory = dbtcloud.AuthProvider("azure_active_directory",
+            type="azure_active_directory",
+            client_id="00000000-0000-0000-0000-000000000000",
+            tenant_id="11111111-1111-1111-1111-111111111111",
+            client_secret_wo=azure_client_secret,
+            client_secret_wo_version=1,
+            domain="acme.com")
+        gsuite_client_secret = config.require("gsuiteClientSecret")
+        gsuite = dbtcloud.AuthProvider("gsuite",
+            type="gsuite",
+            client_id="000000000000-xxxx.apps.googleusercontent.com",
+            client_secret_wo=gsuite_client_secret,
+            client_secret_wo_version=1,
+            admin_refresh_token="<oauth-refresh-token>",
+            domain="acme.com",
+            gsuite_admin_id="admin@acme.com")
+        ```
 
         ## Import
 

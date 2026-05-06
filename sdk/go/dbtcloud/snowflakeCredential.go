@@ -14,6 +14,53 @@ import (
 
 // Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewSnowflakeCredential(ctx, "prod_credential", &dbtcloud.SnowflakeCredentialArgs{
+//				ProjectId:  pulumi.Any(dbtProject.Id),
+//				AuthType:   pulumi.String("password"),
+//				NumThreads: pulumi.Int(16),
+//				Schema:     pulumi.String("SCHEMA"),
+//				User:       pulumi.String("user"),
+//				Password:   pulumi.String("password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			snowflakePassword := cfg.Require("snowflakePassword")
+//			_, err = dbtcloud.NewSnowflakeCredential(ctx, "prod_credential_wo", &dbtcloud.SnowflakeCredentialArgs{
+//				ProjectId:         pulumi.Any(dbtProject.Id),
+//				AuthType:          pulumi.String("password"),
+//				NumThreads:        pulumi.Int(16),
+//				Schema:            pulumi.String("SCHEMA"),
+//				User:              pulumi.String("user"),
+//				PasswordWo:        pulumi.String(pulumi.String(snowflakePassword)),
+//				PasswordWoVersion: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

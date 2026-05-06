@@ -14,17 +14,17 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const myCredential = new dbtcloud.BigQueryCredential("my_credential", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     dataset: "my_bq_dataset",
  *     numThreads: 16,
  * });
  * // When using a global connection with use_latest_adapter = true,
  * // provide the connection_id to automatically use the correct adapter version
  * const myCredentialV1 = new dbtcloud.BigQueryCredential("my_credential_v1", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     dataset: "my_bq_dataset",
  *     numThreads: 16,
- *     connectionId: myConnection.id,
+ *     connectionId: Number(myConnection.id),
  * });
  * ```
  *

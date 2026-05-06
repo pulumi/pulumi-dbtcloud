@@ -39,7 +39,7 @@ namespace Pulumi.DbtCloud
     /// {
     ///     // a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
     ///     // to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
-    ///     var dailyJob = new DbtCloud.Index.Job("daily_job", new()
+    ///     var dailyJob = new DbtCloud.Job("daily_job", new()
     ///     {
     ///         EnvironmentId = prodEnvironment.EnvironmentId,
     ///         ExecuteSteps = new[]
@@ -82,7 +82,7 @@ namespace Pulumi.DbtCloud
     ///   -H 'Authorization: Bearer {dbtToken}' \\
     ///   -H 'Content-Type: application/json' \\
     ///   -d '{{\""cause\"": \""Generate manifest\"", \""steps_override\"": [\""dbt parse\""]}}' \\
-    ///   {dbtHostUrl}/v2/accounts/{dbtAccountId}/jobs/{id}/run/)
+    ///   {dbtHostUrl}/v2/accounts/{dbtAccountId}/jobs/{dailyJob.Id}/run/)
     ///       
     /// if [ \""$response\"" -ge 200 ] &amp;&amp; [ \""$response\"" -lt 300 ]; then
     ///   echo \""Success: HTTP status $response\""

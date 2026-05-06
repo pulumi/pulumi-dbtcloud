@@ -12,6 +12,43 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Redshift credential resource
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var redshift = new DbtCloud.RedshiftCredential("redshift", new()
+    ///     {
+    ///         NumThreads = 16,
+    ///         ProjectId = testProject.Id,
+    ///         DefaultSchema = "my_schema",
+    ///         Username = "my_username",
+    ///         Password = "my_sensitive_password",
+    ///         IsActive = true,
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var redshiftPassword = config.Require("redshiftPassword");
+    ///     var redshiftWo = new DbtCloud.RedshiftCredential("redshift_wo", new()
+    ///     {
+    ///         NumThreads = 16,
+    ///         ProjectId = testProject.Id,
+    ///         DefaultSchema = "my_schema",
+    ///         Username = "my_username",
+    ///         PasswordWo = redshiftPassword,
+    ///         PasswordWoVersion = 1,
+    ///         IsActive = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

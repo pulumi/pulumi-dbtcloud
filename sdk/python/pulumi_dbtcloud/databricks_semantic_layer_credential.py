@@ -118,12 +118,12 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
 
         sl_cred_databricks_example = dbtcloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Databricks SL Credential",
                 "adapter_version": "databricks_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "catalog": catalog,
                 "token": token,
                 "semantic_layer_credential": True,
@@ -173,12 +173,12 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
 
         sl_cred_databricks_example = dbtcloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Databricks SL Credential",
                 "adapter_version": "databricks_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "catalog": catalog,
                 "token": token,
                 "semantic_layer_credential": True,

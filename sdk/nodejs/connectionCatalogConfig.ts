@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *
  * // Example: Configure catalog filters for a Snowflake connection
  * const snowflakeFilters = new dbtcloud.ConnectionCatalogConfig("snowflake_filters", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     databaseAllows: [
  *         "analytics",
  *         "reporting",
@@ -51,12 +51,12 @@ import * as utilities from "./utilities";
  * });
  * // Example: Minimal configuration - just filter databases
  * const minimal = new dbtcloud.ConnectionCatalogConfig("minimal", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     databaseAllows: ["production"],
  * });
  * // Example: Full configuration with platform metadata credential
  * const creds = new dbtcloud.SnowflakePlatformMetadataCredential("creds", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     catalogIngestionEnabled: true,
  *     authType: "password",
  *     user: snowflakeUser,
@@ -65,7 +65,7 @@ import * as utilities from "./utilities";
  *     warehouse: snowflakeWarehouse,
  * });
  * const withCreds = new dbtcloud.ConnectionCatalogConfig("with_creds", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     databaseAllows: [
  *         "analytics",
  *         "reporting",

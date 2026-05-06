@@ -13,6 +13,49 @@ import (
 )
 
 // Teradata credential resource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewTeradataCredential(ctx, "example", &dbtcloud.TeradataCredentialArgs{
+//				ProjectId: pulumi.Any(exampleDbtcloudProject.Id),
+//				Schema:    pulumi.String("your_schema"),
+//				User:      pulumi.String("your_user"),
+//				Password:  pulumi.String("your_password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			teradataPassword := cfg.Require("teradataPassword")
+//			_, err = dbtcloud.NewTeradataCredential(ctx, "example_wo", &dbtcloud.TeradataCredentialArgs{
+//				ProjectId:         pulumi.Any(exampleDbtcloudProject.Id),
+//				Schema:            pulumi.String("your_schema"),
+//				User:              pulumi.String("your_user"),
+//				PasswordWo:        pulumi.String(pulumi.String(teradataPassword)),
+//				PasswordWoVersion: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type TeradataCredential struct {
 	pulumi.CustomResourceState
 

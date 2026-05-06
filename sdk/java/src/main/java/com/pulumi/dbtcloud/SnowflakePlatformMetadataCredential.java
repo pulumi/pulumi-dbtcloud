@@ -33,6 +33,93 @@ import javax.annotation.Nullable;
  * &gt; **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
  * you must destroy and recreate the resource.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.SnowflakePlatformMetadataCredential;
+ * import com.pulumi.dbtcloud.SnowflakePlatformMetadataCredentialArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attributes (stored in state)
+ *         var passwordAuth = new SnowflakePlatformMetadataCredential("passwordAuth", SnowflakePlatformMetadataCredentialArgs.builder()
+ *             .connectionId(snowflake.id())
+ *             .catalogIngestionEnabled(true)
+ *             .costOptimizationEnabled(true)
+ *             .costInsightsEnabled(false)
+ *             .authType("password")
+ *             .user("METADATA_READER")
+ *             .password(snowflakePassword)
+ *             .role("METADATA_READER_ROLE")
+ *             .warehouse("METADATA_WH")
+ *             .build());
+ * 
+ *         var keypairAuth = new SnowflakePlatformMetadataCredential("keypairAuth", SnowflakePlatformMetadataCredentialArgs.builder()
+ *             .connectionId(snowflake.id())
+ *             .catalogIngestionEnabled(true)
+ *             .costOptimizationEnabled(false)
+ *             .costInsightsEnabled(false)
+ *             .authType("keypair")
+ *             .user("METADATA_READER")
+ *             .privateKey(snowflakePrivateKey)
+ *             .privateKeyPassphrase(snowflakePrivateKeyPassphrase)
+ *             .role("METADATA_READER_ROLE")
+ *             .warehouse("METADATA_WH")
+ *             .build());
+ * 
+ *         final var snowflakeMetadataPassword = config.require("snowflakeMetadataPassword");
+ *         final var snowflakeMetadataPrivateKey = config.require("snowflakeMetadataPrivateKey");
+ *         final var snowflakeMetadataPrivateKeyPassphrase = config.require("snowflakeMetadataPrivateKeyPassphrase");
+ *         var passwordAuthWo = new SnowflakePlatformMetadataCredential("passwordAuthWo", SnowflakePlatformMetadataCredentialArgs.builder()
+ *             .connectionId(snowflake.id())
+ *             .catalogIngestionEnabled(true)
+ *             .costOptimizationEnabled(true)
+ *             .costInsightsEnabled(false)
+ *             .authType("password")
+ *             .user("METADATA_READER")
+ *             .passwordWo(snowflakeMetadataPassword)
+ *             .passwordWoVersion(1)
+ *             .role("METADATA_READER_ROLE")
+ *             .warehouse("METADATA_WH")
+ *             .build());
+ * 
+ *         var keypairAuthWo = new SnowflakePlatformMetadataCredential("keypairAuthWo", SnowflakePlatformMetadataCredentialArgs.builder()
+ *             .connectionId(snowflake.id())
+ *             .catalogIngestionEnabled(true)
+ *             .costOptimizationEnabled(false)
+ *             .costInsightsEnabled(false)
+ *             .authType("keypair")
+ *             .user("METADATA_READER")
+ *             .privateKeyWo(snowflakeMetadataPrivateKey)
+ *             .privateKeyWoVersion(1)
+ *             .privateKeyPassphraseWo(snowflakeMetadataPrivateKeyPassphrase)
+ *             .privateKeyPassphraseWoVersion(1)
+ *             .role("METADATA_READER_ROLE")
+ *             .warehouse("METADATA_WH")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential")
 public class SnowflakePlatformMetadataCredential extends com.pulumi.resources.CustomResource {

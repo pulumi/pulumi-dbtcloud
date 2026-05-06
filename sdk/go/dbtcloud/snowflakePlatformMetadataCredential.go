@@ -26,6 +26,93 @@ import (
 //
 // > **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
 // you must destroy and recreate the resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attributes (stored in state)
+//			_, err := dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, "password_auth", &dbtcloud.SnowflakePlatformMetadataCredentialArgs{
+//				ConnectionId:            pulumi.Any(snowflake.Id),
+//				CatalogIngestionEnabled: pulumi.Bool(true),
+//				CostOptimizationEnabled: pulumi.Bool(true),
+//				CostInsightsEnabled:     pulumi.Bool(false),
+//				AuthType:                pulumi.String("password"),
+//				User:                    pulumi.String("METADATA_READER"),
+//				Password:                pulumi.Any(snowflakePassword),
+//				Role:                    pulumi.String("METADATA_READER_ROLE"),
+//				Warehouse:               pulumi.String("METADATA_WH"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, "keypair_auth", &dbtcloud.SnowflakePlatformMetadataCredentialArgs{
+//				ConnectionId:            pulumi.Any(snowflake.Id),
+//				CatalogIngestionEnabled: pulumi.Bool(true),
+//				CostOptimizationEnabled: pulumi.Bool(false),
+//				CostInsightsEnabled:     pulumi.Bool(false),
+//				AuthType:                pulumi.String("keypair"),
+//				User:                    pulumi.String("METADATA_READER"),
+//				PrivateKey:              pulumi.Any(snowflakePrivateKey),
+//				PrivateKeyPassphrase:    pulumi.Any(snowflakePrivateKeyPassphrase),
+//				Role:                    pulumi.String("METADATA_READER_ROLE"),
+//				Warehouse:               pulumi.String("METADATA_WH"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			snowflakeMetadataPassword := cfg.Require("snowflakeMetadataPassword")
+//			snowflakeMetadataPrivateKey := cfg.Require("snowflakeMetadataPrivateKey")
+//			snowflakeMetadataPrivateKeyPassphrase := cfg.Require("snowflakeMetadataPrivateKeyPassphrase")
+//			_, err = dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, "password_auth_wo", &dbtcloud.SnowflakePlatformMetadataCredentialArgs{
+//				ConnectionId:            pulumi.Any(snowflake.Id),
+//				CatalogIngestionEnabled: pulumi.Bool(true),
+//				CostOptimizationEnabled: pulumi.Bool(true),
+//				CostInsightsEnabled:     pulumi.Bool(false),
+//				AuthType:                pulumi.String("password"),
+//				User:                    pulumi.String("METADATA_READER"),
+//				PasswordWo:              pulumi.String(pulumi.String(snowflakeMetadataPassword)),
+//				PasswordWoVersion:       pulumi.Int(1),
+//				Role:                    pulumi.String("METADATA_READER_ROLE"),
+//				Warehouse:               pulumi.String("METADATA_WH"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewSnowflakePlatformMetadataCredential(ctx, "keypair_auth_wo", &dbtcloud.SnowflakePlatformMetadataCredentialArgs{
+//				ConnectionId:                  pulumi.Any(snowflake.Id),
+//				CatalogIngestionEnabled:       pulumi.Bool(true),
+//				CostOptimizationEnabled:       pulumi.Bool(false),
+//				CostInsightsEnabled:           pulumi.Bool(false),
+//				AuthType:                      pulumi.String("keypair"),
+//				User:                          pulumi.String("METADATA_READER"),
+//				PrivateKeyWo:                  pulumi.String(pulumi.String(snowflakeMetadataPrivateKey)),
+//				PrivateKeyWoVersion:           pulumi.Int(1),
+//				PrivateKeyPassphraseWo:        pulumi.String(pulumi.String(snowflakeMetadataPrivateKeyPassphrase)),
+//				PrivateKeyPassphraseWoVersion: pulumi.Int(1),
+//				Role:                          pulumi.String("METADATA_READER_ROLE"),
+//				Warehouse:                     pulumi.String("METADATA_WH"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type SnowflakePlatformMetadataCredential struct {
 	pulumi.CustomResourceState
 

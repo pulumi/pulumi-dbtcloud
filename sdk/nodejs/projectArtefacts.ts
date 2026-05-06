@@ -14,9 +14,9 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const myProjectArtefacts = new dbtcloud.ProjectArtefacts("my_project_artefacts", {
- *     projectId: dbtProject.id,
- *     docsJobId: prodJob.id,
- *     freshnessJobId: prodJob.id,
+ *     projectId: Number(dbtProject.id),
+ *     docsJobId: Number(prodJob.id),
+ *     freshnessJobId: Number(prodJob.id),
  * });
  * ```
  *

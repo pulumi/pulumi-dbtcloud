@@ -19,6 +19,79 @@ import javax.annotation.Nullable;
 /**
  * Fabric credential resource
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.FabricCredential;
+ * import com.pulumi.dbtcloud.FabricCredentialArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attributes (stored in state)
+ *         // when using AD authentication
+ *         var myFabricCredAd = new FabricCredential("myFabricCredAd", FabricCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .schema("my_schema")
+ *             .user("my_user")
+ *             .password("my_password")
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *         // when using service principal authentication
+ *         var myFabricCredServPrinc = new FabricCredential("myFabricCredServPrinc", FabricCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .schema("my_schema")
+ *             .clientId("my_client_id")
+ *             .tenantId("my_tenant_id")
+ *             .clientSecret("my_secret")
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *         final var fabricPassword = config.require("fabricPassword");
+ *         final var fabricClientSecret = config.require("fabricClientSecret");
+ *         // when using AD authentication with write-only password
+ *         var myFabricCredAdWo = new FabricCredential("myFabricCredAdWo", FabricCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .schema("my_schema")
+ *             .user("my_user")
+ *             .passwordWo(fabricPassword)
+ *             .passwordWoVersion(1)
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *         // when using service principal authentication with write-only client secret
+ *         var myFabricCredServPrincWo = new FabricCredential("myFabricCredServPrincWo", FabricCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .schema("my_schema")
+ *             .clientId("my_client_id")
+ *             .tenantId("my_tenant_id")
+ *             .clientSecretWo(fabricClientSecret)
+ *             .clientSecretWoVersion(1)
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

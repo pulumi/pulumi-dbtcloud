@@ -19,6 +19,59 @@ import javax.annotation.Nullable;
 /**
  * Salesforce credential resource
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.SalesforceCredential;
+ * import com.pulumi.dbtcloud.SalesforceCredentialArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attributes (stored in state)
+ *         var mySalesforceCred = new SalesforceCredential("mySalesforceCred", SalesforceCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .username("user}{@literal @}{@code example.com")
+ *             .clientId("your-oauth-client-id")
+ *             .privateKey("private-key value")
+ *             .targetName("default")
+ *             .numThreads(6)
+ *             .build());
+ * 
+ *         final var salesforceClientId = config.require("salesforceClientId");
+ *         final var salesforcePrivateKey = config.require("salesforcePrivateKey");
+ *         var mySalesforceCredWo = new SalesforceCredential("mySalesforceCredWo", SalesforceCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .username("user}{@literal @}{@code example.com")
+ *             .clientIdWo(salesforceClientId)
+ *             .clientIdWoVersion(1)
+ *             .privateKeyWo(salesforcePrivateKey)
+ *             .privateKeyWoVersion(1)
+ *             .targetName("default")
+ *             .numThreads(6)
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

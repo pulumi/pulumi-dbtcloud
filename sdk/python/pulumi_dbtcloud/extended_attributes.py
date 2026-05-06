@@ -175,14 +175,14 @@ class ExtendedAttributes(pulumi.CustomResource):
                     "subfield": "my_value",
                 },
             }),
-            project_id=dbt_project["id"])
+            project_id=int(dbt_project["id"]))
         issue_depl = dbtcloud.Environment("issue_depl",
             dbt_version="latest",
             name="My environment",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
             use_custom_branch=False,
-            credential_id=dbt_credential_id,
+            credential_id=int(dbt_credential_id),
             deployment_type="production",
             extended_attributes_id=my_attributes.extended_attributes_id)
         ```
@@ -241,14 +241,14 @@ class ExtendedAttributes(pulumi.CustomResource):
                     "subfield": "my_value",
                 },
             }),
-            project_id=dbt_project["id"])
+            project_id=int(dbt_project["id"]))
         issue_depl = dbtcloud.Environment("issue_depl",
             dbt_version="latest",
             name="My environment",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
             use_custom_branch=False,
-            credential_id=dbt_credential_id,
+            credential_id=int(dbt_credential_id),
             deployment_type="production",
             extended_attributes_id=my_attributes.extended_attributes_id)
         ```

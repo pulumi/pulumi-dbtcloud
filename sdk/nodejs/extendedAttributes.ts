@@ -24,15 +24,15 @@ import * as utilities from "./utilities";
  *             subfield: "my_value",
  *         },
  *     }),
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  * });
  * const issueDepl = new dbtcloud.Environment("issue_depl", {
  *     dbtVersion: "latest",
  *     name: "My environment",
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     type: "deployment",
  *     useCustomBranch: false,
- *     credentialId: dbtCredentialId,
+ *     credentialId: Number(dbtCredentialId),
  *     deploymentType: "production",
  *     extendedAttributesId: myAttributes.extendedAttributesId,
  * });

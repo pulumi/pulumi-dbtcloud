@@ -191,7 +191,7 @@ class ServiceToken(pulumi.CustomResource):
                 {
                     "permission_set": "job_admin",
                     "all_projects": False,
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                 },
                 {
                     "permission_set": "developer",
@@ -254,7 +254,7 @@ class ServiceToken(pulumi.CustomResource):
                 {
                     "permission_set": "job_admin",
                     "all_projects": False,
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                 },
                 {
                     "permission_set": "developer",

@@ -207,7 +207,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
             group_permissions=[
                 {
                     "permission_set": "developer",
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                     "all_projects": False,
                     "writable_environment_categories": [
                         "development",
@@ -216,7 +216,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
                 },
                 {
                     "permission_set": "git_admin",
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                     "all_projects": False,
                 },
             ])
@@ -227,7 +227,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
             sso_mapping_groups=["group2"],
             group_permissions=[{
                 "permission_set": "admin",
-                "project_id": dbt_project["id"],
+                "project_id": int(dbt_project["id"]),
                 "all_projects": False,
             }])
         ```
@@ -278,7 +278,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
             group_permissions=[
                 {
                     "permission_set": "developer",
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                     "all_projects": False,
                     "writable_environment_categories": [
                         "development",
@@ -287,7 +287,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
                 },
                 {
                     "permission_set": "git_admin",
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                     "all_projects": False,
                 },
             ])
@@ -298,7 +298,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
             sso_mapping_groups=["group2"],
             group_permissions=[{
                 "permission_set": "admin",
-                "project_id": dbt_project["id"],
+                "project_id": int(dbt_project["id"]),
                 "all_projects": False,
             }])
         ```

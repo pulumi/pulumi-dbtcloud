@@ -12,6 +12,67 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Fabric credential resource
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attributes (stored in state)
+    ///     // when using AD authentication
+    ///     var myFabricCredAd = new DbtCloud.FabricCredential("my_fabric_cred_ad", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Schema = "my_schema",
+    ///         User = "my_user",
+    ///         Password = "my_password",
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    ///     // when using service principal authentication
+    ///     var myFabricCredServPrinc = new DbtCloud.FabricCredential("my_fabric_cred_serv_princ", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Schema = "my_schema",
+    ///         ClientId = "my_client_id",
+    ///         TenantId = "my_tenant_id",
+    ///         ClientSecret = "my_secret",
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var fabricPassword = config.Require("fabricPassword");
+    ///     var fabricClientSecret = config.Require("fabricClientSecret");
+    ///     // when using AD authentication with write-only password
+    ///     var myFabricCredAdWo = new DbtCloud.FabricCredential("my_fabric_cred_ad_wo", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Schema = "my_schema",
+    ///         User = "my_user",
+    ///         PasswordWo = fabricPassword,
+    ///         PasswordWoVersion = 1,
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    ///     // when using service principal authentication with write-only client secret
+    ///     var myFabricCredServPrincWo = new DbtCloud.FabricCredential("my_fabric_cred_serv_princ_wo", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Schema = "my_schema",
+    ///         ClientId = "my_client_id",
+    ///         TenantId = "my_tenant_id",
+    ///         ClientSecretWo = fabricClientSecret,
+    ///         ClientSecretWoVersion = 1,
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

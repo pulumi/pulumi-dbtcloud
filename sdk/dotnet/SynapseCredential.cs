@@ -12,6 +12,82 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Synapse credential resource
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attributes (stored in state)
+    ///     // when using sql authentication
+    ///     var mySynapseCredSql = new DbtCloud.SynapseCredential("my_synapse_cred_sql", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Authentication = "sql",
+    ///         Schema = "my_schema",
+    ///         User = "my_user",
+    ///         Password = "my_password",
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    ///     // when using AD authentication
+    ///     var mySynapseCredAd = new DbtCloud.SynapseCredential("my_synapse_cred_ad", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Authentication = "ActiveDirectoryPassword",
+    ///         Schema = "my_schema",
+    ///         User = "my_user",
+    ///         Password = "my_password",
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    ///     // when using service principal authentication
+    ///     var mySynapseCredServPrinc = new DbtCloud.SynapseCredential("my_synapse_cred_serv_princ", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Authentication = "ServicePrincipal",
+    ///         Schema = "my_schema",
+    ///         ClientId = "my_client_id",
+    ///         TenantId = "my_tenant_id",
+    ///         ClientSecret = "my_secret",
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var synapsePassword = config.Require("synapsePassword");
+    ///     var synapseClientSecret = config.Require("synapseClientSecret");
+    ///     // when using AD authentication with write-only password
+    ///     var mySynapseCredAdWo = new DbtCloud.SynapseCredential("my_synapse_cred_ad_wo", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Authentication = "ActiveDirectoryPassword",
+    ///         Schema = "my_schema",
+    ///         User = "my_user",
+    ///         PasswordWo = synapsePassword,
+    ///         PasswordWoVersion = 1,
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    ///     // when using service principal authentication with write-only client secret
+    ///     var mySynapseCredServPrincWo = new DbtCloud.SynapseCredential("my_synapse_cred_serv_princ_wo", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Authentication = "ServicePrincipal",
+    ///         Schema = "my_schema",
+    ///         ClientId = "my_client_id",
+    ///         TenantId = "my_tenant_id",
+    ///         ClientSecretWo = synapseClientSecret,
+    ///         ClientSecretWoVersion = 1,
+    ///         SchemaAuthorization = "abcd",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

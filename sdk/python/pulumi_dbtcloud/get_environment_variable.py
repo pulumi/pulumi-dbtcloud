@@ -97,7 +97,7 @@ def get_environment_variable(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_dbtcloud as dbtcloud
 
-    my_var = dbtcloud.get_environment_variable(project_id=70403103985068,
+    my_var = dbtcloud.get_environment_variable(project_id=int(70403103985068),
         name="DBT_MY_PARTIAL_VAR")
     ```
 
@@ -128,7 +128,7 @@ def get_environment_variable_output(name: Optional[pulumi.Input[_builtins.str]] 
     import pulumi
     import pulumi_dbtcloud as dbtcloud
 
-    my_var = dbtcloud.get_environment_variable(project_id=70403103985068,
+    my_var = dbtcloud.get_environment_variable(project_id=int(70403103985068),
         name="DBT_MY_PARTIAL_VAR")
     ```
 

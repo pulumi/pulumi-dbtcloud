@@ -478,14 +478,14 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
 
         example = dbtcloud.BigquerySemanticLayerCredential("example",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "BigQuery SL Credential",
                 "adapter_version": "bigquery_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
-                "num_threads": num_threads,
+                "num_threads": int(num_threads),
                 "dataset": dataset,
             },
             private_key_id=private_key_id,
@@ -533,14 +533,14 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
 
         example = dbtcloud.BigquerySemanticLayerCredential("example",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "BigQuery SL Credential",
                 "adapter_version": "bigquery_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
-                "num_threads": num_threads,
+                "num_threads": int(num_threads),
                 "dataset": dataset,
             },
             private_key_id=private_key_id,

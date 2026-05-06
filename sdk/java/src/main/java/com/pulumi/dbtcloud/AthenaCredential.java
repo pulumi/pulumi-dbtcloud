@@ -19,6 +19,55 @@ import javax.annotation.Nullable;
 /**
  * Athena credential resource
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.AthenaCredential;
+ * import com.pulumi.dbtcloud.AthenaCredentialArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attributes (stored in state)
+ *         var example = new AthenaCredential("example", AthenaCredentialArgs.builder()
+ *             .projectId(exampleDbtcloudProject.id())
+ *             .awsAccessKeyId("your-access-key-id")
+ *             .awsSecretAccessKey("your-secret-access-key")
+ *             .schema("your_schema")
+ *             .build());
+ * 
+ *         final var athenaAwsAccessKeyId = config.require("athenaAwsAccessKeyId");
+ *         final var athenaAwsSecretAccessKey = config.require("athenaAwsSecretAccessKey");
+ *         var exampleWo = new AthenaCredential("exampleWo", AthenaCredentialArgs.builder()
+ *             .projectId(exampleDbtcloudProject.id())
+ *             .awsAccessKeyIdWo(athenaAwsAccessKeyId)
+ *             .awsAccessKeyIdWoVersion(1)
+ *             .awsSecretAccessKeyWo(athenaAwsSecretAccessKey)
+ *             .awsSecretAccessKeyWoVersion(1)
+ *             .schema("your_schema")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

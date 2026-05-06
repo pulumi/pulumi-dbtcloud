@@ -52,8 +52,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.command.local.Command;
  * import com.pulumi.command.local.CommandArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -105,9 +105,9 @@ import javax.annotation.Nullable;
  *   echo \"Failure: HTTP status $response\"
  *   exit 1
  * fi
- * ", dbtToken,dbtHostUrl,dbtAccountId,id))
+ * ", dbtToken,dbtHostUrl,dbtAccountId,dailyJob.id()))
  *                 .build(), CustomResourceOptions.builder()
- *                     .dependsOn(List.of(dailyJob))
+ *                     .dependsOn(Arrays.asList(dailyJob))
  *                     .build());
  * 
  *         }

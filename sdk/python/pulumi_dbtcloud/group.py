@@ -226,7 +226,7 @@ class Group(pulumi.CustomResource):
                 {
                     "permission_set": "developer",
                     "all_projects": False,
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                     "writable_environment_categories": [
                         "development",
                         "staging",
@@ -320,7 +320,7 @@ class Group(pulumi.CustomResource):
                 {
                     "permission_set": "developer",
                     "all_projects": False,
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                     "writable_environment_categories": [
                         "development",
                         "staging",

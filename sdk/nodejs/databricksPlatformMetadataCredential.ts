@@ -19,6 +19,34 @@ import * as utilities from "./utilities";
  *
  * > **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
  * you must destroy and recreate the resource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const example = new dbtcloud.DatabricksPlatformMetadataCredential("example", {
+ *     connectionId: Number(databricks.id),
+ *     catalogIngestionEnabled: true,
+ *     costOptimizationEnabled: false,
+ *     costInsightsEnabled: false,
+ *     token: databricksToken,
+ *     catalog: "main",
+ * });
+ * const config = new pulumi.Config();
+ * const databricksMetadataToken = config.require("databricksMetadataToken");
+ * const exampleWo = new dbtcloud.DatabricksPlatformMetadataCredential("example_wo", {
+ *     connectionId: Number(databricks.id),
+ *     catalogIngestionEnabled: true,
+ *     costOptimizationEnabled: false,
+ *     costInsightsEnabled: false,
+ *     tokenWo: databricksMetadataToken,
+ *     tokenWoVersion: 1,
+ *     catalog: "main",
+ * });
+ * ```
  */
 export class DatabricksPlatformMetadataCredential extends pulumi.CustomResource {
     /**

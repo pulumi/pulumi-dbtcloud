@@ -7,6 +7,67 @@ import * as utilities from "./utilities";
 /**
  * Synapse credential resource
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attributes (stored in state)
+ * // when using sql authentication
+ * const mySynapseCredSql = new dbtcloud.SynapseCredential("my_synapse_cred_sql", {
+ *     projectId: Number(dbtProject.id),
+ *     authentication: "sql",
+ *     schema: "my_schema",
+ *     user: "my_user",
+ *     password: "my_password",
+ *     schemaAuthorization: "abcd",
+ * });
+ * // when using AD authentication
+ * const mySynapseCredAd = new dbtcloud.SynapseCredential("my_synapse_cred_ad", {
+ *     projectId: Number(dbtProject.id),
+ *     authentication: "ActiveDirectoryPassword",
+ *     schema: "my_schema",
+ *     user: "my_user",
+ *     password: "my_password",
+ *     schemaAuthorization: "abcd",
+ * });
+ * // when using service principal authentication
+ * const mySynapseCredServPrinc = new dbtcloud.SynapseCredential("my_synapse_cred_serv_princ", {
+ *     projectId: Number(dbtProject.id),
+ *     authentication: "ServicePrincipal",
+ *     schema: "my_schema",
+ *     clientId: "my_client_id",
+ *     tenantId: "my_tenant_id",
+ *     clientSecret: "my_secret",
+ *     schemaAuthorization: "abcd",
+ * });
+ * const config = new pulumi.Config();
+ * const synapsePassword = config.require("synapsePassword");
+ * const synapseClientSecret = config.require("synapseClientSecret");
+ * // when using AD authentication with write-only password
+ * const mySynapseCredAdWo = new dbtcloud.SynapseCredential("my_synapse_cred_ad_wo", {
+ *     projectId: Number(dbtProject.id),
+ *     authentication: "ActiveDirectoryPassword",
+ *     schema: "my_schema",
+ *     user: "my_user",
+ *     passwordWo: synapsePassword,
+ *     passwordWoVersion: 1,
+ *     schemaAuthorization: "abcd",
+ * });
+ * // when using service principal authentication with write-only client secret
+ * const mySynapseCredServPrincWo = new dbtcloud.SynapseCredential("my_synapse_cred_serv_princ_wo", {
+ *     projectId: Number(dbtProject.id),
+ *     authentication: "ServicePrincipal",
+ *     schema: "my_schema",
+ *     clientId: "my_client_id",
+ *     tenantId: "my_tenant_id",
+ *     clientSecretWo: synapseClientSecret,
+ *     clientSecretWoVersion: 1,
+ *     schemaAuthorization: "abcd",
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

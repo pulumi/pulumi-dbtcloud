@@ -696,6 +696,32 @@ class SnowflakeCredential(pulumi.CustomResource):
         """
         Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        prod_credential = dbtcloud.SnowflakeCredential("prod_credential",
+            project_id=int(dbt_project["id"]),
+            auth_type="password",
+            num_threads=16,
+            schema="SCHEMA",
+            user="user",
+            password="password")
+        config = pulumi.Config()
+        snowflake_password = config.require("snowflakePassword")
+        prod_credential_wo = dbtcloud.SnowflakeCredential("prod_credential_wo",
+            project_id=int(dbt_project["id"]),
+            auth_type="password",
+            num_threads=16,
+            schema="SCHEMA",
+            user="user",
+            password_wo=snowflake_password,
+            password_wo_version=1)
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -750,6 +776,32 @@ class SnowflakeCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        prod_credential = dbtcloud.SnowflakeCredential("prod_credential",
+            project_id=int(dbt_project["id"]),
+            auth_type="password",
+            num_threads=16,
+            schema="SCHEMA",
+            user="user",
+            password="password")
+        config = pulumi.Config()
+        snowflake_password = config.require("snowflakePassword")
+        prod_credential_wo = dbtcloud.SnowflakeCredential("prod_credential_wo",
+            project_id=int(dbt_project["id"]),
+            auth_type="password",
+            num_threads=16,
+            schema="SCHEMA",
+            user="user",
+            password_wo=snowflake_password,
+            password_wo_version=1)
+        ```
 
         ## Import
 

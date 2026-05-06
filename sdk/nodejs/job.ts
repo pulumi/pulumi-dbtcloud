@@ -33,12 +33,12 @@ import * as utilities from "./utilities";
  * // a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
  * // to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
  * const dailyJob = new dbtcloud.Job("daily_job", {
- *     environmentId: prodEnvironment.environmentId,
+ *     environmentId: Number(prodEnvironment.environmentId),
  *     executeSteps: ["dbt build"],
  *     generateDocs: true,
  *     name: "Daily job",
  *     numThreads: 64,
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     runGenerateSources: true,
  *     targetName: "default",
  *     triggers: {
@@ -63,7 +63,7 @@ import * as utilities from "./utilities";
  *   -H 'Authorization: Bearer ${dbtToken}' \\
  *   -H 'Content-Type: application/json' \\
  *   -d '{\"cause\": \"Generate manifest\", \"steps_override\": [\"dbt parse\"]}' \\
- *   ${dbtHostUrl}/v2/accounts/${dbtAccountId}/jobs/${id}/run/)
+ *   ${dbtHostUrl}/v2/accounts/${dbtAccountId}/jobs/${dailyJob.id}/run/)
  *       
  * if [ \"$response\" -ge 200 ] && [ \"$response\" -lt 300 ]; then
  *   echo \"Success: HTTP status $response\"

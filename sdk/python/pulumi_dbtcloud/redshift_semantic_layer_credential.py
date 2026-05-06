@@ -118,16 +118,16 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
 
         test_redshift_semantic_layer_credential = dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Redshift SL Credential",
                 "adapter_version": "redshift_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "username": username,
                 "is_active": True,
                 "password": password,
-                "num_threads": num_threads,
+                "num_threads": int(num_threads),
                 "default_schema": default_schema,
             })
         ```
@@ -175,16 +175,16 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
 
         test_redshift_semantic_layer_credential = dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Redshift SL Credential",
                 "adapter_version": "redshift_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "username": username,
                 "is_active": True,
                 "password": password,
-                "num_threads": num_threads,
+                "num_threads": int(num_threads),
                 "default_schema": default_schema,
             })
         ```

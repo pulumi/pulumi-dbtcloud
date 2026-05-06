@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const example = new dbtcloud.SemanticLayerConfiguration("example", {
- *     projectId: projectId,
- *     environmentId: environmentId,
+ *     projectId: Number(projectId),
+ *     environmentId: Number(environmentId),
  * });
  * ```
  *

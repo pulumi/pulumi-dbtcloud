@@ -657,6 +657,64 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
         > **Note:** The `connection_id` cannot be changed after creation. To use a different connection,
         you must destroy and recreate the resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        password_auth = dbtcloud.SnowflakePlatformMetadataCredential("password_auth",
+            connection_id=int(snowflake["id"]),
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=True,
+            cost_insights_enabled=False,
+            auth_type="password",
+            user="METADATA_READER",
+            password=snowflake_password,
+            role="METADATA_READER_ROLE",
+            warehouse="METADATA_WH")
+        keypair_auth = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth",
+            connection_id=int(snowflake["id"]),
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=False,
+            cost_insights_enabled=False,
+            auth_type="keypair",
+            user="METADATA_READER",
+            private_key=snowflake_private_key,
+            private_key_passphrase=snowflake_private_key_passphrase,
+            role="METADATA_READER_ROLE",
+            warehouse="METADATA_WH")
+        config = pulumi.Config()
+        snowflake_metadata_password = config.require("snowflakeMetadataPassword")
+        snowflake_metadata_private_key = config.require("snowflakeMetadataPrivateKey")
+        snowflake_metadata_private_key_passphrase = config.require("snowflakeMetadataPrivateKeyPassphrase")
+        password_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo",
+            connection_id=int(snowflake["id"]),
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=True,
+            cost_insights_enabled=False,
+            auth_type="password",
+            user="METADATA_READER",
+            password_wo=snowflake_metadata_password,
+            password_wo_version=1,
+            role="METADATA_READER_ROLE",
+            warehouse="METADATA_WH")
+        keypair_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo",
+            connection_id=int(snowflake["id"]),
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=False,
+            cost_insights_enabled=False,
+            auth_type="keypair",
+            user="METADATA_READER",
+            private_key_wo=snowflake_metadata_private_key,
+            private_key_wo_version=1,
+            private_key_passphrase_wo=snowflake_metadata_private_key_passphrase,
+            private_key_passphrase_wo_version=1,
+            role="METADATA_READER_ROLE",
+            warehouse="METADATA_WH")
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -702,6 +760,64 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
 
         > **Note:** The `connection_id` cannot be changed after creation. To use a different connection,
         you must destroy and recreate the resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        password_auth = dbtcloud.SnowflakePlatformMetadataCredential("password_auth",
+            connection_id=int(snowflake["id"]),
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=True,
+            cost_insights_enabled=False,
+            auth_type="password",
+            user="METADATA_READER",
+            password=snowflake_password,
+            role="METADATA_READER_ROLE",
+            warehouse="METADATA_WH")
+        keypair_auth = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth",
+            connection_id=int(snowflake["id"]),
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=False,
+            cost_insights_enabled=False,
+            auth_type="keypair",
+            user="METADATA_READER",
+            private_key=snowflake_private_key,
+            private_key_passphrase=snowflake_private_key_passphrase,
+            role="METADATA_READER_ROLE",
+            warehouse="METADATA_WH")
+        config = pulumi.Config()
+        snowflake_metadata_password = config.require("snowflakeMetadataPassword")
+        snowflake_metadata_private_key = config.require("snowflakeMetadataPrivateKey")
+        snowflake_metadata_private_key_passphrase = config.require("snowflakeMetadataPrivateKeyPassphrase")
+        password_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo",
+            connection_id=int(snowflake["id"]),
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=True,
+            cost_insights_enabled=False,
+            auth_type="password",
+            user="METADATA_READER",
+            password_wo=snowflake_metadata_password,
+            password_wo_version=1,
+            role="METADATA_READER_ROLE",
+            warehouse="METADATA_WH")
+        keypair_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo",
+            connection_id=int(snowflake["id"]),
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=False,
+            cost_insights_enabled=False,
+            auth_type="keypair",
+            user="METADATA_READER",
+            private_key_wo=snowflake_metadata_private_key,
+            private_key_wo_version=1,
+            private_key_passphrase_wo=snowflake_metadata_private_key_passphrase,
+            private_key_passphrase_wo_version=1,
+            role="METADATA_READER_ROLE",
+            warehouse="METADATA_WH")
+        ```
 
 
         :param str resource_name: The name of the resource.

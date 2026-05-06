@@ -118,12 +118,12 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
 
         test_postgres_semantic_layer_credential = dbtcloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Postgres SL Credential",
                 "adapter_version": "postgres_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "username": username,
                 "password": password,
                 "semantic_layer_credential": True,
@@ -173,12 +173,12 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
 
         test_postgres_semantic_layer_credential = dbtcloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Postgres SL Credential",
                 "adapter_version": "postgres_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "username": username,
                 "password": password,
                 "semantic_layer_credential": True,

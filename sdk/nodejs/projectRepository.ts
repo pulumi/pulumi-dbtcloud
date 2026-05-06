@@ -14,8 +14,8 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const dbtProjectRepository = new dbtcloud.ProjectRepository("dbt_project_repository", {
- *     projectId: dbtProject.id,
- *     repositoryId: dbtRepository.repositoryId,
+ *     projectId: Number(dbtProject.id),
+ *     repositoryId: Number(dbtRepository.repositoryId),
  * });
  * ```
  *

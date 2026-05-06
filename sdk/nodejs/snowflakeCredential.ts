@@ -7,6 +7,34 @@ import * as utilities from "./utilities";
 /**
  * Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const prodCredential = new dbtcloud.SnowflakeCredential("prod_credential", {
+ *     projectId: Number(dbtProject.id),
+ *     authType: "password",
+ *     numThreads: 16,
+ *     schema: "SCHEMA",
+ *     user: "user",
+ *     password: "password",
+ * });
+ * const config = new pulumi.Config();
+ * const snowflakePassword = config.require("snowflakePassword");
+ * const prodCredentialWo = new dbtcloud.SnowflakeCredential("prod_credential_wo", {
+ *     projectId: Number(dbtProject.id),
+ *     authType: "password",
+ *     numThreads: 16,
+ *     schema: "SCHEMA",
+ *     user: "user",
+ *     passwordWo: snowflakePassword,
+ *     passwordWoVersion: 1,
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

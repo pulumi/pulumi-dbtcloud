@@ -24,6 +24,43 @@ namespace Pulumi.DbtCloud
     /// 
     /// &gt; **Note:** The `ConnectionId` cannot be changed after creation. To use a different connection,
     /// you must destroy and recreate the resource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var example = new DbtCloud.DatabricksPlatformMetadataCredential("example", new()
+    ///     {
+    ///         ConnectionId = databricks.Id,
+    ///         CatalogIngestionEnabled = true,
+    ///         CostOptimizationEnabled = false,
+    ///         CostInsightsEnabled = false,
+    ///         Token = databricksToken,
+    ///         Catalog = "main",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var databricksMetadataToken = config.Require("databricksMetadataToken");
+    ///     var exampleWo = new DbtCloud.DatabricksPlatformMetadataCredential("example_wo", new()
+    ///     {
+    ///         ConnectionId = databricks.Id,
+    ///         CatalogIngestionEnabled = true,
+    ///         CostOptimizationEnabled = false,
+    ///         CostInsightsEnabled = false,
+    ///         TokenWo = databricksMetadataToken,
+    ///         TokenWoVersion = 1,
+    ///         Catalog = "main",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential")]
     public partial class DatabricksPlatformMetadataCredential : global::Pulumi.CustomResource

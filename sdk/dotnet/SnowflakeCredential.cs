@@ -12,6 +12,43 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Snowflake credential resource. This resource is used both as a stand-alone credential, but also as part of the Semantic Layer credential definition for Snowflake.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var prodCredential = new DbtCloud.SnowflakeCredential("prod_credential", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         AuthType = "password",
+    ///         NumThreads = 16,
+    ///         Schema = "SCHEMA",
+    ///         User = "user",
+    ///         Password = "password",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var snowflakePassword = config.Require("snowflakePassword");
+    ///     var prodCredentialWo = new DbtCloud.SnowflakeCredential("prod_credential_wo", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         AuthType = "password",
+    ///         NumThreads = 16,
+    ///         Schema = "SCHEMA",
+    ///         User = "user",
+    ///         PasswordWo = snowflakePassword,
+    ///         PasswordWoVersion = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

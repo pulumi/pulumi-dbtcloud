@@ -17,14 +17,14 @@ import * as utilities from "./utilities";
  *
  * const example = new dbtcloud.BigquerySemanticLayerCredential("example", {
  *     configuration: {
- *         projectId: projectId,
+ *         projectId: Number(projectId),
  *         name: "BigQuery SL Credential",
  *         adapterVersion: "bigquery_v0",
  *     },
  *     credential: {
- *         projectId: projectId,
+ *         projectId: Number(projectId),
  *         isActive: true,
- *         numThreads: numThreads,
+ *         numThreads: Number(numThreads),
  *         dataset: dataset,
  *     },
  *     privateKeyId: privateKeyId,

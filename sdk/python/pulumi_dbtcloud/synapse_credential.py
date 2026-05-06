@@ -526,6 +526,62 @@ class SynapseCredential(pulumi.CustomResource):
         """
         Synapse credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        # when using sql authentication
+        my_synapse_cred_sql = dbtcloud.SynapseCredential("my_synapse_cred_sql",
+            project_id=int(dbt_project["id"]),
+            authentication="sql",
+            schema="my_schema",
+            user="my_user",
+            password="my_password",
+            schema_authorization="abcd")
+        # when using AD authentication
+        my_synapse_cred_ad = dbtcloud.SynapseCredential("my_synapse_cred_ad",
+            project_id=int(dbt_project["id"]),
+            authentication="ActiveDirectoryPassword",
+            schema="my_schema",
+            user="my_user",
+            password="my_password",
+            schema_authorization="abcd")
+        # when using service principal authentication
+        my_synapse_cred_serv_princ = dbtcloud.SynapseCredential("my_synapse_cred_serv_princ",
+            project_id=int(dbt_project["id"]),
+            authentication="ServicePrincipal",
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret="my_secret",
+            schema_authorization="abcd")
+        config = pulumi.Config()
+        synapse_password = config.require("synapsePassword")
+        synapse_client_secret = config.require("synapseClientSecret")
+        # when using AD authentication with write-only password
+        my_synapse_cred_ad_wo = dbtcloud.SynapseCredential("my_synapse_cred_ad_wo",
+            project_id=int(dbt_project["id"]),
+            authentication="ActiveDirectoryPassword",
+            schema="my_schema",
+            user="my_user",
+            password_wo=synapse_password,
+            password_wo_version=1,
+            schema_authorization="abcd")
+        # when using service principal authentication with write-only client secret
+        my_synapse_cred_serv_princ_wo = dbtcloud.SynapseCredential("my_synapse_cred_serv_princ_wo",
+            project_id=int(dbt_project["id"]),
+            authentication="ServicePrincipal",
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret_wo=synapse_client_secret,
+            client_secret_wo_version=1,
+            schema_authorization="abcd")
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -574,6 +630,62 @@ class SynapseCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Synapse credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        # when using sql authentication
+        my_synapse_cred_sql = dbtcloud.SynapseCredential("my_synapse_cred_sql",
+            project_id=int(dbt_project["id"]),
+            authentication="sql",
+            schema="my_schema",
+            user="my_user",
+            password="my_password",
+            schema_authorization="abcd")
+        # when using AD authentication
+        my_synapse_cred_ad = dbtcloud.SynapseCredential("my_synapse_cred_ad",
+            project_id=int(dbt_project["id"]),
+            authentication="ActiveDirectoryPassword",
+            schema="my_schema",
+            user="my_user",
+            password="my_password",
+            schema_authorization="abcd")
+        # when using service principal authentication
+        my_synapse_cred_serv_princ = dbtcloud.SynapseCredential("my_synapse_cred_serv_princ",
+            project_id=int(dbt_project["id"]),
+            authentication="ServicePrincipal",
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret="my_secret",
+            schema_authorization="abcd")
+        config = pulumi.Config()
+        synapse_password = config.require("synapsePassword")
+        synapse_client_secret = config.require("synapseClientSecret")
+        # when using AD authentication with write-only password
+        my_synapse_cred_ad_wo = dbtcloud.SynapseCredential("my_synapse_cred_ad_wo",
+            project_id=int(dbt_project["id"]),
+            authentication="ActiveDirectoryPassword",
+            schema="my_schema",
+            user="my_user",
+            password_wo=synapse_password,
+            password_wo_version=1,
+            schema_authorization="abcd")
+        # when using service principal authentication with write-only client secret
+        my_synapse_cred_serv_princ_wo = dbtcloud.SynapseCredential("my_synapse_cred_serv_princ_wo",
+            project_id=int(dbt_project["id"]),
+            authentication="ServicePrincipal",
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret_wo=synapse_client_secret,
+            client_secret_wo_version=1,
+            schema_authorization="abcd")
+        ```
 
         ## Import
 

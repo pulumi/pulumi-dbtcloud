@@ -150,7 +150,7 @@ class EnvironmentVariable(pulumi.CustomResource):
 
         dbt_my_env_var = dbtcloud.EnvironmentVariable("dbt_my_env_var",
             name="DBT_MY_ENV_VAR",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             environment_values={
                 "project": "my_project_level_value",
                 "Dev": "my_env_level_value",
@@ -210,7 +210,7 @@ class EnvironmentVariable(pulumi.CustomResource):
 
         dbt_my_env_var = dbtcloud.EnvironmentVariable("dbt_my_env_var",
             name="DBT_MY_ENV_VAR",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             environment_values={
                 "project": "my_project_level_value",
                 "Dev": "my_env_level_value",

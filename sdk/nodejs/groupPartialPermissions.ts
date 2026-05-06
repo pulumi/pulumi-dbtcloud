@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  *     groupPermissions: [
  *         {
  *             permissionSet: "developer",
- *             projectId: dbtProject.id,
+ *             projectId: Number(dbtProject.id),
  *             allProjects: false,
  *             writableEnvironmentCategories: [
  *                 "development",
@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  *         },
  *         {
  *             permissionSet: "git_admin",
- *             projectId: dbtProject.id,
+ *             projectId: Number(dbtProject.id),
  *             allProjects: false,
  *         },
  *     ],
@@ -59,7 +59,7 @@ import * as utilities from "./utilities";
  *     ssoMappingGroups: ["group2"],
  *     groupPermissions: [{
  *         permissionSet: "admin",
- *         projectId: dbtProject.id,
+ *         projectId: Number(dbtProject.id),
  *         allProjects: false,
  *     }],
  * });

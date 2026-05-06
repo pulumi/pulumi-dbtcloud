@@ -149,9 +149,9 @@ class ProjectArtefacts(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         my_project_artefacts = dbtcloud.ProjectArtefacts("my_project_artefacts",
-            project_id=dbt_project["id"],
-            docs_job_id=prod_job["id"],
-            freshness_job_id=prod_job["id"])
+            project_id=int(dbt_project["id"]),
+            docs_job_id=int(prod_job["id"]),
+            freshness_job_id=int(prod_job["id"]))
         ```
 
         ## Import
@@ -197,9 +197,9 @@ class ProjectArtefacts(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         my_project_artefacts = dbtcloud.ProjectArtefacts("my_project_artefacts",
-            project_id=dbt_project["id"],
-            docs_job_id=prod_job["id"],
-            freshness_job_id=prod_job["id"])
+            project_id=int(dbt_project["id"]),
+            docs_job_id=int(prod_job["id"]),
+            freshness_job_id=int(prod_job["id"]))
         ```
 
         ## Import

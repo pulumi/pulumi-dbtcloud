@@ -121,7 +121,7 @@ def get_spark_credential(credential_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_dbtcloud as dbtcloud
 
-    my_spark_cred = dbtcloud.get_spark_credential(project_id=dbt_project["id"],
+    my_spark_cred = dbtcloud.get_spark_credential(project_id=int(dbt_project["id"]),
         credential_id=12345)
     ```
 
@@ -154,7 +154,7 @@ def get_spark_credential_output(credential_id: Optional[pulumi.Input[_builtins.i
     import pulumi
     import pulumi_dbtcloud as dbtcloud
 
-    my_spark_cred = dbtcloud.get_spark_credential(project_id=dbt_project["id"],
+    my_spark_cred = dbtcloud.get_spark_credential(project_id=int(dbt_project["id"]),
         credential_id=12345)
     ```
 

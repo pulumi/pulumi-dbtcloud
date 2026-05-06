@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * const dbtMyEnvVar = new dbtcloud.EnvironmentVariable("dbt_my_env_var", {
  *     name: "DBT_MY_ENV_VAR",
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     environmentValues: {
  *         project: "my_project_level_value",
  *         Dev: "my_env_level_value",

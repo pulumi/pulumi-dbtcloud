@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  *
  * const myEnvVarJobOverride = new dbtcloud.EnvironmentVariableJobOverride("my_env_var_job_override", {
  *     name: dbtMyEnvVar.name,
- *     projectId: dbtProject.id,
- *     jobDefinitionId: dailyJob.id,
+ *     projectId: Number(dbtProject.id),
+ *     jobDefinitionId: Number(dailyJob.id),
  *     rawValue: "my_override_value",
  * });
  * ```

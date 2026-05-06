@@ -363,7 +363,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
 
         # Example: Configure catalog filters for a Snowflake connection
         snowflake_filters = dbtcloud.ConnectionCatalogConfig("snowflake_filters",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=[
                 "analytics",
                 "reporting",
@@ -383,11 +383,11 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             ])
         # Example: Minimal configuration - just filter databases
         minimal = dbtcloud.ConnectionCatalogConfig("minimal",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=["production"])
         # Example: Full configuration with platform metadata credential
         creds = dbtcloud.SnowflakePlatformMetadataCredential("creds",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             auth_type="password",
             user=snowflake_user,
@@ -395,7 +395,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             role=snowflake_role,
             warehouse=snowflake_warehouse)
         with_creds = dbtcloud.ConnectionCatalogConfig("with_creds",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=[
                 "analytics",
                 "reporting",
@@ -462,7 +462,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
 
         # Example: Configure catalog filters for a Snowflake connection
         snowflake_filters = dbtcloud.ConnectionCatalogConfig("snowflake_filters",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=[
                 "analytics",
                 "reporting",
@@ -482,11 +482,11 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             ])
         # Example: Minimal configuration - just filter databases
         minimal = dbtcloud.ConnectionCatalogConfig("minimal",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=["production"])
         # Example: Full configuration with platform metadata credential
         creds = dbtcloud.SnowflakePlatformMetadataCredential("creds",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             auth_type="password",
             user=snowflake_user,
@@ -494,7 +494,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             role=snowflake_role,
             warehouse=snowflake_warehouse)
         with_creds = dbtcloud.ConnectionCatalogConfig("with_creds",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=[
                 "analytics",
                 "reporting",

@@ -119,12 +119,12 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         # Example of Snowflake Semantic Layer Credential with password authentication
         password_auth = dbtcloud.SnowflakeSemanticLayerCredential("password_auth",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Snowflake SL Credential - Password Auth",
                 "adapter_version": "snowflake_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
                 "auth_type": "password",
                 "database": database,
@@ -139,12 +139,12 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         # Example of Snowflake Semantic Layer Credential with key pair authentication
         keypair_auth = dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Snowflake SL Credential - Key Pair Auth",
                 "adapter_version": "snowflake_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
                 "auth_type": "keypair",
                 "database": database,
@@ -202,12 +202,12 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         # Example of Snowflake Semantic Layer Credential with password authentication
         password_auth = dbtcloud.SnowflakeSemanticLayerCredential("password_auth",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Snowflake SL Credential - Password Auth",
                 "adapter_version": "snowflake_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
                 "auth_type": "password",
                 "database": database,
@@ -222,12 +222,12 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         # Example of Snowflake Semantic Layer Credential with key pair authentication
         keypair_auth = dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Snowflake SL Credential - Key Pair Auth",
                 "adapter_version": "snowflake_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
                 "auth_type": "keypair",
                 "database": database,
