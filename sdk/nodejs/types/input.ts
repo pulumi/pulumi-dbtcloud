@@ -820,6 +820,44 @@ export interface JobTriggers {
     schedule?: pulumi.Input<boolean>;
 }
 
+export interface NotificationSettingChannel {
+    /**
+     * Channel type. Currently only `teams` is supported.
+     */
+    channelType: pulumi.Input<string>;
+    /**
+     * Channel ID
+     */
+    id?: pulumi.Input<number>;
+    /**
+     * Microsoft Teams channel ID.
+     */
+    teamsChannelId: pulumi.Input<string>;
+    /**
+     * Microsoft Teams team ID.
+     */
+    teamsTeamId: pulumi.Input<string>;
+}
+
+export interface NotificationSettingRule {
+    /**
+     * Rule ID
+     */
+    id?: pulumi.Input<number>;
+    /**
+     * Job ID this rule applies to. Omit to fire for all jobs in the account.
+     */
+    jobId?: pulumi.Input<number>;
+    /**
+     * Name of the job referenced by `jobId` (read-only).
+     */
+    jobName?: pulumi.Input<string>;
+    /**
+     * Event that fires the notification. Valid values: `runWarning`, `runSuccessful`, `runErrored`, `runCancelled`.
+     */
+    triggerOn: pulumi.Input<string>;
+}
+
 export interface PostgresSemanticLayerCredentialConfiguration {
     /**
      * The adapter version

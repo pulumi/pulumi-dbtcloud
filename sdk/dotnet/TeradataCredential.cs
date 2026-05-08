@@ -11,6 +11,39 @@ namespace Pulumi.DbtCloud
 {
     /// <summary>
     /// Teradata credential resource
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var example = new DbtCloud.Index.TeradataCredential("example", new()
+    ///     {
+    ///         ProjectId = exampleDbtcloudProject.Id,
+    ///         Schema = "your_schema",
+    ///         User = "your_user",
+    ///         Password = "your_password",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var teradataPassword = config.Require("teradataPassword");
+    ///     var exampleWo = new DbtCloud.Index.TeradataCredential("example_wo", new()
+    ///     {
+    ///         ProjectId = exampleDbtcloudProject.Id,
+    ///         Schema = "your_schema",
+    ///         User = "your_user",
+    ///         PasswordWo = teradataPassword,
+    ///         PasswordWoVersion = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/teradataCredential:TeradataCredential")]
     public partial class TeradataCredential : global::Pulumi.CustomResource

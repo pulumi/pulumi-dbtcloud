@@ -5393,6 +5393,254 @@ func (o JobTriggersPtrOutput) Schedule() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+type NotificationSettingChannel struct {
+	// Channel type. Currently only `teams` is supported.
+	ChannelType string `pulumi:"channelType"`
+	// Channel ID
+	Id *int `pulumi:"id"`
+	// Microsoft Teams channel ID.
+	TeamsChannelId string `pulumi:"teamsChannelId"`
+	// Microsoft Teams team ID.
+	TeamsTeamId string `pulumi:"teamsTeamId"`
+}
+
+// NotificationSettingChannelInput is an input type that accepts NotificationSettingChannelArgs and NotificationSettingChannelOutput values.
+// You can construct a concrete instance of `NotificationSettingChannelInput` via:
+//
+//	NotificationSettingChannelArgs{...}
+type NotificationSettingChannelInput interface {
+	pulumi.Input
+
+	ToNotificationSettingChannelOutput() NotificationSettingChannelOutput
+	ToNotificationSettingChannelOutputWithContext(context.Context) NotificationSettingChannelOutput
+}
+
+type NotificationSettingChannelArgs struct {
+	// Channel type. Currently only `teams` is supported.
+	ChannelType pulumi.StringInput `pulumi:"channelType"`
+	// Channel ID
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Microsoft Teams channel ID.
+	TeamsChannelId pulumi.StringInput `pulumi:"teamsChannelId"`
+	// Microsoft Teams team ID.
+	TeamsTeamId pulumi.StringInput `pulumi:"teamsTeamId"`
+}
+
+func (NotificationSettingChannelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationSettingChannel)(nil)).Elem()
+}
+
+func (i NotificationSettingChannelArgs) ToNotificationSettingChannelOutput() NotificationSettingChannelOutput {
+	return i.ToNotificationSettingChannelOutputWithContext(context.Background())
+}
+
+func (i NotificationSettingChannelArgs) ToNotificationSettingChannelOutputWithContext(ctx context.Context) NotificationSettingChannelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationSettingChannelOutput)
+}
+
+// NotificationSettingChannelArrayInput is an input type that accepts NotificationSettingChannelArray and NotificationSettingChannelArrayOutput values.
+// You can construct a concrete instance of `NotificationSettingChannelArrayInput` via:
+//
+//	NotificationSettingChannelArray{ NotificationSettingChannelArgs{...} }
+type NotificationSettingChannelArrayInput interface {
+	pulumi.Input
+
+	ToNotificationSettingChannelArrayOutput() NotificationSettingChannelArrayOutput
+	ToNotificationSettingChannelArrayOutputWithContext(context.Context) NotificationSettingChannelArrayOutput
+}
+
+type NotificationSettingChannelArray []NotificationSettingChannelInput
+
+func (NotificationSettingChannelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationSettingChannel)(nil)).Elem()
+}
+
+func (i NotificationSettingChannelArray) ToNotificationSettingChannelArrayOutput() NotificationSettingChannelArrayOutput {
+	return i.ToNotificationSettingChannelArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationSettingChannelArray) ToNotificationSettingChannelArrayOutputWithContext(ctx context.Context) NotificationSettingChannelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationSettingChannelArrayOutput)
+}
+
+type NotificationSettingChannelOutput struct{ *pulumi.OutputState }
+
+func (NotificationSettingChannelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationSettingChannel)(nil)).Elem()
+}
+
+func (o NotificationSettingChannelOutput) ToNotificationSettingChannelOutput() NotificationSettingChannelOutput {
+	return o
+}
+
+func (o NotificationSettingChannelOutput) ToNotificationSettingChannelOutputWithContext(ctx context.Context) NotificationSettingChannelOutput {
+	return o
+}
+
+// Channel type. Currently only `teams` is supported.
+func (o NotificationSettingChannelOutput) ChannelType() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationSettingChannel) string { return v.ChannelType }).(pulumi.StringOutput)
+}
+
+// Channel ID
+func (o NotificationSettingChannelOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NotificationSettingChannel) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Microsoft Teams channel ID.
+func (o NotificationSettingChannelOutput) TeamsChannelId() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationSettingChannel) string { return v.TeamsChannelId }).(pulumi.StringOutput)
+}
+
+// Microsoft Teams team ID.
+func (o NotificationSettingChannelOutput) TeamsTeamId() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationSettingChannel) string { return v.TeamsTeamId }).(pulumi.StringOutput)
+}
+
+type NotificationSettingChannelArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationSettingChannelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationSettingChannel)(nil)).Elem()
+}
+
+func (o NotificationSettingChannelArrayOutput) ToNotificationSettingChannelArrayOutput() NotificationSettingChannelArrayOutput {
+	return o
+}
+
+func (o NotificationSettingChannelArrayOutput) ToNotificationSettingChannelArrayOutputWithContext(ctx context.Context) NotificationSettingChannelArrayOutput {
+	return o
+}
+
+func (o NotificationSettingChannelArrayOutput) Index(i pulumi.IntInput) NotificationSettingChannelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationSettingChannel {
+		return vs[0].([]NotificationSettingChannel)[vs[1].(int)]
+	}).(NotificationSettingChannelOutput)
+}
+
+type NotificationSettingRule struct {
+	// Rule ID
+	Id *int `pulumi:"id"`
+	// Job ID this rule applies to. Omit to fire for all jobs in the account.
+	JobId *int `pulumi:"jobId"`
+	// Name of the job referenced by `jobId` (read-only).
+	JobName *string `pulumi:"jobName"`
+	// Event that fires the notification. Valid values: `runWarning`, `runSuccessful`, `runErrored`, `runCancelled`.
+	TriggerOn string `pulumi:"triggerOn"`
+}
+
+// NotificationSettingRuleInput is an input type that accepts NotificationSettingRuleArgs and NotificationSettingRuleOutput values.
+// You can construct a concrete instance of `NotificationSettingRuleInput` via:
+//
+//	NotificationSettingRuleArgs{...}
+type NotificationSettingRuleInput interface {
+	pulumi.Input
+
+	ToNotificationSettingRuleOutput() NotificationSettingRuleOutput
+	ToNotificationSettingRuleOutputWithContext(context.Context) NotificationSettingRuleOutput
+}
+
+type NotificationSettingRuleArgs struct {
+	// Rule ID
+	Id pulumi.IntPtrInput `pulumi:"id"`
+	// Job ID this rule applies to. Omit to fire for all jobs in the account.
+	JobId pulumi.IntPtrInput `pulumi:"jobId"`
+	// Name of the job referenced by `jobId` (read-only).
+	JobName pulumi.StringPtrInput `pulumi:"jobName"`
+	// Event that fires the notification. Valid values: `runWarning`, `runSuccessful`, `runErrored`, `runCancelled`.
+	TriggerOn pulumi.StringInput `pulumi:"triggerOn"`
+}
+
+func (NotificationSettingRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationSettingRule)(nil)).Elem()
+}
+
+func (i NotificationSettingRuleArgs) ToNotificationSettingRuleOutput() NotificationSettingRuleOutput {
+	return i.ToNotificationSettingRuleOutputWithContext(context.Background())
+}
+
+func (i NotificationSettingRuleArgs) ToNotificationSettingRuleOutputWithContext(ctx context.Context) NotificationSettingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationSettingRuleOutput)
+}
+
+// NotificationSettingRuleArrayInput is an input type that accepts NotificationSettingRuleArray and NotificationSettingRuleArrayOutput values.
+// You can construct a concrete instance of `NotificationSettingRuleArrayInput` via:
+//
+//	NotificationSettingRuleArray{ NotificationSettingRuleArgs{...} }
+type NotificationSettingRuleArrayInput interface {
+	pulumi.Input
+
+	ToNotificationSettingRuleArrayOutput() NotificationSettingRuleArrayOutput
+	ToNotificationSettingRuleArrayOutputWithContext(context.Context) NotificationSettingRuleArrayOutput
+}
+
+type NotificationSettingRuleArray []NotificationSettingRuleInput
+
+func (NotificationSettingRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationSettingRule)(nil)).Elem()
+}
+
+func (i NotificationSettingRuleArray) ToNotificationSettingRuleArrayOutput() NotificationSettingRuleArrayOutput {
+	return i.ToNotificationSettingRuleArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationSettingRuleArray) ToNotificationSettingRuleArrayOutputWithContext(ctx context.Context) NotificationSettingRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationSettingRuleArrayOutput)
+}
+
+type NotificationSettingRuleOutput struct{ *pulumi.OutputState }
+
+func (NotificationSettingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationSettingRule)(nil)).Elem()
+}
+
+func (o NotificationSettingRuleOutput) ToNotificationSettingRuleOutput() NotificationSettingRuleOutput {
+	return o
+}
+
+func (o NotificationSettingRuleOutput) ToNotificationSettingRuleOutputWithContext(ctx context.Context) NotificationSettingRuleOutput {
+	return o
+}
+
+// Rule ID
+func (o NotificationSettingRuleOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NotificationSettingRule) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+// Job ID this rule applies to. Omit to fire for all jobs in the account.
+func (o NotificationSettingRuleOutput) JobId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NotificationSettingRule) *int { return v.JobId }).(pulumi.IntPtrOutput)
+}
+
+// Name of the job referenced by `jobId` (read-only).
+func (o NotificationSettingRuleOutput) JobName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationSettingRule) *string { return v.JobName }).(pulumi.StringPtrOutput)
+}
+
+// Event that fires the notification. Valid values: `runWarning`, `runSuccessful`, `runErrored`, `runCancelled`.
+func (o NotificationSettingRuleOutput) TriggerOn() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationSettingRule) string { return v.TriggerOn }).(pulumi.StringOutput)
+}
+
+type NotificationSettingRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationSettingRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationSettingRule)(nil)).Elem()
+}
+
+func (o NotificationSettingRuleArrayOutput) ToNotificationSettingRuleArrayOutput() NotificationSettingRuleArrayOutput {
+	return o
+}
+
+func (o NotificationSettingRuleArrayOutput) ToNotificationSettingRuleArrayOutputWithContext(ctx context.Context) NotificationSettingRuleArrayOutput {
+	return o
+}
+
+func (o NotificationSettingRuleArrayOutput) Index(i pulumi.IntInput) NotificationSettingRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationSettingRule {
+		return vs[0].([]NotificationSettingRule)[vs[1].(int)]
+	}).(NotificationSettingRuleOutput)
+}
+
 type PostgresSemanticLayerCredentialConfiguration struct {
 	// The adapter version
 	AdapterVersion string `pulumi:"adapterVersion"`
@@ -12421,6 +12669,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*JobJobCompletionTriggerConditionArrayInput)(nil)).Elem(), JobJobCompletionTriggerConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTriggersInput)(nil)).Elem(), JobTriggersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTriggersPtrInput)(nil)).Elem(), JobTriggersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationSettingChannelInput)(nil)).Elem(), NotificationSettingChannelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationSettingChannelArrayInput)(nil)).Elem(), NotificationSettingChannelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationSettingRuleInput)(nil)).Elem(), NotificationSettingRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationSettingRuleArrayInput)(nil)).Elem(), NotificationSettingRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PostgresSemanticLayerCredentialConfigurationInput)(nil)).Elem(), PostgresSemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PostgresSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), PostgresSemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PostgresSemanticLayerCredentialCredentialInput)(nil)).Elem(), PostgresSemanticLayerCredentialCredentialArgs{})
@@ -12545,6 +12797,10 @@ func init() {
 	pulumi.RegisterOutputType(JobJobCompletionTriggerConditionArrayOutput{})
 	pulumi.RegisterOutputType(JobTriggersOutput{})
 	pulumi.RegisterOutputType(JobTriggersPtrOutput{})
+	pulumi.RegisterOutputType(NotificationSettingChannelOutput{})
+	pulumi.RegisterOutputType(NotificationSettingChannelArrayOutput{})
+	pulumi.RegisterOutputType(NotificationSettingRuleOutput{})
+	pulumi.RegisterOutputType(NotificationSettingRuleArrayOutput{})
 	pulumi.RegisterOutputType(PostgresSemanticLayerCredentialConfigurationOutput{})
 	pulumi.RegisterOutputType(PostgresSemanticLayerCredentialConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(PostgresSemanticLayerCredentialCredentialOutput{})

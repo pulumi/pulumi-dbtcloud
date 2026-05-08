@@ -16,6 +16,57 @@ import (
 //
 // This resource requires having an environment tagged as production already created for you project.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// the resource can only be configured when a Prod environment has been set
+//			// so, you might want to explicitly set the dependency on your Prod environment resource
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewLineageIntegration(ctx, "my_lineage", &dbtcloud.LineageIntegrationArgs{
+//				ProjectId: pulumi.Any(myProject.Id),
+//				Host:      pulumi.String("my.host.com"),
+//				SiteId:    pulumi.String("mysiteid"),
+//				TokenName: pulumi.String("my-token-name"),
+//				Token:     pulumi.String("my-sensitive-token"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				myProdEnv,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			lineageToken := cfg.Require("lineageToken")
+//			_, err = dbtcloud.NewLineageIntegration(ctx, "my_lineage_wo", &dbtcloud.LineageIntegrationArgs{
+//				ProjectId:      pulumi.Any(myProject.Id),
+//				Host:           pulumi.String("my.host.com"),
+//				SiteId:         pulumi.String("mysiteid"),
+//				TokenName:      pulumi.String("my-token-name"),
+//				TokenWo:        pulumi.String(pulumi.String(lineageToken)),
+//				TokenWoVersion: pulumi.Int(1),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				myProdEnv,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

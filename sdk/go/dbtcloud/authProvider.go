@@ -18,6 +18,131 @@ import (
 //
 // See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/sso-overview) for more information.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi-std/sdk/v2/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			samlCert := cfg.Require("samlCert")
+//			saml, err := dbtcloud.NewAuthProvider(ctx, "saml", &dbtcloud.AuthProviderArgs{
+//				Type:          pulumi.String("saml"),
+//				EntityId:      pulumi.String("https://your-idp.example.com/metadata"),
+//				SsoUrl:        pulumi.String("https://your-idp.example.com/sso/saml"),
+//				CertWo:        pulumi.String(pulumi.String(samlCert)),
+//				CertWoVersion: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("loginUrl", saml.LoginUrl)
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "idp-cert.pem",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"email":      "nameID",
+//				"first_name": "firstName",
+//				"last_name":  "lastName",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			// SAML — all optional fields
+//			_, err = dbtcloud.NewAuthProvider(ctx, "saml_full", &dbtcloud.AuthProviderArgs{
+//				Type:                  pulumi.String("saml"),
+//				EntityId:              pulumi.String("https://your-idp.example.com/metadata"),
+//				SsoUrl:                pulumi.String("https://your-idp.example.com/sso/saml"),
+//				Cert:                  pulumi.String(invokeFile.Result),
+//				SignRequest:           pulumi.Bool(true),
+//				AttributeMap:          pulumi.String(pulumi.String(json0)),
+//				AllowPasswordBackdoor: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Okta (identical to SAML, different type value)
+//			_, err = dbtcloud.NewAuthProvider(ctx, "okta", &dbtcloud.AuthProviderArgs{
+//				Type:          pulumi.String("okta"),
+//				EntityId:      pulumi.String("http://www.okta.com/<okta_app_id>"),
+//				SsoUrl:        pulumi.String("https://<your-org>.okta.com/app/<app_path>/sso/saml"),
+//				CertWo:        pulumi.String(pulumi.String(samlCert)),
+//				CertWoVersion: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			azureClientSecret := cfg.Require("azureClientSecret")
+//			_, err = dbtcloud.NewAuthProvider(ctx, "azure_single_tenant", &dbtcloud.AuthProviderArgs{
+//				Type:                  pulumi.String("azure_single_tenant"),
+//				ClientId:              pulumi.String("00000000-0000-0000-0000-000000000000"),
+//				TenantId:              pulumi.String("11111111-1111-1111-1111-111111111111"),
+//				ClientSecretWo:        pulumi.String(pulumi.String(azureClientSecret)),
+//				ClientSecretWoVersion: pulumi.Int(1),
+//				Domain:                pulumi.String("acme.com"),
+//				IncludeIndirectGroups: pulumi.Bool(true),
+//				MaxGroupsToRetrieve:   pulumi.Int(500),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Azure AD — multi tenant (no tenant_id required)
+//			_, err = dbtcloud.NewAuthProvider(ctx, "azure_multi_tenant", &dbtcloud.AuthProviderArgs{
+//				Type:                  pulumi.String("azure_multi_tenant"),
+//				ClientId:              pulumi.String("00000000-0000-0000-0000-000000000000"),
+//				ClientSecretWo:        pulumi.String(pulumi.String(azureClientSecret)),
+//				ClientSecretWoVersion: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Azure Active Directory
+//			_, err = dbtcloud.NewAuthProvider(ctx, "azure_active_directory", &dbtcloud.AuthProviderArgs{
+//				Type:                  pulumi.String("azure_active_directory"),
+//				ClientId:              pulumi.String("00000000-0000-0000-0000-000000000000"),
+//				TenantId:              pulumi.String("11111111-1111-1111-1111-111111111111"),
+//				ClientSecretWo:        pulumi.String(pulumi.String(azureClientSecret)),
+//				ClientSecretWoVersion: pulumi.Int(1),
+//				Domain:                pulumi.String("acme.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			gsuiteClientSecret := cfg.Require("gsuiteClientSecret")
+//			_, err = dbtcloud.NewAuthProvider(ctx, "gsuite", &dbtcloud.AuthProviderArgs{
+//				Type:                  pulumi.String("gsuite"),
+//				ClientId:              pulumi.String("000000000000-xxxx.apps.googleusercontent.com"),
+//				ClientSecretWo:        pulumi.String(pulumi.String(gsuiteClientSecret)),
+//				ClientSecretWoVersion: pulumi.Int(1),
+//				AdminRefreshToken:     pulumi.String("<oauth-refresh-token>"),
+//				Domain:                pulumi.String("acme.com"),
+//				GsuiteAdminId:         pulumi.String("admin@acme.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Import an existing auth provider by its numeric ID.

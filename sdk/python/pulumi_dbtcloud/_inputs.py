@@ -63,6 +63,10 @@ __all__ = [
     'JobJobCompletionTriggerConditionArgsDict',
     'JobTriggersArgs',
     'JobTriggersArgsDict',
+    'NotificationSettingChannelArgs',
+    'NotificationSettingChannelArgsDict',
+    'NotificationSettingRuleArgs',
+    'NotificationSettingRuleArgsDict',
     'PostgresSemanticLayerCredentialConfigurationArgs',
     'PostgresSemanticLayerCredentialConfigurationArgsDict',
     'PostgresSemanticLayerCredentialCredentialArgs',
@@ -3211,6 +3215,180 @@ class JobTriggersArgs:
     @schedule.setter
     def schedule(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "schedule", value)
+
+
+class NotificationSettingChannelArgsDict(TypedDict):
+    channel_type: pulumi.Input[_builtins.str]
+    """
+    Channel type. Currently only `teams` is supported.
+    """
+    teams_channel_id: pulumi.Input[_builtins.str]
+    """
+    Microsoft Teams channel ID.
+    """
+    teams_team_id: pulumi.Input[_builtins.str]
+    """
+    Microsoft Teams team ID.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Channel ID
+    """
+
+@pulumi.input_type
+class NotificationSettingChannelArgs:
+    def __init__(__self__, *,
+                 channel_type: pulumi.Input[_builtins.str],
+                 teams_channel_id: pulumi.Input[_builtins.str],
+                 teams_team_id: pulumi.Input[_builtins.str],
+                 id: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] channel_type: Channel type. Currently only `teams` is supported.
+        :param pulumi.Input[_builtins.str] teams_channel_id: Microsoft Teams channel ID.
+        :param pulumi.Input[_builtins.str] teams_team_id: Microsoft Teams team ID.
+        :param pulumi.Input[_builtins.int] id: Channel ID
+        """
+        pulumi.set(__self__, "channel_type", channel_type)
+        pulumi.set(__self__, "teams_channel_id", teams_channel_id)
+        pulumi.set(__self__, "teams_team_id", teams_team_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="channelType")
+    def channel_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Channel type. Currently only `teams` is supported.
+        """
+        return pulumi.get(self, "channel_type")
+
+    @channel_type.setter
+    def channel_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "channel_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="teamsChannelId")
+    def teams_channel_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Microsoft Teams channel ID.
+        """
+        return pulumi.get(self, "teams_channel_id")
+
+    @teams_channel_id.setter
+    def teams_channel_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "teams_channel_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="teamsTeamId")
+    def teams_team_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Microsoft Teams team ID.
+        """
+        return pulumi.get(self, "teams_team_id")
+
+    @teams_team_id.setter
+    def teams_team_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "teams_team_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Channel ID
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+
+class NotificationSettingRuleArgsDict(TypedDict):
+    trigger_on: pulumi.Input[_builtins.str]
+    """
+    Event that fires the notification. Valid values: `run_warning`, `run_successful`, `run_errored`, `run_cancelled`.
+    """
+    id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Rule ID
+    """
+    job_id: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Job ID this rule applies to. Omit to fire for all jobs in the account.
+    """
+    job_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the job referenced by `job_id` (read-only).
+    """
+
+@pulumi.input_type
+class NotificationSettingRuleArgs:
+    def __init__(__self__, *,
+                 trigger_on: pulumi.Input[_builtins.str],
+                 id: Optional[pulumi.Input[_builtins.int]] = None,
+                 job_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 job_name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] trigger_on: Event that fires the notification. Valid values: `run_warning`, `run_successful`, `run_errored`, `run_cancelled`.
+        :param pulumi.Input[_builtins.int] id: Rule ID
+        :param pulumi.Input[_builtins.int] job_id: Job ID this rule applies to. Omit to fire for all jobs in the account.
+        :param pulumi.Input[_builtins.str] job_name: Name of the job referenced by `job_id` (read-only).
+        """
+        pulumi.set(__self__, "trigger_on", trigger_on)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if job_name is not None:
+            pulumi.set(__self__, "job_name", job_name)
+
+    @_builtins.property
+    @pulumi.getter(name="triggerOn")
+    def trigger_on(self) -> pulumi.Input[_builtins.str]:
+        """
+        Event that fires the notification. Valid values: `run_warning`, `run_successful`, `run_errored`, `run_cancelled`.
+        """
+        return pulumi.get(self, "trigger_on")
+
+    @trigger_on.setter
+    def trigger_on(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "trigger_on", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Rule ID
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Job ID this rule applies to. Omit to fire for all jobs in the account.
+        """
+        return pulumi.get(self, "job_id")
+
+    @job_id.setter
+    def job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "job_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jobName")
+    def job_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name of the job referenced by `job_id` (read-only).
+        """
+        return pulumi.get(self, "job_name")
+
+    @job_name.setter
+    def job_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "job_name", value)
 
 
 class PostgresSemanticLayerCredentialConfigurationArgsDict(TypedDict):

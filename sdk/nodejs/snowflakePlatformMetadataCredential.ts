@@ -19,6 +19,68 @@ import * as utilities from "./utilities";
  *
  * > **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
  * you must destroy and recreate the resource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attributes (stored in state)
+ * const passwordAuth = new dbtcloud.SnowflakePlatformMetadataCredential("password_auth", {
+ *     connectionId: snowflake.id,
+ *     catalogIngestionEnabled: true,
+ *     costOptimizationEnabled: true,
+ *     costInsightsEnabled: false,
+ *     authType: "password",
+ *     user: "METADATA_READER",
+ *     password: snowflakePassword,
+ *     role: "METADATA_READER_ROLE",
+ *     warehouse: "METADATA_WH",
+ * });
+ * const keypairAuth = new dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth", {
+ *     connectionId: snowflake.id,
+ *     catalogIngestionEnabled: true,
+ *     costOptimizationEnabled: false,
+ *     costInsightsEnabled: false,
+ *     authType: "keypair",
+ *     user: "METADATA_READER",
+ *     privateKey: snowflakePrivateKey,
+ *     privateKeyPassphrase: snowflakePrivateKeyPassphrase,
+ *     role: "METADATA_READER_ROLE",
+ *     warehouse: "METADATA_WH",
+ * });
+ * const config = new pulumi.Config();
+ * const snowflakeMetadataPassword = config.require("snowflakeMetadataPassword");
+ * const snowflakeMetadataPrivateKey = config.require("snowflakeMetadataPrivateKey");
+ * const snowflakeMetadataPrivateKeyPassphrase = config.require("snowflakeMetadataPrivateKeyPassphrase");
+ * const passwordAuthWo = new dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo", {
+ *     connectionId: snowflake.id,
+ *     catalogIngestionEnabled: true,
+ *     costOptimizationEnabled: true,
+ *     costInsightsEnabled: false,
+ *     authType: "password",
+ *     user: "METADATA_READER",
+ *     passwordWo: snowflakeMetadataPassword,
+ *     passwordWoVersion: 1,
+ *     role: "METADATA_READER_ROLE",
+ *     warehouse: "METADATA_WH",
+ * });
+ * const keypairAuthWo = new dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo", {
+ *     connectionId: snowflake.id,
+ *     catalogIngestionEnabled: true,
+ *     costOptimizationEnabled: false,
+ *     costInsightsEnabled: false,
+ *     authType: "keypair",
+ *     user: "METADATA_READER",
+ *     privateKeyWo: snowflakeMetadataPrivateKey,
+ *     privateKeyWoVersion: 1,
+ *     privateKeyPassphraseWo: snowflakeMetadataPrivateKeyPassphrase,
+ *     privateKeyPassphraseWoVersion: 1,
+ *     role: "METADATA_READER_ROLE",
+ *     warehouse: "METADATA_WH",
+ * });
+ * ```
  */
 export class SnowflakePlatformMetadataCredential extends pulumi.CustomResource {
     /**

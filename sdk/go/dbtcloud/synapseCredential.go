@@ -14,6 +14,95 @@ import (
 
 // Synapse credential resource
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attributes (stored in state)
+//			// when using sql authentication
+//			_, err := dbtcloud.NewSynapseCredential(ctx, "my_synapse_cred_sql", &dbtcloud.SynapseCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				Authentication:      pulumi.String("sql"),
+//				Schema:              pulumi.String("my_schema"),
+//				User:                pulumi.String("my_user"),
+//				Password:            pulumi.String("my_password"),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// when using AD authentication
+//			_, err = dbtcloud.NewSynapseCredential(ctx, "my_synapse_cred_ad", &dbtcloud.SynapseCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				Authentication:      pulumi.String("ActiveDirectoryPassword"),
+//				Schema:              pulumi.String("my_schema"),
+//				User:                pulumi.String("my_user"),
+//				Password:            pulumi.String("my_password"),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// when using service principal authentication
+//			_, err = dbtcloud.NewSynapseCredential(ctx, "my_synapse_cred_serv_princ", &dbtcloud.SynapseCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				Authentication:      pulumi.String("ServicePrincipal"),
+//				Schema:              pulumi.String("my_schema"),
+//				ClientId:            pulumi.String("my_client_id"),
+//				TenantId:            pulumi.String("my_tenant_id"),
+//				ClientSecret:        pulumi.String("my_secret"),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			synapsePassword := cfg.Require("synapsePassword")
+//			synapseClientSecret := cfg.Require("synapseClientSecret")
+//			// when using AD authentication with write-only password
+//			_, err = dbtcloud.NewSynapseCredential(ctx, "my_synapse_cred_ad_wo", &dbtcloud.SynapseCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				Authentication:      pulumi.String("ActiveDirectoryPassword"),
+//				Schema:              pulumi.String("my_schema"),
+//				User:                pulumi.String("my_user"),
+//				PasswordWo:          pulumi.String(pulumi.String(synapsePassword)),
+//				PasswordWoVersion:   pulumi.Int(1),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// when using service principal authentication with write-only client secret
+//			_, err = dbtcloud.NewSynapseCredential(ctx, "my_synapse_cred_serv_princ_wo", &dbtcloud.SynapseCredentialArgs{
+//				ProjectId:             pulumi.Any(dbtProject.Id),
+//				Authentication:        pulumi.String("ServicePrincipal"),
+//				Schema:                pulumi.String("my_schema"),
+//				ClientId:              pulumi.String("my_client_id"),
+//				TenantId:              pulumi.String("my_tenant_id"),
+//				ClientSecretWo:        pulumi.String(pulumi.String(synapseClientSecret)),
+//				ClientSecretWoVersion: pulumi.Int(1),
+//				SchemaAuthorization:   pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

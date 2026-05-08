@@ -24,6 +24,81 @@ namespace Pulumi.DbtCloud
     /// 
     /// &gt; **Note:** The `ConnectionId` cannot be changed after creation. To use a different connection,
     /// you must destroy and recreate the resource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attributes (stored in state)
+    ///     var passwordAuth = new DbtCloud.Index.SnowflakePlatformMetadataCredential("password_auth", new()
+    ///     {
+    ///         ConnectionId = snowflake.Id,
+    ///         CatalogIngestionEnabled = true,
+    ///         CostOptimizationEnabled = true,
+    ///         CostInsightsEnabled = false,
+    ///         AuthType = "password",
+    ///         User = "METADATA_READER",
+    ///         Password = snowflakePassword,
+    ///         Role = "METADATA_READER_ROLE",
+    ///         Warehouse = "METADATA_WH",
+    ///     });
+    /// 
+    ///     var keypairAuth = new DbtCloud.Index.SnowflakePlatformMetadataCredential("keypair_auth", new()
+    ///     {
+    ///         ConnectionId = snowflake.Id,
+    ///         CatalogIngestionEnabled = true,
+    ///         CostOptimizationEnabled = false,
+    ///         CostInsightsEnabled = false,
+    ///         AuthType = "keypair",
+    ///         User = "METADATA_READER",
+    ///         PrivateKey = snowflakePrivateKey,
+    ///         PrivateKeyPassphrase = snowflakePrivateKeyPassphrase,
+    ///         Role = "METADATA_READER_ROLE",
+    ///         Warehouse = "METADATA_WH",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var snowflakeMetadataPassword = config.Require("snowflakeMetadataPassword");
+    ///     var snowflakeMetadataPrivateKey = config.Require("snowflakeMetadataPrivateKey");
+    ///     var snowflakeMetadataPrivateKeyPassphrase = config.Require("snowflakeMetadataPrivateKeyPassphrase");
+    ///     var passwordAuthWo = new DbtCloud.Index.SnowflakePlatformMetadataCredential("password_auth_wo", new()
+    ///     {
+    ///         ConnectionId = snowflake.Id,
+    ///         CatalogIngestionEnabled = true,
+    ///         CostOptimizationEnabled = true,
+    ///         CostInsightsEnabled = false,
+    ///         AuthType = "password",
+    ///         User = "METADATA_READER",
+    ///         PasswordWo = snowflakeMetadataPassword,
+    ///         PasswordWoVersion = 1,
+    ///         Role = "METADATA_READER_ROLE",
+    ///         Warehouse = "METADATA_WH",
+    ///     });
+    /// 
+    ///     var keypairAuthWo = new DbtCloud.Index.SnowflakePlatformMetadataCredential("keypair_auth_wo", new()
+    ///     {
+    ///         ConnectionId = snowflake.Id,
+    ///         CatalogIngestionEnabled = true,
+    ///         CostOptimizationEnabled = false,
+    ///         CostInsightsEnabled = false,
+    ///         AuthType = "keypair",
+    ///         User = "METADATA_READER",
+    ///         PrivateKeyWo = snowflakeMetadataPrivateKey,
+    ///         PrivateKeyWoVersion = 1,
+    ///         PrivateKeyPassphraseWo = snowflakeMetadataPrivateKeyPassphrase,
+    ///         PrivateKeyPassphraseWoVersion = 1,
+    ///         Role = "METADATA_READER_ROLE",
+    ///         Warehouse = "METADATA_WH",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [DbtCloudResourceType("dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential")]
     public partial class SnowflakePlatformMetadataCredential : global::Pulumi.CustomResource

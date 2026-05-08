@@ -7,6 +7,32 @@ import * as utilities from "./utilities";
 /**
  * Athena credential resource
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attributes (stored in state)
+ * const example = new dbtcloud.AthenaCredential("example", {
+ *     projectId: exampleDbtcloudProject.id,
+ *     awsAccessKeyId: "your-access-key-id",
+ *     awsSecretAccessKey: "your-secret-access-key",
+ *     schema: "your_schema",
+ * });
+ * const config = new pulumi.Config();
+ * const athenaAwsAccessKeyId = config.require("athenaAwsAccessKeyId");
+ * const athenaAwsSecretAccessKey = config.require("athenaAwsSecretAccessKey");
+ * const exampleWo = new dbtcloud.AthenaCredential("example_wo", {
+ *     projectId: exampleDbtcloudProject.id,
+ *     awsAccessKeyIdWo: athenaAwsAccessKeyId,
+ *     awsAccessKeyIdWoVersion: 1,
+ *     awsSecretAccessKeyWo: athenaAwsSecretAccessKey,
+ *     awsSecretAccessKeyWoVersion: 1,
+ *     schema: "your_schema",
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

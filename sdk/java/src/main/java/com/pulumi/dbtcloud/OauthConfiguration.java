@@ -21,6 +21,71 @@ import javax.annotation.Nullable;
  * 
  * See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/external-oauth) for more information on how to configure it.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.OauthConfiguration;
+ * import com.pulumi.dbtcloud.OauthConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attribute (stored in state)
+ *         var entra = new OauthConfiguration("entra", OauthConfigurationArgs.builder()
+ *             .type("entra")
+ *             .name("My Entra ID Oauth integration")
+ *             .clientId("client-id")
+ *             .clientSecret("client-secret")
+ *             .redirectUri("http://example.com")
+ *             .tokenUrl("http://example.com")
+ *             .authorizeUrl("http://example.com")
+ *             .applicationIdUri("uri")
+ *             .build());
+ * 
+ *         var okta = new OauthConfiguration("okta", OauthConfigurationArgs.builder()
+ *             .type("okta")
+ *             .name("My Okta Oauth integration")
+ *             .clientId("client-id")
+ *             .clientSecret("client-secret")
+ *             .redirectUri("http://example.com")
+ *             .tokenUrl("http://example.com")
+ *             .authorizeUrl("http://example.com")
+ *             .build());
+ * 
+ *         final var oauthClientSecret = config.require("oauthClientSecret");
+ *         var entraWo = new OauthConfiguration("entraWo", OauthConfigurationArgs.builder()
+ *             .type("entra")
+ *             .name("My Entra ID Oauth integration")
+ *             .clientId("client-id")
+ *             .clientSecretWo(oauthClientSecret)
+ *             .clientSecretWoVersion(1)
+ *             .redirectUri("http://example.com")
+ *             .tokenUrl("http://example.com")
+ *             .authorizeUrl("http://example.com")
+ *             .applicationIdUri("uri")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

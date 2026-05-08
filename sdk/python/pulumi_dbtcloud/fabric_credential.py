@@ -494,6 +494,50 @@ class FabricCredential(pulumi.CustomResource):
         """
         Fabric credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        # when using AD authentication
+        my_fabric_cred_ad = dbtcloud.FabricCredential("my_fabric_cred_ad",
+            project_id=dbt_project["id"],
+            schema="my_schema",
+            user="my_user",
+            password="my_password",
+            schema_authorization="abcd")
+        # when using service principal authentication
+        my_fabric_cred_serv_princ = dbtcloud.FabricCredential("my_fabric_cred_serv_princ",
+            project_id=dbt_project["id"],
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret="my_secret",
+            schema_authorization="abcd")
+        config = pulumi.Config()
+        fabric_password = config.require("fabricPassword")
+        fabric_client_secret = config.require("fabricClientSecret")
+        # when using AD authentication with write-only password
+        my_fabric_cred_ad_wo = dbtcloud.FabricCredential("my_fabric_cred_ad_wo",
+            project_id=dbt_project["id"],
+            schema="my_schema",
+            user="my_user",
+            password_wo=fabric_password,
+            password_wo_version=1,
+            schema_authorization="abcd")
+        # when using service principal authentication with write-only client secret
+        my_fabric_cred_serv_princ_wo = dbtcloud.FabricCredential("my_fabric_cred_serv_princ_wo",
+            project_id=dbt_project["id"],
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret_wo=fabric_client_secret,
+            client_secret_wo_version=1,
+            schema_authorization="abcd")
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -541,6 +585,50 @@ class FabricCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Fabric credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        # when using AD authentication
+        my_fabric_cred_ad = dbtcloud.FabricCredential("my_fabric_cred_ad",
+            project_id=dbt_project["id"],
+            schema="my_schema",
+            user="my_user",
+            password="my_password",
+            schema_authorization="abcd")
+        # when using service principal authentication
+        my_fabric_cred_serv_princ = dbtcloud.FabricCredential("my_fabric_cred_serv_princ",
+            project_id=dbt_project["id"],
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret="my_secret",
+            schema_authorization="abcd")
+        config = pulumi.Config()
+        fabric_password = config.require("fabricPassword")
+        fabric_client_secret = config.require("fabricClientSecret")
+        # when using AD authentication with write-only password
+        my_fabric_cred_ad_wo = dbtcloud.FabricCredential("my_fabric_cred_ad_wo",
+            project_id=dbt_project["id"],
+            schema="my_schema",
+            user="my_user",
+            password_wo=fabric_password,
+            password_wo_version=1,
+            schema_authorization="abcd")
+        # when using service principal authentication with write-only client secret
+        my_fabric_cred_serv_princ_wo = dbtcloud.FabricCredential("my_fabric_cred_serv_princ_wo",
+            project_id=dbt_project["id"],
+            schema="my_schema",
+            client_id="my_client_id",
+            tenant_id="my_tenant_id",
+            client_secret_wo=fabric_client_secret,
+            client_secret_wo_version=1,
+            schema_authorization="abcd")
+        ```
 
         ## Import
 

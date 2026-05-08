@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.DbtCloud
 {
     /// <summary>
-    /// Webhook details
+    /// Manages webhook notifications in dbt Cloud.
     /// 
     /// ## Example Usage
     /// 

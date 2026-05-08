@@ -16,6 +16,111 @@ namespace Pulumi.DbtCloud
     /// 
     /// See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/sso-overview) for more information.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var samlCert = config.Require("samlCert");
+    ///     var saml = new DbtCloud.Index.AuthProvider("saml", new()
+    ///     {
+    ///         Type = "saml",
+    ///         EntityId = "https://your-idp.example.com/metadata",
+    ///         SsoUrl = "https://your-idp.example.com/sso/saml",
+    ///         CertWo = samlCert,
+    ///         CertWoVersion = 1,
+    ///     });
+    /// 
+    ///     // SAML — all optional fields
+    ///     var samlFull = new DbtCloud.Index.AuthProvider("saml_full", new()
+    ///     {
+    ///         Type = "saml",
+    ///         EntityId = "https://your-idp.example.com/metadata",
+    ///         SsoUrl = "https://your-idp.example.com/sso/saml",
+    ///         Cert = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "idp-cert.pem",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         SignRequest = true,
+    ///         AttributeMap = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["email"] = "nameID",
+    ///             ["first_name"] = "firstName",
+    ///             ["last_name"] = "lastName",
+    ///         }),
+    ///         AllowPasswordBackdoor = false,
+    ///     });
+    /// 
+    ///     // Okta (identical to SAML, different type value)
+    ///     var okta = new DbtCloud.Index.AuthProvider("okta", new()
+    ///     {
+    ///         Type = "okta",
+    ///         EntityId = "http://www.okta.com/&lt;okta_app_id&gt;",
+    ///         SsoUrl = "https://&lt;your-org&gt;.okta.com/app/&lt;app_path&gt;/sso/saml",
+    ///         CertWo = samlCert,
+    ///         CertWoVersion = 1,
+    ///     });
+    /// 
+    ///     var azureClientSecret = config.Require("azureClientSecret");
+    ///     var azureSingleTenant = new DbtCloud.Index.AuthProvider("azure_single_tenant", new()
+    ///     {
+    ///         Type = "azure_single_tenant",
+    ///         ClientId = "00000000-0000-0000-0000-000000000000",
+    ///         TenantId = "11111111-1111-1111-1111-111111111111",
+    ///         ClientSecretWo = azureClientSecret,
+    ///         ClientSecretWoVersion = 1,
+    ///         Domain = "acme.com",
+    ///         IncludeIndirectGroups = true,
+    ///         MaxGroupsToRetrieve = 500,
+    ///     });
+    /// 
+    ///     // Azure AD — multi tenant (no tenant_id required)
+    ///     var azureMultiTenant = new DbtCloud.Index.AuthProvider("azure_multi_tenant", new()
+    ///     {
+    ///         Type = "azure_multi_tenant",
+    ///         ClientId = "00000000-0000-0000-0000-000000000000",
+    ///         ClientSecretWo = azureClientSecret,
+    ///         ClientSecretWoVersion = 1,
+    ///     });
+    /// 
+    ///     // Azure Active Directory
+    ///     var azureActiveDirectory = new DbtCloud.Index.AuthProvider("azure_active_directory", new()
+    ///     {
+    ///         Type = "azure_active_directory",
+    ///         ClientId = "00000000-0000-0000-0000-000000000000",
+    ///         TenantId = "11111111-1111-1111-1111-111111111111",
+    ///         ClientSecretWo = azureClientSecret,
+    ///         ClientSecretWoVersion = 1,
+    ///         Domain = "acme.com",
+    ///     });
+    /// 
+    ///     var gsuiteClientSecret = config.Require("gsuiteClientSecret");
+    ///     var gsuite = new DbtCloud.Index.AuthProvider("gsuite", new()
+    ///     {
+    ///         Type = "gsuite",
+    ///         ClientId = "000000000000-xxxx.apps.googleusercontent.com",
+    ///         ClientSecretWo = gsuiteClientSecret,
+    ///         ClientSecretWoVersion = 1,
+    ///         AdminRefreshToken = "&lt;oauth-refresh-token&gt;",
+    ///         Domain = "acme.com",
+    ///         GsuiteAdminId = "admin@acme.com",
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["loginUrl"] = saml.LoginUrl,
+    ///     };
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Import an existing auth provider by its numeric ID.

@@ -6,6 +6,30 @@ import * as utilities from "./utilities";
 
 /**
  * Teradata credential resource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const example = new dbtcloud.TeradataCredential("example", {
+ *     projectId: exampleDbtcloudProject.id,
+ *     schema: "your_schema",
+ *     user: "your_user",
+ *     password: "your_password",
+ * });
+ * const config = new pulumi.Config();
+ * const teradataPassword = config.require("teradataPassword");
+ * const exampleWo = new dbtcloud.TeradataCredential("example_wo", {
+ *     projectId: exampleDbtcloudProject.id,
+ *     schema: "your_schema",
+ *     user: "your_user",
+ *     passwordWo: teradataPassword,
+ *     passwordWoVersion: 1,
+ * });
+ * ```
  */
 export class TeradataCredential extends pulumi.CustomResource {
     /**

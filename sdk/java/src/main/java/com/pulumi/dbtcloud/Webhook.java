@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Webhook details
+ * Manages webhook notifications in dbt Cloud.
  * 
  * ## Example Usage
  * 

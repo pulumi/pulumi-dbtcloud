@@ -325,6 +325,32 @@ class RedshiftCredential(pulumi.CustomResource):
         """
         Redshift credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        redshift = dbtcloud.RedshiftCredential("redshift",
+            num_threads=16,
+            project_id=test_project["id"],
+            default_schema="my_schema",
+            username="my_username",
+            password="my_sensitive_password",
+            is_active=True)
+        config = pulumi.Config()
+        redshift_password = config.require("redshiftPassword")
+        redshift_wo = dbtcloud.RedshiftCredential("redshift_wo",
+            num_threads=16,
+            project_id=test_project["id"],
+            default_schema="my_schema",
+            username="my_username",
+            password_wo=redshift_password,
+            password_wo_version=1,
+            is_active=True)
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -366,6 +392,32 @@ class RedshiftCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Redshift credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        redshift = dbtcloud.RedshiftCredential("redshift",
+            num_threads=16,
+            project_id=test_project["id"],
+            default_schema="my_schema",
+            username="my_username",
+            password="my_sensitive_password",
+            is_active=True)
+        config = pulumi.Config()
+        redshift_password = config.require("redshiftPassword")
+        redshift_wo = dbtcloud.RedshiftCredential("redshift_wo",
+            num_threads=16,
+            project_id=test_project["id"],
+            default_schema="my_schema",
+            username="my_username",
+            password_wo=redshift_password,
+            password_wo_version=1,
+            is_active=True)
+        ```
 
         ## Import
 

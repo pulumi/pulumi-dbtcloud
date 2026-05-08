@@ -14,6 +14,55 @@ import (
 
 // Salesforce credential resource
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attributes (stored in state)
+//			_, err := dbtcloud.NewSalesforceCredential(ctx, "my_salesforce_cred", &dbtcloud.SalesforceCredentialArgs{
+//				ProjectId:  pulumi.Any(dbtProject.Id),
+//				Username:   pulumi.String("user@example.com"),
+//				ClientId:   pulumi.String("your-oauth-client-id"),
+//				PrivateKey: pulumi.String("private-key value"),
+//				TargetName: pulumi.String("default"),
+//				NumThreads: pulumi.Int(6),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			salesforceClientId := cfg.Require("salesforceClientId")
+//			salesforcePrivateKey := cfg.Require("salesforcePrivateKey")
+//			_, err = dbtcloud.NewSalesforceCredential(ctx, "my_salesforce_cred_wo", &dbtcloud.SalesforceCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				Username:            pulumi.String("user@example.com"),
+//				ClientIdWo:          pulumi.String(pulumi.String(salesforceClientId)),
+//				ClientIdWoVersion:   pulumi.Int(1),
+//				PrivateKeyWo:        pulumi.String(pulumi.String(salesforcePrivateKey)),
+//				PrivateKeyWoVersion: pulumi.Int(1),
+//				TargetName:          pulumi.String("default"),
+//				NumThreads:          pulumi.Int(6),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

@@ -82,7 +82,7 @@ namespace Pulumi.DbtCloud
     ///   -H 'Authorization: Bearer {dbtToken}' \\
     ///   -H 'Content-Type: application/json' \\
     ///   -d '{{\""cause\"": \""Generate manifest\"", \""steps_override\"": [\""dbt parse\""]}}' \\
-    ///   {dbtHostUrl}/v2/accounts/{dbtAccountId}/jobs/{id}/run/)
+    ///   {dbtHostUrl}/v2/accounts/{dbtAccountId}/jobs/{dailyJob.Id}/run/)
     ///       
     /// if [ \""$response\"" -ge 200 ] &amp;&amp; [ \""$response\"" -lt 300 ]; then
     ///   echo \""Success: HTTP status $response\""

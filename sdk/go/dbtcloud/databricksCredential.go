@@ -14,6 +14,49 @@ import (
 
 // Databricks credential resource
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewDatabricksCredential(ctx, "my_databricks_cred", &dbtcloud.DatabricksCredentialArgs{
+//				ProjectId:   pulumi.Any(dbtProject.Id),
+//				Token:       pulumi.String("abcdefgh"),
+//				Schema:      pulumi.String("my_schema"),
+//				AdapterType: pulumi.String("databricks"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			databricksToken := cfg.Require("databricksToken")
+//			_, err = dbtcloud.NewDatabricksCredential(ctx, "my_databricks_cred_wo", &dbtcloud.DatabricksCredentialArgs{
+//				ProjectId:      pulumi.Any(dbtProject.Id),
+//				TokenWo:        pulumi.String(pulumi.String(databricksToken)),
+//				TokenWoVersion: pulumi.Int(1),
+//				Schema:         pulumi.String("my_schema"),
+//				AdapterType:    pulumi.String("databricks"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

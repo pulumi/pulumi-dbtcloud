@@ -14,6 +14,79 @@ import (
 
 // Fabric credential resource
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attributes (stored in state)
+//			// when using AD authentication
+//			_, err := dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_ad", &dbtcloud.FabricCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				Schema:              pulumi.String("my_schema"),
+//				User:                pulumi.String("my_user"),
+//				Password:            pulumi.String("my_password"),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// when using service principal authentication
+//			_, err = dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_serv_princ", &dbtcloud.FabricCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				Schema:              pulumi.String("my_schema"),
+//				ClientId:            pulumi.String("my_client_id"),
+//				TenantId:            pulumi.String("my_tenant_id"),
+//				ClientSecret:        pulumi.String("my_secret"),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			fabricPassword := cfg.Require("fabricPassword")
+//			fabricClientSecret := cfg.Require("fabricClientSecret")
+//			// when using AD authentication with write-only password
+//			_, err = dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_ad_wo", &dbtcloud.FabricCredentialArgs{
+//				ProjectId:           pulumi.Any(dbtProject.Id),
+//				Schema:              pulumi.String("my_schema"),
+//				User:                pulumi.String("my_user"),
+//				PasswordWo:          pulumi.String(pulumi.String(fabricPassword)),
+//				PasswordWoVersion:   pulumi.Int(1),
+//				SchemaAuthorization: pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// when using service principal authentication with write-only client secret
+//			_, err = dbtcloud.NewFabricCredential(ctx, "my_fabric_cred_serv_princ_wo", &dbtcloud.FabricCredentialArgs{
+//				ProjectId:             pulumi.Any(dbtProject.Id),
+//				Schema:                pulumi.String("my_schema"),
+//				ClientId:              pulumi.String("my_client_id"),
+//				TenantId:              pulumi.String("my_tenant_id"),
+//				ClientSecretWo:        pulumi.String(pulumi.String(fabricClientSecret)),
+//				ClientSecretWoVersion: pulumi.Int(1),
+//				SchemaAuthorization:   pulumi.String("abcd"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

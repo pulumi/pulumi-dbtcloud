@@ -425,6 +425,34 @@ class PostgresCredential(pulumi.CustomResource):
         """
         Postgres credential resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        postgres_prod_credential = dbtcloud.PostgresCredential("postgres_prod_credential",
+            is_active=True,
+            project_id=dbt_project["id"],
+            type="postgres",
+            default_schema="my_schema",
+            username="my_username",
+            password="my_password",
+            num_threads=16)
+        config = pulumi.Config()
+        postgres_password = config.require("postgresPassword")
+        postgres_prod_credential_wo = dbtcloud.PostgresCredential("postgres_prod_credential_wo",
+            is_active=True,
+            project_id=dbt_project["id"],
+            type="postgres",
+            default_schema="my_schema",
+            username="my_username",
+            password_wo=postgres_password,
+            password_wo_version=1,
+            num_threads=16)
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -469,6 +497,34 @@ class PostgresCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Postgres credential resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        postgres_prod_credential = dbtcloud.PostgresCredential("postgres_prod_credential",
+            is_active=True,
+            project_id=dbt_project["id"],
+            type="postgres",
+            default_schema="my_schema",
+            username="my_username",
+            password="my_password",
+            num_threads=16)
+        config = pulumi.Config()
+        postgres_password = config.require("postgresPassword")
+        postgres_prod_credential_wo = dbtcloud.PostgresCredential("postgres_prod_credential_wo",
+            is_active=True,
+            project_id=dbt_project["id"],
+            type="postgres",
+            default_schema="my_schema",
+            username="my_username",
+            password_wo=postgres_password,
+            password_wo_version=1,
+            num_threads=16)
+        ```
 
         ## Import
 

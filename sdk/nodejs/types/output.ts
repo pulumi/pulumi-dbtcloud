@@ -1762,6 +1762,44 @@ export interface JobTriggers {
     schedule: boolean;
 }
 
+export interface NotificationSettingChannel {
+    /**
+     * Channel type. Currently only `teams` is supported.
+     */
+    channelType: string;
+    /**
+     * Channel ID
+     */
+    id: number;
+    /**
+     * Microsoft Teams channel ID.
+     */
+    teamsChannelId: string;
+    /**
+     * Microsoft Teams team ID.
+     */
+    teamsTeamId: string;
+}
+
+export interface NotificationSettingRule {
+    /**
+     * Rule ID
+     */
+    id: number;
+    /**
+     * Job ID this rule applies to. Omit to fire for all jobs in the account.
+     */
+    jobId?: number;
+    /**
+     * Name of the job referenced by `jobId` (read-only).
+     */
+    jobName: string;
+    /**
+     * Event that fires the notification. Valid values: `runWarning`, `runSuccessful`, `runErrored`, `runCancelled`.
+     */
+    triggerOn: string;
+}
+
 export interface PostgresSemanticLayerCredentialConfiguration {
     /**
      * The adapter version

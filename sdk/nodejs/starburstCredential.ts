@@ -7,6 +7,32 @@ import * as utilities from "./utilities";
 /**
  * Starburst/Trino credential resource
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const example = new dbtcloud.StarburstCredential("example", {
+ *     projectId: exampleDbtcloudProject.id,
+ *     database: "your_catalog",
+ *     schema: "your_schema",
+ *     user: "your_user",
+ *     password: "your_password",
+ * });
+ * const config = new pulumi.Config();
+ * const starburstPassword = config.require("starburstPassword");
+ * const exampleWo = new dbtcloud.StarburstCredential("example_wo", {
+ *     projectId: exampleDbtcloudProject.id,
+ *     database: "your_catalog",
+ *     schema: "your_schema",
+ *     user: "your_user",
+ *     passwordWo: starburstPassword,
+ *     passwordWoVersion: 1,
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

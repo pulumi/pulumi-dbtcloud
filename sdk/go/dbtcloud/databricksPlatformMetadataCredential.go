@@ -26,6 +26,53 @@ import (
 //
 // > **Note:** The `connectionId` cannot be changed after creation. To use a different connection,
 // you must destroy and recreate the resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewDatabricksPlatformMetadataCredential(ctx, "example", &dbtcloud.DatabricksPlatformMetadataCredentialArgs{
+//				ConnectionId:            pulumi.Any(databricks.Id),
+//				CatalogIngestionEnabled: pulumi.Bool(true),
+//				CostOptimizationEnabled: pulumi.Bool(false),
+//				CostInsightsEnabled:     pulumi.Bool(false),
+//				Token:                   pulumi.Any(databricksToken),
+//				Catalog:                 pulumi.String("main"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			databricksMetadataToken := cfg.Require("databricksMetadataToken")
+//			_, err = dbtcloud.NewDatabricksPlatformMetadataCredential(ctx, "example_wo", &dbtcloud.DatabricksPlatformMetadataCredentialArgs{
+//				ConnectionId:            pulumi.Any(databricks.Id),
+//				CatalogIngestionEnabled: pulumi.Bool(true),
+//				CostOptimizationEnabled: pulumi.Bool(false),
+//				CostInsightsEnabled:     pulumi.Bool(false),
+//				TokenWo:                 pulumi.String(pulumi.String(databricksMetadataToken)),
+//				TokenWoVersion:          pulumi.Int(1),
+//				Catalog:                 pulumi.String("main"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type DatabricksPlatformMetadataCredential struct {
 	pulumi.CustomResourceState
 

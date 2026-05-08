@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Webhook details
+ * Manages webhook notifications in dbt Cloud.
  *
  * ## Example Usage
  *
