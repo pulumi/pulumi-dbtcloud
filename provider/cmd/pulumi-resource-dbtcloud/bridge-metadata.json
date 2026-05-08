@@ -207,6 +207,18 @@
                     }
                 }
             },
+            "dbtcloud_notification_setting": {
+                "current": "dbtcloud:index/notificationSetting:NotificationSetting",
+                "majorVersion": 1,
+                "fields": {
+                    "channels": {
+                        "maxItemsOne": false
+                    },
+                    "rules": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "dbtcloud_oauth_configuration": {
                 "current": "dbtcloud:index/oauthConfiguration:OauthConfiguration",
                 "majorVersion": 1
