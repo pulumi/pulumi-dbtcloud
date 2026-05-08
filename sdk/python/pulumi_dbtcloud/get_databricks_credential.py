@@ -158,8 +158,8 @@ def get_databricks_credential(credential_id: Optional[_builtins.int] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         schema=pulumi.get(__ret__, 'schema'),
         target_name=pulumi.get(__ret__, 'target_name'))
-def get_databricks_credential_output(credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                                     project_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_databricks_credential_output(credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                                     project_id: pulumi.Input[Optional[_builtins.int]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabricksCredentialResult]:
     """
     Databricks credential data source

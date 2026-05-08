@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attribute (stored in state)
-    ///     var postgresProdCredential = new DbtCloud.Index.PostgresCredential("postgres_prod_credential", new()
+    ///     var postgresProdCredential = new DbtCloud.PostgresCredential("postgres_prod_credential", new()
     ///     {
     ///         IsActive = true,
     ///         ProjectId = dbtProject.Id,
@@ -36,7 +36,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var config = new Config();
     ///     var postgresPassword = config.Require("postgresPassword");
-    ///     var postgresProdCredentialWo = new DbtCloud.Index.PostgresCredential("postgres_prod_credential_wo", new()
+    ///     var postgresProdCredentialWo = new DbtCloud.PostgresCredential("postgres_prod_credential_wo", new()
     ///     {
     ///         IsActive = true,
     ///         ProjectId = dbtProject.Id,

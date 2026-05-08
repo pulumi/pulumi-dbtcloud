@@ -21,9 +21,9 @@ __all__ = ['ServiceTokenArgs', 'ServiceToken']
 @pulumi.input_type
 class ServiceTokenArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_token_permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a ServiceToken resource.
 
@@ -40,49 +40,49 @@ class ServiceTokenArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service token name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceTokenPermissions")
-    def service_token_permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]]:
+    def service_token_permissions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]]:
         """
         Permissions set for the service token
         """
         return pulumi.get(self, "service_token_permissions")
 
     @service_token_permissions.setter
-    def service_token_permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]]):
+    def service_token_permissions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]]):
         pulumi.set(self, "service_token_permissions", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Service token state (1 is active, 2 is inactive)
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "state", value)
 
 
 @pulumi.input_type
 class _ServiceTokenState:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_token_permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 uid: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 uid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceToken resources.
 
@@ -105,62 +105,62 @@ class _ServiceTokenState:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service token name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceTokenPermissions")
-    def service_token_permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]]:
+    def service_token_permissions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]]:
         """
         Permissions set for the service token
         """
         return pulumi.get(self, "service_token_permissions")
 
     @service_token_permissions.setter
-    def service_token_permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]]):
+    def service_token_permissions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceTokenServiceTokenPermissionArgs']]]]):
         pulumi.set(self, "service_token_permissions", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Service token state (1 is active, 2 is inactive)
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenString")
-    def token_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service token secret value (only accessible on creation))
         """
         return pulumi.get(self, "token_string")
 
     @token_string.setter
-    def token_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_string", value)
 
     @_builtins.property
     @pulumi.getter
-    def uid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service token UID (part of the token)
         """
         return pulumi.get(self, "uid")
 
     @uid.setter
-    def uid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uid", value)
 
 
@@ -170,9 +170,9 @@ class ServiceToken(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_token_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -191,7 +191,7 @@ class ServiceToken(pulumi.CustomResource):
                 {
                     "permission_set": "job_admin",
                     "all_projects": False,
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                 },
                 {
                     "permission_set": "developer",
@@ -254,7 +254,7 @@ class ServiceToken(pulumi.CustomResource):
                 {
                     "permission_set": "job_admin",
                     "all_projects": False,
-                    "project_id": dbt_project["id"],
+                    "project_id": int(dbt_project["id"]),
                 },
                 {
                     "permission_set": "developer",
@@ -303,9 +303,9 @@ class ServiceToken(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_token_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -332,11 +332,11 @@ class ServiceToken(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            service_token_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
-            state: Optional[pulumi.Input[_builtins.int]] = None,
-            token_string: Optional[pulumi.Input[_builtins.str]] = None,
-            uid: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServiceToken':
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
+            state: pulumi.Input[Optional[_builtins.int]] = None,
+            token_string: pulumi.Input[Optional[_builtins.str]] = None,
+            uid: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServiceToken':
         """
         Get an existing ServiceToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

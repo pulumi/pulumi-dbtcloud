@@ -216,7 +216,7 @@ def get_notification(notification_id: Optional[_builtins.int] = None,
         slack_channel_name=pulumi.get(__ret__, 'slack_channel_name'),
         state=pulumi.get(__ret__, 'state'),
         user_id=pulumi.get(__ret__, 'user_id'))
-def get_notification_output(notification_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_notification_output(notification_id: pulumi.Input[Optional[_builtins.int]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationResult]:
     """
     Retrieve notification details

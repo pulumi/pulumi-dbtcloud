@@ -58,8 +58,8 @@ class UserGroupsArgs:
 @pulumi.input_type
 class _UserGroupsState:
     def __init__(__self__, *,
-                 group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering UserGroups resources.
 
@@ -73,26 +73,26 @@ class _UserGroupsState:
 
     @_builtins.property
     @pulumi.getter(name="groupIds")
-    def group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def group_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
         """
         return pulumi.get(self, "group_ids")
 
     @group_ids.setter
-    def group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def group_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "group_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The internal ID of a dbt Cloud user.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -102,8 +102,8 @@ class UserGroups(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Assigns a set of dbt Cloud groups to a given User ID.
@@ -121,7 +121,7 @@ class UserGroups(pulumi.CustomResource):
 
         # we can assign groups to users
         my_user_groups = dbtcloud.UserGroups("my_user_groups",
-            user_id=my_user["id"],
+            user_id=int(my_user["id"]),
             group_ids=[
                 1234,
                 my_group["id"],
@@ -182,7 +182,7 @@ class UserGroups(pulumi.CustomResource):
 
         # we can assign groups to users
         my_user_groups = dbtcloud.UserGroups("my_user_groups",
-            user_id=my_user["id"],
+            user_id=int(my_user["id"]),
             group_ids=[
                 1234,
                 my_group["id"],
@@ -231,8 +231,8 @@ class UserGroups(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -258,8 +258,8 @@ class UserGroups(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            user_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'UserGroups':
+            group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            user_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'UserGroups':
         """
         Get an existing UserGroups resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

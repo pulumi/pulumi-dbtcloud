@@ -19,13 +19,13 @@ __all__ = ['AccountFeaturesArgs', 'AccountFeatures']
 @pulumi.input_type
 class AccountFeaturesArgs:
     def __init__(__self__, *,
-                 advanced_ci: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ai_features: Optional[pulumi.Input[_builtins.bool]] = None,
-                 catalog_ingestion: Optional[pulumi.Input[_builtins.bool]] = None,
-                 explorer_account_ui: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fusion_migration_permissions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 partial_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 repo_caching: Optional[pulumi.Input[_builtins.bool]] = None):
+                 advanced_ci: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ai_features: pulumi.Input[Optional[_builtins.bool]] = None,
+                 catalog_ingestion: pulumi.Input[Optional[_builtins.bool]] = None,
+                 explorer_account_ui: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fusion_migration_permissions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 partial_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 repo_caching: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AccountFeatures resource.
 
@@ -54,99 +54,99 @@ class AccountFeaturesArgs:
 
     @_builtins.property
     @pulumi.getter(name="advancedCi")
-    def advanced_ci(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def advanced_ci(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether advanced CI is enabled.
         """
         return pulumi.get(self, "advanced_ci")
 
     @advanced_ci.setter
-    def advanced_ci(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def advanced_ci(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "advanced_ci", value)
 
     @_builtins.property
     @pulumi.getter(name="aiFeatures")
-    def ai_features(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ai_features(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether AI features are enabled.
         """
         return pulumi.get(self, "ai_features")
 
     @ai_features.setter
-    def ai_features(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ai_features(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ai_features", value)
 
     @_builtins.property
     @pulumi.getter(name="catalogIngestion")
-    def catalog_ingestion(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def catalog_ingestion(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
         """
         return pulumi.get(self, "catalog_ingestion")
 
     @catalog_ingestion.setter
-    def catalog_ingestion(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def catalog_ingestion(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "catalog_ingestion", value)
 
     @_builtins.property
     @pulumi.getter(name="explorerAccountUi")
-    def explorer_account_ui(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def explorer_account_ui(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the new Catalog navigation UI is enabled (default true for new accounts).
         """
         return pulumi.get(self, "explorer_account_ui")
 
     @explorer_account_ui.setter
-    def explorer_account_ui(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def explorer_account_ui(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "explorer_account_ui", value)
 
     @_builtins.property
     @pulumi.getter(name="fusionMigrationPermissions")
-    def fusion_migration_permissions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fusion_migration_permissions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether permissions for accounts migrating to Fusion are enabled.
         """
         return pulumi.get(self, "fusion_migration_permissions")
 
     @fusion_migration_permissions.setter
-    def fusion_migration_permissions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fusion_migration_permissions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fusion_migration_permissions", value)
 
     @_builtins.property
     @pulumi.getter(name="partialParsing")
-    def partial_parsing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def partial_parsing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether partial parsing is enabled.
         """
         return pulumi.get(self, "partial_parsing")
 
     @partial_parsing.setter
-    def partial_parsing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def partial_parsing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "partial_parsing", value)
 
     @_builtins.property
     @pulumi.getter(name="repoCaching")
-    def repo_caching(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def repo_caching(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether repository caching is enabled.
         """
         return pulumi.get(self, "repo_caching")
 
     @repo_caching.setter
-    def repo_caching(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def repo_caching(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "repo_caching", value)
 
 
 @pulumi.input_type
 class _AccountFeaturesState:
     def __init__(__self__, *,
-                 advanced_ci: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ai_features: Optional[pulumi.Input[_builtins.bool]] = None,
-                 catalog_ingestion: Optional[pulumi.Input[_builtins.bool]] = None,
-                 explorer_account_ui: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fusion_migration_permissions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 partial_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 repo_caching: Optional[pulumi.Input[_builtins.bool]] = None):
+                 advanced_ci: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ai_features: pulumi.Input[Optional[_builtins.bool]] = None,
+                 catalog_ingestion: pulumi.Input[Optional[_builtins.bool]] = None,
+                 explorer_account_ui: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fusion_migration_permissions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 partial_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 repo_caching: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AccountFeatures resources.
 
@@ -175,86 +175,86 @@ class _AccountFeaturesState:
 
     @_builtins.property
     @pulumi.getter(name="advancedCi")
-    def advanced_ci(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def advanced_ci(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether advanced CI is enabled.
         """
         return pulumi.get(self, "advanced_ci")
 
     @advanced_ci.setter
-    def advanced_ci(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def advanced_ci(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "advanced_ci", value)
 
     @_builtins.property
     @pulumi.getter(name="aiFeatures")
-    def ai_features(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ai_features(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether AI features are enabled.
         """
         return pulumi.get(self, "ai_features")
 
     @ai_features.setter
-    def ai_features(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ai_features(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ai_features", value)
 
     @_builtins.property
     @pulumi.getter(name="catalogIngestion")
-    def catalog_ingestion(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def catalog_ingestion(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
         """
         return pulumi.get(self, "catalog_ingestion")
 
     @catalog_ingestion.setter
-    def catalog_ingestion(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def catalog_ingestion(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "catalog_ingestion", value)
 
     @_builtins.property
     @pulumi.getter(name="explorerAccountUi")
-    def explorer_account_ui(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def explorer_account_ui(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the new Catalog navigation UI is enabled (default true for new accounts).
         """
         return pulumi.get(self, "explorer_account_ui")
 
     @explorer_account_ui.setter
-    def explorer_account_ui(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def explorer_account_ui(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "explorer_account_ui", value)
 
     @_builtins.property
     @pulumi.getter(name="fusionMigrationPermissions")
-    def fusion_migration_permissions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fusion_migration_permissions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether permissions for accounts migrating to Fusion are enabled.
         """
         return pulumi.get(self, "fusion_migration_permissions")
 
     @fusion_migration_permissions.setter
-    def fusion_migration_permissions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fusion_migration_permissions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fusion_migration_permissions", value)
 
     @_builtins.property
     @pulumi.getter(name="partialParsing")
-    def partial_parsing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def partial_parsing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether partial parsing is enabled.
         """
         return pulumi.get(self, "partial_parsing")
 
     @partial_parsing.setter
-    def partial_parsing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def partial_parsing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "partial_parsing", value)
 
     @_builtins.property
     @pulumi.getter(name="repoCaching")
-    def repo_caching(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def repo_caching(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether repository caching is enabled.
         """
         return pulumi.get(self, "repo_caching")
 
     @repo_caching.setter
-    def repo_caching(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def repo_caching(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "repo_caching", value)
 
 
@@ -264,13 +264,13 @@ class AccountFeatures(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 advanced_ci: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ai_features: Optional[pulumi.Input[_builtins.bool]] = None,
-                 catalog_ingestion: Optional[pulumi.Input[_builtins.bool]] = None,
-                 explorer_account_ui: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fusion_migration_permissions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 partial_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 repo_caching: Optional[pulumi.Input[_builtins.bool]] = None,
+                 advanced_ci: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ai_features: pulumi.Input[Optional[_builtins.bool]] = None,
+                 catalog_ingestion: pulumi.Input[Optional[_builtins.bool]] = None,
+                 explorer_account_ui: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fusion_migration_permissions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 partial_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 repo_caching: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Manages dbt Cloud global features at the account level, like Advanced CI. The same feature should not be configured in different resources to avoid conflicts.
@@ -349,13 +349,13 @@ class AccountFeatures(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 advanced_ci: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ai_features: Optional[pulumi.Input[_builtins.bool]] = None,
-                 catalog_ingestion: Optional[pulumi.Input[_builtins.bool]] = None,
-                 explorer_account_ui: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fusion_migration_permissions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 partial_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 repo_caching: Optional[pulumi.Input[_builtins.bool]] = None,
+                 advanced_ci: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ai_features: pulumi.Input[Optional[_builtins.bool]] = None,
+                 catalog_ingestion: pulumi.Input[Optional[_builtins.bool]] = None,
+                 explorer_account_ui: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fusion_migration_permissions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 partial_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 repo_caching: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -382,13 +382,13 @@ class AccountFeatures(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            advanced_ci: Optional[pulumi.Input[_builtins.bool]] = None,
-            ai_features: Optional[pulumi.Input[_builtins.bool]] = None,
-            catalog_ingestion: Optional[pulumi.Input[_builtins.bool]] = None,
-            explorer_account_ui: Optional[pulumi.Input[_builtins.bool]] = None,
-            fusion_migration_permissions: Optional[pulumi.Input[_builtins.bool]] = None,
-            partial_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-            repo_caching: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AccountFeatures':
+            advanced_ci: pulumi.Input[Optional[_builtins.bool]] = None,
+            ai_features: pulumi.Input[Optional[_builtins.bool]] = None,
+            catalog_ingestion: pulumi.Input[Optional[_builtins.bool]] = None,
+            explorer_account_ui: pulumi.Input[Optional[_builtins.bool]] = None,
+            fusion_migration_permissions: pulumi.Input[Optional[_builtins.bool]] = None,
+            partial_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+            repo_caching: pulumi.Input[Optional[_builtins.bool]] = None) -> 'AccountFeatures':
         """
         Get an existing AccountFeatures resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

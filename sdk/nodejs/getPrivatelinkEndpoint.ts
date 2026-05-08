@@ -118,13 +118,13 @@ export interface GetPrivatelinkEndpointOutputArgs {
     /**
      * Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
      */
-    privateLinkEndpointUrl?: pulumi.Input<string>;
+    privateLinkEndpointUrl?: pulumi.Input<string | undefined>;
     /**
      * Type of the PrivateLink Endpoint
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

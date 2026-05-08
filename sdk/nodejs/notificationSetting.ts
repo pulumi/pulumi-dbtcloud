@@ -36,11 +36,11 @@ import * as utilities from "./utilities";
  *     rules: [
  *         {
  *             triggerOn: "run_errored",
- *             jobId: prodJob.id,
+ *             jobId: Number(prodJob.id),
  *         },
  *         {
  *             triggerOn: "run_cancelled",
- *             jobId: prodJob.id,
+ *             jobId: Number(prodJob.id),
  *         },
  *     ],
  * });
@@ -147,19 +147,19 @@ export interface NotificationSettingState {
     /**
      * Delivery channels for this setting. At least one channel is required.
      */
-    channels?: pulumi.Input<pulumi.Input<inputs.NotificationSettingChannel>[]>;
+    channels?: pulumi.Input<pulumi.Input<inputs.NotificationSettingChannel>[] | undefined>;
     /**
      * Optional description of what this notification setting does
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Human-readable name for this notification setting
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Trigger rules. At least one rule is required.
      */
-    rules?: pulumi.Input<pulumi.Input<inputs.NotificationSettingRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.NotificationSettingRule>[] | undefined>;
 }
 
 /**
@@ -173,11 +173,11 @@ export interface NotificationSettingArgs {
     /**
      * Optional description of what this notification setting does
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Human-readable name for this notification setting
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Trigger rules. At least one rule is required.
      */

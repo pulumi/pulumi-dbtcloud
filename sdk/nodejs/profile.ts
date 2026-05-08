@@ -15,18 +15,18 @@ import * as utilities from "./utilities";
  *
  * // A profile ties together a connection and credentials for use within environments.
  * const myProfile = new dbtcloud.Profile("my_profile", {
- *     projectId: myProject.id,
+ *     projectId: Number(myProject.id),
  *     key: "my-profile",
- *     connectionId: myConnection.id,
- *     credentialsId: myCredential.credentialId,
+ *     connectionId: Number(myConnection.id),
+ *     credentialsId: Number(myCredential.credentialId),
  * });
  * // A profile with extended attributes
  * const myProfileWithAttrs = new dbtcloud.Profile("my_profile_with_attrs", {
- *     projectId: myProject.id,
+ *     projectId: Number(myProject.id),
  *     key: "my-profile-with-attrs",
- *     connectionId: myConnection.id,
- *     credentialsId: myCredential.credentialId,
- *     extendedAttributesId: myAttributes.extendedAttributesId,
+ *     connectionId: Number(myConnection.id),
+ *     credentialsId: Number(myCredential.credentialId),
+ *     extendedAttributesId: Number(myAttributes.extendedAttributesId),
  * });
  * ```
  *
@@ -155,27 +155,27 @@ export interface ProfileState {
     /**
      * The ID of the connection to use for this profile
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the credentials to use for this profile
      */
-    credentialsId?: pulumi.Input<number>;
+    credentialsId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the extended attributes for this profile. Set to null to unset.
      */
-    extendedAttributesId?: pulumi.Input<number>;
+    extendedAttributesId?: pulumi.Input<number | undefined>;
     /**
      * Unique identifier for the profile
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The ID of the profile
      */
-    profileId?: pulumi.Input<number>;
+    profileId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project in which to create the profile
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -193,7 +193,7 @@ export interface ProfileArgs {
     /**
      * The ID of the extended attributes for this profile. Set to null to unset.
      */
-    extendedAttributesId?: pulumi.Input<number>;
+    extendedAttributesId?: pulumi.Input<number | undefined>;
     /**
      * Unique identifier for the profile
      */

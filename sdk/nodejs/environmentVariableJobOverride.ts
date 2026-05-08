@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  *
  * const myEnvVarJobOverride = new dbtcloud.EnvironmentVariableJobOverride("my_env_var_job_override", {
  *     name: dbtMyEnvVar.name,
- *     projectId: dbtProject.id,
- *     jobDefinitionId: dailyJob.id,
+ *     projectId: Number(dbtProject.id),
+ *     jobDefinitionId: Number(dailyJob.id),
  *     rawValue: "my_override_value",
  * });
  * ```
@@ -143,27 +143,27 @@ export interface EnvironmentVariableJobOverrideState {
     /**
      * The account id
      */
-    accountId?: pulumi.Input<number>;
+    accountId?: pulumi.Input<number | undefined>;
     /**
      * The internal ID of this resource. Contains the project ID and the environment variable job override ID.
      */
-    environmentVariableJobOverrideId?: pulumi.Input<number>;
+    environmentVariableJobOverrideId?: pulumi.Input<number | undefined>;
     /**
      * The job ID for which the environment variable is being overridden
      */
-    jobDefinitionId?: pulumi.Input<number>;
+    jobDefinitionId?: pulumi.Input<number | undefined>;
     /**
      * The environment variable name to override
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Project ID to create the environment variable job override in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The value for the override of the environment variable
      */
-    rawValue?: pulumi.Input<string>;
+    rawValue?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -177,7 +177,7 @@ export interface EnvironmentVariableJobOverrideArgs {
     /**
      * The environment variable name to override
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Project ID to create the environment variable job override in
      */

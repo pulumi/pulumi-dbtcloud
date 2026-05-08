@@ -100,7 +100,7 @@ def get_group_users(group_id: Optional[_builtins.int] = None,
         group_id=pulumi.get(__ret__, 'group_id'),
         id=pulumi.get(__ret__, 'id'),
         users=pulumi.get(__ret__, 'users'))
-def get_group_users_output(group_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_group_users_output(group_id: pulumi.Input[Optional[_builtins.int]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupUsersResult]:
     """
     Databricks credential data source

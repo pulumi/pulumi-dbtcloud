@@ -20,7 +20,7 @@ __all__ = ['LicenseMapArgs', 'LicenseMap']
 class LicenseMapArgs:
     def __init__(__self__, *,
                  license_type: pulumi.Input[_builtins.str],
-                 sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 sso_license_mapping_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a LicenseMap resource.
 
@@ -45,22 +45,22 @@ class LicenseMapArgs:
 
     @_builtins.property
     @pulumi.getter(name="ssoLicenseMappingGroups")
-    def sso_license_mapping_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def sso_license_mapping_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         SSO license mapping group names for this group
         """
         return pulumi.get(self, "sso_license_mapping_groups")
 
     @sso_license_mapping_groups.setter
-    def sso_license_mapping_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def sso_license_mapping_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "sso_license_mapping_groups", value)
 
 
 @pulumi.input_type
 class _LicenseMapState:
     def __init__(__self__, *,
-                 license_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 license_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_license_mapping_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering LicenseMap resources.
 
@@ -74,26 +74,26 @@ class _LicenseMapState:
 
     @_builtins.property
     @pulumi.getter(name="licenseType")
-    def license_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def license_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         License type
         """
         return pulumi.get(self, "license_type")
 
     @license_type.setter
-    def license_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def license_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "license_type", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoLicenseMappingGroups")
-    def sso_license_mapping_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def sso_license_mapping_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         SSO license mapping group names for this group
         """
         return pulumi.get(self, "sso_license_mapping_groups")
 
     @sso_license_mapping_groups.setter
-    def sso_license_mapping_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def sso_license_mapping_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "sso_license_mapping_groups", value)
 
 
@@ -103,8 +103,8 @@ class LicenseMap(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 license_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 license_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_license_mapping_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Maps SSO groups to a given license type
@@ -220,8 +220,8 @@ class LicenseMap(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 license_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 license_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_license_mapping_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -245,8 +245,8 @@ class LicenseMap(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            license_type: Optional[pulumi.Input[_builtins.str]] = None,
-            sso_license_mapping_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'LicenseMap':
+            license_type: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_license_mapping_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'LicenseMap':
         """
         Get an existing LicenseMap resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

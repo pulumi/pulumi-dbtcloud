@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attribute (stored in state)
-    ///     var prodCredential = new DbtCloud.Index.SnowflakeCredential("prod_credential", new()
+    ///     var prodCredential = new DbtCloud.SnowflakeCredential("prod_credential", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AuthType = "password",
@@ -35,7 +35,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var config = new Config();
     ///     var snowflakePassword = config.Require("snowflakePassword");
-    ///     var prodCredentialWo = new DbtCloud.Index.SnowflakeCredential("prod_credential_wo", new()
+    ///     var prodCredentialWo = new DbtCloud.SnowflakeCredential("prod_credential_wo", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         AuthType = "password",

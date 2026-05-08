@@ -21,17 +21,17 @@ class EnvironmentArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
                  type: pulumi.Input[_builtins.str],
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_branch: Optional[pulumi.Input[_builtins.str]] = None,
-                 dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_model_query_history: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
+                 dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 use_custom_branch: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Environment resource.
 
@@ -100,154 +100,154 @@ class EnvironmentArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A connection ID (used with Global Connections)
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter(name="customBranch")
-    def custom_branch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def custom_branch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The custom branch name to use
         """
         return pulumi.get(self, "custom_branch")
 
     @custom_branch.setter
-    def custom_branch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def custom_branch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "custom_branch", value)
 
     @_builtins.property
     @pulumi.getter(name="dbtVersion")
-    def dbt_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
     @dbt_version.setter
-    def dbt_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dbt_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dbt_version", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentType")
-    def deployment_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
 
     @deployment_type.setter
-    def deployment_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_type", value)
 
     @_builtins.property
     @pulumi.getter(name="enableModelQueryHistory")
-    def enable_model_query_history(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_model_query_history(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         """
         return pulumi.get(self, "enable_model_query_history")
 
     @enable_model_query_history.setter
-    def enable_model_query_history(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_model_query_history(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_model_query_history", value)
 
     @_builtins.property
     @pulumi.getter(name="extendedAttributesId")
-    def extended_attributes_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def extended_attributes_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the extended attributes applied
         """
         return pulumi.get(self, "extended_attributes_id")
 
     @extended_attributes_id.setter
-    def extended_attributes_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def extended_attributes_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "extended_attributes_id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the environment is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the environment
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryProfileId")
-    def primary_profile_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def primary_profile_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         """
         return pulumi.get(self, "primary_profile_id")
 
     @primary_profile_id.setter
-    def primary_profile_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def primary_profile_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "primary_profile_id", value)
 
     @_builtins.property
     @pulumi.getter(name="useCustomBranch")
-    def use_custom_branch(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_custom_branch(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use a custom git branch in this environment
         """
         return pulumi.get(self, "use_custom_branch")
 
     @use_custom_branch.setter
-    def use_custom_branch(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_custom_branch(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_custom_branch", value)
 
 
 @pulumi.input_type
 class _EnvironmentState:
     def __init__(__self__, *,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_branch: Optional[pulumi.Input[_builtins.str]] = None,
-                 dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_model_query_history: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
+                 dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_custom_branch: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Environment resources.
 
@@ -297,170 +297,170 @@ class _EnvironmentState:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A connection ID (used with Global Connections)
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter(name="customBranch")
-    def custom_branch(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def custom_branch(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The custom branch name to use
         """
         return pulumi.get(self, "custom_branch")
 
     @custom_branch.setter
-    def custom_branch(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def custom_branch(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "custom_branch", value)
 
     @_builtins.property
     @pulumi.getter(name="dbtVersion")
-    def dbt_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
     @dbt_version.setter
-    def dbt_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dbt_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dbt_version", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentType")
-    def deployment_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
 
     @deployment_type.setter
-    def deployment_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_type", value)
 
     @_builtins.property
     @pulumi.getter(name="enableModelQueryHistory")
-    def enable_model_query_history(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_model_query_history(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         """
         return pulumi.get(self, "enable_model_query_history")
 
     @enable_model_query_history.setter
-    def enable_model_query_history(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_model_query_history(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_model_query_history", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def environment_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the environment. Duplicated. Here for backward compatibility.
         """
         return pulumi.get(self, "environment_id")
 
     @environment_id.setter
-    def environment_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def environment_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "environment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="extendedAttributesId")
-    def extended_attributes_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def extended_attributes_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the extended attributes applied
         """
         return pulumi.get(self, "extended_attributes_id")
 
     @extended_attributes_id.setter
-    def extended_attributes_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def extended_attributes_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "extended_attributes_id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the environment is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the environment
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryProfileId")
-    def primary_profile_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def primary_profile_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         """
         return pulumi.get(self, "primary_profile_id")
 
     @primary_profile_id.setter
-    def primary_profile_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def primary_profile_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "primary_profile_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to create the environment in
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of environment (must be either development or deployment)
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="useCustomBranch")
-    def use_custom_branch(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_custom_branch(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use a custom git branch in this environment
         """
         return pulumi.get(self, "use_custom_branch")
 
     @use_custom_branch.setter
-    def use_custom_branch(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_custom_branch(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_custom_branch", value)
 
 
@@ -470,19 +470,19 @@ class Environment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_branch: Optional[pulumi.Input[_builtins.str]] = None,
-                 dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_model_query_history: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
+                 dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_custom_branch: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Resource to manage dbt Cloud environments for the different dbt Cloud projects. In a given dbt Cloud project, one development environment can be defined and as many deployment environments as needed can be created. > In August 2024, dbt Cloud released the "global connection" feature, allowing connections to be defined at the account level and reused across environments and projects. This version of the provider has the connection_id as an optional field but it is recommended to start setting it up in your projects. In future versions, this field will become mandatory.
@@ -496,26 +496,26 @@ class Environment(pulumi.CustomResource):
         ci_environment = dbtcloud.Environment("ci_environment",
             dbt_version="latest",
             name="CI",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
-            credential_id=ci_credential["credentialId"],
-            connection_id=my_global_connection["id"])
+            credential_id=int(ci_credential["credentialId"]),
+            connection_id=int(my_global_connection["id"]))
         # we can also set a deployment environment as being the production one
         prod_environment = dbtcloud.Environment("prod_environment",
             dbt_version="1.7.0-latest",
             name="Prod",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
-            credential_id=prod_credential["credentialId"],
+            credential_id=int(prod_credential["credentialId"]),
             deployment_type="production",
-            connection_id=my_legacy_connection["connectionId"])
+            connection_id=int(my_legacy_connection["connectionId"]))
         # Creating a development environment
         dev_environment = dbtcloud.Environment("dev_environment",
             dbt_version="latest",
             name="Dev",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="development",
-            connection_id=my_other_global_connection["id"])
+            connection_id=int(my_other_global_connection["id"]))
         # Deployment environment with a primary profile (binds connection + credentials via profile)
         # NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
         # primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
@@ -523,10 +523,10 @@ class Environment(pulumi.CustomResource):
         profiled_environment = dbtcloud.Environment("profiled_environment",
             dbt_version="latest",
             name="Staging",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
             deployment_type="staging",
-            primary_profile_id=my_profile["profileId"])
+            primary_profile_id=int(my_profile["profileId"]))
         ```
 
         ## Import
@@ -584,26 +584,26 @@ class Environment(pulumi.CustomResource):
         ci_environment = dbtcloud.Environment("ci_environment",
             dbt_version="latest",
             name="CI",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
-            credential_id=ci_credential["credentialId"],
-            connection_id=my_global_connection["id"])
+            credential_id=int(ci_credential["credentialId"]),
+            connection_id=int(my_global_connection["id"]))
         # we can also set a deployment environment as being the production one
         prod_environment = dbtcloud.Environment("prod_environment",
             dbt_version="1.7.0-latest",
             name="Prod",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
-            credential_id=prod_credential["credentialId"],
+            credential_id=int(prod_credential["credentialId"]),
             deployment_type="production",
-            connection_id=my_legacy_connection["connectionId"])
+            connection_id=int(my_legacy_connection["connectionId"]))
         # Creating a development environment
         dev_environment = dbtcloud.Environment("dev_environment",
             dbt_version="latest",
             name="Dev",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="development",
-            connection_id=my_other_global_connection["id"])
+            connection_id=int(my_other_global_connection["id"]))
         # Deployment environment with a primary profile (binds connection + credentials via profile)
         # NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
         # primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
@@ -611,10 +611,10 @@ class Environment(pulumi.CustomResource):
         profiled_environment = dbtcloud.Environment("profiled_environment",
             dbt_version="latest",
             name="Staging",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
             deployment_type="staging",
-            primary_profile_id=my_profile["profileId"])
+            primary_profile_id=int(my_profile["profileId"]))
         ```
 
         ## Import
@@ -653,19 +653,19 @@ class Environment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_branch: Optional[pulumi.Input[_builtins.str]] = None,
-                 dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 enable_model_query_history: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
+                 dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_custom_branch: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -703,20 +703,20 @@ class Environment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-            credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-            custom_branch: Optional[pulumi.Input[_builtins.str]] = None,
-            dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-            deployment_type: Optional[pulumi.Input[_builtins.str]] = None,
-            enable_model_query_history: Optional[pulumi.Input[_builtins.bool]] = None,
-            environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-            extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-            is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            primary_profile_id: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            use_custom_branch: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Environment':
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
+            dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+            deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
+            environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+            extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            use_custom_branch: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Environment':
         """
         Get an existing Environment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -244,8 +244,8 @@ def get_project(id: Optional[_builtins.int] = None,
         state=pulumi.get(__ret__, 'state'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_project_output(id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                       name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_project_output(id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                       name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectResult]:
     """
     Retrieve a specific project from dbt Cloud.

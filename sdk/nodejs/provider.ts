@@ -78,39 +78,39 @@ export interface ProviderArgs {
     /**
      * Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
      */
-    accountId?: pulumi.Input<number>;
+    accountId?: pulumi.Input<number | undefined>;
     /**
      * If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
      */
-    disableRetry?: pulumi.Input<boolean>;
+    disableRetry?: pulumi.Input<boolean | undefined>;
     /**
      * URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
      */
-    hostUrl?: pulumi.Input<string>;
+    hostUrl?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
      */
-    maxRetries?: pulumi.Input<number>;
+    maxRetries?: pulumi.Input<number | undefined>;
     /**
      * List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
      */
-    retriableStatusCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    retriableStatusCodes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
      */
-    retryIntervalSeconds?: pulumi.Input<number>;
+    retryIntervalSeconds?: pulumi.Input<number | undefined>;
     /**
      * If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
      */
-    skipCredentialsValidation?: pulumi.Input<boolean>;
+    skipCredentialsValidation?: pulumi.Input<boolean | undefined>;
     /**
      * The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
      */
-    timeoutSeconds?: pulumi.Input<number>;
+    timeoutSeconds?: pulumi.Input<number | undefined>;
     /**
      * API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

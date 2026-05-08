@@ -236,8 +236,8 @@ def get_environment(environment_id: Optional[_builtins.int] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         type=pulumi.get(__ret__, 'type'),
         use_custom_branch=pulumi.get(__ret__, 'use_custom_branch'))
-def get_environment_output(environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                           project_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_environment_output(environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                           project_id: pulumi.Input[Optional[_builtins.int]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvironmentResult]:
     """
     Retrieve data for a single environment

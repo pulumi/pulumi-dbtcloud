@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * // Using the classic sensitive attribute (stored in state)
  * const postgresProdCredential = new dbtcloud.PostgresCredential("postgres_prod_credential", {
  *     isActive: true,
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     type: "postgres",
  *     defaultSchema: "my_schema",
  *     username: "my_username",
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * const postgresPassword = config.require("postgresPassword");
  * const postgresProdCredentialWo = new dbtcloud.PostgresCredential("postgres_prod_credential_wo", {
  *     isActive: true,
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     type: "postgres",
  *     defaultSchema: "my_schema",
  *     username: "my_username",
@@ -195,52 +195,52 @@ export interface PostgresCredentialState {
     /**
      * The system Postgres/Redshift/AlloyDB credential ID.
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    defaultSchema?: pulumi.Input<string>;
+    defaultSchema?: pulumi.Input<string | undefined>;
     /**
      * Whether the Postgres/Redshift/AlloyDB credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use (required for Redshift)
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * Default schema name
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Username for Postgres/Redshift/AlloyDB
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -250,28 +250,28 @@ export interface PostgresCredentialArgs {
     /**
      * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    defaultSchema?: pulumi.Input<string>;
+    defaultSchema?: pulumi.Input<string | undefined>;
     /**
      * Whether the Postgres/Redshift/AlloyDB credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use (required for Redshift)
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
@@ -279,15 +279,15 @@ export interface PostgresCredentialArgs {
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * Default schema name
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Username for Postgres/Redshift/AlloyDB
      */

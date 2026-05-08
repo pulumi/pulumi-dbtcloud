@@ -24,11 +24,11 @@ export interface BigquerySemanticLayerCredentialCredential {
     /**
      * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * Default dataset name
      */
@@ -36,11 +36,11 @@ export interface BigquerySemanticLayerCredentialCredential {
     /**
      * The ID of this resource. Contains the project ID and the credential ID.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Whether the BigQuery credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */
@@ -72,19 +72,19 @@ export interface DatabricksSemanticLayerCredentialCredential {
      *
      * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      */
-    adapterType?: pulumi.Input<string>;
+    adapterType?: pulumi.Input<string | undefined>;
     /**
      * The catalog where to create models (only for the databricks adapter)
      */
-    catalog?: pulumi.Input<string>;
+    catalog?: pulumi.Input<string | undefined>;
     /**
      * The system Databricks credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The ID of this resource. Contains the project ID and the credential ID.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Project ID to create the Databricks credential in
      */
@@ -92,30 +92,30 @@ export interface DatabricksSemanticLayerCredentialCredential {
     /**
      * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * Target name
      *
      * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }
 
 export interface GetJobJobCompletionTriggerCondition {
@@ -137,15 +137,15 @@ export interface GetJobJobCompletionTriggerConditionArgs {
     /**
      * The ID of the job that would trigger this job after completion.
      */
-    jobId?: pulumi.Input<number>;
+    jobId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project where the trigger job is running in.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * List of statuses to trigger the job on.
      */
-    statuses?: pulumi.Input<pulumi.Input<string>[]>;
+    statuses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GetRunsFilter {
@@ -187,35 +187,35 @@ export interface GetRunsFilterArgs {
     /**
      * The ID of the environment
      */
-    environmentId?: pulumi.Input<number>;
+    environmentId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the job definition
      */
-    jobDefinitionId?: pulumi.Input<number>;
+    jobDefinitionId?: pulumi.Input<number | undefined>;
     /**
      * The limit of the runs
      */
-    limit?: pulumi.Input<number>;
+    limit?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the pull request
      */
-    pullRequestId?: pulumi.Input<number>;
+    pullRequestId?: pulumi.Input<number | undefined>;
     /**
      * The status of the run
      */
-    status?: pulumi.Input<number>;
+    status?: pulumi.Input<number | undefined>;
     /**
      * The status of the run
      */
-    statusIn?: pulumi.Input<string>;
+    statusIn?: pulumi.Input<string | undefined>;
     /**
      * The ID of the trigger
      */
-    triggerId?: pulumi.Input<number>;
+    triggerId?: pulumi.Input<number | undefined>;
 }
 
 export interface GetServiceTokenServiceTokenPermission {
@@ -245,15 +245,15 @@ export interface GetServiceTokenServiceTokenPermissionArgs {
     /**
      * Whether or not to apply this permission to all projects for this service token
      */
-    allProjects?: pulumi.Input<boolean>;
+    allProjects?: pulumi.Input<boolean | undefined>;
     /**
      * Set of permissions to apply
      */
-    permissionSet?: pulumi.Input<string>;
+    permissionSet?: pulumi.Input<string | undefined>;
     /**
      * Project ID to apply this permission to for this service token
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -261,14 +261,14 @@ export interface GetServiceTokenServiceTokenPermissionArgs {
      * Not setting a value is the same as selecting `all`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
-    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GlobalConnectionApacheSpark {
     /**
      * Auth
      */
-    auth?: pulumi.Input<string>;
+    auth?: pulumi.Input<string | undefined>;
     /**
      * Spark cluster for the connection
      */
@@ -276,11 +276,11 @@ export interface GlobalConnectionApacheSpark {
     /**
      * Connection retries. Default=0
      */
-    connectRetries?: pulumi.Input<number>;
+    connectRetries?: pulumi.Input<number | undefined>;
     /**
      * Connection time out in seconds. Default=10
      */
-    connectTimeout?: pulumi.Input<number>;
+    connectTimeout?: pulumi.Input<number | undefined>;
     /**
      * Hostname of the connection
      */
@@ -292,15 +292,15 @@ export interface GlobalConnectionApacheSpark {
     /**
      * Organization ID
      */
-    organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string | undefined>;
     /**
      * Port for the connection. Default=443
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * User
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
 }
 
 export interface GlobalConnectionAthena {
@@ -311,19 +311,19 @@ export interface GlobalConnectionAthena {
     /**
      * Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
      */
-    numBoto3Retries?: pulumi.Input<number>;
+    numBoto3Retries?: pulumi.Input<number | undefined>;
     /**
      * Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
      */
-    numIcebergRetries?: pulumi.Input<number>;
+    numIcebergRetries?: pulumi.Input<number | undefined>;
     /**
      * Number of times to retry a failing query.
      */
-    numRetries?: pulumi.Input<number>;
+    numRetries?: pulumi.Input<number | undefined>;
     /**
      * Interval in seconds to use for polling the status of query results in Athena.
      */
-    pollInterval?: pulumi.Input<number>;
+    pollInterval?: pulumi.Input<number | undefined>;
     /**
      * AWS region of your Athena instance.
      */
@@ -331,11 +331,11 @@ export interface GlobalConnectionAthena {
     /**
      * Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
      */
-    s3DataDir?: pulumi.Input<string>;
+    s3DataDir?: pulumi.Input<string | undefined>;
     /**
      * How to generate table paths in the S3 data directory.
      */
-    s3DataNaming?: pulumi.Input<string>;
+    s3DataNaming?: pulumi.Input<string | undefined>;
     /**
      * S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
      */
@@ -343,62 +343,62 @@ export interface GlobalConnectionAthena {
     /**
      * Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
      */
-    s3TmpTableDir?: pulumi.Input<string>;
+    s3TmpTableDir?: pulumi.Input<string | undefined>;
     /**
      * Identifier of Athena Spark workgroup for running Python models.
      */
-    sparkWorkGroup?: pulumi.Input<string>;
+    sparkWorkGroup?: pulumi.Input<string | undefined>;
     /**
      * Identifier of Athena workgroup.
      */
-    workGroup?: pulumi.Input<string>;
+    workGroup?: pulumi.Input<string | undefined>;
 }
 
 export interface GlobalConnectionBigquery {
     /**
      * OAuth Client ID. Required when using 'external-oauth-wif' authentication.
      */
-    applicationId?: pulumi.Input<string>;
+    applicationId?: pulumi.Input<string | undefined>;
     /**
      * OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
      */
-    applicationSecret?: pulumi.Input<string>;
+    applicationSecret?: pulumi.Input<string | undefined>;
     /**
      * Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
      */
-    authProviderX509CertUrl?: pulumi.Input<string>;
+    authProviderX509CertUrl?: pulumi.Input<string | undefined>;
     /**
      * Auth URI for the Service Account. Required when using 'service-account-json' authentication.
      */
-    authUri?: pulumi.Input<string>;
+    authUri?: pulumi.Input<string | undefined>;
     /**
      * Service Account email. Required when using 'service-account-json' authentication.
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * Client ID of the Service Account. Required when using 'service-account-json' authentication.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
      */
-    clientX509CertUrl?: pulumi.Input<string>;
+    clientX509CertUrl?: pulumi.Input<string | undefined>;
     /**
      * Dataproc cluster name for PySpark workloads
      */
-    dataprocClusterName?: pulumi.Input<string>;
+    dataprocClusterName?: pulumi.Input<string | undefined>;
     /**
      * Google Cloud region for PySpark workloads on Dataproc
      */
-    dataprocRegion?: pulumi.Input<string>;
+    dataprocRegion?: pulumi.Input<string | undefined>;
     /**
      * Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
      */
-    deploymentEnvAuthType?: pulumi.Input<string>;
+    deploymentEnvAuthType?: pulumi.Input<string | undefined>;
     /**
      * Project to bill for query execution
      */
-    executionProject?: pulumi.Input<string>;
+    executionProject?: pulumi.Input<string | undefined>;
     /**
      * The GCP project ID to use for the connection
      */
@@ -406,78 +406,78 @@ export interface GlobalConnectionBigquery {
     /**
      * URI for a Google Cloud Storage bucket to host Python code executed via Datapro
      */
-    gcsBucket?: pulumi.Input<string>;
+    gcsBucket?: pulumi.Input<string | undefined>;
     /**
      * Service Account to impersonate when running queries
      */
-    impersonateServiceAccount?: pulumi.Input<string>;
+    impersonateServiceAccount?: pulumi.Input<string | undefined>;
     /**
      * Maximum timeout for the job creation step
      */
-    jobCreationTimeoutSeconds?: pulumi.Input<number>;
+    jobCreationTimeoutSeconds?: pulumi.Input<number | undefined>;
     /**
      * Timeout in seconds for job execution, to be used for the bigqueryV1 adapter
      */
-    jobExecutionTimeoutSeconds?: pulumi.Input<number>;
+    jobExecutionTimeoutSeconds?: pulumi.Input<number | undefined>;
     /**
      * Total number of seconds to wait while retrying the same query
      */
-    jobRetryDeadlineSeconds?: pulumi.Input<number>;
+    jobRetryDeadlineSeconds?: pulumi.Input<number | undefined>;
     /**
      * Location to create new Datasets in
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * Max number of bytes that can be billed for a given BigQuery query
      */
-    maximumBytesBilled?: pulumi.Input<number>;
+    maximumBytesBilled?: pulumi.Input<number | undefined>;
     /**
      * The priority with which to execute BigQuery queries (batch or interactive)
      */
-    priority?: pulumi.Input<string>;
+    priority?: pulumi.Input<string | undefined>;
     /**
      * Private Key for the Service Account. Required when using 'service-account-json' authentication.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * Number of retries for queries
      */
-    retries?: pulumi.Input<number>;
+    retries?: pulumi.Input<number | undefined>;
     /**
      * OAuth scopes for the BigQuery connection
      */
-    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Timeout in seconds for queries, to be used ONLY for the bigqueryV0 adapter
      */
-    timeoutSeconds?: pulumi.Input<number>;
+    timeoutSeconds?: pulumi.Input<number | undefined>;
     /**
      * Token URI for the Service Account. Required when using 'service-account-json' authentication.
      */
-    tokenUri?: pulumi.Input<string>;
+    tokenUri?: pulumi.Input<string | undefined>;
     /**
      * Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
      */
-    useLatestAdapter?: pulumi.Input<boolean>;
+    useLatestAdapter?: pulumi.Input<boolean | undefined>;
 }
 
 export interface GlobalConnectionDatabricks {
     /**
      * Catalog name if Unity Catalog is enabled in your Databricks workspace.
      */
-    catalog?: pulumi.Input<string>;
+    catalog?: pulumi.Input<string | undefined>;
     /**
      * Required to enable Databricks OAuth authentication for IDE developers.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Required to enable Databricks OAuth authentication for IDE developers.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * The hostname of the Databricks cluster or SQL warehouse.
      */
@@ -496,19 +496,19 @@ export interface GlobalConnectionFabric {
     /**
      * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
      */
-    loginTimeout?: pulumi.Input<number>;
+    loginTimeout?: pulumi.Input<number | undefined>;
     /**
      * The port to connect to for this connection. Default=1433
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
      */
-    queryTimeout?: pulumi.Input<number>;
+    queryTimeout?: pulumi.Input<number | undefined>;
     /**
      * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
      */
-    retries?: pulumi.Input<number>;
+    retries?: pulumi.Input<number | undefined>;
     /**
      * The server hostname.
      */
@@ -527,11 +527,11 @@ export interface GlobalConnectionPostgres {
     /**
      * The port to connect to for this connection. Default=5432
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL SSH Tunnel configuration
      */
-    sshTunnel?: pulumi.Input<inputs.GlobalConnectionPostgresSshTunnel>;
+    sshTunnel?: pulumi.Input<inputs.GlobalConnectionPostgresSshTunnel | undefined>;
 }
 
 export interface GlobalConnectionPostgresSshTunnel {
@@ -542,7 +542,7 @@ export interface GlobalConnectionPostgresSshTunnel {
     /**
      * The ID of the SSH tunnel connection.
      */
-    id?: pulumi.Input<number>;
+    id?: pulumi.Input<number | undefined>;
     /**
      * The HTTP port for the SSH tunnel.
      */
@@ -550,7 +550,7 @@ export interface GlobalConnectionPostgresSshTunnel {
     /**
      * The SSH public key generated to allow connecting via SSH tunnel.
      */
-    publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string | undefined>;
     /**
      * The username to use for the SSH tunnel.
      */
@@ -569,11 +569,11 @@ export interface GlobalConnectionRedshift {
     /**
      * The port to connect to for this connection. Default=5432
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Redshift SSH Tunnel configuration
      */
-    sshTunnel?: pulumi.Input<inputs.GlobalConnectionRedshiftSshTunnel>;
+    sshTunnel?: pulumi.Input<inputs.GlobalConnectionRedshiftSshTunnel | undefined>;
 }
 
 export interface GlobalConnectionRedshiftSshTunnel {
@@ -584,7 +584,7 @@ export interface GlobalConnectionRedshiftSshTunnel {
     /**
      * The ID of the SSH tunnel connection.
      */
-    id?: pulumi.Input<number>;
+    id?: pulumi.Input<number | undefined>;
     /**
      * The HTTP port for the SSH tunnel.
      */
@@ -592,7 +592,7 @@ export interface GlobalConnectionRedshiftSshTunnel {
     /**
      * The SSH public key generated to allow connecting via SSH tunnel.
      */
-    publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string | undefined>;
     /**
      * The username to use for the SSH tunnel.
      */
@@ -603,11 +603,11 @@ export interface GlobalConnectionSalesforce {
     /**
      * Timeout in seconds for data transformation runs. Default=300
      */
-    dataTransformRunTimeout?: pulumi.Input<number>;
+    dataTransformRunTimeout?: pulumi.Input<number | undefined>;
     /**
      * The target database name. Default=default
      */
-    database?: pulumi.Input<string>;
+    database?: pulumi.Input<string | undefined>;
     /**
      * The Salesforce instance URL (e.g., https://login.salesforce.com)
      */
@@ -622,11 +622,11 @@ export interface GlobalConnectionSnowflake {
     /**
      * Whether to allow Snowflake OAuth for the connection. If true, the `oauthClientId` and `oauthClientSecret` fields must be set
      */
-    allowSso?: pulumi.Input<boolean>;
+    allowSso?: pulumi.Input<boolean | undefined>;
     /**
      * If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
      */
-    clientSessionKeepAlive?: pulumi.Input<boolean>;
+    clientSessionKeepAlive?: pulumi.Input<boolean | undefined>;
     /**
      * The default database for the connection
      */
@@ -634,15 +634,15 @@ export interface GlobalConnectionSnowflake {
     /**
      * OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
      */
-    oauthClientId?: pulumi.Input<string>;
+    oauthClientId?: pulumi.Input<string | undefined>;
     /**
      * OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
      */
-    oauthClientSecret?: pulumi.Input<string>;
+    oauthClientSecret?: pulumi.Input<string | undefined>;
     /**
      * The Snowflake role to use when running queries on the connection
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The default Snowflake Warehouse to use for the connection
      */
@@ -657,11 +657,11 @@ export interface GlobalConnectionStarburst {
     /**
      * The authentication method. Only LDAP for now.
      */
-    method?: pulumi.Input<string>;
+    method?: pulumi.Input<string | undefined>;
     /**
      * The port to connect to for this connection. Default=443
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
 }
 
 export interface GlobalConnectionSynapse {
@@ -676,19 +676,19 @@ export interface GlobalConnectionSynapse {
     /**
      * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
      */
-    loginTimeout?: pulumi.Input<number>;
+    loginTimeout?: pulumi.Input<number | undefined>;
     /**
      * The port to connect to for this connection. Default=1433
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
      */
-    queryTimeout?: pulumi.Input<number>;
+    queryTimeout?: pulumi.Input<number | undefined>;
     /**
      * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
      */
-    retries?: pulumi.Input<number>;
+    retries?: pulumi.Input<number | undefined>;
 }
 
 export interface GlobalConnectionTeradata {
@@ -699,15 +699,15 @@ export interface GlobalConnectionTeradata {
     /**
      * The port to connect to for this connection. Default=1025
      */
-    port?: pulumi.Input<string>;
+    port?: pulumi.Input<string | undefined>;
     /**
      * The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
      */
-    requestTimeout?: pulumi.Input<number>;
+    requestTimeout?: pulumi.Input<number | undefined>;
     /**
      * The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
      */
-    retries?: pulumi.Input<number>;
+    retries?: pulumi.Input<number | undefined>;
     /**
      * The transaction mode to use for the connection.
      */
@@ -726,7 +726,7 @@ export interface GroupGroupPermission {
     /**
      * Project ID to apply this permission to for this group.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -734,7 +734,7 @@ export interface GroupGroupPermission {
      * Not setting a value is the same as selecting `all`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
-    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GroupPartialPermissionsGroupPermission {
@@ -749,7 +749,7 @@ export interface GroupPartialPermissionsGroupPermission {
     /**
      * Project ID to apply this permission to for this group.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -757,33 +757,33 @@ export interface GroupPartialPermissionsGroupPermission {
      * Not setting a value is the same as selecting `all`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
-    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface IpRestrictionsRuleCidr {
     /**
      * IP CIDR range (can be IPv4 or IPv6)
      */
-    cidr?: pulumi.Input<string>;
+    cidr?: pulumi.Input<string | undefined>;
     /**
      * IPv6 CIDR range (read-only)
      */
-    cidrIpv6?: pulumi.Input<string>;
+    cidrIpv6?: pulumi.Input<string | undefined>;
     /**
      * ID of the CIDR range
      */
-    id?: pulumi.Input<number>;
+    id?: pulumi.Input<number | undefined>;
     /**
      * ID of the IP restriction rule
      */
-    ipRestrictionRuleId?: pulumi.Input<number>;
+    ipRestrictionRuleId?: pulumi.Input<number | undefined>;
 }
 
 export interface JobExecution {
     /**
      * The number of seconds before the job times out
      */
-    timeoutSeconds?: pulumi.Input<number>;
+    timeoutSeconds?: pulumi.Input<number | undefined>;
 }
 
 export interface JobJobCompletionTriggerCondition {
@@ -805,19 +805,19 @@ export interface JobTriggers {
     /**
      * Whether the job runs automatically on PR creation
      */
-    gitProviderWebhook?: pulumi.Input<boolean>;
+    gitProviderWebhook?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the job runs automatically on PR creation
      */
-    githubWebhook?: pulumi.Input<boolean>;
+    githubWebhook?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the job runs automatically once a PR is merged
      */
-    onMerge?: pulumi.Input<boolean>;
+    onMerge?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the job runs on a schedule
      */
-    schedule?: pulumi.Input<boolean>;
+    schedule?: pulumi.Input<boolean | undefined>;
 }
 
 export interface NotificationSettingChannel {
@@ -828,7 +828,7 @@ export interface NotificationSettingChannel {
     /**
      * Channel ID
      */
-    id?: pulumi.Input<number>;
+    id?: pulumi.Input<number | undefined>;
     /**
      * Microsoft Teams channel ID.
      */
@@ -843,15 +843,15 @@ export interface NotificationSettingRule {
     /**
      * Rule ID
      */
-    id?: pulumi.Input<number>;
+    id?: pulumi.Input<number | undefined>;
     /**
      * Job ID this rule applies to. Omit to fire for all jobs in the account.
      */
-    jobId?: pulumi.Input<number>;
+    jobId?: pulumi.Input<number | undefined>;
     /**
      * Name of the job referenced by `jobId` (read-only).
      */
-    jobName?: pulumi.Input<string>;
+    jobName?: pulumi.Input<string | undefined>;
     /**
      * Event that fires the notification. Valid values: `runWarning`, `runSuccessful`, `runErrored`, `runCancelled`.
      */
@@ -877,36 +877,36 @@ export interface PostgresSemanticLayerCredentialCredential {
     /**
      * The system Postgres/Redshift/AlloyDB credential ID.
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    defaultSchema?: pulumi.Input<string>;
+    defaultSchema?: pulumi.Input<string | undefined>;
     /**
      * The ID of this resource. Contains the project ID and the credential ID.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Whether the Postgres/Redshift/AlloyDB credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use (required for Redshift)
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * Password for Postgres/Redshift/AlloyDB. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Postgres/Redshift/AlloyDB credential in.
      */
@@ -914,15 +914,15 @@ export interface PostgresSemanticLayerCredentialCredential {
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * Default schema name
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Username for Postgres/Redshift/AlloyDB
      */
@@ -948,7 +948,7 @@ export interface RedshiftSemanticLayerCredentialCredential {
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * Default schema name
      */
@@ -956,11 +956,11 @@ export interface RedshiftSemanticLayerCredentialCredential {
     /**
      * The ID of this resource. Contains the project ID and the credential ID.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Whether the Redshift credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */
@@ -968,16 +968,16 @@ export interface RedshiftSemanticLayerCredentialCredential {
     /**
      * The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Redshift credential in
      */
@@ -985,7 +985,7 @@ export interface RedshiftSemanticLayerCredentialCredential {
     /**
      * The username for the Redshift account.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ScimGroupPartialPermissionsPermission {
@@ -1000,7 +1000,7 @@ export interface ScimGroupPartialPermissionsPermission {
     /**
      * Project ID to apply this permission to for this group.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -1008,7 +1008,7 @@ export interface ScimGroupPartialPermissionsPermission {
      * Not setting a value is the same as selecting `all`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
-    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface ScimGroupPermissionsPermission {
@@ -1023,7 +1023,7 @@ export interface ScimGroupPermissionsPermission {
     /**
      * Project ID to apply this permission to for this group.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -1031,7 +1031,7 @@ export interface ScimGroupPermissionsPermission {
      * Not setting a value is the same as selecting `all`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
-    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface ServiceTokenServiceTokenPermission {
@@ -1046,7 +1046,7 @@ export interface ServiceTokenServiceTokenPermission {
     /**
      * Project ID to apply this permission to for this service token
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -1054,7 +1054,7 @@ export interface ServiceTokenServiceTokenPermission {
      * Not setting a value is the same as selecting `all`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
-    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[]>;
+    writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface SnowflakeSemanticLayerCredentialConfiguration {
@@ -1080,19 +1080,19 @@ export interface SnowflakeSemanticLayerCredentialCredential {
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The catalog to connect use
      */
-    database?: pulumi.Input<string>;
+    database?: pulumi.Input<string | undefined>;
     /**
      * The ID of this resource. Contains the project ID and the credential ID.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Whether the Snowflake credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */
@@ -1100,42 +1100,42 @@ export interface SnowflakeSemanticLayerCredentialCredential {
     /**
      * The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      */
-    privateKeyPassphrase?: pulumi.Input<string>;
+    privateKeyPassphrase?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
      */
-    privateKeyPassphraseWo?: pulumi.Input<string>;
+    privateKeyPassphraseWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
      */
-    privateKeyPassphraseWoVersion?: pulumi.Input<number>;
+    privateKeyPassphraseWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Snowflake credential in
      */
@@ -1143,21 +1143,21 @@ export interface SnowflakeSemanticLayerCredentialCredential {
     /**
      * The role to assume
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
     /**
      * The warehouse to use
      */
-    warehouse?: pulumi.Input<string>;
+    warehouse?: pulumi.Input<string | undefined>;
 }

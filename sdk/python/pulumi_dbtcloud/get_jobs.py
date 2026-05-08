@@ -120,8 +120,8 @@ def get_jobs(environment_id: Optional[_builtins.int] = None,
         id=pulumi.get(__ret__, 'id'),
         jobs=pulumi.get(__ret__, 'jobs'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_jobs_output(environment_id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                    project_id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_jobs_output(environment_id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                    project_id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobsResult]:
     """
     Retrieve all the jobs for a given dbt Cloud project or environment along with the environment details for the jobs. This will return both the jobs created from Terraform but also the jobs created in the dbt Cloud UI.

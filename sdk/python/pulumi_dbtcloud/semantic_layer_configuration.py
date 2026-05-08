@@ -58,8 +58,8 @@ class SemanticLayerConfigurationArgs:
 @pulumi.input_type
 class _SemanticLayerConfigurationState:
     def __init__(__self__, *,
-                 environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SemanticLayerConfiguration resources.
 
@@ -73,26 +73,26 @@ class _SemanticLayerConfigurationState:
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def environment_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the environment
         """
         return pulumi.get(self, "environment_id")
 
     @environment_id.setter
-    def environment_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def environment_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "environment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the project
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -102,8 +102,8 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         The resource allows basic configuration of the Semantic Layer for a specific project. For the feature to be completely functional, a Semantic Layer Credential is also required.
@@ -116,8 +116,8 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         example = dbtcloud.SemanticLayerConfiguration("example",
-            project_id=project_id,
-            environment_id=environment_id)
+            project_id=int(project_id),
+            environment_id=int(environment_id))
         ```
 
         ## Import
@@ -163,8 +163,8 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         example = dbtcloud.SemanticLayerConfiguration("example",
-            project_id=project_id,
-            environment_id=environment_id)
+            project_id=int(project_id),
+            environment_id=int(environment_id))
         ```
 
         ## Import
@@ -203,8 +203,8 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -230,8 +230,8 @@ class SemanticLayerConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'SemanticLayerConfiguration':
+            environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'SemanticLayerConfiguration':
         """
         Get an existing SemanticLayerConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

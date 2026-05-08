@@ -16,28 +16,28 @@ import * as utilities from "./utilities";
  * const ciEnvironment = new dbtcloud.Environment("ci_environment", {
  *     dbtVersion: "latest",
  *     name: "CI",
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     type: "deployment",
- *     credentialId: ciCredential.credentialId,
- *     connectionId: myGlobalConnection.id,
+ *     credentialId: Number(ciCredential.credentialId),
+ *     connectionId: Number(myGlobalConnection.id),
  * });
  * // we can also set a deployment environment as being the production one
  * const prodEnvironment = new dbtcloud.Environment("prod_environment", {
  *     dbtVersion: "1.7.0-latest",
  *     name: "Prod",
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     type: "deployment",
- *     credentialId: prodCredential.credentialId,
+ *     credentialId: Number(prodCredential.credentialId),
  *     deploymentType: "production",
- *     connectionId: myLegacyConnection.connectionId,
+ *     connectionId: Number(myLegacyConnection.connectionId),
  * });
  * // Creating a development environment
  * const devEnvironment = new dbtcloud.Environment("dev_environment", {
  *     dbtVersion: "latest",
  *     name: "Dev",
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     type: "development",
- *     connectionId: myOtherGlobalConnection.id,
+ *     connectionId: Number(myOtherGlobalConnection.id),
  * });
  * // Deployment environment with a primary profile (binds connection + credentials via profile)
  * // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
@@ -46,10 +46,10 @@ import * as utilities from "./utilities";
  * const profiledEnvironment = new dbtcloud.Environment("profiled_environment", {
  *     dbtVersion: "latest",
  *     name: "Staging",
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     type: "deployment",
  *     deploymentType: "staging",
- *     primaryProfileId: myProfile.profileId,
+ *     primaryProfileId: Number(myProfile.profileId),
  * });
  * ```
  *
@@ -220,59 +220,59 @@ export interface EnvironmentState {
     /**
      * A connection ID (used with Global Connections)
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The custom branch name to use
      */
-    customBranch?: pulumi.Input<string>;
+    customBranch?: pulumi.Input<string | undefined>;
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      */
-    dbtVersion?: pulumi.Input<string>;
+    dbtVersion?: pulumi.Input<string | undefined>;
     /**
      * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
-    deploymentType?: pulumi.Input<string>;
+    deploymentType?: pulumi.Input<string | undefined>;
     /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      */
-    enableModelQueryHistory?: pulumi.Input<boolean>;
+    enableModelQueryHistory?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the environment. Duplicated. Here for backward compatibility.
      */
-    environmentId?: pulumi.Input<number>;
+    environmentId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the extended attributes applied
      */
-    extendedAttributesId?: pulumi.Input<number>;
+    extendedAttributesId?: pulumi.Input<number | undefined>;
     /**
      * Whether the environment is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the environment
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
      */
-    primaryProfileId?: pulumi.Input<number>;
+    primaryProfileId?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the environment in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The type of environment (must be either development or deployment)
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Whether to use a custom git branch in this environment
      */
-    useCustomBranch?: pulumi.Input<boolean>;
+    useCustomBranch?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -282,43 +282,43 @@ export interface EnvironmentArgs {
     /**
      * A connection ID (used with Global Connections)
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The custom branch name to use
      */
-    customBranch?: pulumi.Input<string>;
+    customBranch?: pulumi.Input<string | undefined>;
     /**
      * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      */
-    dbtVersion?: pulumi.Input<string>;
+    dbtVersion?: pulumi.Input<string | undefined>;
     /**
      * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
-    deploymentType?: pulumi.Input<string>;
+    deploymentType?: pulumi.Input<string | undefined>;
     /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      */
-    enableModelQueryHistory?: pulumi.Input<boolean>;
+    enableModelQueryHistory?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the extended attributes applied
      */
-    extendedAttributesId?: pulumi.Input<number>;
+    extendedAttributesId?: pulumi.Input<number | undefined>;
     /**
      * Whether the environment is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the environment
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
      */
-    primaryProfileId?: pulumi.Input<number>;
+    primaryProfileId?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the environment in
      */
@@ -330,5 +330,5 @@ export interface EnvironmentArgs {
     /**
      * Whether to use a custom git branch in this environment
      */
-    useCustomBranch?: pulumi.Input<boolean>;
+    useCustomBranch?: pulumi.Input<boolean | undefined>;
 }

@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attribute (stored in state)
-    ///     var example = new DbtCloud.Index.TeradataCredential("example", new()
+    ///     var example = new DbtCloud.TeradataCredential("example", new()
     ///     {
     ///         ProjectId = exampleDbtcloudProject.Id,
     ///         Schema = "your_schema",
@@ -33,7 +33,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var config = new Config();
     ///     var teradataPassword = config.Require("teradataPassword");
-    ///     var exampleWo = new DbtCloud.Index.TeradataCredential("example_wo", new()
+    ///     var exampleWo = new DbtCloud.TeradataCredential("example_wo", new()
     ///     {
     ///         ProjectId = exampleDbtcloudProject.Id,
     ///         Schema = "your_schema",

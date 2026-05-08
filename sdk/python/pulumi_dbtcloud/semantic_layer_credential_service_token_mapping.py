@@ -73,9 +73,9 @@ class SemanticLayerCredentialServiceTokenMappingArgs:
 @pulumi.input_type
 class _SemanticLayerCredentialServiceTokenMappingState:
     def __init__(__self__, *,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 semantic_layer_credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_token_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 semantic_layer_credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_token_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SemanticLayerCredentialServiceTokenMapping resources.
 
@@ -92,38 +92,38 @@ class _SemanticLayerCredentialServiceTokenMappingState:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the project to which the semantic layer credential is associated.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="semanticLayerCredentialId")
-    def semantic_layer_credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def semantic_layer_credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the semantic layer credential to map.
         """
         return pulumi.get(self, "semantic_layer_credential_id")
 
     @semantic_layer_credential_id.setter
-    def semantic_layer_credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def semantic_layer_credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "semantic_layer_credential_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceTokenId")
-    def service_token_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def service_token_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the service token to map to the semantic layer credential.
         """
         return pulumi.get(self, "service_token_id")
 
     @service_token_id.setter
-    def service_token_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def service_token_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "service_token_id", value)
 
 
@@ -133,9 +133,9 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 semantic_layer_credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_token_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 semantic_layer_credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_token_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -145,9 +145,9 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         test_mapping = dbtcloud.SemanticLayerCredentialServiceTokenMapping("test_mapping",
-            semantic_layer_credential_id=test["id"],
-            service_token_id=test_service_token["id"],
-            project_id=test_project["id"])
+            semantic_layer_credential_id=int(test["id"]),
+            service_token_id=int(test_service_token["id"]),
+            project_id=int(test_project["id"]))
         ```
 
         ## Import
@@ -191,9 +191,9 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         test_mapping = dbtcloud.SemanticLayerCredentialServiceTokenMapping("test_mapping",
-            semantic_layer_credential_id=test["id"],
-            service_token_id=test_service_token["id"],
-            project_id=test_project["id"])
+            semantic_layer_credential_id=int(test["id"]),
+            service_token_id=int(test_service_token["id"]),
+            project_id=int(test_project["id"]))
         ```
 
         ## Import
@@ -232,9 +232,9 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 semantic_layer_credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_token_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 semantic_layer_credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_token_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -263,9 +263,9 @@ class SemanticLayerCredentialServiceTokenMapping(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            semantic_layer_credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-            service_token_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'SemanticLayerCredentialServiceTokenMapping':
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            semantic_layer_credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            service_token_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'SemanticLayerCredentialServiceTokenMapping':
         """
         Get an existing SemanticLayerCredentialServiceTokenMapping resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

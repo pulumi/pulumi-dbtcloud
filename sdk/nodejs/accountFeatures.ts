@@ -126,31 +126,31 @@ export interface AccountFeaturesState {
     /**
      * Whether advanced CI is enabled.
      */
-    advancedCi?: pulumi.Input<boolean>;
+    advancedCi?: pulumi.Input<boolean | undefined>;
     /**
      * Whether AI features are enabled.
      */
-    aiFeatures?: pulumi.Input<boolean>;
+    aiFeatures?: pulumi.Input<boolean | undefined>;
     /**
      * Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
      */
-    catalogIngestion?: pulumi.Input<boolean>;
+    catalogIngestion?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the new Catalog navigation UI is enabled (default true for new accounts).
      */
-    explorerAccountUi?: pulumi.Input<boolean>;
+    explorerAccountUi?: pulumi.Input<boolean | undefined>;
     /**
      * Whether permissions for accounts migrating to Fusion are enabled.
      */
-    fusionMigrationPermissions?: pulumi.Input<boolean>;
+    fusionMigrationPermissions?: pulumi.Input<boolean | undefined>;
     /**
      * Whether partial parsing is enabled.
      */
-    partialParsing?: pulumi.Input<boolean>;
+    partialParsing?: pulumi.Input<boolean | undefined>;
     /**
      * Whether repository caching is enabled.
      */
-    repoCaching?: pulumi.Input<boolean>;
+    repoCaching?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -160,29 +160,29 @@ export interface AccountFeaturesArgs {
     /**
      * Whether advanced CI is enabled.
      */
-    advancedCi?: pulumi.Input<boolean>;
+    advancedCi?: pulumi.Input<boolean | undefined>;
     /**
      * Whether AI features are enabled.
      */
-    aiFeatures?: pulumi.Input<boolean>;
+    aiFeatures?: pulumi.Input<boolean | undefined>;
     /**
      * Whether catalog ingestion (external metadata ingestion into Catalog/Explorer Enterprise) is enabled.
      */
-    catalogIngestion?: pulumi.Input<boolean>;
+    catalogIngestion?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the new Catalog navigation UI is enabled (default true for new accounts).
      */
-    explorerAccountUi?: pulumi.Input<boolean>;
+    explorerAccountUi?: pulumi.Input<boolean | undefined>;
     /**
      * Whether permissions for accounts migrating to Fusion are enabled.
      */
-    fusionMigrationPermissions?: pulumi.Input<boolean>;
+    fusionMigrationPermissions?: pulumi.Input<boolean | undefined>;
     /**
      * Whether partial parsing is enabled.
      */
-    partialParsing?: pulumi.Input<boolean>;
+    partialParsing?: pulumi.Input<boolean | undefined>;
     /**
      * Whether repository caching is enabled.
      */
-    repoCaching?: pulumi.Input<boolean>;
+    repoCaching?: pulumi.Input<boolean | undefined>;
 }

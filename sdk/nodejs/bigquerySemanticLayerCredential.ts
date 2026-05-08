@@ -17,14 +17,14 @@ import * as utilities from "./utilities";
  *
  * const example = new dbtcloud.BigquerySemanticLayerCredential("example", {
  *     configuration: {
- *         projectId: projectId,
+ *         projectId: Number(projectId),
  *         name: "BigQuery SL Credential",
  *         adapterVersion: "bigquery_v0",
  *     },
  *     credential: {
- *         projectId: projectId,
+ *         projectId: Number(projectId),
  *         isActive: true,
- *         numThreads: numThreads,
+ *         numThreads: Number(numThreads),
  *         dataset: dataset,
  *     },
  *     privateKeyId: privateKeyId,
@@ -203,56 +203,56 @@ export interface BigquerySemanticLayerCredentialState {
     /**
      * Auth Provider X509 Cert URL for the Service Account
      */
-    authProviderX509CertUrl?: pulumi.Input<string>;
+    authProviderX509CertUrl?: pulumi.Input<string | undefined>;
     /**
      * Auth URI for the Service Account
      */
-    authUri?: pulumi.Input<string>;
+    authUri?: pulumi.Input<string | undefined>;
     /**
      * Service Account email
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * Client ID of the Service Account
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Client X509 Cert URL for the Service Account
      */
-    clientX509CertUrl?: pulumi.Input<string>;
+    clientX509CertUrl?: pulumi.Input<string | undefined>;
     /**
      * Semantic Layer credential configuration details.
      */
-    configuration?: pulumi.Input<inputs.BigquerySemanticLayerCredentialConfiguration>;
+    configuration?: pulumi.Input<inputs.BigquerySemanticLayerCredentialConfiguration | undefined>;
     /**
      * BigQuery credential details, but used in the context of the Semantic Layer.
      */
-    credential?: pulumi.Input<inputs.BigquerySemanticLayerCredentialCredential>;
+    credential?: pulumi.Input<inputs.BigquerySemanticLayerCredentialCredential | undefined>;
     /**
      * The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
      */
-    executionProject?: pulumi.Input<string>;
+    executionProject?: pulumi.Input<string | undefined>;
     /**
      * Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Private Key ID for the Service Account
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Token URI for the Service Account
      */
-    tokenUri?: pulumi.Input<string>;
+    tokenUri?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -290,11 +290,11 @@ export interface BigquerySemanticLayerCredentialArgs {
     /**
      * The GCP project that should execute BigQuery jobs for the semantic layer. When not set, jobs will execute in the project associated with the service account.
      */
-    executionProject?: pulumi.Input<string>;
+    executionProject?: pulumi.Input<string | undefined>;
     /**
      * Private Key for the Service Account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Private Key ID for the Service Account
      */
@@ -303,11 +303,11 @@ export interface BigquerySemanticLayerCredentialArgs {
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Token URI for the Service Account
      */

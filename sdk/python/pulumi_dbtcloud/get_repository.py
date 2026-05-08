@@ -266,9 +266,9 @@ def get_repository(fetch_deploy_key: Optional[_builtins.bool] = None,
         remote_url=pulumi.get(__ret__, 'remote_url'),
         repository_credentials_id=pulumi.get(__ret__, 'repository_credentials_id'),
         repository_id=pulumi.get(__ret__, 'repository_id'))
-def get_repository_output(fetch_deploy_key: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                          project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                          repository_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_repository_output(fetch_deploy_key: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                          project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                          repository_id: pulumi.Input[Optional[_builtins.int]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRepositoryResult]:
     """
     Retrieve data for a single repository

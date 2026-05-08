@@ -33,12 +33,12 @@ import * as utilities from "./utilities";
  * // a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
  * // to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
  * const dailyJob = new dbtcloud.Job("daily_job", {
- *     environmentId: prodEnvironment.environmentId,
+ *     environmentId: Number(prodEnvironment.environmentId),
  *     executeSteps: ["dbt build"],
  *     generateDocs: true,
  *     name: "Daily job",
  *     numThreads: 64,
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     runGenerateSources: true,
  *     targetName: "default",
  *     triggers: {
@@ -367,133 +367,133 @@ export interface JobState {
     /**
      * The model selector for checking changes in the compare changes Advanced CI feature
      */
-    compareChangesFlags?: pulumi.Input<string>;
+    compareChangesFlags?: pulumi.Input<string | undefined>;
     /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      */
-    dbtVersion?: pulumi.Input<string>;
+    dbtVersion?: pulumi.Input<string | undefined>;
     /**
      * Environment identifier that this job defers to (new deferring approach)
      */
-    deferringEnvironmentId?: pulumi.Input<number>;
+    deferringEnvironmentId?: pulumi.Input<number | undefined>;
     /**
      * Job identifier that this job defers to (legacy deferring approach)
      */
-    deferringJobId?: pulumi.Input<number>;
+    deferringJobId?: pulumi.Input<number | undefined>;
     /**
      * Description for the job
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Environment ID to create the job in
      */
-    environmentId?: pulumi.Input<number>;
+    environmentId?: pulumi.Input<number | undefined>;
     /**
      * Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
      */
-    errorsOnLintFailure?: pulumi.Input<boolean>;
+    errorsOnLintFailure?: pulumi.Input<boolean | undefined>;
     /**
      * List of commands to execute for the job
      */
-    executeSteps?: pulumi.Input<pulumi.Input<string>[]>;
+    executeSteps?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Execution settings for the job
      */
-    execution?: pulumi.Input<inputs.JobExecution>;
+    execution?: pulumi.Input<inputs.JobExecution | undefined>;
     /**
      * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
      */
-    forceNodeSelection?: pulumi.Input<boolean>;
+    forceNodeSelection?: pulumi.Input<boolean | undefined>;
     /**
      * Flag for whether the job should generate documentation
      */
-    generateDocs?: pulumi.Input<boolean>;
+    generateDocs?: pulumi.Input<boolean | undefined>;
     /**
      * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
-    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.JobJobCompletionTriggerCondition>[]>;
+    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.JobJobCompletionTriggerCondition>[] | undefined>;
     /**
      * Job identifier
      */
-    jobId?: pulumi.Input<number>;
+    jobId?: pulumi.Input<number | undefined>;
     /**
      * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
      */
-    jobType?: pulumi.Input<string>;
+    jobType?: pulumi.Input<string | undefined>;
     /**
      * Job name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of threads to use in the job
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the job in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
      */
-    runCompareChanges?: pulumi.Input<boolean>;
+    runCompareChanges?: pulumi.Input<boolean | undefined>;
     /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
-    runGenerateSources?: pulumi.Input<boolean>;
+    runGenerateSources?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the CI job should lint SQL changes. Defaults to `false`.
      */
-    runLint?: pulumi.Input<boolean>;
+    runLint?: pulumi.Input<boolean | undefined>;
     /**
      * Custom cron expression for schedule
      */
-    scheduleCron?: pulumi.Input<string>;
+    scheduleCron?: pulumi.Input<string | undefined>;
     /**
      * List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
      */
-    scheduleDays?: pulumi.Input<pulumi.Input<number>[]>;
+    scheduleDays?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of hours to execute the job at if running on a schedule
      */
-    scheduleHours?: pulumi.Input<pulumi.Input<number>[]>;
+    scheduleHours?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Number of hours between job executions if running on a schedule
      */
-    scheduleInterval?: pulumi.Input<number>;
+    scheduleInterval?: pulumi.Input<number | undefined>;
     /**
      * Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      */
-    scheduleType?: pulumi.Input<string>;
+    scheduleType?: pulumi.Input<string | undefined>;
     /**
      * Whether this job defers on a previous run of itself
      */
-    selfDeferring?: pulumi.Input<boolean>;
+    selfDeferring?: pulumi.Input<boolean | undefined>;
     /**
      * Target name for the dbt profile
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      *
      * @deprecated Use execution.timeout_seconds instead
      */
-    timeoutSeconds?: pulumi.Input<number>;
+    timeoutSeconds?: pulumi.Input<number | undefined>;
     /**
      * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
-    triggers?: pulumi.Input<inputs.JobTriggers>;
+    triggers?: pulumi.Input<inputs.JobTriggers | undefined>;
     /**
      * Whether the CI job should be automatically triggered on draft PRs
      */
-    triggersOnDraftPr?: pulumi.Input<boolean>;
+    triggersOnDraftPr?: pulumi.Input<boolean | undefined>;
     /**
      * When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
      */
-    validateExecuteSteps?: pulumi.Input<boolean>;
+    validateExecuteSteps?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -503,23 +503,23 @@ export interface JobArgs {
     /**
      * The model selector for checking changes in the compare changes Advanced CI feature
      */
-    compareChangesFlags?: pulumi.Input<string>;
+    compareChangesFlags?: pulumi.Input<string | undefined>;
     /**
      * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
      */
-    dbtVersion?: pulumi.Input<string>;
+    dbtVersion?: pulumi.Input<string | undefined>;
     /**
      * Environment identifier that this job defers to (new deferring approach)
      */
-    deferringEnvironmentId?: pulumi.Input<number>;
+    deferringEnvironmentId?: pulumi.Input<number | undefined>;
     /**
      * Job identifier that this job defers to (legacy deferring approach)
      */
-    deferringJobId?: pulumi.Input<number>;
+    deferringJobId?: pulumi.Input<number | undefined>;
     /**
      * Description for the job
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Environment ID to create the job in
      */
@@ -527,7 +527,7 @@ export interface JobArgs {
     /**
      * Whether the CI job should fail when a lint error is found. Only used when `runLint` is set to `true`. Defaults to `true`.
      */
-    errorsOnLintFailure?: pulumi.Input<boolean>;
+    errorsOnLintFailure?: pulumi.Input<boolean | undefined>;
     /**
      * List of commands to execute for the job
      */
@@ -535,35 +535,35 @@ export interface JobArgs {
     /**
      * Execution settings for the job
      */
-    execution?: pulumi.Input<inputs.JobExecution>;
+    execution?: pulumi.Input<inputs.JobExecution | undefined>;
     /**
      * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
      */
-    forceNodeSelection?: pulumi.Input<boolean>;
+    forceNodeSelection?: pulumi.Input<boolean | undefined>;
     /**
      * Flag for whether the job should generate documentation
      */
-    generateDocs?: pulumi.Input<boolean>;
+    generateDocs?: pulumi.Input<boolean | undefined>;
     /**
      * Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
      */
-    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.JobJobCompletionTriggerCondition>[]>;
+    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.JobJobCompletionTriggerCondition>[] | undefined>;
     /**
      * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
      */
-    jobType?: pulumi.Input<string>;
+    jobType?: pulumi.Input<string | undefined>;
     /**
      * Job name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of threads to use in the job
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the job in
      */
@@ -571,49 +571,49 @@ export interface JobArgs {
     /**
      * Whether the CI job should compare data changes introduced by the code changes. Requires `deferringEnvironmentId` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
      */
-    runCompareChanges?: pulumi.Input<boolean>;
+    runCompareChanges?: pulumi.Input<boolean | undefined>;
     /**
      * Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
      */
-    runGenerateSources?: pulumi.Input<boolean>;
+    runGenerateSources?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the CI job should lint SQL changes. Defaults to `false`.
      */
-    runLint?: pulumi.Input<boolean>;
+    runLint?: pulumi.Input<boolean | undefined>;
     /**
      * Custom cron expression for schedule
      */
-    scheduleCron?: pulumi.Input<string>;
+    scheduleCron?: pulumi.Input<string | undefined>;
     /**
      * List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
      */
-    scheduleDays?: pulumi.Input<pulumi.Input<number>[]>;
+    scheduleDays?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of hours to execute the job at if running on a schedule
      */
-    scheduleHours?: pulumi.Input<pulumi.Input<number>[]>;
+    scheduleHours?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Number of hours between job executions if running on a schedule
      */
-    scheduleInterval?: pulumi.Input<number>;
+    scheduleInterval?: pulumi.Input<number | undefined>;
     /**
      * Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
      */
-    scheduleType?: pulumi.Input<string>;
+    scheduleType?: pulumi.Input<string | undefined>;
     /**
      * Whether this job defers on a previous run of itself
      */
-    selfDeferring?: pulumi.Input<boolean>;
+    selfDeferring?: pulumi.Input<boolean | undefined>;
     /**
      * Target name for the dbt profile
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      *
      * @deprecated Use execution.timeout_seconds instead
      */
-    timeoutSeconds?: pulumi.Input<number>;
+    timeoutSeconds?: pulumi.Input<number | undefined>;
     /**
      * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a 'deactivated' state, set all to `false`.
      */
@@ -621,9 +621,9 @@ export interface JobArgs {
     /**
      * Whether the CI job should be automatically triggered on draft PRs
      */
-    triggersOnDraftPr?: pulumi.Input<boolean>;
+    triggersOnDraftPr?: pulumi.Input<boolean | undefined>;
     /**
      * When set to `true`, the provider will validate the `executeSteps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
      */
-    validateExecuteSteps?: pulumi.Input<boolean>;
+    validateExecuteSteps?: pulumi.Input<boolean | undefined>;
 }

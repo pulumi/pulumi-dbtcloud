@@ -14,17 +14,17 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const myCredential = new dbtcloud.BigQueryCredential("my_credential", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     dataset: "my_bq_dataset",
  *     numThreads: 16,
  * });
  * // When using a global connection with use_latest_adapter = true,
  * // provide the connection_id to automatically use the correct adapter version
  * const myCredentialV1 = new dbtcloud.BigQueryCredential("my_credential_v1", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     dataset: "my_bq_dataset",
  *     numThreads: 16,
- *     connectionId: myConnection.id,
+ *     connectionId: Number(myConnection.id),
  * });
  * ```
  *
@@ -150,27 +150,27 @@ export interface BigQueryCredentialState {
     /**
      * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * Default dataset name
      */
-    dataset?: pulumi.Input<string>;
+    dataset?: pulumi.Input<string | undefined>;
     /**
      * Whether the BigQuery credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the BigQuery credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -180,7 +180,7 @@ export interface BigQueryCredentialArgs {
     /**
      * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * Default dataset name
      */
@@ -188,7 +188,7 @@ export interface BigQueryCredentialArgs {
     /**
      * Whether the BigQuery credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */

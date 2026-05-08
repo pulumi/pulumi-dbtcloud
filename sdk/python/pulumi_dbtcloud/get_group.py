@@ -130,7 +130,7 @@ def get_group(group_id: Optional[_builtins.int] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         sso_mapping_groups=pulumi.get(__ret__, 'sso_mapping_groups'))
-def get_group_output(group_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_group_output(group_id: pulumi.Input[Optional[_builtins.int]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     Retrieve group details

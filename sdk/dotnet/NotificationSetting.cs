@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud
     ///     // collection of channels (where to send) and rules (when to send). Email and Slack
     ///     // notifications still use the legacy `dbtcloud_notification` resource.
     ///     // Microsoft Teams: notify on errors for a specific job
-    ///     var teamsProdFailures = new DbtCloud.Index.NotificationSetting("teams_prod_failures", new()
+    ///     var teamsProdFailures = new DbtCloud.NotificationSetting("teams_prod_failures", new()
     ///     {
     ///         Name = "Prod failures to Teams",
     ///         Description = "Alerts the data platform Teams channel when production runs error.",

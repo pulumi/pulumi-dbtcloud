@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const myDatabricksCred = new dbtcloud.DatabricksCredential("my_databricks_cred", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     token: "abcdefgh",
  *     schema: "my_schema",
  *     adapterType: "databricks",
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const databricksToken = config.require("databricksToken");
  * const myDatabricksCredWo = new dbtcloud.DatabricksCredential("my_databricks_cred_wo", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     tokenWo: databricksToken,
  *     tokenWoVersion: 1,
  *     schema: "my_schema",
@@ -180,46 +180,46 @@ export interface DatabricksCredentialState {
      *
      * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      */
-    adapterType?: pulumi.Input<string>;
+    adapterType?: pulumi.Input<string | undefined>;
     /**
      * The catalog where to create models (only for the databricks adapter)
      */
-    catalog?: pulumi.Input<string>;
+    catalog?: pulumi.Input<string | undefined>;
     /**
      * The system Databricks credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Databricks credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * Target name
      *
      * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -231,11 +231,11 @@ export interface DatabricksCredentialArgs {
      *
      * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      */
-    adapterType?: pulumi.Input<string>;
+    adapterType?: pulumi.Input<string | undefined>;
     /**
      * The catalog where to create models (only for the databricks adapter)
      */
-    catalog?: pulumi.Input<string>;
+    catalog?: pulumi.Input<string | undefined>;
     /**
      * Project ID to create the Databricks credential in
      */
@@ -243,28 +243,28 @@ export interface DatabricksCredentialArgs {
     /**
      * The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * Target name
      *
      * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Token for Databricks user. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }

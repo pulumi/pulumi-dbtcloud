@@ -19,7 +19,7 @@ __all__ = ['ScimConfigTokenArgs', 'ScimConfigToken']
 @pulumi.input_type
 class ScimConfigTokenArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ScimConfigToken resource.
 
@@ -30,24 +30,24 @@ class ScimConfigTokenArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A human-readable name for the token. Changing this value forces a new token to be created.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ScimConfigTokenState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_used: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_string: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_used: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_string: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ScimConfigToken resources.
 
@@ -67,50 +67,50 @@ class _ScimConfigTokenState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp when the token was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUsed")
-    def last_used(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_used(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp when the token was last used. Null if never used.
         """
         return pulumi.get(self, "last_used")
 
     @last_used.setter
-    def last_used(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_used(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_used", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A human-readable name for the token. Changing this value forces a new token to be created.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenString")
-    def token_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SCIM token value. Only available immediately after creation — not returned by subsequent API reads. Store this value securely.
         """
         return pulumi.get(self, "token_string")
 
     @token_string.setter
-    def token_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_string", value)
 
 
@@ -120,7 +120,7 @@ class ScimConfigToken(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a SCIM API token for a dbt Cloud account. SCIM tokens are used by identity providers (e.g. Okta, Azure AD) to provision and deprovision users and groups automatically.
@@ -215,7 +215,7 @@ class ScimConfigToken(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -241,10 +241,10 @@ class ScimConfigToken(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            last_used: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            token_string: Optional[pulumi.Input[_builtins.str]] = None) -> 'ScimConfigToken':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            token_string: pulumi.Input[Optional[_builtins.str]] = None) -> 'ScimConfigToken':
         """
         Get an existing ScimConfigToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -21,16 +21,16 @@ class RepositoryArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
                  remote_url: pulumi.Input[_builtins.str],
-                 azure_active_directory_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_active_directory_repository_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_bypass_webhook_registration_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fetch_deploy_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 git_clone_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 github_installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 gitlab_project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 pull_request_url_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 azure_active_directory_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_active_directory_repository_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_bypass_webhook_registration_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fetch_deploy_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 git_clone_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 github_installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 gitlab_project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 pull_request_url_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Repository resource.
 
@@ -99,144 +99,144 @@ class RepositoryArgs:
 
     @_builtins.property
     @pulumi.getter(name="azureActiveDirectoryProjectId")
-    def azure_active_directory_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_active_directory_project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_project_id")
 
     @azure_active_directory_project_id.setter
-    def azure_active_directory_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_active_directory_project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_active_directory_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureActiveDirectoryRepositoryId")
-    def azure_active_directory_repository_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_active_directory_repository_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_repository_id")
 
     @azure_active_directory_repository_id.setter
-    def azure_active_directory_repository_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_active_directory_repository_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_active_directory_repository_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureBypassWebhookRegistrationFailure")
-    def azure_bypass_webhook_registration_failure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def azure_bypass_webhook_registration_failure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
         """
         return pulumi.get(self, "azure_bypass_webhook_registration_failure")
 
     @azure_bypass_webhook_registration_failure.setter
-    def azure_bypass_webhook_registration_failure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def azure_bypass_webhook_registration_failure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "azure_bypass_webhook_registration_failure", value)
 
     @_builtins.property
     @pulumi.getter(name="fetchDeployKey")
     @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
-    def fetch_deploy_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fetch_deploy_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether we should return the public deploy key - (for the `deploy_key` strategy)
         """
         return pulumi.get(self, "fetch_deploy_key")
 
     @fetch_deploy_key.setter
-    def fetch_deploy_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fetch_deploy_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fetch_deploy_key", value)
 
     @_builtins.property
     @pulumi.getter(name="gitCloneStrategy")
-    def git_clone_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def git_clone_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
         """
         return pulumi.get(self, "git_clone_strategy")
 
     @git_clone_strategy.setter
-    def git_clone_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def git_clone_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "git_clone_strategy", value)
 
     @_builtins.property
     @pulumi.getter(name="githubInstallationId")
-    def github_installation_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def github_installation_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Identifier for the GitHub App - (for GitHub native integration only)
         """
         return pulumi.get(self, "github_installation_id")
 
     @github_installation_id.setter
-    def github_installation_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def github_installation_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "github_installation_id", value)
 
     @_builtins.property
     @pulumi.getter(name="gitlabProjectId")
-    def gitlab_project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gitlab_project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Identifier for the Gitlab project -  (for GitLab native integration only)
         """
         return pulumi.get(self, "gitlab_project_id")
 
     @gitlab_project_id.setter
-    def gitlab_project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gitlab_project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gitlab_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the repository is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="privateLinkEndpointId")
-    def private_link_endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_link_endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier for the PrivateLink endpoint.
         """
         return pulumi.get(self, "private_link_endpoint_id")
 
     @private_link_endpoint_id.setter
-    def private_link_endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_link_endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_link_endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pullRequestUrlTemplate")
-    def pull_request_url_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pull_request_url_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         """
         return pulumi.get(self, "pull_request_url_template")
 
     @pull_request_url_template.setter
-    def pull_request_url_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pull_request_url_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pull_request_url_template", value)
 
 
 @pulumi.input_type
 class _RepositoryState:
     def __init__(__self__, *,
-                 azure_active_directory_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_active_directory_repository_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_bypass_webhook_registration_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deploy_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 fetch_deploy_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 git_clone_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 github_installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 gitlab_project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 pull_request_url_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_credentials_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 repository_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 azure_active_directory_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_active_directory_repository_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_bypass_webhook_registration_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deploy_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 fetch_deploy_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 git_clone_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 github_installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 gitlab_project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 pull_request_url_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 repository_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Repository resources.
 
@@ -292,183 +292,183 @@ class _RepositoryState:
 
     @_builtins.property
     @pulumi.getter(name="azureActiveDirectoryProjectId")
-    def azure_active_directory_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_active_directory_project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_project_id")
 
     @azure_active_directory_project_id.setter
-    def azure_active_directory_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_active_directory_project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_active_directory_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureActiveDirectoryRepositoryId")
-    def azure_active_directory_repository_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_active_directory_repository_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure Dev Ops repository ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_repository` along with the ADO Project ID and the repository name - (required for ADO native integration only)
         """
         return pulumi.get(self, "azure_active_directory_repository_id")
 
     @azure_active_directory_repository_id.setter
-    def azure_active_directory_repository_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_active_directory_repository_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_active_directory_repository_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureBypassWebhookRegistrationFailure")
-    def azure_bypass_webhook_registration_failure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def azure_bypass_webhook_registration_failure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to False (the default), the connection will fail if the service user doesn't have access to set webhooks (required for auto-triggering CI jobs). If set to True, the connection will be successful but no automated CI job will be triggered - (for ADO native integration only)
         """
         return pulumi.get(self, "azure_bypass_webhook_registration_failure")
 
     @azure_bypass_webhook_registration_failure.setter
-    def azure_bypass_webhook_registration_failure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def azure_bypass_webhook_registration_failure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "azure_bypass_webhook_registration_failure", value)
 
     @_builtins.property
     @pulumi.getter(name="deployKey")
-    def deploy_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deploy_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public key generated by dbt when using `deploy_key` clone strategy
         """
         return pulumi.get(self, "deploy_key")
 
     @deploy_key.setter
-    def deploy_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deploy_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deploy_key", value)
 
     @_builtins.property
     @pulumi.getter(name="fetchDeployKey")
     @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deploy_key`""")
-    def fetch_deploy_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fetch_deploy_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether we should return the public deploy key - (for the `deploy_key` strategy)
         """
         return pulumi.get(self, "fetch_deploy_key")
 
     @fetch_deploy_key.setter
-    def fetch_deploy_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fetch_deploy_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fetch_deploy_key", value)
 
     @_builtins.property
     @pulumi.getter(name="gitCloneStrategy")
-    def git_clone_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def git_clone_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Git clone strategy for the repository. Can be `deploy_key` (default) for cloning via SSH Deploy Key, `github_app` for GitHub native integration, `deploy_token` for the GitLab native integration and `azure_active_directory_app` for ADO native integration
         """
         return pulumi.get(self, "git_clone_strategy")
 
     @git_clone_strategy.setter
-    def git_clone_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def git_clone_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "git_clone_strategy", value)
 
     @_builtins.property
     @pulumi.getter(name="githubInstallationId")
-    def github_installation_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def github_installation_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Identifier for the GitHub App - (for GitHub native integration only)
         """
         return pulumi.get(self, "github_installation_id")
 
     @github_installation_id.setter
-    def github_installation_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def github_installation_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "github_installation_id", value)
 
     @_builtins.property
     @pulumi.getter(name="gitlabProjectId")
-    def gitlab_project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gitlab_project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Identifier for the Gitlab project -  (for GitLab native integration only)
         """
         return pulumi.get(self, "gitlab_project_id")
 
     @gitlab_project_id.setter
-    def gitlab_project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gitlab_project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gitlab_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the repository is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="privateLinkEndpointId")
-    def private_link_endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_link_endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier for the PrivateLink endpoint.
         """
         return pulumi.get(self, "private_link_endpoint_id")
 
     @private_link_endpoint_id.setter
-    def private_link_endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_link_endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_link_endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to create the repository in
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pullRequestUrlTemplate")
-    def pull_request_url_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pull_request_url_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL template for creating a pull request. If it is not set, the default template will create a PR from the current branch to the branch configured in the Development environment.
         """
         return pulumi.get(self, "pull_request_url_template")
 
     @pull_request_url_template.setter
-    def pull_request_url_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pull_request_url_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pull_request_url_template", value)
 
     @_builtins.property
     @pulumi.getter(name="remoteUrl")
-    def remote_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def remote_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Git URL for the repository or <Group>/<Project> for Gitlab
         """
         return pulumi.get(self, "remote_url")
 
     @remote_url.setter
-    def remote_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def remote_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "remote_url", value)
 
     @_builtins.property
     @pulumi.getter(name="repositoryCredentialsId")
-    def repository_credentials_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def repository_credentials_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Credentials ID for the repository (From the repository side not the dbt Cloud ID)
         """
         return pulumi.get(self, "repository_credentials_id")
 
     @repository_credentials_id.setter
-    def repository_credentials_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def repository_credentials_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "repository_credentials_id", value)
 
     @_builtins.property
     @pulumi.getter(name="repositoryId")
-    def repository_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def repository_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Repository Identifier
         """
         return pulumi.get(self, "repository_id")
 
     @repository_id.setter
-    def repository_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def repository_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "repository_id", value)
 
 
@@ -478,18 +478,18 @@ class Repository(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_active_directory_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_active_directory_repository_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_bypass_webhook_registration_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fetch_deploy_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 git_clone_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 github_installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 gitlab_project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 pull_request_url_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_active_directory_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_active_directory_repository_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_bypass_webhook_registration_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fetch_deploy_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 git_clone_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 github_installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 gitlab_project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 pull_request_url_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_url: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource allows you to manage connections to git repositories in dbt Cloud.
@@ -597,18 +597,18 @@ class Repository(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_active_directory_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_active_directory_repository_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_bypass_webhook_registration_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fetch_deploy_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 git_clone_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 github_installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 gitlab_project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 pull_request_url_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 remote_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_active_directory_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_active_directory_repository_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_bypass_webhook_registration_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fetch_deploy_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 git_clone_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 github_installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 gitlab_project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 pull_request_url_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 remote_url: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -647,21 +647,21 @@ class Repository(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            azure_active_directory_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_active_directory_repository_id: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_bypass_webhook_registration_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-            deploy_key: Optional[pulumi.Input[_builtins.str]] = None,
-            fetch_deploy_key: Optional[pulumi.Input[_builtins.bool]] = None,
-            git_clone_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-            github_installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-            gitlab_project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-            private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            pull_request_url_template: Optional[pulumi.Input[_builtins.str]] = None,
-            remote_url: Optional[pulumi.Input[_builtins.str]] = None,
-            repository_credentials_id: Optional[pulumi.Input[_builtins.int]] = None,
-            repository_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'Repository':
+            azure_active_directory_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_active_directory_repository_id: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_bypass_webhook_registration_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+            deploy_key: pulumi.Input[Optional[_builtins.str]] = None,
+            fetch_deploy_key: pulumi.Input[Optional[_builtins.bool]] = None,
+            git_clone_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            github_installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+            gitlab_project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            pull_request_url_template: pulumi.Input[Optional[_builtins.str]] = None,
+            remote_url: pulumi.Input[Optional[_builtins.str]] = None,
+            repository_credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
+            repository_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'Repository':
         """
         Get an existing Repository resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attribute (stored in state)
-    ///     var mySparkCred = new DbtCloud.Index.SparkCredential("my_spark_cred", new()
+    ///     var mySparkCred = new DbtCloud.SparkCredential("my_spark_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Token = "abcdefgh",
@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var config = new Config();
     ///     var sparkToken = config.Require("sparkToken");
-    ///     var mySparkCredWo = new DbtCloud.Index.SparkCredential("my_spark_cred_wo", new()
+    ///     var mySparkCredWo = new DbtCloud.SparkCredential("my_spark_cred_wo", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         TokenWo = sparkToken,

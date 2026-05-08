@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const example = new dbtcloud.StarburstCredential("example", {
- *     projectId: exampleDbtcloudProject.id,
+ *     projectId: Number(exampleDbtcloudProject.id),
  *     database: "your_catalog",
  *     schema: "your_schema",
  *     user: "your_user",
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const starburstPassword = config.require("starburstPassword");
  * const exampleWo = new dbtcloud.StarburstCredential("example_wo", {
- *     projectId: exampleDbtcloudProject.id,
+ *     projectId: Number(exampleDbtcloudProject.id),
  *     database: "your_catalog",
  *     schema: "your_schema",
  *     user: "your_user",
@@ -173,36 +173,36 @@ export interface StarburstCredentialState {
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The catalog to connect use
      */
-    database?: pulumi.Input<string>;
+    database?: pulumi.Input<string | undefined>;
     /**
      * The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Starburst/Trino credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The schema where to create models
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * The username for the Starburst/Trino account
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -216,16 +216,16 @@ export interface StarburstCredentialArgs {
     /**
      * The password for the Starburst/Trino account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Starburst/Trino credential in
      */

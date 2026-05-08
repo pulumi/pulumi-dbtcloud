@@ -20,8 +20,8 @@ __all__ = ['ProjectArtefactsArgs', 'ProjectArtefacts']
 class ProjectArtefactsArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
-                 docs_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 freshness_job_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 docs_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 freshness_job_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a ProjectArtefacts resource.
 
@@ -49,35 +49,35 @@ class ProjectArtefactsArgs:
 
     @_builtins.property
     @pulumi.getter(name="docsJobId")
-    def docs_job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def docs_job_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Docs Job ID
         """
         return pulumi.get(self, "docs_job_id")
 
     @docs_job_id.setter
-    def docs_job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def docs_job_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "docs_job_id", value)
 
     @_builtins.property
     @pulumi.getter(name="freshnessJobId")
-    def freshness_job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def freshness_job_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Freshness Job ID
         """
         return pulumi.get(self, "freshness_job_id")
 
     @freshness_job_id.setter
-    def freshness_job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def freshness_job_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "freshness_job_id", value)
 
 
 @pulumi.input_type
 class _ProjectArtefactsState:
     def __init__(__self__, *,
-                 docs_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 freshness_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 docs_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 freshness_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ProjectArtefacts resources.
 
@@ -94,38 +94,38 @@ class _ProjectArtefactsState:
 
     @_builtins.property
     @pulumi.getter(name="docsJobId")
-    def docs_job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def docs_job_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Docs Job ID
         """
         return pulumi.get(self, "docs_job_id")
 
     @docs_job_id.setter
-    def docs_job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def docs_job_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "docs_job_id", value)
 
     @_builtins.property
     @pulumi.getter(name="freshnessJobId")
-    def freshness_job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def freshness_job_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Freshness Job ID
         """
         return pulumi.get(self, "freshness_job_id")
 
     @freshness_job_id.setter
-    def freshness_job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def freshness_job_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "freshness_job_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -135,9 +135,9 @@ class ProjectArtefacts(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 docs_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 freshness_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 docs_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 freshness_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         [Deprecated] Resource for mentioning what jobs are the source of truth for the legacy dbt Docs and dbt Source Freshness pages. dbt Explorer doesn't require this config anymore.
@@ -149,9 +149,9 @@ class ProjectArtefacts(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         my_project_artefacts = dbtcloud.ProjectArtefacts("my_project_artefacts",
-            project_id=dbt_project["id"],
-            docs_job_id=prod_job["id"],
-            freshness_job_id=prod_job["id"])
+            project_id=int(dbt_project["id"]),
+            docs_job_id=int(prod_job["id"]),
+            freshness_job_id=int(prod_job["id"]))
         ```
 
         ## Import
@@ -197,9 +197,9 @@ class ProjectArtefacts(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         my_project_artefacts = dbtcloud.ProjectArtefacts("my_project_artefacts",
-            project_id=dbt_project["id"],
-            docs_job_id=prod_job["id"],
-            freshness_job_id=prod_job["id"])
+            project_id=int(dbt_project["id"]),
+            docs_job_id=int(prod_job["id"]),
+            freshness_job_id=int(prod_job["id"]))
         ```
 
         ## Import
@@ -238,9 +238,9 @@ class ProjectArtefacts(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 docs_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 freshness_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 docs_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 freshness_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -265,9 +265,9 @@ class ProjectArtefacts(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            docs_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-            freshness_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'ProjectArtefacts':
+            docs_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+            freshness_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'ProjectArtefacts':
         """
         Get an existing ProjectArtefacts resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

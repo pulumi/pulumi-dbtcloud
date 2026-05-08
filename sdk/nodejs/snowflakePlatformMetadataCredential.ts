@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attributes (stored in state)
  * const passwordAuth = new dbtcloud.SnowflakePlatformMetadataCredential("password_auth", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: true,
  *     costInsightsEnabled: false,
@@ -39,7 +39,7 @@ import * as utilities from "./utilities";
  *     warehouse: "METADATA_WH",
  * });
  * const keypairAuth = new dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: false,
  *     costInsightsEnabled: false,
@@ -55,7 +55,7 @@ import * as utilities from "./utilities";
  * const snowflakeMetadataPrivateKey = config.require("snowflakeMetadataPrivateKey");
  * const snowflakeMetadataPrivateKeyPassphrase = config.require("snowflakeMetadataPrivateKeyPassphrase");
  * const passwordAuthWo = new dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: true,
  *     costInsightsEnabled: false,
@@ -67,7 +67,7 @@ import * as utilities from "./utilities";
  *     warehouse: "METADATA_WH",
  * });
  * const keypairAuthWo = new dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: false,
  *     costInsightsEnabled: false,
@@ -273,82 +273,82 @@ export interface SnowflakePlatformMetadataCredentialState {
     /**
      * The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.
      */
-    adapterVersion?: pulumi.Input<string>;
+    adapterVersion?: pulumi.Input<string | undefined>;
     /**
      * The authentication type. Must be 'password' or 'keypair'.
      */
-    authType?: pulumi.Input<string>;
+    authType?: pulumi.Input<string | undefined>;
     /**
      * Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
      */
-    catalogIngestionEnabled?: pulumi.Input<boolean>;
+    catalogIngestionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the global connection this credential is associated with. Cannot be changed after creation.
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * Whether cost insights is enabled for this credential.
      */
-    costInsightsEnabled?: pulumi.Input<boolean>;
+    costInsightsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether cost optimization data collection is enabled for this credential.
      */
-    costOptimizationEnabled?: pulumi.Input<boolean>;
+    costOptimizationEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the platform metadata credential.
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      */
-    privateKeyPassphrase?: pulumi.Input<string>;
+    privateKeyPassphrase?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
      */
-    privateKeyPassphraseWo?: pulumi.Input<string>;
+    privateKeyPassphraseWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
      */
-    privateKeyPassphraseWoVersion?: pulumi.Input<number>;
+    privateKeyPassphraseWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The Snowflake role to use.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The Snowflake user name.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
     /**
      * The Snowflake warehouse to use.
      */
-    warehouse?: pulumi.Input<string>;
+    warehouse?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -362,7 +362,7 @@ export interface SnowflakePlatformMetadataCredentialArgs {
     /**
      * Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
      */
-    catalogIngestionEnabled?: pulumi.Input<boolean>;
+    catalogIngestionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the global connection this credential is associated with. Cannot be changed after creation.
      */
@@ -370,50 +370,50 @@ export interface SnowflakePlatformMetadataCredentialArgs {
     /**
      * Whether cost insights is enabled for this credential.
      */
-    costInsightsEnabled?: pulumi.Input<boolean>;
+    costInsightsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether cost optimization data collection is enabled for this credential.
      */
-    costOptimizationEnabled?: pulumi.Input<boolean>;
+    costOptimizationEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private key for keypair authentication. Required when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The passphrase for the private key, if encrypted. Optional when authType is 'keypair'. Cannot be used with password. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      */
-    privateKeyPassphrase?: pulumi.Input<string>;
+    privateKeyPassphrase?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
      */
-    privateKeyPassphraseWo?: pulumi.Input<string>;
+    privateKeyPassphraseWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
      */
-    privateKeyPassphraseWoVersion?: pulumi.Input<number>;
+    privateKeyPassphraseWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The Snowflake role to use.
      */

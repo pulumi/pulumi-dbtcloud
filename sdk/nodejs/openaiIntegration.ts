@@ -177,44 +177,44 @@ export interface OpenaiIntegrationState {
     /**
      * The ID of the dbt Cloud account.
      */
-    accountId?: pulumi.Input<number>;
+    accountId?: pulumi.Input<number | undefined>;
     /**
      * The Azure OpenAI API version (e.g. ~~~2024-02-01~~~). Required when ~~~key*type~~~ is ~~~azure*openai~~~.
      */
-    azureApiVersion?: pulumi.Input<string>;
+    azureApiVersion?: pulumi.Input<string | undefined>;
     /**
      * The Azure OpenAI deployment name. Required when ~~~key*type~~~ is ~~~azure*openai~~~.
      */
-    azureDeploymentName?: pulumi.Input<string>;
+    azureDeploymentName?: pulumi.Input<string | undefined>;
     /**
      * The Azure OpenAI endpoint URL. Required when ~~~key*type~~~ is ~~~azure*openai~~~.
      */
-    azureEndpoint?: pulumi.Input<string>;
+    azureEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Timestamp when the integration was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The type of OpenAI key. One of: ~~~openai~~~, ~~~azure_openai~~~. To revert to the dbt Labs-managed key, destroy this resource.
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * The OpenAI or Azure OpenAI API key. Stored as a sensitive value in Terraform state. Conflicts with ~~~key*value*wo~~~. For Terraform 1.11+, prefer ~~~key*value*wo~~~ to avoid storing secrets in state.
      */
-    keyValue?: pulumi.Input<string>;
+    keyValue?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only variant of the API key (Terraform 1.11+). Never stored in state. Increment ~~~key*value*wo*version~~~ to rotate the key. Conflicts with ~~~key*value~~~.
      */
-    keyValueWo?: pulumi.Input<string>;
+    keyValueWo?: pulumi.Input<string | undefined>;
     /**
      * Increment this value to rotate the key when using ~~~key*value*wo~~~.
      */
-    keyValueWoVersion?: pulumi.Input<number>;
+    keyValueWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Timestamp when the integration was last updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -224,15 +224,15 @@ export interface OpenaiIntegrationArgs {
     /**
      * The Azure OpenAI API version (e.g. ~~~2024-02-01~~~). Required when ~~~key*type~~~ is ~~~azure*openai~~~.
      */
-    azureApiVersion?: pulumi.Input<string>;
+    azureApiVersion?: pulumi.Input<string | undefined>;
     /**
      * The Azure OpenAI deployment name. Required when ~~~key*type~~~ is ~~~azure*openai~~~.
      */
-    azureDeploymentName?: pulumi.Input<string>;
+    azureDeploymentName?: pulumi.Input<string | undefined>;
     /**
      * The Azure OpenAI endpoint URL. Required when ~~~key*type~~~ is ~~~azure*openai~~~.
      */
-    azureEndpoint?: pulumi.Input<string>;
+    azureEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The type of OpenAI key. One of: ~~~openai~~~, ~~~azure_openai~~~. To revert to the dbt Labs-managed key, destroy this resource.
      */
@@ -240,14 +240,14 @@ export interface OpenaiIntegrationArgs {
     /**
      * The OpenAI or Azure OpenAI API key. Stored as a sensitive value in Terraform state. Conflicts with ~~~key*value*wo~~~. For Terraform 1.11+, prefer ~~~key*value*wo~~~ to avoid storing secrets in state.
      */
-    keyValue?: pulumi.Input<string>;
+    keyValue?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only variant of the API key (Terraform 1.11+). Never stored in state. Increment ~~~key*value*wo*version~~~ to rotate the key. Conflicts with ~~~key*value~~~.
      */
-    keyValueWo?: pulumi.Input<string>;
+    keyValueWo?: pulumi.Input<string | undefined>;
     /**
      * Increment this value to rotate the key when using ~~~key*value*wo~~~.
      */
-    keyValueWoVersion?: pulumi.Input<number>;
+    keyValueWoVersion?: pulumi.Input<number | undefined>;
 }

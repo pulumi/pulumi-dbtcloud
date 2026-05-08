@@ -23,7 +23,7 @@ class AzureAdApplicationArgs:
                  client_secret: pulumi.Input[_builtins.str],
                  organization_name: pulumi.Input[_builtins.str],
                  tenant_id: pulumi.Input[_builtins.str],
-                 azure_service_authentication_method: Optional[pulumi.Input[_builtins.str]] = None):
+                 azure_service_authentication_method: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AzureAdApplication resource.
 
@@ -90,29 +90,29 @@ class AzureAdApplicationArgs:
 
     @_builtins.property
     @pulumi.getter(name="azureServiceAuthenticationMethod")
-    def azure_service_authentication_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_service_authentication_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The method used for service authentication. One of: ~~~service*user~~~, ~~~service*principal~~~. Defaults to ~~~service_user~~~.
         """
         return pulumi.get(self, "azure_service_authentication_method")
 
     @azure_service_authentication_method.setter
-    def azure_service_authentication_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_service_authentication_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_service_authentication_method", value)
 
 
 @pulumi.input_type
 class _AzureAdApplicationState:
     def __init__(__self__, *,
-                 account_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 azure_service_authentication_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_redirect_uri_domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 azure_service_authentication_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_redirect_uri_domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AzureAdApplication resources.
 
@@ -147,110 +147,110 @@ class _AzureAdApplicationState:
 
     @_builtins.property
     @pulumi.getter(name="accountId")
-    def account_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def account_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the dbt Cloud account.
         """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
-    def account_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def account_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "account_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureServiceAuthenticationMethod")
-    def azure_service_authentication_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_service_authentication_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The method used for service authentication. One of: ~~~service*user~~~, ~~~service*principal~~~. Defaults to ~~~service_user~~~.
         """
         return pulumi.get(self, "azure_service_authentication_method")
 
     @azure_service_authentication_method.setter
-    def azure_service_authentication_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_service_authentication_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_service_authentication_method", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client ID (application ID) of the Azure AD app registration. Stored as a sensitive value — the API never returns it.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client secret of the Azure AD app registration. Stored as a sensitive value — the API never returns it.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp when the application was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthRedirectUriDomain")
-    def oauth_redirect_uri_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth_redirect_uri_domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The domain used for the OAuth redirect URI. Set automatically by dbt Cloud based on the account's subdomain.
         """
         return pulumi.get(self, "oauth_redirect_uri_domain")
 
     @oauth_redirect_uri_domain.setter
-    def oauth_redirect_uri_domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth_redirect_uri_domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth_redirect_uri_domain", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationName")
-    def organization_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Azure DevOps organization.
         """
         return pulumi.get(self, "organization_name")
 
     @organization_name.setter
-    def organization_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_name", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The tenant ID of the Azure AD directory. Stored as a sensitive value — the API never returns it.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp when the application was last updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -260,11 +260,11 @@ class AzureAdApplication(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_service_authentication_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_service_authentication_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an Azure Active Directory (Microsoft Entra ID) application registration for a dbt Cloud account. This enables Azure DevOps integration, allowing dbt Cloud to access Azure DevOps repositories for project setup.
@@ -399,11 +399,11 @@ class AzureAdApplication(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_service_authentication_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_service_authentication_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -442,15 +442,15 @@ class AzureAdApplication(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            account_id: Optional[pulumi.Input[_builtins.int]] = None,
-            azure_service_authentication_method: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            oauth_redirect_uri_domain: Optional[pulumi.Input[_builtins.str]] = None,
-            organization_name: Optional[pulumi.Input[_builtins.str]] = None,
-            tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'AzureAdApplication':
+            account_id: pulumi.Input[Optional[_builtins.int]] = None,
+            azure_service_authentication_method: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth_redirect_uri_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'AzureAdApplication':
         """
         Get an existing AzureAdApplication resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

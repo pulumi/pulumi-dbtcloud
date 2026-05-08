@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * // Using the classic sensitive attribute (stored in state)
  * const redshift = new dbtcloud.RedshiftCredential("redshift", {
  *     numThreads: 16,
- *     projectId: testProject.id,
+ *     projectId: Number(testProject.id),
  *     defaultSchema: "my_schema",
  *     username: "my_username",
  *     password: "my_sensitive_password",
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * const redshiftPassword = config.require("redshiftPassword");
  * const redshiftWo = new dbtcloud.RedshiftCredential("redshift_wo", {
  *     numThreads: 16,
- *     projectId: testProject.id,
+ *     projectId: Number(testProject.id),
  *     defaultSchema: "my_schema",
  *     username: "my_username",
  *     passwordWo: redshiftPassword,
@@ -178,40 +178,40 @@ export interface RedshiftCredentialState {
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * Default schema name
      */
-    defaultSchema?: pulumi.Input<string>;
+    defaultSchema?: pulumi.Input<string | undefined>;
     /**
      * Whether the Redshift credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Redshift credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The username for the Redshift account.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -225,7 +225,7 @@ export interface RedshiftCredentialArgs {
     /**
      * Whether the Redshift credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */
@@ -233,16 +233,16 @@ export interface RedshiftCredentialArgs {
     /**
      * The password for the Redshift account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Redshift credential in
      */
@@ -250,5 +250,5 @@ export interface RedshiftCredentialArgs {
     /**
      * The username for the Redshift account.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }

@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * // Using the classic sensitive attributes (stored in state)
  * // when using sql authentication
  * const mySynapseCredSql = new dbtcloud.SynapseCredential("my_synapse_cred_sql", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     authentication: "sql",
  *     schema: "my_schema",
  *     user: "my_user",
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * });
  * // when using AD authentication
  * const mySynapseCredAd = new dbtcloud.SynapseCredential("my_synapse_cred_ad", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     authentication: "ActiveDirectoryPassword",
  *     schema: "my_schema",
  *     user: "my_user",
@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  * });
  * // when using service principal authentication
  * const mySynapseCredServPrinc = new dbtcloud.SynapseCredential("my_synapse_cred_serv_princ", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     authentication: "ServicePrincipal",
  *     schema: "my_schema",
  *     clientId: "my_client_id",
@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  * const synapseClientSecret = config.require("synapseClientSecret");
  * // when using AD authentication with write-only password
  * const mySynapseCredAdWo = new dbtcloud.SynapseCredential("my_synapse_cred_ad_wo", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     authentication: "ActiveDirectoryPassword",
  *     schema: "my_schema",
  *     user: "my_user",
@@ -57,7 +57,7 @@ import * as utilities from "./utilities";
  * });
  * // when using service principal authentication with write-only client secret
  * const mySynapseCredServPrincWo = new dbtcloud.SynapseCredential("my_synapse_cred_serv_princ_wo", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     authentication: "ServicePrincipal",
  *     schema: "my_schema",
  *     clientId: "my_client_id",
@@ -251,65 +251,65 @@ export interface SynapseCredentialState {
     /**
      * The type of the adapter (synapse)
      */
-    adapterType?: pulumi.Input<string>;
+    adapterType?: pulumi.Input<string | undefined>;
     /**
      * Authentication type (SQL, ActiveDirectoryPassword, ServicePrincipal)
      */
-    authentication?: pulumi.Input<string>;
+    authentication?: pulumi.Input<string | undefined>;
     /**
      * The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Synapse credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The schema where to create the dbt models
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * Optionally set this to the principal who should own the schemas created by dbt
      */
-    schemaAuthorization?: pulumi.Input<string>;
+    schemaAuthorization?: pulumi.Input<string | undefined>;
     /**
      * The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * The username of the Synapse account to connect to. Only used when connection with AD user/pass
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -327,33 +327,33 @@ export interface SynapseCredentialArgs {
     /**
      * The client ID of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client secret of the Azure Active Directory service principal. This is only used when connecting to Azure SQL with an AAD service principal. Consider using `clientSecretWo` instead, which is not stored in state.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The password for the account to connect to. Only used when connection with AD user/pass. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Synapse credential in
      */
@@ -365,13 +365,13 @@ export interface SynapseCredentialArgs {
     /**
      * Optionally set this to the principal who should own the schemas created by dbt
      */
-    schemaAuthorization?: pulumi.Input<string>;
+    schemaAuthorization?: pulumi.Input<string | undefined>;
     /**
      * The tenant ID of the Azure Active Directory instance. This is only used when connecting to Azure SQL with a service principal.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * The username of the Synapse account to connect to. Only used when connection with AD user/pass
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
 }

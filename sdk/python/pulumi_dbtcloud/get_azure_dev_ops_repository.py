@@ -158,8 +158,8 @@ def get_azure_dev_ops_repository(azure_dev_ops_project_id: Optional[_builtins.st
         name=pulumi.get(__ret__, 'name'),
         remote_url=pulumi.get(__ret__, 'remote_url'),
         web_url=pulumi.get(__ret__, 'web_url'))
-def get_azure_dev_ops_repository_output(azure_dev_ops_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                        name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_azure_dev_ops_repository_output(azure_dev_ops_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                        name: pulumi.Input[Optional[_builtins.str]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAzureDevOpsRepositoryResult]:
     """
     Use this data source to retrieve the ID and details of an Azure Dev Ops repository

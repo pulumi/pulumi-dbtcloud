@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *         {
  *             permissionSet: "job_admin",
  *             allProjects: false,
- *             projectId: dbtProject.id,
+ *             projectId: Number(dbtProject.id),
  *         },
  *         {
  *             permissionSet: "developer",
@@ -146,23 +146,23 @@ export interface ServiceTokenState {
     /**
      * Service token name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Permissions set for the service token
      */
-    serviceTokenPermissions?: pulumi.Input<pulumi.Input<inputs.ServiceTokenServiceTokenPermission>[]>;
+    serviceTokenPermissions?: pulumi.Input<pulumi.Input<inputs.ServiceTokenServiceTokenPermission>[] | undefined>;
     /**
      * Service token state (1 is active, 2 is inactive)
      */
-    state?: pulumi.Input<number>;
+    state?: pulumi.Input<number | undefined>;
     /**
      * Service token secret value (only accessible on creation))
      */
-    tokenString?: pulumi.Input<string>;
+    tokenString?: pulumi.Input<string | undefined>;
     /**
      * Service token UID (part of the token)
      */
-    uid?: pulumi.Input<string>;
+    uid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -172,13 +172,13 @@ export interface ServiceTokenArgs {
     /**
      * Service token name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Permissions set for the service token
      */
-    serviceTokenPermissions?: pulumi.Input<pulumi.Input<inputs.ServiceTokenServiceTokenPermission>[]>;
+    serviceTokenPermissions?: pulumi.Input<pulumi.Input<inputs.ServiceTokenServiceTokenPermission>[] | undefined>;
     /**
      * Service token state (1 is active, 2 is inactive)
      */
-    state?: pulumi.Input<number>;
+    state?: pulumi.Input<number | undefined>;
 }

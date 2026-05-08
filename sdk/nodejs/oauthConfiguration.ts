@@ -205,44 +205,44 @@ export interface OauthConfigurationState {
     /**
      * The Application ID URI for the OAuth integration. Only for Entra
      */
-    applicationIdUri?: pulumi.Input<string>;
+    applicationIdUri?: pulumi.Input<string | undefined>;
     /**
      * The Authorize URL for the OAuth integration
      */
-    authorizeUrl?: pulumi.Input<string>;
+    authorizeUrl?: pulumi.Input<string | undefined>;
     /**
      * The Client ID for the OAuth integration
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The name of OAuth integration
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The redirect URL for the OAuth integration
      */
-    redirectUri?: pulumi.Input<string>;
+    redirectUri?: pulumi.Input<string | undefined>;
     /**
      * The Token URL for the OAuth integration
      */
-    tokenUrl?: pulumi.Input<string>;
+    tokenUrl?: pulumi.Input<string | undefined>;
     /**
      * The type of OAuth integration (`entra` or `okta`)
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -252,7 +252,7 @@ export interface OauthConfigurationArgs {
     /**
      * The Application ID URI for the OAuth integration. Only for Entra
      */
-    applicationIdUri?: pulumi.Input<string>;
+    applicationIdUri?: pulumi.Input<string | undefined>;
     /**
      * The Authorize URL for the OAuth integration
      */
@@ -264,20 +264,20 @@ export interface OauthConfigurationArgs {
     /**
      * The Client secret for the OAuth integration. Consider using `clientSecretWo` instead, which is not stored in state.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `clientSecret`. The value is not stored in state. Requires `clientSecretWoVersion` to trigger updates.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `clientSecretWo`. Increment this value to trigger an update of the client secret when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The name of OAuth integration
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The redirect URL for the OAuth integration
      */

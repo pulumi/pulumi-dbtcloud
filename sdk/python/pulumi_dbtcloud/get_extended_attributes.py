@@ -129,8 +129,8 @@ def get_extended_attributes(extended_attributes_id: Optional[_builtins.int] = No
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'))
-def get_extended_attributes_output(extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                                   project_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_extended_attributes_output(extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                                   project_id: pulumi.Input[Optional[_builtins.int]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetExtendedAttributesResult]:
     """
     Extended attributes data source

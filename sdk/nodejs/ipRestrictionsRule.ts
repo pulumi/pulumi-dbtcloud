@@ -147,23 +147,23 @@ export interface IpRestrictionsRuleState {
     /**
      * Set of CIDR ranges for this rule
      */
-    cidrs?: pulumi.Input<pulumi.Input<inputs.IpRestrictionsRuleCidr>[]>;
+    cidrs?: pulumi.Input<pulumi.Input<inputs.IpRestrictionsRuleCidr>[] | undefined>;
     /**
      * A description of the IP restriction rule
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the IP restriction rule
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.
      */
-    ruleSetEnabled?: pulumi.Input<boolean>;
+    ruleSetEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The type of the IP restriction rule (allow or deny)
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -177,11 +177,11 @@ export interface IpRestrictionsRuleArgs {
     /**
      * A description of the IP restriction rule
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the IP restriction rule
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.
      */

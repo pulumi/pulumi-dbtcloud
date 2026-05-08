@@ -100,15 +100,15 @@ export interface PartialEnvironmentVariableState {
     /**
      * Map from environment names to respective variable value. This field is not set as sensitive so take precautions when using secret environment variables. Only the specified environment values will be managed by this resource.
      */
-    environmentValues?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    environmentValues?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Project ID to create or update the environment variable in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -122,7 +122,7 @@ export interface PartialEnvironmentVariableArgs {
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Project ID to create or update the environment variable in
      */

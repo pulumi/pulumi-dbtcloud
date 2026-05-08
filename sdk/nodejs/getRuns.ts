@@ -62,5 +62,5 @@ export interface GetRunsOutputArgs {
     /**
      * Filter to apply to the runs
      */
-    filter?: pulumi.Input<inputs.GetRunsFilterArgs>;
+    filter?: pulumi.Input<inputs.GetRunsFilterArgs | undefined>;
 }

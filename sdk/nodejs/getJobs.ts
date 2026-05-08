@@ -106,9 +106,9 @@ export interface GetJobsOutputArgs {
     /**
      * The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      */
-    environmentId?: pulumi.Input<number>;
+    environmentId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the project for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
 }

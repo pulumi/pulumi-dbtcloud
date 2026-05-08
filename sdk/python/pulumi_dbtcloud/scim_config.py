@@ -73,9 +73,9 @@ class ScimConfigArgs:
 @pulumi.input_type
 class _ScimConfigState:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manual_updates_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 scim_controlled_license_type: Optional[pulumi.Input[_builtins.bool]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manual_updates_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 scim_controlled_license_type: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ScimConfig resources.
 
@@ -92,38 +92,38 @@ class _ScimConfigState:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether SCIM provisioning is enabled for the account.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="manualUpdatesAllowed")
-    def manual_updates_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manual_updates_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether administrators can manually update users and groups that are managed by SCIM. When set to ~~~false~~~, SCIM is the sole source of truth for user and group management.
         """
         return pulumi.get(self, "manual_updates_allowed")
 
     @manual_updates_allowed.setter
-    def manual_updates_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manual_updates_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manual_updates_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="scimControlledLicenseType")
-    def scim_controlled_license_type(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def scim_controlled_license_type(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the dbt Cloud license type (Developer, Read-Only, IT) is controlled by SCIM attribute mapping. When set to ~~~false~~~, license types are managed manually inside dbt Cloud.
         """
         return pulumi.get(self, "scim_controlled_license_type")
 
     @scim_controlled_license_type.setter
-    def scim_controlled_license_type(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def scim_controlled_license_type(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "scim_controlled_license_type", value)
 
 
@@ -133,9 +133,9 @@ class ScimConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manual_updates_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 scim_controlled_license_type: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manual_updates_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 scim_controlled_license_type: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Manages the SCIM configuration for a dbt Cloud account. SCIM (System for Cross-domain Identity Management) allows identity providers such as Okta and Azure AD to automatically provision and deprovision users and groups.
@@ -226,9 +226,9 @@ class ScimConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 manual_updates_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 scim_controlled_license_type: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 manual_updates_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 scim_controlled_license_type: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -257,9 +257,9 @@ class ScimConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            manual_updates_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            scim_controlled_license_type: Optional[pulumi.Input[_builtins.bool]] = None) -> 'ScimConfig':
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            manual_updates_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            scim_controlled_license_type: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ScimConfig':
         """
         Get an existing ScimConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

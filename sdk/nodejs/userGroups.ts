@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  *
  * // we can assign groups to users
  * const myUserGroups = new dbtcloud.UserGroups("my_user_groups", {
- *     userId: myUser.id,
+ *     userId: Number(myUser.id),
  *     groupIds: [
  *         1234,
  *         myGroup.id,
@@ -130,11 +130,11 @@ export interface UserGroupsState {
     /**
      * IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
      */
-    groupIds?: pulumi.Input<pulumi.Input<number>[]>;
+    groupIds?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * The internal ID of a dbt Cloud user.
      */
-    userId?: pulumi.Input<number>;
+    userId?: pulumi.Input<number | undefined>;
 }
 
 /**

@@ -57,7 +57,7 @@ import * as utilities from "./utilities";
  *         {
  *             permissionSet: "developer",
  *             allProjects: false,
- *             projectId: dbtProject.id,
+ *             projectId: Number(dbtProject.id),
  *             writableEnvironmentCategories: [
  *                 "development",
  *                 "staging",
@@ -168,19 +168,19 @@ export interface GroupState {
     /**
      * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      */
-    assignByDefault?: pulumi.Input<boolean>;
+    assignByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
      */
-    groupPermissions?: pulumi.Input<pulumi.Input<inputs.GroupGroupPermission>[]>;
+    groupPermissions?: pulumi.Input<pulumi.Input<inputs.GroupGroupPermission>[] | undefined>;
     /**
      * The name of the group. This is used to identify an existing group
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      */
-    ssoMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    ssoMappingGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -190,17 +190,17 @@ export interface GroupArgs {
     /**
      * Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
      */
-    assignByDefault?: pulumi.Input<boolean>;
+    assignByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
      */
-    groupPermissions?: pulumi.Input<pulumi.Input<inputs.GroupGroupPermission>[]>;
+    groupPermissions?: pulumi.Input<pulumi.Input<inputs.GroupGroupPermission>[] | undefined>;
     /**
      * The name of the group. This is used to identify an existing group
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
      */
-    ssoMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    ssoMappingGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

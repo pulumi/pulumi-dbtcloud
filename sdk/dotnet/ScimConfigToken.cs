@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud
     ///     // The token value is returned only on creation and stored in Terraform state
     ///     // as a sensitive value. It is never returned by subsequent API reads, so
     ///     // changing the `name` forces a new token to be created.
-    ///     var okta = new DbtCloud.Index.ScimConfigToken("okta", new()
+    ///     var okta = new DbtCloud.ScimConfigToken("okta", new()
     ///     {
     ///         Name = "okta-scim",
     ///     });

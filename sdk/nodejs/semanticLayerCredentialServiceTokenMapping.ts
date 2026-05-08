@@ -12,9 +12,9 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const testMapping = new dbtcloud.SemanticLayerCredentialServiceTokenMapping("test_mapping", {
- *     semanticLayerCredentialId: test.id,
- *     serviceTokenId: testServiceToken.id,
- *     projectId: testProject.id,
+ *     semanticLayerCredentialId: Number(test.id),
+ *     serviceTokenId: Number(testServiceToken.id),
+ *     projectId: Number(testProject.id),
  * });
  * ```
  *
@@ -122,15 +122,15 @@ export interface SemanticLayerCredentialServiceTokenMappingState {
     /**
      * The ID of the project to which the semantic layer credential is associated.
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the semantic layer credential to map.
      */
-    semanticLayerCredentialId?: pulumi.Input<number>;
+    semanticLayerCredentialId?: pulumi.Input<number | undefined>;
     /**
      * The ID of the service token to map to the semantic layer credential.
      */
-    serviceTokenId?: pulumi.Input<number>;
+    serviceTokenId?: pulumi.Input<number | undefined>;
 }
 
 /**

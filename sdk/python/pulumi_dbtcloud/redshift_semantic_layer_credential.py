@@ -60,8 +60,8 @@ class RedshiftSemanticLayerCredentialArgs:
 @pulumi.input_type
 class _RedshiftSemanticLayerCredentialState:
     def __init__(__self__, *,
-                 configuration: Optional[pulumi.Input['RedshiftSemanticLayerCredentialConfigurationArgs']] = None,
-                 credential: Optional[pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs']] = None):
+                 configuration: pulumi.Input[Optional['RedshiftSemanticLayerCredentialConfigurationArgs']] = None,
+                 credential: pulumi.Input[Optional['RedshiftSemanticLayerCredentialCredentialArgs']] = None):
         """
         Input properties used for looking up and filtering RedshiftSemanticLayerCredential resources.
 
@@ -75,26 +75,26 @@ class _RedshiftSemanticLayerCredentialState:
 
     @_builtins.property
     @pulumi.getter
-    def configuration(self) -> Optional[pulumi.Input['RedshiftSemanticLayerCredentialConfigurationArgs']]:
+    def configuration(self) -> pulumi.Input[Optional['RedshiftSemanticLayerCredentialConfigurationArgs']]:
         """
         Semantic Layer credential configuration details.
         """
         return pulumi.get(self, "configuration")
 
     @configuration.setter
-    def configuration(self, value: Optional[pulumi.Input['RedshiftSemanticLayerCredentialConfigurationArgs']]):
+    def configuration(self, value: pulumi.Input[Optional['RedshiftSemanticLayerCredentialConfigurationArgs']]):
         pulumi.set(self, "configuration", value)
 
     @_builtins.property
     @pulumi.getter
-    def credential(self) -> Optional[pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs']]:
+    def credential(self) -> pulumi.Input[Optional['RedshiftSemanticLayerCredentialCredentialArgs']]:
         """
         Redshift credential details, but used in the context of the Semantic Layer.
         """
         return pulumi.get(self, "credential")
 
     @credential.setter
-    def credential(self, value: Optional[pulumi.Input['RedshiftSemanticLayerCredentialCredentialArgs']]):
+    def credential(self, value: pulumi.Input[Optional['RedshiftSemanticLayerCredentialCredentialArgs']]):
         pulumi.set(self, "credential", value)
 
 
@@ -104,8 +104,8 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: Optional[pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: Optional[pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
+                 credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None,
                  __props__=None):
         """
         Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
@@ -118,16 +118,16 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
 
         test_redshift_semantic_layer_credential = dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Redshift SL Credential",
                 "adapter_version": "redshift_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "username": username,
                 "is_active": True,
                 "password": password,
-                "num_threads": num_threads,
+                "num_threads": int(num_threads),
                 "default_schema": default_schema,
             })
         ```
@@ -175,16 +175,16 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
 
         test_redshift_semantic_layer_credential = dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Redshift SL Credential",
                 "adapter_version": "redshift_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "username": username,
                 "is_active": True,
                 "password": password,
-                "num_threads": num_threads,
+                "num_threads": int(num_threads),
                 "default_schema": default_schema,
             })
         ```
@@ -225,8 +225,8 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: Optional[pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: Optional[pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
+                 credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -252,8 +252,8 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            configuration: Optional[pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
-            credential: Optional[pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'RedshiftSemanticLayerCredential':
+            configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
+            credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'RedshiftSemanticLayerCredential':
         """
         Get an existing RedshiftSemanticLayerCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

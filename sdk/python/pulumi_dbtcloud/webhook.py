@@ -21,10 +21,10 @@ class WebhookArgs:
     def __init__(__self__, *,
                  client_url: pulumi.Input[_builtins.str],
                  event_types: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 job_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Webhook resource.
 
@@ -72,66 +72,66 @@ class WebhookArgs:
 
     @_builtins.property
     @pulumi.getter
-    def active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Webhooks active flag
         """
         return pulumi.get(self, "active")
 
     @active.setter
-    def active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "active", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Webhooks Description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="jobIds")
-    def job_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def job_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         """
         return pulumi.get(self, "job_ids")
 
     @job_ids.setter
-    def job_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def job_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "job_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Webhooks Name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _WebhookState:
     def __init__(__self__, *,
-                 account_identifier: Optional[pulumi.Input[_builtins.str]] = None,
-                 active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 event_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 hmac_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 http_status_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 job_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 webhook_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_identifier: pulumi.Input[Optional[_builtins.str]] = None,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 event_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 hmac_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_status_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Webhook resources.
 
@@ -172,123 +172,123 @@ class _WebhookState:
 
     @_builtins.property
     @pulumi.getter(name="accountIdentifier")
-    def account_identifier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_identifier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Webhooks Account Identifier
         """
         return pulumi.get(self, "account_identifier")
 
     @account_identifier.setter
-    def account_identifier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_identifier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_identifier", value)
 
     @_builtins.property
     @pulumi.getter
-    def active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Webhooks active flag
         """
         return pulumi.get(self, "active")
 
     @active.setter
-    def active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "active", value)
 
     @_builtins.property
     @pulumi.getter(name="clientUrl")
-    def client_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Webhooks Client URL
         """
         return pulumi.get(self, "client_url")
 
     @client_url.setter
-    def client_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Webhooks Description
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="eventTypes")
-    def event_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def event_types(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Webhooks Event Types
         """
         return pulumi.get(self, "event_types")
 
     @event_types.setter
-    def event_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def event_types(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "event_types", value)
 
     @_builtins.property
     @pulumi.getter(name="hmacSecret")
-    def hmac_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hmac_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Secret key for the webhook. Can be used to validate the authenticity of the webhook.
         """
         return pulumi.get(self, "hmac_secret")
 
     @hmac_secret.setter
-    def hmac_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hmac_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hmac_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="httpStatusCode")
-    def http_status_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_status_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Latest HTTP status of the webhook
         """
         return pulumi.get(self, "http_status_code")
 
     @http_status_code.setter
-    def http_status_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_status_code(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_status_code", value)
 
     @_builtins.property
     @pulumi.getter(name="jobIds")
-    def job_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def job_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
         """
         return pulumi.get(self, "job_ids")
 
     @job_ids.setter
-    def job_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def job_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "job_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Webhooks Name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="webhookId")
     @_utilities.deprecated("""Use `id` instead""")
-    def webhook_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webhook_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Webhook's ID
         """
         return pulumi.get(self, "webhook_id")
 
     @webhook_id.setter
-    def webhook_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webhook_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webhook_id", value)
 
 
@@ -298,12 +298,12 @@ class Webhook(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 event_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 job_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 event_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 job_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages webhook notifications in dbt Cloud.
@@ -423,12 +423,12 @@ class Webhook(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 event_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 job_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 event_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 job_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -464,16 +464,16 @@ class Webhook(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            account_identifier: Optional[pulumi.Input[_builtins.str]] = None,
-            active: Optional[pulumi.Input[_builtins.bool]] = None,
-            client_url: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            event_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            hmac_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            http_status_code: Optional[pulumi.Input[_builtins.str]] = None,
-            job_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            webhook_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Webhook':
+            account_identifier: pulumi.Input[Optional[_builtins.str]] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            client_url: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            event_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            hmac_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            http_status_code: pulumi.Input[Optional[_builtins.str]] = None,
+            job_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            webhook_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Webhook':
         """
         Get an existing Webhook resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

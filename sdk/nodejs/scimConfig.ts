@@ -119,15 +119,15 @@ export interface ScimConfigState {
     /**
      * Whether SCIM provisioning is enabled for the account.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether administrators can manually update users and groups that are managed by SCIM. When set to ~~~false~~~, SCIM is the sole source of truth for user and group management.
      */
-    manualUpdatesAllowed?: pulumi.Input<boolean>;
+    manualUpdatesAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * Whether the dbt Cloud license type (Developer, Read-Only, IT) is controlled by SCIM attribute mapping. When set to ~~~false~~~, license types are managed manually inside dbt Cloud.
      */
-    scimControlledLicenseType?: pulumi.Input<boolean>;
+    scimControlledLicenseType?: pulumi.Input<boolean | undefined>;
 }
 
 /**

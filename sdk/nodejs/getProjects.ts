@@ -62,5 +62,5 @@ export interface GetProjectsOutputArgs {
     /**
      * Used to filter projects by name, Optional
      */
-    nameContains?: pulumi.Input<string>;
+    nameContains?: pulumi.Input<string | undefined>;
 }

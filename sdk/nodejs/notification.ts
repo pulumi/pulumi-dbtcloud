@@ -193,43 +193,43 @@ export interface NotificationState {
     /**
      * The external email to receive the notification
      */
-    externalEmail?: pulumi.Input<string>;
+    externalEmail?: pulumi.Input<string | undefined>;
     /**
      * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      */
-    notificationType?: pulumi.Input<number>;
+    notificationType?: pulumi.Input<number | undefined>;
     /**
      * List of job IDs to trigger the webhook on cancel
      */
-    onCancels?: pulumi.Input<pulumi.Input<number>[]>;
+    onCancels?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of job IDs to trigger the webhook on failure
      */
-    onFailures?: pulumi.Input<pulumi.Input<number>[]>;
+    onFailures?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of job IDs to trigger the webhook on success
      */
-    onSuccesses?: pulumi.Input<pulumi.Input<number>[]>;
+    onSuccesses?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of job IDs to trigger the webhook on warning
      */
-    onWarnings?: pulumi.Input<pulumi.Input<number>[]>;
+    onWarnings?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      */
-    slackChannelId?: pulumi.Input<string>;
+    slackChannelId?: pulumi.Input<string | undefined>;
     /**
      * The name of the slack channel
      */
-    slackChannelName?: pulumi.Input<string>;
+    slackChannelName?: pulumi.Input<string | undefined>;
     /**
      * State of the notification (1 = active (default), 2 = inactive)
      */
-    state?: pulumi.Input<number>;
+    state?: pulumi.Input<number | undefined>;
     /**
      * Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      */
-    userId?: pulumi.Input<number>;
+    userId?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -239,39 +239,39 @@ export interface NotificationArgs {
     /**
      * The external email to receive the notification
      */
-    externalEmail?: pulumi.Input<string>;
+    externalEmail?: pulumi.Input<string | undefined>;
     /**
      * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
      */
-    notificationType?: pulumi.Input<number>;
+    notificationType?: pulumi.Input<number | undefined>;
     /**
      * List of job IDs to trigger the webhook on cancel
      */
-    onCancels?: pulumi.Input<pulumi.Input<number>[]>;
+    onCancels?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of job IDs to trigger the webhook on failure
      */
-    onFailures?: pulumi.Input<pulumi.Input<number>[]>;
+    onFailures?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of job IDs to trigger the webhook on success
      */
-    onSuccesses?: pulumi.Input<pulumi.Input<number>[]>;
+    onSuccesses?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * List of job IDs to trigger the webhook on warning
      */
-    onWarnings?: pulumi.Input<pulumi.Input<number>[]>;
+    onWarnings?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings
      */
-    slackChannelId?: pulumi.Input<string>;
+    slackChannelId?: pulumi.Input<string | undefined>;
     /**
      * The name of the slack channel
      */
-    slackChannelName?: pulumi.Input<string>;
+    slackChannelName?: pulumi.Input<string | undefined>;
     /**
      * State of the notification (1 = active (default), 2 = inactive)
      */
-    state?: pulumi.Input<number>;
+    state?: pulumi.Input<number | undefined>;
     /**
      * Internal dbt Cloud User ID. Must be the user*id for an existing user even if the notification is an external one. In the case of a Slack notification, it must be the user*id of the user that set up the Slack Integration.
      */

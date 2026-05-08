@@ -102,7 +102,7 @@ def get_azure_dev_ops_project(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         url=pulumi.get(__ret__, 'url'))
-def get_azure_dev_ops_project_output(name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_azure_dev_ops_project_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAzureDevOpsProjectResult]:
     """
     Use this data source to retrieve the ID of an Azure Dev Ops project

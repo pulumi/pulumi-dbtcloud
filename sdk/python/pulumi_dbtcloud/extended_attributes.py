@@ -21,7 +21,7 @@ class ExtendedAttributesArgs:
     def __init__(__self__, *,
                  extended_attributes: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.int],
-                 state: Optional[pulumi.Input[_builtins.int]] = None):
+                 state: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a ExtendedAttributes resource.
 
@@ -60,24 +60,24 @@ class ExtendedAttributesArgs:
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The state of the extended attributes (1 = active, 2 = inactive)
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "state", value)
 
 
 @pulumi.input_type
 class _ExtendedAttributesState:
     def __init__(__self__, *,
-                 extended_attributes: Optional[pulumi.Input[_builtins.str]] = None,
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None):
+                 extended_attributes: pulumi.Input[Optional[_builtins.str]] = None,
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ExtendedAttributes resources.
 
@@ -97,50 +97,50 @@ class _ExtendedAttributesState:
 
     @_builtins.property
     @pulumi.getter(name="extendedAttributes")
-    def extended_attributes(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def extended_attributes(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
         """
         return pulumi.get(self, "extended_attributes")
 
     @extended_attributes.setter
-    def extended_attributes(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def extended_attributes(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "extended_attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="extendedAttributesId")
-    def extended_attributes_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def extended_attributes_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Extended attributes ID
         """
         return pulumi.get(self, "extended_attributes_id")
 
     @extended_attributes_id.setter
-    def extended_attributes_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def extended_attributes_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "extended_attributes_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to create the extended attributes in
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The state of the extended attributes (1 = active, 2 = inactive)
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "state", value)
 
 
@@ -150,9 +150,9 @@ class ExtendedAttributes(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 extended_attributes: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
+                 extended_attributes: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Extended attributes resource
@@ -175,14 +175,14 @@ class ExtendedAttributes(pulumi.CustomResource):
                     "subfield": "my_value",
                 },
             }),
-            project_id=dbt_project["id"])
+            project_id=int(dbt_project["id"]))
         issue_depl = dbtcloud.Environment("issue_depl",
             dbt_version="latest",
             name="My environment",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
             use_custom_branch=False,
-            credential_id=dbt_credential_id,
+            credential_id=int(dbt_credential_id),
             deployment_type="production",
             extended_attributes_id=my_attributes.extended_attributes_id)
         ```
@@ -241,14 +241,14 @@ class ExtendedAttributes(pulumi.CustomResource):
                     "subfield": "my_value",
                 },
             }),
-            project_id=dbt_project["id"])
+            project_id=int(dbt_project["id"]))
         issue_depl = dbtcloud.Environment("issue_depl",
             dbt_version="latest",
             name="My environment",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="deployment",
             use_custom_branch=False,
-            credential_id=dbt_credential_id,
+            credential_id=int(dbt_credential_id),
             deployment_type="production",
             extended_attributes_id=my_attributes.extended_attributes_id)
         ```
@@ -289,9 +289,9 @@ class ExtendedAttributes(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 extended_attributes: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
+                 extended_attributes: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -319,10 +319,10 @@ class ExtendedAttributes(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            extended_attributes: Optional[pulumi.Input[_builtins.str]] = None,
-            extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            state: Optional[pulumi.Input[_builtins.int]] = None) -> 'ExtendedAttributes':
+            extended_attributes: pulumi.Input[Optional[_builtins.str]] = None,
+            extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            state: pulumi.Input[Optional[_builtins.int]] = None) -> 'ExtendedAttributes':
         """
         Get an existing ExtendedAttributes resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

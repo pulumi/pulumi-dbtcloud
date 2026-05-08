@@ -181,39 +181,39 @@ export interface AzureAdApplicationState {
     /**
      * The ID of the dbt Cloud account.
      */
-    accountId?: pulumi.Input<number>;
+    accountId?: pulumi.Input<number | undefined>;
     /**
      * The method used for service authentication. One of: ~~~service*user~~~, ~~~service*principal~~~. Defaults to ~~~service_user~~~.
      */
-    azureServiceAuthenticationMethod?: pulumi.Input<string>;
+    azureServiceAuthenticationMethod?: pulumi.Input<string | undefined>;
     /**
      * The client ID (application ID) of the Azure AD app registration. Stored as a sensitive value — the API never returns it.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client secret of the Azure AD app registration. Stored as a sensitive value — the API never returns it.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Timestamp when the application was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The domain used for the OAuth redirect URI. Set automatically by dbt Cloud based on the account's subdomain.
      */
-    oauthRedirectUriDomain?: pulumi.Input<string>;
+    oauthRedirectUriDomain?: pulumi.Input<string | undefined>;
     /**
      * The name of the Azure DevOps organization.
      */
-    organizationName?: pulumi.Input<string>;
+    organizationName?: pulumi.Input<string | undefined>;
     /**
      * The tenant ID of the Azure AD directory. Stored as a sensitive value — the API never returns it.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * Timestamp when the application was last updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -223,7 +223,7 @@ export interface AzureAdApplicationArgs {
     /**
      * The method used for service authentication. One of: ~~~service*user~~~, ~~~service*principal~~~. Defaults to ~~~service_user~~~.
      */
-    azureServiceAuthenticationMethod?: pulumi.Input<string>;
+    azureServiceAuthenticationMethod?: pulumi.Input<string | undefined>;
     /**
      * The client ID (application ID) of the Azure AD app registration. Stored as a sensitive value — the API never returns it.
      */

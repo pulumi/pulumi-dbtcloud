@@ -70,6 +70,7 @@ def get_privatelink_endpoints(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
 
     ```python
     import pulumi
+    from typing import Any
     import pulumi_dbtcloud as dbtcloud
 
     all = dbtcloud.get_privatelink_endpoints()
@@ -85,7 +86,7 @@ def get_privatelink_endpoints(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
         })
     snowflake_endpoints = [endpoint for endpoint in all.endpoints if endpoint.type == "snowflake"]
     # Create connections for all Snowflake endpoints
-    snowflake_connections = []
+    snowflake_connections: list[Any] = []
     for range in [{"key": k, "value": v} for [k, v] in enumerate({ep.id: ep for ep in snowflake_endpoints})]:
         snowflake_connections.append(dbtcloud.GlobalConnection(f"snowflake_connections-{range['key']}",
             name=f"Connection for {range['value'].name}",
@@ -112,6 +113,7 @@ def get_privatelink_endpoints_output(opts: Optional[Union[pulumi.InvokeOptions, 
 
     ```python
     import pulumi
+    from typing import Any
     import pulumi_dbtcloud as dbtcloud
 
     all = dbtcloud.get_privatelink_endpoints()
@@ -127,7 +129,7 @@ def get_privatelink_endpoints_output(opts: Optional[Union[pulumi.InvokeOptions, 
         })
     snowflake_endpoints = [endpoint for endpoint in all.endpoints if endpoint.type == "snowflake"]
     # Create connections for all Snowflake endpoints
-    snowflake_connections = []
+    snowflake_connections: list[Any] = []
     for range in [{"key": k, "value": v} for [k, v] in enumerate({ep.id: ep for ep in snowflake_endpoints})]:
         snowflake_connections.append(dbtcloud.GlobalConnection(f"snowflake_connections-{range['key']}",
             name=f"Connection for {range['value'].name}",
