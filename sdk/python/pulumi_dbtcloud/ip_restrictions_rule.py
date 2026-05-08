@@ -24,8 +24,8 @@ class IpRestrictionsRuleArgs:
                  cidrs: pulumi.Input[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]],
                  rule_set_enabled: pulumi.Input[_builtins.bool],
                  type: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IpRestrictionsRule resource.
 
@@ -81,37 +81,37 @@ class IpRestrictionsRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the IP restriction rule
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the IP restriction rule
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _IpRestrictionsRuleState:
     def __init__(__self__, *,
-                 cidrs: Optional[pulumi.Input[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rule_set_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 cidrs: pulumi.Input[Optional[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rule_set_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IpRestrictionsRule resources.
 
@@ -134,62 +134,62 @@ class _IpRestrictionsRuleState:
 
     @_builtins.property
     @pulumi.getter
-    def cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]]]:
+    def cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]]]:
         """
         Set of CIDR ranges for this rule
         """
         return pulumi.get(self, "cidrs")
 
     @cidrs.setter
-    def cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]]]):
+    def cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['IpRestrictionsRuleCidrArgs']]]]):
         pulumi.set(self, "cidrs", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the IP restriction rule
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the IP restriction rule
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="ruleSetEnabled")
-    def rule_set_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def rule_set_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.
         """
         return pulumi.get(self, "rule_set_enabled")
 
     @rule_set_enabled.setter
-    def rule_set_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def rule_set_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "rule_set_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the IP restriction rule (allow or deny)
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -199,11 +199,11 @@ class IpRestrictionsRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rule_set_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rule_set_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages IP restriction rules in dbt Cloud. IP restriction rules allow you to control access to your dbt Cloud instance based on IP address ranges.
@@ -324,11 +324,11 @@ class IpRestrictionsRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rule_set_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rule_set_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -359,11 +359,11 @@ class IpRestrictionsRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            rule_set_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'IpRestrictionsRule':
+            cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            rule_set_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'IpRestrictionsRule':
         """
         Get an existing IpRestrictionsRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

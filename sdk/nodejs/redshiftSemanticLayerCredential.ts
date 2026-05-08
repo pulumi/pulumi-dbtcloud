@@ -17,16 +17,16 @@ import * as utilities from "./utilities";
  *
  * const testRedshiftSemanticLayerCredential = new dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential", {
  *     configuration: {
- *         projectId: projectId,
+ *         projectId: Number(projectId),
  *         name: "Redshift SL Credential",
  *         adapterVersion: "redshift_v0",
  *     },
  *     credential: {
- *         projectId: projectId,
+ *         projectId: Number(projectId),
  *         username: username,
  *         isActive: true,
  *         password: password,
- *         numThreads: numThreads,
+ *         numThreads: Number(numThreads),
  *         defaultSchema: defaultSchema,
  *     },
  * });
@@ -127,11 +127,11 @@ export interface RedshiftSemanticLayerCredentialState {
     /**
      * Semantic Layer credential configuration details.
      */
-    configuration?: pulumi.Input<inputs.RedshiftSemanticLayerCredentialConfiguration>;
+    configuration?: pulumi.Input<inputs.RedshiftSemanticLayerCredentialConfiguration | undefined>;
     /**
      * Redshift credential details, but used in the context of the Semantic Layer.
      */
-    credential?: pulumi.Input<inputs.RedshiftSemanticLayerCredentialCredential>;
+    credential?: pulumi.Input<inputs.RedshiftSemanticLayerCredentialCredential | undefined>;
 }
 
 /**

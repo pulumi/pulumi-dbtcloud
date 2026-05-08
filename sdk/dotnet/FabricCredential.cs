@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
     /// {
     ///     // Using the classic sensitive attributes (stored in state)
     ///     // when using AD authentication
-    ///     var myFabricCredAd = new DbtCloud.Index.FabricCredential("my_fabric_cred_ad", new()
+    ///     var myFabricCredAd = new DbtCloud.FabricCredential("my_fabric_cred_ad", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Schema = "my_schema",
@@ -34,7 +34,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // when using service principal authentication
-    ///     var myFabricCredServPrinc = new DbtCloud.Index.FabricCredential("my_fabric_cred_serv_princ", new()
+    ///     var myFabricCredServPrinc = new DbtCloud.FabricCredential("my_fabric_cred_serv_princ", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Schema = "my_schema",
@@ -48,7 +48,7 @@ namespace Pulumi.DbtCloud
     ///     var fabricPassword = config.Require("fabricPassword");
     ///     var fabricClientSecret = config.Require("fabricClientSecret");
     ///     // when using AD authentication with write-only password
-    ///     var myFabricCredAdWo = new DbtCloud.Index.FabricCredential("my_fabric_cred_ad_wo", new()
+    ///     var myFabricCredAdWo = new DbtCloud.FabricCredential("my_fabric_cred_ad_wo", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Schema = "my_schema",
@@ -59,7 +59,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // when using service principal authentication with write-only client secret
-    ///     var myFabricCredServPrincWo = new DbtCloud.Index.FabricCredential("my_fabric_cred_serv_princ_wo", new()
+    ///     var myFabricCredServPrincWo = new DbtCloud.FabricCredential("my_fabric_cred_serv_princ_wo", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Schema = "my_schema",

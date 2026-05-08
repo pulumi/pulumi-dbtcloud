@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const example = new dbtcloud.TeradataCredential("example", {
- *     projectId: exampleDbtcloudProject.id,
+ *     projectId: Number(exampleDbtcloudProject.id),
  *     schema: "your_schema",
  *     user: "your_user",
  *     password: "your_password",
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const teradataPassword = config.require("teradataPassword");
  * const exampleWo = new dbtcloud.TeradataCredential("example_wo", {
- *     projectId: exampleDbtcloudProject.id,
+ *     projectId: Number(exampleDbtcloudProject.id),
  *     schema: "your_schema",
  *     user: "your_user",
  *     passwordWo: teradataPassword,
@@ -148,36 +148,36 @@ export interface TeradataCredentialState {
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Teradata/Trino credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The schema where to create models
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * The number of threads to use. Default is 1
      */
-    threads?: pulumi.Input<number>;
+    threads?: pulumi.Input<number | undefined>;
     /**
      * The username for the Teradata account
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -187,16 +187,16 @@ export interface TeradataCredentialArgs {
     /**
      * The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Teradata/Trino credential in
      */
@@ -208,7 +208,7 @@ export interface TeradataCredentialArgs {
     /**
      * The number of threads to use. Default is 1
      */
-    threads?: pulumi.Input<number>;
+    threads?: pulumi.Input<number | undefined>;
     /**
      * The username for the Teradata account
      */

@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attribute (stored in state)
-    ///     var redshift = new DbtCloud.Index.RedshiftCredential("redshift", new()
+    ///     var redshift = new DbtCloud.RedshiftCredential("redshift", new()
     ///     {
     ///         NumThreads = 16,
     ///         ProjectId = testProject.Id,
@@ -35,7 +35,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var config = new Config();
     ///     var redshiftPassword = config.Require("redshiftPassword");
-    ///     var redshiftWo = new DbtCloud.Index.RedshiftCredential("redshift_wo", new()
+    ///     var redshiftWo = new DbtCloud.RedshiftCredential("redshift_wo", new()
     ///     {
     ///         NumThreads = 16,
     ///         ProjectId = testProject.Id,

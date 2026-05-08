@@ -287,7 +287,7 @@ def get_global_connection(id: Optional[_builtins.int] = None,
         starburst=pulumi.get(__ret__, 'starburst'),
         synapse=pulumi.get(__ret__, 'synapse'),
         teradata=pulumi.get(__ret__, 'teradata'))
-def get_global_connection_output(id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_global_connection_output(id: pulumi.Input[Optional[_builtins.int]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGlobalConnectionResult]:
     """
     ## Example Usage

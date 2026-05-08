@@ -23,9 +23,9 @@ class LineageIntegrationArgs:
                  project_id: pulumi.Input[_builtins.int],
                  site_id: pulumi.Input[_builtins.str],
                  token_name: pulumi.Input[_builtins.str],
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a LineageIntegration resource.
 
@@ -99,19 +99,19 @@ class LineageIntegrationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret token value to use to authenticate to the BI server. Consider using `token_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWo")
-    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
@@ -119,34 +119,34 @@ class LineageIntegrationArgs:
         return pulumi.get(self, "token_wo")
 
     @token_wo.setter
-    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWoVersion")
-    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         return pulumi.get(self, "token_wo_version")
 
     @token_wo_version.setter
-    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_wo_version", value)
 
 
 @pulumi.input_type
 class _LineageIntegrationState:
     def __init__(__self__, *,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 lineage_integration_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 site_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 lineage_integration_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 site_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering LineageIntegration resources.
 
@@ -182,91 +182,91 @@ class _LineageIntegrationState:
 
     @_builtins.property
     @pulumi.getter
-    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL of the BI server (see docs for more details)
         """
         return pulumi.get(self, "host")
 
     @host.setter
-    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host", value)
 
     @_builtins.property
     @pulumi.getter(name="lineageIntegrationId")
-    def lineage_integration_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def lineage_integration_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the lineage integration
         """
         return pulumi.get(self, "lineage_integration_id")
 
     @lineage_integration_id.setter
-    def lineage_integration_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def lineage_integration_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "lineage_integration_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The integration type. Today only 'tableau' is supported
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The dbt Cloud project ID for the integration
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="siteId")
-    def site_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def site_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The sitename for the collections of dashboards (see docs for more details)
         """
         return pulumi.get(self, "site_id")
 
     @site_id.setter
-    def site_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def site_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "site_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret token value to use to authenticate to the BI server. Consider using `token_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenName")
-    def token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token to use to authenticate to the BI server
         """
         return pulumi.get(self, "token_name")
 
     @token_name.setter
-    def token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWo")
-    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
@@ -274,19 +274,19 @@ class _LineageIntegrationState:
         return pulumi.get(self, "token_wo")
 
     @token_wo.setter
-    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWoVersion")
-    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         return pulumi.get(self, "token_wo_version")
 
     @token_wo_version.setter
-    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_wo_version", value)
 
 
@@ -296,13 +296,13 @@ class LineageIntegration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 site_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 site_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Setup lineage integration for dbt Cloud to automatically fetch lineage from external BI tools in dbt Explorer. Currently supports Tableau.
@@ -319,7 +319,7 @@ class LineageIntegration(pulumi.CustomResource):
         # so, you might want to explicitly set the dependency on your Prod environment resource
         # Using the classic sensitive attribute (stored in state)
         my_lineage = dbtcloud.LineageIntegration("my_lineage",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             host="my.host.com",
             site_id="mysiteid",
             token_name="my-token-name",
@@ -328,7 +328,7 @@ class LineageIntegration(pulumi.CustomResource):
         config = pulumi.Config()
         lineage_token = config.require("lineageToken")
         my_lineage_wo = dbtcloud.LineageIntegration("my_lineage_wo",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             host="my.host.com",
             site_id="mysiteid",
             token_name="my-token-name",
@@ -390,7 +390,7 @@ class LineageIntegration(pulumi.CustomResource):
         # so, you might want to explicitly set the dependency on your Prod environment resource
         # Using the classic sensitive attribute (stored in state)
         my_lineage = dbtcloud.LineageIntegration("my_lineage",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             host="my.host.com",
             site_id="mysiteid",
             token_name="my-token-name",
@@ -399,7 +399,7 @@ class LineageIntegration(pulumi.CustomResource):
         config = pulumi.Config()
         lineage_token = config.require("lineageToken")
         my_lineage_wo = dbtcloud.LineageIntegration("my_lineage_wo",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             host="my.host.com",
             site_id="mysiteid",
             token_name="my-token-name",
@@ -444,13 +444,13 @@ class LineageIntegration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 host: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 site_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 host: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 site_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -489,15 +489,15 @@ class LineageIntegration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            host: Optional[pulumi.Input[_builtins.str]] = None,
-            lineage_integration_id: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            site_id: Optional[pulumi.Input[_builtins.str]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None,
-            token_name: Optional[pulumi.Input[_builtins.str]] = None,
-            token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            token_wo_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'LineageIntegration':
+            host: pulumi.Input[Optional[_builtins.str]] = None,
+            lineage_integration_id: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            site_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            token_name: pulumi.Input[Optional[_builtins.str]] = None,
+            token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            token_wo_version: pulumi.Input[Optional[_builtins.int]] = None) -> 'LineageIntegration':
         """
         Get an existing LineageIntegration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

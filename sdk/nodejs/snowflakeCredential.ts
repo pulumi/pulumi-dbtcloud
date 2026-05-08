@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const prodCredential = new dbtcloud.SnowflakeCredential("prod_credential", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     authType: "password",
  *     numThreads: 16,
  *     schema: "SCHEMA",
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const snowflakePassword = config.require("snowflakePassword");
  * const prodCredentialWo = new dbtcloud.SnowflakeCredential("prod_credential_wo", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     authType: "password",
  *     numThreads: 16,
  *     schema: "SCHEMA",
@@ -246,86 +246,86 @@ export interface SnowflakeCredentialState {
     /**
      * The type of Snowflake credential ('password' or 'keypair')
      */
-    authType?: pulumi.Input<string>;
+    authType?: pulumi.Input<string | undefined>;
     /**
      * The internal credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The catalog to connect use
      */
-    database?: pulumi.Input<string>;
+    database?: pulumi.Input<string | undefined>;
     /**
      * Whether the Snowflake credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      */
-    privateKeyPassphrase?: pulumi.Input<string>;
+    privateKeyPassphrase?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
      */
-    privateKeyPassphraseWo?: pulumi.Input<string>;
+    privateKeyPassphraseWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
      */
-    privateKeyPassphraseWoVersion?: pulumi.Input<number>;
+    privateKeyPassphraseWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Snowflake credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The role to assume
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
     /**
      * The warehouse to use
      */
-    warehouse?: pulumi.Input<string>;
+    warehouse?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -339,11 +339,11 @@ export interface SnowflakeCredentialArgs {
     /**
      * The catalog to connect use
      */
-    database?: pulumi.Input<string>;
+    database?: pulumi.Input<string | undefined>;
     /**
      * Whether the Snowflake credential is active
      */
-    isActive?: pulumi.Input<boolean>;
+    isActive?: pulumi.Input<boolean | undefined>;
     /**
      * Number of threads to use
      */
@@ -351,42 +351,42 @@ export interface SnowflakeCredentialArgs {
     /**
      * The password for the Snowflake account. Consider using `passwordWo` instead, which is not stored in state.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `password`. The value is not stored in state. Requires `passwordWoVersion` to trigger updates.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `passwordWo`. Increment this value to trigger an update of the password when using `passwordWo`.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The private key for the Snowflake account. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The passphrase for the private key. Consider using `privateKeyPassphraseWo` instead, which is not stored in state.
      */
-    privateKeyPassphrase?: pulumi.Input<string>;
+    privateKeyPassphrase?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKeyPassphrase`. The value is not stored in state. Requires `privateKeyPassphraseWoVersion` to trigger updates.
      */
-    privateKeyPassphraseWo?: pulumi.Input<string>;
+    privateKeyPassphraseWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyPassphraseWo`. Increment this value to trigger an update of the private key passphrase when using `privateKeyPassphraseWo`.
      */
-    privateKeyPassphraseWoVersion?: pulumi.Input<number>;
+    privateKeyPassphraseWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Snowflake credential in
      */
@@ -394,21 +394,21 @@ export interface SnowflakeCredentialArgs {
     /**
      * The role to assume
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
      */
-    semanticLayerCredential?: pulumi.Input<boolean>;
+    semanticLayerCredential?: pulumi.Input<boolean | undefined>;
     /**
      * The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
     /**
      * The warehouse to use
      */
-    warehouse?: pulumi.Input<string>;
+    warehouse?: pulumi.Input<string | undefined>;
 }

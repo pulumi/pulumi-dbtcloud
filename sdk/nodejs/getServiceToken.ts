@@ -72,5 +72,5 @@ export interface GetServiceTokenOutputArgs {
     /**
      * Permissions set for the service token
      */
-    serviceTokenPermissions?: pulumi.Input<pulumi.Input<inputs.GetServiceTokenServiceTokenPermissionArgs>[]>;
+    serviceTokenPermissions?: pulumi.Input<pulumi.Input<inputs.GetServiceTokenServiceTokenPermissionArgs>[] | undefined>;
 }

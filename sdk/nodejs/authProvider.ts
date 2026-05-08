@@ -315,103 +315,103 @@ export interface AuthProviderState {
     /**
      * Google Workspace admin OAuth refresh token used to fetch group memberships.
      */
-    adminRefreshToken?: pulumi.Input<string>;
+    adminRefreshToken?: pulumi.Input<string | undefined>;
     /**
      * When true (default), users can still log in with email and password as a fallback. Set to false to enforce SSO-only access.
      */
-    allowPasswordBackdoor?: pulumi.Input<boolean>;
+    allowPasswordBackdoor?: pulumi.Input<boolean | undefined>;
     /**
      * JSON map of SAML attribute names to dbt Cloud user fields.
      */
-    attributeMap?: pulumi.Input<string>;
+    attributeMap?: pulumi.Input<string | undefined>;
     /**
      * OAuth authorization URL for Google Workspace. May be auto-populated server-side.
      */
-    authorizationUrl?: pulumi.Input<string>;
+    authorizationUrl?: pulumi.Input<string | undefined>;
     /**
      * SAML X.509 certificate (PEM format). Sensitive — stored in state. Consider using `certWo` instead. Conflicts with `certWo`.
      */
-    cert?: pulumi.Input<string>;
+    cert?: pulumi.Input<string | undefined>;
     /**
      * Expiry date of the SAML X.509 certificate (SAML/Okta only).
      */
-    certExpiryDate?: pulumi.Input<string>;
+    certExpiryDate?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `cert`. Not stored in state. Use `certWoVersion` to trigger updates. Conflicts with `cert`.
      */
-    certWo?: pulumi.Input<string>;
+    certWo?: pulumi.Input<string | undefined>;
     /**
      * Increment to rotate `certWo` without changing the value.
      */
-    certWoVersion?: pulumi.Input<number>;
+    certWoVersion?: pulumi.Input<number | undefined>;
     /**
      * OAuth client ID. Required for Azure AD and Google Workspace providers. Not returned by the API after save (encrypted at rest).
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * OAuth client secret. Required for Azure AD and Google Workspace providers. Sensitive — stored in state. Consider using `clientSecretWo` instead. Conflicts with `clientSecretWo`.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `clientSecret`. Not stored in state. Use `clientSecretWoVersion` to trigger updates. Conflicts with `clientSecret`.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Increment to rotate `clientSecretWo` without changing the value.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
-    createdAt?: pulumi.Input<string>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Primary domain for the Azure AD or Google Workspace tenant.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * SAML entity ID (Issuer) from your identity provider. Required for `saml` and `okta`.
      */
-    entityId?: pulumi.Input<string>;
+    entityId?: pulumi.Input<string | undefined>;
     /**
      * Google Workspace admin email used to fetch group memberships.
      */
-    gsuiteAdminId?: pulumi.Input<string>;
+    gsuiteAdminId?: pulumi.Input<string | undefined>;
     /**
      * Whether to include transitive (indirect) group memberships from Azure AD. Defaults to true.
      */
-    includeIndirectGroups?: pulumi.Input<boolean>;
+    includeIndirectGroups?: pulumi.Input<boolean | undefined>;
     /**
      * The SSO login URL for the account, auto-generated from the slug.
      */
-    loginUrl?: pulumi.Input<string>;
+    loginUrl?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of Azure AD groups to fetch per user. Defaults to 250.
      */
-    maxGroupsToRetrieve?: pulumi.Input<number>;
+    maxGroupsToRetrieve?: pulumi.Input<number | undefined>;
     /**
      * Whether to sign SAML authentication requests. Defaults to false.
      */
-    signRequest?: pulumi.Input<boolean>;
+    signRequest?: pulumi.Input<boolean | undefined>;
     /**
      * URL-safe identifier used in the SSO login URL. Auto-generated if omitted. Immutable on accounts where auto-slug enforcement is enabled.
      */
-    slug?: pulumi.Input<string>;
+    slug?: pulumi.Input<string | undefined>;
     /**
      * SAML Single Sign-On URL from your identity provider. Required for `saml` and `okta`.
      */
-    ssoUrl?: pulumi.Input<string>;
+    ssoUrl?: pulumi.Input<string | undefined>;
     /**
      * The state of the auth provider (1 = active).
      */
-    state?: pulumi.Input<number>;
+    state?: pulumi.Input<number | undefined>;
     /**
      * Azure AD tenant ID. Required for `azureSingleTenant`.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * The SSO provider type. One of: `saml`, `okta`, `gsuite`, `azureSingleTenant`, `azureMultiTenant`, `azureActiveDirectory`. Changing this value forces a new resource.
      */
-    type?: pulumi.Input<string>;
-    updatedAt?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -421,85 +421,85 @@ export interface AuthProviderArgs {
     /**
      * Google Workspace admin OAuth refresh token used to fetch group memberships.
      */
-    adminRefreshToken?: pulumi.Input<string>;
+    adminRefreshToken?: pulumi.Input<string | undefined>;
     /**
      * When true (default), users can still log in with email and password as a fallback. Set to false to enforce SSO-only access.
      */
-    allowPasswordBackdoor?: pulumi.Input<boolean>;
+    allowPasswordBackdoor?: pulumi.Input<boolean | undefined>;
     /**
      * JSON map of SAML attribute names to dbt Cloud user fields.
      */
-    attributeMap?: pulumi.Input<string>;
+    attributeMap?: pulumi.Input<string | undefined>;
     /**
      * OAuth authorization URL for Google Workspace. May be auto-populated server-side.
      */
-    authorizationUrl?: pulumi.Input<string>;
+    authorizationUrl?: pulumi.Input<string | undefined>;
     /**
      * SAML X.509 certificate (PEM format). Sensitive — stored in state. Consider using `certWo` instead. Conflicts with `certWo`.
      */
-    cert?: pulumi.Input<string>;
+    cert?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `cert`. Not stored in state. Use `certWoVersion` to trigger updates. Conflicts with `cert`.
      */
-    certWo?: pulumi.Input<string>;
+    certWo?: pulumi.Input<string | undefined>;
     /**
      * Increment to rotate `certWo` without changing the value.
      */
-    certWoVersion?: pulumi.Input<number>;
+    certWoVersion?: pulumi.Input<number | undefined>;
     /**
      * OAuth client ID. Required for Azure AD and Google Workspace providers. Not returned by the API after save (encrypted at rest).
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * OAuth client secret. Required for Azure AD and Google Workspace providers. Sensitive — stored in state. Consider using `clientSecretWo` instead. Conflicts with `clientSecretWo`.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `clientSecret`. Not stored in state. Use `clientSecretWoVersion` to trigger updates. Conflicts with `clientSecret`.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Increment to rotate `clientSecretWo` without changing the value.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Primary domain for the Azure AD or Google Workspace tenant.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * SAML entity ID (Issuer) from your identity provider. Required for `saml` and `okta`.
      */
-    entityId?: pulumi.Input<string>;
+    entityId?: pulumi.Input<string | undefined>;
     /**
      * Google Workspace admin email used to fetch group memberships.
      */
-    gsuiteAdminId?: pulumi.Input<string>;
+    gsuiteAdminId?: pulumi.Input<string | undefined>;
     /**
      * Whether to include transitive (indirect) group memberships from Azure AD. Defaults to true.
      */
-    includeIndirectGroups?: pulumi.Input<boolean>;
+    includeIndirectGroups?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum number of Azure AD groups to fetch per user. Defaults to 250.
      */
-    maxGroupsToRetrieve?: pulumi.Input<number>;
+    maxGroupsToRetrieve?: pulumi.Input<number | undefined>;
     /**
      * Whether to sign SAML authentication requests. Defaults to false.
      */
-    signRequest?: pulumi.Input<boolean>;
+    signRequest?: pulumi.Input<boolean | undefined>;
     /**
      * URL-safe identifier used in the SSO login URL. Auto-generated if omitted. Immutable on accounts where auto-slug enforcement is enabled.
      */
-    slug?: pulumi.Input<string>;
+    slug?: pulumi.Input<string | undefined>;
     /**
      * SAML Single Sign-On URL from your identity provider. Required for `saml` and `okta`.
      */
-    ssoUrl?: pulumi.Input<string>;
+    ssoUrl?: pulumi.Input<string | undefined>;
     /**
      * Azure AD tenant ID. Required for `azureSingleTenant`.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * The SSO provider type. One of: `saml`, `okta`, `gsuite`, `azureSingleTenant`, `azureMultiTenant`, `azureActiveDirectory`. Changing this value forces a new resource.
      */

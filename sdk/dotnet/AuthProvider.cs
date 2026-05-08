@@ -30,7 +30,7 @@ namespace Pulumi.DbtCloud
     /// {
     ///     var config = new Config();
     ///     var samlCert = config.Require("samlCert");
-    ///     var saml = new DbtCloud.Index.AuthProvider("saml", new()
+    ///     var saml = new DbtCloud.AuthProvider("saml", new()
     ///     {
     ///         Type = "saml",
     ///         EntityId = "https://your-idp.example.com/metadata",
@@ -40,12 +40,12 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // SAML — all optional fields
-    ///     var samlFull = new DbtCloud.Index.AuthProvider("saml_full", new()
+    ///     var samlFull = new DbtCloud.AuthProvider("saml_full", new()
     ///     {
     ///         Type = "saml",
     ///         EntityId = "https://your-idp.example.com/metadata",
     ///         SsoUrl = "https://your-idp.example.com/sso/saml",
-    ///         Cert = Std.Index.File.Invoke(new()
+    ///         Cert = Std.File.Invoke(new()
     ///         {
     ///             Input = "idp-cert.pem",
     ///         }).Apply(invoke =&gt; invoke.Result),
@@ -60,7 +60,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Okta (identical to SAML, different type value)
-    ///     var okta = new DbtCloud.Index.AuthProvider("okta", new()
+    ///     var okta = new DbtCloud.AuthProvider("okta", new()
     ///     {
     ///         Type = "okta",
     ///         EntityId = "http://www.okta.com/&lt;okta_app_id&gt;",
@@ -70,7 +70,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     var azureClientSecret = config.Require("azureClientSecret");
-    ///     var azureSingleTenant = new DbtCloud.Index.AuthProvider("azure_single_tenant", new()
+    ///     var azureSingleTenant = new DbtCloud.AuthProvider("azure_single_tenant", new()
     ///     {
     ///         Type = "azure_single_tenant",
     ///         ClientId = "00000000-0000-0000-0000-000000000000",
@@ -83,7 +83,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Azure AD — multi tenant (no tenant_id required)
-    ///     var azureMultiTenant = new DbtCloud.Index.AuthProvider("azure_multi_tenant", new()
+    ///     var azureMultiTenant = new DbtCloud.AuthProvider("azure_multi_tenant", new()
     ///     {
     ///         Type = "azure_multi_tenant",
     ///         ClientId = "00000000-0000-0000-0000-000000000000",
@@ -92,7 +92,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // Azure Active Directory
-    ///     var azureActiveDirectory = new DbtCloud.Index.AuthProvider("azure_active_directory", new()
+    ///     var azureActiveDirectory = new DbtCloud.AuthProvider("azure_active_directory", new()
     ///     {
     ///         Type = "azure_active_directory",
     ///         ClientId = "00000000-0000-0000-0000-000000000000",
@@ -103,7 +103,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     var gsuiteClientSecret = config.Require("gsuiteClientSecret");
-    ///     var gsuite = new DbtCloud.Index.AuthProvider("gsuite", new()
+    ///     var gsuite = new DbtCloud.AuthProvider("gsuite", new()
     ///     {
     ///         Type = "gsuite",
     ///         ClientId = "000000000000-xxxx.apps.googleusercontent.com",

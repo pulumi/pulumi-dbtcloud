@@ -358,8 +358,8 @@ def get_job(job_completion_trigger_conditions: Optional[Sequence[Union['GetJobJo
         timeout_seconds=pulumi.get(__ret__, 'timeout_seconds'),
         triggers=pulumi.get(__ret__, 'triggers'),
         triggers_on_draft_pr=pulumi.get(__ret__, 'triggers_on_draft_pr'))
-def get_job_output(job_completion_trigger_conditions: Optional[pulumi.Input[Optional[Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict']]]]] = None,
-                   job_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_job_output(job_completion_trigger_conditions: pulumi.Input[Optional[Optional[Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict']]]]] = None,
+                   job_id: pulumi.Input[Optional[_builtins.int]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobResult]:
     """
     Get detailed information for a specific dbt Cloud job.

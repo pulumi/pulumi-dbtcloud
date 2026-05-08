@@ -20,11 +20,11 @@ __all__ = ['ModelNotificationsArgs', 'ModelNotifications']
 class ModelNotificationsArgs:
     def __init__(__self__, *,
                  environment_id: pulumi.Input[_builtins.str],
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_skipped: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_success: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_warning: Optional[pulumi.Input[_builtins.bool]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_skipped: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_success: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_warning: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ModelNotifications resource.
 
@@ -61,74 +61,74 @@ class ModelNotificationsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether model notifications are enabled for this environment
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="onFailure")
-    def on_failure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_failure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to send notifications for failed model runs
         """
         return pulumi.get(self, "on_failure")
 
     @on_failure.setter
-    def on_failure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_failure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_failure", value)
 
     @_builtins.property
     @pulumi.getter(name="onSkipped")
-    def on_skipped(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_skipped(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to send notifications for skipped model runs
         """
         return pulumi.get(self, "on_skipped")
 
     @on_skipped.setter
-    def on_skipped(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_skipped(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_skipped", value)
 
     @_builtins.property
     @pulumi.getter(name="onSuccess")
-    def on_success(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_success(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to send notifications for successful model runs
         """
         return pulumi.get(self, "on_success")
 
     @on_success.setter
-    def on_success(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_success(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_success", value)
 
     @_builtins.property
     @pulumi.getter(name="onWarning")
-    def on_warning(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_warning(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to send notifications for model runs with warnings
         """
         return pulumi.get(self, "on_warning")
 
     @on_warning.setter
-    def on_warning(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_warning(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_warning", value)
 
 
 @pulumi.input_type
 class _ModelNotificationsState:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 on_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_skipped: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_success: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_warning: Optional[pulumi.Input[_builtins.bool]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 on_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_skipped: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_success: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_warning: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ModelNotifications resources.
 
@@ -154,74 +154,74 @@ class _ModelNotificationsState:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether model notifications are enabled for this environment
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the dbt Cloud environment
         """
         return pulumi.get(self, "environment_id")
 
     @environment_id.setter
-    def environment_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="onFailure")
-    def on_failure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_failure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to send notifications for failed model runs
         """
         return pulumi.get(self, "on_failure")
 
     @on_failure.setter
-    def on_failure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_failure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_failure", value)
 
     @_builtins.property
     @pulumi.getter(name="onSkipped")
-    def on_skipped(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_skipped(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to send notifications for skipped model runs
         """
         return pulumi.get(self, "on_skipped")
 
     @on_skipped.setter
-    def on_skipped(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_skipped(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_skipped", value)
 
     @_builtins.property
     @pulumi.getter(name="onSuccess")
-    def on_success(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_success(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to send notifications for successful model runs
         """
         return pulumi.get(self, "on_success")
 
     @on_success.setter
-    def on_success(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_success(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_success", value)
 
     @_builtins.property
     @pulumi.getter(name="onWarning")
-    def on_warning(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_warning(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to send notifications for model runs with warnings
         """
         return pulumi.get(self, "on_warning")
 
     @on_warning.setter
-    def on_warning(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_warning(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_warning", value)
 
 
@@ -231,12 +231,12 @@ class ModelNotifications(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 on_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_skipped: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_success: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_warning: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 on_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_skipped: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_success: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_warning: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Configure model notifications for a dbt Cloud environment. By default all the `on_...` are set to false. When destroyed, the model notifications are disabled.
@@ -346,12 +346,12 @@ class ModelNotifications(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 on_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_skipped: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_success: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_warning: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 on_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_skipped: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_success: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_warning: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -379,12 +379,12 @@ class ModelNotifications(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            environment_id: Optional[pulumi.Input[_builtins.str]] = None,
-            on_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-            on_skipped: Optional[pulumi.Input[_builtins.bool]] = None,
-            on_success: Optional[pulumi.Input[_builtins.bool]] = None,
-            on_warning: Optional[pulumi.Input[_builtins.bool]] = None) -> 'ModelNotifications':
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            on_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+            on_skipped: pulumi.Input[Optional[_builtins.bool]] = None,
+            on_success: pulumi.Input[Optional[_builtins.bool]] = None,
+            on_warning: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ModelNotifications':
         """
         Get an existing ModelNotifications resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

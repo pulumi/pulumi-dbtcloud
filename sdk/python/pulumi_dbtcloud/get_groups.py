@@ -123,9 +123,9 @@ def get_groups(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         name_contains=pulumi.get(__ret__, 'name_contains'),
         state=pulumi.get(__ret__, 'state'))
-def get_groups_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      name_contains: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      state: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_groups_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      name_contains: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      state: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupsResult]:
     """
     Retrieve all groups in the account with optional filtering

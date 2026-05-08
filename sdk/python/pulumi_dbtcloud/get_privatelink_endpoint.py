@@ -135,9 +135,9 @@ def get_privatelink_endpoint(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         private_link_endpoint_url=pulumi.get(__ret__, 'private_link_endpoint_url'),
         type=pulumi.get(__ret__, 'type'))
-def get_privatelink_endpoint_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                    private_link_endpoint_url: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                    type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_privatelink_endpoint_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                    private_link_endpoint_url: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                    type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointResult]:
     """
     Privatelink endpoint data source.

@@ -23,8 +23,8 @@ class NotificationSettingArgs:
     def __init__(__self__, *,
                  channels: pulumi.Input[Sequence[pulumi.Input['NotificationSettingChannelArgs']]],
                  rules: pulumi.Input[Sequence[pulumi.Input['NotificationSettingRuleArgs']]],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a NotificationSetting resource.
 
@@ -66,36 +66,36 @@ class NotificationSettingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional description of what this notification setting does
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable name for this notification setting
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _NotificationSettingState:
     def __init__(__self__, *,
-                 channels: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationSettingChannelArgs']]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationSettingRuleArgs']]]] = None):
+                 channels: pulumi.Input[Optional[Sequence[pulumi.Input['NotificationSettingChannelArgs']]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input['NotificationSettingRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering NotificationSetting resources.
 
@@ -115,50 +115,50 @@ class _NotificationSettingState:
 
     @_builtins.property
     @pulumi.getter
-    def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationSettingChannelArgs']]]]:
+    def channels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NotificationSettingChannelArgs']]]]:
         """
         Delivery channels for this setting. At least one channel is required.
         """
         return pulumi.get(self, "channels")
 
     @channels.setter
-    def channels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationSettingChannelArgs']]]]):
+    def channels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NotificationSettingChannelArgs']]]]):
         pulumi.set(self, "channels", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional description of what this notification setting does
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable name for this notification setting
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NotificationSettingRuleArgs']]]]:
+    def rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NotificationSettingRuleArgs']]]]:
         """
         Trigger rules. At least one rule is required.
         """
         return pulumi.get(self, "rules")
 
     @rules.setter
-    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NotificationSettingRuleArgs']]]]):
+    def rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NotificationSettingRuleArgs']]]]):
         pulumi.set(self, "rules", value)
 
 
@@ -168,10 +168,10 @@ class NotificationSetting(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 channels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None,
+                 channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None,
                  __props__=None):
         """
         Configures Microsoft Teams notifications using dbt Cloud's notifications system.
@@ -203,11 +203,11 @@ class NotificationSetting(pulumi.CustomResource):
             rules=[
                 {
                     "trigger_on": "run_errored",
-                    "job_id": prod_job["id"],
+                    "job_id": int(prod_job["id"]),
                 },
                 {
                     "trigger_on": "run_cancelled",
-                    "job_id": prod_job["id"],
+                    "job_id": int(prod_job["id"]),
                 },
             ])
         ```
@@ -270,11 +270,11 @@ class NotificationSetting(pulumi.CustomResource):
             rules=[
                 {
                     "trigger_on": "run_errored",
-                    "job_id": prod_job["id"],
+                    "job_id": int(prod_job["id"]),
                 },
                 {
                     "trigger_on": "run_cancelled",
-                    "job_id": prod_job["id"],
+                    "job_id": int(prod_job["id"]),
                 },
             ])
         ```
@@ -309,10 +309,10 @@ class NotificationSetting(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 channels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None,
+                 channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -340,10 +340,10 @@ class NotificationSetting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            channels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None) -> 'NotificationSetting':
+            channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None) -> 'NotificationSetting':
         """
         Get an existing NotificationSetting resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

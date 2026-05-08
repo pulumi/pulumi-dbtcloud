@@ -20,12 +20,12 @@ __all__ = ['OpenaiIntegrationArgs', 'OpenaiIntegration']
 class OpenaiIntegrationArgs:
     def __init__(__self__, *,
                  key_type: pulumi.Input[_builtins.str],
-                 azure_api_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_deployment_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 azure_api_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_deployment_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a OpenaiIntegration resource.
 
@@ -66,55 +66,55 @@ class OpenaiIntegrationArgs:
 
     @_builtins.property
     @pulumi.getter(name="azureApiVersion")
-    def azure_api_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_api_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure OpenAI API version (e.g. ~~~2024-02-01~~~). Required when ~~~key*type~~~ is ~~~azure*openai~~~.
         """
         return pulumi.get(self, "azure_api_version")
 
     @azure_api_version.setter
-    def azure_api_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_api_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_api_version", value)
 
     @_builtins.property
     @pulumi.getter(name="azureDeploymentName")
-    def azure_deployment_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_deployment_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure OpenAI deployment name. Required when ~~~key*type~~~ is ~~~azure*openai~~~.
         """
         return pulumi.get(self, "azure_deployment_name")
 
     @azure_deployment_name.setter
-    def azure_deployment_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_deployment_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_deployment_name", value)
 
     @_builtins.property
     @pulumi.getter(name="azureEndpoint")
-    def azure_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure OpenAI endpoint URL. Required when ~~~key*type~~~ is ~~~azure*openai~~~.
         """
         return pulumi.get(self, "azure_endpoint")
 
     @azure_endpoint.setter
-    def azure_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="keyValue")
-    def key_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The OpenAI or Azure OpenAI API key. Stored as a sensitive value in Terraform state. Conflicts with ~~~key*value*wo~~~. For Terraform 1.11+, prefer ~~~key*value*wo~~~ to avoid storing secrets in state.
         """
         return pulumi.get(self, "key_value")
 
     @key_value.setter
-    def key_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_value", value)
 
     @_builtins.property
     @pulumi.getter(name="keyValueWo")
-    def key_value_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_value_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only variant of the API key (Terraform 1.11+). Never stored in state. Increment ~~~key*value*wo*version~~~ to rotate the key. Conflicts with ~~~key*value~~~.
@@ -122,35 +122,35 @@ class OpenaiIntegrationArgs:
         return pulumi.get(self, "key_value_wo")
 
     @key_value_wo.setter
-    def key_value_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_value_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_value_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="keyValueWoVersion")
-    def key_value_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_value_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Increment this value to rotate the key when using ~~~key*value*wo~~~.
         """
         return pulumi.get(self, "key_value_wo_version")
 
     @key_value_wo_version.setter
-    def key_value_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_value_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_value_wo_version", value)
 
 
 @pulumi.input_type
 class _OpenaiIntegrationState:
     def __init__(__self__, *,
-                 account_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 azure_api_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_deployment_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 azure_api_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_deployment_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OpenaiIntegration resources.
 
@@ -189,91 +189,91 @@ class _OpenaiIntegrationState:
 
     @_builtins.property
     @pulumi.getter(name="accountId")
-    def account_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def account_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the dbt Cloud account.
         """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
-    def account_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def account_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "account_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureApiVersion")
-    def azure_api_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_api_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure OpenAI API version (e.g. ~~~2024-02-01~~~). Required when ~~~key*type~~~ is ~~~azure*openai~~~.
         """
         return pulumi.get(self, "azure_api_version")
 
     @azure_api_version.setter
-    def azure_api_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_api_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_api_version", value)
 
     @_builtins.property
     @pulumi.getter(name="azureDeploymentName")
-    def azure_deployment_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_deployment_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure OpenAI deployment name. Required when ~~~key*type~~~ is ~~~azure*openai~~~.
         """
         return pulumi.get(self, "azure_deployment_name")
 
     @azure_deployment_name.setter
-    def azure_deployment_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_deployment_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_deployment_name", value)
 
     @_builtins.property
     @pulumi.getter(name="azureEndpoint")
-    def azure_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure OpenAI endpoint URL. Required when ~~~key*type~~~ is ~~~azure*openai~~~.
         """
         return pulumi.get(self, "azure_endpoint")
 
     @azure_endpoint.setter
-    def azure_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp when the integration was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of OpenAI key. One of: ~~~openai~~~, ~~~azure_openai~~~. To revert to the dbt Labs-managed key, destroy this resource.
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="keyValue")
-    def key_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The OpenAI or Azure OpenAI API key. Stored as a sensitive value in Terraform state. Conflicts with ~~~key*value*wo~~~. For Terraform 1.11+, prefer ~~~key*value*wo~~~ to avoid storing secrets in state.
         """
         return pulumi.get(self, "key_value")
 
     @key_value.setter
-    def key_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_value", value)
 
     @_builtins.property
     @pulumi.getter(name="keyValueWo")
-    def key_value_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_value_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only variant of the API key (Terraform 1.11+). Never stored in state. Increment ~~~key*value*wo*version~~~ to rotate the key. Conflicts with ~~~key*value~~~.
@@ -281,31 +281,31 @@ class _OpenaiIntegrationState:
         return pulumi.get(self, "key_value_wo")
 
     @key_value_wo.setter
-    def key_value_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_value_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_value_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="keyValueWoVersion")
-    def key_value_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_value_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Increment this value to rotate the key when using ~~~key*value*wo~~~.
         """
         return pulumi.get(self, "key_value_wo_version")
 
     @key_value_wo_version.setter
-    def key_value_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_value_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_value_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp when the integration was last updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -315,13 +315,13 @@ class OpenaiIntegration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_api_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_deployment_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 azure_api_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_deployment_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Manages a bring-your-own-key OpenAI integration for a dbt Cloud account, enabling AI-powered features such as dbt Copilot.
@@ -453,13 +453,13 @@ class OpenaiIntegration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_api_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_deployment_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_value_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 azure_api_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_deployment_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_value_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -493,16 +493,16 @@ class OpenaiIntegration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            account_id: Optional[pulumi.Input[_builtins.int]] = None,
-            azure_api_version: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_deployment_name: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            key_type: Optional[pulumi.Input[_builtins.str]] = None,
-            key_value: Optional[pulumi.Input[_builtins.str]] = None,
-            key_value_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            key_value_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'OpenaiIntegration':
+            account_id: pulumi.Input[Optional[_builtins.int]] = None,
+            azure_api_version: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_deployment_name: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            key_value: pulumi.Input[Optional[_builtins.str]] = None,
+            key_value_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            key_value_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'OpenaiIntegration':
         """
         Get an existing OpenaiIntegration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

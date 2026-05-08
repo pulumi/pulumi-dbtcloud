@@ -92,7 +92,7 @@ def get_runs(filter: Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict'
         filter=pulumi.get(__ret__, 'filter'),
         id=pulumi.get(__ret__, 'id'),
         runs=pulumi.get(__ret__, 'runs'))
-def get_runs_output(filter: Optional[pulumi.Input[Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict']]]] = None,
+def get_runs_output(filter: pulumi.Input[Optional[Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict']]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRunsResult]:
     """
     Retrieve all runs

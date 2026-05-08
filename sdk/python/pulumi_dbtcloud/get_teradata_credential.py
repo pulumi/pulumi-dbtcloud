@@ -145,8 +145,8 @@ def get_teradata_credential(credential_id: Optional[_builtins.int] = None,
         schema=pulumi.get(__ret__, 'schema'),
         threads=pulumi.get(__ret__, 'threads'),
         user=pulumi.get(__ret__, 'user'))
-def get_teradata_credential_output(credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                                   project_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_teradata_credential_output(credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                                   project_id: pulumi.Input[Optional[_builtins.int]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeradataCredentialResult]:
     """
     Teradata credential data source

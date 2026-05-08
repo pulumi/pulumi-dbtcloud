@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * const dbtMyEnvVar = new dbtcloud.EnvironmentVariable("dbt_my_env_var", {
  *     name: "DBT_MY_ENV_VAR",
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     environmentValues: {
  *         project: "my_project_level_value",
  *         Dev: "my_env_level_value",
@@ -134,15 +134,15 @@ export interface EnvironmentVariableState {
     /**
      * Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
      */
-    environmentValues?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    environmentValues?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Project ID to create the environment variable in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -156,7 +156,7 @@ export interface EnvironmentVariableArgs {
     /**
      * Name for the variable, must be unique within a project, must be prefixed with 'DBT_'
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Project ID to create the environment variable in
      */

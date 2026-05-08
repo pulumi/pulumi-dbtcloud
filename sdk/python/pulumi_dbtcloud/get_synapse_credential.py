@@ -184,8 +184,8 @@ def get_synapse_credential(credential_id: Optional[_builtins.int] = None,
         schema_authorization=pulumi.get(__ret__, 'schema_authorization'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'),
         user=pulumi.get(__ret__, 'user'))
-def get_synapse_credential_output(credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                                  project_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_synapse_credential_output(credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                                  project_id: pulumi.Input[Optional[_builtins.int]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSynapseCredentialResult]:
     """
     Synapse credential data source.

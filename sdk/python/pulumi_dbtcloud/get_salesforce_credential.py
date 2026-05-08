@@ -132,8 +132,8 @@ def get_salesforce_credential(credential_id: Optional[_builtins.int] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         target_name=pulumi.get(__ret__, 'target_name'),
         username=pulumi.get(__ret__, 'username'))
-def get_salesforce_credential_output(credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                                     project_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_salesforce_credential_output(credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                                     project_id: pulumi.Input[Optional[_builtins.int]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSalesforceCredentialResult]:
     """
     Salesforce credential data source

@@ -111,11 +111,11 @@ export interface PartialLicenseMapState {
     /**
      * The license type to update
      */
-    licenseType?: pulumi.Input<string>;
+    licenseType?: pulumi.Input<string | undefined>;
     /**
      * List of SSO groups to map to the license type.
      */
-    ssoLicenseMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    ssoLicenseMappingGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

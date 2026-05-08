@@ -17,12 +17,12 @@ import * as utilities from "./utilities";
  *
  * const slCredDatabricksExample = new dbtcloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example", {
  *     configuration: {
- *         projectId: projectId,
+ *         projectId: Number(projectId),
  *         name: "Databricks SL Credential",
  *         adapterVersion: "databricks_v0",
  *     },
  *     credential: {
- *         projectId: projectId,
+ *         projectId: Number(projectId),
  *         catalog: catalog,
  *         token: token,
  *         semanticLayerCredential: true,
@@ -125,11 +125,11 @@ export interface DatabricksSemanticLayerCredentialState {
     /**
      * Semantic Layer credential configuration details.
      */
-    configuration?: pulumi.Input<inputs.DatabricksSemanticLayerCredentialConfiguration>;
+    configuration?: pulumi.Input<inputs.DatabricksSemanticLayerCredentialConfiguration | undefined>;
     /**
      * Databricks credential details, but used in the context of the Semantic Layer.
      */
-    credential?: pulumi.Input<inputs.DatabricksSemanticLayerCredentialCredential>;
+    credential?: pulumi.Input<inputs.DatabricksSemanticLayerCredentialCredential | undefined>;
 }
 
 /**

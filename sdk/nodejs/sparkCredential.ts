@@ -15,14 +15,14 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const mySparkCred = new dbtcloud.SparkCredential("my_spark_cred", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     token: "abcdefgh",
  *     schema: "my_schema",
  * });
  * const config = new pulumi.Config();
  * const sparkToken = config.require("sparkToken");
  * const mySparkCredWo = new dbtcloud.SparkCredential("my_spark_cred_wo", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     tokenWo: sparkToken,
  *     tokenWoVersion: 1,
  *     schema: "my_schema",
@@ -159,34 +159,34 @@ export interface SparkCredentialState {
     /**
      * The system Apache Spark credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Apache Spark credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The schema where to create models
      */
-    schema?: pulumi.Input<string>;
+    schema?: pulumi.Input<string | undefined>;
     /**
      * Target name
      *
      * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -206,18 +206,18 @@ export interface SparkCredentialArgs {
      *
      * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * Token for Apache Spark user. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }

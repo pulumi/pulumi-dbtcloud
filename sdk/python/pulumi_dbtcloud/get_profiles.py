@@ -100,7 +100,7 @@ def get_profiles(project_id: Optional[_builtins.int] = None,
         id=pulumi.get(__ret__, 'id'),
         profiles=pulumi.get(__ret__, 'profiles'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_profiles_output(project_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_profiles_output(project_id: pulumi.Input[Optional[_builtins.int]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProfilesResult]:
     """
     Retrieve data for multiple profiles

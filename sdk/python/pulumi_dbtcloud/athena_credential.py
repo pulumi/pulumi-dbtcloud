@@ -21,12 +21,12 @@ class AthenaCredentialArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
                  schema: pulumi.Input[_builtins.str],
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_access_key_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_access_key_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_access_key_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_access_key_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a AthenaCredential resource.
 
@@ -82,19 +82,19 @@ class AthenaCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
-    def aws_access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS access key ID for Athena user. Consider using `aws_access_key_id_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
-    def aws_access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyIdWo")
-    def aws_access_key_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_access_key_id_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `aws_access_key_id`. The value is not stored in state. Requires `aws_access_key_id_wo_version` to trigger updates.
@@ -102,36 +102,36 @@ class AthenaCredentialArgs:
         return pulumi.get(self, "aws_access_key_id_wo")
 
     @aws_access_key_id_wo.setter
-    def aws_access_key_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_access_key_id_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_access_key_id_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyIdWoVersion")
-    def aws_access_key_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def aws_access_key_id_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `aws_access_key_id_wo`. Increment this value to trigger an update of the AWS access key ID when using `aws_access_key_id_wo`.
         """
         return pulumi.get(self, "aws_access_key_id_wo_version")
 
     @aws_access_key_id_wo_version.setter
-    def aws_access_key_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def aws_access_key_id_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "aws_access_key_id_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKey")
-    def aws_secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret access key for Athena user. Consider using `aws_secret_access_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
-    def aws_secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKeyWo")
-    def aws_secret_access_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_secret_access_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `aws_secret_access_key`. The value is not stored in state. Requires `aws_secret_access_key_wo_version` to trigger updates.
@@ -139,34 +139,34 @@ class AthenaCredentialArgs:
         return pulumi.get(self, "aws_secret_access_key_wo")
 
     @aws_secret_access_key_wo.setter
-    def aws_secret_access_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_secret_access_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKeyWoVersion")
-    def aws_secret_access_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def aws_secret_access_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `aws_secret_access_key_wo`. Increment this value to trigger an update of the AWS secret access key when using `aws_secret_access_key_wo`.
         """
         return pulumi.get(self, "aws_secret_access_key_wo_version")
 
     @aws_secret_access_key_wo_version.setter
-    def aws_secret_access_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def aws_secret_access_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "aws_secret_access_key_wo_version", value)
 
 
 @pulumi.input_type
 class _AthenaCredentialState:
     def __init__(__self__, *,
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_access_key_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_access_key_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 schema: Optional[pulumi.Input[_builtins.str]] = None):
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_access_key_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_access_key_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AthenaCredential resources.
 
@@ -203,19 +203,19 @@ class _AthenaCredentialState:
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
-    def aws_access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS access key ID for Athena user. Consider using `aws_access_key_id_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
-    def aws_access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyIdWo")
-    def aws_access_key_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_access_key_id_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `aws_access_key_id`. The value is not stored in state. Requires `aws_access_key_id_wo_version` to trigger updates.
@@ -223,36 +223,36 @@ class _AthenaCredentialState:
         return pulumi.get(self, "aws_access_key_id_wo")
 
     @aws_access_key_id_wo.setter
-    def aws_access_key_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_access_key_id_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_access_key_id_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyIdWoVersion")
-    def aws_access_key_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def aws_access_key_id_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `aws_access_key_id_wo`. Increment this value to trigger an update of the AWS access key ID when using `aws_access_key_id_wo`.
         """
         return pulumi.get(self, "aws_access_key_id_wo_version")
 
     @aws_access_key_id_wo_version.setter
-    def aws_access_key_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def aws_access_key_id_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "aws_access_key_id_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKey")
-    def aws_secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret access key for Athena user. Consider using `aws_secret_access_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
-    def aws_secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKeyWo")
-    def aws_secret_access_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_secret_access_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `aws_secret_access_key`. The value is not stored in state. Requires `aws_secret_access_key_wo_version` to trigger updates.
@@ -260,55 +260,55 @@ class _AthenaCredentialState:
         return pulumi.get(self, "aws_secret_access_key_wo")
 
     @aws_secret_access_key_wo.setter
-    def aws_secret_access_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_secret_access_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKeyWoVersion")
-    def aws_secret_access_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def aws_secret_access_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `aws_secret_access_key_wo`. Increment this value to trigger an update of the AWS secret access key when using `aws_secret_access_key_wo`.
         """
         return pulumi.get(self, "aws_secret_access_key_wo_version")
 
     @aws_secret_access_key_wo_version.setter
-    def aws_secret_access_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def aws_secret_access_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "aws_secret_access_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to create the Athena credential in
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def schema(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schema(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schema where to create models
         """
         return pulumi.get(self, "schema")
 
     @schema.setter
-    def schema(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schema(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schema", value)
 
 
@@ -318,14 +318,14 @@ class AthenaCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_access_key_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_access_key_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 schema: Optional[pulumi.Input[_builtins.str]] = None,
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_access_key_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_access_key_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Athena credential resource
@@ -338,7 +338,7 @@ class AthenaCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         example = dbtcloud.AthenaCredential("example",
-            project_id=example_dbtcloud_project["id"],
+            project_id=int(example_dbtcloud_project["id"]),
             aws_access_key_id="your-access-key-id",
             aws_secret_access_key="your-secret-access-key",
             schema="your_schema")
@@ -346,7 +346,7 @@ class AthenaCredential(pulumi.CustomResource):
         athena_aws_access_key_id = config.require("athenaAwsAccessKeyId")
         athena_aws_secret_access_key = config.require("athenaAwsSecretAccessKey")
         example_wo = dbtcloud.AthenaCredential("example_wo",
-            project_id=example_dbtcloud_project["id"],
+            project_id=int(example_dbtcloud_project["id"]),
             aws_access_key_id_wo=athena_aws_access_key_id,
             aws_access_key_id_wo_version=1,
             aws_secret_access_key_wo=athena_aws_secret_access_key,
@@ -405,7 +405,7 @@ class AthenaCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         example = dbtcloud.AthenaCredential("example",
-            project_id=example_dbtcloud_project["id"],
+            project_id=int(example_dbtcloud_project["id"]),
             aws_access_key_id="your-access-key-id",
             aws_secret_access_key="your-secret-access-key",
             schema="your_schema")
@@ -413,7 +413,7 @@ class AthenaCredential(pulumi.CustomResource):
         athena_aws_access_key_id = config.require("athenaAwsAccessKeyId")
         athena_aws_secret_access_key = config.require("athenaAwsSecretAccessKey")
         example_wo = dbtcloud.AthenaCredential("example_wo",
-            project_id=example_dbtcloud_project["id"],
+            project_id=int(example_dbtcloud_project["id"]),
             aws_access_key_id_wo=athena_aws_access_key_id,
             aws_access_key_id_wo_version=1,
             aws_secret_access_key_wo=athena_aws_secret_access_key,
@@ -457,14 +457,14 @@ class AthenaCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_access_key_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_access_key_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 schema: Optional[pulumi.Input[_builtins.str]] = None,
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_access_key_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_access_key_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -499,15 +499,15 @@ class AthenaCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_access_key_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_access_key_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_secret_access_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_secret_access_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            schema: Optional[pulumi.Input[_builtins.str]] = None) -> 'AthenaCredential':
+            aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_access_key_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_access_key_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_secret_access_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            schema: pulumi.Input[Optional[_builtins.str]] = None) -> 'AthenaCredential':
         """
         Get an existing AthenaCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attributes (stored in state)
-    ///     var example = new DbtCloud.Index.AthenaCredential("example", new()
+    ///     var example = new DbtCloud.AthenaCredential("example", new()
     ///     {
     ///         ProjectId = exampleDbtcloudProject.Id,
     ///         AwsAccessKeyId = "your-access-key-id",
@@ -34,7 +34,7 @@ namespace Pulumi.DbtCloud
     ///     var config = new Config();
     ///     var athenaAwsAccessKeyId = config.Require("athenaAwsAccessKeyId");
     ///     var athenaAwsSecretAccessKey = config.Require("athenaAwsSecretAccessKey");
-    ///     var exampleWo = new DbtCloud.Index.AthenaCredential("example_wo", new()
+    ///     var exampleWo = new DbtCloud.AthenaCredential("example_wo", new()
     ///     {
     ///         ProjectId = exampleDbtcloudProject.Id,
     ///         AwsAccessKeyIdWo = athenaAwsAccessKeyId,

@@ -25,7 +25,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attribute (stored in state)
-    ///     var entra = new DbtCloud.Index.OauthConfiguration("entra", new()
+    ///     var entra = new DbtCloud.OauthConfiguration("entra", new()
     ///     {
     ///         Type = "entra",
     ///         Name = "My Entra ID Oauth integration",
@@ -37,7 +37,7 @@ namespace Pulumi.DbtCloud
     ///         ApplicationIdUri = "uri",
     ///     });
     /// 
-    ///     var okta = new DbtCloud.Index.OauthConfiguration("okta", new()
+    ///     var okta = new DbtCloud.OauthConfiguration("okta", new()
     ///     {
     ///         Type = "okta",
     ///         Name = "My Okta Oauth integration",
@@ -50,7 +50,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var config = new Config();
     ///     var oauthClientSecret = config.Require("oauthClientSecret");
-    ///     var entraWo = new DbtCloud.Index.OauthConfiguration("entra_wo", new()
+    ///     var entraWo = new DbtCloud.OauthConfiguration("entra_wo", new()
     ///     {
     ///         Type = "entra",
     ///         Name = "My Entra ID Oauth integration",

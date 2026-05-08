@@ -60,8 +60,8 @@ class PostgresSemanticLayerCredentialArgs:
 @pulumi.input_type
 class _PostgresSemanticLayerCredentialState:
     def __init__(__self__, *,
-                 configuration: Optional[pulumi.Input['PostgresSemanticLayerCredentialConfigurationArgs']] = None,
-                 credential: Optional[pulumi.Input['PostgresSemanticLayerCredentialCredentialArgs']] = None):
+                 configuration: pulumi.Input[Optional['PostgresSemanticLayerCredentialConfigurationArgs']] = None,
+                 credential: pulumi.Input[Optional['PostgresSemanticLayerCredentialCredentialArgs']] = None):
         """
         Input properties used for looking up and filtering PostgresSemanticLayerCredential resources.
 
@@ -75,26 +75,26 @@ class _PostgresSemanticLayerCredentialState:
 
     @_builtins.property
     @pulumi.getter
-    def configuration(self) -> Optional[pulumi.Input['PostgresSemanticLayerCredentialConfigurationArgs']]:
+    def configuration(self) -> pulumi.Input[Optional['PostgresSemanticLayerCredentialConfigurationArgs']]:
         """
         Semantic Layer credential configuration details.
         """
         return pulumi.get(self, "configuration")
 
     @configuration.setter
-    def configuration(self, value: Optional[pulumi.Input['PostgresSemanticLayerCredentialConfigurationArgs']]):
+    def configuration(self, value: pulumi.Input[Optional['PostgresSemanticLayerCredentialConfigurationArgs']]):
         pulumi.set(self, "configuration", value)
 
     @_builtins.property
     @pulumi.getter
-    def credential(self) -> Optional[pulumi.Input['PostgresSemanticLayerCredentialCredentialArgs']]:
+    def credential(self) -> pulumi.Input[Optional['PostgresSemanticLayerCredentialCredentialArgs']]:
         """
         Postgres credential details, but used in the context of the Semantic Layer.
         """
         return pulumi.get(self, "credential")
 
     @credential.setter
-    def credential(self, value: Optional[pulumi.Input['PostgresSemanticLayerCredentialCredentialArgs']]):
+    def credential(self, value: pulumi.Input[Optional['PostgresSemanticLayerCredentialCredentialArgs']]):
         pulumi.set(self, "credential", value)
 
 
@@ -104,8 +104,8 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: Optional[pulumi.Input[Union['PostgresSemanticLayerCredentialConfigurationArgs', 'PostgresSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: Optional[pulumi.Input[Union['PostgresSemanticLayerCredentialCredentialArgs', 'PostgresSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['PostgresSemanticLayerCredentialConfigurationArgs', 'PostgresSemanticLayerCredentialConfigurationArgsDict']]] = None,
+                 credential: pulumi.Input[Optional[Union['PostgresSemanticLayerCredentialCredentialArgs', 'PostgresSemanticLayerCredentialCredentialArgsDict']]] = None,
                  __props__=None):
         """
         Postgres credential resource. This resource is composed of a Postgres credential and a Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
@@ -118,12 +118,12 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
 
         test_postgres_semantic_layer_credential = dbtcloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Postgres SL Credential",
                 "adapter_version": "postgres_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "username": username,
                 "password": password,
                 "semantic_layer_credential": True,
@@ -173,12 +173,12 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
 
         test_postgres_semantic_layer_credential = dbtcloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Postgres SL Credential",
                 "adapter_version": "postgres_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "username": username,
                 "password": password,
                 "semantic_layer_credential": True,
@@ -221,8 +221,8 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: Optional[pulumi.Input[Union['PostgresSemanticLayerCredentialConfigurationArgs', 'PostgresSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: Optional[pulumi.Input[Union['PostgresSemanticLayerCredentialCredentialArgs', 'PostgresSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['PostgresSemanticLayerCredentialConfigurationArgs', 'PostgresSemanticLayerCredentialConfigurationArgsDict']]] = None,
+                 credential: pulumi.Input[Optional[Union['PostgresSemanticLayerCredentialCredentialArgs', 'PostgresSemanticLayerCredentialCredentialArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -248,8 +248,8 @@ class PostgresSemanticLayerCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            configuration: Optional[pulumi.Input[Union['PostgresSemanticLayerCredentialConfigurationArgs', 'PostgresSemanticLayerCredentialConfigurationArgsDict']]] = None,
-            credential: Optional[pulumi.Input[Union['PostgresSemanticLayerCredentialCredentialArgs', 'PostgresSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'PostgresSemanticLayerCredential':
+            configuration: pulumi.Input[Optional[Union['PostgresSemanticLayerCredentialConfigurationArgs', 'PostgresSemanticLayerCredentialConfigurationArgsDict']]] = None,
+            credential: pulumi.Input[Optional[Union['PostgresSemanticLayerCredentialCredentialArgs', 'PostgresSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'PostgresSemanticLayerCredential':
         """
         Get an existing PostgresSemanticLayerCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

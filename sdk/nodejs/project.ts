@@ -125,19 +125,19 @@ export interface ProjectState {
     /**
      * DBT project subdirectory
      */
-    dbtProjectSubdirectory?: pulumi.Input<string>;
+    dbtProjectSubdirectory?: pulumi.Input<string | undefined>;
     /**
      * Description for the project. Will show in dbt Explorer.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Project name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of dbt project (0=default or 1=hybrid)
      */
-    type?: pulumi.Input<number>;
+    type?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -147,17 +147,17 @@ export interface ProjectArgs {
     /**
      * DBT project subdirectory
      */
-    dbtProjectSubdirectory?: pulumi.Input<string>;
+    dbtProjectSubdirectory?: pulumi.Input<string | undefined>;
     /**
      * Description for the project. Will show in dbt Explorer.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Project name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of dbt project (0=default or 1=hybrid)
      */
-    type?: pulumi.Input<number>;
+    type?: pulumi.Input<number | undefined>;
 }

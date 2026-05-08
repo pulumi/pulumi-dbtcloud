@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attribute (stored in state)
-    ///     var myDatabricksCred = new DbtCloud.Index.DatabricksCredential("my_databricks_cred", new()
+    ///     var myDatabricksCred = new DbtCloud.DatabricksCredential("my_databricks_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Token = "abcdefgh",
@@ -33,7 +33,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var config = new Config();
     ///     var databricksToken = config.Require("databricksToken");
-    ///     var myDatabricksCredWo = new DbtCloud.Index.DatabricksCredential("my_databricks_cred_wo", new()
+    ///     var myDatabricksCredWo = new DbtCloud.DatabricksCredential("my_databricks_cred_wo", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         TokenWo = databricksToken,

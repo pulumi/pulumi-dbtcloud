@@ -36,7 +36,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attributes (stored in state)
-    ///     var passwordAuth = new DbtCloud.Index.SnowflakePlatformMetadataCredential("password_auth", new()
+    ///     var passwordAuth = new DbtCloud.SnowflakePlatformMetadataCredential("password_auth", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         CatalogIngestionEnabled = true,
@@ -49,7 +49,7 @@ namespace Pulumi.DbtCloud
     ///         Warehouse = "METADATA_WH",
     ///     });
     /// 
-    ///     var keypairAuth = new DbtCloud.Index.SnowflakePlatformMetadataCredential("keypair_auth", new()
+    ///     var keypairAuth = new DbtCloud.SnowflakePlatformMetadataCredential("keypair_auth", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         CatalogIngestionEnabled = true,
@@ -67,7 +67,7 @@ namespace Pulumi.DbtCloud
     ///     var snowflakeMetadataPassword = config.Require("snowflakeMetadataPassword");
     ///     var snowflakeMetadataPrivateKey = config.Require("snowflakeMetadataPrivateKey");
     ///     var snowflakeMetadataPrivateKeyPassphrase = config.Require("snowflakeMetadataPrivateKeyPassphrase");
-    ///     var passwordAuthWo = new DbtCloud.Index.SnowflakePlatformMetadataCredential("password_auth_wo", new()
+    ///     var passwordAuthWo = new DbtCloud.SnowflakePlatformMetadataCredential("password_auth_wo", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         CatalogIngestionEnabled = true,
@@ -81,7 +81,7 @@ namespace Pulumi.DbtCloud
     ///         Warehouse = "METADATA_WH",
     ///     });
     /// 
-    ///     var keypairAuthWo = new DbtCloud.Index.SnowflakePlatformMetadataCredential("keypair_auth_wo", new()
+    ///     var keypairAuthWo = new DbtCloud.SnowflakePlatformMetadataCredential("keypair_auth_wo", new()
     ///     {
     ///         ConnectionId = snowflake.Id,
     ///         CatalogIngestionEnabled = true,

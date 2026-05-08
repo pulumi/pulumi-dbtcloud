@@ -168,9 +168,9 @@ export interface GetProjectOutputArgs {
     /**
      * Project ID
      */
-    id?: pulumi.Input<number>;
+    id?: pulumi.Input<number | undefined>;
     /**
      * Project name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

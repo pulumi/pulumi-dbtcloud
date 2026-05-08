@@ -14,9 +14,9 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const myProjectArtefacts = new dbtcloud.ProjectArtefacts("my_project_artefacts", {
- *     projectId: dbtProject.id,
- *     docsJobId: prodJob.id,
- *     freshnessJobId: prodJob.id,
+ *     projectId: Number(dbtProject.id),
+ *     docsJobId: Number(prodJob.id),
+ *     freshnessJobId: Number(prodJob.id),
  * });
  * ```
  *
@@ -118,15 +118,15 @@ export interface ProjectArtefactsState {
     /**
      * Docs Job ID
      */
-    docsJobId?: pulumi.Input<number>;
+    docsJobId?: pulumi.Input<number | undefined>;
     /**
      * Freshness Job ID
      */
-    freshnessJobId?: pulumi.Input<number>;
+    freshnessJobId?: pulumi.Input<number | undefined>;
     /**
      * Project ID
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -136,11 +136,11 @@ export interface ProjectArtefactsArgs {
     /**
      * Docs Job ID
      */
-    docsJobId?: pulumi.Input<number>;
+    docsJobId?: pulumi.Input<number | undefined>;
     /**
      * Freshness Job ID
      */
-    freshnessJobId?: pulumi.Input<number>;
+    freshnessJobId?: pulumi.Input<number | undefined>;
     /**
      * Project ID
      */

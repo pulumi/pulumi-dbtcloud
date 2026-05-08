@@ -22,8 +22,8 @@ class BigQueryCredentialArgs:
                  dataset: pulumi.Input[_builtins.str],
                  num_threads: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.int],
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a BigQueryCredential resource.
 
@@ -79,38 +79,38 @@ class BigQueryCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the BigQuery credential is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
 
 @pulumi.input_type
 class _BigQueryCredentialState:
     def __init__(__self__, *,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 dataset: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 dataset: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering BigQueryCredential resources.
 
@@ -136,74 +136,74 @@ class _BigQueryCredentialState:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def dataset(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dataset(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default dataset name
         """
         return pulumi.get(self, "dataset")
 
     @dataset.setter
-    def dataset(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dataset(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dataset", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the BigQuery credential is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_threads(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of threads to use
         """
         return pulumi.get(self, "num_threads")
 
     @num_threads.setter
-    def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_threads(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to create the BigQuery credential in
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -213,11 +213,11 @@ class BigQueryCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 dataset: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 dataset: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Bigquery credential resource
@@ -229,16 +229,16 @@ class BigQueryCredential(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         my_credential = dbtcloud.BigQueryCredential("my_credential",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             dataset="my_bq_dataset",
             num_threads=16)
         # When using a global connection with use_latest_adapter = true,
         # provide the connection_id to automatically use the correct adapter version
         my_credential_v1 = dbtcloud.BigQueryCredential("my_credential_v1",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             dataset="my_bq_dataset",
             num_threads=16,
-            connection_id=my_connection["id"])
+            connection_id=int(my_connection["id"]))
         ```
 
         ## Import
@@ -286,16 +286,16 @@ class BigQueryCredential(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         my_credential = dbtcloud.BigQueryCredential("my_credential",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             dataset="my_bq_dataset",
             num_threads=16)
         # When using a global connection with use_latest_adapter = true,
         # provide the connection_id to automatically use the correct adapter version
         my_credential_v1 = dbtcloud.BigQueryCredential("my_credential_v1",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             dataset="my_bq_dataset",
             num_threads=16,
-            connection_id=my_connection["id"])
+            connection_id=int(my_connection["id"]))
         ```
 
         ## Import
@@ -334,11 +334,11 @@ class BigQueryCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 dataset: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 dataset: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -370,12 +370,12 @@ class BigQueryCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-            credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-            dataset: Optional[pulumi.Input[_builtins.str]] = None,
-            is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-            num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'BigQueryCredential':
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            dataset: pulumi.Input[Optional[_builtins.str]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'BigQueryCredential':
         """
         Get an existing BigQueryCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -91,7 +91,7 @@ def get_environments(project_id: Optional[_builtins.int] = None,
         environments=pulumi.get(__ret__, 'environments'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_environments_output(project_id: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_environments_output(project_id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvironmentsResult]:
     """
     Retrieve data for multiple environments

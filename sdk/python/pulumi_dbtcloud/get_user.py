@@ -86,7 +86,7 @@ def get_user(email: Optional[_builtins.str] = None,
     return AwaitableGetUserResult(
         email=pulumi.get(__ret__, 'email'),
         id=pulumi.get(__ret__, 'id'))
-def get_user_output(email: Optional[pulumi.Input[_builtins.str]] = None,
+def get_user_output(email: pulumi.Input[Optional[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     Retrieve user details

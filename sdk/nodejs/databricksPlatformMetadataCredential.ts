@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const example = new dbtcloud.DatabricksPlatformMetadataCredential("example", {
- *     connectionId: databricks.id,
+ *     connectionId: Number(databricks.id),
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: false,
  *     costInsightsEnabled: false,
@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const databricksMetadataToken = config.require("databricksMetadataToken");
  * const exampleWo = new dbtcloud.DatabricksPlatformMetadataCredential("example_wo", {
- *     connectionId: databricks.id,
+ *     connectionId: Number(databricks.id),
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: false,
  *     costInsightsEnabled: false,
@@ -174,44 +174,44 @@ export interface DatabricksPlatformMetadataCredentialState {
     /**
      * The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.
      */
-    adapterVersion?: pulumi.Input<string>;
+    adapterVersion?: pulumi.Input<string | undefined>;
     /**
      * The Unity Catalog name to use.
      */
-    catalog?: pulumi.Input<string>;
+    catalog?: pulumi.Input<string | undefined>;
     /**
      * Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
      */
-    catalogIngestionEnabled?: pulumi.Input<boolean>;
+    catalogIngestionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the global connection this credential is associated with. Cannot be changed after creation.
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * Whether cost insights is enabled for this credential.
      */
-    costInsightsEnabled?: pulumi.Input<boolean>;
+    costInsightsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether cost optimization data collection is enabled for this credential.
      */
-    costOptimizationEnabled?: pulumi.Input<boolean>;
+    costOptimizationEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the platform metadata credential.
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -225,7 +225,7 @@ export interface DatabricksPlatformMetadataCredentialArgs {
     /**
      * Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
      */
-    catalogIngestionEnabled?: pulumi.Input<boolean>;
+    catalogIngestionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the global connection this credential is associated with. Cannot be changed after creation.
      */
@@ -233,22 +233,22 @@ export interface DatabricksPlatformMetadataCredentialArgs {
     /**
      * Whether cost insights is enabled for this credential.
      */
-    costInsightsEnabled?: pulumi.Input<boolean>;
+    costInsightsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether cost optimization data collection is enabled for this credential.
      */
-    costOptimizationEnabled?: pulumi.Input<boolean>;
+    costOptimizationEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The Databricks personal access token. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }

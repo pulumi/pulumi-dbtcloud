@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *
  * // Example: Configure catalog filters for a Snowflake connection
  * const snowflakeFilters = new dbtcloud.ConnectionCatalogConfig("snowflake_filters", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     databaseAllows: [
  *         "analytics",
  *         "reporting",
@@ -51,12 +51,12 @@ import * as utilities from "./utilities";
  * });
  * // Example: Minimal configuration - just filter databases
  * const minimal = new dbtcloud.ConnectionCatalogConfig("minimal", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     databaseAllows: ["production"],
  * });
  * // Example: Full configuration with platform metadata credential
  * const creds = new dbtcloud.SnowflakePlatformMetadataCredential("creds", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     catalogIngestionEnabled: true,
  *     authType: "password",
  *     user: snowflakeUser,
@@ -65,7 +65,7 @@ import * as utilities from "./utilities";
  *     warehouse: snowflakeWarehouse,
  * });
  * const withCreds = new dbtcloud.ConnectionCatalogConfig("with_creds", {
- *     connectionId: snowflake.id,
+ *     connectionId: Number(snowflake.id),
  *     databaseAllows: [
  *         "analytics",
  *         "reporting",
@@ -203,39 +203,39 @@ export interface ConnectionCatalogConfigState {
     /**
      * The ID of the global connection this catalog config is associated with. Cannot be changed after creation.
      */
-    connectionId?: pulumi.Input<number>;
+    connectionId?: pulumi.Input<number | undefined>;
     /**
      * List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.
      */
-    databaseAllows?: pulumi.Input<pulumi.Input<string>[]>;
+    databaseAllows?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.
      */
-    databaseDenies?: pulumi.Input<pulumi.Input<string>[]>;
+    databaseDenies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of schema names to include. Supports wildcards (e.g., 'public_*'). If set, only these schemas are ingested.
      */
-    schemaAllows?: pulumi.Input<pulumi.Input<string>[]>;
+    schemaAllows?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of schema names to exclude. Supports wildcards (e.g., 'temp_*'). Matching schemas are not ingested.
      */
-    schemaDenies?: pulumi.Input<pulumi.Input<string>[]>;
+    schemaDenies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of table names to include. Supports wildcards (e.g., 'fact_*'). If set, only these tables are ingested.
      */
-    tableAllows?: pulumi.Input<pulumi.Input<string>[]>;
+    tableAllows?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of table names to exclude. Supports wildcards (e.g., 'tmp_*'). Matching tables are not ingested.
      */
-    tableDenies?: pulumi.Input<pulumi.Input<string>[]>;
+    tableDenies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of view names to include. Supports wildcards (e.g., 'v_*'). If set, only these views are ingested.
      */
-    viewAllows?: pulumi.Input<pulumi.Input<string>[]>;
+    viewAllows?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of view names to exclude. Supports wildcards (e.g., 'secret_*'). Matching views are not ingested.
      */
-    viewDenies?: pulumi.Input<pulumi.Input<string>[]>;
+    viewDenies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -249,33 +249,33 @@ export interface ConnectionCatalogConfigArgs {
     /**
      * List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.
      */
-    databaseAllows?: pulumi.Input<pulumi.Input<string>[]>;
+    databaseAllows?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.
      */
-    databaseDenies?: pulumi.Input<pulumi.Input<string>[]>;
+    databaseDenies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of schema names to include. Supports wildcards (e.g., 'public_*'). If set, only these schemas are ingested.
      */
-    schemaAllows?: pulumi.Input<pulumi.Input<string>[]>;
+    schemaAllows?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of schema names to exclude. Supports wildcards (e.g., 'temp_*'). Matching schemas are not ingested.
      */
-    schemaDenies?: pulumi.Input<pulumi.Input<string>[]>;
+    schemaDenies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of table names to include. Supports wildcards (e.g., 'fact_*'). If set, only these tables are ingested.
      */
-    tableAllows?: pulumi.Input<pulumi.Input<string>[]>;
+    tableAllows?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of table names to exclude. Supports wildcards (e.g., 'tmp_*'). Matching tables are not ingested.
      */
-    tableDenies?: pulumi.Input<pulumi.Input<string>[]>;
+    tableDenies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of view names to include. Supports wildcards (e.g., 'v_*'). If set, only these views are ingested.
      */
-    viewAllows?: pulumi.Input<pulumi.Input<string>[]>;
+    viewAllows?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of view names to exclude. Supports wildcards (e.g., 'secret_*'). Matching views are not ingested.
      */
-    viewDenies?: pulumi.Input<pulumi.Input<string>[]>;
+    viewDenies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

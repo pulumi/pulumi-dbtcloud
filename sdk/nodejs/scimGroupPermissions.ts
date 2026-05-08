@@ -95,11 +95,11 @@ export interface ScimGroupPermissionsState {
     /**
      * The ID of the existing group to manage permissions for. This group must already exist.
      */
-    groupId?: pulumi.Input<number>;
+    groupId?: pulumi.Input<number | undefined>;
     /**
      * Set of permissions to apply to the group. This will replace all existing permissions for the group.
      */
-    permissions?: pulumi.Input<pulumi.Input<inputs.ScimGroupPermissionsPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.ScimGroupPermissionsPermission>[] | undefined>;
 }
 
 /**
@@ -113,5 +113,5 @@ export interface ScimGroupPermissionsArgs {
     /**
      * Set of permissions to apply to the group. This will replace all existing permissions for the group.
      */
-    permissions?: pulumi.Input<pulumi.Input<inputs.ScimGroupPermissionsPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.ScimGroupPermissionsPermission>[] | undefined>;
 }

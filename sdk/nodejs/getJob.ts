@@ -142,7 +142,7 @@ export interface GetJobOutputArgs {
     /**
      * Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
      */
-    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.GetJobJobCompletionTriggerConditionArgs>[]>;
+    jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.GetJobJobCompletionTriggerConditionArgs>[] | undefined>;
     /**
      * The ID of the job
      */

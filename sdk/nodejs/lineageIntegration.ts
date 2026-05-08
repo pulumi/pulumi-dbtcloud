@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * // so, you might want to explicitly set the dependency on your Prod environment resource
  * // Using the classic sensitive attribute (stored in state)
  * const myLineage = new dbtcloud.LineageIntegration("my_lineage", {
- *     projectId: myProject.id,
+ *     projectId: Number(myProject.id),
  *     host: "my.host.com",
  *     siteId: "mysiteid",
  *     tokenName: "my-token-name",
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const lineageToken = config.require("lineageToken");
  * const myLineageWo = new dbtcloud.LineageIntegration("my_lineage_wo", {
- *     projectId: myProject.id,
+ *     projectId: Number(myProject.id),
  *     host: "my.host.com",
  *     siteId: "mysiteid",
  *     tokenName: "my-token-name",
@@ -187,40 +187,40 @@ export interface LineageIntegrationState {
     /**
      * The URL of the BI server (see docs for more details)
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * The ID of the lineage integration
      */
-    lineageIntegrationId?: pulumi.Input<number>;
+    lineageIntegrationId?: pulumi.Input<number | undefined>;
     /**
      * The integration type. Today only 'tableau' is supported
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The dbt Cloud project ID for the integration
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The sitename for the collections of dashboards (see docs for more details)
      */
-    siteId?: pulumi.Input<string>;
+    siteId?: pulumi.Input<string | undefined>;
     /**
      * The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * The token to use to authenticate to the BI server
      */
-    tokenName?: pulumi.Input<string>;
+    tokenName?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -242,7 +242,7 @@ export interface LineageIntegrationArgs {
     /**
      * The secret token value to use to authenticate to the BI server. Consider using `tokenWo` instead, which is not stored in state.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * The token to use to authenticate to the BI server
      */
@@ -251,9 +251,9 @@ export interface LineageIntegrationArgs {
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `token`. The value is not stored in state. Requires `tokenWoVersion` to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `tokenWo`. Increment this value to trigger an update of the token when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }

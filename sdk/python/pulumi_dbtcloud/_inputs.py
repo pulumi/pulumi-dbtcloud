@@ -172,19 +172,19 @@ class BigquerySemanticLayerCredentialCredentialArgsDict(TypedDict):
     """
     Project ID to create the BigQuery credential in
     """
-    connection_id: NotRequired[pulumi.Input[_builtins.int]]
+    connection_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
     """
-    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    credential_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The internal credential ID
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of this resource. Contains the project ID and the credential ID.
     """
-    is_active: NotRequired[pulumi.Input[_builtins.bool]]
+    is_active: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the BigQuery credential is active
     """
@@ -195,10 +195,10 @@ class BigquerySemanticLayerCredentialCredentialArgs:
                  dataset: pulumi.Input[_builtins.str],
                  num_threads: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.int],
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] dataset: Default dataset name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
@@ -258,50 +258,50 @@ class BigquerySemanticLayerCredentialCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the BigQuery credential is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
 
@@ -376,44 +376,44 @@ class DatabricksSemanticLayerCredentialCredentialArgsDict(TypedDict):
     """
     Project ID to create the Databricks credential in
     """
-    adapter_type: NotRequired[pulumi.Input[_builtins.str]]
+    adapter_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
     """
-    catalog: NotRequired[pulumi.Input[_builtins.str]]
+    catalog: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The catalog where to create models (only for the databricks adapter)
     """
-    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    credential_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The system Databricks credential ID
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of this resource. Contains the project ID and the credential ID.
     """
-    schema: NotRequired[pulumi.Input[_builtins.str]]
+    schema: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
     """
-    semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
+    semantic_layer_credential: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
     """
-    target_name: NotRequired[pulumi.Input[_builtins.str]]
+    target_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Target name
     """
-    token: NotRequired[pulumi.Input[_builtins.str]]
+    token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
     """
-    token_wo: NotRequired[pulumi.Input[_builtins.str]]
+    token_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
     """
-    token_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    token_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
     """
@@ -422,16 +422,16 @@ class DatabricksSemanticLayerCredentialCredentialArgsDict(TypedDict):
 class DatabricksSemanticLayerCredentialCredentialArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
-                 adapter_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 catalog: Optional[pulumi.Input[_builtins.str]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema: Optional[pulumi.Input[_builtins.str]] = None,
-                 semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 adapter_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 catalog: pulumi.Input[Optional[_builtins.str]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
+                 semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Databricks credential in
         :param pulumi.Input[_builtins.str] adapter_type: The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
@@ -489,104 +489,104 @@ class DatabricksSemanticLayerCredentialCredentialArgs:
     @_builtins.property
     @pulumi.getter(name="adapterType")
     @_utilities.deprecated("""This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.""")
-    def adapter_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def adapter_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "adapter_type")
 
     @adapter_type.setter
-    def adapter_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def adapter_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "adapter_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def catalog(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def catalog(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The catalog where to create models (only for the databricks adapter)
         """
         return pulumi.get(self, "catalog")
 
     @catalog.setter
-    def catalog(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def catalog(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "catalog", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The system Databricks credential ID
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def schema(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schema(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schema where to create models. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "schema")
 
     @schema.setter
-    def schema(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schema(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schema", value)
 
     @_builtins.property
     @pulumi.getter(name="semanticLayerCredential")
-    def semantic_layer_credential(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def semantic_layer_credential(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
         """
         return pulumi.get(self, "semantic_layer_credential")
 
     @semantic_layer_credential.setter
-    def semantic_layer_credential(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def semantic_layer_credential(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "semantic_layer_credential", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
     @_utilities.deprecated("""This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.""")
-    def target_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target name
         """
         return pulumi.get(self, "target_name")
 
     @target_name.setter
-    def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Token for Databricks user. Consider using `token_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWo")
-    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
@@ -594,19 +594,19 @@ class DatabricksSemanticLayerCredentialCredentialArgs:
         return pulumi.get(self, "token_wo")
 
     @token_wo.setter
-    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWoVersion")
-    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         return pulumi.get(self, "token_wo_version")
 
     @token_wo_version.setter
-    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_wo_version", value)
 
 
@@ -623,27 +623,27 @@ class GlobalConnectionApacheSparkArgsDict(TypedDict):
     """
     Authentication method for the connection (http or thrift).
     """
-    auth: NotRequired[pulumi.Input[_builtins.str]]
+    auth: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Auth
     """
-    connect_retries: NotRequired[pulumi.Input[_builtins.int]]
+    connect_retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Connection retries. Default=0
     """
-    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    connect_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Connection time out in seconds. Default=10
     """
-    organization: NotRequired[pulumi.Input[_builtins.str]]
+    organization: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Organization ID
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Port for the connection. Default=443
     """
-    user: NotRequired[pulumi.Input[_builtins.str]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     User
     """
@@ -654,12 +654,12 @@ class GlobalConnectionApacheSparkArgs:
                  cluster: pulumi.Input[_builtins.str],
                  host: pulumi.Input[_builtins.str],
                  method: pulumi.Input[_builtins.str],
-                 auth: Optional[pulumi.Input[_builtins.str]] = None,
-                 connect_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth: pulumi.Input[Optional[_builtins.str]] = None,
+                 connect_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 connect_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cluster: Spark cluster for the connection
         :param pulumi.Input[_builtins.str] host: Hostname of the connection
@@ -725,74 +725,74 @@ class GlobalConnectionApacheSparkArgs:
 
     @_builtins.property
     @pulumi.getter
-    def auth(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Auth
         """
         return pulumi.get(self, "auth")
 
     @auth.setter
-    def auth(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth", value)
 
     @_builtins.property
     @pulumi.getter(name="connectRetries")
-    def connect_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Connection retries. Default=0
         """
         return pulumi.get(self, "connect_retries")
 
     @connect_retries.setter
-    def connect_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Connection time out in seconds. Default=10
         """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Organization ID
         """
         return pulumi.get(self, "organization")
 
     @organization.setter
-    def organization(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Port for the connection. Default=443
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
@@ -809,39 +809,39 @@ class GlobalConnectionAthenaArgsDict(TypedDict):
     """
     S3 location to store Athena query results and metadata. Must be in the format 's3://bucket-name/path/'.
     """
-    num_boto3_retries: NotRequired[pulumi.Input[_builtins.int]]
+    num_boto3_retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
     """
-    num_iceberg_retries: NotRequired[pulumi.Input[_builtins.int]]
+    num_iceberg_retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
     """
-    num_retries: NotRequired[pulumi.Input[_builtins.int]]
+    num_retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of times to retry a failing query.
     """
-    poll_interval: NotRequired[pulumi.Input[_builtins.int]]
+    poll_interval: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Interval in seconds to use for polling the status of query results in Athena.
     """
-    s3_data_dir: NotRequired[pulumi.Input[_builtins.str]]
+    s3_data_dir: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
     """
-    s3_data_naming: NotRequired[pulumi.Input[_builtins.str]]
+    s3_data_naming: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How to generate table paths in the S3 data directory.
     """
-    s3_tmp_table_dir: NotRequired[pulumi.Input[_builtins.str]]
+    s3_tmp_table_dir: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
     """
-    spark_work_group: NotRequired[pulumi.Input[_builtins.str]]
+    spark_work_group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Identifier of Athena Spark workgroup for running Python models.
     """
-    work_group: NotRequired[pulumi.Input[_builtins.str]]
+    work_group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Identifier of Athena workgroup.
     """
@@ -852,15 +852,15 @@ class GlobalConnectionAthenaArgs:
                  database: pulumi.Input[_builtins.str],
                  region_name: pulumi.Input[_builtins.str],
                  s3_staging_dir: pulumi.Input[_builtins.str],
-                 num_boto3_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_iceberg_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 poll_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 s3_data_dir: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_data_naming: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_tmp_table_dir: Optional[pulumi.Input[_builtins.str]] = None,
-                 spark_work_group: Optional[pulumi.Input[_builtins.str]] = None,
-                 work_group: Optional[pulumi.Input[_builtins.str]] = None):
+                 num_boto3_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_iceberg_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 poll_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 s3_data_dir: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_data_naming: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_tmp_table_dir: pulumi.Input[Optional[_builtins.str]] = None,
+                 spark_work_group: pulumi.Input[Optional[_builtins.str]] = None,
+                 work_group: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] database: Specify the database (data catalog) to build models into (lowercase only).
         :param pulumi.Input[_builtins.str] region_name: AWS region of your Athena instance.
@@ -935,110 +935,110 @@ class GlobalConnectionAthenaArgs:
 
     @_builtins.property
     @pulumi.getter(name="numBoto3Retries")
-    def num_boto3_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_boto3_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of times to retry boto3 requests (e.g. deleting S3 files for materialized tables).
         """
         return pulumi.get(self, "num_boto3_retries")
 
     @num_boto3_retries.setter
-    def num_boto3_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_boto3_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_boto3_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="numIcebergRetries")
-    def num_iceberg_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_iceberg_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of times to retry iceberg commit queries to fix ICEBERG*COMMIT*ERROR.
         """
         return pulumi.get(self, "num_iceberg_retries")
 
     @num_iceberg_retries.setter
-    def num_iceberg_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_iceberg_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_iceberg_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="numRetries")
-    def num_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of times to retry a failing query.
         """
         return pulumi.get(self, "num_retries")
 
     @num_retries.setter
-    def num_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="pollInterval")
-    def poll_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def poll_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Interval in seconds to use for polling the status of query results in Athena.
         """
         return pulumi.get(self, "poll_interval")
 
     @poll_interval.setter
-    def poll_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def poll_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "poll_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="s3DataDir")
-    def s3_data_dir(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_data_dir(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prefix for storing tables, if different from the connection's S3 staging directory. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_data_dir")
 
     @s3_data_dir.setter
-    def s3_data_dir(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_data_dir(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_data_dir", value)
 
     @_builtins.property
     @pulumi.getter(name="s3DataNaming")
-    def s3_data_naming(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_data_naming(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to generate table paths in the S3 data directory.
         """
         return pulumi.get(self, "s3_data_naming")
 
     @s3_data_naming.setter
-    def s3_data_naming(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_data_naming(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_data_naming", value)
 
     @_builtins.property
     @pulumi.getter(name="s3TmpTableDir")
-    def s3_tmp_table_dir(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_tmp_table_dir(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prefix for storing temporary tables, if different from the connection's S3 data directory. Must be in the format 's3://bucket-name/path/'.
         """
         return pulumi.get(self, "s3_tmp_table_dir")
 
     @s3_tmp_table_dir.setter
-    def s3_tmp_table_dir(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_tmp_table_dir(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_tmp_table_dir", value)
 
     @_builtins.property
     @pulumi.getter(name="sparkWorkGroup")
-    def spark_work_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def spark_work_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier of Athena Spark workgroup for running Python models.
         """
         return pulumi.get(self, "spark_work_group")
 
     @spark_work_group.setter
-    def spark_work_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def spark_work_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "spark_work_group", value)
 
     @_builtins.property
     @pulumi.getter(name="workGroup")
-    def work_group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def work_group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier of Athena workgroup.
         """
         return pulumi.get(self, "work_group")
 
     @work_group.setter
-    def work_group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def work_group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "work_group", value)
 
 
@@ -1047,107 +1047,107 @@ class GlobalConnectionBigqueryArgsDict(TypedDict):
     """
     The GCP project ID to use for the connection
     """
-    application_id: NotRequired[pulumi.Input[_builtins.str]]
+    application_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     OAuth Client ID. Required when using 'external-oauth-wif' authentication.
     """
-    application_secret: NotRequired[pulumi.Input[_builtins.str]]
+    application_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
     """
-    auth_provider_x509_cert_url: NotRequired[pulumi.Input[_builtins.str]]
+    auth_provider_x509_cert_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
     """
-    auth_uri: NotRequired[pulumi.Input[_builtins.str]]
+    auth_uri: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Auth URI for the Service Account. Required when using 'service-account-json' authentication.
     """
-    client_email: NotRequired[pulumi.Input[_builtins.str]]
+    client_email: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Service Account email. Required when using 'service-account-json' authentication.
     """
-    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Client ID of the Service Account. Required when using 'service-account-json' authentication.
     """
-    client_x509_cert_url: NotRequired[pulumi.Input[_builtins.str]]
+    client_x509_cert_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
     """
-    dataproc_cluster_name: NotRequired[pulumi.Input[_builtins.str]]
+    dataproc_cluster_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Dataproc cluster name for PySpark workloads
     """
-    dataproc_region: NotRequired[pulumi.Input[_builtins.str]]
+    dataproc_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Google Cloud region for PySpark workloads on Dataproc
     """
-    deployment_env_auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    deployment_env_auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
     """
-    execution_project: NotRequired[pulumi.Input[_builtins.str]]
+    execution_project: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Project to bill for query execution
     """
-    gcs_bucket: NotRequired[pulumi.Input[_builtins.str]]
+    gcs_bucket: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     URI for a Google Cloud Storage bucket to host Python code executed via Datapro
     """
-    impersonate_service_account: NotRequired[pulumi.Input[_builtins.str]]
+    impersonate_service_account: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Service Account to impersonate when running queries
     """
-    job_creation_timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    job_creation_timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum timeout for the job creation step
     """
-    job_execution_timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    job_execution_timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
     """
-    job_retry_deadline_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    job_retry_deadline_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Total number of seconds to wait while retrying the same query
     """
-    location: NotRequired[pulumi.Input[_builtins.str]]
+    location: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Location to create new Datasets in
     """
-    maximum_bytes_billed: NotRequired[pulumi.Input[_builtins.int]]
+    maximum_bytes_billed: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Max number of bytes that can be billed for a given BigQuery query
     """
-    priority: NotRequired[pulumi.Input[_builtins.str]]
+    priority: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The priority with which to execute BigQuery queries (batch or interactive)
     """
-    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private Key for the Service Account. Required when using 'service-account-json' authentication.
     """
-    private_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    private_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
     """
-    retries: NotRequired[pulumi.Input[_builtins.int]]
+    retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of retries for queries
     """
-    scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    scopes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     OAuth scopes for the BigQuery connection
     """
-    timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
     """
-    token_uri: NotRequired[pulumi.Input[_builtins.str]]
+    token_uri: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Token URI for the Service Account. Required when using 'service-account-json' authentication.
     """
-    use_latest_adapter: NotRequired[pulumi.Input[_builtins.bool]]
+    use_latest_adapter: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
     """
@@ -1156,32 +1156,32 @@ class GlobalConnectionBigqueryArgsDict(TypedDict):
 class GlobalConnectionBigqueryArgs:
     def __init__(__self__, *,
                  gcp_project_id: pulumi.Input[_builtins.str],
-                 application_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 application_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 auth_provider_x509_cert_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 auth_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_x509_cert_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 dataproc_cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 dataproc_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 deployment_env_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 execution_project: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 impersonate_service_account: Optional[pulumi.Input[_builtins.str]] = None,
-                 job_creation_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 job_execution_timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 job_retry_deadline_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 maximum_bytes_billed: Optional[pulumi.Input[_builtins.int]] = None,
-                 priority: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_latest_adapter: Optional[pulumi.Input[_builtins.bool]] = None):
+                 application_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 application_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_provider_x509_cert_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_x509_cert_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 dataproc_cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dataproc_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 deployment_env_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 execution_project: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 impersonate_service_account: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_creation_timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 job_execution_timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 job_retry_deadline_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 maximum_bytes_billed: pulumi.Input[Optional[_builtins.int]] = None,
+                 priority: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_latest_adapter: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] gcp_project_id: The GCP project ID to use for the connection
         :param pulumi.Input[_builtins.str] application_id: OAuth Client ID. Required when using 'external-oauth-wif' authentication.
@@ -1279,314 +1279,314 @@ class GlobalConnectionBigqueryArgs:
 
     @_builtins.property
     @pulumi.getter(name="applicationId")
-    def application_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth Client ID. Required when using 'external-oauth-wif' authentication.
         """
         return pulumi.get(self, "application_id")
 
     @application_id.setter
-    def application_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_id", value)
 
     @_builtins.property
     @pulumi.getter(name="applicationSecret")
-    def application_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
         """
         return pulumi.get(self, "application_secret")
 
     @application_secret.setter
-    def application_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="authProviderX509CertUrl")
-    def auth_provider_x509_cert_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_provider_x509_cert_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "auth_provider_x509_cert_url")
 
     @auth_provider_x509_cert_url.setter
-    def auth_provider_x509_cert_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_provider_x509_cert_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_provider_x509_cert_url", value)
 
     @_builtins.property
     @pulumi.getter(name="authUri")
-    def auth_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Auth URI for the Service Account. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "auth_uri")
 
     @auth_uri.setter
-    def auth_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_uri", value)
 
     @_builtins.property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service Account email. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "client_email")
 
     @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_email", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client ID of the Service Account. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientX509CertUrl")
-    def client_x509_cert_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_x509_cert_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "client_x509_cert_url")
 
     @client_x509_cert_url.setter
-    def client_x509_cert_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_x509_cert_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_x509_cert_url", value)
 
     @_builtins.property
     @pulumi.getter(name="dataprocClusterName")
-    def dataproc_cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dataproc_cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Dataproc cluster name for PySpark workloads
         """
         return pulumi.get(self, "dataproc_cluster_name")
 
     @dataproc_cluster_name.setter
-    def dataproc_cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dataproc_cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dataproc_cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="dataprocRegion")
-    def dataproc_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dataproc_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google Cloud region for PySpark workloads on Dataproc
         """
         return pulumi.get(self, "dataproc_region")
 
     @dataproc_region.setter
-    def dataproc_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dataproc_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dataproc_region", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentEnvAuthType")
-    def deployment_env_auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deployment_env_auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Authentication type for deployment environments. Can be 'service-account-json' or 'external-oauth-wif'. Defaults to 'service-account-json'.
         """
         return pulumi.get(self, "deployment_env_auth_type")
 
     @deployment_env_auth_type.setter
-    def deployment_env_auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deployment_env_auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_env_auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="executionProject")
-    def execution_project(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def execution_project(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Project to bill for query execution
         """
         return pulumi.get(self, "execution_project")
 
     @execution_project.setter
-    def execution_project(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def execution_project(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "execution_project", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsBucket")
-    def gcs_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcs_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URI for a Google Cloud Storage bucket to host Python code executed via Datapro
         """
         return pulumi.get(self, "gcs_bucket")
 
     @gcs_bucket.setter
-    def gcs_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcs_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcs_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="impersonateServiceAccount")
-    def impersonate_service_account(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def impersonate_service_account(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service Account to impersonate when running queries
         """
         return pulumi.get(self, "impersonate_service_account")
 
     @impersonate_service_account.setter
-    def impersonate_service_account(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def impersonate_service_account(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "impersonate_service_account", value)
 
     @_builtins.property
     @pulumi.getter(name="jobCreationTimeoutSeconds")
-    def job_creation_timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def job_creation_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum timeout for the job creation step
         """
         return pulumi.get(self, "job_creation_timeout_seconds")
 
     @job_creation_timeout_seconds.setter
-    def job_creation_timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def job_creation_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "job_creation_timeout_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="jobExecutionTimeoutSeconds")
-    def job_execution_timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def job_execution_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout in seconds for job execution, to be used for the bigquery_v1 adapter
         """
         return pulumi.get(self, "job_execution_timeout_seconds")
 
     @job_execution_timeout_seconds.setter
-    def job_execution_timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def job_execution_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "job_execution_timeout_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="jobRetryDeadlineSeconds")
-    def job_retry_deadline_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def job_retry_deadline_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Total number of seconds to wait while retrying the same query
         """
         return pulumi.get(self, "job_retry_deadline_seconds")
 
     @job_retry_deadline_seconds.setter
-    def job_retry_deadline_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def job_retry_deadline_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "job_retry_deadline_seconds", value)
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Location to create new Datasets in
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter(name="maximumBytesBilled")
-    def maximum_bytes_billed(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def maximum_bytes_billed(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Max number of bytes that can be billed for a given BigQuery query
         """
         return pulumi.get(self, "maximum_bytes_billed")
 
     @maximum_bytes_billed.setter
-    def maximum_bytes_billed(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def maximum_bytes_billed(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "maximum_bytes_billed", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The priority with which to execute BigQuery queries (batch or interactive)
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private Key for the Service Account. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "private_key_id")
 
     @private_key_id.setter
-    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of retries for queries
         """
         return pulumi.get(self, "retries")
 
     @retries.setter
-    def retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         OAuth scopes for the BigQuery connection
         """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutSeconds")
-    def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
         """
         return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
-    def timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenUri")
-    def token_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Token URI for the Service Account. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "token_uri")
 
     @token_uri.setter
-    def token_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_uri", value)
 
     @_builtins.property
     @pulumi.getter(name="useLatestAdapter")
-    def use_latest_adapter(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_latest_adapter(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
         """
         return pulumi.get(self, "use_latest_adapter")
 
     @use_latest_adapter.setter
-    def use_latest_adapter(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_latest_adapter(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_latest_adapter", value)
 
 
@@ -1599,15 +1599,15 @@ class GlobalConnectionDatabricksArgsDict(TypedDict):
     """
     The HTTP path of the Databricks cluster or SQL warehouse.
     """
-    catalog: NotRequired[pulumi.Input[_builtins.str]]
+    catalog: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Catalog name if Unity Catalog is enabled in your Databricks workspace.
     """
-    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Required to enable Databricks OAuth authentication for IDE developers.
     """
-    client_secret: NotRequired[pulumi.Input[_builtins.str]]
+    client_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Required to enable Databricks OAuth authentication for IDE developers.
     """
@@ -1617,9 +1617,9 @@ class GlobalConnectionDatabricksArgs:
     def __init__(__self__, *,
                  host: pulumi.Input[_builtins.str],
                  http_path: pulumi.Input[_builtins.str],
-                 catalog: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None):
+                 catalog: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] host: The hostname of the Databricks cluster or SQL warehouse.
         :param pulumi.Input[_builtins.str] http_path: The HTTP path of the Databricks cluster or SQL warehouse.
@@ -1662,38 +1662,38 @@ class GlobalConnectionDatabricksArgs:
 
     @_builtins.property
     @pulumi.getter
-    def catalog(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def catalog(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Catalog name if Unity Catalog is enabled in your Databricks workspace.
         """
         return pulumi.get(self, "catalog")
 
     @catalog.setter
-    def catalog(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def catalog(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "catalog", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required to enable Databricks OAuth authentication for IDE developers.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required to enable Databricks OAuth authentication for IDE developers.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
 
@@ -1706,19 +1706,19 @@ class GlobalConnectionFabricArgsDict(TypedDict):
     """
     The server hostname.
     """
-    login_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    login_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port to connect to for this connection. Default=1433
     """
-    query_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    query_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
     """
-    retries: NotRequired[pulumi.Input[_builtins.int]]
+    retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
     """
@@ -1728,10 +1728,10 @@ class GlobalConnectionFabricArgs:
     def __init__(__self__, *,
                  database: pulumi.Input[_builtins.str],
                  server: pulumi.Input[_builtins.str],
-                 login_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 query_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None):
+                 login_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] database: The database to connect to for this connection.
         :param pulumi.Input[_builtins.str] server: The server hostname.
@@ -1777,50 +1777,50 @@ class GlobalConnectionFabricArgs:
 
     @_builtins.property
     @pulumi.getter(name="loginTimeout")
-    def login_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def login_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
         """
         return pulumi.get(self, "login_timeout")
 
     @login_timeout.setter
-    def login_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def login_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "login_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to connect to for this connection. Default=1433
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="queryTimeout")
-    def query_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def query_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
         """
         return pulumi.get(self, "query_timeout")
 
     @query_timeout.setter
-    def query_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def query_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "query_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
         """
         return pulumi.get(self, "retries")
 
     @retries.setter
-    def retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retries", value)
 
 
@@ -1833,11 +1833,11 @@ class GlobalConnectionPostgresArgsDict(TypedDict):
     """
     The hostname of the database.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port to connect to for this connection. Default=5432
     """
-    ssh_tunnel: NotRequired[pulumi.Input['GlobalConnectionPostgresSshTunnelArgsDict']]
+    ssh_tunnel: NotRequired[pulumi.Input[Optional['GlobalConnectionPostgresSshTunnelArgs']]]
     """
     PostgreSQL SSH Tunnel configuration
     """
@@ -1847,8 +1847,8 @@ class GlobalConnectionPostgresArgs:
     def __init__(__self__, *,
                  dbname: pulumi.Input[_builtins.str],
                  hostname: pulumi.Input[_builtins.str],
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 ssh_tunnel: Optional[pulumi.Input['GlobalConnectionPostgresSshTunnelArgs']] = None):
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 ssh_tunnel: pulumi.Input[Optional['GlobalConnectionPostgresSshTunnelArgs']] = None):
         """
         :param pulumi.Input[_builtins.str] dbname: The database name for this connection.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the database.
@@ -1888,26 +1888,26 @@ class GlobalConnectionPostgresArgs:
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to connect to for this connection. Default=5432
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="sshTunnel")
-    def ssh_tunnel(self) -> Optional[pulumi.Input['GlobalConnectionPostgresSshTunnelArgs']]:
+    def ssh_tunnel(self) -> pulumi.Input[Optional['GlobalConnectionPostgresSshTunnelArgs']]:
         """
         PostgreSQL SSH Tunnel configuration
         """
         return pulumi.get(self, "ssh_tunnel")
 
     @ssh_tunnel.setter
-    def ssh_tunnel(self, value: Optional[pulumi.Input['GlobalConnectionPostgresSshTunnelArgs']]):
+    def ssh_tunnel(self, value: pulumi.Input[Optional['GlobalConnectionPostgresSshTunnelArgs']]):
         pulumi.set(self, "ssh_tunnel", value)
 
 
@@ -1924,11 +1924,11 @@ class GlobalConnectionPostgresSshTunnelArgsDict(TypedDict):
     """
     The username to use for the SSH tunnel.
     """
-    id: NotRequired[pulumi.Input[_builtins.int]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The ID of the SSH tunnel connection.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The SSH public key generated to allow connecting via SSH tunnel.
     """
@@ -1939,8 +1939,8 @@ class GlobalConnectionPostgresSshTunnelArgs:
                  hostname: pulumi.Input[_builtins.str],
                  port: pulumi.Input[_builtins.int],
                  username: pulumi.Input[_builtins.str],
-                 id: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] hostname: The hostname for the SSH tunnel.
         :param pulumi.Input[_builtins.int] port: The HTTP port for the SSH tunnel.
@@ -1994,26 +1994,26 @@ class GlobalConnectionPostgresSshTunnelArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the SSH tunnel connection.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SSH public key generated to allow connecting via SSH tunnel.
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
 
@@ -2026,11 +2026,11 @@ class GlobalConnectionRedshiftArgsDict(TypedDict):
     """
     The hostname of the data warehouse.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port to connect to for this connection. Default=5432
     """
-    ssh_tunnel: NotRequired[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgsDict']]
+    ssh_tunnel: NotRequired[pulumi.Input[Optional['GlobalConnectionRedshiftSshTunnelArgs']]]
     """
     Redshift SSH Tunnel configuration
     """
@@ -2040,8 +2040,8 @@ class GlobalConnectionRedshiftArgs:
     def __init__(__self__, *,
                  dbname: pulumi.Input[_builtins.str],
                  hostname: pulumi.Input[_builtins.str],
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 ssh_tunnel: Optional[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs']] = None):
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 ssh_tunnel: pulumi.Input[Optional['GlobalConnectionRedshiftSshTunnelArgs']] = None):
         """
         :param pulumi.Input[_builtins.str] dbname: The database name for this connection.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the data warehouse.
@@ -2081,26 +2081,26 @@ class GlobalConnectionRedshiftArgs:
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to connect to for this connection. Default=5432
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="sshTunnel")
-    def ssh_tunnel(self) -> Optional[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs']]:
+    def ssh_tunnel(self) -> pulumi.Input[Optional['GlobalConnectionRedshiftSshTunnelArgs']]:
         """
         Redshift SSH Tunnel configuration
         """
         return pulumi.get(self, "ssh_tunnel")
 
     @ssh_tunnel.setter
-    def ssh_tunnel(self, value: Optional[pulumi.Input['GlobalConnectionRedshiftSshTunnelArgs']]):
+    def ssh_tunnel(self, value: pulumi.Input[Optional['GlobalConnectionRedshiftSshTunnelArgs']]):
         pulumi.set(self, "ssh_tunnel", value)
 
 
@@ -2117,11 +2117,11 @@ class GlobalConnectionRedshiftSshTunnelArgsDict(TypedDict):
     """
     The username to use for the SSH tunnel.
     """
-    id: NotRequired[pulumi.Input[_builtins.int]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The ID of the SSH tunnel connection.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The SSH public key generated to allow connecting via SSH tunnel.
     """
@@ -2132,8 +2132,8 @@ class GlobalConnectionRedshiftSshTunnelArgs:
                  hostname: pulumi.Input[_builtins.str],
                  port: pulumi.Input[_builtins.int],
                  username: pulumi.Input[_builtins.str],
-                 id: Optional[pulumi.Input[_builtins.int]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.int]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] hostname: The hostname for the SSH tunnel.
         :param pulumi.Input[_builtins.int] port: The HTTP port for the SSH tunnel.
@@ -2187,26 +2187,26 @@ class GlobalConnectionRedshiftSshTunnelArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the SSH tunnel connection.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SSH public key generated to allow connecting via SSH tunnel.
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
 
@@ -2215,11 +2215,11 @@ class GlobalConnectionSalesforceArgsDict(TypedDict):
     """
     The Salesforce instance URL (e.g., https://login.salesforce.com)
     """
-    data_transform_run_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    data_transform_run_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Timeout in seconds for data transformation runs. Default=300
     """
-    database: NotRequired[pulumi.Input[_builtins.str]]
+    database: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The target database name. Default=default
     """
@@ -2228,8 +2228,8 @@ class GlobalConnectionSalesforceArgsDict(TypedDict):
 class GlobalConnectionSalesforceArgs:
     def __init__(__self__, *,
                  login_url: pulumi.Input[_builtins.str],
-                 data_transform_run_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 database: Optional[pulumi.Input[_builtins.str]] = None):
+                 data_transform_run_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 database: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] login_url: The Salesforce instance URL (e.g., https://login.salesforce.com)
         :param pulumi.Input[_builtins.int] data_transform_run_timeout: Timeout in seconds for data transformation runs. Default=300
@@ -2255,26 +2255,26 @@ class GlobalConnectionSalesforceArgs:
 
     @_builtins.property
     @pulumi.getter(name="dataTransformRunTimeout")
-    def data_transform_run_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def data_transform_run_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout in seconds for data transformation runs. Default=300
         """
         return pulumi.get(self, "data_transform_run_timeout")
 
     @data_transform_run_timeout.setter
-    def data_transform_run_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def data_transform_run_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "data_transform_run_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def database(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The target database name. Default=default
         """
         return pulumi.get(self, "database")
 
     @database.setter
-    def database(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database", value)
 
 
@@ -2291,23 +2291,23 @@ class GlobalConnectionSnowflakeArgsDict(TypedDict):
     """
     The default Snowflake Warehouse to use for the connection
     """
-    allow_sso: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_sso: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
     """
-    client_session_keep_alive: NotRequired[pulumi.Input[_builtins.bool]]
+    client_session_keep_alive: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
     """
-    oauth_client_id: NotRequired[pulumi.Input[_builtins.str]]
+    oauth_client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
     """
-    oauth_client_secret: NotRequired[pulumi.Input[_builtins.str]]
+    oauth_client_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
     """
-    role: NotRequired[pulumi.Input[_builtins.str]]
+    role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Snowflake role to use when running queries on the connection
     """
@@ -2318,11 +2318,11 @@ class GlobalConnectionSnowflakeArgs:
                  account: pulumi.Input[_builtins.str],
                  database: pulumi.Input[_builtins.str],
                  warehouse: pulumi.Input[_builtins.str],
-                 allow_sso: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_session_keep_alive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_sso: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_session_keep_alive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] account: The Snowflake account name
         :param pulumi.Input[_builtins.str] database: The default database for the connection
@@ -2385,62 +2385,62 @@ class GlobalConnectionSnowflakeArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowSso")
-    def allow_sso(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_sso(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to allow Snowflake OAuth for the connection. If true, the `oauth_client_id` and `oauth_client_secret` fields must be set
         """
         return pulumi.get(self, "allow_sso")
 
     @allow_sso.setter
-    def allow_sso(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_sso(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_sso", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionKeepAlive")
-    def client_session_keep_alive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def client_session_keep_alive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)
         """
         return pulumi.get(self, "client_session_keep_alive")
 
     @client_session_keep_alive.setter
-    def client_session_keep_alive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def client_session_keep_alive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "client_session_keep_alive", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthClientId")
-    def oauth_client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth_client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth Client ID. Required to allow OAuth between dbt Cloud and Snowflake
         """
         return pulumi.get(self, "oauth_client_id")
 
     @oauth_client_id.setter
-    def oauth_client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth_client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth_client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthClientSecret")
-    def oauth_client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth_client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth Client Secret. Required to allow OAuth between dbt Cloud and Snowflake
         """
         return pulumi.get(self, "oauth_client_secret")
 
     @oauth_client_secret.setter
-    def oauth_client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth_client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth_client_secret", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Snowflake role to use when running queries on the connection
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
 
@@ -2449,11 +2449,11 @@ class GlobalConnectionStarburstArgsDict(TypedDict):
     """
     The hostname of the account to connect to.
     """
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication method. Only LDAP for now.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port to connect to for this connection. Default=443
     """
@@ -2462,8 +2462,8 @@ class GlobalConnectionStarburstArgsDict(TypedDict):
 class GlobalConnectionStarburstArgs:
     def __init__(__self__, *,
                  host: pulumi.Input[_builtins.str],
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None):
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] host: The hostname of the account to connect to.
         :param pulumi.Input[_builtins.str] method: The authentication method. Only LDAP for now.
@@ -2489,26 +2489,26 @@ class GlobalConnectionStarburstArgs:
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication method. Only LDAP for now.
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to connect to for this connection. Default=443
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
 
@@ -2521,19 +2521,19 @@ class GlobalConnectionSynapseArgsDict(TypedDict):
     """
     The server hostname.
     """
-    login_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    login_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port to connect to for this connection. Default=1433
     """
-    query_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    query_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
     """
-    retries: NotRequired[pulumi.Input[_builtins.int]]
+    retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
     """
@@ -2543,10 +2543,10 @@ class GlobalConnectionSynapseArgs:
     def __init__(__self__, *,
                  database: pulumi.Input[_builtins.str],
                  host: pulumi.Input[_builtins.str],
-                 login_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 query_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None):
+                 login_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 query_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] database: The database to connect to for this connection.
         :param pulumi.Input[_builtins.str] host: The server hostname.
@@ -2592,50 +2592,50 @@ class GlobalConnectionSynapseArgs:
 
     @_builtins.property
     @pulumi.getter(name="loginTimeout")
-    def login_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def login_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
         """
         return pulumi.get(self, "login_timeout")
 
     @login_timeout.setter
-    def login_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def login_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "login_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to connect to for this connection. Default=1433
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="queryTimeout")
-    def query_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def query_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds used to wait for a query before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
         """
         return pulumi.get(self, "query_timeout")
 
     @query_timeout.setter
-    def query_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def query_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "query_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
         """
         return pulumi.get(self, "retries")
 
     @retries.setter
-    def retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retries", value)
 
 
@@ -2648,15 +2648,15 @@ class GlobalConnectionTeradataArgsDict(TypedDict):
     """
     The transaction mode to use for the connection.
     """
-    port: NotRequired[pulumi.Input[_builtins.str]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The port to connect to for this connection. Default=1025
     """
-    request_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    request_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
     """
-    retries: NotRequired[pulumi.Input[_builtins.int]]
+    retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
     """
@@ -2666,9 +2666,9 @@ class GlobalConnectionTeradataArgs:
     def __init__(__self__, *,
                  host: pulumi.Input[_builtins.str],
                  tmode: pulumi.Input[_builtins.str],
-                 port: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None):
+                 port: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] host: The hostname of the database.
         :param pulumi.Input[_builtins.str] tmode: The transaction mode to use for the connection.
@@ -2711,38 +2711,38 @@ class GlobalConnectionTeradataArgs:
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The port to connect to for this connection. Default=1025
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="requestTimeout")
-    def request_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds used to establish a connection before failing. Defaults to 0, which means that the timeout is disabled or uses the default system settings.
         """
         return pulumi.get(self, "request_timeout")
 
     @request_timeout.setter
-    def request_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of automatic times to retry a query before failing. Defaults to 1. Queries with syntax errors will not be retried. This setting can be used to overcome intermittent network issues.
         """
         return pulumi.get(self, "retries")
 
     @retries.setter
-    def retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retries", value)
 
 
@@ -2755,11 +2755,11 @@ class GroupGroupPermissionArgsDict(TypedDict):
     """
     Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Project ID to apply this permission to for this group.
     """
-    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    writable_environment_categories: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     What types of environments to apply Write permissions to.
     Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -2773,8 +2773,8 @@ class GroupGroupPermissionArgs:
     def __init__(__self__, *,
                  all_projects: pulumi.Input[_builtins.bool],
                  permission_set: pulumi.Input[_builtins.str],
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 writable_environment_categories: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 writable_environment_categories: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.bool] all_projects: Whether access should be provided for all projects or not.
         :param pulumi.Input[_builtins.str] permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
@@ -2818,19 +2818,19 @@ class GroupGroupPermissionArgs:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to apply this permission to for this group.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="writableEnvironmentCategories")
-    def writable_environment_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def writable_environment_categories(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -2841,7 +2841,7 @@ class GroupGroupPermissionArgs:
         return pulumi.get(self, "writable_environment_categories")
 
     @writable_environment_categories.setter
-    def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def writable_environment_categories(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "writable_environment_categories", value)
 
 
@@ -2854,11 +2854,11 @@ class GroupPartialPermissionsGroupPermissionArgsDict(TypedDict):
     """
     Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Project ID to apply this permission to for this group.
     """
-    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    writable_environment_categories: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     What types of environments to apply Write permissions to.
     Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -2872,8 +2872,8 @@ class GroupPartialPermissionsGroupPermissionArgs:
     def __init__(__self__, *,
                  all_projects: pulumi.Input[_builtins.bool],
                  permission_set: pulumi.Input[_builtins.str],
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 writable_environment_categories: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 writable_environment_categories: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.bool] all_projects: Whether access should be provided for all projects or not.
         :param pulumi.Input[_builtins.str] permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
@@ -2917,19 +2917,19 @@ class GroupPartialPermissionsGroupPermissionArgs:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to apply this permission to for this group.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="writableEnvironmentCategories")
-    def writable_environment_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def writable_environment_categories(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -2940,24 +2940,24 @@ class GroupPartialPermissionsGroupPermissionArgs:
         return pulumi.get(self, "writable_environment_categories")
 
     @writable_environment_categories.setter
-    def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def writable_environment_categories(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "writable_environment_categories", value)
 
 
 class IpRestrictionsRuleCidrArgsDict(TypedDict):
-    cidr: NotRequired[pulumi.Input[_builtins.str]]
+    cidr: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IP CIDR range (can be IPv4 or IPv6)
     """
-    cidr_ipv6: NotRequired[pulumi.Input[_builtins.str]]
+    cidr_ipv6: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IPv6 CIDR range (read-only)
     """
-    id: NotRequired[pulumi.Input[_builtins.int]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     ID of the CIDR range
     """
-    ip_restriction_rule_id: NotRequired[pulumi.Input[_builtins.int]]
+    ip_restriction_rule_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     ID of the IP restriction rule
     """
@@ -2965,10 +2965,10 @@ class IpRestrictionsRuleCidrArgsDict(TypedDict):
 @pulumi.input_type
 class IpRestrictionsRuleCidrArgs:
     def __init__(__self__, *,
-                 cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                 cidr_ipv6: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.int]] = None,
-                 ip_restriction_rule_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                 cidr_ipv6: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.int]] = None,
+                 ip_restriction_rule_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] cidr: IP CIDR range (can be IPv4 or IPv6)
         :param pulumi.Input[_builtins.str] cidr_ipv6: IPv6 CIDR range (read-only)
@@ -2986,55 +2986,55 @@ class IpRestrictionsRuleCidrArgs:
 
     @_builtins.property
     @pulumi.getter
-    def cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cidr(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IP CIDR range (can be IPv4 or IPv6)
         """
         return pulumi.get(self, "cidr")
 
     @cidr.setter
-    def cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cidr(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="cidrIpv6")
-    def cidr_ipv6(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cidr_ipv6(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IPv6 CIDR range (read-only)
         """
         return pulumi.get(self, "cidr_ipv6")
 
     @cidr_ipv6.setter
-    def cidr_ipv6(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cidr_ipv6(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cidr_ipv6", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         ID of the CIDR range
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="ipRestrictionRuleId")
-    def ip_restriction_rule_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ip_restriction_rule_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         ID of the IP restriction rule
         """
         return pulumi.get(self, "ip_restriction_rule_id")
 
     @ip_restriction_rule_id.setter
-    def ip_restriction_rule_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ip_restriction_rule_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ip_restriction_rule_id", value)
 
 
 class JobExecutionArgsDict(TypedDict):
-    timeout_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds before the job times out
     """
@@ -3042,7 +3042,7 @@ class JobExecutionArgsDict(TypedDict):
 @pulumi.input_type
 class JobExecutionArgs:
     def __init__(__self__, *,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] timeout_seconds: The number of seconds before the job times out
         """
@@ -3051,14 +3051,14 @@ class JobExecutionArgs:
 
     @_builtins.property
     @pulumi.getter(name="timeoutSeconds")
-    def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds before the job times out
         """
         return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
-    def timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout_seconds", value)
 
 
@@ -3129,19 +3129,19 @@ class JobJobCompletionTriggerConditionArgs:
 
 
 class JobTriggersArgsDict(TypedDict):
-    git_provider_webhook: NotRequired[pulumi.Input[_builtins.bool]]
+    git_provider_webhook: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the job runs automatically on PR creation
     """
-    github_webhook: NotRequired[pulumi.Input[_builtins.bool]]
+    github_webhook: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the job runs automatically on PR creation
     """
-    on_merge: NotRequired[pulumi.Input[_builtins.bool]]
+    on_merge: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the job runs automatically once a PR is merged
     """
-    schedule: NotRequired[pulumi.Input[_builtins.bool]]
+    schedule: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the job runs on a schedule
     """
@@ -3149,10 +3149,10 @@ class JobTriggersArgsDict(TypedDict):
 @pulumi.input_type
 class JobTriggersArgs:
     def __init__(__self__, *,
-                 git_provider_webhook: Optional[pulumi.Input[_builtins.bool]] = None,
-                 github_webhook: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_merge: Optional[pulumi.Input[_builtins.bool]] = None,
-                 schedule: Optional[pulumi.Input[_builtins.bool]] = None):
+                 git_provider_webhook: pulumi.Input[Optional[_builtins.bool]] = None,
+                 github_webhook: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_merge: pulumi.Input[Optional[_builtins.bool]] = None,
+                 schedule: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] git_provider_webhook: Whether the job runs automatically on PR creation
         :param pulumi.Input[_builtins.bool] github_webhook: Whether the job runs automatically on PR creation
@@ -3170,50 +3170,50 @@ class JobTriggersArgs:
 
     @_builtins.property
     @pulumi.getter(name="gitProviderWebhook")
-    def git_provider_webhook(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def git_provider_webhook(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the job runs automatically on PR creation
         """
         return pulumi.get(self, "git_provider_webhook")
 
     @git_provider_webhook.setter
-    def git_provider_webhook(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def git_provider_webhook(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "git_provider_webhook", value)
 
     @_builtins.property
     @pulumi.getter(name="githubWebhook")
-    def github_webhook(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def github_webhook(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the job runs automatically on PR creation
         """
         return pulumi.get(self, "github_webhook")
 
     @github_webhook.setter
-    def github_webhook(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def github_webhook(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "github_webhook", value)
 
     @_builtins.property
     @pulumi.getter(name="onMerge")
-    def on_merge(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def on_merge(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the job runs automatically once a PR is merged
         """
         return pulumi.get(self, "on_merge")
 
     @on_merge.setter
-    def on_merge(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def on_merge(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "on_merge", value)
 
     @_builtins.property
     @pulumi.getter
-    def schedule(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def schedule(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the job runs on a schedule
         """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
-    def schedule(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def schedule(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "schedule", value)
 
 
@@ -3230,7 +3230,7 @@ class NotificationSettingChannelArgsDict(TypedDict):
     """
     Microsoft Teams team ID.
     """
-    id: NotRequired[pulumi.Input[_builtins.int]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Channel ID
     """
@@ -3241,7 +3241,7 @@ class NotificationSettingChannelArgs:
                  channel_type: pulumi.Input[_builtins.str],
                  teams_channel_id: pulumi.Input[_builtins.str],
                  teams_team_id: pulumi.Input[_builtins.str],
-                 id: Optional[pulumi.Input[_builtins.int]] = None):
+                 id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] channel_type: Channel type. Currently only `teams` is supported.
         :param pulumi.Input[_builtins.str] teams_channel_id: Microsoft Teams channel ID.
@@ -3292,14 +3292,14 @@ class NotificationSettingChannelArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Channel ID
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id", value)
 
 
@@ -3308,15 +3308,15 @@ class NotificationSettingRuleArgsDict(TypedDict):
     """
     Event that fires the notification. Valid values: `run_warning`, `run_successful`, `run_errored`, `run_cancelled`.
     """
-    id: NotRequired[pulumi.Input[_builtins.int]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Rule ID
     """
-    job_id: NotRequired[pulumi.Input[_builtins.int]]
+    job_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Job ID this rule applies to. Omit to fire for all jobs in the account.
     """
-    job_name: NotRequired[pulumi.Input[_builtins.str]]
+    job_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the job referenced by `job_id` (read-only).
     """
@@ -3325,9 +3325,9 @@ class NotificationSettingRuleArgsDict(TypedDict):
 class NotificationSettingRuleArgs:
     def __init__(__self__, *,
                  trigger_on: pulumi.Input[_builtins.str],
-                 id: Optional[pulumi.Input[_builtins.int]] = None,
-                 job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 job_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.int]] = None,
+                 job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 job_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] trigger_on: Event that fires the notification. Valid values: `run_warning`, `run_successful`, `run_errored`, `run_cancelled`.
         :param pulumi.Input[_builtins.int] id: Rule ID
@@ -3356,38 +3356,38 @@ class NotificationSettingRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Rule ID
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="jobId")
-    def job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def job_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Job ID this rule applies to. Omit to fire for all jobs in the account.
         """
         return pulumi.get(self, "job_id")
 
     @job_id.setter
-    def job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def job_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "job_id", value)
 
     @_builtins.property
     @pulumi.getter(name="jobName")
-    def job_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def job_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the job referenced by `job_id` (read-only).
         """
         return pulumi.get(self, "job_name")
 
     @job_name.setter
-    def job_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def job_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "job_name", value)
 
 
@@ -3466,48 +3466,48 @@ class PostgresSemanticLayerCredentialCredentialArgsDict(TypedDict):
     """
     Username for Postgres/Redshift/AlloyDB
     """
-    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    credential_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The system Postgres/Redshift/AlloyDB credential ID.
     """
-    default_schema: NotRequired[pulumi.Input[_builtins.str]]
+    default_schema: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of this resource. Contains the project ID and the credential ID.
     """
-    is_active: NotRequired[pulumi.Input[_builtins.bool]]
+    is_active: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the Postgres/Redshift/AlloyDB credential is active
     """
-    num_threads: NotRequired[pulumi.Input[_builtins.int]]
+    num_threads: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of threads to use (required for Redshift)
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
     """
-    semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
+    semantic_layer_credential: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
     """
-    target_name: NotRequired[pulumi.Input[_builtins.str]]
+    target_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Default schema name
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
     """
@@ -3517,17 +3517,17 @@ class PostgresSemanticLayerCredentialCredentialArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
                  username: pulumi.Input[_builtins.str],
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_schema: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_schema: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the Postgres/Redshift/AlloyDB credential in.
         :param pulumi.Input[_builtins.str] username: Username for Postgres/Redshift/AlloyDB
@@ -3595,79 +3595,79 @@ class PostgresSemanticLayerCredentialCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The system Postgres/Redshift/AlloyDB credential ID.
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultSchema")
-    def default_schema(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_schema(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "default_schema")
 
     @default_schema.setter
-    def default_schema(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_schema(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_schema", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the Postgres/Redshift/AlloyDB credential is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_threads(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of threads to use (required for Redshift)
         """
         return pulumi.get(self, "num_threads")
 
     @num_threads.setter
-    def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_threads(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
@@ -3675,55 +3675,55 @@ class PostgresSemanticLayerCredentialCredentialArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="semanticLayerCredential")
-    def semantic_layer_credential(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def semantic_layer_credential(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         """
         return pulumi.get(self, "semantic_layer_credential")
 
     @semantic_layer_credential.setter
-    def semantic_layer_credential(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def semantic_layer_credential(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "semantic_layer_credential", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
-    def target_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default schema name
         """
         return pulumi.get(self, "target_name")
 
     @target_name.setter
-    def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -3806,32 +3806,32 @@ class RedshiftSemanticLayerCredentialCredentialArgsDict(TypedDict):
     """
     Project ID to create the Redshift credential in
     """
-    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    credential_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The internal credential ID
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of this resource. Contains the project ID and the credential ID.
     """
-    is_active: NotRequired[pulumi.Input[_builtins.bool]]
+    is_active: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the Redshift credential is active
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The username for the Redshift account.
     """
@@ -3842,13 +3842,13 @@ class RedshiftSemanticLayerCredentialCredentialArgs:
                  default_schema: pulumi.Input[_builtins.str],
                  num_threads: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.int],
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] default_schema: Default schema name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
@@ -3918,55 +3918,55 @@ class RedshiftSemanticLayerCredentialCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the Redshift credential is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password for the Redshift account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
@@ -3974,31 +3974,31 @@ class RedshiftSemanticLayerCredentialCredentialArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username for the Redshift account.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -4011,11 +4011,11 @@ class ScimGroupPartialPermissionsPermissionArgsDict(TypedDict):
     """
     Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Project ID to apply this permission to for this group.
     """
-    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    writable_environment_categories: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     What types of environments to apply Write permissions to.
     Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -4029,8 +4029,8 @@ class ScimGroupPartialPermissionsPermissionArgs:
     def __init__(__self__, *,
                  all_projects: pulumi.Input[_builtins.bool],
                  permission_set: pulumi.Input[_builtins.str],
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 writable_environment_categories: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 writable_environment_categories: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.bool] all_projects: Whether access should be provided for all projects or not.
         :param pulumi.Input[_builtins.str] permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
@@ -4074,19 +4074,19 @@ class ScimGroupPartialPermissionsPermissionArgs:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to apply this permission to for this group.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="writableEnvironmentCategories")
-    def writable_environment_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def writable_environment_categories(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -4097,7 +4097,7 @@ class ScimGroupPartialPermissionsPermissionArgs:
         return pulumi.get(self, "writable_environment_categories")
 
     @writable_environment_categories.setter
-    def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def writable_environment_categories(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "writable_environment_categories", value)
 
 
@@ -4110,11 +4110,11 @@ class ScimGroupPermissionsPermissionArgsDict(TypedDict):
     """
     Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Project ID to apply this permission to for this group.
     """
-    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    writable_environment_categories: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     What types of environments to apply Write permissions to.
     Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -4128,8 +4128,8 @@ class ScimGroupPermissionsPermissionArgs:
     def __init__(__self__, *,
                  all_projects: pulumi.Input[_builtins.bool],
                  permission_set: pulumi.Input[_builtins.str],
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 writable_environment_categories: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 writable_environment_categories: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.bool] all_projects: Whether access should be provided for all projects or not.
         :param pulumi.Input[_builtins.str] permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
@@ -4173,19 +4173,19 @@ class ScimGroupPermissionsPermissionArgs:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to apply this permission to for this group.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="writableEnvironmentCategories")
-    def writable_environment_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def writable_environment_categories(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -4196,7 +4196,7 @@ class ScimGroupPermissionsPermissionArgs:
         return pulumi.get(self, "writable_environment_categories")
 
     @writable_environment_categories.setter
-    def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def writable_environment_categories(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "writable_environment_categories", value)
 
 
@@ -4209,11 +4209,11 @@ class ServiceTokenServiceTokenPermissionArgsDict(TypedDict):
     """
     Set of permissions to apply
     """
-    project_id: NotRequired[pulumi.Input[_builtins.int]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Project ID to apply this permission to for this service token
     """
-    writable_environment_categories: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    writable_environment_categories: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     What types of environments to apply Write permissions to.
     Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -4227,8 +4227,8 @@ class ServiceTokenServiceTokenPermissionArgs:
     def __init__(__self__, *,
                  all_projects: pulumi.Input[_builtins.bool],
                  permission_set: pulumi.Input[_builtins.str],
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 writable_environment_categories: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 writable_environment_categories: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.bool] all_projects: Whether or not to apply this permission to all projects for this service token
         :param pulumi.Input[_builtins.str] permission_set: Set of permissions to apply
@@ -4272,19 +4272,19 @@ class ServiceTokenServiceTokenPermissionArgs:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to apply this permission to for this service token
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="writableEnvironmentCategories")
-    def writable_environment_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def writable_environment_categories(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
@@ -4295,7 +4295,7 @@ class ServiceTokenServiceTokenPermissionArgs:
         return pulumi.get(self, "writable_environment_categories")
 
     @writable_environment_categories.setter
-    def writable_environment_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def writable_environment_categories(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "writable_environment_categories", value)
 
 
@@ -4378,78 +4378,78 @@ class SnowflakeSemanticLayerCredentialCredentialArgsDict(TypedDict):
     """
     Project ID to create the Snowflake credential in
     """
-    credential_id: NotRequired[pulumi.Input[_builtins.int]]
+    credential_id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The internal credential ID
     """
-    database: NotRequired[pulumi.Input[_builtins.str]]
+    database: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The catalog to connect use
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of this resource. Contains the project ID and the credential ID.
     """
-    is_active: NotRequired[pulumi.Input[_builtins.bool]]
+    is_active: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the Snowflake credential is active
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
     """
-    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
     """
-    private_key_passphrase: NotRequired[pulumi.Input[_builtins.str]]
+    private_key_passphrase: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
     """
-    private_key_passphrase_wo: NotRequired[pulumi.Input[_builtins.str]]
+    private_key_passphrase_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
     """
-    private_key_passphrase_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    private_key_passphrase_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
     """
-    private_key_wo: NotRequired[pulumi.Input[_builtins.str]]
+    private_key_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
     """
-    private_key_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    private_key_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
     """
-    role: NotRequired[pulumi.Input[_builtins.str]]
+    role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The role to assume
     """
-    schema: NotRequired[pulumi.Input[_builtins.str]]
+    schema: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
     """
-    semantic_layer_credential: NotRequired[pulumi.Input[_builtins.bool]]
+    semantic_layer_credential: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
     """
-    user: NotRequired[pulumi.Input[_builtins.str]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
     """
-    warehouse: NotRequired[pulumi.Input[_builtins.str]]
+    warehouse: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The warehouse to use
     """
@@ -4460,24 +4460,24 @@ class SnowflakeSemanticLayerCredentialCredentialArgs:
                  auth_type: pulumi.Input[_builtins.str],
                  num_threads: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.int],
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 database: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema: Optional[pulumi.Input[_builtins.str]] = None,
-                 semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 warehouse: Optional[pulumi.Input[_builtins.str]] = None):
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 database: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
+                 semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 warehouse: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] auth_type: The type of Snowflake credential ('password' or 'keypair')
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
@@ -4582,67 +4582,67 @@ class SnowflakeSemanticLayerCredentialCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The internal credential ID
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def database(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The catalog to connect use
         """
         return pulumi.get(self, "database")
 
     @database.setter
-    def database(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of this resource. Contains the project ID and the credential ID.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the Snowflake credential is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password for the Snowflake account. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
@@ -4650,48 +4650,48 @@ class SnowflakeSemanticLayerCredentialCredentialArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key for the Snowflake account. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphrase")
-    def private_key_passphrase(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_passphrase(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The passphrase for the private key. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key_passphrase")
 
     @private_key_passphrase.setter
-    def private_key_passphrase(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_passphrase(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_passphrase", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphraseWo")
-    def private_key_passphrase_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_passphrase_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
@@ -4699,24 +4699,24 @@ class SnowflakeSemanticLayerCredentialCredentialArgs:
         return pulumi.get(self, "private_key_passphrase_wo")
 
     @private_key_passphrase_wo.setter
-    def private_key_passphrase_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_passphrase_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_passphrase_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphraseWoVersion")
-    def private_key_passphrase_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_passphrase_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
         """
         return pulumi.get(self, "private_key_passphrase_wo_version")
 
     @private_key_passphrase_wo_version.setter
-    def private_key_passphrase_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_passphrase_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_passphrase_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWo")
-    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
@@ -4724,79 +4724,79 @@ class SnowflakeSemanticLayerCredentialCredentialArgs:
         return pulumi.get(self, "private_key_wo")
 
     @private_key_wo.setter
-    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWoVersion")
-    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         """
         return pulumi.get(self, "private_key_wo_version")
 
     @private_key_wo_version.setter
-    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The role to assume
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter
-    def schema(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schema(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schema where to create models. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         """
         return pulumi.get(self, "schema")
 
     @schema.setter
-    def schema(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schema(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schema", value)
 
     @_builtins.property
     @pulumi.getter(name="semanticLayerCredential")
-    def semantic_layer_credential(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def semantic_layer_credential(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
         """
         return pulumi.get(self, "semantic_layer_credential")
 
     @semantic_layer_credential.setter
-    def semantic_layer_credential(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def semantic_layer_credential(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "semantic_layer_credential", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username for the Snowflake account. This is an optional field ONLY if the credential is used for Semantic Layer configuration, otherwise it is required.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
     @_builtins.property
     @pulumi.getter
-    def warehouse(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def warehouse(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The warehouse to use
         """
         return pulumi.get(self, "warehouse")
 
     @warehouse.setter
-    def warehouse(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def warehouse(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "warehouse", value)
 
 

@@ -62,5 +62,5 @@ export interface GetEnvironmentsOutputArgs {
     /**
      * The project ID to filter the environments for [Optional]
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
 }

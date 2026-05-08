@@ -25,33 +25,33 @@ class JobArgs:
                  execute_steps: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  project_id: pulumi.Input[_builtins.int],
                  triggers: pulumi.Input['JobTriggersArgs'],
-                 compare_changes_flags: Optional[pulumi.Input[_builtins.str]] = None,
-                 dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 deferring_environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 deferring_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 execution: Optional[pulumi.Input['JobExecutionArgs']] = None,
-                 force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]] = None,
-                 job_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 run_compare_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 run_generate_sources: Optional[pulumi.Input[_builtins.bool]] = None,
-                 run_lint: Optional[pulumi.Input[_builtins.bool]] = None,
-                 schedule_cron: Optional[pulumi.Input[_builtins.str]] = None,
-                 schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 schedule_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 schedule_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 self_deferring: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
-                 validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None):
+                 compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+                 dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 execution: pulumi.Input[Optional['JobExecutionArgs']] = None,
+                 force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]] = None,
+                 job_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 run_compare_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 run_generate_sources: pulumi.Input[Optional[_builtins.bool]] = None,
+                 run_lint: pulumi.Input[Optional[_builtins.bool]] = None,
+                 schedule_cron: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule_days: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 schedule_hours: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 schedule_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
+                 validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Job resource.
 
@@ -199,365 +199,365 @@ class JobArgs:
 
     @_builtins.property
     @pulumi.getter(name="compareChangesFlags")
-    def compare_changes_flags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compare_changes_flags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The model selector for checking changes in the compare changes Advanced CI feature
         """
         return pulumi.get(self, "compare_changes_flags")
 
     @compare_changes_flags.setter
-    def compare_changes_flags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compare_changes_flags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compare_changes_flags", value)
 
     @_builtins.property
     @pulumi.getter(name="dbtVersion")
-    def dbt_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         """
         return pulumi.get(self, "dbt_version")
 
     @dbt_version.setter
-    def dbt_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dbt_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dbt_version", value)
 
     @_builtins.property
     @pulumi.getter(name="deferringEnvironmentId")
-    def deferring_environment_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def deferring_environment_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Environment identifier that this job defers to (new deferring approach)
         """
         return pulumi.get(self, "deferring_environment_id")
 
     @deferring_environment_id.setter
-    def deferring_environment_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def deferring_environment_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "deferring_environment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="deferringJobId")
-    def deferring_job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def deferring_job_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Job identifier that this job defers to (legacy deferring approach)
         """
         return pulumi.get(self, "deferring_job_id")
 
     @deferring_job_id.setter
-    def deferring_job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def deferring_job_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "deferring_job_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description for the job
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="errorsOnLintFailure")
-    def errors_on_lint_failure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def errors_on_lint_failure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         """
         return pulumi.get(self, "errors_on_lint_failure")
 
     @errors_on_lint_failure.setter
-    def errors_on_lint_failure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def errors_on_lint_failure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "errors_on_lint_failure", value)
 
     @_builtins.property
     @pulumi.getter
-    def execution(self) -> Optional[pulumi.Input['JobExecutionArgs']]:
+    def execution(self) -> pulumi.Input[Optional['JobExecutionArgs']]:
         """
         Execution settings for the job
         """
         return pulumi.get(self, "execution")
 
     @execution.setter
-    def execution(self, value: Optional[pulumi.Input['JobExecutionArgs']]):
+    def execution(self, value: pulumi.Input[Optional['JobExecutionArgs']]):
         pulumi.set(self, "execution", value)
 
     @_builtins.property
     @pulumi.getter(name="forceNodeSelection")
-    def force_node_selection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_node_selection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         """
         return pulumi.get(self, "force_node_selection")
 
     @force_node_selection.setter
-    def force_node_selection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_node_selection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_node_selection", value)
 
     @_builtins.property
     @pulumi.getter(name="generateDocs")
-    def generate_docs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def generate_docs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag for whether the job should generate documentation
         """
         return pulumi.get(self, "generate_docs")
 
     @generate_docs.setter
-    def generate_docs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def generate_docs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_docs", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="jobCompletionTriggerConditions")
-    def job_completion_trigger_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]]:
+    def job_completion_trigger_conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]]:
         """
         Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         """
         return pulumi.get(self, "job_completion_trigger_conditions")
 
     @job_completion_trigger_conditions.setter
-    def job_completion_trigger_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]]):
+    def job_completion_trigger_conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]]):
         pulumi.set(self, "job_completion_trigger_conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="jobType")
-    def job_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def job_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
         """
         return pulumi.get(self, "job_type")
 
     @job_type.setter
-    def job_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def job_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "job_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Job name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_threads(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of threads to use in the job
         """
         return pulumi.get(self, "num_threads")
 
     @num_threads.setter
-    def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_threads(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
 
     @_builtins.property
     @pulumi.getter(name="runCompareChanges")
-    def run_compare_changes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def run_compare_changes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         """
         return pulumi.get(self, "run_compare_changes")
 
     @run_compare_changes.setter
-    def run_compare_changes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def run_compare_changes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "run_compare_changes", value)
 
     @_builtins.property
     @pulumi.getter(name="runGenerateSources")
-    def run_generate_sources(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def run_generate_sources(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         """
         return pulumi.get(self, "run_generate_sources")
 
     @run_generate_sources.setter
-    def run_generate_sources(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def run_generate_sources(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "run_generate_sources", value)
 
     @_builtins.property
     @pulumi.getter(name="runLint")
-    def run_lint(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def run_lint(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the CI job should lint SQL changes. Defaults to `false`.
         """
         return pulumi.get(self, "run_lint")
 
     @run_lint.setter
-    def run_lint(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def run_lint(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "run_lint", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleCron")
-    def schedule_cron(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schedule_cron(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Custom cron expression for schedule
         """
         return pulumi.get(self, "schedule_cron")
 
     @schedule_cron.setter
-    def schedule_cron(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schedule_cron(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schedule_cron", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleDays")
-    def schedule_days(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def schedule_days(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
         """
         return pulumi.get(self, "schedule_days")
 
     @schedule_days.setter
-    def schedule_days(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def schedule_days(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "schedule_days", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleHours")
-    def schedule_hours(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def schedule_hours(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of hours to execute the job at if running on a schedule
         """
         return pulumi.get(self, "schedule_hours")
 
     @schedule_hours.setter
-    def schedule_hours(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def schedule_hours(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "schedule_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleInterval")
-    def schedule_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def schedule_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of hours between job executions if running on a schedule
         """
         return pulumi.get(self, "schedule_interval")
 
     @schedule_interval.setter
-    def schedule_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def schedule_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "schedule_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleType")
-    def schedule_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schedule_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         """
         return pulumi.get(self, "schedule_type")
 
     @schedule_type.setter
-    def schedule_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schedule_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schedule_type", value)
 
     @_builtins.property
     @pulumi.getter(name="selfDeferring")
-    def self_deferring(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def self_deferring(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this job defers on a previous run of itself
         """
         return pulumi.get(self, "self_deferring")
 
     @self_deferring.setter
-    def self_deferring(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def self_deferring(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "self_deferring", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
-    def target_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target name for the dbt profile
         """
         return pulumi.get(self, "target_name")
 
     @target_name.setter
-    def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutSeconds")
     @_utilities.deprecated("""Use execution.timeout_seconds instead""")
-    def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         """
         return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
-    def timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="triggersOnDraftPr")
-    def triggers_on_draft_pr(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def triggers_on_draft_pr(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the CI job should be automatically triggered on draft PRs
         """
         return pulumi.get(self, "triggers_on_draft_pr")
 
     @triggers_on_draft_pr.setter
-    def triggers_on_draft_pr(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def triggers_on_draft_pr(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "triggers_on_draft_pr", value)
 
     @_builtins.property
     @pulumi.getter(name="validateExecuteSteps")
-    def validate_execute_steps(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def validate_execute_steps(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """
         return pulumi.get(self, "validate_execute_steps")
 
     @validate_execute_steps.setter
-    def validate_execute_steps(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def validate_execute_steps(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "validate_execute_steps", value)
 
 
 @pulumi.input_type
 class _JobState:
     def __init__(__self__, *,
-                 compare_changes_flags: Optional[pulumi.Input[_builtins.str]] = None,
-                 dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 deferring_environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 deferring_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 execution: Optional[pulumi.Input['JobExecutionArgs']] = None,
-                 force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]] = None,
-                 job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 job_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 run_compare_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 run_generate_sources: Optional[pulumi.Input[_builtins.bool]] = None,
-                 run_lint: Optional[pulumi.Input[_builtins.bool]] = None,
-                 schedule_cron: Optional[pulumi.Input[_builtins.str]] = None,
-                 schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 schedule_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 schedule_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 self_deferring: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 triggers: Optional[pulumi.Input['JobTriggersArgs']] = None,
-                 triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
-                 validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None):
+                 compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+                 dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 execute_steps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution: pulumi.Input[Optional['JobExecutionArgs']] = None,
+                 force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]] = None,
+                 job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 job_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 run_compare_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 run_generate_sources: pulumi.Input[Optional[_builtins.bool]] = None,
+                 run_lint: pulumi.Input[Optional[_builtins.bool]] = None,
+                 schedule_cron: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule_days: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 schedule_hours: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 schedule_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 triggers: pulumi.Input[Optional['JobTriggersArgs']] = None,
+                 triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
+                 validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Job resources.
 
@@ -664,387 +664,387 @@ class _JobState:
 
     @_builtins.property
     @pulumi.getter(name="compareChangesFlags")
-    def compare_changes_flags(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compare_changes_flags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The model selector for checking changes in the compare changes Advanced CI feature
         """
         return pulumi.get(self, "compare_changes_flags")
 
     @compare_changes_flags.setter
-    def compare_changes_flags(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compare_changes_flags(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compare_changes_flags", value)
 
     @_builtins.property
     @pulumi.getter(name="dbtVersion")
-    def dbt_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
         """
         return pulumi.get(self, "dbt_version")
 
     @dbt_version.setter
-    def dbt_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dbt_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dbt_version", value)
 
     @_builtins.property
     @pulumi.getter(name="deferringEnvironmentId")
-    def deferring_environment_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def deferring_environment_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Environment identifier that this job defers to (new deferring approach)
         """
         return pulumi.get(self, "deferring_environment_id")
 
     @deferring_environment_id.setter
-    def deferring_environment_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def deferring_environment_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "deferring_environment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="deferringJobId")
-    def deferring_job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def deferring_job_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Job identifier that this job defers to (legacy deferring approach)
         """
         return pulumi.get(self, "deferring_job_id")
 
     @deferring_job_id.setter
-    def deferring_job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def deferring_job_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "deferring_job_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description for the job
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentId")
-    def environment_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def environment_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Environment ID to create the job in
         """
         return pulumi.get(self, "environment_id")
 
     @environment_id.setter
-    def environment_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def environment_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "environment_id", value)
 
     @_builtins.property
     @pulumi.getter(name="errorsOnLintFailure")
-    def errors_on_lint_failure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def errors_on_lint_failure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         """
         return pulumi.get(self, "errors_on_lint_failure")
 
     @errors_on_lint_failure.setter
-    def errors_on_lint_failure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def errors_on_lint_failure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "errors_on_lint_failure", value)
 
     @_builtins.property
     @pulumi.getter(name="executeSteps")
-    def execute_steps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def execute_steps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of commands to execute for the job
         """
         return pulumi.get(self, "execute_steps")
 
     @execute_steps.setter
-    def execute_steps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def execute_steps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "execute_steps", value)
 
     @_builtins.property
     @pulumi.getter
-    def execution(self) -> Optional[pulumi.Input['JobExecutionArgs']]:
+    def execution(self) -> pulumi.Input[Optional['JobExecutionArgs']]:
         """
         Execution settings for the job
         """
         return pulumi.get(self, "execution")
 
     @execution.setter
-    def execution(self, value: Optional[pulumi.Input['JobExecutionArgs']]):
+    def execution(self, value: pulumi.Input[Optional['JobExecutionArgs']]):
         pulumi.set(self, "execution", value)
 
     @_builtins.property
     @pulumi.getter(name="forceNodeSelection")
-    def force_node_selection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_node_selection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
         """
         return pulumi.get(self, "force_node_selection")
 
     @force_node_selection.setter
-    def force_node_selection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_node_selection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_node_selection", value)
 
     @_builtins.property
     @pulumi.getter(name="generateDocs")
-    def generate_docs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def generate_docs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag for whether the job should generate documentation
         """
         return pulumi.get(self, "generate_docs")
 
     @generate_docs.setter
-    def generate_docs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def generate_docs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_docs", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="jobCompletionTriggerConditions")
-    def job_completion_trigger_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]]:
+    def job_completion_trigger_conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]]:
         """
         Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         """
         return pulumi.get(self, "job_completion_trigger_conditions")
 
     @job_completion_trigger_conditions.setter
-    def job_completion_trigger_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]]):
+    def job_completion_trigger_conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]]]):
         pulumi.set(self, "job_completion_trigger_conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="jobId")
-    def job_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def job_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Job identifier
         """
         return pulumi.get(self, "job_id")
 
     @job_id.setter
-    def job_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def job_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "job_id", value)
 
     @_builtins.property
     @pulumi.getter(name="jobType")
-    def job_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def job_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
         """
         return pulumi.get(self, "job_type")
 
     @job_type.setter
-    def job_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def job_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "job_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Job name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_threads(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of threads to use in the job
         """
         return pulumi.get(self, "num_threads")
 
     @num_threads.setter
-    def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_threads(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to create the job in
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="runCompareChanges")
-    def run_compare_changes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def run_compare_changes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
         """
         return pulumi.get(self, "run_compare_changes")
 
     @run_compare_changes.setter
-    def run_compare_changes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def run_compare_changes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "run_compare_changes", value)
 
     @_builtins.property
     @pulumi.getter(name="runGenerateSources")
-    def run_generate_sources(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def run_generate_sources(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag for whether the job should add a `dbt source freshness` step to the job. The difference between manually adding a step with `dbt source freshness` in the job steps or using this flag is that with this flag, a failed freshness will still allow the following steps to run.
         """
         return pulumi.get(self, "run_generate_sources")
 
     @run_generate_sources.setter
-    def run_generate_sources(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def run_generate_sources(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "run_generate_sources", value)
 
     @_builtins.property
     @pulumi.getter(name="runLint")
-    def run_lint(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def run_lint(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the CI job should lint SQL changes. Defaults to `false`.
         """
         return pulumi.get(self, "run_lint")
 
     @run_lint.setter
-    def run_lint(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def run_lint(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "run_lint", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleCron")
-    def schedule_cron(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schedule_cron(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Custom cron expression for schedule
         """
         return pulumi.get(self, "schedule_cron")
 
     @schedule_cron.setter
-    def schedule_cron(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schedule_cron(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schedule_cron", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleDays")
-    def schedule_days(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def schedule_days(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of days of week as numbers (0 = Sunday, 7 = Saturday) to execute the job at if running on a schedule
         """
         return pulumi.get(self, "schedule_days")
 
     @schedule_days.setter
-    def schedule_days(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def schedule_days(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "schedule_days", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleHours")
-    def schedule_hours(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def schedule_hours(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of hours to execute the job at if running on a schedule
         """
         return pulumi.get(self, "schedule_hours")
 
     @schedule_hours.setter
-    def schedule_hours(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def schedule_hours(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "schedule_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleInterval")
-    def schedule_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def schedule_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of hours between job executions if running on a schedule
         """
         return pulumi.get(self, "schedule_interval")
 
     @schedule_interval.setter
-    def schedule_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def schedule_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "schedule_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="scheduleType")
-    def schedule_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schedule_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of schedule to use, one of every*day/ days*of*week/ custom*cron/ interval_cron
         """
         return pulumi.get(self, "schedule_type")
 
     @schedule_type.setter
-    def schedule_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schedule_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schedule_type", value)
 
     @_builtins.property
     @pulumi.getter(name="selfDeferring")
-    def self_deferring(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def self_deferring(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether this job defers on a previous run of itself
         """
         return pulumi.get(self, "self_deferring")
 
     @self_deferring.setter
-    def self_deferring(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def self_deferring(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "self_deferring", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
-    def target_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target name for the dbt profile
         """
         return pulumi.get(self, "target_name")
 
     @target_name.setter
-    def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutSeconds")
     @_utilities.deprecated("""Use execution.timeout_seconds instead""")
-    def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
         """
         return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
-    def timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout_seconds", value)
 
     @_builtins.property
     @pulumi.getter
-    def triggers(self) -> Optional[pulumi.Input['JobTriggersArgs']]:
+    def triggers(self) -> pulumi.Input[Optional['JobTriggersArgs']]:
         """
         Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         """
         return pulumi.get(self, "triggers")
 
     @triggers.setter
-    def triggers(self, value: Optional[pulumi.Input['JobTriggersArgs']]):
+    def triggers(self, value: pulumi.Input[Optional['JobTriggersArgs']]):
         pulumi.set(self, "triggers", value)
 
     @_builtins.property
     @pulumi.getter(name="triggersOnDraftPr")
-    def triggers_on_draft_pr(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def triggers_on_draft_pr(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the CI job should be automatically triggered on draft PRs
         """
         return pulumi.get(self, "triggers_on_draft_pr")
 
     @triggers_on_draft_pr.setter
-    def triggers_on_draft_pr(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def triggers_on_draft_pr(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "triggers_on_draft_pr", value)
 
     @_builtins.property
     @pulumi.getter(name="validateExecuteSteps")
-    def validate_execute_steps(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def validate_execute_steps(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """
         return pulumi.get(self, "validate_execute_steps")
 
     @validate_execute_steps.setter
-    def validate_execute_steps(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def validate_execute_steps(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "validate_execute_steps", value)
 
 
@@ -1054,37 +1054,37 @@ class Job(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 compare_changes_flags: Optional[pulumi.Input[_builtins.str]] = None,
-                 dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 deferring_environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 deferring_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 execution: Optional[pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
-                 force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
-                 job_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 run_compare_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 run_generate_sources: Optional[pulumi.Input[_builtins.bool]] = None,
-                 run_lint: Optional[pulumi.Input[_builtins.bool]] = None,
-                 schedule_cron: Optional[pulumi.Input[_builtins.str]] = None,
-                 schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 schedule_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 schedule_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 self_deferring: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 triggers: Optional[pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
-                 triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
-                 validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None,
+                 compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+                 dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 execute_steps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
+                 force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
+                 job_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 run_compare_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 run_generate_sources: pulumi.Input[Optional[_builtins.bool]] = None,
+                 run_lint: pulumi.Input[Optional[_builtins.bool]] = None,
+                 schedule_cron: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule_days: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 schedule_hours: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 schedule_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
+                 triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
+                 validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         > In October 2023, CI improvements have been rolled out to dbt Cloud with minor impacts to some jobs:  [more info](https://docs.getdbt.com/docs/dbt-versions/release-notes/june-2023/ci-updates-phase1-rn).
@@ -1113,12 +1113,12 @@ class Job(pulumi.CustomResource):
         # a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
         # to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
         daily_job = dbtcloud.Job("daily_job",
-            environment_id=prod_environment["environmentId"],
+            environment_id=int(prod_environment["environmentId"]),
             execute_steps=["dbt build"],
             generate_docs=True,
             name="Daily job",
             num_threads=64,
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             run_generate_sources=True,
             target_name="default",
             triggers={
@@ -1250,12 +1250,12 @@ class Job(pulumi.CustomResource):
         # a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
         # to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
         daily_job = dbtcloud.Job("daily_job",
-            environment_id=prod_environment["environmentId"],
+            environment_id=int(prod_environment["environmentId"]),
             execute_steps=["dbt build"],
             generate_docs=True,
             name="Daily job",
             num_threads=64,
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             run_generate_sources=True,
             target_name="default",
             triggers={
@@ -1335,37 +1335,37 @@ class Job(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 compare_changes_flags: Optional[pulumi.Input[_builtins.str]] = None,
-                 dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 deferring_environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 deferring_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 execution: Optional[pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
-                 force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
-                 job_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 run_compare_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 run_generate_sources: Optional[pulumi.Input[_builtins.bool]] = None,
-                 run_lint: Optional[pulumi.Input[_builtins.bool]] = None,
-                 schedule_cron: Optional[pulumi.Input[_builtins.str]] = None,
-                 schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 schedule_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 schedule_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 self_deferring: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 triggers: Optional[pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
-                 triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
-                 validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None,
+                 compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+                 dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 execute_steps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
+                 force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
+                 job_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 run_compare_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 run_generate_sources: pulumi.Input[Optional[_builtins.bool]] = None,
+                 run_lint: pulumi.Input[Optional[_builtins.bool]] = None,
+                 schedule_cron: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule_days: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 schedule_hours: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 schedule_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
+                 triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
+                 validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1425,38 +1425,38 @@ class Job(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            compare_changes_flags: Optional[pulumi.Input[_builtins.str]] = None,
-            dbt_version: Optional[pulumi.Input[_builtins.str]] = None,
-            deferring_environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-            deferring_job_id: Optional[pulumi.Input[_builtins.int]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            environment_id: Optional[pulumi.Input[_builtins.int]] = None,
-            errors_on_lint_failure: Optional[pulumi.Input[_builtins.bool]] = None,
-            execute_steps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            execution: Optional[pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
-            force_node_selection: Optional[pulumi.Input[_builtins.bool]] = None,
-            generate_docs: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-            job_completion_trigger_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
-            job_id: Optional[pulumi.Input[_builtins.int]] = None,
-            job_type: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            run_compare_changes: Optional[pulumi.Input[_builtins.bool]] = None,
-            run_generate_sources: Optional[pulumi.Input[_builtins.bool]] = None,
-            run_lint: Optional[pulumi.Input[_builtins.bool]] = None,
-            schedule_cron: Optional[pulumi.Input[_builtins.str]] = None,
-            schedule_days: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            schedule_hours: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            schedule_interval: Optional[pulumi.Input[_builtins.int]] = None,
-            schedule_type: Optional[pulumi.Input[_builtins.str]] = None,
-            self_deferring: Optional[pulumi.Input[_builtins.bool]] = None,
-            target_name: Optional[pulumi.Input[_builtins.str]] = None,
-            timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-            triggers: Optional[pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
-            triggers_on_draft_pr: Optional[pulumi.Input[_builtins.bool]] = None,
-            validate_execute_steps: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Job':
+            compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+            dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+            deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+            deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+            errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+            execute_steps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
+            force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
+            generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
+            job_id: pulumi.Input[Optional[_builtins.int]] = None,
+            job_type: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            run_compare_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+            run_generate_sources: pulumi.Input[Optional[_builtins.bool]] = None,
+            run_lint: pulumi.Input[Optional[_builtins.bool]] = None,
+            schedule_cron: pulumi.Input[Optional[_builtins.str]] = None,
+            schedule_days: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            schedule_hours: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            schedule_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+            self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
+            target_name: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
+            triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
+            validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Job':
         """
         Get an existing Job resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

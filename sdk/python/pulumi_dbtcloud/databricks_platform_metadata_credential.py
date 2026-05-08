@@ -21,12 +21,12 @@ class DatabricksPlatformMetadataCredentialArgs:
     def __init__(__self__, *,
                  catalog: pulumi.Input[_builtins.str],
                  connection_id: pulumi.Input[_builtins.int],
-                 catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a DatabricksPlatformMetadataCredential resource.
 
@@ -81,55 +81,55 @@ class DatabricksPlatformMetadataCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="catalogIngestionEnabled")
-    def catalog_ingestion_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def catalog_ingestion_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
         """
         return pulumi.get(self, "catalog_ingestion_enabled")
 
     @catalog_ingestion_enabled.setter
-    def catalog_ingestion_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def catalog_ingestion_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "catalog_ingestion_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="costInsightsEnabled")
-    def cost_insights_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cost_insights_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether cost insights is enabled for this credential.
         """
         return pulumi.get(self, "cost_insights_enabled")
 
     @cost_insights_enabled.setter
-    def cost_insights_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cost_insights_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cost_insights_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="costOptimizationEnabled")
-    def cost_optimization_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cost_optimization_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether cost optimization data collection is enabled for this credential.
         """
         return pulumi.get(self, "cost_optimization_enabled")
 
     @cost_optimization_enabled.setter
-    def cost_optimization_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cost_optimization_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cost_optimization_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Databricks personal access token. Consider using `token_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWo")
-    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
@@ -137,35 +137,35 @@ class DatabricksPlatformMetadataCredentialArgs:
         return pulumi.get(self, "token_wo")
 
     @token_wo.setter
-    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWoVersion")
-    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         return pulumi.get(self, "token_wo_version")
 
     @token_wo_version.setter
-    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_wo_version", value)
 
 
 @pulumi.input_type
 class _DatabricksPlatformMetadataCredentialState:
     def __init__(__self__, *,
-                 adapter_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 catalog: Optional[pulumi.Input[_builtins.str]] = None,
-                 catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 catalog: pulumi.Input[Optional[_builtins.str]] = None,
+                 catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering DatabricksPlatformMetadataCredential resources.
 
@@ -204,103 +204,103 @@ class _DatabricksPlatformMetadataCredentialState:
 
     @_builtins.property
     @pulumi.getter(name="adapterVersion")
-    def adapter_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def adapter_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.
         """
         return pulumi.get(self, "adapter_version")
 
     @adapter_version.setter
-    def adapter_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def adapter_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "adapter_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def catalog(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def catalog(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Unity Catalog name to use.
         """
         return pulumi.get(self, "catalog")
 
     @catalog.setter
-    def catalog(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def catalog(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "catalog", value)
 
     @_builtins.property
     @pulumi.getter(name="catalogIngestionEnabled")
-    def catalog_ingestion_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def catalog_ingestion_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
         """
         return pulumi.get(self, "catalog_ingestion_enabled")
 
     @catalog_ingestion_enabled.setter
-    def catalog_ingestion_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def catalog_ingestion_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "catalog_ingestion_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the global connection this credential is associated with. Cannot be changed after creation.
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="costInsightsEnabled")
-    def cost_insights_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cost_insights_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether cost insights is enabled for this credential.
         """
         return pulumi.get(self, "cost_insights_enabled")
 
     @cost_insights_enabled.setter
-    def cost_insights_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cost_insights_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cost_insights_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="costOptimizationEnabled")
-    def cost_optimization_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cost_optimization_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether cost optimization data collection is enabled for this credential.
         """
         return pulumi.get(self, "cost_optimization_enabled")
 
     @cost_optimization_enabled.setter
-    def cost_optimization_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cost_optimization_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cost_optimization_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the platform metadata credential.
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Databricks personal access token. Consider using `token_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWo")
-    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `token`. The value is not stored in state. Requires `token_wo_version` to trigger updates.
@@ -308,19 +308,19 @@ class _DatabricksPlatformMetadataCredentialState:
         return pulumi.get(self, "token_wo")
 
     @token_wo.setter
-    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenWoVersion")
-    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `token_wo`. Increment this value to trigger an update of the token when using `token_wo`.
         """
         return pulumi.get(self, "token_wo_version")
 
     @token_wo_version.setter
-    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_wo_version", value)
 
 
@@ -330,14 +330,14 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 catalog: Optional[pulumi.Input[_builtins.str]] = None,
-                 catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 catalog: pulumi.Input[Optional[_builtins.str]] = None,
+                 catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Manages Databricks platform metadata credentials for external metadata ingestion in dbt Cloud.
@@ -363,7 +363,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         example = dbtcloud.DatabricksPlatformMetadataCredential("example",
-            connection_id=databricks["id"],
+            connection_id=int(databricks["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -372,7 +372,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
         config = pulumi.Config()
         databricks_metadata_token = config.require("databricksMetadataToken")
         example_wo = dbtcloud.DatabricksPlatformMetadataCredential("example_wo",
-            connection_id=databricks["id"],
+            connection_id=int(databricks["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -424,7 +424,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         example = dbtcloud.DatabricksPlatformMetadataCredential("example",
-            connection_id=databricks["id"],
+            connection_id=int(databricks["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -433,7 +433,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
         config = pulumi.Config()
         databricks_metadata_token = config.require("databricksMetadataToken")
         example_wo = dbtcloud.DatabricksPlatformMetadataCredential("example_wo",
-            connection_id=databricks["id"],
+            connection_id=int(databricks["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -458,14 +458,14 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 catalog: Optional[pulumi.Input[_builtins.str]] = None,
-                 catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 catalog: pulumi.Input[Optional[_builtins.str]] = None,
+                 catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -501,16 +501,16 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            adapter_version: Optional[pulumi.Input[_builtins.str]] = None,
-            catalog: Optional[pulumi.Input[_builtins.str]] = None,
-            catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-            cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None,
-            token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            token_wo_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'DatabricksPlatformMetadataCredential':
+            adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+            catalog: pulumi.Input[Optional[_builtins.str]] = None,
+            catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            token_wo_version: pulumi.Input[Optional[_builtins.int]] = None) -> 'DatabricksPlatformMetadataCredential':
         """
         Get an existing DatabricksPlatformMetadataCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

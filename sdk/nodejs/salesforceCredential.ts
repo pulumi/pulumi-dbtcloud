@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attributes (stored in state)
  * const mySalesforceCred = new dbtcloud.SalesforceCredential("my_salesforce_cred", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     username: "user@example.com",
  *     clientId: "your-oauth-client-id",
  *     privateKey: "private-key value",
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * const salesforceClientId = config.require("salesforceClientId");
  * const salesforcePrivateKey = config.require("salesforcePrivateKey");
  * const mySalesforceCredWo = new dbtcloud.SalesforceCredential("my_salesforce_cred_wo", {
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     username: "user@example.com",
  *     clientIdWo: salesforceClientId,
  *     clientIdWoVersion: 1,
@@ -190,49 +190,49 @@ export interface SalesforceCredentialState {
     /**
      * The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
      */
-    clientIdWo?: pulumi.Input<string>;
+    clientIdWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
      */
-    clientIdWoVersion?: pulumi.Input<number>;
+    clientIdWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The system Salesforce credential ID
      */
-    credentialId?: pulumi.Input<number>;
+    credentialId?: pulumi.Input<number | undefined>;
     /**
      * The number of threads to use for dbt operations
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Salesforce credential in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * Target name
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * The Salesforce username for OAuth JWT bearer flow authentication
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -242,33 +242,33 @@ export interface SalesforceCredentialArgs {
     /**
      * The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `clientId`. The value is not stored in state. Requires `clientIdWoVersion` to trigger updates.
      */
-    clientIdWo?: pulumi.Input<string>;
+    clientIdWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `clientIdWo`. Increment this value to trigger an update of the client ID when using `clientIdWo`.
      */
-    clientIdWoVersion?: pulumi.Input<number>;
+    clientIdWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The number of threads to use for dbt operations
      */
-    numThreads?: pulumi.Input<number>;
+    numThreads?: pulumi.Input<number | undefined>;
     /**
      * The private key for JWT bearer flow authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the Salesforce credential in
      */
@@ -276,7 +276,7 @@ export interface SalesforceCredentialArgs {
     /**
      * Target name
      */
-    targetName?: pulumi.Input<string>;
+    targetName?: pulumi.Input<string | undefined>;
     /**
      * The Salesforce username for OAuth JWT bearer flow authentication
      */

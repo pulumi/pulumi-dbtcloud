@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud
     /// {
     ///     // Use a native OpenAI API key.
     ///     // Recommended: write-only (Terraform 1.11+) — the key is never stored in state.
-    ///     var openai = new DbtCloud.Index.OpenaiIntegration("openai", new()
+    ///     var openai = new DbtCloud.OpenaiIntegration("openai", new()
     ///     {
     ///         KeyType = "openai",
     ///         KeyValueWo = openaiApiKey,
@@ -45,7 +45,7 @@ namespace Pulumi.DbtCloud
     ///     //   key_value = var.openai_api_key
     ///     // }
     ///     // Use an Azure OpenAI deployment.
-    ///     var azure = new DbtCloud.Index.OpenaiIntegration("azure", new()
+    ///     var azure = new DbtCloud.OpenaiIntegration("azure", new()
     ///     {
     ///         KeyType = "azure_openai",
     ///         KeyValueWo = azureOpenaiApiKey,

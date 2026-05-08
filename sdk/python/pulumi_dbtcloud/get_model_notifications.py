@@ -152,7 +152,7 @@ def get_model_notifications(environment_id: Optional[_builtins.str] = None,
         on_skipped=pulumi.get(__ret__, 'on_skipped'),
         on_success=pulumi.get(__ret__, 'on_success'),
         on_warning=pulumi.get(__ret__, 'on_warning'))
-def get_model_notifications_output(environment_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_model_notifications_output(environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetModelNotificationsResult]:
     """
     Get model notifications configuration for a dbt Cloud environment

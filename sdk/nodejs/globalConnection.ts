@@ -334,68 +334,68 @@ export interface GlobalConnectionState {
     /**
      * Version of the adapter
      */
-    adapterVersion?: pulumi.Input<string>;
+    adapterVersion?: pulumi.Input<string | undefined>;
     /**
      * Apache Spark connection configuration.
      */
-    apacheSpark?: pulumi.Input<inputs.GlobalConnectionApacheSpark>;
+    apacheSpark?: pulumi.Input<inputs.GlobalConnectionApacheSpark | undefined>;
     /**
      * Athena connection configuration.
      */
-    athena?: pulumi.Input<inputs.GlobalConnectionAthena>;
-    bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery>;
+    athena?: pulumi.Input<inputs.GlobalConnectionAthena | undefined>;
+    bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery | undefined>;
     /**
      * Databricks connection configuration
      */
-    databricks?: pulumi.Input<inputs.GlobalConnectionDatabricks>;
+    databricks?: pulumi.Input<inputs.GlobalConnectionDatabricks | undefined>;
     /**
      * Microsoft Fabric connection configuration.
      */
-    fabric?: pulumi.Input<inputs.GlobalConnectionFabric>;
+    fabric?: pulumi.Input<inputs.GlobalConnectionFabric | undefined>;
     /**
      * Whether the connection can use an SSH tunnel
      */
-    isSshTunnelEnabled?: pulumi.Input<boolean>;
+    isSshTunnelEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Connection name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * External OAuth configuration ID (only Snowflake for now)
      */
-    oauthConfigurationId?: pulumi.Input<number>;
+    oauthConfigurationId?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL connection configuration.
      */
-    postgres?: pulumi.Input<inputs.GlobalConnectionPostgres>;
+    postgres?: pulumi.Input<inputs.GlobalConnectionPostgres | undefined>;
     /**
      * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      */
-    privateLinkEndpointId?: pulumi.Input<string>;
+    privateLinkEndpointId?: pulumi.Input<string | undefined>;
     /**
      * Redshift connection configuration
      */
-    redshift?: pulumi.Input<inputs.GlobalConnectionRedshift>;
+    redshift?: pulumi.Input<inputs.GlobalConnectionRedshift | undefined>;
     /**
      * Salesforce connection configuration.
      */
-    salesforce?: pulumi.Input<inputs.GlobalConnectionSalesforce>;
+    salesforce?: pulumi.Input<inputs.GlobalConnectionSalesforce | undefined>;
     /**
      * Snowflake connection configuration
      */
-    snowflake?: pulumi.Input<inputs.GlobalConnectionSnowflake>;
+    snowflake?: pulumi.Input<inputs.GlobalConnectionSnowflake | undefined>;
     /**
      * Starburst/Trino connection configuration.
      */
-    starburst?: pulumi.Input<inputs.GlobalConnectionStarburst>;
+    starburst?: pulumi.Input<inputs.GlobalConnectionStarburst | undefined>;
     /**
      * Azure Synapse Analytics connection configuration.
      */
-    synapse?: pulumi.Input<inputs.GlobalConnectionSynapse>;
+    synapse?: pulumi.Input<inputs.GlobalConnectionSynapse | undefined>;
     /**
      * Teradata connection configuration.
      */
-    teradata?: pulumi.Input<inputs.GlobalConnectionTeradata>;
+    teradata?: pulumi.Input<inputs.GlobalConnectionTeradata | undefined>;
 }
 
 /**
@@ -405,58 +405,58 @@ export interface GlobalConnectionArgs {
     /**
      * Apache Spark connection configuration.
      */
-    apacheSpark?: pulumi.Input<inputs.GlobalConnectionApacheSpark>;
+    apacheSpark?: pulumi.Input<inputs.GlobalConnectionApacheSpark | undefined>;
     /**
      * Athena connection configuration.
      */
-    athena?: pulumi.Input<inputs.GlobalConnectionAthena>;
-    bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery>;
+    athena?: pulumi.Input<inputs.GlobalConnectionAthena | undefined>;
+    bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery | undefined>;
     /**
      * Databricks connection configuration
      */
-    databricks?: pulumi.Input<inputs.GlobalConnectionDatabricks>;
+    databricks?: pulumi.Input<inputs.GlobalConnectionDatabricks | undefined>;
     /**
      * Microsoft Fabric connection configuration.
      */
-    fabric?: pulumi.Input<inputs.GlobalConnectionFabric>;
+    fabric?: pulumi.Input<inputs.GlobalConnectionFabric | undefined>;
     /**
      * Connection name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * External OAuth configuration ID (only Snowflake for now)
      */
-    oauthConfigurationId?: pulumi.Input<number>;
+    oauthConfigurationId?: pulumi.Input<number | undefined>;
     /**
      * PostgreSQL connection configuration.
      */
-    postgres?: pulumi.Input<inputs.GlobalConnectionPostgres>;
+    postgres?: pulumi.Input<inputs.GlobalConnectionPostgres | undefined>;
     /**
      * Private Link Endpoint ID. This ID can be found using the `privatelinkEndpoint` data source
      */
-    privateLinkEndpointId?: pulumi.Input<string>;
+    privateLinkEndpointId?: pulumi.Input<string | undefined>;
     /**
      * Redshift connection configuration
      */
-    redshift?: pulumi.Input<inputs.GlobalConnectionRedshift>;
+    redshift?: pulumi.Input<inputs.GlobalConnectionRedshift | undefined>;
     /**
      * Salesforce connection configuration.
      */
-    salesforce?: pulumi.Input<inputs.GlobalConnectionSalesforce>;
+    salesforce?: pulumi.Input<inputs.GlobalConnectionSalesforce | undefined>;
     /**
      * Snowflake connection configuration
      */
-    snowflake?: pulumi.Input<inputs.GlobalConnectionSnowflake>;
+    snowflake?: pulumi.Input<inputs.GlobalConnectionSnowflake | undefined>;
     /**
      * Starburst/Trino connection configuration.
      */
-    starburst?: pulumi.Input<inputs.GlobalConnectionStarburst>;
+    starburst?: pulumi.Input<inputs.GlobalConnectionStarburst | undefined>;
     /**
      * Azure Synapse Analytics connection configuration.
      */
-    synapse?: pulumi.Input<inputs.GlobalConnectionSynapse>;
+    synapse?: pulumi.Input<inputs.GlobalConnectionSynapse | undefined>;
     /**
      * Teradata connection configuration.
      */
-    teradata?: pulumi.Input<inputs.GlobalConnectionTeradata>;
+    teradata?: pulumi.Input<inputs.GlobalConnectionTeradata | undefined>;
 }

@@ -20,15 +20,15 @@ __all__ = ['PartialNotificationArgs', 'PartialNotification']
 class PartialNotificationArgs:
     def __init__(__self__, *,
                  user_id: pulumi.Input[_builtins.int],
-                 external_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 notification_type: Optional[pulumi.Input[_builtins.int]] = None,
-                 on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 slack_channel_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 slack_channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None):
+                 external_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 notification_type: pulumi.Input[Optional[_builtins.int]] = None,
+                 on_cancels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_failures: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_successes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_warnings: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 slack_channel_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 slack_channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a PartialNotification resource.
 
@@ -77,126 +77,126 @@ class PartialNotificationArgs:
 
     @_builtins.property
     @pulumi.getter(name="externalEmail")
-    def external_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The external email to receive the notification [global, used as identifier]
         """
         return pulumi.get(self, "external_email")
 
     @external_email.setter
-    def external_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_email", value)
 
     @_builtins.property
     @pulumi.getter(name="notificationType")
-    def notification_type(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def notification_type(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
         """
         return pulumi.get(self, "notification_type")
 
     @notification_type.setter
-    def notification_type(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def notification_type(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "notification_type", value)
 
     @_builtins.property
     @pulumi.getter(name="onCancels")
-    def on_cancels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def on_cancels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_cancels")
 
     @on_cancels.setter
-    def on_cancels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def on_cancels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "on_cancels", value)
 
     @_builtins.property
     @pulumi.getter(name="onFailures")
-    def on_failures(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def on_failures(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_failures")
 
     @on_failures.setter
-    def on_failures(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def on_failures(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "on_failures", value)
 
     @_builtins.property
     @pulumi.getter(name="onSuccesses")
-    def on_successes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def on_successes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_successes")
 
     @on_successes.setter
-    def on_successes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def on_successes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "on_successes", value)
 
     @_builtins.property
     @pulumi.getter(name="onWarnings")
-    def on_warnings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def on_warnings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_warnings")
 
     @on_warnings.setter
-    def on_warnings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def on_warnings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "on_warnings", value)
 
     @_builtins.property
     @pulumi.getter(name="slackChannelId")
-    def slack_channel_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def slack_channel_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
         """
         return pulumi.get(self, "slack_channel_id")
 
     @slack_channel_id.setter
-    def slack_channel_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def slack_channel_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "slack_channel_id", value)
 
     @_builtins.property
     @pulumi.getter(name="slackChannelName")
-    def slack_channel_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def slack_channel_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the slack channel [global, used as identifier]
         """
         return pulumi.get(self, "slack_channel_name")
 
     @slack_channel_name.setter
-    def slack_channel_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def slack_channel_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "slack_channel_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         State of the notification (1 = active (default), 2 = inactive) [global]
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "state", value)
 
 
 @pulumi.input_type
 class _PartialNotificationState:
     def __init__(__self__, *,
-                 external_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 notification_type: Optional[pulumi.Input[_builtins.int]] = None,
-                 on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 slack_channel_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 slack_channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 external_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 notification_type: pulumi.Input[Optional[_builtins.int]] = None,
+                 on_cancels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_failures: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_successes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_warnings: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 slack_channel_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 slack_channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering PartialNotification resources.
 
@@ -234,122 +234,122 @@ class _PartialNotificationState:
 
     @_builtins.property
     @pulumi.getter(name="externalEmail")
-    def external_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The external email to receive the notification [global, used as identifier]
         """
         return pulumi.get(self, "external_email")
 
     @external_email.setter
-    def external_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_email", value)
 
     @_builtins.property
     @pulumi.getter(name="notificationType")
-    def notification_type(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def notification_type(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
         """
         return pulumi.get(self, "notification_type")
 
     @notification_type.setter
-    def notification_type(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def notification_type(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "notification_type", value)
 
     @_builtins.property
     @pulumi.getter(name="onCancels")
-    def on_cancels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def on_cancels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_cancels")
 
     @on_cancels.setter
-    def on_cancels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def on_cancels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "on_cancels", value)
 
     @_builtins.property
     @pulumi.getter(name="onFailures")
-    def on_failures(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def on_failures(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_failures")
 
     @on_failures.setter
-    def on_failures(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def on_failures(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "on_failures", value)
 
     @_builtins.property
     @pulumi.getter(name="onSuccesses")
-    def on_successes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def on_successes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_successes")
 
     @on_successes.setter
-    def on_successes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def on_successes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "on_successes", value)
 
     @_builtins.property
     @pulumi.getter(name="onWarnings")
-    def on_warnings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def on_warnings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         """
         return pulumi.get(self, "on_warnings")
 
     @on_warnings.setter
-    def on_warnings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def on_warnings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "on_warnings", value)
 
     @_builtins.property
     @pulumi.getter(name="slackChannelId")
-    def slack_channel_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def slack_channel_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
         """
         return pulumi.get(self, "slack_channel_id")
 
     @slack_channel_id.setter
-    def slack_channel_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def slack_channel_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "slack_channel_id", value)
 
     @_builtins.property
     @pulumi.getter(name="slackChannelName")
-    def slack_channel_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def slack_channel_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the slack channel [global, used as identifier]
         """
         return pulumi.get(self, "slack_channel_name")
 
     @slack_channel_name.setter
-    def slack_channel_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def slack_channel_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "slack_channel_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         State of the notification (1 = active (default), 2 = inactive) [global]
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -359,16 +359,16 @@ class PartialNotification(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 external_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 notification_type: Optional[pulumi.Input[_builtins.int]] = None,
-                 on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 slack_channel_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 slack_channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 external_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 notification_type: pulumi.Input[Optional[_builtins.int]] = None,
+                 on_cancels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_failures: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_successes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_warnings: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 slack_channel_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 slack_channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Setup partial notifications on jobs success/failure to internal users, external email addresses or Slack channels. This is different from `dbt_cloud_notification` as it allows to have multiple resources updating the same notification recipient (email, user or Slack channel) and is useful for companies managing a single dbt Cloud Account configuration from different Terraform projects/workspaces.
@@ -516,16 +516,16 @@ class PartialNotification(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 external_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 notification_type: Optional[pulumi.Input[_builtins.int]] = None,
-                 on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 slack_channel_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 slack_channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 external_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 notification_type: pulumi.Input[Optional[_builtins.int]] = None,
+                 on_cancels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_failures: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_successes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 on_warnings: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 slack_channel_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 slack_channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -557,16 +557,16 @@ class PartialNotification(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            external_email: Optional[pulumi.Input[_builtins.str]] = None,
-            notification_type: Optional[pulumi.Input[_builtins.int]] = None,
-            on_cancels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            on_failures: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            on_successes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            on_warnings: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            slack_channel_id: Optional[pulumi.Input[_builtins.str]] = None,
-            slack_channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.int]] = None,
-            user_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'PartialNotification':
+            external_email: pulumi.Input[Optional[_builtins.str]] = None,
+            notification_type: pulumi.Input[Optional[_builtins.int]] = None,
+            on_cancels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            on_failures: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            on_successes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            on_warnings: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            slack_channel_id: pulumi.Input[Optional[_builtins.str]] = None,
+            slack_channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.int]] = None,
+            user_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'PartialNotification':
         """
         Get an existing PartialNotification resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -275,11 +275,11 @@ export interface ScimGroupPartialPermissionsState {
     /**
      * The ID of the existing group to manage partial permissions for. This group must already exist and is typically from an external identity provider synced via SCIM.
      */
-    groupId?: pulumi.Input<number>;
+    groupId?: pulumi.Input<number | undefined>;
     /**
      * Partial set of permissions to apply to the group. These permissions will be added to any existing permissions. Other permissions on the group will not be affected.
      */
-    permissions?: pulumi.Input<pulumi.Input<inputs.ScimGroupPartialPermissionsPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.ScimGroupPartialPermissionsPermission>[] | undefined>;
 }
 
 /**
@@ -293,5 +293,5 @@ export interface ScimGroupPartialPermissionsArgs {
     /**
      * Partial set of permissions to apply to the group. These permissions will be added to any existing permissions. Other permissions on the group will not be affected.
      */
-    permissions?: pulumi.Input<pulumi.Input<inputs.ScimGroupPartialPermissionsPermission>[]>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.ScimGroupPartialPermissionsPermission>[] | undefined>;
 }

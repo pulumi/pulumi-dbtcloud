@@ -19,10 +19,10 @@ __all__ = ['ProjectArgs', 'Project']
 @pulumi.input_type
 class ProjectArgs:
     def __init__(__self__, *,
-                 dbt_project_subdirectory: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.int]] = None):
+                 dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a Project resource.
 
@@ -42,60 +42,60 @@ class ProjectArgs:
 
     @_builtins.property
     @pulumi.getter(name="dbtProjectSubdirectory")
-    def dbt_project_subdirectory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dbt_project_subdirectory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DBT project subdirectory
         """
         return pulumi.get(self, "dbt_project_subdirectory")
 
     @dbt_project_subdirectory.setter
-    def dbt_project_subdirectory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dbt_project_subdirectory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dbt_project_subdirectory", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description for the project. Will show in dbt Explorer.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Project name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The type of dbt project (0=default or 1=hybrid)
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _ProjectState:
     def __init__(__self__, *,
-                 dbt_project_subdirectory: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.int]] = None):
+                 dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Project resources.
 
@@ -115,50 +115,50 @@ class _ProjectState:
 
     @_builtins.property
     @pulumi.getter(name="dbtProjectSubdirectory")
-    def dbt_project_subdirectory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dbt_project_subdirectory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DBT project subdirectory
         """
         return pulumi.get(self, "dbt_project_subdirectory")
 
     @dbt_project_subdirectory.setter
-    def dbt_project_subdirectory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dbt_project_subdirectory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dbt_project_subdirectory", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description for the project. Will show in dbt Explorer.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Project name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The type of dbt project (0=default or 1=hybrid)
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "type", value)
 
 
@@ -168,10 +168,10 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dbt_project_subdirectory: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.int]] = None,
+                 dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Manages a dbt Cloud project.
@@ -279,10 +279,10 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dbt_project_subdirectory: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.int]] = None,
+                 dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -306,10 +306,10 @@ class Project(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            dbt_project_subdirectory: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.int]] = None) -> 'Project':
+            dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.int]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

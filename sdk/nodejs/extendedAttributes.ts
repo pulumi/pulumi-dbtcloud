@@ -24,15 +24,15 @@ import * as utilities from "./utilities";
  *             subfield: "my_value",
  *         },
  *     }),
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  * });
  * const issueDepl = new dbtcloud.Environment("issue_depl", {
  *     dbtVersion: "latest",
  *     name: "My environment",
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     type: "deployment",
  *     useCustomBranch: false,
- *     credentialId: dbtCredentialId,
+ *     credentialId: Number(dbtCredentialId),
  *     deploymentType: "production",
  *     extendedAttributesId: myAttributes.extendedAttributesId,
  * });
@@ -145,19 +145,19 @@ export interface ExtendedAttributesState {
     /**
      * A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
      */
-    extendedAttributes?: pulumi.Input<string>;
+    extendedAttributes?: pulumi.Input<string | undefined>;
     /**
      * Extended attributes ID
      */
-    extendedAttributesId?: pulumi.Input<number>;
+    extendedAttributesId?: pulumi.Input<number | undefined>;
     /**
      * Project ID to create the extended attributes in
      */
-    projectId?: pulumi.Input<number>;
+    projectId?: pulumi.Input<number | undefined>;
     /**
      * The state of the extended attributes (1 = active, 2 = inactive)
      */
-    state?: pulumi.Input<number>;
+    state?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -175,5 +175,5 @@ export interface ExtendedAttributesArgs {
     /**
      * The state of the extended attributes (1 = active, 2 = inactive)
      */
-    state?: pulumi.Input<number>;
+    state?: pulumi.Input<number | undefined>;
 }

@@ -21,14 +21,14 @@ class SalesforceCredentialArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
                  username: pulumi.Input[_builtins.str],
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SalesforceCredential resource.
 
@@ -90,19 +90,19 @@ class SalesforceCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientIdWo")
-    def client_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
@@ -110,48 +110,48 @@ class SalesforceCredentialArgs:
         return pulumi.get(self, "client_id_wo")
 
     @client_id_wo.setter
-    def client_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientIdWoVersion")
-    def client_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_id_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
         """
         return pulumi.get(self, "client_id_wo_version")
 
     @client_id_wo_version.setter
-    def client_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_id_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_id_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_threads(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of threads to use for dbt operations
         """
         return pulumi.get(self, "num_threads")
 
     @num_threads.setter
-    def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_threads(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWo")
-    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
@@ -159,48 +159,48 @@ class SalesforceCredentialArgs:
         return pulumi.get(self, "private_key_wo")
 
     @private_key_wo.setter
-    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWoVersion")
-    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         """
         return pulumi.get(self, "private_key_wo_version")
 
     @private_key_wo_version.setter
-    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
-    def target_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target name
         """
         return pulumi.get(self, "target_name")
 
     @target_name.setter
-    def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
 
 @pulumi.input_type
 class _SalesforceCredentialState:
     def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SalesforceCredential resources.
 
@@ -243,19 +243,19 @@ class _SalesforceCredentialState:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The OAuth connected app client/consumer ID. Consider using `client_id_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientIdWo")
-    def client_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `client_id`. The value is not stored in state. Requires `client_id_wo_version` to trigger updates.
@@ -263,60 +263,60 @@ class _SalesforceCredentialState:
         return pulumi.get(self, "client_id_wo")
 
     @client_id_wo.setter
-    def client_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientIdWoVersion")
-    def client_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_id_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `client_id_wo`. Increment this value to trigger an update of the client ID when using `client_id_wo`.
         """
         return pulumi.get(self, "client_id_wo_version")
 
     @client_id_wo_version.setter
-    def client_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_id_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_id_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The system Salesforce credential ID
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_threads(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of threads to use for dbt operations
         """
         return pulumi.get(self, "num_threads")
 
     @num_threads.setter
-    def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_threads(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key for JWT bearer flow authentication. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWo")
-    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
@@ -324,55 +324,55 @@ class _SalesforceCredentialState:
         return pulumi.get(self, "private_key_wo")
 
     @private_key_wo.setter
-    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWoVersion")
-    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         """
         return pulumi.get(self, "private_key_wo_version")
 
     @private_key_wo_version.setter
-    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to create the Salesforce credential in
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
-    def target_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target name
         """
         return pulumi.get(self, "target_name")
 
     @target_name.setter
-    def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Salesforce username for OAuth JWT bearer flow authentication
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -382,16 +382,16 @@ class SalesforceCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Salesforce credential resource
@@ -404,7 +404,7 @@ class SalesforceCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         my_salesforce_cred = dbtcloud.SalesforceCredential("my_salesforce_cred",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             username="user@example.com",
             client_id="your-oauth-client-id",
             private_key="private-key value",
@@ -414,7 +414,7 @@ class SalesforceCredential(pulumi.CustomResource):
         salesforce_client_id = config.require("salesforceClientId")
         salesforce_private_key = config.require("salesforcePrivateKey")
         my_salesforce_cred_wo = dbtcloud.SalesforceCredential("my_salesforce_cred_wo",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             username="user@example.com",
             client_id_wo=salesforce_client_id,
             client_id_wo_version=1,
@@ -477,7 +477,7 @@ class SalesforceCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         my_salesforce_cred = dbtcloud.SalesforceCredential("my_salesforce_cred",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             username="user@example.com",
             client_id="your-oauth-client-id",
             private_key="private-key value",
@@ -487,7 +487,7 @@ class SalesforceCredential(pulumi.CustomResource):
         salesforce_client_id = config.require("salesforceClientId")
         salesforce_private_key = config.require("salesforcePrivateKey")
         my_salesforce_cred_wo = dbtcloud.SalesforceCredential("my_salesforce_cred_wo",
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             username="user@example.com",
             client_id_wo=salesforce_client_id,
             client_id_wo_version=1,
@@ -533,16 +533,16 @@ class SalesforceCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -579,17 +579,17 @@ class SalesforceCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-            num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            target_name: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'SalesforceCredential':
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            target_name: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'SalesforceCredential':
         """
         Get an existing SalesforceCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -58,8 +58,8 @@ class ProjectRepositoryArgs:
 @pulumi.input_type
 class _ProjectRepositoryState:
     def __init__(__self__, *,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 repository_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 repository_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ProjectRepository resources.
 
@@ -73,26 +73,26 @@ class _ProjectRepositoryState:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="repositoryId")
-    def repository_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def repository_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Repository ID
         """
         return pulumi.get(self, "repository_id")
 
     @repository_id.setter
-    def repository_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def repository_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "repository_id", value)
 
 
@@ -102,8 +102,8 @@ class ProjectRepository(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 repository_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 repository_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Manages a dbt Cloud project repository.
@@ -115,8 +115,8 @@ class ProjectRepository(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         dbt_project_repository = dbtcloud.ProjectRepository("dbt_project_repository",
-            project_id=dbt_project["id"],
-            repository_id=dbt_repository["repositoryId"])
+            project_id=int(dbt_project["id"]),
+            repository_id=int(dbt_repository["repositoryId"]))
         ```
 
         ## Import
@@ -161,8 +161,8 @@ class ProjectRepository(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         dbt_project_repository = dbtcloud.ProjectRepository("dbt_project_repository",
-            project_id=dbt_project["id"],
-            repository_id=dbt_repository["repositoryId"])
+            project_id=int(dbt_project["id"]),
+            repository_id=int(dbt_repository["repositoryId"]))
         ```
 
         ## Import
@@ -201,8 +201,8 @@ class ProjectRepository(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 repository_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 repository_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -228,8 +228,8 @@ class ProjectRepository(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            repository_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'ProjectRepository':
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            repository_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'ProjectRepository':
         """
         Get an existing ProjectRepository resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

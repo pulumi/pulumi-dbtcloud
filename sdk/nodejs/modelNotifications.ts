@@ -139,27 +139,27 @@ export interface ModelNotificationsState {
     /**
      * Whether model notifications are enabled for this environment
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the dbt Cloud environment
      */
-    environmentId?: pulumi.Input<string>;
+    environmentId?: pulumi.Input<string | undefined>;
     /**
      * Whether to send notifications for failed model runs
      */
-    onFailure?: pulumi.Input<boolean>;
+    onFailure?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to send notifications for skipped model runs
      */
-    onSkipped?: pulumi.Input<boolean>;
+    onSkipped?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to send notifications for successful model runs
      */
-    onSuccess?: pulumi.Input<boolean>;
+    onSuccess?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to send notifications for model runs with warnings
      */
-    onWarning?: pulumi.Input<boolean>;
+    onWarning?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -169,7 +169,7 @@ export interface ModelNotificationsArgs {
     /**
      * Whether model notifications are enabled for this environment
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the dbt Cloud environment
      */
@@ -177,17 +177,17 @@ export interface ModelNotificationsArgs {
     /**
      * Whether to send notifications for failed model runs
      */
-    onFailure?: pulumi.Input<boolean>;
+    onFailure?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to send notifications for skipped model runs
      */
-    onSkipped?: pulumi.Input<boolean>;
+    onSkipped?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to send notifications for successful model runs
      */
-    onSuccess?: pulumi.Input<boolean>;
+    onSuccess?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to send notifications for model runs with warnings
      */
-    onWarning?: pulumi.Input<boolean>;
+    onWarning?: pulumi.Input<boolean | undefined>;
 }

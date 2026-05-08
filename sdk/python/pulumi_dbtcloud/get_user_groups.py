@@ -99,7 +99,7 @@ def get_user_groups(user_id: Optional[_builtins.int] = None,
         group_ids=pulumi.get(__ret__, 'group_ids'),
         id=pulumi.get(__ret__, 'id'),
         user_id=pulumi.get(__ret__, 'user_id'))
-def get_user_groups_output(user_id: Optional[pulumi.Input[_builtins.int]] = None,
+def get_user_groups_output(user_id: pulumi.Input[Optional[_builtins.int]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserGroupsResult]:
     """
     Gets information about a specific dbt Cloud user's groups.

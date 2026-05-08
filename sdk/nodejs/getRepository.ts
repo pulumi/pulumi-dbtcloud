@@ -128,7 +128,7 @@ export interface GetRepositoryOutputArgs {
      *
      * @deprecated This field is deprecated and will be removed in a future version of the provider. The key is always fetched when the clone strategy is `deployKey`
      */
-    fetchDeployKey?: pulumi.Input<boolean>;
+    fetchDeployKey?: pulumi.Input<boolean | undefined>;
     /**
      * Project ID to create the repository in
      */

@@ -21,21 +21,21 @@ __all__ = ['GlobalConnectionArgs', 'GlobalConnection']
 @pulumi.input_type
 class GlobalConnectionArgs:
     def __init__(__self__, *,
-                 apache_spark: Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']] = None,
-                 athena: Optional[pulumi.Input['GlobalConnectionAthenaArgs']] = None,
-                 bigquery: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']] = None,
-                 databricks: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']] = None,
-                 fabric: Optional[pulumi.Input['GlobalConnectionFabricArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_configuration_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 postgres: Optional[pulumi.Input['GlobalConnectionPostgresArgs']] = None,
-                 private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 redshift: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']] = None,
-                 salesforce: Optional[pulumi.Input['GlobalConnectionSalesforceArgs']] = None,
-                 snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None,
-                 starburst: Optional[pulumi.Input['GlobalConnectionStarburstArgs']] = None,
-                 synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None,
-                 teradata: Optional[pulumi.Input['GlobalConnectionTeradataArgs']] = None):
+                 apache_spark: pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']] = None,
+                 athena: pulumi.Input[Optional['GlobalConnectionAthenaArgs']] = None,
+                 bigquery: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']] = None,
+                 databricks: pulumi.Input[Optional['GlobalConnectionDatabricksArgs']] = None,
+                 fabric: pulumi.Input[Optional['GlobalConnectionFabricArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 postgres: pulumi.Input[Optional['GlobalConnectionPostgresArgs']] = None,
+                 private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 redshift: pulumi.Input[Optional['GlobalConnectionRedshiftArgs']] = None,
+                 salesforce: pulumi.Input[Optional['GlobalConnectionSalesforceArgs']] = None,
+                 snowflake: pulumi.Input[Optional['GlobalConnectionSnowflakeArgs']] = None,
+                 starburst: pulumi.Input[Optional['GlobalConnectionStarburstArgs']] = None,
+                 synapse: pulumi.Input[Optional['GlobalConnectionSynapseArgs']] = None,
+                 teradata: pulumi.Input[Optional['GlobalConnectionTeradataArgs']] = None):
         """
         The set of arguments for constructing a GlobalConnection resource.
 
@@ -87,202 +87,202 @@ class GlobalConnectionArgs:
 
     @_builtins.property
     @pulumi.getter(name="apacheSpark")
-    def apache_spark(self) -> Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']]:
+    def apache_spark(self) -> pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']]:
         """
         Apache Spark connection configuration.
         """
         return pulumi.get(self, "apache_spark")
 
     @apache_spark.setter
-    def apache_spark(self, value: Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']]):
+    def apache_spark(self, value: pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']]):
         pulumi.set(self, "apache_spark", value)
 
     @_builtins.property
     @pulumi.getter
-    def athena(self) -> Optional[pulumi.Input['GlobalConnectionAthenaArgs']]:
+    def athena(self) -> pulumi.Input[Optional['GlobalConnectionAthenaArgs']]:
         """
         Athena connection configuration.
         """
         return pulumi.get(self, "athena")
 
     @athena.setter
-    def athena(self, value: Optional[pulumi.Input['GlobalConnectionAthenaArgs']]):
+    def athena(self, value: pulumi.Input[Optional['GlobalConnectionAthenaArgs']]):
         pulumi.set(self, "athena", value)
 
     @_builtins.property
     @pulumi.getter
-    def bigquery(self) -> Optional[pulumi.Input['GlobalConnectionBigqueryArgs']]:
+    def bigquery(self) -> pulumi.Input[Optional['GlobalConnectionBigqueryArgs']]:
         return pulumi.get(self, "bigquery")
 
     @bigquery.setter
-    def bigquery(self, value: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']]):
+    def bigquery(self, value: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']]):
         pulumi.set(self, "bigquery", value)
 
     @_builtins.property
     @pulumi.getter
-    def databricks(self) -> Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]:
+    def databricks(self) -> pulumi.Input[Optional['GlobalConnectionDatabricksArgs']]:
         """
         Databricks connection configuration
         """
         return pulumi.get(self, "databricks")
 
     @databricks.setter
-    def databricks(self, value: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]):
+    def databricks(self, value: pulumi.Input[Optional['GlobalConnectionDatabricksArgs']]):
         pulumi.set(self, "databricks", value)
 
     @_builtins.property
     @pulumi.getter
-    def fabric(self) -> Optional[pulumi.Input['GlobalConnectionFabricArgs']]:
+    def fabric(self) -> pulumi.Input[Optional['GlobalConnectionFabricArgs']]:
         """
         Microsoft Fabric connection configuration.
         """
         return pulumi.get(self, "fabric")
 
     @fabric.setter
-    def fabric(self, value: Optional[pulumi.Input['GlobalConnectionFabricArgs']]):
+    def fabric(self, value: pulumi.Input[Optional['GlobalConnectionFabricArgs']]):
         pulumi.set(self, "fabric", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthConfigurationId")
-    def oauth_configuration_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def oauth_configuration_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         External OAuth configuration ID (only Snowflake for now)
         """
         return pulumi.get(self, "oauth_configuration_id")
 
     @oauth_configuration_id.setter
-    def oauth_configuration_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def oauth_configuration_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "oauth_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def postgres(self) -> Optional[pulumi.Input['GlobalConnectionPostgresArgs']]:
+    def postgres(self) -> pulumi.Input[Optional['GlobalConnectionPostgresArgs']]:
         """
         PostgreSQL connection configuration.
         """
         return pulumi.get(self, "postgres")
 
     @postgres.setter
-    def postgres(self, value: Optional[pulumi.Input['GlobalConnectionPostgresArgs']]):
+    def postgres(self, value: pulumi.Input[Optional['GlobalConnectionPostgresArgs']]):
         pulumi.set(self, "postgres", value)
 
     @_builtins.property
     @pulumi.getter(name="privateLinkEndpointId")
-    def private_link_endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_link_endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         """
         return pulumi.get(self, "private_link_endpoint_id")
 
     @private_link_endpoint_id.setter
-    def private_link_endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_link_endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_link_endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def redshift(self) -> Optional[pulumi.Input['GlobalConnectionRedshiftArgs']]:
+    def redshift(self) -> pulumi.Input[Optional['GlobalConnectionRedshiftArgs']]:
         """
         Redshift connection configuration
         """
         return pulumi.get(self, "redshift")
 
     @redshift.setter
-    def redshift(self, value: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']]):
+    def redshift(self, value: pulumi.Input[Optional['GlobalConnectionRedshiftArgs']]):
         pulumi.set(self, "redshift", value)
 
     @_builtins.property
     @pulumi.getter
-    def salesforce(self) -> Optional[pulumi.Input['GlobalConnectionSalesforceArgs']]:
+    def salesforce(self) -> pulumi.Input[Optional['GlobalConnectionSalesforceArgs']]:
         """
         Salesforce connection configuration.
         """
         return pulumi.get(self, "salesforce")
 
     @salesforce.setter
-    def salesforce(self, value: Optional[pulumi.Input['GlobalConnectionSalesforceArgs']]):
+    def salesforce(self, value: pulumi.Input[Optional['GlobalConnectionSalesforceArgs']]):
         pulumi.set(self, "salesforce", value)
 
     @_builtins.property
     @pulumi.getter
-    def snowflake(self) -> Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]:
+    def snowflake(self) -> pulumi.Input[Optional['GlobalConnectionSnowflakeArgs']]:
         """
         Snowflake connection configuration
         """
         return pulumi.get(self, "snowflake")
 
     @snowflake.setter
-    def snowflake(self, value: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]):
+    def snowflake(self, value: pulumi.Input[Optional['GlobalConnectionSnowflakeArgs']]):
         pulumi.set(self, "snowflake", value)
 
     @_builtins.property
     @pulumi.getter
-    def starburst(self) -> Optional[pulumi.Input['GlobalConnectionStarburstArgs']]:
+    def starburst(self) -> pulumi.Input[Optional['GlobalConnectionStarburstArgs']]:
         """
         Starburst/Trino connection configuration.
         """
         return pulumi.get(self, "starburst")
 
     @starburst.setter
-    def starburst(self, value: Optional[pulumi.Input['GlobalConnectionStarburstArgs']]):
+    def starburst(self, value: pulumi.Input[Optional['GlobalConnectionStarburstArgs']]):
         pulumi.set(self, "starburst", value)
 
     @_builtins.property
     @pulumi.getter
-    def synapse(self) -> Optional[pulumi.Input['GlobalConnectionSynapseArgs']]:
+    def synapse(self) -> pulumi.Input[Optional['GlobalConnectionSynapseArgs']]:
         """
         Azure Synapse Analytics connection configuration.
         """
         return pulumi.get(self, "synapse")
 
     @synapse.setter
-    def synapse(self, value: Optional[pulumi.Input['GlobalConnectionSynapseArgs']]):
+    def synapse(self, value: pulumi.Input[Optional['GlobalConnectionSynapseArgs']]):
         pulumi.set(self, "synapse", value)
 
     @_builtins.property
     @pulumi.getter
-    def teradata(self) -> Optional[pulumi.Input['GlobalConnectionTeradataArgs']]:
+    def teradata(self) -> pulumi.Input[Optional['GlobalConnectionTeradataArgs']]:
         """
         Teradata connection configuration.
         """
         return pulumi.get(self, "teradata")
 
     @teradata.setter
-    def teradata(self, value: Optional[pulumi.Input['GlobalConnectionTeradataArgs']]):
+    def teradata(self, value: pulumi.Input[Optional['GlobalConnectionTeradataArgs']]):
         pulumi.set(self, "teradata", value)
 
 
 @pulumi.input_type
 class _GlobalConnectionState:
     def __init__(__self__, *,
-                 adapter_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 apache_spark: Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']] = None,
-                 athena: Optional[pulumi.Input['GlobalConnectionAthenaArgs']] = None,
-                 bigquery: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']] = None,
-                 databricks: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']] = None,
-                 fabric: Optional[pulumi.Input['GlobalConnectionFabricArgs']] = None,
-                 is_ssh_tunnel_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_configuration_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 postgres: Optional[pulumi.Input['GlobalConnectionPostgresArgs']] = None,
-                 private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 redshift: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']] = None,
-                 salesforce: Optional[pulumi.Input['GlobalConnectionSalesforceArgs']] = None,
-                 snowflake: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']] = None,
-                 starburst: Optional[pulumi.Input['GlobalConnectionStarburstArgs']] = None,
-                 synapse: Optional[pulumi.Input['GlobalConnectionSynapseArgs']] = None,
-                 teradata: Optional[pulumi.Input['GlobalConnectionTeradataArgs']] = None):
+                 adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 apache_spark: pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']] = None,
+                 athena: pulumi.Input[Optional['GlobalConnectionAthenaArgs']] = None,
+                 bigquery: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']] = None,
+                 databricks: pulumi.Input[Optional['GlobalConnectionDatabricksArgs']] = None,
+                 fabric: pulumi.Input[Optional['GlobalConnectionFabricArgs']] = None,
+                 is_ssh_tunnel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 postgres: pulumi.Input[Optional['GlobalConnectionPostgresArgs']] = None,
+                 private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 redshift: pulumi.Input[Optional['GlobalConnectionRedshiftArgs']] = None,
+                 salesforce: pulumi.Input[Optional['GlobalConnectionSalesforceArgs']] = None,
+                 snowflake: pulumi.Input[Optional['GlobalConnectionSnowflakeArgs']] = None,
+                 starburst: pulumi.Input[Optional['GlobalConnectionStarburstArgs']] = None,
+                 synapse: pulumi.Input[Optional['GlobalConnectionSynapseArgs']] = None,
+                 teradata: pulumi.Input[Optional['GlobalConnectionTeradataArgs']] = None):
         """
         Input properties used for looking up and filtering GlobalConnection resources.
 
@@ -340,203 +340,203 @@ class _GlobalConnectionState:
 
     @_builtins.property
     @pulumi.getter(name="adapterVersion")
-    def adapter_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def adapter_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version of the adapter
         """
         return pulumi.get(self, "adapter_version")
 
     @adapter_version.setter
-    def adapter_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def adapter_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "adapter_version", value)
 
     @_builtins.property
     @pulumi.getter(name="apacheSpark")
-    def apache_spark(self) -> Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']]:
+    def apache_spark(self) -> pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']]:
         """
         Apache Spark connection configuration.
         """
         return pulumi.get(self, "apache_spark")
 
     @apache_spark.setter
-    def apache_spark(self, value: Optional[pulumi.Input['GlobalConnectionApacheSparkArgs']]):
+    def apache_spark(self, value: pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']]):
         pulumi.set(self, "apache_spark", value)
 
     @_builtins.property
     @pulumi.getter
-    def athena(self) -> Optional[pulumi.Input['GlobalConnectionAthenaArgs']]:
+    def athena(self) -> pulumi.Input[Optional['GlobalConnectionAthenaArgs']]:
         """
         Athena connection configuration.
         """
         return pulumi.get(self, "athena")
 
     @athena.setter
-    def athena(self, value: Optional[pulumi.Input['GlobalConnectionAthenaArgs']]):
+    def athena(self, value: pulumi.Input[Optional['GlobalConnectionAthenaArgs']]):
         pulumi.set(self, "athena", value)
 
     @_builtins.property
     @pulumi.getter
-    def bigquery(self) -> Optional[pulumi.Input['GlobalConnectionBigqueryArgs']]:
+    def bigquery(self) -> pulumi.Input[Optional['GlobalConnectionBigqueryArgs']]:
         return pulumi.get(self, "bigquery")
 
     @bigquery.setter
-    def bigquery(self, value: Optional[pulumi.Input['GlobalConnectionBigqueryArgs']]):
+    def bigquery(self, value: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']]):
         pulumi.set(self, "bigquery", value)
 
     @_builtins.property
     @pulumi.getter
-    def databricks(self) -> Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]:
+    def databricks(self) -> pulumi.Input[Optional['GlobalConnectionDatabricksArgs']]:
         """
         Databricks connection configuration
         """
         return pulumi.get(self, "databricks")
 
     @databricks.setter
-    def databricks(self, value: Optional[pulumi.Input['GlobalConnectionDatabricksArgs']]):
+    def databricks(self, value: pulumi.Input[Optional['GlobalConnectionDatabricksArgs']]):
         pulumi.set(self, "databricks", value)
 
     @_builtins.property
     @pulumi.getter
-    def fabric(self) -> Optional[pulumi.Input['GlobalConnectionFabricArgs']]:
+    def fabric(self) -> pulumi.Input[Optional['GlobalConnectionFabricArgs']]:
         """
         Microsoft Fabric connection configuration.
         """
         return pulumi.get(self, "fabric")
 
     @fabric.setter
-    def fabric(self, value: Optional[pulumi.Input['GlobalConnectionFabricArgs']]):
+    def fabric(self, value: pulumi.Input[Optional['GlobalConnectionFabricArgs']]):
         pulumi.set(self, "fabric", value)
 
     @_builtins.property
     @pulumi.getter(name="isSshTunnelEnabled")
-    def is_ssh_tunnel_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_ssh_tunnel_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection can use an SSH tunnel
         """
         return pulumi.get(self, "is_ssh_tunnel_enabled")
 
     @is_ssh_tunnel_enabled.setter
-    def is_ssh_tunnel_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_ssh_tunnel_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_ssh_tunnel_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection name
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthConfigurationId")
-    def oauth_configuration_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def oauth_configuration_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         External OAuth configuration ID (only Snowflake for now)
         """
         return pulumi.get(self, "oauth_configuration_id")
 
     @oauth_configuration_id.setter
-    def oauth_configuration_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def oauth_configuration_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "oauth_configuration_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def postgres(self) -> Optional[pulumi.Input['GlobalConnectionPostgresArgs']]:
+    def postgres(self) -> pulumi.Input[Optional['GlobalConnectionPostgresArgs']]:
         """
         PostgreSQL connection configuration.
         """
         return pulumi.get(self, "postgres")
 
     @postgres.setter
-    def postgres(self, value: Optional[pulumi.Input['GlobalConnectionPostgresArgs']]):
+    def postgres(self, value: pulumi.Input[Optional['GlobalConnectionPostgresArgs']]):
         pulumi.set(self, "postgres", value)
 
     @_builtins.property
     @pulumi.getter(name="privateLinkEndpointId")
-    def private_link_endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_link_endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         """
         return pulumi.get(self, "private_link_endpoint_id")
 
     @private_link_endpoint_id.setter
-    def private_link_endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_link_endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_link_endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def redshift(self) -> Optional[pulumi.Input['GlobalConnectionRedshiftArgs']]:
+    def redshift(self) -> pulumi.Input[Optional['GlobalConnectionRedshiftArgs']]:
         """
         Redshift connection configuration
         """
         return pulumi.get(self, "redshift")
 
     @redshift.setter
-    def redshift(self, value: Optional[pulumi.Input['GlobalConnectionRedshiftArgs']]):
+    def redshift(self, value: pulumi.Input[Optional['GlobalConnectionRedshiftArgs']]):
         pulumi.set(self, "redshift", value)
 
     @_builtins.property
     @pulumi.getter
-    def salesforce(self) -> Optional[pulumi.Input['GlobalConnectionSalesforceArgs']]:
+    def salesforce(self) -> pulumi.Input[Optional['GlobalConnectionSalesforceArgs']]:
         """
         Salesforce connection configuration.
         """
         return pulumi.get(self, "salesforce")
 
     @salesforce.setter
-    def salesforce(self, value: Optional[pulumi.Input['GlobalConnectionSalesforceArgs']]):
+    def salesforce(self, value: pulumi.Input[Optional['GlobalConnectionSalesforceArgs']]):
         pulumi.set(self, "salesforce", value)
 
     @_builtins.property
     @pulumi.getter
-    def snowflake(self) -> Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]:
+    def snowflake(self) -> pulumi.Input[Optional['GlobalConnectionSnowflakeArgs']]:
         """
         Snowflake connection configuration
         """
         return pulumi.get(self, "snowflake")
 
     @snowflake.setter
-    def snowflake(self, value: Optional[pulumi.Input['GlobalConnectionSnowflakeArgs']]):
+    def snowflake(self, value: pulumi.Input[Optional['GlobalConnectionSnowflakeArgs']]):
         pulumi.set(self, "snowflake", value)
 
     @_builtins.property
     @pulumi.getter
-    def starburst(self) -> Optional[pulumi.Input['GlobalConnectionStarburstArgs']]:
+    def starburst(self) -> pulumi.Input[Optional['GlobalConnectionStarburstArgs']]:
         """
         Starburst/Trino connection configuration.
         """
         return pulumi.get(self, "starburst")
 
     @starburst.setter
-    def starburst(self, value: Optional[pulumi.Input['GlobalConnectionStarburstArgs']]):
+    def starburst(self, value: pulumi.Input[Optional['GlobalConnectionStarburstArgs']]):
         pulumi.set(self, "starburst", value)
 
     @_builtins.property
     @pulumi.getter
-    def synapse(self) -> Optional[pulumi.Input['GlobalConnectionSynapseArgs']]:
+    def synapse(self) -> pulumi.Input[Optional['GlobalConnectionSynapseArgs']]:
         """
         Azure Synapse Analytics connection configuration.
         """
         return pulumi.get(self, "synapse")
 
     @synapse.setter
-    def synapse(self, value: Optional[pulumi.Input['GlobalConnectionSynapseArgs']]):
+    def synapse(self, value: pulumi.Input[Optional['GlobalConnectionSynapseArgs']]):
         pulumi.set(self, "synapse", value)
 
     @_builtins.property
     @pulumi.getter
-    def teradata(self) -> Optional[pulumi.Input['GlobalConnectionTeradataArgs']]:
+    def teradata(self) -> pulumi.Input[Optional['GlobalConnectionTeradataArgs']]:
         """
         Teradata connection configuration.
         """
         return pulumi.get(self, "teradata")
 
     @teradata.setter
-    def teradata(self, value: Optional[pulumi.Input['GlobalConnectionTeradataArgs']]):
+    def teradata(self, value: pulumi.Input[Optional['GlobalConnectionTeradataArgs']]):
         pulumi.set(self, "teradata", value)
 
 
@@ -546,21 +546,21 @@ class GlobalConnection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 apache_spark: Optional[pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
-                 athena: Optional[pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
-                 bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
-                 databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
-                 fabric: Optional[pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_configuration_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
-                 private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
-                 salesforce: Optional[pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
-                 snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
-                 starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
-                 synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
-                 teradata: Optional[pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None,
+                 apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
+                 athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
+                 bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
+                 databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
+                 fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
+                 private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
+                 salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
+                 snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
+                 starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
+                 synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
+                 teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None,
                  __props__=None):
         """
         This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
@@ -922,21 +922,21 @@ class GlobalConnection(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 apache_spark: Optional[pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
-                 athena: Optional[pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
-                 bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
-                 databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
-                 fabric: Optional[pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_configuration_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
-                 private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
-                 salesforce: Optional[pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
-                 snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
-                 starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
-                 synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
-                 teradata: Optional[pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None,
+                 apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
+                 athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
+                 bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
+                 databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
+                 fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
+                 private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
+                 salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
+                 snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
+                 starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
+                 synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
+                 teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -973,23 +973,23 @@ class GlobalConnection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            adapter_version: Optional[pulumi.Input[_builtins.str]] = None,
-            apache_spark: Optional[pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
-            athena: Optional[pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
-            bigquery: Optional[pulumi.Input[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
-            databricks: Optional[pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
-            fabric: Optional[pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
-            is_ssh_tunnel_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            oauth_configuration_id: Optional[pulumi.Input[_builtins.int]] = None,
-            postgres: Optional[pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
-            private_link_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-            redshift: Optional[pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
-            salesforce: Optional[pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
-            snowflake: Optional[pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
-            starburst: Optional[pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
-            synapse: Optional[pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
-            teradata: Optional[pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None) -> 'GlobalConnection':
+            adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+            apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
+            athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
+            bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
+            databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
+            fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
+            is_ssh_tunnel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
+            postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
+            private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+            redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
+            salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
+            snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
+            starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
+            synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
+            teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None) -> 'GlobalConnection':
         """
         Get an existing GlobalConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

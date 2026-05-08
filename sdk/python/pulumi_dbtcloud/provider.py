@@ -19,15 +19,15 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 account_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_retry: Optional[pulumi.Input[_builtins.bool]] = None,
-                 host_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_credentials_validation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_retry: pulumi.Input[Optional[_builtins.bool]] = None,
+                 host_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 retriable_status_codes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retry_interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_credentials_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
@@ -68,110 +68,110 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="accountId")
-    def account_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def account_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Account identifier for your dbt Cloud implementation. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_ACCOUNT_ID`
         """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
-    def account_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def account_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "account_id", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRetry")
-    def disable_retry(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_retry(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, the provider will not retry requests that fail due to rate limiting. Defaults to false.
         """
         return pulumi.get(self, "disable_retry")
 
     @disable_retry.setter
-    def disable_retry(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_retry(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_retry", value)
 
     @_builtins.property
     @pulumi.getter(name="hostUrl")
-    def host_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL for your dbt Cloud deployment. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_HOST_URL` - Defaults to https://cloud.getdbt.com/api
         """
         return pulumi.get(self, "host_url")
 
     @host_url.setter
-    def host_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_url", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of retries to attempt for requests that fail due to rate limiting. Defaults to 3 retries.
         """
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="retriableStatusCodes")
-    def retriable_status_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def retriable_status_codes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of HTTP status codes that should be retried when encountered. Defaults to [429, 500, 502, 503, 504].
         """
         return pulumi.get(self, "retriable_status_codes")
 
     @retriable_status_codes.setter
-    def retriable_status_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def retriable_status_codes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "retriable_status_codes", value)
 
     @_builtins.property
     @pulumi.getter(name="retryIntervalSeconds")
-    def retry_interval_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retry_interval_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds to wait before retrying a request that failed due to rate limiting. Defaults to 10 seconds.
         """
         return pulumi.get(self, "retry_interval_seconds")
 
     @retry_interval_seconds.setter
-    def retry_interval_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retry_interval_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retry_interval_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="skipCredentialsValidation")
-    def skip_credentials_validation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_credentials_validation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, the provider will not validate credentials during initialization. This can be useful for testing and for dbt Cloud API implementations that do not have standard authentication available. Defaults to false.
         """
         return pulumi.get(self, "skip_credentials_validation")
 
     @skip_credentials_validation.setter
-    def skip_credentials_validation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_credentials_validation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_credentials_validation", value)
 
     @_builtins.property
     @pulumi.getter(name="timeoutSeconds")
-    def timeout_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The timeout duration in seconds for HTTP requests to the dbt Cloud API. Defaults to 30 seconds.
         """
         return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
-    def timeout_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout_seconds", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         API token for your dbt Cloud. Instead of setting the parameter, you can set the environment variable `DBT_CLOUD_TOKEN`
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
 
@@ -181,15 +181,15 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 account_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_retry: Optional[pulumi.Input[_builtins.bool]] = None,
-                 host_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_credentials_validation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 account_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_retry: pulumi.Input[Optional[_builtins.bool]] = None,
+                 host_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 retriable_status_codes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retry_interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_credentials_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the dbtcloud package. By default, resources use package-wide configuration
@@ -238,15 +238,15 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 account_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_retry: Optional[pulumi.Input[_builtins.bool]] = None,
-                 host_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 retriable_status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 retry_interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_credentials_validation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 timeout_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 account_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_retry: pulumi.Input[Optional[_builtins.bool]] = None,
+                 host_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 retriable_status_codes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 retry_interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_credentials_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

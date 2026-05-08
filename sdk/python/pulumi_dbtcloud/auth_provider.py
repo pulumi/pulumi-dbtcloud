@@ -20,26 +20,26 @@ __all__ = ['AuthProviderArgs', 'AuthProvider']
 class AuthProviderArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 admin_refresh_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_password_backdoor: Optional[pulumi.Input[_builtins.bool]] = None,
-                 attribute_map: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gsuite_admin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_indirect_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_groups_to_retrieve: Optional[pulumi.Input[_builtins.int]] = None,
-                 sign_request: Optional[pulumi.Input[_builtins.bool]] = None,
-                 slug: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 admin_refresh_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_password_backdoor: pulumi.Input[Optional[_builtins.bool]] = None,
+                 attribute_map: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gsuite_admin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_indirect_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_groups_to_retrieve: pulumi.Input[Optional[_builtins.int]] = None,
+                 sign_request: pulumi.Input[Optional[_builtins.bool]] = None,
+                 slug: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthProvider resource.
 
@@ -123,67 +123,67 @@ class AuthProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="adminRefreshToken")
-    def admin_refresh_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_refresh_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google Workspace admin OAuth refresh token used to fetch group memberships.
         """
         return pulumi.get(self, "admin_refresh_token")
 
     @admin_refresh_token.setter
-    def admin_refresh_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_refresh_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_refresh_token", value)
 
     @_builtins.property
     @pulumi.getter(name="allowPasswordBackdoor")
-    def allow_password_backdoor(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_password_backdoor(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When true (default), users can still log in with email and password as a fallback. Set to false to enforce SSO-only access.
         """
         return pulumi.get(self, "allow_password_backdoor")
 
     @allow_password_backdoor.setter
-    def allow_password_backdoor(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_password_backdoor(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_password_backdoor", value)
 
     @_builtins.property
     @pulumi.getter(name="attributeMap")
-    def attribute_map(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def attribute_map(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON map of SAML attribute names to dbt Cloud user fields.
         """
         return pulumi.get(self, "attribute_map")
 
     @attribute_map.setter
-    def attribute_map(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def attribute_map(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "attribute_map", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizationUrl")
-    def authorization_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth authorization URL for Google Workspace. May be auto-populated server-side.
         """
         return pulumi.get(self, "authorization_url")
 
     @authorization_url.setter
-    def authorization_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML X.509 certificate (PEM format). Sensitive — stored in state. Consider using `cert_wo` instead. Conflicts with `cert_wo`.
         """
         return pulumi.get(self, "cert")
 
     @cert.setter
-    def cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cert", value)
 
     @_builtins.property
     @pulumi.getter(name="certWo")
-    def cert_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cert_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `cert`. Not stored in state. Use `cert_wo_version` to trigger updates. Conflicts with `cert`.
@@ -191,48 +191,48 @@ class AuthProviderArgs:
         return pulumi.get(self, "cert_wo")
 
     @cert_wo.setter
-    def cert_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cert_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cert_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="certWoVersion")
-    def cert_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cert_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Increment to rotate `cert_wo` without changing the value.
         """
         return pulumi.get(self, "cert_wo_version")
 
     @cert_wo_version.setter
-    def cert_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cert_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cert_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth client ID. Required for Azure AD and Google Workspace providers. Not returned by the API after save (encrypted at rest).
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth client secret. Required for Azure AD and Google Workspace providers. Sensitive — stored in state. Consider using `client_secret_wo` instead. Conflicts with `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWo")
-    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `client_secret`. Not stored in state. Use `client_secret_wo_version` to trigger updates. Conflicts with `client_secret`.
@@ -240,159 +240,159 @@ class AuthProviderArgs:
         return pulumi.get(self, "client_secret_wo")
 
     @client_secret_wo.setter
-    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Increment to rotate `client_secret_wo` without changing the value.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Primary domain for the Azure AD or Google Workspace tenant.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML entity ID (Issuer) from your identity provider. Required for `saml` and `okta`.
         """
         return pulumi.get(self, "entity_id")
 
     @entity_id.setter
-    def entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="gsuiteAdminId")
-    def gsuite_admin_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gsuite_admin_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google Workspace admin email used to fetch group memberships.
         """
         return pulumi.get(self, "gsuite_admin_id")
 
     @gsuite_admin_id.setter
-    def gsuite_admin_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gsuite_admin_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gsuite_admin_id", value)
 
     @_builtins.property
     @pulumi.getter(name="includeIndirectGroups")
-    def include_indirect_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def include_indirect_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to include transitive (indirect) group memberships from Azure AD. Defaults to true.
         """
         return pulumi.get(self, "include_indirect_groups")
 
     @include_indirect_groups.setter
-    def include_indirect_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def include_indirect_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "include_indirect_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="maxGroupsToRetrieve")
-    def max_groups_to_retrieve(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_groups_to_retrieve(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of Azure AD groups to fetch per user. Defaults to 250.
         """
         return pulumi.get(self, "max_groups_to_retrieve")
 
     @max_groups_to_retrieve.setter
-    def max_groups_to_retrieve(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_groups_to_retrieve(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_groups_to_retrieve", value)
 
     @_builtins.property
     @pulumi.getter(name="signRequest")
-    def sign_request(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sign_request(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to sign SAML authentication requests. Defaults to false.
         """
         return pulumi.get(self, "sign_request")
 
     @sign_request.setter
-    def sign_request(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sign_request(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sign_request", value)
 
     @_builtins.property
     @pulumi.getter
-    def slug(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def slug(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL-safe identifier used in the SSO login URL. Auto-generated if omitted. Immutable on accounts where auto-slug enforcement is enabled.
         """
         return pulumi.get(self, "slug")
 
     @slug.setter
-    def slug(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def slug(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "slug", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoUrl")
-    def sso_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML Single Sign-On URL from your identity provider. Required for `saml` and `okta`.
         """
         return pulumi.get(self, "sso_url")
 
     @sso_url.setter
-    def sso_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_url", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure AD tenant ID. Required for `azure_single_tenant`.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
 
 @pulumi.input_type
 class _AuthProviderState:
     def __init__(__self__, *,
-                 admin_refresh_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_password_backdoor: Optional[pulumi.Input[_builtins.bool]] = None,
-                 attribute_map: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_expiry_date: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gsuite_admin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_indirect_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_groups_to_retrieve: Optional[pulumi.Input[_builtins.int]] = None,
-                 sign_request: Optional[pulumi.Input[_builtins.bool]] = None,
-                 slug: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.int]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 admin_refresh_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_password_backdoor: pulumi.Input[Optional[_builtins.bool]] = None,
+                 attribute_map: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_expiry_date: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gsuite_admin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_indirect_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_groups_to_retrieve: pulumi.Input[Optional[_builtins.int]] = None,
+                 sign_request: pulumi.Input[Optional[_builtins.bool]] = None,
+                 slug: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.int]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthProvider resources.
 
@@ -478,79 +478,79 @@ class _AuthProviderState:
 
     @_builtins.property
     @pulumi.getter(name="adminRefreshToken")
-    def admin_refresh_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_refresh_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google Workspace admin OAuth refresh token used to fetch group memberships.
         """
         return pulumi.get(self, "admin_refresh_token")
 
     @admin_refresh_token.setter
-    def admin_refresh_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_refresh_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_refresh_token", value)
 
     @_builtins.property
     @pulumi.getter(name="allowPasswordBackdoor")
-    def allow_password_backdoor(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_password_backdoor(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When true (default), users can still log in with email and password as a fallback. Set to false to enforce SSO-only access.
         """
         return pulumi.get(self, "allow_password_backdoor")
 
     @allow_password_backdoor.setter
-    def allow_password_backdoor(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_password_backdoor(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_password_backdoor", value)
 
     @_builtins.property
     @pulumi.getter(name="attributeMap")
-    def attribute_map(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def attribute_map(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON map of SAML attribute names to dbt Cloud user fields.
         """
         return pulumi.get(self, "attribute_map")
 
     @attribute_map.setter
-    def attribute_map(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def attribute_map(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "attribute_map", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizationUrl")
-    def authorization_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth authorization URL for Google Workspace. May be auto-populated server-side.
         """
         return pulumi.get(self, "authorization_url")
 
     @authorization_url.setter
-    def authorization_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML X.509 certificate (PEM format). Sensitive — stored in state. Consider using `cert_wo` instead. Conflicts with `cert_wo`.
         """
         return pulumi.get(self, "cert")
 
     @cert.setter
-    def cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cert", value)
 
     @_builtins.property
     @pulumi.getter(name="certExpiryDate")
-    def cert_expiry_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cert_expiry_date(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Expiry date of the SAML X.509 certificate (SAML/Okta only).
         """
         return pulumi.get(self, "cert_expiry_date")
 
     @cert_expiry_date.setter
-    def cert_expiry_date(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cert_expiry_date(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cert_expiry_date", value)
 
     @_builtins.property
     @pulumi.getter(name="certWo")
-    def cert_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cert_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `cert`. Not stored in state. Use `cert_wo_version` to trigger updates. Conflicts with `cert`.
@@ -558,48 +558,48 @@ class _AuthProviderState:
         return pulumi.get(self, "cert_wo")
 
     @cert_wo.setter
-    def cert_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cert_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cert_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="certWoVersion")
-    def cert_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cert_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Increment to rotate `cert_wo` without changing the value.
         """
         return pulumi.get(self, "cert_wo_version")
 
     @cert_wo_version.setter
-    def cert_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cert_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cert_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth client ID. Required for Azure AD and Google Workspace providers. Not returned by the API after save (encrypted at rest).
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAuth client secret. Required for Azure AD and Google Workspace providers. Sensitive — stored in state. Consider using `client_secret_wo` instead. Conflicts with `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWo")
-    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `client_secret`. Not stored in state. Use `client_secret_wo_version` to trigger updates. Conflicts with `client_secret`.
@@ -607,181 +607,181 @@ class _AuthProviderState:
         return pulumi.get(self, "client_secret_wo")
 
     @client_secret_wo.setter
-    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Increment to rotate `client_secret_wo` without changing the value.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Primary domain for the Azure AD or Google Workspace tenant.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML entity ID (Issuer) from your identity provider. Required for `saml` and `okta`.
         """
         return pulumi.get(self, "entity_id")
 
     @entity_id.setter
-    def entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="gsuiteAdminId")
-    def gsuite_admin_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gsuite_admin_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google Workspace admin email used to fetch group memberships.
         """
         return pulumi.get(self, "gsuite_admin_id")
 
     @gsuite_admin_id.setter
-    def gsuite_admin_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gsuite_admin_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gsuite_admin_id", value)
 
     @_builtins.property
     @pulumi.getter(name="includeIndirectGroups")
-    def include_indirect_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def include_indirect_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to include transitive (indirect) group memberships from Azure AD. Defaults to true.
         """
         return pulumi.get(self, "include_indirect_groups")
 
     @include_indirect_groups.setter
-    def include_indirect_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def include_indirect_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "include_indirect_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="loginUrl")
-    def login_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SSO login URL for the account, auto-generated from the slug.
         """
         return pulumi.get(self, "login_url")
 
     @login_url.setter
-    def login_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_url", value)
 
     @_builtins.property
     @pulumi.getter(name="maxGroupsToRetrieve")
-    def max_groups_to_retrieve(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_groups_to_retrieve(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of Azure AD groups to fetch per user. Defaults to 250.
         """
         return pulumi.get(self, "max_groups_to_retrieve")
 
     @max_groups_to_retrieve.setter
-    def max_groups_to_retrieve(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_groups_to_retrieve(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_groups_to_retrieve", value)
 
     @_builtins.property
     @pulumi.getter(name="signRequest")
-    def sign_request(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sign_request(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to sign SAML authentication requests. Defaults to false.
         """
         return pulumi.get(self, "sign_request")
 
     @sign_request.setter
-    def sign_request(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sign_request(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sign_request", value)
 
     @_builtins.property
     @pulumi.getter
-    def slug(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def slug(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL-safe identifier used in the SSO login URL. Auto-generated if omitted. Immutable on accounts where auto-slug enforcement is enabled.
         """
         return pulumi.get(self, "slug")
 
     @slug.setter
-    def slug(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def slug(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "slug", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoUrl")
-    def sso_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML Single Sign-On URL from your identity provider. Required for `saml` and `okta`.
         """
         return pulumi.get(self, "sso_url")
 
     @sso_url.setter
-    def sso_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The state of the auth provider (1 = active).
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure AD tenant ID. Required for `azure_single_tenant`.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SSO provider type. One of: `saml`, `okta`, `gsuite`, `azure_single_tenant`, `azure_multi_tenant`, `azure_active_directory`. Changing this value forces a new resource.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -791,27 +791,27 @@ class AuthProvider(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 admin_refresh_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_password_backdoor: Optional[pulumi.Input[_builtins.bool]] = None,
-                 attribute_map: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gsuite_admin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_indirect_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_groups_to_retrieve: Optional[pulumi.Input[_builtins.int]] = None,
-                 sign_request: Optional[pulumi.Input[_builtins.bool]] = None,
-                 slug: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 admin_refresh_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_password_backdoor: pulumi.Input[Optional[_builtins.bool]] = None,
+                 attribute_map: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gsuite_admin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_indirect_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_groups_to_retrieve: pulumi.Input[Optional[_builtins.int]] = None,
+                 sign_request: pulumi.Input[Optional[_builtins.bool]] = None,
+                 slug: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an SSO auth provider for a dbt Cloud account. Supports SAML/Okta, Azure Active Directory (single-tenant, multi-tenant), and Google Workspace.
@@ -1040,27 +1040,27 @@ class AuthProvider(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 admin_refresh_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_password_backdoor: Optional[pulumi.Input[_builtins.bool]] = None,
-                 attribute_map: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gsuite_admin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_indirect_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_groups_to_retrieve: Optional[pulumi.Input[_builtins.int]] = None,
-                 sign_request: Optional[pulumi.Input[_builtins.bool]] = None,
-                 slug: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 admin_refresh_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_password_backdoor: pulumi.Input[Optional[_builtins.bool]] = None,
+                 attribute_map: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gsuite_admin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_indirect_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_groups_to_retrieve: pulumi.Input[Optional[_builtins.int]] = None,
+                 sign_request: pulumi.Input[Optional[_builtins.bool]] = None,
+                 slug: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1110,32 +1110,32 @@ class AuthProvider(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            admin_refresh_token: Optional[pulumi.Input[_builtins.str]] = None,
-            allow_password_backdoor: Optional[pulumi.Input[_builtins.bool]] = None,
-            attribute_map: Optional[pulumi.Input[_builtins.str]] = None,
-            authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-            cert: Optional[pulumi.Input[_builtins.str]] = None,
-            cert_expiry_date: Optional[pulumi.Input[_builtins.str]] = None,
-            cert_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            cert_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            domain: Optional[pulumi.Input[_builtins.str]] = None,
-            entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-            gsuite_admin_id: Optional[pulumi.Input[_builtins.str]] = None,
-            include_indirect_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-            login_url: Optional[pulumi.Input[_builtins.str]] = None,
-            max_groups_to_retrieve: Optional[pulumi.Input[_builtins.int]] = None,
-            sign_request: Optional[pulumi.Input[_builtins.bool]] = None,
-            slug: Optional[pulumi.Input[_builtins.str]] = None,
-            sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.int]] = None,
-            tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthProvider':
+            admin_refresh_token: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_password_backdoor: pulumi.Input[Optional[_builtins.bool]] = None,
+            attribute_map: pulumi.Input[Optional[_builtins.str]] = None,
+            authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+            cert: pulumi.Input[Optional[_builtins.str]] = None,
+            cert_expiry_date: pulumi.Input[Optional[_builtins.str]] = None,
+            cert_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            cert_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            gsuite_admin_id: pulumi.Input[Optional[_builtins.str]] = None,
+            include_indirect_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_url: pulumi.Input[Optional[_builtins.str]] = None,
+            max_groups_to_retrieve: pulumi.Input[Optional[_builtins.int]] = None,
+            sign_request: pulumi.Input[Optional[_builtins.bool]] = None,
+            slug: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.int]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthProvider':
         """
         Get an existing AuthProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

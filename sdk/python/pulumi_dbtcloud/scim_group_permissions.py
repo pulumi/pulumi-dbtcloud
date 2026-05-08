@@ -22,7 +22,7 @@ __all__ = ['ScimGroupPermissionsArgs', 'ScimGroupPermissions']
 class ScimGroupPermissionsArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[_builtins.int],
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]] = None):
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]] = None):
         """
         The set of arguments for constructing a ScimGroupPermissions resource.
 
@@ -47,22 +47,22 @@ class ScimGroupPermissionsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]]:
+    def permissions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]]:
         """
         Set of permissions to apply to the group. This will replace all existing permissions for the group.
         """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
-    def permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]]):
+    def permissions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]]):
         pulumi.set(self, "permissions", value)
 
 
 @pulumi.input_type
 class _ScimGroupPermissionsState:
     def __init__(__self__, *,
-                 group_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]] = None):
+                 group_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]] = None):
         """
         Input properties used for looking up and filtering ScimGroupPermissions resources.
 
@@ -76,26 +76,26 @@ class _ScimGroupPermissionsState:
 
     @_builtins.property
     @pulumi.getter(name="groupId")
-    def group_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def group_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the existing group to manage permissions for. This group must already exist.
         """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
-    def group_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def group_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "group_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]]:
+    def permissions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]]:
         """
         Set of permissions to apply to the group. This will replace all existing permissions for the group.
         """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
-    def permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]]):
+    def permissions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ScimGroupPermissionsPermissionArgs']]]]):
         pulumi.set(self, "permissions", value)
 
 
@@ -105,8 +105,8 @@ class ScimGroupPermissions(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 group_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None,
                  __props__=None):
         """
         Manage permissions for groups that are externally managed (e.g., SCIM, manually created).
@@ -170,8 +170,8 @@ class ScimGroupPermissions(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 group_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -195,8 +195,8 @@ class ScimGroupPermissions(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            group_id: Optional[pulumi.Input[_builtins.int]] = None,
-            permissions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None) -> 'ScimGroupPermissions':
+            group_id: pulumi.Input[Optional[_builtins.int]] = None,
+            permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None) -> 'ScimGroupPermissions':
         """
         Get an existing ScimGroupPermissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

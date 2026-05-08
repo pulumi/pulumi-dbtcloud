@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const mySparkCred = dbtcloud.getSparkCredential({
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     credentialId: 12345,
  * });
  * ```
@@ -80,7 +80,7 @@ export interface GetSparkCredentialResult {
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const mySparkCred = dbtcloud.getSparkCredential({
- *     projectId: dbtProject.id,
+ *     projectId: Number(dbtProject.id),
  *     credentialId: 12345,
  * });
  * ```

@@ -20,14 +20,14 @@ __all__ = ['ConnectionCatalogConfigArgs', 'ConnectionCatalogConfig']
 class ConnectionCatalogConfigArgs:
     def __init__(__self__, *,
                  connection_id: pulumi.Input[_builtins.int],
-                 database_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 database_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 schema_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 schema_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 table_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 table_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 view_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 view_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 database_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 database_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 schema_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 schema_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 table_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 table_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 view_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 view_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ConnectionCatalogConfig resource.
 
@@ -73,113 +73,113 @@ class ConnectionCatalogConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="databaseAllows")
-    def database_allows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def database_allows(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.
         """
         return pulumi.get(self, "database_allows")
 
     @database_allows.setter
-    def database_allows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def database_allows(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "database_allows", value)
 
     @_builtins.property
     @pulumi.getter(name="databaseDenies")
-    def database_denies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def database_denies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.
         """
         return pulumi.get(self, "database_denies")
 
     @database_denies.setter
-    def database_denies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def database_denies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "database_denies", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaAllows")
-    def schema_allows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def schema_allows(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of schema names to include. Supports wildcards (e.g., 'public_*'). If set, only these schemas are ingested.
         """
         return pulumi.get(self, "schema_allows")
 
     @schema_allows.setter
-    def schema_allows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def schema_allows(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "schema_allows", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaDenies")
-    def schema_denies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def schema_denies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of schema names to exclude. Supports wildcards (e.g., 'temp_*'). Matching schemas are not ingested.
         """
         return pulumi.get(self, "schema_denies")
 
     @schema_denies.setter
-    def schema_denies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def schema_denies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "schema_denies", value)
 
     @_builtins.property
     @pulumi.getter(name="tableAllows")
-    def table_allows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def table_allows(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of table names to include. Supports wildcards (e.g., 'fact_*'). If set, only these tables are ingested.
         """
         return pulumi.get(self, "table_allows")
 
     @table_allows.setter
-    def table_allows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def table_allows(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "table_allows", value)
 
     @_builtins.property
     @pulumi.getter(name="tableDenies")
-    def table_denies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def table_denies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of table names to exclude. Supports wildcards (e.g., 'tmp_*'). Matching tables are not ingested.
         """
         return pulumi.get(self, "table_denies")
 
     @table_denies.setter
-    def table_denies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def table_denies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "table_denies", value)
 
     @_builtins.property
     @pulumi.getter(name="viewAllows")
-    def view_allows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def view_allows(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of view names to include. Supports wildcards (e.g., 'v_*'). If set, only these views are ingested.
         """
         return pulumi.get(self, "view_allows")
 
     @view_allows.setter
-    def view_allows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def view_allows(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "view_allows", value)
 
     @_builtins.property
     @pulumi.getter(name="viewDenies")
-    def view_denies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def view_denies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of view names to exclude. Supports wildcards (e.g., 'secret_*'). Matching views are not ingested.
         """
         return pulumi.get(self, "view_denies")
 
     @view_denies.setter
-    def view_denies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def view_denies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "view_denies", value)
 
 
 @pulumi.input_type
 class _ConnectionCatalogConfigState:
     def __init__(__self__, *,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 database_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 database_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 schema_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 schema_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 table_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 table_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 view_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 view_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 database_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 database_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 schema_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 schema_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 table_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 table_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 view_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 view_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ConnectionCatalogConfig resources.
 
@@ -214,110 +214,110 @@ class _ConnectionCatalogConfigState:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the global connection this catalog config is associated with. Cannot be changed after creation.
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="databaseAllows")
-    def database_allows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def database_allows(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of database names to include. Supports wildcards (e.g., 'analytics_*'). If set, only these databases are ingested.
         """
         return pulumi.get(self, "database_allows")
 
     @database_allows.setter
-    def database_allows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def database_allows(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "database_allows", value)
 
     @_builtins.property
     @pulumi.getter(name="databaseDenies")
-    def database_denies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def database_denies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of database names to exclude. Supports wildcards (e.g., 'staging_*'). Matching databases are not ingested.
         """
         return pulumi.get(self, "database_denies")
 
     @database_denies.setter
-    def database_denies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def database_denies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "database_denies", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaAllows")
-    def schema_allows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def schema_allows(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of schema names to include. Supports wildcards (e.g., 'public_*'). If set, only these schemas are ingested.
         """
         return pulumi.get(self, "schema_allows")
 
     @schema_allows.setter
-    def schema_allows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def schema_allows(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "schema_allows", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaDenies")
-    def schema_denies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def schema_denies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of schema names to exclude. Supports wildcards (e.g., 'temp_*'). Matching schemas are not ingested.
         """
         return pulumi.get(self, "schema_denies")
 
     @schema_denies.setter
-    def schema_denies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def schema_denies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "schema_denies", value)
 
     @_builtins.property
     @pulumi.getter(name="tableAllows")
-    def table_allows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def table_allows(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of table names to include. Supports wildcards (e.g., 'fact_*'). If set, only these tables are ingested.
         """
         return pulumi.get(self, "table_allows")
 
     @table_allows.setter
-    def table_allows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def table_allows(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "table_allows", value)
 
     @_builtins.property
     @pulumi.getter(name="tableDenies")
-    def table_denies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def table_denies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of table names to exclude. Supports wildcards (e.g., 'tmp_*'). Matching tables are not ingested.
         """
         return pulumi.get(self, "table_denies")
 
     @table_denies.setter
-    def table_denies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def table_denies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "table_denies", value)
 
     @_builtins.property
     @pulumi.getter(name="viewAllows")
-    def view_allows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def view_allows(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of view names to include. Supports wildcards (e.g., 'v_*'). If set, only these views are ingested.
         """
         return pulumi.get(self, "view_allows")
 
     @view_allows.setter
-    def view_allows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def view_allows(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "view_allows", value)
 
     @_builtins.property
     @pulumi.getter(name="viewDenies")
-    def view_denies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def view_denies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of view names to exclude. Supports wildcards (e.g., 'secret_*'). Matching views are not ingested.
         """
         return pulumi.get(self, "view_denies")
 
     @view_denies.setter
-    def view_denies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def view_denies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "view_denies", value)
 
 
@@ -327,15 +327,15 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 database_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 database_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 schema_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 schema_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 table_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 table_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 view_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 view_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 database_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 database_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 schema_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 schema_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 table_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 table_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 view_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 view_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Manages catalog configuration filters for a dbt Cloud connection.
@@ -363,7 +363,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
 
         # Example: Configure catalog filters for a Snowflake connection
         snowflake_filters = dbtcloud.ConnectionCatalogConfig("snowflake_filters",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=[
                 "analytics",
                 "reporting",
@@ -383,11 +383,11 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             ])
         # Example: Minimal configuration - just filter databases
         minimal = dbtcloud.ConnectionCatalogConfig("minimal",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=["production"])
         # Example: Full configuration with platform metadata credential
         creds = dbtcloud.SnowflakePlatformMetadataCredential("creds",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             auth_type="password",
             user=snowflake_user,
@@ -395,7 +395,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             role=snowflake_role,
             warehouse=snowflake_warehouse)
         with_creds = dbtcloud.ConnectionCatalogConfig("with_creds",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=[
                 "analytics",
                 "reporting",
@@ -462,7 +462,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
 
         # Example: Configure catalog filters for a Snowflake connection
         snowflake_filters = dbtcloud.ConnectionCatalogConfig("snowflake_filters",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=[
                 "analytics",
                 "reporting",
@@ -482,11 +482,11 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             ])
         # Example: Minimal configuration - just filter databases
         minimal = dbtcloud.ConnectionCatalogConfig("minimal",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=["production"])
         # Example: Full configuration with platform metadata credential
         creds = dbtcloud.SnowflakePlatformMetadataCredential("creds",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             auth_type="password",
             user=snowflake_user,
@@ -494,7 +494,7 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
             role=snowflake_role,
             warehouse=snowflake_warehouse)
         with_creds = dbtcloud.ConnectionCatalogConfig("with_creds",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             database_allows=[
                 "analytics",
                 "reporting",
@@ -532,15 +532,15 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 database_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 database_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 schema_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 schema_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 table_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 table_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 view_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 view_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 database_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 database_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 schema_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 schema_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 table_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 table_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 view_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 view_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -571,15 +571,15 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-            database_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            database_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            schema_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            schema_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            table_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            table_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            view_allows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            view_denies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ConnectionCatalogConfig':
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            database_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            database_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            schema_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            schema_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            table_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            table_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            view_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            view_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ConnectionCatalogConfig':
         """
         Get an existing ConnectionCatalogConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

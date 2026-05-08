@@ -122,11 +122,11 @@ export interface LicenseMapState {
     /**
      * License type
      */
-    licenseType?: pulumi.Input<string>;
+    licenseType?: pulumi.Input<string | undefined>;
     /**
      * SSO license mapping group names for this group
      */
-    ssoLicenseMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    ssoLicenseMappingGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -140,5 +140,5 @@ export interface LicenseMapArgs {
     /**
      * SSO license mapping group names for this group
      */
-    ssoLicenseMappingGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    ssoLicenseMappingGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

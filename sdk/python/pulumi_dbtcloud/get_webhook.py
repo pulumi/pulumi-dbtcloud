@@ -182,7 +182,7 @@ def get_webhook(webhook_id: Optional[_builtins.str] = None,
         job_ids=pulumi.get(__ret__, 'job_ids'),
         name=pulumi.get(__ret__, 'name'),
         webhook_id=pulumi.get(__ret__, 'webhook_id'))
-def get_webhook_output(webhook_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_webhook_output(webhook_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWebhookResult]:
     """
     Retrieve webhook details

@@ -175,45 +175,45 @@ export interface WebhookState {
     /**
      * Webhooks Account Identifier
      */
-    accountIdentifier?: pulumi.Input<string>;
+    accountIdentifier?: pulumi.Input<string | undefined>;
     /**
      * Webhooks active flag
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * Webhooks Client URL
      */
-    clientUrl?: pulumi.Input<string>;
+    clientUrl?: pulumi.Input<string | undefined>;
     /**
      * Webhooks Description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Webhooks Event Types
      */
-    eventTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    eventTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Secret key for the webhook. Can be used to validate the authenticity of the webhook.
      */
-    hmacSecret?: pulumi.Input<string>;
+    hmacSecret?: pulumi.Input<string | undefined>;
     /**
      * Latest HTTP status of the webhook
      */
-    httpStatusCode?: pulumi.Input<string>;
+    httpStatusCode?: pulumi.Input<string | undefined>;
     /**
      * List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      */
-    jobIds?: pulumi.Input<pulumi.Input<number>[]>;
+    jobIds?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Webhooks Name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Webhook's ID
      *
      * @deprecated Use `id` instead
      */
-    webhookId?: pulumi.Input<string>;
+    webhookId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -223,7 +223,7 @@ export interface WebhookArgs {
     /**
      * Webhooks active flag
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * Webhooks Client URL
      */
@@ -231,7 +231,7 @@ export interface WebhookArgs {
     /**
      * Webhooks Description
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Webhooks Event Types
      */
@@ -239,9 +239,9 @@ export interface WebhookArgs {
     /**
      * List of job IDs to trigger the webhook. When null or empty, the webhook will trigger on all jobs
      */
-    jobIds?: pulumi.Input<pulumi.Input<number>[]>;
+    jobIds?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Webhooks Name
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

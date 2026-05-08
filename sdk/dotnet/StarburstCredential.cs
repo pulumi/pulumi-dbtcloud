@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attribute (stored in state)
-    ///     var example = new DbtCloud.Index.StarburstCredential("example", new()
+    ///     var example = new DbtCloud.StarburstCredential("example", new()
     ///     {
     ///         ProjectId = exampleDbtcloudProject.Id,
     ///         Database = "your_catalog",
@@ -34,7 +34,7 @@ namespace Pulumi.DbtCloud
     /// 
     ///     var config = new Config();
     ///     var starburstPassword = config.Require("starburstPassword");
-    ///     var exampleWo = new DbtCloud.Index.StarburstCredential("example_wo", new()
+    ///     var exampleWo = new DbtCloud.StarburstCredential("example_wo", new()
     ///     {
     ///         ProjectId = exampleDbtcloudProject.Id,
     ///         Database = "your_catalog",

@@ -60,8 +60,8 @@ class SnowflakeSemanticLayerCredentialArgs:
 @pulumi.input_type
 class _SnowflakeSemanticLayerCredentialState:
     def __init__(__self__, *,
-                 configuration: Optional[pulumi.Input['SnowflakeSemanticLayerCredentialConfigurationArgs']] = None,
-                 credential: Optional[pulumi.Input['SnowflakeSemanticLayerCredentialCredentialArgs']] = None):
+                 configuration: pulumi.Input[Optional['SnowflakeSemanticLayerCredentialConfigurationArgs']] = None,
+                 credential: pulumi.Input[Optional['SnowflakeSemanticLayerCredentialCredentialArgs']] = None):
         """
         Input properties used for looking up and filtering SnowflakeSemanticLayerCredential resources.
 
@@ -75,26 +75,26 @@ class _SnowflakeSemanticLayerCredentialState:
 
     @_builtins.property
     @pulumi.getter
-    def configuration(self) -> Optional[pulumi.Input['SnowflakeSemanticLayerCredentialConfigurationArgs']]:
+    def configuration(self) -> pulumi.Input[Optional['SnowflakeSemanticLayerCredentialConfigurationArgs']]:
         """
         Semantic Layer credenttial configuration details.
         """
         return pulumi.get(self, "configuration")
 
     @configuration.setter
-    def configuration(self, value: Optional[pulumi.Input['SnowflakeSemanticLayerCredentialConfigurationArgs']]):
+    def configuration(self, value: pulumi.Input[Optional['SnowflakeSemanticLayerCredentialConfigurationArgs']]):
         pulumi.set(self, "configuration", value)
 
     @_builtins.property
     @pulumi.getter
-    def credential(self) -> Optional[pulumi.Input['SnowflakeSemanticLayerCredentialCredentialArgs']]:
+    def credential(self) -> pulumi.Input[Optional['SnowflakeSemanticLayerCredentialCredentialArgs']]:
         """
         Snowflake credential details, but used in the context of the Semantic Layer.
         """
         return pulumi.get(self, "credential")
 
     @credential.setter
-    def credential(self, value: Optional[pulumi.Input['SnowflakeSemanticLayerCredentialCredentialArgs']]):
+    def credential(self, value: pulumi.Input[Optional['SnowflakeSemanticLayerCredentialCredentialArgs']]):
         pulumi.set(self, "credential", value)
 
 
@@ -104,8 +104,8 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: Optional[pulumi.Input[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: Optional[pulumi.Input[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
+                 credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None,
                  __props__=None):
         """
         Snowflake credential resource. This resource is composed of a Snowflake credential and a Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
@@ -119,12 +119,12 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         # Example of Snowflake Semantic Layer Credential with password authentication
         password_auth = dbtcloud.SnowflakeSemanticLayerCredential("password_auth",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Snowflake SL Credential - Password Auth",
                 "adapter_version": "snowflake_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
                 "auth_type": "password",
                 "database": database,
@@ -139,12 +139,12 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         # Example of Snowflake Semantic Layer Credential with key pair authentication
         keypair_auth = dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Snowflake SL Credential - Key Pair Auth",
                 "adapter_version": "snowflake_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
                 "auth_type": "keypair",
                 "database": database,
@@ -202,12 +202,12 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         # Example of Snowflake Semantic Layer Credential with password authentication
         password_auth = dbtcloud.SnowflakeSemanticLayerCredential("password_auth",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Snowflake SL Credential - Password Auth",
                 "adapter_version": "snowflake_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
                 "auth_type": "password",
                 "database": database,
@@ -222,12 +222,12 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         # Example of Snowflake Semantic Layer Credential with key pair authentication
         keypair_auth = dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth",
             configuration={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "name": "Snowflake SL Credential - Key Pair Auth",
                 "adapter_version": "snowflake_v0",
             },
             credential={
-                "project_id": project_id,
+                "project_id": int(project_id),
                 "is_active": True,
                 "auth_type": "keypair",
                 "database": database,
@@ -277,8 +277,8 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: Optional[pulumi.Input[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: Optional[pulumi.Input[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
+                 credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -304,8 +304,8 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            configuration: Optional[pulumi.Input[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
-            credential: Optional[pulumi.Input[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'SnowflakeSemanticLayerCredential':
+            configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
+            credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'SnowflakeSemanticLayerCredential':
         """
         Get an existing SnowflakeSemanticLayerCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

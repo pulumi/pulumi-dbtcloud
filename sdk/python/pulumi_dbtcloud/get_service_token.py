@@ -120,8 +120,8 @@ def get_service_token(service_token_id: Optional[_builtins.int] = None,
         service_token_id=pulumi.get(__ret__, 'service_token_id'),
         service_token_permissions=pulumi.get(__ret__, 'service_token_permissions'),
         uid=pulumi.get(__ret__, 'uid'))
-def get_service_token_output(service_token_id: Optional[pulumi.Input[_builtins.int]] = None,
-                             service_token_permissions: Optional[pulumi.Input[Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
+def get_service_token_output(service_token_id: pulumi.Input[Optional[_builtins.int]] = None,
+                             service_token_permissions: pulumi.Input[Optional[Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceTokenResult]:
     """
     Use this data source to access information about an existing resource.

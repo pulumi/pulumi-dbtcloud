@@ -120,19 +120,19 @@ export interface ScimConfigTokenState {
     /**
      * Timestamp when the token was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Timestamp when the token was last used. Null if never used.
      */
-    lastUsed?: pulumi.Input<string>;
+    lastUsed?: pulumi.Input<string | undefined>;
     /**
      * A human-readable name for the token. Changing this value forces a new token to be created.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The SCIM token value. Only available immediately after creation — not returned by subsequent API reads. Store this value securely.
      */
-    tokenString?: pulumi.Input<string>;
+    tokenString?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -142,5 +142,5 @@ export interface ScimConfigTokenArgs {
     /**
      * A human-readable name for the token. Changing this value forces a new token to be created.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

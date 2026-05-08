@@ -23,7 +23,7 @@ class ProfileArgs:
                  credentials_id: pulumi.Input[_builtins.int],
                  key: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.int],
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a Profile resource.
 
@@ -90,26 +90,26 @@ class ProfileArgs:
 
     @_builtins.property
     @pulumi.getter(name="extendedAttributesId")
-    def extended_attributes_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def extended_attributes_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the extended attributes for this profile. Set to null to unset.
         """
         return pulumi.get(self, "extended_attributes_id")
 
     @extended_attributes_id.setter
-    def extended_attributes_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def extended_attributes_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "extended_attributes_id", value)
 
 
 @pulumi.input_type
 class _ProfileState:
     def __init__(__self__, *,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 profile_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Profile resources.
 
@@ -135,74 +135,74 @@ class _ProfileState:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the connection to use for this profile
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialsId")
-    def credentials_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credentials_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the credentials to use for this profile
         """
         return pulumi.get(self, "credentials_id")
 
     @credentials_id.setter
-    def credentials_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credentials_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credentials_id", value)
 
     @_builtins.property
     @pulumi.getter(name="extendedAttributesId")
-    def extended_attributes_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def extended_attributes_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the extended attributes for this profile. Set to null to unset.
         """
         return pulumi.get(self, "extended_attributes_id")
 
     @extended_attributes_id.setter
-    def extended_attributes_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def extended_attributes_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "extended_attributes_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for the profile
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter(name="profileId")
-    def profile_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def profile_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the profile
         """
         return pulumi.get(self, "profile_id")
 
     @profile_id.setter
-    def profile_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def profile_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "profile_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the project in which to create the profile
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -212,11 +212,11 @@ class Profile(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Manages a dbt Cloud profile. A profile ties together a connection and credentials for use within environments.
@@ -229,17 +229,17 @@ class Profile(pulumi.CustomResource):
 
         # A profile ties together a connection and credentials for use within environments.
         my_profile = dbtcloud.Profile("my_profile",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             key="my-profile",
-            connection_id=my_connection["id"],
-            credentials_id=my_credential["credentialId"])
+            connection_id=int(my_connection["id"]),
+            credentials_id=int(my_credential["credentialId"]))
         # A profile with extended attributes
         my_profile_with_attrs = dbtcloud.Profile("my_profile_with_attrs",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             key="my-profile-with-attrs",
-            connection_id=my_connection["id"],
-            credentials_id=my_credential["credentialId"],
-            extended_attributes_id=my_attributes["extendedAttributesId"])
+            connection_id=int(my_connection["id"]),
+            credentials_id=int(my_credential["credentialId"]),
+            extended_attributes_id=int(my_attributes["extendedAttributesId"]))
         ```
 
         ## Import
@@ -288,17 +288,17 @@ class Profile(pulumi.CustomResource):
 
         # A profile ties together a connection and credentials for use within environments.
         my_profile = dbtcloud.Profile("my_profile",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             key="my-profile",
-            connection_id=my_connection["id"],
-            credentials_id=my_credential["credentialId"])
+            connection_id=int(my_connection["id"]),
+            credentials_id=int(my_credential["credentialId"]))
         # A profile with extended attributes
         my_profile_with_attrs = dbtcloud.Profile("my_profile_with_attrs",
-            project_id=my_project["id"],
+            project_id=int(my_project["id"]),
             key="my-profile-with-attrs",
-            connection_id=my_connection["id"],
-            credentials_id=my_credential["credentialId"],
-            extended_attributes_id=my_attributes["extendedAttributesId"])
+            connection_id=int(my_connection["id"]),
+            credentials_id=int(my_credential["credentialId"]),
+            extended_attributes_id=int(my_attributes["extendedAttributesId"]))
         ```
 
         ## Import
@@ -337,11 +337,11 @@ class Profile(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 credentials_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -375,12 +375,12 @@ class Profile(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-            credentials_id: Optional[pulumi.Input[_builtins.int]] = None,
-            extended_attributes_id: Optional[pulumi.Input[_builtins.int]] = None,
-            key: Optional[pulumi.Input[_builtins.str]] = None,
-            profile_id: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None) -> 'Profile':
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
+            extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'Profile':
         """
         Get an existing Profile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -23,7 +23,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Using the classic sensitive attributes (stored in state)
-    ///     var mySalesforceCred = new DbtCloud.Index.SalesforceCredential("my_salesforce_cred", new()
+    ///     var mySalesforceCred = new DbtCloud.SalesforceCredential("my_salesforce_cred", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Username = "user@example.com",
@@ -36,7 +36,7 @@ namespace Pulumi.DbtCloud
     ///     var config = new Config();
     ///     var salesforceClientId = config.Require("salesforceClientId");
     ///     var salesforcePrivateKey = config.Require("salesforcePrivateKey");
-    ///     var mySalesforceCredWo = new DbtCloud.Index.SalesforceCredential("my_salesforce_cred_wo", new()
+    ///     var mySalesforceCredWo = new DbtCloud.SalesforceCredential("my_salesforce_cred_wo", new()
     ///     {
     ///         ProjectId = dbtProject.Id,
     ///         Username = "user@example.com",

@@ -24,18 +24,18 @@ class SnowflakePlatformMetadataCredentialArgs:
                  role: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
                  warehouse: pulumi.Input[_builtins.str],
-                 catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a SnowflakePlatformMetadataCredential resource.
 
@@ -152,55 +152,55 @@ class SnowflakePlatformMetadataCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="catalogIngestionEnabled")
-    def catalog_ingestion_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def catalog_ingestion_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
         """
         return pulumi.get(self, "catalog_ingestion_enabled")
 
     @catalog_ingestion_enabled.setter
-    def catalog_ingestion_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def catalog_ingestion_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "catalog_ingestion_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="costInsightsEnabled")
-    def cost_insights_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cost_insights_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether cost insights is enabled for this credential.
         """
         return pulumi.get(self, "cost_insights_enabled")
 
     @cost_insights_enabled.setter
-    def cost_insights_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cost_insights_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cost_insights_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="costOptimizationEnabled")
-    def cost_optimization_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cost_optimization_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether cost optimization data collection is enabled for this credential.
         """
         return pulumi.get(self, "cost_optimization_enabled")
 
     @cost_optimization_enabled.setter
-    def cost_optimization_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cost_optimization_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cost_optimization_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
@@ -208,48 +208,48 @@ class SnowflakePlatformMetadataCredentialArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key for keypair authentication. Required when auth_type is 'keypair'. Cannot be used with password. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphrase")
-    def private_key_passphrase(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_passphrase(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The passphrase for the private key, if encrypted. Optional when auth_type is 'keypair'. Cannot be used with password. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key_passphrase")
 
     @private_key_passphrase.setter
-    def private_key_passphrase(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_passphrase(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_passphrase", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphraseWo")
-    def private_key_passphrase_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_passphrase_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
@@ -257,24 +257,24 @@ class SnowflakePlatformMetadataCredentialArgs:
         return pulumi.get(self, "private_key_passphrase_wo")
 
     @private_key_passphrase_wo.setter
-    def private_key_passphrase_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_passphrase_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_passphrase_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphraseWoVersion")
-    def private_key_passphrase_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_passphrase_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
         """
         return pulumi.get(self, "private_key_passphrase_wo_version")
 
     @private_key_passphrase_wo_version.setter
-    def private_key_passphrase_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_passphrase_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_passphrase_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWo")
-    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
@@ -282,44 +282,44 @@ class SnowflakePlatformMetadataCredentialArgs:
         return pulumi.get(self, "private_key_wo")
 
     @private_key_wo.setter
-    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWoVersion")
-    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         """
         return pulumi.get(self, "private_key_wo_version")
 
     @private_key_wo_version.setter
-    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_wo_version", value)
 
 
 @pulumi.input_type
 class _SnowflakePlatformMetadataCredentialState:
     def __init__(__self__, *,
-                 adapter_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 warehouse: Optional[pulumi.Input[_builtins.str]] = None):
+                 adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 warehouse: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SnowflakePlatformMetadataCredential resources.
 
@@ -387,103 +387,103 @@ class _SnowflakePlatformMetadataCredentialState:
 
     @_builtins.property
     @pulumi.getter(name="adapterVersion")
-    def adapter_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def adapter_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The adapter version derived from the connection (e.g., 'snowflake*v0', 'databricks*v0'). This is read-only and determined by the connection.
         """
         return pulumi.get(self, "adapter_version")
 
     @adapter_version.setter
-    def adapter_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def adapter_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "adapter_version", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication type. Must be 'password' or 'keypair'.
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="catalogIngestionEnabled")
-    def catalog_ingestion_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def catalog_ingestion_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether catalog ingestion is enabled for this credential. When enabled, dbt Cloud will ingest metadata about tables, views, and other objects from your data warehouse.
         """
         return pulumi.get(self, "catalog_ingestion_enabled")
 
     @catalog_ingestion_enabled.setter
-    def catalog_ingestion_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def catalog_ingestion_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "catalog_ingestion_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the global connection this credential is associated with. Cannot be changed after creation.
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="costInsightsEnabled")
-    def cost_insights_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cost_insights_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether cost insights is enabled for this credential.
         """
         return pulumi.get(self, "cost_insights_enabled")
 
     @cost_insights_enabled.setter
-    def cost_insights_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cost_insights_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cost_insights_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="costOptimizationEnabled")
-    def cost_optimization_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cost_optimization_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether cost optimization data collection is enabled for this credential.
         """
         return pulumi.get(self, "cost_optimization_enabled")
 
     @cost_optimization_enabled.setter
-    def cost_optimization_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cost_optimization_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cost_optimization_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the platform metadata credential.
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password for password authentication. Required when auth*type is 'password'. Cannot be used with private*key or private*key*passphrase. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
@@ -491,48 +491,48 @@ class _SnowflakePlatformMetadataCredentialState:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key for keypair authentication. Required when auth_type is 'keypair'. Cannot be used with password. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphrase")
-    def private_key_passphrase(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_passphrase(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The passphrase for the private key, if encrypted. Optional when auth_type is 'keypair'. Cannot be used with password. Consider using `private_key_passphrase_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key_passphrase")
 
     @private_key_passphrase.setter
-    def private_key_passphrase(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_passphrase(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_passphrase", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphraseWo")
-    def private_key_passphrase_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_passphrase_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `private_key_passphrase`. The value is not stored in state. Requires `private_key_passphrase_wo_version` to trigger updates.
@@ -540,24 +540,24 @@ class _SnowflakePlatformMetadataCredentialState:
         return pulumi.get(self, "private_key_passphrase_wo")
 
     @private_key_passphrase_wo.setter
-    def private_key_passphrase_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_passphrase_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_passphrase_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyPassphraseWoVersion")
-    def private_key_passphrase_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_passphrase_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `private_key_passphrase_wo`. Increment this value to trigger an update of the private key passphrase when using `private_key_passphrase_wo`.
         """
         return pulumi.get(self, "private_key_passphrase_wo_version")
 
     @private_key_passphrase_wo_version.setter
-    def private_key_passphrase_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_passphrase_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_passphrase_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWo")
-    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
@@ -565,55 +565,55 @@ class _SnowflakePlatformMetadataCredentialState:
         return pulumi.get(self, "private_key_wo")
 
     @private_key_wo.setter
-    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWoVersion")
-    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         """
         return pulumi.get(self, "private_key_wo_version")
 
     @private_key_wo_version.setter
-    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Snowflake role to use.
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Snowflake user name.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
     @_builtins.property
     @pulumi.getter
-    def warehouse(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def warehouse(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Snowflake warehouse to use.
         """
         return pulumi.get(self, "warehouse")
 
     @warehouse.setter
-    def warehouse(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def warehouse(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "warehouse", value)
 
 
@@ -623,23 +623,23 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 warehouse: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 warehouse: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages Snowflake platform metadata credentials for external metadata ingestion in dbt Cloud.
@@ -665,7 +665,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         password_auth = dbtcloud.SnowflakePlatformMetadataCredential("password_auth",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=True,
             cost_insights_enabled=False,
@@ -675,7 +675,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         keypair_auth = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -690,7 +690,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
         snowflake_metadata_private_key = config.require("snowflakeMetadataPrivateKey")
         snowflake_metadata_private_key_passphrase = config.require("snowflakeMetadataPrivateKeyPassphrase")
         password_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=True,
             cost_insights_enabled=False,
@@ -701,7 +701,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         keypair_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -769,7 +769,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         password_auth = dbtcloud.SnowflakePlatformMetadataCredential("password_auth",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=True,
             cost_insights_enabled=False,
@@ -779,7 +779,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         keypair_auth = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -794,7 +794,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
         snowflake_metadata_private_key = config.require("snowflakeMetadataPrivateKey")
         snowflake_metadata_private_key_passphrase = config.require("snowflakeMetadataPrivateKeyPassphrase")
         password_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=True,
             cost_insights_enabled=False,
@@ -805,7 +805,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         keypair_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo",
-            connection_id=snowflake["id"],
+            connection_id=int(snowflake["id"]),
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -835,23 +835,23 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
-                 warehouse: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
+                 warehouse: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -902,25 +902,25 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            adapter_version: Optional[pulumi.Input[_builtins.str]] = None,
-            auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-            catalog_ingestion_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            connection_id: Optional[pulumi.Input[_builtins.int]] = None,
-            cost_insights_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            cost_optimization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_passphrase: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_passphrase_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_passphrase_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            user: Optional[pulumi.Input[_builtins.str]] = None,
-            warehouse: Optional[pulumi.Input[_builtins.str]] = None) -> 'SnowflakePlatformMetadataCredential':
+            adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_passphrase: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_passphrase_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_passphrase_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            user: pulumi.Input[Optional[_builtins.str]] = None,
+            warehouse: pulumi.Input[Optional[_builtins.str]] = None) -> 'SnowflakePlatformMetadataCredential':
         """
         Get an existing SnowflakePlatformMetadataCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

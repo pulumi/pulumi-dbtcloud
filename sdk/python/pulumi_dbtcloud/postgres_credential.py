@@ -21,15 +21,15 @@ class PostgresCredentialArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.int],
                  username: pulumi.Input[_builtins.str],
-                 default_schema: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 default_schema: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a PostgresCredential resource.
 
@@ -93,55 +93,55 @@ class PostgresCredentialArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultSchema")
-    def default_schema(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_schema(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "default_schema")
 
     @default_schema.setter
-    def default_schema(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_schema(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_schema", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the Postgres/Redshift/AlloyDB credential is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_threads(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of threads to use (required for Redshift)
         """
         return pulumi.get(self, "num_threads")
 
     @num_threads.setter
-    def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_threads(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
@@ -149,73 +149,73 @@ class PostgresCredentialArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="semanticLayerCredential")
-    def semantic_layer_credential(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def semantic_layer_credential(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         """
         return pulumi.get(self, "semantic_layer_credential")
 
     @semantic_layer_credential.setter
-    def semantic_layer_credential(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def semantic_layer_credential(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "semantic_layer_credential", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
-    def target_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default schema name
         """
         return pulumi.get(self, "target_name")
 
     @target_name.setter
-    def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _PostgresCredentialState:
     def __init__(__self__, *,
-                 credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_schema: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_schema: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PostgresCredential resources.
 
@@ -260,67 +260,67 @@ class _PostgresCredentialState:
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
-    def credential_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credential_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The system Postgres/Redshift/AlloyDB credential ID.
         """
         return pulumi.get(self, "credential_id")
 
     @credential_id.setter
-    def credential_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credential_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credential_id", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultSchema")
-    def default_schema(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_schema(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "default_schema")
 
     @default_schema.setter
-    def default_schema(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_schema(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_schema", value)
 
     @_builtins.property
     @pulumi.getter(name="isActive")
-    def is_active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the Postgres/Redshift/AlloyDB credential is active
         """
         return pulumi.get(self, "is_active")
 
     @is_active.setter
-    def is_active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
     @_builtins.property
     @pulumi.getter(name="numThreads")
-    def num_threads(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_threads(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of threads to use (required for Redshift)
         """
         return pulumi.get(self, "num_threads")
 
     @num_threads.setter
-    def num_threads(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_threads(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_threads", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for Postgres/Redshift/AlloyDB. Consider using `password_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only alternative to `password`. The value is not stored in state. Requires `password_wo_version` to trigger updates.
@@ -328,79 +328,79 @@ class _PostgresCredentialState:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version number for `password_wo`. Increment this value to trigger an update of the password when using `password_wo`.
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Project ID to create the Postgres/Redshift/AlloyDB credential in.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="semanticLayerCredential")
-    def semantic_layer_credential(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def semantic_layer_credential(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This field indicates that the credential is used as part of the Semantic Layer configuration. It is used to create a Postgres credential for the Semantic Layer.
         """
         return pulumi.get(self, "semantic_layer_credential")
 
     @semantic_layer_credential.setter
-    def semantic_layer_credential(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def semantic_layer_credential(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "semantic_layer_credential", value)
 
     @_builtins.property
     @pulumi.getter(name="targetName")
-    def target_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default schema name
         """
         return pulumi.get(self, "target_name")
 
     @target_name.setter
-    def target_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of connection. One of (postgres/redshift). Use postgres for alloydb connections. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username for Postgres/Redshift/AlloyDB
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -410,17 +410,17 @@ class PostgresCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_schema: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_schema: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Postgres credential resource.
@@ -434,7 +434,7 @@ class PostgresCredential(pulumi.CustomResource):
         # Using the classic sensitive attribute (stored in state)
         postgres_prod_credential = dbtcloud.PostgresCredential("postgres_prod_credential",
             is_active=True,
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="postgres",
             default_schema="my_schema",
             username="my_username",
@@ -444,7 +444,7 @@ class PostgresCredential(pulumi.CustomResource):
         postgres_password = config.require("postgresPassword")
         postgres_prod_credential_wo = dbtcloud.PostgresCredential("postgres_prod_credential_wo",
             is_active=True,
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="postgres",
             default_schema="my_schema",
             username="my_username",
@@ -507,7 +507,7 @@ class PostgresCredential(pulumi.CustomResource):
         # Using the classic sensitive attribute (stored in state)
         postgres_prod_credential = dbtcloud.PostgresCredential("postgres_prod_credential",
             is_active=True,
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="postgres",
             default_schema="my_schema",
             username="my_username",
@@ -517,7 +517,7 @@ class PostgresCredential(pulumi.CustomResource):
         postgres_password = config.require("postgresPassword")
         postgres_prod_credential_wo = dbtcloud.PostgresCredential("postgres_prod_credential_wo",
             is_active=True,
-            project_id=dbt_project["id"],
+            project_id=int(dbt_project["id"]),
             type="postgres",
             default_schema="my_schema",
             username="my_username",
@@ -562,17 +562,17 @@ class PostgresCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_schema: Optional[pulumi.Input[_builtins.str]] = None,
-                 is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-                 target_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_schema: pulumi.Input[Optional[_builtins.str]] = None,
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+                 target_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -610,18 +610,18 @@ class PostgresCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            credential_id: Optional[pulumi.Input[_builtins.int]] = None,
-            default_schema: Optional[pulumi.Input[_builtins.str]] = None,
-            is_active: Optional[pulumi.Input[_builtins.bool]] = None,
-            num_threads: Optional[pulumi.Input[_builtins.int]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.int]] = None,
-            semantic_layer_credential: Optional[pulumi.Input[_builtins.bool]] = None,
-            target_name: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'PostgresCredential':
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            default_schema: pulumi.Input[Optional[_builtins.str]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+            target_name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'PostgresCredential':
         """
         Get an existing PostgresCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
