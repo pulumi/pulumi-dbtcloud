@@ -14,6 +14,55 @@ import (
 
 // Postgres credential resource.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewPostgresCredential(ctx, "postgres_prod_credential", &dbtcloud.PostgresCredentialArgs{
+//				IsActive:      pulumi.Bool(true),
+//				ProjectId:     pulumi.Any(dbtProject.Id),
+//				Type:          pulumi.String("postgres"),
+//				DefaultSchema: pulumi.String("my_schema"),
+//				Username:      pulumi.String("my_username"),
+//				Password:      pulumi.String("my_password"),
+//				NumThreads:    pulumi.Int(16),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			postgresPassword := cfg.Require("postgresPassword")
+//			_, err = dbtcloud.NewPostgresCredential(ctx, "postgres_prod_credential_wo", &dbtcloud.PostgresCredentialArgs{
+//				IsActive:          pulumi.Bool(true),
+//				ProjectId:         pulumi.Any(dbtProject.Id),
+//				Type:              pulumi.String("postgres"),
+//				DefaultSchema:     pulumi.String("my_schema"),
+//				Username:          pulumi.String("my_username"),
+//				PasswordWo:        pulumi.String(pulumi.String(postgresPassword)),
+//				PasswordWoVersion: pulumi.Int(1),
+//				NumThreads:        pulumi.Int(16),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

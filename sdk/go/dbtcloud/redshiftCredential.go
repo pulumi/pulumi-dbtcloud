@@ -14,6 +14,53 @@ import (
 
 // Redshift credential resource
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewRedshiftCredential(ctx, "redshift", &dbtcloud.RedshiftCredentialArgs{
+//				NumThreads:    pulumi.Int(16),
+//				ProjectId:     pulumi.Any(testProject.Id),
+//				DefaultSchema: pulumi.String("my_schema"),
+//				Username:      pulumi.String("my_username"),
+//				Password:      pulumi.String("my_sensitive_password"),
+//				IsActive:      pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			redshiftPassword := cfg.Require("redshiftPassword")
+//			_, err = dbtcloud.NewRedshiftCredential(ctx, "redshift_wo", &dbtcloud.RedshiftCredentialArgs{
+//				NumThreads:        pulumi.Int(16),
+//				ProjectId:         pulumi.Any(testProject.Id),
+//				DefaultSchema:     pulumi.String("my_schema"),
+//				Username:          pulumi.String("my_username"),
+//				PasswordWo:        pulumi.String(pulumi.String(redshiftPassword)),
+//				PasswordWoVersion: pulumi.Int(1),
+//				IsActive:          pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)

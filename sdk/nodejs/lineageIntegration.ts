@@ -9,6 +9,38 @@ import * as utilities from "./utilities";
  *
  * This resource requires having an environment tagged as production already created for you project.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // the resource can only be configured when a Prod environment has been set
+ * // so, you might want to explicitly set the dependency on your Prod environment resource
+ * // Using the classic sensitive attribute (stored in state)
+ * const myLineage = new dbtcloud.LineageIntegration("my_lineage", {
+ *     projectId: myProject.id,
+ *     host: "my.host.com",
+ *     siteId: "mysiteid",
+ *     tokenName: "my-token-name",
+ *     token: "my-sensitive-token",
+ * }, {
+ *     dependsOn: [myProdEnv],
+ * });
+ * const config = new pulumi.Config();
+ * const lineageToken = config.require("lineageToken");
+ * const myLineageWo = new dbtcloud.LineageIntegration("my_lineage_wo", {
+ *     projectId: myProject.id,
+ *     host: "my.host.com",
+ *     siteId: "mysiteid",
+ *     tokenName: "my-token-name",
+ *     tokenWo: lineageToken,
+ *     tokenWoVersion: 1,
+ * }, {
+ *     dependsOn: [myProdEnv],
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

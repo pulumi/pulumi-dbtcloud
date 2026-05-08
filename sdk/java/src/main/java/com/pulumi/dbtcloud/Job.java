@@ -105,7 +105,7 @@ import javax.annotation.Nullable;
  *   echo \"Failure: HTTP status $response\"
  *   exit 1
  * fi
- * ", dbtToken,dbtHostUrl,dbtAccountId,id))
+ * ", dbtToken,dbtHostUrl,dbtAccountId,dailyJob.id()))
  *                 .build(), CustomResourceOptions.builder()
  *                     .dependsOn(List.of(dailyJob))
  *                     .build());

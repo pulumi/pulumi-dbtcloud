@@ -396,6 +396,34 @@ class SalesforceCredential(pulumi.CustomResource):
         """
         Salesforce credential resource
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        my_salesforce_cred = dbtcloud.SalesforceCredential("my_salesforce_cred",
+            project_id=dbt_project["id"],
+            username="user@example.com",
+            client_id="your-oauth-client-id",
+            private_key="private-key value",
+            target_name="default",
+            num_threads=6)
+        config = pulumi.Config()
+        salesforce_client_id = config.require("salesforceClientId")
+        salesforce_private_key = config.require("salesforcePrivateKey")
+        my_salesforce_cred_wo = dbtcloud.SalesforceCredential("my_salesforce_cred_wo",
+            project_id=dbt_project["id"],
+            username="user@example.com",
+            client_id_wo=salesforce_client_id,
+            client_id_wo_version=1,
+            private_key_wo=salesforce_private_key,
+            private_key_wo_version=1,
+            target_name="default",
+            num_threads=6)
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -440,6 +468,34 @@ class SalesforceCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Salesforce credential resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attributes (stored in state)
+        my_salesforce_cred = dbtcloud.SalesforceCredential("my_salesforce_cred",
+            project_id=dbt_project["id"],
+            username="user@example.com",
+            client_id="your-oauth-client-id",
+            private_key="private-key value",
+            target_name="default",
+            num_threads=6)
+        config = pulumi.Config()
+        salesforce_client_id = config.require("salesforceClientId")
+        salesforce_private_key = config.require("salesforcePrivateKey")
+        my_salesforce_cred_wo = dbtcloud.SalesforceCredential("my_salesforce_cred_wo",
+            project_id=dbt_project["id"],
+            username="user@example.com",
+            client_id_wo=salesforce_client_id,
+            client_id_wo_version=1,
+            private_key_wo=salesforce_private_key,
+            private_key_wo_version=1,
+            target_name="default",
+            num_threads=6)
+        ```
 
         ## Import
 

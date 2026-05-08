@@ -320,6 +320,11 @@ export type Notification = import("./notification").Notification;
 export const Notification: typeof import("./notification").Notification = null as any;
 utilities.lazyLoad(exports, ["Notification"], () => require("./notification"));
 
+export { NotificationSettingArgs, NotificationSettingState } from "./notificationSetting";
+export type NotificationSetting = import("./notificationSetting").NotificationSetting;
+export const NotificationSetting: typeof import("./notificationSetting").NotificationSetting = null as any;
+utilities.lazyLoad(exports, ["NotificationSetting"], () => require("./notificationSetting"));
+
 export { OauthConfigurationArgs, OauthConfigurationState } from "./oauthConfiguration";
 export type OauthConfiguration = import("./oauthConfiguration").OauthConfiguration;
 export const OauthConfiguration: typeof import("./oauthConfiguration").OauthConfiguration = null as any;
@@ -540,6 +545,8 @@ const _module = {
                 return new ModelNotifications(name, <any>undefined, { urn })
             case "dbtcloud:index/notification:Notification":
                 return new Notification(name, <any>undefined, { urn })
+            case "dbtcloud:index/notificationSetting:NotificationSetting":
+                return new NotificationSetting(name, <any>undefined, { urn })
             case "dbtcloud:index/oauthConfiguration:OauthConfiguration":
                 return new OauthConfiguration(name, <any>undefined, { urn })
             case "dbtcloud:index/openaiIntegration:OpenaiIntegration":
@@ -631,6 +638,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/licenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/lineageIntegration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/modelNotifications", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/notification", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/notificationSetting", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/oauthConfiguration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/openaiIntegration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/partialEnvironmentVariable", _module)

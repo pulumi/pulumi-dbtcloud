@@ -21,6 +21,62 @@ import javax.annotation.Nullable;
  * 
  * This resource requires having an environment tagged as production already created for you project.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.LineageIntegration;
+ * import com.pulumi.dbtcloud.LineageIntegrationArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // the resource can only be configured when a Prod environment has been set
+ *         // so, you might want to explicitly set the dependency on your Prod environment resource
+ *         // Using the classic sensitive attribute (stored in state)
+ *         var myLineage = new LineageIntegration("myLineage", LineageIntegrationArgs.builder()
+ *             .projectId(myProject.id())
+ *             .host("my.host.com")
+ *             .siteId("mysiteid")
+ *             .tokenName("my-token-name")
+ *             .token("my-sensitive-token")
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(myProdEnv)
+ *                 .build());
+ * 
+ *         final var lineageToken = config.require("lineageToken");
+ *         var myLineageWo = new LineageIntegration("myLineageWo", LineageIntegrationArgs.builder()
+ *             .projectId(myProject.id())
+ *             .host("my.host.com")
+ *             .siteId("mysiteid")
+ *             .tokenName("my-token-name")
+ *             .tokenWo(lineageToken)
+ *             .tokenWoVersion(1)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(myProdEnv)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

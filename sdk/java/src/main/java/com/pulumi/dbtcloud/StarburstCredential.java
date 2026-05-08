@@ -19,6 +19,55 @@ import javax.annotation.Nullable;
 /**
  * Starburst/Trino credential resource
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.StarburstCredential;
+ * import com.pulumi.dbtcloud.StarburstCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attribute (stored in state)
+ *         var example = new StarburstCredential("example", StarburstCredentialArgs.builder()
+ *             .projectId(exampleDbtcloudProject.id())
+ *             .database("your_catalog")
+ *             .schema("your_schema")
+ *             .user("your_user")
+ *             .password("your_password")
+ *             .build());
+ * 
+ *         final var starburstPassword = config.require("starburstPassword");
+ *         var exampleWo = new StarburstCredential("exampleWo", StarburstCredentialArgs.builder()
+ *             .projectId(exampleDbtcloudProject.id())
+ *             .database("your_catalog")
+ *             .schema("your_schema")
+ *             .user("your_user")
+ *             .passwordWo(starburstPassword)
+ *             .passwordWoVersion(1)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

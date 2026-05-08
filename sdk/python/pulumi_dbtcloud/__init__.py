@@ -69,6 +69,7 @@ from .license_map import *
 from .lineage_integration import *
 from .model_notifications import *
 from .notification import *
+from .notification_setting import *
 from .oauth_configuration import *
 from .openai_integration import *
 from .partial_environment_variable import *
@@ -304,6 +305,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/notification:Notification": "Notification"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/notificationSetting",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/notificationSetting:NotificationSetting": "NotificationSetting"
   }
  },
  {

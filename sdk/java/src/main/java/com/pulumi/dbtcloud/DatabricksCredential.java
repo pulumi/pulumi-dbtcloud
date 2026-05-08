@@ -20,6 +20,53 @@ import javax.annotation.Nullable;
 /**
  * Databricks credential resource
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.DatabricksCredential;
+ * import com.pulumi.dbtcloud.DatabricksCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attribute (stored in state)
+ *         var myDatabricksCred = new DatabricksCredential("myDatabricksCred", DatabricksCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .token("abcdefgh")
+ *             .schema("my_schema")
+ *             .adapterType("databricks")
+ *             .build());
+ * 
+ *         final var databricksToken = config.require("databricksToken");
+ *         var myDatabricksCredWo = new DatabricksCredential("myDatabricksCredWo", DatabricksCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .tokenWo(databricksToken)
+ *             .tokenWoVersion(1)
+ *             .schema("my_schema")
+ *             .adapterType("databricks")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

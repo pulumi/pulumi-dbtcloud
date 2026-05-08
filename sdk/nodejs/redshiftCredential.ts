@@ -7,6 +7,34 @@ import * as utilities from "./utilities";
 /**
  * Redshift credential resource
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as dbtcloud from "@pulumi/dbtcloud";
+ *
+ * // Using the classic sensitive attribute (stored in state)
+ * const redshift = new dbtcloud.RedshiftCredential("redshift", {
+ *     numThreads: 16,
+ *     projectId: testProject.id,
+ *     defaultSchema: "my_schema",
+ *     username: "my_username",
+ *     password: "my_sensitive_password",
+ *     isActive: true,
+ * });
+ * const config = new pulumi.Config();
+ * const redshiftPassword = config.require("redshiftPassword");
+ * const redshiftWo = new dbtcloud.RedshiftCredential("redshift_wo", {
+ *     numThreads: 16,
+ *     projectId: testProject.id,
+ *     defaultSchema: "my_schema",
+ *     username: "my_username",
+ *     passwordWo: redshiftPassword,
+ *     passwordWoVersion: 1,
+ *     isActive: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * using  import blocks (requires Terraform >= 1.5)

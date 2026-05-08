@@ -375,6 +375,44 @@ class OauthConfiguration(pulumi.CustomResource):
 
         See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/external-oauth) for more information on how to configure it.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        entra = dbtcloud.OauthConfiguration("entra",
+            type="entra",
+            name="My Entra ID Oauth integration",
+            client_id="client-id",
+            client_secret="client-secret",
+            redirect_uri="http://example.com",
+            token_url="http://example.com",
+            authorize_url="http://example.com",
+            application_id_uri="uri")
+        okta = dbtcloud.OauthConfiguration("okta",
+            type="okta",
+            name="My Okta Oauth integration",
+            client_id="client-id",
+            client_secret="client-secret",
+            redirect_uri="http://example.com",
+            token_url="http://example.com",
+            authorize_url="http://example.com")
+        config = pulumi.Config()
+        oauth_client_secret = config.require("oauthClientSecret")
+        entra_wo = dbtcloud.OauthConfiguration("entra_wo",
+            type="entra",
+            name="My Entra ID Oauth integration",
+            client_id="client-id",
+            client_secret_wo=oauth_client_secret,
+            client_secret_wo_version=1,
+            redirect_uri="http://example.com",
+            token_url="http://example.com",
+            authorize_url="http://example.com",
+            application_id_uri="uri")
+        ```
+
         ## Import
 
         using  import blocks (requires Terraform >= 1.5)
@@ -420,6 +458,44 @@ class OauthConfiguration(pulumi.CustomResource):
         Configure an external OAuth integration for the data warehouse. Currently supports Okta and Entra ID (i.e. Azure AD) for Snowflake.
 
         See the [documentation](https://docs.getdbt.com/docs/cloud/manage-access/external-oauth) for more information on how to configure it.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        entra = dbtcloud.OauthConfiguration("entra",
+            type="entra",
+            name="My Entra ID Oauth integration",
+            client_id="client-id",
+            client_secret="client-secret",
+            redirect_uri="http://example.com",
+            token_url="http://example.com",
+            authorize_url="http://example.com",
+            application_id_uri="uri")
+        okta = dbtcloud.OauthConfiguration("okta",
+            type="okta",
+            name="My Okta Oauth integration",
+            client_id="client-id",
+            client_secret="client-secret",
+            redirect_uri="http://example.com",
+            token_url="http://example.com",
+            authorize_url="http://example.com")
+        config = pulumi.Config()
+        oauth_client_secret = config.require("oauthClientSecret")
+        entra_wo = dbtcloud.OauthConfiguration("entra_wo",
+            type="entra",
+            name="My Entra ID Oauth integration",
+            client_id="client-id",
+            client_secret_wo=oauth_client_secret,
+            client_secret_wo_version=1,
+            redirect_uri="http://example.com",
+            token_url="http://example.com",
+            authorize_url="http://example.com",
+            application_id_uri="uri")
+        ```
 
         ## Import
 

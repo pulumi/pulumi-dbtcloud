@@ -40,6 +40,8 @@ __all__ = [
     'JobExecution',
     'JobJobCompletionTriggerCondition',
     'JobTriggers',
+    'NotificationSettingChannel',
+    'NotificationSettingRule',
     'PostgresSemanticLayerCredentialConfiguration',
     'PostgresSemanticLayerCredentialCredential',
     'RedshiftSemanticLayerCredentialConfiguration',
@@ -2503,6 +2505,154 @@ class JobTriggers(dict):
         Whether the job runs on a schedule
         """
         return pulumi.get(self, "schedule")
+
+
+@pulumi.output_type
+class NotificationSettingChannel(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "channelType":
+            suggest = "channel_type"
+        elif key == "teamsChannelId":
+            suggest = "teams_channel_id"
+        elif key == "teamsTeamId":
+            suggest = "teams_team_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationSettingChannel. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationSettingChannel.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationSettingChannel.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 channel_type: _builtins.str,
+                 teams_channel_id: _builtins.str,
+                 teams_team_id: _builtins.str,
+                 id: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str channel_type: Channel type. Currently only `teams` is supported.
+        :param _builtins.str teams_channel_id: Microsoft Teams channel ID.
+        :param _builtins.str teams_team_id: Microsoft Teams team ID.
+        :param _builtins.int id: Channel ID
+        """
+        pulumi.set(__self__, "channel_type", channel_type)
+        pulumi.set(__self__, "teams_channel_id", teams_channel_id)
+        pulumi.set(__self__, "teams_team_id", teams_team_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter(name="channelType")
+    def channel_type(self) -> _builtins.str:
+        """
+        Channel type. Currently only `teams` is supported.
+        """
+        return pulumi.get(self, "channel_type")
+
+    @_builtins.property
+    @pulumi.getter(name="teamsChannelId")
+    def teams_channel_id(self) -> _builtins.str:
+        """
+        Microsoft Teams channel ID.
+        """
+        return pulumi.get(self, "teams_channel_id")
+
+    @_builtins.property
+    @pulumi.getter(name="teamsTeamId")
+    def teams_team_id(self) -> _builtins.str:
+        """
+        Microsoft Teams team ID.
+        """
+        return pulumi.get(self, "teams_team_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.int]:
+        """
+        Channel ID
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class NotificationSettingRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "triggerOn":
+            suggest = "trigger_on"
+        elif key == "jobId":
+            suggest = "job_id"
+        elif key == "jobName":
+            suggest = "job_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationSettingRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationSettingRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationSettingRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 trigger_on: _builtins.str,
+                 id: Optional[_builtins.int] = None,
+                 job_id: Optional[_builtins.int] = None,
+                 job_name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str trigger_on: Event that fires the notification. Valid values: `run_warning`, `run_successful`, `run_errored`, `run_cancelled`.
+        :param _builtins.int id: Rule ID
+        :param _builtins.int job_id: Job ID this rule applies to. Omit to fire for all jobs in the account.
+        :param _builtins.str job_name: Name of the job referenced by `job_id` (read-only).
+        """
+        pulumi.set(__self__, "trigger_on", trigger_on)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
+        if job_name is not None:
+            pulumi.set(__self__, "job_name", job_name)
+
+    @_builtins.property
+    @pulumi.getter(name="triggerOn")
+    def trigger_on(self) -> _builtins.str:
+        """
+        Event that fires the notification. Valid values: `run_warning`, `run_successful`, `run_errored`, `run_cancelled`.
+        """
+        return pulumi.get(self, "trigger_on")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.int]:
+        """
+        Rule ID
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[_builtins.int]:
+        """
+        Job ID this rule applies to. Omit to fire for all jobs in the account.
+        """
+        return pulumi.get(self, "job_id")
+
+    @_builtins.property
+    @pulumi.getter(name="jobName")
+    def job_name(self) -> Optional[_builtins.str]:
+        """
+        Name of the job referenced by `job_id` (read-only).
+        """
+        return pulumi.get(self, "job_name")
 
 
 @pulumi.output_type

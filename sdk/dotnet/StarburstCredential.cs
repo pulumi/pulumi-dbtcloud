@@ -12,6 +12,41 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Starburst/Trino credential resource
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var example = new DbtCloud.Index.StarburstCredential("example", new()
+    ///     {
+    ///         ProjectId = exampleDbtcloudProject.Id,
+    ///         Database = "your_catalog",
+    ///         Schema = "your_schema",
+    ///         User = "your_user",
+    ///         Password = "your_password",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var starburstPassword = config.Require("starburstPassword");
+    ///     var exampleWo = new DbtCloud.Index.StarburstCredential("example_wo", new()
+    ///     {
+    ///         ProjectId = exampleDbtcloudProject.Id,
+    ///         Database = "your_catalog",
+    ///         Schema = "your_schema",
+    ///         User = "your_user",
+    ///         PasswordWo = starburstPassword,
+    ///         PasswordWoVersion = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

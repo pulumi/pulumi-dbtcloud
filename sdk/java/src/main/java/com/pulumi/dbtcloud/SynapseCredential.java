@@ -19,6 +19,93 @@ import javax.annotation.Nullable;
 /**
  * Synapse credential resource
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.dbtcloud.SynapseCredential;
+ * import com.pulumi.dbtcloud.SynapseCredentialArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         // Using the classic sensitive attributes (stored in state)
+ *         // when using sql authentication
+ *         var mySynapseCredSql = new SynapseCredential("mySynapseCredSql", SynapseCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .authentication("sql")
+ *             .schema("my_schema")
+ *             .user("my_user")
+ *             .password("my_password")
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *         // when using AD authentication
+ *         var mySynapseCredAd = new SynapseCredential("mySynapseCredAd", SynapseCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .authentication("ActiveDirectoryPassword")
+ *             .schema("my_schema")
+ *             .user("my_user")
+ *             .password("my_password")
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *         // when using service principal authentication
+ *         var mySynapseCredServPrinc = new SynapseCredential("mySynapseCredServPrinc", SynapseCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .authentication("ServicePrincipal")
+ *             .schema("my_schema")
+ *             .clientId("my_client_id")
+ *             .tenantId("my_tenant_id")
+ *             .clientSecret("my_secret")
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *         final var synapsePassword = config.require("synapsePassword");
+ *         final var synapseClientSecret = config.require("synapseClientSecret");
+ *         // when using AD authentication with write-only password
+ *         var mySynapseCredAdWo = new SynapseCredential("mySynapseCredAdWo", SynapseCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .authentication("ActiveDirectoryPassword")
+ *             .schema("my_schema")
+ *             .user("my_user")
+ *             .passwordWo(synapsePassword)
+ *             .passwordWoVersion(1)
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *         // when using service principal authentication with write-only client secret
+ *         var mySynapseCredServPrincWo = new SynapseCredential("mySynapseCredServPrincWo", SynapseCredentialArgs.builder()
+ *             .projectId(dbtProject.id())
+ *             .authentication("ServicePrincipal")
+ *             .schema("my_schema")
+ *             .clientId("my_client_id")
+ *             .tenantId("my_tenant_id")
+ *             .clientSecretWo(synapseClientSecret)
+ *             .clientSecretWoVersion(1)
+ *             .schemaAuthorization("abcd")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * using  import blocks (requires Terraform &gt;= 1.5)

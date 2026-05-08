@@ -355,6 +355,32 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
         > **Note:** The `connection_id` cannot be changed after creation. To use a different connection,
         you must destroy and recreate the resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        example = dbtcloud.DatabricksPlatformMetadataCredential("example",
+            connection_id=databricks["id"],
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=False,
+            cost_insights_enabled=False,
+            token=databricks_token,
+            catalog="main")
+        config = pulumi.Config()
+        databricks_metadata_token = config.require("databricksMetadataToken")
+        example_wo = dbtcloud.DatabricksPlatformMetadataCredential("example_wo",
+            connection_id=databricks["id"],
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=False,
+            cost_insights_enabled=False,
+            token_wo=databricks_metadata_token,
+            token_wo_version=1,
+            catalog="main")
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -389,6 +415,32 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
 
         > **Note:** The `connection_id` cannot be changed after creation. To use a different connection,
         you must destroy and recreate the resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_dbtcloud as dbtcloud
+
+        # Using the classic sensitive attribute (stored in state)
+        example = dbtcloud.DatabricksPlatformMetadataCredential("example",
+            connection_id=databricks["id"],
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=False,
+            cost_insights_enabled=False,
+            token=databricks_token,
+            catalog="main")
+        config = pulumi.Config()
+        databricks_metadata_token = config.require("databricksMetadataToken")
+        example_wo = dbtcloud.DatabricksPlatformMetadataCredential("example_wo",
+            connection_id=databricks["id"],
+            catalog_ingestion_enabled=True,
+            cost_optimization_enabled=False,
+            cost_insights_enabled=False,
+            token_wo=databricks_metadata_token,
+            token_wo_version=1,
+            catalog="main")
+        ```
 
 
         :param str resource_name: The name of the resource.

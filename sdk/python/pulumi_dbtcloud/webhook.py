@@ -306,7 +306,7 @@ class Webhook(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Webhook details
+        Manages webhook notifications in dbt Cloud.
 
         ## Example Usage
 
@@ -365,7 +365,7 @@ class Webhook(pulumi.CustomResource):
                  args: WebhookArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Webhook details
+        Manages webhook notifications in dbt Cloud.
 
         ## Example Usage
 

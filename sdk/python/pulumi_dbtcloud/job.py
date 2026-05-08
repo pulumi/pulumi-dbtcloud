@@ -1142,7 +1142,7 @@ class Job(pulumi.CustomResource):
           -H 'Authorization: Bearer {dbt_token}' \\\\
           -H 'Content-Type: application/json' \\\\
           -d '{{\\"cause\\": \\"Generate manifest\\", \\"steps_override\\": [\\"dbt parse\\"]}}' \\\\
-          {dbt_host_url}/v2/accounts/{dbt_account_id}/jobs/{id}/run/)
+          {dbt_host_url}/v2/accounts/{dbt_account_id}/jobs/{daily_job.id}/run/)
               
         if [ \\"$response\\" -ge 200 ] && [ \\"$response\\" -lt 300 ]; then
           echo \\"Success: HTTP status $response\\"
@@ -1279,7 +1279,7 @@ class Job(pulumi.CustomResource):
           -H 'Authorization: Bearer {dbt_token}' \\\\
           -H 'Content-Type: application/json' \\\\
           -d '{{\\"cause\\": \\"Generate manifest\\", \\"steps_override\\": [\\"dbt parse\\"]}}' \\\\
-          {dbt_host_url}/v2/accounts/{dbt_account_id}/jobs/{id}/run/)
+          {dbt_host_url}/v2/accounts/{dbt_account_id}/jobs/{daily_job.id}/run/)
               
         if [ \\"$response\\" -ge 200 ] && [ \\"$response\\" -lt 300 ]; then
           echo \\"Success: HTTP status $response\\"

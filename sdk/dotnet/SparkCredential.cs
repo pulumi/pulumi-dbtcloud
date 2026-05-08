@@ -12,6 +12,37 @@ namespace Pulumi.DbtCloud
     /// <summary>
     /// Apache Spark credential resource
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using DbtCloud = Pulumi.DbtCloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Using the classic sensitive attribute (stored in state)
+    ///     var mySparkCred = new DbtCloud.Index.SparkCredential("my_spark_cred", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         Token = "abcdefgh",
+    ///         Schema = "my_schema",
+    ///     });
+    /// 
+    ///     var config = new Config();
+    ///     var sparkToken = config.Require("sparkToken");
+    ///     var mySparkCredWo = new DbtCloud.Index.SparkCredential("my_spark_cred_wo", new()
+    ///     {
+    ///         ProjectId = dbtProject.Id,
+    ///         TokenWo = sparkToken,
+    ///         TokenWoVersion = 1,
+    ///         Schema = "my_schema",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using  import blocks (requires Terraform &gt;= 1.5)

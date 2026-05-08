@@ -79,6 +79,7 @@
         "lineageIntegration.ts",
         "modelNotifications.ts",
         "notification.ts",
+        "notificationSetting.ts",
         "oauthConfiguration.ts",
         "openaiIntegration.ts",
         "partialEnvironmentVariable.ts",

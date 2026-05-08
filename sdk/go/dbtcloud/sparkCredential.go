@@ -14,6 +14,47 @@ import (
 
 // Apache Spark credential resource
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Using the classic sensitive attribute (stored in state)
+//			_, err := dbtcloud.NewSparkCredential(ctx, "my_spark_cred", &dbtcloud.SparkCredentialArgs{
+//				ProjectId: pulumi.Any(dbtProject.Id),
+//				Token:     pulumi.String("abcdefgh"),
+//				Schema:    pulumi.String("my_schema"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			cfg := config.New(ctx, "")
+//			sparkToken := cfg.Require("sparkToken")
+//			_, err = dbtcloud.NewSparkCredential(ctx, "my_spark_cred_wo", &dbtcloud.SparkCredentialArgs{
+//				ProjectId:      pulumi.Any(dbtProject.Id),
+//				TokenWo:        pulumi.String(pulumi.String(sparkToken)),
+//				TokenWoVersion: pulumi.Int(1),
+//				Schema:         pulumi.String("my_schema"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using  import blocks (requires Terraform >= 1.5)
