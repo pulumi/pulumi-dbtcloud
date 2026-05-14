@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * |Team Admin | team_admin|
  * |Webhooks Only | webhooks_only|
  * 
- * Provide a complete set of permissions for a group. This is different from `dbtCloudPartialGroupPermissions`.
+ * Provide a complete set of permissions for a group. This is different from `dbtcloud.GroupPartialPermissions`.
  * 
  * With this resource type only one resource can be used to manage the permissions for a given group.
  * 
@@ -137,14 +137,14 @@ public class Group extends com.pulumi.resources.CustomResource {
         return this.assignByDefault;
     }
     /**
-     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group&#39;s permissions.
      * 
      */
     @Export(name="groupPermissions", refs={List.class,GroupGroupPermission.class}, tree="[0,1]")
     private Output</* @Nullable */ List<GroupGroupPermission>> groupPermissions;
 
     /**
-     * @return Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * @return The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group&#39;s permissions.
      * 
      */
     public Output<Optional<List<GroupGroupPermission>>> groupPermissions() {

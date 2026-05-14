@@ -40,7 +40,7 @@ namespace Pulumi.DbtCloud
     /// |Team Admin | team_admin|
     /// |Webhooks Only | webhooks_only|
     /// 
-    /// Provide a complete set of permissions for a group. This is different from `DbtCloudPartialGroupPermissions`.
+    /// Provide a complete set of permissions for a group. This is different from `dbtcloud.GroupPartialPermissions`.
     /// 
     /// With this resource type only one resource can be used to manage the permissions for a given group.
     /// 
@@ -111,7 +111,7 @@ namespace Pulumi.DbtCloud
         public Output<bool> AssignByDefault { get; private set; } = null!;
 
         /// <summary>
-        /// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        /// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         /// </summary>
         [Output("groupPermissions")]
         public Output<ImmutableArray<Outputs.GroupGroupPermission>> GroupPermissions { get; private set; } = null!;
@@ -185,7 +185,7 @@ namespace Pulumi.DbtCloud
         private InputList<Inputs.GroupGroupPermissionArgs>? _groupPermissions;
 
         /// <summary>
-        /// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        /// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         /// </summary>
         public InputList<Inputs.GroupGroupPermissionArgs> GroupPermissions
         {
@@ -229,7 +229,7 @@ namespace Pulumi.DbtCloud
         private InputList<Inputs.GroupGroupPermissionGetArgs>? _groupPermissions;
 
         /// <summary>
-        /// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        /// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         /// </summary>
         public InputList<Inputs.GroupGroupPermissionGetArgs> GroupPermissions
         {

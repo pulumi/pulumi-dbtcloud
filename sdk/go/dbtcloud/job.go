@@ -141,7 +141,7 @@ type Job struct {
 
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags pulumi.StringOutput `pulumi:"compareChangesFlags"`
-	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion pulumi.StringPtrOutput `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId pulumi.IntPtrOutput `pulumi:"deferringEnvironmentId"`
@@ -251,7 +251,7 @@ func GetJob(ctx *pulumi.Context,
 type jobState struct {
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags *string `pulumi:"compareChangesFlags"`
-	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId *int `pulumi:"deferringEnvironmentId"`
@@ -320,7 +320,7 @@ type jobState struct {
 type JobState struct {
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags pulumi.StringPtrInput
-	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion pulumi.StringPtrInput
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId pulumi.IntPtrInput
@@ -393,7 +393,7 @@ func (JobState) ElementType() reflect.Type {
 type jobArgs struct {
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags *string `pulumi:"compareChangesFlags"`
-	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId *int `pulumi:"deferringEnvironmentId"`
@@ -461,7 +461,7 @@ type jobArgs struct {
 type JobArgs struct {
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags pulumi.StringPtrInput
-	// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion pulumi.StringPtrInput
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId pulumi.IntPtrInput
@@ -617,7 +617,7 @@ func (o JobOutput) CompareChangesFlags() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.CompareChangesFlags }).(pulumi.StringOutput)
 }
 
-// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 func (o JobOutput) DbtVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.DbtVersion }).(pulumi.StringPtrOutput)
 }

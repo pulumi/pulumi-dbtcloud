@@ -68,7 +68,7 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `[&#34;all&#34;]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      * 
      */
@@ -79,7 +79,7 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
      * @return What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `[&#34;all&#34;]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      * 
      */
@@ -181,7 +181,7 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
          * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
          * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
          * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-         * Not setting a value is the same as selecting `all`.
+         * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `[&#34;all&#34;]`.
          * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
          * 
          * @return builder
@@ -196,7 +196,7 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
          * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
          * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
          * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-         * Not setting a value is the same as selecting `all`.
+         * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `[&#34;all&#34;]`.
          * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
          * 
          * @return builder
@@ -210,7 +210,7 @@ public final class ServiceTokenServiceTokenPermissionArgs extends com.pulumi.res
          * @param writableEnvironmentCategories What types of environments to apply Write permissions to.
          * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
          * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-         * Not setting a value is the same as selecting `all`.
+         * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `[&#34;all&#34;]`.
          * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
          * 
          * @return builder

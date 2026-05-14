@@ -235,7 +235,7 @@ export interface GetServiceTokenServiceTokenPermission {
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories?: string[];
@@ -258,7 +258,7 @@ export interface GetServiceTokenServiceTokenPermissionArgs {
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -720,7 +720,7 @@ export interface GroupGroupPermission {
      */
     allProjects: pulumi.Input<boolean>;
     /**
-     * Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+     * The permission set to apply (e.g. `developer`, `analyst`, `accountAdmin`). See the table at the top of this page for the full list of permission codes.
      */
     permissionSet: pulumi.Input<string>;
     /**
@@ -731,7 +731,7 @@ export interface GroupGroupPermission {
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -754,7 +754,7 @@ export interface GroupPartialPermissionsGroupPermission {
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -1005,7 +1005,7 @@ export interface ScimGroupPartialPermissionsPermission {
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -1028,7 +1028,7 @@ export interface ScimGroupPermissionsPermission {
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -1051,7 +1051,7 @@ export interface ServiceTokenServiceTokenPermission {
      * What types of environments to apply Write permissions to.
      * Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
      * The values allowed are `all`, `development`, `staging`, `production` and `other`.
-     * Not setting a value is the same as selecting `all`.
+     * Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
      * Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
      */
     writableEnvironmentCategories?: pulumi.Input<pulumi.Input<string>[] | undefined>;

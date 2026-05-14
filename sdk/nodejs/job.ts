@@ -137,7 +137,7 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly compareChangesFlags: pulumi.Output<string>;
     /**
-     * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+     * Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
      */
     declare public readonly dbtVersion: pulumi.Output<string | undefined>;
     /**
@@ -369,7 +369,7 @@ export interface JobState {
      */
     compareChangesFlags?: pulumi.Input<string | undefined>;
     /**
-     * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+     * Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
      */
     dbtVersion?: pulumi.Input<string | undefined>;
     /**
@@ -505,7 +505,7 @@ export interface JobArgs {
      */
     compareChangesFlags?: pulumi.Input<string | undefined>;
     /**
-     * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+     * Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
      */
     dbtVersion?: pulumi.Input<string | undefined>;
     /**
