@@ -2126,12 +2126,12 @@ class GroupGroupPermission(dict):
                  writable_environment_categories: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.bool all_projects: Whether access should be provided for all projects or not.
-        :param _builtins.str permission_set: Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        :param _builtins.str permission_set: The permission set to apply (e.g. `developer`, `analyst`, `account_admin`). See the table at the top of this page for the full list of permission codes.
         :param _builtins.int project_id: Project ID to apply this permission to for this group.
         :param Sequence[_builtins.str] writable_environment_categories: What types of environments to apply Write permissions to.
                Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
                The values allowed are `all`, `development`, `staging`, `production` and `other`.
-               Not setting a value is the same as selecting `all`.
+               Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
                Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
@@ -2153,7 +2153,7 @@ class GroupGroupPermission(dict):
     @pulumi.getter(name="permissionSet")
     def permission_set(self) -> _builtins.str:
         """
-        Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+        The permission set to apply (e.g. `developer`, `analyst`, `account_admin`). See the table at the top of this page for the full list of permission codes.
         """
         return pulumi.get(self, "permission_set")
 
@@ -2172,7 +2172,7 @@ class GroupGroupPermission(dict):
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
         The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
+        Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
         Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         return pulumi.get(self, "writable_environment_categories")
@@ -2215,7 +2215,7 @@ class GroupPartialPermissionsGroupPermission(dict):
         :param Sequence[_builtins.str] writable_environment_categories: What types of environments to apply Write permissions to.
                Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
                The values allowed are `all`, `development`, `staging`, `production` and `other`.
-               Not setting a value is the same as selecting `all`.
+               Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
                Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
@@ -2256,7 +2256,7 @@ class GroupPartialPermissionsGroupPermission(dict):
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
         The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
+        Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
         Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         return pulumi.get(self, "writable_environment_categories")
@@ -3161,7 +3161,7 @@ class ScimGroupPartialPermissionsPermission(dict):
         :param Sequence[_builtins.str] writable_environment_categories: What types of environments to apply Write permissions to.
                Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
                The values allowed are `all`, `development`, `staging`, `production` and `other`.
-               Not setting a value is the same as selecting `all`.
+               Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
                Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
@@ -3202,7 +3202,7 @@ class ScimGroupPartialPermissionsPermission(dict):
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
         The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
+        Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
         Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         return pulumi.get(self, "writable_environment_categories")
@@ -3245,7 +3245,7 @@ class ScimGroupPermissionsPermission(dict):
         :param Sequence[_builtins.str] writable_environment_categories: What types of environments to apply Write permissions to.
                Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
                The values allowed are `all`, `development`, `staging`, `production` and `other`.
-               Not setting a value is the same as selecting `all`.
+               Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
                Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
@@ -3286,7 +3286,7 @@ class ScimGroupPermissionsPermission(dict):
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
         The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
+        Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
         Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         return pulumi.get(self, "writable_environment_categories")
@@ -3329,7 +3329,7 @@ class ServiceTokenServiceTokenPermission(dict):
         :param Sequence[_builtins.str] writable_environment_categories: What types of environments to apply Write permissions to.
                Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
                The values allowed are `all`, `development`, `staging`, `production` and `other`.
-               Not setting a value is the same as selecting `all`.
+               Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
                Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
@@ -3370,7 +3370,7 @@ class ServiceTokenServiceTokenPermission(dict):
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
         The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
+        Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
         Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         return pulumi.get(self, "writable_environment_categories")
@@ -6646,7 +6646,7 @@ class GetServiceTokenServiceTokenPermissionResult(dict):
         :param Sequence[_builtins.str] writable_environment_categories: What types of environments to apply Write permissions to.
                Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
                The values allowed are `all`, `development`, `staging`, `production` and `other`.
-               Not setting a value is the same as selecting `all`.
+               Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
                Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         pulumi.set(__self__, "all_projects", all_projects)
@@ -6685,7 +6685,7 @@ class GetServiceTokenServiceTokenPermissionResult(dict):
         What types of environments to apply Write permissions to.
         Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
         The values allowed are `all`, `development`, `staging`, `production` and `other`.
-        Not setting a value is the same as selecting `all`.
+        Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
         Not all permission sets support environment level write settings, only `analyst`, `database_admin`, `developer`, `git_admin` and `team_admin`.
         """
         return pulumi.get(self, "writable_environment_categories")

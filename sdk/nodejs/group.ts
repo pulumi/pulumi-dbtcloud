@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * |Team Admin | team_admin|
  * |Webhooks Only | webhooks_only|
  *
- * Provide a complete set of permissions for a group. This is different from `dbtCloudPartialGroupPermissions`.
+ * Provide a complete set of permissions for a group. This is different from `dbtcloud.GroupPartialPermissions`.
  *
  * With this resource type only one resource can be used to manage the permissions for a given group.
  *
@@ -120,7 +120,7 @@ export class Group extends pulumi.CustomResource {
      */
     declare public readonly assignByDefault: pulumi.Output<boolean>;
     /**
-     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
      */
     declare public readonly groupPermissions: pulumi.Output<outputs.GroupGroupPermission[] | undefined>;
     /**
@@ -170,7 +170,7 @@ export interface GroupState {
      */
     assignByDefault?: pulumi.Input<boolean | undefined>;
     /**
-     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
      */
     groupPermissions?: pulumi.Input<pulumi.Input<inputs.GroupGroupPermission>[] | undefined>;
     /**
@@ -192,7 +192,7 @@ export interface GroupArgs {
      */
     assignByDefault?: pulumi.Input<boolean | undefined>;
     /**
-     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
      */
     groupPermissions?: pulumi.Input<pulumi.Input<inputs.GroupGroupPermission>[] | undefined>;
     /**

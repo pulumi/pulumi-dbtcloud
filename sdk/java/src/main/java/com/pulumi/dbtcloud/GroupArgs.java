@@ -34,14 +34,14 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group&#39;s permissions.
      * 
      */
     @Import(name="groupPermissions")
     private @Nullable Output<List<GroupGroupPermissionArgs>> groupPermissions;
 
     /**
-     * @return Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+     * @return The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group&#39;s permissions.
      * 
      */
     public Optional<Output<List<GroupGroupPermissionArgs>>> groupPermissions() {
@@ -127,7 +127,7 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param groupPermissions Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+         * @param groupPermissions The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group&#39;s permissions.
          * 
          * @return builder
          * 
@@ -138,7 +138,7 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param groupPermissions Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+         * @param groupPermissions The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group&#39;s permissions.
          * 
          * @return builder
          * 
@@ -148,7 +148,7 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param groupPermissions Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+         * @param groupPermissions The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group&#39;s permissions.
          * 
          * @return builder
          * 

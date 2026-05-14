@@ -140,7 +140,7 @@ namespace Pulumi.DbtCloud
         public Output<string> CompareChangesFlags { get; private set; } = null!;
 
         /// <summary>
-        /// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        /// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` is recommended. If not set, the `DbtVersion` configured on the environment is used.
         /// </summary>
         [Output("dbtVersion")]
         public Output<string?> DbtVersion { get; private set; } = null!;
@@ -379,7 +379,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? CompareChangesFlags { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        /// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` is recommended. If not set, the `DbtVersion` configured on the environment is used.
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }
@@ -597,7 +597,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? CompareChangesFlags { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        /// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` is recommended. If not set, the `DbtVersion` configured on the environment is used.
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }

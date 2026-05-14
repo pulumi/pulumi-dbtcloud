@@ -60,7 +60,7 @@ class JobArgs:
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the job in
         :param pulumi.Input['JobTriggersArgs'] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
@@ -213,7 +213,7 @@ class JobArgs:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         """
         return pulumi.get(self, "dbt_version")
 
@@ -562,7 +562,7 @@ class _JobState:
         Input properties used for looking up and filtering Job resources.
 
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
@@ -678,7 +678,7 @@ class _JobState:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         """
         return pulumi.get(self, "dbt_version")
 
@@ -1186,7 +1186,7 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
@@ -1465,7 +1465,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
@@ -1547,7 +1547,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         """
         return pulumi.get(self, "dbt_version")
 

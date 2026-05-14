@@ -19,7 +19,7 @@ namespace Pulumi.DbtCloud.Inputs
         public Input<bool> AllProjects { get; set; } = null!;
 
         /// <summary>
-        /// Set of permissions to apply. The permissions allowed are the same as the ones for the `dbtcloud.Group` resource.
+        /// The permission set to apply (e.g. `Developer`, `Analyst`, `AccountAdmin`). See the table at the top of this page for the full list of permission codes.
         /// </summary>
         [Input("permissionSet", required: true)]
         public Input<string> PermissionSet { get; set; } = null!;
@@ -37,7 +37,7 @@ namespace Pulumi.DbtCloud.Inputs
         /// What types of environments to apply Write permissions to.
         /// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
         /// The values allowed are `All`, `Development`, `Staging`, `Production` and `Other`.
-        /// Not setting a value is the same as selecting `All`.
+        /// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
         /// Not all permission sets support environment level write settings, only `Analyst`, `DatabaseAdmin`, `Developer`, `GitAdmin` and `TeamAdmin`.
         /// </summary>
         public InputList<string> WritableEnvironmentCategories

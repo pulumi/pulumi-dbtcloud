@@ -160,14 +160,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.compareChangesFlags;
     }
     /**
-     * Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+     * Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this job, usually in the format 1.2.0-latest rather than core versions
+     * @return Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
      * 
      */
     public Output<Optional<String>> dbtVersion() {

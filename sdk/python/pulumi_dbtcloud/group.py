@@ -29,7 +29,7 @@ class GroupArgs:
         The set of arguments for constructing a Group resource.
 
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
-        :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         :param pulumi.Input[_builtins.str] name: The name of the group. This is used to identify an existing group
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
@@ -58,7 +58,7 @@ class GroupArgs:
     @pulumi.getter(name="groupPermissions")
     def group_permissions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GroupGroupPermissionArgs']]]]:
         """
-        Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         """
         return pulumi.get(self, "group_permissions")
 
@@ -102,7 +102,7 @@ class _GroupState:
         Input properties used for looking up and filtering Group resources.
 
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
-        :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input['GroupGroupPermissionArgs']]] group_permissions: The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         :param pulumi.Input[_builtins.str] name: The name of the group. This is used to identify an existing group
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
@@ -131,7 +131,7 @@ class _GroupState:
     @pulumi.getter(name="groupPermissions")
     def group_permissions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GroupGroupPermissionArgs']]]]:
         """
-        Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         """
         return pulumi.get(self, "group_permissions")
 
@@ -206,7 +206,7 @@ class Group(pulumi.CustomResource):
         |Team Admin | team_admin|
         |Webhooks Only | webhooks_only|
 
-        Provide a complete set of permissions for a group. This is different from `dbt_cloud_partial_group_permissions`.
+        Provide a complete set of permissions for a group. This is different from `GroupPartialPermissions`.
 
         With this resource type only one resource can be used to manage the permissions for a given group.
 
@@ -259,7 +259,7 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]] group_permissions: The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         :param pulumi.Input[_builtins.str] name: The name of the group. This is used to identify an existing group
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
@@ -300,7 +300,7 @@ class Group(pulumi.CustomResource):
         |Team Admin | team_admin|
         |Webhooks Only | webhooks_only|
 
-        Provide a complete set of permissions for a group. This is different from `dbt_cloud_partial_group_permissions`.
+        Provide a complete set of permissions for a group. This is different from `GroupPartialPermissions`.
 
         With this resource type only one resource can be used to manage the permissions for a given group.
 
@@ -404,7 +404,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]] group_permissions: Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]] group_permissions: The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         :param pulumi.Input[_builtins.str] name: The name of the group. This is used to identify an existing group
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
@@ -430,7 +430,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="groupPermissions")
     def group_permissions(self) -> pulumi.Output[Optional[Sequence['outputs.GroupGroupPermission']]]:
         """
-        Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+        The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         """
         return pulumi.get(self, "group_permissions")
 

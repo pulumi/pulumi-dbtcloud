@@ -4554,14 +4554,14 @@ func (o GlobalConnectionTeradataPtrOutput) Tmode() pulumi.StringPtrOutput {
 type GroupGroupPermission struct {
 	// Whether access should be provided for all projects or not.
 	AllProjects bool `pulumi:"allProjects"`
-	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	// The permission set to apply (e.g. `developer`, `analyst`, `accountAdmin`). See the table at the top of this page for the full list of permission codes.
 	PermissionSet string `pulumi:"permissionSet"`
 	// Project ID to apply this permission to for this group.
 	ProjectId *int `pulumi:"projectId"`
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
@@ -4580,14 +4580,14 @@ type GroupGroupPermissionInput interface {
 type GroupGroupPermissionArgs struct {
 	// Whether access should be provided for all projects or not.
 	AllProjects pulumi.BoolInput `pulumi:"allProjects"`
-	// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+	// The permission set to apply (e.g. `developer`, `analyst`, `accountAdmin`). See the table at the top of this page for the full list of permission codes.
 	PermissionSet pulumi.StringInput `pulumi:"permissionSet"`
 	// Project ID to apply this permission to for this group.
 	ProjectId pulumi.IntPtrInput `pulumi:"projectId"`
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
@@ -4648,7 +4648,7 @@ func (o GroupGroupPermissionOutput) AllProjects() pulumi.BoolOutput {
 	return o.ApplyT(func(v GroupGroupPermission) bool { return v.AllProjects }).(pulumi.BoolOutput)
 }
 
-// Set of permissions to apply. The permissions allowed are the same as the ones for the `Group` resource.
+// The permission set to apply (e.g. `developer`, `analyst`, `accountAdmin`). See the table at the top of this page for the full list of permission codes.
 func (o GroupGroupPermissionOutput) PermissionSet() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupGroupPermission) string { return v.PermissionSet }).(pulumi.StringOutput)
 }
@@ -4661,7 +4661,7 @@ func (o GroupGroupPermissionOutput) ProjectId() pulumi.IntPtrOutput {
 // What types of environments to apply Write permissions to.
 // Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 // The values allowed are `all`, `development`, `staging`, `production` and `other`.
-// Not setting a value is the same as selecting `all`.
+// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 // Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 func (o GroupGroupPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GroupGroupPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
@@ -4697,7 +4697,7 @@ type GroupPartialPermissionsGroupPermission struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
@@ -4723,7 +4723,7 @@ type GroupPartialPermissionsGroupPermissionArgs struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
@@ -4797,7 +4797,7 @@ func (o GroupPartialPermissionsGroupPermissionOutput) ProjectId() pulumi.IntPtrO
 // What types of environments to apply Write permissions to.
 // Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 // The values allowed are `all`, `development`, `staging`, `production` and `other`.
-// Not setting a value is the same as selecting `all`.
+// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 // Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 func (o GroupPartialPermissionsGroupPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GroupPartialPermissionsGroupPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
@@ -6682,7 +6682,7 @@ type ScimGroupPartialPermissionsPermission struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
@@ -6708,7 +6708,7 @@ type ScimGroupPartialPermissionsPermissionArgs struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
@@ -6782,7 +6782,7 @@ func (o ScimGroupPartialPermissionsPermissionOutput) ProjectId() pulumi.IntPtrOu
 // What types of environments to apply Write permissions to.
 // Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 // The values allowed are `all`, `development`, `staging`, `production` and `other`.
-// Not setting a value is the same as selecting `all`.
+// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 // Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 func (o ScimGroupPartialPermissionsPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ScimGroupPartialPermissionsPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
@@ -6818,7 +6818,7 @@ type ScimGroupPermissionsPermission struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
@@ -6844,7 +6844,7 @@ type ScimGroupPermissionsPermissionArgs struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
@@ -6918,7 +6918,7 @@ func (o ScimGroupPermissionsPermissionOutput) ProjectId() pulumi.IntPtrOutput {
 // What types of environments to apply Write permissions to.
 // Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 // The values allowed are `all`, `development`, `staging`, `production` and `other`.
-// Not setting a value is the same as selecting `all`.
+// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 // Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 func (o ScimGroupPermissionsPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ScimGroupPermissionsPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
@@ -6954,7 +6954,7 @@ type ServiceTokenServiceTokenPermission struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
@@ -6980,7 +6980,7 @@ type ServiceTokenServiceTokenPermissionArgs struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
@@ -7054,7 +7054,7 @@ func (o ServiceTokenServiceTokenPermissionOutput) ProjectId() pulumi.IntPtrOutpu
 // What types of environments to apply Write permissions to.
 // Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 // The values allowed are `all`, `development`, `staging`, `production` and `other`.
-// Not setting a value is the same as selecting `all`.
+// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 // Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 func (o ServiceTokenServiceTokenPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ServiceTokenServiceTokenPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)
@@ -12388,7 +12388,7 @@ type GetServiceTokenServiceTokenPermission struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories []string `pulumi:"writableEnvironmentCategories"`
 }
@@ -12414,7 +12414,7 @@ type GetServiceTokenServiceTokenPermissionArgs struct {
 	// What types of environments to apply Write permissions to.
 	// Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 	// The values allowed are `all`, `development`, `staging`, `production` and `other`.
-	// Not setting a value is the same as selecting `all`.
+	// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 	// Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 	WritableEnvironmentCategories pulumi.StringArrayInput `pulumi:"writableEnvironmentCategories"`
 }
@@ -12488,7 +12488,7 @@ func (o GetServiceTokenServiceTokenPermissionOutput) ProjectId() pulumi.IntOutpu
 // What types of environments to apply Write permissions to.
 // Even if Write access is restricted to some environment types, the permission set will have Read access to all environments.
 // The values allowed are `all`, `development`, `staging`, `production` and `other`.
-// Not setting a value is the same as selecting `all`.
+// Not setting a value (or setting an empty list) means the permission set has no Write access to any environment — only Read access. To grant Write access to all environments, set this to `["all"]`.
 // Not all permission sets support environment level write settings, only `analyst`, `databaseAdmin`, `developer`, `gitAdmin` and `teamAdmin`.
 func (o GetServiceTokenServiceTokenPermissionOutput) WritableEnvironmentCategories() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServiceTokenServiceTokenPermission) []string { return v.WritableEnvironmentCategories }).(pulumi.StringArrayOutput)

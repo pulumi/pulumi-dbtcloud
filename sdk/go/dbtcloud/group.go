@@ -41,7 +41,7 @@ import (
 // |Team Admin | team_admin|
 // |Webhooks Only | webhooks_only|
 //
-// Provide a complete set of permissions for a group. This is different from `dbtCloudPartialGroupPermissions`.
+// Provide a complete set of permissions for a group. This is different from `GroupPartialPermissions`.
 //
 // With this resource type only one resource can be used to manage the permissions for a given group.
 //
@@ -110,7 +110,7 @@ type Group struct {
 
 	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 	AssignByDefault pulumi.BoolOutput `pulumi:"assignByDefault"`
-	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+	// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
 	GroupPermissions GroupGroupPermissionArrayOutput `pulumi:"groupPermissions"`
 	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -150,7 +150,7 @@ func GetGroup(ctx *pulumi.Context,
 type groupState struct {
 	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 	AssignByDefault *bool `pulumi:"assignByDefault"`
-	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+	// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
 	GroupPermissions []GroupGroupPermission `pulumi:"groupPermissions"`
 	// The name of the group. This is used to identify an existing group
 	Name *string `pulumi:"name"`
@@ -161,7 +161,7 @@ type groupState struct {
 type GroupState struct {
 	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 	AssignByDefault pulumi.BoolPtrInput
-	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+	// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
 	GroupPermissions GroupGroupPermissionArrayInput
 	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringPtrInput
@@ -176,7 +176,7 @@ func (GroupState) ElementType() reflect.Type {
 type groupArgs struct {
 	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 	AssignByDefault *bool `pulumi:"assignByDefault"`
-	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+	// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
 	GroupPermissions []GroupGroupPermission `pulumi:"groupPermissions"`
 	// The name of the group. This is used to identify an existing group
 	Name *string `pulumi:"name"`
@@ -188,7 +188,7 @@ type groupArgs struct {
 type GroupArgs struct {
 	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 	AssignByDefault pulumi.BoolPtrInput
-	// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+	// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
 	GroupPermissions GroupGroupPermissionArrayInput
 	// The name of the group. This is used to identify an existing group
 	Name pulumi.StringPtrInput
@@ -288,7 +288,7 @@ func (o GroupOutput) AssignByDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Group) pulumi.BoolOutput { return v.AssignByDefault }).(pulumi.BoolOutput)
 }
 
-// Partial permissions for the group. Those permissions will be added/removed when config is added/removed.
+// The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
 func (o GroupOutput) GroupPermissions() GroupGroupPermissionArrayOutput {
 	return o.ApplyT(func(v *Group) GroupGroupPermissionArrayOutput { return v.GroupPermissions }).(GroupGroupPermissionArrayOutput)
 }
