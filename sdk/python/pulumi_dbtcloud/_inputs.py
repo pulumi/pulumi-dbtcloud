@@ -1837,7 +1837,7 @@ class GlobalConnectionPostgresArgsDict(TypedDict):
     """
     The port to connect to for this connection. Default=5432
     """
-    ssh_tunnel: NotRequired[pulumi.Input[Optional['GlobalConnectionPostgresSshTunnelArgs']]]
+    ssh_tunnel: NotRequired[pulumi.Input[Optional['GlobalConnectionPostgresSshTunnelArgsDict']]]
     """
     PostgreSQL SSH Tunnel configuration
     """
@@ -2030,7 +2030,7 @@ class GlobalConnectionRedshiftArgsDict(TypedDict):
     """
     The port to connect to for this connection. Default=5432
     """
-    ssh_tunnel: NotRequired[pulumi.Input[Optional['GlobalConnectionRedshiftSshTunnelArgs']]]
+    ssh_tunnel: NotRequired[pulumi.Input[Optional['GlobalConnectionRedshiftSshTunnelArgsDict']]]
     """
     Redshift SSH Tunnel configuration
     """
