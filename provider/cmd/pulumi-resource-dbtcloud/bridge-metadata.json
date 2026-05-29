@@ -151,6 +151,9 @@
                 "current": "dbtcloud:index/job:Job",
                 "majorVersion": 1,
                 "fields": {
+                    "cost_optimization_features": {
+                        "maxItemsOne": false
+                    },
                     "execute_steps": {
                         "maxItemsOne": false
                     },
@@ -168,6 +171,15 @@
                         "maxItemsOne": false
                     },
                     "schedule_hours": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "dbtcloud_job_completion_trigger": {
+                "current": "dbtcloud:index/jobCompletionTrigger:JobCompletionTrigger",
+                "majorVersion": 1,
+                "fields": {
+                    "statuses": {
                         "maxItemsOne": false
                     }
                 }

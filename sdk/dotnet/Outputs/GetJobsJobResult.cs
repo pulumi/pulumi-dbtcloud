@@ -14,7 +14,7 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class GetJobsJobResult
     {
         /// <summary>
-        /// The version of dbt used for the job. If not set, the environment version will be used.
+        /// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
         /// </summary>
         public readonly string DbtVersion;
         /// <summary>

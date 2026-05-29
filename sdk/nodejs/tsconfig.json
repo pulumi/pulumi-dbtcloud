@@ -81,6 +81,7 @@
         "index.ts",
         "ipRestrictionsRule.ts",
         "job.ts",
+        "jobCompletionTrigger.ts",
         "licenseMap.ts",
         "lineageIntegration.ts",
         "modelNotifications.ts",

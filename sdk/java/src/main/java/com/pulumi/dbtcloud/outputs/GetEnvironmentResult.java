@@ -28,7 +28,7 @@ public final class GetEnvironmentResult {
      */
     private String customBranch;
     /**
-     * @return Version number of dbt to use in this environment.
+     * @return Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
      * 
      */
     private String dbtVersion;
@@ -106,7 +106,7 @@ public final class GetEnvironmentResult {
         return this.customBranch;
     }
     /**
-     * @return Version number of dbt to use in this environment.
+     * @return Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
      * 
      */
     public String dbtVersion() {

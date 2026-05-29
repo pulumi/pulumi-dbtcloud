@@ -3760,7 +3760,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         :param _builtins.int connection_id: A connection ID (used with Global Connections)
         :param _builtins.int credentials_id: Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
         :param _builtins.str custom_branch: The custom branch name to use
-        :param _builtins.str dbt_version: Version number of dbt to use in this environment.
+        :param _builtins.str dbt_version: Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
         :param _builtins.str deployment_type: The type of deployment environment (currently 'production', 'staging' or empty)
         :param _builtins.bool enable_model_query_history: Whether model query history is on
         :param _builtins.int environment_id: The ID of the environment
@@ -3813,7 +3813,7 @@ class GetEnvironmentsEnvironmentResult(dict):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> _builtins.str:
         """
-        Version number of dbt to use in this environment.
+        Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
         """
         return pulumi.get(self, "dbt_version")
 
@@ -5580,7 +5580,7 @@ class GetJobsJobResult(dict):
                  triggers: 'outputs.GetJobsJobTriggersResult',
                  triggers_on_draft_pr: _builtins.bool):
         """
-        :param _builtins.str dbt_version: The version of dbt used for the job. If not set, the environment version will be used.
+        :param _builtins.str dbt_version: The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
         :param _builtins.int deferring_environment_id: The ID of the environment this job defers to
         :param _builtins.int deferring_job_definition_id: [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
         :param _builtins.str description: The description of the job
@@ -5628,7 +5628,7 @@ class GetJobsJobResult(dict):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> _builtins.str:
         """
-        The version of dbt used for the job. If not set, the environment version will be used.
+        The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
         """
         return pulumi.get(self, "dbt_version")
 

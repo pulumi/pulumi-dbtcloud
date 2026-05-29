@@ -160,14 +160,28 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.compareChangesFlags;
     }
     /**
-     * Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
+     * List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+     * 
+     */
+    @Export(name="costOptimizationFeatures", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> costOptimizationFeatures;
+
+    /**
+     * @return List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+     * 
+     */
+    public Output<List<String>> costOptimizationFeatures() {
+        return this.costOptimizationFeatures;
+    }
+    /**
+     * Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
+     * @return Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
      * 
      */
     public Output<Optional<String>> dbtVersion() {
@@ -272,14 +286,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.execution);
     }
     /**
-     * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     * Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
      * 
      */
     @Export(name="forceNodeSelection", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> forceNodeSelection;
 
     /**
-     * @return Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+     * @return Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
      * 
      */
     public Output<Boolean> forceNodeSelection() {

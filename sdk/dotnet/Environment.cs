@@ -113,7 +113,7 @@ namespace Pulumi.DbtCloud
         public Output<string?> CustomBranch { get; private set; } = null!;
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Output("dbtVersion")]
         public Output<string> DbtVersion { get; private set; } = null!;
@@ -244,7 +244,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }
@@ -330,7 +330,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest` or `latest-fusion`. While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }

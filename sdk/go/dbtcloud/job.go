@@ -141,7 +141,9 @@ type Job struct {
 
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags pulumi.StringOutput `pulumi:"compareChangesFlags"`
-	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
+	// List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+	CostOptimizationFeatures pulumi.StringArrayOutput `pulumi:"costOptimizationFeatures"`
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion pulumi.StringPtrOutput `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId pulumi.IntPtrOutput `pulumi:"deferringEnvironmentId"`
@@ -157,7 +159,7 @@ type Job struct {
 	ExecuteSteps pulumi.StringArrayOutput `pulumi:"executeSteps"`
 	// Execution settings for the job
 	Execution JobExecutionPtrOutput `pulumi:"execution"`
-	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
 	ForceNodeSelection pulumi.BoolOutput `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolOutput `pulumi:"generateDocs"`
@@ -251,7 +253,9 @@ func GetJob(ctx *pulumi.Context,
 type jobState struct {
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags *string `pulumi:"compareChangesFlags"`
-	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
+	// List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+	CostOptimizationFeatures []string `pulumi:"costOptimizationFeatures"`
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId *int `pulumi:"deferringEnvironmentId"`
@@ -267,7 +271,7 @@ type jobState struct {
 	ExecuteSteps []string `pulumi:"executeSteps"`
 	// Execution settings for the job
 	Execution *JobExecution `pulumi:"execution"`
-	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
 	ForceNodeSelection *bool `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs *bool `pulumi:"generateDocs"`
@@ -320,7 +324,9 @@ type jobState struct {
 type JobState struct {
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags pulumi.StringPtrInput
-	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
+	// List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+	CostOptimizationFeatures pulumi.StringArrayInput
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion pulumi.StringPtrInput
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId pulumi.IntPtrInput
@@ -336,7 +342,7 @@ type JobState struct {
 	ExecuteSteps pulumi.StringArrayInput
 	// Execution settings for the job
 	Execution JobExecutionPtrInput
-	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
 	ForceNodeSelection pulumi.BoolPtrInput
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolPtrInput
@@ -393,7 +399,9 @@ func (JobState) ElementType() reflect.Type {
 type jobArgs struct {
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags *string `pulumi:"compareChangesFlags"`
-	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
+	// List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+	CostOptimizationFeatures []string `pulumi:"costOptimizationFeatures"`
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId *int `pulumi:"deferringEnvironmentId"`
@@ -409,7 +417,7 @@ type jobArgs struct {
 	ExecuteSteps []string `pulumi:"executeSteps"`
 	// Execution settings for the job
 	Execution *JobExecution `pulumi:"execution"`
-	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
 	ForceNodeSelection *bool `pulumi:"forceNodeSelection"`
 	// Flag for whether the job should generate documentation
 	GenerateDocs *bool `pulumi:"generateDocs"`
@@ -461,7 +469,9 @@ type jobArgs struct {
 type JobArgs struct {
 	// The model selector for checking changes in the compare changes Advanced CI feature
 	CompareChangesFlags pulumi.StringPtrInput
-	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
+	// List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+	CostOptimizationFeatures pulumi.StringArrayInput
+	// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 	DbtVersion pulumi.StringPtrInput
 	// Environment identifier that this job defers to (new deferring approach)
 	DeferringEnvironmentId pulumi.IntPtrInput
@@ -477,7 +487,7 @@ type JobArgs struct {
 	ExecuteSteps pulumi.StringArrayInput
 	// Execution settings for the job
 	Execution JobExecutionPtrInput
-	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+	// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
 	ForceNodeSelection pulumi.BoolPtrInput
 	// Flag for whether the job should generate documentation
 	GenerateDocs pulumi.BoolPtrInput
@@ -617,7 +627,12 @@ func (o JobOutput) CompareChangesFlags() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.CompareChangesFlags }).(pulumi.StringOutput)
 }
 
-// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
+// List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+func (o JobOutput) CostOptimizationFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.CostOptimizationFeatures }).(pulumi.StringArrayOutput)
+}
+
+// Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbtVersion` configured on the environment is used.
 func (o JobOutput) DbtVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.DbtVersion }).(pulumi.StringPtrOutput)
 }
@@ -657,7 +672,7 @@ func (o JobOutput) Execution() JobExecutionPtrOutput {
 	return o.ApplyT(func(v *Job) JobExecutionPtrOutput { return v.Execution }).(JobExecutionPtrOutput)
 }
 
-// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to `latest-fusion`, this must be set to `true` when specified.
+// Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbtVersion` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
 func (o JobOutput) ForceNodeSelection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.ForceNodeSelection }).(pulumi.BoolOutput)
 }
