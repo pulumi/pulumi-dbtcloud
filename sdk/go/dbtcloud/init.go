@@ -61,6 +61,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IpRestrictionsRule{}
 	case "dbtcloud:index/job:Job":
 		r = &Job{}
+	case "dbtcloud:index/jobCompletionTrigger:JobCompletionTrigger":
+		r = &JobCompletionTrigger{}
 	case "dbtcloud:index/licenseMap:LicenseMap":
 		r = &LicenseMap{}
 	case "dbtcloud:index/lineageIntegration:LineageIntegration":
@@ -262,6 +264,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/job",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/jobCompletionTrigger",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -32,7 +32,7 @@ type LookupJobArgs struct {
 
 // A collection of values returned by getJob.
 type LookupJobResult struct {
-	// The version of dbt used for the job. If not set, the environment version will be used.
+	// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The ID of the environment this job defers to
 	DeferringEnvironmentId int `pulumi:"deferringEnvironmentId"`
@@ -118,7 +118,7 @@ func (o LookupJobResultOutput) ToLookupJobResultOutputWithContext(ctx context.Co
 	return o
 }
 
-// The version of dbt used for the job. If not set, the environment version will be used.
+// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
 func (o LookupJobResultOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJobResult) string { return v.DbtVersion }).(pulumi.StringOutput)
 }

@@ -300,6 +300,11 @@ export type Job = import("./job").Job;
 export const Job: typeof import("./job").Job = null as any;
 utilities.lazyLoad(exports, ["Job"], () => require("./job"));
 
+export { JobCompletionTriggerArgs, JobCompletionTriggerState } from "./jobCompletionTrigger";
+export type JobCompletionTrigger = import("./jobCompletionTrigger").JobCompletionTrigger;
+export const JobCompletionTrigger: typeof import("./jobCompletionTrigger").JobCompletionTrigger = null as any;
+utilities.lazyLoad(exports, ["JobCompletionTrigger"], () => require("./jobCompletionTrigger"));
+
 export { LicenseMapArgs, LicenseMapState } from "./licenseMap";
 export type LicenseMap = import("./licenseMap").LicenseMap;
 export const LicenseMap: typeof import("./licenseMap").LicenseMap = null as any;
@@ -537,6 +542,8 @@ const _module = {
                 return new IpRestrictionsRule(name, <any>undefined, { urn })
             case "dbtcloud:index/job:Job":
                 return new Job(name, <any>undefined, { urn })
+            case "dbtcloud:index/jobCompletionTrigger:JobCompletionTrigger":
+                return new JobCompletionTrigger(name, <any>undefined, { urn })
             case "dbtcloud:index/licenseMap:LicenseMap":
                 return new LicenseMap(name, <any>undefined, { urn })
             case "dbtcloud:index/lineageIntegration:LineageIntegration":
@@ -634,6 +641,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/group", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/groupPartialPermissions", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/ipRestrictionsRule", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/job", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/jobCompletionTrigger", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/licenseMap", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/lineageIntegration", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/modelNotifications", _module)

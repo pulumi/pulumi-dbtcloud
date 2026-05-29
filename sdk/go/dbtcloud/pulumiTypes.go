@@ -7791,7 +7791,7 @@ type GetEnvironmentsEnvironment struct {
 	CredentialsId int `pulumi:"credentialsId"`
 	// The custom branch name to use
 	CustomBranch string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment.
+	// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType string `pulumi:"deploymentType"`
@@ -7831,7 +7831,7 @@ type GetEnvironmentsEnvironmentArgs struct {
 	CredentialsId pulumi.IntInput `pulumi:"credentialsId"`
 	// The custom branch name to use
 	CustomBranch pulumi.StringInput `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment.
+	// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
 	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
@@ -7919,7 +7919,7 @@ func (o GetEnvironmentsEnvironmentOutput) CustomBranch() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.CustomBranch }).(pulumi.StringOutput)
 }
 
-// Version number of dbt to use in this environment.
+// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
 func (o GetEnvironmentsEnvironmentOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.DbtVersion }).(pulumi.StringOutput)
 }
@@ -10471,7 +10471,7 @@ func (o GetJobTriggersOutput) Schedule() pulumi.BoolOutput {
 }
 
 type GetJobsJob struct {
-	// The version of dbt used for the job. If not set, the environment version will be used.
+	// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The ID of the environment this job defers to
 	DeferringEnvironmentId int `pulumi:"deferringEnvironmentId"`
@@ -10531,7 +10531,7 @@ type GetJobsJobInput interface {
 }
 
 type GetJobsJobArgs struct {
-	// The version of dbt used for the job. If not set, the environment version will be used.
+	// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
 	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
 	// The ID of the environment this job defers to
 	DeferringEnvironmentId pulumi.IntInput `pulumi:"deferringEnvironmentId"`
@@ -10630,7 +10630,7 @@ func (o GetJobsJobOutput) ToGetJobsJobOutputWithContext(ctx context.Context) Get
 	return o
 }
 
-// The version of dbt used for the job. If not set, the environment version will be used.
+// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
 func (o GetJobsJobOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobsJob) string { return v.DbtVersion }).(pulumi.StringOutput)
 }

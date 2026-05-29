@@ -65,6 +65,7 @@ from .group import *
 from .group_partial_permissions import *
 from .ip_restrictions_rule import *
 from .job import *
+from .job_completion_trigger import *
 from .license_map import *
 from .lineage_integration import *
 from .model_notifications import *
@@ -273,6 +274,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/job:Job": "Job"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/jobCompletionTrigger",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/jobCompletionTrigger:JobCompletionTrigger": "JobCompletionTrigger"
   }
  },
  {

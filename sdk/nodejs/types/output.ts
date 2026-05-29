@@ -132,7 +132,7 @@ export interface GetEnvironmentsEnvironment {
      */
     customBranch: string;
     /**
-     * Version number of dbt to use in this environment.
+     * Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
      */
     dbtVersion: string;
     /**
@@ -786,7 +786,7 @@ export interface GetJobTriggers {
 
 export interface GetJobsJob {
     /**
-     * The version of dbt used for the job. If not set, the environment version will be used.
+     * The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
      */
     dbtVersion: string;
     /**

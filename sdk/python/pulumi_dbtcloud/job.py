@@ -26,6 +26,7 @@ class JobArgs:
                  project_id: pulumi.Input[_builtins.int],
                  triggers: pulumi.Input['JobTriggersArgs'],
                  compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+                 cost_optimization_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
                  deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
                  deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
@@ -60,13 +61,14 @@ class JobArgs:
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the job in
         :param pulumi.Input['JobTriggersArgs'] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cost_optimization_features: List of cost optimization features enabled for this job. Replaces the deprecated `force_node_selection`. Valid values: `state_aware_orchestration`. When `state_aware_orchestration` is included, SAO is enabled (equivalent to `force_node_selection = false`); when empty or unset, SAO is disabled (equivalent to `force_node_selection = true`). Requires `dbt_version` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input['JobExecutionArgs'] execution: Execution settings for the job
-        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -93,6 +95,8 @@ class JobArgs:
         pulumi.set(__self__, "triggers", triggers)
         if compare_changes_flags is not None:
             pulumi.set(__self__, "compare_changes_flags", compare_changes_flags)
+        if cost_optimization_features is not None:
+            pulumi.set(__self__, "cost_optimization_features", cost_optimization_features)
         if dbt_version is not None:
             pulumi.set(__self__, "dbt_version", dbt_version)
         if deferring_environment_id is not None:
@@ -210,10 +214,22 @@ class JobArgs:
         pulumi.set(self, "compare_changes_flags", value)
 
     @_builtins.property
+    @pulumi.getter(name="costOptimizationFeatures")
+    def cost_optimization_features(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of cost optimization features enabled for this job. Replaces the deprecated `force_node_selection`. Valid values: `state_aware_orchestration`. When `state_aware_orchestration` is included, SAO is enabled (equivalent to `force_node_selection = false`); when empty or unset, SAO is disabled (equivalent to `force_node_selection = true`). Requires `dbt_version` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+        """
+        return pulumi.get(self, "cost_optimization_features")
+
+    @cost_optimization_features.setter
+    def cost_optimization_features(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "cost_optimization_features", value)
+
+    @_builtins.property
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
+        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         """
         return pulumi.get(self, "dbt_version")
 
@@ -285,7 +301,7 @@ class JobArgs:
     @pulumi.getter(name="forceNodeSelection")
     def force_node_selection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         """
         return pulumi.get(self, "force_node_selection")
 
@@ -527,6 +543,7 @@ class JobArgs:
 class _JobState:
     def __init__(__self__, *,
                  compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+                 cost_optimization_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
                  deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
                  deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
@@ -562,7 +579,8 @@ class _JobState:
         Input properties used for looking up and filtering Job resources.
 
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cost_optimization_features: List of cost optimization features enabled for this job. Replaces the deprecated `force_node_selection`. Valid values: `state_aware_orchestration`. When `state_aware_orchestration` is included, SAO is enabled (equivalent to `force_node_selection = false`); when empty or unset, SAO is disabled (equivalent to `force_node_selection = true`). Requires `dbt_version` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
@@ -570,7 +588,7 @@ class _JobState:
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input['JobExecutionArgs'] execution: Execution settings for the job
-        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -596,6 +614,8 @@ class _JobState:
         """
         if compare_changes_flags is not None:
             pulumi.set(__self__, "compare_changes_flags", compare_changes_flags)
+        if cost_optimization_features is not None:
+            pulumi.set(__self__, "cost_optimization_features", cost_optimization_features)
         if dbt_version is not None:
             pulumi.set(__self__, "dbt_version", dbt_version)
         if deferring_environment_id is not None:
@@ -675,10 +695,22 @@ class _JobState:
         pulumi.set(self, "compare_changes_flags", value)
 
     @_builtins.property
+    @pulumi.getter(name="costOptimizationFeatures")
+    def cost_optimization_features(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of cost optimization features enabled for this job. Replaces the deprecated `force_node_selection`. Valid values: `state_aware_orchestration`. When `state_aware_orchestration` is included, SAO is enabled (equivalent to `force_node_selection = false`); when empty or unset, SAO is disabled (equivalent to `force_node_selection = true`). Requires `dbt_version` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+        """
+        return pulumi.get(self, "cost_optimization_features")
+
+    @cost_optimization_features.setter
+    def cost_optimization_features(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "cost_optimization_features", value)
+
+    @_builtins.property
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
+        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         """
         return pulumi.get(self, "dbt_version")
 
@@ -774,7 +806,7 @@ class _JobState:
     @pulumi.getter(name="forceNodeSelection")
     def force_node_selection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         """
         return pulumi.get(self, "force_node_selection")
 
@@ -1055,6 +1087,7 @@ class Job(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+                 cost_optimization_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
                  deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
                  deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1186,7 +1219,8 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cost_optimization_features: List of cost optimization features enabled for this job. Replaces the deprecated `force_node_selection`. Valid values: `state_aware_orchestration`. When `state_aware_orchestration` is included, SAO is enabled (equivalent to `force_node_selection = false`); when empty or unset, SAO is disabled (equivalent to `force_node_selection = true`). Requires `dbt_version` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
@@ -1194,7 +1228,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']] execution: Execution settings for the job
-        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -1336,6 +1370,7 @@ class Job(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+                 cost_optimization_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
                  deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
                  deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1376,6 +1411,7 @@ class Job(pulumi.CustomResource):
             __props__ = JobArgs.__new__(JobArgs)
 
             __props__.__dict__["compare_changes_flags"] = compare_changes_flags
+            __props__.__dict__["cost_optimization_features"] = cost_optimization_features
             __props__.__dict__["dbt_version"] = dbt_version
             __props__.__dict__["deferring_environment_id"] = deferring_environment_id
             __props__.__dict__["deferring_job_id"] = deferring_job_id
@@ -1426,6 +1462,7 @@ class Job(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+            cost_optimization_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
             deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
             deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1465,7 +1502,8 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compare_changes_flags: The model selector for checking changes in the compare changes Advanced CI feature
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cost_optimization_features: List of cost optimization features enabled for this job. Replaces the deprecated `force_node_selection`. Valid values: `state_aware_orchestration`. When `state_aware_orchestration` is included, SAO is enabled (equivalent to `force_node_selection = false`); when empty or unset, SAO is disabled (equivalent to `force_node_selection = true`). Requires `dbt_version` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         :param pulumi.Input[_builtins.int] deferring_environment_id: Environment identifier that this job defers to (new deferring approach)
         :param pulumi.Input[_builtins.int] deferring_job_id: Job identifier that this job defers to (legacy deferring approach)
         :param pulumi.Input[_builtins.str] description: Description for the job
@@ -1473,7 +1511,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
         :param pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']] execution: Execution settings for the job
-        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
@@ -1502,6 +1540,7 @@ class Job(pulumi.CustomResource):
         __props__ = _JobState.__new__(_JobState)
 
         __props__.__dict__["compare_changes_flags"] = compare_changes_flags
+        __props__.__dict__["cost_optimization_features"] = cost_optimization_features
         __props__.__dict__["dbt_version"] = dbt_version
         __props__.__dict__["deferring_environment_id"] = deferring_environment_id
         __props__.__dict__["deferring_job_id"] = deferring_job_id
@@ -1544,10 +1583,18 @@ class Job(pulumi.CustomResource):
         return pulumi.get(self, "compare_changes_flags")
 
     @_builtins.property
+    @pulumi.getter(name="costOptimizationFeatures")
+    def cost_optimization_features(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        List of cost optimization features enabled for this job. Replaces the deprecated `force_node_selection`. Valid values: `state_aware_orchestration`. When `state_aware_orchestration` is included, SAO is enabled (equivalent to `force_node_selection = false`); when empty or unset, SAO is disabled (equivalent to `force_node_selection = true`). Requires `dbt_version` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+        """
+        return pulumi.get(self, "cost_optimization_features")
+
+    @_builtins.property
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest` or `latest-fusion`. While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
+        Version number of dbt to use in this job. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. If not set, the `dbt_version` configured on the environment is used.
         """
         return pulumi.get(self, "dbt_version")
 
@@ -1611,7 +1658,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="forceNodeSelection")
     def force_node_selection(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to `latest-fusion`, this must be set to `true` when specified.
+        Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         """
         return pulumi.get(self, "force_node_selection")
 

@@ -197,6 +197,7 @@ class Group(pulumi.CustomResource):
         |Manage marketplace apps | manage_marketplace_apps|
         |Member | member|
         |Metadata Only | metadata_only|
+        |Notification Manager | notification_manager|
         |Owner | owner|
         |Project Creator | project_creator|
         |Read-Only | readonly|
@@ -291,6 +292,7 @@ class Group(pulumi.CustomResource):
         |Manage marketplace apps | manage_marketplace_apps|
         |Member | member|
         |Metadata Only | metadata_only|
+        |Notification Manager | notification_manager|
         |Owner | owner|
         |Project Creator | project_creator|
         |Read-Only | readonly|
