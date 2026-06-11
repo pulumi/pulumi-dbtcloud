@@ -137,7 +137,7 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly compareChangesFlags: pulumi.Output<string>;
     /**
-     * List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+     * List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration` and `dbtState`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). `dbtState` enables dbt State (the migration path from Select All Optimizations) and, because the dbt platform API gives it precedence, it must be the only feature in the set. SAO requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available; `dbtState` is environment-independent but requires the account to have dbt State enabled. Neither feature is supported on CI or Merge jobs.
      */
     declare public readonly costOptimizationFeatures: pulumi.Output<string[]>;
     /**
@@ -375,7 +375,7 @@ export interface JobState {
      */
     compareChangesFlags?: pulumi.Input<string | undefined>;
     /**
-     * List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+     * List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration` and `dbtState`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). `dbtState` enables dbt State (the migration path from Select All Optimizations) and, because the dbt platform API gives it precedence, it must be the only feature in the set. SAO requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available; `dbtState` is environment-independent but requires the account to have dbt State enabled. Neither feature is supported on CI or Merge jobs.
      */
     costOptimizationFeatures?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -515,7 +515,7 @@ export interface JobArgs {
      */
     compareChangesFlags?: pulumi.Input<string | undefined>;
     /**
-     * List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). Requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available.
+     * List of cost optimization features enabled for this job. Replaces the deprecated `forceNodeSelection`. Valid values: `stateAwareOrchestration` and `dbtState`. When `stateAwareOrchestration` is included, SAO is enabled (equivalent to `forceNodeSelection = false`); when empty or unset, SAO is disabled (equivalent to `forceNodeSelection = true`). `dbtState` enables dbt State (the migration path from Select All Optimizations) and, because the dbt platform API gives it precedence, it must be the only feature in the set. SAO requires `dbtVersion` to be set to a Fusion release track (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, or `fusion-fallback`) and an account with State-Aware Orchestration available; `dbtState` is environment-independent but requires the account to have dbt State enabled. Neither feature is supported on CI or Merge jobs.
      */
     costOptimizationFeatures?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
