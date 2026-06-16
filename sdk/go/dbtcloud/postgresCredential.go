@@ -50,7 +50,7 @@ import (
 //				Type:              pulumi.String("postgres"),
 //				DefaultSchema:     pulumi.String("my_schema"),
 //				Username:          pulumi.String("my_username"),
-//				PasswordWo:        pulumi.String(pulumi.String(postgresPassword)),
+//				PasswordWo:        pulumi.String(postgresPassword),
 //				PasswordWoVersion: pulumi.Int(1),
 //				NumThreads:        pulumi.Int(16),
 //			})

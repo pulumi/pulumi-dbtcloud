@@ -42,7 +42,7 @@ import (
 //			sparkToken := cfg.Require("sparkToken")
 //			_, err = dbtcloud.NewSparkCredential(ctx, "my_spark_cred_wo", &dbtcloud.SparkCredentialArgs{
 //				ProjectId:      pulumi.Any(dbtProject.Id),
-//				TokenWo:        pulumi.String(pulumi.String(sparkToken)),
+//				TokenWo:        pulumi.String(sparkToken),
 //				TokenWoVersion: pulumi.Int(1),
 //				Schema:         pulumi.String("my_schema"),
 //			})

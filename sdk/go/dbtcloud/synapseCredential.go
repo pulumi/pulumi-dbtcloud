@@ -76,7 +76,7 @@ import (
 //				Authentication:      pulumi.String("ActiveDirectoryPassword"),
 //				Schema:              pulumi.String("my_schema"),
 //				User:                pulumi.String("my_user"),
-//				PasswordWo:          pulumi.String(pulumi.String(synapsePassword)),
+//				PasswordWo:          pulumi.String(synapsePassword),
 //				PasswordWoVersion:   pulumi.Int(1),
 //				SchemaAuthorization: pulumi.String("abcd"),
 //			})
@@ -90,7 +90,7 @@ import (
 //				Schema:                pulumi.String("my_schema"),
 //				ClientId:              pulumi.String("my_client_id"),
 //				TenantId:              pulumi.String("my_tenant_id"),
-//				ClientSecretWo:        pulumi.String(pulumi.String(synapseClientSecret)),
+//				ClientSecretWo:        pulumi.String(synapseClientSecret),
 //				ClientSecretWoVersion: pulumi.Int(1),
 //				SchemaAuthorization:   pulumi.String("abcd"),
 //			})

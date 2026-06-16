@@ -47,9 +47,9 @@ import (
 //			_, err = dbtcloud.NewSalesforceCredential(ctx, "my_salesforce_cred_wo", &dbtcloud.SalesforceCredentialArgs{
 //				ProjectId:           pulumi.Any(dbtProject.Id),
 //				Username:            pulumi.String("user@example.com"),
-//				ClientIdWo:          pulumi.String(pulumi.String(salesforceClientId)),
+//				ClientIdWo:          pulumi.String(salesforceClientId),
 //				ClientIdWoVersion:   pulumi.Int(1),
-//				PrivateKeyWo:        pulumi.String(pulumi.String(salesforcePrivateKey)),
+//				PrivateKeyWo:        pulumi.String(salesforcePrivateKey),
 //				PrivateKeyWoVersion: pulumi.Int(1),
 //				TargetName:          pulumi.String("default"),
 //				NumThreads:          pulumi.Int(6),
