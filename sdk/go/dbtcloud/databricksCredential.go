@@ -43,7 +43,7 @@ import (
 //			databricksToken := cfg.Require("databricksToken")
 //			_, err = dbtcloud.NewDatabricksCredential(ctx, "my_databricks_cred_wo", &dbtcloud.DatabricksCredentialArgs{
 //				ProjectId:      pulumi.Any(dbtProject.Id),
-//				TokenWo:        pulumi.String(pulumi.String(databricksToken)),
+//				TokenWo:        pulumi.String(databricksToken),
 //				TokenWoVersion: pulumi.Int(1),
 //				Schema:         pulumi.String("my_schema"),
 //				AdapterType:    pulumi.String("databricks"),

@@ -47,7 +47,7 @@ import (
 //				Database:          pulumi.String("your_catalog"),
 //				Schema:            pulumi.String("your_schema"),
 //				User:              pulumi.String("your_user"),
-//				PasswordWo:        pulumi.String(pulumi.String(starburstPassword)),
+//				PasswordWo:        pulumi.String(starburstPassword),
 //				PasswordWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {

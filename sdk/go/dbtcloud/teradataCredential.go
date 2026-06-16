@@ -45,7 +45,7 @@ import (
 //				ProjectId:         pulumi.Any(exampleDbtcloudProject.Id),
 //				Schema:            pulumi.String("your_schema"),
 //				User:              pulumi.String("your_user"),
-//				PasswordWo:        pulumi.String(pulumi.String(teradataPassword)),
+//				PasswordWo:        pulumi.String(teradataPassword),
 //				PasswordWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {

@@ -44,9 +44,9 @@ import (
 //			athenaAwsSecretAccessKey := cfg.Require("athenaAwsSecretAccessKey")
 //			_, err = dbtcloud.NewAthenaCredential(ctx, "example_wo", &dbtcloud.AthenaCredentialArgs{
 //				ProjectId:                   pulumi.Any(exampleDbtcloudProject.Id),
-//				AwsAccessKeyIdWo:            pulumi.String(pulumi.String(athenaAwsAccessKeyId)),
+//				AwsAccessKeyIdWo:            pulumi.String(athenaAwsAccessKeyId),
 //				AwsAccessKeyIdWoVersion:     pulumi.Int(1),
-//				AwsSecretAccessKeyWo:        pulumi.String(pulumi.String(athenaAwsSecretAccessKey)),
+//				AwsSecretAccessKeyWo:        pulumi.String(athenaAwsSecretAccessKey),
 //				AwsSecretAccessKeyWoVersion: pulumi.Int(1),
 //				Schema:                      pulumi.String("your_schema"),
 //			})

@@ -53,7 +53,7 @@ import (
 //				Host:           pulumi.String("my.host.com"),
 //				SiteId:         pulumi.String("mysiteid"),
 //				TokenName:      pulumi.String("my-token-name"),
-//				TokenWo:        pulumi.String(pulumi.String(lineageToken)),
+//				TokenWo:        pulumi.String(lineageToken),
 //				TokenWoVersion: pulumi.Int(1),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				myProdEnv,

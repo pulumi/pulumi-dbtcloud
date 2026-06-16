@@ -63,7 +63,7 @@ import (
 //				Type:                  pulumi.String("entra"),
 //				Name:                  pulumi.String("My Entra ID Oauth integration"),
 //				ClientId:              pulumi.String("client-id"),
-//				ClientSecretWo:        pulumi.String(pulumi.String(oauthClientSecret)),
+//				ClientSecretWo:        pulumi.String(oauthClientSecret),
 //				ClientSecretWoVersion: pulumi.Int(1),
 //				RedirectUri:           pulumi.String("http://example.com"),
 //				TokenUrl:              pulumi.String("http://example.com"),

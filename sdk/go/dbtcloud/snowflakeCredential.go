@@ -49,7 +49,7 @@ import (
 //				NumThreads:        pulumi.Int(16),
 //				Schema:            pulumi.String("SCHEMA"),
 //				User:              pulumi.String("user"),
-//				PasswordWo:        pulumi.String(pulumi.String(snowflakePassword)),
+//				PasswordWo:        pulumi.String(snowflakePassword),
 //				PasswordWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {

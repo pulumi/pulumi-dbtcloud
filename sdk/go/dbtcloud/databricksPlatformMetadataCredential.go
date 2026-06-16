@@ -61,7 +61,7 @@ import (
 //				CatalogIngestionEnabled: pulumi.Bool(true),
 //				CostOptimizationEnabled: pulumi.Bool(false),
 //				CostInsightsEnabled:     pulumi.Bool(false),
-//				TokenWo:                 pulumi.String(pulumi.String(databricksMetadataToken)),
+//				TokenWo:                 pulumi.String(databricksMetadataToken),
 //				TokenWoVersion:          pulumi.Int(1),
 //				Catalog:                 pulumi.String("main"),
 //			})

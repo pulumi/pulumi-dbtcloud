@@ -48,7 +48,7 @@ import (
 //				ProjectId:         pulumi.Any(testProject.Id),
 //				DefaultSchema:     pulumi.String("my_schema"),
 //				Username:          pulumi.String("my_username"),
-//				PasswordWo:        pulumi.String(pulumi.String(redshiftPassword)),
+//				PasswordWo:        pulumi.String(redshiftPassword),
 //				PasswordWoVersion: pulumi.Int(1),
 //				IsActive:          pulumi.Bool(true),
 //			})

@@ -42,7 +42,7 @@ import (
 //				Type:          pulumi.String("saml"),
 //				EntityId:      pulumi.String("https://your-idp.example.com/metadata"),
 //				SsoUrl:        pulumi.String("https://your-idp.example.com/sso/saml"),
-//				CertWo:        pulumi.String(pulumi.String(samlCert)),
+//				CertWo:        pulumi.String(samlCert),
 //				CertWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {
@@ -71,7 +71,7 @@ import (
 //				SsoUrl:                pulumi.String("https://your-idp.example.com/sso/saml"),
 //				Cert:                  pulumi.String(invokeFile.Result),
 //				SignRequest:           pulumi.Bool(true),
-//				AttributeMap:          pulumi.String(pulumi.String(json0)),
+//				AttributeMap:          pulumi.String(json0),
 //				AllowPasswordBackdoor: pulumi.Bool(false),
 //			})
 //			if err != nil {
@@ -82,7 +82,7 @@ import (
 //				Type:          pulumi.String("okta"),
 //				EntityId:      pulumi.String("http://www.okta.com/<okta_app_id>"),
 //				SsoUrl:        pulumi.String("https://<your-org>.okta.com/app/<app_path>/sso/saml"),
-//				CertWo:        pulumi.String(pulumi.String(samlCert)),
+//				CertWo:        pulumi.String(samlCert),
 //				CertWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {
@@ -93,7 +93,7 @@ import (
 //				Type:                  pulumi.String("azure_single_tenant"),
 //				ClientId:              pulumi.String("00000000-0000-0000-0000-000000000000"),
 //				TenantId:              pulumi.String("11111111-1111-1111-1111-111111111111"),
-//				ClientSecretWo:        pulumi.String(pulumi.String(azureClientSecret)),
+//				ClientSecretWo:        pulumi.String(azureClientSecret),
 //				ClientSecretWoVersion: pulumi.Int(1),
 //				Domain:                pulumi.String("acme.com"),
 //				IncludeIndirectGroups: pulumi.Bool(true),
@@ -106,7 +106,7 @@ import (
 //			_, err = dbtcloud.NewAuthProvider(ctx, "azure_multi_tenant", &dbtcloud.AuthProviderArgs{
 //				Type:                  pulumi.String("azure_multi_tenant"),
 //				ClientId:              pulumi.String("00000000-0000-0000-0000-000000000000"),
-//				ClientSecretWo:        pulumi.String(pulumi.String(azureClientSecret)),
+//				ClientSecretWo:        pulumi.String(azureClientSecret),
 //				ClientSecretWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {
@@ -117,7 +117,7 @@ import (
 //				Type:                  pulumi.String("azure_active_directory"),
 //				ClientId:              pulumi.String("00000000-0000-0000-0000-000000000000"),
 //				TenantId:              pulumi.String("11111111-1111-1111-1111-111111111111"),
-//				ClientSecretWo:        pulumi.String(pulumi.String(azureClientSecret)),
+//				ClientSecretWo:        pulumi.String(azureClientSecret),
 //				ClientSecretWoVersion: pulumi.Int(1),
 //				Domain:                pulumi.String("acme.com"),
 //			})
@@ -128,7 +128,7 @@ import (
 //			_, err = dbtcloud.NewAuthProvider(ctx, "gsuite", &dbtcloud.AuthProviderArgs{
 //				Type:                  pulumi.String("gsuite"),
 //				ClientId:              pulumi.String("000000000000-xxxx.apps.googleusercontent.com"),
-//				ClientSecretWo:        pulumi.String(pulumi.String(gsuiteClientSecret)),
+//				ClientSecretWo:        pulumi.String(gsuiteClientSecret),
 //				ClientSecretWoVersion: pulumi.Int(1),
 //				AdminRefreshToken:     pulumi.String("<oauth-refresh-token>"),
 //				Domain:                pulumi.String("acme.com"),
