@@ -737,6 +737,265 @@
         }
     },
     "auto-settings": {},
+    "default-resource-schema-fixups": {
+        "resources": {
+            "dbtcloud_account_features": {},
+            "dbtcloud_athena_credential": {},
+            "dbtcloud_auth_provider": {
+                "fields": {
+                    "id": {
+                        "name": "authProviderId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_azure_ad_application": {
+                "fields": {
+                    "id": {
+                        "name": "azureAdApplicationId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_bigquery_credential": {},
+            "dbtcloud_bigquery_semantic_layer_credential": {
+                "fields": {
+                    "id": {
+                        "name": "bigquerySemanticLayerCredentialId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_connection_catalog_config": {},
+            "dbtcloud_databricks_credential": {},
+            "dbtcloud_databricks_platform_metadata_credential": {},
+            "dbtcloud_databricks_semantic_layer_credential": {
+                "fields": {
+                    "id": {
+                        "name": "databricksSemanticLayerCredentialId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_environment": {},
+            "dbtcloud_environment_variable": {},
+            "dbtcloud_environment_variable_job_override": {},
+            "dbtcloud_extended_attributes": {},
+            "dbtcloud_fabric_credential": {},
+            "dbtcloud_global_connection": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "dbtcloud_group": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "dbtcloud_group_partial_permissions": {
+                "fields": {
+                    "id": {
+                        "name": "groupPartialPermissionsId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_ip_restrictions_rule": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "dbtcloud_job": {
+                "fields": {
+                    "id": {
+                        "name": "dbtcloudJobId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_job_completion_trigger": {
+                "fields": {
+                    "id": {
+                        "name": "jobCompletionTriggerId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_license_map": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "dbtcloud_lineage_integration": {},
+            "dbtcloud_model_notifications": {},
+            "dbtcloud_notification": {},
+            "dbtcloud_notification_setting": {
+                "fields": {
+                    "id": {
+                        "name": "notificationSettingId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_oauth_configuration": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "dbtcloud_openai_integration": {
+                "fields": {
+                    "id": {
+                        "name": "openaiIntegrationId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_partial_environment_variable": {},
+            "dbtcloud_partial_license_map": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "dbtcloud_partial_notification": {},
+            "dbtcloud_postgres_credential": {},
+            "dbtcloud_postgres_semantic_layer_credential": {
+                "fields": {
+                    "id": {
+                        "name": "postgresSemanticLayerCredentialId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_profile": {},
+            "dbtcloud_project": {
+                "fields": {
+                    "id": {
+                        "name": "projectId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_project_artefacts": {},
+            "dbtcloud_project_repository": {},
+            "dbtcloud_redshift_credential": {},
+            "dbtcloud_redshift_semantic_layer_credential": {
+                "fields": {
+                    "id": {
+                        "name": "redshiftSemanticLayerCredentialId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_repository": {},
+            "dbtcloud_salesforce_credential": {},
+            "dbtcloud_scim_config": {},
+            "dbtcloud_scim_config_token": {
+                "fields": {
+                    "id": {
+                        "name": "scimConfigTokenId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_scim_group_partial_permissions": {
+                "fields": {
+                    "id": {
+                        "name": "scimGroupPartialPermissionsId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_scim_group_permissions": {
+                "fields": {
+                    "id": {
+                        "name": "scimGroupPermissionsId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_semantic_layer_configuration": {
+                "fields": {
+                    "id": {
+                        "name": "semanticLayerConfigurationId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_semantic_layer_credential_service_token_mapping": {
+                "fields": {
+                    "id": {
+                        "name": "semanticLayerCredentialServiceTokenMappingId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_service_token": {},
+            "dbtcloud_snowflake_credential": {},
+            "dbtcloud_snowflake_platform_metadata_credential": {},
+            "dbtcloud_snowflake_semantic_layer_credential": {
+                "fields": {
+                    "id": {
+                        "name": "snowflakeSemanticLayerCredentialId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "dbtcloud_spark_credential": {},
+            "dbtcloud_starburst_credential": {},
+            "dbtcloud_synapse_credential": {},
+            "dbtcloud_teradata_credential": {},
+            "dbtcloud_user_groups": {},
+            "dbtcloud_webhook": {}
+        }
+    },
     "mux": {
         "resources": {
             "dbtcloud:index/accountFeatures:AccountFeatures": 1,
