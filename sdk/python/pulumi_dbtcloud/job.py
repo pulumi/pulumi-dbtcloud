@@ -72,7 +72,7 @@ class JobArgs:
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
-        :param pulumi.Input[_builtins.str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        :param pulumi.Input[_builtins.str] job_type: The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         :param pulumi.Input[_builtins.str] name: Job name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use in the job
         :param pulumi.Input[_builtins.bool] run_compare_changes: Whether the CI job should compare data changes introduced by the code changes. Requires `deferring_environment_id` to be set. (Advanced CI needs to be activated in the dbt Cloud Account Settings first as well)
@@ -349,7 +349,7 @@ class JobArgs:
     @pulumi.getter(name="jobType")
     def job_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         """
         return pulumi.get(self, "job_type")
 
@@ -593,7 +593,7 @@ class _JobState:
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input['JobJobCompletionTriggerConditionArgs']]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[_builtins.int] job_id: Job identifier
-        :param pulumi.Input[_builtins.str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        :param pulumi.Input[_builtins.str] job_type: The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         :param pulumi.Input[_builtins.str] name: Job name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use in the job
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the job in
@@ -866,7 +866,7 @@ class _JobState:
     @pulumi.getter(name="jobType")
     def job_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         """
         return pulumi.get(self, "job_type")
 
@@ -1232,7 +1232,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
-        :param pulumi.Input[_builtins.str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        :param pulumi.Input[_builtins.str] job_type: The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         :param pulumi.Input[_builtins.str] name: Job name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use in the job
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the job in
@@ -1516,7 +1516,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
         :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[_builtins.int] job_id: Job identifier
-        :param pulumi.Input[_builtins.str] job_type: Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        :param pulumi.Input[_builtins.str] job_type: The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         :param pulumi.Input[_builtins.str] name: Job name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use in the job
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the job in
@@ -1698,7 +1698,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="jobType")
     def job_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+        The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         """
         return pulumi.get(self, "job_type")
 

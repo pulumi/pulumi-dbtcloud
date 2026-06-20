@@ -193,7 +193,7 @@ export class Job extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly jobId: pulumi.Output<number>;
     /**
-     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
      */
     declare public readonly jobType: pulumi.Output<string>;
     /**
@@ -431,7 +431,7 @@ export interface JobState {
      */
     jobId?: pulumi.Input<number | undefined>;
     /**
-     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
      */
     jobType?: pulumi.Input<string | undefined>;
     /**
@@ -567,7 +567,7 @@ export interface JobArgs {
      */
     jobCompletionTriggerConditions?: pulumi.Input<pulumi.Input<inputs.JobJobCompletionTriggerCondition>[] | undefined>;
     /**
-     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
      */
     jobType?: pulumi.Input<string | undefined>;
     /**

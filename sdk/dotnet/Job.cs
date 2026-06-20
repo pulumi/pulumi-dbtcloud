@@ -224,7 +224,7 @@ namespace Pulumi.DbtCloud
         public Output<int> JobId { get; private set; } = null!;
 
         /// <summary>
-        /// Can be used to enforce the job type betwen `Ci`, `Merge` and `Scheduled`. Without this value the job type is inferred from the triggers configured
+        /// The job type, inferred by the dbt platform from the configured triggers: `Ci` (git provider webhook), `Merge` (on-merge), or `Scheduled`/`Other` otherwise. Setting it explicitly only meaningfully distinguishes `Ci`/`Merge`/`Adaptive`; `Scheduled` and `Other` are derived from whether a schedule trigger is active and cannot be enforced.
         /// </summary>
         [Output("jobType")]
         public Output<string> JobType { get; private set; } = null!;
@@ -481,7 +481,7 @@ namespace Pulumi.DbtCloud
         }
 
         /// <summary>
-        /// Can be used to enforce the job type betwen `Ci`, `Merge` and `Scheduled`. Without this value the job type is inferred from the triggers configured
+        /// The job type, inferred by the dbt platform from the configured triggers: `Ci` (git provider webhook), `Merge` (on-merge), or `Scheduled`/`Other` otherwise. Setting it explicitly only meaningfully distinguishes `Ci`/`Merge`/`Adaptive`; `Scheduled` and `Other` are derived from whether a schedule trigger is active and cannot be enforced.
         /// </summary>
         [Input("jobType")]
         public Input<string>? JobType { get; set; }
@@ -717,7 +717,7 @@ namespace Pulumi.DbtCloud
         public Input<int>? JobId { get; set; }
 
         /// <summary>
-        /// Can be used to enforce the job type betwen `Ci`, `Merge` and `Scheduled`. Without this value the job type is inferred from the triggers configured
+        /// The job type, inferred by the dbt platform from the configured triggers: `Ci` (git provider webhook), `Merge` (on-merge), or `Scheduled`/`Other` otherwise. Setting it explicitly only meaningfully distinguishes `Ci`/`Merge`/`Adaptive`; `Scheduled` and `Other` are derived from whether a schedule trigger is active and cannot be enforced.
         /// </summary>
         [Input("jobType")]
         public Input<string>? JobType { get; set; }
