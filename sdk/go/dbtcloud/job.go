@@ -169,7 +169,7 @@ type Job struct {
 	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayOutput `pulumi:"jobCompletionTriggerConditions"`
 	// Job identifier
 	JobId pulumi.IntOutput `pulumi:"jobId"`
-	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	// The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
 	JobType pulumi.StringOutput `pulumi:"jobType"`
 	// Job name
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -281,7 +281,7 @@ type jobState struct {
 	JobCompletionTriggerConditions []JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerConditions"`
 	// Job identifier
 	JobId *int `pulumi:"jobId"`
-	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	// The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
 	JobType *string `pulumi:"jobType"`
 	// Job name
 	Name *string `pulumi:"name"`
@@ -352,7 +352,7 @@ type JobState struct {
 	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayInput
 	// Job identifier
 	JobId pulumi.IntPtrInput
-	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	// The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
 	JobType pulumi.StringPtrInput
 	// Job name
 	Name pulumi.StringPtrInput
@@ -425,7 +425,7 @@ type jobArgs struct {
 	IsActive *bool `pulumi:"isActive"`
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerConditions []JobJobCompletionTriggerCondition `pulumi:"jobCompletionTriggerConditions"`
-	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	// The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
 	JobType *string `pulumi:"jobType"`
 	// Job name
 	Name *string `pulumi:"name"`
@@ -495,7 +495,7 @@ type JobArgs struct {
 	IsActive pulumi.BoolPtrInput
 	// Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
 	JobCompletionTriggerConditions JobJobCompletionTriggerConditionArrayInput
-	// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+	// The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
 	JobType pulumi.StringPtrInput
 	// Job name
 	Name pulumi.StringPtrInput
@@ -697,7 +697,7 @@ func (o JobOutput) JobId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.JobId }).(pulumi.IntOutput)
 }
 
-// Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+// The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
 func (o JobOutput) JobType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.JobType }).(pulumi.StringOutput)
 }

@@ -247,14 +247,14 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
      * 
      */
     @Import(name="jobType")
     private @Nullable Output<String> jobType;
 
     /**
-     * @return Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+     * @return The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
      * 
      */
     public Optional<Output<String>> jobType() {
@@ -926,7 +926,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jobType Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+         * @param jobType The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
          * 
          * @return builder
          * 
@@ -937,7 +937,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jobType Can be used to enforce the job type betwen `ci`, `merge` and `scheduled`. Without this value the job type is inferred from the triggers configured
+         * @param jobType The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
          * 
          * @return builder
          * 
