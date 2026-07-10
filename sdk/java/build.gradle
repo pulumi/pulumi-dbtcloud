@@ -96,7 +96,7 @@ publishing {
                 inceptionYear = "2022"
                 name = "pulumi-dbtcloud"
                 packaging = "jar"
-                description = "A Pulumi package for creating and managing dbt Cloud resources."
+                description = $/A Pulumi package for creating and managing dbt Cloud resources./$
 
                 url = "https://github.com/pulumi/pulumi-dbtcloud"
 

@@ -525,7 +525,6 @@ class Repository(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/repository:Repository my_repository 12345:6789
         ```
 
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] azure_active_directory_project_id: The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `get_azure_dev_ops_project` and the project name - (required for ADO native integration only)
@@ -580,7 +579,6 @@ class Repository(pulumi.CustomResource):
         $ pulumi import dbtcloud:index/repository:Repository my_repository "project_id:repository_id"
         $ pulumi import dbtcloud:index/repository:Repository my_repository 12345:6789
         ```
-
 
         :param str resource_name: The name of the resource.
         :param RepositoryArgs args: The arguments to use to populate this resource's properties.
