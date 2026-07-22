@@ -36,8 +36,6 @@ type GetGroupsArgs struct {
 type GetGroupsResult struct {
 	// Set of groups in the account
 	Groups []GetGroupsGroup `pulumi:"groups"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Filter groups by exact name match
 	Name *string `pulumi:"name"`
 	// Filter groups by partial name match (case insensitive)
@@ -87,11 +85,6 @@ func (o GetGroupsResultOutput) ToGetGroupsResultOutputWithContext(ctx context.Co
 // Set of groups in the account
 func (o GetGroupsResultOutput) Groups() GetGroupsGroupArrayOutput {
 	return o.ApplyT(func(v GetGroupsResult) []GetGroupsGroup { return v.Groups }).(GetGroupsGroupArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetGroupsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGroupsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Filter groups by exact name match

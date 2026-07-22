@@ -27,13 +27,10 @@ class GetJobsResult:
     """
     A collection of values returned by getJobs.
     """
-    def __init__(__self__, environment_id=None, id=None, jobs=None, project_id=None):
+    def __init__(__self__, environment_id=None, jobs=None, project_id=None):
         if environment_id and not isinstance(environment_id, int):
             raise TypeError("Expected argument 'environment_id' to be a int")
         pulumi.set(__self__, "environment_id", environment_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if jobs and not isinstance(jobs, list):
             raise TypeError("Expected argument 'jobs' to be a list")
         pulumi.set(__self__, "jobs", jobs)
@@ -48,14 +45,6 @@ class GetJobsResult:
         The ID of the environment for which we want to retrieve the jobs (one of `project_id` or `environment_id` must be set)
         """
         return pulumi.get(self, "environment_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -81,7 +70,6 @@ class AwaitableGetJobsResult(GetJobsResult):
             yield self
         return GetJobsResult(
             environment_id=self.environment_id,
-            id=self.id,
             jobs=self.jobs,
             project_id=self.project_id)
 
@@ -117,7 +105,6 @@ def get_jobs(environment_id: Optional[_builtins.int] = None,
 
     return AwaitableGetJobsResult(
         environment_id=pulumi.get(__ret__, 'environment_id'),
-        id=pulumi.get(__ret__, 'id'),
         jobs=pulumi.get(__ret__, 'jobs'),
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_jobs_output(environment_id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
@@ -150,6 +137,5 @@ def get_jobs_output(environment_id: pulumi.Input[Optional[Optional[_builtins.int
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getJobs:getJobs', __args__, opts=opts, typ=GetJobsResult)
     return __ret__.apply(lambda __response__: GetJobsResult(
         environment_id=pulumi.get(__response__, 'environment_id'),
-        id=pulumi.get(__response__, 'id'),
         jobs=pulumi.get(__response__, 'jobs'),
         project_id=pulumi.get(__response__, 'project_id')))

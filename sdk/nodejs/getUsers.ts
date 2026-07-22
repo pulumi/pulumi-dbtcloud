@@ -32,10 +32,6 @@ export function getUsers(opts?: pulumi.InvokeOptions): Promise<GetUsersResult> {
  */
 export interface GetUsersResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Set of users with their internal ID end email
      */
     readonly users: outputs.GetUsersUser[];

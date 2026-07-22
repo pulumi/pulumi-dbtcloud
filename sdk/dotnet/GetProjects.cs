@@ -64,10 +64,6 @@ namespace Pulumi.DbtCloud
     public sealed class GetProjectsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Used to filter projects by name, Optional
         /// </summary>
         public readonly string NameContains;
@@ -78,13 +74,10 @@ namespace Pulumi.DbtCloud
 
         [OutputConstructor]
         private GetProjectsResult(
-            string id,
-
             string nameContains,
 
             ImmutableArray<Outputs.GetProjectsProjectResult> projects)
         {
-            Id = id;
             NameContains = nameContains;
             Projects = projects;
         }

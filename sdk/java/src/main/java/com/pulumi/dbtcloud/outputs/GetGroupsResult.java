@@ -20,11 +20,6 @@ public final class GetGroupsResult {
      */
     private List<GetGroupsGroup> groups;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Filter groups by exact name match
      * 
      */
@@ -47,13 +42,6 @@ public final class GetGroupsResult {
      */
     public List<GetGroupsGroup> groups() {
         return this.groups;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Filter groups by exact name match
@@ -87,7 +75,6 @@ public final class GetGroupsResult {
     @CustomType.Builder
     public static final class Builder {
         private List<GetGroupsGroup> groups;
-        private String id;
         private @Nullable String name;
         private @Nullable String nameContains;
         private @Nullable String state;
@@ -95,7 +82,6 @@ public final class GetGroupsResult {
         public Builder(GetGroupsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.groups = defaults.groups;
-    	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.nameContains = defaults.nameContains;
     	      this.state = defaults.state;
@@ -111,14 +97,6 @@ public final class GetGroupsResult {
         }
         public Builder groups(GetGroupsGroup... groups) {
             return groups(List.of(groups));
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetGroupsResult", "id");
-            }
-            this.id = id;
-            return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
@@ -141,7 +119,6 @@ public final class GetGroupsResult {
         public GetGroupsResult build() {
             final var _resultValue = new GetGroupsResult();
             _resultValue.groups = groups;
-            _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.nameContains = nameContains;
             _resultValue.state = state;

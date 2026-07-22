@@ -68,10 +68,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly ImmutableArray<Outputs.GetEnvironmentsEnvironmentResult> Environments;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The project ID to filter the environments for [Optional]
         /// </summary>
         public readonly int? ProjectId;
@@ -80,12 +76,9 @@ namespace Pulumi.DbtCloud
         private GetEnvironmentsResult(
             ImmutableArray<Outputs.GetEnvironmentsEnvironmentResult> environments,
 
-            string id,
-
             int? projectId)
         {
             Environments = environments;
-            Id = id;
             ProjectId = projectId;
         }
     }

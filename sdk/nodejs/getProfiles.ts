@@ -42,10 +42,6 @@ export interface GetProfilesArgs {
  */
 export interface GetProfilesResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The list of profiles
      */
     readonly profiles: outputs.GetProfilesProfile[];

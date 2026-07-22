@@ -6,7 +6,6 @@ package com.pulumi.dbtcloud.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionsConnection;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,11 +16,6 @@ public final class GetGlobalConnectionsResult {
      * 
      */
     private List<GetGlobalConnectionsConnection> connections;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
 
     private GetGlobalConnectionsResult() {}
     /**
@@ -30,13 +24,6 @@ public final class GetGlobalConnectionsResult {
      */
     public List<GetGlobalConnectionsConnection> connections() {
         return this.connections;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
 
     public static Builder builder() {
@@ -49,12 +36,10 @@ public final class GetGlobalConnectionsResult {
     @CustomType.Builder
     public static final class Builder {
         private List<GetGlobalConnectionsConnection> connections;
-        private String id;
         public Builder() {}
         public Builder(GetGlobalConnectionsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connections = defaults.connections;
-    	      this.id = defaults.id;
         }
 
         @CustomType.Setter
@@ -68,18 +53,9 @@ public final class GetGlobalConnectionsResult {
         public Builder connections(GetGlobalConnectionsConnection... connections) {
             return connections(List.of(connections));
         }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetGlobalConnectionsResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         public GetGlobalConnectionsResult build() {
             final var _resultValue = new GetGlobalConnectionsResult();
             _resultValue.connections = connections;
-            _resultValue.id = id;
             return _resultValue;
         }
     }

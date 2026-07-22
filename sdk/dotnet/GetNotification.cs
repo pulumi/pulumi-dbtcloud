@@ -122,10 +122,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string ExternalEmail;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The ID of the notification
         /// </summary>
         public readonly int NotificationId;
@@ -170,8 +166,6 @@ namespace Pulumi.DbtCloud
         private GetNotificationResult(
             string externalEmail,
 
-            string id,
-
             int notificationId,
 
             int notificationType,
@@ -193,7 +187,6 @@ namespace Pulumi.DbtCloud
             int userId)
         {
             ExternalEmail = externalEmail;
-            Id = id;
             NotificationId = notificationId;
             NotificationType = notificationType;
             OnCancels = onCancels;

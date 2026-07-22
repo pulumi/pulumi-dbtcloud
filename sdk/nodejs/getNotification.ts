@@ -44,10 +44,6 @@ export interface GetNotificationResult {
      */
     readonly externalEmail: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The ID of the notification
      */
     readonly notificationId: number;

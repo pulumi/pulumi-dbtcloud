@@ -27,13 +27,10 @@ class GetEnvironmentsResult:
     """
     A collection of values returned by getEnvironments.
     """
-    def __init__(__self__, environments=None, id=None, project_id=None):
+    def __init__(__self__, environments=None, project_id=None):
         if environments and not isinstance(environments, list):
             raise TypeError("Expected argument 'environments' to be a list")
         pulumi.set(__self__, "environments", environments)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if project_id and not isinstance(project_id, int):
             raise TypeError("Expected argument 'project_id' to be a int")
         pulumi.set(__self__, "project_id", project_id)
@@ -45,14 +42,6 @@ class GetEnvironmentsResult:
         The list of environments
         """
         return pulumi.get(self, "environments")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -70,7 +59,6 @@ class AwaitableGetEnvironmentsResult(GetEnvironmentsResult):
             yield self
         return GetEnvironmentsResult(
             environments=self.environments,
-            id=self.id,
             project_id=self.project_id)
 
 
@@ -89,7 +77,6 @@ def get_environments(project_id: Optional[_builtins.int] = None,
 
     return AwaitableGetEnvironmentsResult(
         environments=pulumi.get(__ret__, 'environments'),
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_environments_output(project_id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvironmentsResult]:
@@ -105,5 +92,4 @@ def get_environments_output(project_id: pulumi.Input[Optional[Optional[_builtins
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getEnvironments:getEnvironments', __args__, opts=opts, typ=GetEnvironmentsResult)
     return __ret__.apply(lambda __response__: GetEnvironmentsResult(
         environments=pulumi.get(__response__, 'environments'),
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id')))

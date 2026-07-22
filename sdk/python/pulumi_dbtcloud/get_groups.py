@@ -27,13 +27,10 @@ class GetGroupsResult:
     """
     A collection of values returned by getGroups.
     """
-    def __init__(__self__, groups=None, id=None, name=None, name_contains=None, state=None):
+    def __init__(__self__, groups=None, name=None, name_contains=None, state=None):
         if groups and not isinstance(groups, list):
             raise TypeError("Expected argument 'groups' to be a list")
         pulumi.set(__self__, "groups", groups)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -51,14 +48,6 @@ class GetGroupsResult:
         Set of groups in the account
         """
         return pulumi.get(self, "groups")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -92,7 +81,6 @@ class AwaitableGetGroupsResult(GetGroupsResult):
             yield self
         return GetGroupsResult(
             groups=self.groups,
-            id=self.id,
             name=self.name,
             name_contains=self.name_contains,
             state=self.state)
@@ -119,7 +107,6 @@ def get_groups(name: Optional[_builtins.str] = None,
 
     return AwaitableGetGroupsResult(
         groups=pulumi.get(__ret__, 'groups'),
-        id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         name_contains=pulumi.get(__ret__, 'name_contains'),
         state=pulumi.get(__ret__, 'state'))
@@ -143,7 +130,6 @@ def get_groups_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = No
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGroups:getGroups', __args__, opts=opts, typ=GetGroupsResult)
     return __ret__.apply(lambda __response__: GetGroupsResult(
         groups=pulumi.get(__response__, 'groups'),
-        id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         name_contains=pulumi.get(__response__, 'name_contains'),
         state=pulumi.get(__response__, 'state')))

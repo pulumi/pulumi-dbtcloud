@@ -28,8 +28,6 @@ func GetPrivatelinkEndpoints(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (
 type GetPrivatelinkEndpointsResult struct {
 	// A list of all PrivateLink endpoints in the account
 	Endpoints []GetPrivatelinkEndpointsEndpoint `pulumi:"endpoints"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 }
 
 func GetPrivatelinkEndpointsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetPrivatelinkEndpointsResultOutput {
@@ -57,11 +55,6 @@ func (o GetPrivatelinkEndpointsResultOutput) ToGetPrivatelinkEndpointsResultOutp
 // A list of all PrivateLink endpoints in the account
 func (o GetPrivatelinkEndpointsResultOutput) Endpoints() GetPrivatelinkEndpointsEndpointArrayOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) []GetPrivatelinkEndpointsEndpoint { return v.Endpoints }).(GetPrivatelinkEndpointsEndpointArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -48,8 +48,6 @@ type LookupEnvironmentResult struct {
 	EnvironmentId int `pulumi:"environmentId"`
 	// The ID of the extended attributes applied
 	ExtendedAttributesId int `pulumi:"extendedAttributesId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The name of the environment
 	Name string `pulumi:"name"`
 	// The ID of the primary profile for this environment
@@ -136,11 +134,6 @@ func (o LookupEnvironmentResultOutput) EnvironmentId() pulumi.IntOutput {
 // The ID of the extended attributes applied
 func (o LookupEnvironmentResultOutput) ExtendedAttributesId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) int { return v.ExtendedAttributesId }).(pulumi.IntOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupEnvironmentResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of the environment

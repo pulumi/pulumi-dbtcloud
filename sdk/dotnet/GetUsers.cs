@@ -104,21 +104,13 @@ namespace Pulumi.DbtCloud
     public sealed class GetUsersResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Set of users with their internal ID end email
         /// </summary>
         public readonly ImmutableArray<Outputs.GetUsersUserResult> Users;
 
         [OutputConstructor]
-        private GetUsersResult(
-            string id,
-
-            ImmutableArray<Outputs.GetUsersUserResult> users)
+        private GetUsersResult(ImmutableArray<Outputs.GetUsersUserResult> users)
         {
-            Id = id;
             Users = users;
         }
     }

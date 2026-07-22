@@ -68,10 +68,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly Outputs.GetRunsFilterResult? Filter;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Set of users with their internal ID end email
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRunsRunResult> Runs;
@@ -80,12 +76,9 @@ namespace Pulumi.DbtCloud
         private GetRunsResult(
             Outputs.GetRunsFilterResult? filter,
 
-            string id,
-
             ImmutableArray<Outputs.GetRunsRunResult> runs)
         {
             Filter = filter;
-            Id = id;
             Runs = runs;
         }
     }

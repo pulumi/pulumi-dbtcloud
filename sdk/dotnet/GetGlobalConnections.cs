@@ -83,19 +83,11 @@ namespace Pulumi.DbtCloud
         /// A list of all the connections
         /// </summary>
         public readonly ImmutableArray<Outputs.GetGlobalConnectionsConnectionResult> Connections;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
-        private GetGlobalConnectionsResult(
-            ImmutableArray<Outputs.GetGlobalConnectionsConnectionResult> connections,
-
-            string id)
+        private GetGlobalConnectionsResult(ImmutableArray<Outputs.GetGlobalConnectionsConnectionResult> connections)
         {
             Connections = connections;
-            Id = id;
         }
     }
 }

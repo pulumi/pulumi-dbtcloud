@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.dbtcloud.outputs.GetRunsFilter;
 import com.pulumi.dbtcloud.outputs.GetRunsRun;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,11 +20,6 @@ public final class GetRunsResult {
      */
     private @Nullable GetRunsFilter filter;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Set of users with their internal ID end email
      * 
      */
@@ -38,13 +32,6 @@ public final class GetRunsResult {
      */
     public Optional<GetRunsFilter> filter() {
         return Optional.ofNullable(this.filter);
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Set of users with their internal ID end email
@@ -64,13 +51,11 @@ public final class GetRunsResult {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable GetRunsFilter filter;
-        private String id;
         private List<GetRunsRun> runs;
         public Builder() {}
         public Builder(GetRunsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.filter = defaults.filter;
-    	      this.id = defaults.id;
     	      this.runs = defaults.runs;
         }
 
@@ -78,14 +63,6 @@ public final class GetRunsResult {
         public Builder filter(@Nullable GetRunsFilter filter) {
 
             this.filter = filter;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetRunsResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -102,7 +79,6 @@ public final class GetRunsResult {
         public GetRunsResult build() {
             final var _resultValue = new GetRunsResult();
             _resultValue.filter = filter;
-            _resultValue.id = id;
             _resultValue.runs = runs;
             return _resultValue;
         }

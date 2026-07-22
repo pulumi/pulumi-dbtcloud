@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.dbtcloud.outputs.GetJobsJob;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,11 +19,6 @@ public final class GetJobsResult {
      * 
      */
     private @Nullable Integer environmentId;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     /**
      * @return Set of jobs with their details
      * 
@@ -43,13 +37,6 @@ public final class GetJobsResult {
      */
     public Optional<Integer> environmentId() {
         return Optional.ofNullable(this.environmentId);
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Set of jobs with their details
@@ -76,14 +63,12 @@ public final class GetJobsResult {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer environmentId;
-        private String id;
         private List<GetJobsJob> jobs;
         private @Nullable Integer projectId;
         public Builder() {}
         public Builder(GetJobsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.environmentId = defaults.environmentId;
-    	      this.id = defaults.id;
     	      this.jobs = defaults.jobs;
     	      this.projectId = defaults.projectId;
         }
@@ -92,14 +77,6 @@ public final class GetJobsResult {
         public Builder environmentId(@Nullable Integer environmentId) {
 
             this.environmentId = environmentId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetJobsResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -122,7 +99,6 @@ public final class GetJobsResult {
         public GetJobsResult build() {
             final var _resultValue = new GetJobsResult();
             _resultValue.environmentId = environmentId;
-            _resultValue.id = id;
             _resultValue.jobs = jobs;
             _resultValue.projectId = projectId;
             return _resultValue;

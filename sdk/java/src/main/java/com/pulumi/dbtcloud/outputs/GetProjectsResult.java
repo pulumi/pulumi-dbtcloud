@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetProjectsResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Used to filter projects by name, Optional
      * 
      */
@@ -29,13 +24,6 @@ public final class GetProjectsResult {
     private List<GetProjectsProject> projects;
 
     private GetProjectsResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Used to filter projects by name, Optional
      * 
@@ -60,25 +48,15 @@ public final class GetProjectsResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String nameContains;
         private List<GetProjectsProject> projects;
         public Builder() {}
         public Builder(GetProjectsResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.nameContains = defaults.nameContains;
     	      this.projects = defaults.projects;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetProjectsResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder nameContains(String nameContains) {
             if (nameContains == null) {
@@ -100,7 +78,6 @@ public final class GetProjectsResult {
         }
         public GetProjectsResult build() {
             final var _resultValue = new GetProjectsResult();
-            _resultValue.id = id;
             _resultValue.nameContains = nameContains;
             _resultValue.projects = projects;
             return _resultValue;

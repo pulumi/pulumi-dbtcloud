@@ -56,8 +56,6 @@ type GetProfilesArgs struct {
 
 // A collection of values returned by getProfiles.
 type GetProfilesResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The list of profiles
 	Profiles []GetProfilesProfile `pulumi:"profiles"`
 	// The project ID to filter profiles for
@@ -96,11 +94,6 @@ func (o GetProfilesResultOutput) ToGetProfilesResultOutput() GetProfilesResultOu
 
 func (o GetProfilesResultOutput) ToGetProfilesResultOutputWithContext(ctx context.Context) GetProfilesResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetProfilesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProfilesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The list of profiles

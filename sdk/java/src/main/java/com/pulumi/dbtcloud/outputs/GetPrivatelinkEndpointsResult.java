@@ -6,7 +6,6 @@ package com.pulumi.dbtcloud.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.dbtcloud.outputs.GetPrivatelinkEndpointsEndpoint;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,11 +16,6 @@ public final class GetPrivatelinkEndpointsResult {
      * 
      */
     private List<GetPrivatelinkEndpointsEndpoint> endpoints;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
 
     private GetPrivatelinkEndpointsResult() {}
     /**
@@ -30,13 +24,6 @@ public final class GetPrivatelinkEndpointsResult {
      */
     public List<GetPrivatelinkEndpointsEndpoint> endpoints() {
         return this.endpoints;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
 
     public static Builder builder() {
@@ -49,12 +36,10 @@ public final class GetPrivatelinkEndpointsResult {
     @CustomType.Builder
     public static final class Builder {
         private List<GetPrivatelinkEndpointsEndpoint> endpoints;
-        private String id;
         public Builder() {}
         public Builder(GetPrivatelinkEndpointsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.endpoints = defaults.endpoints;
-    	      this.id = defaults.id;
         }
 
         @CustomType.Setter
@@ -68,18 +53,9 @@ public final class GetPrivatelinkEndpointsResult {
         public Builder endpoints(GetPrivatelinkEndpointsEndpoint... endpoints) {
             return endpoints(List.of(endpoints));
         }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointsResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         public GetPrivatelinkEndpointsResult build() {
             final var _resultValue = new GetPrivatelinkEndpointsResult();
             _resultValue.endpoints = endpoints;
-            _resultValue.id = id;
             return _resultValue;
         }
     }

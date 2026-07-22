@@ -58,10 +58,6 @@ export interface GetJobsResult {
      */
     readonly environmentId?: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Set of jobs with their details
      */
     readonly jobs: outputs.GetJobsJob[];

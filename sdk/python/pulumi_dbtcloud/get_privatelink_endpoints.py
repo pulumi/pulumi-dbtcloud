@@ -27,13 +27,10 @@ class GetPrivatelinkEndpointsResult:
     """
     A collection of values returned by getPrivatelinkEndpoints.
     """
-    def __init__(__self__, endpoints=None, id=None):
+    def __init__(__self__, endpoints=None):
         if endpoints and not isinstance(endpoints, list):
             raise TypeError("Expected argument 'endpoints' to be a list")
         pulumi.set(__self__, "endpoints", endpoints)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
 
     @_builtins.property
     @pulumi.getter
@@ -43,14 +40,6 @@ class GetPrivatelinkEndpointsResult:
         """
         return pulumi.get(self, "endpoints")
 
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
 
 class AwaitableGetPrivatelinkEndpointsResult(GetPrivatelinkEndpointsResult):
     # pylint: disable=using-constant-test
@@ -58,8 +47,7 @@ class AwaitableGetPrivatelinkEndpointsResult(GetPrivatelinkEndpointsResult):
         if False:
             yield self
         return GetPrivatelinkEndpointsResult(
-            endpoints=self.endpoints,
-            id=self.id)
+            endpoints=self.endpoints)
 
 
 def get_privatelink_endpoints(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointsResult:
@@ -103,8 +91,7 @@ def get_privatelink_endpoints(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints', __args__, opts=opts, typ=GetPrivatelinkEndpointsResult).value
 
     return AwaitableGetPrivatelinkEndpointsResult(
-        endpoints=pulumi.get(__ret__, 'endpoints'),
-        id=pulumi.get(__ret__, 'id'))
+        endpoints=pulumi.get(__ret__, 'endpoints'))
 def get_privatelink_endpoints_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointsResult]:
     """
     Retrieve information about all PrivateLink endpoints in the dbt Cloud account.
@@ -145,5 +132,4 @@ def get_privatelink_endpoints_output(opts: Optional[Union[pulumi.InvokeOptions, 
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints', __args__, opts=opts, typ=GetPrivatelinkEndpointsResult)
     return __ret__.apply(lambda __response__: GetPrivatelinkEndpointsResult(
-        endpoints=pulumi.get(__response__, 'endpoints'),
-        id=pulumi.get(__response__, 'id')))
+        endpoints=pulumi.get(__response__, 'endpoints')))

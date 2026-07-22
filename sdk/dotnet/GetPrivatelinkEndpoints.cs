@@ -185,19 +185,11 @@ namespace Pulumi.DbtCloud
         /// A list of all PrivateLink endpoints in the account
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPrivatelinkEndpointsEndpointResult> Endpoints;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
-        private GetPrivatelinkEndpointsResult(
-            ImmutableArray<Outputs.GetPrivatelinkEndpointsEndpointResult> endpoints,
-
-            string id)
+        private GetPrivatelinkEndpointsResult(ImmutableArray<Outputs.GetPrivatelinkEndpointsEndpointResult> endpoints)
         {
             Endpoints = endpoints;
-            Id = id;
         }
     }
 }

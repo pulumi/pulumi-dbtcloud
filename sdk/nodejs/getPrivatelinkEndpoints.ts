@@ -59,10 +59,6 @@ export interface GetPrivatelinkEndpointsResult {
      * A list of all PrivateLink endpoints in the account
      */
     readonly endpoints: outputs.GetPrivatelinkEndpointsEndpoint[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
 /**
  * Retrieve information about all PrivateLink endpoints in the dbt Cloud account.

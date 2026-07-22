@@ -36,10 +36,6 @@ export interface GetEnvironmentsResult {
      */
     readonly environments: outputs.GetEnvironmentsEnvironment[];
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The project ID to filter the environments for [Optional]
      */
     readonly projectId?: number;
