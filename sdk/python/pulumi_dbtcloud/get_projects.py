@@ -27,24 +27,13 @@ class GetProjectsResult:
     """
     A collection of values returned by getProjects.
     """
-    def __init__(__self__, id=None, name_contains=None, projects=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, name_contains=None, projects=None):
         if name_contains and not isinstance(name_contains, str):
             raise TypeError("Expected argument 'name_contains' to be a str")
         pulumi.set(__self__, "name_contains", name_contains)
         if projects and not isinstance(projects, list):
             raise TypeError("Expected argument 'projects' to be a list")
         pulumi.set(__self__, "projects", projects)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="nameContains")
@@ -69,7 +58,6 @@ class AwaitableGetProjectsResult(GetProjectsResult):
         if False:
             yield self
         return GetProjectsResult(
-            id=self.id,
             name_contains=self.name_contains,
             projects=self.projects)
 
@@ -88,7 +76,6 @@ def get_projects(name_contains: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult).value
 
     return AwaitableGetProjectsResult(
-        id=pulumi.get(__ret__, 'id'),
         name_contains=pulumi.get(__ret__, 'name_contains'),
         projects=pulumi.get(__ret__, 'projects'))
 def get_projects_output(name_contains: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -104,6 +91,5 @@ def get_projects_output(name_contains: pulumi.Input[Optional[Optional[_builtins.
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult)
     return __ret__.apply(lambda __response__: GetProjectsResult(
-        id=pulumi.get(__response__, 'id'),
         name_contains=pulumi.get(__response__, 'name_contains'),
         projects=pulumi.get(__response__, 'projects')))

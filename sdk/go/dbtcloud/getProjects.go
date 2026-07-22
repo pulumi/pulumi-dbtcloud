@@ -30,8 +30,6 @@ type GetProjectsArgs struct {
 
 // A collection of values returned by getProjects.
 type GetProjectsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Used to filter projects by name, Optional
 	NameContains string `pulumi:"nameContains"`
 	// Set of projects with their details
@@ -70,11 +68,6 @@ func (o GetProjectsResultOutput) ToGetProjectsResultOutput() GetProjectsResultOu
 
 func (o GetProjectsResultOutput) ToGetProjectsResultOutputWithContext(ctx context.Context) GetProjectsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetProjectsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetProjectsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Used to filter projects by name, Optional

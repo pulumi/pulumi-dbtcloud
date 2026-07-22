@@ -11012,10 +11012,6 @@
                         "description": "The ID of the extended attributes applied\n",
                         "type": "integer"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "name": {
                         "description": "The name of the environment\n",
                         "type": "string"
@@ -11050,8 +11046,7 @@
                     "primaryProfileId",
                     "projectId",
                     "type",
-                    "useCustomBranch",
-                    "id"
+                    "useCustomBranch"
                 ],
                 "type": "object"
             }
@@ -11130,18 +11125,13 @@
                         },
                         "type": "array"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "projectId": {
                         "description": "The project ID to filter the environments for [Optional]\n",
                         "type": "integer"
                     }
                 },
                 "required": [
-                    "environments",
-                    "id"
+                    "environments"
                 ],
                 "type": "object"
             }
@@ -11323,15 +11313,10 @@
                             "$ref": "#/types/dbtcloud:index/getGlobalConnectionsConnection:getGlobalConnectionsConnection"
                         },
                         "type": "array"
-                    },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
                     }
                 },
                 "required": [
-                    "connections",
-                    "id"
+                    "connections"
                 ],
                 "type": "object"
             }
@@ -11468,10 +11453,6 @@
                         },
                         "type": "array"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "name": {
                         "description": "Filter groups by exact name match\n",
                         "type": "string"
@@ -11486,8 +11467,7 @@
                     }
                 },
                 "required": [
-                    "groups",
-                    "id"
+                    "groups"
                 ],
                 "type": "object"
             }
@@ -11680,10 +11660,6 @@
                         "description": "The ID of the environment for which we want to retrieve the jobs (one of \u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`environmentId`\" pulumi-lang-dotnet=\"`EnvironmentId`\" pulumi-lang-go=\"`environmentId`\" pulumi-lang-python=\"`environment_id`\" pulumi-lang-yaml=\"`environmentId`\" pulumi-lang-java=\"`environmentId`\" pulumi-lang-hcl=\"`environment_id`\"\u003e`environmentId`\u003c/span\u003e must be set)\n",
                         "type": "integer"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "jobs": {
                         "description": "Set of jobs with their details\n",
                         "items": {
@@ -11697,8 +11673,7 @@
                     }
                 },
                 "required": [
-                    "jobs",
-                    "id"
+                    "jobs"
                 ],
                 "type": "object"
             }
@@ -11784,10 +11759,6 @@
                         "description": "The external email to receive the notification\n",
                         "type": "string"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "notificationId": {
                         "description": "The ID of the notification\n",
                         "type": "integer"
@@ -11852,8 +11823,7 @@
                     "slackChannelId",
                     "slackChannelName",
                     "state",
-                    "userId",
-                    "id"
+                    "userId"
                 ],
                 "type": "object"
             }
@@ -11985,15 +11955,10 @@
                             "$ref": "#/types/dbtcloud:index/getPrivatelinkEndpointsEndpoint:getPrivatelinkEndpointsEndpoint"
                         },
                         "type": "array"
-                    },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
                     }
                 },
                 "required": [
-                    "endpoints",
-                    "id"
+                    "endpoints"
                 ],
                 "type": "object"
             }
@@ -12080,10 +12045,6 @@
             "outputs": {
                 "description": "A collection of values returned by getProfiles.\n",
                 "properties": {
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "profiles": {
                         "description": "The list of profiles\n",
                         "items": {
@@ -12098,8 +12059,7 @@
                 },
                 "required": [
                     "profiles",
-                    "projectId",
-                    "id"
+                    "projectId"
                 ],
                 "type": "object"
             }
@@ -12208,10 +12168,6 @@
             "outputs": {
                 "description": "A collection of values returned by getProjects.\n",
                 "properties": {
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "nameContains": {
                         "description": "Used to filter projects by name, Optional\n",
                         "type": "string"
@@ -12226,8 +12182,7 @@
                 },
                 "required": [
                     "nameContains",
-                    "projects",
-                    "id"
+                    "projects"
                 ],
                 "type": "object"
             }
@@ -12430,10 +12385,6 @@
                         "$ref": "#/types/dbtcloud:index/getRunsFilter:getRunsFilter",
                         "description": "Filter to apply to the runs\n"
                     },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "runs": {
                         "description": "Set of users with their internal ID end email\n",
                         "items": {
@@ -12443,8 +12394,7 @@
                     }
                 },
                 "required": [
-                    "runs",
-                    "id"
+                    "runs"
                 ],
                 "type": "object"
             }
@@ -12972,10 +12922,6 @@
             "outputs": {
                 "description": "A collection of values returned by getUsers.\n",
                 "properties": {
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
-                    },
                     "users": {
                         "description": "Set of users with their internal ID end email\n",
                         "items": {
@@ -12985,8 +12931,7 @@
                     }
                 },
                 "required": [
-                    "users",
-                    "id"
+                    "users"
                 ],
                 "type": "object"
             }

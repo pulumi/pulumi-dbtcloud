@@ -26,13 +26,10 @@ class GetNotificationResult:
     """
     A collection of values returned by getNotification.
     """
-    def __init__(__self__, external_email=None, id=None, notification_id=None, notification_type=None, on_cancels=None, on_failures=None, on_successes=None, on_warnings=None, slack_channel_id=None, slack_channel_name=None, state=None, user_id=None):
+    def __init__(__self__, external_email=None, notification_id=None, notification_type=None, on_cancels=None, on_failures=None, on_successes=None, on_warnings=None, slack_channel_id=None, slack_channel_name=None, state=None, user_id=None):
         if external_email and not isinstance(external_email, str):
             raise TypeError("Expected argument 'external_email' to be a str")
         pulumi.set(__self__, "external_email", external_email)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if notification_id and not isinstance(notification_id, int):
             raise TypeError("Expected argument 'notification_id' to be a int")
         pulumi.set(__self__, "notification_id", notification_id)
@@ -71,14 +68,6 @@ class GetNotificationResult:
         The external email to receive the notification
         """
         return pulumi.get(self, "external_email")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="notificationId")
@@ -168,7 +157,6 @@ class AwaitableGetNotificationResult(GetNotificationResult):
             yield self
         return GetNotificationResult(
             external_email=self.external_email,
-            id=self.id,
             notification_id=self.notification_id,
             notification_type=self.notification_type,
             on_cancels=self.on_cancels,
@@ -205,7 +193,6 @@ def get_notification(notification_id: Optional[_builtins.int] = None,
 
     return AwaitableGetNotificationResult(
         external_email=pulumi.get(__ret__, 'external_email'),
-        id=pulumi.get(__ret__, 'id'),
         notification_id=pulumi.get(__ret__, 'notification_id'),
         notification_type=pulumi.get(__ret__, 'notification_type'),
         on_cancels=pulumi.get(__ret__, 'on_cancels'),
@@ -239,7 +226,6 @@ def get_notification_output(notification_id: pulumi.Input[Optional[_builtins.int
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getNotification:getNotification', __args__, opts=opts, typ=GetNotificationResult)
     return __ret__.apply(lambda __response__: GetNotificationResult(
         external_email=pulumi.get(__response__, 'external_email'),
-        id=pulumi.get(__response__, 'id'),
         notification_id=pulumi.get(__response__, 'notification_id'),
         notification_type=pulumi.get(__response__, 'notification_type'),
         on_cancels=pulumi.get(__response__, 'on_cancels'),

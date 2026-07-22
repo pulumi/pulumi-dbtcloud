@@ -66,10 +66,6 @@ export interface GetEnvironmentResult {
      */
     readonly extendedAttributesId: number;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The name of the environment
      */
     readonly name: string;

@@ -32,8 +32,6 @@ type GetRunsArgs struct {
 type GetRunsResult struct {
 	// Filter to apply to the runs
 	Filter *GetRunsFilter `pulumi:"filter"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Set of users with their internal ID end email
 	Runs []GetRunsRun `pulumi:"runs"`
 }
@@ -75,11 +73,6 @@ func (o GetRunsResultOutput) ToGetRunsResultOutputWithContext(ctx context.Contex
 // Filter to apply to the runs
 func (o GetRunsResultOutput) Filter() GetRunsFilterPtrOutput {
 	return o.ApplyT(func(v GetRunsResult) *GetRunsFilter { return v.Filter }).(GetRunsFilterPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetRunsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetRunsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Set of users with their internal ID end email

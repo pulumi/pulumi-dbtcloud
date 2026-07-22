@@ -118,10 +118,6 @@ namespace Pulumi.DbtCloud
     public sealed class GetProfilesResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The list of profiles
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProfilesProfileResult> Profiles;
@@ -132,13 +128,10 @@ namespace Pulumi.DbtCloud
 
         [OutputConstructor]
         private GetProfilesResult(
-            string id,
-
             ImmutableArray<Outputs.GetProfilesProfileResult> profiles,
 
             int projectId)
         {
-            Id = id;
             Profiles = profiles;
             ProjectId = projectId;
         }

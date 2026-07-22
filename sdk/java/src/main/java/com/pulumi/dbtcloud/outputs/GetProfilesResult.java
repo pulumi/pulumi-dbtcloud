@@ -7,17 +7,11 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.dbtcloud.outputs.GetProfilesProfile;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetProfilesResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     /**
      * @return The list of profiles
      * 
@@ -30,13 +24,6 @@ public final class GetProfilesResult {
     private Integer projectId;
 
     private GetProfilesResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return The list of profiles
      * 
@@ -61,25 +48,15 @@ public final class GetProfilesResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private List<GetProfilesProfile> profiles;
         private Integer projectId;
         public Builder() {}
         public Builder(GetProfilesResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.profiles = defaults.profiles;
     	      this.projectId = defaults.projectId;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetProfilesResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder profiles(List<GetProfilesProfile> profiles) {
             if (profiles == null) {
@@ -101,7 +78,6 @@ public final class GetProfilesResult {
         }
         public GetProfilesResult build() {
             final var _resultValue = new GetProfilesResult();
-            _resultValue.id = id;
             _resultValue.profiles = profiles;
             _resultValue.projectId = projectId;
             return _resultValue;

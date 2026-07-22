@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentsEnvironment;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,11 +20,6 @@ public final class GetEnvironmentsResult {
      */
     private List<GetEnvironmentsEnvironment> environments;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The project ID to filter the environments for [Optional]
      * 
      */
@@ -38,13 +32,6 @@ public final class GetEnvironmentsResult {
      */
     public List<GetEnvironmentsEnvironment> environments() {
         return this.environments;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return The project ID to filter the environments for [Optional]
@@ -64,13 +51,11 @@ public final class GetEnvironmentsResult {
     @CustomType.Builder
     public static final class Builder {
         private List<GetEnvironmentsEnvironment> environments;
-        private String id;
         private @Nullable Integer projectId;
         public Builder() {}
         public Builder(GetEnvironmentsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.environments = defaults.environments;
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
         }
 
@@ -86,14 +71,6 @@ public final class GetEnvironmentsResult {
             return environments(List.of(environments));
         }
         @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetEnvironmentsResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
-        @CustomType.Setter
         public Builder projectId(@Nullable Integer projectId) {
 
             this.projectId = projectId;
@@ -102,7 +79,6 @@ public final class GetEnvironmentsResult {
         public GetEnvironmentsResult build() {
             final var _resultValue = new GetEnvironmentsResult();
             _resultValue.environments = environments;
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             return _resultValue;
         }

@@ -108,10 +108,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int ExtendedAttributesId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The name of the environment
         /// </summary>
         public readonly string Name;
@@ -150,8 +146,6 @@ namespace Pulumi.DbtCloud
 
             int extendedAttributesId,
 
-            string id,
-
             string name,
 
             int primaryProfileId,
@@ -170,7 +164,6 @@ namespace Pulumi.DbtCloud
             EnableModelQueryHistory = enableModelQueryHistory;
             EnvironmentId = environmentId;
             ExtendedAttributesId = extendedAttributesId;
-            Id = id;
             Name = name;
             PrimaryProfileId = primaryProfileId;
             ProjectId = projectId;

@@ -36,8 +36,6 @@ type GetJobsArgs struct {
 type GetJobsResult struct {
 	// The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
 	EnvironmentId *int `pulumi:"environmentId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Set of jobs with their details
 	Jobs []GetJobsJob `pulumi:"jobs"`
 	// The ID of the project for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
@@ -83,11 +81,6 @@ func (o GetJobsResultOutput) ToGetJobsResultOutputWithContext(ctx context.Contex
 // The ID of the environment for which we want to retrieve the jobs (one of `projectId` or `environmentId` must be set)
 func (o GetJobsResultOutput) EnvironmentId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetJobsResult) *int { return v.EnvironmentId }).(pulumi.IntPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetJobsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetJobsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Set of jobs with their details

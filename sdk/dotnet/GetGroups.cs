@@ -92,10 +92,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly ImmutableArray<Outputs.GetGroupsGroupResult> Groups;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Filter groups by exact name match
         /// </summary>
         public readonly string? Name;
@@ -112,8 +108,6 @@ namespace Pulumi.DbtCloud
         private GetGroupsResult(
             ImmutableArray<Outputs.GetGroupsGroupResult> groups,
 
-            string id,
-
             string? name,
 
             string? nameContains,
@@ -121,7 +115,6 @@ namespace Pulumi.DbtCloud
             string? state)
         {
             Groups = groups;
-            Id = id;
             Name = name;
             NameContains = nameContains;
             State = state;

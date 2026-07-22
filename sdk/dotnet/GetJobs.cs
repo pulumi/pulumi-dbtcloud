@@ -170,10 +170,6 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly int? EnvironmentId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Set of jobs with their details
         /// </summary>
         public readonly ImmutableArray<Outputs.GetJobsJobResult> Jobs;
@@ -186,14 +182,11 @@ namespace Pulumi.DbtCloud
         private GetJobsResult(
             int? environmentId,
 
-            string id,
-
             ImmutableArray<Outputs.GetJobsJobResult> jobs,
 
             int? projectId)
         {
             EnvironmentId = environmentId;
-            Id = id;
             Jobs = jobs;
             ProjectId = projectId;
         }

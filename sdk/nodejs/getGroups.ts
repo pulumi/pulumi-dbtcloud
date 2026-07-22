@@ -46,10 +46,6 @@ export interface GetGroupsResult {
      */
     readonly groups: outputs.GetGroupsGroup[];
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Filter groups by exact name match
      */
     readonly name?: string;

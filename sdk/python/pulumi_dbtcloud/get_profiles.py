@@ -27,24 +27,13 @@ class GetProfilesResult:
     """
     A collection of values returned by getProfiles.
     """
-    def __init__(__self__, id=None, profiles=None, project_id=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, profiles=None, project_id=None):
         if profiles and not isinstance(profiles, list):
             raise TypeError("Expected argument 'profiles' to be a list")
         pulumi.set(__self__, "profiles", profiles)
         if project_id and not isinstance(project_id, int):
             raise TypeError("Expected argument 'project_id' to be a int")
         pulumi.set(__self__, "project_id", project_id)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -69,7 +58,6 @@ class AwaitableGetProfilesResult(GetProfilesResult):
         if False:
             yield self
         return GetProfilesResult(
-            id=self.id,
             profiles=self.profiles,
             project_id=self.project_id)
 
@@ -97,7 +85,6 @@ def get_profiles(project_id: Optional[_builtins.int] = None,
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getProfiles:getProfiles', __args__, opts=opts, typ=GetProfilesResult).value
 
     return AwaitableGetProfilesResult(
-        id=pulumi.get(__ret__, 'id'),
         profiles=pulumi.get(__ret__, 'profiles'),
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_profiles_output(project_id: pulumi.Input[Optional[_builtins.int]] = None,
@@ -122,6 +109,5 @@ def get_profiles_output(project_id: pulumi.Input[Optional[_builtins.int]] = None
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getProfiles:getProfiles', __args__, opts=opts, typ=GetProfilesResult)
     return __ret__.apply(lambda __response__: GetProfilesResult(
-        id=pulumi.get(__response__, 'id'),
         profiles=pulumi.get(__response__, 'profiles'),
         project_id=pulumi.get(__response__, 'project_id')))

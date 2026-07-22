@@ -27,13 +27,10 @@ class GetGlobalConnectionsResult:
     """
     A collection of values returned by getGlobalConnections.
     """
-    def __init__(__self__, connections=None, id=None):
+    def __init__(__self__, connections=None):
         if connections and not isinstance(connections, list):
             raise TypeError("Expected argument 'connections' to be a list")
         pulumi.set(__self__, "connections", connections)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
 
     @_builtins.property
     @pulumi.getter
@@ -43,14 +40,6 @@ class GetGlobalConnectionsResult:
         """
         return pulumi.get(self, "connections")
 
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
 
 class AwaitableGetGlobalConnectionsResult(GetGlobalConnectionsResult):
     # pylint: disable=using-constant-test
@@ -58,8 +47,7 @@ class AwaitableGetGlobalConnectionsResult(GetGlobalConnectionsResult):
         if False:
             yield self
         return GetGlobalConnectionsResult(
-            connections=self.connections,
-            id=self.id)
+            connections=self.connections)
 
 
 def get_global_connections(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGlobalConnectionsResult:
@@ -80,8 +68,7 @@ def get_global_connections(opts: Optional[pulumi.InvokeOptions] = None) -> Await
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getGlobalConnections:getGlobalConnections', __args__, opts=opts, typ=GetGlobalConnectionsResult).value
 
     return AwaitableGetGlobalConnectionsResult(
-        connections=pulumi.get(__ret__, 'connections'),
-        id=pulumi.get(__ret__, 'id'))
+        connections=pulumi.get(__ret__, 'connections'))
 def get_global_connections_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGlobalConnectionsResult]:
     """
     All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.
@@ -99,5 +86,4 @@ def get_global_connections_output(opts: Optional[Union[pulumi.InvokeOptions, pul
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGlobalConnections:getGlobalConnections', __args__, opts=opts, typ=GetGlobalConnectionsResult)
     return __ret__.apply(lambda __response__: GetGlobalConnectionsResult(
-        connections=pulumi.get(__response__, 'connections'),
-        id=pulumi.get(__response__, 'id')))
+        connections=pulumi.get(__response__, 'connections')))

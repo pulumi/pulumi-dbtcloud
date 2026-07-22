@@ -26,8 +26,6 @@ func GetUsers(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetUsersResult
 
 // A collection of values returned by getUsers.
 type GetUsersResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Set of users with their internal ID end email
 	Users []GetUsersUser `pulumi:"users"`
 }
@@ -52,11 +50,6 @@ func (o GetUsersResultOutput) ToGetUsersResultOutput() GetUsersResultOutput {
 
 func (o GetUsersResultOutput) ToGetUsersResultOutputWithContext(ctx context.Context) GetUsersResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetUsersResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetUsersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Set of users with their internal ID end email

@@ -18,11 +18,6 @@ public final class GetNotificationResult {
      */
     private String externalEmail;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The ID of the notification
      * 
      */
@@ -80,13 +75,6 @@ public final class GetNotificationResult {
      */
     public String externalEmail() {
         return this.externalEmail;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return The ID of the notification
@@ -169,7 +157,6 @@ public final class GetNotificationResult {
     @CustomType.Builder
     public static final class Builder {
         private String externalEmail;
-        private String id;
         private Integer notificationId;
         private Integer notificationType;
         private List<Integer> onCancels;
@@ -184,7 +171,6 @@ public final class GetNotificationResult {
         public Builder(GetNotificationResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.externalEmail = defaults.externalEmail;
-    	      this.id = defaults.id;
     	      this.notificationId = defaults.notificationId;
     	      this.notificationType = defaults.notificationType;
     	      this.onCancels = defaults.onCancels;
@@ -203,14 +189,6 @@ public final class GetNotificationResult {
               throw new MissingRequiredPropertyException("GetNotificationResult", "externalEmail");
             }
             this.externalEmail = externalEmail;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetNotificationResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -308,7 +286,6 @@ public final class GetNotificationResult {
         public GetNotificationResult build() {
             final var _resultValue = new GetNotificationResult();
             _resultValue.externalEmail = externalEmail;
-            _resultValue.id = id;
             _resultValue.notificationId = notificationId;
             _resultValue.notificationType = notificationType;
             _resultValue.onCancels = onCancels;

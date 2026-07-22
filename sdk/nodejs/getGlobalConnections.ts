@@ -32,10 +32,6 @@ export interface GetGlobalConnectionsResult {
      * A list of all the connections
      */
     readonly connections: outputs.GetGlobalConnectionsConnection[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
 /**
  * All the connections created on the account with some summary information, like their name, type, when they were created/updated and the number of environments using them.

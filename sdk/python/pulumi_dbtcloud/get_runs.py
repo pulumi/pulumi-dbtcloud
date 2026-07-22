@@ -28,13 +28,10 @@ class GetRunsResult:
     """
     A collection of values returned by getRuns.
     """
-    def __init__(__self__, filter=None, id=None, runs=None):
+    def __init__(__self__, filter=None, runs=None):
         if filter and not isinstance(filter, dict):
             raise TypeError("Expected argument 'filter' to be a dict")
         pulumi.set(__self__, "filter", filter)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if runs and not isinstance(runs, list):
             raise TypeError("Expected argument 'runs' to be a list")
         pulumi.set(__self__, "runs", runs)
@@ -46,14 +43,6 @@ class GetRunsResult:
         Filter to apply to the runs
         """
         return pulumi.get(self, "filter")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -71,7 +60,6 @@ class AwaitableGetRunsResult(GetRunsResult):
             yield self
         return GetRunsResult(
             filter=self.filter,
-            id=self.id,
             runs=self.runs)
 
 
@@ -90,7 +78,6 @@ def get_runs(filter: Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict'
 
     return AwaitableGetRunsResult(
         filter=pulumi.get(__ret__, 'filter'),
-        id=pulumi.get(__ret__, 'id'),
         runs=pulumi.get(__ret__, 'runs'))
 def get_runs_output(filter: pulumi.Input[Optional[Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict']]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRunsResult]:
@@ -106,5 +93,4 @@ def get_runs_output(filter: pulumi.Input[Optional[Optional[Union['GetRunsFilterA
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getRuns:getRuns', __args__, opts=opts, typ=GetRunsResult)
     return __ret__.apply(lambda __response__: GetRunsResult(
         filter=pulumi.get(__response__, 'filter'),
-        id=pulumi.get(__response__, 'id'),
         runs=pulumi.get(__response__, 'runs')))

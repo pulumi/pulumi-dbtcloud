@@ -36,10 +36,6 @@ export interface GetRunsResult {
      */
     readonly filter?: outputs.GetRunsFilter;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Set of users with their internal ID end email
      */
     readonly runs: outputs.GetRunsRun[];

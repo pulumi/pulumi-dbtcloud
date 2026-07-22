@@ -32,8 +32,6 @@ type GetEnvironmentsArgs struct {
 type GetEnvironmentsResult struct {
 	// The list of environments
 	Environments []GetEnvironmentsEnvironment `pulumi:"environments"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The project ID to filter the environments for [Optional]
 	ProjectId *int `pulumi:"projectId"`
 }
@@ -75,11 +73,6 @@ func (o GetEnvironmentsResultOutput) ToGetEnvironmentsResultOutputWithContext(ct
 // The list of environments
 func (o GetEnvironmentsResultOutput) Environments() GetEnvironmentsEnvironmentArrayOutput {
 	return o.ApplyT(func(v GetEnvironmentsResult) []GetEnvironmentsEnvironment { return v.Environments }).(GetEnvironmentsEnvironmentArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetEnvironmentsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetEnvironmentsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The project ID to filter the environments for [Optional]

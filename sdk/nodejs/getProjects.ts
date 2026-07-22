@@ -32,10 +32,6 @@ export interface GetProjectsArgs {
  */
 export interface GetProjectsResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Used to filter projects by name, Optional
      */
     readonly nameContains: string;

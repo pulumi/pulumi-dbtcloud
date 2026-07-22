@@ -53,11 +53,6 @@ public final class GetEnvironmentResult {
      */
     private Integer extendedAttributesId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The name of the environment
      * 
      */
@@ -141,13 +136,6 @@ public final class GetEnvironmentResult {
         return this.extendedAttributesId;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    /**
      * @return The name of the environment
      * 
      */
@@ -200,7 +188,6 @@ public final class GetEnvironmentResult {
         private Boolean enableModelQueryHistory;
         private Integer environmentId;
         private Integer extendedAttributesId;
-        private String id;
         private String name;
         private Integer primaryProfileId;
         private Integer projectId;
@@ -217,7 +204,6 @@ public final class GetEnvironmentResult {
     	      this.enableModelQueryHistory = defaults.enableModelQueryHistory;
     	      this.environmentId = defaults.environmentId;
     	      this.extendedAttributesId = defaults.extendedAttributesId;
-    	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.primaryProfileId = defaults.primaryProfileId;
     	      this.projectId = defaults.projectId;
@@ -290,14 +276,6 @@ public final class GetEnvironmentResult {
             return this;
         }
         @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetEnvironmentResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
-        @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
               throw new MissingRequiredPropertyException("GetEnvironmentResult", "name");
@@ -347,7 +325,6 @@ public final class GetEnvironmentResult {
             _resultValue.enableModelQueryHistory = enableModelQueryHistory;
             _resultValue.environmentId = environmentId;
             _resultValue.extendedAttributesId = extendedAttributesId;
-            _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.primaryProfileId = primaryProfileId;
             _resultValue.projectId = projectId;

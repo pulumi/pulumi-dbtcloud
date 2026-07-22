@@ -58,8 +58,6 @@ type LookupNotificationArgs struct {
 type LookupNotificationResult struct {
 	// The external email to receive the notification
 	ExternalEmail string `pulumi:"externalEmail"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The ID of the notification
 	NotificationId int `pulumi:"notificationId"`
 	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`)
@@ -119,11 +117,6 @@ func (o LookupNotificationResultOutput) ToLookupNotificationResultOutputWithCont
 // The external email to receive the notification
 func (o LookupNotificationResultOutput) ExternalEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNotificationResult) string { return v.ExternalEmail }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupNotificationResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNotificationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The ID of the notification

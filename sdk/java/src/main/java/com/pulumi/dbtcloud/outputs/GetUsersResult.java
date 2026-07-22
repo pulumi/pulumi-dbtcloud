@@ -6,17 +6,11 @@ package com.pulumi.dbtcloud.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.dbtcloud.outputs.GetUsersUser;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetUsersResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     /**
      * @return Set of users with their internal ID end email
      * 
@@ -24,13 +18,6 @@ public final class GetUsersResult {
     private List<GetUsersUser> users;
 
     private GetUsersResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Set of users with their internal ID end email
      * 
@@ -48,23 +35,13 @@ public final class GetUsersResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private List<GetUsersUser> users;
         public Builder() {}
         public Builder(GetUsersResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.users = defaults.users;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetUsersResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder users(List<GetUsersUser> users) {
             if (users == null) {
@@ -78,7 +55,6 @@ public final class GetUsersResult {
         }
         public GetUsersResult build() {
             final var _resultValue = new GetUsersResult();
-            _resultValue.id = id;
             _resultValue.users = users;
             return _resultValue;
         }
