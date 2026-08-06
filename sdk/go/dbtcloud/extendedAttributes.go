@@ -34,7 +34,7 @@ import (
 //				"type":      "databricks",
 //				"catalog":   "dbt_catalog",
 //				"http_path": "/sql/your/http/path",
-//				"my_nested_field": map[string]interface{}{
+//				"my_nested_field": map[string]string{
 //					"subfield": "my_value",
 //				},
 //			})
