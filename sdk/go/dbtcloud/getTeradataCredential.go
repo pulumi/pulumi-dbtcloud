@@ -49,12 +49,8 @@ type LookupTeradataCredentialResult struct {
 }
 
 func LookupTeradataCredentialOutput(ctx *pulumi.Context, args LookupTeradataCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupTeradataCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupTeradataCredentialResultOutput, error) {
-			args := v.(LookupTeradataCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getTeradataCredential:getTeradataCredential", args, LookupTeradataCredentialResultOutput{}, options).(LookupTeradataCredentialResultOutput), nil
-		}).(LookupTeradataCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getTeradataCredential:getTeradataCredential", args, LookupTeradataCredentialResultOutput{}, options).(LookupTeradataCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getTeradataCredential.

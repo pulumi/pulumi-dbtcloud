@@ -31,10 +31,8 @@ type GetPrivatelinkEndpointsResult struct {
 }
 
 func GetPrivatelinkEndpointsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetPrivatelinkEndpointsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetPrivatelinkEndpointsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", nil, GetPrivatelinkEndpointsResultOutput{}, options).(GetPrivatelinkEndpointsResultOutput), nil
-	}).(GetPrivatelinkEndpointsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", nil, GetPrivatelinkEndpointsResultOutput{}, options).(GetPrivatelinkEndpointsResultOutput)
 }
 
 // A collection of values returned by getPrivatelinkEndpoints.

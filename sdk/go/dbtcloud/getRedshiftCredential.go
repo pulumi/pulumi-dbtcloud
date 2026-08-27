@@ -49,12 +49,8 @@ type LookupRedshiftCredentialResult struct {
 }
 
 func LookupRedshiftCredentialOutput(ctx *pulumi.Context, args LookupRedshiftCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupRedshiftCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupRedshiftCredentialResultOutput, error) {
-			args := v.(LookupRedshiftCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getRedshiftCredential:getRedshiftCredential", args, LookupRedshiftCredentialResultOutput{}, options).(LookupRedshiftCredentialResultOutput), nil
-		}).(LookupRedshiftCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getRedshiftCredential:getRedshiftCredential", args, LookupRedshiftCredentialResultOutput{}, options).(LookupRedshiftCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getRedshiftCredential.

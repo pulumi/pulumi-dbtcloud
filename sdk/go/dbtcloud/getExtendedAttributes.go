@@ -72,12 +72,8 @@ type LookupExtendedAttributesResult struct {
 }
 
 func LookupExtendedAttributesOutput(ctx *pulumi.Context, args LookupExtendedAttributesOutputArgs, opts ...pulumi.InvokeOption) LookupExtendedAttributesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupExtendedAttributesResultOutput, error) {
-			args := v.(LookupExtendedAttributesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", args, LookupExtendedAttributesResultOutput{}, options).(LookupExtendedAttributesResultOutput), nil
-		}).(LookupExtendedAttributesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getExtendedAttributes:getExtendedAttributes", args, LookupExtendedAttributesResultOutput{}, options).(LookupExtendedAttributesResultOutput)
 }
 
 // A collection of arguments for invoking getExtendedAttributes.

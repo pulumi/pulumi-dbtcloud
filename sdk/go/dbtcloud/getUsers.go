@@ -31,10 +31,8 @@ type GetUsersResult struct {
 }
 
 func GetUsersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetUsersResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetUsersResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("dbtcloud:index/getUsers:getUsers", nil, GetUsersResultOutput{}, options).(GetUsersResultOutput), nil
-	}).(GetUsersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getUsers:getUsers", nil, GetUsersResultOutput{}, options).(GetUsersResultOutput)
 }
 
 // A collection of values returned by getUsers.

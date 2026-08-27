@@ -91,12 +91,8 @@ type LookupGlobalConnectionResult struct {
 }
 
 func LookupGlobalConnectionOutput(ctx *pulumi.Context, args LookupGlobalConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupGlobalConnectionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupGlobalConnectionResultOutput, error) {
-			args := v.(LookupGlobalConnectionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getGlobalConnection:getGlobalConnection", args, LookupGlobalConnectionResultOutput{}, options).(LookupGlobalConnectionResultOutput), nil
-		}).(LookupGlobalConnectionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getGlobalConnection:getGlobalConnection", args, LookupGlobalConnectionResultOutput{}, options).(LookupGlobalConnectionResultOutput)
 }
 
 // A collection of arguments for invoking getGlobalConnection.

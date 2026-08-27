@@ -79,12 +79,8 @@ type GetAzureDevOpsRepositoryResult struct {
 }
 
 func GetAzureDevOpsRepositoryOutput(ctx *pulumi.Context, args GetAzureDevOpsRepositoryOutputArgs, opts ...pulumi.InvokeOption) GetAzureDevOpsRepositoryResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAzureDevOpsRepositoryResultOutput, error) {
-			args := v.(GetAzureDevOpsRepositoryArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository", args, GetAzureDevOpsRepositoryResultOutput{}, options).(GetAzureDevOpsRepositoryResultOutput), nil
-		}).(GetAzureDevOpsRepositoryResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getAzureDevOpsRepository:getAzureDevOpsRepository", args, GetAzureDevOpsRepositoryResultOutput{}, options).(GetAzureDevOpsRepositoryResultOutput)
 }
 
 // A collection of arguments for invoking getAzureDevOpsRepository.

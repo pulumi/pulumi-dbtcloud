@@ -53,10 +53,8 @@ type GetGlobalConnectionsResult struct {
 }
 
 func GetGlobalConnectionsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetGlobalConnectionsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetGlobalConnectionsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("dbtcloud:index/getGlobalConnections:getGlobalConnections", nil, GetGlobalConnectionsResultOutput{}, options).(GetGlobalConnectionsResultOutput), nil
-	}).(GetGlobalConnectionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getGlobalConnections:getGlobalConnections", nil, GetGlobalConnectionsResultOutput{}, options).(GetGlobalConnectionsResultOutput)
 }
 
 // A collection of values returned by getGlobalConnections.

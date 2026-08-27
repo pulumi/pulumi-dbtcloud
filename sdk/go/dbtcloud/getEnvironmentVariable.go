@@ -70,12 +70,8 @@ type LookupEnvironmentVariableResult struct {
 }
 
 func LookupEnvironmentVariableOutput(ctx *pulumi.Context, args LookupEnvironmentVariableOutputArgs, opts ...pulumi.InvokeOption) LookupEnvironmentVariableResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupEnvironmentVariableResultOutput, error) {
-			args := v.(LookupEnvironmentVariableArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args, LookupEnvironmentVariableResultOutput{}, options).(LookupEnvironmentVariableResultOutput), nil
-		}).(LookupEnvironmentVariableResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getEnvironmentVariable:getEnvironmentVariable", args, LookupEnvironmentVariableResultOutput{}, options).(LookupEnvironmentVariableResultOutput)
 }
 
 // A collection of arguments for invoking getEnvironmentVariable.

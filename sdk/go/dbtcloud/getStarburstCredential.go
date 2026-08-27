@@ -72,12 +72,8 @@ type LookupStarburstCredentialResult struct {
 }
 
 func LookupStarburstCredentialOutput(ctx *pulumi.Context, args LookupStarburstCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupStarburstCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupStarburstCredentialResultOutput, error) {
-			args := v.(LookupStarburstCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getStarburstCredential:getStarburstCredential", args, LookupStarburstCredentialResultOutput{}, options).(LookupStarburstCredentialResultOutput), nil
-		}).(LookupStarburstCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getStarburstCredential:getStarburstCredential", args, LookupStarburstCredentialResultOutput{}, options).(LookupStarburstCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getStarburstCredential.

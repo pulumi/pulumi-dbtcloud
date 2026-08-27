@@ -49,12 +49,8 @@ type LookupPostgresCredentialResult struct {
 }
 
 func LookupPostgresCredentialOutput(ctx *pulumi.Context, args LookupPostgresCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupPostgresCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPostgresCredentialResultOutput, error) {
-			args := v.(LookupPostgresCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getPostgresCredential:getPostgresCredential", args, LookupPostgresCredentialResultOutput{}, options).(LookupPostgresCredentialResultOutput), nil
-		}).(LookupPostgresCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getPostgresCredential:getPostgresCredential", args, LookupPostgresCredentialResultOutput{}, options).(LookupPostgresCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getPostgresCredential.

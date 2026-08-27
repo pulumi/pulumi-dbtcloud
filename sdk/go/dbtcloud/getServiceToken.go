@@ -44,12 +44,8 @@ type LookupServiceTokenResult struct {
 }
 
 func LookupServiceTokenOutput(ctx *pulumi.Context, args LookupServiceTokenOutputArgs, opts ...pulumi.InvokeOption) LookupServiceTokenResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupServiceTokenResultOutput, error) {
-			args := v.(LookupServiceTokenArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getServiceToken:getServiceToken", args, LookupServiceTokenResultOutput{}, options).(LookupServiceTokenResultOutput), nil
-		}).(LookupServiceTokenResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getServiceToken:getServiceToken", args, LookupServiceTokenResultOutput{}, options).(LookupServiceTokenResultOutput)
 }
 
 // A collection of arguments for invoking getServiceToken.

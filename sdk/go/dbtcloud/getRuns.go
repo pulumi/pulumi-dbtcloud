@@ -37,12 +37,8 @@ type GetRunsResult struct {
 }
 
 func GetRunsOutput(ctx *pulumi.Context, args GetRunsOutputArgs, opts ...pulumi.InvokeOption) GetRunsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetRunsResultOutput, error) {
-			args := v.(GetRunsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getRuns:getRuns", args, GetRunsResultOutput{}, options).(GetRunsResultOutput), nil
-		}).(GetRunsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getRuns:getRuns", args, GetRunsResultOutput{}, options).(GetRunsResultOutput)
 }
 
 // A collection of arguments for invoking getRuns.

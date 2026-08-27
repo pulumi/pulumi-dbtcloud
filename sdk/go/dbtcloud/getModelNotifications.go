@@ -79,12 +79,8 @@ type LookupModelNotificationsResult struct {
 }
 
 func LookupModelNotificationsOutput(ctx *pulumi.Context, args LookupModelNotificationsOutputArgs, opts ...pulumi.InvokeOption) LookupModelNotificationsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupModelNotificationsResultOutput, error) {
-			args := v.(LookupModelNotificationsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getModelNotifications:getModelNotifications", args, LookupModelNotificationsResultOutput{}, options).(LookupModelNotificationsResultOutput), nil
-		}).(LookupModelNotificationsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getModelNotifications:getModelNotifications", args, LookupModelNotificationsResultOutput{}, options).(LookupModelNotificationsResultOutput)
 }
 
 // A collection of arguments for invoking getModelNotifications.
