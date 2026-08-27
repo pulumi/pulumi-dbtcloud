@@ -55,12 +55,8 @@ type LookupSynapseCredentialResult struct {
 }
 
 func LookupSynapseCredentialOutput(ctx *pulumi.Context, args LookupSynapseCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupSynapseCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSynapseCredentialResultOutput, error) {
-			args := v.(LookupSynapseCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getSynapseCredential:getSynapseCredential", args, LookupSynapseCredentialResultOutput{}, options).(LookupSynapseCredentialResultOutput), nil
-		}).(LookupSynapseCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getSynapseCredential:getSynapseCredential", args, LookupSynapseCredentialResultOutput{}, options).(LookupSynapseCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getSynapseCredential.

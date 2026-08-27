@@ -74,12 +74,8 @@ type LookupSparkCredentialResult struct {
 }
 
 func LookupSparkCredentialOutput(ctx *pulumi.Context, args LookupSparkCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupSparkCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSparkCredentialResultOutput, error) {
-			args := v.(LookupSparkCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getSparkCredential:getSparkCredential", args, LookupSparkCredentialResultOutput{}, options).(LookupSparkCredentialResultOutput), nil
-		}).(LookupSparkCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getSparkCredential:getSparkCredential", args, LookupSparkCredentialResultOutput{}, options).(LookupSparkCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getSparkCredential.

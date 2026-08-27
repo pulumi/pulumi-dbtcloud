@@ -68,12 +68,8 @@ type GetAzureDevOpsProjectResult struct {
 }
 
 func GetAzureDevOpsProjectOutput(ctx *pulumi.Context, args GetAzureDevOpsProjectOutputArgs, opts ...pulumi.InvokeOption) GetAzureDevOpsProjectResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAzureDevOpsProjectResultOutput, error) {
-			args := v.(GetAzureDevOpsProjectArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject", args, GetAzureDevOpsProjectResultOutput{}, options).(GetAzureDevOpsProjectResultOutput), nil
-		}).(GetAzureDevOpsProjectResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getAzureDevOpsProject:getAzureDevOpsProject", args, GetAzureDevOpsProjectResultOutput{}, options).(GetAzureDevOpsProjectResultOutput)
 }
 
 // A collection of arguments for invoking getAzureDevOpsProject.

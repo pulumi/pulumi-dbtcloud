@@ -47,12 +47,8 @@ type LookupSalesforceCredentialResult struct {
 }
 
 func LookupSalesforceCredentialOutput(ctx *pulumi.Context, args LookupSalesforceCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupSalesforceCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSalesforceCredentialResultOutput, error) {
-			args := v.(LookupSalesforceCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getSalesforceCredential:getSalesforceCredential", args, LookupSalesforceCredentialResultOutput{}, options).(LookupSalesforceCredentialResultOutput), nil
-		}).(LookupSalesforceCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getSalesforceCredential:getSalesforceCredential", args, LookupSalesforceCredentialResultOutput{}, options).(LookupSalesforceCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getSalesforceCredential.

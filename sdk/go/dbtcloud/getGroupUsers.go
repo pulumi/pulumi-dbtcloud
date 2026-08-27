@@ -65,12 +65,8 @@ type GetGroupUsersResult struct {
 }
 
 func GetGroupUsersOutput(ctx *pulumi.Context, args GetGroupUsersOutputArgs, opts ...pulumi.InvokeOption) GetGroupUsersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetGroupUsersResultOutput, error) {
-			args := v.(GetGroupUsersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getGroupUsers:getGroupUsers", args, GetGroupUsersResultOutput{}, options).(GetGroupUsersResultOutput), nil
-		}).(GetGroupUsersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getGroupUsers:getGroupUsers", args, GetGroupUsersResultOutput{}, options).(GetGroupUsersResultOutput)
 }
 
 // A collection of arguments for invoking getGroupUsers.

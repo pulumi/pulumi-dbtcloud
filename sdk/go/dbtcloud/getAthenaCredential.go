@@ -70,12 +70,8 @@ type LookupAthenaCredentialResult struct {
 }
 
 func LookupAthenaCredentialOutput(ctx *pulumi.Context, args LookupAthenaCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupAthenaCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAthenaCredentialResultOutput, error) {
-			args := v.(LookupAthenaCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getAthenaCredential:getAthenaCredential", args, LookupAthenaCredentialResultOutput{}, options).(LookupAthenaCredentialResultOutput), nil
-		}).(LookupAthenaCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getAthenaCredential:getAthenaCredential", args, LookupAthenaCredentialResultOutput{}, options).(LookupAthenaCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getAthenaCredential.

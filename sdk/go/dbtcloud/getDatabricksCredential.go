@@ -51,12 +51,8 @@ type LookupDatabricksCredentialResult struct {
 }
 
 func LookupDatabricksCredentialOutput(ctx *pulumi.Context, args LookupDatabricksCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupDatabricksCredentialResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDatabricksCredentialResultOutput, error) {
-			args := v.(LookupDatabricksCredentialArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", args, LookupDatabricksCredentialResultOutput{}, options).(LookupDatabricksCredentialResultOutput), nil
-		}).(LookupDatabricksCredentialResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("dbtcloud:index/getDatabricksCredential:getDatabricksCredential", args, LookupDatabricksCredentialResultOutput{}, options).(LookupDatabricksCredentialResultOutput)
 }
 
 // A collection of arguments for invoking getDatabricksCredential.
