@@ -22,24 +22,36 @@ class BigQueryCredentialArgs:
                  dataset: pulumi.Input[_builtins.str],
                  num_threads: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.int],
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  connection_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 is_active: pulumi.Input[Optional[_builtins.bool]] = None):
+                 is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_account_impersonation_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 workload_pool_provider_path: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BigQueryCredential resource.
 
         :param pulumi.Input[_builtins.str] dataset: Default dataset name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the BigQuery credential in
+        :param pulumi.Input[_builtins.str] auth_type: The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         :param pulumi.Input[_builtins.bool] is_active: Whether the BigQuery credential is active
+        :param pulumi.Input[_builtins.str] service_account_impersonation_url: The URL for the service account impersonation request, used when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        :param pulumi.Input[_builtins.str] workload_pool_provider_path: The fully specified resource name of the workload pool provider, required when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
         """
         pulumi.set(__self__, "dataset", dataset)
         pulumi.set(__self__, "num_threads", num_threads)
         pulumi.set(__self__, "project_id", project_id)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_id is not None:
             pulumi.set(__self__, "connection_id", connection_id)
         if is_active is not None:
             pulumi.set(__self__, "is_active", is_active)
+        if service_account_impersonation_url is not None:
+            pulumi.set(__self__, "service_account_impersonation_url", service_account_impersonation_url)
+        if workload_pool_provider_path is not None:
+            pulumi.set(__self__, "workload_pool_provider_path", workload_pool_provider_path)
 
     @_builtins.property
     @pulumi.getter
@@ -78,6 +90,18 @@ class BigQueryCredentialArgs:
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_type", value)
+
+    @_builtins.property
     @pulumi.getter(name="connectionId")
     def connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
@@ -101,26 +125,58 @@ class BigQueryCredentialArgs:
     def is_active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_active", value)
 
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountImpersonationUrl")
+    def service_account_impersonation_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The URL for the service account impersonation request, used when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "service_account_impersonation_url")
+
+    @service_account_impersonation_url.setter
+    def service_account_impersonation_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "service_account_impersonation_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="workloadPoolProviderPath")
+    def workload_pool_provider_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The fully specified resource name of the workload pool provider, required when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "workload_pool_provider_path")
+
+    @workload_pool_provider_path.setter
+    def workload_pool_provider_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "workload_pool_provider_path", value)
+
 
 @pulumi.input_type
 class _BigQueryCredentialState:
     def __init__(__self__, *,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  connection_id: pulumi.Input[Optional[_builtins.int]] = None,
                  credential_id: pulumi.Input[Optional[_builtins.int]] = None,
                  dataset: pulumi.Input[Optional[_builtins.str]] = None,
                  is_active: pulumi.Input[Optional[_builtins.bool]] = None,
                  num_threads: pulumi.Input[Optional[_builtins.int]] = None,
-                 project_id: pulumi.Input[Optional[_builtins.int]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_impersonation_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 workload_pool_provider_path: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BigQueryCredential resources.
 
+        :param pulumi.Input[_builtins.str] auth_type: The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] dataset: Default dataset name
         :param pulumi.Input[_builtins.bool] is_active: Whether the BigQuery credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the BigQuery credential in
+        :param pulumi.Input[_builtins.str] service_account_impersonation_url: The URL for the service account impersonation request, used when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        :param pulumi.Input[_builtins.str] workload_pool_provider_path: The fully specified resource name of the workload pool provider, required when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
         """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_id is not None:
             pulumi.set(__self__, "connection_id", connection_id)
         if credential_id is not None:
@@ -133,6 +189,22 @@ class _BigQueryCredentialState:
             pulumi.set(__self__, "num_threads", num_threads)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if service_account_impersonation_url is not None:
+            pulumi.set(__self__, "service_account_impersonation_url", service_account_impersonation_url)
+        if workload_pool_provider_path is not None:
+            pulumi.set(__self__, "workload_pool_provider_path", workload_pool_provider_path)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
@@ -206,6 +278,30 @@ class _BigQueryCredentialState:
     def project_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "project_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountImpersonationUrl")
+    def service_account_impersonation_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The URL for the service account impersonation request, used when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "service_account_impersonation_url")
+
+    @service_account_impersonation_url.setter
+    def service_account_impersonation_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "service_account_impersonation_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="workloadPoolProviderPath")
+    def workload_pool_provider_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The fully specified resource name of the workload pool provider, required when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "workload_pool_provider_path")
+
+    @workload_pool_provider_path.setter
+    def workload_pool_provider_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "workload_pool_provider_path", value)
+
 
 @pulumi.type_token("dbtcloud:index/bigQueryCredential:BigQueryCredential")
 class BigQueryCredential(pulumi.CustomResource):
@@ -213,11 +309,14 @@ class BigQueryCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  connection_id: pulumi.Input[Optional[_builtins.int]] = None,
                  dataset: pulumi.Input[Optional[_builtins.str]] = None,
                  is_active: pulumi.Input[Optional[_builtins.bool]] = None,
                  num_threads: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_impersonation_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 workload_pool_provider_path: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Bigquery credential resource
@@ -264,11 +363,14 @@ class BigQueryCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] auth_type: The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         :param pulumi.Input[_builtins.str] dataset: Default dataset name
         :param pulumi.Input[_builtins.bool] is_active: Whether the BigQuery credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the BigQuery credential in
+        :param pulumi.Input[_builtins.str] service_account_impersonation_url: The URL for the service account impersonation request, used when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        :param pulumi.Input[_builtins.str] workload_pool_provider_path: The fully specified resource name of the workload pool provider, required when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
         """
         ...
     @overload
@@ -334,11 +436,14 @@ class BigQueryCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  connection_id: pulumi.Input[Optional[_builtins.int]] = None,
                  dataset: pulumi.Input[Optional[_builtins.str]] = None,
                  is_active: pulumi.Input[Optional[_builtins.bool]] = None,
                  num_threads: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_impersonation_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 workload_pool_provider_path: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -348,6 +453,7 @@ class BigQueryCredential(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BigQueryCredentialArgs.__new__(BigQueryCredentialArgs)
 
+            __props__.__dict__["auth_type"] = auth_type
             __props__.__dict__["connection_id"] = connection_id
             if dataset is None and not opts.urn:
                 raise TypeError("Missing required property 'dataset'")
@@ -359,6 +465,8 @@ class BigQueryCredential(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["service_account_impersonation_url"] = service_account_impersonation_url
+            __props__.__dict__["workload_pool_provider_path"] = workload_pool_provider_path
             __props__.__dict__["credential_id"] = None
         super(BigQueryCredential, __self__).__init__(
             'dbtcloud:index/bigQueryCredential:BigQueryCredential',
@@ -370,12 +478,15 @@ class BigQueryCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
             connection_id: pulumi.Input[Optional[_builtins.int]] = None,
             credential_id: pulumi.Input[Optional[_builtins.int]] = None,
             dataset: pulumi.Input[Optional[_builtins.str]] = None,
             is_active: pulumi.Input[Optional[_builtins.bool]] = None,
             num_threads: pulumi.Input[Optional[_builtins.int]] = None,
-            project_id: pulumi.Input[Optional[_builtins.int]] = None) -> 'BigQueryCredential':
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            service_account_impersonation_url: pulumi.Input[Optional[_builtins.str]] = None,
+            workload_pool_provider_path: pulumi.Input[Optional[_builtins.str]] = None) -> 'BigQueryCredential':
         """
         Get an existing BigQueryCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -383,24 +494,38 @@ class BigQueryCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] auth_type: The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
         :param pulumi.Input[_builtins.int] connection_id: The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         :param pulumi.Input[_builtins.int] credential_id: The internal credential ID
         :param pulumi.Input[_builtins.str] dataset: Default dataset name
         :param pulumi.Input[_builtins.bool] is_active: Whether the BigQuery credential is active
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the BigQuery credential in
+        :param pulumi.Input[_builtins.str] service_account_impersonation_url: The URL for the service account impersonation request, used when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        :param pulumi.Input[_builtins.str] workload_pool_provider_path: The fully specified resource name of the workload pool provider, required when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _BigQueryCredentialState.__new__(_BigQueryCredentialState)
 
+        __props__.__dict__["auth_type"] = auth_type
         __props__.__dict__["connection_id"] = connection_id
         __props__.__dict__["credential_id"] = credential_id
         __props__.__dict__["dataset"] = dataset
         __props__.__dict__["is_active"] = is_active
         __props__.__dict__["num_threads"] = num_threads
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["service_account_impersonation_url"] = service_account_impersonation_url
+        __props__.__dict__["workload_pool_provider_path"] = workload_pool_provider_path
         return BigQueryCredential(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Output[_builtins.str]:
+        """
+        The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "auth_type")
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
@@ -449,4 +574,20 @@ class BigQueryCredential(pulumi.CustomResource):
         Project ID to create the BigQuery credential in
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountImpersonationUrl")
+    def service_account_impersonation_url(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The URL for the service account impersonation request, used when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "service_account_impersonation_url")
+
+    @_builtins.property
+    @pulumi.getter(name="workloadPoolProviderPath")
+    def workload_pool_provider_path(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The fully specified resource name of the workload pool provider, required when `auth_type` is `external-oauth-wif`. Only applicable for v1 credentials (when `connection_id` is set).
+        """
+        return pulumi.get(self, "workload_pool_provider_path")
 

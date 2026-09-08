@@ -74,6 +74,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly int JobCreationTimeoutSeconds;
         /// <summary>
+        /// Timeout in seconds for job execution, used by the BigqueryV1 adapter
+        /// </summary>
+        public readonly int JobExecutionTimeoutSeconds;
+        /// <summary>
         /// Total number of seconds to wait while retrying the same query
         /// </summary>
         public readonly int JobRetryDeadlineSeconds;
@@ -113,6 +117,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// Token URI for the Service Account
         /// </summary>
         public readonly string TokenUri;
+        /// <summary>
+        /// Whether the connection uses the latest BigqueryV1 adapter (used for BQ WIF)
+        /// </summary>
+        public readonly bool UseLatestAdapter;
 
         [OutputConstructor]
         private GetGlobalConnectionBigqueryResult(
@@ -146,6 +154,8 @@ namespace Pulumi.DbtCloud.Outputs
 
             int jobCreationTimeoutSeconds,
 
+            int jobExecutionTimeoutSeconds,
+
             int jobRetryDeadlineSeconds,
 
             string location,
@@ -164,7 +174,9 @@ namespace Pulumi.DbtCloud.Outputs
 
             int timeoutSeconds,
 
-            string tokenUri)
+            string tokenUri,
+
+            bool useLatestAdapter)
         {
             ApplicationId = applicationId;
             ApplicationSecret = applicationSecret;
@@ -181,6 +193,7 @@ namespace Pulumi.DbtCloud.Outputs
             GcsBucket = gcsBucket;
             ImpersonateServiceAccount = impersonateServiceAccount;
             JobCreationTimeoutSeconds = jobCreationTimeoutSeconds;
+            JobExecutionTimeoutSeconds = jobExecutionTimeoutSeconds;
             JobRetryDeadlineSeconds = jobRetryDeadlineSeconds;
             Location = location;
             MaximumBytesBilled = maximumBytesBilled;
@@ -191,6 +204,7 @@ namespace Pulumi.DbtCloud.Outputs
             Scopes = scopes;
             TimeoutSeconds = timeoutSeconds;
             TokenUri = tokenUri;
+            UseLatestAdapter = useLatestAdapter;
         }
     }
 }

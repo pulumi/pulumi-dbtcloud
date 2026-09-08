@@ -13,6 +13,11 @@ import java.util.Objects;
 @CustomType
 public final class GetBigQueryCredentialResult {
     /**
+     * @return The authentication method for the BigQuery credential
+     * 
+     */
+    private String authType;
+    /**
      * @return Credential ID
      * 
      */
@@ -42,8 +47,25 @@ public final class GetBigQueryCredentialResult {
      * 
      */
     private Integer projectId;
+    /**
+     * @return The URL for the service account impersonation request
+     * 
+     */
+    private String serviceAccountImpersonationUrl;
+    /**
+     * @return The fully specified resource name of the workload pool provider
+     * 
+     */
+    private String workloadPoolProviderPath;
 
     private GetBigQueryCredentialResult() {}
+    /**
+     * @return The authentication method for the BigQuery credential
+     * 
+     */
+    public String authType() {
+        return this.authType;
+    }
     /**
      * @return Credential ID
      * 
@@ -86,6 +108,20 @@ public final class GetBigQueryCredentialResult {
     public Integer projectId() {
         return this.projectId;
     }
+    /**
+     * @return The URL for the service account impersonation request
+     * 
+     */
+    public String serviceAccountImpersonationUrl() {
+        return this.serviceAccountImpersonationUrl;
+    }
+    /**
+     * @return The fully specified resource name of the workload pool provider
+     * 
+     */
+    public String workloadPoolProviderPath() {
+        return this.workloadPoolProviderPath;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -96,23 +132,37 @@ public final class GetBigQueryCredentialResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String authType;
         private Integer credentialId;
         private String dataset;
         private String id;
         private Boolean isActive;
         private Integer numThreads;
         private Integer projectId;
+        private String serviceAccountImpersonationUrl;
+        private String workloadPoolProviderPath;
         public Builder() {}
         public Builder(GetBigQueryCredentialResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.authType = defaults.authType;
     	      this.credentialId = defaults.credentialId;
     	      this.dataset = defaults.dataset;
     	      this.id = defaults.id;
     	      this.isActive = defaults.isActive;
     	      this.numThreads = defaults.numThreads;
     	      this.projectId = defaults.projectId;
+    	      this.serviceAccountImpersonationUrl = defaults.serviceAccountImpersonationUrl;
+    	      this.workloadPoolProviderPath = defaults.workloadPoolProviderPath;
         }
 
+        @CustomType.Setter
+        public Builder authType(String authType) {
+            if (authType == null) {
+              throw new MissingRequiredPropertyException("GetBigQueryCredentialResult", "authType");
+            }
+            this.authType = authType;
+            return this;
+        }
         @CustomType.Setter
         public Builder credentialId(Integer credentialId) {
             if (credentialId == null) {
@@ -161,14 +211,33 @@ public final class GetBigQueryCredentialResult {
             this.projectId = projectId;
             return this;
         }
+        @CustomType.Setter
+        public Builder serviceAccountImpersonationUrl(String serviceAccountImpersonationUrl) {
+            if (serviceAccountImpersonationUrl == null) {
+              throw new MissingRequiredPropertyException("GetBigQueryCredentialResult", "serviceAccountImpersonationUrl");
+            }
+            this.serviceAccountImpersonationUrl = serviceAccountImpersonationUrl;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder workloadPoolProviderPath(String workloadPoolProviderPath) {
+            if (workloadPoolProviderPath == null) {
+              throw new MissingRequiredPropertyException("GetBigQueryCredentialResult", "workloadPoolProviderPath");
+            }
+            this.workloadPoolProviderPath = workloadPoolProviderPath;
+            return this;
+        }
         public GetBigQueryCredentialResult build() {
             final var _resultValue = new GetBigQueryCredentialResult();
+            _resultValue.authType = authType;
             _resultValue.credentialId = credentialId;
             _resultValue.dataset = dataset;
             _resultValue.id = id;
             _resultValue.isActive = isActive;
             _resultValue.numThreads = numThreads;
             _resultValue.projectId = projectId;
+            _resultValue.serviceAccountImpersonationUrl = serviceAccountImpersonationUrl;
+            _resultValue.workloadPoolProviderPath = workloadPoolProviderPath;
             return _resultValue;
         }
     }

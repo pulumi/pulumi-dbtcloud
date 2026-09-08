@@ -352,14 +352,14 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * External OAuth configuration ID (only Snowflake for now)
+     * External OAuth configuration ID. Supported for all connection types.
      * 
      */
     @Export(name="oauthConfigurationId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> oauthConfigurationId;
 
     /**
-     * @return External OAuth configuration ID (only Snowflake for now)
+     * @return External OAuth configuration ID. Supported for all connection types.
      * 
      */
     public Output<Optional<Integer>> oauthConfigurationId() {

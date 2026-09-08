@@ -8295,6 +8295,8 @@ type GetGlobalConnectionBigquery struct {
 	ImpersonateServiceAccount string `pulumi:"impersonateServiceAccount"`
 	// Maximum timeout for the job creation step
 	JobCreationTimeoutSeconds int `pulumi:"jobCreationTimeoutSeconds"`
+	// Timeout in seconds for job execution, used by the bigqueryV1 adapter
+	JobExecutionTimeoutSeconds int `pulumi:"jobExecutionTimeoutSeconds"`
 	// Total number of seconds to wait while retrying the same query
 	JobRetryDeadlineSeconds int `pulumi:"jobRetryDeadlineSeconds"`
 	// Location to create new Datasets in
@@ -8315,6 +8317,8 @@ type GetGlobalConnectionBigquery struct {
 	TimeoutSeconds int `pulumi:"timeoutSeconds"`
 	// Token URI for the Service Account
 	TokenUri string `pulumi:"tokenUri"`
+	// Whether the connection uses the latest bigqueryV1 adapter (used for BQ WIF)
+	UseLatestAdapter bool `pulumi:"useLatestAdapter"`
 }
 
 // GetGlobalConnectionBigqueryInput is an input type that accepts GetGlobalConnectionBigqueryArgs and GetGlobalConnectionBigqueryOutput values.
@@ -8359,6 +8363,8 @@ type GetGlobalConnectionBigqueryArgs struct {
 	ImpersonateServiceAccount pulumi.StringInput `pulumi:"impersonateServiceAccount"`
 	// Maximum timeout for the job creation step
 	JobCreationTimeoutSeconds pulumi.IntInput `pulumi:"jobCreationTimeoutSeconds"`
+	// Timeout in seconds for job execution, used by the bigqueryV1 adapter
+	JobExecutionTimeoutSeconds pulumi.IntInput `pulumi:"jobExecutionTimeoutSeconds"`
 	// Total number of seconds to wait while retrying the same query
 	JobRetryDeadlineSeconds pulumi.IntInput `pulumi:"jobRetryDeadlineSeconds"`
 	// Location to create new Datasets in
@@ -8379,6 +8385,8 @@ type GetGlobalConnectionBigqueryArgs struct {
 	TimeoutSeconds pulumi.IntInput `pulumi:"timeoutSeconds"`
 	// Token URI for the Service Account
 	TokenUri pulumi.StringInput `pulumi:"tokenUri"`
+	// Whether the connection uses the latest bigqueryV1 adapter (used for BQ WIF)
+	UseLatestAdapter pulumi.BoolInput `pulumi:"useLatestAdapter"`
 }
 
 func (GetGlobalConnectionBigqueryArgs) ElementType() reflect.Type {
@@ -8482,6 +8490,11 @@ func (o GetGlobalConnectionBigqueryOutput) JobCreationTimeoutSeconds() pulumi.In
 	return o.ApplyT(func(v GetGlobalConnectionBigquery) int { return v.JobCreationTimeoutSeconds }).(pulumi.IntOutput)
 }
 
+// Timeout in seconds for job execution, used by the bigqueryV1 adapter
+func (o GetGlobalConnectionBigqueryOutput) JobExecutionTimeoutSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGlobalConnectionBigquery) int { return v.JobExecutionTimeoutSeconds }).(pulumi.IntOutput)
+}
+
 // Total number of seconds to wait while retrying the same query
 func (o GetGlobalConnectionBigqueryOutput) JobRetryDeadlineSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetGlobalConnectionBigquery) int { return v.JobRetryDeadlineSeconds }).(pulumi.IntOutput)
@@ -8530,6 +8543,11 @@ func (o GetGlobalConnectionBigqueryOutput) TimeoutSeconds() pulumi.IntOutput {
 // Token URI for the Service Account
 func (o GetGlobalConnectionBigqueryOutput) TokenUri() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionBigquery) string { return v.TokenUri }).(pulumi.StringOutput)
+}
+
+// Whether the connection uses the latest bigqueryV1 adapter (used for BQ WIF)
+func (o GetGlobalConnectionBigqueryOutput) UseLatestAdapter() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGlobalConnectionBigquery) bool { return v.UseLatestAdapter }).(pulumi.BoolOutput)
 }
 
 type GetGlobalConnectionDatabricks struct {

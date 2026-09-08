@@ -271,7 +271,7 @@ namespace Pulumi.DbtCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// External OAuth configuration ID (only Snowflake for now)
+        /// External OAuth configuration ID. Supported for all connection types.
         /// </summary>
         [Output("oauthConfigurationId")]
         public Output<int?> OauthConfigurationId { get; private set; } = null!;
@@ -405,7 +405,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// External OAuth configuration ID (only Snowflake for now)
+        /// External OAuth configuration ID. Supported for all connection types.
         /// </summary>
         [Input("oauthConfigurationId")]
         public Input<int>? OauthConfigurationId { get; set; }
@@ -512,7 +512,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// External OAuth configuration ID (only Snowflake for now)
+        /// External OAuth configuration ID. Supported for all connection types.
         /// </summary>
         [Input("oauthConfigurationId")]
         public Input<int>? OauthConfigurationId { get; set; }

@@ -66,6 +66,12 @@ namespace Pulumi.DbtCloud
     public partial class BigQueryCredential : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Output("authType")]
+        public Output<string> AuthType { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         /// </summary>
         [Output("connectionId")]
@@ -100,6 +106,18 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Output("projectId")]
         public Output<int> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// The URL for the service account impersonation request, used when `AuthType` is `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Output("serviceAccountImpersonationUrl")]
+        public Output<string?> ServiceAccountImpersonationUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// The fully specified resource name of the workload pool provider, required when `AuthType` is `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Output("workloadPoolProviderPath")]
+        public Output<string?> WorkloadPoolProviderPath { get; private set; } = null!;
 
 
         /// <summary>
@@ -149,6 +167,12 @@ namespace Pulumi.DbtCloud
     public sealed class BigQueryCredentialArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Input("authType")]
+        public Input<string>? AuthType { get; set; }
+
+        /// <summary>
         /// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         /// </summary>
         [Input("connectionId")]
@@ -178,6 +202,18 @@ namespace Pulumi.DbtCloud
         [Input("projectId", required: true)]
         public Input<int> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// The URL for the service account impersonation request, used when `AuthType` is `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Input("serviceAccountImpersonationUrl")]
+        public Input<string>? ServiceAccountImpersonationUrl { get; set; }
+
+        /// <summary>
+        /// The fully specified resource name of the workload pool provider, required when `AuthType` is `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Input("workloadPoolProviderPath")]
+        public Input<string>? WorkloadPoolProviderPath { get; set; }
+
         public BigQueryCredentialArgs()
         {
         }
@@ -186,6 +222,12 @@ namespace Pulumi.DbtCloud
 
     public sealed class BigQueryCredentialState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Input("authType")]
+        public Input<string>? AuthType { get; set; }
+
         /// <summary>
         /// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
         /// </summary>
@@ -221,6 +263,18 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("projectId")]
         public Input<int>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The URL for the service account impersonation request, used when `AuthType` is `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Input("serviceAccountImpersonationUrl")]
+        public Input<string>? ServiceAccountImpersonationUrl { get; set; }
+
+        /// <summary>
+        /// The fully specified resource name of the workload pool provider, required when `AuthType` is `external-oauth-wif`. Only applicable for v1 credentials (when `ConnectionId` is set).
+        /// </summary>
+        [Input("workloadPoolProviderPath")]
+        public Input<string>? WorkloadPoolProviderPath { get; set; }
 
         public BigQueryCredentialState()
         {

@@ -32,6 +32,8 @@ type LookupBigQueryCredentialArgs struct {
 
 // A collection of values returned by getBigQueryCredential.
 type LookupBigQueryCredentialResult struct {
+	// The authentication method for the BigQuery credential
+	AuthType string `pulumi:"authType"`
 	// Credential ID
 	CredentialId int `pulumi:"credentialId"`
 	// Default dataset name
@@ -44,6 +46,10 @@ type LookupBigQueryCredentialResult struct {
 	NumThreads int `pulumi:"numThreads"`
 	// Project ID
 	ProjectId int `pulumi:"projectId"`
+	// The URL for the service account impersonation request
+	ServiceAccountImpersonationUrl string `pulumi:"serviceAccountImpersonationUrl"`
+	// The fully specified resource name of the workload pool provider
+	WorkloadPoolProviderPath string `pulumi:"workloadPoolProviderPath"`
 }
 
 func LookupBigQueryCredentialOutput(ctx *pulumi.Context, args LookupBigQueryCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupBigQueryCredentialResultOutput {
@@ -78,6 +84,11 @@ func (o LookupBigQueryCredentialResultOutput) ToLookupBigQueryCredentialResultOu
 	return o
 }
 
+// The authentication method for the BigQuery credential
+func (o LookupBigQueryCredentialResultOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBigQueryCredentialResult) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
 // Credential ID
 func (o LookupBigQueryCredentialResultOutput) CredentialId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBigQueryCredentialResult) int { return v.CredentialId }).(pulumi.IntOutput)
@@ -106,6 +117,16 @@ func (o LookupBigQueryCredentialResultOutput) NumThreads() pulumi.IntOutput {
 // Project ID
 func (o LookupBigQueryCredentialResultOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBigQueryCredentialResult) int { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// The URL for the service account impersonation request
+func (o LookupBigQueryCredentialResultOutput) ServiceAccountImpersonationUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBigQueryCredentialResult) string { return v.ServiceAccountImpersonationUrl }).(pulumi.StringOutput)
+}
+
+// The fully specified resource name of the workload pool provider
+func (o LookupBigQueryCredentialResultOutput) WorkloadPoolProviderPath() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBigQueryCredentialResult) string { return v.WorkloadPoolProviderPath }).(pulumi.StringOutput)
 }
 
 func init() {

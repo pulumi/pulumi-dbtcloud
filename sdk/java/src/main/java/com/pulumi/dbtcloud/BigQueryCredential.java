@@ -87,6 +87,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="dbtcloud:index/bigQueryCredential:BigQueryCredential")
 public class BigQueryCredential extends com.pulumi.resources.CustomResource {
     /**
+     * The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    @Export(name="authType", refs={String.class}, tree="[0]")
+    private Output<String> authType;
+
+    /**
+     * @return The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    public Output<String> authType() {
+        return this.authType;
+    }
+    /**
      * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
      * 
      */
@@ -169,6 +183,34 @@ public class BigQueryCredential extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> projectId() {
         return this.projectId;
+    }
+    /**
+     * The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    @Export(name="serviceAccountImpersonationUrl", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> serviceAccountImpersonationUrl;
+
+    /**
+     * @return The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    public Output<Optional<String>> serviceAccountImpersonationUrl() {
+        return Codegen.optional(this.serviceAccountImpersonationUrl);
+    }
+    /**
+     * The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    @Export(name="workloadPoolProviderPath", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> workloadPoolProviderPath;
+
+    /**
+     * @return The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    public Output<Optional<String>> workloadPoolProviderPath() {
+        return Codegen.optional(this.workloadPoolProviderPath);
     }
 
     /**

@@ -18,6 +18,21 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
     public static final BigQueryCredentialState Empty = new BigQueryCredentialState();
 
     /**
+     * The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    @Import(name="authType")
+    private @Nullable Output<String> authType;
+
+    /**
+     * @return The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    public Optional<Output<String>> authType() {
+        return Optional.ofNullable(this.authType);
+    }
+
+    /**
      * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection&#39;s configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
      * 
      */
@@ -107,15 +122,48 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.projectId);
     }
 
+    /**
+     * The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    @Import(name="serviceAccountImpersonationUrl")
+    private @Nullable Output<String> serviceAccountImpersonationUrl;
+
+    /**
+     * @return The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    public Optional<Output<String>> serviceAccountImpersonationUrl() {
+        return Optional.ofNullable(this.serviceAccountImpersonationUrl);
+    }
+
+    /**
+     * The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    @Import(name="workloadPoolProviderPath")
+    private @Nullable Output<String> workloadPoolProviderPath;
+
+    /**
+     * @return The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     * 
+     */
+    public Optional<Output<String>> workloadPoolProviderPath() {
+        return Optional.ofNullable(this.workloadPoolProviderPath);
+    }
+
     private BigQueryCredentialState() {}
 
     private BigQueryCredentialState(BigQueryCredentialState $) {
+        this.authType = $.authType;
         this.connectionId = $.connectionId;
         this.credentialId = $.credentialId;
         this.dataset = $.dataset;
         this.isActive = $.isActive;
         this.numThreads = $.numThreads;
         this.projectId = $.projectId;
+        this.serviceAccountImpersonationUrl = $.serviceAccountImpersonationUrl;
+        this.workloadPoolProviderPath = $.workloadPoolProviderPath;
     }
 
     public static Builder builder() {
@@ -134,6 +182,27 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
 
         public Builder(BigQueryCredentialState defaults) {
             $ = new BigQueryCredentialState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param authType The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authType(@Nullable Output<String> authType) {
+            $.authType = authType;
+            return this;
+        }
+
+        /**
+         * @param authType The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authType(String authType) {
+            return authType(Output.of(authType));
         }
 
         /**
@@ -260,6 +329,48 @@ public final class BigQueryCredentialState extends com.pulumi.resources.Resource
          */
         public Builder projectId(Integer projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param serviceAccountImpersonationUrl The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountImpersonationUrl(@Nullable Output<String> serviceAccountImpersonationUrl) {
+            $.serviceAccountImpersonationUrl = serviceAccountImpersonationUrl;
+            return this;
+        }
+
+        /**
+         * @param serviceAccountImpersonationUrl The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountImpersonationUrl(String serviceAccountImpersonationUrl) {
+            return serviceAccountImpersonationUrl(Output.of(serviceAccountImpersonationUrl));
+        }
+
+        /**
+         * @param workloadPoolProviderPath The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder workloadPoolProviderPath(@Nullable Output<String> workloadPoolProviderPath) {
+            $.workloadPoolProviderPath = workloadPoolProviderPath;
+            return this;
+        }
+
+        /**
+         * @param workloadPoolProviderPath The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder workloadPoolProviderPath(String workloadPoolProviderPath) {
+            return workloadPoolProviderPath(Output.of(workloadPoolProviderPath));
         }
 
         public BigQueryCredentialState build() {

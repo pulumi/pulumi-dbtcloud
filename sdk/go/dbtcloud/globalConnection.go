@@ -247,7 +247,7 @@ type GlobalConnection struct {
 	IsSshTunnelEnabled pulumi.BoolOutput `pulumi:"isSshTunnelEnabled"`
 	// Connection name
 	Name pulumi.StringOutput `pulumi:"name"`
-	// External OAuth configuration ID (only Snowflake for now)
+	// External OAuth configuration ID. Supported for all connection types.
 	OauthConfigurationId pulumi.IntPtrOutput `pulumi:"oauthConfigurationId"`
 	// PostgreSQL connection configuration.
 	Postgres GlobalConnectionPostgresPtrOutput `pulumi:"postgres"`
@@ -312,7 +312,7 @@ type globalConnectionState struct {
 	IsSshTunnelEnabled *bool `pulumi:"isSshTunnelEnabled"`
 	// Connection name
 	Name *string `pulumi:"name"`
-	// External OAuth configuration ID (only Snowflake for now)
+	// External OAuth configuration ID. Supported for all connection types.
 	OauthConfigurationId *int `pulumi:"oauthConfigurationId"`
 	// PostgreSQL connection configuration.
 	Postgres *GlobalConnectionPostgres `pulumi:"postgres"`
@@ -348,7 +348,7 @@ type GlobalConnectionState struct {
 	IsSshTunnelEnabled pulumi.BoolPtrInput
 	// Connection name
 	Name pulumi.StringPtrInput
-	// External OAuth configuration ID (only Snowflake for now)
+	// External OAuth configuration ID. Supported for all connection types.
 	OauthConfigurationId pulumi.IntPtrInput
 	// PostgreSQL connection configuration.
 	Postgres GlobalConnectionPostgresPtrInput
@@ -384,7 +384,7 @@ type globalConnectionArgs struct {
 	Fabric *GlobalConnectionFabric `pulumi:"fabric"`
 	// Connection name
 	Name *string `pulumi:"name"`
-	// External OAuth configuration ID (only Snowflake for now)
+	// External OAuth configuration ID. Supported for all connection types.
 	OauthConfigurationId *int `pulumi:"oauthConfigurationId"`
 	// PostgreSQL connection configuration.
 	Postgres *GlobalConnectionPostgres `pulumi:"postgres"`
@@ -417,7 +417,7 @@ type GlobalConnectionArgs struct {
 	Fabric GlobalConnectionFabricPtrInput
 	// Connection name
 	Name pulumi.StringPtrInput
-	// External OAuth configuration ID (only Snowflake for now)
+	// External OAuth configuration ID. Supported for all connection types.
 	OauthConfigurationId pulumi.IntPtrInput
 	// PostgreSQL connection configuration.
 	Postgres GlobalConnectionPostgresPtrInput
@@ -563,7 +563,7 @@ func (o GlobalConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *GlobalConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// External OAuth configuration ID (only Snowflake for now)
+// External OAuth configuration ID. Supported for all connection types.
 func (o GlobalConnectionOutput) OauthConfigurationId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) pulumi.IntPtrOutput { return v.OauthConfigurationId }).(pulumi.IntPtrOutput)
 }
