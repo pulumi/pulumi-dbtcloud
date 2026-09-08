@@ -34,6 +34,10 @@ export interface GetBigQueryCredentialArgs {
  */
 export interface GetBigQueryCredentialResult {
     /**
+     * The authentication method for the BigQuery credential
+     */
+    readonly authType: string;
+    /**
      * Credential ID
      */
     readonly credentialId: number;
@@ -57,6 +61,14 @@ export interface GetBigQueryCredentialResult {
      * Project ID
      */
     readonly projectId: number;
+    /**
+     * The URL for the service account impersonation request
+     */
+    readonly serviceAccountImpersonationUrl: string;
+    /**
+     * The fully specified resource name of the workload pool provider
+     */
+    readonly workloadPoolProviderPath: string;
 }
 /**
  * Bigquery credential data source

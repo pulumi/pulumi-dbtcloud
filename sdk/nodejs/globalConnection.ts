@@ -236,7 +236,7 @@ export class GlobalConnection extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * External OAuth configuration ID (only Snowflake for now)
+     * External OAuth configuration ID. Supported for all connection types.
      */
     declare public readonly oauthConfigurationId: pulumi.Output<number | undefined>;
     /**
@@ -361,7 +361,7 @@ export interface GlobalConnectionState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * External OAuth configuration ID (only Snowflake for now)
+     * External OAuth configuration ID. Supported for all connection types.
      */
     oauthConfigurationId?: pulumi.Input<number | undefined>;
     /**
@@ -424,7 +424,7 @@ export interface GlobalConnectionArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * External OAuth configuration ID (only Snowflake for now)
+     * External OAuth configuration ID. Supported for all connection types.
      */
     oauthConfigurationId?: pulumi.Input<number | undefined>;
     /**

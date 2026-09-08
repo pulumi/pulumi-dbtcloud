@@ -75,6 +75,8 @@ import (
 type BigQueryCredential struct {
 	pulumi.CustomResourceState
 
+	// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	AuthType pulumi.StringOutput `pulumi:"authType"`
 	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
 	ConnectionId pulumi.IntPtrOutput `pulumi:"connectionId"`
 	// The internal credential ID
@@ -87,6 +89,10 @@ type BigQueryCredential struct {
 	NumThreads pulumi.IntOutput `pulumi:"numThreads"`
 	// Project ID to create the BigQuery credential in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
+	// The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	ServiceAccountImpersonationUrl pulumi.StringPtrOutput `pulumi:"serviceAccountImpersonationUrl"`
+	// The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	WorkloadPoolProviderPath pulumi.StringPtrOutput `pulumi:"workloadPoolProviderPath"`
 }
 
 // NewBigQueryCredential registers a new resource with the given unique name, arguments, and options.
@@ -128,6 +134,8 @@ func GetBigQueryCredential(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BigQueryCredential resources.
 type bigQueryCredentialState struct {
+	// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	AuthType *string `pulumi:"authType"`
 	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
 	ConnectionId *int `pulumi:"connectionId"`
 	// The internal credential ID
@@ -140,9 +148,15 @@ type bigQueryCredentialState struct {
 	NumThreads *int `pulumi:"numThreads"`
 	// Project ID to create the BigQuery credential in
 	ProjectId *int `pulumi:"projectId"`
+	// The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	ServiceAccountImpersonationUrl *string `pulumi:"serviceAccountImpersonationUrl"`
+	// The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	WorkloadPoolProviderPath *string `pulumi:"workloadPoolProviderPath"`
 }
 
 type BigQueryCredentialState struct {
+	// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	AuthType pulumi.StringPtrInput
 	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
 	ConnectionId pulumi.IntPtrInput
 	// The internal credential ID
@@ -155,6 +169,10 @@ type BigQueryCredentialState struct {
 	NumThreads pulumi.IntPtrInput
 	// Project ID to create the BigQuery credential in
 	ProjectId pulumi.IntPtrInput
+	// The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	ServiceAccountImpersonationUrl pulumi.StringPtrInput
+	// The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	WorkloadPoolProviderPath pulumi.StringPtrInput
 }
 
 func (BigQueryCredentialState) ElementType() reflect.Type {
@@ -162,6 +180,8 @@ func (BigQueryCredentialState) ElementType() reflect.Type {
 }
 
 type bigQueryCredentialArgs struct {
+	// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	AuthType *string `pulumi:"authType"`
 	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
 	ConnectionId *int `pulumi:"connectionId"`
 	// Default dataset name
@@ -172,10 +192,16 @@ type bigQueryCredentialArgs struct {
 	NumThreads int `pulumi:"numThreads"`
 	// Project ID to create the BigQuery credential in
 	ProjectId int `pulumi:"projectId"`
+	// The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	ServiceAccountImpersonationUrl *string `pulumi:"serviceAccountImpersonationUrl"`
+	// The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	WorkloadPoolProviderPath *string `pulumi:"workloadPoolProviderPath"`
 }
 
 // The set of arguments for constructing a BigQueryCredential resource.
 type BigQueryCredentialArgs struct {
+	// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	AuthType pulumi.StringPtrInput
 	// The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
 	ConnectionId pulumi.IntPtrInput
 	// Default dataset name
@@ -186,6 +212,10 @@ type BigQueryCredentialArgs struct {
 	NumThreads pulumi.IntInput
 	// Project ID to create the BigQuery credential in
 	ProjectId pulumi.IntInput
+	// The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	ServiceAccountImpersonationUrl pulumi.StringPtrInput
+	// The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+	WorkloadPoolProviderPath pulumi.StringPtrInput
 }
 
 func (BigQueryCredentialArgs) ElementType() reflect.Type {
@@ -275,6 +305,11 @@ func (o BigQueryCredentialOutput) ToBigQueryCredentialOutputWithContext(ctx cont
 	return o
 }
 
+// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+func (o BigQueryCredentialOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v *BigQueryCredential) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
+}
+
 // The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
 func (o BigQueryCredentialOutput) ConnectionId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BigQueryCredential) pulumi.IntPtrOutput { return v.ConnectionId }).(pulumi.IntPtrOutput)
@@ -303,6 +338,16 @@ func (o BigQueryCredentialOutput) NumThreads() pulumi.IntOutput {
 // Project ID to create the BigQuery credential in
 func (o BigQueryCredentialOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *BigQueryCredential) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
+}
+
+// The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+func (o BigQueryCredentialOutput) ServiceAccountImpersonationUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigQueryCredential) pulumi.StringPtrOutput { return v.ServiceAccountImpersonationUrl }).(pulumi.StringPtrOutput)
+}
+
+// The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+func (o BigQueryCredentialOutput) WorkloadPoolProviderPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BigQueryCredential) pulumi.StringPtrOutput { return v.WorkloadPoolProviderPath }).(pulumi.StringPtrOutput)
 }
 
 type BigQueryCredentialArrayOutput struct{ *pulumi.OutputState }

@@ -5,6 +5,7 @@ package com.pulumi.dbtcloud.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -88,6 +89,11 @@ public final class GetGlobalConnectionBigquery {
      */
     private Integer jobCreationTimeoutSeconds;
     /**
+     * @return Timeout in seconds for job execution, used by the bigqueryV1 adapter
+     * 
+     */
+    private Integer jobExecutionTimeoutSeconds;
+    /**
      * @return Total number of seconds to wait while retrying the same query
      * 
      */
@@ -137,6 +143,11 @@ public final class GetGlobalConnectionBigquery {
      * 
      */
     private String tokenUri;
+    /**
+     * @return Whether the connection uses the latest bigqueryV1 adapter (used for BQ WIF)
+     * 
+     */
+    private Boolean useLatestAdapter;
 
     private GetGlobalConnectionBigquery() {}
     /**
@@ -245,6 +256,13 @@ public final class GetGlobalConnectionBigquery {
         return this.jobCreationTimeoutSeconds;
     }
     /**
+     * @return Timeout in seconds for job execution, used by the bigqueryV1 adapter
+     * 
+     */
+    public Integer jobExecutionTimeoutSeconds() {
+        return this.jobExecutionTimeoutSeconds;
+    }
+    /**
      * @return Total number of seconds to wait while retrying the same query
      * 
      */
@@ -314,6 +332,13 @@ public final class GetGlobalConnectionBigquery {
     public String tokenUri() {
         return this.tokenUri;
     }
+    /**
+     * @return Whether the connection uses the latest bigqueryV1 adapter (used for BQ WIF)
+     * 
+     */
+    public Boolean useLatestAdapter() {
+        return this.useLatestAdapter;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -339,6 +364,7 @@ public final class GetGlobalConnectionBigquery {
         private String gcsBucket;
         private String impersonateServiceAccount;
         private Integer jobCreationTimeoutSeconds;
+        private Integer jobExecutionTimeoutSeconds;
         private Integer jobRetryDeadlineSeconds;
         private String location;
         private Integer maximumBytesBilled;
@@ -349,6 +375,7 @@ public final class GetGlobalConnectionBigquery {
         private List<String> scopes;
         private Integer timeoutSeconds;
         private String tokenUri;
+        private Boolean useLatestAdapter;
         public Builder() {}
         public Builder(GetGlobalConnectionBigquery defaults) {
     	      Objects.requireNonNull(defaults);
@@ -367,6 +394,7 @@ public final class GetGlobalConnectionBigquery {
     	      this.gcsBucket = defaults.gcsBucket;
     	      this.impersonateServiceAccount = defaults.impersonateServiceAccount;
     	      this.jobCreationTimeoutSeconds = defaults.jobCreationTimeoutSeconds;
+    	      this.jobExecutionTimeoutSeconds = defaults.jobExecutionTimeoutSeconds;
     	      this.jobRetryDeadlineSeconds = defaults.jobRetryDeadlineSeconds;
     	      this.location = defaults.location;
     	      this.maximumBytesBilled = defaults.maximumBytesBilled;
@@ -377,6 +405,7 @@ public final class GetGlobalConnectionBigquery {
     	      this.scopes = defaults.scopes;
     	      this.timeoutSeconds = defaults.timeoutSeconds;
     	      this.tokenUri = defaults.tokenUri;
+    	      this.useLatestAdapter = defaults.useLatestAdapter;
         }
 
         @CustomType.Setter
@@ -500,6 +529,14 @@ public final class GetGlobalConnectionBigquery {
             return this;
         }
         @CustomType.Setter
+        public Builder jobExecutionTimeoutSeconds(Integer jobExecutionTimeoutSeconds) {
+            if (jobExecutionTimeoutSeconds == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "jobExecutionTimeoutSeconds");
+            }
+            this.jobExecutionTimeoutSeconds = jobExecutionTimeoutSeconds;
+            return this;
+        }
+        @CustomType.Setter
         public Builder jobRetryDeadlineSeconds(Integer jobRetryDeadlineSeconds) {
             if (jobRetryDeadlineSeconds == null) {
               throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "jobRetryDeadlineSeconds");
@@ -582,6 +619,14 @@ public final class GetGlobalConnectionBigquery {
             this.tokenUri = tokenUri;
             return this;
         }
+        @CustomType.Setter
+        public Builder useLatestAdapter(Boolean useLatestAdapter) {
+            if (useLatestAdapter == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "useLatestAdapter");
+            }
+            this.useLatestAdapter = useLatestAdapter;
+            return this;
+        }
         public GetGlobalConnectionBigquery build() {
             final var _resultValue = new GetGlobalConnectionBigquery();
             _resultValue.applicationId = applicationId;
@@ -599,6 +644,7 @@ public final class GetGlobalConnectionBigquery {
             _resultValue.gcsBucket = gcsBucket;
             _resultValue.impersonateServiceAccount = impersonateServiceAccount;
             _resultValue.jobCreationTimeoutSeconds = jobCreationTimeoutSeconds;
+            _resultValue.jobExecutionTimeoutSeconds = jobExecutionTimeoutSeconds;
             _resultValue.jobRetryDeadlineSeconds = jobRetryDeadlineSeconds;
             _resultValue.location = location;
             _resultValue.maximumBytesBilled = maximumBytesBilled;
@@ -609,6 +655,7 @@ public final class GetGlobalConnectionBigquery {
             _resultValue.scopes = scopes;
             _resultValue.timeoutSeconds = timeoutSeconds;
             _resultValue.tokenUri = tokenUri;
+            _resultValue.useLatestAdapter = useLatestAdapter;
             return _resultValue;
         }
     }

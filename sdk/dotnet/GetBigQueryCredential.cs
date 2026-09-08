@@ -76,6 +76,10 @@ namespace Pulumi.DbtCloud
     public sealed class GetBigQueryCredentialResult
     {
         /// <summary>
+        /// The authentication method for the BigQuery credential
+        /// </summary>
+        public readonly string AuthType;
+        /// <summary>
         /// Credential ID
         /// </summary>
         public readonly int CredentialId;
@@ -99,9 +103,19 @@ namespace Pulumi.DbtCloud
         /// Project ID
         /// </summary>
         public readonly int ProjectId;
+        /// <summary>
+        /// The URL for the service account impersonation request
+        /// </summary>
+        public readonly string ServiceAccountImpersonationUrl;
+        /// <summary>
+        /// The fully specified resource name of the workload pool provider
+        /// </summary>
+        public readonly string WorkloadPoolProviderPath;
 
         [OutputConstructor]
         private GetBigQueryCredentialResult(
+            string authType,
+
             int credentialId,
 
             string dataset,
@@ -112,14 +126,21 @@ namespace Pulumi.DbtCloud
 
             int numThreads,
 
-            int projectId)
+            int projectId,
+
+            string serviceAccountImpersonationUrl,
+
+            string workloadPoolProviderPath)
         {
+            AuthType = authType;
             CredentialId = credentialId;
             Dataset = dataset;
             Id = id;
             IsActive = isActive;
             NumThreads = numThreads;
             ProjectId = projectId;
+            ServiceAccountImpersonationUrl = serviceAccountImpersonationUrl;
+            WorkloadPoolProviderPath = workloadPoolProviderPath;
         }
     }
 }

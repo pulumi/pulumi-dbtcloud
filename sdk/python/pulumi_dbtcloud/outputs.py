@@ -4153,6 +4153,7 @@ class GetGlobalConnectionBigqueryResult(dict):
                  gcs_bucket: _builtins.str,
                  impersonate_service_account: _builtins.str,
                  job_creation_timeout_seconds: _builtins.int,
+                 job_execution_timeout_seconds: _builtins.int,
                  job_retry_deadline_seconds: _builtins.int,
                  location: _builtins.str,
                  maximum_bytes_billed: _builtins.int,
@@ -4162,7 +4163,8 @@ class GetGlobalConnectionBigqueryResult(dict):
                  retries: _builtins.int,
                  scopes: Sequence[_builtins.str],
                  timeout_seconds: _builtins.int,
-                 token_uri: _builtins.str):
+                 token_uri: _builtins.str,
+                 use_latest_adapter: _builtins.bool):
         """
         :param _builtins.str application_id: OAuth Client ID
         :param _builtins.str application_secret: OAuth Client Secret
@@ -4179,6 +4181,7 @@ class GetGlobalConnectionBigqueryResult(dict):
         :param _builtins.str gcs_bucket: URI for a Google Cloud Storage bucket to host Python code executed via Datapro
         :param _builtins.str impersonate_service_account: Service Account to impersonate when running queries
         :param _builtins.int job_creation_timeout_seconds: Maximum timeout for the job creation step
+        :param _builtins.int job_execution_timeout_seconds: Timeout in seconds for job execution, used by the bigquery_v1 adapter
         :param _builtins.int job_retry_deadline_seconds: Total number of seconds to wait while retrying the same query
         :param _builtins.str location: Location to create new Datasets in
         :param _builtins.int maximum_bytes_billed: Max number of bytes that can be billed for a given BigQuery query
@@ -4189,6 +4192,7 @@ class GetGlobalConnectionBigqueryResult(dict):
         :param Sequence[_builtins.str] scopes: OAuth scopes for the BigQuery connection
         :param _builtins.int timeout_seconds: Timeout in seconds for queries
         :param _builtins.str token_uri: Token URI for the Service Account
+        :param _builtins.bool use_latest_adapter: Whether the connection uses the latest bigquery_v1 adapter (used for BQ WIF)
         """
         pulumi.set(__self__, "application_id", application_id)
         pulumi.set(__self__, "application_secret", application_secret)
@@ -4205,6 +4209,7 @@ class GetGlobalConnectionBigqueryResult(dict):
         pulumi.set(__self__, "gcs_bucket", gcs_bucket)
         pulumi.set(__self__, "impersonate_service_account", impersonate_service_account)
         pulumi.set(__self__, "job_creation_timeout_seconds", job_creation_timeout_seconds)
+        pulumi.set(__self__, "job_execution_timeout_seconds", job_execution_timeout_seconds)
         pulumi.set(__self__, "job_retry_deadline_seconds", job_retry_deadline_seconds)
         pulumi.set(__self__, "location", location)
         pulumi.set(__self__, "maximum_bytes_billed", maximum_bytes_billed)
@@ -4215,6 +4220,7 @@ class GetGlobalConnectionBigqueryResult(dict):
         pulumi.set(__self__, "scopes", scopes)
         pulumi.set(__self__, "timeout_seconds", timeout_seconds)
         pulumi.set(__self__, "token_uri", token_uri)
+        pulumi.set(__self__, "use_latest_adapter", use_latest_adapter)
 
     @_builtins.property
     @pulumi.getter(name="applicationId")
@@ -4337,6 +4343,14 @@ class GetGlobalConnectionBigqueryResult(dict):
         return pulumi.get(self, "job_creation_timeout_seconds")
 
     @_builtins.property
+    @pulumi.getter(name="jobExecutionTimeoutSeconds")
+    def job_execution_timeout_seconds(self) -> _builtins.int:
+        """
+        Timeout in seconds for job execution, used by the bigquery_v1 adapter
+        """
+        return pulumi.get(self, "job_execution_timeout_seconds")
+
+    @_builtins.property
     @pulumi.getter(name="jobRetryDeadlineSeconds")
     def job_retry_deadline_seconds(self) -> _builtins.int:
         """
@@ -4415,6 +4429,14 @@ class GetGlobalConnectionBigqueryResult(dict):
         Token URI for the Service Account
         """
         return pulumi.get(self, "token_uri")
+
+    @_builtins.property
+    @pulumi.getter(name="useLatestAdapter")
+    def use_latest_adapter(self) -> _builtins.bool:
+        """
+        Whether the connection uses the latest bigquery_v1 adapter (used for BQ WIF)
+        """
+        return pulumi.get(self, "use_latest_adapter")
 
 
 @pulumi.output_type

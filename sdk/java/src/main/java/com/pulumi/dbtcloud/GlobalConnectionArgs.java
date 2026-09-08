@@ -111,14 +111,14 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * External OAuth configuration ID (only Snowflake for now)
+     * External OAuth configuration ID. Supported for all connection types.
      * 
      */
     @Import(name="oauthConfigurationId")
     private @Nullable Output<Integer> oauthConfigurationId;
 
     /**
-     * @return External OAuth configuration ID (only Snowflake for now)
+     * @return External OAuth configuration ID. Supported for all connection types.
      * 
      */
     public Optional<Output<Integer>> oauthConfigurationId() {
@@ -398,7 +398,7 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param oauthConfigurationId External OAuth configuration ID (only Snowflake for now)
+         * @param oauthConfigurationId External OAuth configuration ID. Supported for all connection types.
          * 
          * @return builder
          * 
@@ -409,7 +409,7 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param oauthConfigurationId External OAuth configuration ID (only Snowflake for now)
+         * @param oauthConfigurationId External OAuth configuration ID. Supported for all connection types.
          * 
          * @return builder
          * 

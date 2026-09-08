@@ -325,6 +325,10 @@ export interface GetGlobalConnectionBigquery {
      */
     jobCreationTimeoutSeconds: number;
     /**
+     * Timeout in seconds for job execution, used by the bigqueryV1 adapter
+     */
+    jobExecutionTimeoutSeconds: number;
+    /**
      * Total number of seconds to wait while retrying the same query
      */
     jobRetryDeadlineSeconds: number;
@@ -364,6 +368,10 @@ export interface GetGlobalConnectionBigquery {
      * Token URI for the Service Account
      */
     tokenUri: string;
+    /**
+     * Whether the connection uses the latest bigqueryV1 adapter (used for BQ WIF)
+     */
+    useLatestAdapter: boolean;
 }
 
 export interface GetGlobalConnectionDatabricks {

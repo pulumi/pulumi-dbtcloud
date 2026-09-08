@@ -26,7 +26,10 @@ class GetBigQueryCredentialResult:
     """
     A collection of values returned by getBigQueryCredential.
     """
-    def __init__(__self__, credential_id=None, dataset=None, id=None, is_active=None, num_threads=None, project_id=None):
+    def __init__(__self__, auth_type=None, credential_id=None, dataset=None, id=None, is_active=None, num_threads=None, project_id=None, service_account_impersonation_url=None, workload_pool_provider_path=None):
+        if auth_type and not isinstance(auth_type, str):
+            raise TypeError("Expected argument 'auth_type' to be a str")
+        pulumi.set(__self__, "auth_type", auth_type)
         if credential_id and not isinstance(credential_id, int):
             raise TypeError("Expected argument 'credential_id' to be a int")
         pulumi.set(__self__, "credential_id", credential_id)
@@ -45,6 +48,20 @@ class GetBigQueryCredentialResult:
         if project_id and not isinstance(project_id, int):
             raise TypeError("Expected argument 'project_id' to be a int")
         pulumi.set(__self__, "project_id", project_id)
+        if service_account_impersonation_url and not isinstance(service_account_impersonation_url, str):
+            raise TypeError("Expected argument 'service_account_impersonation_url' to be a str")
+        pulumi.set(__self__, "service_account_impersonation_url", service_account_impersonation_url)
+        if workload_pool_provider_path and not isinstance(workload_pool_provider_path, str):
+            raise TypeError("Expected argument 'workload_pool_provider_path' to be a str")
+        pulumi.set(__self__, "workload_pool_provider_path", workload_pool_provider_path)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> _builtins.str:
+        """
+        The authentication method for the BigQuery credential
+        """
+        return pulumi.get(self, "auth_type")
 
     @_builtins.property
     @pulumi.getter(name="credentialId")
@@ -94,6 +111,22 @@ class GetBigQueryCredentialResult:
         """
         return pulumi.get(self, "project_id")
 
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountImpersonationUrl")
+    def service_account_impersonation_url(self) -> _builtins.str:
+        """
+        The URL for the service account impersonation request
+        """
+        return pulumi.get(self, "service_account_impersonation_url")
+
+    @_builtins.property
+    @pulumi.getter(name="workloadPoolProviderPath")
+    def workload_pool_provider_path(self) -> _builtins.str:
+        """
+        The fully specified resource name of the workload pool provider
+        """
+        return pulumi.get(self, "workload_pool_provider_path")
+
 
 class AwaitableGetBigQueryCredentialResult(GetBigQueryCredentialResult):
     # pylint: disable=using-constant-test
@@ -101,12 +134,15 @@ class AwaitableGetBigQueryCredentialResult(GetBigQueryCredentialResult):
         if False:
             yield self
         return GetBigQueryCredentialResult(
+            auth_type=self.auth_type,
             credential_id=self.credential_id,
             dataset=self.dataset,
             id=self.id,
             is_active=self.is_active,
             num_threads=self.num_threads,
-            project_id=self.project_id)
+            project_id=self.project_id,
+            service_account_impersonation_url=self.service_account_impersonation_url,
+            workload_pool_provider_path=self.workload_pool_provider_path)
 
 
 def get_big_query_credential(credential_id: Optional[_builtins.int] = None,
@@ -126,12 +162,15 @@ def get_big_query_credential(credential_id: Optional[_builtins.int] = None,
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getBigQueryCredential:getBigQueryCredential', __args__, opts=opts, typ=GetBigQueryCredentialResult).value
 
     return AwaitableGetBigQueryCredentialResult(
+        auth_type=pulumi.get(__ret__, 'auth_type'),
         credential_id=pulumi.get(__ret__, 'credential_id'),
         dataset=pulumi.get(__ret__, 'dataset'),
         id=pulumi.get(__ret__, 'id'),
         is_active=pulumi.get(__ret__, 'is_active'),
         num_threads=pulumi.get(__ret__, 'num_threads'),
-        project_id=pulumi.get(__ret__, 'project_id'))
+        project_id=pulumi.get(__ret__, 'project_id'),
+        service_account_impersonation_url=pulumi.get(__ret__, 'service_account_impersonation_url'),
+        workload_pool_provider_path=pulumi.get(__ret__, 'workload_pool_provider_path'))
 def get_big_query_credential_output(credential_id: pulumi.Input[Optional[_builtins.int]] = None,
                                     project_id: pulumi.Input[Optional[_builtins.int]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBigQueryCredentialResult]:
@@ -148,9 +187,12 @@ def get_big_query_credential_output(credential_id: pulumi.Input[Optional[_builti
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getBigQueryCredential:getBigQueryCredential', __args__, opts=opts, typ=GetBigQueryCredentialResult)
     return __ret__.apply(lambda __response__: GetBigQueryCredentialResult(
+        auth_type=pulumi.get(__response__, 'auth_type'),
         credential_id=pulumi.get(__response__, 'credential_id'),
         dataset=pulumi.get(__response__, 'dataset'),
         id=pulumi.get(__response__, 'id'),
         is_active=pulumi.get(__response__, 'is_active'),
         num_threads=pulumi.get(__response__, 'num_threads'),
-        project_id=pulumi.get(__response__, 'project_id')))
+        project_id=pulumi.get(__response__, 'project_id'),
+        service_account_impersonation_url=pulumi.get(__response__, 'service_account_impersonation_url'),
+        workload_pool_provider_path=pulumi.get(__response__, 'workload_pool_provider_path')))

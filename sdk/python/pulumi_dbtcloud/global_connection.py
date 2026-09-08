@@ -44,7 +44,7 @@ class GlobalConnectionArgs:
         :param pulumi.Input['GlobalConnectionDatabricksArgs'] databricks: Databricks connection configuration
         :param pulumi.Input['GlobalConnectionFabricArgs'] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.str] name: Connection name
-        :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID (only Snowflake for now)
+        :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID. Supported for all connection types.
         :param pulumi.Input['GlobalConnectionPostgresArgs'] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input['GlobalConnectionRedshiftArgs'] redshift: Redshift connection configuration
@@ -158,7 +158,7 @@ class GlobalConnectionArgs:
     @pulumi.getter(name="oauthConfigurationId")
     def oauth_configuration_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        External OAuth configuration ID (only Snowflake for now)
+        External OAuth configuration ID. Supported for all connection types.
         """
         return pulumi.get(self, "oauth_configuration_id")
 
@@ -293,7 +293,7 @@ class _GlobalConnectionState:
         :param pulumi.Input['GlobalConnectionFabricArgs'] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
         :param pulumi.Input[_builtins.str] name: Connection name
-        :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID (only Snowflake for now)
+        :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID. Supported for all connection types.
         :param pulumi.Input['GlobalConnectionPostgresArgs'] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input['GlobalConnectionRedshiftArgs'] redshift: Redshift connection configuration
@@ -435,7 +435,7 @@ class _GlobalConnectionState:
     @pulumi.getter(name="oauthConfigurationId")
     def oauth_configuration_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        External OAuth configuration ID (only Snowflake for now)
+        External OAuth configuration ID. Supported for all connection types.
         """
         return pulumi.get(self, "oauth_configuration_id")
 
@@ -730,7 +730,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']] databricks: Databricks connection configuration
         :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.str] name: Connection name
-        :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID (only Snowflake for now)
+        :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID. Supported for all connection types.
         :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']] redshift: Redshift connection configuration
@@ -1004,7 +1004,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
         :param pulumi.Input[_builtins.str] name: Connection name
-        :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID (only Snowflake for now)
+        :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID. Supported for all connection types.
         :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
         :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']] redshift: Redshift connection configuration
@@ -1102,7 +1102,7 @@ class GlobalConnection(pulumi.CustomResource):
     @pulumi.getter(name="oauthConfigurationId")
     def oauth_configuration_id(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        External OAuth configuration ID (only Snowflake for now)
+        External OAuth configuration ID. Supported for all connection types.
         """
         return pulumi.get(self, "oauth_configuration_id")
 

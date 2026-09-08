@@ -77,6 +77,10 @@ export class BigQueryCredential extends pulumi.CustomResource {
     }
 
     /**
+     * The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    declare public readonly authType: pulumi.Output<string>;
+    /**
      * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
      */
     declare public readonly connectionId: pulumi.Output<number | undefined>;
@@ -100,6 +104,14 @@ export class BigQueryCredential extends pulumi.CustomResource {
      * Project ID to create the BigQuery credential in
      */
     declare public readonly projectId: pulumi.Output<number>;
+    /**
+     * The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    declare public readonly serviceAccountImpersonationUrl: pulumi.Output<string | undefined>;
+    /**
+     * The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    declare public readonly workloadPoolProviderPath: pulumi.Output<string | undefined>;
 
     /**
      * Create a BigQueryCredential resource with the given unique name, arguments, and options.
@@ -114,12 +126,15 @@ export class BigQueryCredential extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BigQueryCredentialState | undefined;
+            resourceInputs["authType"] = state?.authType;
             resourceInputs["connectionId"] = state?.connectionId;
             resourceInputs["credentialId"] = state?.credentialId;
             resourceInputs["dataset"] = state?.dataset;
             resourceInputs["isActive"] = state?.isActive;
             resourceInputs["numThreads"] = state?.numThreads;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["serviceAccountImpersonationUrl"] = state?.serviceAccountImpersonationUrl;
+            resourceInputs["workloadPoolProviderPath"] = state?.workloadPoolProviderPath;
         } else {
             const args = argsOrState as BigQueryCredentialArgs | undefined;
             if (args?.dataset === undefined && !opts.urn) {
@@ -131,11 +146,14 @@ export class BigQueryCredential extends pulumi.CustomResource {
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
+            resourceInputs["authType"] = args?.authType;
             resourceInputs["connectionId"] = args?.connectionId;
             resourceInputs["dataset"] = args?.dataset;
             resourceInputs["isActive"] = args?.isActive;
             resourceInputs["numThreads"] = args?.numThreads;
             resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["serviceAccountImpersonationUrl"] = args?.serviceAccountImpersonationUrl;
+            resourceInputs["workloadPoolProviderPath"] = args?.workloadPoolProviderPath;
             resourceInputs["credentialId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -147,6 +165,10 @@ export class BigQueryCredential extends pulumi.CustomResource {
  * Input properties used for looking up and filtering BigQueryCredential resources.
  */
 export interface BigQueryCredentialState {
+    /**
+     * The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    authType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
      */
@@ -171,12 +193,24 @@ export interface BigQueryCredentialState {
      * Project ID to create the BigQuery credential in
      */
     projectId?: pulumi.Input<number | undefined>;
+    /**
+     * The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    serviceAccountImpersonationUrl?: pulumi.Input<string | undefined>;
+    /**
+     * The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    workloadPoolProviderPath?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a BigQueryCredential resource.
  */
 export interface BigQueryCredentialArgs {
+    /**
+     * The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    authType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the global connection to use for this credential. When provided, the credential will automatically use the correct adapter version based on the connection's configuration (e.g., bigquery*v1 for connections with use*latest_adapter=true).
      */
@@ -197,4 +231,12 @@ export interface BigQueryCredentialArgs {
      * Project ID to create the BigQuery credential in
      */
     projectId: pulumi.Input<number>;
+    /**
+     * The URL for the service account impersonation request, used when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    serviceAccountImpersonationUrl?: pulumi.Input<string | undefined>;
+    /**
+     * The fully specified resource name of the workload pool provider, required when `authType` is `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
+     */
+    workloadPoolProviderPath?: pulumi.Input<string | undefined>;
 }
