@@ -74,6 +74,56 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// BigQuery connection with Native OAuth for development environments.
+//			// application_id and application_secret are the client ID and secret of the OAuth
+//			// application. Each developer then authorizes the application in dbt.
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "bigquery_native_oauth", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My BigQuery Native OAuth connection"),
+//				Bigquery: &dbtcloud.GlobalConnectionBigqueryArgs{
+//					GcpProjectId:            pulumi.String("my-gcp-project-id"),
+//					ApplicationId:           pulumi.String("my-oauth-client-id"),
+//					ApplicationSecret:       pulumi.String("my-oauth-client-secret"),
+//					PrivateKeyId:            pulumi.String("my-private-key-id"),
+//					PrivateKey:              pulumi.String("ABCDEFGHIJKL"),
+//					ClientEmail:             pulumi.String("my_client_email"),
+//					ClientId:                pulumi.String("my_client_id"),
+//					AuthUri:                 pulumi.String("my_auth_uri"),
+//					TokenUri:                pulumi.String("my_token_uri"),
+//					AuthProviderX509CertUrl: pulumi.String("my_auth_provider_x509_cert_url"),
+//					ClientX509CertUrl:       pulumi.String("my_client_x509_cert_url"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// BigQuery connection over Private Service Connect.
+//			// api_endpoint routes the traffic to the endpoint. private_link_endpoint_id records
+//			// which endpoint the connection uses. Set both fields.
+//			bigqueryPsc, err := dbtcloud.GetPrivatelinkEndpoint(ctx, &dbtcloud.GetPrivatelinkEndpointArgs{
+//				Name: pulumi.StringRef("My BigQuery PSC endpoint"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "bigquery_private_link", &dbtcloud.GlobalConnectionArgs{
+//				Name:                  pulumi.String("My BigQuery PrivateLink connection"),
+//				PrivateLinkEndpointId: pulumi.String(bigqueryPsc.Id),
+//				Bigquery: &dbtcloud.GlobalConnectionBigqueryArgs{
+//					GcpProjectId:            pulumi.String("my-gcp-project-id"),
+//					ApiEndpoint:             pulumi.String(bigqueryPsc.PrivateLinkEndpointUrl),
+//					PrivateKeyId:            pulumi.String("my-private-key-id"),
+//					PrivateKey:              pulumi.String("ABCDEFGHIJKL"),
+//					ClientEmail:             pulumi.String("my_client_email"),
+//					ClientId:                pulumi.String("my_client_id"),
+//					AuthUri:                 pulumi.String("my_auth_uri"),
+//					TokenUri:                pulumi.String("my_token_uri"),
+//					AuthProviderX509CertUrl: pulumi.String("my_auth_provider_x509_cert_url"),
+//					ClientX509CertUrl:       pulumi.String("my_client_x509_cert_url"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			// BigQuery connection with External OAuth (Workload Identity Federation)
 //			// TODO: Currently the API still requires service account fields even with external-oauth-wif
 //			_, err = dbtcloud.NewGlobalConnection(ctx, "bigquery_wif", &dbtcloud.GlobalConnectionArgs{

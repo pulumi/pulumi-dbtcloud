@@ -14,6 +14,11 @@ import java.util.Objects;
 @CustomType
 public final class GetGlobalConnectionBigquery {
     /**
+     * @return The BigQuery API endpoint the connection uses, without the scheme
+     * 
+     */
+    private String apiEndpoint;
+    /**
      * @return OAuth Client ID
      * 
      */
@@ -150,6 +155,13 @@ public final class GetGlobalConnectionBigquery {
     private Boolean useLatestAdapter;
 
     private GetGlobalConnectionBigquery() {}
+    /**
+     * @return The BigQuery API endpoint the connection uses, without the scheme
+     * 
+     */
+    public String apiEndpoint() {
+        return this.apiEndpoint;
+    }
     /**
      * @return OAuth Client ID
      * 
@@ -349,6 +361,7 @@ public final class GetGlobalConnectionBigquery {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String apiEndpoint;
         private String applicationId;
         private String applicationSecret;
         private String authProviderX509CertUrl;
@@ -379,6 +392,7 @@ public final class GetGlobalConnectionBigquery {
         public Builder() {}
         public Builder(GetGlobalConnectionBigquery defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.apiEndpoint = defaults.apiEndpoint;
     	      this.applicationId = defaults.applicationId;
     	      this.applicationSecret = defaults.applicationSecret;
     	      this.authProviderX509CertUrl = defaults.authProviderX509CertUrl;
@@ -408,6 +422,14 @@ public final class GetGlobalConnectionBigquery {
     	      this.useLatestAdapter = defaults.useLatestAdapter;
         }
 
+        @CustomType.Setter
+        public Builder apiEndpoint(String apiEndpoint) {
+            if (apiEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "apiEndpoint");
+            }
+            this.apiEndpoint = apiEndpoint;
+            return this;
+        }
         @CustomType.Setter
         public Builder applicationId(String applicationId) {
             if (applicationId == null) {
@@ -629,6 +651,7 @@ public final class GetGlobalConnectionBigquery {
         }
         public GetGlobalConnectionBigquery build() {
             final var _resultValue = new GetGlobalConnectionBigquery();
+            _resultValue.apiEndpoint = apiEndpoint;
             _resultValue.applicationId = applicationId;
             _resultValue.applicationSecret = applicationSecret;
             _resultValue.authProviderX509CertUrl = authProviderX509CertUrl;

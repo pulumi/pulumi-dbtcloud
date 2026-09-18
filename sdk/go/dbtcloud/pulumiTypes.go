@@ -1597,9 +1597,11 @@ func (o GlobalConnectionAthenaPtrOutput) WorkGroup() pulumi.StringPtrOutput {
 }
 
 type GlobalConnectionBigquery struct {
-	// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+	// The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+	ApiEndpoint *string `pulumi:"apiEndpoint"`
+	// Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
 	ApplicationId *string `pulumi:"applicationId"`
-	// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+	// Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
 	ApplicationSecret *string `pulumi:"applicationSecret"`
 	// Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
 	AuthProviderX509CertUrl *string `pulumi:"authProviderX509CertUrl"`
@@ -1665,9 +1667,11 @@ type GlobalConnectionBigqueryInput interface {
 }
 
 type GlobalConnectionBigqueryArgs struct {
-	// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+	// The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+	ApiEndpoint pulumi.StringPtrInput `pulumi:"apiEndpoint"`
+	// Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
 	ApplicationId pulumi.StringPtrInput `pulumi:"applicationId"`
-	// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+	// Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
 	ApplicationSecret pulumi.StringPtrInput `pulumi:"applicationSecret"`
 	// Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
 	AuthProviderX509CertUrl pulumi.StringPtrInput `pulumi:"authProviderX509CertUrl"`
@@ -1798,12 +1802,17 @@ func (o GlobalConnectionBigqueryOutput) ToGlobalConnectionBigqueryPtrOutputWithC
 	}).(GlobalConnectionBigqueryPtrOutput)
 }
 
-// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+// The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+func (o GlobalConnectionBigqueryOutput) ApiEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ApiEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
 func (o GlobalConnectionBigqueryOutput) ApplicationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ApplicationId }).(pulumi.StringPtrOutput)
 }
 
-// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+// Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
 func (o GlobalConnectionBigqueryOutput) ApplicationSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.ApplicationSecret }).(pulumi.StringPtrOutput)
 }
@@ -1957,7 +1966,17 @@ func (o GlobalConnectionBigqueryPtrOutput) Elem() GlobalConnectionBigqueryOutput
 	}).(GlobalConnectionBigqueryOutput)
 }
 
-// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+// The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+func (o GlobalConnectionBigqueryPtrOutput) ApiEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApiEndpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
 func (o GlobalConnectionBigqueryPtrOutput) ApplicationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
@@ -1967,7 +1986,7 @@ func (o GlobalConnectionBigqueryPtrOutput) ApplicationId() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+// Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
 func (o GlobalConnectionBigqueryPtrOutput) ApplicationSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
@@ -8265,6 +8284,8 @@ func (o GetGlobalConnectionAthenaOutput) WorkGroup() pulumi.StringOutput {
 }
 
 type GetGlobalConnectionBigquery struct {
+	// The BigQuery API endpoint the connection uses, without the scheme
+	ApiEndpoint string `pulumi:"apiEndpoint"`
 	// OAuth Client ID
 	ApplicationId string `pulumi:"applicationId"`
 	// OAuth Client Secret
@@ -8333,6 +8354,8 @@ type GetGlobalConnectionBigqueryInput interface {
 }
 
 type GetGlobalConnectionBigqueryArgs struct {
+	// The BigQuery API endpoint the connection uses, without the scheme
+	ApiEndpoint pulumi.StringInput `pulumi:"apiEndpoint"`
 	// OAuth Client ID
 	ApplicationId pulumi.StringInput `pulumi:"applicationId"`
 	// OAuth Client Secret
@@ -8413,6 +8436,11 @@ func (o GetGlobalConnectionBigqueryOutput) ToGetGlobalConnectionBigqueryOutput()
 
 func (o GetGlobalConnectionBigqueryOutput) ToGetGlobalConnectionBigqueryOutputWithContext(ctx context.Context) GetGlobalConnectionBigqueryOutput {
 	return o
+}
+
+// The BigQuery API endpoint the connection uses, without the scheme
+func (o GetGlobalConnectionBigqueryOutput) ApiEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionBigquery) string { return v.ApiEndpoint }).(pulumi.StringOutput)
 }
 
 // OAuth Client ID

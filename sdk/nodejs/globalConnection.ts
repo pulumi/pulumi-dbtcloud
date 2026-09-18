@@ -53,6 +53,47 @@ import * as utilities from "./utilities";
  *         deploymentEnvAuthType: "service-account-json",
  *     },
  * });
+ * // BigQuery connection with Native OAuth for development environments.
+ * // application_id and application_secret are the client ID and secret of the OAuth
+ * // application. Each developer then authorizes the application in dbt.
+ * const bigqueryNativeOauth = new dbtcloud.GlobalConnection("bigquery_native_oauth", {
+ *     name: "My BigQuery Native OAuth connection",
+ *     bigquery: {
+ *         gcpProjectId: "my-gcp-project-id",
+ *         applicationId: "my-oauth-client-id",
+ *         applicationSecret: "my-oauth-client-secret",
+ *         privateKeyId: "my-private-key-id",
+ *         privateKey: "ABCDEFGHIJKL",
+ *         clientEmail: "my_client_email",
+ *         clientId: "my_client_id",
+ *         authUri: "my_auth_uri",
+ *         tokenUri: "my_token_uri",
+ *         authProviderX509CertUrl: "my_auth_provider_x509_cert_url",
+ *         clientX509CertUrl: "my_client_x509_cert_url",
+ *     },
+ * });
+ * // BigQuery connection over Private Service Connect.
+ * // api_endpoint routes the traffic to the endpoint. private_link_endpoint_id records
+ * // which endpoint the connection uses. Set both fields.
+ * const bigqueryPsc = dbtcloud.getPrivatelinkEndpoint({
+ *     name: "My BigQuery PSC endpoint",
+ * });
+ * const bigqueryPrivateLink = new dbtcloud.GlobalConnection("bigquery_private_link", {
+ *     name: "My BigQuery PrivateLink connection",
+ *     privateLinkEndpointId: bigqueryPsc.then(bigqueryPsc => bigqueryPsc.id),
+ *     bigquery: {
+ *         gcpProjectId: "my-gcp-project-id",
+ *         apiEndpoint: bigqueryPsc.then(bigqueryPsc => bigqueryPsc.privateLinkEndpointUrl),
+ *         privateKeyId: "my-private-key-id",
+ *         privateKey: "ABCDEFGHIJKL",
+ *         clientEmail: "my_client_email",
+ *         clientId: "my_client_id",
+ *         authUri: "my_auth_uri",
+ *         tokenUri: "my_token_uri",
+ *         authProviderX509CertUrl: "my_auth_provider_x509_cert_url",
+ *         clientX509CertUrl: "my_client_x509_cert_url",
+ *     },
+ * });
  * // BigQuery connection with External OAuth (Workload Identity Federation)
  * // TODO: Currently the API still requires service account fields even with external-oauth-wif
  * const bigqueryWif = new dbtcloud.GlobalConnection("bigquery_wif", {

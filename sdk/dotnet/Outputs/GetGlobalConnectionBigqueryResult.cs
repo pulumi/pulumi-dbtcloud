@@ -14,6 +14,10 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class GetGlobalConnectionBigqueryResult
     {
         /// <summary>
+        /// The BigQuery API endpoint the connection uses, without the scheme
+        /// </summary>
+        public readonly string ApiEndpoint;
+        /// <summary>
         /// OAuth Client ID
         /// </summary>
         public readonly string ApplicationId;
@@ -124,6 +128,8 @@ namespace Pulumi.DbtCloud.Outputs
 
         [OutputConstructor]
         private GetGlobalConnectionBigqueryResult(
+            string apiEndpoint,
+
             string applicationId,
 
             string applicationSecret,
@@ -178,6 +184,7 @@ namespace Pulumi.DbtCloud.Outputs
 
             bool useLatestAdapter)
         {
+            ApiEndpoint = apiEndpoint;
             ApplicationId = applicationId;
             ApplicationSecret = applicationSecret;
             AuthProviderX509CertUrl = authProviderX509CertUrl;

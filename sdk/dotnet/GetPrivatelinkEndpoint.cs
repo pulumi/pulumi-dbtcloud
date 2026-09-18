@@ -130,7 +130,7 @@ namespace Pulumi.DbtCloud
         public string? Name { get; set; }
 
         /// <summary>
-        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
         /// </summary>
         [Input("privateLinkEndpointUrl")]
         public string? PrivateLinkEndpointUrl { get; set; }
@@ -156,7 +156,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
         /// </summary>
         [Input("privateLinkEndpointUrl")]
         public Input<string>? PrivateLinkEndpointUrl { get; set; }
@@ -190,9 +190,9 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+        /// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
         /// </summary>
-        public readonly string? PrivateLinkEndpointUrl;
+        public readonly string PrivateLinkEndpointUrl;
         /// <summary>
         /// Type of the PrivateLink Endpoint
         /// </summary>
@@ -206,7 +206,7 @@ namespace Pulumi.DbtCloud
 
             string? name,
 
-            string? privateLinkEndpointUrl,
+            string privateLinkEndpointUrl,
 
             string type)
         {

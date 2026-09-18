@@ -14,11 +14,15 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class GlobalConnectionBigquery
     {
         /// <summary>
-        /// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+        /// The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `PrivateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+        /// </summary>
+        public readonly string? ApiEndpoint;
+        /// <summary>
+        /// Client ID of the OAuth application used for Native OAuth in development environments. Also required when `DeploymentEnvAuthType` is `external-oauth-wif`. This is not the `ClientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
         /// </summary>
         public readonly string? ApplicationId;
         /// <summary>
-        /// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+        /// Client secret of the OAuth application used for Native OAuth in development environments. Also required when `DeploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
         /// </summary>
         public readonly string? ApplicationSecret;
         /// <summary>
@@ -124,6 +128,8 @@ namespace Pulumi.DbtCloud.Outputs
 
         [OutputConstructor]
         private GlobalConnectionBigquery(
+            string? apiEndpoint,
+
             string? applicationId,
 
             string? applicationSecret,
@@ -178,6 +184,7 @@ namespace Pulumi.DbtCloud.Outputs
 
             bool? useLatestAdapter)
         {
+            ApiEndpoint = apiEndpoint;
             ApplicationId = applicationId;
             ApplicationSecret = applicationSecret;
             AuthProviderX509CertUrl = authProviderX509CertUrl;

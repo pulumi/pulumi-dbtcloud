@@ -30,14 +30,14 @@ public final class GetPrivatelinkEndpointPlainArgs extends com.pulumi.resources.
     }
 
     /**
-     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
      * 
      */
     @Import(name="privateLinkEndpointUrl")
     private @Nullable String privateLinkEndpointUrl;
 
     /**
-     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
      * 
      */
     public Optional<String> privateLinkEndpointUrl() {
@@ -97,7 +97,7 @@ public final class GetPrivatelinkEndpointPlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param privateLinkEndpointUrl URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+         * @param privateLinkEndpointUrl URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
          * 
          * @return builder
          * 

@@ -66,7 +66,7 @@ func GetPrivatelinkEndpoint(ctx *pulumi.Context, args *GetPrivatelinkEndpointArg
 type GetPrivatelinkEndpointArgs struct {
 	// Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	Name *string `pulumi:"name"`
-	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
 	PrivateLinkEndpointUrl *string `pulumi:"privateLinkEndpointUrl"`
 	// Type of the PrivateLink Endpoint
 	Type *string `pulumi:"type"`
@@ -80,8 +80,8 @@ type GetPrivatelinkEndpointResult struct {
 	Id string `pulumi:"id"`
 	// Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	Name *string `pulumi:"name"`
-	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
-	PrivateLinkEndpointUrl *string `pulumi:"privateLinkEndpointUrl"`
+	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
+	PrivateLinkEndpointUrl string `pulumi:"privateLinkEndpointUrl"`
 	// Type of the PrivateLink Endpoint
 	Type string `pulumi:"type"`
 }
@@ -95,7 +95,7 @@ func GetPrivatelinkEndpointOutput(ctx *pulumi.Context, args GetPrivatelinkEndpoi
 type GetPrivatelinkEndpointOutputArgs struct {
 	// Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+	// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
 	PrivateLinkEndpointUrl pulumi.StringPtrInput `pulumi:"privateLinkEndpointUrl"`
 	// Type of the PrivateLink Endpoint
 	Type pulumi.StringPtrInput `pulumi:"type"`
@@ -135,9 +135,9 @@ func (o GetPrivatelinkEndpointResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
-func (o GetPrivatelinkEndpointResultOutput) PrivateLinkEndpointUrl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetPrivatelinkEndpointResult) *string { return v.PrivateLinkEndpointUrl }).(pulumi.StringPtrOutput)
+// URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
+func (o GetPrivatelinkEndpointResultOutput) PrivateLinkEndpointUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointResult) string { return v.PrivateLinkEndpointUrl }).(pulumi.StringOutput)
 }
 
 // Type of the PrivateLink Endpoint

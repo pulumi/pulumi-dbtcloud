@@ -12,11 +12,17 @@ namespace Pulumi.DbtCloud.Inputs
 
     public sealed class GlobalConnectionBigqueryGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `PrivateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+        /// </summary>
+        [Input("apiEndpoint")]
+        public Input<string>? ApiEndpoint { get; set; }
+
         [Input("applicationId")]
         private Input<string>? _applicationId;
 
         /// <summary>
-        /// OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+        /// Client ID of the OAuth application used for Native OAuth in development environments. Also required when `DeploymentEnvAuthType` is `external-oauth-wif`. This is not the `ClientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
         /// </summary>
         public Input<string>? ApplicationId
         {
@@ -32,7 +38,7 @@ namespace Pulumi.DbtCloud.Inputs
         private Input<string>? _applicationSecret;
 
         /// <summary>
-        /// OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+        /// Client secret of the OAuth application used for Native OAuth in development environments. Also required when `DeploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
         /// </summary>
         public Input<string>? ApplicationSecret
         {

@@ -20,14 +20,29 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     public static final GlobalConnectionBigqueryArgs Empty = new GlobalConnectionBigqueryArgs();
 
     /**
-     * OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
+     * The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+     * 
+     */
+    @Import(name="apiEndpoint")
+    private @Nullable Output<String> apiEndpoint;
+
+    /**
+     * @return The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+     * 
+     */
+    public Optional<Output<String>> apiEndpoint() {
+        return Optional.ofNullable(this.apiEndpoint);
+    }
+
+    /**
+     * Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      * 
      */
     @Import(name="applicationId")
     private @Nullable Output<String> applicationId;
 
     /**
-     * @return OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
+     * @return Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      * 
      */
     public Optional<Output<String>> applicationId() {
@@ -35,14 +50,14 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
+     * Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      * 
      */
     @Import(name="applicationSecret")
     private @Nullable Output<String> applicationSecret;
 
     /**
-     * @return OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
+     * @return Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      * 
      */
     public Optional<Output<String>> applicationSecret() {
@@ -427,6 +442,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     private GlobalConnectionBigqueryArgs() {}
 
     private GlobalConnectionBigqueryArgs(GlobalConnectionBigqueryArgs $) {
+        this.apiEndpoint = $.apiEndpoint;
         this.applicationId = $.applicationId;
         this.applicationSecret = $.applicationSecret;
         this.authProviderX509CertUrl = $.authProviderX509CertUrl;
@@ -475,7 +491,28 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param applicationId OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
+         * @param apiEndpoint The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiEndpoint(@Nullable Output<String> apiEndpoint) {
+            $.apiEndpoint = apiEndpoint;
+            return this;
+        }
+
+        /**
+         * @param apiEndpoint The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiEndpoint(String apiEndpoint) {
+            return apiEndpoint(Output.of(apiEndpoint));
+        }
+
+        /**
+         * @param applicationId Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
          * 
          * @return builder
          * 
@@ -486,7 +523,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param applicationId OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
+         * @param applicationId Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
          * 
          * @return builder
          * 
@@ -496,7 +533,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param applicationSecret OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
+         * @param applicationSecret Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
          * 
          * @return builder
          * 
@@ -507,7 +544,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param applicationSecret OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
+         * @param applicationSecret Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
          * 
          * @return builder
          * 
