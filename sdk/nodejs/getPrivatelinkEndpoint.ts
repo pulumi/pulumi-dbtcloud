@@ -45,7 +45,7 @@ export interface GetPrivatelinkEndpointArgs {
      */
     name?: string;
     /**
-     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
      */
     privateLinkEndpointUrl?: string;
     /**
@@ -71,9 +71,9 @@ export interface GetPrivatelinkEndpointResult {
      */
     readonly name?: string;
     /**
-     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
      */
-    readonly privateLinkEndpointUrl?: string;
+    readonly privateLinkEndpointUrl: string;
     /**
      * Type of the PrivateLink Endpoint
      */
@@ -120,7 +120,7 @@ export interface GetPrivatelinkEndpointOutputArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+     * URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
      */
     privateLinkEndpointUrl?: pulumi.Input<string | undefined>;
     /**

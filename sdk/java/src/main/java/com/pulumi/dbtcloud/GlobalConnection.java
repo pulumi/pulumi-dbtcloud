@@ -47,6 +47,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionApacheSparkArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionAthenaArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;
+ * import com.pulumi.dbtcloud.DbtcloudFunctions;
+ * import com.pulumi.dbtcloud.inputs.GetPrivatelinkEndpointArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionFabricArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionPostgresArgs;
@@ -104,6 +106,50 @@ import javax.annotation.Nullable;
  *                 .authProviderX509CertUrl("my_auth_provider_x509_cert_url")
  *                 .clientX509CertUrl("my_client_x509_cert_url")
  *                 .deploymentEnvAuthType("service-account-json")
+ *                 .build())
+ *             .build());
+ * 
+ *         // BigQuery connection with Native OAuth for development environments.
+ *         // application_id and application_secret are the client ID and secret of the OAuth
+ *         // application. Each developer then authorizes the application in dbt.
+ *         var bigqueryNativeOauth = new GlobalConnection("bigqueryNativeOauth", GlobalConnectionArgs.builder()
+ *             .name("My BigQuery Native OAuth connection")
+ *             .bigquery(GlobalConnectionBigqueryArgs.builder()
+ *                 .gcpProjectId("my-gcp-project-id")
+ *                 .applicationId("my-oauth-client-id")
+ *                 .applicationSecret("my-oauth-client-secret")
+ *                 .privateKeyId("my-private-key-id")
+ *                 .privateKey("ABCDEFGHIJKL")
+ *                 .clientEmail("my_client_email")
+ *                 .clientId("my_client_id")
+ *                 .authUri("my_auth_uri")
+ *                 .tokenUri("my_token_uri")
+ *                 .authProviderX509CertUrl("my_auth_provider_x509_cert_url")
+ *                 .clientX509CertUrl("my_client_x509_cert_url")
+ *                 .build())
+ *             .build());
+ * 
+ *         // BigQuery connection over Private Service Connect.
+ *         // api_endpoint routes the traffic to the endpoint. private_link_endpoint_id records
+ *         // which endpoint the connection uses. Set both fields.
+ *         final var bigqueryPsc = DbtcloudFunctions.getPrivatelinkEndpoint(GetPrivatelinkEndpointArgs.builder()
+ *             .name("My BigQuery PSC endpoint")
+ *             .build());
+ * 
+ *         var bigqueryPrivateLink = new GlobalConnection("bigqueryPrivateLink", GlobalConnectionArgs.builder()
+ *             .name("My BigQuery PrivateLink connection")
+ *             .privateLinkEndpointId(bigqueryPsc.id())
+ *             .bigquery(GlobalConnectionBigqueryArgs.builder()
+ *                 .gcpProjectId("my-gcp-project-id")
+ *                 .apiEndpoint(bigqueryPsc.privateLinkEndpointUrl())
+ *                 .privateKeyId("my-private-key-id")
+ *                 .privateKey("ABCDEFGHIJKL")
+ *                 .clientEmail("my_client_email")
+ *                 .clientId("my_client_id")
+ *                 .authUri("my_auth_uri")
+ *                 .tokenUri("my_token_uri")
+ *                 .authProviderX509CertUrl("my_auth_provider_x509_cert_url")
+ *                 .clientX509CertUrl("my_client_x509_cert_url")
  *                 .build())
  *             .build());
  * 

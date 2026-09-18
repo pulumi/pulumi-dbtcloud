@@ -356,11 +356,15 @@ export interface GlobalConnectionAthena {
 
 export interface GlobalConnectionBigquery {
     /**
-     * OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+     * The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+     */
+    apiEndpoint?: pulumi.Input<string | undefined>;
+    /**
+     * Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      */
     applicationId?: pulumi.Input<string | undefined>;
     /**
-     * OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+     * Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      */
     applicationSecret?: pulumi.Input<string | undefined>;
     /**

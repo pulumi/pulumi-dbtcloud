@@ -16,12 +16,17 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GlobalConnectionBigquery {
     /**
-     * @return OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
+     * @return The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+     * 
+     */
+    private @Nullable String apiEndpoint;
+    /**
+     * @return Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      * 
      */
     private @Nullable String applicationId;
     /**
-     * @return OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
+     * @return Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      * 
      */
     private @Nullable String applicationSecret;
@@ -153,14 +158,21 @@ public final class GlobalConnectionBigquery {
 
     private GlobalConnectionBigquery() {}
     /**
-     * @return OAuth Client ID. Required when using &#39;external-oauth-wif&#39; authentication.
+     * @return The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `privateLinkEndpointId` only records which endpoint the connection is meant to use, so both fields need to be set.
+     * 
+     */
+    public Optional<String> apiEndpoint() {
+        return Optional.ofNullable(this.apiEndpoint);
+    }
+    /**
+     * @return Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. This is not the `clientId` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      * 
      */
     public Optional<String> applicationId() {
         return Optional.ofNullable(this.applicationId);
     }
     /**
-     * @return OAuth Client Secret. Required when using &#39;external-oauth-wif&#39; authentication.
+     * @return Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deploymentEnvAuthType` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
      * 
      */
     public Optional<String> applicationSecret() {
@@ -351,6 +363,7 @@ public final class GlobalConnectionBigquery {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String apiEndpoint;
         private @Nullable String applicationId;
         private @Nullable String applicationSecret;
         private @Nullable String authProviderX509CertUrl;
@@ -381,6 +394,7 @@ public final class GlobalConnectionBigquery {
         public Builder() {}
         public Builder(GlobalConnectionBigquery defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.apiEndpoint = defaults.apiEndpoint;
     	      this.applicationId = defaults.applicationId;
     	      this.applicationSecret = defaults.applicationSecret;
     	      this.authProviderX509CertUrl = defaults.authProviderX509CertUrl;
@@ -410,6 +424,12 @@ public final class GlobalConnectionBigquery {
     	      this.useLatestAdapter = defaults.useLatestAdapter;
         }
 
+        @CustomType.Setter
+        public Builder apiEndpoint(@Nullable String apiEndpoint) {
+
+            this.apiEndpoint = apiEndpoint;
+            return this;
+        }
         @CustomType.Setter
         public Builder applicationId(@Nullable String applicationId) {
 
@@ -579,6 +599,7 @@ public final class GlobalConnectionBigquery {
         }
         public GlobalConnectionBigquery build() {
             final var _resultValue = new GlobalConnectionBigquery();
+            _resultValue.apiEndpoint = apiEndpoint;
             _resultValue.applicationId = applicationId;
             _resultValue.applicationSecret = applicationSecret;
             _resultValue.authProviderX509CertUrl = authProviderX509CertUrl;

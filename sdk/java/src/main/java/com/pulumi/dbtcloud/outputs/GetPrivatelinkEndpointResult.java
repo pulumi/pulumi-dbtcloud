@@ -28,10 +28,10 @@ public final class GetPrivatelinkEndpointResult {
      */
     private @Nullable String name;
     /**
-     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
      * 
      */
-    private @Nullable String privateLinkEndpointUrl;
+    private String privateLinkEndpointUrl;
     /**
      * @return Type of the PrivateLink Endpoint
      * 
@@ -61,11 +61,11 @@ public final class GetPrivatelinkEndpointResult {
         return Optional.ofNullable(this.name);
     }
     /**
-     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+     * @return URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
      * 
      */
-    public Optional<String> privateLinkEndpointUrl() {
-        return Optional.ofNullable(this.privateLinkEndpointUrl);
+    public String privateLinkEndpointUrl() {
+        return this.privateLinkEndpointUrl;
     }
     /**
      * @return Type of the PrivateLink Endpoint
@@ -87,7 +87,7 @@ public final class GetPrivatelinkEndpointResult {
         private String cidrRange;
         private String id;
         private @Nullable String name;
-        private @Nullable String privateLinkEndpointUrl;
+        private String privateLinkEndpointUrl;
         private String type;
         public Builder() {}
         public Builder(GetPrivatelinkEndpointResult defaults) {
@@ -122,8 +122,10 @@ public final class GetPrivatelinkEndpointResult {
             return this;
         }
         @CustomType.Setter
-        public Builder privateLinkEndpointUrl(@Nullable String privateLinkEndpointUrl) {
-
+        public Builder privateLinkEndpointUrl(String privateLinkEndpointUrl) {
+            if (privateLinkEndpointUrl == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointResult", "privateLinkEndpointUrl");
+            }
             this.privateLinkEndpointUrl = privateLinkEndpointUrl;
             return this;
         }

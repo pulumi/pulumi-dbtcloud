@@ -822,6 +822,8 @@ class GlobalConnectionBigquery(dict):
         suggest = None
         if key == "gcpProjectId":
             suggest = "gcp_project_id"
+        elif key == "apiEndpoint":
+            suggest = "api_endpoint"
         elif key == "applicationId":
             suggest = "application_id"
         elif key == "applicationSecret":
@@ -880,6 +882,7 @@ class GlobalConnectionBigquery(dict):
 
     def __init__(__self__, *,
                  gcp_project_id: _builtins.str,
+                 api_endpoint: Optional[_builtins.str] = None,
                  application_id: Optional[_builtins.str] = None,
                  application_secret: Optional[_builtins.str] = None,
                  auth_provider_x509_cert_url: Optional[_builtins.str] = None,
@@ -908,8 +911,9 @@ class GlobalConnectionBigquery(dict):
                  use_latest_adapter: Optional[_builtins.bool] = None):
         """
         :param _builtins.str gcp_project_id: The GCP project ID to use for the connection
-        :param _builtins.str application_id: OAuth Client ID. Required when using 'external-oauth-wif' authentication.
-        :param _builtins.str application_secret: OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+        :param _builtins.str api_endpoint: The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `private_link_endpoint_id` only records which endpoint the connection is meant to use, so both fields need to be set.
+        :param _builtins.str application_id: Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deployment_env_auth_type` is `external-oauth-wif`. This is not the `client_id` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
+        :param _builtins.str application_secret: Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deployment_env_auth_type` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
         :param _builtins.str auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account. Required when using 'service-account-json' authentication.
         :param _builtins.str auth_uri: Auth URI for the Service Account. Required when using 'service-account-json' authentication.
         :param _builtins.str client_email: Service Account email. Required when using 'service-account-json' authentication.
@@ -936,6 +940,8 @@ class GlobalConnectionBigquery(dict):
         :param _builtins.bool use_latest_adapter: Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
         """
         pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+        if api_endpoint is not None:
+            pulumi.set(__self__, "api_endpoint", api_endpoint)
         if application_id is not None:
             pulumi.set(__self__, "application_id", application_id)
         if application_secret is not None:
@@ -998,10 +1004,18 @@ class GlobalConnectionBigquery(dict):
         return pulumi.get(self, "gcp_project_id")
 
     @_builtins.property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> Optional[_builtins.str]:
+        """
+        The BigQuery API endpoint to connect to, without the scheme. Set this to the hostname of a Private Service Connect endpoint to route traffic over Private Link. `private_link_endpoint_id` only records which endpoint the connection is meant to use, so both fields need to be set.
+        """
+        return pulumi.get(self, "api_endpoint")
+
+    @_builtins.property
     @pulumi.getter(name="applicationId")
     def application_id(self) -> Optional[_builtins.str]:
         """
-        OAuth Client ID. Required when using 'external-oauth-wif' authentication.
+        Client ID of the OAuth application used for Native OAuth in development environments. Also required when `deployment_env_auth_type` is `external-oauth-wif`. This is not the `client_id` of the service account keyfile. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
         """
         return pulumi.get(self, "application_id")
 
@@ -1009,7 +1023,7 @@ class GlobalConnectionBigquery(dict):
     @pulumi.getter(name="applicationSecret")
     def application_secret(self) -> Optional[_builtins.str]:
         """
-        OAuth Client Secret. Required when using 'external-oauth-wif' authentication.
+        Client secret of the OAuth application used for Native OAuth in development environments. Also required when `deployment_env_auth_type` is `external-oauth-wif`. The API never returns this value, so the provider cannot detect changes made outside of Terraform.
         """
         return pulumi.get(self, "application_secret")
 
@@ -4138,6 +4152,7 @@ class GetGlobalConnectionAthenaResult(dict):
 @pulumi.output_type
 class GetGlobalConnectionBigqueryResult(dict):
     def __init__(__self__, *,
+                 api_endpoint: _builtins.str,
                  application_id: _builtins.str,
                  application_secret: _builtins.str,
                  auth_provider_x509_cert_url: _builtins.str,
@@ -4166,6 +4181,7 @@ class GetGlobalConnectionBigqueryResult(dict):
                  token_uri: _builtins.str,
                  use_latest_adapter: _builtins.bool):
         """
+        :param _builtins.str api_endpoint: The BigQuery API endpoint the connection uses, without the scheme
         :param _builtins.str application_id: OAuth Client ID
         :param _builtins.str application_secret: OAuth Client Secret
         :param _builtins.str auth_provider_x509_cert_url: Auth Provider X509 Cert URL for the Service Account
@@ -4194,6 +4210,7 @@ class GetGlobalConnectionBigqueryResult(dict):
         :param _builtins.str token_uri: Token URI for the Service Account
         :param _builtins.bool use_latest_adapter: Whether the connection uses the latest bigquery_v1 adapter (used for BQ WIF)
         """
+        pulumi.set(__self__, "api_endpoint", api_endpoint)
         pulumi.set(__self__, "application_id", application_id)
         pulumi.set(__self__, "application_secret", application_secret)
         pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
@@ -4221,6 +4238,14 @@ class GetGlobalConnectionBigqueryResult(dict):
         pulumi.set(__self__, "timeout_seconds", timeout_seconds)
         pulumi.set(__self__, "token_uri", token_uri)
         pulumi.set(__self__, "use_latest_adapter", use_latest_adapter)
+
+    @_builtins.property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> _builtins.str:
+        """
+        The BigQuery API endpoint the connection uses, without the scheme
+        """
+        return pulumi.get(self, "api_endpoint")
 
     @_builtins.property
     @pulumi.getter(name="applicationId")

@@ -69,9 +69,9 @@ class GetPrivatelinkEndpointResult:
 
     @_builtins.property
     @pulumi.getter(name="privateLinkEndpointUrl")
-    def private_link_endpoint_url(self) -> Optional[_builtins.str]:
+    def private_link_endpoint_url(self) -> _builtins.str:
         """
-        URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+        URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
         """
         return pulumi.get(self, "private_link_endpoint_url")
 
@@ -119,7 +119,7 @@ def get_privatelink_endpoint(name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str name: Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
-    :param _builtins.str private_link_endpoint_url: URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+    :param _builtins.str private_link_endpoint_url: URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
     :param _builtins.str type: Type of the PrivateLink Endpoint
     """
     __args__ = dict()
@@ -157,7 +157,7 @@ def get_privatelink_endpoint_output(name: pulumi.Input[Optional[Optional[_builti
 
 
     :param _builtins.str name: Given descriptive name for the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
-    :param _builtins.str private_link_endpoint_url: URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource)
+    :param _builtins.str private_link_endpoint_url: URL of the PrivateLink Endpoint (name and/or private*link*endpoint_url need to be provided to return data for the datasource). The data source always returns this value, so a lookup by name alone can supply the hostname of a connection.
     :param _builtins.str type: Type of the PrivateLink Endpoint
     """
     __args__ = dict()
