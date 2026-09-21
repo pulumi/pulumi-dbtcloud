@@ -84,7 +84,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var tfGroup1 = new Group("tfGroup1", GroupArgs.builder()
- *             .name("TF Group 1")
  *             .groupPermissions(            
  *                 GroupGroupPermissionArgs.builder()
  *                     .permissionSet("member")
@@ -98,6 +97,7 @@ import javax.annotation.Nullable;
  *                         "development",
  *                         "staging")
  *                     .build())
+ *             .name("TF Group 1")
  *             .build());
  * 
  *     }

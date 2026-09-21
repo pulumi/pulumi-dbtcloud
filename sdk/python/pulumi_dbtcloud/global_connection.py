@@ -546,21 +546,21 @@ class GlobalConnection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
-                 athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
-                 bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
-                 databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
-                 fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
+                 apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
+                 athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
+                 bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
+                 databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']]] = None,
+                 fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
+                 postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict', 'outputs.GlobalConnectionPostgres']]] = None,
                  private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
-                 salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
-                 snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
-                 starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
-                 synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
-                 teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None,
+                 redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict', 'outputs.GlobalConnectionRedshift']]] = None,
+                 salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict', 'outputs.GlobalConnectionSalesforce']]] = None,
+                 snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict', 'outputs.GlobalConnectionSnowflake']]] = None,
+                 starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict', 'outputs.GlobalConnectionStarburst']]] = None,
+                 synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict', 'outputs.GlobalConnectionSynapse']]] = None,
+                 teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict', 'outputs.GlobalConnectionTeradata']]] = None,
                  __props__=None):
         """
         This resource can be used to create global connections as introduced in dbt Cloud in August 2024.
@@ -762,20 +762,20 @@ class GlobalConnection(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']] apache_spark: Apache Spark connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']] athena: Athena connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']] databricks: Databricks connection configuration
-        :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']] fabric: Microsoft Fabric connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']] apache_spark: Apache Spark connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']] athena: Athena connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']] databricks: Databricks connection configuration
+        :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.str] name: Connection name
         :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID. Supported for all connection types.
-        :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']] postgres: PostgreSQL connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict', 'outputs.GlobalConnectionPostgres']] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
-        :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']] redshift: Redshift connection configuration
-        :param pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']] salesforce: Salesforce connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
-        :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']] starburst: Starburst/Trino connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']] synapse: Azure Synapse Analytics connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']] teradata: Teradata connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict', 'outputs.GlobalConnectionRedshift']] redshift: Redshift connection configuration
+        :param pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict', 'outputs.GlobalConnectionSalesforce']] salesforce: Salesforce connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict', 'outputs.GlobalConnectionSnowflake']] snowflake: Snowflake connection configuration
+        :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict', 'outputs.GlobalConnectionStarburst']] starburst: Starburst/Trino connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict', 'outputs.GlobalConnectionSynapse']] synapse: Azure Synapse Analytics connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict', 'outputs.GlobalConnectionTeradata']] teradata: Teradata connection configuration.
         """
         ...
     @overload
@@ -996,21 +996,21 @@ class GlobalConnection(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
-                 athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
-                 bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
-                 databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
-                 fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
+                 apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
+                 athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
+                 bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
+                 databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']]] = None,
+                 fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
+                 postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict', 'outputs.GlobalConnectionPostgres']]] = None,
                  private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
-                 salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
-                 snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
-                 starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
-                 synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
-                 teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None,
+                 redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict', 'outputs.GlobalConnectionRedshift']]] = None,
+                 salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict', 'outputs.GlobalConnectionSalesforce']]] = None,
+                 snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict', 'outputs.GlobalConnectionSnowflake']]] = None,
+                 starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict', 'outputs.GlobalConnectionStarburst']]] = None,
+                 synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict', 'outputs.GlobalConnectionSynapse']]] = None,
+                 teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict', 'outputs.GlobalConnectionTeradata']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1048,22 +1048,22 @@ class GlobalConnection(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
-            apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']]] = None,
-            athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']]] = None,
-            bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict']]] = None,
-            databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']]] = None,
-            fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']]] = None,
+            apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
+            athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
+            bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
+            databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']]] = None,
+            fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']]] = None,
             is_ssh_tunnel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
-            postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']]] = None,
+            postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict', 'outputs.GlobalConnectionPostgres']]] = None,
             private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
-            redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']]] = None,
-            salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']]] = None,
-            snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']]] = None,
-            starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']]] = None,
-            synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']]] = None,
-            teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']]] = None) -> 'GlobalConnection':
+            redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict', 'outputs.GlobalConnectionRedshift']]] = None,
+            salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict', 'outputs.GlobalConnectionSalesforce']]] = None,
+            snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict', 'outputs.GlobalConnectionSnowflake']]] = None,
+            starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict', 'outputs.GlobalConnectionStarburst']]] = None,
+            synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict', 'outputs.GlobalConnectionSynapse']]] = None,
+            teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict', 'outputs.GlobalConnectionTeradata']]] = None) -> 'GlobalConnection':
         """
         Get an existing GlobalConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1072,21 +1072,21 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] adapter_version: Version of the adapter
-        :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict']] apache_spark: Apache Spark connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict']] athena: Athena connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict']] databricks: Databricks connection configuration
-        :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict']] fabric: Microsoft Fabric connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']] apache_spark: Apache Spark connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']] athena: Athena connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']] databricks: Databricks connection configuration
+        :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
         :param pulumi.Input[_builtins.str] name: Connection name
         :param pulumi.Input[_builtins.int] oauth_configuration_id: External OAuth configuration ID. Supported for all connection types.
-        :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict']] postgres: PostgreSQL connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict', 'outputs.GlobalConnectionPostgres']] postgres: PostgreSQL connection configuration.
         :param pulumi.Input[_builtins.str] private_link_endpoint_id: Private Link Endpoint ID. This ID can be found using the `privatelink_endpoint` data source
-        :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict']] redshift: Redshift connection configuration
-        :param pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict']] salesforce: Salesforce connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict']] snowflake: Snowflake connection configuration
-        :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict']] starburst: Starburst/Trino connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict']] synapse: Azure Synapse Analytics connection configuration.
-        :param pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict']] teradata: Teradata connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict', 'outputs.GlobalConnectionRedshift']] redshift: Redshift connection configuration
+        :param pulumi.Input[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict', 'outputs.GlobalConnectionSalesforce']] salesforce: Salesforce connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict', 'outputs.GlobalConnectionSnowflake']] snowflake: Snowflake connection configuration
+        :param pulumi.Input[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict', 'outputs.GlobalConnectionStarburst']] starburst: Starburst/Trino connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict', 'outputs.GlobalConnectionSynapse']] synapse: Azure Synapse Analytics connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict', 'outputs.GlobalConnectionTeradata']] teradata: Teradata connection configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

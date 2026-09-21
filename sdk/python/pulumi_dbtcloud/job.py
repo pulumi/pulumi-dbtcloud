@@ -1095,11 +1095,11 @@ class Job(pulumi.CustomResource):
                  environment_id: pulumi.Input[Optional[_builtins.int]] = None,
                  errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
                  execute_steps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
+                 execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict', 'outputs.JobExecution']]] = None,
                  force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
                  generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
+                 job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict', 'outputs.JobJobCompletionTriggerCondition']]]]] = None,
                  job_type: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  num_threads: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1115,7 +1115,7 @@ class Job(pulumi.CustomResource):
                  self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
                  target_name: pulumi.Input[Optional[_builtins.str]] = None,
                  timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
-                 triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
+                 triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict', 'outputs.JobTriggers']]] = None,
                  triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
                  validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
@@ -1227,11 +1227,11 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
-        :param pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']] execution: Execution settings for the job
+        :param pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict', 'outputs.JobExecution']] execution: Execution settings for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict', 'outputs.JobJobCompletionTriggerCondition']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[_builtins.str] job_type: The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         :param pulumi.Input[_builtins.str] name: Job name
         :param pulumi.Input[_builtins.int] num_threads: Number of threads to use in the job
@@ -1247,7 +1247,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] self_deferring: Whether this job defers on a previous run of itself
         :param pulumi.Input[_builtins.str] target_name: Target name for the dbt profile
         :param pulumi.Input[_builtins.int] timeout_seconds: Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
-        :param pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
+        :param pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict', 'outputs.JobTriggers']] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """
@@ -1378,11 +1378,11 @@ class Job(pulumi.CustomResource):
                  environment_id: pulumi.Input[Optional[_builtins.int]] = None,
                  errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
                  execute_steps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
+                 execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict', 'outputs.JobExecution']]] = None,
                  force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
                  generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
+                 job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict', 'outputs.JobJobCompletionTriggerCondition']]]]] = None,
                  job_type: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  num_threads: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1398,7 +1398,7 @@ class Job(pulumi.CustomResource):
                  self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
                  target_name: pulumi.Input[Optional[_builtins.str]] = None,
                  timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
-                 triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
+                 triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict', 'outputs.JobTriggers']]] = None,
                  triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
                  validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
@@ -1470,11 +1470,11 @@ class Job(pulumi.CustomResource):
             environment_id: pulumi.Input[Optional[_builtins.int]] = None,
             errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
             execute_steps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict']]] = None,
+            execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict', 'outputs.JobExecution']]] = None,
             force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
             generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
             is_active: pulumi.Input[Optional[_builtins.bool]] = None,
-            job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]]] = None,
+            job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict', 'outputs.JobJobCompletionTriggerCondition']]]]] = None,
             job_id: pulumi.Input[Optional[_builtins.int]] = None,
             job_type: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1491,7 +1491,7 @@ class Job(pulumi.CustomResource):
             self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
             target_name: pulumi.Input[Optional[_builtins.str]] = None,
             timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
-            triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict']]] = None,
+            triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict', 'outputs.JobTriggers']]] = None,
             triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
             validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Job':
         """
@@ -1510,11 +1510,11 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] environment_id: Environment ID to create the job in
         :param pulumi.Input[_builtins.bool] errors_on_lint_failure: Whether the CI job should fail when a lint error is found. Only used when `run_lint` is set to `true`. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] execute_steps: List of commands to execute for the job
-        :param pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict']] execution: Execution settings for the job
+        :param pulumi.Input[Union['JobExecutionArgs', 'JobExecutionArgsDict', 'outputs.JobExecution']] execution: Execution settings for the job
         :param pulumi.Input[_builtins.bool] force_node_selection: Whether to force node selection (SAO - Select All Optimizations) for the job. If `dbt_version` is not set to a Fusion release track (e.g. `latest-fusion`), this must be set to `true` when specified.
         :param pulumi.Input[_builtins.bool] generate_docs: Flag for whether the job should generate documentation
         :param pulumi.Input[_builtins.bool] is_active: Should always be set to true as setting it to false is the same as creating a job in a deleted state. To create/keep a job in a 'deactivated' state, check  the `triggers` config. Setting it to false essentially deletes the job. On resource creation, this field is enforced to be true.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict', 'outputs.JobJobCompletionTriggerCondition']]]] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions (sometimes referred as 'job chaining').
         :param pulumi.Input[_builtins.int] job_id: Job identifier
         :param pulumi.Input[_builtins.str] job_type: The job type, inferred by the dbt platform from the configured triggers: `ci` (git provider webhook), `merge` (on-merge), or `scheduled`/`other` otherwise. Setting it explicitly only meaningfully distinguishes `ci`/`merge`/`adaptive`; `scheduled` and `other` are derived from whether a schedule trigger is active and cannot be enforced.
         :param pulumi.Input[_builtins.str] name: Job name
@@ -1531,7 +1531,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] self_deferring: Whether this job defers on a previous run of itself
         :param pulumi.Input[_builtins.str] target_name: Target name for the dbt profile
         :param pulumi.Input[_builtins.int] timeout_seconds: Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
-        :param pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict']] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
+        :param pulumi.Input[Union['JobTriggersArgs', 'JobTriggersArgsDict', 'outputs.JobTriggers']] triggers: Flags for which types of triggers to use, the values are `github_webhook`, `git_provider_webhook`, `schedule` and `on_merge`. All flags should be listed and set with `true` or `false`. When `on_merge` is `true`, all the other values must be false.\\n\\n`custom_branch_only` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `custom_branch_only` from your config. \\n\\nTo create a job in a 'deactivated' state, set all to `false`.
         :param pulumi.Input[_builtins.bool] triggers_on_draft_pr: Whether the CI job should be automatically triggered on draft PRs
         :param pulumi.Input[_builtins.bool] validate_execute_steps: When set to `true`, the provider will validate the `execute_steps` during plan time to ensure they contain valid dbt commands. If a command is not recognized (e.g., a new dbt command not yet supported by the provider), the validation will fail. Defaults to `false` to allow flexibility with newer dbt commands.
         """

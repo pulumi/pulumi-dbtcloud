@@ -317,14 +317,14 @@ class AwaitableGetJobResult(GetJobResult):
             triggers_on_draft_pr=self.triggers_on_draft_pr)
 
 
-def get_job(job_completion_trigger_conditions: Optional[Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict']]] = None,
+def get_job(job_completion_trigger_conditions: Optional[Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict', 'outputs.GetJobJobCompletionTriggerConditionResult']]] = None,
             job_id: Optional[_builtins.int] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobResult:
     """
     Get detailed information for a specific dbt Cloud job.
 
 
-    :param Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict']] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+    :param Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict', 'outputs.GetJobJobCompletionTriggerConditionResult']] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
     :param _builtins.int job_id: The ID of the job
     """
     __args__ = dict()
@@ -358,14 +358,14 @@ def get_job(job_completion_trigger_conditions: Optional[Sequence[Union['GetJobJo
         timeout_seconds=pulumi.get(__ret__, 'timeout_seconds'),
         triggers=pulumi.get(__ret__, 'triggers'),
         triggers_on_draft_pr=pulumi.get(__ret__, 'triggers_on_draft_pr'))
-def get_job_output(job_completion_trigger_conditions: pulumi.Input[Optional[Optional[Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict']]]]] = None,
+def get_job_output(job_completion_trigger_conditions: pulumi.Input[Optional[Optional[Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict', 'outputs.GetJobJobCompletionTriggerConditionResult']]]]] = None,
                    job_id: pulumi.Input[Optional[_builtins.int]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobResult]:
     """
     Get detailed information for a specific dbt Cloud job.
 
 
-    :param Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict']] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
+    :param Sequence[Union['GetJobJobCompletionTriggerConditionArgs', 'GetJobJobCompletionTriggerConditionArgsDict', 'outputs.GetJobJobCompletionTriggerConditionResult']] job_completion_trigger_conditions: Which other job should trigger this job when it finishes, and on which conditions. Format for the property will change in the next release to match the one from the one from dbtcloud*jobs.
     :param _builtins.int job_id: The ID of the job
     """
     __args__ = dict()

@@ -171,7 +171,7 @@ class Group(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assign_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
-                 group_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]]] = None,
+                 group_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict', 'outputs.GroupGroupPermission']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  sso_mapping_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -223,7 +223,6 @@ class Group(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         tf_group1 = dbtcloud.Group("tf_group_1",
-            name="TF Group 1",
             group_permissions=[
                 {
                     "permission_set": "member",
@@ -238,7 +237,8 @@ class Group(pulumi.CustomResource):
                         "staging",
                     ],
                 },
-            ])
+            ],
+            name="TF Group 1")
         ```
 
         ## Import
@@ -265,7 +265,7 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]] group_permissions: The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict', 'outputs.GroupGroupPermission']]]] group_permissions: The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         :param pulumi.Input[_builtins.str] name: The name of the group. This is used to identify an existing group
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """
@@ -323,7 +323,6 @@ class Group(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         tf_group1 = dbtcloud.Group("tf_group_1",
-            name="TF Group 1",
             group_permissions=[
                 {
                     "permission_set": "member",
@@ -338,7 +337,8 @@ class Group(pulumi.CustomResource):
                         "staging",
                     ],
                 },
-            ])
+            ],
+            name="TF Group 1")
         ```
 
         ## Import
@@ -378,7 +378,7 @@ class Group(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  assign_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
-                 group_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]]] = None,
+                 group_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict', 'outputs.GroupGroupPermission']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  sso_mapping_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -405,7 +405,7 @@ class Group(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             assign_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
-            group_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]]] = None,
+            group_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict', 'outputs.GroupGroupPermission']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             sso_mapping_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Group':
         """
@@ -416,7 +416,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] assign_by_default: Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict']]]] group_permissions: The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupGroupPermissionArgs', 'GroupGroupPermissionArgsDict', 'outputs.GroupGroupPermission']]]] group_permissions: The complete set of permissions to apply to the group. Each block defines one permission set; remove or modify blocks to adjust the group's permissions.
         :param pulumi.Input[_builtins.str] name: The name of the group. This is used to identify an existing group
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sso_mapping_groups: Mapping groups from the IdP. At the moment the complete list needs to be provided in each partial permission for the same group.
         """

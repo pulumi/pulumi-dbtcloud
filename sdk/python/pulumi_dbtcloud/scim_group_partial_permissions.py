@@ -106,7 +106,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict']]]]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict', 'outputs.ScimGroupPartialPermissionsPermission']]]]] = None,
                  __props__=None):
         """
         Provide a partial set of permissions for an externally managed group (e.g., SCIM, manually created).
@@ -293,7 +293,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage partial permissions for. This group must already exist and is typically from an external identity provider synced via SCIM.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict']]]] permissions: Partial set of permissions to apply to the group. These permissions will be added to any existing permissions. Other permissions on the group will not be affected.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict', 'outputs.ScimGroupPartialPermissionsPermission']]]] permissions: Partial set of permissions to apply to the group. These permissions will be added to any existing permissions. Other permissions on the group will not be affected.
         """
         ...
     @overload
@@ -499,7 +499,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict']]]]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict', 'outputs.ScimGroupPartialPermissionsPermission']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -524,7 +524,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             group_id: pulumi.Input[Optional[_builtins.int]] = None,
-            permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict']]]]] = None) -> 'ScimGroupPartialPermissions':
+            permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict', 'outputs.ScimGroupPartialPermissionsPermission']]]]] = None) -> 'ScimGroupPartialPermissions':
         """
         Get an existing ScimGroupPartialPermissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -533,7 +533,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage partial permissions for. This group must already exist and is typically from an external identity provider synced via SCIM.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict']]]] permissions: Partial set of permissions to apply to the group. These permissions will be added to any existing permissions. Other permissions on the group will not be affected.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPartialPermissionsPermissionArgs', 'ScimGroupPartialPermissionsPermissionArgsDict', 'outputs.ScimGroupPartialPermissionsPermission']]]] permissions: Partial set of permissions to apply to the group. These permissions will be added to any existing permissions. Other permissions on the group will not be affected.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

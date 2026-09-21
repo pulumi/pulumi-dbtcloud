@@ -63,13 +63,13 @@ class AwaitableGetRunsResult(GetRunsResult):
             runs=self.runs)
 
 
-def get_runs(filter: Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict']] = None,
+def get_runs(filter: Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict', 'outputs.GetRunsFilterResult']] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRunsResult:
     """
     Retrieve all runs
 
 
-    :param Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict'] filter: Filter to apply to the runs
+    :param Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict', 'outputs.GetRunsFilterResult'] filter: Filter to apply to the runs
     """
     __args__ = dict()
     __args__['filter'] = filter
@@ -79,13 +79,13 @@ def get_runs(filter: Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict'
     return AwaitableGetRunsResult(
         filter=pulumi.get(__ret__, 'filter'),
         runs=pulumi.get(__ret__, 'runs'))
-def get_runs_output(filter: pulumi.Input[Optional[Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict']]]] = None,
+def get_runs_output(filter: pulumi.Input[Optional[Optional[Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict', 'outputs.GetRunsFilterResult']]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRunsResult]:
     """
     Retrieve all runs
 
 
-    :param Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict'] filter: Filter to apply to the runs
+    :param Union['GetRunsFilterArgs', 'GetRunsFilterArgsDict', 'outputs.GetRunsFilterResult'] filter: Filter to apply to the runs
     """
     __args__ = dict()
     __args__['filter'] = filter

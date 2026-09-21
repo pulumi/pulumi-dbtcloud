@@ -104,8 +104,8 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict', 'outputs.DatabricksSemanticLayerCredentialConfiguration']]] = None,
+                 credential: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict', 'outputs.DatabricksSemanticLayerCredentialCredential']]] = None,
                  __props__=None):
         """
         Databricks credential resource. This resource is composed of a Databricks credential and a Semantic Layer configuration. It is used to create a Databricks credential for the Semantic Layer.
@@ -153,8 +153,8 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
-        :param pulumi.Input[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict']] credential: Databricks credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict', 'outputs.DatabricksSemanticLayerCredentialConfiguration']] configuration: Semantic Layer credential configuration details.
+        :param pulumi.Input[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict', 'outputs.DatabricksSemanticLayerCredentialCredential']] credential: Databricks credential details, but used in the context of the Semantic Layer.
         """
         ...
     @overload
@@ -221,8 +221,8 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict', 'outputs.DatabricksSemanticLayerCredentialConfiguration']]] = None,
+                 credential: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict', 'outputs.DatabricksSemanticLayerCredentialCredential']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -248,8 +248,8 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            configuration: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict']]] = None,
-            credential: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'DatabricksSemanticLayerCredential':
+            configuration: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict', 'outputs.DatabricksSemanticLayerCredentialConfiguration']]] = None,
+            credential: pulumi.Input[Optional[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict', 'outputs.DatabricksSemanticLayerCredentialCredential']]] = None) -> 'DatabricksSemanticLayerCredential':
         """
         Get an existing DatabricksSemanticLayerCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -257,8 +257,8 @@ class DatabricksSemanticLayerCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
-        :param pulumi.Input[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict']] credential: Databricks credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[Union['DatabricksSemanticLayerCredentialConfigurationArgs', 'DatabricksSemanticLayerCredentialConfigurationArgsDict', 'outputs.DatabricksSemanticLayerCredentialConfiguration']] configuration: Semantic Layer credential configuration details.
+        :param pulumi.Input[Union['DatabricksSemanticLayerCredentialCredentialArgs', 'DatabricksSemanticLayerCredentialCredentialArgsDict', 'outputs.DatabricksSemanticLayerCredentialCredential']] credential: Databricks credential details, but used in the context of the Semantic Layer.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

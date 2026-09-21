@@ -199,7 +199,7 @@ class IpRestrictionsRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
+                 cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict', 'outputs.IpRestrictionsRuleCidr']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  rule_set_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -252,7 +252,7 @@ class IpRestrictionsRule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]] cidrs: Set of CIDR ranges for this rule
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict', 'outputs.IpRestrictionsRuleCidr']]]] cidrs: Set of CIDR ranges for this rule
         :param pulumi.Input[_builtins.str] description: A description of the IP restriction rule
         :param pulumi.Input[_builtins.str] name: The name of the IP restriction rule
         :param pulumi.Input[_builtins.bool] rule_set_enabled: Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.
@@ -324,7 +324,7 @@ class IpRestrictionsRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
+                 cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict', 'outputs.IpRestrictionsRuleCidr']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  rule_set_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -359,7 +359,7 @@ class IpRestrictionsRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]]] = None,
+            cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict', 'outputs.IpRestrictionsRuleCidr']]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             rule_set_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -371,7 +371,7 @@ class IpRestrictionsRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict']]]] cidrs: Set of CIDR ranges for this rule
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict', 'outputs.IpRestrictionsRuleCidr']]]] cidrs: Set of CIDR ranges for this rule
         :param pulumi.Input[_builtins.str] description: A description of the IP restriction rule
         :param pulumi.Input[_builtins.str] name: The name of the IP restriction rule
         :param pulumi.Input[_builtins.bool] rule_set_enabled: Whether the IP restriction rule set is enabled or not. Important!: This value needs to be the same for all rules if multiple rules are defined. All rules must be active or inactive at the same time.

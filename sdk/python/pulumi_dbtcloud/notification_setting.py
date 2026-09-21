@@ -168,10 +168,10 @@ class NotificationSetting(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
+                 channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict', 'outputs.NotificationSettingChannel']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict', 'outputs.NotificationSettingRule']]]]] = None,
                  __props__=None):
         """
         Configures Microsoft Teams notifications using dbt Cloud's notifications system.
@@ -229,10 +229,10 @@ class NotificationSetting(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]] channels: Delivery channels for this setting. At least one channel is required.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict', 'outputs.NotificationSettingChannel']]]] channels: Delivery channels for this setting. At least one channel is required.
         :param pulumi.Input[_builtins.str] description: Optional description of what this notification setting does
         :param pulumi.Input[_builtins.str] name: Human-readable name for this notification setting
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]] rules: Trigger rules. At least one rule is required.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict', 'outputs.NotificationSettingRule']]]] rules: Trigger rules. At least one rule is required.
         """
         ...
     @overload
@@ -309,10 +309,10 @@ class NotificationSetting(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
+                 channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict', 'outputs.NotificationSettingChannel']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict', 'outputs.NotificationSettingRule']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -340,10 +340,10 @@ class NotificationSetting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]]] = None,
+            channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict', 'outputs.NotificationSettingChannel']]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]]] = None) -> 'NotificationSetting':
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict', 'outputs.NotificationSettingRule']]]]] = None) -> 'NotificationSetting':
         """
         Get an existing NotificationSetting resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -351,10 +351,10 @@ class NotificationSetting(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict']]]] channels: Delivery channels for this setting. At least one channel is required.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict', 'outputs.NotificationSettingChannel']]]] channels: Delivery channels for this setting. At least one channel is required.
         :param pulumi.Input[_builtins.str] description: Optional description of what this notification setting does
         :param pulumi.Input[_builtins.str] name: Human-readable name for this notification setting
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict']]]] rules: Trigger rules. At least one rule is required.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict', 'outputs.NotificationSettingRule']]]] rules: Trigger rules. At least one rule is required.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

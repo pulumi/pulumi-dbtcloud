@@ -106,7 +106,7 @@ class ScimGroupPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict', 'outputs.ScimGroupPermissionsPermission']]]]] = None,
                  __props__=None):
         """
         Manage permissions for groups that are externally managed (e.g., SCIM, manually created).
@@ -129,7 +129,7 @@ class ScimGroupPermissions(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage permissions for. This group must already exist.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]] permissions: Set of permissions to apply to the group. This will replace all existing permissions for the group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict', 'outputs.ScimGroupPermissionsPermission']]]] permissions: Set of permissions to apply to the group. This will replace all existing permissions for the group.
         """
         ...
     @overload
@@ -171,7 +171,7 @@ class ScimGroupPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None,
+                 permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict', 'outputs.ScimGroupPermissionsPermission']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -196,7 +196,7 @@ class ScimGroupPermissions(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             group_id: pulumi.Input[Optional[_builtins.int]] = None,
-            permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]]] = None) -> 'ScimGroupPermissions':
+            permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict', 'outputs.ScimGroupPermissionsPermission']]]]] = None) -> 'ScimGroupPermissions':
         """
         Get an existing ScimGroupPermissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -205,7 +205,7 @@ class ScimGroupPermissions(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] group_id: The ID of the existing group to manage permissions for. This group must already exist.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict']]]] permissions: Set of permissions to apply to the group. This will replace all existing permissions for the group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ScimGroupPermissionsPermissionArgs', 'ScimGroupPermissionsPermissionArgsDict', 'outputs.ScimGroupPermissionsPermission']]]] permissions: Set of permissions to apply to the group. This will replace all existing permissions for the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

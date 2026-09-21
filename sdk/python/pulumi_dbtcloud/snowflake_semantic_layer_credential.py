@@ -104,8 +104,8 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict', 'outputs.SnowflakeSemanticLayerCredentialConfiguration']]] = None,
+                 credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict', 'outputs.SnowflakeSemanticLayerCredentialCredential']]] = None,
                  __props__=None):
         """
         Snowflake credential resource. This resource is composed of a Snowflake credential and a Semantic Layer configuration. It is used to create a Snowflake credential for the Semantic Layer.
@@ -181,8 +181,8 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credenttial configuration details.
-        :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']] credential: Snowflake credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict', 'outputs.SnowflakeSemanticLayerCredentialConfiguration']] configuration: Semantic Layer credenttial configuration details.
+        :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict', 'outputs.SnowflakeSemanticLayerCredentialCredential']] credential: Snowflake credential details, but used in the context of the Semantic Layer.
         """
         ...
     @overload
@@ -277,8 +277,8 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict', 'outputs.SnowflakeSemanticLayerCredentialConfiguration']]] = None,
+                 credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict', 'outputs.SnowflakeSemanticLayerCredentialCredential']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -304,8 +304,8 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']]] = None,
-            credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'SnowflakeSemanticLayerCredential':
+            configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict', 'outputs.SnowflakeSemanticLayerCredentialConfiguration']]] = None,
+            credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict', 'outputs.SnowflakeSemanticLayerCredentialCredential']]] = None) -> 'SnowflakeSemanticLayerCredential':
         """
         Get an existing SnowflakeSemanticLayerCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -313,8 +313,8 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credenttial configuration details.
-        :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict']] credential: Snowflake credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict', 'outputs.SnowflakeSemanticLayerCredentialConfiguration']] configuration: Semantic Layer credenttial configuration details.
+        :param pulumi.Input[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict', 'outputs.SnowflakeSemanticLayerCredentialCredential']] credential: Snowflake credential details, but used in the context of the Semantic Layer.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
