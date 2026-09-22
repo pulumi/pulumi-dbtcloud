@@ -100,13 +100,13 @@ class AwaitableGetServiceTokenResult(GetServiceTokenResult):
 
 
 def get_service_token(service_token_id: Optional[_builtins.int] = None,
-                      service_token_permissions: Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']]] = None,
+                      service_token_permissions: Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict', 'outputs.GetServiceTokenServiceTokenPermissionResult']]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceTokenResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.int service_token_id: The ID of the service token
-    :param Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']] service_token_permissions: Permissions set for the service token
+    :param Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict', 'outputs.GetServiceTokenServiceTokenPermissionResult']] service_token_permissions: Permissions set for the service token
     """
     __args__ = dict()
     __args__['serviceTokenId'] = service_token_id
@@ -121,13 +121,13 @@ def get_service_token(service_token_id: Optional[_builtins.int] = None,
         service_token_permissions=pulumi.get(__ret__, 'service_token_permissions'),
         uid=pulumi.get(__ret__, 'uid'))
 def get_service_token_output(service_token_id: pulumi.Input[Optional[_builtins.int]] = None,
-                             service_token_permissions: pulumi.Input[Optional[Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
+                             service_token_permissions: pulumi.Input[Optional[Optional[Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict', 'outputs.GetServiceTokenServiceTokenPermissionResult']]]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceTokenResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.int service_token_id: The ID of the service token
-    :param Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict']] service_token_permissions: Permissions set for the service token
+    :param Sequence[Union['GetServiceTokenServiceTokenPermissionArgs', 'GetServiceTokenServiceTokenPermissionArgsDict', 'outputs.GetServiceTokenServiceTokenPermissionResult']] service_token_permissions: Permissions set for the service token
     """
     __args__ = dict()
     __args__['serviceTokenId'] = service_token_id

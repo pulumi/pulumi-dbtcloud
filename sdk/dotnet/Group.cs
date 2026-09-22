@@ -62,7 +62,6 @@ namespace Pulumi.DbtCloud
     /// {
     ///     var tfGroup1 = new DbtCloud.Group("tf_group_1", new()
     ///     {
-    ///         Name = "TF Group 1",
     ///         GroupPermissions = new[]
     ///         {
     ///             new DbtCloud.Inputs.GroupGroupPermissionArgs
@@ -82,6 +81,7 @@ namespace Pulumi.DbtCloud
     ///                 },
     ///             },
     ///         },
+    ///         Name = "TF Group 1",
     ///     });
     /// 
     /// });

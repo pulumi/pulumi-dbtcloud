@@ -171,7 +171,7 @@ class ServiceToken(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
+                 service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict', 'outputs.ServiceTokenServiceTokenPermission']]]]] = None,
                  state: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
@@ -182,7 +182,6 @@ class ServiceToken(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         test_service_token = dbtcloud.ServiceToken("test_service_token",
-            name="Test Service Token",
             service_token_permissions=[
                 {
                     "permission_set": "git_admin",
@@ -201,7 +200,8 @@ class ServiceToken(pulumi.CustomResource):
                         "staging",
                     ],
                 },
-            ])
+            ],
+            name="Test Service Token")
         ```
 
         ## Import
@@ -228,7 +228,7 @@ class ServiceToken(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Service token name
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]] service_token_permissions: Permissions set for the service token
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict', 'outputs.ServiceTokenServiceTokenPermission']]]] service_token_permissions: Permissions set for the service token
         :param pulumi.Input[_builtins.int] state: Service token state (1 is active, 2 is inactive)
         """
         ...
@@ -245,7 +245,6 @@ class ServiceToken(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         test_service_token = dbtcloud.ServiceToken("test_service_token",
-            name="Test Service Token",
             service_token_permissions=[
                 {
                     "permission_set": "git_admin",
@@ -264,7 +263,8 @@ class ServiceToken(pulumi.CustomResource):
                         "staging",
                     ],
                 },
-            ])
+            ],
+            name="Test Service Token")
         ```
 
         ## Import
@@ -304,7 +304,7 @@ class ServiceToken(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
+                 service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict', 'outputs.ServiceTokenServiceTokenPermission']]]]] = None,
                  state: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -333,7 +333,7 @@ class ServiceToken(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]]] = None,
+            service_token_permissions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict', 'outputs.ServiceTokenServiceTokenPermission']]]]] = None,
             state: pulumi.Input[Optional[_builtins.int]] = None,
             token_string: pulumi.Input[Optional[_builtins.str]] = None,
             uid: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServiceToken':
@@ -345,7 +345,7 @@ class ServiceToken(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Service token name
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict']]]] service_token_permissions: Permissions set for the service token
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceTokenServiceTokenPermissionArgs', 'ServiceTokenServiceTokenPermissionArgsDict', 'outputs.ServiceTokenServiceTokenPermission']]]] service_token_permissions: Permissions set for the service token
         :param pulumi.Input[_builtins.int] state: Service token state (1 is active, 2 is inactive)
         :param pulumi.Input[_builtins.str] token_string: Service token secret value (only accessible on creation))
         :param pulumi.Input[_builtins.str] uid: Service token UID (part of the token)

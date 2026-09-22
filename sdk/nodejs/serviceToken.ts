@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const testServiceToken = new dbtcloud.ServiceToken("test_service_token", {
- *     name: "Test Service Token",
  *     serviceTokenPermissions: [
  *         {
  *             permissionSet: "git_admin",
@@ -34,6 +33,7 @@ import * as utilities from "./utilities";
  *             ],
  *         },
  *     ],
+ *     name: "Test Service Token",
  * });
  * ```
  *

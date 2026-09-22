@@ -66,7 +66,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := dbtcloud.NewGroup(ctx, "tf_group_1", &dbtcloud.GroupArgs{
-//				Name: pulumi.String("TF Group 1"),
 //				GroupPermissions: dbtcloud.GroupGroupPermissionArray{
 //					&dbtcloud.GroupGroupPermissionArgs{
 //						PermissionSet: pulumi.String("member"),
@@ -82,6 +81,7 @@ import (
 //						},
 //					},
 //				},
+//				Name: pulumi.String("TF Group 1"),
 //			})
 //			if err != nil {
 //				return err

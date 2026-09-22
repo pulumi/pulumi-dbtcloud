@@ -26,7 +26,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := dbtcloud.NewServiceToken(ctx, "test_service_token", &dbtcloud.ServiceTokenArgs{
-//				Name: pulumi.String("Test Service Token"),
 //				ServiceTokenPermissions: dbtcloud.ServiceTokenServiceTokenPermissionArray{
 //					&dbtcloud.ServiceTokenServiceTokenPermissionArgs{
 //						PermissionSet: pulumi.String("git_admin"),
@@ -46,6 +45,7 @@ import (
 //						},
 //					},
 //				},
+//				Name: pulumi.String("Test Service Token"),
 //			})
 //			if err != nil {
 //				return err

@@ -44,7 +44,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testServiceToken = new ServiceToken("testServiceToken", ServiceTokenArgs.builder()
- *             .name("Test Service Token")
  *             .serviceTokenPermissions(            
  *                 ServiceTokenServiceTokenPermissionArgs.builder()
  *                     .permissionSet("git_admin")
@@ -62,6 +61,7 @@ import javax.annotation.Nullable;
  *                         "development",
  *                         "staging")
  *                     .build())
+ *             .name("Test Service Token")
  *             .build());
  * 
  *     }

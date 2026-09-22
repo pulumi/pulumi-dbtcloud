@@ -54,7 +54,6 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * const tfGroup1 = new dbtcloud.Group("tf_group_1", {
- *     name: "TF Group 1",
  *     groupPermissions: [
  *         {
  *             permissionSet: "member",
@@ -70,6 +69,7 @@ import * as utilities from "./utilities";
  *             ],
  *         },
  *     ],
+ *     name: "TF Group 1",
  * });
  * ```
  *

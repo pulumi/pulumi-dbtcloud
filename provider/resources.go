@@ -36,8 +36,12 @@ import (
 //go:embed cmd/pulumi-resource-dbtcloud/bridge-metadata.json
 var bridgeMetadata []byte
 
+const (
+	stringType = "string"
+)
+
 func computeIDField(field resource.PropertyKey) tfbridge.ComputeID {
-	return tfbridge.DelegateIDField(field, "dbtcloud", "https://github.com/pulumi/pulumi-dbtcloud")
+	return tfbridge.DelegateIDField(field, mainPkg, "https://github.com/pulumi/pulumi-dbtcloud")
 }
 
 // all of the token components used below.
@@ -52,11 +56,11 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 
 	prov := tfbridge.ProviderInfo{
 		P:                 pfbridge.ShimProviderWithContext(ctx, dbtcloud.New()),
-		Name:              "dbtcloud",
+		Name:              mainPkg,
 		DisplayName:       "dbt Cloud",
 		PluginDownloadURL: "github://api.github.com/pulumi/pulumi-dbtcloud",
 		Description:       "A Pulumi package for creating and managing dbt Cloud resources.",
-		Keywords:          []string{"pulumi", "dbtcloud", "dbt", "cloud", "category/cloud"},
+		Keywords:          []string{"pulumi", mainPkg, "dbt", "cloud", "category/cloud"},
 		License:           "Apache-2.0",
 		Homepage:          "https://pulumi.com",
 		Repository:        "https://github.com/pulumi/pulumi-dbtcloud",
@@ -154,12 +158,12 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			},
 			"dbtcloud_global_connection": {
 				Fields: map[string]*tfbridge.SchemaInfo{
-					"id": {Type: "string"},
+					"id": {Type: stringType},
 				},
 			},
 			"dbtcloud_ip_restrictions_rule": {
 				Fields: map[string]*tfbridge.SchemaInfo{
-					"id": {Type: "string"},
+					"id": {Type: stringType},
 				},
 			},
 			"dbtcloud_service_token": {
@@ -177,7 +181,7 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			"dbtcloud_license_map": {
 				Tok: tfbridge.MakeResource(mainPkg, mainMod, "LicenseMap"),
 				Fields: map[string]*tfbridge.SchemaInfo{
-					"id": {Type: "string"},
+					"id": {Type: stringType},
 				},
 			},
 			"dbtcloud_environment_variable_job_override": {
@@ -189,7 +193,7 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			},
 			"dbtcloud_oauth_configuration": {
 				Fields: map[string]*tfbridge.SchemaInfo{
-					"id": {Type: "string"},
+					"id": {Type: stringType},
 				},
 			},
 			"dbtcloud_partial_license_map": {
@@ -292,13 +296,12 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			RespectSchemaVersion: true,
 			RootNamespace:        "Pulumi",
 			Namespaces: map[string]string{
-				"dbtcloud": "DbtCloud",
+				mainPkg: "DbtCloud",
 			},
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
 		},
-		EnableAccurateBridgePreview: true,
 	}
 
 	prov.MustComputeTokens(
@@ -317,7 +320,7 @@ func Provider(ctx context.Context) tfbridge.ProviderInfo {
 			if r.Fields == nil {
 				r.Fields = make(map[string]*tfbridge.SchemaInfo, 1)
 			}
-			r.Fields["id"] = &tfbridge.SchemaInfo{Type: "string"}
+			r.Fields["id"] = &tfbridge.SchemaInfo{Type: stringType}
 		}
 		return true
 	})

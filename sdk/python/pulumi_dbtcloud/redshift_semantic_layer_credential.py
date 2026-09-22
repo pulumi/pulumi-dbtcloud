@@ -104,8 +104,8 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict', 'outputs.RedshiftSemanticLayerCredentialConfiguration']]] = None,
+                 credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict', 'outputs.RedshiftSemanticLayerCredentialCredential']]] = None,
                  __props__=None):
         """
         Redshift credential resource. This resource is composed of a Redshift credential and a Semantic Layer configuration. It is used to create a Redshift credential for the Semantic Layer.
@@ -155,8 +155,8 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
-        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']] credential: Redshift credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict', 'outputs.RedshiftSemanticLayerCredentialConfiguration']] configuration: Semantic Layer credential configuration details.
+        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict', 'outputs.RedshiftSemanticLayerCredentialCredential']] credential: Redshift credential details, but used in the context of the Semantic Layer.
         """
         ...
     @overload
@@ -225,8 +225,8 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
-                 credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None,
+                 configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict', 'outputs.RedshiftSemanticLayerCredentialConfiguration']]] = None,
+                 credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict', 'outputs.RedshiftSemanticLayerCredentialCredential']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -252,8 +252,8 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']]] = None,
-            credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']]] = None) -> 'RedshiftSemanticLayerCredential':
+            configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict', 'outputs.RedshiftSemanticLayerCredentialConfiguration']]] = None,
+            credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict', 'outputs.RedshiftSemanticLayerCredentialCredential']]] = None) -> 'RedshiftSemanticLayerCredential':
         """
         Get an existing RedshiftSemanticLayerCredential resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -261,8 +261,8 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict']] configuration: Semantic Layer credential configuration details.
-        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict']] credential: Redshift credential details, but used in the context of the Semantic Layer.
+        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict', 'outputs.RedshiftSemanticLayerCredentialConfiguration']] configuration: Semantic Layer credential configuration details.
+        :param pulumi.Input[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict', 'outputs.RedshiftSemanticLayerCredentialCredential']] credential: Redshift credential details, but used in the context of the Semantic Layer.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

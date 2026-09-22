@@ -22,7 +22,6 @@ namespace Pulumi.DbtCloud
     /// {
     ///     var testServiceToken = new DbtCloud.ServiceToken("test_service_token", new()
     ///     {
-    ///         Name = "Test Service Token",
     ///         ServiceTokenPermissions = new[]
     ///         {
     ///             new DbtCloud.Inputs.ServiceTokenServiceTokenPermissionArgs
@@ -47,6 +46,7 @@ namespace Pulumi.DbtCloud
     ///                 },
     ///             },
     ///         },
+    ///         Name = "Test Service Token",
     ///     });
     /// 
     /// });
