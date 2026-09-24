@@ -118,6 +118,45 @@ export interface DatabricksSemanticLayerCredentialCredential {
     tokenWoVersion?: number;
 }
 
+export interface GetAccountAddOnsAddOn {
+    /**
+     * Whether the account can start paid use of this product now
+     */
+    canActivate: boolean;
+    /**
+     * Whether the account can start a trial of this product now
+     */
+    canTrial: boolean;
+    /**
+     * The add-on product
+     */
+    id: string;
+    /**
+     * The add-on product
+     */
+    product: string;
+    /**
+     * The spend limit set for the add-on, in nanodollars. 1 USD is 1,000,000,000 nanodollars. Empty when no limit is set. The limit works differently for each product. For `wizard` it stops usage: the account can no longer use the product once it reaches the limit. For `state` nothing is stopped, and the limit only raises a usage alert. Change the limit in the dbt platform, because this provider only reads it.
+     */
+    spendLimitNanodollars: number;
+    /**
+     * The lifecycle state of the add-on: `TRIAL`, `ACTIVE`, `CANCELLED` or `EXPIRED`. Empty when the account has never turned the product on. A trial moves to `EXPIRED` on its own when it ends
+     */
+    state: string;
+    /**
+     * Whether the account has used its one trial of this product
+     */
+    trialConsumed: boolean;
+    /**
+     * When the trial ends
+     */
+    trialEndsAt: string;
+    /**
+     * When the trial started
+     */
+    trialStartedAt: string;
+}
+
 export interface GetEnvironmentsEnvironment {
     /**
      * A connection ID (used with Global Connections)
@@ -399,6 +438,10 @@ export interface GetGlobalConnectionDatabricks {
      * The HTTP path of the Databricks cluster or SQL warehouse.
      */
     httpPath: string;
+    /**
+     * OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     */
+    scopes: string[];
 }
 
 export interface GetGlobalConnectionFabric {
@@ -1444,6 +1487,10 @@ export interface GlobalConnectionDatabricks {
      * The HTTP path of the Databricks cluster or SQL warehouse.
      */
     httpPath: string;
+    /**
+     * OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     */
+    scopes?: string[];
 }
 
 export interface GlobalConnectionFabric {

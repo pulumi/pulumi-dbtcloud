@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -91,6 +92,21 @@ public final class GlobalConnectionDatabricksArgs extends com.pulumi.resources.R
         return this.httpPath;
     }
 
+    /**
+     * OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     * 
+     */
+    @Import(name="scopes")
+    private @Nullable Output<List<String>> scopes;
+
+    /**
+     * @return OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     * 
+     */
+    public Optional<Output<List<String>>> scopes() {
+        return Optional.ofNullable(this.scopes);
+    }
+
     private GlobalConnectionDatabricksArgs() {}
 
     private GlobalConnectionDatabricksArgs(GlobalConnectionDatabricksArgs $) {
@@ -99,6 +115,7 @@ public final class GlobalConnectionDatabricksArgs extends com.pulumi.resources.R
         this.clientSecret = $.clientSecret;
         this.host = $.host;
         this.httpPath = $.httpPath;
+        this.scopes = $.scopes;
     }
 
     public static Builder builder() {
@@ -222,6 +239,37 @@ public final class GlobalConnectionDatabricksArgs extends com.pulumi.resources.R
          */
         public Builder httpPath(String httpPath) {
             return httpPath(Output.of(httpPath));
+        }
+
+        /**
+         * @param scopes OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scopes(@Nullable Output<List<String>> scopes) {
+            $.scopes = scopes;
+            return this;
+        }
+
+        /**
+         * @param scopes OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scopes(List<String> scopes) {
+            return scopes(Output.of(scopes));
+        }
+
+        /**
+         * @param scopes OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scopes(String... scopes) {
+            return scopes(List.of(scopes));
         }
 
         public GlobalConnectionDatabricksArgs build() {

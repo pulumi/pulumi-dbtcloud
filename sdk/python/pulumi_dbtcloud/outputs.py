@@ -51,6 +51,7 @@ __all__ = [
     'ServiceTokenServiceTokenPermission',
     'SnowflakeSemanticLayerCredentialConfiguration',
     'SnowflakeSemanticLayerCredentialCredential',
+    'GetAccountAddOnsAddOnResult',
     'GetEnvironmentsEnvironmentResult',
     'GetGlobalConnectionApacheSparkResult',
     'GetGlobalConnectionAthenaResult',
@@ -1248,13 +1249,15 @@ class GlobalConnectionDatabricks(dict):
                  http_path: _builtins.str,
                  catalog: Optional[_builtins.str] = None,
                  client_id: Optional[_builtins.str] = None,
-                 client_secret: Optional[_builtins.str] = None):
+                 client_secret: Optional[_builtins.str] = None,
+                 scopes: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.str host: The hostname of the Databricks cluster or SQL warehouse.
         :param _builtins.str http_path: The HTTP path of the Databricks cluster or SQL warehouse.
         :param _builtins.str catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace.
         :param _builtins.str client_id: Required to enable Databricks OAuth authentication for IDE developers.
         :param _builtins.str client_secret: Required to enable Databricks OAuth authentication for IDE developers.
+        :param Sequence[_builtins.str] scopes: OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offline_access`).
         """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "http_path", http_path)
@@ -1264,6 +1267,8 @@ class GlobalConnectionDatabricks(dict):
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
 
     @_builtins.property
     @pulumi.getter
@@ -1304,6 +1309,14 @@ class GlobalConnectionDatabricks(dict):
         Required to enable Databricks OAuth authentication for IDE developers.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def scopes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offline_access`).
+        """
+        return pulumi.get(self, "scopes")
 
 
 @pulumi.output_type
@@ -3755,6 +3768,112 @@ class SnowflakeSemanticLayerCredentialCredential(dict):
 
 
 @pulumi.output_type
+class GetAccountAddOnsAddOnResult(dict):
+    def __init__(__self__, *,
+                 can_activate: _builtins.bool,
+                 can_trial: _builtins.bool,
+                 id: _builtins.str,
+                 product: _builtins.str,
+                 spend_limit_nanodollars: _builtins.int,
+                 state: _builtins.str,
+                 trial_consumed: _builtins.bool,
+                 trial_ends_at: _builtins.str,
+                 trial_started_at: _builtins.str):
+        """
+        :param _builtins.bool can_activate: Whether the account can start paid use of this product now
+        :param _builtins.bool can_trial: Whether the account can start a trial of this product now
+        :param _builtins.str id: The add-on product
+        :param _builtins.str product: The add-on product
+        :param _builtins.int spend_limit_nanodollars: The spend limit set for the add-on, in nanodollars. 1 USD is 1,000,000,000 nanodollars. Empty when no limit is set. The limit works differently for each product. For `wizard` it stops usage: the account can no longer use the product once it reaches the limit. For `state` nothing is stopped, and the limit only raises a usage alert. Change the limit in the dbt platform, because this provider only reads it.
+        :param _builtins.str state: The lifecycle state of the add-on: `TRIAL`, `ACTIVE`, `CANCELLED` or `EXPIRED`. Empty when the account has never turned the product on. A trial moves to `EXPIRED` on its own when it ends
+        :param _builtins.bool trial_consumed: Whether the account has used its one trial of this product
+        :param _builtins.str trial_ends_at: When the trial ends
+        :param _builtins.str trial_started_at: When the trial started
+        """
+        pulumi.set(__self__, "can_activate", can_activate)
+        pulumi.set(__self__, "can_trial", can_trial)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "product", product)
+        pulumi.set(__self__, "spend_limit_nanodollars", spend_limit_nanodollars)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "trial_consumed", trial_consumed)
+        pulumi.set(__self__, "trial_ends_at", trial_ends_at)
+        pulumi.set(__self__, "trial_started_at", trial_started_at)
+
+    @_builtins.property
+    @pulumi.getter(name="canActivate")
+    def can_activate(self) -> _builtins.bool:
+        """
+        Whether the account can start paid use of this product now
+        """
+        return pulumi.get(self, "can_activate")
+
+    @_builtins.property
+    @pulumi.getter(name="canTrial")
+    def can_trial(self) -> _builtins.bool:
+        """
+        Whether the account can start a trial of this product now
+        """
+        return pulumi.get(self, "can_trial")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The add-on product
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def product(self) -> _builtins.str:
+        """
+        The add-on product
+        """
+        return pulumi.get(self, "product")
+
+    @_builtins.property
+    @pulumi.getter(name="spendLimitNanodollars")
+    def spend_limit_nanodollars(self) -> _builtins.int:
+        """
+        The spend limit set for the add-on, in nanodollars. 1 USD is 1,000,000,000 nanodollars. Empty when no limit is set. The limit works differently for each product. For `wizard` it stops usage: the account can no longer use the product once it reaches the limit. For `state` nothing is stopped, and the limit only raises a usage alert. Change the limit in the dbt platform, because this provider only reads it.
+        """
+        return pulumi.get(self, "spend_limit_nanodollars")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        The lifecycle state of the add-on: `TRIAL`, `ACTIVE`, `CANCELLED` or `EXPIRED`. Empty when the account has never turned the product on. A trial moves to `EXPIRED` on its own when it ends
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="trialConsumed")
+    def trial_consumed(self) -> _builtins.bool:
+        """
+        Whether the account has used its one trial of this product
+        """
+        return pulumi.get(self, "trial_consumed")
+
+    @_builtins.property
+    @pulumi.getter(name="trialEndsAt")
+    def trial_ends_at(self) -> _builtins.str:
+        """
+        When the trial ends
+        """
+        return pulumi.get(self, "trial_ends_at")
+
+    @_builtins.property
+    @pulumi.getter(name="trialStartedAt")
+    def trial_started_at(self) -> _builtins.str:
+        """
+        When the trial started
+        """
+        return pulumi.get(self, "trial_started_at")
+
+
+@pulumi.output_type
 class GetEnvironmentsEnvironmentResult(dict):
     def __init__(__self__, *,
                  connection_id: _builtins.int,
@@ -4471,19 +4590,22 @@ class GetGlobalConnectionDatabricksResult(dict):
                  client_id: _builtins.str,
                  client_secret: _builtins.str,
                  host: _builtins.str,
-                 http_path: _builtins.str):
+                 http_path: _builtins.str,
+                 scopes: Sequence[_builtins.str]):
         """
         :param _builtins.str catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace.
         :param _builtins.str client_id: Required to enable Databricks OAuth authentication for IDE developers.
         :param _builtins.str client_secret: Required to enable Databricks OAuth authentication for IDE developers.
         :param _builtins.str host: The hostname of the Databricks cluster or SQL warehouse.
         :param _builtins.str http_path: The HTTP path of the Databricks cluster or SQL warehouse.
+        :param Sequence[_builtins.str] scopes: OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offline_access`).
         """
         pulumi.set(__self__, "catalog", catalog)
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "http_path", http_path)
+        pulumi.set(__self__, "scopes", scopes)
 
     @_builtins.property
     @pulumi.getter
@@ -4524,6 +4646,14 @@ class GetGlobalConnectionDatabricksResult(dict):
         The HTTP path of the Databricks cluster or SQL warehouse.
         """
         return pulumi.get(self, "http_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def scopes(self) -> Sequence[_builtins.str]:
+        """
+        OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offline_access`).
+        """
+        return pulumi.get(self, "scopes")
 
 
 @pulumi.output_type

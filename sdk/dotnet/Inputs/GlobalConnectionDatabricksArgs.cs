@@ -42,6 +42,18 @@ namespace Pulumi.DbtCloud.Inputs
         [Input("httpPath", required: true)]
         public Input<string> HttpPath { get; set; } = null!;
 
+        [Input("scopes")]
+        private InputList<string>? _scopes;
+
+        /// <summary>
+        /// OAuth scopes to use for the Databricks connection (e.g. `Sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `OfflineAccess`).
+        /// </summary>
+        public InputList<string> Scopes
+        {
+            get => _scopes ?? (_scopes = new InputList<string>());
+            set => _scopes = value;
+        }
+
         public GlobalConnectionDatabricksArgs()
         {
         }

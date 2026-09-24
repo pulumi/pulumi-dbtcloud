@@ -33,6 +33,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// The HTTP path of the Databricks cluster or SQL warehouse.
         /// </summary>
         public readonly string HttpPath;
+        /// <summary>
+        /// OAuth scopes to use for the Databricks connection (e.g. `Sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `OfflineAccess`).
+        /// </summary>
+        public readonly ImmutableArray<string> Scopes;
 
         [OutputConstructor]
         private GetGlobalConnectionDatabricksResult(
@@ -44,13 +48,16 @@ namespace Pulumi.DbtCloud.Outputs
 
             string host,
 
-            string httpPath)
+            string httpPath,
+
+            ImmutableArray<string> scopes)
         {
             Catalog = catalog;
             ClientId = clientId;
             ClientSecret = clientSecret;
             Host = host;
             HttpPath = httpPath;
+            Scopes = scopes;
         }
     }
 }
