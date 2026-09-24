@@ -97,6 +97,13 @@
                                 "maxItemsOne": false
                             }
                         }
+                    },
+                    "databricks": {
+                        "fields": {
+                            "scopes": {
+                                "maxItemsOne": false
+                            }
+                        }
                     }
                 }
             },
@@ -425,6 +432,19 @@
             }
         },
         "datasources": {
+            "dbtcloud_account_add_on": {
+                "current": "dbtcloud:index/getAccountAddOn:getAccountAddOn",
+                "majorVersion": 1
+            },
+            "dbtcloud_account_add_ons": {
+                "current": "dbtcloud:index/getAccountAddOns:getAccountAddOns",
+                "majorVersion": 1,
+                "fields": {
+                    "add_ons": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "dbtcloud_athena_credential": {
                 "current": "dbtcloud:index/getAthenaCredential:getAthenaCredential",
                 "majorVersion": 1
@@ -471,6 +491,13 @@
                 "majorVersion": 1,
                 "fields": {
                     "bigquery": {
+                        "fields": {
+                            "scopes": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    },
+                    "databricks": {
                         "fields": {
                             "scopes": {
                                 "maxItemsOne": false
