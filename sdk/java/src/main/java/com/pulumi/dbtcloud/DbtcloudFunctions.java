@@ -6,6 +6,8 @@ package com.pulumi.dbtcloud;
 import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.dbtcloud.Utilities;
+import com.pulumi.dbtcloud.inputs.GetAccountAddOnArgs;
+import com.pulumi.dbtcloud.inputs.GetAccountAddOnPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetAthenaCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetAthenaCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetAzureDevOpsProjectArgs;
@@ -78,6 +80,8 @@ import com.pulumi.dbtcloud.inputs.GetUserGroupsPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetUserPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetWebhookArgs;
 import com.pulumi.dbtcloud.inputs.GetWebhookPlainArgs;
+import com.pulumi.dbtcloud.outputs.GetAccountAddOnResult;
+import com.pulumi.dbtcloud.outputs.GetAccountAddOnsResult;
 import com.pulumi.dbtcloud.outputs.GetAthenaCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetAzureDevOpsProjectResult;
 import com.pulumi.dbtcloud.outputs.GetAzureDevOpsRepositoryResult;
@@ -124,6 +128,298 @@ import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class DbtcloudFunctions {
+    /**
+     * Retrieve the state of one usage-based add-on product of the account, such as dbt Wizard or dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account cannot be read at all, and `wizard` is only available while AI features are turned on.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAccountAddOnArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var wizard = DbtcloudFunctions.getAccountAddOn(GetAccountAddOnArgs.builder()
+     *             .product("wizard")
+     *             .build());
+     * 
+     *         ctx.export("wizardState", wizard.state());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAccountAddOnResult> getAccountAddOn(GetAccountAddOnArgs args) {
+        return getAccountAddOn(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the state of one usage-based add-on product of the account, such as dbt Wizard or dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account cannot be read at all, and `wizard` is only available while AI features are turned on.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAccountAddOnArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var wizard = DbtcloudFunctions.getAccountAddOn(GetAccountAddOnArgs.builder()
+     *             .product("wizard")
+     *             .build());
+     * 
+     *         ctx.export("wizardState", wizard.state());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAccountAddOnResult> getAccountAddOnPlain(GetAccountAddOnPlainArgs args) {
+        return getAccountAddOnPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the state of one usage-based add-on product of the account, such as dbt Wizard or dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account cannot be read at all, and `wizard` is only available while AI features are turned on.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAccountAddOnArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var wizard = DbtcloudFunctions.getAccountAddOn(GetAccountAddOnArgs.builder()
+     *             .product("wizard")
+     *             .build());
+     * 
+     *         ctx.export("wizardState", wizard.state());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAccountAddOnResult> getAccountAddOn(GetAccountAddOnArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getAccountAddOn:getAccountAddOn", TypeShape.of(GetAccountAddOnResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the state of one usage-based add-on product of the account, such as dbt Wizard or dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account cannot be read at all, and `wizard` is only available while AI features are turned on.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAccountAddOnArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var wizard = DbtcloudFunctions.getAccountAddOn(GetAccountAddOnArgs.builder()
+     *             .product("wizard")
+     *             .build());
+     * 
+     *         ctx.export("wizardState", wizard.state());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAccountAddOnResult> getAccountAddOn(GetAccountAddOnArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getAccountAddOn:getAccountAddOn", TypeShape.of(GetAccountAddOnResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the state of one usage-based add-on product of the account, such as dbt Wizard or dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account cannot be read at all, and `wizard` is only available while AI features are turned on.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.dbtcloud.DbtcloudFunctions;
+     * import com.pulumi.dbtcloud.inputs.GetAccountAddOnArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var wizard = DbtcloudFunctions.getAccountAddOn(GetAccountAddOnArgs.builder()
+     *             .product("wizard")
+     *             .build());
+     * 
+     *         ctx.export("wizardState", wizard.state());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAccountAddOnResult> getAccountAddOnPlain(GetAccountAddOnPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getAccountAddOn:getAccountAddOn", TypeShape.of(GetAccountAddOnResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the state of every usage-based add-on product the account can use, such as dbt Wizard and dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account is not in the list.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetAccountAddOnsResult> getAccountAddOns() {
+        return getAccountAddOns(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the state of every usage-based add-on product the account can use, such as dbt Wizard and dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account is not in the list.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetAccountAddOnsResult> getAccountAddOnsPlain() {
+        return getAccountAddOnsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the state of every usage-based add-on product the account can use, such as dbt Wizard and dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account is not in the list.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetAccountAddOnsResult> getAccountAddOns(InvokeArgs args) {
+        return getAccountAddOns(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the state of every usage-based add-on product the account can use, such as dbt Wizard and dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account is not in the list.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetAccountAddOnsResult> getAccountAddOnsPlain(InvokeArgs args) {
+        return getAccountAddOnsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the state of every usage-based add-on product the account can use, such as dbt Wizard and dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account is not in the list.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetAccountAddOnsResult> getAccountAddOns(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getAccountAddOns:getAccountAddOns", TypeShape.of(GetAccountAddOnsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the state of every usage-based add-on product the account can use, such as dbt Wizard and dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account is not in the list.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetAccountAddOnsResult> getAccountAddOns(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getAccountAddOns:getAccountAddOns", TypeShape.of(GetAccountAddOnsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the state of every usage-based add-on product the account can use, such as dbt Wizard and dbt State.
+     * 
+     * &gt; The token needs the billing permission of the account. A product that is turned off for the account is not in the list.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetAccountAddOnsResult> getAccountAddOnsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getAccountAddOns:getAccountAddOns", TypeShape.of(GetAccountAddOnsResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Athena credential data source
      * 

@@ -1631,6 +1631,10 @@ class GlobalConnectionDatabricksArgsDict(TypedDict):
     """
     Required to enable Databricks OAuth authentication for IDE developers.
     """
+    scopes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offline_access`).
+    """
 
 @pulumi.input_type
 class GlobalConnectionDatabricksArgs:
@@ -1639,13 +1643,15 @@ class GlobalConnectionDatabricksArgs:
                  http_path: pulumi.Input[_builtins.str],
                  catalog: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 client_secret: pulumi.Input[Optional[_builtins.str]] = None):
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] host: The hostname of the Databricks cluster or SQL warehouse.
         :param pulumi.Input[_builtins.str] http_path: The HTTP path of the Databricks cluster or SQL warehouse.
         :param pulumi.Input[_builtins.str] catalog: Catalog name if Unity Catalog is enabled in your Databricks workspace.
         :param pulumi.Input[_builtins.str] client_id: Required to enable Databricks OAuth authentication for IDE developers.
         :param pulumi.Input[_builtins.str] client_secret: Required to enable Databricks OAuth authentication for IDE developers.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offline_access`).
         """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "http_path", http_path)
@@ -1655,6 +1661,8 @@ class GlobalConnectionDatabricksArgs:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
 
     @_builtins.property
     @pulumi.getter
@@ -1715,6 +1723,18 @@ class GlobalConnectionDatabricksArgs:
     @client_secret.setter
     def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offline_access`).
+        """
+        return pulumi.get(self, "scopes")
+
+    @scopes.setter
+    def scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "scopes", value)
 
 
 class GlobalConnectionFabricArgsDict(TypedDict):

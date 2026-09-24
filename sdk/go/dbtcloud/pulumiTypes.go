@@ -2257,6 +2257,8 @@ type GlobalConnectionDatabricks struct {
 	Host string `pulumi:"host"`
 	// The HTTP path of the Databricks cluster or SQL warehouse.
 	HttpPath string `pulumi:"httpPath"`
+	// OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+	Scopes []string `pulumi:"scopes"`
 }
 
 // GlobalConnectionDatabricksInput is an input type that accepts GlobalConnectionDatabricksArgs and GlobalConnectionDatabricksOutput values.
@@ -2281,6 +2283,8 @@ type GlobalConnectionDatabricksArgs struct {
 	Host pulumi.StringInput `pulumi:"host"`
 	// The HTTP path of the Databricks cluster or SQL warehouse.
 	HttpPath pulumi.StringInput `pulumi:"httpPath"`
+	// OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
 }
 
 func (GlobalConnectionDatabricksArgs) ElementType() reflect.Type {
@@ -2385,6 +2389,11 @@ func (o GlobalConnectionDatabricksOutput) HttpPath() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalConnectionDatabricks) string { return v.HttpPath }).(pulumi.StringOutput)
 }
 
+// OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+func (o GlobalConnectionDatabricksOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GlobalConnectionDatabricks) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
 type GlobalConnectionDatabricksPtrOutput struct{ *pulumi.OutputState }
 
 func (GlobalConnectionDatabricksPtrOutput) ElementType() reflect.Type {
@@ -2457,6 +2466,16 @@ func (o GlobalConnectionDatabricksPtrOutput) HttpPath() pulumi.StringPtrOutput {
 		}
 		return &v.HttpPath
 	}).(pulumi.StringPtrOutput)
+}
+
+// OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+func (o GlobalConnectionDatabricksPtrOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GlobalConnectionDatabricks) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Scopes
+	}).(pulumi.StringArrayOutput)
 }
 
 type GlobalConnectionFabric struct {
@@ -7803,6 +7822,175 @@ func (o SnowflakeSemanticLayerCredentialCredentialPtrOutput) Warehouse() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetAccountAddOnsAddOn struct {
+	// Whether the account can start paid use of this product now
+	CanActivate bool `pulumi:"canActivate"`
+	// Whether the account can start a trial of this product now
+	CanTrial bool `pulumi:"canTrial"`
+	// The add-on product
+	Id string `pulumi:"id"`
+	// The add-on product
+	Product string `pulumi:"product"`
+	// The spend limit set for the add-on, in nanodollars. 1 USD is 1,000,000,000 nanodollars. Empty when no limit is set. The limit works differently for each product. For `wizard` it stops usage: the account can no longer use the product once it reaches the limit. For `state` nothing is stopped, and the limit only raises a usage alert. Change the limit in the dbt platform, because this provider only reads it.
+	SpendLimitNanodollars int `pulumi:"spendLimitNanodollars"`
+	// The lifecycle state of the add-on: `TRIAL`, `ACTIVE`, `CANCELLED` or `EXPIRED`. Empty when the account has never turned the product on. A trial moves to `EXPIRED` on its own when it ends
+	State string `pulumi:"state"`
+	// Whether the account has used its one trial of this product
+	TrialConsumed bool `pulumi:"trialConsumed"`
+	// When the trial ends
+	TrialEndsAt string `pulumi:"trialEndsAt"`
+	// When the trial started
+	TrialStartedAt string `pulumi:"trialStartedAt"`
+}
+
+// GetAccountAddOnsAddOnInput is an input type that accepts GetAccountAddOnsAddOnArgs and GetAccountAddOnsAddOnOutput values.
+// You can construct a concrete instance of `GetAccountAddOnsAddOnInput` via:
+//
+//	GetAccountAddOnsAddOnArgs{...}
+type GetAccountAddOnsAddOnInput interface {
+	pulumi.Input
+
+	ToGetAccountAddOnsAddOnOutput() GetAccountAddOnsAddOnOutput
+	ToGetAccountAddOnsAddOnOutputWithContext(context.Context) GetAccountAddOnsAddOnOutput
+}
+
+type GetAccountAddOnsAddOnArgs struct {
+	// Whether the account can start paid use of this product now
+	CanActivate pulumi.BoolInput `pulumi:"canActivate"`
+	// Whether the account can start a trial of this product now
+	CanTrial pulumi.BoolInput `pulumi:"canTrial"`
+	// The add-on product
+	Id pulumi.StringInput `pulumi:"id"`
+	// The add-on product
+	Product pulumi.StringInput `pulumi:"product"`
+	// The spend limit set for the add-on, in nanodollars. 1 USD is 1,000,000,000 nanodollars. Empty when no limit is set. The limit works differently for each product. For `wizard` it stops usage: the account can no longer use the product once it reaches the limit. For `state` nothing is stopped, and the limit only raises a usage alert. Change the limit in the dbt platform, because this provider only reads it.
+	SpendLimitNanodollars pulumi.IntInput `pulumi:"spendLimitNanodollars"`
+	// The lifecycle state of the add-on: `TRIAL`, `ACTIVE`, `CANCELLED` or `EXPIRED`. Empty when the account has never turned the product on. A trial moves to `EXPIRED` on its own when it ends
+	State pulumi.StringInput `pulumi:"state"`
+	// Whether the account has used its one trial of this product
+	TrialConsumed pulumi.BoolInput `pulumi:"trialConsumed"`
+	// When the trial ends
+	TrialEndsAt pulumi.StringInput `pulumi:"trialEndsAt"`
+	// When the trial started
+	TrialStartedAt pulumi.StringInput `pulumi:"trialStartedAt"`
+}
+
+func (GetAccountAddOnsAddOnArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountAddOnsAddOn)(nil)).Elem()
+}
+
+func (i GetAccountAddOnsAddOnArgs) ToGetAccountAddOnsAddOnOutput() GetAccountAddOnsAddOnOutput {
+	return i.ToGetAccountAddOnsAddOnOutputWithContext(context.Background())
+}
+
+func (i GetAccountAddOnsAddOnArgs) ToGetAccountAddOnsAddOnOutputWithContext(ctx context.Context) GetAccountAddOnsAddOnOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountAddOnsAddOnOutput)
+}
+
+// GetAccountAddOnsAddOnArrayInput is an input type that accepts GetAccountAddOnsAddOnArray and GetAccountAddOnsAddOnArrayOutput values.
+// You can construct a concrete instance of `GetAccountAddOnsAddOnArrayInput` via:
+//
+//	GetAccountAddOnsAddOnArray{ GetAccountAddOnsAddOnArgs{...} }
+type GetAccountAddOnsAddOnArrayInput interface {
+	pulumi.Input
+
+	ToGetAccountAddOnsAddOnArrayOutput() GetAccountAddOnsAddOnArrayOutput
+	ToGetAccountAddOnsAddOnArrayOutputWithContext(context.Context) GetAccountAddOnsAddOnArrayOutput
+}
+
+type GetAccountAddOnsAddOnArray []GetAccountAddOnsAddOnInput
+
+func (GetAccountAddOnsAddOnArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountAddOnsAddOn)(nil)).Elem()
+}
+
+func (i GetAccountAddOnsAddOnArray) ToGetAccountAddOnsAddOnArrayOutput() GetAccountAddOnsAddOnArrayOutput {
+	return i.ToGetAccountAddOnsAddOnArrayOutputWithContext(context.Background())
+}
+
+func (i GetAccountAddOnsAddOnArray) ToGetAccountAddOnsAddOnArrayOutputWithContext(ctx context.Context) GetAccountAddOnsAddOnArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAccountAddOnsAddOnArrayOutput)
+}
+
+type GetAccountAddOnsAddOnOutput struct{ *pulumi.OutputState }
+
+func (GetAccountAddOnsAddOnOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAccountAddOnsAddOn)(nil)).Elem()
+}
+
+func (o GetAccountAddOnsAddOnOutput) ToGetAccountAddOnsAddOnOutput() GetAccountAddOnsAddOnOutput {
+	return o
+}
+
+func (o GetAccountAddOnsAddOnOutput) ToGetAccountAddOnsAddOnOutputWithContext(ctx context.Context) GetAccountAddOnsAddOnOutput {
+	return o
+}
+
+// Whether the account can start paid use of this product now
+func (o GetAccountAddOnsAddOnOutput) CanActivate() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) bool { return v.CanActivate }).(pulumi.BoolOutput)
+}
+
+// Whether the account can start a trial of this product now
+func (o GetAccountAddOnsAddOnOutput) CanTrial() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) bool { return v.CanTrial }).(pulumi.BoolOutput)
+}
+
+// The add-on product
+func (o GetAccountAddOnsAddOnOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The add-on product
+func (o GetAccountAddOnsAddOnOutput) Product() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) string { return v.Product }).(pulumi.StringOutput)
+}
+
+// The spend limit set for the add-on, in nanodollars. 1 USD is 1,000,000,000 nanodollars. Empty when no limit is set. The limit works differently for each product. For `wizard` it stops usage: the account can no longer use the product once it reaches the limit. For `state` nothing is stopped, and the limit only raises a usage alert. Change the limit in the dbt platform, because this provider only reads it.
+func (o GetAccountAddOnsAddOnOutput) SpendLimitNanodollars() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) int { return v.SpendLimitNanodollars }).(pulumi.IntOutput)
+}
+
+// The lifecycle state of the add-on: `TRIAL`, `ACTIVE`, `CANCELLED` or `EXPIRED`. Empty when the account has never turned the product on. A trial moves to `EXPIRED` on its own when it ends
+func (o GetAccountAddOnsAddOnOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Whether the account has used its one trial of this product
+func (o GetAccountAddOnsAddOnOutput) TrialConsumed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) bool { return v.TrialConsumed }).(pulumi.BoolOutput)
+}
+
+// When the trial ends
+func (o GetAccountAddOnsAddOnOutput) TrialEndsAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) string { return v.TrialEndsAt }).(pulumi.StringOutput)
+}
+
+// When the trial started
+func (o GetAccountAddOnsAddOnOutput) TrialStartedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccountAddOnsAddOn) string { return v.TrialStartedAt }).(pulumi.StringOutput)
+}
+
+type GetAccountAddOnsAddOnArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAccountAddOnsAddOnArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAccountAddOnsAddOn)(nil)).Elem()
+}
+
+func (o GetAccountAddOnsAddOnArrayOutput) ToGetAccountAddOnsAddOnArrayOutput() GetAccountAddOnsAddOnArrayOutput {
+	return o
+}
+
+func (o GetAccountAddOnsAddOnArrayOutput) ToGetAccountAddOnsAddOnArrayOutputWithContext(ctx context.Context) GetAccountAddOnsAddOnArrayOutput {
+	return o
+}
+
+func (o GetAccountAddOnsAddOnArrayOutput) Index(i pulumi.IntInput) GetAccountAddOnsAddOnOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAccountAddOnsAddOn {
+		return vs[0].([]GetAccountAddOnsAddOn)[vs[1].(int)]
+	}).(GetAccountAddOnsAddOnOutput)
+}
+
 type GetEnvironmentsEnvironment struct {
 	// A connection ID (used with Global Connections)
 	ConnectionId int `pulumi:"connectionId"`
@@ -8589,6 +8777,8 @@ type GetGlobalConnectionDatabricks struct {
 	Host string `pulumi:"host"`
 	// The HTTP path of the Databricks cluster or SQL warehouse.
 	HttpPath string `pulumi:"httpPath"`
+	// OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+	Scopes []string `pulumi:"scopes"`
 }
 
 // GetGlobalConnectionDatabricksInput is an input type that accepts GetGlobalConnectionDatabricksArgs and GetGlobalConnectionDatabricksOutput values.
@@ -8613,6 +8803,8 @@ type GetGlobalConnectionDatabricksArgs struct {
 	Host pulumi.StringInput `pulumi:"host"`
 	// The HTTP path of the Databricks cluster or SQL warehouse.
 	HttpPath pulumi.StringInput `pulumi:"httpPath"`
+	// OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
 }
 
 func (GetGlobalConnectionDatabricksArgs) ElementType() reflect.Type {
@@ -8664,6 +8856,11 @@ func (o GetGlobalConnectionDatabricksOutput) Host() pulumi.StringOutput {
 // The HTTP path of the Databricks cluster or SQL warehouse.
 func (o GetGlobalConnectionDatabricksOutput) HttpPath() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionDatabricks) string { return v.HttpPath }).(pulumi.StringOutput)
+}
+
+// OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+func (o GetGlobalConnectionDatabricksOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGlobalConnectionDatabricks) []string { return v.Scopes }).(pulumi.StringArrayOutput)
 }
 
 type GetGlobalConnectionFabric struct {
@@ -12737,6 +12934,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SnowflakeSemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), SnowflakeSemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnowflakeSemanticLayerCredentialCredentialInput)(nil)).Elem(), SnowflakeSemanticLayerCredentialCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnowflakeSemanticLayerCredentialCredentialPtrInput)(nil)).Elem(), SnowflakeSemanticLayerCredentialCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountAddOnsAddOnInput)(nil)).Elem(), GetAccountAddOnsAddOnArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAccountAddOnsAddOnArrayInput)(nil)).Elem(), GetAccountAddOnsAddOnArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentsEnvironmentInput)(nil)).Elem(), GetEnvironmentsEnvironmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentsEnvironmentArrayInput)(nil)).Elem(), GetEnvironmentsEnvironmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionApacheSparkInput)(nil)).Elem(), GetGlobalConnectionApacheSparkArgs{})
@@ -12865,6 +13064,8 @@ func init() {
 	pulumi.RegisterOutputType(SnowflakeSemanticLayerCredentialConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(SnowflakeSemanticLayerCredentialCredentialOutput{})
 	pulumi.RegisterOutputType(SnowflakeSemanticLayerCredentialCredentialPtrOutput{})
+	pulumi.RegisterOutputType(GetAccountAddOnsAddOnOutput{})
+	pulumi.RegisterOutputType(GetAccountAddOnsAddOnArrayOutput{})
 	pulumi.RegisterOutputType(GetEnvironmentsEnvironmentOutput{})
 	pulumi.RegisterOutputType(GetEnvironmentsEnvironmentArrayOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionApacheSparkOutput{})

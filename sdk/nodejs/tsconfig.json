@@ -36,6 +36,8 @@
         "environmentVariableJobOverride.ts",
         "extendedAttributes.ts",
         "fabricCredential.ts",
+        "getAccountAddOn.ts",
+        "getAccountAddOns.ts",
         "getAthenaCredential.ts",
         "getAzureDevOpsProject.ts",
         "getAzureDevOpsRepository.ts",

@@ -80,6 +80,16 @@ export type FabricCredential = import("./fabricCredential").FabricCredential;
 export const FabricCredential: typeof import("./fabricCredential").FabricCredential = null as any;
 utilities.lazyLoad(exports, ["FabricCredential"], () => require("./fabricCredential"));
 
+export { GetAccountAddOnArgs, GetAccountAddOnResult, GetAccountAddOnOutputArgs } from "./getAccountAddOn";
+export const getAccountAddOn: typeof import("./getAccountAddOn").getAccountAddOn = null as any;
+export const getAccountAddOnOutput: typeof import("./getAccountAddOn").getAccountAddOnOutput = null as any;
+utilities.lazyLoad(exports, ["getAccountAddOn","getAccountAddOnOutput"], () => require("./getAccountAddOn"));
+
+export { GetAccountAddOnsResult } from "./getAccountAddOns";
+export const getAccountAddOns: typeof import("./getAccountAddOns").getAccountAddOns = null as any;
+export const getAccountAddOnsOutput: typeof import("./getAccountAddOns").getAccountAddOnsOutput = null as any;
+utilities.lazyLoad(exports, ["getAccountAddOns","getAccountAddOnsOutput"], () => require("./getAccountAddOns"));
+
 export { GetAthenaCredentialArgs, GetAthenaCredentialResult, GetAthenaCredentialOutputArgs } from "./getAthenaCredential";
 export const getAthenaCredential: typeof import("./getAthenaCredential").getAthenaCredential = null as any;
 export const getAthenaCredentialOutput: typeof import("./getAthenaCredential").getAthenaCredentialOutput = null as any;

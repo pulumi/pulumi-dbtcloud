@@ -6,6 +6,7 @@ package com.pulumi.dbtcloud.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 
 @CustomType
@@ -35,6 +36,11 @@ public final class GetGlobalConnectionDatabricks {
      * 
      */
     private String httpPath;
+    /**
+     * @return OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     * 
+     */
+    private List<String> scopes;
 
     private GetGlobalConnectionDatabricks() {}
     /**
@@ -72,6 +78,13 @@ public final class GetGlobalConnectionDatabricks {
     public String httpPath() {
         return this.httpPath;
     }
+    /**
+     * @return OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     * 
+     */
+    public List<String> scopes() {
+        return this.scopes;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -87,6 +100,7 @@ public final class GetGlobalConnectionDatabricks {
         private String clientSecret;
         private String host;
         private String httpPath;
+        private List<String> scopes;
         public Builder() {}
         public Builder(GetGlobalConnectionDatabricks defaults) {
     	      Objects.requireNonNull(defaults);
@@ -95,6 +109,7 @@ public final class GetGlobalConnectionDatabricks {
     	      this.clientSecret = defaults.clientSecret;
     	      this.host = defaults.host;
     	      this.httpPath = defaults.httpPath;
+    	      this.scopes = defaults.scopes;
         }
 
         @CustomType.Setter
@@ -137,6 +152,17 @@ public final class GetGlobalConnectionDatabricks {
             this.httpPath = httpPath;
             return this;
         }
+        @CustomType.Setter
+        public Builder scopes(List<String> scopes) {
+            if (scopes == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionDatabricks", "scopes");
+            }
+            this.scopes = scopes;
+            return this;
+        }
+        public Builder scopes(String... scopes) {
+            return scopes(List.of(scopes));
+        }
         public GetGlobalConnectionDatabricks build() {
             final var _resultValue = new GetGlobalConnectionDatabricks();
             _resultValue.catalog = catalog;
@@ -144,6 +170,7 @@ public final class GetGlobalConnectionDatabricks {
             _resultValue.clientSecret = clientSecret;
             _resultValue.host = host;
             _resultValue.httpPath = httpPath;
+            _resultValue.scopes = scopes;
             return _resultValue;
         }
     }

@@ -6,6 +6,7 @@ package com.pulumi.dbtcloud.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -37,6 +38,11 @@ public final class GlobalConnectionDatabricks {
      * 
      */
     private String httpPath;
+    /**
+     * @return OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     * 
+     */
+    private @Nullable List<String> scopes;
 
     private GlobalConnectionDatabricks() {}
     /**
@@ -74,6 +80,13 @@ public final class GlobalConnectionDatabricks {
     public String httpPath() {
         return this.httpPath;
     }
+    /**
+     * @return OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     * 
+     */
+    public List<String> scopes() {
+        return this.scopes == null ? List.of() : this.scopes;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -89,6 +102,7 @@ public final class GlobalConnectionDatabricks {
         private @Nullable String clientSecret;
         private String host;
         private String httpPath;
+        private @Nullable List<String> scopes;
         public Builder() {}
         public Builder(GlobalConnectionDatabricks defaults) {
     	      Objects.requireNonNull(defaults);
@@ -97,6 +111,7 @@ public final class GlobalConnectionDatabricks {
     	      this.clientSecret = defaults.clientSecret;
     	      this.host = defaults.host;
     	      this.httpPath = defaults.httpPath;
+    	      this.scopes = defaults.scopes;
         }
 
         @CustomType.Setter
@@ -133,6 +148,15 @@ public final class GlobalConnectionDatabricks {
             this.httpPath = httpPath;
             return this;
         }
+        @CustomType.Setter
+        public Builder scopes(@Nullable List<String> scopes) {
+
+            this.scopes = scopes;
+            return this;
+        }
+        public Builder scopes(String... scopes) {
+            return scopes(List.of(scopes));
+        }
         public GlobalConnectionDatabricks build() {
             final var _resultValue = new GlobalConnectionDatabricks();
             _resultValue.catalog = catalog;
@@ -140,6 +164,7 @@ public final class GlobalConnectionDatabricks {
             _resultValue.clientSecret = clientSecret;
             _resultValue.host = host;
             _resultValue.httpPath = httpPath;
+            _resultValue.scopes = scopes;
             return _resultValue;
         }
     }

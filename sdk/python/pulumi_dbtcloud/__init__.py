@@ -21,6 +21,8 @@ from .environment_variable import *
 from .environment_variable_job_override import *
 from .extended_attributes import *
 from .fabric_credential import *
+from .get_account_add_on import *
+from .get_account_add_ons import *
 from .get_athena_credential import *
 from .get_azure_dev_ops_project import *
 from .get_azure_dev_ops_repository import *

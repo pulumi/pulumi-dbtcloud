@@ -490,6 +490,10 @@ export interface GlobalConnectionDatabricks {
      * The HTTP path of the Databricks cluster or SQL warehouse.
      */
     httpPath: pulumi.Input<string>;
+    /**
+     * OAuth scopes to use for the Databricks connection (e.g. `sql`, `all-apis`). When not set, dbt Cloud relies on the default scopes (`all-apis` and `offlineAccess`).
+     */
+    scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GlobalConnectionFabric {
