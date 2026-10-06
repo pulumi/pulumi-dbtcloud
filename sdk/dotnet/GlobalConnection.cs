@@ -242,6 +242,17 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
+    ///     var clickhouse = new DbtCloud.GlobalConnection("clickhouse", new()
+    ///     {
+    ///         Name = "My ClickHouse connection",
+    ///         Clickhouse = new DbtCloud.Inputs.GlobalConnectionClickhouseArgs
+    ///         {
+    ///             Host = "my-clickhouse-server.com",
+    ///             Port = 8443,
+    ///             Database = "default",
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -294,6 +305,12 @@ namespace Pulumi.DbtCloud
 
         [Output("bigquery")]
         public Output<Outputs.GlobalConnectionBigquery?> Bigquery { get; private set; } = null!;
+
+        /// <summary>
+        /// ClickHouse connection configuration.
+        /// </summary>
+        [Output("clickhouse")]
+        public Output<Outputs.GlobalConnectionClickhouse?> Clickhouse { get; private set; } = null!;
 
         /// <summary>
         /// Databricks connection configuration
@@ -436,6 +453,12 @@ namespace Pulumi.DbtCloud
         public Input<Inputs.GlobalConnectionBigqueryArgs>? Bigquery { get; set; }
 
         /// <summary>
+        /// ClickHouse connection configuration.
+        /// </summary>
+        [Input("clickhouse")]
+        public Input<Inputs.GlobalConnectionClickhouseArgs>? Clickhouse { get; set; }
+
+        /// <summary>
         /// Databricks connection configuration
         /// </summary>
         [Input("databricks")]
@@ -535,6 +558,12 @@ namespace Pulumi.DbtCloud
 
         [Input("bigquery")]
         public Input<Inputs.GlobalConnectionBigqueryGetArgs>? Bigquery { get; set; }
+
+        /// <summary>
+        /// ClickHouse connection configuration.
+        /// </summary>
+        [Input("clickhouse")]
+        public Input<Inputs.GlobalConnectionClickhouseGetArgs>? Clickhouse { get; set; }
 
         /// <summary>
         /// Databricks connection configuration

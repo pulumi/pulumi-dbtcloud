@@ -26,6 +26,7 @@ class EnvironmentArgs:
                  custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
                  dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
                  deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dbt_state: pulumi.Input[Optional[_builtins.bool]] = None,
                  enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
                  extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
                  is_active: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -42,6 +43,7 @@ class EnvironmentArgs:
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+        :param pulumi.Input[_builtins.bool] enable_dbt_state: Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
         :param pulumi.Input[_builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
@@ -61,6 +63,8 @@ class EnvironmentArgs:
             pulumi.set(__self__, "dbt_version", dbt_version)
         if deployment_type is not None:
             pulumi.set(__self__, "deployment_type", deployment_type)
+        if enable_dbt_state is not None:
+            pulumi.set(__self__, "enable_dbt_state", enable_dbt_state)
         if enable_model_query_history is not None:
             pulumi.set(__self__, "enable_model_query_history", enable_model_query_history)
         if extended_attributes_id is not None:
@@ -159,6 +163,18 @@ class EnvironmentArgs:
         pulumi.set(self, "deployment_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="enableDbtState")
+    def enable_dbt_state(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
+        """
+        return pulumi.get(self, "enable_dbt_state")
+
+    @enable_dbt_state.setter
+    def enable_dbt_state(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enable_dbt_state", value)
+
+    @_builtins.property
     @pulumi.getter(name="enableModelQueryHistory")
     def enable_model_query_history(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -239,6 +255,7 @@ class _EnvironmentState:
                  custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
                  dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
                  deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dbt_state: pulumi.Input[Optional[_builtins.bool]] = None,
                  enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
                  environment_id: pulumi.Input[Optional[_builtins.int]] = None,
                  extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
@@ -256,6 +273,7 @@ class _EnvironmentState:
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+        :param pulumi.Input[_builtins.bool] enable_dbt_state: Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
         :param pulumi.Input[_builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[_builtins.int] environment_id: The ID of the environment. Duplicated. Here for backward compatibility.
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
@@ -276,6 +294,8 @@ class _EnvironmentState:
             pulumi.set(__self__, "dbt_version", dbt_version)
         if deployment_type is not None:
             pulumi.set(__self__, "deployment_type", deployment_type)
+        if enable_dbt_state is not None:
+            pulumi.set(__self__, "enable_dbt_state", enable_dbt_state)
         if enable_model_query_history is not None:
             pulumi.set(__self__, "enable_model_query_history", enable_model_query_history)
         if environment_id is not None:
@@ -354,6 +374,18 @@ class _EnvironmentState:
     @deployment_type.setter
     def deployment_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deployment_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableDbtState")
+    def enable_dbt_state(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
+        """
+        return pulumi.get(self, "enable_dbt_state")
+
+    @enable_dbt_state.setter
+    def enable_dbt_state(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enable_dbt_state", value)
 
     @_builtins.property
     @pulumi.getter(name="enableModelQueryHistory")
@@ -475,6 +507,7 @@ class Environment(pulumi.CustomResource):
                  custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
                  dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
                  deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dbt_state: pulumi.Input[Optional[_builtins.bool]] = None,
                  enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
                  extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
                  is_active: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -557,6 +590,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+        :param pulumi.Input[_builtins.bool] enable_dbt_state: Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
         :param pulumi.Input[_builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
@@ -658,6 +692,7 @@ class Environment(pulumi.CustomResource):
                  custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
                  dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
                  deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enable_dbt_state: pulumi.Input[Optional[_builtins.bool]] = None,
                  enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
                  extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
                  is_active: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -680,6 +715,7 @@ class Environment(pulumi.CustomResource):
             __props__.__dict__["custom_branch"] = custom_branch
             __props__.__dict__["dbt_version"] = dbt_version
             __props__.__dict__["deployment_type"] = deployment_type
+            __props__.__dict__["enable_dbt_state"] = enable_dbt_state
             __props__.__dict__["enable_model_query_history"] = enable_model_query_history
             __props__.__dict__["extended_attributes_id"] = extended_attributes_id
             __props__.__dict__["is_active"] = is_active
@@ -708,6 +744,7 @@ class Environment(pulumi.CustomResource):
             custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
             dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
             deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_dbt_state: pulumi.Input[Optional[_builtins.bool]] = None,
             enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
             environment_id: pulumi.Input[Optional[_builtins.int]] = None,
             extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
@@ -729,6 +766,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
         :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
+        :param pulumi.Input[_builtins.bool] enable_dbt_state: Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
         :param pulumi.Input[_builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[_builtins.int] environment_id: The ID of the environment. Duplicated. Here for backward compatibility.
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
@@ -748,6 +786,7 @@ class Environment(pulumi.CustomResource):
         __props__.__dict__["custom_branch"] = custom_branch
         __props__.__dict__["dbt_version"] = dbt_version
         __props__.__dict__["deployment_type"] = deployment_type
+        __props__.__dict__["enable_dbt_state"] = enable_dbt_state
         __props__.__dict__["enable_model_query_history"] = enable_model_query_history
         __props__.__dict__["environment_id"] = environment_id
         __props__.__dict__["extended_attributes_id"] = extended_attributes_id
@@ -798,6 +837,14 @@ class Environment(pulumi.CustomResource):
         The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         """
         return pulumi.get(self, "deployment_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enableDbtState")
+    def enable_dbt_state(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
+        """
+        return pulumi.get(self, "enable_dbt_state")
 
     @_builtins.property
     @pulumi.getter(name="enableModelQueryHistory")

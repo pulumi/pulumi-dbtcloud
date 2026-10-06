@@ -26,7 +26,7 @@ class GetEnvironmentResult:
     """
     A collection of values returned by getEnvironment.
     """
-    def __init__(__self__, connection_id=None, credentials_id=None, custom_branch=None, dbt_version=None, deployment_type=None, enable_model_query_history=None, environment_id=None, extended_attributes_id=None, name=None, primary_profile_id=None, project_id=None, type=None, use_custom_branch=None):
+    def __init__(__self__, connection_id=None, credentials_id=None, custom_branch=None, dbt_version=None, deployment_type=None, enable_dbt_state=None, enable_model_query_history=None, environment_id=None, extended_attributes_id=None, name=None, primary_profile_id=None, project_id=None, type=None, use_custom_branch=None):
         if connection_id and not isinstance(connection_id, int):
             raise TypeError("Expected argument 'connection_id' to be a int")
         pulumi.set(__self__, "connection_id", connection_id)
@@ -42,6 +42,9 @@ class GetEnvironmentResult:
         if deployment_type and not isinstance(deployment_type, str):
             raise TypeError("Expected argument 'deployment_type' to be a str")
         pulumi.set(__self__, "deployment_type", deployment_type)
+        if enable_dbt_state and not isinstance(enable_dbt_state, bool):
+            raise TypeError("Expected argument 'enable_dbt_state' to be a bool")
+        pulumi.set(__self__, "enable_dbt_state", enable_dbt_state)
         if enable_model_query_history and not isinstance(enable_model_query_history, bool):
             raise TypeError("Expected argument 'enable_model_query_history' to be a bool")
         pulumi.set(__self__, "enable_model_query_history", enable_model_query_history)
@@ -106,6 +109,14 @@ class GetEnvironmentResult:
         The type of deployment environment (currently 'production', 'staging' or empty)
         """
         return pulumi.get(self, "deployment_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enableDbtState")
+    def enable_dbt_state(self) -> _builtins.bool:
+        """
+        Whether dbt State is on for this environment
+        """
+        return pulumi.get(self, "enable_dbt_state")
 
     @_builtins.property
     @pulumi.getter(name="enableModelQueryHistory")
@@ -183,6 +194,7 @@ class AwaitableGetEnvironmentResult(GetEnvironmentResult):
             custom_branch=self.custom_branch,
             dbt_version=self.dbt_version,
             deployment_type=self.deployment_type,
+            enable_dbt_state=self.enable_dbt_state,
             enable_model_query_history=self.enable_model_query_history,
             environment_id=self.environment_id,
             extended_attributes_id=self.extended_attributes_id,
@@ -215,6 +227,7 @@ def get_environment(environment_id: Optional[_builtins.int] = None,
         custom_branch=pulumi.get(__ret__, 'custom_branch'),
         dbt_version=pulumi.get(__ret__, 'dbt_version'),
         deployment_type=pulumi.get(__ret__, 'deployment_type'),
+        enable_dbt_state=pulumi.get(__ret__, 'enable_dbt_state'),
         enable_model_query_history=pulumi.get(__ret__, 'enable_model_query_history'),
         environment_id=pulumi.get(__ret__, 'environment_id'),
         extended_attributes_id=pulumi.get(__ret__, 'extended_attributes_id'),
@@ -244,6 +257,7 @@ def get_environment_output(environment_id: pulumi.Input[Optional[_builtins.int]]
         custom_branch=pulumi.get(__response__, 'custom_branch'),
         dbt_version=pulumi.get(__response__, 'dbt_version'),
         deployment_type=pulumi.get(__response__, 'deployment_type'),
+        enable_dbt_state=pulumi.get(__response__, 'enable_dbt_state'),
         enable_model_query_history=pulumi.get(__response__, 'enable_model_query_history'),
         environment_id=pulumi.get(__response__, 'environment_id'),
         extended_attributes_id=pulumi.get(__response__, 'extended_attributes_id'),

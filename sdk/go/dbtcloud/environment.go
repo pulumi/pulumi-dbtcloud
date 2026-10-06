@@ -116,6 +116,8 @@ type Environment struct {
 	DbtVersion pulumi.StringOutput `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrOutput `pulumi:"deploymentType"`
+	// Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+	EnableDbtState pulumi.BoolOutput `pulumi:"enableDbtState"`
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory pulumi.BoolOutput `pulumi:"enableModelQueryHistory"`
 	// The ID of the environment. Duplicated. Here for backward compatibility.
@@ -182,6 +184,8 @@ type environmentState struct {
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
+	// Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+	EnableDbtState *bool `pulumi:"enableDbtState"`
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory *bool `pulumi:"enableModelQueryHistory"`
 	// The ID of the environment. Duplicated. Here for backward compatibility.
@@ -213,6 +217,8 @@ type EnvironmentState struct {
 	DbtVersion pulumi.StringPtrInput
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
+	// Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+	EnableDbtState pulumi.BoolPtrInput
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory pulumi.BoolPtrInput
 	// The ID of the environment. Duplicated. Here for backward compatibility.
@@ -248,6 +254,8 @@ type environmentArgs struct {
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
+	// Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+	EnableDbtState *bool `pulumi:"enableDbtState"`
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory *bool `pulumi:"enableModelQueryHistory"`
 	// The ID of the extended attributes applied
@@ -278,6 +286,8 @@ type EnvironmentArgs struct {
 	DbtVersion pulumi.StringPtrInput
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
+	// Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+	EnableDbtState pulumi.BoolPtrInput
 	// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
 	EnableModelQueryHistory pulumi.BoolPtrInput
 	// The ID of the extended attributes applied
@@ -406,6 +416,11 @@ func (o EnvironmentOutput) DbtVersion() pulumi.StringOutput {
 // The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 func (o EnvironmentOutput) DeploymentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.DeploymentType }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+func (o EnvironmentOutput) EnableDbtState() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Environment) pulumi.BoolOutput { return v.EnableDbtState }).(pulumi.BoolOutput)
 }
 
 // Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.

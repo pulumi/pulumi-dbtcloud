@@ -35,6 +35,11 @@ export type BigquerySemanticLayerCredential = import("./bigquerySemanticLayerCre
 export const BigquerySemanticLayerCredential: typeof import("./bigquerySemanticLayerCredential").BigquerySemanticLayerCredential = null as any;
 utilities.lazyLoad(exports, ["BigquerySemanticLayerCredential"], () => require("./bigquerySemanticLayerCredential"));
 
+export { ClickhouseCredentialArgs, ClickhouseCredentialState } from "./clickhouseCredential";
+export type ClickhouseCredential = import("./clickhouseCredential").ClickhouseCredential;
+export const ClickhouseCredential: typeof import("./clickhouseCredential").ClickhouseCredential = null as any;
+utilities.lazyLoad(exports, ["ClickhouseCredential"], () => require("./clickhouseCredential"));
+
 export { ConnectionCatalogConfigArgs, ConnectionCatalogConfigState } from "./connectionCatalogConfig";
 export type ConnectionCatalogConfig = import("./connectionCatalogConfig").ConnectionCatalogConfig;
 export const ConnectionCatalogConfig: typeof import("./connectionCatalogConfig").ConnectionCatalogConfig = null as any;
@@ -109,6 +114,11 @@ export { GetBigQueryCredentialArgs, GetBigQueryCredentialResult, GetBigQueryCred
 export const getBigQueryCredential: typeof import("./getBigQueryCredential").getBigQueryCredential = null as any;
 export const getBigQueryCredentialOutput: typeof import("./getBigQueryCredential").getBigQueryCredentialOutput = null as any;
 utilities.lazyLoad(exports, ["getBigQueryCredential","getBigQueryCredentialOutput"], () => require("./getBigQueryCredential"));
+
+export { GetClickhouseCredentialArgs, GetClickhouseCredentialResult, GetClickhouseCredentialOutputArgs } from "./getClickhouseCredential";
+export const getClickhouseCredential: typeof import("./getClickhouseCredential").getClickhouseCredential = null as any;
+export const getClickhouseCredentialOutput: typeof import("./getClickhouseCredential").getClickhouseCredentialOutput = null as any;
+utilities.lazyLoad(exports, ["getClickhouseCredential","getClickhouseCredentialOutput"], () => require("./getClickhouseCredential"));
 
 export { GetDatabricksCredentialArgs, GetDatabricksCredentialResult, GetDatabricksCredentialOutputArgs } from "./getDatabricksCredential";
 export const getDatabricksCredential: typeof import("./getDatabricksCredential").getDatabricksCredential = null as any;
@@ -524,6 +534,8 @@ const _module = {
                 return new BigQueryCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
                 return new BigquerySemanticLayerCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/clickhouseCredential:ClickhouseCredential":
+                return new ClickhouseCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig":
                 return new ConnectionCatalogConfig(name, <any>undefined, { urn })
             case "dbtcloud:index/databricksCredential:DatabricksCredential":
@@ -637,6 +649,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/authProvider", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/azureAdApplication", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigquerySemanticLayerCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/clickhouseCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/connectionCatalogConfig", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/databricksCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/databricksPlatformMetadataCredential", _module)

@@ -125,6 +125,12 @@ namespace Pulumi.DbtCloud
         public Output<string?> DeploymentType { get; private set; } = null!;
 
         /// <summary>
+        /// Whether to enable dbt State in this environment. A job inherits it with `CostOptimizationFeatures = ["InheritEnvironment"]`.
+        /// </summary>
+        [Output("enableDbtState")]
+        public Output<bool> EnableDbtState { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         /// </summary>
         [Output("enableModelQueryHistory")]
@@ -256,6 +262,12 @@ namespace Pulumi.DbtCloud
         public Input<string>? DeploymentType { get; set; }
 
         /// <summary>
+        /// Whether to enable dbt State in this environment. A job inherits it with `CostOptimizationFeatures = ["InheritEnvironment"]`.
+        /// </summary>
+        [Input("enableDbtState")]
+        public Input<bool>? EnableDbtState { get; set; }
+
+        /// <summary>
         /// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         /// </summary>
         [Input("enableModelQueryHistory")]
@@ -340,6 +352,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("deploymentType")]
         public Input<string>? DeploymentType { get; set; }
+
+        /// <summary>
+        /// Whether to enable dbt State in this environment. A job inherits it with `CostOptimizationFeatures = ["InheritEnvironment"]`.
+        /// </summary>
+        [Input("enableDbtState")]
+        public Input<bool>? EnableDbtState { get; set; }
 
         /// <summary>
         /// Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.

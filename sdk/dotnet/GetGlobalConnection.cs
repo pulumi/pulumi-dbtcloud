@@ -125,6 +125,10 @@ namespace Pulumi.DbtCloud
         public readonly Outputs.GetGlobalConnectionAthenaResult Athena;
         public readonly Outputs.GetGlobalConnectionBigqueryResult Bigquery;
         /// <summary>
+        /// ClickHouse connection configuration.
+        /// </summary>
+        public readonly Outputs.GetGlobalConnectionClickhouseResult Clickhouse;
+        /// <summary>
         /// Databricks connection configuration
         /// </summary>
         public readonly Outputs.GetGlobalConnectionDatabricksResult Databricks;
@@ -188,6 +192,8 @@ namespace Pulumi.DbtCloud
 
             Outputs.GetGlobalConnectionBigqueryResult bigquery,
 
+            Outputs.GetGlobalConnectionClickhouseResult clickhouse,
+
             Outputs.GetGlobalConnectionDatabricksResult databricks,
 
             Outputs.GetGlobalConnectionFabricResult fabric,
@@ -220,6 +226,7 @@ namespace Pulumi.DbtCloud
             ApacheSpark = apacheSpark;
             Athena = athena;
             Bigquery = bigquery;
+            Clickhouse = clickhouse;
             Databricks = databricks;
             Fabric = fabric;
             Id = id;

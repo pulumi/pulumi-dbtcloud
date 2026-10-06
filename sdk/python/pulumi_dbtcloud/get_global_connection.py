@@ -27,7 +27,7 @@ class GetGlobalConnectionResult:
     """
     A collection of values returned by getGlobalConnection.
     """
-    def __init__(__self__, adapter_version=None, apache_spark=None, athena=None, bigquery=None, databricks=None, fabric=None, id=None, is_ssh_tunnel_enabled=None, name=None, oauth_configuration_id=None, postgres=None, private_link_endpoint_id=None, redshift=None, salesforce=None, snowflake=None, starburst=None, synapse=None, teradata=None):
+    def __init__(__self__, adapter_version=None, apache_spark=None, athena=None, bigquery=None, clickhouse=None, databricks=None, fabric=None, id=None, is_ssh_tunnel_enabled=None, name=None, oauth_configuration_id=None, postgres=None, private_link_endpoint_id=None, redshift=None, salesforce=None, snowflake=None, starburst=None, synapse=None, teradata=None):
         if adapter_version and not isinstance(adapter_version, str):
             raise TypeError("Expected argument 'adapter_version' to be a str")
         pulumi.set(__self__, "adapter_version", adapter_version)
@@ -40,6 +40,9 @@ class GetGlobalConnectionResult:
         if bigquery and not isinstance(bigquery, dict):
             raise TypeError("Expected argument 'bigquery' to be a dict")
         pulumi.set(__self__, "bigquery", bigquery)
+        if clickhouse and not isinstance(clickhouse, dict):
+            raise TypeError("Expected argument 'clickhouse' to be a dict")
+        pulumi.set(__self__, "clickhouse", clickhouse)
         if databricks and not isinstance(databricks, dict):
             raise TypeError("Expected argument 'databricks' to be a dict")
         pulumi.set(__self__, "databricks", databricks)
@@ -111,6 +114,14 @@ class GetGlobalConnectionResult:
     @pulumi.getter
     def bigquery(self) -> 'outputs.GetGlobalConnectionBigqueryResult':
         return pulumi.get(self, "bigquery")
+
+    @_builtins.property
+    @pulumi.getter
+    def clickhouse(self) -> 'outputs.GetGlobalConnectionClickhouseResult':
+        """
+        ClickHouse connection configuration.
+        """
+        return pulumi.get(self, "clickhouse")
 
     @_builtins.property
     @pulumi.getter
@@ -232,6 +243,7 @@ class AwaitableGetGlobalConnectionResult(GetGlobalConnectionResult):
             apache_spark=self.apache_spark,
             athena=self.athena,
             bigquery=self.bigquery,
+            clickhouse=self.clickhouse,
             databricks=self.databricks,
             fabric=self.fabric,
             id=self.id,
@@ -273,6 +285,7 @@ def get_global_connection(id: Optional[_builtins.int] = None,
         apache_spark=pulumi.get(__ret__, 'apache_spark'),
         athena=pulumi.get(__ret__, 'athena'),
         bigquery=pulumi.get(__ret__, 'bigquery'),
+        clickhouse=pulumi.get(__ret__, 'clickhouse'),
         databricks=pulumi.get(__ret__, 'databricks'),
         fabric=pulumi.get(__ret__, 'fabric'),
         id=pulumi.get(__ret__, 'id'),
@@ -311,6 +324,7 @@ def get_global_connection_output(id: pulumi.Input[Optional[_builtins.int]] = Non
         apache_spark=pulumi.get(__response__, 'apache_spark'),
         athena=pulumi.get(__response__, 'athena'),
         bigquery=pulumi.get(__response__, 'bigquery'),
+        clickhouse=pulumi.get(__response__, 'clickhouse'),
         databricks=pulumi.get(__response__, 'databricks'),
         fabric=pulumi.get(__response__, 'fabric'),
         id=pulumi.get(__response__, 'id'),

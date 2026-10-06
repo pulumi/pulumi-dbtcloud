@@ -13,6 +13,7 @@ import com.pulumi.dbtcloud.inputs.GlobalConnectionState;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionApacheSpark;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionAthena;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionBigquery;
+import com.pulumi.dbtcloud.outputs.GlobalConnectionClickhouse;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionDatabricks;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionFabric;
 import com.pulumi.dbtcloud.outputs.GlobalConnectionPostgres;
@@ -57,6 +58,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionStarburstArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionSynapseArgs;
  * import com.pulumi.dbtcloud.inputs.GlobalConnectionTeradataArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionClickhouseArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
@@ -259,6 +261,15 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         var clickhouse = new GlobalConnection("clickhouse", GlobalConnectionArgs.builder()
+ *             .name("My ClickHouse connection")
+ *             .clickhouse(GlobalConnectionClickhouseArgs.builder()
+ *                 .host("my-clickhouse-server.com")
+ *                 .port(8443)
+ *                 .database("default")
+ *                 .build())
+ *             .build());
+ * 
  *     }
  * }
  * }
@@ -340,6 +351,20 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<GlobalConnectionBigquery>> bigquery() {
         return Codegen.optional(this.bigquery);
+    }
+    /**
+     * ClickHouse connection configuration.
+     * 
+     */
+    @Export(name="clickhouse", refs={GlobalConnectionClickhouse.class}, tree="[0]")
+    private Output</* @Nullable */ GlobalConnectionClickhouse> clickhouse;
+
+    /**
+     * @return ClickHouse connection configuration.
+     * 
+     */
+    public Output<Optional<GlobalConnectionClickhouse>> clickhouse() {
+        return Codegen.optional(this.clickhouse);
     }
     /**
      * Databricks connection configuration

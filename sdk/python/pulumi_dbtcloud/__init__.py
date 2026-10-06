@@ -12,6 +12,7 @@ from .auth_provider import *
 from .azure_ad_application import *
 from .big_query_credential import *
 from .bigquery_semantic_layer_credential import *
+from .clickhouse_credential import *
 from .connection_catalog_config import *
 from .databricks_credential import *
 from .databricks_platform_metadata_credential import *
@@ -27,6 +28,7 @@ from .get_athena_credential import *
 from .get_azure_dev_ops_project import *
 from .get_azure_dev_ops_repository import *
 from .get_big_query_credential import *
+from .get_clickhouse_credential import *
 from .get_databricks_credential import *
 from .get_environment import *
 from .get_environment_variable import *
@@ -164,6 +166,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential": "BigquerySemanticLayerCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/clickhouseCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/clickhouseCredential:ClickhouseCredential": "ClickhouseCredential"
   }
  },
  {

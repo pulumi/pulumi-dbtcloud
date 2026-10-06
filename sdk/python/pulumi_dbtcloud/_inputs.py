@@ -29,6 +29,8 @@ __all__ = [
     'GlobalConnectionAthenaArgsDict',
     'GlobalConnectionBigqueryArgs',
     'GlobalConnectionBigqueryArgsDict',
+    'GlobalConnectionClickhouseArgs',
+    'GlobalConnectionClickhouseArgsDict',
     'GlobalConnectionDatabricksArgs',
     'GlobalConnectionDatabricksArgsDict',
     'GlobalConnectionFabricArgs',
@@ -1608,6 +1610,74 @@ class GlobalConnectionBigqueryArgs:
     @use_latest_adapter.setter
     def use_latest_adapter(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_latest_adapter", value)
+
+
+class GlobalConnectionClickhouseArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    The ClickHouse Cloud endpoint URL.
+    """
+    database: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The database to connect to for this connection. Default=default
+    """
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    The port to connect to for this connection. Default=8443
+    """
+
+@pulumi.input_type
+class GlobalConnectionClickhouseArgs:
+    def __init__(__self__, *,
+                 host: pulumi.Input[_builtins.str],
+                 database: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] host: The ClickHouse Cloud endpoint URL.
+        :param pulumi.Input[_builtins.str] database: The database to connect to for this connection. Default=default
+        :param pulumi.Input[_builtins.int] port: The port to connect to for this connection. Default=8443
+        """
+        pulumi.set(__self__, "host", host)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[_builtins.str]:
+        """
+        The ClickHouse Cloud endpoint URL.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The database to connect to for this connection. Default=default
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "database", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The port to connect to for this connection. Default=8443
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "port", value)
 
 
 class GlobalConnectionDatabricksArgsDict(TypedDict):

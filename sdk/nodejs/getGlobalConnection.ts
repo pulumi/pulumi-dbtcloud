@@ -53,6 +53,10 @@ export interface GetGlobalConnectionResult {
     readonly athena: outputs.GetGlobalConnectionAthena;
     readonly bigquery: outputs.GetGlobalConnectionBigquery;
     /**
+     * ClickHouse connection configuration.
+     */
+    readonly clickhouse: outputs.GetGlobalConnectionClickhouse;
+    /**
      * Databricks connection configuration
      */
     readonly databricks: outputs.GetGlobalConnectionDatabricks;

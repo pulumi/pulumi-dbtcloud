@@ -191,6 +191,14 @@ import * as utilities from "./utilities";
  *         retries: 3,
  *     },
  * });
+ * const clickhouse = new dbtcloud.GlobalConnection("clickhouse", {
+ *     name: "My ClickHouse connection",
+ *     clickhouse: {
+ *         host: "my-clickhouse-server.com",
+ *         port: 8443,
+ *         database: "default",
+ *     },
+ * });
  * ```
  *
  * ## Import
@@ -261,6 +269,10 @@ export class GlobalConnection extends pulumi.CustomResource {
     declare public readonly athena: pulumi.Output<outputs.GlobalConnectionAthena | undefined>;
     declare public readonly bigquery: pulumi.Output<outputs.GlobalConnectionBigquery | undefined>;
     /**
+     * ClickHouse connection configuration.
+     */
+    declare public readonly clickhouse: pulumi.Output<outputs.GlobalConnectionClickhouse | undefined>;
+    /**
      * Databricks connection configuration
      */
     declare public readonly databricks: pulumi.Output<outputs.GlobalConnectionDatabricks | undefined>;
@@ -330,6 +342,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["apacheSpark"] = state?.apacheSpark;
             resourceInputs["athena"] = state?.athena;
             resourceInputs["bigquery"] = state?.bigquery;
+            resourceInputs["clickhouse"] = state?.clickhouse;
             resourceInputs["databricks"] = state?.databricks;
             resourceInputs["fabric"] = state?.fabric;
             resourceInputs["isSshTunnelEnabled"] = state?.isSshTunnelEnabled;
@@ -348,6 +361,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["apacheSpark"] = args?.apacheSpark;
             resourceInputs["athena"] = args?.athena;
             resourceInputs["bigquery"] = args?.bigquery;
+            resourceInputs["clickhouse"] = args?.clickhouse;
             resourceInputs["databricks"] = args?.databricks;
             resourceInputs["fabric"] = args?.fabric;
             resourceInputs["name"] = args?.name;
@@ -385,6 +399,10 @@ export interface GlobalConnectionState {
      */
     athena?: pulumi.Input<inputs.GlobalConnectionAthena | undefined>;
     bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery | undefined>;
+    /**
+     * ClickHouse connection configuration.
+     */
+    clickhouse?: pulumi.Input<inputs.GlobalConnectionClickhouse | undefined>;
     /**
      * Databricks connection configuration
      */
@@ -452,6 +470,10 @@ export interface GlobalConnectionArgs {
      */
     athena?: pulumi.Input<inputs.GlobalConnectionAthena | undefined>;
     bigquery?: pulumi.Input<inputs.GlobalConnectionBigquery | undefined>;
+    /**
+     * ClickHouse connection configuration.
+     */
+    clickhouse?: pulumi.Input<inputs.GlobalConnectionClickhouse | undefined>;
     /**
      * Databricks connection configuration
      */

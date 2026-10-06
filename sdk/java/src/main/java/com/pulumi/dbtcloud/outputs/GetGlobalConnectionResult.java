@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionApacheSpark;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionAthena;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionBigquery;
+import com.pulumi.dbtcloud.outputs.GetGlobalConnectionClickhouse;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionDatabricks;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionFabric;
 import com.pulumi.dbtcloud.outputs.GetGlobalConnectionPostgres;
@@ -40,6 +41,11 @@ public final class GetGlobalConnectionResult {
      */
     private GetGlobalConnectionAthena athena;
     private GetGlobalConnectionBigquery bigquery;
+    /**
+     * @return ClickHouse connection configuration.
+     * 
+     */
+    private GetGlobalConnectionClickhouse clickhouse;
     /**
      * @return Databricks connection configuration
      * 
@@ -131,6 +137,13 @@ public final class GetGlobalConnectionResult {
     }
     public GetGlobalConnectionBigquery bigquery() {
         return this.bigquery;
+    }
+    /**
+     * @return ClickHouse connection configuration.
+     * 
+     */
+    public GetGlobalConnectionClickhouse clickhouse() {
+        return this.clickhouse;
     }
     /**
      * @return Databricks connection configuration
@@ -240,6 +253,7 @@ public final class GetGlobalConnectionResult {
         private GetGlobalConnectionApacheSpark apacheSpark;
         private GetGlobalConnectionAthena athena;
         private GetGlobalConnectionBigquery bigquery;
+        private GetGlobalConnectionClickhouse clickhouse;
         private GetGlobalConnectionDatabricks databricks;
         private GetGlobalConnectionFabric fabric;
         private Integer id;
@@ -261,6 +275,7 @@ public final class GetGlobalConnectionResult {
     	      this.apacheSpark = defaults.apacheSpark;
     	      this.athena = defaults.athena;
     	      this.bigquery = defaults.bigquery;
+    	      this.clickhouse = defaults.clickhouse;
     	      this.databricks = defaults.databricks;
     	      this.fabric = defaults.fabric;
     	      this.id = defaults.id;
@@ -307,6 +322,14 @@ public final class GetGlobalConnectionResult {
               throw new MissingRequiredPropertyException("GetGlobalConnectionResult", "bigquery");
             }
             this.bigquery = bigquery;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clickhouse(GetGlobalConnectionClickhouse clickhouse) {
+            if (clickhouse == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionResult", "clickhouse");
+            }
+            this.clickhouse = clickhouse;
             return this;
         }
         @CustomType.Setter
@@ -427,6 +450,7 @@ public final class GetGlobalConnectionResult {
             _resultValue.apacheSpark = apacheSpark;
             _resultValue.athena = athena;
             _resultValue.bigquery = bigquery;
+            _resultValue.clickhouse = clickhouse;
             _resultValue.databricks = databricks;
             _resultValue.fabric = fabric;
             _resultValue.id = id;

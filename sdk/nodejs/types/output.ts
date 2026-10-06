@@ -179,6 +179,10 @@ export interface GetEnvironmentsEnvironment {
      */
     deploymentType: string;
     /**
+     * Whether dbt State is on for this environment
+     */
+    enableDbtState: boolean;
+    /**
      * Whether model query history is on
      */
     enableModelQueryHistory: boolean;
@@ -415,6 +419,21 @@ export interface GetGlobalConnectionBigquery {
      * Whether the connection uses the latest bigqueryV1 adapter (used for BQ WIF)
      */
     useLatestAdapter: boolean;
+}
+
+export interface GetGlobalConnectionClickhouse {
+    /**
+     * The database to connect to for this connection.
+     */
+    database: string;
+    /**
+     * The ClickHouse Cloud endpoint URL.
+     */
+    host: string;
+    /**
+     * The port to connect to for this connection.
+     */
+    port: number;
 }
 
 export interface GetGlobalConnectionDatabricks {
@@ -1464,6 +1483,21 @@ export interface GlobalConnectionBigquery {
      * Whether to use the latest bigqueryV1 adapter (use this for BQ WIF). If true, the `jobExecutionTimeoutSeconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
      */
     useLatestAdapter?: boolean;
+}
+
+export interface GlobalConnectionClickhouse {
+    /**
+     * The database to connect to for this connection. Default=default
+     */
+    database: string;
+    /**
+     * The ClickHouse Cloud endpoint URL.
+     */
+    host: string;
+    /**
+     * The port to connect to for this connection. Default=8443
+     */
+    port: number;
 }
 
 export interface GlobalConnectionDatabricks {
