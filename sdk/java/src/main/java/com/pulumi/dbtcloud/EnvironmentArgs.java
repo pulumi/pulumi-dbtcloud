@@ -94,6 +94,21 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = [&#34;inheritEnvironment&#34;]`.
+     * 
+     */
+    @Import(name="enableDbtState")
+    private @Nullable Output<Boolean> enableDbtState;
+
+    /**
+     * @return Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = [&#34;inheritEnvironment&#34;]`.
+     * 
+     */
+    public Optional<Output<Boolean>> enableDbtState() {
+        return Optional.ofNullable(this.enableDbtState);
+    }
+
+    /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      * 
      */
@@ -221,6 +236,7 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
         this.customBranch = $.customBranch;
         this.dbtVersion = $.dbtVersion;
         this.deploymentType = $.deploymentType;
+        this.enableDbtState = $.enableDbtState;
         this.enableModelQueryHistory = $.enableModelQueryHistory;
         this.extendedAttributesId = $.extendedAttributesId;
         this.isActive = $.isActive;
@@ -352,6 +368,27 @@ public final class EnvironmentArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder deploymentType(String deploymentType) {
             return deploymentType(Output.of(deploymentType));
+        }
+
+        /**
+         * @param enableDbtState Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = [&#34;inheritEnvironment&#34;]`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableDbtState(@Nullable Output<Boolean> enableDbtState) {
+            $.enableDbtState = enableDbtState;
+            return this;
+        }
+
+        /**
+         * @param enableDbtState Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = [&#34;inheritEnvironment&#34;]`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableDbtState(Boolean enableDbtState) {
+            return enableDbtState(Output.of(enableDbtState));
         }
 
         /**

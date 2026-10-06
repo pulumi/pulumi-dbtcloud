@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionApacheSparkArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionAthenaArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionBigqueryArgs;
+import com.pulumi.dbtcloud.inputs.GlobalConnectionClickhouseArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionDatabricksArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionFabricArgs;
 import com.pulumi.dbtcloud.inputs.GlobalConnectionPostgresArgs;
@@ -63,6 +64,21 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
 
     public Optional<Output<GlobalConnectionBigqueryArgs>> bigquery() {
         return Optional.ofNullable(this.bigquery);
+    }
+
+    /**
+     * ClickHouse connection configuration.
+     * 
+     */
+    @Import(name="clickhouse")
+    private @Nullable Output<GlobalConnectionClickhouseArgs> clickhouse;
+
+    /**
+     * @return ClickHouse connection configuration.
+     * 
+     */
+    public Optional<Output<GlobalConnectionClickhouseArgs>> clickhouse() {
+        return Optional.ofNullable(this.clickhouse);
     }
 
     /**
@@ -251,6 +267,7 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
         this.apacheSpark = $.apacheSpark;
         this.athena = $.athena;
         this.bigquery = $.bigquery;
+        this.clickhouse = $.clickhouse;
         this.databricks = $.databricks;
         this.fabric = $.fabric;
         this.name = $.name;
@@ -332,6 +349,27 @@ public final class GlobalConnectionArgs extends com.pulumi.resources.ResourceArg
 
         public Builder bigquery(GlobalConnectionBigqueryArgs bigquery) {
             return bigquery(Output.of(bigquery));
+        }
+
+        /**
+         * @param clickhouse ClickHouse connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clickhouse(@Nullable Output<GlobalConnectionClickhouseArgs> clickhouse) {
+            $.clickhouse = clickhouse;
+            return this;
+        }
+
+        /**
+         * @param clickhouse ClickHouse connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clickhouse(GlobalConnectionClickhouseArgs clickhouse) {
+            return clickhouse(Output.of(clickhouse));
         }
 
         /**

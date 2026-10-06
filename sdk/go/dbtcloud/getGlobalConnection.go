@@ -61,6 +61,8 @@ type LookupGlobalConnectionResult struct {
 	// Athena connection configuration.
 	Athena   GetGlobalConnectionAthena   `pulumi:"athena"`
 	Bigquery GetGlobalConnectionBigquery `pulumi:"bigquery"`
+	// ClickHouse connection configuration.
+	Clickhouse GetGlobalConnectionClickhouse `pulumi:"clickhouse"`
 	// Databricks connection configuration
 	Databricks GetGlobalConnectionDatabricks `pulumi:"databricks"`
 	// Microsoft Fabric connection configuration.
@@ -137,6 +139,11 @@ func (o LookupGlobalConnectionResultOutput) Athena() GetGlobalConnectionAthenaOu
 
 func (o LookupGlobalConnectionResultOutput) Bigquery() GetGlobalConnectionBigqueryOutput {
 	return o.ApplyT(func(v LookupGlobalConnectionResult) GetGlobalConnectionBigquery { return v.Bigquery }).(GetGlobalConnectionBigqueryOutput)
+}
+
+// ClickHouse connection configuration.
+func (o LookupGlobalConnectionResultOutput) Clickhouse() GetGlobalConnectionClickhouseOutput {
+	return o.ApplyT(func(v LookupGlobalConnectionResult) GetGlobalConnectionClickhouse { return v.Clickhouse }).(GetGlobalConnectionClickhouseOutput)
 }
 
 // Databricks connection configuration

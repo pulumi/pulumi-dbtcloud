@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  * |Cost Management admin | cost_management_admin|
  * |Database Admin | database_admin|
  * |Developer | developer|
- * |Fusion Admin | fusion_admin|
  * |Git Admin | git_admin|
  * |Job Admin | job_admin|
  * |Job Creator | job_creator|
@@ -41,6 +40,7 @@ import * as utilities from "./utilities";
  * |Semantic Layer Only | semantic_layer_only|
  * |Stakeholder | stakeholder|
  * |Team Admin | team_admin|
+ * |v2 Migration Admin | fusion_admin|
  * |Webhooks Only | webhooks_only|
  *
  * Provide a complete set of permissions for a group. This is different from `dbtcloud.GroupPartialPermissions`.

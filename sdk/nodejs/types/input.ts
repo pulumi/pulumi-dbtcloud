@@ -469,6 +469,21 @@ export interface GlobalConnectionBigquery {
     useLatestAdapter?: pulumi.Input<boolean | undefined>;
 }
 
+export interface GlobalConnectionClickhouse {
+    /**
+     * The database to connect to for this connection. Default=default
+     */
+    database?: pulumi.Input<string | undefined>;
+    /**
+     * The ClickHouse Cloud endpoint URL.
+     */
+    host: pulumi.Input<string>;
+    /**
+     * The port to connect to for this connection. Default=8443
+     */
+    port?: pulumi.Input<number | undefined>;
+}
+
 export interface GlobalConnectionDatabricks {
     /**
      * Catalog name if Unity Catalog is enabled in your Databricks workspace.

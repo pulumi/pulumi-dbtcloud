@@ -24,6 +24,7 @@ class GlobalConnectionArgs:
                  apache_spark: pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']] = None,
                  athena: pulumi.Input[Optional['GlobalConnectionAthenaArgs']] = None,
                  bigquery: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']] = None,
+                 clickhouse: pulumi.Input[Optional['GlobalConnectionClickhouseArgs']] = None,
                  databricks: pulumi.Input[Optional['GlobalConnectionDatabricksArgs']] = None,
                  fabric: pulumi.Input[Optional['GlobalConnectionFabricArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -41,6 +42,7 @@ class GlobalConnectionArgs:
 
         :param pulumi.Input['GlobalConnectionApacheSparkArgs'] apache_spark: Apache Spark connection configuration.
         :param pulumi.Input['GlobalConnectionAthenaArgs'] athena: Athena connection configuration.
+        :param pulumi.Input['GlobalConnectionClickhouseArgs'] clickhouse: ClickHouse connection configuration.
         :param pulumi.Input['GlobalConnectionDatabricksArgs'] databricks: Databricks connection configuration
         :param pulumi.Input['GlobalConnectionFabricArgs'] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.str] name: Connection name
@@ -60,6 +62,8 @@ class GlobalConnectionArgs:
             pulumi.set(__self__, "athena", athena)
         if bigquery is not None:
             pulumi.set(__self__, "bigquery", bigquery)
+        if clickhouse is not None:
+            pulumi.set(__self__, "clickhouse", clickhouse)
         if databricks is not None:
             pulumi.set(__self__, "databricks", databricks)
         if fabric is not None:
@@ -117,6 +121,18 @@ class GlobalConnectionArgs:
     @bigquery.setter
     def bigquery(self, value: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']]):
         pulumi.set(self, "bigquery", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def clickhouse(self) -> pulumi.Input[Optional['GlobalConnectionClickhouseArgs']]:
+        """
+        ClickHouse connection configuration.
+        """
+        return pulumi.get(self, "clickhouse")
+
+    @clickhouse.setter
+    def clickhouse(self, value: pulumi.Input[Optional['GlobalConnectionClickhouseArgs']]):
+        pulumi.set(self, "clickhouse", value)
 
     @_builtins.property
     @pulumi.getter
@@ -270,6 +286,7 @@ class _GlobalConnectionState:
                  apache_spark: pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']] = None,
                  athena: pulumi.Input[Optional['GlobalConnectionAthenaArgs']] = None,
                  bigquery: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']] = None,
+                 clickhouse: pulumi.Input[Optional['GlobalConnectionClickhouseArgs']] = None,
                  databricks: pulumi.Input[Optional['GlobalConnectionDatabricksArgs']] = None,
                  fabric: pulumi.Input[Optional['GlobalConnectionFabricArgs']] = None,
                  is_ssh_tunnel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -289,6 +306,7 @@ class _GlobalConnectionState:
         :param pulumi.Input[_builtins.str] adapter_version: Version of the adapter
         :param pulumi.Input['GlobalConnectionApacheSparkArgs'] apache_spark: Apache Spark connection configuration.
         :param pulumi.Input['GlobalConnectionAthenaArgs'] athena: Athena connection configuration.
+        :param pulumi.Input['GlobalConnectionClickhouseArgs'] clickhouse: ClickHouse connection configuration.
         :param pulumi.Input['GlobalConnectionDatabricksArgs'] databricks: Databricks connection configuration
         :param pulumi.Input['GlobalConnectionFabricArgs'] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
@@ -311,6 +329,8 @@ class _GlobalConnectionState:
             pulumi.set(__self__, "athena", athena)
         if bigquery is not None:
             pulumi.set(__self__, "bigquery", bigquery)
+        if clickhouse is not None:
+            pulumi.set(__self__, "clickhouse", clickhouse)
         if databricks is not None:
             pulumi.set(__self__, "databricks", databricks)
         if fabric is not None:
@@ -382,6 +402,18 @@ class _GlobalConnectionState:
     @bigquery.setter
     def bigquery(self, value: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']]):
         pulumi.set(self, "bigquery", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def clickhouse(self) -> pulumi.Input[Optional['GlobalConnectionClickhouseArgs']]:
+        """
+        ClickHouse connection configuration.
+        """
+        return pulumi.get(self, "clickhouse")
+
+    @clickhouse.setter
+    def clickhouse(self, value: pulumi.Input[Optional['GlobalConnectionClickhouseArgs']]):
+        pulumi.set(self, "clickhouse", value)
 
     @_builtins.property
     @pulumi.getter
@@ -549,6 +581,7 @@ class GlobalConnection(pulumi.CustomResource):
                  apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
                  athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
                  bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
+                 clickhouse: pulumi.Input[Optional[Union['GlobalConnectionClickhouseArgs', 'GlobalConnectionClickhouseArgsDict', 'outputs.GlobalConnectionClickhouse']]] = None,
                  databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']]] = None,
                  fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -731,6 +764,13 @@ class GlobalConnection(pulumi.CustomResource):
                 "request_timeout": 600,
                 "retries": 3,
             })
+        clickhouse = dbtcloud.GlobalConnection("clickhouse",
+            name="My ClickHouse connection",
+            clickhouse={
+                "host": "my-clickhouse-server.com",
+                "port": 8443,
+                "database": "default",
+            })
         ```
 
         ## Import
@@ -764,6 +804,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']] apache_spark: Apache Spark connection configuration.
         :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']] athena: Athena connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionClickhouseArgs', 'GlobalConnectionClickhouseArgsDict', 'outputs.GlobalConnectionClickhouse']] clickhouse: ClickHouse connection configuration.
         :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']] databricks: Databricks connection configuration
         :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.str] name: Connection name
@@ -952,6 +993,13 @@ class GlobalConnection(pulumi.CustomResource):
                 "request_timeout": 600,
                 "retries": 3,
             })
+        clickhouse = dbtcloud.GlobalConnection("clickhouse",
+            name="My ClickHouse connection",
+            clickhouse={
+                "host": "my-clickhouse-server.com",
+                "port": 8443,
+                "database": "default",
+            })
         ```
 
         ## Import
@@ -999,6 +1047,7 @@ class GlobalConnection(pulumi.CustomResource):
                  apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
                  athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
                  bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
+                 clickhouse: pulumi.Input[Optional[Union['GlobalConnectionClickhouseArgs', 'GlobalConnectionClickhouseArgsDict', 'outputs.GlobalConnectionClickhouse']]] = None,
                  databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']]] = None,
                  fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1023,6 +1072,7 @@ class GlobalConnection(pulumi.CustomResource):
             __props__.__dict__["apache_spark"] = apache_spark
             __props__.__dict__["athena"] = athena
             __props__.__dict__["bigquery"] = bigquery
+            __props__.__dict__["clickhouse"] = clickhouse
             __props__.__dict__["databricks"] = databricks
             __props__.__dict__["fabric"] = fabric
             __props__.__dict__["name"] = name
@@ -1051,6 +1101,7 @@ class GlobalConnection(pulumi.CustomResource):
             apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
             athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
             bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
+            clickhouse: pulumi.Input[Optional[Union['GlobalConnectionClickhouseArgs', 'GlobalConnectionClickhouseArgsDict', 'outputs.GlobalConnectionClickhouse']]] = None,
             databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']]] = None,
             fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']]] = None,
             is_ssh_tunnel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1074,6 +1125,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] adapter_version: Version of the adapter
         :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']] apache_spark: Apache Spark connection configuration.
         :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']] athena: Athena connection configuration.
+        :param pulumi.Input[Union['GlobalConnectionClickhouseArgs', 'GlobalConnectionClickhouseArgsDict', 'outputs.GlobalConnectionClickhouse']] clickhouse: ClickHouse connection configuration.
         :param pulumi.Input[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']] databricks: Databricks connection configuration
         :param pulumi.Input[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']] fabric: Microsoft Fabric connection configuration.
         :param pulumi.Input[_builtins.bool] is_ssh_tunnel_enabled: Whether the connection can use an SSH tunnel
@@ -1096,6 +1148,7 @@ class GlobalConnection(pulumi.CustomResource):
         __props__.__dict__["apache_spark"] = apache_spark
         __props__.__dict__["athena"] = athena
         __props__.__dict__["bigquery"] = bigquery
+        __props__.__dict__["clickhouse"] = clickhouse
         __props__.__dict__["databricks"] = databricks
         __props__.__dict__["fabric"] = fabric
         __props__.__dict__["is_ssh_tunnel_enabled"] = is_ssh_tunnel_enabled
@@ -1139,6 +1192,14 @@ class GlobalConnection(pulumi.CustomResource):
     @pulumi.getter
     def bigquery(self) -> pulumi.Output[Optional['outputs.GlobalConnectionBigquery']]:
         return pulumi.get(self, "bigquery")
+
+    @_builtins.property
+    @pulumi.getter
+    def clickhouse(self) -> pulumi.Output[Optional['outputs.GlobalConnectionClickhouse']]:
+        """
+        ClickHouse connection configuration.
+        """
+        return pulumi.get(self, "clickhouse")
 
     @_builtins.property
     @pulumi.getter

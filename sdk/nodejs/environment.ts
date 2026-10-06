@@ -122,6 +122,10 @@ export class Environment extends pulumi.CustomResource {
      */
     declare public readonly deploymentType: pulumi.Output<string | undefined>;
     /**
+     * Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+     */
+    declare public readonly enableDbtState: pulumi.Output<boolean>;
+    /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      */
     declare public readonly enableModelQueryHistory: pulumi.Output<boolean>;
@@ -176,6 +180,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["customBranch"] = state?.customBranch;
             resourceInputs["dbtVersion"] = state?.dbtVersion;
             resourceInputs["deploymentType"] = state?.deploymentType;
+            resourceInputs["enableDbtState"] = state?.enableDbtState;
             resourceInputs["enableModelQueryHistory"] = state?.enableModelQueryHistory;
             resourceInputs["environmentId"] = state?.environmentId;
             resourceInputs["extendedAttributesId"] = state?.extendedAttributesId;
@@ -198,6 +203,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["customBranch"] = args?.customBranch;
             resourceInputs["dbtVersion"] = args?.dbtVersion;
             resourceInputs["deploymentType"] = args?.deploymentType;
+            resourceInputs["enableDbtState"] = args?.enableDbtState;
             resourceInputs["enableModelQueryHistory"] = args?.enableModelQueryHistory;
             resourceInputs["extendedAttributesId"] = args?.extendedAttributesId;
             resourceInputs["isActive"] = args?.isActive;
@@ -237,6 +243,10 @@ export interface EnvironmentState {
      * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string | undefined>;
+    /**
+     * Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+     */
+    enableDbtState?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      */
@@ -299,6 +309,10 @@ export interface EnvironmentArgs {
      * The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
      */
     deploymentType?: pulumi.Input<string | undefined>;
+    /**
+     * Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = ["inheritEnvironment"]`.
+     */
+    enableDbtState?: pulumi.Input<boolean | undefined>;
     /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      */

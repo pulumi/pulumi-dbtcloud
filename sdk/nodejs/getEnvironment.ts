@@ -54,6 +54,10 @@ export interface GetEnvironmentResult {
      */
     readonly deploymentType: string;
     /**
+     * Whether dbt State is on for this environment
+     */
+    readonly enableDbtState: boolean;
+    /**
      * Whether model query history is on
      */
     readonly enableModelQueryHistory: boolean;

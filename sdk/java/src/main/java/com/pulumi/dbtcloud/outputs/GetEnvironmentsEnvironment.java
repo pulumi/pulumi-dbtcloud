@@ -38,6 +38,11 @@ public final class GetEnvironmentsEnvironment {
      */
     private String deploymentType;
     /**
+     * @return Whether dbt State is on for this environment
+     * 
+     */
+    private Boolean enableDbtState;
+    /**
      * @return Whether model query history is on
      * 
      */
@@ -115,6 +120,13 @@ public final class GetEnvironmentsEnvironment {
         return this.deploymentType;
     }
     /**
+     * @return Whether dbt State is on for this environment
+     * 
+     */
+    public Boolean enableDbtState() {
+        return this.enableDbtState;
+    }
+    /**
      * @return Whether model query history is on
      * 
      */
@@ -185,6 +197,7 @@ public final class GetEnvironmentsEnvironment {
         private String customBranch;
         private String dbtVersion;
         private String deploymentType;
+        private Boolean enableDbtState;
         private Boolean enableModelQueryHistory;
         private Integer environmentId;
         private Integer extendedAttributesId;
@@ -201,6 +214,7 @@ public final class GetEnvironmentsEnvironment {
     	      this.customBranch = defaults.customBranch;
     	      this.dbtVersion = defaults.dbtVersion;
     	      this.deploymentType = defaults.deploymentType;
+    	      this.enableDbtState = defaults.enableDbtState;
     	      this.enableModelQueryHistory = defaults.enableModelQueryHistory;
     	      this.environmentId = defaults.environmentId;
     	      this.extendedAttributesId = defaults.extendedAttributesId;
@@ -249,6 +263,14 @@ public final class GetEnvironmentsEnvironment {
               throw new MissingRequiredPropertyException("GetEnvironmentsEnvironment", "deploymentType");
             }
             this.deploymentType = deploymentType;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder enableDbtState(Boolean enableDbtState) {
+            if (enableDbtState == null) {
+              throw new MissingRequiredPropertyException("GetEnvironmentsEnvironment", "enableDbtState");
+            }
+            this.enableDbtState = enableDbtState;
             return this;
         }
         @CustomType.Setter
@@ -322,6 +344,7 @@ public final class GetEnvironmentsEnvironment {
             _resultValue.customBranch = customBranch;
             _resultValue.dbtVersion = dbtVersion;
             _resultValue.deploymentType = deploymentType;
+            _resultValue.enableDbtState = enableDbtState;
             _resultValue.enableModelQueryHistory = enableModelQueryHistory;
             _resultValue.environmentId = environmentId;
             _resultValue.extendedAttributesId = extendedAttributesId;

@@ -25,6 +25,10 @@
                 "current": "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential",
                 "majorVersion": 1
             },
+            "dbtcloud_clickhouse_credential": {
+                "current": "dbtcloud:index/clickhouseCredential:ClickhouseCredential",
+                "majorVersion": 1
+            },
             "dbtcloud_connection_catalog_config": {
                 "current": "dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig",
                 "majorVersion": 1,
@@ -461,6 +465,10 @@
                 "current": "dbtcloud:index/getBigQueryCredential:getBigQueryCredential",
                 "majorVersion": 1
             },
+            "dbtcloud_clickhouse_credential": {
+                "current": "dbtcloud:index/getClickhouseCredential:getClickhouseCredential",
+                "majorVersion": 1
+            },
             "dbtcloud_databricks_credential": {
                 "current": "dbtcloud:index/getDatabricksCredential:getDatabricksCredential",
                 "majorVersion": 1
@@ -799,6 +807,7 @@
                     "kind": "missing"
                 }
             },
+            "dbtcloud_clickhouse_credential": {},
             "dbtcloud_connection_catalog_config": {},
             "dbtcloud_databricks_credential": {},
             "dbtcloud_databricks_platform_metadata_credential": {},

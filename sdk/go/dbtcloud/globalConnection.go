@@ -248,6 +248,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = dbtcloud.NewGlobalConnection(ctx, "clickhouse", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("My ClickHouse connection"),
+//				Clickhouse: &dbtcloud.GlobalConnectionClickhouseArgs{
+//					Host:     pulumi.String("my-clickhouse-server.com"),
+//					Port:     pulumi.Int(8443),
+//					Database: pulumi.String("default"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -289,6 +300,8 @@ type GlobalConnection struct {
 	// Athena connection configuration.
 	Athena   GlobalConnectionAthenaPtrOutput   `pulumi:"athena"`
 	Bigquery GlobalConnectionBigqueryPtrOutput `pulumi:"bigquery"`
+	// ClickHouse connection configuration.
+	Clickhouse GlobalConnectionClickhousePtrOutput `pulumi:"clickhouse"`
 	// Databricks connection configuration
 	Databricks GlobalConnectionDatabricksPtrOutput `pulumi:"databricks"`
 	// Microsoft Fabric connection configuration.
@@ -354,6 +367,8 @@ type globalConnectionState struct {
 	// Athena connection configuration.
 	Athena   *GlobalConnectionAthena   `pulumi:"athena"`
 	Bigquery *GlobalConnectionBigquery `pulumi:"bigquery"`
+	// ClickHouse connection configuration.
+	Clickhouse *GlobalConnectionClickhouse `pulumi:"clickhouse"`
 	// Databricks connection configuration
 	Databricks *GlobalConnectionDatabricks `pulumi:"databricks"`
 	// Microsoft Fabric connection configuration.
@@ -390,6 +405,8 @@ type GlobalConnectionState struct {
 	// Athena connection configuration.
 	Athena   GlobalConnectionAthenaPtrInput
 	Bigquery GlobalConnectionBigqueryPtrInput
+	// ClickHouse connection configuration.
+	Clickhouse GlobalConnectionClickhousePtrInput
 	// Databricks connection configuration
 	Databricks GlobalConnectionDatabricksPtrInput
 	// Microsoft Fabric connection configuration.
@@ -428,6 +445,8 @@ type globalConnectionArgs struct {
 	// Athena connection configuration.
 	Athena   *GlobalConnectionAthena   `pulumi:"athena"`
 	Bigquery *GlobalConnectionBigquery `pulumi:"bigquery"`
+	// ClickHouse connection configuration.
+	Clickhouse *GlobalConnectionClickhouse `pulumi:"clickhouse"`
 	// Databricks connection configuration
 	Databricks *GlobalConnectionDatabricks `pulumi:"databricks"`
 	// Microsoft Fabric connection configuration.
@@ -461,6 +480,8 @@ type GlobalConnectionArgs struct {
 	// Athena connection configuration.
 	Athena   GlobalConnectionAthenaPtrInput
 	Bigquery GlobalConnectionBigqueryPtrInput
+	// ClickHouse connection configuration.
+	Clickhouse GlobalConnectionClickhousePtrInput
 	// Databricks connection configuration
 	Databricks GlobalConnectionDatabricksPtrInput
 	// Microsoft Fabric connection configuration.
@@ -591,6 +612,11 @@ func (o GlobalConnectionOutput) Athena() GlobalConnectionAthenaPtrOutput {
 
 func (o GlobalConnectionOutput) Bigquery() GlobalConnectionBigqueryPtrOutput {
 	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionBigqueryPtrOutput { return v.Bigquery }).(GlobalConnectionBigqueryPtrOutput)
+}
+
+// ClickHouse connection configuration.
+func (o GlobalConnectionOutput) Clickhouse() GlobalConnectionClickhousePtrOutput {
+	return o.ApplyT(func(v *GlobalConnection) GlobalConnectionClickhousePtrOutput { return v.Clickhouse }).(GlobalConnectionClickhousePtrOutput)
 }
 
 // Databricks connection configuration

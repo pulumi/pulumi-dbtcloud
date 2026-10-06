@@ -184,6 +184,20 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.deploymentType);
     }
     /**
+     * Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = [&#34;inheritEnvironment&#34;]`.
+     * 
+     */
+    @Export(name="enableDbtState", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> enableDbtState;
+
+    /**
+     * @return Whether to enable dbt State in this environment. A job inherits it with `costOptimizationFeatures = [&#34;inheritEnvironment&#34;]`.
+     * 
+     */
+    public Output<Boolean> enableDbtState() {
+        return this.enableDbtState;
+    }
+    /**
      * Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
      * 
      */

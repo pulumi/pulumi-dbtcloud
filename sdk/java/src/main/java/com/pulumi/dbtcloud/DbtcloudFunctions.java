@@ -16,6 +16,8 @@ import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryArgs;
 import com.pulumi.dbtcloud.inputs.GetAzureDevOpsRepositoryPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetBigQueryCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetBigQueryCredentialPlainArgs;
+import com.pulumi.dbtcloud.inputs.GetClickhouseCredentialArgs;
+import com.pulumi.dbtcloud.inputs.GetClickhouseCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetDatabricksCredentialArgs;
 import com.pulumi.dbtcloud.inputs.GetDatabricksCredentialPlainArgs;
 import com.pulumi.dbtcloud.inputs.GetEnvironmentArgs;
@@ -86,6 +88,7 @@ import com.pulumi.dbtcloud.outputs.GetAthenaCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetAzureDevOpsProjectResult;
 import com.pulumi.dbtcloud.outputs.GetAzureDevOpsRepositoryResult;
 import com.pulumi.dbtcloud.outputs.GetBigQueryCredentialResult;
+import com.pulumi.dbtcloud.outputs.GetClickhouseCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetDatabricksCredentialResult;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentResult;
 import com.pulumi.dbtcloud.outputs.GetEnvironmentVariableResult;
@@ -1094,6 +1097,41 @@ public final class DbtcloudFunctions {
      */
     public static CompletableFuture<GetBigQueryCredentialResult> getBigQueryCredentialPlain(GetBigQueryCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("dbtcloud:index/getBigQueryCredential:getBigQueryCredential", TypeShape.of(GetBigQueryCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ClickHouse credential data source
+     * 
+     */
+    public static Output<GetClickhouseCredentialResult> getClickhouseCredential(GetClickhouseCredentialArgs args) {
+        return getClickhouseCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * ClickHouse credential data source
+     * 
+     */
+    public static CompletableFuture<GetClickhouseCredentialResult> getClickhouseCredentialPlain(GetClickhouseCredentialPlainArgs args) {
+        return getClickhouseCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ClickHouse credential data source
+     * 
+     */
+    public static Output<GetClickhouseCredentialResult> getClickhouseCredential(GetClickhouseCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getClickhouseCredential:getClickhouseCredential", TypeShape.of(GetClickhouseCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ClickHouse credential data source
+     * 
+     */
+    public static Output<GetClickhouseCredentialResult> getClickhouseCredential(GetClickhouseCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("dbtcloud:index/getClickhouseCredential:getClickhouseCredential", TypeShape.of(GetClickhouseCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ClickHouse credential data source
+     * 
+     */
+    public static CompletableFuture<GetClickhouseCredentialResult> getClickhouseCredentialPlain(GetClickhouseCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("dbtcloud:index/getClickhouseCredential:getClickhouseCredential", TypeShape.of(GetClickhouseCredentialResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Databricks credential data source

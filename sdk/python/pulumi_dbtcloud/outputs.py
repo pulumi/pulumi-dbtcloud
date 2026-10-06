@@ -23,6 +23,7 @@ __all__ = [
     'GlobalConnectionApacheSpark',
     'GlobalConnectionAthena',
     'GlobalConnectionBigquery',
+    'GlobalConnectionClickhouse',
     'GlobalConnectionDatabricks',
     'GlobalConnectionFabric',
     'GlobalConnectionPostgres',
@@ -56,6 +57,7 @@ __all__ = [
     'GetGlobalConnectionApacheSparkResult',
     'GetGlobalConnectionAthenaResult',
     'GetGlobalConnectionBigqueryResult',
+    'GetGlobalConnectionClickhouseResult',
     'GetGlobalConnectionDatabricksResult',
     'GetGlobalConnectionFabricResult',
     'GetGlobalConnectionPostgresResult',
@@ -1219,6 +1221,48 @@ class GlobalConnectionBigquery(dict):
         Whether to use the latest bigquery_v1 adapter (use this for BQ WIF). If true, the `job_execution_timeout_seconds` field will be used. Warning! changing the adapter version (from legacy to latest or vice versa) is not supported.
         """
         return pulumi.get(self, "use_latest_adapter")
+
+
+@pulumi.output_type
+class GlobalConnectionClickhouse(dict):
+    def __init__(__self__, *,
+                 host: _builtins.str,
+                 database: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str host: The ClickHouse Cloud endpoint URL.
+        :param _builtins.str database: The database to connect to for this connection. Default=default
+        :param _builtins.int port: The port to connect to for this connection. Default=8443
+        """
+        pulumi.set(__self__, "host", host)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The ClickHouse Cloud endpoint URL.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> Optional[_builtins.str]:
+        """
+        The database to connect to for this connection. Default=default
+        """
+        return pulumi.get(self, "database")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        The port to connect to for this connection. Default=8443
+        """
+        return pulumi.get(self, "port")
 
 
 @pulumi.output_type
@@ -3881,6 +3925,7 @@ class GetEnvironmentsEnvironmentResult(dict):
                  custom_branch: _builtins.str,
                  dbt_version: _builtins.str,
                  deployment_type: _builtins.str,
+                 enable_dbt_state: _builtins.bool,
                  enable_model_query_history: _builtins.bool,
                  environment_id: _builtins.int,
                  extended_attributes_id: _builtins.int,
@@ -3895,6 +3940,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         :param _builtins.str custom_branch: The custom branch name to use
         :param _builtins.str dbt_version: Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
         :param _builtins.str deployment_type: The type of deployment environment (currently 'production', 'staging' or empty)
+        :param _builtins.bool enable_dbt_state: Whether dbt State is on for this environment
         :param _builtins.bool enable_model_query_history: Whether model query history is on
         :param _builtins.int environment_id: The ID of the environment
         :param _builtins.int extended_attributes_id: The ID of the extended attributes applied
@@ -3909,6 +3955,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         pulumi.set(__self__, "custom_branch", custom_branch)
         pulumi.set(__self__, "dbt_version", dbt_version)
         pulumi.set(__self__, "deployment_type", deployment_type)
+        pulumi.set(__self__, "enable_dbt_state", enable_dbt_state)
         pulumi.set(__self__, "enable_model_query_history", enable_model_query_history)
         pulumi.set(__self__, "environment_id", environment_id)
         pulumi.set(__self__, "extended_attributes_id", extended_attributes_id)
@@ -3957,6 +4004,14 @@ class GetEnvironmentsEnvironmentResult(dict):
         The type of deployment environment (currently 'production', 'staging' or empty)
         """
         return pulumi.get(self, "deployment_type")
+
+    @_builtins.property
+    @pulumi.getter(name="enableDbtState")
+    def enable_dbt_state(self) -> _builtins.bool:
+        """
+        Whether dbt State is on for this environment
+        """
+        return pulumi.get(self, "enable_dbt_state")
 
     @_builtins.property
     @pulumi.getter(name="enableModelQueryHistory")
@@ -4581,6 +4636,46 @@ class GetGlobalConnectionBigqueryResult(dict):
         Whether the connection uses the latest bigquery_v1 adapter (used for BQ WIF)
         """
         return pulumi.get(self, "use_latest_adapter")
+
+
+@pulumi.output_type
+class GetGlobalConnectionClickhouseResult(dict):
+    def __init__(__self__, *,
+                 database: _builtins.str,
+                 host: _builtins.str,
+                 port: _builtins.int):
+        """
+        :param _builtins.str database: The database to connect to for this connection.
+        :param _builtins.str host: The ClickHouse Cloud endpoint URL.
+        :param _builtins.int port: The port to connect to for this connection.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> _builtins.str:
+        """
+        The database to connect to for this connection.
+        """
+        return pulumi.get(self, "database")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> _builtins.str:
+        """
+        The ClickHouse Cloud endpoint URL.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        The port to connect to for this connection.
+        """
+        return pulumi.get(self, "port")
 
 
 @pulumi.output_type

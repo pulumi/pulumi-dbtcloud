@@ -2246,6 +2246,181 @@ func (o GlobalConnectionBigqueryPtrOutput) UseLatestAdapter() pulumi.BoolPtrOutp
 	}).(pulumi.BoolPtrOutput)
 }
 
+type GlobalConnectionClickhouse struct {
+	// The database to connect to for this connection. Default=default
+	Database *string `pulumi:"database"`
+	// The ClickHouse Cloud endpoint URL.
+	Host string `pulumi:"host"`
+	// The port to connect to for this connection. Default=8443
+	Port *int `pulumi:"port"`
+}
+
+// GlobalConnectionClickhouseInput is an input type that accepts GlobalConnectionClickhouseArgs and GlobalConnectionClickhouseOutput values.
+// You can construct a concrete instance of `GlobalConnectionClickhouseInput` via:
+//
+//	GlobalConnectionClickhouseArgs{...}
+type GlobalConnectionClickhouseInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionClickhouseOutput() GlobalConnectionClickhouseOutput
+	ToGlobalConnectionClickhouseOutputWithContext(context.Context) GlobalConnectionClickhouseOutput
+}
+
+type GlobalConnectionClickhouseArgs struct {
+	// The database to connect to for this connection. Default=default
+	Database pulumi.StringPtrInput `pulumi:"database"`
+	// The ClickHouse Cloud endpoint URL.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The port to connect to for this connection. Default=8443
+	Port pulumi.IntPtrInput `pulumi:"port"`
+}
+
+func (GlobalConnectionClickhouseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionClickhouse)(nil)).Elem()
+}
+
+func (i GlobalConnectionClickhouseArgs) ToGlobalConnectionClickhouseOutput() GlobalConnectionClickhouseOutput {
+	return i.ToGlobalConnectionClickhouseOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionClickhouseArgs) ToGlobalConnectionClickhouseOutputWithContext(ctx context.Context) GlobalConnectionClickhouseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionClickhouseOutput)
+}
+
+func (i GlobalConnectionClickhouseArgs) ToGlobalConnectionClickhousePtrOutput() GlobalConnectionClickhousePtrOutput {
+	return i.ToGlobalConnectionClickhousePtrOutputWithContext(context.Background())
+}
+
+func (i GlobalConnectionClickhouseArgs) ToGlobalConnectionClickhousePtrOutputWithContext(ctx context.Context) GlobalConnectionClickhousePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionClickhouseOutput).ToGlobalConnectionClickhousePtrOutputWithContext(ctx)
+}
+
+// GlobalConnectionClickhousePtrInput is an input type that accepts GlobalConnectionClickhouseArgs, GlobalConnectionClickhousePtr and GlobalConnectionClickhousePtrOutput values.
+// You can construct a concrete instance of `GlobalConnectionClickhousePtrInput` via:
+//
+//	        GlobalConnectionClickhouseArgs{...}
+//
+//	or:
+//
+//	        nil
+type GlobalConnectionClickhousePtrInput interface {
+	pulumi.Input
+
+	ToGlobalConnectionClickhousePtrOutput() GlobalConnectionClickhousePtrOutput
+	ToGlobalConnectionClickhousePtrOutputWithContext(context.Context) GlobalConnectionClickhousePtrOutput
+}
+
+type globalConnectionClickhousePtrType GlobalConnectionClickhouseArgs
+
+func GlobalConnectionClickhousePtr(v *GlobalConnectionClickhouseArgs) GlobalConnectionClickhousePtrInput {
+	return (*globalConnectionClickhousePtrType)(v)
+}
+
+func (*globalConnectionClickhousePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionClickhouse)(nil)).Elem()
+}
+
+func (i *globalConnectionClickhousePtrType) ToGlobalConnectionClickhousePtrOutput() GlobalConnectionClickhousePtrOutput {
+	return i.ToGlobalConnectionClickhousePtrOutputWithContext(context.Background())
+}
+
+func (i *globalConnectionClickhousePtrType) ToGlobalConnectionClickhousePtrOutputWithContext(ctx context.Context) GlobalConnectionClickhousePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalConnectionClickhousePtrOutput)
+}
+
+type GlobalConnectionClickhouseOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionClickhouseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalConnectionClickhouse)(nil)).Elem()
+}
+
+func (o GlobalConnectionClickhouseOutput) ToGlobalConnectionClickhouseOutput() GlobalConnectionClickhouseOutput {
+	return o
+}
+
+func (o GlobalConnectionClickhouseOutput) ToGlobalConnectionClickhouseOutputWithContext(ctx context.Context) GlobalConnectionClickhouseOutput {
+	return o
+}
+
+func (o GlobalConnectionClickhouseOutput) ToGlobalConnectionClickhousePtrOutput() GlobalConnectionClickhousePtrOutput {
+	return o.ToGlobalConnectionClickhousePtrOutputWithContext(context.Background())
+}
+
+func (o GlobalConnectionClickhouseOutput) ToGlobalConnectionClickhousePtrOutputWithContext(ctx context.Context) GlobalConnectionClickhousePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GlobalConnectionClickhouse) *GlobalConnectionClickhouse {
+		return &v
+	}).(GlobalConnectionClickhousePtrOutput)
+}
+
+// The database to connect to for this connection. Default=default
+func (o GlobalConnectionClickhouseOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionClickhouse) *string { return v.Database }).(pulumi.StringPtrOutput)
+}
+
+// The ClickHouse Cloud endpoint URL.
+func (o GlobalConnectionClickhouseOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GlobalConnectionClickhouse) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The port to connect to for this connection. Default=8443
+func (o GlobalConnectionClickhouseOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionClickhouse) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type GlobalConnectionClickhousePtrOutput struct{ *pulumi.OutputState }
+
+func (GlobalConnectionClickhousePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalConnectionClickhouse)(nil)).Elem()
+}
+
+func (o GlobalConnectionClickhousePtrOutput) ToGlobalConnectionClickhousePtrOutput() GlobalConnectionClickhousePtrOutput {
+	return o
+}
+
+func (o GlobalConnectionClickhousePtrOutput) ToGlobalConnectionClickhousePtrOutputWithContext(ctx context.Context) GlobalConnectionClickhousePtrOutput {
+	return o
+}
+
+func (o GlobalConnectionClickhousePtrOutput) Elem() GlobalConnectionClickhouseOutput {
+	return o.ApplyT(func(v *GlobalConnectionClickhouse) GlobalConnectionClickhouse {
+		if v != nil {
+			return *v
+		}
+		var ret GlobalConnectionClickhouse
+		return ret
+	}).(GlobalConnectionClickhouseOutput)
+}
+
+// The database to connect to for this connection. Default=default
+func (o GlobalConnectionClickhousePtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionClickhouse) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ClickHouse Cloud endpoint URL.
+func (o GlobalConnectionClickhousePtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionClickhouse) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// The port to connect to for this connection. Default=8443
+func (o GlobalConnectionClickhousePtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionClickhouse) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
 type GlobalConnectionDatabricks struct {
 	// Catalog name if Unity Catalog is enabled in your Databricks workspace.
 	Catalog *string `pulumi:"catalog"`
@@ -8002,6 +8177,8 @@ type GetEnvironmentsEnvironment struct {
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType string `pulumi:"deploymentType"`
+	// Whether dbt State is on for this environment
+	EnableDbtState bool `pulumi:"enableDbtState"`
 	// Whether model query history is on
 	EnableModelQueryHistory bool `pulumi:"enableModelQueryHistory"`
 	// The ID of the environment
@@ -8042,6 +8219,8 @@ type GetEnvironmentsEnvironmentArgs struct {
 	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
+	// Whether dbt State is on for this environment
+	EnableDbtState pulumi.BoolInput `pulumi:"enableDbtState"`
 	// Whether model query history is on
 	EnableModelQueryHistory pulumi.BoolInput `pulumi:"enableModelQueryHistory"`
 	// The ID of the environment
@@ -8134,6 +8313,11 @@ func (o GetEnvironmentsEnvironmentOutput) DbtVersion() pulumi.StringOutput {
 // The type of deployment environment (currently 'production', 'staging' or empty)
 func (o GetEnvironmentsEnvironmentOutput) DeploymentType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.DeploymentType }).(pulumi.StringOutput)
+}
+
+// Whether dbt State is on for this environment
+func (o GetEnvironmentsEnvironmentOutput) EnableDbtState() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEnvironmentsEnvironment) bool { return v.EnableDbtState }).(pulumi.BoolOutput)
 }
 
 // Whether model query history is on
@@ -8764,6 +8948,76 @@ func (o GetGlobalConnectionBigqueryOutput) TokenUri() pulumi.StringOutput {
 // Whether the connection uses the latest bigqueryV1 adapter (used for BQ WIF)
 func (o GetGlobalConnectionBigqueryOutput) UseLatestAdapter() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetGlobalConnectionBigquery) bool { return v.UseLatestAdapter }).(pulumi.BoolOutput)
+}
+
+type GetGlobalConnectionClickhouse struct {
+	// The database to connect to for this connection.
+	Database string `pulumi:"database"`
+	// The ClickHouse Cloud endpoint URL.
+	Host string `pulumi:"host"`
+	// The port to connect to for this connection.
+	Port int `pulumi:"port"`
+}
+
+// GetGlobalConnectionClickhouseInput is an input type that accepts GetGlobalConnectionClickhouseArgs and GetGlobalConnectionClickhouseOutput values.
+// You can construct a concrete instance of `GetGlobalConnectionClickhouseInput` via:
+//
+//	GetGlobalConnectionClickhouseArgs{...}
+type GetGlobalConnectionClickhouseInput interface {
+	pulumi.Input
+
+	ToGetGlobalConnectionClickhouseOutput() GetGlobalConnectionClickhouseOutput
+	ToGetGlobalConnectionClickhouseOutputWithContext(context.Context) GetGlobalConnectionClickhouseOutput
+}
+
+type GetGlobalConnectionClickhouseArgs struct {
+	// The database to connect to for this connection.
+	Database pulumi.StringInput `pulumi:"database"`
+	// The ClickHouse Cloud endpoint URL.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The port to connect to for this connection.
+	Port pulumi.IntInput `pulumi:"port"`
+}
+
+func (GetGlobalConnectionClickhouseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGlobalConnectionClickhouse)(nil)).Elem()
+}
+
+func (i GetGlobalConnectionClickhouseArgs) ToGetGlobalConnectionClickhouseOutput() GetGlobalConnectionClickhouseOutput {
+	return i.ToGetGlobalConnectionClickhouseOutputWithContext(context.Background())
+}
+
+func (i GetGlobalConnectionClickhouseArgs) ToGetGlobalConnectionClickhouseOutputWithContext(ctx context.Context) GetGlobalConnectionClickhouseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGlobalConnectionClickhouseOutput)
+}
+
+type GetGlobalConnectionClickhouseOutput struct{ *pulumi.OutputState }
+
+func (GetGlobalConnectionClickhouseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGlobalConnectionClickhouse)(nil)).Elem()
+}
+
+func (o GetGlobalConnectionClickhouseOutput) ToGetGlobalConnectionClickhouseOutput() GetGlobalConnectionClickhouseOutput {
+	return o
+}
+
+func (o GetGlobalConnectionClickhouseOutput) ToGetGlobalConnectionClickhouseOutputWithContext(ctx context.Context) GetGlobalConnectionClickhouseOutput {
+	return o
+}
+
+// The database to connect to for this connection.
+func (o GetGlobalConnectionClickhouseOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionClickhouse) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// The ClickHouse Cloud endpoint URL.
+func (o GetGlobalConnectionClickhouseOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionClickhouse) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The port to connect to for this connection.
+func (o GetGlobalConnectionClickhouseOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGlobalConnectionClickhouse) int { return v.Port }).(pulumi.IntOutput)
 }
 
 type GetGlobalConnectionDatabricks struct {
@@ -12878,6 +13132,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionAthenaPtrInput)(nil)).Elem(), GlobalConnectionAthenaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionBigqueryInput)(nil)).Elem(), GlobalConnectionBigqueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionBigqueryPtrInput)(nil)).Elem(), GlobalConnectionBigqueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionClickhouseInput)(nil)).Elem(), GlobalConnectionClickhouseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionClickhousePtrInput)(nil)).Elem(), GlobalConnectionClickhouseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionDatabricksInput)(nil)).Elem(), GlobalConnectionDatabricksArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionDatabricksPtrInput)(nil)).Elem(), GlobalConnectionDatabricksArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalConnectionFabricInput)(nil)).Elem(), GlobalConnectionFabricArgs{})
@@ -12941,6 +13197,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionApacheSparkInput)(nil)).Elem(), GetGlobalConnectionApacheSparkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionAthenaInput)(nil)).Elem(), GetGlobalConnectionAthenaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionBigqueryInput)(nil)).Elem(), GetGlobalConnectionBigqueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionClickhouseInput)(nil)).Elem(), GetGlobalConnectionClickhouseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionDatabricksInput)(nil)).Elem(), GetGlobalConnectionDatabricksArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionFabricInput)(nil)).Elem(), GetGlobalConnectionFabricArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalConnectionPostgresInput)(nil)).Elem(), GetGlobalConnectionPostgresArgs{})
@@ -13008,6 +13265,8 @@ func init() {
 	pulumi.RegisterOutputType(GlobalConnectionAthenaPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionBigqueryOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionBigqueryPtrOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionClickhouseOutput{})
+	pulumi.RegisterOutputType(GlobalConnectionClickhousePtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionDatabricksOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionDatabricksPtrOutput{})
 	pulumi.RegisterOutputType(GlobalConnectionFabricOutput{})
@@ -13071,6 +13330,7 @@ func init() {
 	pulumi.RegisterOutputType(GetGlobalConnectionApacheSparkOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionAthenaOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionBigqueryOutput{})
+	pulumi.RegisterOutputType(GetGlobalConnectionClickhouseOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionDatabricksOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionFabricOutput{})
 	pulumi.RegisterOutputType(GetGlobalConnectionPostgresOutput{})
