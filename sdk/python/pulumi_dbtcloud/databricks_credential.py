@@ -384,14 +384,14 @@ class DatabricksCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             token="abcdefgh",
             schema="my_schema",
             adapter_type="databricks")
         config = pulumi.Config()
         databricks_token = config.require("databricksToken")
         my_databricks_cred_wo = dbtcloud.DatabricksCredential("my_databricks_cred_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             token_wo=databricks_token,
             token_wo_version=1,
             schema="my_schema",
@@ -449,14 +449,14 @@ class DatabricksCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         my_databricks_cred = dbtcloud.DatabricksCredential("my_databricks_cred",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             token="abcdefgh",
             schema="my_schema",
             adapter_type="databricks")
         config = pulumi.Config()
         databricks_token = config.require("databricksToken")
         my_databricks_cred_wo = dbtcloud.DatabricksCredential("my_databricks_cred_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             token_wo=databricks_token,
             token_wo_version=1,
             schema="my_schema",

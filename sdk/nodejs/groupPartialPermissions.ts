@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  *     groupPermissions: [
  *         {
  *             permissionSet: "developer",
- *             projectId: Number(dbtProject.id),
+ *             projectId: dbtProject.id,
  *             allProjects: false,
  *             writableEnvironmentCategories: [
  *                 "development",
@@ -47,19 +47,19 @@ import * as utilities from "./utilities";
  *         },
  *         {
  *             permissionSet: "git_admin",
- *             projectId: Number(dbtProject.id),
+ *             projectId: dbtProject.id,
  *             allProjects: false,
  *         },
  *     ],
  * });
  * // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
- * // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+ * // it is possible to add more permissions to the same group name in other Pulumi projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
  * const tfGroup2 = new dbtcloud.GroupPartialPermissions("tf_group_2", {
  *     name: "TF Group 2",
  *     ssoMappingGroups: ["group2"],
  *     groupPermissions: [{
  *         permissionSet: "admin",
- *         projectId: Number(dbtProject.id),
+ *         projectId: dbtProject.id,
  *         allProjects: false,
  *     }],
  * });

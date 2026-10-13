@@ -333,7 +333,7 @@ class ClickhouseCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         my_clickhouse_cred = dbtcloud.ClickhouseCredential("my_clickhouse_cred",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             user="my_user",
             password="my_password",
@@ -342,7 +342,7 @@ class ClickhouseCredential(pulumi.CustomResource):
         config = pulumi.Config()
         clickhouse_password = config.require("clickhousePassword")
         my_clickhouse_cred_wo = dbtcloud.ClickhouseCredential("my_clickhouse_cred_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             user="my_user",
             password_wo=clickhouse_password,
@@ -401,7 +401,7 @@ class ClickhouseCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         my_clickhouse_cred = dbtcloud.ClickhouseCredential("my_clickhouse_cred",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             user="my_user",
             password="my_password",
@@ -410,7 +410,7 @@ class ClickhouseCredential(pulumi.CustomResource):
         config = pulumi.Config()
         clickhouse_password = config.require("clickhousePassword")
         my_clickhouse_cred_wo = dbtcloud.ClickhouseCredential("my_clickhouse_cred_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             user="my_user",
             password_wo=clickhouse_password,

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const myClickhouseCred = new dbtcloud.ClickhouseCredential("my_clickhouse_cred", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     schema: "my_schema",
  *     user: "my_user",
  *     password: "my_password",
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const clickhousePassword = config.require("clickhousePassword");
  * const myClickhouseCredWo = new dbtcloud.ClickhouseCredential("my_clickhouse_cred_wo", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     schema: "my_schema",
  *     user: "my_user",
  *     passwordWo: clickhousePassword,

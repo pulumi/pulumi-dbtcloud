@@ -18,12 +18,12 @@ import * as utilities from "./utilities";
  * // Example of Snowflake Semantic Layer Credential with password authentication
  * const passwordAuth = new dbtcloud.SnowflakeSemanticLayerCredential("password_auth", {
  *     configuration: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         name: "Snowflake SL Credential - Password Auth",
  *         adapterVersion: "snowflake_v0",
  *     },
  *     credential: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         isActive: true,
  *         authType: "password",
  *         database: database,
@@ -39,12 +39,12 @@ import * as utilities from "./utilities";
  * // Example of Snowflake Semantic Layer Credential with key pair authentication
  * const keypairAuth = new dbtcloud.SnowflakeSemanticLayerCredential("keypair_auth", {
  *     configuration: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         name: "Snowflake SL Credential - Key Pair Auth",
  *         adapterVersion: "snowflake_v0",
  *     },
  *     credential: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         isActive: true,
  *         authType: "keypair",
  *         database: database,

@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * // so, you might want to explicitly set the dependency on your Prod environment resource
  * // Using the classic sensitive attribute (stored in state)
  * const myLineage = new dbtcloud.LineageIntegration("my_lineage", {
- *     projectId: Number(myProject.id),
+ *     projectId: myProject.id,
  *     host: "my.host.com",
  *     siteId: "mysiteid",
  *     tokenName: "my-token-name",
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const lineageToken = config.require("lineageToken");
  * const myLineageWo = new dbtcloud.LineageIntegration("my_lineage_wo", {
- *     projectId: Number(myProject.id),
+ *     projectId: myProject.id,
  *     host: "my.host.com",
  *     siteId: "mysiteid",
  *     tokenName: "my-token-name",

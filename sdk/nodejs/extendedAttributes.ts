@@ -13,8 +13,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // extended_attributes can be set as a raw JSON string or encoded with Terraform's `jsonencode()` function
- * // we recommend using `jsonencode()` to avoid Terraform reporting changes due to whitespaces or keys ordering
+ * // extended_attributes can be set as a raw JSON string or encoded with Pulumi's `jsonencode()` function
+ * // we recommend using `jsonencode()` to avoid Pulumi reporting changes due to whitespaces or keys ordering
  * const myAttributes = new dbtcloud.ExtendedAttributes("my_attributes", {
  *     extendedAttributes: JSON.stringify({
  *         type: "databricks",
@@ -24,15 +24,15 @@ import * as utilities from "./utilities";
  *             subfield: "my_value",
  *         },
  *     }),
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  * });
  * const issueDepl = new dbtcloud.Environment("issue_depl", {
  *     dbtVersion: "latest",
  *     name: "My environment",
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     type: "deployment",
  *     useCustomBranch: false,
- *     credentialId: Number(dbtCredentialId),
+ *     credentialId: dbtCredentialId,
  *     deploymentType: "production",
  *     extendedAttributesId: myAttributes.extendedAttributesId,
  * });

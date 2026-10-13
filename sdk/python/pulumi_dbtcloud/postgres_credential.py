@@ -434,7 +434,7 @@ class PostgresCredential(pulumi.CustomResource):
         # Using the classic sensitive attribute (stored in state)
         postgres_prod_credential = dbtcloud.PostgresCredential("postgres_prod_credential",
             is_active=True,
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             type="postgres",
             default_schema="my_schema",
             username="my_username",
@@ -444,7 +444,7 @@ class PostgresCredential(pulumi.CustomResource):
         postgres_password = config.require("postgresPassword")
         postgres_prod_credential_wo = dbtcloud.PostgresCredential("postgres_prod_credential_wo",
             is_active=True,
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             type="postgres",
             default_schema="my_schema",
             username="my_username",
@@ -507,7 +507,7 @@ class PostgresCredential(pulumi.CustomResource):
         # Using the classic sensitive attribute (stored in state)
         postgres_prod_credential = dbtcloud.PostgresCredential("postgres_prod_credential",
             is_active=True,
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             type="postgres",
             default_schema="my_schema",
             username="my_username",
@@ -517,7 +517,7 @@ class PostgresCredential(pulumi.CustomResource):
         postgres_password = config.require("postgresPassword")
         postgres_prod_credential_wo = dbtcloud.PostgresCredential("postgres_prod_credential_wo",
             is_active=True,
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             type="postgres",
             default_schema="my_schema",
             username="my_username",

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attribute (stored in state)
  *         var myDatabricksCred = new DatabricksCredential("myDatabricksCred", DatabricksCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .token("abcdefgh")
  *             .schema("my_schema")
  *             .adapterType("databricks")
@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * 
  *         final var databricksToken = config.require("databricksToken");
  *         var myDatabricksCredWo = new DatabricksCredential("myDatabricksCredWo", DatabricksCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .tokenWo(databricksToken)
  *             .tokenWoVersion(1)
  *             .schema("my_schema")

@@ -67,7 +67,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // Terraform State 1 (Platform Team)
+ * // Pulumi State 1 (Platform Team)
  * const platform = new dbtcloud.ScimGroupPartialPermissions("platform", {
  *     groupId: 12345,
  *     permissions: [{
@@ -77,7 +77,7 @@ import * as utilities from "./utilities";
  *         writableEnvironmentCategories: ["development"],
  *     }],
  * });
- * // Terraform State 2 (Another Team) - IDENTICAL permission!
+ * // Pulumi State 2 (Another Team) - IDENTICAL permission!
  * const otherTeam = new dbtcloud.ScimGroupPartialPermissions("other_team", {
  *     groupId: 12345,
  *     permissions: [{
@@ -95,7 +95,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
- * // Terraform State 1 (Platform Team) - Development environments
+ * // Pulumi State 1 (Platform Team) - Development environments
  * const platformDev = new dbtcloud.ScimGroupPartialPermissions("platform_dev", {
  *     groupId: 12345,
  *     permissions: [{
@@ -105,7 +105,7 @@ import * as utilities from "./utilities";
  *         writableEnvironmentCategories: ["development"],
  *     }],
  * });
- * // Terraform State 2 (SRE Team) - Production environments
+ * // Pulumi State 2 (SRE Team) - Production environments
  * const sreProd = new dbtcloud.ScimGroupPartialPermissions("sre_prod", {
  *     groupId: 12345,
  *     permissions: [{

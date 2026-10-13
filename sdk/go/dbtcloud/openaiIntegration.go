@@ -37,7 +37,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Use a native OpenAI API key.
-//			// Recommended: write-only (Terraform 1.11+) — the key is never stored in state.
+//			// Recommended: write-only (Pulumi 1.11+) — the key is never stored in state.
 //			_, err := dbtcloud.NewOpenaiIntegration(ctx, "openai", &dbtcloud.OpenaiIntegrationArgs{
 //				KeyType:           pulumi.String("openai"),
 //				KeyValueWo:        pulumi.Any(openaiApiKey),

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attributes (stored in state)
  *         var example = new AthenaCredential("example", AthenaCredentialArgs.builder()
- *             .projectId(exampleDbtcloudProject.id())
+ *             .projectId(exampleDbtcloudProject.get("id"))
  *             .awsAccessKeyId("your-access-key-id")
  *             .awsSecretAccessKey("your-secret-access-key")
  *             .schema("your_schema")
@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *         final var athenaAwsAccessKeyId = config.require("athenaAwsAccessKeyId");
  *         final var athenaAwsSecretAccessKey = config.require("athenaAwsSecretAccessKey");
  *         var exampleWo = new AthenaCredential("exampleWo", AthenaCredentialArgs.builder()
- *             .projectId(exampleDbtcloudProject.id())
+ *             .projectId(exampleDbtcloudProject.get("id"))
  *             .awsAccessKeyIdWo(athenaAwsAccessKeyId)
  *             .awsAccessKeyIdWoVersion(1)
  *             .awsSecretAccessKeyWo(athenaAwsSecretAccessKey)

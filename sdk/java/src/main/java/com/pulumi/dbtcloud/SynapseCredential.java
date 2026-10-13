@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         // Using the classic sensitive attributes (stored in state)
  *         // when using sql authentication
  *         var mySynapseCredSql = new SynapseCredential("mySynapseCredSql", SynapseCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .authentication("sql")
  *             .schema("my_schema")
  *             .user("my_user")
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * 
  *         // when using AD authentication
  *         var mySynapseCredAd = new SynapseCredential("mySynapseCredAd", SynapseCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .authentication("ActiveDirectoryPassword")
  *             .schema("my_schema")
  *             .user("my_user")
@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
  * 
  *         // when using service principal authentication
  *         var mySynapseCredServPrinc = new SynapseCredential("mySynapseCredServPrinc", SynapseCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .authentication("ServicePrincipal")
  *             .schema("my_schema")
  *             .clientId("my_client_id")
@@ -80,7 +80,7 @@ import javax.annotation.Nullable;
  *         final var synapseClientSecret = config.require("synapseClientSecret");
  *         // when using AD authentication with write-only password
  *         var mySynapseCredAdWo = new SynapseCredential("mySynapseCredAdWo", SynapseCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .authentication("ActiveDirectoryPassword")
  *             .schema("my_schema")
  *             .user("my_user")
@@ -91,7 +91,7 @@ import javax.annotation.Nullable;
  * 
  *         // when using service principal authentication with write-only client secret
  *         var mySynapseCredServPrincWo = new SynapseCredential("mySynapseCredServPrincWo", SynapseCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .authentication("ServicePrincipal")
  *             .schema("my_schema")
  *             .clientId("my_client_id")

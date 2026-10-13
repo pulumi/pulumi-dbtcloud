@@ -36,11 +36,11 @@ import * as utilities from "./utilities";
  *     rules: [
  *         {
  *             triggerOn: "run_errored",
- *             jobId: Number(prodJob.id),
+ *             jobId: prodJob.id,
  *         },
  *         {
  *             triggerOn: "run_cancelled",
- *             jobId: Number(prodJob.id),
+ *             jobId: prodJob.id,
  *         },
  *     ],
  * });

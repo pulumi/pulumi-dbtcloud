@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attribute (stored in state)
  *         var myClickhouseCred = new ClickhouseCredential("myClickhouseCred", ClickhouseCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .schema("my_schema")
  *             .user("my_user")
  *             .password("my_password")
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * 
  *         final var clickhousePassword = config.require("clickhousePassword");
  *         var myClickhouseCredWo = new ClickhouseCredential("myClickhouseCredWo", ClickhouseCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .schema("my_schema")
  *             .user("my_user")
  *             .passwordWo(clickhousePassword)

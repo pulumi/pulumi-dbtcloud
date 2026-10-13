@@ -31,7 +31,7 @@ namespace Pulumi.DbtCloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Use a native OpenAI API key.
-    ///     // Recommended: write-only (Terraform 1.11+) — the key is never stored in state.
+    ///     // Recommended: write-only (Pulumi 1.11+) — the key is never stored in state.
     ///     var openai = new DbtCloud.OpenaiIntegration("openai", new()
     ///     {
     ///         KeyType = "openai",
@@ -39,7 +39,7 @@ namespace Pulumi.DbtCloud
     ///         KeyValueWoVersion = 1,
     ///     });
     /// 
-    ///     // For older Terraform versions, use key_value instead — stored as a sensitive value in state.
+    ///     // For older Pulumi versions, use key_value instead — stored as a sensitive value in state.
     ///     // resource "dbtcloud_openai_integration" "openai" {
     ///     //   key_type  = "openai"
     ///     //   key_value = var.openai_api_key

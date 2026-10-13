@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         // Using the classic sensitive attributes (stored in state)
  *         // when using AD authentication
  *         var myFabricCredAd = new FabricCredential("myFabricCredAd", FabricCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .schema("my_schema")
  *             .user("my_user")
  *             .password("my_password")
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * 
  *         // when using service principal authentication
  *         var myFabricCredServPrinc = new FabricCredential("myFabricCredServPrinc", FabricCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .schema("my_schema")
  *             .clientId("my_client_id")
  *             .tenantId("my_tenant_id")
@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  *         final var fabricClientSecret = config.require("fabricClientSecret");
  *         // when using AD authentication with write-only password
  *         var myFabricCredAdWo = new FabricCredential("myFabricCredAdWo", FabricCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .schema("my_schema")
  *             .user("my_user")
  *             .passwordWo(fabricPassword)
@@ -78,7 +78,7 @@ import javax.annotation.Nullable;
  * 
  *         // when using service principal authentication with write-only client secret
  *         var myFabricCredServPrincWo = new FabricCredential("myFabricCredServPrincWo", FabricCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .schema("my_schema")
  *             .clientId("my_client_id")
  *             .tenantId("my_tenant_id")

@@ -203,11 +203,11 @@ class NotificationSetting(pulumi.CustomResource):
             rules=[
                 {
                     "trigger_on": "run_errored",
-                    "job_id": int(prod_job["id"]),
+                    "job_id": prod_job["id"],
                 },
                 {
                     "trigger_on": "run_cancelled",
-                    "job_id": int(prod_job["id"]),
+                    "job_id": prod_job["id"],
                 },
             ])
         ```
@@ -270,11 +270,11 @@ class NotificationSetting(pulumi.CustomResource):
             rules=[
                 {
                     "trigger_on": "run_errored",
-                    "job_id": int(prod_job["id"]),
+                    "job_id": prod_job["id"],
                 },
                 {
                     "trigger_on": "run_cancelled",
-                    "job_id": int(prod_job["id"]),
+                    "job_id": prod_job["id"],
                 },
             ])
         ```

@@ -875,7 +875,7 @@ public final class DbtcloudFunctions {
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
      *             .name("my-repo-name")
-     *             .azureDevOpsProjectId(myAdoProject.id())
+     *             .azureDevOpsProjectId(myAdoProject.get("id"))
      *             .build());
      * 
      *     }
@@ -919,7 +919,7 @@ public final class DbtcloudFunctions {
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
      *             .name("my-repo-name")
-     *             .azureDevOpsProjectId(myAdoProject.id())
+     *             .azureDevOpsProjectId(myAdoProject.get("id"))
      *             .build());
      * 
      *     }
@@ -963,7 +963,7 @@ public final class DbtcloudFunctions {
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
      *             .name("my-repo-name")
-     *             .azureDevOpsProjectId(myAdoProject.id())
+     *             .azureDevOpsProjectId(myAdoProject.get("id"))
      *             .build());
      * 
      *     }
@@ -1007,7 +1007,7 @@ public final class DbtcloudFunctions {
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
      *             .name("my-repo-name")
-     *             .azureDevOpsProjectId(myAdoProject.id())
+     *             .azureDevOpsProjectId(myAdoProject.get("id"))
      *             .build());
      * 
      *     }
@@ -1051,7 +1051,7 @@ public final class DbtcloudFunctions {
      *     public static void stack(Context ctx) {
      *         final var myAdoRepository = DbtcloudFunctions.getAzureDevOpsRepository(GetAzureDevOpsRepositoryArgs.builder()
      *             .name("my-repo-name")
-     *             .azureDevOpsProjectId(myAdoProject.id())
+     *             .azureDevOpsProjectId(myAdoProject.get("id"))
      *             .build());
      * 
      *     }
@@ -2521,7 +2521,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(prodEnvironment.environmentId())
+     *             .environmentId(prodEnvironment.get("environmentId"))
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
@@ -2565,7 +2565,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(prodEnvironment.environmentId())
+     *             .environmentId(prodEnvironment.get("environmentId"))
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
@@ -2609,7 +2609,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(prodEnvironment.environmentId())
+     *             .environmentId(prodEnvironment.get("environmentId"))
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
@@ -2653,7 +2653,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(prodEnvironment.environmentId())
+     *             .environmentId(prodEnvironment.get("environmentId"))
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
@@ -2697,7 +2697,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prodModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
-     *             .environmentId(prodEnvironment.environmentId())
+     *             .environmentId(prodEnvironment.get("environmentId"))
      *             .build());
      * 
      *         final var qaModelNotifications = DbtcloudFunctions.getModelNotifications(GetModelNotificationsArgs.builder()
@@ -4110,7 +4110,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
-     *             .projectId(dbtProject.id())
+     *             .projectId(dbtProject.get("id"))
      *             .credentialId(12345)
      *             .build());
      * 
@@ -4151,7 +4151,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
-     *             .projectId(dbtProject.id())
+     *             .projectId(dbtProject.get("id"))
      *             .credentialId(12345)
      *             .build());
      * 
@@ -4192,7 +4192,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
-     *             .projectId(dbtProject.id())
+     *             .projectId(dbtProject.get("id"))
      *             .credentialId(12345)
      *             .build());
      * 
@@ -4233,7 +4233,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
-     *             .projectId(dbtProject.id())
+     *             .projectId(dbtProject.get("id"))
      *             .credentialId(12345)
      *             .build());
      * 
@@ -4274,7 +4274,7 @@ public final class DbtcloudFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mySparkCred = DbtcloudFunctions.getSparkCredential(GetSparkCredentialArgs.builder()
-     *             .projectId(dbtProject.id())
+     *             .projectId(dbtProject.get("id"))
      *             .credentialId(12345)
      *             .build());
      * 

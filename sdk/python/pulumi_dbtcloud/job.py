@@ -1144,14 +1144,14 @@ class Job(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         # a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
-        # to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
+        # to do so, we use a local-exec provisioner, just make sure that the machine running Pulumi has curl installed
         daily_job = dbtcloud.Job("daily_job",
-            environment_id=int(prod_environment["environmentId"]),
+            environment_id=prod_environment["environmentId"],
             execute_steps=["dbt build"],
             generate_docs=True,
             name="Daily job",
             num_threads=64,
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             run_generate_sources=True,
             target_name="default",
             triggers={
@@ -1282,14 +1282,14 @@ class Job(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         # a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
-        # to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
+        # to do so, we use a local-exec provisioner, just make sure that the machine running Pulumi has curl installed
         daily_job = dbtcloud.Job("daily_job",
-            environment_id=int(prod_environment["environmentId"]),
+            environment_id=prod_environment["environmentId"],
             execute_steps=["dbt build"],
             generate_docs=True,
             name="Daily job",
             num_threads=64,
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             run_generate_sources=True,
             target_name="default",
             triggers={

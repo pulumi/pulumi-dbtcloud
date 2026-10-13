@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  *             .groupPermissions(            
  *                 GroupPartialPermissionsGroupPermissionArgs.builder()
  *                     .permissionSet("developer")
- *                     .projectId(dbtProject.id())
+ *                     .projectId(dbtProject.get("id"))
  *                     .allProjects(false)
  *                     .writableEnvironmentCategories(                    
  *                         "development",
@@ -76,19 +76,19 @@ import javax.annotation.Nullable;
  *                     .build(),
  *                 GroupPartialPermissionsGroupPermissionArgs.builder()
  *                     .permissionSet("git_admin")
- *                     .projectId(dbtProject.id())
+ *                     .projectId(dbtProject.get("id"))
  *                     .allProjects(false)
  *                     .build())
  *             .build());
  * 
  *         // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
- *         // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+ *         // it is possible to add more permissions to the same group name in other Pulumi projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
  *         var tfGroup2 = new GroupPartialPermissions("tfGroup2", GroupPartialPermissionsArgs.builder()
  *             .name("TF Group 2")
  *             .ssoMappingGroups("group2")
  *             .groupPermissions(GroupPartialPermissionsGroupPermissionArgs.builder()
  *                 .permissionSet("admin")
- *                 .projectId(dbtProject.id())
+ *                 .projectId(dbtProject.get("id"))
  *                 .allProjects(false)
  *                 .build())
  *             .build());

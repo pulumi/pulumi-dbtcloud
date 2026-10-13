@@ -704,7 +704,7 @@ class SnowflakeCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         prod_credential = dbtcloud.SnowflakeCredential("prod_credential",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             auth_type="password",
             num_threads=16,
             schema="SCHEMA",
@@ -713,7 +713,7 @@ class SnowflakeCredential(pulumi.CustomResource):
         config = pulumi.Config()
         snowflake_password = config.require("snowflakePassword")
         prod_credential_wo = dbtcloud.SnowflakeCredential("prod_credential_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             auth_type="password",
             num_threads=16,
             schema="SCHEMA",
@@ -785,7 +785,7 @@ class SnowflakeCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         prod_credential = dbtcloud.SnowflakeCredential("prod_credential",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             auth_type="password",
             num_threads=16,
             schema="SCHEMA",
@@ -794,7 +794,7 @@ class SnowflakeCredential(pulumi.CustomResource):
         config = pulumi.Config()
         snowflake_password = config.require("snowflakePassword")
         prod_credential_wo = dbtcloud.SnowflakeCredential("prod_credential_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             auth_type="password",
             num_threads=16,
             schema="SCHEMA",

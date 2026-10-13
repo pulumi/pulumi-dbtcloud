@@ -218,7 +218,7 @@ import javax.annotation.Nullable;
  * 
  *         var snowflake = new GlobalConnection("snowflake", GlobalConnectionArgs.builder()
  *             .name("My Snowflake connection")
- *             .privateLinkEndpointId(myPrivateLink.id())
+ *             .privateLinkEndpointId(myPrivateLink.get("id"))
  *             .snowflake(GlobalConnectionSnowflakeArgs.builder()
  *                 .account("my-snowflake-account")
  *                 .database("MY_DATABASE")

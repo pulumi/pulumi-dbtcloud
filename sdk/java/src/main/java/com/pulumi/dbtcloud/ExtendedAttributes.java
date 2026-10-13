@@ -44,8 +44,8 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // extended_attributes can be set as a raw JSON string or encoded with Terraform's `jsonencode()` function
- *         // we recommend using `jsonencode()` to avoid Terraform reporting changes due to whitespaces or keys ordering
+ *         // extended_attributes can be set as a raw JSON string or encoded with Pulumi's `jsonencode()` function
+ *         // we recommend using `jsonencode()` to avoid Pulumi reporting changes due to whitespaces or keys ordering
  *         var myAttributes = new ExtendedAttributes("myAttributes", ExtendedAttributesArgs.builder()
  *             .extendedAttributes(serializeJson(
  *                 jsonObject(
@@ -56,13 +56,13 @@ import javax.annotation.Nullable;
  *                         jsonProperty("subfield", "my_value")
  *                     ))
  *                 )))
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .build());
  * 
  *         var issueDepl = new Environment("issueDepl", EnvironmentArgs.builder()
  *             .dbtVersion("latest")
  *             .name("My environment")
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .type("deployment")
  *             .useCustomBranch(false)
  *             .credentialId(dbtCredentialId)

@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const example = new dbtcloud.DatabricksPlatformMetadataCredential("example", {
- *     connectionId: Number(databricks.id),
+ *     connectionId: databricks.id,
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: false,
  *     costInsightsEnabled: false,
@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const databricksMetadataToken = config.require("databricksMetadataToken");
  * const exampleWo = new dbtcloud.DatabricksPlatformMetadataCredential("example_wo", {
- *     connectionId: Number(databricks.id),
+ *     connectionId: databricks.id,
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: false,
  *     costInsightsEnabled: false,

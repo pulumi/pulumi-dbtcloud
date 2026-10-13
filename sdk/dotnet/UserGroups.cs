@@ -43,7 +43,7 @@ namespace Pulumi.DbtCloud
     ///     var myOtherUserGroups = new DbtCloud.UserGroups("my_other_user_groups", new()
     ///     {
     ///         UserId = 123456,
-    ///         GroupIds = new[] {},
+    ///         GroupIds = new() {},
     ///     });
     /// 
     /// });

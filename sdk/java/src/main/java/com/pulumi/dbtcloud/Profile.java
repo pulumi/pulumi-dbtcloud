@@ -44,19 +44,19 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // A profile ties together a connection and credentials for use within environments.
  *         var myProfile = new Profile("myProfile", ProfileArgs.builder()
- *             .projectId(myProject.id())
+ *             .projectId(myProject.get("id"))
  *             .key("my-profile")
- *             .connectionId(myConnection.id())
- *             .credentialsId(myCredential.credentialId())
+ *             .connectionId(myConnection.get("id"))
+ *             .credentialsId(myCredential.get("credentialId"))
  *             .build());
  * 
  *         // A profile with extended attributes
  *         var myProfileWithAttrs = new Profile("myProfileWithAttrs", ProfileArgs.builder()
- *             .projectId(myProject.id())
+ *             .projectId(myProject.get("id"))
  *             .key("my-profile-with-attrs")
- *             .connectionId(myConnection.id())
- *             .credentialsId(myCredential.credentialId())
- *             .extendedAttributesId(myAttributes.extendedAttributesId())
+ *             .connectionId(myConnection.get("id"))
+ *             .credentialsId(myCredential.get("credentialId"))
+ *             .extendedAttributesId(myAttributes.get("extendedAttributesId"))
  *             .build());
  * 
  *     }

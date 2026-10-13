@@ -17,16 +17,16 @@ import * as utilities from "./utilities";
  *
  * const testRedshiftSemanticLayerCredential = new dbtcloud.RedshiftSemanticLayerCredential("test_redshift_semantic_layer_credential", {
  *     configuration: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         name: "Redshift SL Credential",
  *         adapterVersion: "redshift_v0",
  *     },
  *     credential: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         username: username,
  *         isActive: true,
  *         password: password,
- *         numThreads: Number(numThreads),
+ *         numThreads: numThreads,
  *         defaultSchema: defaultSchema,
  *     },
  * });

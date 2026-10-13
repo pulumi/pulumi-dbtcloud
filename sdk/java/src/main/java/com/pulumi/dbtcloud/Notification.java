@@ -51,10 +51,10 @@ import javax.annotation.Nullable;
  *         // those first into the state file before you can create a new internal notification for that user.
  *         // Failure to do so, will result in the user losing access to existing notifications and dbt
  *         // support will need to be contacted to restore access.
- *         // cmd: terraform import dbtcloud_notification.prod_job_internal_notification <user_id>
+ *         // cmd: pulumi import dbtcloud_notification.prod_job_internal_notification <user_id>
  *         var prodJobInternalNotification = new Notification("prodJobInternalNotification", NotificationArgs.builder()
  *             .userId(100)
- *             .onSuccesses(prodJob.id())
+ *             .onSuccesses(prodJob.get("id"))
  *             .onFailures(12345)
  *             .notificationType(1)
  *             .build());
@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  *             .onFailures(            
  *                 23456,
  *                 56788)
- *             .onCancels(prodJob.id())
+ *             .onCancels(prodJob.get("id"))
  *             .notificationType(4)
  *             .externalEmail("my_email}{@literal @}{@code mail.com")
  *             .build());
@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  *             .onFailures(            
  *                 23456,
  *                 56788)
- *             .onCancels(prodJob.id())
+ *             .onCancels(prodJob.get("id"))
  *             .notificationType(2)
  *             .slackChannelId("C12345ABCDE")
  *             .slackChannelName("#my-awesome-channel")

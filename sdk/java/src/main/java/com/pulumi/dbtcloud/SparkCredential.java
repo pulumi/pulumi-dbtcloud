@@ -46,14 +46,14 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attribute (stored in state)
  *         var mySparkCred = new SparkCredential("mySparkCred", SparkCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .token("abcdefgh")
  *             .schema("my_schema")
  *             .build());
  * 
  *         final var sparkToken = config.require("sparkToken");
  *         var mySparkCredWo = new SparkCredential("mySparkCredWo", SparkCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .tokenWo(sparkToken)
  *             .tokenWoVersion(1)
  *             .schema("my_schema")

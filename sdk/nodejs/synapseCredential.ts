@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * // Using the classic sensitive attributes (stored in state)
  * // when using sql authentication
  * const mySynapseCredSql = new dbtcloud.SynapseCredential("my_synapse_cred_sql", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     authentication: "sql",
  *     schema: "my_schema",
  *     user: "my_user",
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * });
  * // when using AD authentication
  * const mySynapseCredAd = new dbtcloud.SynapseCredential("my_synapse_cred_ad", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     authentication: "ActiveDirectoryPassword",
  *     schema: "my_schema",
  *     user: "my_user",
@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  * });
  * // when using service principal authentication
  * const mySynapseCredServPrinc = new dbtcloud.SynapseCredential("my_synapse_cred_serv_princ", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     authentication: "ServicePrincipal",
  *     schema: "my_schema",
  *     clientId: "my_client_id",
@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  * const synapseClientSecret = config.require("synapseClientSecret");
  * // when using AD authentication with write-only password
  * const mySynapseCredAdWo = new dbtcloud.SynapseCredential("my_synapse_cred_ad_wo", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     authentication: "ActiveDirectoryPassword",
  *     schema: "my_schema",
  *     user: "my_user",
@@ -57,7 +57,7 @@ import * as utilities from "./utilities";
  * });
  * // when using service principal authentication with write-only client secret
  * const mySynapseCredServPrincWo = new dbtcloud.SynapseCredential("my_synapse_cred_serv_princ_wo", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     authentication: "ServicePrincipal",
  *     schema: "my_schema",
  *     clientId: "my_client_id",

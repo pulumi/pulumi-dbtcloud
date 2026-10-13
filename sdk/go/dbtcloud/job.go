@@ -44,7 +44,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
-//			// to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
+//			// to do so, we use a local-exec provisioner, just make sure that the machine running Pulumi has curl installed
 //			dailyJob, err := dbtcloud.NewJob(ctx, "daily_job", &dbtcloud.JobArgs{
 //				EnvironmentId: pulumi.Any(prodEnvironment.EnvironmentId),
 //				ExecuteSteps: pulumi.StringArray{

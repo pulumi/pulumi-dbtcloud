@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const example = new dbtcloud.TeradataCredential("example", {
- *     projectId: Number(exampleDbtcloudProject.id),
+ *     projectId: exampleDbtcloudProject.id,
  *     schema: "your_schema",
  *     user: "your_user",
  *     password: "your_password",
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const teradataPassword = config.require("teradataPassword");
  * const exampleWo = new dbtcloud.TeradataCredential("example_wo", {
- *     projectId: Number(exampleDbtcloudProject.id),
+ *     projectId: exampleDbtcloudProject.id,
  *     schema: "your_schema",
  *     user: "your_user",
  *     passwordWo: teradataPassword,

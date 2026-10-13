@@ -16,28 +16,28 @@ import * as utilities from "./utilities";
  * const ciEnvironment = new dbtcloud.Environment("ci_environment", {
  *     dbtVersion: "latest",
  *     name: "CI",
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     type: "deployment",
- *     credentialId: Number(ciCredential.credentialId),
- *     connectionId: Number(myGlobalConnection.id),
+ *     credentialId: ciCredential.credentialId,
+ *     connectionId: myGlobalConnection.id,
  * });
  * // we can also set a deployment environment as being the production one
  * const prodEnvironment = new dbtcloud.Environment("prod_environment", {
  *     dbtVersion: "1.7.0-latest",
  *     name: "Prod",
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     type: "deployment",
- *     credentialId: Number(prodCredential.credentialId),
+ *     credentialId: prodCredential.credentialId,
  *     deploymentType: "production",
- *     connectionId: Number(myLegacyConnection.connectionId),
+ *     connectionId: myLegacyConnection.connectionId,
  * });
  * // Creating a development environment
  * const devEnvironment = new dbtcloud.Environment("dev_environment", {
  *     dbtVersion: "latest",
  *     name: "Dev",
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     type: "development",
- *     connectionId: Number(myOtherGlobalConnection.id),
+ *     connectionId: myOtherGlobalConnection.id,
  * });
  * // Deployment environment with a primary profile (binds connection + credentials via profile)
  * // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
@@ -46,10 +46,10 @@ import * as utilities from "./utilities";
  * const profiledEnvironment = new dbtcloud.Environment("profiled_environment", {
  *     dbtVersion: "latest",
  *     name: "Staging",
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     type: "deployment",
  *     deploymentType: "staging",
- *     primaryProfileId: Number(myProfile.profileId),
+ *     primaryProfileId: myProfile.profileId,
  * });
  * ```
  *

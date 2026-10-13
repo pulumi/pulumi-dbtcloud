@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const example = new dbtcloud.StarburstCredential("example", {
- *     projectId: Number(exampleDbtcloudProject.id),
+ *     projectId: exampleDbtcloudProject.id,
  *     database: "your_catalog",
  *     schema: "your_schema",
  *     user: "your_user",
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const starburstPassword = config.require("starburstPassword");
  * const exampleWo = new dbtcloud.StarburstCredential("example_wo", {
- *     projectId: Number(exampleDbtcloudProject.id),
+ *     projectId: exampleDbtcloudProject.id,
  *     database: "your_catalog",
  *     schema: "your_schema",
  *     user: "your_user",

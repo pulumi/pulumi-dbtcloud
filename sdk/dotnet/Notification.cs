@@ -30,7 +30,7 @@ namespace Pulumi.DbtCloud
     ///     // those first into the state file before you can create a new internal notification for that user.
     ///     // Failure to do so, will result in the user losing access to existing notifications and dbt
     ///     // support will need to be contacted to restore access.
-    ///     // cmd: terraform import dbtcloud_notification.prod_job_internal_notification &lt;user_id&gt;
+    ///     // cmd: pulumi import dbtcloud_notification.prod_job_internal_notification &lt;user_id&gt;
     ///     var prodJobInternalNotification = new DbtCloud.Notification("prod_job_internal_notification", new()
     ///     {
     ///         UserId = 100,

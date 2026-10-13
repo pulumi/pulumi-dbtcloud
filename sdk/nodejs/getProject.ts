@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * export = async () => {
- *     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+ *     // projects functions can use the project_id parameter (preferred uniqueness is ensured)
  *     const projectById = await dbtcloud.getProject({
  *         id: 0,
  *     });
@@ -129,7 +129,7 @@ export interface GetProjectResult {
  * import * as dbtcloud from "@pulumi/dbtcloud";
  *
  * export = async () => {
- *     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+ *     // projects functions can use the project_id parameter (preferred uniqueness is ensured)
  *     const projectById = await dbtcloud.getProject({
  *         id: 0,
  *     });

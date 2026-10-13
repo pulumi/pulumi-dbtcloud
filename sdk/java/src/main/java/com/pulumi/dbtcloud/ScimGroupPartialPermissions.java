@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // Terraform State 1 (Platform Team)
+ *         // Pulumi State 1 (Platform Team)
  *         var platform = new ScimGroupPartialPermissions("platform", ScimGroupPartialPermissionsArgs.builder()
  *             .groupId(12345)
  *             .permissions(ScimGroupPartialPermissionsPermissionArgs.builder()
@@ -107,7 +107,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         // Terraform State 2 (Another Team) - IDENTICAL permission!
+ *         // Pulumi State 2 (Another Team) - IDENTICAL permission!
  *         var otherTeam = new ScimGroupPartialPermissions("otherTeam", ScimGroupPartialPermissionsArgs.builder()
  *             .groupId(12345)
  *             .permissions(ScimGroupPartialPermissionsPermissionArgs.builder()
@@ -148,7 +148,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // Terraform State 1 (Platform Team) - Development environments
+ *         // Pulumi State 1 (Platform Team) - Development environments
  *         var platformDev = new ScimGroupPartialPermissions("platformDev", ScimGroupPartialPermissionsArgs.builder()
  *             .groupId(12345)
  *             .permissions(ScimGroupPartialPermissionsPermissionArgs.builder()
@@ -159,7 +159,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         // Terraform State 2 (SRE Team) - Production environments
+ *         // Pulumi State 2 (SRE Team) - Production environments
  *         var sreProd = new ScimGroupPartialPermissions("sreProd", ScimGroupPartialPermissionsArgs.builder()
  *             .groupId(12345)
  *             .permissions(ScimGroupPartialPermissionsPermissionArgs.builder()

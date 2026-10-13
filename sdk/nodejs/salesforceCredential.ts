@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attributes (stored in state)
  * const mySalesforceCred = new dbtcloud.SalesforceCredential("my_salesforce_cred", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     username: "user@example.com",
  *     clientId: "your-oauth-client-id",
  *     privateKey: "private-key value",
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * const salesforceClientId = config.require("salesforceClientId");
  * const salesforcePrivateKey = config.require("salesforcePrivateKey");
  * const mySalesforceCredWo = new dbtcloud.SalesforceCredential("my_salesforce_cred_wo", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     username: "user@example.com",
  *     clientIdWo: salesforceClientId,
  *     clientIdWoVersion: 1,

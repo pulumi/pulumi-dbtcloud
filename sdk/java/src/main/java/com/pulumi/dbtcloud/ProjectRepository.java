@@ -41,8 +41,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var dbtProjectRepository = new ProjectRepository("dbtProjectRepository", ProjectRepositoryArgs.builder()
- *             .projectId(dbtProject.id())
- *             .repositoryId(dbtRepository.repositoryId())
+ *             .projectId(dbtProject.get("id"))
+ *             .repositoryId(dbtRepository.get("repositoryId"))
  *             .build());
  * 
  *     }

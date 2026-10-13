@@ -66,14 +66,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
- *         // to do so, we use a local-exec provisioner, just make sure that the machine running Terraform has curl installed
+ *         // to do so, we use a local-exec provisioner, just make sure that the machine running Pulumi has curl installed
  *         var dailyJob = new Job("dailyJob", JobArgs.builder()
- *             .environmentId(prodEnvironment.environmentId())
+ *             .environmentId(prodEnvironment.get("environmentId"))
  *             .executeSteps("dbt build")
  *             .generateDocs(true)
  *             .name("Daily job")
  *             .numThreads(64)
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .runGenerateSources(true)
  *             .targetName("default")
  *             .triggers(JobTriggersArgs.builder()
