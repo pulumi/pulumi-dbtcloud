@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  *         // so, you might want to explicitly set the dependency on your Prod environment resource
  *         // Using the classic sensitive attribute (stored in state)
  *         var myLineage = new LineageIntegration("myLineage", LineageIntegrationArgs.builder()
- *             .projectId(myProject.id())
+ *             .projectId(myProject.get("id"))
  *             .host("my.host.com")
  *             .siteId("mysiteid")
  *             .tokenName("my-token-name")
@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  * 
  *         final var lineageToken = config.require("lineageToken");
  *         var myLineageWo = new LineageIntegration("myLineageWo", LineageIntegrationArgs.builder()
- *             .projectId(myProject.id())
+ *             .projectId(myProject.get("id"))
  *             .host("my.host.com")
  *             .siteId("mysiteid")
  *             .tokenName("my-token-name")

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const prodCredential = new dbtcloud.SnowflakeCredential("prod_credential", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     authType: "password",
  *     numThreads: 16,
  *     schema: "SCHEMA",
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const snowflakePassword = config.require("snowflakePassword");
  * const prodCredentialWo = new dbtcloud.SnowflakeCredential("prod_credential_wo", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     authType: "password",
  *     numThreads: 16,
  *     schema: "SCHEMA",

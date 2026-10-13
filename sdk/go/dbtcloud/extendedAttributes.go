@@ -42,8 +42,8 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			// extended_attributes can be set as a raw JSON string or encoded with Terraform's `jsonencode()` function
-//			// we recommend using `jsonencode()` to avoid Terraform reporting changes due to whitespaces or keys ordering
+//			// extended_attributes can be set as a raw JSON string or encoded with Pulumi's `jsonencode()` function
+//			// we recommend using `jsonencode()` to avoid Pulumi reporting changes due to whitespaces or keys ordering
 //			myAttributes, err := dbtcloud.NewExtendedAttributes(ctx, "my_attributes", &dbtcloud.ExtendedAttributesArgs{
 //				ExtendedAttributes: pulumi.String(json0),
 //				ProjectId:          pulumi.Any(dbtProject.Id),

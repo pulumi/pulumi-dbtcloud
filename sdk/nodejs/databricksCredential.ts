@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const myDatabricksCred = new dbtcloud.DatabricksCredential("my_databricks_cred", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     token: "abcdefgh",
  *     schema: "my_schema",
  *     adapterType: "databricks",
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const databricksToken = config.require("databricksToken");
  * const myDatabricksCredWo = new dbtcloud.DatabricksCredential("my_databricks_cred_wo", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     tokenWo: databricksToken,
  *     tokenWoVersion: 1,
  *     schema: "my_schema",

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var myCredential = new BigQueryCredential("myCredential", BigQueryCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .dataset("my_bq_dataset")
  *             .numThreads(16)
  *             .build());
@@ -52,10 +52,10 @@ import javax.annotation.Nullable;
  *         // When using a global connection with use_latest_adapter = true,
  *         // provide the connection_id to automatically use the correct adapter version
  *         var myCredentialV1 = new BigQueryCredential("myCredentialV1", BigQueryCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .dataset("my_bq_dataset")
  *             .numThreads(16)
- *             .connectionId(myConnection.id())
+ *             .connectionId(myConnection.get("id"))
  *             .build());
  * 
  *     }

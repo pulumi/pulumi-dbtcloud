@@ -66,7 +66,7 @@ namespace Pulumi.DbtCloud
     ///     });
     /// 
     ///     // we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
-    ///     // it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+    ///     // it is possible to add more permissions to the same group name in other Pulumi projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
     ///     var tfGroup2 = new DbtCloud.GroupPartialPermissions("tf_group_2", new()
     ///     {
     ///         Name = "TF Group 2",

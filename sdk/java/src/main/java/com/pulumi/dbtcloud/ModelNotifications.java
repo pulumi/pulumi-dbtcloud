@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var prodModelNotifications = new ModelNotifications("prodModelNotifications", ModelNotificationsArgs.builder()
- *             .environmentId(prodEnvironment.environmentId())
+ *             .environmentId(prodEnvironment.get("environmentId"))
  *             .enabled(true)
  *             .onSuccess(false)
  *             .onFailure(true)

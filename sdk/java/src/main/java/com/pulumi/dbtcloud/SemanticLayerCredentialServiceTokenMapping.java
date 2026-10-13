@@ -39,9 +39,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testMapping = new SemanticLayerCredentialServiceTokenMapping("testMapping", SemanticLayerCredentialServiceTokenMappingArgs.builder()
- *             .semanticLayerCredentialId(test.id())
- *             .serviceTokenId(testServiceToken.id())
- *             .projectId(testProject.id())
+ *             .semanticLayerCredentialId(test.get("id"))
+ *             .serviceTokenId(testServiceToken.get("id"))
+ *             .projectId(testProject.get("id"))
  *             .build());
  * 
  *     }

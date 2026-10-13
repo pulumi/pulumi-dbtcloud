@@ -300,14 +300,14 @@ class TeradataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         example = dbtcloud.TeradataCredential("example",
-            project_id=int(example_dbtcloud_project["id"]),
+            project_id=example_dbtcloud_project["id"],
             schema="your_schema",
             user="your_user",
             password="your_password")
         config = pulumi.Config()
         teradata_password = config.require("teradataPassword")
         example_wo = dbtcloud.TeradataCredential("example_wo",
-            project_id=int(example_dbtcloud_project["id"]),
+            project_id=example_dbtcloud_project["id"],
             schema="your_schema",
             user="your_user",
             password_wo=teradata_password,
@@ -343,14 +343,14 @@ class TeradataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         example = dbtcloud.TeradataCredential("example",
-            project_id=int(example_dbtcloud_project["id"]),
+            project_id=example_dbtcloud_project["id"],
             schema="your_schema",
             user="your_user",
             password="your_password")
         config = pulumi.Config()
         teradata_password = config.require("teradataPassword")
         example_wo = dbtcloud.TeradataCredential("example_wo",
-            project_id=int(example_dbtcloud_project["id"]),
+            project_id=example_dbtcloud_project["id"],
             schema="your_schema",
             user="your_user",
             password_wo=teradata_password,

@@ -15,14 +15,14 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attribute (stored in state)
  * const mySparkCred = new dbtcloud.SparkCredential("my_spark_cred", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     token: "abcdefgh",
  *     schema: "my_schema",
  * });
  * const config = new pulumi.Config();
  * const sparkToken = config.require("sparkToken");
  * const mySparkCredWo = new dbtcloud.SparkCredential("my_spark_cred_wo", {
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     tokenWo: sparkToken,
  *     tokenWoVersion: 1,
  *     schema: "my_schema",

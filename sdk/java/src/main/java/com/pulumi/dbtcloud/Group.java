@@ -92,7 +92,7 @@ import javax.annotation.Nullable;
  *                 GroupGroupPermissionArgs.builder()
  *                     .permissionSet("developer")
  *                     .allProjects(false)
- *                     .projectId(dbtProject.id())
+ *                     .projectId(dbtProject.get("id"))
  *                     .writableEnvironmentCategories(                    
  *                         "development",
  *                         "staging")

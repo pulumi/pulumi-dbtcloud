@@ -46,30 +46,30 @@ import javax.annotation.Nullable;
  *         var ciEnvironment = new Environment("ciEnvironment", EnvironmentArgs.builder()
  *             .dbtVersion("latest")
  *             .name("CI")
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .type("deployment")
- *             .credentialId(ciCredential.credentialId())
- *             .connectionId(myGlobalConnection.id())
+ *             .credentialId(ciCredential.get("credentialId"))
+ *             .connectionId(myGlobalConnection.get("id"))
  *             .build());
  * 
  *         // we can also set a deployment environment as being the production one
  *         var prodEnvironment = new Environment("prodEnvironment", EnvironmentArgs.builder()
  *             .dbtVersion("1.7.0-latest")
  *             .name("Prod")
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .type("deployment")
- *             .credentialId(prodCredential.credentialId())
+ *             .credentialId(prodCredential.get("credentialId"))
  *             .deploymentType("production")
- *             .connectionId(myLegacyConnection.connectionId())
+ *             .connectionId(myLegacyConnection.get("connectionId"))
  *             .build());
  * 
  *         // Creating a development environment
  *         var devEnvironment = new Environment("devEnvironment", EnvironmentArgs.builder()
  *             .dbtVersion("latest")
  *             .name("Dev")
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .type("development")
- *             .connectionId(myOtherGlobalConnection.id())
+ *             .connectionId(myOtherGlobalConnection.get("id"))
  *             .build());
  * 
  *         // Deployment environment with a primary profile (binds connection + credentials via profile)
@@ -79,10 +79,10 @@ import javax.annotation.Nullable;
  *         var profiledEnvironment = new Environment("profiledEnvironment", EnvironmentArgs.builder()
  *             .dbtVersion("latest")
  *             .name("Staging")
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .type("deployment")
  *             .deploymentType("staging")
- *             .primaryProfileId(myProfile.profileId())
+ *             .primaryProfileId(myProfile.get("profileId"))
  *             .build());
  * 
  *     }

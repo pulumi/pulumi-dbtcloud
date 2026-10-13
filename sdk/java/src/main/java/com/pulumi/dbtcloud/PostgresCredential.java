@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *         // Using the classic sensitive attribute (stored in state)
  *         var postgresProdCredential = new PostgresCredential("postgresProdCredential", PostgresCredentialArgs.builder()
  *             .isActive(true)
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .type("postgres")
  *             .defaultSchema("my_schema")
  *             .username("my_username")
@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  *         final var postgresPassword = config.require("postgresPassword");
  *         var postgresProdCredentialWo = new PostgresCredential("postgresProdCredentialWo", PostgresCredentialArgs.builder()
  *             .isActive(true)
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .type("postgres")
  *             .defaultSchema("my_schema")
  *             .username("my_username")

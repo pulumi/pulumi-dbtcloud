@@ -74,7 +74,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // Terraform State 1 (Platform Team)
+    ///     // Pulumi State 1 (Platform Team)
     ///     var platform = new DbtCloud.ScimGroupPartialPermissions("platform", new()
     ///     {
     ///         GroupId = 12345,
@@ -93,7 +93,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     // Terraform State 2 (Another Team) - IDENTICAL permission!
+    ///     // Pulumi State 2 (Another Team) - IDENTICAL permission!
     ///     var otherTeam = new DbtCloud.ScimGroupPartialPermissions("other_team", new()
     ///     {
     ///         GroupId = 12345,
@@ -125,7 +125,7 @@ namespace Pulumi.DbtCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // Terraform State 1 (Platform Team) - Development environments
+    ///     // Pulumi State 1 (Platform Team) - Development environments
     ///     var platformDev = new DbtCloud.ScimGroupPartialPermissions("platform_dev", new()
     ///     {
     ///         GroupId = 12345,
@@ -144,7 +144,7 @@ namespace Pulumi.DbtCloud
     ///         },
     ///     });
     /// 
-    ///     // Terraform State 2 (SRE Team) - Production environments
+    ///     // Pulumi State 2 (SRE Team) - Production environments
     ///     var sreProd = new DbtCloud.ScimGroupPartialPermissions("sre_prod", new()
     ///     {
     ///         GroupId = 12345,

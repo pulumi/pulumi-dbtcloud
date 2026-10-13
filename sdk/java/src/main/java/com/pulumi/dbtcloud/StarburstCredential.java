@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attribute (stored in state)
  *         var example = new StarburstCredential("example", StarburstCredentialArgs.builder()
- *             .projectId(exampleDbtcloudProject.id())
+ *             .projectId(exampleDbtcloudProject.get("id"))
  *             .database("your_catalog")
  *             .schema("your_schema")
  *             .user("your_user")
@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * 
  *         final var starburstPassword = config.require("starburstPassword");
  *         var exampleWo = new StarburstCredential("exampleWo", StarburstCredentialArgs.builder()
- *             .projectId(exampleDbtcloudProject.id())
+ *             .projectId(exampleDbtcloudProject.get("id"))
  *             .database("your_catalog")
  *             .schema("your_schema")
  *             .user("your_user")

@@ -15,18 +15,18 @@ import * as utilities from "./utilities";
  *
  * // A profile ties together a connection and credentials for use within environments.
  * const myProfile = new dbtcloud.Profile("my_profile", {
- *     projectId: Number(myProject.id),
+ *     projectId: myProject.id,
  *     key: "my-profile",
- *     connectionId: Number(myConnection.id),
- *     credentialsId: Number(myCredential.credentialId),
+ *     connectionId: myConnection.id,
+ *     credentialsId: myCredential.credentialId,
  * });
  * // A profile with extended attributes
  * const myProfileWithAttrs = new dbtcloud.Profile("my_profile_with_attrs", {
- *     projectId: Number(myProject.id),
+ *     projectId: myProject.id,
  *     key: "my-profile-with-attrs",
- *     connectionId: Number(myConnection.id),
- *     credentialsId: Number(myCredential.credentialId),
- *     extendedAttributesId: Number(myAttributes.extendedAttributesId),
+ *     connectionId: myConnection.id,
+ *     credentialsId: myCredential.credentialId,
+ *     extendedAttributesId: myAttributes.extendedAttributesId,
  * });
  * ```
  *

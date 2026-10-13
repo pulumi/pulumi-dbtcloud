@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attributes (stored in state)
  *         var mySalesforceCred = new SalesforceCredential("mySalesforceCred", SalesforceCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .username("user}{@literal @}{@code example.com")
  *             .clientId("your-oauth-client-id")
  *             .privateKey("private-key value")
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *         final var salesforceClientId = config.require("salesforceClientId");
  *         final var salesforcePrivateKey = config.require("salesforcePrivateKey");
  *         var mySalesforceCredWo = new SalesforceCredential("mySalesforceCredWo", SalesforceCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .username("user}{@literal @}{@code example.com")
  *             .clientIdWo(salesforceClientId)
  *             .clientIdWoVersion(1)

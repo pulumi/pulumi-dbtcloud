@@ -17,12 +17,12 @@ import * as utilities from "./utilities";
  *
  * const slCredDatabricksExample = new dbtcloud.DatabricksSemanticLayerCredential("sl_cred_databricks_example", {
  *     configuration: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         name: "Databricks SL Credential",
  *         adapterVersion: "databricks_v0",
  *     },
  *     credential: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         catalog: catalog,
  *         token: token,
  *         semanticLayerCredential: true,

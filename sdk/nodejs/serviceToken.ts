@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *         {
  *             permissionSet: "job_admin",
  *             allProjects: false,
- *             projectId: Number(dbtProject.id),
+ *             projectId: dbtProject.id,
  *         },
  *         {
  *             permissionSet: "developer",

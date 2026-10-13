@@ -67,11 +67,11 @@ import javax.annotation.Nullable;
  *             .rules(            
  *                 NotificationSettingRuleArgs.builder()
  *                     .triggerOn("run_errored")
- *                     .jobId(prodJob.id())
+ *                     .jobId(prodJob.get("id"))
  *                     .build(),
  *                 NotificationSettingRuleArgs.builder()
  *                     .triggerOn("run_cancelled")
- *                     .jobId(prodJob.id())
+ *                     .jobId(prodJob.get("id"))
  *                     .build())
  *             .build());
  * 

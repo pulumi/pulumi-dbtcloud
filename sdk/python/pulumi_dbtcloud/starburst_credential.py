@@ -299,7 +299,7 @@ class StarburstCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         example = dbtcloud.StarburstCredential("example",
-            project_id=int(example_dbtcloud_project["id"]),
+            project_id=example_dbtcloud_project["id"],
             database="your_catalog",
             schema="your_schema",
             user="your_user",
@@ -307,7 +307,7 @@ class StarburstCredential(pulumi.CustomResource):
         config = pulumi.Config()
         starburst_password = config.require("starburstPassword")
         example_wo = dbtcloud.StarburstCredential("example_wo",
-            project_id=int(example_dbtcloud_project["id"]),
+            project_id=example_dbtcloud_project["id"],
             database="your_catalog",
             schema="your_schema",
             user="your_user",
@@ -364,7 +364,7 @@ class StarburstCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         example = dbtcloud.StarburstCredential("example",
-            project_id=int(example_dbtcloud_project["id"]),
+            project_id=example_dbtcloud_project["id"],
             database="your_catalog",
             schema="your_schema",
             user="your_user",
@@ -372,7 +372,7 @@ class StarburstCredential(pulumi.CustomResource):
         config = pulumi.Config()
         starburst_password = config.require("starburstPassword")
         example_wo = dbtcloud.StarburstCredential("example_wo",
-            project_id=int(example_dbtcloud_project["id"]),
+            project_id=example_dbtcloud_project["id"],
             database="your_catalog",
             schema="your_schema",
             user="your_user",

@@ -207,7 +207,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
             group_permissions=[
                 {
                     "permission_set": "developer",
-                    "project_id": int(dbt_project["id"]),
+                    "project_id": dbt_project["id"],
                     "all_projects": False,
                     "writable_environment_categories": [
                         "development",
@@ -216,18 +216,18 @@ class GroupPartialPermissions(pulumi.CustomResource):
                 },
                 {
                     "permission_set": "git_admin",
-                    "project_id": int(dbt_project["id"]),
+                    "project_id": dbt_project["id"],
                     "all_projects": False,
                 },
             ])
         # we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
-        # it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+        # it is possible to add more permissions to the same group name in other Pulumi projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
         tf_group2 = dbtcloud.GroupPartialPermissions("tf_group_2",
             name="TF Group 2",
             sso_mapping_groups=["group2"],
             group_permissions=[{
                 "permission_set": "admin",
-                "project_id": int(dbt_project["id"]),
+                "project_id": dbt_project["id"],
                 "all_projects": False,
             }])
         ```
@@ -278,7 +278,7 @@ class GroupPartialPermissions(pulumi.CustomResource):
             group_permissions=[
                 {
                     "permission_set": "developer",
-                    "project_id": int(dbt_project["id"]),
+                    "project_id": dbt_project["id"],
                     "all_projects": False,
                     "writable_environment_categories": [
                         "development",
@@ -287,18 +287,18 @@ class GroupPartialPermissions(pulumi.CustomResource):
                 },
                 {
                     "permission_set": "git_admin",
-                    "project_id": int(dbt_project["id"]),
+                    "project_id": dbt_project["id"],
                     "all_projects": False,
                 },
             ])
         # we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project 
-        # it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+        # it is possible to add more permissions to the same group name in other Pulumi projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
         tf_group2 = dbtcloud.GroupPartialPermissions("tf_group_2",
             name="TF Group 2",
             sso_mapping_groups=["group2"],
             group_permissions=[{
                 "permission_set": "admin",
-                "project_id": int(dbt_project["id"]),
+                "project_id": dbt_project["id"],
                 "all_projects": False,
             }])
         ```

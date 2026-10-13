@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attributes (stored in state)
  * const passwordAuth = new dbtcloud.SnowflakePlatformMetadataCredential("password_auth", {
- *     connectionId: Number(snowflake.id),
+ *     connectionId: snowflake.id,
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: true,
  *     costInsightsEnabled: false,
@@ -39,7 +39,7 @@ import * as utilities from "./utilities";
  *     warehouse: "METADATA_WH",
  * });
  * const keypairAuth = new dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth", {
- *     connectionId: Number(snowflake.id),
+ *     connectionId: snowflake.id,
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: false,
  *     costInsightsEnabled: false,
@@ -55,7 +55,7 @@ import * as utilities from "./utilities";
  * const snowflakeMetadataPrivateKey = config.require("snowflakeMetadataPrivateKey");
  * const snowflakeMetadataPrivateKeyPassphrase = config.require("snowflakeMetadataPrivateKeyPassphrase");
  * const passwordAuthWo = new dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo", {
- *     connectionId: Number(snowflake.id),
+ *     connectionId: snowflake.id,
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: true,
  *     costInsightsEnabled: false,
@@ -67,7 +67,7 @@ import * as utilities from "./utilities";
  *     warehouse: "METADATA_WH",
  * });
  * const keypairAuthWo = new dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo", {
- *     connectionId: Number(snowflake.id),
+ *     connectionId: snowflake.id,
  *     catalogIngestionEnabled: true,
  *     costOptimizationEnabled: false,
  *     costInsightsEnabled: false,

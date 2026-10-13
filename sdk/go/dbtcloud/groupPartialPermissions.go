@@ -69,7 +69,7 @@ import (
 //				return err
 //			}
 //			// we add Admin permissions to the group "TF Group 2" (existing or not) to  a new project
-//			// it is possible to add more permissions to the same group name in other Terraform projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
+//			// it is possible to add more permissions to the same group name in other Pulumi projects/workspaces, using another `dbtcloud_group_partial_permissions` resource
 //			_, err = dbtcloud.NewGroupPartialPermissions(ctx, "tf_group_2", &dbtcloud.GroupPartialPermissionsArgs{
 //				Name: pulumi.String("TF Group 2"),
 //				SsoMappingGroups: pulumi.StringArray{

@@ -24,7 +24,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+        ///     // projects functions can use the project_id parameter (preferred uniqueness is ensured)
         ///     var projectById = DbtCloud.GetProject.Invoke(new()
         ///     {
         ///         Id = 0,
@@ -48,7 +48,7 @@ namespace Pulumi.DbtCloud
         ///     {
         ///         ["projectIdDetails"] = projectById,
         ///         ["projectNameDetails"] = projectByName,
-        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length(),
+        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length,
         ///         ["filteredProjects"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects),
         ///         ["projectNames"] = .Select(project =&gt; 
         ///         {
@@ -74,7 +74,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+        ///     // projects functions can use the project_id parameter (preferred uniqueness is ensured)
         ///     var projectById = DbtCloud.GetProject.Invoke(new()
         ///     {
         ///         Id = 0,
@@ -98,7 +98,7 @@ namespace Pulumi.DbtCloud
         ///     {
         ///         ["projectIdDetails"] = projectById,
         ///         ["projectNameDetails"] = projectByName,
-        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length(),
+        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length,
         ///         ["filteredProjects"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects),
         ///         ["projectNames"] = .Select(project =&gt; 
         ///         {
@@ -124,7 +124,7 @@ namespace Pulumi.DbtCloud
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+        ///     // projects functions can use the project_id parameter (preferred uniqueness is ensured)
         ///     var projectById = DbtCloud.GetProject.Invoke(new()
         ///     {
         ///         Id = 0,
@@ -148,7 +148,7 @@ namespace Pulumi.DbtCloud
         ///     {
         ///         ["projectIdDetails"] = projectById,
         ///         ["projectNameDetails"] = projectByName,
-        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length(),
+        ///         ["filteredProjectsCount"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length,
         ///         ["filteredProjects"] = filteredProjects.Apply(getProjectsResult =&gt; getProjectsResult.Projects),
         ///         ["projectNames"] = .Select(project =&gt; 
         ///         {

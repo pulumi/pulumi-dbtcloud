@@ -341,12 +341,12 @@ class OpenaiIntegration(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         # Use a native OpenAI API key.
-        # Recommended: write-only (Terraform 1.11+) — the key is never stored in state.
+        # Recommended: write-only (Pulumi 1.11+) — the key is never stored in state.
         openai = dbtcloud.OpenaiIntegration("openai",
             key_type="openai",
             key_value_wo=openai_api_key,
             key_value_wo_version=1)
-        # For older Terraform versions, use key_value instead — stored as a sensitive value in state.
+        # For older Pulumi versions, use key_value instead — stored as a sensitive value in state.
         # resource "dbtcloud_openai_integration" "openai" {
         #   key_type  = "openai"
         #   key_value = var.openai_api_key
@@ -407,12 +407,12 @@ class OpenaiIntegration(pulumi.CustomResource):
         import pulumi_dbtcloud as dbtcloud
 
         # Use a native OpenAI API key.
-        # Recommended: write-only (Terraform 1.11+) — the key is never stored in state.
+        # Recommended: write-only (Pulumi 1.11+) — the key is never stored in state.
         openai = dbtcloud.OpenaiIntegration("openai",
             key_type="openai",
             key_value_wo=openai_api_key,
             key_value_wo_version=1)
-        # For older Terraform versions, use key_value instead — stored as a sensitive value in state.
+        # For older Pulumi versions, use key_value instead — stored as a sensitive value in state.
         # resource "dbtcloud_openai_integration" "openai" {
         #   key_type  = "openai"
         #   key_value = var.openai_api_key

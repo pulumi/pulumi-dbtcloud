@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attributes (stored in state)
  *         var passwordAuth = new SnowflakePlatformMetadataCredential("passwordAuth", SnowflakePlatformMetadataCredentialArgs.builder()
- *             .connectionId(snowflake.id())
+ *             .connectionId(snowflake.get("id"))
  *             .catalogIngestionEnabled(true)
  *             .costOptimizationEnabled(true)
  *             .costInsightsEnabled(false)
@@ -72,7 +72,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var keypairAuth = new SnowflakePlatformMetadataCredential("keypairAuth", SnowflakePlatformMetadataCredentialArgs.builder()
- *             .connectionId(snowflake.id())
+ *             .connectionId(snowflake.get("id"))
  *             .catalogIngestionEnabled(true)
  *             .costOptimizationEnabled(false)
  *             .costInsightsEnabled(false)
@@ -88,7 +88,7 @@ import javax.annotation.Nullable;
  *         final var snowflakeMetadataPrivateKey = config.require("snowflakeMetadataPrivateKey");
  *         final var snowflakeMetadataPrivateKeyPassphrase = config.require("snowflakeMetadataPrivateKeyPassphrase");
  *         var passwordAuthWo = new SnowflakePlatformMetadataCredential("passwordAuthWo", SnowflakePlatformMetadataCredentialArgs.builder()
- *             .connectionId(snowflake.id())
+ *             .connectionId(snowflake.get("id"))
  *             .catalogIngestionEnabled(true)
  *             .costOptimizationEnabled(true)
  *             .costInsightsEnabled(false)
@@ -101,7 +101,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var keypairAuthWo = new SnowflakePlatformMetadataCredential("keypairAuthWo", SnowflakePlatformMetadataCredentialArgs.builder()
- *             .connectionId(snowflake.id())
+ *             .connectionId(snowflake.get("id"))
  *             .catalogIngestionEnabled(true)
  *             .costOptimizationEnabled(false)
  *             .costInsightsEnabled(false)

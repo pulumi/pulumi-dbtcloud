@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *         // Using the classic sensitive attribute (stored in state)
  *         var redshift = new RedshiftCredential("redshift", RedshiftCredentialArgs.builder()
  *             .numThreads(16)
- *             .projectId(testProject.id())
+ *             .projectId(testProject.get("id"))
  *             .defaultSchema("my_schema")
  *             .username("my_username")
  *             .password("my_sensitive_password")
@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *         final var redshiftPassword = config.require("redshiftPassword");
  *         var redshiftWo = new RedshiftCredential("redshiftWo", RedshiftCredentialArgs.builder()
  *             .numThreads(16)
- *             .projectId(testProject.id())
+ *             .projectId(testProject.get("id"))
  *             .defaultSchema("my_schema")
  *             .username("my_username")
  *             .passwordWo(redshiftPassword)

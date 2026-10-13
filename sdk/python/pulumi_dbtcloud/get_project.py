@@ -206,7 +206,7 @@ def get_project(id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_dbtcloud as dbtcloud
 
-    # projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+    # projects functions can use the project_id parameter (preferred uniqueness is ensured)
     project_by_id = dbtcloud.get_project(id=0)
     # or they can use project names
     # the provider will raise an error if more than one project is found with the same name
@@ -256,7 +256,7 @@ def get_project_output(id: pulumi.Input[Optional[Optional[_builtins.int]]] = Non
     import pulumi
     import pulumi_dbtcloud as dbtcloud
 
-    # projects data sources can use the project_id parameter (preferred uniqueness is ensured)
+    # projects functions can use the project_id parameter (preferred uniqueness is ensured)
     project_by_id = dbtcloud.get_project(id=0)
     # or they can use project names
     # the provider will raise an error if more than one project is found with the same name

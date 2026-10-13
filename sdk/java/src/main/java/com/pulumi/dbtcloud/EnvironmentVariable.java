@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var dbtMyEnvVar = new EnvironmentVariable("dbtMyEnvVar", EnvironmentVariableArgs.builder()
  *             .name("DBT_MY_ENV_VAR")
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .environmentValues(Map.ofEntries(
  *                 Map.entry("project", "my_project_level_value"),
  *                 Map.entry("Dev", "my_env_level_value"),

@@ -62,7 +62,7 @@ import * as utilities from "./utilities";
  *         {
  *             permissionSet: "developer",
  *             allProjects: false,
- *             projectId: Number(dbtProject.id),
+ *             projectId: dbtProject.id,
  *             writableEnvironmentCategories: [
  *                 "development",
  *                 "staging",

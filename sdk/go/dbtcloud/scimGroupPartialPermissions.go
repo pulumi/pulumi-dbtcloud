@@ -80,7 +80,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Terraform State 1 (Platform Team)
+//			// Pulumi State 1 (Platform Team)
 //			_, err := dbtcloud.NewScimGroupPartialPermissions(ctx, "platform", &dbtcloud.ScimGroupPartialPermissionsArgs{
 //				GroupId: pulumi.Int(12345),
 //				Permissions: dbtcloud.ScimGroupPartialPermissionsPermissionArray{
@@ -97,7 +97,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Terraform State 2 (Another Team) - IDENTICAL permission!
+//			// Pulumi State 2 (Another Team) - IDENTICAL permission!
 //			_, err = dbtcloud.NewScimGroupPartialPermissions(ctx, "other_team", &dbtcloud.ScimGroupPartialPermissionsArgs{
 //				GroupId: pulumi.Int(12345),
 //				Permissions: dbtcloud.ScimGroupPartialPermissionsPermissionArray{
@@ -134,7 +134,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Terraform State 1 (Platform Team) - Development environments
+//			// Pulumi State 1 (Platform Team) - Development environments
 //			_, err := dbtcloud.NewScimGroupPartialPermissions(ctx, "platform_dev", &dbtcloud.ScimGroupPartialPermissionsArgs{
 //				GroupId: pulumi.Int(12345),
 //				Permissions: dbtcloud.ScimGroupPartialPermissionsPermissionArray{
@@ -151,7 +151,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Terraform State 2 (SRE Team) - Production environments
+//			// Pulumi State 2 (SRE Team) - Production environments
 //			_, err = dbtcloud.NewScimGroupPartialPermissions(ctx, "sre_prod", &dbtcloud.ScimGroupPartialPermissionsArgs{
 //				GroupId: pulumi.Int(12345),
 //				Permissions: dbtcloud.ScimGroupPartialPermissionsPermissionArray{

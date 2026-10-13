@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * // Using the classic sensitive attribute (stored in state)
  * const postgresProdCredential = new dbtcloud.PostgresCredential("postgres_prod_credential", {
  *     isActive: true,
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     type: "postgres",
  *     defaultSchema: "my_schema",
  *     username: "my_username",
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * const postgresPassword = config.require("postgresPassword");
  * const postgresProdCredentialWo = new dbtcloud.PostgresCredential("postgres_prod_credential_wo", {
  *     isActive: true,
- *     projectId: Number(dbtProject.id),
+ *     projectId: dbtProject.id,
  *     type: "postgres",
  *     defaultSchema: "my_schema",
  *     username: "my_username",

@@ -48,10 +48,10 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // we can assign groups to users
  *         var myUserGroups = new UserGroups("myUserGroups", UserGroupsArgs.builder()
- *             .userId(myUser.id())
+ *             .userId(myUser.get("id"))
  *             .groupIds(            
  *                 1234,
- *                 myGroup.id(),
+ *                 myGroup.get("id"),
  *                 myGroupId)
  *             .build());
  * 

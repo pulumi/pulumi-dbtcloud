@@ -363,7 +363,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         example = dbtcloud.DatabricksPlatformMetadataCredential("example",
-            connection_id=int(databricks["id"]),
+            connection_id=databricks["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -372,7 +372,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
         config = pulumi.Config()
         databricks_metadata_token = config.require("databricksMetadataToken")
         example_wo = dbtcloud.DatabricksPlatformMetadataCredential("example_wo",
-            connection_id=int(databricks["id"]),
+            connection_id=databricks["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -424,7 +424,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attribute (stored in state)
         example = dbtcloud.DatabricksPlatformMetadataCredential("example",
-            connection_id=int(databricks["id"]),
+            connection_id=databricks["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -433,7 +433,7 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
         config = pulumi.Config()
         databricks_metadata_token = config.require("databricksMetadataToken")
         example_wo = dbtcloud.DatabricksPlatformMetadataCredential("example_wo",
-            connection_id=int(databricks["id"]),
+            connection_id=databricks["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,

@@ -665,7 +665,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         password_auth = dbtcloud.SnowflakePlatformMetadataCredential("password_auth",
-            connection_id=int(snowflake["id"]),
+            connection_id=snowflake["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=True,
             cost_insights_enabled=False,
@@ -675,7 +675,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         keypair_auth = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth",
-            connection_id=int(snowflake["id"]),
+            connection_id=snowflake["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -690,7 +690,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
         snowflake_metadata_private_key = config.require("snowflakeMetadataPrivateKey")
         snowflake_metadata_private_key_passphrase = config.require("snowflakeMetadataPrivateKeyPassphrase")
         password_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo",
-            connection_id=int(snowflake["id"]),
+            connection_id=snowflake["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=True,
             cost_insights_enabled=False,
@@ -701,7 +701,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         keypair_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo",
-            connection_id=int(snowflake["id"]),
+            connection_id=snowflake["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -769,7 +769,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         password_auth = dbtcloud.SnowflakePlatformMetadataCredential("password_auth",
-            connection_id=int(snowflake["id"]),
+            connection_id=snowflake["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=True,
             cost_insights_enabled=False,
@@ -779,7 +779,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         keypair_auth = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth",
-            connection_id=int(snowflake["id"]),
+            connection_id=snowflake["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,
@@ -794,7 +794,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
         snowflake_metadata_private_key = config.require("snowflakeMetadataPrivateKey")
         snowflake_metadata_private_key_passphrase = config.require("snowflakeMetadataPrivateKeyPassphrase")
         password_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("password_auth_wo",
-            connection_id=int(snowflake["id"]),
+            connection_id=snowflake["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=True,
             cost_insights_enabled=False,
@@ -805,7 +805,7 @@ class SnowflakePlatformMetadataCredential(pulumi.CustomResource):
             role="METADATA_READER_ROLE",
             warehouse="METADATA_WH")
         keypair_auth_wo = dbtcloud.SnowflakePlatformMetadataCredential("keypair_auth_wo",
-            connection_id=int(snowflake["id"]),
+            connection_id=snowflake["id"],
             catalog_ingestion_enabled=True,
             cost_optimization_enabled=False,
             cost_insights_enabled=False,

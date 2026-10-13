@@ -334,7 +334,7 @@ class RedshiftCredential(pulumi.CustomResource):
         # Using the classic sensitive attribute (stored in state)
         redshift = dbtcloud.RedshiftCredential("redshift",
             num_threads=16,
-            project_id=int(test_project["id"]),
+            project_id=test_project["id"],
             default_schema="my_schema",
             username="my_username",
             password="my_sensitive_password",
@@ -343,7 +343,7 @@ class RedshiftCredential(pulumi.CustomResource):
         redshift_password = config.require("redshiftPassword")
         redshift_wo = dbtcloud.RedshiftCredential("redshift_wo",
             num_threads=16,
-            project_id=int(test_project["id"]),
+            project_id=test_project["id"],
             default_schema="my_schema",
             username="my_username",
             password_wo=redshift_password,
@@ -402,7 +402,7 @@ class RedshiftCredential(pulumi.CustomResource):
         # Using the classic sensitive attribute (stored in state)
         redshift = dbtcloud.RedshiftCredential("redshift",
             num_threads=16,
-            project_id=int(test_project["id"]),
+            project_id=test_project["id"],
             default_schema="my_schema",
             username="my_username",
             password="my_sensitive_password",
@@ -411,7 +411,7 @@ class RedshiftCredential(pulumi.CustomResource):
         redshift_password = config.require("redshiftPassword")
         redshift_wo = dbtcloud.RedshiftCredential("redshift_wo",
             num_threads=16,
-            project_id=int(test_project["id"]),
+            project_id=test_project["id"],
             default_schema="my_schema",
             username="my_username",
             password_wo=redshift_password,

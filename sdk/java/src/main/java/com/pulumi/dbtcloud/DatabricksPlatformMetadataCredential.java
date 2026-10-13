@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attribute (stored in state)
  *         var example = new DatabricksPlatformMetadataCredential("example", DatabricksPlatformMetadataCredentialArgs.builder()
- *             .connectionId(databricks.id())
+ *             .connectionId(databricks.get("id"))
  *             .catalogIngestionEnabled(true)
  *             .costOptimizationEnabled(false)
  *             .costInsightsEnabled(false)
@@ -70,7 +70,7 @@ import javax.annotation.Nullable;
  * 
  *         final var databricksMetadataToken = config.require("databricksMetadataToken");
  *         var exampleWo = new DatabricksPlatformMetadataCredential("exampleWo", DatabricksPlatformMetadataCredentialArgs.builder()
- *             .connectionId(databricks.id())
+ *             .connectionId(databricks.get("id"))
  *             .catalogIngestionEnabled(true)
  *             .costOptimizationEnabled(false)
  *             .costInsightsEnabled(false)

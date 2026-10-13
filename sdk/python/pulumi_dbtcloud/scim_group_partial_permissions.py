@@ -169,7 +169,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # Terraform State 1 (Platform Team)
+        # Pulumi State 1 (Platform Team)
         platform = dbtcloud.ScimGroupPartialPermissions("platform",
             group_id=12345,
             permissions=[{
@@ -178,7 +178,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
                 "all_projects": False,
                 "writable_environment_categories": ["development"],
             }])
-        # Terraform State 2 (Another Team) - IDENTICAL permission!
+        # Pulumi State 2 (Another Team) - IDENTICAL permission!
         other_team = dbtcloud.ScimGroupPartialPermissions("other_team",
             group_id=12345,
             permissions=[{
@@ -195,7 +195,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # Terraform State 1 (Platform Team) - Development environments
+        # Pulumi State 1 (Platform Team) - Development environments
         platform_dev = dbtcloud.ScimGroupPartialPermissions("platform_dev",
             group_id=12345,
             permissions=[{
@@ -204,7 +204,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
                 "all_projects": False,
                 "writable_environment_categories": ["development"],
             }])
-        # Terraform State 2 (SRE Team) - Production environments
+        # Pulumi State 2 (SRE Team) - Production environments
         sre_prod = dbtcloud.ScimGroupPartialPermissions("sre_prod",
             group_id=12345,
             permissions=[{
@@ -362,7 +362,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # Terraform State 1 (Platform Team)
+        # Pulumi State 1 (Platform Team)
         platform = dbtcloud.ScimGroupPartialPermissions("platform",
             group_id=12345,
             permissions=[{
@@ -371,7 +371,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
                 "all_projects": False,
                 "writable_environment_categories": ["development"],
             }])
-        # Terraform State 2 (Another Team) - IDENTICAL permission!
+        # Pulumi State 2 (Another Team) - IDENTICAL permission!
         other_team = dbtcloud.ScimGroupPartialPermissions("other_team",
             group_id=12345,
             permissions=[{
@@ -388,7 +388,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
         import pulumi
         import pulumi_dbtcloud as dbtcloud
 
-        # Terraform State 1 (Platform Team) - Development environments
+        # Pulumi State 1 (Platform Team) - Development environments
         platform_dev = dbtcloud.ScimGroupPartialPermissions("platform_dev",
             group_id=12345,
             permissions=[{
@@ -397,7 +397,7 @@ class ScimGroupPartialPermissions(pulumi.CustomResource):
                 "all_projects": False,
                 "writable_environment_categories": ["development"],
             }])
-        # Terraform State 2 (SRE Team) - Production environments
+        # Pulumi State 2 (SRE Team) - Production environments
         sre_prod = dbtcloud.ScimGroupPartialPermissions("sre_prod",
             group_id=12345,
             permissions=[{

@@ -404,7 +404,7 @@ class SalesforceCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         my_salesforce_cred = dbtcloud.SalesforceCredential("my_salesforce_cred",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             username="user@example.com",
             client_id="your-oauth-client-id",
             private_key="private-key value",
@@ -414,7 +414,7 @@ class SalesforceCredential(pulumi.CustomResource):
         salesforce_client_id = config.require("salesforceClientId")
         salesforce_private_key = config.require("salesforcePrivateKey")
         my_salesforce_cred_wo = dbtcloud.SalesforceCredential("my_salesforce_cred_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             username="user@example.com",
             client_id_wo=salesforce_client_id,
             client_id_wo_version=1,
@@ -477,7 +477,7 @@ class SalesforceCredential(pulumi.CustomResource):
 
         # Using the classic sensitive attributes (stored in state)
         my_salesforce_cred = dbtcloud.SalesforceCredential("my_salesforce_cred",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             username="user@example.com",
             client_id="your-oauth-client-id",
             private_key="private-key value",
@@ -487,7 +487,7 @@ class SalesforceCredential(pulumi.CustomResource):
         salesforce_client_id = config.require("salesforceClientId")
         salesforce_private_key = config.require("salesforcePrivateKey")
         my_salesforce_cred_wo = dbtcloud.SalesforceCredential("my_salesforce_cred_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             username="user@example.com",
             client_id_wo=salesforce_client_id,
             client_id_wo_version=1,

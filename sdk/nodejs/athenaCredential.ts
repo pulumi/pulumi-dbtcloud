@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * // Using the classic sensitive attributes (stored in state)
  * const example = new dbtcloud.AthenaCredential("example", {
- *     projectId: Number(exampleDbtcloudProject.id),
+ *     projectId: exampleDbtcloudProject.id,
  *     awsAccessKeyId: "your-access-key-id",
  *     awsSecretAccessKey: "your-secret-access-key",
  *     schema: "your_schema",
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * const athenaAwsAccessKeyId = config.require("athenaAwsAccessKeyId");
  * const athenaAwsSecretAccessKey = config.require("athenaAwsSecretAccessKey");
  * const exampleWo = new dbtcloud.AthenaCredential("example_wo", {
- *     projectId: Number(exampleDbtcloudProject.id),
+ *     projectId: exampleDbtcloudProject.id,
  *     awsAccessKeyIdWo: athenaAwsAccessKeyId,
  *     awsAccessKeyIdWoVersion: 1,
  *     awsSecretAccessKeyWo: athenaAwsSecretAccessKey,

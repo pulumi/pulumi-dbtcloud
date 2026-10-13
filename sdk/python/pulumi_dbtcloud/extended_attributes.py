@@ -164,8 +164,8 @@ class ExtendedAttributes(pulumi.CustomResource):
         import json
         import pulumi_dbtcloud as dbtcloud
 
-        # extended_attributes can be set as a raw JSON string or encoded with Terraform's `jsonencode()` function
-        # we recommend using `jsonencode()` to avoid Terraform reporting changes due to whitespaces or keys ordering
+        # extended_attributes can be set as a raw JSON string or encoded with Pulumi's `jsonencode()` function
+        # we recommend using `jsonencode()` to avoid Pulumi reporting changes due to whitespaces or keys ordering
         my_attributes = dbtcloud.ExtendedAttributes("my_attributes",
             extended_attributes=json.dumps({
                 "type": "databricks",
@@ -175,14 +175,14 @@ class ExtendedAttributes(pulumi.CustomResource):
                     "subfield": "my_value",
                 },
             }),
-            project_id=int(dbt_project["id"]))
+            project_id=dbt_project["id"])
         issue_depl = dbtcloud.Environment("issue_depl",
             dbt_version="latest",
             name="My environment",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             type="deployment",
             use_custom_branch=False,
-            credential_id=int(dbt_credential_id),
+            credential_id=dbt_credential_id,
             deployment_type="production",
             extended_attributes_id=my_attributes.extended_attributes_id)
         ```
@@ -230,8 +230,8 @@ class ExtendedAttributes(pulumi.CustomResource):
         import json
         import pulumi_dbtcloud as dbtcloud
 
-        # extended_attributes can be set as a raw JSON string or encoded with Terraform's `jsonencode()` function
-        # we recommend using `jsonencode()` to avoid Terraform reporting changes due to whitespaces or keys ordering
+        # extended_attributes can be set as a raw JSON string or encoded with Pulumi's `jsonencode()` function
+        # we recommend using `jsonencode()` to avoid Pulumi reporting changes due to whitespaces or keys ordering
         my_attributes = dbtcloud.ExtendedAttributes("my_attributes",
             extended_attributes=json.dumps({
                 "type": "databricks",
@@ -241,14 +241,14 @@ class ExtendedAttributes(pulumi.CustomResource):
                     "subfield": "my_value",
                 },
             }),
-            project_id=int(dbt_project["id"]))
+            project_id=dbt_project["id"])
         issue_depl = dbtcloud.Environment("issue_depl",
             dbt_version="latest",
             name="My environment",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             type="deployment",
             use_custom_branch=False,
-            credential_id=int(dbt_credential_id),
+            credential_id=dbt_credential_id,
             deployment_type="production",
             extended_attributes_id=my_attributes.extended_attributes_id)
         ```

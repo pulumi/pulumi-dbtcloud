@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attribute (stored in state)
  *         var prodCredential = new SnowflakeCredential("prodCredential", SnowflakeCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .authType("password")
  *             .numThreads(16)
  *             .schema("SCHEMA")
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * 
  *         final var snowflakePassword = config.require("snowflakePassword");
  *         var prodCredentialWo = new SnowflakeCredential("prodCredentialWo", SnowflakeCredentialArgs.builder()
- *             .projectId(dbtProject.id())
+ *             .projectId(dbtProject.get("id"))
  *             .authType("password")
  *             .numThreads(16)
  *             .schema("SCHEMA")

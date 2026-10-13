@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * // Using the classic sensitive attribute (stored in state)
  * const redshift = new dbtcloud.RedshiftCredential("redshift", {
  *     numThreads: 16,
- *     projectId: Number(testProject.id),
+ *     projectId: testProject.id,
  *     defaultSchema: "my_schema",
  *     username: "my_username",
  *     password: "my_sensitive_password",
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * const redshiftPassword = config.require("redshiftPassword");
  * const redshiftWo = new dbtcloud.RedshiftCredential("redshift_wo", {
  *     numThreads: 16,
- *     projectId: Number(testProject.id),
+ *     projectId: testProject.id,
  *     defaultSchema: "my_schema",
  *     username: "my_username",
  *     passwordWo: redshiftPassword,

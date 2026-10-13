@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Example: Configure catalog filters for a Snowflake connection
  *         var snowflakeFilters = new ConnectionCatalogConfig("snowflakeFilters", ConnectionCatalogConfigArgs.builder()
- *             .connectionId(snowflake.id())
+ *             .connectionId(snowflake.get("id"))
  *             .databaseAllows(            
  *                 "analytics",
  *                 "reporting")
@@ -81,13 +81,13 @@ import javax.annotation.Nullable;
  * 
  *         // Example: Minimal configuration - just filter databases
  *         var minimal = new ConnectionCatalogConfig("minimal", ConnectionCatalogConfigArgs.builder()
- *             .connectionId(snowflake.id())
+ *             .connectionId(snowflake.get("id"))
  *             .databaseAllows("production")
  *             .build());
  * 
  *         // Example: Full configuration with platform metadata credential
  *         var creds = new SnowflakePlatformMetadataCredential("creds", SnowflakePlatformMetadataCredentialArgs.builder()
- *             .connectionId(snowflake.id())
+ *             .connectionId(snowflake.get("id"))
  *             .catalogIngestionEnabled(true)
  *             .authType("password")
  *             .user(snowflakeUser)
@@ -97,7 +97,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var withCreds = new ConnectionCatalogConfig("withCreds", ConnectionCatalogConfigArgs.builder()
- *             .connectionId(snowflake.id())
+ *             .connectionId(snowflake.get("id"))
  *             .databaseAllows(            
  *                 "analytics",
  *                 "reporting")

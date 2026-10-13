@@ -41,9 +41,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var myProjectArtefacts = new ProjectArtefacts("myProjectArtefacts", ProjectArtefactsArgs.builder()
- *             .projectId(dbtProject.id())
- *             .docsJobId(prodJob.id())
- *             .freshnessJobId(prodJob.id())
+ *             .projectId(dbtProject.get("id"))
+ *             .docsJobId(prodJob.get("id"))
+ *             .freshnessJobId(prodJob.get("id"))
  *             .build());
  * 
  *     }

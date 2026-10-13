@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         // Using the classic sensitive attribute (stored in state)
  *         var example = new TeradataCredential("example", TeradataCredentialArgs.builder()
- *             .projectId(exampleDbtcloudProject.id())
+ *             .projectId(exampleDbtcloudProject.get("id"))
  *             .schema("your_schema")
  *             .user("your_user")
  *             .password("your_password")
@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * 
  *         final var teradataPassword = config.require("teradataPassword");
  *         var exampleWo = new TeradataCredential("exampleWo", TeradataCredentialArgs.builder()
- *             .projectId(exampleDbtcloudProject.id())
+ *             .projectId(exampleDbtcloudProject.get("id"))
  *             .schema("your_schema")
  *             .user("your_user")
  *             .passwordWo(teradataPassword)

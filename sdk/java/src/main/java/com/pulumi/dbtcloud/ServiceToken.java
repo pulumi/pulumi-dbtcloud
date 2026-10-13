@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *                 ServiceTokenServiceTokenPermissionArgs.builder()
  *                     .permissionSet("job_admin")
  *                     .allProjects(false)
- *                     .projectId(dbtProject.id())
+ *                     .projectId(dbtProject.get("id"))
  *                     .build(),
  *                 ServiceTokenServiceTokenPermissionArgs.builder()
  *                     .permissionSet("developer")

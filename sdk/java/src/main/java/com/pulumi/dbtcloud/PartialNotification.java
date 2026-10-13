@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  *         // the config is the same as for `dbtcloud_notification`
  *         var prodJobInternalNotification = new PartialNotification("prodJobInternalNotification", PartialNotificationArgs.builder()
  *             .userId(100)
- *             .onSuccesses(prodJob.id())
+ *             .onSuccesses(prodJob.get("id"))
  *             .onFailures(12345)
  *             .notificationType(1)
  *             .build());
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .onFailures(            
  *                 23456,
  *                 56788)
- *             .onCancels(prodJob.id())
+ *             .onCancels(prodJob.get("id"))
  *             .notificationType(4)
  *             .externalEmail("my_email}{@literal @}{@code mail.com")
  *             .build());
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  *             .onFailures(            
  *                 23456,
  *                 56788)
- *             .onCancels(prodJob.id())
+ *             .onCancels(prodJob.get("id"))
  *             .notificationType(2)
  *             .slackChannelId("C12345ABCDE")
  *             .slackChannelName("#my-awesome-channel")

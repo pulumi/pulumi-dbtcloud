@@ -503,14 +503,14 @@ class FabricCredential(pulumi.CustomResource):
         # Using the classic sensitive attributes (stored in state)
         # when using AD authentication
         my_fabric_cred_ad = dbtcloud.FabricCredential("my_fabric_cred_ad",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             user="my_user",
             password="my_password",
             schema_authorization="abcd")
         # when using service principal authentication
         my_fabric_cred_serv_princ = dbtcloud.FabricCredential("my_fabric_cred_serv_princ",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             client_id="my_client_id",
             tenant_id="my_tenant_id",
@@ -521,7 +521,7 @@ class FabricCredential(pulumi.CustomResource):
         fabric_client_secret = config.require("fabricClientSecret")
         # when using AD authentication with write-only password
         my_fabric_cred_ad_wo = dbtcloud.FabricCredential("my_fabric_cred_ad_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             user="my_user",
             password_wo=fabric_password,
@@ -529,7 +529,7 @@ class FabricCredential(pulumi.CustomResource):
             schema_authorization="abcd")
         # when using service principal authentication with write-only client secret
         my_fabric_cred_serv_princ_wo = dbtcloud.FabricCredential("my_fabric_cred_serv_princ_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             client_id="my_client_id",
             tenant_id="my_tenant_id",
@@ -595,14 +595,14 @@ class FabricCredential(pulumi.CustomResource):
         # Using the classic sensitive attributes (stored in state)
         # when using AD authentication
         my_fabric_cred_ad = dbtcloud.FabricCredential("my_fabric_cred_ad",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             user="my_user",
             password="my_password",
             schema_authorization="abcd")
         # when using service principal authentication
         my_fabric_cred_serv_princ = dbtcloud.FabricCredential("my_fabric_cred_serv_princ",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             client_id="my_client_id",
             tenant_id="my_tenant_id",
@@ -613,7 +613,7 @@ class FabricCredential(pulumi.CustomResource):
         fabric_client_secret = config.require("fabricClientSecret")
         # when using AD authentication with write-only password
         my_fabric_cred_ad_wo = dbtcloud.FabricCredential("my_fabric_cred_ad_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             user="my_user",
             password_wo=fabric_password,
@@ -621,7 +621,7 @@ class FabricCredential(pulumi.CustomResource):
             schema_authorization="abcd")
         # when using service principal authentication with write-only client secret
         my_fabric_cred_serv_princ_wo = dbtcloud.FabricCredential("my_fabric_cred_serv_princ_wo",
-            project_id=int(dbt_project["id"]),
+            project_id=dbt_project["id"],
             schema="my_schema",
             client_id="my_client_id",
             tenant_id="my_tenant_id",

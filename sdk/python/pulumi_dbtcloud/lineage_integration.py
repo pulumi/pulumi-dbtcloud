@@ -319,7 +319,7 @@ class LineageIntegration(pulumi.CustomResource):
         # so, you might want to explicitly set the dependency on your Prod environment resource
         # Using the classic sensitive attribute (stored in state)
         my_lineage = dbtcloud.LineageIntegration("my_lineage",
-            project_id=int(my_project["id"]),
+            project_id=my_project["id"],
             host="my.host.com",
             site_id="mysiteid",
             token_name="my-token-name",
@@ -328,7 +328,7 @@ class LineageIntegration(pulumi.CustomResource):
         config = pulumi.Config()
         lineage_token = config.require("lineageToken")
         my_lineage_wo = dbtcloud.LineageIntegration("my_lineage_wo",
-            project_id=int(my_project["id"]),
+            project_id=my_project["id"],
             host="my.host.com",
             site_id="mysiteid",
             token_name="my-token-name",
@@ -390,7 +390,7 @@ class LineageIntegration(pulumi.CustomResource):
         # so, you might want to explicitly set the dependency on your Prod environment resource
         # Using the classic sensitive attribute (stored in state)
         my_lineage = dbtcloud.LineageIntegration("my_lineage",
-            project_id=int(my_project["id"]),
+            project_id=my_project["id"],
             host="my.host.com",
             site_id="mysiteid",
             token_name="my-token-name",
@@ -399,7 +399,7 @@ class LineageIntegration(pulumi.CustomResource):
         config = pulumi.Config()
         lineage_token = config.require("lineageToken")
         my_lineage_wo = dbtcloud.LineageIntegration("my_lineage_wo",
-            project_id=int(my_project["id"]),
+            project_id=my_project["id"],
             host="my.host.com",
             site_id="mysiteid",
             token_name="my-token-name",

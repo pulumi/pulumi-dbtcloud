@@ -17,12 +17,12 @@ import * as utilities from "./utilities";
  *
  * const testPostgresSemanticLayerCredential = new dbtcloud.PostgresSemanticLayerCredential("test_postgres_semantic_layer_credential", {
  *     configuration: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         name: "Postgres SL Credential",
  *         adapterVersion: "postgres_v0",
  *     },
  *     credential: {
- *         projectId: Number(projectId),
+ *         projectId: projectId,
  *         username: username,
  *         password: password,
  *         semanticLayerCredential: true,

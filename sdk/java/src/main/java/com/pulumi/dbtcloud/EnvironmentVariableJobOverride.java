@@ -42,9 +42,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var myEnvVarJobOverride = new EnvironmentVariableJobOverride("myEnvVarJobOverride", EnvironmentVariableJobOverrideArgs.builder()
- *             .name(dbtMyEnvVar.name())
- *             .projectId(dbtProject.id())
- *             .jobDefinitionId(dailyJob.id())
+ *             .name(dbtMyEnvVar.get("name"))
+ *             .projectId(dbtProject.get("id"))
+ *             .jobDefinitionId(dailyJob.get("id"))
  *             .rawValue("my_override_value")
  *             .build());
  * 
