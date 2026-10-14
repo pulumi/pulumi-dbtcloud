@@ -162,7 +162,7 @@ namespace Pulumi.DbtCloud.Inputs
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        /// Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -179,6 +179,29 @@ namespace Pulumi.DbtCloud.Inputs
         /// </summary>
         [Input("privateKeyId")]
         public Input<string>? PrivateKeyId { get; set; }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Number of retries for queries

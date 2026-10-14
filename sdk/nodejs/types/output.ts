@@ -400,6 +400,14 @@ export interface GetGlobalConnectionBigquery {
      */
     privateKeyId: string;
     /**
+     * Not populated by the data source. Only used by the resource as a write-only alternative to `privateKey`.
+     */
+    privateKeyWo: string;
+    /**
+     * Not populated by the data source. Only used by the resource to trigger updates of `privateKeyWo`.
+     */
+    privateKeyWoVersion: number;
+    /**
      * Number of retries for queries
      */
     retries: number;
@@ -1456,13 +1464,22 @@ export interface GlobalConnectionBigquery {
      */
     priority?: string;
     /**
-     * Private Key for the Service Account. Required when using 'service-account-json' authentication.
+     * Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      */
     privateKey?: string;
     /**
      * Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
      */
     privateKeyId?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    privateKeyWo?: string;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: number;
     /**
      * Number of retries for queries
      */

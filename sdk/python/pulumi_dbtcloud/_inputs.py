@@ -1131,11 +1131,20 @@ class GlobalConnectionBigqueryArgsDict(TypedDict):
     """
     private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Private Key for the Service Account. Required when using 'service-account-json' authentication.
+    Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `private_key_wo` instead, which is not stored in state.
     """
     private_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+    """
+    private_key_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+    """
+    private_key_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
     """
     retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
@@ -1184,6 +1193,8 @@ class GlobalConnectionBigqueryArgs:
                  priority: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  retries: pulumi.Input[Optional[_builtins.int]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1211,8 +1222,11 @@ class GlobalConnectionBigqueryArgs:
         :param pulumi.Input[_builtins.str] location: Location to create new Datasets in
         :param pulumi.Input[_builtins.int] maximum_bytes_billed: Max number of bytes that can be billed for a given BigQuery query
         :param pulumi.Input[_builtins.str] priority: The priority with which to execute BigQuery queries (batch or interactive)
-        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        :param pulumi.Input[_builtins.str] private_key: Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `private_key_wo` instead, which is not stored in state.
         :param pulumi.Input[_builtins.str] private_key_id: Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param pulumi.Input[_builtins.int] retries: Number of retries for queries
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: OAuth scopes for the BigQuery connection
         :param pulumi.Input[_builtins.int] timeout_seconds: Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
@@ -1264,6 +1278,10 @@ class GlobalConnectionBigqueryArgs:
             pulumi.set(__self__, "private_key", private_key)
         if private_key_id is not None:
             pulumi.set(__self__, "private_key_id", private_key_id)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if retries is not None:
             pulumi.set(__self__, "retries", retries)
         if scopes is not None:
@@ -1531,7 +1549,7 @@ class GlobalConnectionBigqueryArgs:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
@@ -1550,6 +1568,31 @@ class GlobalConnectionBigqueryArgs:
     @private_key_id.setter
     def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter

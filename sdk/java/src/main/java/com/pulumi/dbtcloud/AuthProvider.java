@@ -500,6 +500,20 @@ public class AuthProvider extends com.pulumi.resources.CustomResource {
     public Output<String> updatedAt() {
         return this.updatedAt;
     }
+    /**
+     * Whether the account has completed the Auth0 authentication migration. This is set by the &#34;Begin migration&#34; step in the dbt Cloud UI and cannot be changed from Terraform.
+     * 
+     */
+    @Export(name="useAuth0", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> useAuth0;
+
+    /**
+     * @return Whether the account has completed the Auth0 authentication migration. This is set by the &#34;Begin migration&#34; step in the dbt Cloud UI and cannot be changed from Terraform.
+     * 
+     */
+    public Output<Boolean> useAuth0() {
+        return this.useAuth0;
+    }
 
     /**
      *

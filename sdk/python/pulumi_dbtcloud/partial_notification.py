@@ -34,13 +34,13 @@ class PartialNotificationArgs:
 
         :param pulumi.Input[_builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification [global, used as identifier]
-        :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+        :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email` ; 5 = Slack channel via the account-level Slack app: requires `slack_channel_id` and `slack_channel_name`) [global, used as identifier]
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_failures: List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_successes: List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_warnings: List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         :param pulumi.Input[_builtins.str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
-        :param pulumi.Input[_builtins.str] slack_channel_name: The name of the slack channel [global, used as identifier]
+        :param pulumi.Input[_builtins.str] slack_channel_name: The name of the slack channel [global, used as identifier for `notification_type` 2; updated in place for `notification_type` 5]
         :param pulumi.Input[_builtins.int] state: State of the notification (1 = active (default), 2 = inactive) [global]
         """
         pulumi.set(__self__, "user_id", user_id)
@@ -91,7 +91,7 @@ class PartialNotificationArgs:
     @pulumi.getter(name="notificationType")
     def notification_type(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+        Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email` ; 5 = Slack channel via the account-level Slack app: requires `slack_channel_id` and `slack_channel_name`) [global, used as identifier]
         """
         return pulumi.get(self, "notification_type")
 
@@ -163,7 +163,7 @@ class PartialNotificationArgs:
     @pulumi.getter(name="slackChannelName")
     def slack_channel_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The name of the slack channel [global, used as identifier]
+        The name of the slack channel [global, used as identifier for `notification_type` 2; updated in place for `notification_type` 5]
         """
         return pulumi.get(self, "slack_channel_name")
 
@@ -201,13 +201,13 @@ class _PartialNotificationState:
         Input properties used for looking up and filtering PartialNotification resources.
 
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification [global, used as identifier]
-        :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+        :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email` ; 5 = Slack channel via the account-level Slack app: requires `slack_channel_id` and `slack_channel_name`) [global, used as identifier]
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_failures: List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_successes: List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_warnings: List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         :param pulumi.Input[_builtins.str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
-        :param pulumi.Input[_builtins.str] slack_channel_name: The name of the slack channel [global, used as identifier]
+        :param pulumi.Input[_builtins.str] slack_channel_name: The name of the slack channel [global, used as identifier for `notification_type` 2; updated in place for `notification_type` 5]
         :param pulumi.Input[_builtins.int] state: State of the notification (1 = active (default), 2 = inactive) [global]
         :param pulumi.Input[_builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
         """
@@ -248,7 +248,7 @@ class _PartialNotificationState:
     @pulumi.getter(name="notificationType")
     def notification_type(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+        Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email` ; 5 = Slack channel via the account-level Slack app: requires `slack_channel_id` and `slack_channel_name`) [global, used as identifier]
         """
         return pulumi.get(self, "notification_type")
 
@@ -320,7 +320,7 @@ class _PartialNotificationState:
     @pulumi.getter(name="slackChannelName")
     def slack_channel_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The name of the slack channel [global, used as identifier]
+        The name of the slack channel [global, used as identifier for `notification_type` 2; updated in place for `notification_type` 5]
         """
         return pulumi.get(self, "slack_channel_name")
 
@@ -429,13 +429,13 @@ class PartialNotification(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification [global, used as identifier]
-        :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+        :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email` ; 5 = Slack channel via the account-level Slack app: requires `slack_channel_id` and `slack_channel_name`) [global, used as identifier]
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_failures: List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_successes: List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_warnings: List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         :param pulumi.Input[_builtins.str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
-        :param pulumi.Input[_builtins.str] slack_channel_name: The name of the slack channel [global, used as identifier]
+        :param pulumi.Input[_builtins.str] slack_channel_name: The name of the slack channel [global, used as identifier for `notification_type` 2; updated in place for `notification_type` 5]
         :param pulumi.Input[_builtins.int] state: State of the notification (1 = active (default), 2 = inactive) [global]
         :param pulumi.Input[_builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
         """
@@ -575,13 +575,13 @@ class PartialNotification(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] external_email: The external email to receive the notification [global, used as identifier]
-        :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+        :param pulumi.Input[_builtins.int] notification_type: Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email` ; 5 = Slack channel via the account-level Slack app: requires `slack_channel_id` and `slack_channel_name`) [global, used as identifier]
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_cancels: List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_failures: List of job IDs to trigger the webhook on failure Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_successes: List of job IDs to trigger the webhook on success Those will be added/removed when config is added/removed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] on_warnings: List of job IDs to trigger the webhook on warning Those will be added/removed when config is added/removed.
         :param pulumi.Input[_builtins.str] slack_channel_id: The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
-        :param pulumi.Input[_builtins.str] slack_channel_name: The name of the slack channel [global, used as identifier]
+        :param pulumi.Input[_builtins.str] slack_channel_name: The name of the slack channel [global, used as identifier for `notification_type` 2; updated in place for `notification_type` 5]
         :param pulumi.Input[_builtins.int] state: State of the notification (1 = active (default), 2 = inactive) [global]
         :param pulumi.Input[_builtins.int] user_id: Internal dbt Cloud User ID. Must be the user_id for an existing user even if the notification is an external one [global]
         """
@@ -613,7 +613,7 @@ class PartialNotification(pulumi.CustomResource):
     @pulumi.getter(name="notificationType")
     def notification_type(self) -> pulumi.Output[_builtins.int]:
         """
-        Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email`) [global, used as identifier]
+        Type of notification (1 = dbt Cloud user email (default): does not require an external_email ; 2 = Slack channel: requires `slack_channel_id` and `slack_channel_name` ; 4 = external email: requires setting an `external_email` ; 5 = Slack channel via the account-level Slack app: requires `slack_channel_id` and `slack_channel_name`) [global, used as identifier]
         """
         return pulumi.get(self, "notification_type")
 
@@ -661,7 +661,7 @@ class PartialNotification(pulumi.CustomResource):
     @pulumi.getter(name="slackChannelName")
     def slack_channel_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The name of the slack channel [global, used as identifier]
+        The name of the slack channel [global, used as identifier for `notification_type` 2; updated in place for `notification_type` 5]
         """
         return pulumi.get(self, "slack_channel_name")
 

@@ -14,6 +14,8 @@ import (
 
 // Configure model notifications for a dbt Cloud environment. By default all the `on_...` are set to false. When destroyed, the model notifications are disabled.
 //
+// > This resource needs a token with the Account Admin permission set. On enterprise accounts no other permission set grants write access to model notifications, including Notification Manager, which applies to job notifications only. A token without this permission gets a 405 error. The message reports an incorrect method, but the cause is the missing permission.
+//
 // ## Example Usage
 //
 // ```go

@@ -440,13 +440,22 @@ export interface GlobalConnectionBigquery {
      */
     priority?: pulumi.Input<string | undefined>;
     /**
-     * Private Key for the Service Account. Required when using 'service-account-json' authentication.
+     * Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      */
     privateKey?: pulumi.Input<string | undefined>;
     /**
      * Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
      */
     privateKeyId?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     */
+    privateKeyWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Number of retries for queries
      */

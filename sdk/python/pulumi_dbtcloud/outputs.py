@@ -865,6 +865,10 @@ class GlobalConnectionBigquery(dict):
             suggest = "private_key"
         elif key == "privateKeyId":
             suggest = "private_key_id"
+        elif key == "privateKeyWo":
+            suggest = "private_key_wo"
+        elif key == "privateKeyWoVersion":
+            suggest = "private_key_wo_version"
         elif key == "timeoutSeconds":
             suggest = "timeout_seconds"
         elif key == "tokenUri":
@@ -907,6 +911,8 @@ class GlobalConnectionBigquery(dict):
                  priority: Optional[_builtins.str] = None,
                  private_key: Optional[_builtins.str] = None,
                  private_key_id: Optional[_builtins.str] = None,
+                 private_key_wo: Optional[_builtins.str] = None,
+                 private_key_wo_version: Optional[_builtins.int] = None,
                  retries: Optional[_builtins.int] = None,
                  scopes: Optional[Sequence[_builtins.str]] = None,
                  timeout_seconds: Optional[_builtins.int] = None,
@@ -934,8 +940,11 @@ class GlobalConnectionBigquery(dict):
         :param _builtins.str location: Location to create new Datasets in
         :param _builtins.int maximum_bytes_billed: Max number of bytes that can be billed for a given BigQuery query
         :param _builtins.str priority: The priority with which to execute BigQuery queries (batch or interactive)
-        :param _builtins.str private_key: Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        :param _builtins.str private_key: Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `private_key_wo` instead, which is not stored in state.
         :param _builtins.str private_key_id: Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
+        :param _builtins.str private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        :param _builtins.int private_key_wo_version: Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
         :param _builtins.int retries: Number of retries for queries
         :param Sequence[_builtins.str] scopes: OAuth scopes for the BigQuery connection
         :param _builtins.int timeout_seconds: Timeout in seconds for queries, to be used ONLY for the bigquery_v0 adapter
@@ -987,6 +996,10 @@ class GlobalConnectionBigquery(dict):
             pulumi.set(__self__, "private_key", private_key)
         if private_key_id is not None:
             pulumi.set(__self__, "private_key_id", private_key_id)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if retries is not None:
             pulumi.set(__self__, "retries", retries)
         if scopes is not None:
@@ -1170,7 +1183,7 @@ class GlobalConnectionBigquery(dict):
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[_builtins.str]:
         """
-        Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `private_key_wo` instead, which is not stored in state.
         """
         return pulumi.get(self, "private_key")
 
@@ -1181,6 +1194,23 @@ class GlobalConnectionBigquery(dict):
         Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
         """
         return pulumi.get(self, "private_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only alternative to `private_key`. The value is not stored in state. Requires `private_key_wo_version` to trigger updates.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version number for `private_key_wo`. Increment this value to trigger an update of the private key when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @_builtins.property
     @pulumi.getter
@@ -4349,6 +4379,8 @@ class GetGlobalConnectionBigqueryResult(dict):
                  priority: _builtins.str,
                  private_key: _builtins.str,
                  private_key_id: _builtins.str,
+                 private_key_wo: _builtins.str,
+                 private_key_wo_version: _builtins.int,
                  retries: _builtins.int,
                  scopes: Sequence[_builtins.str],
                  timeout_seconds: _builtins.int,
@@ -4378,6 +4410,8 @@ class GetGlobalConnectionBigqueryResult(dict):
         :param _builtins.str priority: The priority with which to execute BigQuery queries (batch or interactive)
         :param _builtins.str private_key: Private Key for the Service Account
         :param _builtins.str private_key_id: Private Key ID for the Service Account
+        :param _builtins.str private_key_wo: Not populated by the data source. Only used by the resource as a write-only alternative to `private_key`.
+        :param _builtins.int private_key_wo_version: Not populated by the data source. Only used by the resource to trigger updates of `private_key_wo`.
         :param _builtins.int retries: Number of retries for queries
         :param Sequence[_builtins.str] scopes: OAuth scopes for the BigQuery connection
         :param _builtins.int timeout_seconds: Timeout in seconds for queries
@@ -4407,6 +4441,8 @@ class GetGlobalConnectionBigqueryResult(dict):
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "private_key_id", private_key_id)
+        pulumi.set(__self__, "private_key_wo", private_key_wo)
+        pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         pulumi.set(__self__, "retries", retries)
         pulumi.set(__self__, "scopes", scopes)
         pulumi.set(__self__, "timeout_seconds", timeout_seconds)
@@ -4596,6 +4632,22 @@ class GetGlobalConnectionBigqueryResult(dict):
         Private Key ID for the Service Account
         """
         return pulumi.get(self, "private_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> _builtins.str:
+        """
+        Not populated by the data source. Only used by the resource as a write-only alternative to `private_key`.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> _builtins.int:
+        """
+        Not populated by the data source. Only used by the resource to trigger updates of `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @_builtins.property
     @pulumi.getter

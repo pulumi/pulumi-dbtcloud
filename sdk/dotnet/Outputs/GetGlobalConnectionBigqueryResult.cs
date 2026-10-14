@@ -106,6 +106,14 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string PrivateKeyId;
         /// <summary>
+        /// Not populated by the data source. Only used by the resource as a write-only alternative to `PrivateKey`.
+        /// </summary>
+        public readonly string PrivateKeyWo;
+        /// <summary>
+        /// Not populated by the data source. Only used by the resource to trigger updates of `PrivateKeyWo`.
+        /// </summary>
+        public readonly int PrivateKeyWoVersion;
+        /// <summary>
         /// Number of retries for queries
         /// </summary>
         public readonly int Retries;
@@ -174,6 +182,10 @@ namespace Pulumi.DbtCloud.Outputs
 
             string privateKeyId,
 
+            string privateKeyWo,
+
+            int privateKeyWoVersion,
+
             int retries,
 
             ImmutableArray<string> scopes,
@@ -207,6 +219,8 @@ namespace Pulumi.DbtCloud.Outputs
             Priority = priority;
             PrivateKey = privateKey;
             PrivateKeyId = privateKeyId;
+            PrivateKeyWo = privateKeyWo;
+            PrivateKeyWoVersion = privateKeyWoVersion;
             Retries = retries;
             Scopes = scopes;
             TimeoutSeconds = timeoutSeconds;

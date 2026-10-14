@@ -286,6 +286,12 @@ namespace Pulumi.DbtCloud
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+        /// </summary>
+        [Output("useAuth0")]
+        public Output<bool> UseAuth0 { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthProvider resource with the given unique name, arguments, and options.
@@ -749,6 +755,12 @@ namespace Pulumi.DbtCloud
 
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+        /// </summary>
+        [Input("useAuth0")]
+        public Input<bool>? UseAuth0 { get; set; }
 
         public AuthProviderState()
         {

@@ -395,6 +395,21 @@ public final class AuthProviderState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.updatedAt);
     }
 
+    /**
+     * Whether the account has completed the Auth0 authentication migration. This is set by the &#34;Begin migration&#34; step in the dbt Cloud UI and cannot be changed from Terraform.
+     * 
+     */
+    @Import(name="useAuth0")
+    private @Nullable Output<Boolean> useAuth0;
+
+    /**
+     * @return Whether the account has completed the Auth0 authentication migration. This is set by the &#34;Begin migration&#34; step in the dbt Cloud UI and cannot be changed from Terraform.
+     * 
+     */
+    public Optional<Output<Boolean>> useAuth0() {
+        return Optional.ofNullable(this.useAuth0);
+    }
+
     private AuthProviderState() {}
 
     private AuthProviderState(AuthProviderState $) {
@@ -424,6 +439,7 @@ public final class AuthProviderState extends com.pulumi.resources.ResourceArgs {
         this.tenantId = $.tenantId;
         this.type = $.type;
         this.updatedAt = $.updatedAt;
+        this.useAuth0 = $.useAuth0;
     }
 
     public static Builder builder() {
@@ -968,6 +984,27 @@ public final class AuthProviderState extends com.pulumi.resources.ResourceArgs {
 
         public Builder updatedAt(String updatedAt) {
             return updatedAt(Output.of(updatedAt));
+        }
+
+        /**
+         * @param useAuth0 Whether the account has completed the Auth0 authentication migration. This is set by the &#34;Begin migration&#34; step in the dbt Cloud UI and cannot be changed from Terraform.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useAuth0(@Nullable Output<Boolean> useAuth0) {
+            $.useAuth0 = useAuth0;
+            return this;
+        }
+
+        /**
+         * @param useAuth0 Whether the account has completed the Auth0 authentication migration. This is set by the &#34;Begin migration&#34; step in the dbt Cloud UI and cannot be changed from Terraform.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useAuth0(Boolean useAuth0) {
+            return useAuth0(Output.of(useAuth0));
         }
 
         public AuthProviderState build() {

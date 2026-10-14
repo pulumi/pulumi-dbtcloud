@@ -129,6 +129,16 @@ public final class GetGlobalConnectionBigquery {
      */
     private String privateKeyId;
     /**
+     * @return Not populated by the data source. Only used by the resource as a write-only alternative to `privateKey`.
+     * 
+     */
+    private String privateKeyWo;
+    /**
+     * @return Not populated by the data source. Only used by the resource to trigger updates of `privateKeyWo`.
+     * 
+     */
+    private Integer privateKeyWoVersion;
+    /**
      * @return Number of retries for queries
      * 
      */
@@ -317,6 +327,20 @@ public final class GetGlobalConnectionBigquery {
         return this.privateKeyId;
     }
     /**
+     * @return Not populated by the data source. Only used by the resource as a write-only alternative to `privateKey`.
+     * 
+     */
+    public String privateKeyWo() {
+        return this.privateKeyWo;
+    }
+    /**
+     * @return Not populated by the data source. Only used by the resource to trigger updates of `privateKeyWo`.
+     * 
+     */
+    public Integer privateKeyWoVersion() {
+        return this.privateKeyWoVersion;
+    }
+    /**
      * @return Number of retries for queries
      * 
      */
@@ -384,6 +408,8 @@ public final class GetGlobalConnectionBigquery {
         private String priority;
         private String privateKey;
         private String privateKeyId;
+        private String privateKeyWo;
+        private Integer privateKeyWoVersion;
         private Integer retries;
         private List<String> scopes;
         private Integer timeoutSeconds;
@@ -415,6 +441,8 @@ public final class GetGlobalConnectionBigquery {
     	      this.priority = defaults.priority;
     	      this.privateKey = defaults.privateKey;
     	      this.privateKeyId = defaults.privateKeyId;
+    	      this.privateKeyWo = defaults.privateKeyWo;
+    	      this.privateKeyWoVersion = defaults.privateKeyWoVersion;
     	      this.retries = defaults.retries;
     	      this.scopes = defaults.scopes;
     	      this.timeoutSeconds = defaults.timeoutSeconds;
@@ -607,6 +635,22 @@ public final class GetGlobalConnectionBigquery {
             return this;
         }
         @CustomType.Setter
+        public Builder privateKeyWo(String privateKeyWo) {
+            if (privateKeyWo == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "privateKeyWo");
+            }
+            this.privateKeyWo = privateKeyWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder privateKeyWoVersion(Integer privateKeyWoVersion) {
+            if (privateKeyWoVersion == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "privateKeyWoVersion");
+            }
+            this.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder retries(Integer retries) {
             if (retries == null) {
               throw new MissingRequiredPropertyException("GetGlobalConnectionBigquery", "retries");
@@ -674,6 +718,8 @@ public final class GetGlobalConnectionBigquery {
             _resultValue.priority = priority;
             _resultValue.privateKey = privateKey;
             _resultValue.privateKeyId = privateKeyId;
+            _resultValue.privateKeyWo = privateKeyWo;
+            _resultValue.privateKeyWoVersion = privateKeyWoVersion;
             _resultValue.retries = retries;
             _resultValue.scopes = scopes;
             _resultValue.timeoutSeconds = timeoutSeconds;

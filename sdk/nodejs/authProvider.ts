@@ -229,6 +229,10 @@ export class AuthProvider extends pulumi.CustomResource {
      */
     declare public readonly type: pulumi.Output<string>;
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
+    /**
+     * Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+     */
+    declare public /*out*/ readonly useAuth0: pulumi.Output<boolean>;
 
     /**
      * Create a AuthProvider resource with the given unique name, arguments, and options.
@@ -269,6 +273,7 @@ export class AuthProvider extends pulumi.CustomResource {
             resourceInputs["tenantId"] = state?.tenantId;
             resourceInputs["type"] = state?.type;
             resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["useAuth0"] = state?.useAuth0;
         } else {
             const args = argsOrState as AuthProviderArgs | undefined;
             if (args?.type === undefined && !opts.urn) {
@@ -300,6 +305,7 @@ export class AuthProvider extends pulumi.CustomResource {
             resourceInputs["loginUrl"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["useAuth0"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["adminRefreshToken", "cert", "certWo", "clientSecret", "clientSecretWo", "tenantId"] };
@@ -412,6 +418,10 @@ export interface AuthProviderState {
      */
     type?: pulumi.Input<string | undefined>;
     updatedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+     */
+    useAuth0?: pulumi.Input<boolean | undefined>;
 }
 
 /**

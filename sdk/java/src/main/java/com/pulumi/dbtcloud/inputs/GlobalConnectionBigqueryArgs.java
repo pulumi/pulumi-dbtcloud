@@ -335,14 +335,14 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
+     * Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
+     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -362,6 +362,38 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
      */
     public Optional<Output<String>> privateKeyId() {
         return Optional.ofNullable(this.privateKeyId);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    @Import(name="privateKeyWo")
+    private @Nullable Output<String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
+    }
+
+    /**
+     * Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    @Import(name="privateKeyWoVersion")
+    private @Nullable Output<Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Optional<Output<Integer>> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
 
     /**
@@ -465,6 +497,8 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         this.priority = $.priority;
         this.privateKey = $.privateKey;
         this.privateKeyId = $.privateKeyId;
+        this.privateKeyWo = $.privateKeyWo;
+        this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.retries = $.retries;
         this.scopes = $.scopes;
         this.timeoutSeconds = $.timeoutSeconds;
@@ -932,7 +966,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param privateKey Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
+         * @param privateKey Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication. Consider using `privateKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -943,7 +977,7 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param privateKey Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
+         * @param privateKey Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication. Consider using `privateKeyWo` instead, which is not stored in state.
          * 
          * @return builder
          * 
@@ -971,6 +1005,50 @@ public final class GlobalConnectionBigqueryArgs extends com.pulumi.resources.Res
          */
         public Builder privateKeyId(String privateKeyId) {
             return privateKeyId(Output.of(privateKeyId));
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(@Nullable Output<String> privateKeyWo) {
+            $.privateKeyWo = privateKeyWo;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(String privateKeyWo) {
+            return privateKeyWo(Output.of(privateKeyWo));
+        }
+
+        /**
+         * @param privateKeyWoVersion Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(@Nullable Output<Integer> privateKeyWoVersion) {
+            $.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWoVersion Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(Integer privateKeyWoVersion) {
+            return privateKeyWoVersion(Output.of(privateKeyWoVersion));
         }
 
         /**

@@ -207,6 +207,8 @@ type AuthProvider struct {
 	// The SSO provider type. One of: `saml`, `okta`, `gsuite`, `azureSingleTenant`, `azureMultiTenant`, `azureActiveDirectory`. Changing this value forces a new resource.
 	Type      pulumi.StringOutput `pulumi:"type"`
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+	UseAuth0 pulumi.BoolOutput `pulumi:"useAuth0"`
 }
 
 // NewAuthProvider registers a new resource with the given unique name, arguments, and options.
@@ -321,6 +323,8 @@ type authProviderState struct {
 	// The SSO provider type. One of: `saml`, `okta`, `gsuite`, `azureSingleTenant`, `azureMultiTenant`, `azureActiveDirectory`. Changing this value forces a new resource.
 	Type      *string `pulumi:"type"`
 	UpdatedAt *string `pulumi:"updatedAt"`
+	// Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+	UseAuth0 *bool `pulumi:"useAuth0"`
 }
 
 type AuthProviderState struct {
@@ -376,6 +380,8 @@ type AuthProviderState struct {
 	// The SSO provider type. One of: `saml`, `okta`, `gsuite`, `azureSingleTenant`, `azureMultiTenant`, `azureActiveDirectory`. Changing this value forces a new resource.
 	Type      pulumi.StringPtrInput
 	UpdatedAt pulumi.StringPtrInput
+	// Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+	UseAuth0 pulumi.BoolPtrInput
 }
 
 func (AuthProviderState) ElementType() reflect.Type {
@@ -692,6 +698,11 @@ func (o AuthProviderOutput) Type() pulumi.StringOutput {
 
 func (o AuthProviderOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthProvider) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+func (o AuthProviderOutput) UseAuth0() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthProvider) pulumi.BoolOutput { return v.UseAuth0 }).(pulumi.BoolOutput)
 }
 
 type AuthProviderArrayOutput struct{ *pulumi.OutputState }
