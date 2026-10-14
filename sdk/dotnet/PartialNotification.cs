@@ -102,7 +102,7 @@ namespace Pulumi.DbtCloud
         public Output<string?> ExternalEmail { get; private set; } = null!;
 
         /// <summary>
-        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail`) [global, used as identifier]
+        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail` ; 5 = Slack channel via the account-level Slack app: requires `SlackChannelId` and `SlackChannelName`) [global, used as identifier]
         /// </summary>
         [Output("notificationType")]
         public Output<int> NotificationType { get; private set; } = null!;
@@ -138,7 +138,7 @@ namespace Pulumi.DbtCloud
         public Output<string?> SlackChannelId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the slack channel [global, used as identifier]
+        /// The name of the slack channel [global, used as identifier for `NotificationType` 2; updated in place for `NotificationType` 5]
         /// </summary>
         [Output("slackChannelName")]
         public Output<string?> SlackChannelName { get; private set; } = null!;
@@ -209,7 +209,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? ExternalEmail { get; set; }
 
         /// <summary>
-        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail`) [global, used as identifier]
+        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail` ; 5 = Slack channel via the account-level Slack app: requires `SlackChannelId` and `SlackChannelName`) [global, used as identifier]
         /// </summary>
         [Input("notificationType")]
         public Input<int>? NotificationType { get; set; }
@@ -269,7 +269,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? SlackChannelId { get; set; }
 
         /// <summary>
-        /// The name of the slack channel [global, used as identifier]
+        /// The name of the slack channel [global, used as identifier for `NotificationType` 2; updated in place for `NotificationType` 5]
         /// </summary>
         [Input("slackChannelName")]
         public Input<string>? SlackChannelName { get; set; }
@@ -301,7 +301,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? ExternalEmail { get; set; }
 
         /// <summary>
-        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail`) [global, used as identifier]
+        /// Type of notification (1 = dbt Cloud user email (default): does not require an ExternalEmail ; 2 = Slack channel: requires `SlackChannelId` and `SlackChannelName` ; 4 = external email: requires setting an `ExternalEmail` ; 5 = Slack channel via the account-level Slack app: requires `SlackChannelId` and `SlackChannelName`) [global, used as identifier]
         /// </summary>
         [Input("notificationType")]
         public Input<int>? NotificationType { get; set; }
@@ -361,7 +361,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? SlackChannelId { get; set; }
 
         /// <summary>
-        /// The name of the slack channel [global, used as identifier]
+        /// The name of the slack channel [global, used as identifier for `NotificationType` 2; updated in place for `NotificationType` 5]
         /// </summary>
         [Input("slackChannelName")]
         public Input<string>? SlackChannelName { get; set; }

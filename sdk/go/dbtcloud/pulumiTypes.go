@@ -1639,10 +1639,15 @@ type GlobalConnectionBigquery struct {
 	MaximumBytesBilled *int `pulumi:"maximumBytesBilled"`
 	// The priority with which to execute BigQuery queries (batch or interactive)
 	Priority *string `pulumi:"priority"`
-	// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+	// Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey *string `pulumi:"privateKey"`
 	// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
 	PrivateKeyId *string `pulumi:"privateKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// Number of retries for queries
 	Retries *int `pulumi:"retries"`
 	// OAuth scopes for the BigQuery connection
@@ -1709,10 +1714,15 @@ type GlobalConnectionBigqueryArgs struct {
 	MaximumBytesBilled pulumi.IntPtrInput `pulumi:"maximumBytesBilled"`
 	// The priority with which to execute BigQuery queries (batch or interactive)
 	Priority pulumi.StringPtrInput `pulumi:"priority"`
-	// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+	// Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `privateKeyWo` instead, which is not stored in state.
 	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
 	// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
 	PrivateKeyId pulumi.StringPtrInput `pulumi:"privateKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+	PrivateKeyWo pulumi.StringPtrInput `pulumi:"privateKeyWo"`
+	// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput `pulumi:"privateKeyWoVersion"`
 	// Number of retries for queries
 	Retries pulumi.IntPtrInput `pulumi:"retries"`
 	// OAuth scopes for the BigQuery connection
@@ -1907,7 +1917,7 @@ func (o GlobalConnectionBigqueryOutput) Priority() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.Priority }).(pulumi.StringPtrOutput)
 }
 
-// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+// Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `privateKeyWo` instead, which is not stored in state.
 func (o GlobalConnectionBigqueryOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
 }
@@ -1915,6 +1925,17 @@ func (o GlobalConnectionBigqueryOutput) PrivateKey() pulumi.StringPtrOutput {
 // Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
 func (o GlobalConnectionBigqueryOutput) PrivateKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.PrivateKeyId }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+func (o GlobalConnectionBigqueryOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *string { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+func (o GlobalConnectionBigqueryOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GlobalConnectionBigquery) *int { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Number of retries for queries
@@ -2176,7 +2197,7 @@ func (o GlobalConnectionBigqueryPtrOutput) Priority() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+// Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `privateKeyWo` instead, which is not stored in state.
 func (o GlobalConnectionBigqueryPtrOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
 		if v == nil {
@@ -2194,6 +2215,27 @@ func (o GlobalConnectionBigqueryPtrOutput) PrivateKeyId() pulumi.StringPtrOutput
 		}
 		return v.PrivateKeyId
 	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+func (o GlobalConnectionBigqueryPtrOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+func (o GlobalConnectionBigqueryPtrOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GlobalConnectionBigquery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 // Number of retries for queries
@@ -8702,6 +8744,10 @@ type GetGlobalConnectionBigquery struct {
 	PrivateKey string `pulumi:"privateKey"`
 	// Private Key ID for the Service Account
 	PrivateKeyId string `pulumi:"privateKeyId"`
+	// Not populated by the data source. Only used by the resource as a write-only alternative to `privateKey`.
+	PrivateKeyWo string `pulumi:"privateKeyWo"`
+	// Not populated by the data source. Only used by the resource to trigger updates of `privateKeyWo`.
+	PrivateKeyWoVersion int `pulumi:"privateKeyWoVersion"`
 	// Number of retries for queries
 	Retries int `pulumi:"retries"`
 	// OAuth scopes for the BigQuery connection
@@ -8772,6 +8818,10 @@ type GetGlobalConnectionBigqueryArgs struct {
 	PrivateKey pulumi.StringInput `pulumi:"privateKey"`
 	// Private Key ID for the Service Account
 	PrivateKeyId pulumi.StringInput `pulumi:"privateKeyId"`
+	// Not populated by the data source. Only used by the resource as a write-only alternative to `privateKey`.
+	PrivateKeyWo pulumi.StringInput `pulumi:"privateKeyWo"`
+	// Not populated by the data source. Only used by the resource to trigger updates of `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntInput `pulumi:"privateKeyWoVersion"`
 	// Number of retries for queries
 	Retries pulumi.IntInput `pulumi:"retries"`
 	// OAuth scopes for the BigQuery connection
@@ -8923,6 +8973,16 @@ func (o GetGlobalConnectionBigqueryOutput) PrivateKey() pulumi.StringOutput {
 // Private Key ID for the Service Account
 func (o GetGlobalConnectionBigqueryOutput) PrivateKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionBigquery) string { return v.PrivateKeyId }).(pulumi.StringOutput)
+}
+
+// Not populated by the data source. Only used by the resource as a write-only alternative to `privateKey`.
+func (o GetGlobalConnectionBigqueryOutput) PrivateKeyWo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGlobalConnectionBigquery) string { return v.PrivateKeyWo }).(pulumi.StringOutput)
+}
+
+// Not populated by the data source. Only used by the resource to trigger updates of `privateKeyWo`.
+func (o GetGlobalConnectionBigqueryOutput) PrivateKeyWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGlobalConnectionBigquery) int { return v.PrivateKeyWoVersion }).(pulumi.IntOutput)
 }
 
 // Number of retries for queries

@@ -3,7 +3,7 @@ module github.com/pulumi/pulumi-dbtcloud/provider
 go 1.26.6
 
 require (
-	github.com/dbt-labs/terraform-provider-dbtcloud v1.12.10
+	github.com/dbt-labs/terraform-provider-dbtcloud v1.12.11
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.141.0
 	github.com/pulumi/pulumi/sdk/v3 v3.268.0
 )

@@ -121,7 +121,7 @@ public final class GlobalConnectionBigquery {
      */
     private @Nullable String priority;
     /**
-     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
+     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     private @Nullable String privateKey;
@@ -130,6 +130,17 @@ public final class GlobalConnectionBigquery {
      * 
      */
     private @Nullable String privateKeyId;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    private @Nullable String privateKeyWo;
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    private @Nullable Integer privateKeyWoVersion;
     /**
      * @return Number of retries for queries
      * 
@@ -305,7 +316,7 @@ public final class GlobalConnectionBigquery {
         return Optional.ofNullable(this.priority);
     }
     /**
-     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication.
+     * @return Private Key for the Service Account. Required when using &#39;service-account-json&#39; authentication. Consider using `privateKeyWo` instead, which is not stored in state.
      * 
      */
     public Optional<String> privateKey() {
@@ -317,6 +328,21 @@ public final class GlobalConnectionBigquery {
      */
     public Optional<String> privateKeyId() {
         return Optional.ofNullable(this.privateKeyId);
+    }
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only alternative to `privateKey`. The value is not stored in state. Requires `privateKeyWoVersion` to trigger updates.
+     * 
+     */
+    public Optional<String> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
+    }
+    /**
+     * @return Version number for `privateKeyWo`. Increment this value to trigger an update of the private key when using `privateKeyWo`.
+     * 
+     */
+    public Optional<Integer> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
     /**
      * @return Number of retries for queries
@@ -386,6 +412,8 @@ public final class GlobalConnectionBigquery {
         private @Nullable String priority;
         private @Nullable String privateKey;
         private @Nullable String privateKeyId;
+        private @Nullable String privateKeyWo;
+        private @Nullable Integer privateKeyWoVersion;
         private @Nullable Integer retries;
         private @Nullable List<String> scopes;
         private @Nullable Integer timeoutSeconds;
@@ -417,6 +445,8 @@ public final class GlobalConnectionBigquery {
     	      this.priority = defaults.priority;
     	      this.privateKey = defaults.privateKey;
     	      this.privateKeyId = defaults.privateKeyId;
+    	      this.privateKeyWo = defaults.privateKeyWo;
+    	      this.privateKeyWoVersion = defaults.privateKeyWoVersion;
     	      this.retries = defaults.retries;
     	      this.scopes = defaults.scopes;
     	      this.timeoutSeconds = defaults.timeoutSeconds;
@@ -565,6 +595,18 @@ public final class GlobalConnectionBigquery {
             return this;
         }
         @CustomType.Setter
+        public Builder privateKeyWo(@Nullable String privateKeyWo) {
+
+            this.privateKeyWo = privateKeyWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder privateKeyWoVersion(@Nullable Integer privateKeyWoVersion) {
+
+            this.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder retries(@Nullable Integer retries) {
 
             this.retries = retries;
@@ -622,6 +664,8 @@ public final class GlobalConnectionBigquery {
             _resultValue.priority = priority;
             _resultValue.privateKey = privateKey;
             _resultValue.privateKeyId = privateKeyId;
+            _resultValue.privateKeyWo = privateKeyWo;
+            _resultValue.privateKeyWoVersion = privateKeyWoVersion;
             _resultValue.retries = retries;
             _resultValue.scopes = scopes;
             _resultValue.timeoutSeconds = timeoutSeconds;

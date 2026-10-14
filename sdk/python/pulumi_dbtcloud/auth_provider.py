@@ -392,7 +392,8 @@ class _AuthProviderState:
                  state: pulumi.Input[Optional[_builtins.int]] = None,
                  tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_auth0: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthProvider resources.
 
@@ -422,6 +423,7 @@ class _AuthProviderState:
         :param pulumi.Input[_builtins.int] state: The state of the auth provider (1 = active).
         :param pulumi.Input[_builtins.str] tenant_id: Azure AD tenant ID. Required for `azure_single_tenant`.
         :param pulumi.Input[_builtins.str] type: The SSO provider type. One of: `saml`, `okta`, `gsuite`, `azure_single_tenant`, `azure_multi_tenant`, `azure_active_directory`. Changing this value forces a new resource.
+        :param pulumi.Input[_builtins.bool] use_auth0: Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
         """
         if admin_refresh_token is not None:
             pulumi.set(__self__, "admin_refresh_token", admin_refresh_token)
@@ -475,6 +477,8 @@ class _AuthProviderState:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+        if use_auth0 is not None:
+            pulumi.set(__self__, "use_auth0", use_auth0)
 
     @_builtins.property
     @pulumi.getter(name="adminRefreshToken")
@@ -783,6 +787,18 @@ class _AuthProviderState:
     @updated_at.setter
     def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="useAuth0")
+    def use_auth0(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+        """
+        return pulumi.get(self, "use_auth0")
+
+    @use_auth0.setter
+    def use_auth0(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "use_auth0", value)
 
 
 @pulumi.type_token("dbtcloud:index/authProvider:AuthProvider")
@@ -1098,6 +1114,7 @@ class AuthProvider(pulumi.CustomResource):
             __props__.__dict__["login_url"] = None
             __props__.__dict__["state"] = None
             __props__.__dict__["updated_at"] = None
+            __props__.__dict__["use_auth0"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["adminRefreshToken", "cert", "certWo", "clientSecret", "clientSecretWo", "tenantId"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthProvider, __self__).__init__(
@@ -1135,7 +1152,8 @@ class AuthProvider(pulumi.CustomResource):
             state: pulumi.Input[Optional[_builtins.int]] = None,
             tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
-            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthProvider':
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            use_auth0: pulumi.Input[Optional[_builtins.bool]] = None) -> 'AuthProvider':
         """
         Get an existing AuthProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1169,6 +1187,7 @@ class AuthProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] state: The state of the auth provider (1 = active).
         :param pulumi.Input[_builtins.str] tenant_id: Azure AD tenant ID. Required for `azure_single_tenant`.
         :param pulumi.Input[_builtins.str] type: The SSO provider type. One of: `saml`, `okta`, `gsuite`, `azure_single_tenant`, `azure_multi_tenant`, `azure_active_directory`. Changing this value forces a new resource.
+        :param pulumi.Input[_builtins.bool] use_auth0: Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1200,6 +1219,7 @@ class AuthProvider(pulumi.CustomResource):
         __props__.__dict__["tenant_id"] = tenant_id
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
+        __props__.__dict__["use_auth0"] = use_auth0
         return AuthProvider(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1405,4 +1425,12 @@ class AuthProvider(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="useAuth0")
+    def use_auth0(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether the account has completed the Auth0 authentication migration. This is set by the "Begin migration" step in the dbt Cloud UI and cannot be changed from Terraform.
+        """
+        return pulumi.get(self, "use_auth0")
 

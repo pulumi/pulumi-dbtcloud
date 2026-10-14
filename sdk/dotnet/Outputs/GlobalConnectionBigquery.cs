@@ -98,13 +98,22 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string? Priority;
         /// <summary>
-        /// Private Key for the Service Account. Required when using 'service-account-json' authentication.
+        /// Private Key for the Service Account. Required when using 'service-account-json' authentication. Consider using `PrivateKeyWo` instead, which is not stored in state.
         /// </summary>
         public readonly string? PrivateKey;
         /// <summary>
         /// Private Key ID for the Service Account. Required when using 'service-account-json' authentication.
         /// </summary>
         public readonly string? PrivateKeyId;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only alternative to `PrivateKey`. The value is not stored in state. Requires `PrivateKeyWoVersion` to trigger updates.
+        /// </summary>
+        public readonly string? PrivateKeyWo;
+        /// <summary>
+        /// Version number for `PrivateKeyWo`. Increment this value to trigger an update of the private key when using `PrivateKeyWo`.
+        /// </summary>
+        public readonly int? PrivateKeyWoVersion;
         /// <summary>
         /// Number of retries for queries
         /// </summary>
@@ -174,6 +183,10 @@ namespace Pulumi.DbtCloud.Outputs
 
             string? privateKeyId,
 
+            string? privateKeyWo,
+
+            int? privateKeyWoVersion,
+
             int? retries,
 
             ImmutableArray<string> scopes,
@@ -207,6 +220,8 @@ namespace Pulumi.DbtCloud.Outputs
             Priority = priority;
             PrivateKey = privateKey;
             PrivateKeyId = privateKeyId;
+            PrivateKeyWo = privateKeyWo;
+            PrivateKeyWoVersion = privateKeyWoVersion;
             Retries = retries;
             Scopes = scopes;
             TimeoutSeconds = timeoutSeconds;

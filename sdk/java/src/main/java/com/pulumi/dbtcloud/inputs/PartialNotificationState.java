@@ -33,14 +33,14 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
      * 
      */
     @Import(name="notificationType")
     private @Nullable Output<Integer> notificationType;
 
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
      * 
      */
     public Optional<Output<Integer>> notificationType() {
@@ -123,14 +123,14 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The name of the slack channel [global, used as identifier]
+     * The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
      * 
      */
     @Import(name="slackChannelName")
     private @Nullable Output<String> slackChannelName;
 
     /**
-     * @return The name of the slack channel [global, used as identifier]
+     * @return The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
      * 
      */
     public Optional<Output<String>> slackChannelName() {
@@ -222,7 +222,7 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+         * @param notificationType Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
          * 
          * @return builder
          * 
@@ -388,7 +388,7 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param slackChannelName The name of the slack channel [global, used as identifier]
+         * @param slackChannelName The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
          * 
          * @return builder
          * 
@@ -399,7 +399,7 @@ public final class PartialNotificationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param slackChannelName The name of the slack channel [global, used as identifier]
+         * @param slackChannelName The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
          * 
          * @return builder
          * 

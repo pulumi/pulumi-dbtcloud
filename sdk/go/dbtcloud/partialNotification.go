@@ -103,7 +103,7 @@ type PartialNotification struct {
 
 	// The external email to receive the notification [global, used as identifier]
 	ExternalEmail pulumi.StringPtrOutput `pulumi:"externalEmail"`
-	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
 	NotificationType pulumi.IntOutput `pulumi:"notificationType"`
 	// List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
 	OnCancels pulumi.IntArrayOutput `pulumi:"onCancels"`
@@ -115,7 +115,7 @@ type PartialNotification struct {
 	OnWarnings pulumi.IntArrayOutput `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId pulumi.StringPtrOutput `pulumi:"slackChannelId"`
-	// The name of the slack channel [global, used as identifier]
+	// The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
 	SlackChannelName pulumi.StringPtrOutput `pulumi:"slackChannelName"`
 	// State of the notification (1 = active (default), 2 = inactive) [global]
 	State pulumi.IntOutput `pulumi:"state"`
@@ -158,7 +158,7 @@ func GetPartialNotification(ctx *pulumi.Context,
 type partialNotificationState struct {
 	// The external email to receive the notification [global, used as identifier]
 	ExternalEmail *string `pulumi:"externalEmail"`
-	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
 	NotificationType *int `pulumi:"notificationType"`
 	// List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
 	OnCancels []int `pulumi:"onCancels"`
@@ -170,7 +170,7 @@ type partialNotificationState struct {
 	OnWarnings []int `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId *string `pulumi:"slackChannelId"`
-	// The name of the slack channel [global, used as identifier]
+	// The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
 	SlackChannelName *string `pulumi:"slackChannelName"`
 	// State of the notification (1 = active (default), 2 = inactive) [global]
 	State *int `pulumi:"state"`
@@ -181,7 +181,7 @@ type partialNotificationState struct {
 type PartialNotificationState struct {
 	// The external email to receive the notification [global, used as identifier]
 	ExternalEmail pulumi.StringPtrInput
-	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
 	NotificationType pulumi.IntPtrInput
 	// List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
 	OnCancels pulumi.IntArrayInput
@@ -193,7 +193,7 @@ type PartialNotificationState struct {
 	OnWarnings pulumi.IntArrayInput
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId pulumi.StringPtrInput
-	// The name of the slack channel [global, used as identifier]
+	// The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
 	SlackChannelName pulumi.StringPtrInput
 	// State of the notification (1 = active (default), 2 = inactive) [global]
 	State pulumi.IntPtrInput
@@ -208,7 +208,7 @@ func (PartialNotificationState) ElementType() reflect.Type {
 type partialNotificationArgs struct {
 	// The external email to receive the notification [global, used as identifier]
 	ExternalEmail *string `pulumi:"externalEmail"`
-	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
 	NotificationType *int `pulumi:"notificationType"`
 	// List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
 	OnCancels []int `pulumi:"onCancels"`
@@ -220,7 +220,7 @@ type partialNotificationArgs struct {
 	OnWarnings []int `pulumi:"onWarnings"`
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId *string `pulumi:"slackChannelId"`
-	// The name of the slack channel [global, used as identifier]
+	// The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
 	SlackChannelName *string `pulumi:"slackChannelName"`
 	// State of the notification (1 = active (default), 2 = inactive) [global]
 	State *int `pulumi:"state"`
@@ -232,7 +232,7 @@ type partialNotificationArgs struct {
 type PartialNotificationArgs struct {
 	// The external email to receive the notification [global, used as identifier]
 	ExternalEmail pulumi.StringPtrInput
-	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+	// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
 	NotificationType pulumi.IntPtrInput
 	// List of job IDs to trigger the webhook on cancel. Those will be added/removed when config is added/removed.
 	OnCancels pulumi.IntArrayInput
@@ -244,7 +244,7 @@ type PartialNotificationArgs struct {
 	OnWarnings pulumi.IntArrayInput
 	// The ID of the Slack channel to receive the notification. It can be found at the bottom of the Slack channel settings [global, used as identifier]
 	SlackChannelId pulumi.StringPtrInput
-	// The name of the slack channel [global, used as identifier]
+	// The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
 	SlackChannelName pulumi.StringPtrInput
 	// State of the notification (1 = active (default), 2 = inactive) [global]
 	State pulumi.IntPtrInput
@@ -344,7 +344,7 @@ func (o PartialNotificationOutput) ExternalEmail() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PartialNotification) pulumi.StringPtrOutput { return v.ExternalEmail }).(pulumi.StringPtrOutput)
 }
 
-// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+// Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
 func (o PartialNotificationOutput) NotificationType() pulumi.IntOutput {
 	return o.ApplyT(func(v *PartialNotification) pulumi.IntOutput { return v.NotificationType }).(pulumi.IntOutput)
 }
@@ -374,7 +374,7 @@ func (o PartialNotificationOutput) SlackChannelId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PartialNotification) pulumi.StringPtrOutput { return v.SlackChannelId }).(pulumi.StringPtrOutput)
 }
 
-// The name of the slack channel [global, used as identifier]
+// The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
 func (o PartialNotificationOutput) SlackChannelName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PartialNotification) pulumi.StringPtrOutput { return v.SlackChannelName }).(pulumi.StringPtrOutput)
 }

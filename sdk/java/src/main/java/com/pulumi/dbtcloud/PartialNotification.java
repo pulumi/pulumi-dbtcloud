@@ -114,14 +114,14 @@ public class PartialNotification extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.externalEmail);
     }
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
      * 
      */
     @Export(name="notificationType", refs={Integer.class}, tree="[0]")
     private Output<Integer> notificationType;
 
     /**
-     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+     * @return Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
      * 
      */
     public Output<Integer> notificationType() {
@@ -198,14 +198,14 @@ public class PartialNotification extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.slackChannelId);
     }
     /**
-     * The name of the slack channel [global, used as identifier]
+     * The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
      * 
      */
     @Export(name="slackChannelName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> slackChannelName;
 
     /**
-     * @return The name of the slack channel [global, used as identifier]
+     * @return The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
      * 
      */
     public Output<Optional<String>> slackChannelName() {

@@ -95,7 +95,7 @@ export class PartialNotification extends pulumi.CustomResource {
      */
     declare public readonly externalEmail: pulumi.Output<string | undefined>;
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
      */
     declare public readonly notificationType: pulumi.Output<number>;
     /**
@@ -119,7 +119,7 @@ export class PartialNotification extends pulumi.CustomResource {
      */
     declare public readonly slackChannelId: pulumi.Output<string | undefined>;
     /**
-     * The name of the slack channel [global, used as identifier]
+     * The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
      */
     declare public readonly slackChannelName: pulumi.Output<string | undefined>;
     /**
@@ -184,7 +184,7 @@ export interface PartialNotificationState {
      */
     externalEmail?: pulumi.Input<string | undefined>;
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
      */
     notificationType?: pulumi.Input<number | undefined>;
     /**
@@ -208,7 +208,7 @@ export interface PartialNotificationState {
      */
     slackChannelId?: pulumi.Input<string | undefined>;
     /**
-     * The name of the slack channel [global, used as identifier]
+     * The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
      */
     slackChannelName?: pulumi.Input<string | undefined>;
     /**
@@ -230,7 +230,7 @@ export interface PartialNotificationArgs {
      */
     externalEmail?: pulumi.Input<string | undefined>;
     /**
-     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail`) [global, used as identifier]
+     * Type of notification (1 = dbt Cloud user email (default): does not require an externalEmail ; 2 = Slack channel: requires `slackChannelId` and `slackChannelName` ; 4 = external email: requires setting an `externalEmail` ; 5 = Slack channel via the account-level Slack app: requires `slackChannelId` and `slackChannelName`) [global, used as identifier]
      */
     notificationType?: pulumi.Input<number | undefined>;
     /**
@@ -254,7 +254,7 @@ export interface PartialNotificationArgs {
      */
     slackChannelId?: pulumi.Input<string | undefined>;
     /**
-     * The name of the slack channel [global, used as identifier]
+     * The name of the slack channel [global, used as identifier for `notificationType` 2; updated in place for `notificationType` 5]
      */
     slackChannelName?: pulumi.Input<string | undefined>;
     /**
