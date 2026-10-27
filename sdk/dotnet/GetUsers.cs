@@ -32,7 +32,7 @@ namespace Pulumi.DbtCloud
         ///         return user;
         ///     }).ToList();
         /// 
-        ///     var userExist = userDetails.Length().Apply(length =&gt; length == 1);
+        ///     var userExist = userDetails.Length.Apply(length =&gt; length == 1);
         /// 
         /// });
         /// ```
@@ -61,7 +61,7 @@ namespace Pulumi.DbtCloud
         ///         return user;
         ///     }).ToList();
         /// 
-        ///     var userExist = userDetails.Length().Apply(length =&gt; length == 1);
+        ///     var userExist = userDetails.Length.Apply(length =&gt; length == 1);
         /// 
         /// });
         /// ```
@@ -90,7 +90,7 @@ namespace Pulumi.DbtCloud
         ///         return user;
         ///     }).ToList();
         /// 
-        ///     var userExist = userDetails.Length().Apply(length =&gt; length == 1);
+        ///     var userExist = userDetails.Length.Apply(length =&gt; length == 1);
         /// 
         /// });
         /// ```
