@@ -1,3 +1,12 @@
 [tools]
 "vfox-pulumi:pulumi/pulumi-std" = "latest"
 "vfox-pulumi:pulumi/pulumi-converter-terraform" = "latest"
+
+[env]
+# tfgen converts examples by running `pulumi convert` from a temp directory,
+# outside this project. When mise shims come first on PATH (as they do in CI
+# with jdx/mise-action), the pulumi-converter-terraform shim can't resolve a
+# version there and every conversion silently fails, so docs/_index.md loses
+# its provider configuration examples. Making this file the global config lets
+# the shim resolve these tools from any directory.
+MISE_GLOBAL_CONFIG_FILE = "{{config_root}}/mise.toml"
