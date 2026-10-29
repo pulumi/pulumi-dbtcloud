@@ -201,6 +201,11 @@ jobs:
       run: |
         set -x
         which pulumi pulumi-converter-terraform || true
+        echo "$PATH" | tr ':' '\n' | head -3
+        ls -la ~/.local/share/mise/installs/vfox-pulumi-pulumi-pulumi-converter-terraform/ ~/.local/share/mise/installs/vfox-pulumi-pulumi-pulumi-converter-terraform/*/ || true
+        ls -la ~/.local/share/mise/installs/vfox-pulumi-pulumi-pulumi-std/ || true
+        mise ls --current || true
+        mise which pulumi-converter-terraform || true
         ls -la "$PULUMI_HOME" "$PULUMI_HOME/plugins" || true
         ls -la ~/.pulumi ~/.pulumi/plugins || true
         ls -la /tmp | head -50
