@@ -197,6 +197,19 @@ jobs:
         PROVIDER_VERSION: ${{ needs.prerequisites.outputs.version }}
     - name: Build registry docs
       run: make build_registry_docs
+    - name: DEBUG convert
+      run: |
+        set -x
+        which pulumi pulumi-converter-terraform || true
+        ls -la "$PULUMI_HOME" "$PULUMI_HOME/plugins" || true
+        ls -la ~/.pulumi ~/.pulumi/plugins || true
+        ls -la /tmp | head -50
+        pulumi plugin ls || true
+        d=$(mktemp -d)
+        printf '{"cfg":"provider \\"dbtcloud\\" {\\n  account_id = 1\\n}\\n"}' > "$d/ex.json"
+        cd "$d" && pulumi convert --from terraform --language pcl --out "$d/out" --generate-only -- --convert-examples ex.json; echo "exit=$?"
+        cat "$d/out/ex.json" || true
+        cd /tmp && pulumi convert --from terraform --language pcl --out "$d/out2" --generate-only -- --convert-examples "$(basename $d)/ex.json"; echo "exit=$?"
     - name: Check worktree clean
       id: worktreeClean
       uses: pulumi/git-status-check-action@0d90c81496aa8d6a31d9c6a0d6297feea2f54057 # v2.0.0
