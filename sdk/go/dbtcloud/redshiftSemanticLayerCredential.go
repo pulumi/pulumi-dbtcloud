@@ -133,6 +133,12 @@ func (RedshiftSemanticLayerCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*redshiftSemanticLayerCredentialState)(nil)).Elem()
 }
 
+// RedshiftSemanticLayerCredentialExists checks whether an existing RedshiftSemanticLayerCredential resource with the given ID exists.
+func RedshiftSemanticLayerCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RedshiftSemanticLayerCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential", id, state, "", opts...)
+}
+
 type redshiftSemanticLayerCredentialArgs struct {
 	// Semantic Layer credential configuration details.
 	Configuration RedshiftSemanticLayerCredentialConfiguration `pulumi:"configuration"`

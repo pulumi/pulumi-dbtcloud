@@ -156,22 +156,20 @@ public final class WebhookState extends com.pulumi.resources.ResourceArgs {
     /**
      * Webhook&#39;s ID
      * 
-     * @deprecated
-     * Use `id` instead
+     * @deprecated Use `id` instead
      * 
      */
-    @Deprecated /* Use `id` instead */
+    @Deprecated
     @Import(name="webhookId")
     private @Nullable Output<String> webhookId;
 
     /**
      * @return Webhook&#39;s ID
      * 
-     * @deprecated
-     * Use `id` instead
+     * @deprecated Use `id` instead
      * 
      */
-    @Deprecated /* Use `id` instead */
+    @Deprecated
     public Optional<Output<String>> webhookId() {
         return Optional.ofNullable(this.webhookId);
     }
@@ -423,11 +421,10 @@ public final class WebhookState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use `id` instead
+         * @deprecated Use `id` instead
          * 
          */
-        @Deprecated /* Use `id` instead */
+        @Deprecated
         public Builder webhookId(@Nullable Output<String> webhookId) {
             $.webhookId = webhookId;
             return this;
@@ -438,11 +435,10 @@ public final class WebhookState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use `id` instead
+         * @deprecated Use `id` instead
          * 
          */
-        @Deprecated /* Use `id` instead */
+        @Deprecated
         public Builder webhookId(String webhookId) {
             return webhookId(Output.of(webhookId));
         }

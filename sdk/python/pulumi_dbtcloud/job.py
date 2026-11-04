@@ -1574,6 +1574,78 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["validate_execute_steps"] = validate_execute_steps
         return Job(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            compare_changes_flags: pulumi.Input[Optional[_builtins.str]] = None,
+            cost_optimization_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+            deferring_environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+            deferring_job_id: pulumi.Input[Optional[_builtins.int]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+            errors_on_lint_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+            execute_steps: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            execution: pulumi.Input[Optional[Union['JobExecutionArgs', 'JobExecutionArgsDict', 'outputs.JobExecution']]] = None,
+            force_node_selection: pulumi.Input[Optional[_builtins.bool]] = None,
+            generate_docs: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            job_completion_trigger_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobJobCompletionTriggerConditionArgs', 'JobJobCompletionTriggerConditionArgsDict', 'outputs.JobJobCompletionTriggerCondition']]]]] = None,
+            job_id: pulumi.Input[Optional[_builtins.int]] = None,
+            job_type: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            run_compare_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+            run_generate_sources: pulumi.Input[Optional[_builtins.bool]] = None,
+            run_lint: pulumi.Input[Optional[_builtins.bool]] = None,
+            schedule_cron: pulumi.Input[Optional[_builtins.str]] = None,
+            schedule_days: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            schedule_hours: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            schedule_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+            self_deferring: pulumi.Input[Optional[_builtins.bool]] = None,
+            target_name: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            triggers: pulumi.Input[Optional[Union['JobTriggersArgs', 'JobTriggersArgsDict', 'outputs.JobTriggers']]] = None,
+            triggers_on_draft_pr: pulumi.Input[Optional[_builtins.bool]] = None,
+            validate_execute_steps: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["compareChangesFlags"] = compare_changes_flags
+        __props__["costOptimizationFeatures"] = cost_optimization_features
+        __props__["dbtVersion"] = dbt_version
+        __props__["deferringEnvironmentId"] = deferring_environment_id
+        __props__["deferringJobId"] = deferring_job_id
+        __props__["description"] = description
+        __props__["environmentId"] = environment_id
+        __props__["errorsOnLintFailure"] = errors_on_lint_failure
+        __props__["executeSteps"] = execute_steps
+        __props__["execution"] = execution
+        __props__["forceNodeSelection"] = force_node_selection
+        __props__["generateDocs"] = generate_docs
+        __props__["isActive"] = is_active
+        __props__["jobCompletionTriggerConditions"] = job_completion_trigger_conditions
+        __props__["jobId"] = job_id
+        __props__["jobType"] = job_type
+        __props__["name"] = name
+        __props__["numThreads"] = num_threads
+        __props__["projectId"] = project_id
+        __props__["runCompareChanges"] = run_compare_changes
+        __props__["runGenerateSources"] = run_generate_sources
+        __props__["runLint"] = run_lint
+        __props__["scheduleCron"] = schedule_cron
+        __props__["scheduleDays"] = schedule_days
+        __props__["scheduleHours"] = schedule_hours
+        __props__["scheduleInterval"] = schedule_interval
+        __props__["scheduleType"] = schedule_type
+        __props__["selfDeferring"] = self_deferring
+        __props__["targetName"] = target_name
+        __props__["timeoutSeconds"] = timeout_seconds
+        __props__["triggers"] = triggers
+        __props__["triggersOnDraftPr"] = triggers_on_draft_pr
+        __props__["validateExecuteSteps"] = validate_execute_steps
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/job:Job', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="compareChangesFlags")
     def compare_changes_flags(self) -> pulumi.Output[_builtins.str]:

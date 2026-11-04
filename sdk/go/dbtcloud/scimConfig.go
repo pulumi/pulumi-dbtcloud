@@ -127,6 +127,12 @@ func (ScimConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scimConfigState)(nil)).Elem()
 }
 
+// ScimConfigExists checks whether an existing ScimConfig resource with the given ID exists.
+func ScimConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScimConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/scimConfig:ScimConfig", id, state, "", opts...)
+}
+
 type scimConfigArgs struct {
 	// Whether SCIM provisioning is enabled for the account.
 	Enabled bool `pulumi:"enabled"`

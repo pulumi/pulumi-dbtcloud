@@ -628,6 +628,34 @@ class SalesforceCredential(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return SalesforceCredential(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            target_name: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clientId"] = client_id
+        __props__["clientIdWo"] = client_id_wo
+        __props__["clientIdWoVersion"] = client_id_wo_version
+        __props__["credentialId"] = credential_id
+        __props__["numThreads"] = num_threads
+        __props__["privateKey"] = private_key
+        __props__["privateKeyWo"] = private_key_wo
+        __props__["privateKeyWoVersion"] = private_key_wo_version
+        __props__["projectId"] = project_id
+        __props__["targetName"] = target_name
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/salesforceCredential:SalesforceCredential', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[_builtins.str]]:

@@ -459,35 +459,33 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     /**
      * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      * 
-     * @deprecated
-     * Use execution.timeout_seconds instead
+     * @deprecated Use execution.timeout_seconds instead
      * 
      */
-    @Deprecated /* Use execution.timeout_seconds instead */
+    @Deprecated
     @Import(name="timeoutSeconds")
     private @Nullable Output<Integer> timeoutSeconds;
 
     /**
      * @return Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      * 
-     * @deprecated
-     * Use execution.timeout_seconds instead
+     * @deprecated Use execution.timeout_seconds instead
      * 
      */
-    @Deprecated /* Use execution.timeout_seconds instead */
+    @Deprecated
     public Optional<Output<Integer>> timeoutSeconds() {
         return Optional.ofNullable(this.timeoutSeconds);
     }
 
     /**
-     * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
+     * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.&#92;n&#92;n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. &#92;n&#92;nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
     @Import(name="triggers")
     private @Nullable Output<JobTriggersArgs> triggers;
 
     /**
-     * @return Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
+     * @return Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.&#92;n&#92;n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. &#92;n&#92;nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
     public Optional<Output<JobTriggersArgs>> triggers() {
@@ -1244,11 +1242,10 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use execution.timeout_seconds instead
+         * @deprecated Use execution.timeout_seconds instead
          * 
          */
-        @Deprecated /* Use execution.timeout_seconds instead */
+        @Deprecated
         public Builder timeoutSeconds(@Nullable Output<Integer> timeoutSeconds) {
             $.timeoutSeconds = timeoutSeconds;
             return this;
@@ -1259,17 +1256,16 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use execution.timeout_seconds instead
+         * @deprecated Use execution.timeout_seconds instead
          * 
          */
-        @Deprecated /* Use execution.timeout_seconds instead */
+        @Deprecated
         public Builder timeoutSeconds(Integer timeoutSeconds) {
             return timeoutSeconds(Output.of(timeoutSeconds));
         }
 
         /**
-         * @param triggers Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
+         * @param triggers Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.&#92;n&#92;n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. &#92;n&#92;nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
          * 
          * @return builder
          * 
@@ -1280,7 +1276,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param triggers Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
+         * @param triggers Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.&#92;n&#92;n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. &#92;n&#92;nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
          * 
          * @return builder
          * 

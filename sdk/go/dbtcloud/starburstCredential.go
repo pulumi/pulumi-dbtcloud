@@ -196,6 +196,12 @@ func (StarburstCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*starburstCredentialState)(nil)).Elem()
 }
 
+// StarburstCredentialExists checks whether an existing StarburstCredential resource with the given ID exists.
+func StarburstCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StarburstCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/starburstCredential:StarburstCredential", id, state, "", opts...)
+}
+
 type starburstCredentialArgs struct {
 	// The catalog to connect use
 	Database string `pulumi:"database"`

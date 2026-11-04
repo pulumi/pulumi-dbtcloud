@@ -61,11 +61,10 @@ public final class GetWebhookResult {
     /**
      * @return Webhook&#39;s ID
      * 
-     * @deprecated
-     * Use `id` instead
+     * @deprecated Use `id` instead
      * 
      */
-    @Deprecated /* Use `id` instead */
+    @Deprecated
     private String webhookId;
 
     private GetWebhookResult() {}
@@ -135,11 +134,10 @@ public final class GetWebhookResult {
     /**
      * @return Webhook&#39;s ID
      * 
-     * @deprecated
-     * Use `id` instead
+     * @deprecated Use `id` instead
      * 
      */
-    @Deprecated /* Use `id` instead */
+    @Deprecated
     public String webhookId() {
         return this.webhookId;
     }

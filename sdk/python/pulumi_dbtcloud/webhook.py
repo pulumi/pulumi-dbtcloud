@@ -508,6 +508,32 @@ class Webhook(pulumi.CustomResource):
         __props__.__dict__["webhook_id"] = webhook_id
         return Webhook(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_identifier: pulumi.Input[Optional[_builtins.str]] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            client_url: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            event_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            hmac_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            http_status_code: pulumi.Input[Optional[_builtins.str]] = None,
+            job_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            webhook_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accountIdentifier"] = account_identifier
+        __props__["active"] = active
+        __props__["clientUrl"] = client_url
+        __props__["description"] = description
+        __props__["eventTypes"] = event_types
+        __props__["hmacSecret"] = hmac_secret
+        __props__["httpStatusCode"] = http_status_code
+        __props__["jobIds"] = job_ids
+        __props__["name"] = name
+        __props__["webhookId"] = webhook_id
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/webhook:Webhook', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accountIdentifier")
     def account_identifier(self) -> pulumi.Output[_builtins.str]:

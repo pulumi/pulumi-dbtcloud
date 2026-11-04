@@ -130,6 +130,12 @@ func (SemanticLayerCredentialServiceTokenMappingState) ElementType() reflect.Typ
 	return reflect.TypeOf((*semanticLayerCredentialServiceTokenMappingState)(nil)).Elem()
 }
 
+// SemanticLayerCredentialServiceTokenMappingExists checks whether an existing SemanticLayerCredentialServiceTokenMapping resource with the given ID exists.
+func SemanticLayerCredentialServiceTokenMappingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SemanticLayerCredentialServiceTokenMappingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/semanticLayerCredentialServiceTokenMapping:SemanticLayerCredentialServiceTokenMapping", id, state, "", opts...)
+}
+
 type semanticLayerCredentialServiceTokenMappingArgs struct {
 	// The ID of the project to which the semantic layer credential is associated.
 	ProjectId int `pulumi:"projectId"`

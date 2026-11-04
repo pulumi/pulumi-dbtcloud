@@ -661,6 +661,36 @@ class PostgresCredential(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return PostgresCredential(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            default_schema: pulumi.Input[Optional[_builtins.str]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            semantic_layer_credential: pulumi.Input[Optional[_builtins.bool]] = None,
+            target_name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["credentialId"] = credential_id
+        __props__["defaultSchema"] = default_schema
+        __props__["isActive"] = is_active
+        __props__["numThreads"] = num_threads
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["projectId"] = project_id
+        __props__["semanticLayerCredential"] = semantic_layer_credential
+        __props__["targetName"] = target_name
+        __props__["type"] = type
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/postgresCredential:PostgresCredential', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="credentialId")
     def credential_id(self) -> pulumi.Output[_builtins.int]:

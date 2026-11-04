@@ -231,6 +231,12 @@ func (OauthConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oauthConfigurationState)(nil)).Elem()
 }
 
+// OauthConfigurationExists checks whether an existing OauthConfiguration resource with the given ID exists.
+func OauthConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OauthConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/oauthConfiguration:OauthConfiguration", id, state, "", opts...)
+}
+
 type oauthConfigurationArgs struct {
 	// The Application ID URI for the OAuth integration. Only for Entra
 	ApplicationIdUri *string `pulumi:"applicationIdUri"`

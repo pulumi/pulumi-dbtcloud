@@ -223,6 +223,12 @@ func (SalesforceCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*salesforceCredentialState)(nil)).Elem()
 }
 
+// SalesforceCredentialExists checks whether an existing SalesforceCredential resource with the given ID exists.
+func SalesforceCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SalesforceCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/salesforceCredential:SalesforceCredential", id, state, "", opts...)
+}
+
 type salesforceCredentialArgs struct {
 	// The OAuth connected app client/consumer ID. Consider using `clientIdWo` instead, which is not stored in state.
 	ClientId *string `pulumi:"clientId"`

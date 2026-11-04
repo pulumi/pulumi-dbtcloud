@@ -218,6 +218,12 @@ func (PostgresCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*postgresCredentialState)(nil)).Elem()
 }
 
+// PostgresCredentialExists checks whether an existing PostgresCredential resource with the given ID exists.
+func PostgresCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PostgresCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/postgresCredential:PostgresCredential", id, state, "", opts...)
+}
+
 type postgresCredentialArgs struct {
 	// Default schema name. Optional only when semantic*layer*credential is set to true; otherwise, this field is required.
 	DefaultSchema *string `pulumi:"defaultSchema"`

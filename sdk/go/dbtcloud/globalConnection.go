@@ -439,6 +439,12 @@ func (GlobalConnectionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalConnectionState)(nil)).Elem()
 }
 
+// GlobalConnectionExists checks whether an existing GlobalConnection resource with the given ID exists.
+func GlobalConnectionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GlobalConnectionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/globalConnection:GlobalConnection", id, state, "", opts...)
+}
+
 type globalConnectionArgs struct {
 	// Apache Spark connection configuration.
 	ApacheSpark *GlobalConnectionApacheSpark `pulumi:"apacheSpark"`

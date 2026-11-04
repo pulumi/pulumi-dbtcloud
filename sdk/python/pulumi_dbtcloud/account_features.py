@@ -417,6 +417,26 @@ class AccountFeatures(pulumi.CustomResource):
         __props__.__dict__["repo_caching"] = repo_caching
         return AccountFeatures(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            advanced_ci: pulumi.Input[Optional[_builtins.bool]] = None,
+            ai_features: pulumi.Input[Optional[_builtins.bool]] = None,
+            catalog_ingestion: pulumi.Input[Optional[_builtins.bool]] = None,
+            explorer_account_ui: pulumi.Input[Optional[_builtins.bool]] = None,
+            fusion_migration_permissions: pulumi.Input[Optional[_builtins.bool]] = None,
+            partial_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+            repo_caching: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["advancedCi"] = advanced_ci
+        __props__["aiFeatures"] = ai_features
+        __props__["catalogIngestion"] = catalog_ingestion
+        __props__["explorerAccountUi"] = explorer_account_ui
+        __props__["fusionMigrationPermissions"] = fusion_migration_permissions
+        __props__["partialParsing"] = partial_parsing
+        __props__["repoCaching"] = repo_caching
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/accountFeatures:AccountFeatures', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="advancedCi")
     def advanced_ci(self) -> pulumi.Output[_builtins.bool]:

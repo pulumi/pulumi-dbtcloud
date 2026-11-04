@@ -688,6 +688,38 @@ class BigquerySemanticLayerCredential(pulumi.CustomResource):
         __props__.__dict__["token_uri"] = token_uri
         return BigquerySemanticLayerCredential(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auth_provider_x509_cert_url: pulumi.Input[Optional[_builtins.str]] = None,
+            auth_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            client_email: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_x509_cert_url: pulumi.Input[Optional[_builtins.str]] = None,
+            configuration: pulumi.Input[Optional[Union['BigquerySemanticLayerCredentialConfigurationArgs', 'BigquerySemanticLayerCredentialConfigurationArgsDict', 'outputs.BigquerySemanticLayerCredentialConfiguration']]] = None,
+            credential: pulumi.Input[Optional[Union['BigquerySemanticLayerCredentialCredentialArgs', 'BigquerySemanticLayerCredentialCredentialArgsDict', 'outputs.BigquerySemanticLayerCredentialCredential']]] = None,
+            execution_project: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            token_uri: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authProviderX509CertUrl"] = auth_provider_x509_cert_url
+        __props__["authUri"] = auth_uri
+        __props__["clientEmail"] = client_email
+        __props__["clientId"] = client_id
+        __props__["clientX509CertUrl"] = client_x509_cert_url
+        __props__["configuration"] = configuration
+        __props__["credential"] = credential
+        __props__["executionProject"] = execution_project
+        __props__["privateKey"] = private_key
+        __props__["privateKeyId"] = private_key_id
+        __props__["privateKeyWo"] = private_key_wo
+        __props__["privateKeyWoVersion"] = private_key_wo_version
+        __props__["tokenUri"] = token_uri
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authProviderX509CertUrl")
     def auth_provider_x509_cert_url(self) -> pulumi.Output[_builtins.str]:

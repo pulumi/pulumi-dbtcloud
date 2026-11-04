@@ -207,6 +207,12 @@ func (AthenaCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*athenaCredentialState)(nil)).Elem()
 }
 
+// AthenaCredentialExists checks whether an existing AthenaCredential resource with the given ID exists.
+func AthenaCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AthenaCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/athenaCredential:AthenaCredential", id, state, "", opts...)
+}
+
 type athenaCredentialArgs struct {
 	// AWS access key ID for Athena user. Consider using `awsAccessKeyIdWo` instead, which is not stored in state.
 	AwsAccessKeyId *string `pulumi:"awsAccessKeyId"`

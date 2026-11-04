@@ -142,6 +142,12 @@ func (LicenseMapState) ElementType() reflect.Type {
 	return reflect.TypeOf((*licenseMapState)(nil)).Elem()
 }
 
+// LicenseMapExists checks whether an existing LicenseMap resource with the given ID exists.
+func LicenseMapExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LicenseMapState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/licenseMap:LicenseMap", id, state, "", opts...)
+}
+
 type licenseMapArgs struct {
 	// License type
 	LicenseType string `pulumi:"licenseType"`

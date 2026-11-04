@@ -1164,6 +1164,48 @@ class GlobalConnection(pulumi.CustomResource):
         __props__.__dict__["teradata"] = teradata
         return GlobalConnection(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+            apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
+            athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
+            bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
+            clickhouse: pulumi.Input[Optional[Union['GlobalConnectionClickhouseArgs', 'GlobalConnectionClickhouseArgsDict', 'outputs.GlobalConnectionClickhouse']]] = None,
+            databricks: pulumi.Input[Optional[Union['GlobalConnectionDatabricksArgs', 'GlobalConnectionDatabricksArgsDict', 'outputs.GlobalConnectionDatabricks']]] = None,
+            fabric: pulumi.Input[Optional[Union['GlobalConnectionFabricArgs', 'GlobalConnectionFabricArgsDict', 'outputs.GlobalConnectionFabric']]] = None,
+            is_ssh_tunnel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth_configuration_id: pulumi.Input[Optional[_builtins.int]] = None,
+            postgres: pulumi.Input[Optional[Union['GlobalConnectionPostgresArgs', 'GlobalConnectionPostgresArgsDict', 'outputs.GlobalConnectionPostgres']]] = None,
+            private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+            redshift: pulumi.Input[Optional[Union['GlobalConnectionRedshiftArgs', 'GlobalConnectionRedshiftArgsDict', 'outputs.GlobalConnectionRedshift']]] = None,
+            salesforce: pulumi.Input[Optional[Union['GlobalConnectionSalesforceArgs', 'GlobalConnectionSalesforceArgsDict', 'outputs.GlobalConnectionSalesforce']]] = None,
+            snowflake: pulumi.Input[Optional[Union['GlobalConnectionSnowflakeArgs', 'GlobalConnectionSnowflakeArgsDict', 'outputs.GlobalConnectionSnowflake']]] = None,
+            starburst: pulumi.Input[Optional[Union['GlobalConnectionStarburstArgs', 'GlobalConnectionStarburstArgsDict', 'outputs.GlobalConnectionStarburst']]] = None,
+            synapse: pulumi.Input[Optional[Union['GlobalConnectionSynapseArgs', 'GlobalConnectionSynapseArgsDict', 'outputs.GlobalConnectionSynapse']]] = None,
+            teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict', 'outputs.GlobalConnectionTeradata']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["adapterVersion"] = adapter_version
+        __props__["apacheSpark"] = apache_spark
+        __props__["athena"] = athena
+        __props__["bigquery"] = bigquery
+        __props__["clickhouse"] = clickhouse
+        __props__["databricks"] = databricks
+        __props__["fabric"] = fabric
+        __props__["isSshTunnelEnabled"] = is_ssh_tunnel_enabled
+        __props__["name"] = name
+        __props__["oauthConfigurationId"] = oauth_configuration_id
+        __props__["postgres"] = postgres
+        __props__["privateLinkEndpointId"] = private_link_endpoint_id
+        __props__["redshift"] = redshift
+        __props__["salesforce"] = salesforce
+        __props__["snowflake"] = snowflake
+        __props__["starburst"] = starburst
+        __props__["synapse"] = synapse
+        __props__["teradata"] = teradata
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/globalConnection:GlobalConnection', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="adapterVersion")
     def adapter_version(self) -> pulumi.Output[_builtins.str]:

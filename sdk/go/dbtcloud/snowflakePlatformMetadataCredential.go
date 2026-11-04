@@ -322,6 +322,12 @@ func (SnowflakePlatformMetadataCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*snowflakePlatformMetadataCredentialState)(nil)).Elem()
 }
 
+// SnowflakePlatformMetadataCredentialExists checks whether an existing SnowflakePlatformMetadataCredential resource with the given ID exists.
+func SnowflakePlatformMetadataCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SnowflakePlatformMetadataCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/snowflakePlatformMetadataCredential:SnowflakePlatformMetadataCredential", id, state, "", opts...)
+}
+
 type snowflakePlatformMetadataCredentialArgs struct {
 	// The authentication type. Must be 'password' or 'keypair'.
 	AuthType string `pulumi:"authType"`

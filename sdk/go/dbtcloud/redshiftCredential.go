@@ -201,6 +201,12 @@ func (RedshiftCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*redshiftCredentialState)(nil)).Elem()
 }
 
+// RedshiftCredentialExists checks whether an existing RedshiftCredential resource with the given ID exists.
+func RedshiftCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RedshiftCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/redshiftCredential:RedshiftCredential", id, state, "", opts...)
+}
+
 type redshiftCredentialArgs struct {
 	// Default schema name
 	DefaultSchema string `pulumi:"defaultSchema"`

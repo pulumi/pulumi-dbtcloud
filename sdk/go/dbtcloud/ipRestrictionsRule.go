@@ -153,6 +153,12 @@ func (IpRestrictionsRuleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ipRestrictionsRuleState)(nil)).Elem()
 }
 
+// IpRestrictionsRuleExists checks whether an existing IpRestrictionsRule resource with the given ID exists.
+func IpRestrictionsRuleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IpRestrictionsRuleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule", id, state, "", opts...)
+}
+
 type ipRestrictionsRuleArgs struct {
 	// Set of CIDR ranges for this rule
 	Cidrs []IpRestrictionsRuleCidr `pulumi:"cidrs"`

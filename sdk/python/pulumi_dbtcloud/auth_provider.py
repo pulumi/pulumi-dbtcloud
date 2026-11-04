@@ -1222,6 +1222,66 @@ class AuthProvider(pulumi.CustomResource):
         __props__.__dict__["use_auth0"] = use_auth0
         return AuthProvider(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            admin_refresh_token: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_password_backdoor: pulumi.Input[Optional[_builtins.bool]] = None,
+            attribute_map: pulumi.Input[Optional[_builtins.str]] = None,
+            authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+            cert: pulumi.Input[Optional[_builtins.str]] = None,
+            cert_expiry_date: pulumi.Input[Optional[_builtins.str]] = None,
+            cert_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            cert_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            gsuite_admin_id: pulumi.Input[Optional[_builtins.str]] = None,
+            include_indirect_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_url: pulumi.Input[Optional[_builtins.str]] = None,
+            max_groups_to_retrieve: pulumi.Input[Optional[_builtins.int]] = None,
+            sign_request: pulumi.Input[Optional[_builtins.bool]] = None,
+            slug: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.int]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            use_auth0: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["adminRefreshToken"] = admin_refresh_token
+        __props__["allowPasswordBackdoor"] = allow_password_backdoor
+        __props__["attributeMap"] = attribute_map
+        __props__["authorizationUrl"] = authorization_url
+        __props__["cert"] = cert
+        __props__["certExpiryDate"] = cert_expiry_date
+        __props__["certWo"] = cert_wo
+        __props__["certWoVersion"] = cert_wo_version
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["clientSecretWo"] = client_secret_wo
+        __props__["clientSecretWoVersion"] = client_secret_wo_version
+        __props__["createdAt"] = created_at
+        __props__["domain"] = domain
+        __props__["entityId"] = entity_id
+        __props__["gsuiteAdminId"] = gsuite_admin_id
+        __props__["includeIndirectGroups"] = include_indirect_groups
+        __props__["loginUrl"] = login_url
+        __props__["maxGroupsToRetrieve"] = max_groups_to_retrieve
+        __props__["signRequest"] = sign_request
+        __props__["slug"] = slug
+        __props__["ssoUrl"] = sso_url
+        __props__["state"] = state
+        __props__["tenantId"] = tenant_id
+        __props__["type"] = type
+        __props__["updatedAt"] = updated_at
+        __props__["useAuth0"] = use_auth0
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/authProvider:AuthProvider', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="adminRefreshToken")
     def admin_refresh_token(self) -> pulumi.Output[Optional[_builtins.str]]:

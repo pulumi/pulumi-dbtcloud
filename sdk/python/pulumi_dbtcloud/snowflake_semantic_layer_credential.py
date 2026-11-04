@@ -324,6 +324,16 @@ class SnowflakeSemanticLayerCredential(pulumi.CustomResource):
         __props__.__dict__["credential"] = credential
         return SnowflakeSemanticLayerCredential(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            configuration: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialConfigurationArgs', 'SnowflakeSemanticLayerCredentialConfigurationArgsDict', 'outputs.SnowflakeSemanticLayerCredentialConfiguration']]] = None,
+            credential: pulumi.Input[Optional[Union['SnowflakeSemanticLayerCredentialCredentialArgs', 'SnowflakeSemanticLayerCredentialCredentialArgsDict', 'outputs.SnowflakeSemanticLayerCredentialCredential']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["configuration"] = configuration
+        __props__["credential"] = credential
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def configuration(self) -> pulumi.Output['outputs.SnowflakeSemanticLayerCredentialConfiguration']:

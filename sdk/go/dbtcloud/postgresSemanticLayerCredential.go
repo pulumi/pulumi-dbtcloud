@@ -131,6 +131,12 @@ func (PostgresSemanticLayerCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*postgresSemanticLayerCredentialState)(nil)).Elem()
 }
 
+// PostgresSemanticLayerCredentialExists checks whether an existing PostgresSemanticLayerCredential resource with the given ID exists.
+func PostgresSemanticLayerCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PostgresSemanticLayerCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/postgresSemanticLayerCredential:PostgresSemanticLayerCredential", id, state, "", opts...)
+}
+
 type postgresSemanticLayerCredentialArgs struct {
 	// Semantic Layer credential configuration details.
 	Configuration PostgresSemanticLayerCredentialConfiguration `pulumi:"configuration"`

@@ -151,6 +151,12 @@ func (EnvironmentVariableJobOverrideState) ElementType() reflect.Type {
 	return reflect.TypeOf((*environmentVariableJobOverrideState)(nil)).Elem()
 }
 
+// EnvironmentVariableJobOverrideExists checks whether an existing EnvironmentVariableJobOverride resource with the given ID exists.
+func EnvironmentVariableJobOverrideExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EnvironmentVariableJobOverrideState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/environmentVariableJobOverride:EnvironmentVariableJobOverride", id, state, "", opts...)
+}
+
 type environmentVariableJobOverrideArgs struct {
 	// The job ID for which the environment variable is being overridden
 	JobDefinitionId int `pulumi:"jobDefinitionId"`

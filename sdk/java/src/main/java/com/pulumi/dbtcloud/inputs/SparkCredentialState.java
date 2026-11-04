@@ -64,22 +64,20 @@ public final class SparkCredentialState extends com.pulumi.resources.ResourceArg
     /**
      * Target name
      * 
-     * @deprecated
-     * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+     * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      * 
      */
-    @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+    @Deprecated
     @Import(name="targetName")
     private @Nullable Output<String> targetName;
 
     /**
      * @return Target name
      * 
-     * @deprecated
-     * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+     * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      * 
      */
-    @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+    @Deprecated
     public Optional<Output<String>> targetName() {
         return Optional.ofNullable(this.targetName);
     }
@@ -229,11 +227,10 @@ public final class SparkCredentialState extends com.pulumi.resources.ResourceArg
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+         * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
          * 
          */
-        @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+        @Deprecated
         public Builder targetName(@Nullable Output<String> targetName) {
             $.targetName = targetName;
             return this;
@@ -244,11 +241,10 @@ public final class SparkCredentialState extends com.pulumi.resources.ResourceArg
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+         * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
          * 
          */
-        @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+        @Deprecated
         public Builder targetName(String targetName) {
             return targetName(Output.of(targetName));
         }

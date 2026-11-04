@@ -210,6 +210,12 @@ func (LineageIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*lineageIntegrationState)(nil)).Elem()
 }
 
+// LineageIntegrationExists checks whether an existing LineageIntegration resource with the given ID exists.
+func LineageIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LineageIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/lineageIntegration:LineageIntegration", id, state, "", opts...)
+}
+
 type lineageIntegrationArgs struct {
 	// The URL of the BI server (see docs for more details)
 	Host string `pulumi:"host"`

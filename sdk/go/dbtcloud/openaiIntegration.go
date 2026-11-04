@@ -194,6 +194,12 @@ func (OpenaiIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*openaiIntegrationState)(nil)).Elem()
 }
 
+// OpenaiIntegrationExists checks whether an existing OpenaiIntegration resource with the given ID exists.
+func OpenaiIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OpenaiIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/openaiIntegration:OpenaiIntegration", id, state, "", opts...)
+}
+
 type openaiIntegrationArgs struct {
 	// The Azure OpenAI API version (e.g. ~~~2024-02-01~~~). Required when ~~~key*type~~~ is ~~~azure*openai~~~.
 	AzureApiVersion *string `pulumi:"azureApiVersion"`

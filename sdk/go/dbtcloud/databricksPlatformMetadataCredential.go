@@ -197,6 +197,12 @@ func (DatabricksPlatformMetadataCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databricksPlatformMetadataCredentialState)(nil)).Elem()
 }
 
+// DatabricksPlatformMetadataCredentialExists checks whether an existing DatabricksPlatformMetadataCredential resource with the given ID exists.
+func DatabricksPlatformMetadataCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabricksPlatformMetadataCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential", id, state, "", opts...)
+}
+
 type databricksPlatformMetadataCredentialArgs struct {
 	// The Unity Catalog name to use.
 	Catalog string `pulumi:"catalog"`

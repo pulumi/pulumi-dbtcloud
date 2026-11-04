@@ -201,6 +201,12 @@ func (ClickhouseCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clickhouseCredentialState)(nil)).Elem()
 }
 
+// ClickhouseCredentialExists checks whether an existing ClickhouseCredential resource with the given ID exists.
+func ClickhouseCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClickhouseCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/clickhouseCredential:ClickhouseCredential", id, state, "", opts...)
+}
+
 type clickhouseCredentialArgs struct {
 	// The ClickHouse password. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`

@@ -179,6 +179,12 @@ func (GroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupState)(nil)).Elem()
 }
 
+// GroupExists checks whether an existing Group resource with the given ID exists.
+func GroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/group:Group", id, state, "", opts...)
+}
+
 type groupArgs struct {
 	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 	AssignByDefault *bool `pulumi:"assignByDefault"`

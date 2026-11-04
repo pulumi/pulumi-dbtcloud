@@ -133,6 +133,12 @@ func (AccountFeaturesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*accountFeaturesState)(nil)).Elem()
 }
 
+// AccountFeaturesExists checks whether an existing AccountFeatures resource with the given ID exists.
+func AccountFeaturesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AccountFeaturesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/accountFeatures:AccountFeatures", id, state, "", opts...)
+}
+
 type accountFeaturesArgs struct {
 	// Whether advanced CI is enabled.
 	AdvancedCi *bool `pulumi:"advancedCi"`

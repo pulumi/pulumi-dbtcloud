@@ -366,6 +366,20 @@ class NotificationSetting(pulumi.CustomResource):
         __props__.__dict__["rules"] = rules
         return NotificationSetting(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            channels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingChannelArgs', 'NotificationSettingChannelArgsDict', 'outputs.NotificationSettingChannel']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationSettingRuleArgs', 'NotificationSettingRuleArgsDict', 'outputs.NotificationSettingRule']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["channels"] = channels
+        __props__["description"] = description
+        __props__["name"] = name
+        __props__["rules"] = rules
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/notificationSetting:NotificationSetting', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def channels(self) -> pulumi.Output[Sequence['outputs.NotificationSettingChannel']]:

@@ -272,6 +272,16 @@ class RedshiftSemanticLayerCredential(pulumi.CustomResource):
         __props__.__dict__["credential"] = credential
         return RedshiftSemanticLayerCredential(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            configuration: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialConfigurationArgs', 'RedshiftSemanticLayerCredentialConfigurationArgsDict', 'outputs.RedshiftSemanticLayerCredentialConfiguration']]] = None,
+            credential: pulumi.Input[Optional[Union['RedshiftSemanticLayerCredentialCredentialArgs', 'RedshiftSemanticLayerCredentialCredentialArgsDict', 'outputs.RedshiftSemanticLayerCredentialCredential']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["configuration"] = configuration
+        __props__["credential"] = credential
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/redshiftSemanticLayerCredential:RedshiftSemanticLayerCredential', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def configuration(self) -> pulumi.Output['outputs.RedshiftSemanticLayerCredentialConfiguration']:

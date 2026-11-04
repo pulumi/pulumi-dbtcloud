@@ -140,6 +140,12 @@ func (EnvironmentVariableState) ElementType() reflect.Type {
 	return reflect.TypeOf((*environmentVariableState)(nil)).Elem()
 }
 
+// EnvironmentVariableExists checks whether an existing EnvironmentVariable resource with the given ID exists.
+func EnvironmentVariableExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EnvironmentVariableState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/environmentVariable:EnvironmentVariable", id, state, "", opts...)
+}
+
 type environmentVariableArgs struct {
 	// Map from environment names to respective variable value, a special key `project` should be set for the project default variable value. This field is not set as sensitive so take precautions when using secret environment variables.
 	EnvironmentValues map[string]string `pulumi:"environmentValues"`

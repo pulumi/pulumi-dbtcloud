@@ -629,6 +629,32 @@ class OauthConfiguration(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return OauthConfiguration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            application_id_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            authorize_url: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            redirect_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            token_url: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["applicationIdUri"] = application_id_uri
+        __props__["authorizeUrl"] = authorize_url
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["clientSecretWo"] = client_secret_wo
+        __props__["clientSecretWoVersion"] = client_secret_wo_version
+        __props__["name"] = name
+        __props__["redirectUri"] = redirect_uri
+        __props__["tokenUrl"] = token_url
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/oauthConfiguration:OauthConfiguration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="applicationIdUri")
     def application_id_uri(self) -> pulumi.Output[_builtins.str]:
