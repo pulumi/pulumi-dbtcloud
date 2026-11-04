@@ -407,6 +407,24 @@ class Profile(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         return Profile(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
+            extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["connectionId"] = connection_id
+        __props__["credentialsId"] = credentials_id
+        __props__["extendedAttributesId"] = extended_attributes_id
+        __props__["key"] = key
+        __props__["profileId"] = profile_id
+        __props__["projectId"] = project_id
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/profile:Profile', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="connectionId")
     def connection_id(self) -> pulumi.Output[_builtins.int]:

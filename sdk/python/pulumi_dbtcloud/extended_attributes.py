@@ -345,6 +345,20 @@ class ExtendedAttributes(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         return ExtendedAttributes(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            extended_attributes: pulumi.Input[Optional[_builtins.str]] = None,
+            extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            state: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["extendedAttributes"] = extended_attributes
+        __props__["extendedAttributesId"] = extended_attributes_id
+        __props__["projectId"] = project_id
+        __props__["state"] = state
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/extendedAttributes:ExtendedAttributes', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="extendedAttributes")
     def extended_attributes(self) -> pulumi.Output[_builtins.str]:

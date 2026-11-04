@@ -93,6 +93,12 @@ func (PartialEnvironmentVariableState) ElementType() reflect.Type {
 	return reflect.TypeOf((*partialEnvironmentVariableState)(nil)).Elem()
 }
 
+// PartialEnvironmentVariableExists checks whether an existing PartialEnvironmentVariable resource with the given ID exists.
+func PartialEnvironmentVariableExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PartialEnvironmentVariableState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/partialEnvironmentVariable:PartialEnvironmentVariable", id, state, "", opts...)
+}
+
 type partialEnvironmentVariableArgs struct {
 	// Map from environment names to respective variable value. This field is not set as sensitive so take precautions when using secret environment variables. Only the specified environment values will be managed by this resource.
 	EnvironmentValues map[string]string `pulumi:"environmentValues"`

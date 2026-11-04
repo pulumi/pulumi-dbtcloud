@@ -601,6 +601,32 @@ class PartialNotification(pulumi.CustomResource):
         __props__.__dict__["user_id"] = user_id
         return PartialNotification(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            external_email: pulumi.Input[Optional[_builtins.str]] = None,
+            notification_type: pulumi.Input[Optional[_builtins.int]] = None,
+            on_cancels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            on_failures: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            on_successes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            on_warnings: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            slack_channel_id: pulumi.Input[Optional[_builtins.str]] = None,
+            slack_channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.int]] = None,
+            user_id: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["externalEmail"] = external_email
+        __props__["notificationType"] = notification_type
+        __props__["onCancels"] = on_cancels
+        __props__["onFailures"] = on_failures
+        __props__["onSuccesses"] = on_successes
+        __props__["onWarnings"] = on_warnings
+        __props__["slackChannelId"] = slack_channel_id
+        __props__["slackChannelName"] = slack_channel_name
+        __props__["state"] = state
+        __props__["userId"] = user_id
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/partialNotification:PartialNotification', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="externalEmail")
     def external_email(self) -> pulumi.Output[Optional[_builtins.str]]:

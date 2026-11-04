@@ -186,6 +186,12 @@ func (SparkCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*sparkCredentialState)(nil)).Elem()
 }
 
+// SparkCredentialExists checks whether an existing SparkCredential resource with the given ID exists.
+func SparkCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SparkCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/sparkCredential:SparkCredential", id, state, "", opts...)
+}
+
 type sparkCredentialArgs struct {
 	// Project ID to create the Apache Spark credential in
 	ProjectId int `pulumi:"projectId"`

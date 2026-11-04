@@ -289,6 +289,12 @@ func (SnowflakeCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*snowflakeCredentialState)(nil)).Elem()
 }
 
+// SnowflakeCredentialExists checks whether an existing SnowflakeCredential resource with the given ID exists.
+func SnowflakeCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SnowflakeCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/snowflakeCredential:SnowflakeCredential", id, state, "", opts...)
+}
+
 type snowflakeCredentialArgs struct {
 	// The type of Snowflake credential ('password' or 'keypair')
 	AuthType string `pulumi:"authType"`

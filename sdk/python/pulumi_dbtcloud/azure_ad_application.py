@@ -483,6 +483,30 @@ class AzureAdApplication(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return AzureAdApplication(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_id: pulumi.Input[Optional[_builtins.int]] = None,
+            azure_service_authentication_method: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth_redirect_uri_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accountId"] = account_id
+        __props__["azureServiceAuthenticationMethod"] = azure_service_authentication_method
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["createdAt"] = created_at
+        __props__["oauthRedirectUriDomain"] = oauth_redirect_uri_domain
+        __props__["organizationName"] = organization_name
+        __props__["tenantId"] = tenant_id
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/azureAdApplication:AzureAdApplication', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Output[_builtins.int]:

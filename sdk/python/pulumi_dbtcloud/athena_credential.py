@@ -542,6 +542,30 @@ class AthenaCredential(pulumi.CustomResource):
         __props__.__dict__["schema"] = schema
         return AthenaCredential(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_access_key_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_access_key_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_secret_access_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            schema: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["awsAccessKeyId"] = aws_access_key_id
+        __props__["awsAccessKeyIdWo"] = aws_access_key_id_wo
+        __props__["awsAccessKeyIdWoVersion"] = aws_access_key_id_wo_version
+        __props__["awsSecretAccessKey"] = aws_secret_access_key
+        __props__["awsSecretAccessKeyWo"] = aws_secret_access_key_wo
+        __props__["awsSecretAccessKeyWoVersion"] = aws_secret_access_key_wo_version
+        __props__["credentialId"] = credential_id
+        __props__["projectId"] = project_id
+        __props__["schema"] = schema
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/athenaCredential:AthenaCredential', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
     def aws_access_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:

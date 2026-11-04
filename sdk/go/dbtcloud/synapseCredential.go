@@ -293,6 +293,12 @@ func (SynapseCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*synapseCredentialState)(nil)).Elem()
 }
 
+// SynapseCredentialExists checks whether an existing SynapseCredential resource with the given ID exists.
+func SynapseCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SynapseCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/synapseCredential:SynapseCredential", id, state, "", opts...)
+}
+
 type synapseCredentialArgs struct {
 	// The type of the adapter (synapse)
 	AdapterType string `pulumi:"adapterType"`

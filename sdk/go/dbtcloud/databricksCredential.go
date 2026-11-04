@@ -209,6 +209,12 @@ func (DatabricksCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databricksCredentialState)(nil)).Elem()
 }
 
+// DatabricksCredentialExists checks whether an existing DatabricksCredential resource with the given ID exists.
+func DatabricksCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabricksCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/databricksCredential:DatabricksCredential", id, state, "", opts...)
+}
+
 type databricksCredentialArgs struct {
 	// The type of the adapter. 'spark' is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
 	//

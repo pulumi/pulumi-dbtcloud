@@ -360,6 +360,12 @@ func (ScimGroupPartialPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scimGroupPartialPermissionsState)(nil)).Elem()
 }
 
+// ScimGroupPartialPermissionsExists checks whether an existing ScimGroupPartialPermissions resource with the given ID exists.
+func ScimGroupPartialPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScimGroupPartialPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/scimGroupPartialPermissions:ScimGroupPartialPermissions", id, state, "", opts...)
+}
+
 type scimGroupPartialPermissionsArgs struct {
 	// The ID of the existing group to manage partial permissions for. This group must already exist and is typically from an external identity provider synced via SCIM.
 	GroupId int `pulumi:"groupId"`

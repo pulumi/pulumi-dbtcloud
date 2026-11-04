@@ -153,6 +153,12 @@ func (ServiceTokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceTokenState)(nil)).Elem()
 }
 
+// ServiceTokenExists checks whether an existing ServiceToken resource with the given ID exists.
+func ServiceTokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServiceTokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/serviceToken:ServiceToken", id, state, "", opts...)
+}
+
 type serviceTokenArgs struct {
 	// Service token name
 	Name *string `pulumi:"name"`

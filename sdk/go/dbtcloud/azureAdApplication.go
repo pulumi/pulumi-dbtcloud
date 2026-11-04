@@ -202,6 +202,12 @@ func (AzureAdApplicationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*azureAdApplicationState)(nil)).Elem()
 }
 
+// AzureAdApplicationExists checks whether an existing AzureAdApplication resource with the given ID exists.
+func AzureAdApplicationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AzureAdApplicationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/azureAdApplication:AzureAdApplication", id, state, "", opts...)
+}
+
 type azureAdApplicationArgs struct {
 	// The method used for service authentication. One of: ~~~service*user~~~, ~~~service*principal~~~. Defaults to ~~~service_user~~~.
 	AzureServiceAuthenticationMethod *string `pulumi:"azureServiceAuthenticationMethod"`

@@ -179,6 +179,12 @@ func (BigQueryCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bigQueryCredentialState)(nil)).Elem()
 }
 
+// BigQueryCredentialExists checks whether an existing BigQueryCredential resource with the given ID exists.
+func BigQueryCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BigQueryCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/bigQueryCredential:BigQueryCredential", id, state, "", opts...)
+}
+
 type bigQueryCredentialArgs struct {
 	// The authentication method for the BigQuery credential. Supported values: `service-account-json`, `oauth-secrets`, `external-oauth-wif`. Only applicable for v1 credentials (when `connectionId` is set).
 	AuthType *string `pulumi:"authType"`

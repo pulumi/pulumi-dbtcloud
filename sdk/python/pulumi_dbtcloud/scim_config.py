@@ -280,6 +280,18 @@ class ScimConfig(pulumi.CustomResource):
         __props__.__dict__["scim_controlled_license_type"] = scim_controlled_license_type
         return ScimConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            manual_updates_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            scim_controlled_license_type: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["enabled"] = enabled
+        __props__["manualUpdatesAllowed"] = manual_updates_allowed
+        __props__["scimControlledLicenseType"] = scim_controlled_license_type
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/scimConfig:ScimConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[_builtins.bool]:

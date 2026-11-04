@@ -171,6 +171,12 @@ func (TeradataCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*teradataCredentialState)(nil)).Elem()
 }
 
+// TeradataCredentialExists checks whether an existing TeradataCredential resource with the given ID exists.
+func TeradataCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TeradataCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/teradataCredential:TeradataCredential", id, state, "", opts...)
+}
+
 type teradataCredentialArgs struct {
 	// The password for the Teradata account. Consider using `passwordWo` instead, which is not stored in state.
 	Password *string `pulumi:"password"`

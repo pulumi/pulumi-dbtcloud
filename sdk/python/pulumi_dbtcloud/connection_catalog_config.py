@@ -612,6 +612,30 @@ class ConnectionCatalogConfig(pulumi.CustomResource):
         __props__.__dict__["view_denies"] = view_denies
         return ConnectionCatalogConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            database_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            database_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            schema_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            schema_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            table_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            table_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            view_allows: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            view_denies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["connectionId"] = connection_id
+        __props__["databaseAllows"] = database_allows
+        __props__["databaseDenies"] = database_denies
+        __props__["schemaAllows"] = schema_allows
+        __props__["schemaDenies"] = schema_denies
+        __props__["tableAllows"] = table_allows
+        __props__["tableDenies"] = table_denies
+        __props__["viewAllows"] = view_allows
+        __props__["viewDenies"] = view_denies
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="connectionId")
     def connection_id(self) -> pulumi.Output[_builtins.int]:

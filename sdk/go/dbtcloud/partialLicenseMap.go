@@ -131,6 +131,12 @@ func (PartialLicenseMapState) ElementType() reflect.Type {
 	return reflect.TypeOf((*partialLicenseMapState)(nil)).Elem()
 }
 
+// PartialLicenseMapExists checks whether an existing PartialLicenseMap resource with the given ID exists.
+func PartialLicenseMapExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PartialLicenseMapState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/partialLicenseMap:PartialLicenseMap", id, state, "", opts...)
+}
+
 type partialLicenseMapArgs struct {
 	// The license type to update
 	LicenseType string `pulumi:"licenseType"`

@@ -126,6 +126,12 @@ func (ProjectArtefactsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectArtefactsState)(nil)).Elem()
 }
 
+// ProjectArtefactsExists checks whether an existing ProjectArtefacts resource with the given ID exists.
+func ProjectArtefactsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectArtefactsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/projectArtefacts:ProjectArtefacts", id, state, "", opts...)
+}
+
 type projectArtefactsArgs struct {
 	// Docs Job ID
 	DocsJobId *int `pulumi:"docsJobId"`

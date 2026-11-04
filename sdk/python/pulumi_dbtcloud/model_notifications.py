@@ -415,6 +415,24 @@ class ModelNotifications(pulumi.CustomResource):
         __props__.__dict__["on_warning"] = on_warning
         return ModelNotifications(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            on_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+            on_skipped: pulumi.Input[Optional[_builtins.bool]] = None,
+            on_success: pulumi.Input[Optional[_builtins.bool]] = None,
+            on_warning: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["enabled"] = enabled
+        __props__["environmentId"] = environment_id
+        __props__["onFailure"] = on_failure
+        __props__["onSkipped"] = on_skipped
+        __props__["onSuccess"] = on_success
+        __props__["onWarning"] = on_warning
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/modelNotifications:ModelNotifications', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[_builtins.bool]:

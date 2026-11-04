@@ -519,6 +519,30 @@ class BigQueryCredential(pulumi.CustomResource):
         __props__.__dict__["workload_pool_provider_path"] = workload_pool_provider_path
         return BigQueryCredential(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            dataset: pulumi.Input[Optional[_builtins.str]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            num_threads: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            service_account_impersonation_url: pulumi.Input[Optional[_builtins.str]] = None,
+            workload_pool_provider_path: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authType"] = auth_type
+        __props__["connectionId"] = connection_id
+        __props__["credentialId"] = credential_id
+        __props__["dataset"] = dataset
+        __props__["isActive"] = is_active
+        __props__["numThreads"] = num_threads
+        __props__["projectId"] = project_id
+        __props__["serviceAccountImpersonationUrl"] = service_account_impersonation_url
+        __props__["workloadPoolProviderPath"] = workload_pool_provider_path
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/bigQueryCredential:BigQueryCredential', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Output[_builtins.str]:

@@ -704,6 +704,42 @@ class Repository(pulumi.CustomResource):
         __props__.__dict__["repository_id"] = repository_id
         return Repository(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            azure_active_directory_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_active_directory_repository_id: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_bypass_webhook_registration_failure: pulumi.Input[Optional[_builtins.bool]] = None,
+            deploy_key: pulumi.Input[Optional[_builtins.str]] = None,
+            fetch_deploy_key: pulumi.Input[Optional[_builtins.bool]] = None,
+            git_clone_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            github_installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+            gitlab_project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            private_link_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            pull_request_url_template: pulumi.Input[Optional[_builtins.str]] = None,
+            remote_url: pulumi.Input[Optional[_builtins.str]] = None,
+            repository_credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
+            repository_id: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["azureActiveDirectoryProjectId"] = azure_active_directory_project_id
+        __props__["azureActiveDirectoryRepositoryId"] = azure_active_directory_repository_id
+        __props__["azureBypassWebhookRegistrationFailure"] = azure_bypass_webhook_registration_failure
+        __props__["deployKey"] = deploy_key
+        __props__["fetchDeployKey"] = fetch_deploy_key
+        __props__["gitCloneStrategy"] = git_clone_strategy
+        __props__["githubInstallationId"] = github_installation_id
+        __props__["gitlabProjectId"] = gitlab_project_id
+        __props__["isActive"] = is_active
+        __props__["privateLinkEndpointId"] = private_link_endpoint_id
+        __props__["projectId"] = project_id
+        __props__["pullRequestUrlTemplate"] = pull_request_url_template
+        __props__["remoteUrl"] = remote_url
+        __props__["repositoryCredentialsId"] = repository_credentials_id
+        __props__["repositoryId"] = repository_id
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/repository:Repository', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="azureActiveDirectoryProjectId")
     def azure_active_directory_project_id(self) -> pulumi.Output[_builtins.str]:

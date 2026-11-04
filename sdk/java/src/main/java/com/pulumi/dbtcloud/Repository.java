@@ -112,11 +112,10 @@ public class Repository extends com.pulumi.resources.CustomResource {
     /**
      * Whether we should return the public deploy key - (for the `deployKey` strategy)
      * 
-     * @deprecated
-     * This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
+     * @deprecated This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey`
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future version of the provider, please remove it from your configuration. The key is always fetched when the clone strategy is `deployKey` */
+    @Deprecated
     @Export(name="fetchDeployKey", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> fetchDeployKey;
 

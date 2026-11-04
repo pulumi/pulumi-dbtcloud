@@ -93,11 +93,10 @@ public class DatabricksCredential extends com.pulumi.resources.CustomResource {
     /**
      * The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
      * 
-     * @deprecated
-     * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
+     * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
+    @Deprecated
     @Export(name="adapterType", refs={String.class}, tree="[0]")
     private Output<String> adapterType;
 
@@ -181,11 +180,10 @@ public class DatabricksCredential extends com.pulumi.resources.CustomResource {
     /**
      * Target name
      * 
-     * @deprecated
-     * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+     * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      * 
      */
-    @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+    @Deprecated
     @Export(name="targetName", refs={String.class}, tree="[0]")
     private Output<String> targetName;
 

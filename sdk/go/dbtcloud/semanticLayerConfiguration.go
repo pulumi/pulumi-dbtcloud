@@ -123,6 +123,12 @@ func (SemanticLayerConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*semanticLayerConfigurationState)(nil)).Elem()
 }
 
+// SemanticLayerConfigurationExists checks whether an existing SemanticLayerConfiguration resource with the given ID exists.
+func SemanticLayerConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SemanticLayerConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/semanticLayerConfiguration:SemanticLayerConfiguration", id, state, "", opts...)
+}
+
 type semanticLayerConfigurationArgs struct {
 	// The ID of the environment
 	EnvironmentId int `pulumi:"environmentId"`

@@ -159,6 +159,12 @@ func (GroupPartialPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupPartialPermissionsState)(nil)).Elem()
 }
 
+// GroupPartialPermissionsExists checks whether an existing GroupPartialPermissions resource with the given ID exists.
+func GroupPartialPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupPartialPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/groupPartialPermissions:GroupPartialPermissions", id, state, "", opts...)
+}
+
 type groupPartialPermissionsArgs struct {
 	// Whether the group will be assigned by default to users. The value needs to be the same for all partial permissions for the same group.
 	AssignByDefault *bool `pulumi:"assignByDefault"`

@@ -21,22 +21,20 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
     /**
      * The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
      * 
-     * @deprecated
-     * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
+     * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
+    @Deprecated
     @Import(name="adapterType")
     private @Nullable Output<String> adapterType;
 
     /**
      * @return The type of the adapter. &#39;spark&#39; is deprecated, but still supported for backwards compatibility. For Spark, please use the spark*credential resource. Optional only when semantic*layer_credential is set to true; otherwise, this field is required.
      * 
-     * @deprecated
-     * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
+     * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
+    @Deprecated
     public Optional<Output<String>> adapterType() {
         return Optional.ofNullable(this.adapterType);
     }
@@ -104,22 +102,20 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
     /**
      * Target name
      * 
-     * @deprecated
-     * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+     * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      * 
      */
-    @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+    @Deprecated
     @Import(name="targetName")
     private @Nullable Output<String> targetName;
 
     /**
      * @return Target name
      * 
-     * @deprecated
-     * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+     * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
      * 
      */
-    @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+    @Deprecated
     public Optional<Output<String>> targetName() {
         return Optional.ofNullable(this.targetName);
     }
@@ -208,11 +204,10 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
+         * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
          * 
          */
-        @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
+        @Deprecated
         public Builder adapterType(@Nullable Output<String> adapterType) {
             $.adapterType = adapterType;
             return this;
@@ -223,11 +218,10 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
+         * @deprecated This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported.
          * 
          */
-        @Deprecated /* This field is deprecated and will be removed in a future release. Semantic Layer spark credentials are not supported yet, only databricks is supported. */
+        @Deprecated
         public Builder adapterType(String adapterType) {
             return adapterType(Output.of(adapterType));
         }
@@ -321,11 +315,10 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+         * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
          * 
          */
-        @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+        @Deprecated
         public Builder targetName(@Nullable Output<String> targetName) {
             $.targetName = targetName;
             return this;
@@ -336,11 +329,10 @@ public final class DatabricksCredentialArgs extends com.pulumi.resources.Resourc
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
+         * @deprecated This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables.
          * 
          */
-        @Deprecated /* This field is deprecated at the environment level (it was never possible to set it in the UI) and will be removed in a future release. Please remove it and set the target name at the job level or leverage environment variables. */
+        @Deprecated
         public Builder targetName(String targetName) {
             return targetName(Output.of(targetName));
         }

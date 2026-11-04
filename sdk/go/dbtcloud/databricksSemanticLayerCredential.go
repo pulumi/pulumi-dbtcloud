@@ -131,6 +131,12 @@ func (DatabricksSemanticLayerCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databricksSemanticLayerCredentialState)(nil)).Elem()
 }
 
+// DatabricksSemanticLayerCredentialExists checks whether an existing DatabricksSemanticLayerCredential resource with the given ID exists.
+func DatabricksSemanticLayerCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabricksSemanticLayerCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/databricksSemanticLayerCredential:DatabricksSemanticLayerCredential", id, state, "", opts...)
+}
+
 type databricksSemanticLayerCredentialArgs struct {
 	// Semantic Layer credential configuration details.
 	Configuration DatabricksSemanticLayerCredentialConfiguration `pulumi:"configuration"`

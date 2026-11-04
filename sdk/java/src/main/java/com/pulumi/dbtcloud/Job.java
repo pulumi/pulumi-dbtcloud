@@ -59,12 +59,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         // a periodic job, but we trigger it once with `dbt parse` as soon as it is created so we can defer to the environment it is in
  *         // to do so, we use a local-exec provisioner, just make sure that the machine running Pulumi has curl installed
  *         var dailyJob = new Job("dailyJob", JobArgs.builder()
@@ -92,17 +92,17 @@ import javax.annotation.Nullable;
  * 
  *             var dailyJobProvisioner0 = new Command("dailyJobProvisioner0", CommandArgs.builder()
  *                 .create("""
- * response=$(curl -s -L -o /dev/null -w \"%{http_code}\" -X POST \\
- *   -H 'Authorization: Bearer %s' \\
- *   -H 'Content-Type: application/json' \\
- *   -d '{\"cause\": \"Generate manifest\", \"steps_override\": [\"dbt parse\"]}' \\
+ * response=$(curl -s -L -o /dev/null -w }&#92;{@code "%}{{@code http_code}}&#92;{@code " -X POST }&#92;&#92;{@code
+ *   -H 'Authorization: Bearer %s' }&#92;&#92;{@code
+ *   -H 'Content-Type: application/json' }&#92;&#92;{@code
+ *   -d '}{&#92;{@code "cause}&#92;{@code ": }&#92;{@code "Generate manifest}&#92;{@code ", }&#92;{@code "steps_override}&#92;{@code ": [}&#92;{@code "dbt parse}&#92;{@code "]}}{@code ' }&#92;&#92;{@code
  *   %s/v2/accounts/%s/jobs/%s/run/)
  *       
- * if [ \"$response\" -ge 200 ] && [ \"$response\" -lt 300 ]; then
- *   echo \"Success: HTTP status $response\"
+ * if [ }&#92;{@code "$response}&#92;{@code " -ge 200 ] && [ }&#92;{@code "$response}&#92;{@code " -lt 300 ]; then
+ *   echo }&#92;{@code "Success: HTTP status $response}&#92;{@code "
  *   exit 0
  * else
- *   echo \"Failure: HTTP status $response\"
+ *   echo }&#92;{@code "Failure: HTTP status $response}&#92;{@code "
  *   exit 1
  * fi
  * ", dbtToken,dbtHostUrl,dbtAccountId,dailyJob.id()))
@@ -110,8 +110,8 @@ import javax.annotation.Nullable;
  *                     .dependsOn(Arrays.asList(dailyJob))
  *                     .build());
  * 
- *         }
- * }
+ *         }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -554,11 +554,10 @@ public class Job extends com.pulumi.resources.CustomResource {
     /**
      * Number of seconds to allow the job to run before timing out. Use execution.timeout_seconds instead.
      * 
-     * @deprecated
-     * Use execution.timeout_seconds instead
+     * @deprecated Use execution.timeout_seconds instead
      * 
      */
-    @Deprecated /* Use execution.timeout_seconds instead */
+    @Deprecated
     @Export(name="timeoutSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> timeoutSeconds;
 
@@ -570,14 +569,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.timeoutSeconds;
     }
     /**
-     * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
+     * Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.&#92;n&#92;n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. &#92;n&#92;nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
     @Export(name="triggers", refs={JobTriggers.class}, tree="[0]")
     private Output<JobTriggers> triggers;
 
     /**
-     * @return Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.\n\n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. \n\nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
+     * @return Flags for which types of triggers to use, the values are `githubWebhook`, `gitProviderWebhook`, `schedule` and `onMerge`. All flags should be listed and set with `true` or `false`. When `onMerge` is `true`, all the other values must be false.&#92;n&#92;n`customBranchOnly` used to be allowed but has been deprecated from the API. The jobs will use the custom branch of the environment. Please remove the `customBranchOnly` from your config. &#92;n&#92;nTo create a job in a &#39;deactivated&#39; state, set all to `false`.
      * 
      */
     public Output<JobTriggers> triggers() {

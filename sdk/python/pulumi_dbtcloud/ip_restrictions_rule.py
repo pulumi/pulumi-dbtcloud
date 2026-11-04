@@ -388,6 +388,22 @@ class IpRestrictionsRule(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return IpRestrictionsRule(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpRestrictionsRuleCidrArgs', 'IpRestrictionsRuleCidrArgsDict', 'outputs.IpRestrictionsRuleCidr']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            rule_set_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cidrs"] = cidrs
+        __props__["description"] = description
+        __props__["name"] = name
+        __props__["ruleSetEnabled"] = rule_set_enabled
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/ipRestrictionsRule:IpRestrictionsRule', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def cidrs(self) -> pulumi.Output[Sequence['outputs.IpRestrictionsRuleCidr']]:

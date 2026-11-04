@@ -16,22 +16,20 @@ public final class GetWebhookPlainArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * Webhook&#39;s ID
      * 
-     * @deprecated
-     * Use `id` instead
+     * @deprecated Use `id` instead
      * 
      */
-    @Deprecated /* Use `id` instead */
+    @Deprecated
     @Import(name="webhookId", required=true)
     private String webhookId;
 
     /**
      * @return Webhook&#39;s ID
      * 
-     * @deprecated
-     * Use `id` instead
+     * @deprecated Use `id` instead
      * 
      */
-    @Deprecated /* Use `id` instead */
+    @Deprecated
     public String webhookId() {
         return this.webhookId;
     }
@@ -65,11 +63,10 @@ public final class GetWebhookPlainArgs extends com.pulumi.resources.InvokeArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use `id` instead
+         * @deprecated Use `id` instead
          * 
          */
-        @Deprecated /* Use `id` instead */
+        @Deprecated
         public Builder webhookId(String webhookId) {
             $.webhookId = webhookId;
             return this;

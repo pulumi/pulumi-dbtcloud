@@ -149,6 +149,12 @@ func (ModelNotificationsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*modelNotificationsState)(nil)).Elem()
 }
 
+// ModelNotificationsExists checks whether an existing ModelNotifications resource with the given ID exists.
+func ModelNotificationsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ModelNotificationsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/modelNotifications:ModelNotifications", id, state, "", opts...)
+}
+
 type modelNotificationsArgs struct {
 	// Whether model notifications are enabled for this environment
 	Enabled *bool `pulumi:"enabled"`

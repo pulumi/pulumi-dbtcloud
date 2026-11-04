@@ -122,6 +122,12 @@ func (ProjectRepositoryState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectRepositoryState)(nil)).Elem()
 }
 
+// ProjectRepositoryExists checks whether an existing ProjectRepository resource with the given ID exists.
+func ProjectRepositoryExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectRepositoryState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/projectRepository:ProjectRepository", id, state, "", opts...)
+}
+
 type projectRepositoryArgs struct {
 	// Project ID
 	ProjectId int `pulumi:"projectId"`

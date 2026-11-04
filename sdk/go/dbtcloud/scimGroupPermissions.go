@@ -86,6 +86,12 @@ func (ScimGroupPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scimGroupPermissionsState)(nil)).Elem()
 }
 
+// ScimGroupPermissionsExists checks whether an existing ScimGroupPermissions resource with the given ID exists.
+func ScimGroupPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScimGroupPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/scimGroupPermissions:ScimGroupPermissions", id, state, "", opts...)
+}
+
 type scimGroupPermissionsArgs struct {
 	// The ID of the existing group to manage permissions for. This group must already exist.
 	GroupId int `pulumi:"groupId"`

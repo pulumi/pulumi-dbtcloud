@@ -163,6 +163,12 @@ func (ExtendedAttributesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*extendedAttributesState)(nil)).Elem()
 }
 
+// ExtendedAttributesExists checks whether an existing ExtendedAttributes resource with the given ID exists.
+func ExtendedAttributesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ExtendedAttributesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/extendedAttributes:ExtendedAttributes", id, state, "", opts...)
+}
+
 type extendedAttributesArgs struct {
 	// A JSON string listing the extended attributes mapping. The keys are the connections attributes available in the `profiles.yml` for a given adapter. Any fields entered will override connection details or credentials set on the environment or project. To avoid incorrect Terraform diffs, it is recommended to create this string using `jsonencode` in your Terraform code. (see example)
 	ExtendedAttributes string `pulumi:"extendedAttributes"`

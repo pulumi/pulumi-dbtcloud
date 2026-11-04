@@ -538,6 +538,32 @@ class OpenaiIntegration(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return OpenaiIntegration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_id: pulumi.Input[Optional[_builtins.int]] = None,
+            azure_api_version: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_deployment_name: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            key_value: pulumi.Input[Optional[_builtins.str]] = None,
+            key_value_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            key_value_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accountId"] = account_id
+        __props__["azureApiVersion"] = azure_api_version
+        __props__["azureDeploymentName"] = azure_deployment_name
+        __props__["azureEndpoint"] = azure_endpoint
+        __props__["createdAt"] = created_at
+        __props__["keyType"] = key_type
+        __props__["keyValue"] = key_value
+        __props__["keyValueWo"] = key_value_wo
+        __props__["keyValueWoVersion"] = key_value_wo_version
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/openaiIntegration:OpenaiIntegration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Output[_builtins.int]:

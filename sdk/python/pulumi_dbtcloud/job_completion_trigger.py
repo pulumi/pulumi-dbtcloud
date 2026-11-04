@@ -266,6 +266,20 @@ class JobCompletionTrigger(pulumi.CustomResource):
         __props__.__dict__["trigger_job_id"] = trigger_job_id
         return JobCompletionTrigger(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            job_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            statuses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            trigger_job_id: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["jobId"] = job_id
+        __props__["projectId"] = project_id
+        __props__["statuses"] = statuses
+        __props__["triggerJobId"] = trigger_job_id
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/jobCompletionTrigger:JobCompletionTrigger', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="jobId")
     def job_id(self) -> pulumi.Output[_builtins.int]:

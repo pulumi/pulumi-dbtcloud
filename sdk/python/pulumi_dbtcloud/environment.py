@@ -798,6 +798,42 @@ class Environment(pulumi.CustomResource):
         __props__.__dict__["use_custom_branch"] = use_custom_branch
         return Environment(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            custom_branch: pulumi.Input[Optional[_builtins.str]] = None,
+            dbt_version: pulumi.Input[Optional[_builtins.str]] = None,
+            deployment_type: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_dbt_state: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_model_query_history: pulumi.Input[Optional[_builtins.bool]] = None,
+            environment_id: pulumi.Input[Optional[_builtins.int]] = None,
+            extended_attributes_id: pulumi.Input[Optional[_builtins.int]] = None,
+            is_active: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_profile_id: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            use_custom_branch: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["connectionId"] = connection_id
+        __props__["credentialId"] = credential_id
+        __props__["customBranch"] = custom_branch
+        __props__["dbtVersion"] = dbt_version
+        __props__["deploymentType"] = deployment_type
+        __props__["enableDbtState"] = enable_dbt_state
+        __props__["enableModelQueryHistory"] = enable_model_query_history
+        __props__["environmentId"] = environment_id
+        __props__["extendedAttributesId"] = extended_attributes_id
+        __props__["isActive"] = is_active
+        __props__["name"] = name
+        __props__["primaryProfileId"] = primary_profile_id
+        __props__["projectId"] = project_id
+        __props__["type"] = type
+        __props__["useCustomBranch"] = use_custom_branch
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/environment:Environment', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="connectionId")
     def connection_id(self) -> pulumi.Output[_builtins.int]:

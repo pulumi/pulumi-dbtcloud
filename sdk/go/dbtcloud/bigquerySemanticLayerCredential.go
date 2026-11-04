@@ -220,6 +220,12 @@ func (BigquerySemanticLayerCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bigquerySemanticLayerCredentialState)(nil)).Elem()
 }
 
+// BigquerySemanticLayerCredentialExists checks whether an existing BigquerySemanticLayerCredential resource with the given ID exists.
+func BigquerySemanticLayerCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BigquerySemanticLayerCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential", id, state, "", opts...)
+}
+
 type bigquerySemanticLayerCredentialArgs struct {
 	// Auth Provider X509 Cert URL for the Service Account
 	AuthProviderX509CertUrl string `pulumi:"authProviderX509CertUrl"`

@@ -32,11 +32,10 @@ public final class GetJobResult {
     /**
      * @return [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
      * 
-     * @deprecated
-     * Deferral is now set at the environment level
+     * @deprecated Deferral is now set at the environment level
      * 
      */
-    @Deprecated /* Deferral is now set at the environment level */
+    @Deprecated
     private Integer deferringJobId;
     /**
      * @return The description of the job
@@ -119,11 +118,10 @@ public final class GetJobResult {
     /**
      * @return [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
      * 
-     * @deprecated
-     * Moved to execution.timeout_seconds
+     * @deprecated Moved to execution.timeout_seconds
      * 
      */
-    @Deprecated /* Moved to execution.timeout_seconds */
+    @Deprecated
     private Integer timeoutSeconds;
     private GetJobTriggers triggers;
     /**
@@ -150,11 +148,10 @@ public final class GetJobResult {
     /**
      * @return [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
      * 
-     * @deprecated
-     * Deferral is now set at the environment level
+     * @deprecated Deferral is now set at the environment level
      * 
      */
-    @Deprecated /* Deferral is now set at the environment level */
+    @Deprecated
     public Integer deferringJobId() {
         return this.deferringJobId;
     }
@@ -275,11 +272,10 @@ public final class GetJobResult {
     /**
      * @return [Deprectated - Moved to execution.timeout_seconds] Number of seconds before the job times out
      * 
-     * @deprecated
-     * Moved to execution.timeout_seconds
+     * @deprecated Moved to execution.timeout_seconds
      * 
      */
-    @Deprecated /* Moved to execution.timeout_seconds */
+    @Deprecated
     public Integer timeoutSeconds() {
         return this.timeoutSeconds;
     }

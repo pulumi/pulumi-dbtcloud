@@ -388,6 +388,12 @@ func (AuthProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authProviderState)(nil)).Elem()
 }
 
+// AuthProviderExists checks whether an existing AuthProvider resource with the given ID exists.
+func AuthProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/authProvider:AuthProvider", id, state, "", opts...)
+}
+
 type authProviderArgs struct {
 	// Google Workspace admin OAuth refresh token used to fetch group memberships.
 	AdminRefreshToken *string `pulumi:"adminRefreshToken"`

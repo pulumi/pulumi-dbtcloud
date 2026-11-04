@@ -546,6 +546,32 @@ class DatabricksPlatformMetadataCredential(pulumi.CustomResource):
         __props__.__dict__["token_wo_version"] = token_wo_version
         return DatabricksPlatformMetadataCredential(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+            catalog: pulumi.Input[Optional[_builtins.str]] = None,
+            catalog_ingestion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            connection_id: pulumi.Input[Optional[_builtins.int]] = None,
+            cost_insights_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            cost_optimization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            credential_id: pulumi.Input[Optional[_builtins.int]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            token_wo_version: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["adapterVersion"] = adapter_version
+        __props__["catalog"] = catalog
+        __props__["catalogIngestionEnabled"] = catalog_ingestion_enabled
+        __props__["connectionId"] = connection_id
+        __props__["costInsightsEnabled"] = cost_insights_enabled
+        __props__["costOptimizationEnabled"] = cost_optimization_enabled
+        __props__["credentialId"] = credential_id
+        __props__["token"] = token
+        __props__["tokenWo"] = token_wo
+        __props__["tokenWoVersion"] = token_wo_version
+        return pulumi.runtime.exists_resource(None, 'dbtcloud:index/databricksPlatformMetadataCredential:DatabricksPlatformMetadataCredential', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="adapterVersion")
     def adapter_version(self) -> pulumi.Output[_builtins.str]:

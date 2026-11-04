@@ -155,6 +155,12 @@ func (NotificationSettingState) ElementType() reflect.Type {
 	return reflect.TypeOf((*notificationSettingState)(nil)).Elem()
 }
 
+// NotificationSettingExists checks whether an existing NotificationSetting resource with the given ID exists.
+func NotificationSettingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NotificationSettingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/notificationSetting:NotificationSetting", id, state, "", opts...)
+}
+
 type notificationSettingArgs struct {
 	// Delivery channels for this setting. At least one channel is required.
 	Channels []NotificationSettingChannel `pulumi:"channels"`

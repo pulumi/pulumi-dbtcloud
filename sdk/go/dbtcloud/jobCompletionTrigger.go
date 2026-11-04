@@ -93,6 +93,12 @@ func (JobCompletionTriggerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobCompletionTriggerState)(nil)).Elem()
 }
 
+// JobCompletionTriggerExists checks whether an existing JobCompletionTrigger resource with the given ID exists.
+func JobCompletionTriggerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *JobCompletionTriggerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/jobCompletionTrigger:JobCompletionTrigger", id, state, "", opts...)
+}
+
 type jobCompletionTriggerArgs struct {
 	// The ID of the downstream job that will be triggered.
 	JobId int `pulumi:"jobId"`

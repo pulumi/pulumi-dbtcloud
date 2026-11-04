@@ -205,6 +205,12 @@ func (PartialNotificationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*partialNotificationState)(nil)).Elem()
 }
 
+// PartialNotificationExists checks whether an existing PartialNotification resource with the given ID exists.
+func PartialNotificationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PartialNotificationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/partialNotification:PartialNotification", id, state, "", opts...)
+}
+
 type partialNotificationArgs struct {
 	// The external email to receive the notification [global, used as identifier]
 	ExternalEmail *string `pulumi:"externalEmail"`

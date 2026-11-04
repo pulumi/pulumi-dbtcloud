@@ -226,6 +226,12 @@ func (ConnectionCatalogConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*connectionCatalogConfigState)(nil)).Elem()
 }
 
+// ConnectionCatalogConfigExists checks whether an existing ConnectionCatalogConfig resource with the given ID exists.
+func ConnectionCatalogConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ConnectionCatalogConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/connectionCatalogConfig:ConnectionCatalogConfig", id, state, "", opts...)
+}
+
 type connectionCatalogConfigArgs struct {
 	// The ID of the global connection this catalog config is associated with. Cannot be changed after creation.
 	ConnectionId int `pulumi:"connectionId"`

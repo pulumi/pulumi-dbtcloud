@@ -141,6 +141,12 @@ func (UserGroupsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userGroupsState)(nil)).Elem()
 }
 
+// UserGroupsExists checks whether an existing UserGroups resource with the given ID exists.
+func UserGroupsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserGroupsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/userGroups:UserGroups", id, state, "", opts...)
+}
+
 type userGroupsArgs struct {
 	// IDs of the groups to assign to the user. If additional groups were assigned manually in dbt Cloud, they will be removed.
 	GroupIds []int `pulumi:"groupIds"`

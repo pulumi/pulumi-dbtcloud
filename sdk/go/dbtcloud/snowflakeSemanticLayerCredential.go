@@ -163,6 +163,12 @@ func (SnowflakeSemanticLayerCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*snowflakeSemanticLayerCredentialState)(nil)).Elem()
 }
 
+// SnowflakeSemanticLayerCredentialExists checks whether an existing SnowflakeSemanticLayerCredential resource with the given ID exists.
+func SnowflakeSemanticLayerCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SnowflakeSemanticLayerCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/snowflakeSemanticLayerCredential:SnowflakeSemanticLayerCredential", id, state, "", opts...)
+}
+
 type snowflakeSemanticLayerCredentialArgs struct {
 	// Semantic Layer credenttial configuration details.
 	Configuration SnowflakeSemanticLayerCredentialConfiguration `pulumi:"configuration"`

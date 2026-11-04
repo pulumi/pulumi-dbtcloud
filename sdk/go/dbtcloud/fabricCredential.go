@@ -268,6 +268,12 @@ func (FabricCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*fabricCredentialState)(nil)).Elem()
 }
 
+// FabricCredentialExists checks whether an existing FabricCredential resource with the given ID exists.
+func FabricCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FabricCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/fabricCredential:FabricCredential", id, state, "", opts...)
+}
+
 type fabricCredentialArgs struct {
 	// The type of the adapter (fabric)
 	AdapterType string `pulumi:"adapterType"`

@@ -131,6 +131,12 @@ func (ScimConfigTokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scimConfigTokenState)(nil)).Elem()
 }
 
+// ScimConfigTokenExists checks whether an existing ScimConfigToken resource with the given ID exists.
+func ScimConfigTokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScimConfigTokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/scimConfigToken:ScimConfigToken", id, state, "", opts...)
+}
+
 type scimConfigTokenArgs struct {
 	// A human-readable name for the token. Changing this value forces a new token to be created.
 	Name *string `pulumi:"name"`

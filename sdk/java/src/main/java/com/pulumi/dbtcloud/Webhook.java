@@ -213,11 +213,10 @@ public class Webhook extends com.pulumi.resources.CustomResource {
     /**
      * Webhook&#39;s ID
      * 
-     * @deprecated
-     * Use `id` instead
+     * @deprecated Use `id` instead
      * 
      */
-    @Deprecated /* Use `id` instead */
+    @Deprecated
     @Export(name="webhookId", refs={String.class}, tree="[0]")
     private Output<String> webhookId;
 

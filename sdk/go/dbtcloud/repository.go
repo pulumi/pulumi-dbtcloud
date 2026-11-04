@@ -190,6 +190,12 @@ func (RepositoryState) ElementType() reflect.Type {
 	return reflect.TypeOf((*repositoryState)(nil)).Elem()
 }
 
+// RepositoryExists checks whether an existing Repository resource with the given ID exists.
+func RepositoryExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RepositoryState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("dbtcloud:index/repository:Repository", id, state, "", opts...)
+}
+
 type repositoryArgs struct {
 	// The Azure Dev Ops project ID. It can be retrieved via the Azure API or using the data source `getAzureDevOpsProject` and the project name - (required for ADO native integration only)
 	AzureActiveDirectoryProjectId *string `pulumi:"azureActiveDirectoryProjectId"`
