@@ -63,10 +63,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Deployment environment with a primary profile (binds connection + credentials via profile)
-//			// NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
-//			// primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
-//			// overwriting the profile's own settings and affecting other environments sharing that profile.
+//			// Deployment environment with a primary profile (connection and credentials come from the profile)
+//			// NOTE: do not set connection_id, credential_id, or extended_attributes_id alongside
+//			// primary_profile_id. Manage those values on the dbtcloud_profile resource instead, since a
+//			// profile can be shared by several environments.
 //			_, err = dbtcloud.NewEnvironment(ctx, "profiled_environment", &dbtcloud.EnvironmentArgs{
 //				DbtVersion:       pulumi.String("latest"),
 //				Name:             pulumi.String("Staging"),
@@ -112,7 +112,7 @@ type Environment struct {
 	CredentialId pulumi.IntOutput `pulumi:"credentialId"`
 	// The custom branch name to use
 	CustomBranch pulumi.StringPtrOutput `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion pulumi.StringOutput `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrOutput `pulumi:"deploymentType"`
@@ -128,7 +128,7 @@ type Environment struct {
 	IsActive pulumi.BoolOutput `pulumi:"isActive"`
 	// The name of the environment
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
 	PrimaryProfileId pulumi.IntOutput `pulumi:"primaryProfileId"`
 	// Project ID to create the environment in
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
@@ -180,7 +180,7 @@ type environmentState struct {
 	CredentialId *int `pulumi:"credentialId"`
 	// The custom branch name to use
 	CustomBranch *string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
@@ -196,7 +196,7 @@ type environmentState struct {
 	IsActive *bool `pulumi:"isActive"`
 	// The name of the environment
 	Name *string `pulumi:"name"`
-	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
 	PrimaryProfileId *int `pulumi:"primaryProfileId"`
 	// Project ID to create the environment in
 	ProjectId *int `pulumi:"projectId"`
@@ -213,7 +213,7 @@ type EnvironmentState struct {
 	CredentialId pulumi.IntPtrInput
 	// The custom branch name to use
 	CustomBranch pulumi.StringPtrInput
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion pulumi.StringPtrInput
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
@@ -229,7 +229,7 @@ type EnvironmentState struct {
 	IsActive pulumi.BoolPtrInput
 	// The name of the environment
 	Name pulumi.StringPtrInput
-	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
 	PrimaryProfileId pulumi.IntPtrInput
 	// Project ID to create the environment in
 	ProjectId pulumi.IntPtrInput
@@ -256,7 +256,7 @@ type environmentArgs struct {
 	CredentialId *int `pulumi:"credentialId"`
 	// The custom branch name to use
 	CustomBranch *string `pulumi:"customBranch"`
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion *string `pulumi:"dbtVersion"`
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType *string `pulumi:"deploymentType"`
@@ -270,7 +270,7 @@ type environmentArgs struct {
 	IsActive *bool `pulumi:"isActive"`
 	// The name of the environment
 	Name *string `pulumi:"name"`
-	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
 	PrimaryProfileId *int `pulumi:"primaryProfileId"`
 	// Project ID to create the environment in
 	ProjectId int `pulumi:"projectId"`
@@ -288,7 +288,7 @@ type EnvironmentArgs struct {
 	CredentialId pulumi.IntPtrInput
 	// The custom branch name to use
 	CustomBranch pulumi.StringPtrInput
-	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+	// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 	DbtVersion pulumi.StringPtrInput
 	// The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
 	DeploymentType pulumi.StringPtrInput
@@ -302,7 +302,7 @@ type EnvironmentArgs struct {
 	IsActive pulumi.BoolPtrInput
 	// The name of the environment
 	Name pulumi.StringPtrInput
-	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+	// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
 	PrimaryProfileId pulumi.IntPtrInput
 	// Project ID to create the environment in
 	ProjectId pulumi.IntInput
@@ -414,7 +414,7 @@ func (o EnvironmentOutput) CustomBranch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringPtrOutput { return v.CustomBranch }).(pulumi.StringPtrOutput)
 }
 
-// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
 func (o EnvironmentOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.DbtVersion }).(pulumi.StringOutput)
 }
@@ -454,7 +454,7 @@ func (o EnvironmentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
 func (o EnvironmentOutput) PrimaryProfileId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Environment) pulumi.IntOutput { return v.PrimaryProfileId }).(pulumi.IntOutput)
 }

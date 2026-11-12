@@ -34,6 +34,8 @@ type LookupProjectArgs struct {
 
 // A collection of values returned by getProject.
 type LookupProjectResult struct {
+	// ID of the global connection used for analytics, if any
+	AnalyticsConnectionId int `pulumi:"analyticsConnectionId"`
 	// When the project was created
 	CreatedAt string `pulumi:"createdAt"`
 	// Subdirectory for the dbt project inside the git repo
@@ -92,6 +94,11 @@ func (o LookupProjectResultOutput) ToLookupProjectResultOutput() LookupProjectRe
 
 func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx context.Context) LookupProjectResultOutput {
 	return o
+}
+
+// ID of the global connection used for analytics, if any
+func (o LookupProjectResultOutput) AnalyticsConnectionId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupProjectResult) int { return v.AnalyticsConnectionId }).(pulumi.IntOutput)
 }
 
 // When the project was created

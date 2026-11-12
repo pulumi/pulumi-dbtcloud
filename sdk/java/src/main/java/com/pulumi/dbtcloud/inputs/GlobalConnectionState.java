@@ -46,6 +46,21 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The ID of the analytics credential attached to this connection, if any.
+     * 
+     */
+    @Import(name="analyticsCredentialsId")
+    private @Nullable Output<Integer> analyticsCredentialsId;
+
+    /**
+     * @return The ID of the analytics credential attached to this connection, if any.
+     * 
+     */
+    public Optional<Output<Integer>> analyticsCredentialsId() {
+        return Optional.ofNullable(this.analyticsCredentialsId);
+    }
+
+    /**
      * Apache Spark connection configuration.
      * 
      */
@@ -296,6 +311,7 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
 
     private GlobalConnectionState(GlobalConnectionState $) {
         this.adapterVersion = $.adapterVersion;
+        this.analyticsCredentialsId = $.analyticsCredentialsId;
         this.apacheSpark = $.apacheSpark;
         this.athena = $.athena;
         this.bigquery = $.bigquery;
@@ -352,6 +368,27 @@ public final class GlobalConnectionState extends com.pulumi.resources.ResourceAr
          */
         public Builder adapterVersion(String adapterVersion) {
             return adapterVersion(Output.of(adapterVersion));
+        }
+
+        /**
+         * @param analyticsCredentialsId The ID of the analytics credential attached to this connection, if any.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder analyticsCredentialsId(@Nullable Output<Integer> analyticsCredentialsId) {
+            $.analyticsCredentialsId = analyticsCredentialsId;
+            return this;
+        }
+
+        /**
+         * @param analyticsCredentialsId The ID of the analytics credential attached to this connection, if any.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder analyticsCredentialsId(Integer analyticsCredentialsId) {
+            return analyticsCredentialsId(Output.of(analyticsCredentialsId));
         }
 
         /**

@@ -12,6 +12,7 @@ import com.pulumi.dbtcloud.Utilities;
 import com.pulumi.dbtcloud.inputs.ProjectState;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -28,6 +29,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.dbtcloud.Project;
  * import com.pulumi.dbtcloud.ProjectArgs;
+ * import com.pulumi.dbtcloud.GlobalConnection;
+ * import com.pulumi.dbtcloud.GlobalConnectionArgs;
+ * import com.pulumi.dbtcloud.inputs.GlobalConnectionSnowflakeArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
@@ -53,6 +57,22 @@ import javax.annotation.Nullable;
  *         var dbtProjectWithSubdir = new Project("dbtProjectWithSubdir", ProjectArgs.builder()
  *             .name("Analytics in Subdir")
  *             .dbtProjectSubdirectory("path")
+ *             .build());
+ * 
+ *         // a global connection the project uses for analytics
+ *         var analytics = new GlobalConnection("analytics", GlobalConnectionArgs.builder()
+ *             .name("Analytics connection")
+ *             .snowflake(GlobalConnectionSnowflakeArgs.builder()
+ *                 .account("my-snowflake-account")
+ *                 .database("ANALYTICS")
+ *                 .warehouse("ANALYTICS_WH")
+ *                 .allowSso(false)
+ *                 .build())
+ *             .build());
+ * 
+ *         var dbtProjectWithAnalyticsConnection = new Project("dbtProjectWithAnalyticsConnection", ProjectArgs.builder()
+ *             .name("Analytics with an analytics connection")
+ *             .analyticsConnectionId(analytics.id())
  *             .build());
  * 
  *     }
@@ -83,6 +103,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="dbtcloud:index/project:Project")
 public class Project extends com.pulumi.resources.CustomResource {
+    /**
+     * ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+     * 
+     */
+    @Export(name="analyticsConnectionId", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> analyticsConnectionId;
+
+    /**
+     * @return ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+     * 
+     */
+    public Output<Optional<Integer>> analyticsConnectionId() {
+        return Codegen.optional(this.analyticsConnectionId);
+    }
     /**
      * DBT project subdirectory
      * 

@@ -319,6 +319,20 @@ public class GlobalConnection extends com.pulumi.resources.CustomResource {
         return this.adapterVersion;
     }
     /**
+     * The ID of the analytics credential attached to this connection, if any.
+     * 
+     */
+    @Export(name="analyticsCredentialsId", refs={Integer.class}, tree="[0]")
+    private Output<Integer> analyticsCredentialsId;
+
+    /**
+     * @return The ID of the analytics credential attached to this connection, if any.
+     * 
+     */
+    public Output<Integer> analyticsCredentialsId() {
+        return this.analyticsCredentialsId;
+    }
+    /**
      * Apache Spark connection configuration.
      * 
      */

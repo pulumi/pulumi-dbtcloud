@@ -15,6 +15,14 @@ else:
 from . import _utilities
 
 __all__ = [
+    'AnalyticsCredentialBigqueryArgs',
+    'AnalyticsCredentialBigqueryArgsDict',
+    'AnalyticsCredentialDatabricksArgs',
+    'AnalyticsCredentialDatabricksArgsDict',
+    'AnalyticsCredentialRedshiftArgs',
+    'AnalyticsCredentialRedshiftArgsDict',
+    'AnalyticsCredentialSnowflakeArgs',
+    'AnalyticsCredentialSnowflakeArgsDict',
     'BigquerySemanticLayerCredentialConfigurationArgs',
     'BigquerySemanticLayerCredentialConfigurationArgsDict',
     'BigquerySemanticLayerCredentialCredentialArgs',
@@ -94,6 +102,757 @@ __all__ = [
     'GetServiceTokenServiceTokenPermissionArgs',
     'GetServiceTokenServiceTokenPermissionArgsDict',
 ]
+
+class AnalyticsCredentialBigqueryArgsDict(TypedDict):
+    auth_provider_x509_cert_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The auth provider X509 cert URL of the service account. Service account only.
+    """
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigquery_v0` connection. Changing it recreates the credential.
+    """
+    auth_uri: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The auth URI of the service account. Service account only.
+    """
+    client_email: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The client email of the service account. Service account only.
+    """
+    client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The client ID of the service account. Service account only.
+    """
+    client_x509_cert_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The client X509 cert URL of the service account. Service account only.
+    """
+    execution_project: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The project billed for query execution. It cannot be removed once set.
+    """
+    private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+    """
+    private_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The private key ID of the service account. Service account only.
+    """
+    private_key_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+    """
+    private_key_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+    """
+    service_account_impersonation_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+    """
+    token_uri: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The token URI of the service account. Service account only.
+    """
+    workload_pool_provider_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+    """
+
+@pulumi.input_type
+class AnalyticsCredentialBigqueryArgs:
+    def __init__(__self__, *,
+                 auth_provider_x509_cert_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_x509_cert_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 execution_project: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_impersonation_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 workload_pool_provider_path: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] auth_provider_x509_cert_url: The auth provider X509 cert URL of the service account. Service account only.
+        :param pulumi.Input[_builtins.str] auth_type: The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigquery_v0` connection. Changing it recreates the credential.
+        :param pulumi.Input[_builtins.str] auth_uri: The auth URI of the service account. Service account only.
+        :param pulumi.Input[_builtins.str] client_email: The client email of the service account. Service account only.
+        :param pulumi.Input[_builtins.str] client_id: The client ID of the service account. Service account only.
+        :param pulumi.Input[_builtins.str] client_x509_cert_url: The client X509 cert URL of the service account. Service account only.
+        :param pulumi.Input[_builtins.str] execution_project: The project billed for query execution. It cannot be removed once set.
+        :param pulumi.Input[_builtins.str] private_key: The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+        :param pulumi.Input[_builtins.str] private_key_id: The private key ID of the service account. Service account only.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+        :param pulumi.Input[_builtins.str] service_account_impersonation_url: The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+        :param pulumi.Input[_builtins.str] token_uri: The token URI of the service account. Service account only.
+        :param pulumi.Input[_builtins.str] workload_pool_provider_path: The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+        """
+        if auth_provider_x509_cert_url is not None:
+            pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if auth_uri is not None:
+            pulumi.set(__self__, "auth_uri", auth_uri)
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_x509_cert_url is not None:
+            pulumi.set(__self__, "client_x509_cert_url", client_x509_cert_url)
+        if execution_project is not None:
+            pulumi.set(__self__, "execution_project", execution_project)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
+        if service_account_impersonation_url is not None:
+            pulumi.set(__self__, "service_account_impersonation_url", service_account_impersonation_url)
+        if token_uri is not None:
+            pulumi.set(__self__, "token_uri", token_uri)
+        if workload_pool_provider_path is not None:
+            pulumi.set(__self__, "workload_pool_provider_path", workload_pool_provider_path)
+
+    @_builtins.property
+    @pulumi.getter(name="authProviderX509CertUrl")
+    def auth_provider_x509_cert_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The auth provider X509 cert URL of the service account. Service account only.
+        """
+        return pulumi.get(self, "auth_provider_x509_cert_url")
+
+    @auth_provider_x509_cert_url.setter
+    def auth_provider_x509_cert_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_provider_x509_cert_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigquery_v0` connection. Changing it recreates the credential.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authUri")
+    def auth_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The auth URI of the service account. Service account only.
+        """
+        return pulumi.get(self, "auth_uri")
+
+    @auth_uri.setter
+    def auth_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_uri", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The client email of the service account. Service account only.
+        """
+        return pulumi.get(self, "client_email")
+
+    @client_email.setter
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The client ID of the service account. Service account only.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientX509CertUrl")
+    def client_x509_cert_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The client X509 cert URL of the service account. Service account only.
+        """
+        return pulumi.get(self, "client_x509_cert_url")
+
+    @client_x509_cert_url.setter
+    def client_x509_cert_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_x509_cert_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="executionProject")
+    def execution_project(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The project billed for query execution. It cannot be removed once set.
+        """
+        return pulumi.get(self, "execution_project")
+
+    @execution_project.setter
+    def execution_project(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "execution_project", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The private key ID of the service account. Service account only.
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @private_key_id.setter
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountImpersonationUrl")
+    def service_account_impersonation_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+        """
+        return pulumi.get(self, "service_account_impersonation_url")
+
+    @service_account_impersonation_url.setter
+    def service_account_impersonation_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "service_account_impersonation_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenUri")
+    def token_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The token URI of the service account. Service account only.
+        """
+        return pulumi.get(self, "token_uri")
+
+    @token_uri.setter
+    def token_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "token_uri", value)
+
+    @_builtins.property
+    @pulumi.getter(name="workloadPoolProviderPath")
+    def workload_pool_provider_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+        """
+        return pulumi.get(self, "workload_pool_provider_path")
+
+    @workload_pool_provider_path.setter
+    def workload_pool_provider_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "workload_pool_provider_path", value)
+
+
+class AnalyticsCredentialDatabricksArgsDict(TypedDict):
+    catalog: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The Unity Catalog name. It cannot be removed once set.
+    """
+    token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The personal access token. Required unless `token_wo` is set. Stored in the state, marked sensitive. Prefer `token_wo`, which is never stored.
+    """
+    token_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `token_wo_version`.
+    """
+    token_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of `token_wo`. Change it to send a new value of `token_wo`; the value alone is not tracked because it is write-only.
+    """
+
+@pulumi.input_type
+class AnalyticsCredentialDatabricksArgs:
+    def __init__(__self__, *,
+                 catalog: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] catalog: The Unity Catalog name. It cannot be removed once set.
+        :param pulumi.Input[_builtins.str] token: The personal access token. Required unless `token_wo` is set. Stored in the state, marked sensitive. Prefer `token_wo`, which is never stored.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `token_wo_version`.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version of `token_wo`. Change it to send a new value of `token_wo`; the value alone is not tracked because it is write-only.
+        """
+        if catalog is not None:
+            pulumi.set(__self__, "catalog", catalog)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def catalog(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Unity Catalog name. It cannot be removed once set.
+        """
+        return pulumi.get(self, "catalog")
+
+    @catalog.setter
+    def catalog(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "catalog", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The personal access token. Required unless `token_wo` is set. Stored in the state, marked sensitive. Prefer `token_wo`, which is never stored.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `token_wo_version`.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of `token_wo`. Change it to send a new value of `token_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
+
+
+class AnalyticsCredentialRedshiftArgsDict(TypedDict):
+    username: pulumi.Input[_builtins.str]
+    """
+    The username to connect to the cluster.
+    """
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The password to connect to the cluster. Required unless `password_wo` is set. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+    """
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `password_wo_version`.
+    """
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+    """
+
+@pulumi.input_type
+class AnalyticsCredentialRedshiftArgs:
+    def __init__(__self__, *,
+                 username: pulumi.Input[_builtins.str],
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] username: The username to connect to the cluster.
+        :param pulumi.Input[_builtins.str] password: The password to connect to the cluster. Required unless `password_wo` is set. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `password_wo_version`.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+        """
+        pulumi.set(__self__, "username", username)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[_builtins.str]:
+        """
+        The username to connect to the cluster.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "username", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The password to connect to the cluster. Required unless `password_wo` is set. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+
+class AnalyticsCredentialSnowflakeArgsDict(TypedDict):
+    auth_type: pulumi.Input[_builtins.str]
+    """
+    The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+    """
+    user: pulumi.Input[_builtins.str]
+    """
+    The Snowflake user name.
+    """
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The password. Required when `auth_type` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+    """
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The password. Required when `auth_type` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+    """
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+    """
+    private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+    """
+    private_key_passphrase: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `private_key_passphrase_wo`, which is never stored.
+    """
+    private_key_passphrase_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+    """
+    private_key_passphrase_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of `private_key_passphrase_wo`. Change it to send a new value of `private_key_passphrase_wo`; the value alone is not tracked because it is write-only.
+    """
+    private_key_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+    """
+    private_key_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+    """
+    role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The Snowflake role. It cannot be removed once set.
+    """
+    warehouse: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The Snowflake warehouse. It cannot be removed once set.
+    """
+
+@pulumi.input_type
+class AnalyticsCredentialSnowflakeArgs:
+    def __init__(__self__, *,
+                 auth_type: pulumi.Input[_builtins.str],
+                 user: pulumi.Input[_builtins.str],
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_passphrase_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 warehouse: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] auth_type: The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+        :param pulumi.Input[_builtins.str] user: The Snowflake user name.
+        :param pulumi.Input[_builtins.str] password: The password. Required when `auth_type` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password. Required when `auth_type` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        :param pulumi.Input[_builtins.int] password_wo_version: Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+        :param pulumi.Input[_builtins.str] private_key: The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+        :param pulumi.Input[_builtins.str] private_key_passphrase: The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `private_key_passphrase_wo`, which is never stored.
+        :param pulumi.Input[_builtins.str] private_key_passphrase_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        :param pulumi.Input[_builtins.int] private_key_passphrase_wo_version: Version of `private_key_passphrase_wo`. Change it to send a new value of `private_key_passphrase_wo`; the value alone is not tracked because it is write-only.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+        :param pulumi.Input[_builtins.str] role: The Snowflake role. It cannot be removed once set.
+        :param pulumi.Input[_builtins.str] warehouse: The Snowflake warehouse. It cannot be removed once set.
+        """
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "user", user)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_passphrase is not None:
+            pulumi.set(__self__, "private_key_passphrase", private_key_passphrase)
+        if private_key_passphrase_wo is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo", private_key_passphrase_wo)
+        if private_key_passphrase_wo_version is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo_version", private_key_passphrase_wo_version)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if warehouse is not None:
+            pulumi.set(__self__, "warehouse", warehouse)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "auth_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def user(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Snowflake user name.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "user", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The password. Required when `auth_type` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password. Required when `auth_type` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphrase")
+    def private_key_passphrase(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `private_key_passphrase_wo`, which is never stored.
+        """
+        return pulumi.get(self, "private_key_passphrase")
+
+    @private_key_passphrase.setter
+    def private_key_passphrase(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_passphrase", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWo")
+    def private_key_passphrase_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo")
+
+    @private_key_passphrase_wo.setter
+    def private_key_passphrase_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_passphrase_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWoVersion")
+    def private_key_passphrase_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of `private_key_passphrase_wo`. Change it to send a new value of `private_key_passphrase_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo_version")
+
+    @private_key_passphrase_wo_version.setter
+    def private_key_passphrase_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "private_key_passphrase_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Snowflake role. It cannot be removed once set.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def warehouse(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Snowflake warehouse. It cannot be removed once set.
+        """
+        return pulumi.get(self, "warehouse")
+
+    @warehouse.setter
+    def warehouse(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "warehouse", value)
+
 
 class BigquerySemanticLayerCredentialConfigurationArgsDict(TypedDict):
     adapter_version: pulumi.Input[_builtins.str]

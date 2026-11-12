@@ -16,6 +16,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetProjectResult {
     /**
+     * @return ID of the global connection used for analytics, if any
+     * 
+     */
+    private Integer analyticsConnectionId;
+    /**
      * @return When the project was created
      * 
      */
@@ -82,6 +87,13 @@ public final class GetProjectResult {
     private String updatedAt;
 
     private GetProjectResult() {}
+    /**
+     * @return ID of the global connection used for analytics, if any
+     * 
+     */
+    public Integer analyticsConnectionId() {
+        return this.analyticsConnectionId;
+    }
     /**
      * @return When the project was created
      * 
@@ -183,6 +195,7 @@ public final class GetProjectResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Integer analyticsConnectionId;
         private String createdAt;
         private String dbtProjectSubdirectory;
         private String description;
@@ -199,6 +212,7 @@ public final class GetProjectResult {
         public Builder() {}
         public Builder(GetProjectResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.analyticsConnectionId = defaults.analyticsConnectionId;
     	      this.createdAt = defaults.createdAt;
     	      this.dbtProjectSubdirectory = defaults.dbtProjectSubdirectory;
     	      this.description = defaults.description;
@@ -214,6 +228,14 @@ public final class GetProjectResult {
     	      this.updatedAt = defaults.updatedAt;
         }
 
+        @CustomType.Setter
+        public Builder analyticsConnectionId(Integer analyticsConnectionId) {
+            if (analyticsConnectionId == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "analyticsConnectionId");
+            }
+            this.analyticsConnectionId = analyticsConnectionId;
+            return this;
+        }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
             if (createdAt == null) {
@@ -318,6 +340,7 @@ public final class GetProjectResult {
         }
         public GetProjectResult build() {
             final var _resultValue = new GetProjectResult();
+            _resultValue.analyticsConnectionId = analyticsConnectionId;
             _resultValue.createdAt = createdAt;
             _resultValue.dbtProjectSubdirectory = dbtProjectSubdirectory;
             _resultValue.description = description;

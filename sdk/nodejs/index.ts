@@ -10,6 +10,11 @@ export type AccountFeatures = import("./accountFeatures").AccountFeatures;
 export const AccountFeatures: typeof import("./accountFeatures").AccountFeatures = null as any;
 utilities.lazyLoad(exports, ["AccountFeatures"], () => require("./accountFeatures"));
 
+export { AnalyticsCredentialArgs, AnalyticsCredentialState } from "./analyticsCredential";
+export type AnalyticsCredential = import("./analyticsCredential").AnalyticsCredential;
+export const AnalyticsCredential: typeof import("./analyticsCredential").AnalyticsCredential = null as any;
+utilities.lazyLoad(exports, ["AnalyticsCredential"], () => require("./analyticsCredential"));
+
 export { AthenaCredentialArgs, AthenaCredentialState } from "./athenaCredential";
 export type AthenaCredential = import("./athenaCredential").AthenaCredential;
 export const AthenaCredential: typeof import("./athenaCredential").AthenaCredential = null as any;
@@ -524,6 +529,8 @@ const _module = {
         switch (type) {
             case "dbtcloud:index/accountFeatures:AccountFeatures":
                 return new AccountFeatures(name, <any>undefined, { urn })
+            case "dbtcloud:index/analyticsCredential:AnalyticsCredential":
+                return new AnalyticsCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/athenaCredential:AthenaCredential":
                 return new AthenaCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/authProvider:AuthProvider":
@@ -644,6 +651,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("dbtcloud", "index/accountFeatures", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/analyticsCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/athenaCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/authProvider", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/azureAdApplication", _module)

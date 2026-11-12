@@ -7,6 +7,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .account_features import *
+from .analytics_credential import *
 from .athena_credential import *
 from .auth_provider import *
 from .azure_ad_application import *
@@ -126,6 +127,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/accountFeatures:AccountFeatures": "AccountFeatures"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/analyticsCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/analyticsCredential:AnalyticsCredential": "AnalyticsCredential"
   }
  },
  {

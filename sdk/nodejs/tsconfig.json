@@ -20,6 +20,7 @@
     },
     "files": [
         "accountFeatures.ts",
+        "analyticsCredential.ts",
         "athenaCredential.ts",
         "authProvider.ts",
         "azureAdApplication.ts",

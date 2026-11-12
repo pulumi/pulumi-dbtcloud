@@ -18,6 +18,10 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string AdapterVersion;
         /// <summary>
+        /// The ID of the analytics credential attached to this connection, if any.
+        /// </summary>
+        public readonly int AnalyticsCredentialsId;
+        /// <summary>
         /// When the connection was created
         /// </summary>
         public readonly string CreatedAt;
@@ -48,6 +52,8 @@ namespace Pulumi.DbtCloud.Outputs
         private GetGlobalConnectionsConnectionResult(
             string adapterVersion,
 
+            int analyticsCredentialsId,
+
             string createdAt,
 
             int environmentCount,
@@ -65,6 +71,7 @@ namespace Pulumi.DbtCloud.Outputs
             string updatedAt)
         {
             AdapterVersion = adapterVersion;
+            AnalyticsCredentialsId = analyticsCredentialsId;
             CreatedAt = createdAt;
             EnvironmentCount = environmentCount;
             Id = id;

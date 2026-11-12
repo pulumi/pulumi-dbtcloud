@@ -22,6 +22,20 @@ import * as utilities from "./utilities";
  *     name: "Analytics in Subdir",
  *     dbtProjectSubdirectory: "path",
  * });
+ * // a global connection the project uses for analytics
+ * const analytics = new dbtcloud.GlobalConnection("analytics", {
+ *     name: "Analytics connection",
+ *     snowflake: {
+ *         account: "my-snowflake-account",
+ *         database: "ANALYTICS",
+ *         warehouse: "ANALYTICS_WH",
+ *         allowSso: false,
+ *     },
+ * });
+ * const dbtProjectWithAnalyticsConnection = new dbtcloud.Project("dbt_project_with_analytics_connection", {
+ *     name: "Analytics with an analytics connection",
+ *     analyticsConnectionId: analytics.id.apply(x =>Number(x)),
+ * });
  * ```
  *
  * ## Import
@@ -84,6 +98,10 @@ export class Project extends pulumi.CustomResource {
     }
 
     /**
+     * ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+     */
+    declare public readonly analyticsConnectionId: pulumi.Output<number | undefined>;
+    /**
      * DBT project subdirectory
      */
     declare public readonly dbtProjectSubdirectory: pulumi.Output<string>;
@@ -113,12 +131,14 @@ export class Project extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectState | undefined;
+            resourceInputs["analyticsConnectionId"] = state?.analyticsConnectionId;
             resourceInputs["dbtProjectSubdirectory"] = state?.dbtProjectSubdirectory;
             resourceInputs["description"] = state?.description;
             resourceInputs["name"] = state?.name;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
+            resourceInputs["analyticsConnectionId"] = args?.analyticsConnectionId;
             resourceInputs["dbtProjectSubdirectory"] = args?.dbtProjectSubdirectory;
             resourceInputs["description"] = args?.description;
             resourceInputs["name"] = args?.name;
@@ -133,6 +153,10 @@ export class Project extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Project resources.
  */
 export interface ProjectState {
+    /**
+     * ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+     */
+    analyticsConnectionId?: pulumi.Input<number | undefined>;
     /**
      * DBT project subdirectory
      */
@@ -155,6 +179,10 @@ export interface ProjectState {
  * The set of arguments for constructing a Project resource.
  */
 export interface ProjectArgs {
+    /**
+     * ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+     */
+    analyticsConnectionId?: pulumi.Input<number | undefined>;
     /**
      * DBT project subdirectory
      */

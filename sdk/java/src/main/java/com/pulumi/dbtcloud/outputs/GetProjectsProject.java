@@ -14,6 +14,11 @@ import java.util.Objects;
 @CustomType
 public final class GetProjectsProject {
     /**
+     * @return ID of the global connection used for analytics, if any
+     * 
+     */
+    private Integer analyticsConnectionId;
+    /**
      * @return When the project was created
      * 
      */
@@ -65,6 +70,13 @@ public final class GetProjectsProject {
     private String updatedAt;
 
     private GetProjectsProject() {}
+    /**
+     * @return ID of the global connection used for analytics, if any
+     * 
+     */
+    public Integer analyticsConnectionId() {
+        return this.analyticsConnectionId;
+    }
     /**
      * @return When the project was created
      * 
@@ -145,6 +157,7 @@ public final class GetProjectsProject {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Integer analyticsConnectionId;
         private String createdAt;
         private String dbtProjectSubdirectory;
         private String description;
@@ -158,6 +171,7 @@ public final class GetProjectsProject {
         public Builder() {}
         public Builder(GetProjectsProject defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.analyticsConnectionId = defaults.analyticsConnectionId;
     	      this.createdAt = defaults.createdAt;
     	      this.dbtProjectSubdirectory = defaults.dbtProjectSubdirectory;
     	      this.description = defaults.description;
@@ -170,6 +184,14 @@ public final class GetProjectsProject {
     	      this.updatedAt = defaults.updatedAt;
         }
 
+        @CustomType.Setter
+        public Builder analyticsConnectionId(Integer analyticsConnectionId) {
+            if (analyticsConnectionId == null) {
+              throw new MissingRequiredPropertyException("GetProjectsProject", "analyticsConnectionId");
+            }
+            this.analyticsConnectionId = analyticsConnectionId;
+            return this;
+        }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
             if (createdAt == null) {
@@ -252,6 +274,7 @@ public final class GetProjectsProject {
         }
         public GetProjectsProject build() {
             final var _resultValue = new GetProjectsProject();
+            _resultValue.analyticsConnectionId = analyticsConnectionId;
             _resultValue.createdAt = createdAt;
             _resultValue.dbtProjectSubdirectory = dbtProjectSubdirectory;
             _resultValue.description = description;

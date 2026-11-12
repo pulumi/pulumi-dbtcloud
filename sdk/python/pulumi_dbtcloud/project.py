@@ -19,6 +19,7 @@ __all__ = ['ProjectArgs', 'Project']
 @pulumi.input_type
 class ProjectArgs:
     def __init__(__self__, *,
+                 analytics_connection_id: pulumi.Input[Optional[_builtins.int]] = None,
                  dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -26,11 +27,14 @@ class ProjectArgs:
         """
         The set of arguments for constructing a Project resource.
 
+        :param pulumi.Input[_builtins.int] analytics_connection_id: ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
         :param pulumi.Input[_builtins.str] dbt_project_subdirectory: DBT project subdirectory
         :param pulumi.Input[_builtins.str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[_builtins.str] name: Project name
         :param pulumi.Input[_builtins.int] type: The type of dbt project (0=default or 1=hybrid)
         """
+        if analytics_connection_id is not None:
+            pulumi.set(__self__, "analytics_connection_id", analytics_connection_id)
         if dbt_project_subdirectory is not None:
             pulumi.set(__self__, "dbt_project_subdirectory", dbt_project_subdirectory)
         if description is not None:
@@ -39,6 +43,18 @@ class ProjectArgs:
             pulumi.set(__self__, "name", name)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsConnectionId")
+    def analytics_connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+        """
+        return pulumi.get(self, "analytics_connection_id")
+
+    @analytics_connection_id.setter
+    def analytics_connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "analytics_connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="dbtProjectSubdirectory")
@@ -92,6 +108,7 @@ class ProjectArgs:
 @pulumi.input_type
 class _ProjectState:
     def __init__(__self__, *,
+                 analytics_connection_id: pulumi.Input[Optional[_builtins.int]] = None,
                  dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -99,11 +116,14 @@ class _ProjectState:
         """
         Input properties used for looking up and filtering Project resources.
 
+        :param pulumi.Input[_builtins.int] analytics_connection_id: ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
         :param pulumi.Input[_builtins.str] dbt_project_subdirectory: DBT project subdirectory
         :param pulumi.Input[_builtins.str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[_builtins.str] name: Project name
         :param pulumi.Input[_builtins.int] type: The type of dbt project (0=default or 1=hybrid)
         """
+        if analytics_connection_id is not None:
+            pulumi.set(__self__, "analytics_connection_id", analytics_connection_id)
         if dbt_project_subdirectory is not None:
             pulumi.set(__self__, "dbt_project_subdirectory", dbt_project_subdirectory)
         if description is not None:
@@ -112,6 +132,18 @@ class _ProjectState:
             pulumi.set(__self__, "name", name)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsConnectionId")
+    def analytics_connection_id(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+        """
+        return pulumi.get(self, "analytics_connection_id")
+
+    @analytics_connection_id.setter
+    def analytics_connection_id(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "analytics_connection_id", value)
 
     @_builtins.property
     @pulumi.getter(name="dbtProjectSubdirectory")
@@ -168,6 +200,7 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 analytics_connection_id: pulumi.Input[Optional[_builtins.int]] = None,
                  dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -189,6 +222,18 @@ class Project(pulumi.CustomResource):
         dbt_project_with_subdir = dbtcloud.Project("dbt_project_with_subdir",
             name="Analytics in Subdir",
             dbt_project_subdirectory="path")
+        # a global connection the project uses for analytics
+        analytics = dbtcloud.GlobalConnection("analytics",
+            name="Analytics connection",
+            snowflake={
+                "account": "my-snowflake-account",
+                "database": "ANALYTICS",
+                "warehouse": "ANALYTICS_WH",
+                "allow_sso": False,
+            })
+        dbt_project_with_analytics_connection = dbtcloud.Project("dbt_project_with_analytics_connection",
+            name="Analytics with an analytics connection",
+            analytics_connection_id=analytics.id.apply(lambda x: int(x)))
         ```
 
         ## Import
@@ -214,6 +259,7 @@ class Project(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.int] analytics_connection_id: ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
         :param pulumi.Input[_builtins.str] dbt_project_subdirectory: DBT project subdirectory
         :param pulumi.Input[_builtins.str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[_builtins.str] name: Project name
@@ -241,6 +287,18 @@ class Project(pulumi.CustomResource):
         dbt_project_with_subdir = dbtcloud.Project("dbt_project_with_subdir",
             name="Analytics in Subdir",
             dbt_project_subdirectory="path")
+        # a global connection the project uses for analytics
+        analytics = dbtcloud.GlobalConnection("analytics",
+            name="Analytics connection",
+            snowflake={
+                "account": "my-snowflake-account",
+                "database": "ANALYTICS",
+                "warehouse": "ANALYTICS_WH",
+                "allow_sso": False,
+            })
+        dbt_project_with_analytics_connection = dbtcloud.Project("dbt_project_with_analytics_connection",
+            name="Analytics with an analytics connection",
+            analytics_connection_id=analytics.id.apply(lambda x: int(x)))
         ```
 
         ## Import
@@ -279,6 +337,7 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 analytics_connection_id: pulumi.Input[Optional[_builtins.int]] = None,
                  dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -292,6 +351,7 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
+            __props__.__dict__["analytics_connection_id"] = analytics_connection_id
             __props__.__dict__["dbt_project_subdirectory"] = dbt_project_subdirectory
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
@@ -306,6 +366,7 @@ class Project(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            analytics_connection_id: pulumi.Input[Optional[_builtins.int]] = None,
             dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -317,6 +378,7 @@ class Project(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.int] analytics_connection_id: ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
         :param pulumi.Input[_builtins.str] dbt_project_subdirectory: DBT project subdirectory
         :param pulumi.Input[_builtins.str] description: Description for the project. Will show in dbt Explorer.
         :param pulumi.Input[_builtins.str] name: Project name
@@ -326,6 +388,7 @@ class Project(pulumi.CustomResource):
 
         __props__ = _ProjectState.__new__(_ProjectState)
 
+        __props__.__dict__["analytics_connection_id"] = analytics_connection_id
         __props__.__dict__["dbt_project_subdirectory"] = dbt_project_subdirectory
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
@@ -335,16 +398,26 @@ class Project(pulumi.CustomResource):
     @staticmethod
     def exists(id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            analytics_connection_id: pulumi.Input[Optional[_builtins.int]] = None,
             dbt_project_subdirectory: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
+        __props__["analyticsConnectionId"] = analytics_connection_id
         __props__["dbtProjectSubdirectory"] = dbt_project_subdirectory
         __props__["description"] = description
         __props__["name"] = name
         __props__["type"] = type
         return pulumi.runtime.exists_resource(None, 'dbtcloud:index/project:Project', id, __props__, opts or pulumi.ResourceOptions())
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsConnectionId")
+    def analytics_connection_id(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+        """
+        return pulumi.get(self, "analytics_connection_id")
 
     @_builtins.property
     @pulumi.getter(name="dbtProjectSubdirectory")

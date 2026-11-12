@@ -27,10 +27,13 @@ class GetGlobalConnectionResult:
     """
     A collection of values returned by getGlobalConnection.
     """
-    def __init__(__self__, adapter_version=None, apache_spark=None, athena=None, bigquery=None, clickhouse=None, databricks=None, fabric=None, id=None, is_ssh_tunnel_enabled=None, name=None, oauth_configuration_id=None, postgres=None, private_link_endpoint_id=None, redshift=None, salesforce=None, snowflake=None, starburst=None, synapse=None, teradata=None):
+    def __init__(__self__, adapter_version=None, analytics_credentials_id=None, apache_spark=None, athena=None, bigquery=None, clickhouse=None, databricks=None, fabric=None, id=None, is_ssh_tunnel_enabled=None, name=None, oauth_configuration_id=None, postgres=None, private_link_endpoint_id=None, redshift=None, salesforce=None, snowflake=None, starburst=None, synapse=None, teradata=None):
         if adapter_version and not isinstance(adapter_version, str):
             raise TypeError("Expected argument 'adapter_version' to be a str")
         pulumi.set(__self__, "adapter_version", adapter_version)
+        if analytics_credentials_id and not isinstance(analytics_credentials_id, int):
+            raise TypeError("Expected argument 'analytics_credentials_id' to be a int")
+        pulumi.set(__self__, "analytics_credentials_id", analytics_credentials_id)
         if apache_spark and not isinstance(apache_spark, dict):
             raise TypeError("Expected argument 'apache_spark' to be a dict")
         pulumi.set(__self__, "apache_spark", apache_spark)
@@ -93,6 +96,14 @@ class GetGlobalConnectionResult:
         Version of the adapter
         """
         return pulumi.get(self, "adapter_version")
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsCredentialsId")
+    def analytics_credentials_id(self) -> _builtins.int:
+        """
+        The ID of the analytics credential attached to this connection, if any.
+        """
+        return pulumi.get(self, "analytics_credentials_id")
 
     @_builtins.property
     @pulumi.getter(name="apacheSpark")
@@ -240,6 +251,7 @@ class AwaitableGetGlobalConnectionResult(GetGlobalConnectionResult):
             yield self
         return GetGlobalConnectionResult(
             adapter_version=self.adapter_version,
+            analytics_credentials_id=self.analytics_credentials_id,
             apache_spark=self.apache_spark,
             athena=self.athena,
             bigquery=self.bigquery,
@@ -282,6 +294,7 @@ def get_global_connection(id: Optional[_builtins.int] = None,
 
     return AwaitableGetGlobalConnectionResult(
         adapter_version=pulumi.get(__ret__, 'adapter_version'),
+        analytics_credentials_id=pulumi.get(__ret__, 'analytics_credentials_id'),
         apache_spark=pulumi.get(__ret__, 'apache_spark'),
         athena=pulumi.get(__ret__, 'athena'),
         bigquery=pulumi.get(__ret__, 'bigquery'),
@@ -321,6 +334,7 @@ def get_global_connection_output(id: pulumi.Input[Optional[_builtins.int]] = Non
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getGlobalConnection:getGlobalConnection', __args__, opts=opts, typ=GetGlobalConnectionResult)
     return __ret__.apply(lambda __response__: GetGlobalConnectionResult(
         adapter_version=pulumi.get(__response__, 'adapter_version'),
+        analytics_credentials_id=pulumi.get(__response__, 'analytics_credentials_id'),
         apache_spark=pulumi.get(__response__, 'apache_spark'),
         athena=pulumi.get(__response__, 'athena'),
         bigquery=pulumi.get(__response__, 'bigquery'),

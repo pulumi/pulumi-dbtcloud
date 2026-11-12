@@ -39,6 +39,25 @@ namespace Pulumi.DbtCloud
     ///         DbtProjectSubdirectory = "path",
     ///     });
     /// 
+    ///     // a global connection the project uses for analytics
+    ///     var analytics = new DbtCloud.GlobalConnection("analytics", new()
+    ///     {
+    ///         Name = "Analytics connection",
+    ///         Snowflake = new DbtCloud.Inputs.GlobalConnectionSnowflakeArgs
+    ///         {
+    ///             Account = "my-snowflake-account",
+    ///             Database = "ANALYTICS",
+    ///             Warehouse = "ANALYTICS_WH",
+    ///             AllowSso = false,
+    ///         },
+    ///     });
+    /// 
+    ///     var dbtProjectWithAnalyticsConnection = new DbtCloud.Project("dbt_project_with_analytics_connection", new()
+    ///     {
+    ///         Name = "Analytics with an analytics connection",
+    ///         AnalyticsConnectionId = analytics.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -65,6 +84,12 @@ namespace Pulumi.DbtCloud
     [DbtCloudResourceType("dbtcloud:index/project:Project")]
     public partial class Project : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+        /// </summary>
+        [Output("analyticsConnectionId")]
+        public Output<int?> AnalyticsConnectionId { get; private set; } = null!;
+
         /// <summary>
         /// DBT project subdirectory
         /// </summary>
@@ -137,6 +162,12 @@ namespace Pulumi.DbtCloud
     public sealed class ProjectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+        /// </summary>
+        [Input("analyticsConnectionId")]
+        public Input<int>? AnalyticsConnectionId { get; set; }
+
+        /// <summary>
         /// DBT project subdirectory
         /// </summary>
         [Input("dbtProjectSubdirectory")]
@@ -168,6 +199,12 @@ namespace Pulumi.DbtCloud
 
     public sealed class ProjectState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+        /// </summary>
+        [Input("analyticsConnectionId")]
+        public Input<int>? AnalyticsConnectionId { get; set; }
+
         /// <summary>
         /// DBT project subdirectory
         /// </summary>

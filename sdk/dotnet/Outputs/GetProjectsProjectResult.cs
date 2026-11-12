@@ -14,6 +14,10 @@ namespace Pulumi.DbtCloud.Outputs
     public sealed class GetProjectsProjectResult
     {
         /// <summary>
+        /// ID of the global connection used for analytics, if any
+        /// </summary>
+        public readonly int AnalyticsConnectionId;
+        /// <summary>
         /// When the project was created
         /// </summary>
         public readonly string CreatedAt;
@@ -56,6 +60,8 @@ namespace Pulumi.DbtCloud.Outputs
 
         [OutputConstructor]
         private GetProjectsProjectResult(
+            int analyticsConnectionId,
+
             string createdAt,
 
             string dbtProjectSubdirectory,
@@ -76,6 +82,7 @@ namespace Pulumi.DbtCloud.Outputs
 
             string updatedAt)
         {
+            AnalyticsConnectionId = analyticsConnectionId;
             CreatedAt = createdAt;
             DbtProjectSubdirectory = dbtProjectSubdirectory;
             Description = description;

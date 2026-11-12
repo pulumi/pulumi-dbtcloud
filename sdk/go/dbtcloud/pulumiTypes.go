@@ -13,6 +13,1167 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AnalyticsCredentialBigquery struct {
+	// The auth provider X509 cert URL of the service account. Service account only.
+	AuthProviderX509CertUrl *string `pulumi:"authProviderX509CertUrl"`
+	// The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigqueryV0` connection. Changing it recreates the credential.
+	AuthType *string `pulumi:"authType"`
+	// The auth URI of the service account. Service account only.
+	AuthUri *string `pulumi:"authUri"`
+	// The client email of the service account. Service account only.
+	ClientEmail *string `pulumi:"clientEmail"`
+	// The client ID of the service account. Service account only.
+	ClientId *string `pulumi:"clientId"`
+	// The client X509 cert URL of the service account. Service account only.
+	ClientX509CertUrl *string `pulumi:"clientX509CertUrl"`
+	// The project billed for query execution. It cannot be removed once set.
+	ExecutionProject *string `pulumi:"executionProject"`
+	// The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+	PrivateKey *string `pulumi:"privateKey"`
+	// The private key ID of the service account. Service account only.
+	PrivateKeyId *string `pulumi:"privateKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
+	// The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+	ServiceAccountImpersonationUrl *string `pulumi:"serviceAccountImpersonationUrl"`
+	// The token URI of the service account. Service account only.
+	TokenUri *string `pulumi:"tokenUri"`
+	// The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+	WorkloadPoolProviderPath *string `pulumi:"workloadPoolProviderPath"`
+}
+
+// AnalyticsCredentialBigqueryInput is an input type that accepts AnalyticsCredentialBigqueryArgs and AnalyticsCredentialBigqueryOutput values.
+// You can construct a concrete instance of `AnalyticsCredentialBigqueryInput` via:
+//
+//	AnalyticsCredentialBigqueryArgs{...}
+type AnalyticsCredentialBigqueryInput interface {
+	pulumi.Input
+
+	ToAnalyticsCredentialBigqueryOutput() AnalyticsCredentialBigqueryOutput
+	ToAnalyticsCredentialBigqueryOutputWithContext(context.Context) AnalyticsCredentialBigqueryOutput
+}
+
+type AnalyticsCredentialBigqueryArgs struct {
+	// The auth provider X509 cert URL of the service account. Service account only.
+	AuthProviderX509CertUrl pulumi.StringPtrInput `pulumi:"authProviderX509CertUrl"`
+	// The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigqueryV0` connection. Changing it recreates the credential.
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
+	// The auth URI of the service account. Service account only.
+	AuthUri pulumi.StringPtrInput `pulumi:"authUri"`
+	// The client email of the service account. Service account only.
+	ClientEmail pulumi.StringPtrInput `pulumi:"clientEmail"`
+	// The client ID of the service account. Service account only.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// The client X509 cert URL of the service account. Service account only.
+	ClientX509CertUrl pulumi.StringPtrInput `pulumi:"clientX509CertUrl"`
+	// The project billed for query execution. It cannot be removed once set.
+	ExecutionProject pulumi.StringPtrInput `pulumi:"executionProject"`
+	// The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// The private key ID of the service account. Service account only.
+	PrivateKeyId pulumi.StringPtrInput `pulumi:"privateKeyId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+	PrivateKeyWo pulumi.StringPtrInput `pulumi:"privateKeyWo"`
+	// Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+	PrivateKeyWoVersion pulumi.IntPtrInput `pulumi:"privateKeyWoVersion"`
+	// The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+	ServiceAccountImpersonationUrl pulumi.StringPtrInput `pulumi:"serviceAccountImpersonationUrl"`
+	// The token URI of the service account. Service account only.
+	TokenUri pulumi.StringPtrInput `pulumi:"tokenUri"`
+	// The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+	WorkloadPoolProviderPath pulumi.StringPtrInput `pulumi:"workloadPoolProviderPath"`
+}
+
+func (AnalyticsCredentialBigqueryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnalyticsCredentialBigquery)(nil)).Elem()
+}
+
+func (i AnalyticsCredentialBigqueryArgs) ToAnalyticsCredentialBigqueryOutput() AnalyticsCredentialBigqueryOutput {
+	return i.ToAnalyticsCredentialBigqueryOutputWithContext(context.Background())
+}
+
+func (i AnalyticsCredentialBigqueryArgs) ToAnalyticsCredentialBigqueryOutputWithContext(ctx context.Context) AnalyticsCredentialBigqueryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialBigqueryOutput)
+}
+
+func (i AnalyticsCredentialBigqueryArgs) ToAnalyticsCredentialBigqueryPtrOutput() AnalyticsCredentialBigqueryPtrOutput {
+	return i.ToAnalyticsCredentialBigqueryPtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsCredentialBigqueryArgs) ToAnalyticsCredentialBigqueryPtrOutputWithContext(ctx context.Context) AnalyticsCredentialBigqueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialBigqueryOutput).ToAnalyticsCredentialBigqueryPtrOutputWithContext(ctx)
+}
+
+// AnalyticsCredentialBigqueryPtrInput is an input type that accepts AnalyticsCredentialBigqueryArgs, AnalyticsCredentialBigqueryPtr and AnalyticsCredentialBigqueryPtrOutput values.
+// You can construct a concrete instance of `AnalyticsCredentialBigqueryPtrInput` via:
+//
+//	        AnalyticsCredentialBigqueryArgs{...}
+//
+//	or:
+//
+//	        nil
+type AnalyticsCredentialBigqueryPtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsCredentialBigqueryPtrOutput() AnalyticsCredentialBigqueryPtrOutput
+	ToAnalyticsCredentialBigqueryPtrOutputWithContext(context.Context) AnalyticsCredentialBigqueryPtrOutput
+}
+
+type analyticsCredentialBigqueryPtrType AnalyticsCredentialBigqueryArgs
+
+func AnalyticsCredentialBigqueryPtr(v *AnalyticsCredentialBigqueryArgs) AnalyticsCredentialBigqueryPtrInput {
+	return (*analyticsCredentialBigqueryPtrType)(v)
+}
+
+func (*analyticsCredentialBigqueryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsCredentialBigquery)(nil)).Elem()
+}
+
+func (i *analyticsCredentialBigqueryPtrType) ToAnalyticsCredentialBigqueryPtrOutput() AnalyticsCredentialBigqueryPtrOutput {
+	return i.ToAnalyticsCredentialBigqueryPtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsCredentialBigqueryPtrType) ToAnalyticsCredentialBigqueryPtrOutputWithContext(ctx context.Context) AnalyticsCredentialBigqueryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialBigqueryPtrOutput)
+}
+
+type AnalyticsCredentialBigqueryOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsCredentialBigqueryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnalyticsCredentialBigquery)(nil)).Elem()
+}
+
+func (o AnalyticsCredentialBigqueryOutput) ToAnalyticsCredentialBigqueryOutput() AnalyticsCredentialBigqueryOutput {
+	return o
+}
+
+func (o AnalyticsCredentialBigqueryOutput) ToAnalyticsCredentialBigqueryOutputWithContext(ctx context.Context) AnalyticsCredentialBigqueryOutput {
+	return o
+}
+
+func (o AnalyticsCredentialBigqueryOutput) ToAnalyticsCredentialBigqueryPtrOutput() AnalyticsCredentialBigqueryPtrOutput {
+	return o.ToAnalyticsCredentialBigqueryPtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsCredentialBigqueryOutput) ToAnalyticsCredentialBigqueryPtrOutputWithContext(ctx context.Context) AnalyticsCredentialBigqueryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AnalyticsCredentialBigquery) *AnalyticsCredentialBigquery {
+		return &v
+	}).(AnalyticsCredentialBigqueryPtrOutput)
+}
+
+// The auth provider X509 cert URL of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryOutput) AuthProviderX509CertUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.AuthProviderX509CertUrl }).(pulumi.StringPtrOutput)
+}
+
+// The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigqueryV0` connection. Changing it recreates the credential.
+func (o AnalyticsCredentialBigqueryOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
+// The auth URI of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryOutput) AuthUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.AuthUri }).(pulumi.StringPtrOutput)
+}
+
+// The client email of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryOutput) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.ClientEmail }).(pulumi.StringPtrOutput)
+}
+
+// The client ID of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The client X509 cert URL of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryOutput) ClientX509CertUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.ClientX509CertUrl }).(pulumi.StringPtrOutput)
+}
+
+// The project billed for query execution. It cannot be removed once set.
+func (o AnalyticsCredentialBigqueryOutput) ExecutionProject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.ExecutionProject }).(pulumi.StringPtrOutput)
+}
+
+// The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+func (o AnalyticsCredentialBigqueryOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// The private key ID of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryOutput) PrivateKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.PrivateKeyId }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+func (o AnalyticsCredentialBigqueryOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialBigqueryOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *int { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+func (o AnalyticsCredentialBigqueryOutput) ServiceAccountImpersonationUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.ServiceAccountImpersonationUrl }).(pulumi.StringPtrOutput)
+}
+
+// The token URI of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryOutput) TokenUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.TokenUri }).(pulumi.StringPtrOutput)
+}
+
+// The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+func (o AnalyticsCredentialBigqueryOutput) WorkloadPoolProviderPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialBigquery) *string { return v.WorkloadPoolProviderPath }).(pulumi.StringPtrOutput)
+}
+
+type AnalyticsCredentialBigqueryPtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsCredentialBigqueryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsCredentialBigquery)(nil)).Elem()
+}
+
+func (o AnalyticsCredentialBigqueryPtrOutput) ToAnalyticsCredentialBigqueryPtrOutput() AnalyticsCredentialBigqueryPtrOutput {
+	return o
+}
+
+func (o AnalyticsCredentialBigqueryPtrOutput) ToAnalyticsCredentialBigqueryPtrOutputWithContext(ctx context.Context) AnalyticsCredentialBigqueryPtrOutput {
+	return o
+}
+
+func (o AnalyticsCredentialBigqueryPtrOutput) Elem() AnalyticsCredentialBigqueryOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) AnalyticsCredentialBigquery {
+		if v != nil {
+			return *v
+		}
+		var ret AnalyticsCredentialBigquery
+		return ret
+	}).(AnalyticsCredentialBigqueryOutput)
+}
+
+// The auth provider X509 cert URL of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryPtrOutput) AuthProviderX509CertUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthProviderX509CertUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigqueryV0` connection. Changing it recreates the credential.
+func (o AnalyticsCredentialBigqueryPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The auth URI of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryPtrOutput) AuthUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthUri
+	}).(pulumi.StringPtrOutput)
+}
+
+// The client email of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryPtrOutput) ClientEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientEmail
+	}).(pulumi.StringPtrOutput)
+}
+
+// The client ID of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The client X509 cert URL of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryPtrOutput) ClientX509CertUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientX509CertUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// The project billed for query execution. It cannot be removed once set.
+func (o AnalyticsCredentialBigqueryPtrOutput) ExecutionProject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExecutionProject
+	}).(pulumi.StringPtrOutput)
+}
+
+// The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+func (o AnalyticsCredentialBigqueryPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The private key ID of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryPtrOutput) PrivateKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyId
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+func (o AnalyticsCredentialBigqueryPtrOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialBigqueryPtrOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+func (o AnalyticsCredentialBigqueryPtrOutput) ServiceAccountImpersonationUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccountImpersonationUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// The token URI of the service account. Service account only.
+func (o AnalyticsCredentialBigqueryPtrOutput) TokenUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenUri
+	}).(pulumi.StringPtrOutput)
+}
+
+// The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+func (o AnalyticsCredentialBigqueryPtrOutput) WorkloadPoolProviderPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialBigquery) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WorkloadPoolProviderPath
+	}).(pulumi.StringPtrOutput)
+}
+
+type AnalyticsCredentialDatabricks struct {
+	// The Unity Catalog name. It cannot be removed once set.
+	Catalog *string `pulumi:"catalog"`
+	// The personal access token. Required unless `tokenWo` is set. Stored in the state, marked sensitive. Prefer `tokenWo`, which is never stored.
+	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `tokenWoVersion`.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version of `tokenWo`. Change it to send a new value of `tokenWo`; the value alone is not tracked because it is write-only.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
+}
+
+// AnalyticsCredentialDatabricksInput is an input type that accepts AnalyticsCredentialDatabricksArgs and AnalyticsCredentialDatabricksOutput values.
+// You can construct a concrete instance of `AnalyticsCredentialDatabricksInput` via:
+//
+//	AnalyticsCredentialDatabricksArgs{...}
+type AnalyticsCredentialDatabricksInput interface {
+	pulumi.Input
+
+	ToAnalyticsCredentialDatabricksOutput() AnalyticsCredentialDatabricksOutput
+	ToAnalyticsCredentialDatabricksOutputWithContext(context.Context) AnalyticsCredentialDatabricksOutput
+}
+
+type AnalyticsCredentialDatabricksArgs struct {
+	// The Unity Catalog name. It cannot be removed once set.
+	Catalog pulumi.StringPtrInput `pulumi:"catalog"`
+	// The personal access token. Required unless `tokenWo` is set. Stored in the state, marked sensitive. Prefer `tokenWo`, which is never stored.
+	Token pulumi.StringPtrInput `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `tokenWoVersion`.
+	TokenWo pulumi.StringPtrInput `pulumi:"tokenWo"`
+	// Version of `tokenWo`. Change it to send a new value of `tokenWo`; the value alone is not tracked because it is write-only.
+	TokenWoVersion pulumi.IntPtrInput `pulumi:"tokenWoVersion"`
+}
+
+func (AnalyticsCredentialDatabricksArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnalyticsCredentialDatabricks)(nil)).Elem()
+}
+
+func (i AnalyticsCredentialDatabricksArgs) ToAnalyticsCredentialDatabricksOutput() AnalyticsCredentialDatabricksOutput {
+	return i.ToAnalyticsCredentialDatabricksOutputWithContext(context.Background())
+}
+
+func (i AnalyticsCredentialDatabricksArgs) ToAnalyticsCredentialDatabricksOutputWithContext(ctx context.Context) AnalyticsCredentialDatabricksOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialDatabricksOutput)
+}
+
+func (i AnalyticsCredentialDatabricksArgs) ToAnalyticsCredentialDatabricksPtrOutput() AnalyticsCredentialDatabricksPtrOutput {
+	return i.ToAnalyticsCredentialDatabricksPtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsCredentialDatabricksArgs) ToAnalyticsCredentialDatabricksPtrOutputWithContext(ctx context.Context) AnalyticsCredentialDatabricksPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialDatabricksOutput).ToAnalyticsCredentialDatabricksPtrOutputWithContext(ctx)
+}
+
+// AnalyticsCredentialDatabricksPtrInput is an input type that accepts AnalyticsCredentialDatabricksArgs, AnalyticsCredentialDatabricksPtr and AnalyticsCredentialDatabricksPtrOutput values.
+// You can construct a concrete instance of `AnalyticsCredentialDatabricksPtrInput` via:
+//
+//	        AnalyticsCredentialDatabricksArgs{...}
+//
+//	or:
+//
+//	        nil
+type AnalyticsCredentialDatabricksPtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsCredentialDatabricksPtrOutput() AnalyticsCredentialDatabricksPtrOutput
+	ToAnalyticsCredentialDatabricksPtrOutputWithContext(context.Context) AnalyticsCredentialDatabricksPtrOutput
+}
+
+type analyticsCredentialDatabricksPtrType AnalyticsCredentialDatabricksArgs
+
+func AnalyticsCredentialDatabricksPtr(v *AnalyticsCredentialDatabricksArgs) AnalyticsCredentialDatabricksPtrInput {
+	return (*analyticsCredentialDatabricksPtrType)(v)
+}
+
+func (*analyticsCredentialDatabricksPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsCredentialDatabricks)(nil)).Elem()
+}
+
+func (i *analyticsCredentialDatabricksPtrType) ToAnalyticsCredentialDatabricksPtrOutput() AnalyticsCredentialDatabricksPtrOutput {
+	return i.ToAnalyticsCredentialDatabricksPtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsCredentialDatabricksPtrType) ToAnalyticsCredentialDatabricksPtrOutputWithContext(ctx context.Context) AnalyticsCredentialDatabricksPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialDatabricksPtrOutput)
+}
+
+type AnalyticsCredentialDatabricksOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsCredentialDatabricksOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnalyticsCredentialDatabricks)(nil)).Elem()
+}
+
+func (o AnalyticsCredentialDatabricksOutput) ToAnalyticsCredentialDatabricksOutput() AnalyticsCredentialDatabricksOutput {
+	return o
+}
+
+func (o AnalyticsCredentialDatabricksOutput) ToAnalyticsCredentialDatabricksOutputWithContext(ctx context.Context) AnalyticsCredentialDatabricksOutput {
+	return o
+}
+
+func (o AnalyticsCredentialDatabricksOutput) ToAnalyticsCredentialDatabricksPtrOutput() AnalyticsCredentialDatabricksPtrOutput {
+	return o.ToAnalyticsCredentialDatabricksPtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsCredentialDatabricksOutput) ToAnalyticsCredentialDatabricksPtrOutputWithContext(ctx context.Context) AnalyticsCredentialDatabricksPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AnalyticsCredentialDatabricks) *AnalyticsCredentialDatabricks {
+		return &v
+	}).(AnalyticsCredentialDatabricksPtrOutput)
+}
+
+// The Unity Catalog name. It cannot be removed once set.
+func (o AnalyticsCredentialDatabricksOutput) Catalog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialDatabricks) *string { return v.Catalog }).(pulumi.StringPtrOutput)
+}
+
+// The personal access token. Required unless `tokenWo` is set. Stored in the state, marked sensitive. Prefer `tokenWo`, which is never stored.
+func (o AnalyticsCredentialDatabricksOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialDatabricks) *string { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `tokenWoVersion`.
+func (o AnalyticsCredentialDatabricksOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialDatabricks) *string { return v.TokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version of `tokenWo`. Change it to send a new value of `tokenWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialDatabricksOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialDatabricks) *int { return v.TokenWoVersion }).(pulumi.IntPtrOutput)
+}
+
+type AnalyticsCredentialDatabricksPtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsCredentialDatabricksPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsCredentialDatabricks)(nil)).Elem()
+}
+
+func (o AnalyticsCredentialDatabricksPtrOutput) ToAnalyticsCredentialDatabricksPtrOutput() AnalyticsCredentialDatabricksPtrOutput {
+	return o
+}
+
+func (o AnalyticsCredentialDatabricksPtrOutput) ToAnalyticsCredentialDatabricksPtrOutputWithContext(ctx context.Context) AnalyticsCredentialDatabricksPtrOutput {
+	return o
+}
+
+func (o AnalyticsCredentialDatabricksPtrOutput) Elem() AnalyticsCredentialDatabricksOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialDatabricks) AnalyticsCredentialDatabricks {
+		if v != nil {
+			return *v
+		}
+		var ret AnalyticsCredentialDatabricks
+		return ret
+	}).(AnalyticsCredentialDatabricksOutput)
+}
+
+// The Unity Catalog name. It cannot be removed once set.
+func (o AnalyticsCredentialDatabricksPtrOutput) Catalog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialDatabricks) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Catalog
+	}).(pulumi.StringPtrOutput)
+}
+
+// The personal access token. Required unless `tokenWo` is set. Stored in the state, marked sensitive. Prefer `tokenWo`, which is never stored.
+func (o AnalyticsCredentialDatabricksPtrOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialDatabricks) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Token
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `tokenWoVersion`.
+func (o AnalyticsCredentialDatabricksPtrOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialDatabricks) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of `tokenWo`. Change it to send a new value of `tokenWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialDatabricksPtrOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialDatabricks) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TokenWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+type AnalyticsCredentialRedshift struct {
+	// The password to connect to the cluster. Required unless `passwordWo` is set. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `passwordWoVersion`.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// The username to connect to the cluster.
+	Username string `pulumi:"username"`
+}
+
+// AnalyticsCredentialRedshiftInput is an input type that accepts AnalyticsCredentialRedshiftArgs and AnalyticsCredentialRedshiftOutput values.
+// You can construct a concrete instance of `AnalyticsCredentialRedshiftInput` via:
+//
+//	AnalyticsCredentialRedshiftArgs{...}
+type AnalyticsCredentialRedshiftInput interface {
+	pulumi.Input
+
+	ToAnalyticsCredentialRedshiftOutput() AnalyticsCredentialRedshiftOutput
+	ToAnalyticsCredentialRedshiftOutputWithContext(context.Context) AnalyticsCredentialRedshiftOutput
+}
+
+type AnalyticsCredentialRedshiftArgs struct {
+	// The password to connect to the cluster. Required unless `passwordWo` is set. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `passwordWoVersion`.
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
+	// Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
+	// The username to connect to the cluster.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (AnalyticsCredentialRedshiftArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnalyticsCredentialRedshift)(nil)).Elem()
+}
+
+func (i AnalyticsCredentialRedshiftArgs) ToAnalyticsCredentialRedshiftOutput() AnalyticsCredentialRedshiftOutput {
+	return i.ToAnalyticsCredentialRedshiftOutputWithContext(context.Background())
+}
+
+func (i AnalyticsCredentialRedshiftArgs) ToAnalyticsCredentialRedshiftOutputWithContext(ctx context.Context) AnalyticsCredentialRedshiftOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialRedshiftOutput)
+}
+
+func (i AnalyticsCredentialRedshiftArgs) ToAnalyticsCredentialRedshiftPtrOutput() AnalyticsCredentialRedshiftPtrOutput {
+	return i.ToAnalyticsCredentialRedshiftPtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsCredentialRedshiftArgs) ToAnalyticsCredentialRedshiftPtrOutputWithContext(ctx context.Context) AnalyticsCredentialRedshiftPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialRedshiftOutput).ToAnalyticsCredentialRedshiftPtrOutputWithContext(ctx)
+}
+
+// AnalyticsCredentialRedshiftPtrInput is an input type that accepts AnalyticsCredentialRedshiftArgs, AnalyticsCredentialRedshiftPtr and AnalyticsCredentialRedshiftPtrOutput values.
+// You can construct a concrete instance of `AnalyticsCredentialRedshiftPtrInput` via:
+//
+//	        AnalyticsCredentialRedshiftArgs{...}
+//
+//	or:
+//
+//	        nil
+type AnalyticsCredentialRedshiftPtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsCredentialRedshiftPtrOutput() AnalyticsCredentialRedshiftPtrOutput
+	ToAnalyticsCredentialRedshiftPtrOutputWithContext(context.Context) AnalyticsCredentialRedshiftPtrOutput
+}
+
+type analyticsCredentialRedshiftPtrType AnalyticsCredentialRedshiftArgs
+
+func AnalyticsCredentialRedshiftPtr(v *AnalyticsCredentialRedshiftArgs) AnalyticsCredentialRedshiftPtrInput {
+	return (*analyticsCredentialRedshiftPtrType)(v)
+}
+
+func (*analyticsCredentialRedshiftPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsCredentialRedshift)(nil)).Elem()
+}
+
+func (i *analyticsCredentialRedshiftPtrType) ToAnalyticsCredentialRedshiftPtrOutput() AnalyticsCredentialRedshiftPtrOutput {
+	return i.ToAnalyticsCredentialRedshiftPtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsCredentialRedshiftPtrType) ToAnalyticsCredentialRedshiftPtrOutputWithContext(ctx context.Context) AnalyticsCredentialRedshiftPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialRedshiftPtrOutput)
+}
+
+type AnalyticsCredentialRedshiftOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsCredentialRedshiftOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnalyticsCredentialRedshift)(nil)).Elem()
+}
+
+func (o AnalyticsCredentialRedshiftOutput) ToAnalyticsCredentialRedshiftOutput() AnalyticsCredentialRedshiftOutput {
+	return o
+}
+
+func (o AnalyticsCredentialRedshiftOutput) ToAnalyticsCredentialRedshiftOutputWithContext(ctx context.Context) AnalyticsCredentialRedshiftOutput {
+	return o
+}
+
+func (o AnalyticsCredentialRedshiftOutput) ToAnalyticsCredentialRedshiftPtrOutput() AnalyticsCredentialRedshiftPtrOutput {
+	return o.ToAnalyticsCredentialRedshiftPtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsCredentialRedshiftOutput) ToAnalyticsCredentialRedshiftPtrOutputWithContext(ctx context.Context) AnalyticsCredentialRedshiftPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AnalyticsCredentialRedshift) *AnalyticsCredentialRedshift {
+		return &v
+	}).(AnalyticsCredentialRedshiftPtrOutput)
+}
+
+// The password to connect to the cluster. Required unless `passwordWo` is set. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+func (o AnalyticsCredentialRedshiftOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `passwordWoVersion`.
+func (o AnalyticsCredentialRedshiftOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialRedshift) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialRedshiftOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialRedshift) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The username to connect to the cluster.
+func (o AnalyticsCredentialRedshiftOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v AnalyticsCredentialRedshift) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type AnalyticsCredentialRedshiftPtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsCredentialRedshiftPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsCredentialRedshift)(nil)).Elem()
+}
+
+func (o AnalyticsCredentialRedshiftPtrOutput) ToAnalyticsCredentialRedshiftPtrOutput() AnalyticsCredentialRedshiftPtrOutput {
+	return o
+}
+
+func (o AnalyticsCredentialRedshiftPtrOutput) ToAnalyticsCredentialRedshiftPtrOutputWithContext(ctx context.Context) AnalyticsCredentialRedshiftPtrOutput {
+	return o
+}
+
+func (o AnalyticsCredentialRedshiftPtrOutput) Elem() AnalyticsCredentialRedshiftOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialRedshift) AnalyticsCredentialRedshift {
+		if v != nil {
+			return *v
+		}
+		var ret AnalyticsCredentialRedshift
+		return ret
+	}).(AnalyticsCredentialRedshiftOutput)
+}
+
+// The password to connect to the cluster. Required unless `passwordWo` is set. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+func (o AnalyticsCredentialRedshiftPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialRedshift) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `passwordWoVersion`.
+func (o AnalyticsCredentialRedshiftPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialRedshift) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialRedshiftPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialRedshift) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// The username to connect to the cluster.
+func (o AnalyticsCredentialRedshiftPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialRedshift) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type AnalyticsCredentialSnowflake struct {
+	// The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+	AuthType string `pulumi:"authType"`
+	// The password. Required when `authType` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password. Required when `authType` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// The private key. Required when `authType` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+	PrivateKey *string `pulumi:"privateKey"`
+	// The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `privateKeyPassphraseWo`, which is never stored.
+	PrivateKeyPassphrase *string `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+	PrivateKeyPassphraseWo *string `pulumi:"privateKeyPassphraseWo"`
+	// Version of `privateKeyPassphraseWo`. Change it to send a new value of `privateKeyPassphraseWo`; the value alone is not tracked because it is write-only.
+	PrivateKeyPassphraseWoVersion *int `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The private key. Required when `authType` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
+	// The Snowflake role. It cannot be removed once set.
+	Role *string `pulumi:"role"`
+	// The Snowflake user name.
+	User string `pulumi:"user"`
+	// The Snowflake warehouse. It cannot be removed once set.
+	Warehouse *string `pulumi:"warehouse"`
+}
+
+// AnalyticsCredentialSnowflakeInput is an input type that accepts AnalyticsCredentialSnowflakeArgs and AnalyticsCredentialSnowflakeOutput values.
+// You can construct a concrete instance of `AnalyticsCredentialSnowflakeInput` via:
+//
+//	AnalyticsCredentialSnowflakeArgs{...}
+type AnalyticsCredentialSnowflakeInput interface {
+	pulumi.Input
+
+	ToAnalyticsCredentialSnowflakeOutput() AnalyticsCredentialSnowflakeOutput
+	ToAnalyticsCredentialSnowflakeOutputWithContext(context.Context) AnalyticsCredentialSnowflakeOutput
+}
+
+type AnalyticsCredentialSnowflakeArgs struct {
+	// The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	// The password. Required when `authType` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password. Required when `authType` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
+	// Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
+	// The private key. Required when `authType` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `privateKeyPassphraseWo`, which is never stored.
+	PrivateKeyPassphrase pulumi.StringPtrInput `pulumi:"privateKeyPassphrase"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+	PrivateKeyPassphraseWo pulumi.StringPtrInput `pulumi:"privateKeyPassphraseWo"`
+	// Version of `privateKeyPassphraseWo`. Change it to send a new value of `privateKeyPassphraseWo`; the value alone is not tracked because it is write-only.
+	PrivateKeyPassphraseWoVersion pulumi.IntPtrInput `pulumi:"privateKeyPassphraseWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The private key. Required when `authType` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+	PrivateKeyWo pulumi.StringPtrInput `pulumi:"privateKeyWo"`
+	// Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+	PrivateKeyWoVersion pulumi.IntPtrInput `pulumi:"privateKeyWoVersion"`
+	// The Snowflake role. It cannot be removed once set.
+	Role pulumi.StringPtrInput `pulumi:"role"`
+	// The Snowflake user name.
+	User pulumi.StringInput `pulumi:"user"`
+	// The Snowflake warehouse. It cannot be removed once set.
+	Warehouse pulumi.StringPtrInput `pulumi:"warehouse"`
+}
+
+func (AnalyticsCredentialSnowflakeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnalyticsCredentialSnowflake)(nil)).Elem()
+}
+
+func (i AnalyticsCredentialSnowflakeArgs) ToAnalyticsCredentialSnowflakeOutput() AnalyticsCredentialSnowflakeOutput {
+	return i.ToAnalyticsCredentialSnowflakeOutputWithContext(context.Background())
+}
+
+func (i AnalyticsCredentialSnowflakeArgs) ToAnalyticsCredentialSnowflakeOutputWithContext(ctx context.Context) AnalyticsCredentialSnowflakeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialSnowflakeOutput)
+}
+
+func (i AnalyticsCredentialSnowflakeArgs) ToAnalyticsCredentialSnowflakePtrOutput() AnalyticsCredentialSnowflakePtrOutput {
+	return i.ToAnalyticsCredentialSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (i AnalyticsCredentialSnowflakeArgs) ToAnalyticsCredentialSnowflakePtrOutputWithContext(ctx context.Context) AnalyticsCredentialSnowflakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialSnowflakeOutput).ToAnalyticsCredentialSnowflakePtrOutputWithContext(ctx)
+}
+
+// AnalyticsCredentialSnowflakePtrInput is an input type that accepts AnalyticsCredentialSnowflakeArgs, AnalyticsCredentialSnowflakePtr and AnalyticsCredentialSnowflakePtrOutput values.
+// You can construct a concrete instance of `AnalyticsCredentialSnowflakePtrInput` via:
+//
+//	        AnalyticsCredentialSnowflakeArgs{...}
+//
+//	or:
+//
+//	        nil
+type AnalyticsCredentialSnowflakePtrInput interface {
+	pulumi.Input
+
+	ToAnalyticsCredentialSnowflakePtrOutput() AnalyticsCredentialSnowflakePtrOutput
+	ToAnalyticsCredentialSnowflakePtrOutputWithContext(context.Context) AnalyticsCredentialSnowflakePtrOutput
+}
+
+type analyticsCredentialSnowflakePtrType AnalyticsCredentialSnowflakeArgs
+
+func AnalyticsCredentialSnowflakePtr(v *AnalyticsCredentialSnowflakeArgs) AnalyticsCredentialSnowflakePtrInput {
+	return (*analyticsCredentialSnowflakePtrType)(v)
+}
+
+func (*analyticsCredentialSnowflakePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsCredentialSnowflake)(nil)).Elem()
+}
+
+func (i *analyticsCredentialSnowflakePtrType) ToAnalyticsCredentialSnowflakePtrOutput() AnalyticsCredentialSnowflakePtrOutput {
+	return i.ToAnalyticsCredentialSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (i *analyticsCredentialSnowflakePtrType) ToAnalyticsCredentialSnowflakePtrOutputWithContext(ctx context.Context) AnalyticsCredentialSnowflakePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AnalyticsCredentialSnowflakePtrOutput)
+}
+
+type AnalyticsCredentialSnowflakeOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsCredentialSnowflakeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AnalyticsCredentialSnowflake)(nil)).Elem()
+}
+
+func (o AnalyticsCredentialSnowflakeOutput) ToAnalyticsCredentialSnowflakeOutput() AnalyticsCredentialSnowflakeOutput {
+	return o
+}
+
+func (o AnalyticsCredentialSnowflakeOutput) ToAnalyticsCredentialSnowflakeOutputWithContext(ctx context.Context) AnalyticsCredentialSnowflakeOutput {
+	return o
+}
+
+func (o AnalyticsCredentialSnowflakeOutput) ToAnalyticsCredentialSnowflakePtrOutput() AnalyticsCredentialSnowflakePtrOutput {
+	return o.ToAnalyticsCredentialSnowflakePtrOutputWithContext(context.Background())
+}
+
+func (o AnalyticsCredentialSnowflakeOutput) ToAnalyticsCredentialSnowflakePtrOutputWithContext(ctx context.Context) AnalyticsCredentialSnowflakePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AnalyticsCredentialSnowflake) *AnalyticsCredentialSnowflake {
+		return &v
+	}).(AnalyticsCredentialSnowflakePtrOutput)
+}
+
+// The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+func (o AnalyticsCredentialSnowflakeOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// The password. Required when `authType` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+func (o AnalyticsCredentialSnowflakeOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The password. Required when `authType` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+func (o AnalyticsCredentialSnowflakeOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The private key. Required when `authType` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+func (o AnalyticsCredentialSnowflakeOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `privateKeyPassphraseWo`, which is never stored.
+func (o AnalyticsCredentialSnowflakeOutput) PrivateKeyPassphrase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *string { return v.PrivateKeyPassphrase }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+func (o AnalyticsCredentialSnowflakeOutput) PrivateKeyPassphraseWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *string { return v.PrivateKeyPassphraseWo }).(pulumi.StringPtrOutput)
+}
+
+// Version of `privateKeyPassphraseWo`. Change it to send a new value of `privateKeyPassphraseWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialSnowflakeOutput) PrivateKeyPassphraseWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *int { return v.PrivateKeyPassphraseWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The private key. Required when `authType` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+func (o AnalyticsCredentialSnowflakeOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *string { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialSnowflakeOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *int { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The Snowflake role. It cannot be removed once set.
+func (o AnalyticsCredentialSnowflakeOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *string { return v.Role }).(pulumi.StringPtrOutput)
+}
+
+// The Snowflake user name.
+func (o AnalyticsCredentialSnowflakeOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) string { return v.User }).(pulumi.StringOutput)
+}
+
+// The Snowflake warehouse. It cannot be removed once set.
+func (o AnalyticsCredentialSnowflakeOutput) Warehouse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AnalyticsCredentialSnowflake) *string { return v.Warehouse }).(pulumi.StringPtrOutput)
+}
+
+type AnalyticsCredentialSnowflakePtrOutput struct{ *pulumi.OutputState }
+
+func (AnalyticsCredentialSnowflakePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AnalyticsCredentialSnowflake)(nil)).Elem()
+}
+
+func (o AnalyticsCredentialSnowflakePtrOutput) ToAnalyticsCredentialSnowflakePtrOutput() AnalyticsCredentialSnowflakePtrOutput {
+	return o
+}
+
+func (o AnalyticsCredentialSnowflakePtrOutput) ToAnalyticsCredentialSnowflakePtrOutputWithContext(ctx context.Context) AnalyticsCredentialSnowflakePtrOutput {
+	return o
+}
+
+func (o AnalyticsCredentialSnowflakePtrOutput) Elem() AnalyticsCredentialSnowflakeOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) AnalyticsCredentialSnowflake {
+		if v != nil {
+			return *v
+		}
+		var ret AnalyticsCredentialSnowflake
+		return ret
+	}).(AnalyticsCredentialSnowflakeOutput)
+}
+
+// The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+func (o AnalyticsCredentialSnowflakePtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AuthType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The password. Required when `authType` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+func (o AnalyticsCredentialSnowflakePtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The password. Required when `authType` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+func (o AnalyticsCredentialSnowflakePtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialSnowflakePtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// The private key. Required when `authType` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+func (o AnalyticsCredentialSnowflakePtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `privateKeyPassphraseWo`, which is never stored.
+func (o AnalyticsCredentialSnowflakePtrOutput) PrivateKeyPassphrase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyPassphrase
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+func (o AnalyticsCredentialSnowflakePtrOutput) PrivateKeyPassphraseWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyPassphraseWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of `privateKeyPassphraseWo`. Change it to send a new value of `privateKeyPassphraseWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialSnowflakePtrOutput) PrivateKeyPassphraseWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyPassphraseWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The private key. Required when `authType` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+func (o AnalyticsCredentialSnowflakePtrOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+func (o AnalyticsCredentialSnowflakePtrOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// The Snowflake role. It cannot be removed once set.
+func (o AnalyticsCredentialSnowflakePtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Snowflake user name.
+func (o AnalyticsCredentialSnowflakePtrOutput) User() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.User
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Snowflake warehouse. It cannot be removed once set.
+func (o AnalyticsCredentialSnowflakePtrOutput) Warehouse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AnalyticsCredentialSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Warehouse
+	}).(pulumi.StringPtrOutput)
+}
+
 type BigquerySemanticLayerCredentialConfiguration struct {
 	// The adapter version
 	AdapterVersion string `pulumi:"adapterVersion"`
@@ -8215,7 +9376,7 @@ type GetEnvironmentsEnvironment struct {
 	CredentialsId int `pulumi:"credentialsId"`
 	// The custom branch name to use
 	CustomBranch string `pulumi:"customBranch"`
-	// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+	// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType string `pulumi:"deploymentType"`
@@ -8257,7 +9418,7 @@ type GetEnvironmentsEnvironmentArgs struct {
 	CredentialsId pulumi.IntInput `pulumi:"credentialsId"`
 	// The custom branch name to use
 	CustomBranch pulumi.StringInput `pulumi:"customBranch"`
-	// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+	// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
 	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType pulumi.StringInput `pulumi:"deploymentType"`
@@ -8347,7 +9508,7 @@ func (o GetEnvironmentsEnvironmentOutput) CustomBranch() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.CustomBranch }).(pulumi.StringOutput)
 }
 
-// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
 func (o GetEnvironmentsEnvironmentOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEnvironmentsEnvironment) string { return v.DbtVersion }).(pulumi.StringOutput)
 }
@@ -10051,6 +11212,8 @@ func (o GetGlobalConnectionTeradataOutput) Tmode() pulumi.StringOutput {
 type GetGlobalConnectionsConnection struct {
 	// Type of adapter used for the connection
 	AdapterVersion string `pulumi:"adapterVersion"`
+	// The ID of the analytics credential attached to this connection, if any.
+	AnalyticsCredentialsId int `pulumi:"analyticsCredentialsId"`
 	// When the connection was created
 	CreatedAt string `pulumi:"createdAt"`
 	// Number of environments using this connection
@@ -10081,6 +11244,8 @@ type GetGlobalConnectionsConnectionInput interface {
 type GetGlobalConnectionsConnectionArgs struct {
 	// Type of adapter used for the connection
 	AdapterVersion pulumi.StringInput `pulumi:"adapterVersion"`
+	// The ID of the analytics credential attached to this connection, if any.
+	AnalyticsCredentialsId pulumi.IntInput `pulumi:"analyticsCredentialsId"`
 	// When the connection was created
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Number of environments using this connection
@@ -10151,6 +11316,11 @@ func (o GetGlobalConnectionsConnectionOutput) ToGetGlobalConnectionsConnectionOu
 // Type of adapter used for the connection
 func (o GetGlobalConnectionsConnectionOutput) AdapterVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalConnectionsConnection) string { return v.AdapterVersion }).(pulumi.StringOutput)
+}
+
+// The ID of the analytics credential attached to this connection, if any.
+func (o GetGlobalConnectionsConnectionOutput) AnalyticsCredentialsId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGlobalConnectionsConnection) int { return v.AnalyticsCredentialsId }).(pulumi.IntOutput)
 }
 
 // When the connection was created
@@ -11028,7 +12198,7 @@ func (o GetJobTriggersOutput) Schedule() pulumi.BoolOutput {
 }
 
 type GetJobsJob struct {
-	// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+	// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The ID of the environment this job defers to
 	DeferringEnvironmentId int `pulumi:"deferringEnvironmentId"`
@@ -11088,7 +12258,7 @@ type GetJobsJobInput interface {
 }
 
 type GetJobsJobArgs struct {
-	// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+	// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
 	DbtVersion pulumi.StringInput `pulumi:"dbtVersion"`
 	// The ID of the environment this job defers to
 	DeferringEnvironmentId pulumi.IntInput `pulumi:"deferringEnvironmentId"`
@@ -11187,7 +12357,7 @@ func (o GetJobsJobOutput) ToGetJobsJobOutputWithContext(ctx context.Context) Get
 	return o
 }
 
-// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+// The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
 func (o GetJobsJobOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobsJob) string { return v.DbtVersion }).(pulumi.StringOutput)
 }
@@ -12188,6 +13358,8 @@ func (o GetProjectRepositoryTypeOutput) RemoteUrl() pulumi.StringOutput {
 }
 
 type GetProjectsProject struct {
+	// ID of the global connection used for analytics, if any
+	AnalyticsConnectionId int `pulumi:"analyticsConnectionId"`
 	// When the project was created
 	CreatedAt string `pulumi:"createdAt"`
 	// Subdirectory for the dbt project inside the git repo
@@ -12222,6 +13394,8 @@ type GetProjectsProjectInput interface {
 }
 
 type GetProjectsProjectArgs struct {
+	// ID of the global connection used for analytics, if any
+	AnalyticsConnectionId pulumi.IntInput `pulumi:"analyticsConnectionId"`
 	// When the project was created
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Subdirectory for the dbt project inside the git repo
@@ -12293,6 +13467,11 @@ func (o GetProjectsProjectOutput) ToGetProjectsProjectOutput() GetProjectsProjec
 
 func (o GetProjectsProjectOutput) ToGetProjectsProjectOutputWithContext(ctx context.Context) GetProjectsProjectOutput {
 	return o
+}
+
+// ID of the global connection used for analytics, if any
+func (o GetProjectsProjectOutput) AnalyticsConnectionId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectsProject) int { return v.AnalyticsConnectionId }).(pulumi.IntOutput)
 }
 
 // When the project was created
@@ -13178,6 +14357,14 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AnalyticsCredentialBigqueryInput)(nil)).Elem(), AnalyticsCredentialBigqueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AnalyticsCredentialBigqueryPtrInput)(nil)).Elem(), AnalyticsCredentialBigqueryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AnalyticsCredentialDatabricksInput)(nil)).Elem(), AnalyticsCredentialDatabricksArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AnalyticsCredentialDatabricksPtrInput)(nil)).Elem(), AnalyticsCredentialDatabricksArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AnalyticsCredentialRedshiftInput)(nil)).Elem(), AnalyticsCredentialRedshiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AnalyticsCredentialRedshiftPtrInput)(nil)).Elem(), AnalyticsCredentialRedshiftArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AnalyticsCredentialSnowflakeInput)(nil)).Elem(), AnalyticsCredentialSnowflakeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AnalyticsCredentialSnowflakePtrInput)(nil)).Elem(), AnalyticsCredentialSnowflakeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialConfigurationInput)(nil)).Elem(), BigquerySemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialConfigurationPtrInput)(nil)).Elem(), BigquerySemanticLayerCredentialConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BigquerySemanticLayerCredentialCredentialInput)(nil)).Elem(), BigquerySemanticLayerCredentialCredentialArgs{})
@@ -13311,6 +14498,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceTokenServiceTokenPermissionArrayInput)(nil)).Elem(), GetServiceTokenServiceTokenPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterOutputType(AnalyticsCredentialBigqueryOutput{})
+	pulumi.RegisterOutputType(AnalyticsCredentialBigqueryPtrOutput{})
+	pulumi.RegisterOutputType(AnalyticsCredentialDatabricksOutput{})
+	pulumi.RegisterOutputType(AnalyticsCredentialDatabricksPtrOutput{})
+	pulumi.RegisterOutputType(AnalyticsCredentialRedshiftOutput{})
+	pulumi.RegisterOutputType(AnalyticsCredentialRedshiftPtrOutput{})
+	pulumi.RegisterOutputType(AnalyticsCredentialSnowflakeOutput{})
+	pulumi.RegisterOutputType(AnalyticsCredentialSnowflakePtrOutput{})
 	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialConfigurationOutput{})
 	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(BigquerySemanticLayerCredentialCredentialOutput{})

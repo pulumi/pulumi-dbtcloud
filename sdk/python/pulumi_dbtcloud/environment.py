@@ -41,14 +41,14 @@ class EnvironmentArgs:
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[_builtins.bool] enable_dbt_state: Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
         :param pulumi.Input[_builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
         :param pulumi.Input[_builtins.str] name: The name of the environment
-        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         :param pulumi.Input[_builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -142,7 +142,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -226,7 +226,7 @@ class EnvironmentArgs:
     @pulumi.getter(name="primaryProfileId")
     def primary_profile_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         """
         return pulumi.get(self, "primary_profile_id")
 
@@ -271,7 +271,7 @@ class _EnvironmentState:
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[_builtins.bool] enable_dbt_state: Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
         :param pulumi.Input[_builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
@@ -279,7 +279,7 @@ class _EnvironmentState:
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
         :param pulumi.Input[_builtins.str] name: The name of the environment
-        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[_builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[_builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -355,7 +355,7 @@ class _EnvironmentState:
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -451,7 +451,7 @@ class _EnvironmentState:
     @pulumi.getter(name="primaryProfileId")
     def primary_profile_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         """
         return pulumi.get(self, "primary_profile_id")
 
@@ -549,10 +549,10 @@ class Environment(pulumi.CustomResource):
             project_id=dbt_project["id"],
             type="development",
             connection_id=my_other_global_connection["id"])
-        # Deployment environment with a primary profile (binds connection + credentials via profile)
-        # NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
-        # primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
-        # overwriting the profile's own settings and affecting other environments sharing that profile.
+        # Deployment environment with a primary profile (connection and credentials come from the profile)
+        # NOTE: do not set connection_id, credential_id, or extended_attributes_id alongside
+        # primary_profile_id. Manage those values on the dbtcloud_profile resource instead, since a
+        # profile can be shared by several environments.
         profiled_environment = dbtcloud.Environment("profiled_environment",
             dbt_version="latest",
             name="Staging",
@@ -588,14 +588,14 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[_builtins.bool] enable_dbt_state: Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
         :param pulumi.Input[_builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
         :param pulumi.Input[_builtins.str] name: The name of the environment
-        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[_builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[_builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -638,10 +638,10 @@ class Environment(pulumi.CustomResource):
             project_id=dbt_project["id"],
             type="development",
             connection_id=my_other_global_connection["id"])
-        # Deployment environment with a primary profile (binds connection + credentials via profile)
-        # NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
-        # primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
-        # overwriting the profile's own settings and affecting other environments sharing that profile.
+        # Deployment environment with a primary profile (connection and credentials come from the profile)
+        # NOTE: do not set connection_id, credential_id, or extended_attributes_id alongside
+        # primary_profile_id. Manage those values on the dbtcloud_profile resource instead, since a
+        # profile can be shared by several environments.
         profiled_environment = dbtcloud.Environment("profiled_environment",
             dbt_version="latest",
             name="Staging",
@@ -764,7 +764,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] connection_id: A connection ID (used with Global Connections)
         :param pulumi.Input[_builtins.int] credential_id: The Credential ID for this environment. A credential is not actionable for development environments, as users have to set their own development credentials in dbt Cloud.
         :param pulumi.Input[_builtins.str] custom_branch: The custom branch name to use
-        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        :param pulumi.Input[_builtins.str] dbt_version: Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         :param pulumi.Input[_builtins.str] deployment_type: The type of environment. Only valid for environments of type 'deployment' and for now can only be 'production', 'staging' or left empty for generic environments
         :param pulumi.Input[_builtins.bool] enable_dbt_state: Whether to enable dbt State in this environment. A job inherits it with `cost_optimization_features = ["inherit_environment"]`.
         :param pulumi.Input[_builtins.bool] enable_model_query_history: Whether to enable model query history in this environment. As of Oct 2024, works only for Snowflake and BigQuery.
@@ -772,7 +772,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] extended_attributes_id: The ID of the extended attributes applied
         :param pulumi.Input[_builtins.bool] is_active: Whether the environment is active
         :param pulumi.Input[_builtins.str] name: The name of the environment
-        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        :param pulumi.Input[_builtins.int] primary_profile_id: The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         :param pulumi.Input[_builtins.int] project_id: Project ID to create the environment in
         :param pulumi.Input[_builtins.str] type: The type of environment (must be either development or deployment)
         :param pulumi.Input[_builtins.bool] use_custom_branch: Whether to use a custom git branch in this environment
@@ -862,7 +862,7 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> pulumi.Output[_builtins.str]:
         """
-        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+        Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
         """
         return pulumi.get(self, "dbt_version")
 
@@ -926,7 +926,7 @@ class Environment(pulumi.CustomResource):
     @pulumi.getter(name="primaryProfileId")
     def primary_profile_id(self) -> pulumi.Output[_builtins.int]:
         """
-        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
+        The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. > Setting `primary_profile_id` alongside `connection_id`, `credential_id`, or `extended_attributes_id` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `Profile` resource instead.
         """
         return pulumi.get(self, "primary_profile_id")
 

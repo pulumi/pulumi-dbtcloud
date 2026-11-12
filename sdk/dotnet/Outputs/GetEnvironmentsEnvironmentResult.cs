@@ -26,7 +26,7 @@ namespace Pulumi.DbtCloud.Outputs
         /// </summary>
         public readonly string CustomBranch;
         /// <summary>
-        /// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+        /// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
         /// </summary>
         public readonly string DbtVersion;
         /// <summary>

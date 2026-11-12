@@ -72,10 +72,10 @@ import javax.annotation.Nullable;
  *             .connectionId(myOtherGlobalConnection.get("id"))
  *             .build());
  * 
- *         // Deployment environment with a primary profile (binds connection + credentials via profile)
- *         // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
- *         // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
- *         // overwriting the profile's own settings and affecting other environments sharing that profile.
+ *         // Deployment environment with a primary profile (connection and credentials come from the profile)
+ *         // NOTE: do not set connection_id, credential_id, or extended_attributes_id alongside
+ *         // primary_profile_id. Manage those values on the dbtcloud_profile resource instead, since a
+ *         // profile can be shared by several environments.
  *         var profiledEnvironment = new Environment("profiledEnvironment", EnvironmentArgs.builder()
  *             .dbtVersion("latest")
  *             .name("Staging")
@@ -156,14 +156,14 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customBranch);
     }
     /**
-     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+     * Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      * 
      */
     @Export(name="dbtVersion", refs={String.class}, tree="[0]")
     private Output<String> dbtVersion;
 
     /**
-     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
+     * @return Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `versionless` is still supported, using `latest` is recommended. Defaults to `latest` if no version is provided
      * 
      */
     public Output<String> dbtVersion() {
@@ -268,14 +268,14 @@ public class Environment extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     * The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
      * 
      */
     @Export(name="primaryProfileId", refs={Integer.class}, tree="[0]")
     private Output<Integer> primaryProfileId;
 
     /**
-     * @return The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+     * @return The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `primaryProfileId` alongside `connectionId`, `credentialId`, or `extendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
      * 
      */
     public Output<Integer> primaryProfileId() {

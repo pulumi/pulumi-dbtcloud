@@ -27,7 +27,10 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, created_at=None, dbt_project_subdirectory=None, description=None, docs_job_id=None, freshness_job_id=None, id=None, name=None, project_connection=None, repository=None, semantic_layer_config_id=None, state=None, type=None, updated_at=None):
+    def __init__(__self__, analytics_connection_id=None, created_at=None, dbt_project_subdirectory=None, description=None, docs_job_id=None, freshness_job_id=None, id=None, name=None, project_connection=None, repository=None, semantic_layer_config_id=None, state=None, type=None, updated_at=None):
+        if analytics_connection_id and not isinstance(analytics_connection_id, int):
+            raise TypeError("Expected argument 'analytics_connection_id' to be a int")
+        pulumi.set(__self__, "analytics_connection_id", analytics_connection_id)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -67,6 +70,14 @@ class GetProjectResult:
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsConnectionId")
+    def analytics_connection_id(self) -> _builtins.int:
+        """
+        ID of the global connection used for analytics, if any
+        """
+        return pulumi.get(self, "analytics_connection_id")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -179,6 +190,7 @@ class AwaitableGetProjectResult(GetProjectResult):
         if False:
             yield self
         return GetProjectResult(
+            analytics_connection_id=self.analytics_connection_id,
             created_at=self.created_at,
             dbt_project_subdirectory=self.dbt_project_subdirectory,
             description=self.description,
@@ -231,6 +243,7 @@ def get_project(id: Optional[_builtins.int] = None,
     __ret__ = pulumi.runtime.invoke('dbtcloud:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult).value
 
     return AwaitableGetProjectResult(
+        analytics_connection_id=pulumi.get(__ret__, 'analytics_connection_id'),
         created_at=pulumi.get(__ret__, 'created_at'),
         dbt_project_subdirectory=pulumi.get(__ret__, 'dbt_project_subdirectory'),
         description=pulumi.get(__ret__, 'description'),
@@ -280,6 +293,7 @@ def get_project_output(id: pulumi.Input[Optional[Optional[_builtins.int]]] = Non
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('dbtcloud:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult)
     return __ret__.apply(lambda __response__: GetProjectResult(
+        analytics_connection_id=pulumi.get(__response__, 'analytics_connection_id'),
         created_at=pulumi.get(__response__, 'created_at'),
         dbt_project_subdirectory=pulumi.get(__response__, 'dbt_project_subdirectory'),
         description=pulumi.get(__response__, 'description'),

@@ -5,6 +5,164 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AnalyticsCredentialBigquery {
+    /**
+     * The auth provider X509 cert URL of the service account. Service account only.
+     */
+    authProviderX509CertUrl?: pulumi.Input<string | undefined>;
+    /**
+     * The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigqueryV0` connection. Changing it recreates the credential.
+     */
+    authType?: pulumi.Input<string | undefined>;
+    /**
+     * The auth URI of the service account. Service account only.
+     */
+    authUri?: pulumi.Input<string | undefined>;
+    /**
+     * The client email of the service account. Service account only.
+     */
+    clientEmail?: pulumi.Input<string | undefined>;
+    /**
+     * The client ID of the service account. Service account only.
+     */
+    clientId?: pulumi.Input<string | undefined>;
+    /**
+     * The client X509 cert URL of the service account. Service account only.
+     */
+    clientX509CertUrl?: pulumi.Input<string | undefined>;
+    /**
+     * The project billed for query execution. It cannot be removed once set.
+     */
+    executionProject?: pulumi.Input<string | undefined>;
+    /**
+     * The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+     */
+    privateKey?: pulumi.Input<string | undefined>;
+    /**
+     * The private key ID of the service account. Service account only.
+     */
+    privateKeyId?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+     */
+    privateKeyWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+     */
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
+    /**
+     * The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+     */
+    serviceAccountImpersonationUrl?: pulumi.Input<string | undefined>;
+    /**
+     * The token URI of the service account. Service account only.
+     */
+    tokenUri?: pulumi.Input<string | undefined>;
+    /**
+     * The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+     */
+    workloadPoolProviderPath?: pulumi.Input<string | undefined>;
+}
+
+export interface AnalyticsCredentialDatabricks {
+    /**
+     * The Unity Catalog name. It cannot be removed once set.
+     */
+    catalog?: pulumi.Input<string | undefined>;
+    /**
+     * The personal access token. Required unless `tokenWo` is set. Stored in the state, marked sensitive. Prefer `tokenWo`, which is never stored.
+     */
+    token?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `tokenWoVersion`.
+     */
+    tokenWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version of `tokenWo`. Change it to send a new value of `tokenWo`; the value alone is not tracked because it is write-only.
+     */
+    tokenWoVersion?: pulumi.Input<number | undefined>;
+}
+
+export interface AnalyticsCredentialRedshift {
+    /**
+     * The password to connect to the cluster. Required unless `passwordWo` is set. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+     */
+    password?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `passwordWoVersion`.
+     */
+    passwordWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+     */
+    passwordWoVersion?: pulumi.Input<number | undefined>;
+    /**
+     * The username to connect to the cluster.
+     */
+    username: pulumi.Input<string>;
+}
+
+export interface AnalyticsCredentialSnowflake {
+    /**
+     * The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+     */
+    authType: pulumi.Input<string>;
+    /**
+     * The password. Required when `authType` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+     */
+    password?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password. Required when `authType` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+     */
+    passwordWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+     */
+    passwordWoVersion?: pulumi.Input<number | undefined>;
+    /**
+     * The private key. Required when `authType` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+     */
+    privateKey?: pulumi.Input<string | undefined>;
+    /**
+     * The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `privateKeyPassphraseWo`, which is never stored.
+     */
+    privateKeyPassphrase?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+     */
+    privateKeyPassphraseWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version of `privateKeyPassphraseWo`. Change it to send a new value of `privateKeyPassphraseWo`; the value alone is not tracked because it is write-only.
+     */
+    privateKeyPassphraseWoVersion?: pulumi.Input<number | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The private key. Required when `authType` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+     */
+    privateKeyWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+     */
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
+    /**
+     * The Snowflake role. It cannot be removed once set.
+     */
+    role?: pulumi.Input<string | undefined>;
+    /**
+     * The Snowflake user name.
+     */
+    user: pulumi.Input<string>;
+    /**
+     * The Snowflake warehouse. It cannot be removed once set.
+     */
+    warehouse?: pulumi.Input<string | undefined>;
+}
+
 export interface BigquerySemanticLayerCredentialConfiguration {
     /**
      * The adapter version

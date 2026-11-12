@@ -54,10 +54,10 @@ namespace Pulumi.DbtCloud
     ///         ConnectionId = myOtherGlobalConnection.Id,
     ///     });
     /// 
-    ///     // Deployment environment with a primary profile (binds connection + credentials via profile)
-    ///     // NOTE: avoid setting connection_id, credential_id, or extended_attributes_id alongside
-    ///     // primary_profile_id — dbt Cloud may propagate the environment's values onto the profile,
-    ///     // overwriting the profile's own settings and affecting other environments sharing that profile.
+    ///     // Deployment environment with a primary profile (connection and credentials come from the profile)
+    ///     // NOTE: do not set connection_id, credential_id, or extended_attributes_id alongside
+    ///     // primary_profile_id. Manage those values on the dbtcloud_profile resource instead, since a
+    ///     // profile can be shared by several environments.
     ///     var profiledEnvironment = new DbtCloud.Environment("profiled_environment", new()
     ///     {
     ///         DbtVersion = "latest",
@@ -113,7 +113,7 @@ namespace Pulumi.DbtCloud
         public Output<string?> CustomBranch { get; private set; } = null!;
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Output("dbtVersion")]
         public Output<string> DbtVersion { get; private set; } = null!;
@@ -161,7 +161,7 @@ namespace Pulumi.DbtCloud
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
         /// </summary>
         [Output("primaryProfileId")]
         public Output<int> PrimaryProfileId { get; private set; } = null!;
@@ -250,7 +250,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }
@@ -292,7 +292,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
         /// </summary>
         [Input("primaryProfileId")]
         public Input<int>? PrimaryProfileId { get; set; }
@@ -342,7 +342,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? CustomBranch { get; set; }
 
         /// <summary>
-        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`). While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
+        /// Version number of dbt to use in this environment. It needs to be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `Compatible`, `Extended`, `Versionless`, `Latest`, `Fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`). The `v1-` and `v2-` spellings are accepted only when they are enabled for your dbt account. While `Versionless` is still supported, using `Latest` is recommended. Defaults to `Latest` if no version is provided
         /// </summary>
         [Input("dbtVersion")]
         public Input<string>? DbtVersion { get; set; }
@@ -390,7 +390,7 @@ namespace Pulumi.DbtCloud
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. When a profile is assigned, the API determines those values from the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
+        /// The ID of the primary profile for this environment. A profile ties together a connection and credentials. Only applicable to deployment environments. &gt; Setting `PrimaryProfileId` alongside `ConnectionId`, `CredentialId`, or `ExtendedAttributesId` will produce an error. Those values belong to the profile. Manage connection, credentials, and extended attributes through the `dbtcloud.Profile` resource instead.
         /// </summary>
         [Input("primaryProfileId")]
         public Input<int>? PrimaryProfileId { get; set; }
