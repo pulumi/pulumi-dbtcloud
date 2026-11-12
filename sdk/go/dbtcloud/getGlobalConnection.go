@@ -56,6 +56,8 @@ type LookupGlobalConnectionArgs struct {
 type LookupGlobalConnectionResult struct {
 	// Version of the adapter
 	AdapterVersion string `pulumi:"adapterVersion"`
+	// The ID of the analytics credential attached to this connection, if any.
+	AnalyticsCredentialsId int `pulumi:"analyticsCredentialsId"`
 	// Apache Spark connection configuration.
 	ApacheSpark GetGlobalConnectionApacheSpark `pulumi:"apacheSpark"`
 	// Athena connection configuration.
@@ -125,6 +127,11 @@ func (o LookupGlobalConnectionResultOutput) ToLookupGlobalConnectionResultOutput
 // Version of the adapter
 func (o LookupGlobalConnectionResultOutput) AdapterVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalConnectionResult) string { return v.AdapterVersion }).(pulumi.StringOutput)
+}
+
+// The ID of the analytics credential attached to this connection, if any.
+func (o LookupGlobalConnectionResultOutput) AnalyticsCredentialsId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalConnectionResult) int { return v.AnalyticsCredentialsId }).(pulumi.IntOutput)
 }
 
 // Apache Spark connection configuration.

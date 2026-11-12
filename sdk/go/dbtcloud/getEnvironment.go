@@ -38,7 +38,7 @@ type LookupEnvironmentResult struct {
 	CredentialsId int `pulumi:"credentialsId"`
 	// The custom branch name to use
 	CustomBranch string `pulumi:"customBranch"`
-	// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+	// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
 	DbtVersion string `pulumi:"dbtVersion"`
 	// The type of deployment environment (currently 'production', 'staging' or empty)
 	DeploymentType string `pulumi:"deploymentType"`
@@ -109,7 +109,7 @@ func (o LookupEnvironmentResultOutput) CustomBranch() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.CustomBranch }).(pulumi.StringOutput)
 }
 
-// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+// Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
 func (o LookupEnvironmentResultOutput) DbtVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEnvironmentResult) string { return v.DbtVersion }).(pulumi.StringOutput)
 }

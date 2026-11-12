@@ -5,6 +5,164 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AnalyticsCredentialBigquery {
+    /**
+     * The auth provider X509 cert URL of the service account. Service account only.
+     */
+    authProviderX509CertUrl?: string;
+    /**
+     * The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigqueryV0` connection. Changing it recreates the credential.
+     */
+    authType?: string;
+    /**
+     * The auth URI of the service account. Service account only.
+     */
+    authUri?: string;
+    /**
+     * The client email of the service account. Service account only.
+     */
+    clientEmail?: string;
+    /**
+     * The client ID of the service account. Service account only.
+     */
+    clientId?: string;
+    /**
+     * The client X509 cert URL of the service account. Service account only.
+     */
+    clientX509CertUrl?: string;
+    /**
+     * The project billed for query execution. It cannot be removed once set.
+     */
+    executionProject?: string;
+    /**
+     * The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+     */
+    privateKey?: string;
+    /**
+     * The private key ID of the service account. Service account only.
+     */
+    privateKeyId?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+     */
+    privateKeyWo?: string;
+    /**
+     * Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+     */
+    privateKeyWoVersion?: number;
+    /**
+     * The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+     */
+    serviceAccountImpersonationUrl?: string;
+    /**
+     * The token URI of the service account. Service account only.
+     */
+    tokenUri?: string;
+    /**
+     * The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+     */
+    workloadPoolProviderPath?: string;
+}
+
+export interface AnalyticsCredentialDatabricks {
+    /**
+     * The Unity Catalog name. It cannot be removed once set.
+     */
+    catalog?: string;
+    /**
+     * The personal access token. Required unless `tokenWo` is set. Stored in the state, marked sensitive. Prefer `tokenWo`, which is never stored.
+     */
+    token?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `tokenWoVersion`.
+     */
+    tokenWo?: string;
+    /**
+     * Version of `tokenWo`. Change it to send a new value of `tokenWo`; the value alone is not tracked because it is write-only.
+     */
+    tokenWoVersion?: number;
+}
+
+export interface AnalyticsCredentialRedshift {
+    /**
+     * The password to connect to the cluster. Required unless `passwordWo` is set. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+     */
+    password?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `passwordWoVersion`.
+     */
+    passwordWo?: string;
+    /**
+     * Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+     */
+    passwordWoVersion?: number;
+    /**
+     * The username to connect to the cluster.
+     */
+    username: string;
+}
+
+export interface AnalyticsCredentialSnowflake {
+    /**
+     * The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+     */
+    authType: string;
+    /**
+     * The password. Required when `authType` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `passwordWo`, which is never stored.
+     */
+    password?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password. Required when `authType` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+     */
+    passwordWo?: string;
+    /**
+     * Version of `passwordWo`. Change it to send a new value of `passwordWo`; the value alone is not tracked because it is write-only.
+     */
+    passwordWoVersion?: number;
+    /**
+     * The private key. Required when `authType` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `privateKeyWo`, which is never stored.
+     */
+    privateKey?: string;
+    /**
+     * The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `privateKeyPassphraseWo`, which is never stored.
+     */
+    privateKeyPassphrase?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+     */
+    privateKeyPassphraseWo?: string;
+    /**
+     * Version of `privateKeyPassphraseWo`. Change it to send a new value of `privateKeyPassphraseWo`; the value alone is not tracked because it is write-only.
+     */
+    privateKeyPassphraseWoVersion?: number;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The private key. Required when `authType` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+     */
+    privateKeyWo?: string;
+    /**
+     * Version of `privateKeyWo`. Change it to send a new value of `privateKeyWo`; the value alone is not tracked because it is write-only.
+     */
+    privateKeyWoVersion?: number;
+    /**
+     * The Snowflake role. It cannot be removed once set.
+     */
+    role?: string;
+    /**
+     * The Snowflake user name.
+     */
+    user: string;
+    /**
+     * The Snowflake warehouse. It cannot be removed once set.
+     */
+    warehouse?: string;
+}
+
 export interface BigquerySemanticLayerCredentialConfiguration {
     /**
      * The adapter version
@@ -171,7 +329,7 @@ export interface GetEnvironmentsEnvironment {
      */
     customBranch: string;
     /**
-     * Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+     * Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
      */
     dbtVersion: string;
     /**
@@ -703,6 +861,10 @@ export interface GetGlobalConnectionsConnection {
      */
     adapterVersion: string;
     /**
+     * The ID of the analytics credential attached to this connection, if any.
+     */
+    analyticsCredentialsId: number;
+    /**
      * When the connection was created
      */
     createdAt: string;
@@ -868,7 +1030,7 @@ export interface GetJobTriggers {
 
 export interface GetJobsJob {
     /**
-     * The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+     * The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
      */
     dbtVersion: string;
     /**
@@ -1112,6 +1274,10 @@ export interface GetProjectRepository {
 }
 
 export interface GetProjectsProject {
+    /**
+     * ID of the global connection used for analytics, if any
+     */
+    analyticsConnectionId: number;
     /**
      * When the project was created
      */

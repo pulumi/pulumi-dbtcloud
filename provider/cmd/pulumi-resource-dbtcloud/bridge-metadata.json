@@ -5,6 +5,10 @@
                 "current": "dbtcloud:index/accountFeatures:AccountFeatures",
                 "majorVersion": 1
             },
+            "dbtcloud_analytics_credential": {
+                "current": "dbtcloud:index/analyticsCredential:AnalyticsCredential",
+                "majorVersion": 1
+            },
             "dbtcloud_athena_credential": {
                 "current": "dbtcloud:index/athenaCredential:AthenaCredential",
                 "majorVersion": 1
@@ -775,6 +779,16 @@
     "default-resource-schema-fixups": {
         "resources": {
             "dbtcloud_account_features": {},
+            "dbtcloud_analytics_credential": {
+                "fields": {
+                    "id": {
+                        "name": "analyticsCredentialId"
+                    }
+                },
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "dbtcloud_athena_credential": {},
             "dbtcloud_auth_provider": {
                 "fields": {

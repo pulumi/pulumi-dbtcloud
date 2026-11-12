@@ -18,6 +18,11 @@ public final class GetGlobalConnectionsConnection {
      */
     private String adapterVersion;
     /**
+     * @return The ID of the analytics credential attached to this connection, if any.
+     * 
+     */
+    private Integer analyticsCredentialsId;
+    /**
      * @return When the connection was created
      * 
      */
@@ -57,6 +62,13 @@ public final class GetGlobalConnectionsConnection {
      */
     public String adapterVersion() {
         return this.adapterVersion;
+    }
+    /**
+     * @return The ID of the analytics credential attached to this connection, if any.
+     * 
+     */
+    public Integer analyticsCredentialsId() {
+        return this.analyticsCredentialsId;
     }
     /**
      * @return When the connection was created
@@ -117,6 +129,7 @@ public final class GetGlobalConnectionsConnection {
     @CustomType.Builder
     public static final class Builder {
         private String adapterVersion;
+        private Integer analyticsCredentialsId;
         private String createdAt;
         private Integer environmentCount;
         private Integer id;
@@ -129,6 +142,7 @@ public final class GetGlobalConnectionsConnection {
         public Builder(GetGlobalConnectionsConnection defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.adapterVersion = defaults.adapterVersion;
+    	      this.analyticsCredentialsId = defaults.analyticsCredentialsId;
     	      this.createdAt = defaults.createdAt;
     	      this.environmentCount = defaults.environmentCount;
     	      this.id = defaults.id;
@@ -145,6 +159,14 @@ public final class GetGlobalConnectionsConnection {
               throw new MissingRequiredPropertyException("GetGlobalConnectionsConnection", "adapterVersion");
             }
             this.adapterVersion = adapterVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder analyticsCredentialsId(Integer analyticsCredentialsId) {
+            if (analyticsCredentialsId == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionsConnection", "analyticsCredentialsId");
+            }
+            this.analyticsCredentialsId = analyticsCredentialsId;
             return this;
         }
         @CustomType.Setter
@@ -214,6 +236,7 @@ public final class GetGlobalConnectionsConnection {
         public GetGlobalConnectionsConnection build() {
             final var _resultValue = new GetGlobalConnectionsConnection();
             _resultValue.adapterVersion = adapterVersion;
+            _resultValue.analyticsCredentialsId = analyticsCredentialsId;
             _resultValue.createdAt = createdAt;
             _resultValue.environmentCount = environmentCount;
             _resultValue.id = id;

@@ -16,6 +16,10 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AnalyticsCredentialBigquery',
+    'AnalyticsCredentialDatabricks',
+    'AnalyticsCredentialRedshift',
+    'AnalyticsCredentialSnowflake',
     'BigquerySemanticLayerCredentialConfiguration',
     'BigquerySemanticLayerCredentialCredential',
     'DatabricksSemanticLayerCredentialConfiguration',
@@ -99,6 +103,577 @@ __all__ = [
     'GetServiceTokenServiceTokenPermissionResult',
     'GetUsersUserResult',
 ]
+
+@pulumi.output_type
+class AnalyticsCredentialBigquery(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authProviderX509CertUrl":
+            suggest = "auth_provider_x509_cert_url"
+        elif key == "authType":
+            suggest = "auth_type"
+        elif key == "authUri":
+            suggest = "auth_uri"
+        elif key == "clientEmail":
+            suggest = "client_email"
+        elif key == "clientId":
+            suggest = "client_id"
+        elif key == "clientX509CertUrl":
+            suggest = "client_x509_cert_url"
+        elif key == "executionProject":
+            suggest = "execution_project"
+        elif key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyId":
+            suggest = "private_key_id"
+        elif key == "privateKeyWo":
+            suggest = "private_key_wo"
+        elif key == "privateKeyWoVersion":
+            suggest = "private_key_wo_version"
+        elif key == "serviceAccountImpersonationUrl":
+            suggest = "service_account_impersonation_url"
+        elif key == "tokenUri":
+            suggest = "token_uri"
+        elif key == "workloadPoolProviderPath":
+            suggest = "workload_pool_provider_path"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AnalyticsCredentialBigquery. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AnalyticsCredentialBigquery.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AnalyticsCredentialBigquery.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auth_provider_x509_cert_url: Optional[_builtins.str] = None,
+                 auth_type: Optional[_builtins.str] = None,
+                 auth_uri: Optional[_builtins.str] = None,
+                 client_email: Optional[_builtins.str] = None,
+                 client_id: Optional[_builtins.str] = None,
+                 client_x509_cert_url: Optional[_builtins.str] = None,
+                 execution_project: Optional[_builtins.str] = None,
+                 private_key: Optional[_builtins.str] = None,
+                 private_key_id: Optional[_builtins.str] = None,
+                 private_key_wo: Optional[_builtins.str] = None,
+                 private_key_wo_version: Optional[_builtins.int] = None,
+                 service_account_impersonation_url: Optional[_builtins.str] = None,
+                 token_uri: Optional[_builtins.str] = None,
+                 workload_pool_provider_path: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str auth_provider_x509_cert_url: The auth provider X509 cert URL of the service account. Service account only.
+        :param _builtins.str auth_type: The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigquery_v0` connection. Changing it recreates the credential.
+        :param _builtins.str auth_uri: The auth URI of the service account. Service account only.
+        :param _builtins.str client_email: The client email of the service account. Service account only.
+        :param _builtins.str client_id: The client ID of the service account. Service account only.
+        :param _builtins.str client_x509_cert_url: The client X509 cert URL of the service account. Service account only.
+        :param _builtins.str execution_project: The project billed for query execution. It cannot be removed once set.
+        :param _builtins.str private_key: The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+        :param _builtins.str private_key_id: The private key ID of the service account. Service account only.
+        :param _builtins.str private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        :param _builtins.int private_key_wo_version: Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+        :param _builtins.str service_account_impersonation_url: The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+        :param _builtins.str token_uri: The token URI of the service account. Service account only.
+        :param _builtins.str workload_pool_provider_path: The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+        """
+        if auth_provider_x509_cert_url is not None:
+            pulumi.set(__self__, "auth_provider_x509_cert_url", auth_provider_x509_cert_url)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if auth_uri is not None:
+            pulumi.set(__self__, "auth_uri", auth_uri)
+        if client_email is not None:
+            pulumi.set(__self__, "client_email", client_email)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_x509_cert_url is not None:
+            pulumi.set(__self__, "client_x509_cert_url", client_x509_cert_url)
+        if execution_project is not None:
+            pulumi.set(__self__, "execution_project", execution_project)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_id is not None:
+            pulumi.set(__self__, "private_key_id", private_key_id)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
+        if service_account_impersonation_url is not None:
+            pulumi.set(__self__, "service_account_impersonation_url", service_account_impersonation_url)
+        if token_uri is not None:
+            pulumi.set(__self__, "token_uri", token_uri)
+        if workload_pool_provider_path is not None:
+            pulumi.set(__self__, "workload_pool_provider_path", workload_pool_provider_path)
+
+    @_builtins.property
+    @pulumi.getter(name="authProviderX509CertUrl")
+    def auth_provider_x509_cert_url(self) -> Optional[_builtins.str]:
+        """
+        The auth provider X509 cert URL of the service account. Service account only.
+        """
+        return pulumi.get(self, "auth_provider_x509_cert_url")
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[_builtins.str]:
+        """
+        The authentication type: `service-account-json` (the default on the latest adapter) or `external-oauth-wif`. Not allowed on a `bigquery_v0` connection. Changing it recreates the credential.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @_builtins.property
+    @pulumi.getter(name="authUri")
+    def auth_uri(self) -> Optional[_builtins.str]:
+        """
+        The auth URI of the service account. Service account only.
+        """
+        return pulumi.get(self, "auth_uri")
+
+    @_builtins.property
+    @pulumi.getter(name="clientEmail")
+    def client_email(self) -> Optional[_builtins.str]:
+        """
+        The client email of the service account. Service account only.
+        """
+        return pulumi.get(self, "client_email")
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[_builtins.str]:
+        """
+        The client ID of the service account. Service account only.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientX509CertUrl")
+    def client_x509_cert_url(self) -> Optional[_builtins.str]:
+        """
+        The client X509 cert URL of the service account. Service account only.
+        """
+        return pulumi.get(self, "client_x509_cert_url")
+
+    @_builtins.property
+    @pulumi.getter(name="executionProject")
+    def execution_project(self) -> Optional[_builtins.str]:
+        """
+        The project billed for query execution. It cannot be removed once set.
+        """
+        return pulumi.get(self, "execution_project")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[_builtins.str]:
+        """
+        The private key of the service account. Required for a service account, not allowed with workload identity federation. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+        """
+        return pulumi.get(self, "private_key")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyId")
+    def private_key_id(self) -> Optional[_builtins.str]:
+        """
+        The private key ID of the service account. Service account only.
+        """
+        return pulumi.get(self, "private_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The private key of the service account. Required for a service account, not allowed with workload identity federation. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountImpersonationUrl")
+    def service_account_impersonation_url(self) -> Optional[_builtins.str]:
+        """
+        The URL of the service account impersonation request. Only with `external-oauth-wif`. It cannot be removed once set.
+        """
+        return pulumi.get(self, "service_account_impersonation_url")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenUri")
+    def token_uri(self) -> Optional[_builtins.str]:
+        """
+        The token URI of the service account. Service account only.
+        """
+        return pulumi.get(self, "token_uri")
+
+    @_builtins.property
+    @pulumi.getter(name="workloadPoolProviderPath")
+    def workload_pool_provider_path(self) -> Optional[_builtins.str]:
+        """
+        The audience of the Security Token Service, usually the full resource name of the workload pool provider. Required for `external-oauth-wif`, not allowed otherwise.
+        """
+        return pulumi.get(self, "workload_pool_provider_path")
+
+
+@pulumi.output_type
+class AnalyticsCredentialDatabricks(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "tokenWo":
+            suggest = "token_wo"
+        elif key == "tokenWoVersion":
+            suggest = "token_wo_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AnalyticsCredentialDatabricks. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AnalyticsCredentialDatabricks.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AnalyticsCredentialDatabricks.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 catalog: Optional[_builtins.str] = None,
+                 token: Optional[_builtins.str] = None,
+                 token_wo: Optional[_builtins.str] = None,
+                 token_wo_version: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str catalog: The Unity Catalog name. It cannot be removed once set.
+        :param _builtins.str token: The personal access token. Required unless `token_wo` is set. Stored in the state, marked sensitive. Prefer `token_wo`, which is never stored.
+        :param _builtins.str token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `token_wo_version`.
+        :param _builtins.int token_wo_version: Version of `token_wo`. Change it to send a new value of `token_wo`; the value alone is not tracked because it is write-only.
+        """
+        if catalog is not None:
+            pulumi.set(__self__, "catalog", catalog)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def catalog(self) -> Optional[_builtins.str]:
+        """
+        The Unity Catalog name. It cannot be removed once set.
+        """
+        return pulumi.get(self, "catalog")
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> Optional[_builtins.str]:
+        """
+        The personal access token. Required unless `token_wo` is set. Stored in the state, marked sensitive. Prefer `token_wo`, which is never stored.
+        """
+        return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The personal access token, write-only: it is never stored in the state. Required unless `token` is set, and it requires `token_wo_version`.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version of `token_wo`. Change it to send a new value of `token_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+
+@pulumi.output_type
+class AnalyticsCredentialRedshift(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "passwordWo":
+            suggest = "password_wo"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AnalyticsCredentialRedshift. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AnalyticsCredentialRedshift.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AnalyticsCredentialRedshift.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 username: _builtins.str,
+                 password: Optional[_builtins.str] = None,
+                 password_wo: Optional[_builtins.str] = None,
+                 password_wo_version: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str username: The username to connect to the cluster.
+        :param _builtins.str password: The password to connect to the cluster. Required unless `password_wo` is set. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+        :param _builtins.str password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `password_wo_version`.
+        :param _builtins.int password_wo_version: Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+        """
+        pulumi.set(__self__, "username", username)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        The username to connect to the cluster.
+        """
+        return pulumi.get(self, "username")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        The password to connect to the cluster. Required unless `password_wo` is set. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password to connect to the cluster, write-only: it is never stored in the state. Required unless `password` is set, and it requires `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+
+@pulumi.output_type
+class AnalyticsCredentialSnowflake(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "passwordWo":
+            suggest = "password_wo"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
+        elif key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyPassphrase":
+            suggest = "private_key_passphrase"
+        elif key == "privateKeyPassphraseWo":
+            suggest = "private_key_passphrase_wo"
+        elif key == "privateKeyPassphraseWoVersion":
+            suggest = "private_key_passphrase_wo_version"
+        elif key == "privateKeyWo":
+            suggest = "private_key_wo"
+        elif key == "privateKeyWoVersion":
+            suggest = "private_key_wo_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AnalyticsCredentialSnowflake. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AnalyticsCredentialSnowflake.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AnalyticsCredentialSnowflake.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auth_type: _builtins.str,
+                 user: _builtins.str,
+                 password: Optional[_builtins.str] = None,
+                 password_wo: Optional[_builtins.str] = None,
+                 password_wo_version: Optional[_builtins.int] = None,
+                 private_key: Optional[_builtins.str] = None,
+                 private_key_passphrase: Optional[_builtins.str] = None,
+                 private_key_passphrase_wo: Optional[_builtins.str] = None,
+                 private_key_passphrase_wo_version: Optional[_builtins.int] = None,
+                 private_key_wo: Optional[_builtins.str] = None,
+                 private_key_wo_version: Optional[_builtins.int] = None,
+                 role: Optional[_builtins.str] = None,
+                 warehouse: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str auth_type: The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+        :param _builtins.str user: The Snowflake user name.
+        :param _builtins.str password: The password. Required when `auth_type` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+        :param _builtins.str password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password. Required when `auth_type` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        :param _builtins.int password_wo_version: Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+        :param _builtins.str private_key: The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+        :param _builtins.str private_key_passphrase: The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `private_key_passphrase_wo`, which is never stored.
+        :param _builtins.str private_key_passphrase_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        :param _builtins.int private_key_passphrase_wo_version: Version of `private_key_passphrase_wo`. Change it to send a new value of `private_key_passphrase_wo`; the value alone is not tracked because it is write-only.
+        :param _builtins.str private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        :param _builtins.int private_key_wo_version: Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+        :param _builtins.str role: The Snowflake role. It cannot be removed once set.
+        :param _builtins.str warehouse: The Snowflake warehouse. It cannot be removed once set.
+        """
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "user", user)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_passphrase is not None:
+            pulumi.set(__self__, "private_key_passphrase", private_key_passphrase)
+        if private_key_passphrase_wo is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo", private_key_passphrase_wo)
+        if private_key_passphrase_wo_version is not None:
+            pulumi.set(__self__, "private_key_passphrase_wo_version", private_key_passphrase_wo_version)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if warehouse is not None:
+            pulumi.set(__self__, "warehouse", warehouse)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> _builtins.str:
+        """
+        The authentication type: `password` (deprecated) or `keypair`. Changing it recreates the credential.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def user(self) -> _builtins.str:
+        """
+        The Snowflake user name.
+        """
+        return pulumi.get(self, "user")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        The password. Required when `auth_type` is `password`, not allowed with `keypair`. Stored in the state, marked sensitive. Prefer `password_wo`, which is never stored.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password. Required when `auth_type` is `password`, not allowed with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version of `password_wo`. Change it to send a new value of `password_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[_builtins.str]:
+        """
+        The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Stored in the state, marked sensitive. Prefer `private_key_wo`, which is never stored.
+        """
+        return pulumi.get(self, "private_key")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphrase")
+    def private_key_passphrase(self) -> Optional[_builtins.str]:
+        """
+        The passphrase of the private key. Only with `keypair`. Stored in the state, marked sensitive. Prefer `private_key_passphrase_wo`, which is never stored.
+        """
+        return pulumi.get(self, "private_key_passphrase")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWo")
+    def private_key_passphrase_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The passphrase of the private key. Only with `keypair`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyPassphraseWoVersion")
+    def private_key_passphrase_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version of `private_key_passphrase_wo`. Change it to send a new value of `private_key_passphrase_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "private_key_passphrase_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The private key. Required when `auth_type` is `keypair`, not allowed with `password`. Write-only: it is never stored in the state. Requires the matching `_wo_version`.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[_builtins.int]:
+        """
+        Version of `private_key_wo`. Change it to send a new value of `private_key_wo`; the value alone is not tracked because it is write-only.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> Optional[_builtins.str]:
+        """
+        The Snowflake role. It cannot be removed once set.
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def warehouse(self) -> Optional[_builtins.str]:
+        """
+        The Snowflake warehouse. It cannot be removed once set.
+        """
+        return pulumi.get(self, "warehouse")
+
 
 @pulumi.output_type
 class BigquerySemanticLayerCredentialConfiguration(dict):
@@ -3968,7 +4543,7 @@ class GetEnvironmentsEnvironmentResult(dict):
         :param _builtins.int connection_id: A connection ID (used with Global Connections)
         :param _builtins.int credentials_id: Credential ID for this environment. A credential is not required for development environments, as dbt Cloud defaults to the user's credentials, but deployment environments will have this.
         :param _builtins.str custom_branch: The custom branch name to use
-        :param _builtins.str dbt_version: Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+        :param _builtins.str dbt_version: Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
         :param _builtins.str deployment_type: The type of deployment environment (currently 'production', 'staging' or empty)
         :param _builtins.bool enable_dbt_state: Whether dbt State is on for this environment
         :param _builtins.bool enable_model_query_history: Whether model query history is on
@@ -4023,7 +4598,7 @@ class GetEnvironmentsEnvironmentResult(dict):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> _builtins.str:
         """
-        Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+        Version number of dbt configured on this environment. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
         """
         return pulumi.get(self, "dbt_version")
 
@@ -5416,6 +5991,7 @@ class GetGlobalConnectionTeradataResult(dict):
 class GetGlobalConnectionsConnectionResult(dict):
     def __init__(__self__, *,
                  adapter_version: _builtins.str,
+                 analytics_credentials_id: _builtins.int,
                  created_at: _builtins.str,
                  environment_count: _builtins.int,
                  id: _builtins.int,
@@ -5426,6 +6002,7 @@ class GetGlobalConnectionsConnectionResult(dict):
                  updated_at: _builtins.str):
         """
         :param _builtins.str adapter_version: Type of adapter used for the connection
+        :param _builtins.int analytics_credentials_id: The ID of the analytics credential attached to this connection, if any.
         :param _builtins.str created_at: When the connection was created
         :param _builtins.int environment_count: Number of environments using this connection
         :param _builtins.int id: Connection Identifier
@@ -5434,6 +6011,7 @@ class GetGlobalConnectionsConnectionResult(dict):
         :param _builtins.str updated_at: When the connection was updated
         """
         pulumi.set(__self__, "adapter_version", adapter_version)
+        pulumi.set(__self__, "analytics_credentials_id", analytics_credentials_id)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "environment_count", environment_count)
         pulumi.set(__self__, "id", id)
@@ -5450,6 +6028,14 @@ class GetGlobalConnectionsConnectionResult(dict):
         Type of adapter used for the connection
         """
         return pulumi.get(self, "adapter_version")
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsCredentialsId")
+    def analytics_credentials_id(self) -> _builtins.int:
+        """
+        The ID of the analytics credential attached to this connection, if any.
+        """
+        return pulumi.get(self, "analytics_credentials_id")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -5904,7 +6490,7 @@ class GetJobsJobResult(dict):
                  triggers: 'outputs.GetJobsJobTriggersResult',
                  triggers_on_draft_pr: _builtins.bool):
         """
-        :param _builtins.str dbt_version: The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+        :param _builtins.str dbt_version: The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
         :param _builtins.int deferring_environment_id: The ID of the environment this job defers to
         :param _builtins.int deferring_job_definition_id: [Deprectated - Deferral is now set at the environment level] The ID of the job definition this job defers to
         :param _builtins.str description: The description of the job
@@ -5952,7 +6538,7 @@ class GetJobsJobResult(dict):
     @pulumi.getter(name="dbtVersion")
     def dbt_version(self) -> _builtins.str:
         """
-        The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`).
+        The version of dbt used for the job. If not set, the environment version will be used. Will be in the format `major.minor.0-latest` (e.g. `1.5.0-latest`), `major.minor.0-pre`, `compatible`, `extended`, `versionless`, `latest`, `fallback`, or one of the Fusion release tracks (`latest-fusion`, `fusion-stable`, `fusion-extended`, `fusion-nightly`, `fusion-fallback`), or an equivalent `v1-` or `v2-` spelling (`v1-latest`, `v1-compatible`, `v1-extended`, `v2-stable`, `v2-extended`, `v2-nightly`, `v2-fallback`).
         """
         return pulumi.get(self, "dbt_version")
 
@@ -6564,6 +7150,7 @@ class GetProjectRepositoryResult(dict):
 @pulumi.output_type
 class GetProjectsProjectResult(dict):
     def __init__(__self__, *,
+                 analytics_connection_id: _builtins.int,
                  created_at: _builtins.str,
                  dbt_project_subdirectory: _builtins.str,
                  description: _builtins.str,
@@ -6575,6 +7162,7 @@ class GetProjectsProjectResult(dict):
                  type: _builtins.int,
                  updated_at: _builtins.str):
         """
+        :param _builtins.int analytics_connection_id: ID of the global connection used for analytics, if any
         :param _builtins.str created_at: When the project was created
         :param _builtins.str dbt_project_subdirectory: Subdirectory for the dbt project inside the git repo
         :param _builtins.str description: Project description
@@ -6586,6 +7174,7 @@ class GetProjectsProjectResult(dict):
         :param _builtins.int type: The type of dbt project (default or hybrid)
         :param _builtins.str updated_at: When the project was last updated
         """
+        pulumi.set(__self__, "analytics_connection_id", analytics_connection_id)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "dbt_project_subdirectory", dbt_project_subdirectory)
         pulumi.set(__self__, "description", description)
@@ -6596,6 +7185,14 @@ class GetProjectsProjectResult(dict):
         pulumi.set(__self__, "semantic_layer_config_id", semantic_layer_config_id)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsConnectionId")
+    def analytics_connection_id(self) -> _builtins.int:
+        """
+        ID of the global connection used for analytics, if any
+        """
+        return pulumi.get(self, "analytics_connection_id")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

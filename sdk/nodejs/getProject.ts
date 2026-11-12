@@ -67,6 +67,10 @@ export interface GetProjectArgs {
  */
 export interface GetProjectResult {
     /**
+     * ID of the global connection used for analytics, if any
+     */
+    readonly analyticsConnectionId: number;
+    /**
      * When the project was created
      */
     readonly createdAt: string;

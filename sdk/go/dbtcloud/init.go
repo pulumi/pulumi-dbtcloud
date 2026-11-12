@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "dbtcloud:index/accountFeatures:AccountFeatures":
 		r = &AccountFeatures{}
+	case "dbtcloud:index/analyticsCredential:AnalyticsCredential":
+		r = &AnalyticsCredential{}
 	case "dbtcloud:index/athenaCredential:AthenaCredential":
 		r = &AthenaCredential{}
 	case "dbtcloud:index/authProvider:AuthProvider":
@@ -171,6 +173,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/accountFeatures",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/analyticsCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

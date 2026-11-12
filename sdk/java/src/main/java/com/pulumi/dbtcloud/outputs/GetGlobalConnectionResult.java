@@ -31,6 +31,11 @@ public final class GetGlobalConnectionResult {
      */
     private String adapterVersion;
     /**
+     * @return The ID of the analytics credential attached to this connection, if any.
+     * 
+     */
+    private Integer analyticsCredentialsId;
+    /**
      * @return Apache Spark connection configuration.
      * 
      */
@@ -120,6 +125,13 @@ public final class GetGlobalConnectionResult {
      */
     public String adapterVersion() {
         return this.adapterVersion;
+    }
+    /**
+     * @return The ID of the analytics credential attached to this connection, if any.
+     * 
+     */
+    public Integer analyticsCredentialsId() {
+        return this.analyticsCredentialsId;
     }
     /**
      * @return Apache Spark connection configuration.
@@ -250,6 +262,7 @@ public final class GetGlobalConnectionResult {
     @CustomType.Builder
     public static final class Builder {
         private String adapterVersion;
+        private Integer analyticsCredentialsId;
         private GetGlobalConnectionApacheSpark apacheSpark;
         private GetGlobalConnectionAthena athena;
         private GetGlobalConnectionBigquery bigquery;
@@ -272,6 +285,7 @@ public final class GetGlobalConnectionResult {
         public Builder(GetGlobalConnectionResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.adapterVersion = defaults.adapterVersion;
+    	      this.analyticsCredentialsId = defaults.analyticsCredentialsId;
     	      this.apacheSpark = defaults.apacheSpark;
     	      this.athena = defaults.athena;
     	      this.bigquery = defaults.bigquery;
@@ -298,6 +312,14 @@ public final class GetGlobalConnectionResult {
               throw new MissingRequiredPropertyException("GetGlobalConnectionResult", "adapterVersion");
             }
             this.adapterVersion = adapterVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder analyticsCredentialsId(Integer analyticsCredentialsId) {
+            if (analyticsCredentialsId == null) {
+              throw new MissingRequiredPropertyException("GetGlobalConnectionResult", "analyticsCredentialsId");
+            }
+            this.analyticsCredentialsId = analyticsCredentialsId;
             return this;
         }
         @CustomType.Setter
@@ -447,6 +469,7 @@ public final class GetGlobalConnectionResult {
         public GetGlobalConnectionResult build() {
             final var _resultValue = new GetGlobalConnectionResult();
             _resultValue.adapterVersion = adapterVersion;
+            _resultValue.analyticsCredentialsId = analyticsCredentialsId;
             _resultValue.apacheSpark = apacheSpark;
             _resultValue.athena = athena;
             _resultValue.bigquery = bigquery;

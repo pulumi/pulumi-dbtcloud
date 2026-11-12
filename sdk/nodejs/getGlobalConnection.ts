@@ -44,6 +44,10 @@ export interface GetGlobalConnectionResult {
      */
     readonly adapterVersion: string;
     /**
+     * The ID of the analytics credential attached to this connection, if any.
+     */
+    readonly analyticsCredentialsId: number;
+    /**
      * Apache Spark connection configuration.
      */
     readonly apacheSpark: outputs.GetGlobalConnectionApacheSpark;

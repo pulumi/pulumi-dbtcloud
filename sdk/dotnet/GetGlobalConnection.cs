@@ -116,6 +116,10 @@ namespace Pulumi.DbtCloud
         /// </summary>
         public readonly string AdapterVersion;
         /// <summary>
+        /// The ID of the analytics credential attached to this connection, if any.
+        /// </summary>
+        public readonly int AnalyticsCredentialsId;
+        /// <summary>
         /// Apache Spark connection configuration.
         /// </summary>
         public readonly Outputs.GetGlobalConnectionApacheSparkResult ApacheSpark;
@@ -186,6 +190,8 @@ namespace Pulumi.DbtCloud
         private GetGlobalConnectionResult(
             string adapterVersion,
 
+            int analyticsCredentialsId,
+
             Outputs.GetGlobalConnectionApacheSparkResult apacheSpark,
 
             Outputs.GetGlobalConnectionAthenaResult athena,
@@ -223,6 +229,7 @@ namespace Pulumi.DbtCloud
             Outputs.GetGlobalConnectionTeradataResult teradata)
         {
             AdapterVersion = adapterVersion;
+            AnalyticsCredentialsId = analyticsCredentialsId;
             ApacheSpark = apacheSpark;
             Athena = athena;
             Bigquery = bigquery;

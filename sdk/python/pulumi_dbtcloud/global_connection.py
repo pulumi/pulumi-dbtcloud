@@ -283,6 +283,7 @@ class GlobalConnectionArgs:
 class _GlobalConnectionState:
     def __init__(__self__, *,
                  adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 analytics_credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
                  apache_spark: pulumi.Input[Optional['GlobalConnectionApacheSparkArgs']] = None,
                  athena: pulumi.Input[Optional['GlobalConnectionAthenaArgs']] = None,
                  bigquery: pulumi.Input[Optional['GlobalConnectionBigqueryArgs']] = None,
@@ -304,6 +305,7 @@ class _GlobalConnectionState:
         Input properties used for looking up and filtering GlobalConnection resources.
 
         :param pulumi.Input[_builtins.str] adapter_version: Version of the adapter
+        :param pulumi.Input[_builtins.int] analytics_credentials_id: The ID of the analytics credential attached to this connection, if any.
         :param pulumi.Input['GlobalConnectionApacheSparkArgs'] apache_spark: Apache Spark connection configuration.
         :param pulumi.Input['GlobalConnectionAthenaArgs'] athena: Athena connection configuration.
         :param pulumi.Input['GlobalConnectionClickhouseArgs'] clickhouse: ClickHouse connection configuration.
@@ -323,6 +325,8 @@ class _GlobalConnectionState:
         """
         if adapter_version is not None:
             pulumi.set(__self__, "adapter_version", adapter_version)
+        if analytics_credentials_id is not None:
+            pulumi.set(__self__, "analytics_credentials_id", analytics_credentials_id)
         if apache_spark is not None:
             pulumi.set(__self__, "apache_spark", apache_spark)
         if athena is not None:
@@ -369,6 +373,18 @@ class _GlobalConnectionState:
     @adapter_version.setter
     def adapter_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "adapter_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsCredentialsId")
+    def analytics_credentials_id(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The ID of the analytics credential attached to this connection, if any.
+        """
+        return pulumi.get(self, "analytics_credentials_id")
+
+    @analytics_credentials_id.setter
+    def analytics_credentials_id(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "analytics_credentials_id", value)
 
     @_builtins.property
     @pulumi.getter(name="apacheSpark")
@@ -1086,6 +1102,7 @@ class GlobalConnection(pulumi.CustomResource):
             __props__.__dict__["synapse"] = synapse
             __props__.__dict__["teradata"] = teradata
             __props__.__dict__["adapter_version"] = None
+            __props__.__dict__["analytics_credentials_id"] = None
             __props__.__dict__["is_ssh_tunnel_enabled"] = None
         super(GlobalConnection, __self__).__init__(
             'dbtcloud:index/globalConnection:GlobalConnection',
@@ -1098,6 +1115,7 @@ class GlobalConnection(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+            analytics_credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
             apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
             athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
             bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
@@ -1123,6 +1141,7 @@ class GlobalConnection(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] adapter_version: Version of the adapter
+        :param pulumi.Input[_builtins.int] analytics_credentials_id: The ID of the analytics credential attached to this connection, if any.
         :param pulumi.Input[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']] apache_spark: Apache Spark connection configuration.
         :param pulumi.Input[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']] athena: Athena connection configuration.
         :param pulumi.Input[Union['GlobalConnectionClickhouseArgs', 'GlobalConnectionClickhouseArgsDict', 'outputs.GlobalConnectionClickhouse']] clickhouse: ClickHouse connection configuration.
@@ -1145,6 +1164,7 @@ class GlobalConnection(pulumi.CustomResource):
         __props__ = _GlobalConnectionState.__new__(_GlobalConnectionState)
 
         __props__.__dict__["adapter_version"] = adapter_version
+        __props__.__dict__["analytics_credentials_id"] = analytics_credentials_id
         __props__.__dict__["apache_spark"] = apache_spark
         __props__.__dict__["athena"] = athena
         __props__.__dict__["bigquery"] = bigquery
@@ -1168,6 +1188,7 @@ class GlobalConnection(pulumi.CustomResource):
     def exists(id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             adapter_version: pulumi.Input[Optional[_builtins.str]] = None,
+            analytics_credentials_id: pulumi.Input[Optional[_builtins.int]] = None,
             apache_spark: pulumi.Input[Optional[Union['GlobalConnectionApacheSparkArgs', 'GlobalConnectionApacheSparkArgsDict', 'outputs.GlobalConnectionApacheSpark']]] = None,
             athena: pulumi.Input[Optional[Union['GlobalConnectionAthenaArgs', 'GlobalConnectionAthenaArgsDict', 'outputs.GlobalConnectionAthena']]] = None,
             bigquery: pulumi.Input[Optional[Union['GlobalConnectionBigqueryArgs', 'GlobalConnectionBigqueryArgsDict', 'outputs.GlobalConnectionBigquery']]] = None,
@@ -1187,6 +1208,7 @@ class GlobalConnection(pulumi.CustomResource):
             teradata: pulumi.Input[Optional[Union['GlobalConnectionTeradataArgs', 'GlobalConnectionTeradataArgsDict', 'outputs.GlobalConnectionTeradata']]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["adapterVersion"] = adapter_version
+        __props__["analyticsCredentialsId"] = analytics_credentials_id
         __props__["apacheSpark"] = apache_spark
         __props__["athena"] = athena
         __props__["bigquery"] = bigquery
@@ -1213,6 +1235,14 @@ class GlobalConnection(pulumi.CustomResource):
         Version of the adapter
         """
         return pulumi.get(self, "adapter_version")
+
+    @_builtins.property
+    @pulumi.getter(name="analyticsCredentialsId")
+    def analytics_credentials_id(self) -> pulumi.Output[_builtins.int]:
+        """
+        The ID of the analytics credential attached to this connection, if any.
+        """
+        return pulumi.get(self, "analytics_credentials_id")
 
     @_builtins.property
     @pulumi.getter(name="apacheSpark")

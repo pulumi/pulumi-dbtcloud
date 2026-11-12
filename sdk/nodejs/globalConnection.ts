@@ -271,6 +271,10 @@ export class GlobalConnection extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly adapterVersion: pulumi.Output<string>;
     /**
+     * The ID of the analytics credential attached to this connection, if any.
+     */
+    declare public /*out*/ readonly analyticsCredentialsId: pulumi.Output<number>;
+    /**
      * Apache Spark connection configuration.
      */
     declare public readonly apacheSpark: pulumi.Output<outputs.GlobalConnectionApacheSpark | undefined>;
@@ -350,6 +354,7 @@ export class GlobalConnection extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as GlobalConnectionState | undefined;
             resourceInputs["adapterVersion"] = state?.adapterVersion;
+            resourceInputs["analyticsCredentialsId"] = state?.analyticsCredentialsId;
             resourceInputs["apacheSpark"] = state?.apacheSpark;
             resourceInputs["athena"] = state?.athena;
             resourceInputs["bigquery"] = state?.bigquery;
@@ -386,6 +391,7 @@ export class GlobalConnection extends pulumi.CustomResource {
             resourceInputs["synapse"] = args?.synapse;
             resourceInputs["teradata"] = args?.teradata;
             resourceInputs["adapterVersion"] = undefined /*out*/;
+            resourceInputs["analyticsCredentialsId"] = undefined /*out*/;
             resourceInputs["isSshTunnelEnabled"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -401,6 +407,10 @@ export interface GlobalConnectionState {
      * Version of the adapter
      */
     adapterVersion?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the analytics credential attached to this connection, if any.
+     */
+    analyticsCredentialsId?: pulumi.Input<number | undefined>;
     /**
      * Apache Spark connection configuration.
      */

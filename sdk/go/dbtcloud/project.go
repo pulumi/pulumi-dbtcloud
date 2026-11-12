@@ -20,6 +20,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/pulumi/pulumi-dbtcloud/sdk/go/dbtcloud"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -43,6 +45,26 @@ import (
 //			_, err = dbtcloud.NewProject(ctx, "dbt_project_with_subdir", &dbtcloud.ProjectArgs{
 //				Name:                   pulumi.String("Analytics in Subdir"),
 //				DbtProjectSubdirectory: pulumi.String("path"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// a global connection the project uses for analytics
+//			analytics, err := dbtcloud.NewGlobalConnection(ctx, "analytics", &dbtcloud.GlobalConnectionArgs{
+//				Name: pulumi.String("Analytics connection"),
+//				Snowflake: &dbtcloud.GlobalConnectionSnowflakeArgs{
+//					Account:   pulumi.String("my-snowflake-account"),
+//					Database:  pulumi.String("ANALYTICS"),
+//					Warehouse: pulumi.String("ANALYTICS_WH"),
+//					AllowSso:  pulumi.Bool(false),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbtcloud.NewProject(ctx, "dbt_project_with_analytics_connection", &dbtcloud.ProjectArgs{
+//				Name:                  pulumi.String("Analytics with an analytics connection"),
+//				AnalyticsConnectionId: analytics.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			})
 //			if err != nil {
 //				return err
@@ -75,6 +97,8 @@ import (
 type Project struct {
 	pulumi.CustomResourceState
 
+	// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+	AnalyticsConnectionId pulumi.IntPtrOutput `pulumi:"analyticsConnectionId"`
 	// DBT project subdirectory
 	DbtProjectSubdirectory pulumi.StringOutput `pulumi:"dbtProjectSubdirectory"`
 	// Description for the project. Will show in dbt Explorer.
@@ -115,6 +139,8 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
+	// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+	AnalyticsConnectionId *int `pulumi:"analyticsConnectionId"`
 	// DBT project subdirectory
 	DbtProjectSubdirectory *string `pulumi:"dbtProjectSubdirectory"`
 	// Description for the project. Will show in dbt Explorer.
@@ -126,6 +152,8 @@ type projectState struct {
 }
 
 type ProjectState struct {
+	// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+	AnalyticsConnectionId pulumi.IntPtrInput
 	// DBT project subdirectory
 	DbtProjectSubdirectory pulumi.StringPtrInput
 	// Description for the project. Will show in dbt Explorer.
@@ -147,6 +175,8 @@ func ProjectExists(ctx *pulumi.Context,
 }
 
 type projectArgs struct {
+	// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+	AnalyticsConnectionId *int `pulumi:"analyticsConnectionId"`
 	// DBT project subdirectory
 	DbtProjectSubdirectory *string `pulumi:"dbtProjectSubdirectory"`
 	// Description for the project. Will show in dbt Explorer.
@@ -159,6 +189,8 @@ type projectArgs struct {
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
+	// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+	AnalyticsConnectionId pulumi.IntPtrInput
 	// DBT project subdirectory
 	DbtProjectSubdirectory pulumi.StringPtrInput
 	// Description for the project. Will show in dbt Explorer.
@@ -254,6 +286,11 @@ func (o ProjectOutput) ToProjectOutput() ProjectOutput {
 
 func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOutput {
 	return o
+}
+
+// ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+func (o ProjectOutput) AnalyticsConnectionId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Project) pulumi.IntPtrOutput { return v.AnalyticsConnectionId }).(pulumi.IntPtrOutput)
 }
 
 // DBT project subdirectory

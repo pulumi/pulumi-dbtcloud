@@ -292,6 +292,12 @@ namespace Pulumi.DbtCloud
         public Output<string> AdapterVersion { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the analytics credential attached to this connection, if any.
+        /// </summary>
+        [Output("analyticsCredentialsId")]
+        public Output<int> AnalyticsCredentialsId { get; private set; } = null!;
+
+        /// <summary>
         /// Apache Spark connection configuration.
         /// </summary>
         [Output("apacheSpark")]
@@ -543,6 +549,12 @@ namespace Pulumi.DbtCloud
         /// </summary>
         [Input("adapterVersion")]
         public Input<string>? AdapterVersion { get; set; }
+
+        /// <summary>
+        /// The ID of the analytics credential attached to this connection, if any.
+        /// </summary>
+        [Input("analyticsCredentialsId")]
+        public Input<int>? AnalyticsCredentialsId { get; set; }
 
         /// <summary>
         /// Apache Spark connection configuration.

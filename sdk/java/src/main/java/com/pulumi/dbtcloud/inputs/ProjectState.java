@@ -17,6 +17,21 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     public static final ProjectState Empty = new ProjectState();
 
     /**
+     * ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+     * 
+     */
+    @Import(name="analyticsConnectionId")
+    private @Nullable Output<Integer> analyticsConnectionId;
+
+    /**
+     * @return ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+     * 
+     */
+    public Optional<Output<Integer>> analyticsConnectionId() {
+        return Optional.ofNullable(this.analyticsConnectionId);
+    }
+
+    /**
      * DBT project subdirectory
      * 
      */
@@ -79,6 +94,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     private ProjectState() {}
 
     private ProjectState(ProjectState $) {
+        this.analyticsConnectionId = $.analyticsConnectionId;
         this.dbtProjectSubdirectory = $.dbtProjectSubdirectory;
         this.description = $.description;
         this.name = $.name;
@@ -101,6 +117,27 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ProjectState defaults) {
             $ = new ProjectState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param analyticsConnectionId ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder analyticsConnectionId(@Nullable Output<Integer> analyticsConnectionId) {
+            $.analyticsConnectionId = analyticsConnectionId;
+            return this;
+        }
+
+        /**
+         * @param analyticsConnectionId ID of the global connection used for analytics. It must be a connection of the same account. Removing it from the configuration clears it, and so does leaving it out of the configuration when a value was set outside Terraform. Read-only users of the project query through the analytics credential of this connection, so the connection should have one. Deleting that credential clears the attribute.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder analyticsConnectionId(Integer analyticsConnectionId) {
+            return analyticsConnectionId(Output.of(analyticsConnectionId));
         }
 
         /**
