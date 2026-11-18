@@ -33,6 +33,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AzureAdApplication{}
 	case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
 		r = &BigQueryCredential{}
+	case "dbtcloud:index/bigqueryPlatformMetadataCredential:BigqueryPlatformMetadataCredential":
+		r = &BigqueryPlatformMetadataCredential{}
 	case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
 		r = &BigquerySemanticLayerCredential{}
 	case "dbtcloud:index/clickhouseCredential:ClickhouseCredential":
@@ -198,6 +200,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"dbtcloud",
 		"index/bigQueryCredential",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"dbtcloud",
+		"index/bigqueryPlatformMetadataCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

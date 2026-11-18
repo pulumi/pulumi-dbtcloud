@@ -35,6 +35,11 @@ export type BigQueryCredential = import("./bigQueryCredential").BigQueryCredenti
 export const BigQueryCredential: typeof import("./bigQueryCredential").BigQueryCredential = null as any;
 utilities.lazyLoad(exports, ["BigQueryCredential"], () => require("./bigQueryCredential"));
 
+export { BigqueryPlatformMetadataCredentialArgs, BigqueryPlatformMetadataCredentialState } from "./bigqueryPlatformMetadataCredential";
+export type BigqueryPlatformMetadataCredential = import("./bigqueryPlatformMetadataCredential").BigqueryPlatformMetadataCredential;
+export const BigqueryPlatformMetadataCredential: typeof import("./bigqueryPlatformMetadataCredential").BigqueryPlatformMetadataCredential = null as any;
+utilities.lazyLoad(exports, ["BigqueryPlatformMetadataCredential"], () => require("./bigqueryPlatformMetadataCredential"));
+
 export { BigquerySemanticLayerCredentialArgs, BigquerySemanticLayerCredentialState } from "./bigquerySemanticLayerCredential";
 export type BigquerySemanticLayerCredential = import("./bigquerySemanticLayerCredential").BigquerySemanticLayerCredential;
 export const BigquerySemanticLayerCredential: typeof import("./bigquerySemanticLayerCredential").BigquerySemanticLayerCredential = null as any;
@@ -539,6 +544,8 @@ const _module = {
                 return new AzureAdApplication(name, <any>undefined, { urn })
             case "dbtcloud:index/bigQueryCredential:BigQueryCredential":
                 return new BigQueryCredential(name, <any>undefined, { urn })
+            case "dbtcloud:index/bigqueryPlatformMetadataCredential:BigqueryPlatformMetadataCredential":
+                return new BigqueryPlatformMetadataCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential":
                 return new BigquerySemanticLayerCredential(name, <any>undefined, { urn })
             case "dbtcloud:index/clickhouseCredential:ClickhouseCredential":
@@ -656,6 +663,7 @@ pulumi.runtime.registerResourceModule("dbtcloud", "index/athenaCredential", _mod
 pulumi.runtime.registerResourceModule("dbtcloud", "index/authProvider", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/azureAdApplication", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigQueryCredential", _module)
+pulumi.runtime.registerResourceModule("dbtcloud", "index/bigqueryPlatformMetadataCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/bigquerySemanticLayerCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/clickhouseCredential", _module)
 pulumi.runtime.registerResourceModule("dbtcloud", "index/connectionCatalogConfig", _module)

@@ -25,6 +25,7 @@
         "authProvider.ts",
         "azureAdApplication.ts",
         "bigQueryCredential.ts",
+        "bigqueryPlatformMetadataCredential.ts",
         "bigquerySemanticLayerCredential.ts",
         "clickhouseCredential.ts",
         "config/index.ts",
