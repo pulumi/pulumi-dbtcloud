@@ -25,6 +25,10 @@
                 "current": "dbtcloud:index/bigQueryCredential:BigQueryCredential",
                 "majorVersion": 1
             },
+            "dbtcloud_bigquery_platform_metadata_credential": {
+                "current": "dbtcloud:index/bigqueryPlatformMetadataCredential:BigqueryPlatformMetadataCredential",
+                "majorVersion": 1
+            },
             "dbtcloud_bigquery_semantic_layer_credential": {
                 "current": "dbtcloud:index/bigquerySemanticLayerCredential:BigquerySemanticLayerCredential",
                 "majorVersion": 1
@@ -811,6 +815,7 @@
                 }
             },
             "dbtcloud_bigquery_credential": {},
+            "dbtcloud_bigquery_platform_metadata_credential": {},
             "dbtcloud_bigquery_semantic_layer_credential": {
                 "fields": {
                     "id": {
