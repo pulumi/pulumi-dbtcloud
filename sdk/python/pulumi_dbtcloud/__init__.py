@@ -12,6 +12,7 @@ from .athena_credential import *
 from .auth_provider import *
 from .azure_ad_application import *
 from .big_query_credential import *
+from .bigquery_platform_metadata_credential import *
 from .bigquery_semantic_layer_credential import *
 from .clickhouse_credential import *
 from .connection_catalog_config import *
@@ -167,6 +168,14 @@ _utilities.register(
   "fqn": "pulumi_dbtcloud",
   "classes": {
    "dbtcloud:index/bigQueryCredential:BigQueryCredential": "BigQueryCredential"
+  }
+ },
+ {
+  "pkg": "dbtcloud",
+  "mod": "index/bigqueryPlatformMetadataCredential",
+  "fqn": "pulumi_dbtcloud",
+  "classes": {
+   "dbtcloud:index/bigqueryPlatformMetadataCredential:BigqueryPlatformMetadataCredential": "BigqueryPlatformMetadataCredential"
   }
  },
  {
